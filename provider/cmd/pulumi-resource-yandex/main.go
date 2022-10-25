@@ -20,8 +20,8 @@ import (
 	_ "embed"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
-	yandex "github.com/pulumi/pulumi-yandex/provider"
-	"github.com/pulumi/pulumi-yandex/provider/pkg/version"
+	yandex "github.com/regrau/pulumi-yandex/provider"
+	"github.com/regrau/pulumi-yandex/provider/pkg/version"
 )
 
 //go:embed schema-embed.json
