@@ -11,6 +11,32 @@ namespace Pulumi.Yandex
 {
     public static class GetClientConfig
     {
+        /// <summary>
+        /// Get attributes used by provider to configure client connection.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var client = Yandex.GetClientConfig.Invoke();
+        /// 
+        ///     var kubernetes = Yandex.GetKubernetesCluster.Invoke(new()
+        ///     {
+        ///         Name = "kubernetes",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetClientConfigResult> InvokeAsync(InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetClientConfigResult>("yandex:index/getClientConfig:getClientConfig", InvokeArgs.Empty, options.WithDefaults());
     }
@@ -19,13 +45,25 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetClientConfigResult
     {
+        /// <summary>
+        /// The ID of the cloud that the provider is connecting to.
+        /// </summary>
         public readonly string CloudId;
+        /// <summary>
+        /// The ID of the folder in which we operate.
+        /// </summary>
         public readonly string FolderId;
+        /// <summary>
+        /// A short-lived token that can be used for authentication in a Kubernetes cluster.
+        /// </summary>
         public readonly string IamToken;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The default availability zone.
+        /// </summary>
         public readonly string Zone;
 
         [OutputConstructor]

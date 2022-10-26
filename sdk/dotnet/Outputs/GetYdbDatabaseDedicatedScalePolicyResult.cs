@@ -13,6 +13,10 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetYdbDatabaseDedicatedScalePolicyResult
     {
+        /// <summary>
+        /// Fixed scaling policy of the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetYdbDatabaseDedicatedScalePolicyFixedScaleResult> FixedScales;
 
         [OutputConstructor]

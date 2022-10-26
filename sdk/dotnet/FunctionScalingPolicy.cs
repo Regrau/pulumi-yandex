@@ -9,12 +9,57 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows management of [Yandex Cloud Function Scaling Policies](https://cloud.yandex.com/docs/functions/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myScalingPolicy = new Yandex.FunctionScalingPolicy("myScalingPolicy", new()
+    ///     {
+    ///         FunctionId = "are1samplefunction11",
+    ///         Policies = new[]
+    ///         {
+    ///             new Yandex.Inputs.FunctionScalingPolicyPolicyArgs
+    ///             {
+    ///                 Tag = "$latest",
+    ///                 ZoneInstancesLimit = 3,
+    ///                 ZoneRequestsLimit = 100,
+    ///             },
+    ///             new Yandex.Inputs.FunctionScalingPolicyPolicyArgs
+    ///             {
+    ///                 Tag = "my_tag",
+    ///                 ZoneInstancesLimit = 4,
+    ///                 ZoneRequestsLimit = 150,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/functionScalingPolicy:FunctionScalingPolicy")]
     public partial class FunctionScalingPolicy : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Yandex Cloud Function id used to define function
+        /// </summary>
         [Output("functionId")]
         public Output<string> FunctionId { get; private set; } = null!;
 
+        /// <summary>
+        /// list definition for Yandex Cloud Function scaling policies
+        /// * `policy.#` - number of Yandex Cloud Function scaling policies
+        /// * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+        /// * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+        /// * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+        /// </summary>
         [Output("policies")]
         public Output<ImmutableArray<Outputs.FunctionScalingPolicyPolicy>> Policies { get; private set; } = null!;
 
@@ -41,7 +86,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -65,11 +110,22 @@ namespace Pulumi.Yandex
 
     public sealed class FunctionScalingPolicyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Yandex Cloud Function id used to define function
+        /// </summary>
         [Input("functionId", required: true)]
         public Input<string> FunctionId { get; set; } = null!;
 
         [Input("policies")]
         private InputList<Inputs.FunctionScalingPolicyPolicyArgs>? _policies;
+
+        /// <summary>
+        /// list definition for Yandex Cloud Function scaling policies
+        /// * `policy.#` - number of Yandex Cloud Function scaling policies
+        /// * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+        /// * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+        /// * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+        /// </summary>
         public InputList<Inputs.FunctionScalingPolicyPolicyArgs> Policies
         {
             get => _policies ?? (_policies = new InputList<Inputs.FunctionScalingPolicyPolicyArgs>());
@@ -84,11 +140,22 @@ namespace Pulumi.Yandex
 
     public sealed class FunctionScalingPolicyState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Yandex Cloud Function id used to define function
+        /// </summary>
         [Input("functionId")]
         public Input<string>? FunctionId { get; set; }
 
         [Input("policies")]
         private InputList<Inputs.FunctionScalingPolicyPolicyGetArgs>? _policies;
+
+        /// <summary>
+        /// list definition for Yandex Cloud Function scaling policies
+        /// * `policy.#` - number of Yandex Cloud Function scaling policies
+        /// * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+        /// * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+        /// * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+        /// </summary>
         public InputList<Inputs.FunctionScalingPolicyPolicyGetArgs> Policies
         {
             get => _policies ?? (_policies = new InputList<Inputs.FunctionScalingPolicyPolicyGetArgs>());

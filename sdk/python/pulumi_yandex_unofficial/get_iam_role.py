@@ -66,7 +66,13 @@ def get_iam_role(description: Optional[str] = None,
                  role_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIamRoleResult:
     """
-    Use this data source to access information about an existing resource.
+    Generates an [IAM] role document that may be referenced by and applied to
+    other Yandex.Cloud Platform resources, such as the `ResourcemanagerFolder` resource. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/iam/concepts/access-control/roles).
+
+    This data source is used to define [IAM] roles in order to apply them to other resources.
+    Currently, defining a role through a data source and referencing that role
+    from another resource is the only way to apply an IAM role to a resource.
     """
     __args__ = dict()
     __args__['description'] = description
@@ -85,6 +91,12 @@ def get_iam_role_output(description: Optional[pulumi.Input[Optional[str]]] = Non
                         role_id: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamRoleResult]:
     """
-    Use this data source to access information about an existing resource.
+    Generates an [IAM] role document that may be referenced by and applied to
+    other Yandex.Cloud Platform resources, such as the `ResourcemanagerFolder` resource. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/iam/concepts/access-control/roles).
+
+    This data source is used to define [IAM] roles in order to apply them to other resources.
+    Currently, defining a role through a data source and referencing that role
+    from another resource is the only way to apply an IAM role to a resource.
     """
     ...

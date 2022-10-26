@@ -10,6 +10,36 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a user of Yandex SAML Federation. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/organization/operations/federations/integration-common).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			account, err := yandex.GetOrganizationmanagerSamlFederationUserAccount(ctx, &GetOrganizationmanagerSamlFederationUserAccountArgs{
+//				FederationId: "some_federation_id",
+//				NameId:       "example@example.org",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("myFederation.id", account.Id)
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetOrganizationmanagerSamlFederationUserAccount(ctx *pulumi.Context, args *GetOrganizationmanagerSamlFederationUserAccountArgs, opts ...pulumi.InvokeOption) (*GetOrganizationmanagerSamlFederationUserAccountResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetOrganizationmanagerSamlFederationUserAccountResult
@@ -22,8 +52,10 @@ func GetOrganizationmanagerSamlFederationUserAccount(ctx *pulumi.Context, args *
 
 // A collection of arguments for invoking getOrganizationmanagerSamlFederationUserAccount.
 type GetOrganizationmanagerSamlFederationUserAccountArgs struct {
+	// ID of a SAML Federation.
 	FederationId string `pulumi:"federationId"`
-	NameId       string `pulumi:"nameId"`
+	// Name Id of the SAML federated user.
+	NameId string `pulumi:"nameId"`
 }
 
 // A collection of values returned by getOrganizationmanagerSamlFederationUserAccount.
@@ -49,8 +81,10 @@ func GetOrganizationmanagerSamlFederationUserAccountOutput(ctx *pulumi.Context, 
 
 // A collection of arguments for invoking getOrganizationmanagerSamlFederationUserAccount.
 type GetOrganizationmanagerSamlFederationUserAccountOutputArgs struct {
+	// ID of a SAML Federation.
 	FederationId pulumi.StringInput `pulumi:"federationId"`
-	NameId       pulumi.StringInput `pulumi:"nameId"`
+	// Name Id of the SAML federated user.
+	NameId pulumi.StringInput `pulumi:"nameId"`
 }
 
 func (GetOrganizationmanagerSamlFederationUserAccountOutputArgs) ElementType() reflect.Type {

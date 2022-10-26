@@ -10,6 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex Managed Kafka cluster. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			foo, err := yandex.LookupMdbKafkaCluster(ctx, &GetMdbKafkaClusterArgs{
+//				Name: pulumi.StringRef("test"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("networkId", foo.NetworkId)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupMdbKafkaCluster(ctx *pulumi.Context, args *LookupMdbKafkaClusterArgs, opts ...pulumi.InvokeOption) (*LookupMdbKafkaClusterResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupMdbKafkaClusterResult
@@ -22,40 +51,62 @@ func LookupMdbKafkaCluster(ctx *pulumi.Context, args *LookupMdbKafkaClusterArgs,
 
 // A collection of arguments for invoking getMdbKafkaCluster.
 type LookupMdbKafkaClusterArgs struct {
-	ClusterId          *string                   `pulumi:"clusterId"`
+	// The ID of the Kafka cluster.
+	ClusterId *string `pulumi:"clusterId"`
+	// Configuration of the Kafka cluster. The structure is documented below.
 	Config             *GetMdbKafkaClusterConfig `pulumi:"config"`
 	DeletionProtection *bool                     `pulumi:"deletionProtection"`
-	FolderId           *string                   `pulumi:"folderId"`
-	Name               *string                   `pulumi:"name"`
-	SubnetIds          []string                  `pulumi:"subnetIds"`
-	Topics             []GetMdbKafkaClusterTopic `pulumi:"topics"`
-	Users              []GetMdbKafkaClusterUser  `pulumi:"users"`
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// The name of the Kafka cluster.
+	Name      *string  `pulumi:"name"`
+	SubnetIds []string `pulumi:"subnetIds"`
+	// A topic of the Kafka cluster. The structure is documented below.
+	Topics []GetMdbKafkaClusterTopic `pulumi:"topics"`
+	// A user of the Kafka cluster. The structure is documented below.
+	Users []GetMdbKafkaClusterUser `pulumi:"users"`
 }
 
 // A collection of values returned by getMdbKafkaCluster.
 type LookupMdbKafkaClusterResult struct {
-	Accesses           []GetMdbKafkaClusterAccess `pulumi:"accesses"`
-	ClusterId          string                     `pulumi:"clusterId"`
-	Config             *GetMdbKafkaClusterConfig  `pulumi:"config"`
-	CreatedAt          string                     `pulumi:"createdAt"`
-	DeletionProtection bool                       `pulumi:"deletionProtection"`
-	Description        string                     `pulumi:"description"`
-	Environment        string                     `pulumi:"environment"`
-	FolderId           string                     `pulumi:"folderId"`
-	Health             string                     `pulumi:"health"`
-	HostGroupIds       []string                   `pulumi:"hostGroupIds"`
-	Hosts              []GetMdbKafkaClusterHost   `pulumi:"hosts"`
+	// (Optional) Access policy to the Kafka cluster. The structure is documented below.
+	Accesses  []GetMdbKafkaClusterAccess `pulumi:"accesses"`
+	ClusterId string                     `pulumi:"clusterId"`
+	// Configuration of the Kafka cluster. The structure is documented below.
+	Config *GetMdbKafkaClusterConfig `pulumi:"config"`
+	// Creation timestamp of the key.
+	CreatedAt          string `pulumi:"createdAt"`
+	DeletionProtection bool   `pulumi:"deletionProtection"`
+	// Description of the Kafka cluster.
+	Description string `pulumi:"description"`
+	// Deployment environment of the Kafka cluster.
+	Environment string `pulumi:"environment"`
+	FolderId    string `pulumi:"folderId"`
+	// Health of the host.
+	Health string `pulumi:"health"`
+	// A list of IDs of the host groups hosting VMs of the cluster.
+	HostGroupIds []string `pulumi:"hostGroupIds"`
+	// A host of the Kafka cluster. The structure is documented below.
+	Hosts []GetMdbKafkaClusterHost `pulumi:"hosts"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                 string                                `pulumi:"id"`
-	Labels             map[string]string                     `pulumi:"labels"`
+	Id string `pulumi:"id"`
+	// A set of key/value label pairs to assign to the Kafka cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// Maintenance window settings of the Kafka cluster. The structure is documented below.
 	MaintenanceWindows []GetMdbKafkaClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
-	Name               string                                `pulumi:"name"`
-	NetworkId          string                                `pulumi:"networkId"`
-	SecurityGroupIds   []string                              `pulumi:"securityGroupIds"`
-	Status             string                                `pulumi:"status"`
-	SubnetIds          []string                              `pulumi:"subnetIds"`
-	Topics             []GetMdbKafkaClusterTopic             `pulumi:"topics"`
-	Users              []GetMdbKafkaClusterUser              `pulumi:"users"`
+	// The fully qualified domain name of the host.
+	Name string `pulumi:"name"`
+	// ID of the network, to which the Kafka cluster belongs.
+	NetworkId string `pulumi:"networkId"`
+	// A list of security groups IDs of the Kafka cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// Status of the cluster.
+	Status    string   `pulumi:"status"`
+	SubnetIds []string `pulumi:"subnetIds"`
+	// A topic of the Kafka cluster. The structure is documented below.
+	Topics []GetMdbKafkaClusterTopic `pulumi:"topics"`
+	// A user of the Kafka cluster. The structure is documented below.
+	Users []GetMdbKafkaClusterUser `pulumi:"users"`
 }
 
 func LookupMdbKafkaClusterOutput(ctx *pulumi.Context, args LookupMdbKafkaClusterOutputArgs, opts ...pulumi.InvokeOption) LookupMdbKafkaClusterResultOutput {
@@ -73,14 +124,20 @@ func LookupMdbKafkaClusterOutput(ctx *pulumi.Context, args LookupMdbKafkaCluster
 
 // A collection of arguments for invoking getMdbKafkaCluster.
 type LookupMdbKafkaClusterOutputArgs struct {
-	ClusterId          pulumi.StringPtrInput             `pulumi:"clusterId"`
-	Config             GetMdbKafkaClusterConfigPtrInput  `pulumi:"config"`
-	DeletionProtection pulumi.BoolPtrInput               `pulumi:"deletionProtection"`
-	FolderId           pulumi.StringPtrInput             `pulumi:"folderId"`
-	Name               pulumi.StringPtrInput             `pulumi:"name"`
-	SubnetIds          pulumi.StringArrayInput           `pulumi:"subnetIds"`
-	Topics             GetMdbKafkaClusterTopicArrayInput `pulumi:"topics"`
-	Users              GetMdbKafkaClusterUserArrayInput  `pulumi:"users"`
+	// The ID of the Kafka cluster.
+	ClusterId pulumi.StringPtrInput `pulumi:"clusterId"`
+	// Configuration of the Kafka cluster. The structure is documented below.
+	Config             GetMdbKafkaClusterConfigPtrInput `pulumi:"config"`
+	DeletionProtection pulumi.BoolPtrInput              `pulumi:"deletionProtection"`
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// The name of the Kafka cluster.
+	Name      pulumi.StringPtrInput   `pulumi:"name"`
+	SubnetIds pulumi.StringArrayInput `pulumi:"subnetIds"`
+	// A topic of the Kafka cluster. The structure is documented below.
+	Topics GetMdbKafkaClusterTopicArrayInput `pulumi:"topics"`
+	// A user of the Kafka cluster. The structure is documented below.
+	Users GetMdbKafkaClusterUserArrayInput `pulumi:"users"`
 }
 
 func (LookupMdbKafkaClusterOutputArgs) ElementType() reflect.Type {
@@ -102,6 +159,7 @@ func (o LookupMdbKafkaClusterResultOutput) ToLookupMdbKafkaClusterResultOutputWi
 	return o
 }
 
+// (Optional) Access policy to the Kafka cluster. The structure is documented below.
 func (o LookupMdbKafkaClusterResultOutput) Accesses() GetMdbKafkaClusterAccessArrayOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) []GetMdbKafkaClusterAccess { return v.Accesses }).(GetMdbKafkaClusterAccessArrayOutput)
 }
@@ -110,10 +168,12 @@ func (o LookupMdbKafkaClusterResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
+// Configuration of the Kafka cluster. The structure is documented below.
 func (o LookupMdbKafkaClusterResultOutput) Config() GetMdbKafkaClusterConfigPtrOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) *GetMdbKafkaClusterConfig { return v.Config }).(GetMdbKafkaClusterConfigPtrOutput)
 }
 
+// Creation timestamp of the key.
 func (o LookupMdbKafkaClusterResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -122,10 +182,12 @@ func (o LookupMdbKafkaClusterResultOutput) DeletionProtection() pulumi.BoolOutpu
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) bool { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
+// Description of the Kafka cluster.
 func (o LookupMdbKafkaClusterResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Deployment environment of the Kafka cluster.
 func (o LookupMdbKafkaClusterResultOutput) Environment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) string { return v.Environment }).(pulumi.StringOutput)
 }
@@ -134,14 +196,17 @@ func (o LookupMdbKafkaClusterResultOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) string { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Health of the host.
 func (o LookupMdbKafkaClusterResultOutput) Health() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) string { return v.Health }).(pulumi.StringOutput)
 }
 
+// A list of IDs of the host groups hosting VMs of the cluster.
 func (o LookupMdbKafkaClusterResultOutput) HostGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) []string { return v.HostGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// A host of the Kafka cluster. The structure is documented below.
 func (o LookupMdbKafkaClusterResultOutput) Hosts() GetMdbKafkaClusterHostArrayOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) []GetMdbKafkaClusterHost { return v.Hosts }).(GetMdbKafkaClusterHostArrayOutput)
 }
@@ -151,26 +216,32 @@ func (o LookupMdbKafkaClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the Kafka cluster.
 func (o LookupMdbKafkaClusterResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Maintenance window settings of the Kafka cluster. The structure is documented below.
 func (o LookupMdbKafkaClusterResultOutput) MaintenanceWindows() GetMdbKafkaClusterMaintenanceWindowArrayOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) []GetMdbKafkaClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetMdbKafkaClusterMaintenanceWindowArrayOutput)
 }
 
+// The fully qualified domain name of the host.
 func (o LookupMdbKafkaClusterResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network, to which the Kafka cluster belongs.
 func (o LookupMdbKafkaClusterResultOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) string { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// A list of security groups IDs of the Kafka cluster.
 func (o LookupMdbKafkaClusterResultOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) []string { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// Status of the cluster.
 func (o LookupMdbKafkaClusterResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) string { return v.Status }).(pulumi.StringOutput)
 }
@@ -179,10 +250,12 @@ func (o LookupMdbKafkaClusterResultOutput) SubnetIds() pulumi.StringArrayOutput 
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) []string { return v.SubnetIds }).(pulumi.StringArrayOutput)
 }
 
+// A topic of the Kafka cluster. The structure is documented below.
 func (o LookupMdbKafkaClusterResultOutput) Topics() GetMdbKafkaClusterTopicArrayOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) []GetMdbKafkaClusterTopic { return v.Topics }).(GetMdbKafkaClusterTopicArrayOutput)
 }
 
+// A user of the Kafka cluster. The structure is documented below.
 func (o LookupMdbKafkaClusterResultOutput) Users() GetMdbKafkaClusterUserArrayOutput {
 	return o.ApplyT(func(v LookupMdbKafkaClusterResult) []GetMdbKafkaClusterUser { return v.Users }).(GetMdbKafkaClusterUserArrayOutput)
 }

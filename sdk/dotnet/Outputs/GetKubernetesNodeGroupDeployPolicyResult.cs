@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetKubernetesNodeGroupDeployPolicyResult
     {
+        /// <summary>
+        /// The maximum number of instances that can be temporarily allocated above the group's target size during the update.
+        /// </summary>
         public readonly int MaxExpansion;
+        /// <summary>
+        /// The maximum number of running instances that can be taken offline during update.
+        /// </summary>
         public readonly int MaxUnavailable;
 
         [OutputConstructor]

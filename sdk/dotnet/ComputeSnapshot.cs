@@ -9,30 +9,88 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Creates a new snapshot of a disk. For more information, see
+    /// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/snapshot).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @default = new Yandex.ComputeSnapshot("default", new()
+    ///     {
+    ///         Labels = 
+    ///         {
+    ///             { "my-label", "my-label-value" },
+    ///         },
+    ///         SourceDiskId = "test_disk_id",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// A snapshot can be imported using the `id` of the resource, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/computeSnapshot:ComputeSnapshot disk-snapshot shapshot_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/computeSnapshot:ComputeSnapshot")]
     public partial class ComputeSnapshot : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Creation timestamp of the snapshot.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// Description of the resource.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Size of the disk when the snapshot was created, specified in GB.
+        /// </summary>
         [Output("diskSize")]
         public Output<int> DiskSize { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of key/value label pairs to assign to the snapshot.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// A name for the resource.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the disk to create a snapshot from.
+        /// </summary>
         [Output("sourceDiskId")]
         public Output<string> SourceDiskId { get; private set; } = null!;
 
+        /// <summary>
+        /// Size of the snapshot, specified in GB.
+        /// </summary>
         [Output("storageSize")]
         public Output<int> StorageSize { get; private set; } = null!;
 
@@ -59,7 +117,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -83,23 +141,40 @@ namespace Pulumi.Yandex
 
     public sealed class ComputeSnapshotArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Description of the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the snapshot.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// A name for the resource.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the disk to create a snapshot from.
+        /// </summary>
         [Input("sourceDiskId", required: true)]
         public Input<string> SourceDiskId { get; set; } = null!;
 
@@ -111,32 +186,58 @@ namespace Pulumi.Yandex
 
     public sealed class ComputeSnapshotState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Creation timestamp of the snapshot.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// Description of the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Size of the disk when the snapshot was created, specified in GB.
+        /// </summary>
         [Input("diskSize")]
         public Input<int>? DiskSize { get; set; }
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the snapshot.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// A name for the resource.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the disk to create a snapshot from.
+        /// </summary>
         [Input("sourceDiskId")]
         public Input<string>? SourceDiskId { get; set; }
 
+        /// <summary>
+        /// Size of the snapshot, specified in GB.
+        /// </summary>
         [Input("storageSize")]
         public Input<int>? StorageSize { get; set; }
 

@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class KubernetesNodeGroupInstanceTemplateContainerRuntime
     {
+        /// <summary>
+        /// Type of container runtime. Values: `docker`, `containerd`.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

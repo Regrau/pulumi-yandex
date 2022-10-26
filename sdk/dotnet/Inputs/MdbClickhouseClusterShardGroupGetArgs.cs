@@ -12,14 +12,24 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterShardGroupGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Description of the shard group.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Graphite rollup configuration name.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("shardNames", required: true)]
         private InputList<string>? _shardNames;
+
+        /// <summary>
+        /// List of shards names that belong to the shard group.
+        /// </summary>
         public InputList<string> ShardNames
         {
             get => _shardNames ?? (_shardNames = new InputList<string>());

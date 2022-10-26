@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetYdbDatabaseDedicatedLocationRegionResult
     {
+        /// <summary>
+        /// Region ID of the Yandex Database cluster.
+        /// </summary>
         public readonly string Id;
 
         [OutputConstructor]

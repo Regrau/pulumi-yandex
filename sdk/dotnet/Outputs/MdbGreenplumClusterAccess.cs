@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbGreenplumClusterAccess
     {
+        /// <summary>
+        /// Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        /// </summary>
         public readonly bool? DataLens;
+        /// <summary>
+        /// Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        /// </summary>
         public readonly bool? DataTransfer;
+        /// <summary>
+        /// Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+        /// </summary>
         public readonly bool? WebSql;
 
         [OutputConstructor]

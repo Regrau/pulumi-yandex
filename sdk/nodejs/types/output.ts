@@ -5,50 +5,133 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
 export interface AlbBackendGroupGrpcBackend {
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck?: outputs.AlbBackendGroupGrpcBackendHealthcheck;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig?: outputs.AlbBackendGroupGrpcBackendLoadBalancingConfig;
+    /**
+     * Name of the backend.
+     */
     name: string;
+    /**
+     * Port for incoming traffic.
+     */
     port?: number;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds: string[];
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls?: outputs.AlbBackendGroupGrpcBackendTls;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight?: number;
 }
 
 export interface AlbBackendGroupGrpcBackendHealthcheck {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck?: outputs.AlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheck;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort?: number;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold?: number;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck?: outputs.AlbBackendGroupGrpcBackendHealthcheckHttpHealthcheck;
+    /**
+     * Interval between health checks.
+     */
     interval: string;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent?: number;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck?: outputs.AlbBackendGroupGrpcBackendHealthcheckStreamHealthcheck;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout: string;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold?: number;
 }
 
 export interface AlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheck {
+    /**
+     * Service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName?: string;
 }
 
 export interface AlbBackendGroupGrpcBackendHealthcheckHttpHealthcheck {
+    /**
+     * "Host" HTTP header value.
+     */
     host?: string;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: boolean;
+    /**
+     * HTTP path.
+     */
     path: string;
 }
 
 export interface AlbBackendGroupGrpcBackendHealthcheckStreamHealthcheck {
+    /**
+     * Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+     */
     receive?: string;
+    /**
+     * Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+     */
     send?: string;
 }
 
 export interface AlbBackendGroupGrpcBackendLoadBalancingConfig {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent?: number;
+    /**
+     * Load balancing mode for the backend. Possible values: "ROUND_ROBIN", "RANDOM", "LEAST_REQUEST", "MAGLEV_HASH".
+     */
     mode?: string;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold?: number;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality?: boolean;
 }
 
 export interface AlbBackendGroupGrpcBackendTls {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - (Optional) Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - (Optional) PEM-encoded trusted CA certificate chain.
+     */
     sni?: string;
     validationContext?: outputs.AlbBackendGroupGrpcBackendTlsValidationContext;
 }
@@ -59,52 +142,138 @@ export interface AlbBackendGroupGrpcBackendTlsValidationContext {
 }
 
 export interface AlbBackendGroupHttpBackend {
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck?: outputs.AlbBackendGroupHttpBackendHealthcheck;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: boolean;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig?: outputs.AlbBackendGroupHttpBackendLoadBalancingConfig;
+    /**
+     * Name of the backend.
+     */
     name: string;
+    /**
+     * Port for incoming traffic.
+     */
     port?: number;
     storageBucket?: string;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds?: string[];
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls?: outputs.AlbBackendGroupHttpBackendTls;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight?: number;
 }
 
 export interface AlbBackendGroupHttpBackendHealthcheck {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck?: outputs.AlbBackendGroupHttpBackendHealthcheckGrpcHealthcheck;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort?: number;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold?: number;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck?: outputs.AlbBackendGroupHttpBackendHealthcheckHttpHealthcheck;
+    /**
+     * Interval between health checks.
+     */
     interval: string;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent?: number;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck?: outputs.AlbBackendGroupHttpBackendHealthcheckStreamHealthcheck;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout: string;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold?: number;
 }
 
 export interface AlbBackendGroupHttpBackendHealthcheckGrpcHealthcheck {
+    /**
+     * Service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName?: string;
 }
 
 export interface AlbBackendGroupHttpBackendHealthcheckHttpHealthcheck {
+    /**
+     * "Host" HTTP header value.
+     */
     host?: string;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: boolean;
+    /**
+     * HTTP path.
+     */
     path: string;
 }
 
 export interface AlbBackendGroupHttpBackendHealthcheckStreamHealthcheck {
+    /**
+     * Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+     */
     receive?: string;
+    /**
+     * Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+     */
     send?: string;
 }
 
 export interface AlbBackendGroupHttpBackendLoadBalancingConfig {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent?: number;
+    /**
+     * Load balancing mode for the backend. Possible values: "ROUND_ROBIN", "RANDOM", "LEAST_REQUEST", "MAGLEV_HASH".
+     */
     mode?: string;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold?: number;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality?: boolean;
 }
 
 export interface AlbBackendGroupHttpBackendTls {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - (Optional) Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - (Optional) PEM-encoded trusted CA certificate chain.
+     */
     sni?: string;
     validationContext?: outputs.AlbBackendGroupHttpBackendTlsValidationContext;
 }
@@ -125,6 +294,9 @@ export interface AlbBackendGroupSessionAffinityConnection {
 }
 
 export interface AlbBackendGroupSessionAffinityCookie {
+    /**
+     * Name of the backend.
+     */
     name: string;
     ttl?: string;
 }
@@ -135,50 +307,133 @@ export interface AlbBackendGroupSessionAffinityHeader {
 
 export interface AlbBackendGroupStreamBackend {
     enableProxyProtocol?: boolean;
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck?: outputs.AlbBackendGroupStreamBackendHealthcheck;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig?: outputs.AlbBackendGroupStreamBackendLoadBalancingConfig;
+    /**
+     * Name of the backend.
+     */
     name: string;
+    /**
+     * Port for incoming traffic.
+     */
     port?: number;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds: string[];
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls?: outputs.AlbBackendGroupStreamBackendTls;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight?: number;
 }
 
 export interface AlbBackendGroupStreamBackendHealthcheck {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck?: outputs.AlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort?: number;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold?: number;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck?: outputs.AlbBackendGroupStreamBackendHealthcheckHttpHealthcheck;
+    /**
+     * Interval between health checks.
+     */
     interval: string;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent?: number;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck?: outputs.AlbBackendGroupStreamBackendHealthcheckStreamHealthcheck;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout: string;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold?: number;
 }
 
 export interface AlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck {
+    /**
+     * Service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName?: string;
 }
 
 export interface AlbBackendGroupStreamBackendHealthcheckHttpHealthcheck {
+    /**
+     * "Host" HTTP header value.
+     */
     host?: string;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: boolean;
+    /**
+     * HTTP path.
+     */
     path: string;
 }
 
 export interface AlbBackendGroupStreamBackendHealthcheckStreamHealthcheck {
+    /**
+     * Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+     */
     receive?: string;
+    /**
+     * Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+     */
     send?: string;
 }
 
 export interface AlbBackendGroupStreamBackendLoadBalancingConfig {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent?: number;
+    /**
+     * Load balancing mode for the backend. Possible values: "ROUND_ROBIN", "RANDOM", "LEAST_REQUEST", "MAGLEV_HASH".
+     */
     mode?: string;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold?: number;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality?: boolean;
 }
 
 export interface AlbBackendGroupStreamBackendTls {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - (Optional) Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - (Optional) PEM-encoded trusted CA certificate chain.
+     */
     sni?: string;
     validationContext?: outputs.AlbBackendGroupStreamBackendTlsValidationContext;
 }
@@ -208,6 +463,9 @@ export interface AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipal {
 }
 
 export interface AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeader {
+    /**
+     * Name of the HTTP Router. Provided by the client when the HTTP Router is created.
+     */
     name: string;
     value?: outputs.AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderValue;
 }
@@ -218,218 +476,525 @@ export interface AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderValue {
 }
 
 export interface AlbLoadBalancerAllocationPolicy {
+    /**
+     * Unique set of locations. The structure is documented below.
+     */
     locations: outputs.AlbLoadBalancerAllocationPolicyLocation[];
 }
 
 export interface AlbLoadBalancerAllocationPolicyLocation {
+    /**
+     * If set, will disable all L7 instances in the zone for request handling.
+     */
     disableTraffic?: boolean;
+    /**
+     * Provided by the client or computed automatically.
+     */
     subnetId: string;
+    /**
+     * ID of the zone that location is located at.
+     */
     zoneId: string;
 }
 
 export interface AlbLoadBalancerListener {
+    /**
+     * Network endpoints (addresses and ports) of the listener. The structure is documented below.
+     */
     endpoints?: outputs.AlbLoadBalancerListenerEndpoint[];
+    /**
+     * HTTP listener resource. The structure is documented below.
+     */
     http?: outputs.AlbLoadBalancerListenerHttp;
+    /**
+     * name of SNI match.
+     */
     name: string;
+    /**
+     * Stream listener resource. The structure is documented below.
+     */
     stream?: outputs.AlbLoadBalancerListenerStream;
+    /**
+     * TLS listener resource. The structure is documented below.
+     */
     tls?: outputs.AlbLoadBalancerListenerTls;
 }
 
 export interface AlbLoadBalancerListenerEndpoint {
+    /**
+     * Provided by the client or computed automatically.
+     */
     addresses: outputs.AlbLoadBalancerListenerEndpointAddress[];
+    /**
+     * One or more ports to listen on.
+     */
     ports: number[];
 }
 
 export interface AlbLoadBalancerListenerEndpointAddress {
+    /**
+     * External IPv4 address. The structure is documented below.
+     */
     externalIpv4Address?: outputs.AlbLoadBalancerListenerEndpointAddressExternalIpv4Address;
+    /**
+     * External IPv6 address. The structure is documented below.
+     */
     externalIpv6Address?: outputs.AlbLoadBalancerListenerEndpointAddressExternalIpv6Address;
+    /**
+     * Internal IPv4 address. The structure is documented below.
+     */
     internalIpv4Address?: outputs.AlbLoadBalancerListenerEndpointAddressInternalIpv4Address;
 }
 
 export interface AlbLoadBalancerListenerEndpointAddressExternalIpv4Address {
+    /**
+     * Provided by the client or computed automatically.
+     */
     address: string;
 }
 
 export interface AlbLoadBalancerListenerEndpointAddressExternalIpv6Address {
+    /**
+     * Provided by the client or computed automatically.
+     */
     address: string;
 }
 
 export interface AlbLoadBalancerListenerEndpointAddressInternalIpv4Address {
+    /**
+     * Provided by the client or computed automatically.
+     */
     address: string;
+    /**
+     * Provided by the client or computed automatically.
+     */
     subnetId: string;
 }
 
 export interface AlbLoadBalancerListenerHttp {
+    /**
+     * HTTP handler that sets plaintext HTTP router. The structure is documented below.
+     */
     handler?: outputs.AlbLoadBalancerListenerHttpHandler;
+    /**
+     * Shortcut for adding http > https redirects. The structure is documented below.
+     */
     redirects?: outputs.AlbLoadBalancerListenerHttpRedirects;
 }
 
 export interface AlbLoadBalancerListenerHttpHandler {
+    /**
+     * If set, will enable only HTTP1 protocol with HTTP1.0 support.
+     */
     allowHttp10?: boolean;
+    /**
+     * If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+     */
     http2Options?: outputs.AlbLoadBalancerListenerHttpHandlerHttp2Options;
+    /**
+     * HTTP router id.
+     */
     httpRouterId?: string;
 }
 
 export interface AlbLoadBalancerListenerHttpHandlerHttp2Options {
+    /**
+     * Maximum number of concurrent streams.
+     */
     maxConcurrentStreams?: number;
 }
 
 export interface AlbLoadBalancerListenerHttpRedirects {
+    /**
+     * If set redirects all unencrypted HTTP requests to the same URI with scheme changed to `https`.
+     */
     httpToHttps?: boolean;
 }
 
 export interface AlbLoadBalancerListenerStream {
+    /**
+     * HTTP handler that sets plaintext HTTP router. The structure is documented below.
+     */
     handler?: outputs.AlbLoadBalancerListenerStreamHandler;
 }
 
 export interface AlbLoadBalancerListenerStreamHandler {
+    /**
+     * Backend group id.
+     */
     backendGroupId?: string;
 }
 
 export interface AlbLoadBalancerListenerTls {
+    /**
+     * TLS handler resource. The structure is documented below.
+     */
     defaultHandler: outputs.AlbLoadBalancerListenerTlsDefaultHandler;
+    /**
+     * SNI match resource. The structure is documented below.
+     */
     sniHandlers?: outputs.AlbLoadBalancerListenerTlsSniHandler[];
 }
 
 export interface AlbLoadBalancerListenerTlsDefaultHandler {
+    /**
+     * Certificate IDs in the Certificate Manager. Multiple TLS certificates can be associated
+     * with the same context to allow both RSA and ECDSA certificates. Only the first certificate of each type will be used.
+     */
     certificateIds: string[];
+    /**
+     * HTTP handler resource. The structure is documented below.
+     */
     httpHandler?: outputs.AlbLoadBalancerListenerTlsDefaultHandlerHttpHandler;
+    /**
+     * Stream handler resource. The structure is documented below.
+     */
     streamHandler?: outputs.AlbLoadBalancerListenerTlsDefaultHandlerStreamHandler;
 }
 
 export interface AlbLoadBalancerListenerTlsDefaultHandlerHttpHandler {
+    /**
+     * If set, will enable only HTTP1 protocol with HTTP1.0 support.
+     */
     allowHttp10?: boolean;
+    /**
+     * If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+     */
     http2Options?: outputs.AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2Options;
+    /**
+     * HTTP router id.
+     */
     httpRouterId?: string;
 }
 
 export interface AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2Options {
+    /**
+     * Maximum number of concurrent streams.
+     */
     maxConcurrentStreams?: number;
 }
 
 export interface AlbLoadBalancerListenerTlsDefaultHandlerStreamHandler {
+    /**
+     * Backend group id.
+     */
     backendGroupId?: string;
 }
 
 export interface AlbLoadBalancerListenerTlsSniHandler {
+    /**
+     * HTTP handler that sets plaintext HTTP router. The structure is documented below.
+     */
     handler: outputs.AlbLoadBalancerListenerTlsSniHandlerHandler;
+    /**
+     * name of SNI match.
+     */
     name: string;
+    /**
+     * A set of server names.
+     */
     serverNames: string[];
 }
 
 export interface AlbLoadBalancerListenerTlsSniHandlerHandler {
+    /**
+     * Certificate IDs in the Certificate Manager. Multiple TLS certificates can be associated
+     * with the same context to allow both RSA and ECDSA certificates. Only the first certificate of each type will be used.
+     */
     certificateIds: string[];
+    /**
+     * HTTP handler resource. The structure is documented below.
+     */
     httpHandler?: outputs.AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandler;
+    /**
+     * Stream handler resource. The structure is documented below.
+     */
     streamHandler?: outputs.AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandler;
 }
 
 export interface AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandler {
+    /**
+     * If set, will enable only HTTP1 protocol with HTTP1.0 support.
+     */
     allowHttp10?: boolean;
+    /**
+     * If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+     */
     http2Options?: outputs.AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2Options;
+    /**
+     * HTTP router id.
+     */
     httpRouterId?: string;
 }
 
 export interface AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2Options {
+    /**
+     * Maximum number of concurrent streams.
+     */
     maxConcurrentStreams?: number;
 }
 
 export interface AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandler {
+    /**
+     * Backend group id.
+     */
     backendGroupId?: string;
 }
 
 export interface AlbTargetGroupTarget {
+    /**
+     * IP address of the target.
+     */
     ipAddress: string;
     privateIpv4Address?: boolean;
+    /**
+     * ID of the subnet that targets are connected to.
+     * All targets in the target group must be connected to the same subnet within a single availability zone.
+     */
     subnetId?: string;
 }
 
 export interface AlbVirtualHostModifyRequestHeader {
+    /**
+     * Append string to the header value.
+     */
     append?: string;
+    /**
+     * name of the route.
+     */
     name: string;
+    /**
+     * If set, remove the header.
+     */
     remove?: boolean;
+    /**
+     * New value for a header. Header values support the following 
+     * [formatters](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#custom-request-response-headers).
+     */
     replace?: string;
 }
 
 export interface AlbVirtualHostModifyResponseHeader {
+    /**
+     * Append string to the header value.
+     */
     append?: string;
+    /**
+     * name of the route.
+     */
     name: string;
+    /**
+     * If set, remove the header.
+     */
     remove?: boolean;
+    /**
+     * New value for a header. Header values support the following 
+     * [formatters](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#custom-request-response-headers).
+     */
     replace?: string;
 }
 
 export interface AlbVirtualHostRoute {
+    /**
+     * GRPC route resource. The structure is documented below.
+     */
     grpcRoute?: outputs.AlbVirtualHostRouteGrpcRoute;
+    /**
+     * HTTP route resource. The structure is documented below.
+     */
     httpRoute?: outputs.AlbVirtualHostRouteHttpRoute;
+    /**
+     * name of the route.
+     */
     name?: string;
     routeOptions?: outputs.AlbVirtualHostRouteRouteOptions;
 }
 
 export interface AlbVirtualHostRouteGrpcRoute {
+    /**
+     * Checks "/" prefix by default. The structure is documented below.
+     */
     grpcMatches?: outputs.AlbVirtualHostRouteGrpcRouteGrpcMatch[];
+    /**
+     * GRPC route action resource. The structure is documented below.
+     */
     grpcRouteAction?: outputs.AlbVirtualHostRouteGrpcRouteGrpcRouteAction;
+    /**
+     * GRPC status response action resource. The structure is documented below.
+     */
     grpcStatusResponseAction?: outputs.AlbVirtualHostRouteGrpcRouteGrpcStatusResponseAction;
 }
 
 export interface AlbVirtualHostRouteGrpcRouteGrpcMatch {
+    /**
+     * If not set, all services/methods are assumed. The structure is documented below.
+     */
     fqmn?: outputs.AlbVirtualHostRouteGrpcRouteGrpcMatchFqmn;
 }
 
 export interface AlbVirtualHostRouteGrpcRouteGrpcMatchFqmn {
+    /**
+     * Match exactly.
+     */
     exact?: string;
+    /**
+     * Match prefix.
+     */
     prefix?: string;
 }
 
 export interface AlbVirtualHostRouteGrpcRouteGrpcRouteAction {
+    /**
+     * If set, will automatically rewrite host.
+     */
     autoHostRewrite?: boolean;
+    /**
+     * Backend group to route requests.
+     */
     backendGroupId: string;
+    /**
+     * Host rewrite specifier.
+     */
     hostRewrite?: string;
+    /**
+     * Specifies the idle timeout (time without any data transfer for the active request) for the
+     * route. It is useful for streaming scenarios - one should set idleTimeout to something meaningful and maxTimeout
+     * to the maximum time the stream is allowed to be alive. If not specified, there is no
+     * per-route idle timeout.
+     */
     idleTimeout?: string;
+    /**
+     * Lower timeout may be specified by the client (using grpc-timeout header). If not set, default is 
+     * 60 seconds.
+     */
     maxTimeout?: string;
 }
 
 export interface AlbVirtualHostRouteGrpcRouteGrpcStatusResponseAction {
+    /**
+     * The status of the response. Supported values are: ok, invalid_argumet, not_found, 
+     * permission_denied, unauthenticated, unimplemented, internal, unavailable.
+     */
     status?: string;
 }
 
 export interface AlbVirtualHostRouteHttpRoute {
+    /**
+     * Direct response action resource. The structure is documented below.
+     */
     directResponseAction?: outputs.AlbVirtualHostRouteHttpRouteDirectResponseAction;
+    /**
+     * Checks "/" prefix by default. The structure is documented below.
+     */
     httpMatches?: outputs.AlbVirtualHostRouteHttpRouteHttpMatch[];
+    /**
+     * HTTP route action resource. The structure is documented below.
+     */
     httpRouteAction?: outputs.AlbVirtualHostRouteHttpRouteHttpRouteAction;
+    /**
+     * Redirect action resource. The structure is documented below.
+     */
     redirectAction?: outputs.AlbVirtualHostRouteHttpRouteRedirectAction;
 }
 
 export interface AlbVirtualHostRouteHttpRouteDirectResponseAction {
+    /**
+     * Response body text.
+     */
     body?: string;
+    /**
+     * The status of the response. Supported values are: ok, invalid_argumet, not_found, 
+     * permission_denied, unauthenticated, unimplemented, internal, unavailable.
+     */
     status?: number;
 }
 
 export interface AlbVirtualHostRouteHttpRouteHttpMatch {
+    /**
+     * List of methods(strings).
+     */
     httpMethods?: string[];
+    /**
+     * If not set, '/' is assumed. The structure is documented below.
+     */
     path?: outputs.AlbVirtualHostRouteHttpRouteHttpMatchPath;
 }
 
 export interface AlbVirtualHostRouteHttpRouteHttpMatchPath {
+    /**
+     * Match exactly.
+     */
     exact?: string;
+    /**
+     * Match prefix.
+     */
     prefix?: string;
 }
 
 export interface AlbVirtualHostRouteHttpRouteHttpRouteAction {
+    /**
+     * If set, will automatically rewrite host.
+     */
     autoHostRewrite?: boolean;
+    /**
+     * Backend group to route requests.
+     */
     backendGroupId: string;
+    /**
+     * Host rewrite specifier.
+     */
     hostRewrite?: string;
+    /**
+     * Specifies the idle timeout (time without any data transfer for the active request) for the
+     * route. It is useful for streaming scenarios - one should set idleTimeout to something meaningful and maxTimeout
+     * to the maximum time the stream is allowed to be alive. If not specified, there is no
+     * per-route idle timeout.
+     */
     idleTimeout?: string;
+    /**
+     * If not empty, matched path prefix will be replaced by this value.
+     */
     prefixRewrite?: string;
+    /**
+     * Specifies the request timeout (overall time request processing is allowed to take) for the 
+     * route. If not set, default is 60 seconds.
+     */
     timeout?: string;
+    /**
+     * List of upgrade types. Only specified upgrade types will be allowed. For example, 
+     * "websocket".
+     */
     upgradeTypes?: string[];
 }
 
 export interface AlbVirtualHostRouteHttpRouteRedirectAction {
     removeQuery?: boolean;
+    /**
+     * Replaces hostname.
+     */
     replaceHost?: string;
+    /**
+     * Replace path.
+     */
     replacePath?: string;
+    /**
+     * Replaces port.
+     */
     replacePort?: number;
+    /**
+     * Replace only matched prefix. Example:<br/> match:{ prefix_match: "/some" } <br/> 
+     * redirect: { replace_prefix: "/other" } <br/> will redirect "/something" to "/otherthing".
+     */
     replacePrefix?: string;
+    /**
+     * Replaces scheme. If the original scheme is `http` or `https`, will also remove the 
+     * 80 or 443 port, if present.
+     */
     replaceScheme?: string;
+    /**
+     * The HTTP status code to use in the redirect response. Supported values are: 
+     * moved_permanently, found, see_other, temporary_redirect, permanent_redirect.
+     */
     responseCode?: string;
 }
 
@@ -453,12 +1018,21 @@ export interface AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipal {
 }
 
 export interface AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeader {
+    /**
+     * name of the route.
+     */
     name: string;
     value?: outputs.AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderValue;
 }
 
 export interface AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderValue {
+    /**
+     * Match exactly.
+     */
     exact?: string;
+    /**
+     * Match prefix.
+     */
     prefix?: string;
 }
 
@@ -482,12 +1056,21 @@ export interface AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipal {
 }
 
 export interface AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeader {
+    /**
+     * name of the route.
+     */
     name: string;
     value?: outputs.AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderValue;
 }
 
 export interface AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderValue {
+    /**
+     * Match exactly.
+     */
     exact?: string;
+    /**
+     * Match prefix.
+     */
     prefix?: string;
 }
 
@@ -499,26 +1082,89 @@ export interface CdnOriginGroupOrigin {
 }
 
 export interface CdnResourceOptions {
+    /**
+     * HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
+     */
     allowedHttpMethods: string[];
+    /**
+     * set up a cache period for the end-users browser. Content will be cached due to origin settings. If there are no cache settings on your origin, the content will not be cached. The list of HTTP response codes that can be cached in browsers: 200, 201, 204, 206, 301, 302, 303, 304, 307, 308. Other response codes will not be cached. The default value is 4 days.
+     */
     browserCacheSettings: number;
+    /**
+     * list HTTP headers that must be included in responses to clients.
+     */
     cacheHttpHeaders: string[];
+    /**
+     * parameter that lets browsers get access to selected resources from a domain different to a domain from which the request is received.
+     */
     cors: string[];
+    /**
+     * custom value for the Host header. Your server must be able to process requests with the chosen header.
+     */
     customHostHeader: string;
+    /**
+     * wildcard additional CNAME. If a resource has a wildcard additional CNAME, you can use your own certificate for content delivery via HTTPS. Read-only.
+     */
     customServerName: string;
+    /**
+     * setup a cache status.
+     */
     disableCache: boolean;
+    /**
+     * disabling proxy force ranges.
+     */
     disableProxyForceRanges: boolean;
+    /**
+     * content will be cached according to origin cache settings. The value applies for a response with codes 200, 201, 204, 206, 301, 302, 303, 304, 307, 308 if an origin server does not have caching HTTP headers. Responses with other codes will not be cached.
+     */
     edgeCacheSettings: number;
+    /**
+     * option helps you to reduce the bandwidth between origin and CDN servers. Also, content delivery speed becomes higher because of reducing the time for compressing files in a CDN.
+     */
     fetchedCompressed: boolean;
+    /**
+     * choose the Forward Host header option if is important to send in the request to the Origin the same Host header as was sent in the request to CDN server.
+     */
     forwardHostHeader: boolean;
+    /**
+     * GZip compression at CDN servers reduces file size by 70% and can be as high as 90%.
+     */
     gzipOn: boolean;
+    /**
+     * set for ignoring cookie.
+     */
     ignoreCookie: boolean;
+    /**
+     * files with different query parameters are cached as objects with the same key regardless of the parameter value. selected by default.
+     */
     ignoreQueryParams: boolean;
+    /**
+     * allows caching for GET, HEAD and POST requests.
+     */
     proxyCacheMethodsSet: boolean;
+    /**
+     * files with the specified query parameters are cached as objects with the same key, files with other parameters are cached as objects with different keys.
+     */
     queryParamsBlacklists: string[];
+    /**
+     * files with the specified query parameters are cached as objects with different keys, files with other parameters are cached as objects with the same key.
+     */
     queryParamsWhitelists: string[];
+    /**
+     * set up a redirect from HTTP to HTTPS.
+     */
     redirectHttpToHttps: boolean;
+    /**
+     * set up a redirect from HTTPS to HTTP.
+     */
     redirectHttpsToHttp: boolean;
+    /**
+     * files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
+     */
     slice: boolean;
+    /**
+     * set up custom headers that CDN servers send in requests to origins.
+     */
     staticRequestHeaders: string[];
     staticResponseHeaders: {[key: string]: string};
 }
@@ -530,362 +1176,1054 @@ export interface CdnResourceSslCertificate {
 }
 
 export interface ComputeDiskDiskPlacementPolicy {
+    /**
+     * Specifies Disk Placement Group id.
+     */
     diskPlacementGroupId: string;
 }
 
 export interface ComputeInstanceBootDisk {
+    /**
+     * Whether the disk is auto-deleted when the instance
+     * is deleted. The default value is false.
+     */
     autoDelete?: boolean;
+    /**
+     * Name that can be used to access an attached disk
+     * under `/dev/disk/by-id/`.
+     */
     deviceName: string;
+    /**
+     * ID of the disk that is attached to the instance.
+     */
     diskId: string;
+    /**
+     * Parameters for a new disk that will be created
+     * alongside the new instance. Either `initializeParams` or `diskId` must be set. The structure is documented below.
+     */
     initializeParams: outputs.ComputeInstanceBootDiskInitializeParams;
+    /**
+     * Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+     */
     mode: string;
 }
 
 export interface ComputeInstanceBootDiskInitializeParams {
+    /**
+     * Block size of the disk, specified in bytes.
+     */
     blockSize: number;
+    /**
+     * Description of the boot disk.
+     */
     description: string;
+    /**
+     * A disk image to initialize this disk from.
+     */
     imageId: string;
+    /**
+     * Name of the boot disk.
+     */
     name: string;
+    /**
+     * Size of the disk in GB.
+     */
     size: number;
+    /**
+     * A snapshot to initialize this disk from.
+     */
     snapshotId: string;
+    /**
+     * Disk type.
+     */
     type?: string;
 }
 
 export interface ComputeInstanceGroupAllocationPolicy {
+    /**
+     * A list of availability zones.
+     */
     zones: string[];
 }
 
 export interface ComputeInstanceGroupApplicationLoadBalancer {
+    /**
+     * Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+     */
     maxOpeningTrafficDuration?: number;
+    /**
+     * The status message of the instance.
+     */
     statusMessage: string;
+    /**
+     * A description of the target group.
+     */
     targetGroupDescription?: string;
     targetGroupId: string;
+    /**
+     * A set of key/value label pairs.
+     */
     targetGroupLabels?: {[key: string]: string};
+    /**
+     * The name of the target group.
+     */
     targetGroupName?: string;
 }
 
 export interface ComputeInstanceGroupDeployPolicy {
+    /**
+     * The maximum number of instances that can be created at the same time.
+     */
     maxCreating?: number;
+    /**
+     * The maximum number of instances that can be deleted at the same time.
+     */
     maxDeleting?: number;
+    /**
+     * The maximum number of instances that can be temporarily allocated above the group's target size
+     * during the update process.
+     */
     maxExpansion: number;
+    /**
+     * The maximum number of running instances that can be taken offline (stopped or deleted) at the same time
+     * during the update process.
+     */
     maxUnavailable: number;
+    /**
+     * The amount of time in seconds to allow for an instance to start.
+     * Instance will be considered up and running (and start receiving traffic) only after the startupDuration
+     * has elapsed and all health checks are passed.
+     */
     startupDuration?: number;
+    /**
+     * Affects the lifecycle of the instance during deployment. If set to `proactive` (default), Instance Groups
+     * can forcefully stop a running instance. If `opportunistic`, Instance Groups does not stop a running instance. Instead,
+     * it will wait until the instance stops itself or becomes unhealthy.
+     */
     strategy: string;
 }
 
 export interface ComputeInstanceGroupHealthCheck {
+    /**
+     * The number of successful health checks before the managed instance is declared healthy.
+     */
     healthyThreshold?: number;
+    /**
+     * HTTP check options. The structure is documented below.
+     */
     httpOptions?: outputs.ComputeInstanceGroupHealthCheckHttpOption[];
+    /**
+     * The interval to wait between health checks in seconds.
+     */
     interval?: number;
+    /**
+     * TCP check options. The structure is documented below.
+     */
     tcpOptions: outputs.ComputeInstanceGroupHealthCheckTcpOptions;
+    /**
+     * The length of time to wait for a response before the health check times out in seconds.
+     */
     timeout?: number;
+    /**
+     * The number of failed health checks before the managed instance is declared unhealthy.
+     */
     unhealthyThreshold?: number;
 }
 
 export interface ComputeInstanceGroupHealthCheckHttpOption {
+    /**
+     * The URL path used for health check requests.
+     */
     path: string;
+    /**
+     * The port used for TCP health checks.
+     */
     port: number;
 }
 
 export interface ComputeInstanceGroupHealthCheckTcpOptions {
+    /**
+     * The port used for TCP health checks.
+     */
     port: number;
 }
 
 export interface ComputeInstanceGroupInstance {
+    /**
+     * DNS record fqdn (must have dot at the end).
+     */
     fqdn: string;
+    /**
+     * The ID of the instance.
+     */
     instanceId: string;
+    /**
+     * Name template of the instance.  
+     * In order to be unique it must contain at least one of instance unique placeholders:
+     * {instance.short_id}
+     * {instance.index}
+     * combination of {instance.zone_id} and {instance.index_in_zone}
+     * Example: my-instance-{instance.index}
+     * If not set, default is used: {instance_group.id}-{instance.short_id}
+     * It may also contain another placeholders, see metadata doc for full list.
+     */
     name: string;
+    /**
+     * Network specifications for the instance. This can be used multiple times for adding multiple interfaces. The structure is documented below.
+     */
     networkInterfaces: outputs.ComputeInstanceGroupInstanceNetworkInterface[];
+    /**
+     * The status of the instance.
+     */
     status: string;
     statusChangedAt: string;
+    /**
+     * The status message of the instance.
+     */
     statusMessage: string;
+    /**
+     * The ID of the availability zone where the instance resides.
+     */
     zoneId: string;
 }
 
 export interface ComputeInstanceGroupInstanceNetworkInterface {
+    /**
+     * The index of the network interface as generated by the server.
+     */
     index: number;
+    /**
+     * Manual set static IP address.
+     */
     ipAddress: string;
+    /**
+     * True if IPv4 address allocated for the network interface.
+     */
     ipv4: boolean;
     ipv6: boolean;
+    /**
+     * Manual set static IPv6 address.
+     */
     ipv6Address: string;
+    /**
+     * The MAC address assigned to the network interface.
+     */
     macAddress: string;
+    /**
+     * Flag for using NAT.
+     */
     nat: boolean;
+    /**
+     * A public address that can be used to access the internet over NAT. Use `variables` to set.
+     */
     natIpAddress: string;
+    /**
+     * The IP version for the public address.
+     */
     natIpVersion: string;
+    /**
+     * The ID of the subnet to attach this interface to. The subnet must reside in the same zone where this instance was created.
+     */
     subnetId: string;
 }
 
 export interface ComputeInstanceGroupInstanceTemplate {
+    /**
+     * Boot disk specifications for the instance. The structure is documented below.
+     */
     bootDisk: outputs.ComputeInstanceGroupInstanceTemplateBootDisk;
+    /**
+     * A description of the boot disk.
+     */
     description?: string;
+    /**
+     * Hostname template for the instance.   
+     * This field is used to generate the FQDN value of instance.
+     * The hostname must be unique within the network and region.
+     * If not specified, the hostname will be equal to id of the instance
+     * and FQDN will be `<id>.auto.internal`. Otherwise FQDN will be `<hostname>.<region_id>.internal`.
+     * In order to be unique it must contain at least on of instance unique placeholders:
+     * {instance.short_id}
+     * {instance.index}
+     * combination of {instance.zone_id} and {instance.index_in_zone}
+     * Example: my-instance-{instance.index}
+     * If not set, `name` value will be used
+     * It may also contain another placeholders, see metadata doc for full list.
+     */
     hostname?: string;
+    /**
+     * A map of labels of metric.
+     */
     labels: {[key: string]: string};
+    /**
+     * A set of metadata key/value pairs to make available from within the instance.
+     */
     metadata: {[key: string]: string};
+    /**
+     * Name template of the instance.  
+     * In order to be unique it must contain at least one of instance unique placeholders:
+     * {instance.short_id}
+     * {instance.index}
+     * combination of {instance.zone_id} and {instance.index_in_zone}
+     * Example: my-instance-{instance.index}
+     * If not set, default is used: {instance_group.id}-{instance.short_id}
+     * It may also contain another placeholders, see metadata doc for full list.
+     */
     name?: string;
+    /**
+     * Network specifications for the instance. This can be used multiple times for adding multiple interfaces. The structure is documented below.
+     */
     networkInterfaces: outputs.ComputeInstanceGroupInstanceTemplateNetworkInterface[];
+    /**
+     * Network acceleration type for instance. The structure is documented below.
+     */
     networkSettings?: outputs.ComputeInstanceGroupInstanceTemplateNetworkSetting[];
+    /**
+     * The placement policy configuration. The structure is documented below.
+     */
     placementPolicy?: outputs.ComputeInstanceGroupInstanceTemplatePlacementPolicy;
+    /**
+     * The ID of the hardware platform configuration for the instance. The default is 'standard-v1'.
+     */
     platformId?: string;
+    /**
+     * Compute resource specifications for the instance. The structure is documented below.
+     */
     resources: outputs.ComputeInstanceGroupInstanceTemplateResources;
+    /**
+     * The scheduling policy configuration. The structure is documented below.
+     */
     schedulingPolicy: outputs.ComputeInstanceGroupInstanceTemplateSchedulingPolicy;
+    /**
+     * A list of disks to attach to the instance. The structure is documented below.
+     */
     secondaryDisks?: outputs.ComputeInstanceGroupInstanceTemplateSecondaryDisk[];
+    /**
+     * The ID of the service account authorized for this instance.
+     */
     serviceAccountId?: string;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateBootDisk {
+    /**
+     * This value can be used to reference the device under `/dev/disk/by-id/`.
+     */
     deviceName: string;
+    /**
+     * ID of the existing disk. To set use variables.
+     */
     diskId?: string;
+    /**
+     * Parameters for creating a disk alongside the instance. The structure is documented below.
+     */
     initializeParams?: outputs.ComputeInstanceGroupInstanceTemplateBootDiskInitializeParams;
+    /**
+     * The access mode to the disk resource. By default a disk is attached in `READ_WRITE` mode.
+     */
     mode?: string;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateBootDiskInitializeParams {
+    /**
+     * A description of the boot disk.
+     */
     description?: string;
+    /**
+     * The disk image to initialize this disk from.
+     */
     imageId: string;
+    /**
+     * The number of instances in the instance group.
+     */
     size: number;
+    /**
+     * The snapshot to initialize this disk from.
+     */
     snapshotId: string;
+    /**
+     * Network acceleration type. By default a network is in `STANDARD` mode.
+     */
     type?: string;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateNetworkInterface {
+    /**
+     * List of dns records.  The structure is documented below.
+     */
     dnsRecords?: outputs.ComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecord[];
+    /**
+     * Manual set static IP address.
+     */
     ipAddress: string;
+    /**
+     * True if IPv4 address allocated for the network interface.
+     */
     ipv4?: boolean;
     ipv6: boolean;
+    /**
+     * Manual set static IPv6 address.
+     */
     ipv6Address: string;
+    /**
+     * List of ipv6 dns records.  The structure is documented below.
+     */
     ipv6DnsRecords?: outputs.ComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord[];
+    /**
+     * Flag for using NAT.
+     */
     nat: boolean;
+    /**
+     * List of nat dns records.  The structure is documented below.
+     */
     natDnsRecords?: outputs.ComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecord[];
+    /**
+     * A public address that can be used to access the internet over NAT. Use `variables` to set.
+     */
     natIpAddress?: string;
+    /**
+     * The ID of the network.
+     */
     networkId?: string;
+    /**
+     * Security group ids for network interface.
+     */
     securityGroupIds?: string[];
+    /**
+     * The ID of the subnets to attach this interface to.
+     */
     subnetIds?: string[];
 }
 
 export interface ComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecord {
+    /**
+     * DNS zone id (if not set, private zone used).
+     */
     dnsZoneId?: string;
+    /**
+     * DNS record fqdn (must have dot at the end).
+     */
     fqdn: string;
+    /**
+     * When set to true, also create PTR DNS record.
+     */
     ptr: boolean;
+    /**
+     * DNS record TTL.
+     */
     ttl?: number;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord {
+    /**
+     * DNS zone id (if not set, private zone used).
+     */
     dnsZoneId?: string;
+    /**
+     * DNS record fqdn (must have dot at the end).
+     */
     fqdn: string;
+    /**
+     * When set to true, also create PTR DNS record.
+     */
     ptr: boolean;
+    /**
+     * DNS record TTL.
+     */
     ttl?: number;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecord {
+    /**
+     * DNS zone id (if not set, private zone used).
+     */
     dnsZoneId?: string;
+    /**
+     * DNS record fqdn (must have dot at the end).
+     */
     fqdn: string;
+    /**
+     * When set to true, also create PTR DNS record.
+     */
     ptr: boolean;
+    /**
+     * DNS record TTL.
+     */
     ttl?: number;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateNetworkSetting {
+    /**
+     * Network acceleration type. By default a network is in `STANDARD` mode.
+     */
     type?: string;
 }
 
 export interface ComputeInstanceGroupInstanceTemplatePlacementPolicy {
+    /**
+     * Specifies the id of the Placement Group to assign to the instances.
+     */
     placementGroupId: string;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateResources {
+    /**
+     * If provided, specifies baseline core performance as a percent.
+     */
     coreFraction?: number;
+    /**
+     * The number of CPU cores for the instance.
+     */
     cores: number;
     gpus?: number;
+    /**
+     * The memory size in GB.
+     */
     memory: number;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateSchedulingPolicy {
+    /**
+     * Specifies if the instance is preemptible. Defaults to false.
+     */
     preemptible?: boolean;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateSecondaryDisk {
+    /**
+     * This value can be used to reference the device under `/dev/disk/by-id/`.
+     */
     deviceName?: string;
+    /**
+     * ID of the existing disk. To set use variables.
+     */
     diskId?: string;
+    /**
+     * Parameters for creating a disk alongside the instance. The structure is documented below.
+     */
     initializeParams?: outputs.ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParams;
+    /**
+     * The access mode to the disk resource. By default a disk is attached in `READ_WRITE` mode.
+     */
     mode?: string;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParams {
+    /**
+     * A description of the boot disk.
+     */
     description?: string;
+    /**
+     * The disk image to initialize this disk from.
+     */
     imageId?: string;
+    /**
+     * The number of instances in the instance group.
+     */
     size?: number;
+    /**
+     * The snapshot to initialize this disk from.
+     */
     snapshotId?: string;
+    /**
+     * Network acceleration type. By default a network is in `STANDARD` mode.
+     */
     type?: string;
 }
 
 export interface ComputeInstanceGroupLoadBalancer {
+    /**
+     * Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+     */
     maxOpeningTrafficDuration?: number;
+    /**
+     * The status message of the instance.
+     */
     statusMessage: string;
+    /**
+     * A description of the target group.
+     */
     targetGroupDescription?: string;
     targetGroupId: string;
+    /**
+     * A set of key/value label pairs.
+     */
     targetGroupLabels?: {[key: string]: string};
+    /**
+     * The name of the target group.
+     */
     targetGroupName?: string;
 }
 
 export interface ComputeInstanceGroupScalePolicy {
+    /**
+     * The auto scaling policy of the instance group. The structure is documented below.
+     */
     autoScale?: outputs.ComputeInstanceGroupScalePolicyAutoScale;
+    /**
+     * The fixed scaling policy of the instance group. The structure is documented below.
+     */
     fixedScale?: outputs.ComputeInstanceGroupScalePolicyFixedScale;
+    /**
+     * The test auto scaling policy of the instance group. Use it to test how the auto scale works. The structure is documented below.
+     */
     testAutoScale?: outputs.ComputeInstanceGroupScalePolicyTestAutoScale;
 }
 
 export interface ComputeInstanceGroupScalePolicyAutoScale {
+    /**
+     * Target CPU load level.
+     */
     cpuUtilizationTarget?: number;
+    /**
+     * A list of custom rules. The structure is documented below.
+     */
     customRules?: outputs.ComputeInstanceGroupScalePolicyAutoScaleCustomRule[];
+    /**
+     * The initial number of instances in the instance group.
+     */
     initialSize: number;
+    /**
+     * The maximum number of virtual machines in the group.
+     */
     maxSize?: number;
+    /**
+     * The amount of time, in seconds, that metrics are averaged for.
+     * If the average value at the end of the interval is higher than the `cpuUtilizationTarget`,
+     * the instance group will increase the number of virtual machines in the group.
+     */
     measurementDuration: number;
+    /**
+     * The minimum number of virtual machines in a single availability zone.
+     */
     minZoneSize?: number;
+    /**
+     * The minimum time interval, in seconds, to monitor the load before
+     * an instance group can reduce the number of virtual machines in the group. During this time, the group
+     * will not decrease even if the average load falls below the value of `cpuUtilizationTarget`.
+     */
     stabilizationDuration: number;
+    /**
+     * The warm-up time of the virtual machine, in seconds. During this time,
+     * traffic is fed to the virtual machine, but load metrics are not taken into account.
+     */
     warmupDuration: number;
 }
 
 export interface ComputeInstanceGroupScalePolicyAutoScaleCustomRule {
+    /**
+     * Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+     */
     folderId?: string;
+    /**
+     * A map of labels of metric.
+     */
     labels?: {[key: string]: string};
+    /**
+     * The name of metric.
+     */
     metricName: string;
+    /**
+     * Metric type, `GAUGE` or `COUNTER`.
+     */
     metricType: string;
+    /**
+     * Rule type: `UTILIZATION` - This type means that the metric applies to one instance.
+     * First, Instance Groups calculates the average metric value for each instance,
+     * then averages the values for instances in one availability zone.
+     * This type of metric must have the `instanceId` label. `WORKLOAD` - This type means that the metric applies to instances in one availability zone.
+     * This type of metric must have the `zoneId` label.
+     */
     ruleType: string;
+    /**
+     * Service of custom metric in Yandex Monitoring that should be used for scaling.
+     */
     service?: string;
+    /**
+     * Target metric value level.
+     */
     target: number;
 }
 
 export interface ComputeInstanceGroupScalePolicyFixedScale {
+    /**
+     * The number of instances in the instance group.
+     */
     size: number;
 }
 
 export interface ComputeInstanceGroupScalePolicyTestAutoScale {
+    /**
+     * Target CPU load level.
+     */
     cpuUtilizationTarget?: number;
+    /**
+     * A list of custom rules. The structure is documented below.
+     */
     customRules?: outputs.ComputeInstanceGroupScalePolicyTestAutoScaleCustomRule[];
+    /**
+     * The initial number of instances in the instance group.
+     */
     initialSize: number;
+    /**
+     * The maximum number of virtual machines in the group.
+     */
     maxSize?: number;
+    /**
+     * The amount of time, in seconds, that metrics are averaged for.
+     * If the average value at the end of the interval is higher than the `cpuUtilizationTarget`,
+     * the instance group will increase the number of virtual machines in the group.
+     */
     measurementDuration: number;
+    /**
+     * The minimum number of virtual machines in a single availability zone.
+     */
     minZoneSize?: number;
+    /**
+     * The minimum time interval, in seconds, to monitor the load before
+     * an instance group can reduce the number of virtual machines in the group. During this time, the group
+     * will not decrease even if the average load falls below the value of `cpuUtilizationTarget`.
+     */
     stabilizationDuration: number;
+    /**
+     * The warm-up time of the virtual machine, in seconds. During this time,
+     * traffic is fed to the virtual machine, but load metrics are not taken into account.
+     */
     warmupDuration: number;
 }
 
 export interface ComputeInstanceGroupScalePolicyTestAutoScaleCustomRule {
+    /**
+     * Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+     */
     folderId?: string;
+    /**
+     * A map of labels of metric.
+     */
     labels?: {[key: string]: string};
+    /**
+     * The name of metric.
+     */
     metricName: string;
+    /**
+     * Metric type, `GAUGE` or `COUNTER`.
+     */
     metricType: string;
+    /**
+     * Rule type: `UTILIZATION` - This type means that the metric applies to one instance.
+     * First, Instance Groups calculates the average metric value for each instance,
+     * then averages the values for instances in one availability zone.
+     * This type of metric must have the `instanceId` label. `WORKLOAD` - This type means that the metric applies to instances in one availability zone.
+     * This type of metric must have the `zoneId` label.
+     */
     ruleType: string;
+    /**
+     * Service of custom metric in Yandex Monitoring that should be used for scaling.
+     */
     service?: string;
+    /**
+     * Target metric value level.
+     */
     target: number;
 }
 
 export interface ComputeInstanceLocalDisk {
+    /**
+     * Name that can be used to access an attached disk
+     * under `/dev/disk/by-id/`.
+     */
     deviceName: string;
+    /**
+     * Size of the disk, specified in bytes.
+     */
     sizeBytes: number;
 }
 
 export interface ComputeInstanceNetworkInterface {
+    /**
+     * List of configurations for creating ipv4 DNS records. The structure is documented below.
+     */
     dnsRecords?: outputs.ComputeInstanceNetworkInterfaceDnsRecord[];
     index: number;
+    /**
+     * The private IP address to assign to the instance. If
+     * empty, the address will be automatically assigned from the specified subnet.
+     */
     ipAddress: string;
+    /**
+     * Allocate an IPv4 address for the interface. The default value is `true`.
+     */
     ipv4?: boolean;
+    /**
+     * If true, allocate an IPv6 address for the interface.
+     * The address will be automatically assigned from the specified subnet.
+     */
     ipv6: boolean;
+    /**
+     * The private IPv6 address to assign to the instance.
+     */
     ipv6Address: string;
+    /**
+     * List of configurations for creating ipv6 DNS records. The structure is documented below.
+     */
     ipv6DnsRecords?: outputs.ComputeInstanceNetworkInterfaceIpv6DnsRecord[];
     macAddress: string;
+    /**
+     * Provide a public address, for instance, to access the internet over NAT.
+     */
     nat: boolean;
+    /**
+     * List of configurations for creating ipv4 NAT DNS records. The structure is documented below.
+     */
     natDnsRecords?: outputs.ComputeInstanceNetworkInterfaceNatDnsRecord[];
+    /**
+     * Provide a public address, for instance, to access the internet over NAT. Address should be already reserved in web UI.
+     */
     natIpAddress: string;
     natIpVersion: string;
+    /**
+     * Security group ids for network interface.
+     */
     securityGroupIds: string[];
+    /**
+     * ID of the subnet to attach this
+     * interface to. The subnet must exist in the same zone where this instance will be
+     * created.
+     */
     subnetId: string;
 }
 
 export interface ComputeInstanceNetworkInterfaceDnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone used).
+     */
     dnsZoneId?: string;
+    /**
+     * DNS record FQDN (must have a dot at the end).
+     */
     fqdn: string;
+    /**
+     * When set to true, also create a PTR DNS record.
+     */
     ptr?: boolean;
+    /**
+     * DNS record TTL. in seconds
+     */
     ttl?: number;
 }
 
 export interface ComputeInstanceNetworkInterfaceIpv6DnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone used).
+     */
     dnsZoneId?: string;
+    /**
+     * DNS record FQDN (must have a dot at the end).
+     */
     fqdn: string;
+    /**
+     * When set to true, also create a PTR DNS record.
+     */
     ptr?: boolean;
+    /**
+     * DNS record TTL. in seconds
+     */
     ttl?: number;
 }
 
 export interface ComputeInstanceNetworkInterfaceNatDnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone used).
+     */
     dnsZoneId?: string;
+    /**
+     * DNS record FQDN (must have a dot at the end).
+     */
     fqdn: string;
+    /**
+     * When set to true, also create a PTR DNS record.
+     */
     ptr?: boolean;
+    /**
+     * DNS record TTL. in seconds
+     */
     ttl?: number;
 }
 
 export interface ComputeInstancePlacementPolicy {
+    /**
+     * List of host affinity rules. The structure is documented below.
+     */
     hostAffinityRules: outputs.ComputeInstancePlacementPolicyHostAffinityRule[];
+    /**
+     * Specifies the id of the Placement Group to assign to the instance.
+     */
     placementGroupId?: string;
 }
 
 export interface ComputeInstancePlacementPolicyHostAffinityRule {
+    /**
+     * Affinity label or one of reserved values - `yc.hostId`, `yc.hostGroupId`.
+     */
     key: string;
+    /**
+     * Affinity action. The only value supported is `IN`.
+     */
     op: string;
     values: string[];
 }
 
 export interface ComputeInstanceResources {
+    /**
+     * If provided, specifies baseline performance for a core as a percent.
+     */
     coreFraction?: number;
+    /**
+     * CPU cores for the instance.
+     */
     cores: number;
     gpus?: number;
+    /**
+     * Memory size in GB.
+     */
     memory: number;
 }
 
 export interface ComputeInstanceSchedulingPolicy {
+    /**
+     * Specifies if the instance is preemptible. Defaults to false.
+     */
     preemptible?: boolean;
 }
 
 export interface ComputeInstanceSecondaryDisk {
+    /**
+     * Whether the disk is auto-deleted when the instance
+     * is deleted. The default value is false.
+     */
     autoDelete?: boolean;
+    /**
+     * Name that can be used to access an attached disk
+     * under `/dev/disk/by-id/`.
+     */
     deviceName: string;
+    /**
+     * ID of the disk that is attached to the instance.
+     */
     diskId: string;
+    /**
+     * Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+     */
     mode?: string;
 }
 
 export interface DataprocClusterClusterConfig {
+    /**
+     * Data Proc specific options. The structure is documented below.
+     */
     hadoop?: outputs.DataprocClusterClusterConfigHadoop;
+    /**
+     * Configuration of the Data Proc subcluster. The structure is documented below.
+     */
     subclusterSpecs: outputs.DataprocClusterClusterConfigSubclusterSpec[];
+    /**
+     * Version of Data Proc image.
+     */
     versionId: string;
 }
 
 export interface DataprocClusterClusterConfigHadoop {
+    /**
+     * A set of key/value pairs that are used to configure cluster services.
+     */
     properties?: {[key: string]: string};
+    /**
+     * List of services to run on Data Proc cluster.
+     */
     services?: string[];
+    /**
+     * List of SSH public keys to put to the hosts of the cluster. For information on how to connect to the cluster, see [the official documentation](https://cloud.yandex.com/docs/data-proc/operations/connect).
+     */
     sshPublicKeys?: string[];
 }
 
 export interface DataprocClusterClusterConfigSubclusterSpec {
+    /**
+     * If true then assign public IP addresses to the hosts of the subclusters.
+     */
     assignPublicIp?: boolean;
+    /**
+     * Autoscaling configuration for compute subclusters.
+     */
     autoscalingConfig?: outputs.DataprocClusterClusterConfigSubclusterSpecAutoscalingConfig;
+    /**
+     * Number of hosts within Data Proc subcluster.
+     */
     hostsCount: number;
+    /**
+     * (Computed) ID of a new Data Proc cluster.
+     */
     id: string;
+    /**
+     * Name of the Data Proc subcluster.
+     */
     name: string;
+    /**
+     * Resources allocated to each host of the Data Proc subcluster. The structure is documented below.
+     */
     resources: outputs.DataprocClusterClusterConfigSubclusterSpecResources;
+    /**
+     * Role of the subcluster in the Data Proc cluster.
+     */
     role: string;
+    /**
+     * The ID of the subnet, to which hosts of the subcluster belong. Subnets of all the subclusters must belong to the same VPC network.
+     */
     subnetId: string;
 }
 
 export interface DataprocClusterClusterConfigSubclusterSpecAutoscalingConfig {
+    /**
+     * Defines an autoscaling rule based on the average CPU utilization of the instance group. If not set default autoscaling metric will be used.
+     */
     cpuUtilizationTarget?: number;
+    /**
+     * Timeout to gracefully decommission nodes during downscaling. In seconds.
+     */
     decommissionTimeout?: number;
+    /**
+     * Maximum number of nodes in autoscaling subclusters.
+     */
     maxHostsCount: number;
+    /**
+     * Time in seconds allotted for averaging metrics.
+     */
     measurementDuration?: number;
+    /**
+     * Bool flag -- whether to use preemptible compute instances. Preemptible instances are stopped at least once every 24 hours, and can be stopped at any time if their resources are needed by Compute. For more information, see [Preemptible Virtual Machines](https://cloud.yandex.com/docs/compute/concepts/preemptible-vm).
+     */
     preemptible?: boolean;
+    /**
+     * Minimum amount of time in seconds allotted for monitoring before Instance Groups can reduce the number of instances in the group. During this time, the group size doesn't decrease, even if the new metric values indicate that it should.
+     */
     stabilizationDuration?: number;
+    /**
+     * The warmup time of the instance in seconds. During this time, traffic is sent to the instance, but instance metrics are not collected.
+     */
     warmupDuration?: number;
 }
 
 export interface DataprocClusterClusterConfigSubclusterSpecResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of a host. One of `network-hdd` (default) or `network-ssd`.
+     */
     diskTypeId?: string;
+    /**
+     * The ID of the preset for computational resources available to a host. All available presets are listed in the [documentation](https://cloud.yandex.com/docs/data-proc/concepts/instance-types).
+     */
     resourcePresetId: string;
 }
 
@@ -894,46 +2232,115 @@ export interface DatatransferEndpointSettings {
     clickhouseTarget?: outputs.DatatransferEndpointSettingsClickhouseTarget;
     mongoSource?: outputs.DatatransferEndpointSettingsMongoSource;
     mongoTarget?: outputs.DatatransferEndpointSettingsMongoTarget;
+    /**
+     * Settings specific to the MySQL source endpoint.
+     */
     mysqlSource?: outputs.DatatransferEndpointSettingsMysqlSource;
+    /**
+     * Settings specific to the MySQL target endpoint.
+     */
     mysqlTarget?: outputs.DatatransferEndpointSettingsMysqlTarget;
+    /**
+     * Settings specific to the PostgreSQL source endpoint.
+     */
     postgresSource?: outputs.DatatransferEndpointSettingsPostgresSource;
+    /**
+     * Settings specific to the PostgreSQL target endpoint.
+     */
     postgresTarget?: outputs.DatatransferEndpointSettingsPostgresTarget;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSource {
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection: outputs.DatatransferEndpointSettingsClickhouseSourceConnection;
+    /**
+     * List of tables which will not be transfered, formatted as `schemaname.tablename`.
+     */
     excludeTables: string[];
+    /**
+     * List of tables to transfer, formatted as `schemaname.tablename`. If omitted or an empty list is specified, all tables will be transferred.
+     */
     includeTables: string[];
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups: string[];
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId: string;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSourceConnection {
+    /**
+     * Connection options. The structure is documented below.
+     */
     connectionOptions: outputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptions;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptions {
+    /**
+     * Database name.
+     */
     database: string;
+    /**
+     * Identifier of the Managed ClickHouse cluster.
+     */
     mdbClusterId?: string;
+    /**
+     * Connection settings of the on-premise ClickHouse server.
+     */
     onPremise?: outputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremise;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password: outputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsPassword;
+    /**
+     * User for database access.
+     */
     user: string;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremise {
+    /**
+     * TCP port number for the HTTP interface of the ClickHouse server.
+     */
     httpPort: number;
+    /**
+     * TCP port number for the native interface of the ClickHouse server.
+     */
     nativePort: number;
+    /**
+     * The list of ClickHouse shards. The structure is documented below.
+     */
     shards: outputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseShard[];
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode: outputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsMode;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseShard {
+    /**
+     * List of ClickHouse server host names.
+     */
     hosts: string[];
+    /**
+     * Arbitrary shard name. This name may be used in `sharding` block to specify custom sharding rules.
+     */
     name: string;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: outputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeDisabled;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: outputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeEnabled;
 }
 
@@ -941,6 +2348,9 @@ export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectio
 }
 
 export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate: string;
 }
 
@@ -949,12 +2359,33 @@ export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectio
 }
 
 export interface DatatransferEndpointSettingsClickhouseTarget {
+    /**
+     * Table renaming rules. The structure is documented below.
+     */
     altNames: outputs.DatatransferEndpointSettingsClickhouseTargetAltName[];
+    /**
+     * How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+     */
     cleanupPolicy: string;
+    /**
+     * Name of the ClickHouse cluster. For managed ClickHouse clusters defaults to managed cluster ID.
+     */
     clickhouseClusterName: string;
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection: outputs.DatatransferEndpointSettingsClickhouseTargetConnection;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups: string[];
+    /**
+     * Shard selection rules for the data being transferred. The structure is documented below.
+     */
     sharding: outputs.DatatransferEndpointSettingsClickhouseTargetSharding;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId: string;
 }
 
@@ -964,31 +2395,73 @@ export interface DatatransferEndpointSettingsClickhouseTargetAltName {
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetConnection {
+    /**
+     * Connection options. The structure is documented below.
+     */
     connectionOptions: outputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptions;
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptions {
+    /**
+     * Database name.
+     */
     database: string;
+    /**
+     * Identifier of the Managed ClickHouse cluster.
+     */
     mdbClusterId?: string;
+    /**
+     * Connection settings of the on-premise ClickHouse server.
+     */
     onPremise?: outputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremise;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password: outputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsPassword;
+    /**
+     * User for database access.
+     */
     user: string;
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremise {
+    /**
+     * TCP port number for the HTTP interface of the ClickHouse server.
+     */
     httpPort: number;
+    /**
+     * TCP port number for the native interface of the ClickHouse server.
+     */
     nativePort: number;
+    /**
+     * The list of ClickHouse shards. The structure is documented below.
+     */
     shards: outputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseShard[];
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode: outputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsMode;
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseShard {
+    /**
+     * List of ClickHouse server host names.
+     */
     hosts: string[];
+    /**
+     * Arbitrary shard name. This name may be used in `sharding` block to specify custom sharding rules.
+     */
     name: string;
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: outputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeDisabled;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: outputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeEnabled;
 }
 
@@ -996,6 +2469,9 @@ export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectio
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate: string;
 }
 
@@ -1004,11 +2480,20 @@ export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectio
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetSharding {
+    /**
+     * Shard data by the hash value of the specified column. The structure is documented below.
+     */
     columnValueHash?: outputs.DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHash;
+    /**
+     * Shard data by ID of the transfer.
+     */
     transferId?: outputs.DatatransferEndpointSettingsClickhouseTargetShardingTransferId;
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHash {
+    /**
+     * The name of the column to calculate hash from.
+     */
     columnName: string;
 }
 
@@ -1016,40 +2501,100 @@ export interface DatatransferEndpointSettingsClickhouseTargetShardingTransferId 
 }
 
 export interface DatatransferEndpointSettingsMongoSource {
+    /**
+     * The list of the MongoDB collections that should be transferred. If omitted, all available collections will be transferred. The structure of the list item is documented below.
+     */
     collections: outputs.DatatransferEndpointSettingsMongoSourceCollection[];
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection: outputs.DatatransferEndpointSettingsMongoSourceConnection;
+    /**
+     * The list of the MongoDB collections that should not be transferred.
+     */
     excludedCollections: outputs.DatatransferEndpointSettingsMongoSourceExcludedCollection[];
+    /**
+     * whether the secondary server should be preferred to the primary when copying data.
+     */
     secondaryPreferredMode: boolean;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups: string[];
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId: string;
 }
 
 export interface DatatransferEndpointSettingsMongoSourceCollection {
+    /**
+     * Collection name.
+     */
     collectionName: string;
+    /**
+     * Database name.
+     */
     databaseName: string;
 }
 
 export interface DatatransferEndpointSettingsMongoSourceConnection {
+    /**
+     * Connection options. The structure is documented below.
+     */
     connectionOptions: outputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptions;
 }
 
 export interface DatatransferEndpointSettingsMongoSourceConnectionConnectionOptions {
+    /**
+     * Name of the database associated with the credentials.
+     */
     authSource: string;
+    /**
+     * Identifier of the Managed ClickHouse cluster.
+     */
     mdbClusterId?: string;
+    /**
+     * Connection settings of the on-premise ClickHouse server.
+     */
     onPremise?: outputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremise;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password: outputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsPassword;
+    /**
+     * User for database access.
+     */
     user: string;
 }
 
 export interface DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremise {
+    /**
+     * Host names of the replica set.
+     */
     hosts: string[];
+    /**
+     * TCP Port number.
+     */
     port: number;
+    /**
+     * Replica set name.
+     */
     replicaSet: string;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode: outputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsMode;
 }
 
 export interface DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: outputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeDisabled;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: outputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeEnabled;
 }
 
@@ -1057,6 +2602,9 @@ export interface DatatransferEndpointSettingsMongoSourceConnectionConnectionOpti
 }
 
 export interface DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate: string;
 }
 
@@ -1065,39 +2613,96 @@ export interface DatatransferEndpointSettingsMongoSourceConnectionConnectionOpti
 }
 
 export interface DatatransferEndpointSettingsMongoSourceExcludedCollection {
+    /**
+     * Collection name.
+     */
     collectionName: string;
+    /**
+     * Database name.
+     */
     databaseName: string;
 }
 
 export interface DatatransferEndpointSettingsMongoTarget {
+    /**
+     * How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+     */
     cleanupPolicy: string;
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection: outputs.DatatransferEndpointSettingsMongoTargetConnection;
+    /**
+     * Name of the database to transfer.
+     */
     database: string;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups: string[];
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId: string;
 }
 
 export interface DatatransferEndpointSettingsMongoTargetConnection {
+    /**
+     * Connection options. The structure is documented below.
+     */
     connectionOptions: outputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptions;
 }
 
 export interface DatatransferEndpointSettingsMongoTargetConnectionConnectionOptions {
+    /**
+     * Name of the database associated with the credentials.
+     */
     authSource: string;
+    /**
+     * Identifier of the Managed ClickHouse cluster.
+     */
     mdbClusterId?: string;
+    /**
+     * Connection settings of the on-premise ClickHouse server.
+     */
     onPremise?: outputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremise;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password: outputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsPassword;
+    /**
+     * User for database access.
+     */
     user: string;
 }
 
 export interface DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremise {
+    /**
+     * Host names of the replica set.
+     */
     hosts: string[];
+    /**
+     * TCP Port number.
+     */
     port: number;
+    /**
+     * Replica set name.
+     */
     replicaSet: string;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode: outputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsMode;
 }
 
 export interface DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: outputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeDisabled;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: outputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeEnabled;
 }
 
@@ -1105,6 +2710,9 @@ export interface DatatransferEndpointSettingsMongoTargetConnectionConnectionOpti
 }
 
 export interface DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate: string;
 }
 
@@ -1113,32 +2721,83 @@ export interface DatatransferEndpointSettingsMongoTargetConnectionConnectionOpti
 }
 
 export interface DatatransferEndpointSettingsMysqlSource {
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection: outputs.DatatransferEndpointSettingsMysqlSourceConnection;
+    /**
+     * Name of the database to transfer.
+     */
     database: string;
+    /**
+     * Opposite of `includeTableRegex`. The tables matching the specified regular expressions will not be transferred.
+     */
     excludeTablesRegexes: string[];
+    /**
+     * List of regular expressions of table names which should be transferred. A table name is formatted as schemaname.tablename. For example, a single regular expression may look like `^mydb.employees$`.
+     */
     includeTablesRegexes: string[];
+    /**
+     * Defines which database schema objects should be transferred, e.g. views, functions, etc.
+     */
     objectTransferSettings: outputs.DatatransferEndpointSettingsMysqlSourceObjectTransferSettings;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password: outputs.DatatransferEndpointSettingsMysqlSourcePassword;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups: string[];
     serviceDatabase: string;
+    /**
+     * Timezone to use for parsing timestamps for saving source timezones. Accepts values from IANA timezone database. Default: local timezone.
+     */
     timezone: string;
+    /**
+     * User for the database access.
+     */
     user: string;
 }
 
 export interface DatatransferEndpointSettingsMysqlSourceConnection {
+    /**
+     * Identifier of the Managed MySQL cluster.
+     */
     mdbClusterId?: string;
+    /**
+     * Connection settings of the on-premise MySQL server.
+     */
     onPremise?: outputs.DatatransferEndpointSettingsMysqlSourceConnectionOnPremise;
 }
 
 export interface DatatransferEndpointSettingsMysqlSourceConnectionOnPremise {
+    /**
+     * Host names of the replica set.
+     */
     hosts: string[];
+    /**
+     * TCP Port number.
+     */
     port: number;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId: string;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode: outputs.DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsMode;
 }
 
 export interface DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: outputs.DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeDisabled;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: outputs.DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeEnabled;
 }
 
@@ -1146,6 +2805,9 @@ export interface DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsMo
 }
 
 export interface DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate: string;
 }
 
@@ -1160,30 +2822,78 @@ export interface DatatransferEndpointSettingsMysqlSourcePassword {
 }
 
 export interface DatatransferEndpointSettingsMysqlTarget {
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection: outputs.DatatransferEndpointSettingsMysqlTargetConnection;
+    /**
+     * Name of the database to transfer.
+     */
     database: string;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password: outputs.DatatransferEndpointSettingsMysqlTargetPassword;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups: string[];
+    /**
+     * When true, disables foreign key checks. See [foreignKeyChecks](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_foreign_key_checks). False by default.
+     */
     skipConstraintChecks: boolean;
+    /**
+     * [sqlMode](https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html) to use when interacting with the server. Defaults to "NO_AUTO_VALUE_ON_ZERO,NO_DIR_IN_CREATE,NO_ENGINE_SUBSTITUTION".
+     */
     sqlMode: string;
+    /**
+     * Timezone to use for parsing timestamps for saving source timezones. Accepts values from IANA timezone database. Default: local timezone.
+     */
     timezone: string;
+    /**
+     * User for the database access.
+     */
     user: string;
 }
 
 export interface DatatransferEndpointSettingsMysqlTargetConnection {
+    /**
+     * Identifier of the Managed MySQL cluster.
+     */
     mdbClusterId?: string;
+    /**
+     * Connection settings of the on-premise MySQL server.
+     */
     onPremise?: outputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremise;
 }
 
 export interface DatatransferEndpointSettingsMysqlTargetConnectionOnPremise {
+    /**
+     * Host names of the replica set.
+     */
     hosts: string[];
+    /**
+     * TCP Port number.
+     */
     port: number;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId: string;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode: outputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsMode;
 }
 
 export interface DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: outputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeDisabled;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: outputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeEnabled;
 }
 
@@ -1191,6 +2901,9 @@ export interface DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsMo
 }
 
 export interface DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate: string;
 }
 
@@ -1199,32 +2912,86 @@ export interface DatatransferEndpointSettingsMysqlTargetPassword {
 }
 
 export interface DatatransferEndpointSettingsPostgresSource {
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection: outputs.DatatransferEndpointSettingsPostgresSourceConnection;
+    /**
+     * Name of the database to transfer.
+     */
     database: string;
+    /**
+     * List of tables which will not be transfered, formatted as `schemaname.tablename`.
+     */
     excludeTables: string[];
+    /**
+     * List of tables to transfer, formatted as `schemaname.tablename`. If omitted or an empty list is specified, all tables will be transferred.
+     */
     includeTables: string[];
+    /**
+     * Defines which database schema objects should be transferred, e.g. views, functions, etc.
+     */
     objectTransferSettings: outputs.DatatransferEndpointSettingsPostgresSourceObjectTransferSettings;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password: outputs.DatatransferEndpointSettingsPostgresSourcePassword;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups: string[];
+    /**
+     * Name of the database schema in which auxiliary tables needed for the transfer will be created. Empty `serviceSchema` implies schema "public".
+     */
     serviceSchema: string;
+    /**
+     * Maximum WAL size held by the replication slot, in gigabytes. Exceeding this limit will result in a replication failure and deletion of the replication slot. Unlimited by default.
+     */
     slotGigabyteLagLimit: number;
+    /**
+     * User for the database access.
+     */
     user: string;
 }
 
 export interface DatatransferEndpointSettingsPostgresSourceConnection {
+    /**
+     * Identifier of the Managed MySQL cluster.
+     */
     mdbClusterId?: string;
+    /**
+     * Connection settings of the on-premise MySQL server.
+     */
     onPremise?: outputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremise;
 }
 
 export interface DatatransferEndpointSettingsPostgresSourceConnectionOnPremise {
+    /**
+     * Host names of the replica set.
+     */
     hosts: string[];
+    /**
+     * TCP Port number.
+     */
     port: number;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId: string;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode: outputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsMode;
 }
 
 export interface DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: outputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeDisabled;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: outputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeEnabled;
 }
 
@@ -1232,6 +2999,9 @@ export interface DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTl
 }
 
 export interface DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate: string;
 }
 
@@ -1260,27 +3030,66 @@ export interface DatatransferEndpointSettingsPostgresSourcePassword {
 }
 
 export interface DatatransferEndpointSettingsPostgresTarget {
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection: outputs.DatatransferEndpointSettingsPostgresTargetConnection;
+    /**
+     * Name of the database to transfer.
+     */
     database: string;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password: outputs.DatatransferEndpointSettingsPostgresTargetPassword;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups: string[];
+    /**
+     * User for the database access.
+     */
     user: string;
 }
 
 export interface DatatransferEndpointSettingsPostgresTargetConnection {
+    /**
+     * Identifier of the Managed MySQL cluster.
+     */
     mdbClusterId?: string;
+    /**
+     * Connection settings of the on-premise MySQL server.
+     */
     onPremise?: outputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremise;
 }
 
 export interface DatatransferEndpointSettingsPostgresTargetConnectionOnPremise {
+    /**
+     * Host names of the replica set.
+     */
     hosts: string[];
+    /**
+     * TCP Port number.
+     */
     port: number;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId: string;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode: outputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsMode;
 }
 
 export interface DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: outputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeDisabled;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: outputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeEnabled;
 }
 
@@ -1288,6 +3097,9 @@ export interface DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTl
 }
 
 export interface DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate: string;
 }
 
@@ -1374,50 +3186,133 @@ export interface FunctionTriggerTimer {
 }
 
 export interface GetAlbBackendGroupGrpcBackend {
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck: outputs.GetAlbBackendGroupGrpcBackendHealthcheck;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig: outputs.GetAlbBackendGroupGrpcBackendLoadBalancingConfig;
+    /**
+     * - Name of the Backend Group.
+     */
     name: string;
+    /**
+     * Port for incoming traffic.
+     */
     port: number;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds: string[];
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls: outputs.GetAlbBackendGroupGrpcBackendTls;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight: number;
 }
 
 export interface GetAlbBackendGroupGrpcBackendHealthcheck {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck: outputs.GetAlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheck;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort: number;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold: number;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck: outputs.GetAlbBackendGroupGrpcBackendHealthcheckHttpHealthcheck;
+    /**
+     * Interval between health checks.
+     */
     interval: string;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent: number;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck: outputs.GetAlbBackendGroupGrpcBackendHealthcheckStreamHealthcheck;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout: string;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold: number;
 }
 
 export interface GetAlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheck {
+    /**
+     * Optional service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName: string;
 }
 
 export interface GetAlbBackendGroupGrpcBackendHealthcheckHttpHealthcheck {
+    /**
+     * Optional "Host" HTTP header value.
+     */
     host: string;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2: boolean;
+    /**
+     * HTTP path.
+     */
     path: string;
 }
 
 export interface GetAlbBackendGroupGrpcBackendHealthcheckStreamHealthcheck {
+    /**
+     * Optional text that must be contained in the messages received from targets for a successful health check.
+     */
     receive: string;
+    /**
+     * Optional message text sent to targets during TCP data transfer.
+     */
     send: string;
 }
 
 export interface GetAlbBackendGroupGrpcBackendLoadBalancingConfig {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent: number;
+    /**
+     * Load balancing mode for the backend.
+     */
     mode: string;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold: number;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality: boolean;
 }
 
 export interface GetAlbBackendGroupGrpcBackendTls {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+     */
     sni: string;
     validationContext: outputs.GetAlbBackendGroupGrpcBackendTlsValidationContext;
 }
@@ -1428,52 +3323,138 @@ export interface GetAlbBackendGroupGrpcBackendTlsValidationContext {
 }
 
 export interface GetAlbBackendGroupHttpBackend {
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck: outputs.GetAlbBackendGroupHttpBackendHealthcheck;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2: boolean;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig: outputs.GetAlbBackendGroupHttpBackendLoadBalancingConfig;
+    /**
+     * - Name of the Backend Group.
+     */
     name: string;
+    /**
+     * Port for incoming traffic.
+     */
     port: number;
     storageBucket: string;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds: string[];
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls: outputs.GetAlbBackendGroupHttpBackendTls;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight: number;
 }
 
 export interface GetAlbBackendGroupHttpBackendHealthcheck {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck: outputs.GetAlbBackendGroupHttpBackendHealthcheckGrpcHealthcheck;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort: number;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold: number;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck: outputs.GetAlbBackendGroupHttpBackendHealthcheckHttpHealthcheck;
+    /**
+     * Interval between health checks.
+     */
     interval: string;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent: number;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck: outputs.GetAlbBackendGroupHttpBackendHealthcheckStreamHealthcheck;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout: string;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold: number;
 }
 
 export interface GetAlbBackendGroupHttpBackendHealthcheckGrpcHealthcheck {
+    /**
+     * Optional service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName: string;
 }
 
 export interface GetAlbBackendGroupHttpBackendHealthcheckHttpHealthcheck {
+    /**
+     * Optional "Host" HTTP header value.
+     */
     host: string;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2: boolean;
+    /**
+     * HTTP path.
+     */
     path: string;
 }
 
 export interface GetAlbBackendGroupHttpBackendHealthcheckStreamHealthcheck {
+    /**
+     * Optional text that must be contained in the messages received from targets for a successful health check.
+     */
     receive: string;
+    /**
+     * Optional message text sent to targets during TCP data transfer.
+     */
     send: string;
 }
 
 export interface GetAlbBackendGroupHttpBackendLoadBalancingConfig {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent: number;
+    /**
+     * Load balancing mode for the backend.
+     */
     mode: string;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold: number;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality: boolean;
 }
 
 export interface GetAlbBackendGroupHttpBackendTls {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+     */
     sni: string;
     validationContext: outputs.GetAlbBackendGroupHttpBackendTlsValidationContext;
 }
@@ -1494,6 +3475,9 @@ export interface GetAlbBackendGroupSessionAffinityConnection {
 }
 
 export interface GetAlbBackendGroupSessionAffinityCookie {
+    /**
+     * - Name of the Backend Group.
+     */
     name: string;
     ttl: string;
 }
@@ -1504,50 +3488,133 @@ export interface GetAlbBackendGroupSessionAffinityHeader {
 
 export interface GetAlbBackendGroupStreamBackend {
     enableProxyProtocol: boolean;
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck: outputs.GetAlbBackendGroupStreamBackendHealthcheck;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig: outputs.GetAlbBackendGroupStreamBackendLoadBalancingConfig;
+    /**
+     * - Name of the Backend Group.
+     */
     name: string;
+    /**
+     * Port for incoming traffic.
+     */
     port: number;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds: string[];
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls: outputs.GetAlbBackendGroupStreamBackendTls;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight: number;
 }
 
 export interface GetAlbBackendGroupStreamBackendHealthcheck {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck: outputs.GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort: number;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold: number;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck: outputs.GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheck;
+    /**
+     * Interval between health checks.
+     */
     interval: string;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent: number;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck: outputs.GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheck;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout: string;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold: number;
 }
 
 export interface GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck {
+    /**
+     * Optional service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName: string;
 }
 
 export interface GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheck {
+    /**
+     * Optional "Host" HTTP header value.
+     */
     host: string;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2: boolean;
+    /**
+     * HTTP path.
+     */
     path: string;
 }
 
 export interface GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheck {
+    /**
+     * Optional text that must be contained in the messages received from targets for a successful health check.
+     */
     receive: string;
+    /**
+     * Optional message text sent to targets during TCP data transfer.
+     */
     send: string;
 }
 
 export interface GetAlbBackendGroupStreamBackendLoadBalancingConfig {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent: number;
+    /**
+     * Load balancing mode for the backend.
+     */
     mode: string;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold: number;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality: boolean;
 }
 
 export interface GetAlbBackendGroupStreamBackendTls {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+     */
     sni: string;
     validationContext: outputs.GetAlbBackendGroupStreamBackendTlsValidationContext;
 }
@@ -1577,6 +3644,9 @@ export interface GetAlbHttpRouterRouteOptionRbacPrincipalAndPrincipal {
 }
 
 export interface GetAlbHttpRouterRouteOptionRbacPrincipalAndPrincipalHeader {
+    /**
+     * - Name of the HTTP Router.
+     */
     name: string;
     values: outputs.GetAlbHttpRouterRouteOptionRbacPrincipalAndPrincipalHeaderValue[];
 }
@@ -1713,33 +3783,80 @@ export interface GetAlbTargetGroupTarget {
 }
 
 export interface GetAlbVirtualHostModifyRequestHeader {
+    /**
+     * Append string to the header value.
+     */
     append: string;
+    /**
+     * Name of the Virtual Host.
+     */
     name: string;
+    /**
+     * If set, remove the header.
+     */
     remove: boolean;
+    /**
+     * New value for a header. Header values support the following
+     * [formatters](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#custom-request-response-headers).
+     */
     replace: string;
 }
 
 export interface GetAlbVirtualHostModifyResponseHeader {
+    /**
+     * Append string to the header value.
+     */
     append: string;
+    /**
+     * Name of the Virtual Host.
+     */
     name: string;
+    /**
+     * If set, remove the header.
+     */
     remove: boolean;
+    /**
+     * New value for a header. Header values support the following
+     * [formatters](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#custom-request-response-headers).
+     */
     replace: string;
 }
 
 export interface GetAlbVirtualHostRoute {
+    /**
+     * GRPC route resource. The structure is documented below.
+     */
     grpcRoutes: outputs.GetAlbVirtualHostRouteGrpcRoute[];
+    /**
+     * HTTP route resource. The structure is documented below.
+     */
     httpRoutes: outputs.GetAlbVirtualHostRouteHttpRoute[];
+    /**
+     * Name of the Virtual Host.
+     */
     name: string;
     routeOptions: outputs.GetAlbVirtualHostRouteRouteOption[];
 }
 
 export interface GetAlbVirtualHostRouteGrpcRoute {
+    /**
+     * Checks "/" prefix by default. The structure is documented below.
+     */
     grpcMatches: outputs.GetAlbVirtualHostRouteGrpcRouteGrpcMatch[];
+    /**
+     * GRPC route action resource. The structure is documented below.
+     */
     grpcRouteActions: outputs.GetAlbVirtualHostRouteGrpcRouteGrpcRouteAction[];
+    /**
+     * (Required) GRPC status response action resource. The structure is documented below.
+     */
     grpcStatusResponseActions: outputs.GetAlbVirtualHostRouteGrpcRouteGrpcStatusResponseAction[];
 }
 
 export interface GetAlbVirtualHostRouteGrpcRouteGrpcMatch {
+    /**
+     * If not set, all services/methods are assumed. The structure is documented below.
+     */
     fqmns: outputs.GetAlbVirtualHostRouteGrpcRouteGrpcMatchFqmn[];
 }
 
@@ -1749,31 +3866,78 @@ export interface GetAlbVirtualHostRouteGrpcRouteGrpcMatchFqmn {
 }
 
 export interface GetAlbVirtualHostRouteGrpcRouteGrpcRouteAction {
+    /**
+     * If set, will automatically rewrite host.
+     */
     autoHostRewrite: boolean;
+    /**
+     * Backend group to route requests.
+     */
     backendGroupId: string;
+    /**
+     * Host rewrite specifier.
+     */
     hostRewrite: string;
+    /**
+     * Specifies the idle timeout (time without any data transfer for the active request) for the route. It
+     * is useful for streaming scenarios - one should set idleTimeout to something meaningful and maxTimeout to the maximum
+     * time the stream is allowed to be alive. If not specified, there is no per-route idle timeout.
+     */
     idleTimeout: string;
+    /**
+     * Lower timeout may be specified by the client (using grpc-timeout header). If not set, default is 60
+     * seconds.
+     */
     maxTimeout: string;
 }
 
 export interface GetAlbVirtualHostRouteGrpcRouteGrpcStatusResponseAction {
+    /**
+     * The status of the response. Supported values are: ok, invalid_argumet, not_found, permission_denied,
+     * unauthenticated, unimplemented, internal, unavailable.
+     */
     status: string;
 }
 
 export interface GetAlbVirtualHostRouteHttpRoute {
+    /**
+     * (Required) Direct response action resource. The structure is documented below.
+     */
     directResponseActions: outputs.GetAlbVirtualHostRouteHttpRouteDirectResponseAction[];
+    /**
+     * Checks "/" prefix by default. The structure is documented below.
+     */
     httpMatches: outputs.GetAlbVirtualHostRouteHttpRouteHttpMatch[];
+    /**
+     * HTTP route action resource. The structure is documented below.
+     */
     httpRouteActions: outputs.GetAlbVirtualHostRouteHttpRouteHttpRouteAction[];
+    /**
+     * Redirect action resource. The structure is documented below.
+     */
     redirectActions: outputs.GetAlbVirtualHostRouteHttpRouteRedirectAction[];
 }
 
 export interface GetAlbVirtualHostRouteHttpRouteDirectResponseAction {
+    /**
+     * Response body text.
+     */
     body: string;
+    /**
+     * The status of the response. Supported values are: ok, invalid_argumet, not_found, permission_denied,
+     * unauthenticated, unimplemented, internal, unavailable.
+     */
     status: number;
 }
 
 export interface GetAlbVirtualHostRouteHttpRouteHttpMatch {
+    /**
+     * List of methods(strings).
+     */
     httpMethods: string[];
+    /**
+     * If not set, '/' is assumed. The structure is documented below.
+     */
     paths: outputs.GetAlbVirtualHostRouteHttpRouteHttpMatchPath[];
 }
 
@@ -1783,22 +3947,68 @@ export interface GetAlbVirtualHostRouteHttpRouteHttpMatchPath {
 }
 
 export interface GetAlbVirtualHostRouteHttpRouteHttpRouteAction {
+    /**
+     * If set, will automatically rewrite host.
+     */
     autoHostRewrite: boolean;
+    /**
+     * Backend group to route requests.
+     */
     backendGroupId: string;
+    /**
+     * Host rewrite specifier.
+     */
     hostRewrite: string;
+    /**
+     * Specifies the idle timeout (time without any data transfer for the active request) for the route. It
+     * is useful for streaming scenarios - one should set idleTimeout to something meaningful and maxTimeout to the maximum
+     * time the stream is allowed to be alive. If not specified, there is no per-route idle timeout.
+     */
     idleTimeout: string;
+    /**
+     * If not empty, matched path prefix will be replaced by this value.
+     */
     prefixRewrite: string;
+    /**
+     * Specifies the request timeout (overall time request processing is allowed to take) for the route. If not
+     * set, default is 60 seconds.
+     */
     timeout: string;
+    /**
+     * List of upgrade types. Only specified upgrade types will be allowed. For example,
+     * "websocket".
+     */
     upgradeTypes: string[];
 }
 
 export interface GetAlbVirtualHostRouteHttpRouteRedirectAction {
     removeQuery: boolean;
+    /**
+     * Replaces hostname.
+     */
     replaceHost: string;
+    /**
+     * Replace path.
+     */
     replacePath: string;
+    /**
+     * Replaces port.
+     */
     replacePort: number;
+    /**
+     * Replace only matched prefix. Example:<br/> match:{ prefix_match: "/some" } <br/>
+     * redirect: { replace_prefix: "/other" } <br/> will redirect "/something" to "/otherthing".
+     */
     replacePrefix: string;
+    /**
+     * Replaces scheme. If the original scheme is `http` or `https`, will also remove the 80 or 443 port,
+     * if present.
+     */
     replaceScheme: string;
+    /**
+     * The HTTP status code to use in the redirect response. Supported values are:
+     * moved_permanently, found, see_other, temporary_redirect, permanent_redirect.
+     */
     responseCode: string;
 }
 
@@ -1822,6 +4032,9 @@ export interface GetAlbVirtualHostRouteOptionRbacPrincipalAndPrincipal {
 }
 
 export interface GetAlbVirtualHostRouteOptionRbacPrincipalAndPrincipalHeader {
+    /**
+     * Name of the Virtual Host.
+     */
     name: string;
     values: outputs.GetAlbVirtualHostRouteOptionRbacPrincipalAndPrincipalHeaderValue[];
 }
@@ -1851,6 +4064,9 @@ export interface GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipal {
 }
 
 export interface GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeader {
+    /**
+     * Name of the Virtual Host.
+     */
     name: string;
     values: outputs.GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderValue[];
 }
@@ -1861,33 +4077,108 @@ export interface GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeade
 }
 
 export interface GetCdnOriginGroupOrigin {
+    /**
+     * specifies whether the origin is used in its origin group as backup. A backup origin is used when one of active origins becomes unavailable.
+     */
     backup?: boolean;
+    /**
+     * the origin is enabled and used as a source for the CDN. Default is enabled.
+     */
     enabled?: boolean;
+    /**
+     * The ID of a specific origin group.
+     */
     originGroupId: number;
+    /**
+     * IP address or Domain name of your origin and the port;
+     */
     source: string;
 }
 
 export interface GetCdnResourceOptions {
+    /**
+     * HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
+     */
     allowedHttpMethods: string[];
+    /**
+     * set up a cache period for the end-users browser. Content will be cached due to origin settings. If there are no cache settings on your origin, the content will not be cached. The list of HTTP response codes that can be cached in browsers: 200, 201, 204, 206, 301, 302, 303, 304, 307, 308. Other response codes will not be cached. The default value is 4 days.
+     */
     browserCacheSettings: number;
+    /**
+     * list HTTP headers that must be included in responses to clients.
+     */
     cacheHttpHeaders: string[];
+    /**
+     * parameter that lets browsers get access to selected resources from a domain different to a domain from which the request is received.
+     */
     cors: string[];
+    /**
+     * custom value for the Host header. Your server must be able to process requests with the chosen header.
+     */
     customHostHeader: string;
+    /**
+     * wildcard additional CNAME. If a resource has a wildcard additional CNAME, you can use your own certificate for content delivery via HTTPS. Read-only.
+     */
     customServerName: string;
+    /**
+     * setup a cache status.
+     */
     disableCache: boolean;
+    /**
+     * disabling proxy force ranges.
+     */
     disableProxyForceRanges: boolean;
+    /**
+     * content will be cached according to origin cache settings. The value applies for a response with codes 200, 201, 204, 206, 301, 302, 303, 304, 307, 308 if an origin server does not have caching HTTP headers. Responses with other codes will not be cached.
+     */
     edgeCacheSettings: number;
+    /**
+     * option helps you to reduce the bandwidth between origin and CDN servers. Also, content delivery speed becomes higher because of reducing the time for compressing files in a CDN.
+     */
     fetchedCompressed: boolean;
+    /**
+     * choose the Forward Host header option if is important to send in the request to the Origin the same Host header as was sent in the request to CDN server.
+     */
     forwardHostHeader: boolean;
+    /**
+     * GZip compression at CDN servers reduces file size by 70% and can be as high as 90%.
+     */
     gzipOn: boolean;
+    /**
+     * set for ignoring cookie.
+     */
     ignoreCookie: boolean;
+    /**
+     * files with different query parameters are cached as objects with the same key regardless of the parameter value. selected by default.
+     */
     ignoreQueryParams: boolean;
+    /**
+     * allows caching for GET, HEAD and POST requests.
+     */
     proxyCacheMethodsSet: boolean;
+    /**
+     * files with the specified query parameters are cached as objects with the same key, files with other parameters are cached as objects with different keys.
+     */
     queryParamsBlacklists: string[];
+    /**
+     * files with the specified query parameters are cached as objects with different keys, files with other parameters are cached as objects with the same key.
+     */
     queryParamsWhitelists: string[];
+    /**
+     * set up a redirect from HTTPS to HTTP.
+     */
     redirectHttpToHttps: boolean;
+    /**
+     * set up a redirect from HTTP to HTTPS.
+     */
     redirectHttpsToHttp: boolean;
+    /**
+     * files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
+     */
     slice: boolean;
+    /**
+     * set up custom headers that CDN servers send in requests to origins.
+     */
     staticRequestHeaders: string[];
     staticResponseHeaders: {[key: string]: string};
 }
@@ -1903,161 +4194,461 @@ export interface GetComputeDiskDiskPlacementPolicy {
 }
 
 export interface GetComputeInstanceBootDisk {
+    /**
+     * Specifies whether the disk is auto-deleted when the instance is deleted.
+     */
     autoDelete: boolean;
+    /**
+     * Name of the device.
+     */
     deviceName: string;
+    /**
+     * ID of the disk that is attached to the instance.
+     */
     diskId: string;
+    /**
+     * Parameters used for creating a disk alongside the instance. The structure is documented below.
+     */
     initializeParams: outputs.GetComputeInstanceBootDiskInitializeParam[];
+    /**
+     * Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+     */
     mode: string;
 }
 
 export interface GetComputeInstanceBootDiskInitializeParam {
+    /**
+     * The block size of the disk in bytes.
+     */
     blockSize: number;
+    /**
+     * Description of the boot disk.
+     */
     description: string;
+    /**
+     * A disk image to initialize this disk from.
+     */
     imageId: string;
+    /**
+     * Name of the instance.
+     */
     name: string;
+    /**
+     * Size of the disk in GB.
+     */
     size: number;
+    /**
+     * A snapshot to initialize this disk from.
+     */
     snapshotId: string;
+    /**
+     * Disk type.
+     */
     type: string;
 }
 
 export interface GetComputeInstanceGroupAllocationPolicy {
+    /**
+     * A list of availability zones.
+     */
     zones: string[];
 }
 
 export interface GetComputeInstanceGroupApplicationBalancerState {
+    /**
+     * The status message of the target group.
+     */
     statusMessage: string;
+    /**
+     * The ID of the target group.
+     */
     targetGroupId: string;
 }
 
 export interface GetComputeInstanceGroupApplicationLoadBalancer {
+    /**
+     * Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+     */
     maxOpeningTrafficDuration: number;
+    /**
+     * The status message of the target group.
+     */
     statusMessage: string;
+    /**
+     * A description of the target group.
+     */
     targetGroupDescription: string;
+    /**
+     * The ID of the target group.
+     */
     targetGroupId: string;
+    /**
+     * A set of key/value label pairs.
+     */
     targetGroupLabels: {[key: string]: string};
+    /**
+     * The name of the target group.
+     */
     targetGroupName: string;
 }
 
 export interface GetComputeInstanceGroupDeployPolicy {
+    /**
+     * The maximum number of instances that can be created at the same time.
+     */
     maxCreating: number;
+    /**
+     * The maximum number of instances that can be deleted at the same time.
+     */
     maxDeleting: number;
+    /**
+     * The maximum number of instances that can be temporarily allocated above the group's target size during the update process.
+     */
     maxExpansion: number;
+    /**
+     * The maximum number of running instances that can be taken offline (stopped or deleted) at the same time
+     * during the update process.
+     */
     maxUnavailable: number;
+    /**
+     * The amount of time in seconds to allow for an instance to start.
+     */
     startupDuration: number;
+    /**
+     * Affects the lifecycle of the instance during deployment. If set to `proactive` (default), Instance Groups
+     * can forcefully stop a running instance. If `opportunistic`, Instance Groups does not stop a running instance. Instead,
+     * it will wait until the instance stops itself or becomes unhealthy.
+     */
     strategy: string;
 }
 
 export interface GetComputeInstanceGroupHealthCheck {
+    /**
+     * The number of successful health checks before the managed instance is declared healthy.
+     */
     healthyThreshold: number;
+    /**
+     * HTTP check options. The structure is documented below.
+     */
     httpOptions: outputs.GetComputeInstanceGroupHealthCheckHttpOption[];
+    /**
+     * The interval between health checks in seconds.
+     */
     interval: number;
+    /**
+     * TCP check options. The structure is documented below.
+     */
     tcpOptions: outputs.GetComputeInstanceGroupHealthCheckTcpOption[];
+    /**
+     * Timeout for the managed instance to return a response for the health check in seconds.
+     */
     timeout: number;
+    /**
+     * The number of failed health checks before the managed instance is declared unhealthy.
+     */
     unhealthyThreshold: number;
 }
 
 export interface GetComputeInstanceGroupHealthCheckHttpOption {
+    /**
+     * The URL path used for health check requests.
+     */
     path: string;
+    /**
+     * The port to use for TCP health checks.
+     */
     port: number;
 }
 
 export interface GetComputeInstanceGroupHealthCheckTcpOption {
+    /**
+     * The port to use for TCP health checks.
+     */
     port: number;
 }
 
 export interface GetComputeInstanceGroupInstance {
+    /**
+     * The Fully Qualified Domain Name.
+     */
     fqdn: string;
+    /**
+     * The ID of the instance.
+     */
     instanceId: string;
+    /**
+     * The name of the managed instance.
+     */
     name: string;
+    /**
+     * An array with the network interfaces attached to the managed instance. The structure is documented below.
+     * * `statusChangedAt` -The timestamp when the status of the managed instance was last changed.
+     */
     networkInterfaces: outputs.GetComputeInstanceGroupInstanceNetworkInterface[];
+    /**
+     * The status of the instance.
+     */
     status: string;
     statusChangedAt: string;
+    /**
+     * The status message of the target group.
+     */
     statusMessage: string;
+    /**
+     * The ID of the availability zone where the instance resides.
+     */
     zoneId: string;
 }
 
 export interface GetComputeInstanceGroupInstanceNetworkInterface {
+    /**
+     * The index of the network interface as generated by the server.
+     */
     index: number;
+    /**
+     * The private IP address to assign to the instance. If empty, the address is automatically assigned from the specified subnet.
+     */
     ipAddress: string;
+    /**
+     * Is IPv4 address assigned.
+     */
     ipv4: boolean;
     ipv6: boolean;
+    /**
+     * Manual set static IPv6 address.
+     */
     ipv6Address: string;
+    /**
+     * The MAC address assigned to the network interface.
+     */
     macAddress: string;
+    /**
+     * The instance's public address for accessing the internet over NAT.
+     */
     nat: boolean;
+    /**
+     * The public IP address of the instance.
+     */
     natIpAddress: string;
+    /**
+     * The IP version for the public address.
+     */
     natIpVersion: string;
+    /**
+     * The ID of the subnet to attach this interface to. The subnet must reside in the same zone where this instance was created.
+     */
     subnetId: string;
 }
 
 export interface GetComputeInstanceGroupInstanceTemplate {
+    /**
+     * The specifications for boot disk that will be attached to the instance. The structure is documented below.
+     */
     bootDisks: outputs.GetComputeInstanceGroupInstanceTemplateBootDisk[];
+    /**
+     * A description of the boot disk.
+     */
     description: string;
+    /**
+     * Hostname temaplate for the instance.
+     */
     hostname: string;
+    /**
+     * A map of labels applied to this instance.
+     * * `resources.0.memory` - The memory size allocated to the instance.
+     * * `resources.0.cores` - Number of CPU cores allocated to the instance.
+     * * `resources.0.core_fraction` - Baseline core performance as a percent.
+     * * `resources.0.gpus` - Number of GPU cores allocated to the instance.
+     */
     labels: {[key: string]: string};
+    /**
+     * The set of metadata `key:value` pairs assigned to this instance template. This includes custom metadata and predefined keys.
+     */
     metadata: {[key: string]: string};
+    /**
+     * The name of the managed instance.
+     */
     name: string;
+    /**
+     * An array with the network interfaces attached to the managed instance. The structure is documented below.
+     * * `statusChangedAt` -The timestamp when the status of the managed instance was last changed.
+     */
     networkInterfaces: outputs.GetComputeInstanceGroupInstanceTemplateNetworkInterface[];
+    /**
+     * Network acceleration settings. The structure is documented below.
+     */
     networkSettings: outputs.GetComputeInstanceGroupInstanceTemplateNetworkSetting[];
     placementPolicy?: outputs.GetComputeInstanceGroupInstanceTemplatePlacementPolicy;
+    /**
+     * The ID of the hardware platform configuration for the instance.
+     */
     platformId: string;
     resources: outputs.GetComputeInstanceGroupInstanceTemplateResource[];
+    /**
+     * The scheduling policy for the instance. The structure is documented below.
+     */
     schedulingPolicies: outputs.GetComputeInstanceGroupInstanceTemplateSchedulingPolicy[];
+    /**
+     * An array with the secondary disks that will be attached to the instance. The structure is documented below.
+     */
     secondaryDisks: outputs.GetComputeInstanceGroupInstanceTemplateSecondaryDisk[];
+    /**
+     * The service account ID for the instance.
+     */
     serviceAccountId: string;
 }
 
 export interface GetComputeInstanceGroupInstanceTemplateBootDisk {
+    /**
+     * This value can be used to reference the device under `/dev/disk/by-id/`.
+     */
     deviceName: string;
+    /**
+     * ID of the existing disk. To set use variables.
+     */
     diskId: string;
+    /**
+     * The parameters used for creating a disk alongside the instance. The structure is documented below.
+     */
     initializeParams: outputs.GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParam[];
+    /**
+     * The access mode to the disk resource. By default a disk is attached in `READ_WRITE` mode.
+     */
     mode: string;
 }
 
 export interface GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParam {
+    /**
+     * A description of the boot disk.
+     */
     description: string;
+    /**
+     * The disk image to initialize this disk from.
+     */
     imageId: string;
+    /**
+     * The size of the disk in GB.
+     */
     size: number;
+    /**
+     * The snapshot to initialize this disk from.
+     */
     snapshotId: string;
+    /**
+     * Network acceleration type. By default a network is in `STANDARD` mode.
+     */
     type: string;
 }
 
 export interface GetComputeInstanceGroupInstanceTemplateNetworkInterface {
+    /**
+     * List of dns records.  The structure is documented below.
+     */
     dnsRecords: outputs.GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecord[];
+    /**
+     * The private IP address to assign to the instance. If empty, the address is automatically assigned from the specified subnet.
+     */
     ipAddress: string;
+    /**
+     * Is IPv4 address assigned.
+     */
     ipv4: boolean;
     ipv6: boolean;
+    /**
+     * Manual set static IPv6 address.
+     */
     ipv6Address: string;
+    /**
+     * List of ipv6 dns records.  The structure is documented below.
+     */
     ipv6DnsRecords: outputs.GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord[];
+    /**
+     * The instance's public address for accessing the internet over NAT.
+     */
     nat: boolean;
+    /**
+     * List of nat dns records.  The structure is documented below.
+     */
     natDnsRecords: outputs.GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecord[];
+    /**
+     * The public IP address of the instance.
+     */
     natIpAddress: string;
+    /**
+     * The ID of the network.
+     */
     networkId: string;
+    /**
+     * Security group ids for network interface.
+     */
     securityGroupIds: string[];
+    /**
+     * The IDs of the subnets.
+     */
     subnetIds: string[];
 }
 
 export interface GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecord {
+    /**
+     * DNS zone id (if not set, private zone is used).
+     */
     dnsZoneId: string;
+    /**
+     * The Fully Qualified Domain Name.
+     */
     fqdn: string;
+    /**
+     * When set to true, also create PTR DNS record.
+     */
     ptr: boolean;
+    /**
+     * DNS record TTL.
+     */
     ttl: number;
 }
 
 export interface GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord {
+    /**
+     * DNS zone id (if not set, private zone is used).
+     */
     dnsZoneId: string;
+    /**
+     * The Fully Qualified Domain Name.
+     */
     fqdn: string;
+    /**
+     * When set to true, also create PTR DNS record.
+     */
     ptr: boolean;
+    /**
+     * DNS record TTL.
+     */
     ttl: number;
 }
 
 export interface GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecord {
+    /**
+     * DNS zone id (if not set, private zone is used).
+     */
     dnsZoneId: string;
+    /**
+     * The Fully Qualified Domain Name.
+     */
     fqdn: string;
+    /**
+     * When set to true, also create PTR DNS record.
+     */
     ptr: boolean;
+    /**
+     * DNS record TTL.
+     */
     ttl: number;
 }
 
 export interface GetComputeInstanceGroupInstanceTemplateNetworkSetting {
+    /**
+     * Network acceleration type. By default a network is in `STANDARD` mode.
+     */
     type: string;
 }
 
@@ -2073,140 +4664,412 @@ export interface GetComputeInstanceGroupInstanceTemplateResource {
 }
 
 export interface GetComputeInstanceGroupInstanceTemplateSchedulingPolicy {
+    /**
+     * Specifies if the instance is preemptible. Defaults to false.
+     */
     preemptible: boolean;
 }
 
 export interface GetComputeInstanceGroupInstanceTemplateSecondaryDisk {
+    /**
+     * This value can be used to reference the device under `/dev/disk/by-id/`.
+     */
     deviceName: string;
+    /**
+     * ID of the existing disk. To set use variables.
+     */
     diskId: string;
+    /**
+     * The parameters used for creating a disk alongside the instance. The structure is documented below.
+     */
     initializeParams: outputs.GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParam[];
+    /**
+     * The access mode to the disk resource. By default a disk is attached in `READ_WRITE` mode.
+     */
     mode: string;
 }
 
 export interface GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParam {
+    /**
+     * A description of the boot disk.
+     */
     description: string;
+    /**
+     * The disk image to initialize this disk from.
+     */
     imageId: string;
+    /**
+     * The size of the disk in GB.
+     */
     size: number;
+    /**
+     * The snapshot to initialize this disk from.
+     */
     snapshotId: string;
+    /**
+     * Network acceleration type. By default a network is in `STANDARD` mode.
+     */
     type: string;
 }
 
 export interface GetComputeInstanceGroupLoadBalancer {
+    /**
+     * Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+     */
     maxOpeningTrafficDuration: number;
+    /**
+     * The status message of the target group.
+     */
     statusMessage: string;
+    /**
+     * A description of the target group.
+     */
     targetGroupDescription: string;
+    /**
+     * The ID of the target group.
+     */
     targetGroupId: string;
+    /**
+     * A set of key/value label pairs.
+     */
     targetGroupLabels: {[key: string]: string};
+    /**
+     * The name of the target group.
+     */
     targetGroupName: string;
 }
 
 export interface GetComputeInstanceGroupLoadBalancerState {
+    /**
+     * The status message of the target group.
+     */
     statusMessage: string;
+    /**
+     * The ID of the target group.
+     */
     targetGroupId: string;
 }
 
 export interface GetComputeInstanceGroupScalePolicy {
+    /**
+     * The auto scaling policy of the instance group. The structure is documented below.
+     */
     autoScales: outputs.GetComputeInstanceGroupScalePolicyAutoScale[];
+    /**
+     * The fixed scaling policy of the instance group. The structure is documented below.
+     */
     fixedScales: outputs.GetComputeInstanceGroupScalePolicyFixedScale[];
+    /**
+     * The test auto scaling policy of the instance group. Use it to test how the auto scale works. The structure is documented below.
+     */
     testAutoScales: outputs.GetComputeInstanceGroupScalePolicyTestAutoScale[];
 }
 
 export interface GetComputeInstanceGroupScalePolicyAutoScale {
+    /**
+     * Target CPU load level.
+     */
     cpuUtilizationTarget: number;
+    /**
+     * A list of custom rules. The structure is documented below.
+     */
     customRules: outputs.GetComputeInstanceGroupScalePolicyAutoScaleCustomRule[];
+    /**
+     * The initial number of instances in the instance group.
+     */
     initialSize: number;
+    /**
+     * The maximum number of virtual machines in the group.
+     */
     maxSize: number;
+    /**
+     * The amount of time, in seconds, that metrics are averaged for.
+     * If the average value at the end of the interval is higher than the `cpuUtilizationTarget`,
+     * the instance group will increase the number of virtual machines in the group.
+     */
     measurementDuration: number;
+    /**
+     * The minimum number of virtual machines in a single availability zone.
+     */
     minZoneSize: number;
+    /**
+     * The minimum time interval, in seconds, to monitor the load before
+     * an instance group can reduce the number of virtual machines in the group. During this time, the group
+     * will not decrease even if the average load falls below the value of `cpuUtilizationTarget`.
+     */
     stabilizationDuration: number;
+    /**
+     * The warm-up time of the virtual machine, in seconds. During this time,
+     * traffic is fed to the virtual machine, but load metrics are not taken into account.
+     */
     warmupDuration: number;
 }
 
 export interface GetComputeInstanceGroupScalePolicyAutoScaleCustomRule {
+    /**
+     * Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+     */
     folderId: string;
+    /**
+     * A map of labels applied to this instance.
+     * * `resources.0.memory` - The memory size allocated to the instance.
+     * * `resources.0.cores` - Number of CPU cores allocated to the instance.
+     * * `resources.0.core_fraction` - Baseline core performance as a percent.
+     * * `resources.0.gpus` - Number of GPU cores allocated to the instance.
+     */
     labels: {[key: string]: string};
+    /**
+     * The name of metric.
+     */
     metricName: string;
+    /**
+     * Metric type, `GAUGE` or `COUNTER`.
+     */
     metricType: string;
+    /**
+     * Rule type: `UTILIZATION` - This type means that the metric applies to one instance.
+     * First, Instance Groups calculates the average metric value for each instance,
+     * then averages the values for instances in one availability zone.
+     * This type of metric must have the `instanceId` label. `WORKLOAD` - This type means that the metric applies to instances in one availability zone.
+     * This type of metric must have the `zoneId` label.
+     */
     ruleType: string;
+    /**
+     * Service of custom metric in Yandex Monitoring that should be used for scaling.
+     */
     service: string;
+    /**
+     * Target metric value level.
+     */
     target: number;
 }
 
 export interface GetComputeInstanceGroupScalePolicyFixedScale {
+    /**
+     * The size of the disk in GB.
+     */
     size: number;
 }
 
 export interface GetComputeInstanceGroupScalePolicyTestAutoScale {
+    /**
+     * Target CPU load level.
+     */
     cpuUtilizationTarget: number;
+    /**
+     * A list of custom rules. The structure is documented below.
+     */
     customRules: outputs.GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRule[];
+    /**
+     * The initial number of instances in the instance group.
+     */
     initialSize: number;
+    /**
+     * The maximum number of virtual machines in the group.
+     */
     maxSize: number;
+    /**
+     * The amount of time, in seconds, that metrics are averaged for.
+     * If the average value at the end of the interval is higher than the `cpuUtilizationTarget`,
+     * the instance group will increase the number of virtual machines in the group.
+     */
     measurementDuration: number;
+    /**
+     * The minimum number of virtual machines in a single availability zone.
+     */
     minZoneSize: number;
+    /**
+     * The minimum time interval, in seconds, to monitor the load before
+     * an instance group can reduce the number of virtual machines in the group. During this time, the group
+     * will not decrease even if the average load falls below the value of `cpuUtilizationTarget`.
+     */
     stabilizationDuration: number;
+    /**
+     * The warm-up time of the virtual machine, in seconds. During this time,
+     * traffic is fed to the virtual machine, but load metrics are not taken into account.
+     */
     warmupDuration: number;
 }
 
 export interface GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRule {
+    /**
+     * Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+     */
     folderId: string;
+    /**
+     * A map of labels applied to this instance.
+     * * `resources.0.memory` - The memory size allocated to the instance.
+     * * `resources.0.cores` - Number of CPU cores allocated to the instance.
+     * * `resources.0.core_fraction` - Baseline core performance as a percent.
+     * * `resources.0.gpus` - Number of GPU cores allocated to the instance.
+     */
     labels: {[key: string]: string};
+    /**
+     * The name of metric.
+     */
     metricName: string;
+    /**
+     * Metric type, `GAUGE` or `COUNTER`.
+     */
     metricType: string;
+    /**
+     * Rule type: `UTILIZATION` - This type means that the metric applies to one instance.
+     * First, Instance Groups calculates the average metric value for each instance,
+     * then averages the values for instances in one availability zone.
+     * This type of metric must have the `instanceId` label. `WORKLOAD` - This type means that the metric applies to instances in one availability zone.
+     * This type of metric must have the `zoneId` label.
+     */
     ruleType: string;
+    /**
+     * Service of custom metric in Yandex Monitoring that should be used for scaling.
+     */
     service: string;
+    /**
+     * Target metric value level.
+     */
     target: number;
 }
 
 export interface GetComputeInstanceLocalDisk {
+    /**
+     * Name of the device.
+     */
     deviceName: string;
+    /**
+     * Size of the disk, specified in bytes.
+     */
     sizeBytes: number;
 }
 
 export interface GetComputeInstanceNetworkInterface {
+    /**
+     * List of configurations for creating ipv4 DNS records. The structure is documented below.
+     */
     dnsRecords: outputs.GetComputeInstanceNetworkInterfaceDnsRecord[];
+    /**
+     * The index of the network interface, generated by the server.
+     */
     index: number;
+    /**
+     * The assignd private IP address to the network interface.
+     */
     ipAddress: string;
+    /**
+     * Show if IPv4 address is assigned to the network interface.
+     */
     ipv4: boolean;
     ipv6: boolean;
     ipv6Address: string;
+    /**
+     * List of configurations for creating ipv6 DNS records. The structure is documented below.
+     */
     ipv6DnsRecords: outputs.GetComputeInstanceNetworkInterfaceIpv6DnsRecord[];
+    /**
+     * MAC address that is assigned to the network interface.
+     */
     macAddress: string;
+    /**
+     * Assigned for the instance's public address that is used to access the internet over NAT.
+     */
     nat: boolean;
+    /**
+     * List of configurations for creating ipv4 NAT DNS records. The structure is documented below.
+     */
     natDnsRecords: outputs.GetComputeInstanceNetworkInterfaceNatDnsRecord[];
+    /**
+     * Public IP address of the instance.
+     */
     natIpAddress: string;
+    /**
+     * IP version for the public address.
+     */
     natIpVersion: string;
+    /**
+     * Security group ids for network interface.
+     */
     securityGroupIds: string[];
+    /**
+     * ID of the subnet to attach this interface to. The subnet must reside in the same zone where this instance was created.
+     */
     subnetId: string;
 }
 
 export interface GetComputeInstanceNetworkInterfaceDnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone is used).
+     */
     dnsZoneId: string;
+    /**
+     * DNS record FQDN.
+     */
     fqdn: string;
+    /**
+     * When set to true, also create a TR DNS record.
+     */
     ptr: boolean;
+    /**
+     * DNS record TTL. in seconds
+     */
     ttl: number;
 }
 
 export interface GetComputeInstanceNetworkInterfaceIpv6DnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone is used).
+     */
     dnsZoneId: string;
+    /**
+     * DNS record FQDN.
+     */
     fqdn: string;
+    /**
+     * When set to true, also create a TR DNS record.
+     */
     ptr: boolean;
+    /**
+     * DNS record TTL. in seconds
+     */
     ttl: number;
 }
 
 export interface GetComputeInstanceNetworkInterfaceNatDnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone is used).
+     */
     dnsZoneId: string;
+    /**
+     * DNS record FQDN.
+     */
     fqdn: string;
+    /**
+     * When set to true, also create a TR DNS record.
+     */
     ptr: boolean;
+    /**
+     * DNS record TTL. in seconds
+     */
     ttl: number;
 }
 
 export interface GetComputeInstancePlacementPolicy {
+    /**
+     * List of host affinity rules. The structure is documented below.
+     */
     hostAffinityRules: outputs.GetComputeInstancePlacementPolicyHostAffinityRule[];
+    /**
+     * Specifies the id of the Placement Group to assign to the instance.
+     */
     placementGroupId?: string;
 }
 
 export interface GetComputeInstancePlacementPolicyHostAffinityRule {
+    /**
+     * Affinity label or one of reserved values - `yc.hostId`, `yc.hostGroupId`.
+     */
     key: string;
+    /**
+     * Affinity action. The only value supported is `IN`.
+     */
     op: string;
     values: string[];
 }
@@ -2219,52 +5082,139 @@ export interface GetComputeInstanceResource {
 }
 
 export interface GetComputeInstanceSchedulingPolicy {
+    /**
+     * (Optional) Specifies if the instance is preemptible. Defaults to false.
+     */
     preemptible?: boolean;
 }
 
 export interface GetComputeInstanceSecondaryDisk {
+    /**
+     * Specifies whether the disk is auto-deleted when the instance is deleted.
+     */
     autoDelete: boolean;
+    /**
+     * Name of the device.
+     */
     deviceName: string;
+    /**
+     * ID of the disk that is attached to the instance.
+     */
     diskId: string;
+    /**
+     * Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+     */
     mode: string;
 }
 
 export interface GetDataprocClusterClusterConfig {
+    /**
+     * Data Proc specific options. The structure is documented below.
+     */
     hadoops: outputs.GetDataprocClusterClusterConfigHadoop[];
+    /**
+     * Configuration of the Data Proc subcluster. The structure is documented below.
+     */
     subclusterSpecs: outputs.GetDataprocClusterClusterConfigSubclusterSpec[];
+    /**
+     * Version of Data Proc image.
+     */
     versionId: string;
 }
 
 export interface GetDataprocClusterClusterConfigHadoop {
+    /**
+     * A set of key/value pairs used to configure cluster services.
+     */
     properties: {[key: string]: string};
+    /**
+     * List of services launched on Data Proc cluster.
+     */
     services: string[];
+    /**
+     * List of SSH public keys distributed to the hosts of the cluster.
+     */
     sshPublicKeys: string[];
 }
 
 export interface GetDataprocClusterClusterConfigSubclusterSpec {
+    /**
+     * The hosts of the subclusters have public IP addresses.
+     */
     assignPublicIp: boolean;
+    /**
+     * Optional autoscaling configuration for compute subclusters.
+     */
     autoscalingConfigs: outputs.GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfig[];
+    /**
+     * Number of hosts within Data Proc subcluster.
+     */
     hostsCount: number;
+    /**
+     * ID of the Data Proc subcluster.
+     */
     id: string;
+    /**
+     * The name of the Data Proc cluster.
+     */
     name: string;
+    /**
+     * Resources allocated to each host of the Data Proc subcluster. The structure is documented below.
+     */
     resources: outputs.GetDataprocClusterClusterConfigSubclusterSpecResource[];
+    /**
+     * Role of the subcluster in the Data Proc cluster.
+     */
     role: string;
+    /**
+     * The ID of the subnet, to which hosts of the subcluster belong.
+     */
     subnetId: string;
 }
 
 export interface GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfig {
+    /**
+     * Defines an autoscaling rule based on the average CPU utilization of the instance group. If not set default autoscaling metric will be used.
+     */
     cpuUtilizationTarget: number;
+    /**
+     * Timeout to gracefully decommission nodes during downscaling. In seconds.
+     */
     decommissionTimeout: number;
+    /**
+     * Maximum number of nodes in autoscaling subclusters.
+     */
     maxHostsCount: number;
+    /**
+     * Time in seconds allotted for averaging metrics.
+     */
     measurementDuration: number;
+    /**
+     * Bool flag -- whether to use preemptible compute instances. Preemptible instances are stopped at least once every 24 hours, and can be stopped at any time if their resources are needed by Compute. For more information, see [Preemptible Virtual Machines](https://cloud.yandex.com/docs/compute/concepts/preemptible-vm).
+     */
     preemptible: boolean;
+    /**
+     * Minimum amount of time in seconds allotted for monitoring before Instance Groups can reduce the number of instances in the group. During this time, the group size doesn't decrease, even if the new metric values indicate that it should.
+     */
     stabilizationDuration: number;
+    /**
+     * The warmup time of the instance in seconds. During this time, traffic is sent to the instance, but instance metrics are not collected.
+     */
     warmupDuration: number;
 }
 
 export interface GetDataprocClusterClusterConfigSubclusterSpecResource {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of a host.
+     */
     diskTypeId: string;
+    /**
+     * The ID of the preset for computational resources available to a host. All available presets are listed in the [documentation](https://cloud.yandex.com/docs/data-proc/concepts/instance-types).
+     */
     resourcePresetId: string;
 }
 
@@ -2337,31 +5287,87 @@ export interface GetFunctionTriggerTimer {
 }
 
 export interface GetIamPolicyBinding {
+    /**
+     * An array of identities that will be granted the privilege in the `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     */
     members: string[];
+    /**
+     * The role/permission that will be granted to the members.
+     * See the [IAM Roles] documentation for a complete list of roles.
+     */
     role: string;
 }
 
 export interface GetKubernetesClusterKmsProvider {
+    /**
+     * KMS key ID.
+     */
     keyId: string;
 }
 
 export interface GetKubernetesClusterMaster {
+    /**
+     * PEM-encoded public certificate that is the root of trust for the Kubernetes cluster.
+     */
     clusterCaCertificate: string;
+    /**
+     * An IPv4 external network address that is assigned to the master.
+     */
     externalV4Address: string;
+    /**
+     * External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).
+     */
     externalV4Endpoint: string;
+    /**
+     * An IPv4 internal network address that is assigned to the master.
+     */
     internalV4Address: string;
+    /**
+     * Internal endpoint that can be used to connect to the master from cloud networks.
+     */
     internalV4Endpoint: string;
+    /**
+     * Maintenance policy for Kubernetes master. The structure is documented below.
+     */
     maintenancePolicies: outputs.GetKubernetesClusterMasterMaintenancePolicy[];
+    /**
+     * Boolean flag. When `true`, Kubernetes master have visible ipv4 address.
+     */
     publicIp: boolean;
+    /**
+     * Information about cluster regional master. The structure is documented below.
+     */
     regionals: outputs.GetKubernetesClusterMasterRegional[];
+    /**
+     * A list of security groups IDs of the Kubernetes cluster.
+     */
     securityGroupIds: string[];
+    /**
+     * Version of Kubernetes master.
+     */
     version: string;
+    /**
+     * Information about cluster version. The structure is documented below.
+     */
     versionInfos: outputs.GetKubernetesClusterMasterVersionInfo[];
+    /**
+     * Information about cluster zonal master. The structure is documented below.
+     */
     zonals: outputs.GetKubernetesClusterMasterZonal[];
 }
 
 export interface GetKubernetesClusterMasterMaintenancePolicy {
+    /**
+     * Boolean flag that specifies if master can be upgraded automatically.
+     */
     autoUpgrade: boolean;
+    /**
+     * Set of day intervals, when maintenance is allowed, when update for master is allowed.
+     * When omitted, it defaults to any time.
+     */
     maintenanceWindows: outputs.GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindow[];
 }
 
@@ -2372,21 +5378,47 @@ export interface GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindow {
 }
 
 export interface GetKubernetesClusterMasterRegional {
+    /**
+     * ID of the availability region where the master compute instances resides.
+     */
     region: string;
 }
 
 export interface GetKubernetesClusterMasterVersionInfo {
+    /**
+     * Current Kubernetes version, major.minor (e.g. 1.15).
+     */
     currentVersion: string;
+    /**
+     * True/false flag.
+     * Newer revisions may include Kubernetes patches (e.g 1.15.1 > 1.15.2) as well
+     * as some internal component updates - new features or bug fixes in yandex-specific
+     * components either on the master or nodes.
+     */
     newRevisionAvailable: boolean;
+    /**
+     * Human readable description of the changes to be applied
+     * when updating to the latest revision. Empty if newRevisionAvailable is false.
+     */
     newRevisionSummary: string;
+    /**
+     * True/false flag. The current version is on the deprecation schedule,
+     * component (master or node group) should be upgraded.
+     */
     versionDeprecated: boolean;
 }
 
 export interface GetKubernetesClusterMasterZonal {
+    /**
+     * ID of the availability zone where the master compute instance resides.
+     */
     zone: string;
 }
 
 export interface GetKubernetesClusterNetworkImplementation {
+    /**
+     * Cilium network implementation configuration. No options exist.
+     */
     cilias: outputs.GetKubernetesClusterNetworkImplementationCilia[];
 }
 
@@ -2395,68 +5427,174 @@ export interface GetKubernetesClusterNetworkImplementationCilia {
 }
 
 export interface GetKubernetesNodeGroupAllocationPolicy {
+    /**
+     * Repeated field, that specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+     */
     locations: outputs.GetKubernetesNodeGroupAllocationPolicyLocation[];
 }
 
 export interface GetKubernetesNodeGroupAllocationPolicyLocation {
+    /**
+     * ID of the subnet, that will be used by one compute instance in node group.
+     */
     subnetId: string;
+    /**
+     * ID of the availability zone where for one compute instance in node group.
+     */
     zone: string;
 }
 
 export interface GetKubernetesNodeGroupDeployPolicy {
+    /**
+     * The maximum number of instances that can be temporarily allocated above the group's target size during the update.
+     */
     maxExpansion: number;
+    /**
+     * The maximum number of running instances that can be taken offline during update.
+     */
     maxUnavailable: number;
 }
 
 export interface GetKubernetesNodeGroupInstanceTemplate {
+    /**
+     * The specifications for boot disks that will be attached to the instance. The structure is documented below.
+     */
     bootDisks: outputs.GetKubernetesNodeGroupInstanceTemplateBootDisk[];
+    /**
+     * Container runtime configuration. The structure is documented below.
+     */
     containerRuntime: outputs.GetKubernetesNodeGroupInstanceTemplateContainerRuntime;
+    /**
+     * Labels assigned to compute nodes (instances), created by the Node Group.
+     * ---
+     */
     labels: {[key: string]: string};
+    /**
+     * The set of metadata `key:value` pairs assigned to this instance template. This includes custom metadata and predefined keys.
+     */
     metadata: {[key: string]: string};
+    /**
+     * Name of a specific Kubernetes node group.
+     */
     name: string;
+    /**
+     * A public address that can be used to access the internet over NAT.
+     */
     nat: boolean;
+    /**
+     * Type of network acceleration. Values: `standard`, `softwareAccelerated`.
+     */
     networkAccelerationType: string;
+    /**
+     * An array with the network interfaces that will be attached to the instance. The structure is documented below.
+     */
     networkInterfaces: outputs.GetKubernetesNodeGroupInstanceTemplateNetworkInterface[];
+    /**
+     * (Optional) The placement policy configuration. The structure is documented below.
+     */
     placementPolicies?: outputs.GetKubernetesNodeGroupInstanceTemplatePlacementPolicy[];
+    /**
+     * The ID of the hardware platform configuration for the instance.
+     */
     platformId: string;
     resources: outputs.GetKubernetesNodeGroupInstanceTemplateResource[];
+    /**
+     * The scheduling policy for the instances in node group. The structure is documented below.
+     */
     schedulingPolicies: outputs.GetKubernetesNodeGroupInstanceTemplateSchedulingPolicy[];
 }
 
 export interface GetKubernetesNodeGroupInstanceTemplateBootDisk {
+    /**
+     * The number of instances in the node group.
+     */
     size: number;
+    /**
+     * Type of container runtime. Values: `docker`, `containerd`.
+     */
     type: string;
 }
 
 export interface GetKubernetesNodeGroupInstanceTemplateContainerRuntime {
+    /**
+     * Type of container runtime. Values: `docker`, `containerd`.
+     */
     type: string;
 }
 
 export interface GetKubernetesNodeGroupInstanceTemplateNetworkInterface {
+    /**
+     * Indicates whether the IPv4 address has been assigned.
+     */
     ipv4: boolean;
+    /**
+     * List of configurations for creating ipv4 DNS records. The structure is documented below.
+     */
     ipv4DnsRecords: outputs.GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecord[];
+    /**
+     * Indicates whether the IPv6 address has been assigned.
+     */
     ipv6: boolean;
+    /**
+     * List of configurations for creating ipv6 DNS records. The structure is documented below.
+     */
     ipv6DnsRecords: outputs.GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord[];
+    /**
+     * A public address that can be used to access the internet over NAT.
+     */
     nat: boolean;
+    /**
+     * Security group ids for network interface.
+     */
     securityGroupIds: string[];
+    /**
+     * The IDs of the subnets.
+     */
     subnetIds: string[];
 }
 
 export interface GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone is used).
+     */
     dnsZoneId: string;
+    /**
+     * DNS record FQDN.
+     */
     fqdn: string;
+    /**
+     * When set to true, also create a PTR DNS record.
+     */
     ptr: boolean;
+    /**
+     * DNS record TTL (in seconds).
+     */
     ttl: number;
 }
 
 export interface GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone is used).
+     */
     dnsZoneId: string;
+    /**
+     * DNS record FQDN.
+     */
     fqdn: string;
+    /**
+     * When set to true, also create a PTR DNS record.
+     */
     ptr: boolean;
+    /**
+     * DNS record TTL (in seconds).
+     */
     ttl: number;
 }
 
 export interface GetKubernetesNodeGroupInstanceTemplatePlacementPolicy {
+    /**
+     * (Optional) Specifies the id of the Placement Group to assign to the instances.
+     */
     placementGroupId: string;
 }
 
@@ -2468,12 +5606,26 @@ export interface GetKubernetesNodeGroupInstanceTemplateResource {
 }
 
 export interface GetKubernetesNodeGroupInstanceTemplateSchedulingPolicy {
+    /**
+     * Specifies if the instance is preemptible. Defaults to false.
+     * ---
+     */
     preemptible: boolean;
 }
 
 export interface GetKubernetesNodeGroupMaintenancePolicy {
+    /**
+     * Boolean flag.
+     */
     autoRepair: boolean;
+    /**
+     * Boolean flag.
+     */
     autoUpgrade: boolean;
+    /**
+     * Set of day intervals, when maintenance is allowed for this node group.
+     * When omitted, it defaults to any time.
+     */
     maintenanceWindows: outputs.GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindow[];
 }
 
@@ -2484,29 +5636,75 @@ export interface GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindow {
 }
 
 export interface GetKubernetesNodeGroupScalePolicy {
+    /**
+     * Scale policy for an autoscaled node group. The structure is documented below.
+     */
     autoScales: outputs.GetKubernetesNodeGroupScalePolicyAutoScale[];
+    /**
+     * Scale policy for a fixed scale node group. The structure is documented below.
+     */
     fixedScales: outputs.GetKubernetesNodeGroupScalePolicyFixedScale[];
 }
 
 export interface GetKubernetesNodeGroupScalePolicyAutoScale {
+    /**
+     * Initial number of instances in the node group.
+     */
     initial: number;
+    /**
+     * Maximum number of instances in the node group.
+     */
     max: number;
+    /**
+     * Minimum number of instances in the node group.
+     */
     min: number;
 }
 
 export interface GetKubernetesNodeGroupScalePolicyFixedScale {
+    /**
+     * The number of instances in the node group.
+     */
     size: number;
 }
 
 export interface GetKubernetesNodeGroupVersionInfo {
+    /**
+     * Current Kubernetes version, major.minor (e.g. 1.15).
+     */
     currentVersion: string;
+    /**
+     * True/false flag.
+     * Newer revisions may include Kubernetes patches (e.g 1.15.1 > 1.15.2) as well
+     * as some internal component updates - new features or bug fixes in yandex-specific
+     * components either on the master or nodes.
+     */
     newRevisionAvailable: boolean;
+    /**
+     * Human readable description of the changes to be applied
+     * when updating to the latest revision. Empty if newRevisionAvailable is false.
+     */
     newRevisionSummary: string;
+    /**
+     * True/false flag. The current version is on the deprecation schedule,
+     * component (master or node group) should be upgraded.
+     */
     versionDeprecated: boolean;
 }
 
 export interface GetLbNetworkLoadBalancerAttachedTargetGroup {
     healthchecks: outputs.GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheck[];
+    /**
+     * ID of the target group that attached to the network load balancer.
+     * * `healthcheck.0.name` - Name of the health check.
+     * * `healthcheck.0.interval` - The interval between health checks.
+     * * `healthcheck.0.timeout` - Timeout for a target to return a response for the health check.
+     * * `healthcheck.0.unhealthy_threshold` - Number of failed health checks before changing the status to `UNHEALTHY`.
+     * * `healthcheck.0.healthy_threshold` - Number of successful health checks required in order to set the `HEALTHY` status for the target.
+     * * `healthcheck.0.tcp_options.0.port` - Port to use for TCP health checks.
+     * * `healthcheck.0.http_options.0.port` - Port to use for HTTP health checks.
+     * * `healthcheck.0.http_options.0.path` - URL path to use for HTTP health checks.
+     */
     targetGroupId: string;
 }
 
@@ -2514,6 +5712,9 @@ export interface GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheck {
     healthyThreshold: number;
     httpOptions: outputs.GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOption[];
     interval: number;
+    /**
+     * - Name of the network load balancer.
+     */
     name: string;
     tcpOptions: outputs.GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOption[];
     timeout: number;
@@ -2522,19 +5723,42 @@ export interface GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheck {
 
 export interface GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOption {
     path: string;
+    /**
+     * Port for incoming traffic.
+     */
     port: number;
 }
 
 export interface GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOption {
+    /**
+     * Port for incoming traffic.
+     */
     port: number;
 }
 
 export interface GetLbNetworkLoadBalancerListener {
     externalAddressSpecs: outputs.GetLbNetworkLoadBalancerListenerExternalAddressSpec[];
     internalAddressSpecs: outputs.GetLbNetworkLoadBalancerListenerInternalAddressSpec[];
+    /**
+     * - Name of the network load balancer.
+     */
     name: string;
+    /**
+     * Port for incoming traffic.
+     */
     port: number;
+    /**
+     * Protocol for incoming traffic.
+     */
     protocol: string;
+    /**
+     * Port of a target. 
+     * * `external_address_spec.0.address` - External IP address of a listener.
+     * * `external_address_spec.0.ip_version` - IP version of the external addresses.
+     * * `internal_address_spec.0.subnet_id` - Subnet ID to which the internal IP address belongs
+     * * `internal_address_spec.0.address` - Internal IP address of a listener.
+     * * `internal_address_spec.0.ip_version` - IP version of the internal addresses.
+     */
     targetPort: number;
 }
 
@@ -2555,31 +5779,73 @@ export interface GetLbTargetGroupTarget {
 }
 
 export interface GetMdbClickhouseClusterAccess {
+    /**
+     * Allow access for Web SQL.
+     */
     dataLens: boolean;
+    /**
+     * Allow access for DataTransfer
+     */
     dataTransfer: boolean;
+    /**
+     * Allow access for Yandex.Metrika.
+     */
     metrika: boolean;
+    /**
+     * Allow access for Serverless.
+     */
     serverless: boolean;
+    /**
+     * Allow access for DataLens.
+     */
     webSql: boolean;
+    /**
+     * Allow access for YandexQuery
+     */
     yandexQuery: boolean;
 }
 
 export interface GetMdbClickhouseClusterBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours: number;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes: number;
 }
 
 export interface GetMdbClickhouseClusterClickhouse {
+    /**
+     * Main ClickHouse cluster configuration. The structure is documented below.
+     */
     config: outputs.GetMdbClickhouseClusterClickhouseConfig;
+    /**
+     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources: outputs.GetMdbClickhouseClusterClickhouseResource[];
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfig {
     backgroundPoolSize?: number;
     backgroundSchedulePoolSize?: number;
+    /**
+     * Data compression configuration. The structure is documented below.
+     */
     compressions?: outputs.GetMdbClickhouseClusterClickhouseConfigCompression[];
     geobaseUri?: string;
+    /**
+     * Graphite rollup configuration. The structure is documented below.
+     */
     graphiteRollups?: outputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollup[];
+    /**
+     * Kafka topic connection configuration. The structure is documented below.
+     */
     kafkaTopics?: outputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopic[];
+    /**
+     * Kafka connection configuration. The structure is documented below.
+     */
     kafkas: outputs.GetMdbClickhouseClusterClickhouseConfigKafka[];
     keepAliveTimeout?: number;
     logLevel?: string;
@@ -2588,6 +5854,9 @@ export interface GetMdbClickhouseClusterClickhouseConfig {
     maxConnections?: number;
     maxPartitionSizeToDrop?: number;
     maxTableSizeToDrop?: number;
+    /**
+     * MergeTree engine configuration. The structure is documented below.
+     */
     mergeTree: outputs.GetMdbClickhouseClusterClickhouseConfigMergeTree;
     metricLogEnabled?: boolean;
     metricLogRetentionSize?: number;
@@ -2599,6 +5868,9 @@ export interface GetMdbClickhouseClusterClickhouseConfig {
     queryThreadLogEnabled?: boolean;
     queryThreadLogRetentionSize?: number;
     queryThreadLogRetentionTime?: number;
+    /**
+     * RabbitMQ connection configuration. The structure is documented below.
+     */
     rabbitmq: outputs.GetMdbClickhouseClusterClickhouseConfigRabbitmq;
     textLogEnabled?: boolean;
     textLogLevel?: string;
@@ -2612,275 +5884,809 @@ export interface GetMdbClickhouseClusterClickhouseConfig {
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigCompression {
+    /**
+     * Method: Compression method. Two methods are available: LZ4 and zstd.
+     */
     method: string;
+    /**
+     * Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
+     */
     minPartSize: number;
+    /**
+     * Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
+     */
     minPartSizeRatio: number;
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigGraphiteRollup {
+    /**
+     * The name of the ClickHouse cluster.
+     */
     name: string;
+    /**
+     * Set of thinning rules.
+     */
     patterns?: outputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPattern[];
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPattern {
+    /**
+     * Aggregation function name.
+     */
     function: string;
+    /**
+     * Regular expression that the metric name must match.
+     */
     regexp?: string;
+    /**
+     * Retain parameters.
+     */
     retentions?: outputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetention[];
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetention {
+    /**
+     * Minimum data age in seconds.
+     */
     age: number;
+    /**
+     * Accuracy of determining the age of the data in seconds.
+     */
     precision: number;
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigKafka {
+    /**
+     * SASL mechanism used in kafka authentication.
+     */
     saslMechanism?: string;
+    /**
+     * User password on kafka server.
+     */
     saslPassword?: string;
+    /**
+     * Username on kafka server.
+     */
     saslUsername?: string;
+    /**
+     * Security protocol used to connect to kafka server.
+     */
     securityProtocol?: string;
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigKafkaTopic {
+    /**
+     * The name of the ClickHouse cluster.
+     */
     name: string;
+    /**
+     * Kafka connection settngs sanem as `kafka` block.
+     */
     settings?: outputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettings;
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettings {
+    /**
+     * SASL mechanism used in kafka authentication.
+     */
     saslMechanism?: string;
+    /**
+     * User password on kafka server.
+     */
     saslPassword?: string;
+    /**
+     * Username on kafka server.
+     */
     saslUsername?: string;
+    /**
+     * Security protocol used to connect to kafka server.
+     */
     securityProtocol?: string;
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigMergeTree {
+    /**
+     * Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
+     */
     maxBytesToMergeAtMinSpaceInPool?: number;
+    /**
+     * Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
+     */
     maxReplicatedMergesInQueue?: number;
+    /**
+     * Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
+     */
     numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge?: number;
+    /**
+     * Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
+     */
     partsToDelayInsert?: number;
+    /**
+     * Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
+     */
     partsToThrowInsert?: number;
+    /**
+     * Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
+     */
     replicatedDeduplicationWindow?: number;
+    /**
+     * Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
+     */
     replicatedDeduplicationWindowSeconds?: number;
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigRabbitmq {
+    /**
+     * RabbitMQ user password.
+     */
     password?: string;
+    /**
+     * RabbitMQ username.
+     */
     username?: string;
 }
 
 export interface GetMdbClickhouseClusterClickhouseResource {
+    /**
+     * Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of ClickHouse or ZooKeeper hosts.
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface GetMdbClickhouseClusterCloudStorage {
+    /**
+     * (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+     */
     enabled: boolean;
 }
 
 export interface GetMdbClickhouseClusterDatabase {
+    /**
+     * The name of the ClickHouse cluster.
+     */
     name: string;
 }
 
 export interface GetMdbClickhouseClusterFormatSchema {
+    /**
+     * The name of the ClickHouse cluster.
+     */
     name: string;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
+    /**
+     * Model file URL. You can only use models stored in Yandex Object Storage.
+     */
     uri: string;
 }
 
 export interface GetMdbClickhouseClusterHost {
+    /**
+     * Sets whether the host should get a public IP address on creation.
+     */
     assignPublicIp: boolean;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn: string;
+    /**
+     * The name of the shard to which the host belongs.
+     */
     shardName: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
     subnetId: string;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
+    /**
+     * The availability zone where the ClickHouse host will be created.
+     */
     zone: string;
 }
 
 export interface GetMdbClickhouseClusterMaintenanceWindow {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day: string;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
     hour: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
 }
 
 export interface GetMdbClickhouseClusterMlModel {
+    /**
+     * The name of the ClickHouse cluster.
+     */
     name: string;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
+    /**
+     * Model file URL. You can only use models stored in Yandex Object Storage.
+     */
     uri: string;
 }
 
 export interface GetMdbClickhouseClusterShardGroup {
+    /**
+     * Description of the shard group.
+     */
     description: string;
+    /**
+     * The name of the ClickHouse cluster.
+     */
     name: string;
+    /**
+     * List of shards names that belong to the shard group.
+     */
     shardNames: string[];
 }
 
 export interface GetMdbClickhouseClusterUser {
+    /**
+     * The name of the ClickHouse cluster.
+     */
     name: string;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions: outputs.GetMdbClickhouseClusterUserPermission[];
+    /**
+     * Set of user quotas. The structure is documented below.
+     */
     quotas: outputs.GetMdbClickhouseClusterUserQuota[];
+    /**
+     * Kafka connection settngs sanem as `kafka` block.
+     */
     settings: outputs.GetMdbClickhouseClusterUserSettings;
 }
 
 export interface GetMdbClickhouseClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName: string;
 }
 
 export interface GetMdbClickhouseClusterUserQuota {
+    /**
+     * The number of queries that threw exception.
+     */
     errors: number;
+    /**
+     * The total query execution time, in milliseconds (wall time).
+     */
     executionTime: number;
+    /**
+     * Duration of interval for quota in milliseconds.
+     */
     intervalDuration: number;
+    /**
+     * The total number of queries.
+     */
     queries: number;
+    /**
+     * The total number of source rows read from tables for running the query, on all remote servers.
+     */
     readRows: number;
+    /**
+     * The total number of rows given as the result.
+     */
     resultRows: number;
 }
 
 export interface GetMdbClickhouseClusterUserSettings {
+    /**
+     * Include CORS headers in HTTP responces.
+     */
     addHttpCorsHeader: boolean;
+    /**
+     * Allows or denies DDL queries.
+     */
     allowDdl: boolean;
+    /**
+     * Enable compilation of queries.
+     */
     compile: boolean;
+    /**
+     * Turn on expression compilation.
+     */
     compileExpressions: boolean;
+    /**
+     * Connect timeout in milliseconds on the socket used for communicating with the client.
+     */
     connectTimeout: number;
+    /**
+     * Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
+     */
     countDistinctImplementation: string;
+    /**
+     * Sets behaviour on overflow when using DISTINCT. Possible values:
+     */
     distinctOverflowMode: string;
+    /**
+     * Determine the behavior of distributed subqueries.
+     */
     distributedAggregationMemoryEfficient: boolean;
+    /**
+     * Timeout for DDL queries, in milliseconds.
+     */
     distributedDdlTaskTimeout: number;
+    /**
+     * Changes the behaviour of distributed subqueries.
+     */
     distributedProductMode: string;
+    /**
+     * Allows to retunr empty result.
+     */
     emptyResultForAggregationByEmptySet: boolean;
+    /**
+     * Enables or disables data compression in the response to an HTTP request.
+     */
     enableHttpCompression: boolean;
+    /**
+     * Forces a query to an out-of-date replica if updated data is not available.
+     */
     fallbackToStaleReplicasForDistributedQueries: boolean;
+    /**
+     * Disables query execution if the index can’t be used by date.
+     */
     forceIndexByDate: boolean;
+    /**
+     * Disables query execution if indexing by the primary key is not possible.
+     */
     forcePrimaryKey: boolean;
+    /**
+     * Sets behaviour on overflow while GROUP BY operation. Possible values:
+     */
     groupByOverflowMode: string;
+    /**
+     * Sets the threshold of the number of keys, after that the two-level aggregation should be used.
+     */
     groupByTwoLevelThreshold: number;
+    /**
+     * Sets the threshold of the number of bytes, after that the two-level aggregation should be used.
+     */
     groupByTwoLevelThresholdBytes: number;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
     httpConnectionTimeout: number;
+    /**
+     * Sets minimal interval between notifications about request process in HTTP header X-ClickHouse-Progress.
+     */
     httpHeadersProgressInterval: number;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
     httpReceiveTimeout: number;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
     httpSendTimeout: number;
+    /**
+     * When performing INSERT queries, replace omitted input column values with default values of the respective columns.
+     */
     inputFormatDefaultsForOmittedFields: boolean;
+    /**
+     * Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
+     */
     inputFormatValuesInterpretExpressions: boolean;
+    /**
+     * Enables the quorum writes.
+     */
     insertQuorum: number;
+    /**
+     * Write to a quorum timeout in milliseconds.
+     */
     insertQuorumTimeout: number;
+    /**
+     * Sets behaviour on overflow in JOIN. Possible values:
+     */
     joinOverflowMode: string;
+    /**
+     * Sets the type of JOIN behaviour. When merging tables, empty cells may appear. ClickHouse fills them differently based on this setting.
+     */
     joinUseNulls: boolean;
+    /**
+     * Require aliases for subselects and table functions in FROM that more than one table is present.
+     */
     joinedSubqueryRequiresAlias: boolean;
+    /**
+     * Allows or restricts using the LowCardinality data type with the Native format.
+     */
     lowCardinalityAllowInNativeFormat: boolean;
+    /**
+     * Maximum abstract syntax tree depth.
+     */
     maxAstDepth: number;
+    /**
+     * Maximum abstract syntax tree elements.
+     */
     maxAstElements: number;
+    /**
+     * A recommendation for what size of the block (in a count of rows) to load from tables.
+     */
     maxBlockSize: number;
+    /**
+     * Limit in bytes for using memoru for GROUP BY before using swap on disk.
+     */
     maxBytesBeforeExternalGroupBy: number;
+    /**
+     * This setting is equivalent of the maxBytesBeforeExternalGroupBy setting, except for it is for sort operation (ORDER BY), not aggregation.
+     */
     maxBytesBeforeExternalSort: number;
+    /**
+     * Limits the maximum size of a hash table in bytes (uncompressed data) when using DISTINCT.
+     */
     maxBytesInDistinct: number;
+    /**
+     * Limit on maximum size of the hash table for JOIN, in bytes.
+     */
     maxBytesInJoin: number;
+    /**
+     * Limit on the number of bytes in the set resulting from the execution of the IN section.
+     */
     maxBytesInSet: number;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be read from a table when running a query.
+     */
     maxBytesToRead: number;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be read from a table for sorting.
+     */
     maxBytesToSort: number;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+     */
     maxBytesToTransfer: number;
+    /**
+     * Limits the maximum number of columns that can be read from a table in a single query.
+     */
     maxColumnsToRead: number;
+    /**
+     * Limits the maximum query execution time in milliseconds.
+     */
     maxExecutionTime: number;
+    /**
+     * Maximum abstract syntax tree depth after after expansion of aliases.
+     */
     maxExpandedAstElements: number;
+    /**
+     * The size of blocks (in a count of rows) to form for insertion into a table.
+     */
     maxInsertBlockSize: number;
+    /**
+     * Limits the maximum memory usage (in bytes) for processing queries on a single server.
+     */
     maxMemoryUsage: number;
+    /**
+     * Limits the maximum memory usage (in bytes) for processing of user's queries on a single server.
+     */
     maxMemoryUsageForUser: number;
+    /**
+     * Limits the speed of the data exchange over the network in bytes per second.
+     */
     maxNetworkBandwidth: number;
+    /**
+     * Limits the speed of the data exchange over the network in bytes per second.
+     */
     maxNetworkBandwidthForUser: number;
+    /**
+     * The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
+     */
     maxQuerySize: number;
+    /**
+     * Disables lagging replicas for distributed queries.
+     */
     maxReplicaDelayForDistributedQueries: number;
+    /**
+     * Limits the number of bytes in the result.
+     */
     maxResultBytes: number;
+    /**
+     * Limits the number of rows in the result.
+     */
     maxResultRows: number;
+    /**
+     * Limits the maximum number of different rows when using DISTINCT.
+     */
     maxRowsInDistinct: number;
+    /**
+     * Limit on maximum size of the hash table for JOIN, in rows.
+     */
     maxRowsInJoin: number;
+    /**
+     * Limit on the number of rows in the set resulting from the execution of the IN section.
+     */
     maxRowsInSet: number;
+    /**
+     * Limits the maximum number of unique keys received from aggregation function.
+     */
     maxRowsToGroupBy: number;
+    /**
+     * Limits the maximum number of rows that can be read from a table when running a query.
+     */
     maxRowsToRead: number;
+    /**
+     * Limits the maximum number of rows that can be read from a table for sorting.
+     */
     maxRowsToSort: number;
+    /**
+     * Limits the maximum number of rows that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+     */
     maxRowsToTransfer: number;
+    /**
+     * Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, including constant columns.
+     */
     maxTemporaryColumns: number;
+    /**
+     * Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, excluding constant columns.
+     */
     maxTemporaryNonConstColumns: number;
+    /**
+     * The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
+     */
     maxThreads: number;
+    /**
+     * If ClickHouse should read more than mergeTreeMaxBytesToUseCache bytes in one query, it doesn’t use the cache of uncompressed blocks.
+     */
     mergeTreeMaxBytesToUseCache: number;
+    /**
+     * If ClickHouse should read more than mergeTreeMaxRowsToUseCache rows in one query, it doesn’t use the cache of uncompressed blocks.
+     */
     mergeTreeMaxRowsToUseCache: number;
+    /**
+     * If the number of bytes to read from one file of a MergeTree-engine table exceeds merge_tree_min_bytes_for_concurrent_read, then ClickHouse tries to concurrently read from this file in several threads.
+     */
     mergeTreeMinBytesForConcurrentRead: number;
+    /**
+     * If the number of rows to be read from a file of a MergeTree table exceeds mergeTreeMinRowsForConcurrentRead then ClickHouse tries to perform a concurrent reading from this file on several threads.
+     */
     mergeTreeMinRowsForConcurrentRead: number;
+    /**
+     * The minimum data volume required for using direct I/O access to the storage disk.
+     */
     minBytesToUseDirectIo: number;
+    /**
+     * How many times to potentially use a compiled chunk of code before running compilation.
+     */
     minCountToCompile: number;
+    /**
+     * A query waits for expression compilation process to complete prior to continuing execution.
+     */
     minCountToCompileExpression: number;
+    /**
+     * Minimal execution speed in rows per second.
+     */
     minExecutionSpeed: number;
+    /**
+     * Minimal execution speed in bytes per second.
+     */
     minExecutionSpeedBytes: number;
+    /**
+     * Sets the minimum number of bytes in the block which can be inserted into a table by an INSERT query.
+     */
     minInsertBlockSizeBytes: number;
+    /**
+     * Sets the minimum number of rows in the block which can be inserted into a table by an INSERT query.
+     */
     minInsertBlockSizeRows: number;
+    /**
+     * If the value is true, integers appear in quotes when using JSON* Int64 and UInt64 formats (for compatibility with most JavaScript implementations); otherwise, integers are output without the quotes.
+     */
     outputFormatJsonQuote64bitIntegers: boolean;
+    /**
+     * Enables +nan, -nan, +inf, -inf outputs in JSON output format.
+     */
     outputFormatJsonQuoteDenormals: boolean;
+    /**
+     * Query priority.
+     */
     priority: number;
+    /**
+     * Quota accounting mode.
+     */
     quotaMode: string;
+    /**
+     * Sets behaviour on overflow while read. Possible values:
+     */
     readOverflowMode: string;
+    /**
+     * Restricts permissions for reading data, write data and change settings queries.
+     */
     readonly: number;
+    /**
+     * Receive timeout in milliseconds on the socket used for communicating with the client.
+     */
     receiveTimeout: number;
+    /**
+     * For ALTER ... ATTACH|DETACH|DROP queries, you can use the replicationAlterPartitionsSync setting to set up waiting.
+     */
     replicationAlterPartitionsSync: number;
+    /**
+     * Sets behaviour on overflow in result. Possible values:
+     */
     resultOverflowMode: string;
+    /**
+     * Enables or disables sequential consistency for SELECT queries.
+     */
     selectSequentialConsistency: boolean;
+    /**
+     * Enables or disables X-ClickHouse-Progress HTTP response headers in clickhouse-server responses.
+     */
     sendProgressInHttpHeaders: boolean;
+    /**
+     * Send timeout in milliseconds on the socket used for communicating with the client.
+     */
     sendTimeout: number;
+    /**
+     * Sets behaviour on overflow in the set resulting. Possible values:
+     */
     setOverflowMode: string;
+    /**
+     * Enables or disables silently skipping of unavailable shards.
+     */
     skipUnavailableShards: boolean;
+    /**
+     * Sets behaviour on overflow while sort. Possible values:
+     */
     sortOverflowMode: string;
+    /**
+     * Sets behaviour on overflow. Possible values:
+     */
     timeoutOverflowMode: string;
+    /**
+     * Sets behaviour on overflow. Possible values:
+     */
     transferOverflowMode: string;
+    /**
+     * Enables equality of NULL values for IN operator.
+     */
     transformNullIn: boolean;
+    /**
+     * Whether to use a cache of uncompressed blocks.
+     */
     useUncompressedCache: boolean;
 }
 
 export interface GetMdbClickhouseClusterZookeeper {
+    /**
+     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources: outputs.GetMdbClickhouseClusterZookeeperResource[];
 }
 
 export interface GetMdbClickhouseClusterZookeeperResource {
+    /**
+     * Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of ClickHouse or ZooKeeper hosts.
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface GetMdbElasticSearchClusterConfig {
     adminPassword: string;
+    /**
+     * Configuration for Elasticsearch data nodes subcluster. The structure is documented below.
+     */
     dataNodes: outputs.GetMdbElasticSearchClusterConfigDataNode[];
+    /**
+     * Edition of Elasticsearch. For more information, see [the official documentation](https://cloud.yandex.com/en-ru/docs/managed-elasticsearch/concepts/es-editions).
+     */
     edition: string;
+    /**
+     * Configuration for Elasticsearch master nodes subcluster. The structure is documented below.
+     */
     masterNode: outputs.GetMdbElasticSearchClusterConfigMasterNode;
+    /**
+     * A set of requested Elasticsearch plugins.
+     */
     plugins: string[];
+    /**
+     * Version of Elasticsearch.
+     */
     version: string;
 }
 
 export interface GetMdbElasticSearchClusterConfigDataNode {
+    /**
+     * Resources allocated to hosts of the Elasticsearch master nodes subcluster. The structure is documented below.
+     */
     resources: outputs.GetMdbElasticSearchClusterConfigDataNodeResource[];
 }
 
 export interface GetMdbElasticSearchClusterConfigDataNodeResource {
+    /**
+     * Volume of the storage available to a Elasticsearch host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of Elasticsearch hosts.
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface GetMdbElasticSearchClusterConfigMasterNode {
+    /**
+     * Resources allocated to hosts of the Elasticsearch master nodes subcluster. The structure is documented below.
+     */
     resources: outputs.GetMdbElasticSearchClusterConfigMasterNodeResource[];
 }
 
 export interface GetMdbElasticSearchClusterConfigMasterNodeResource {
+    /**
+     * Volume of the storage available to a Elasticsearch host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of Elasticsearch hosts.
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface GetMdbElasticSearchClusterHost {
+    /**
+     * Sets whether the host should get a public IP address on creation.
+     */
     assignPublicIp: boolean;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn: string;
+    /**
+     * The name of the Elasticsearch cluster.
+     */
     name: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
     subnetId: string;
+    /**
+     * Type of a maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour need to be specified with the weekly window.
+     */
     type: string;
+    /**
+     * The availability zone where the Elasticsearch host will be created.
+     */
     zone: string;
 }
 
 export interface GetMdbElasticSearchClusterMaintenanceWindow {
+    /**
+     * Day of the week for a maintenance window if the window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day: string;
+    /**
+     * Hour of the day in UTC time zone (1-24) for a maintenance window if the window type is weekly.
+     */
     hour: number;
+    /**
+     * Type of a maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour need to be specified with the weekly window.
+     */
     type: string;
 }
 
@@ -2937,27 +6743,66 @@ export interface GetMdbGreenplumClusterSegmentSubclusterResource {
 }
 
 export interface GetMdbKafkaClusterAccess {
+    /**
+     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer: boolean;
 }
 
 export interface GetMdbKafkaClusterConfig {
+    /**
+     * (Optional) Access policy to the Kafka cluster. The structure is documented below.
+     */
     access: outputs.GetMdbKafkaClusterConfigAccess;
+    /**
+     * The flag that defines whether a public IP address is assigned to the node.
+     */
     assignPublicIp?: boolean;
+    /**
+     * (Optional) Count of brokers per availability zone.
+     */
     brokersCount?: number;
+    /**
+     * (Optional) Configuration of the Kafka subcluster. The structure is documented below.
+     */
     kafka: outputs.GetMdbKafkaClusterConfigKafka;
+    /**
+     * (Optional) Enables managed schema registry on cluster. Can be either `true` or `false`.
+     */
     schemaRegistry?: boolean;
+    /**
+     * (Optional) Allows to use Kafka AdminAPI to manage topics. Can be either `true` or `false`.
+     */
     unmanagedTopics?: boolean;
+    /**
+     * (Required) Version of the Kafka server software.
+     */
     version: string;
+    /**
+     * (Optional) List of availability zones.
+     */
     zones: string[];
+    /**
+     * (Optional) Configuration of the ZooKeeper subcluster. The structure is documented below.
+     */
     zookeeper: outputs.GetMdbKafkaClusterConfigZookeeper;
 }
 
 export interface GetMdbKafkaClusterConfigAccess {
+    /**
+     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: boolean;
 }
 
 export interface GetMdbKafkaClusterConfigKafka {
+    /**
+     * (Optional) User-defined settings for the Kafka cluster. The structure is documented below.
+     */
     kafkaConfig?: outputs.GetMdbKafkaClusterConfigKafkaKafkaConfig;
+    /**
+     * (Optional) Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources: outputs.GetMdbKafkaClusterConfigKafkaResources;
 }
 
@@ -2984,41 +6829,100 @@ export interface GetMdbKafkaClusterConfigKafkaKafkaConfig {
 }
 
 export interface GetMdbKafkaClusterConfigKafkaResources {
+    /**
+     * (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * (Optional) Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface GetMdbKafkaClusterConfigZookeeper {
+    /**
+     * (Optional) Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources: outputs.GetMdbKafkaClusterConfigZookeeperResources;
 }
 
 export interface GetMdbKafkaClusterConfigZookeeperResources {
+    /**
+     * (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * (Optional) Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface GetMdbKafkaClusterHost {
+    /**
+     * The flag that defines whether a public IP address is assigned to the node.
+     */
     assignPublicIp: boolean;
+    /**
+     * Health of the host.
+     */
     health: string;
+    /**
+     * The name of the Kafka cluster.
+     */
     name: string;
+    /**
+     * Role of the host in the cluster.
+     */
     role: string;
+    /**
+     * The ID of the subnet, to which the host belongs.
+     */
     subnetId: string;
+    /**
+     * The availability zone where the Kafka host was created.
+     */
     zoneId: string;
 }
 
 export interface GetMdbKafkaClusterMaintenanceWindow {
+    /**
+     * Day of the week (in `DDD` format). Value is one of: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+     */
     day: string;
+    /**
+     * Hour of the day in UTC (in `HH` format). Value is between 1 and 24.
+     */
     hour: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`.
+     */
     type: string;
 }
 
 export interface GetMdbKafkaClusterTopic {
+    /**
+     * The ID of the Kafka cluster.
+     */
     clusterId: string;
+    /**
+     * The name of the Kafka cluster.
+     */
     name: string;
+    /**
+     * (Required) The number of the topic's partitions.
+     */
     partitions: number;
+    /**
+     * (Required) Amount of data copies (replicas) for the topic in the cluster.
+     */
     replicationFactor: number;
+    /**
+     * (Required) User-defined settings for the topic. The structure is documented below.
+     */
     topicConfig?: outputs.GetMdbKafkaClusterTopicTopicConfig;
 }
 
@@ -3039,13 +6943,28 @@ export interface GetMdbKafkaClusterTopicTopicConfig {
 }
 
 export interface GetMdbKafkaClusterUser {
+    /**
+     * The name of the Kafka cluster.
+     */
     name: string;
+    /**
+     * (Required) The password of the user.
+     */
     password: string;
+    /**
+     * (Optional) Set of permissions granted to the user. The structure is documented below.
+     */
     permissions?: outputs.GetMdbKafkaClusterUserPermission[];
 }
 
 export interface GetMdbKafkaClusterUserPermission {
+    /**
+     * Role of the host in the cluster.
+     */
     role: string;
+    /**
+     * (Required) The name of the topic that the permission grants access to.
+     */
     topicName: string;
 }
 
@@ -3066,277 +6985,723 @@ export interface GetMdbKafkaTopicTopicConfig {
 }
 
 export interface GetMdbMongodbClusterClusterConfig {
+    /**
+     * Access policy to MongoDB cluster. The structure is documented below.
+     */
     access: outputs.GetMdbMongodbClusterClusterConfigAccess;
+    /**
+     * Time to start the daily backup, in the UTC timezone. The structure is documented below.
+     */
     backupWindowStart: outputs.GetMdbMongodbClusterClusterConfigBackupWindowStart;
+    /**
+     * Feature compatibility version of MongoDB.
+     */
     featureCompatibilityVersion: string;
+    /**
+     * (Optional) Configuration of the mongod service. The structure is documented below.
+     */
     mongod: outputs.GetMdbMongodbClusterClusterConfigMongod;
+    /**
+     * Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+     */
     version?: string;
 }
 
 export interface GetMdbMongodbClusterClusterConfigAccess {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
     dataLens?: boolean;
+    /**
+     * (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: boolean;
 }
 
 export interface GetMdbMongodbClusterClusterConfigBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours?: number;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes?: number;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongod {
+    /**
+     * (Optional) A set of audit log settings
+     * (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
+     * The structure is documented below. Available only in enterprise edition.
+     */
     auditLog: outputs.GetMdbMongodbClusterClusterConfigMongodAuditLog;
+    /**
+     * (Optional) A set of MongoDB Security settings
+     * (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
+     * The structure is documented below. Available only in enterprise edition.
+     */
     security: outputs.GetMdbMongodbClusterClusterConfigMongodSecurity;
+    /**
+     * (Optional) A set of MongoDB Server Parameters
+     * (see the [setParameter](https://www.mongodb.com/docs/manual/reference/configuration-options/#setparameter-option) option).
+     * The structure is documented below.
+     */
     setParameter: outputs.GetMdbMongodbClusterClusterConfigMongodSetParameter;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodAuditLog {
+    /**
+     * (Optional) Configuration of the audit log filter in JSON format.
+     * For more information see [auditLog.filter](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.filter)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     filter?: string;
     runtimeConfiguration?: boolean;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodSecurity {
+    /**
+     * (Optional) Enables the encryption for the WiredTiger storage engine. Can be either true or false.
+     * For more information see [security.enableEncryption](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.enableEncryption)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     enableEncryption?: boolean;
+    /**
+     * (Optional) Configuration of the third party key management appliance via the Key Management Interoperability Protocol (KMIP)
+     * (see [Encryption tutorial](https://www.mongodb.com/docs/rapid/tutorial/configure-encryption) ). Requires `enableEncryption` to be true.
+     * The structure is documented below. Available only in enterprise edition.
+     */
     kmip: outputs.GetMdbMongodbClusterClusterConfigMongodSecurityKmip;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodSecurityKmip {
+    /**
+     * (Required) String containing the client certificate used for authenticating MongoDB to the KMIP server.
+     * For more information see [security.kmip.clientCertificateFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.clientCertificateFile)
+     * description in the official documentation.
+     */
     clientCertificate?: string;
+    /**
+     * (Optional) Unique KMIP identifier for an existing key within the KMIP server.
+     * For more information see [security.kmip.keyIdentifier](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.keyIdentifier)
+     * description in the official documentation.
+     */
     keyIdentifier?: string;
+    /**
+     * (Optional) Port number to use to communicate with the KMIP server. Default: 5696
+     * For more information see [security.kmip.port](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.port)
+     * description in the official documentation.
+     */
     port?: number;
+    /**
+     * (Required) Path to CA File. Used for validating secure client connection to KMIP server.
+     * For more information see [security.kmip.serverCAFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverCAFile)
+     * description in the official documentation.
+     */
     serverCa?: string;
+    /**
+     * (Required) Hostname or IP address of the KMIP server to connect to.
+     * For more information see [security.kmip.serverName](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverName)
+     * description in the official documentation.
+     */
     serverName?: string;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodSetParameter {
+    /**
+     * (Optional) Enables the auditing of authorization successes. Can be either true or false.
+     * For more information, see the [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.auditAuthorizationSuccess)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     auditAuthorizationSuccess?: boolean;
 }
 
 export interface GetMdbMongodbClusterDatabase {
+    /**
+     * The name of the MongoDB cluster.
+     */
     name?: string;
 }
 
 export interface GetMdbMongodbClusterHost {
+    /**
+     * Has assigned public IP.
+     */
     assignPublicIp: boolean;
+    /**
+     * The health of the host.
+     */
     health: string;
+    /**
+     * The name of the MongoDB cluster.
+     */
     name: string;
+    /**
+     * The role of the cluster (either PRIMARY or SECONDARY).
+     */
     role: string;
+    /**
+     * The name of the shard to which the host belongs.
+     */
     shardName: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must
+     * be a part of the network to which the cluster belongs.
+     */
     subnetId?: string;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
+    /**
+     * The availability zone where the MongoDB host will be created.
+     */
     zoneId?: string;
 }
 
 export interface GetMdbMongodbClusterMaintenanceWindow {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day?: string;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
     hour?: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type?: string;
 }
 
 export interface GetMdbMongodbClusterResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
     diskSize?: number;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
     diskTypeId?: string;
     resourcePresetId?: string;
 }
 
 export interface GetMdbMongodbClusterUser {
+    /**
+     * The name of the MongoDB cluster.
+     */
     name?: string;
     password?: string;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions: outputs.GetMdbMongodbClusterUserPermission[];
 }
 
 export interface GetMdbMongodbClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName?: string;
+    /**
+     * (Optional) List of strings. The roles of the user in this database. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/users-and-roles).
+     */
     roles?: string[];
 }
 
 export interface GetMdbMysqlClusterAccess {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
     dataLens: boolean;
+    /**
+     * (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer: boolean;
+    /**
+     * Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+     */
     webSql: boolean;
 }
 
 export interface GetMdbMysqlClusterBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours?: number;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes?: number;
 }
 
 export interface GetMdbMysqlClusterDatabase {
+    /**
+     * The name of the MySQL cluster.
+     */
     name: string;
 }
 
 export interface GetMdbMysqlClusterHost {
+    /**
+     * Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment
+     */
     assignPublicIp?: boolean;
+    /**
+     * Host backup priority. Value is between 0 and 100, default is 0.
+     */
     backupPriority?: number;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn: string;
+    /**
+     * Host master promotion priority. Value is between 0 and 100, default is 0.
+     */
     priority?: number;
+    /**
+     * Host replication source (fqdn), case when replicationSource is empty then host in HA group.
+     */
     replicationSource: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
     subnetId: string;
+    /**
+     * The availability zone where the MySQL host will be created.
+     */
     zone: string;
 }
 
 export interface GetMdbMysqlClusterMaintenanceWindow {
+    /**
+     * Day of the week (in `DDD` format). Value is one of: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+     */
     day: string;
+    /**
+     * Hour of the day in UTC (in `HH` format). Value is between 1 and 24.
+     */
     hour: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`.
+     */
     type: string;
 }
 
 export interface GetMdbMysqlClusterPerformanceDiagnostic {
+    /**
+     * Enable performance diagnostics
+     */
     enabled: boolean;
+    /**
+     * Interval (in seconds) for myStatActivity sampling Acceptable values are 1 to 86400, inclusive.
+     */
     sessionsSamplingInterval: number;
+    /**
+     * Interval (in seconds) for myStatStatements sampling Acceptable values are 1 to 86400, inclusive.
+     */
     statementsSamplingInterval: number;
 }
 
 export interface GetMdbMysqlClusterResource {
+    /**
+     * Volume of the storage available to a MySQL host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage for MySQL hosts.
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface GetMdbMysqlClusterUser {
+    /**
+     * Authentication plugin. Allowed values: `MYSQL_NATIVE_PASSWORD`, `CACHING_SHA2_PASSWORD`, `SHA256_PASSWORD`
+     */
     authenticationPlugin: string;
+    /**
+     * User's connection limits. The structure is documented below.
+     */
     connectionLimits: outputs.GetMdbMysqlClusterUserConnectionLimit[];
+    /**
+     * List user's global permissions. Allowed values: `REPLICATION_CLIENT`, `REPLICATION_SLAVE`, `PROCESS` or empty list.
+     */
     globalPermissions: string[];
+    /**
+     * The name of the MySQL cluster.
+     */
     name: string;
+    /**
+     * The password of the user.
+     */
     password: string;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions: outputs.GetMdbMysqlClusterUserPermission[];
 }
 
 export interface GetMdbMysqlClusterUserConnectionLimit {
+    /**
+     * Max connections per hour.
+     */
     maxConnectionsPerHour: number;
+    /**
+     * Max questions per hour.
+     */
     maxQuestionsPerHour: number;
+    /**
+     * Max updates per hour.
+     */
     maxUpdatesPerHour: number;
+    /**
+     * Max user connections.
+     */
     maxUserConnections: number;
 }
 
 export interface GetMdbMysqlClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName: string;
+    /**
+     * List user's roles in the database.
+     * Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+     * `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+     */
     roles?: string[];
 }
 
 export interface GetMdbPostgresqlClusterConfig {
+    /**
+     * Access policy to the PostgreSQL cluster. The structure is documented below.
+     */
     accesses: outputs.GetMdbPostgresqlClusterConfigAccess[];
+    /**
+     * Configuration setting which enables/disables autofailover in cluster.
+     */
     autofailover: boolean;
+    /**
+     * The period in days during which backups are stored.
+     */
     backupRetainPeriodDays: number;
+    /**
+     * Time to start the daily backup, in the UTC timezone. The structure is documented below.
+     */
     backupWindowStarts: outputs.GetMdbPostgresqlClusterConfigBackupWindowStart[];
+    /**
+     * Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/docs/managed-postgresql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+     */
     performanceDiagnostics: outputs.GetMdbPostgresqlClusterConfigPerformanceDiagnostic[];
+    /**
+     * Configuration of the connection pooler. The structure is documented below.
+     */
     poolerConfigs: outputs.GetMdbPostgresqlClusterConfigPoolerConfig[];
+    /**
+     * PostgreSQL cluster config.
+     */
     postgresqlConfig: {[key: string]: string};
+    /**
+     * Resources allocated to hosts of the PostgreSQL cluster. The structure is documented below.
+     */
     resources: outputs.GetMdbPostgresqlClusterConfigResource[];
+    /**
+     * Version of the PostgreSQL cluster.
+     */
     version: string;
 }
 
 export interface GetMdbPostgresqlClusterConfigAccess {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
     dataLens: boolean;
+    /**
+     * (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer: boolean;
+    /**
+     * Allow access for [connection to managed databases from functions](https://cloud.yandex.com/docs/functions/operations/database-connection)
+     */
     serverless: boolean;
+    /**
+     * Allow access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-postgresql/operations/web-sql-query)
+     */
     webSql: boolean;
 }
 
 export interface GetMdbPostgresqlClusterConfigBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours: number;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes: number;
 }
 
 export interface GetMdbPostgresqlClusterConfigPerformanceDiagnostic {
+    /**
+     * Flag, when true, performance diagnostics is enabled
+     */
     enabled: boolean;
+    /**
+     * Interval (in seconds) for pgStatActivity sampling Acceptable values are 1 to 86400, inclusive.
+     */
     sessionsSamplingInterval: number;
+    /**
+     * Interval (in seconds) for pgStatStatements sampling Acceptable values are 1 to 86400, inclusive.
+     */
     statementsSamplingInterval: number;
 }
 
 export interface GetMdbPostgresqlClusterConfigPoolerConfig {
+    /**
+     * Value for `poolDiscard` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_discard-yesno).
+     */
     poolDiscard: boolean;
+    /**
+     * Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
+     */
     poolingMode: string;
 }
 
 export interface GetMdbPostgresqlClusterConfigResource {
+    /**
+     * Volume of the storage available to a PostgreSQL host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage for PostgreSQL hosts.
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface GetMdbPostgresqlClusterHost {
+    /**
+     * Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+     */
     assignPublicIp: boolean;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn: string;
+    /**
+     * Host priority in HA group.
+     */
     priority: number;
+    /**
+     * Host replication source (fqdn), case when replicationSource is empty then host in HA group.
+     */
     replicationSource: string;
+    /**
+     * Role of the host in the cluster.
+     */
     role: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
     subnetId: string;
+    /**
+     * The availability zone where the PostgreSQL host will be created.
+     */
     zone: string;
 }
 
 export interface GetMdbPostgresqlClusterMaintenanceWindow {
+    /**
+     * Day of the week (in `DDD` format). Value is one of: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+     */
     day: string;
+    /**
+     * Hour of the day in UTC (in `HH` format). Value is between 1 and 24.
+     */
     hour: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`.
+     */
     type: string;
 }
 
 export interface GetMdbRedisClusterConfig {
+    /**
+     * Normal clients output buffer limits.
+     */
     clientOutputBufferLimitNormal: string;
+    /**
+     * Pubsub clients output buffer limits.
+     */
     clientOutputBufferLimitPubsub: string;
+    /**
+     * Number of databases (changing requires redis-server restart).
+     */
     databases: number;
+    /**
+     * Redis key eviction policy for a dataset that reaches maximum memory.
+     */
     maxmemoryPolicy: string;
+    /**
+     * Select the events that Redis will notify among a set of classes.
+     */
     notifyKeyspaceEvents: string;
+    /**
+     * Log slow queries below this number in microseconds.
+     */
     slowlogLogSlowerThan: number;
+    /**
+     * Slow queries log length.
+     */
     slowlogMaxLen: number;
+    /**
+     * Close the connection after a client is idle for N seconds.
+     */
     timeout: number;
+    /**
+     * Version of Redis (6.2).
+     */
     version: string;
 }
 
 export interface GetMdbRedisClusterHost {
+    /**
+     * Sets whether the host should get a public IP address or not.
+     */
     assignPublicIp?: boolean;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn: string;
+    /**
+     * Replica priority of a current replica (usable for non-sharded only).
+     */
     replicaPriority?: number;
+    /**
+     * The name of the shard to which the host belongs.
+     */
     shardName: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must
+     * be a part of the network to which the cluster belongs.
+     */
     subnetId: string;
+    /**
+     * The availability zone where the Redis host will be created.
+     */
     zone: string;
 }
 
 export interface GetMdbRedisClusterMaintenanceWindow {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day: string;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
     hour: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
 }
 
 export interface GetMdbRedisClusterResource {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of a host.
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface GetMdbSqlserverClusterBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours: number;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes: number;
 }
 
 export interface GetMdbSqlserverClusterDatabase {
+    /**
+     * The name of the SQLServer cluster.
+     */
     name: string;
 }
 
 export interface GetMdbSqlserverClusterHost {
+    /**
+     * Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment
+     */
     assignPublicIp: boolean;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
     subnetId: string;
+    /**
+     * The availability zone where the SQLServer host will be created.
+     */
     zone: string;
 }
 
 export interface GetMdbSqlserverClusterResource {
+    /**
+     * Volume of the storage available to a SQLServer host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage for SQLServer hosts.
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface GetMdbSqlserverClusterUser {
+    /**
+     * The name of the SQLServer cluster.
+     */
     name: string;
+    /**
+     * The password of the user.
+     */
     password: string;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions: outputs.GetMdbSqlserverClusterUserPermission[];
 }
 
 export interface GetMdbSqlserverClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName: string;
+    /**
+     * List user's roles in the database.
+     * Allowed roles: `OWNER`, `SECURITYADMIN`, `ACCESSADMIN`, `BACKUPOPERATOR`, `DDLADMIN`, `DATAWRITER`, `DATAREADER`, `DENYDATAWRITER`, `DENYDATAREADER`.
+     */
     roles: string[];
 }
 
 export interface GetOrganizationmanagerSamlFederationSecuritySetting {
+    /**
+     * Indicates whether encrypted assertions are enabled.
+     */
     encryptedAssertions: boolean;
 }
 
@@ -3345,6 +7710,9 @@ export interface GetServerlessContainerImage {
     commands: string[];
     digest: string;
     environment: {[key: string]: string};
+    /**
+     * Invoke URL of the Yandex Cloud Serverless Container
+     */
     url: string;
     workDir: string;
 }
@@ -3357,99 +7725,268 @@ export interface GetServerlessContainerSecret {
 }
 
 export interface GetVpcAddressExternalIpv4Address {
+    /**
+     * IP address.
+     */
     address: string;
+    /**
+     * DDOS protection provider.
+     */
     ddosProtectionProvider: string;
+    /**
+     * Outgoing smtp capability.
+     */
     outgoingSmtpCapability: string;
+    /**
+     * Zone for allocating address.
+     */
     zoneId: string;
 }
 
 export interface GetVpcRouteTableStaticRoute {
+    /**
+     * Route prefix in CIDR notation.
+     */
     destinationPrefix: string;
+    /**
+     * ID of the gateway used as next hop.
+     */
     gatewayId: string;
+    /**
+     * Address of the next hop.
+     */
     nextHopAddress: string;
 }
 
 export interface GetVpcSecurityGroupEgress {
+    /**
+     * Description of the rule.
+     */
     description: string;
+    /**
+     * Minimum port number.
+     */
     fromPort: number;
+    /**
+     * Id of the rule.
+     */
     id: string;
+    /**
+     * Labels to assign to this rule.
+     */
     labels: {[key: string]: string};
+    /**
+     * Port number (if applied to a single port).
+     */
     port: number;
+    /**
+     * Special-purpose targets. `selfSecurityGroup` refers to this particular security group. `loadbalancerHealthchecks` represents [loadbalancer health check nodes](https://cloud.yandex.com/docs/network-load-balancer/concepts/health-check).
+     */
     predefinedTarget: string;
+    /**
+     * One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+     */
     protocol: string;
+    /**
+     * Security Group ID.
+     */
     securityGroupId: string;
+    /**
+     * Maximum port number.
+     */
     toPort: number;
+    /**
+     * The blocks of  IPv4 addresses for this rule.
+     */
     v4CidrBlocks: string[];
+    /**
+     * The blocks of  IPv6 addresses for this rule.
+     */
     v6CidrBlocks: string[];
 }
 
 export interface GetVpcSecurityGroupIngress {
+    /**
+     * Description of the rule.
+     */
     description: string;
+    /**
+     * Minimum port number.
+     */
     fromPort: number;
+    /**
+     * Id of the rule.
+     */
     id: string;
+    /**
+     * Labels to assign to this rule.
+     */
     labels: {[key: string]: string};
+    /**
+     * Port number (if applied to a single port).
+     */
     port: number;
+    /**
+     * Special-purpose targets. `selfSecurityGroup` refers to this particular security group. `loadbalancerHealthchecks` represents [loadbalancer health check nodes](https://cloud.yandex.com/docs/network-load-balancer/concepts/health-check).
+     */
     predefinedTarget: string;
+    /**
+     * One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+     */
     protocol: string;
+    /**
+     * Security Group ID.
+     */
     securityGroupId: string;
+    /**
+     * Maximum port number.
+     */
     toPort: number;
+    /**
+     * The blocks of  IPv4 addresses for this rule.
+     */
     v4CidrBlocks: string[];
+    /**
+     * The blocks of  IPv6 addresses for this rule.
+     */
     v6CidrBlocks: string[];
 }
 
 export interface GetVpcSubnetDhcpOption {
+    /**
+     * Domain name.
+     */
     domainName: string;
+    /**
+     * Domain name server IP addresses.
+     */
     domainNameServers: string[];
+    /**
+     * NTP server IP addresses.
+     */
     ntpServers: string[];
 }
 
 export interface GetYdbDatabaseDedicatedLocation {
+    /**
+     * Region of the Yandex Database cluster.
+     * The structure is documented below.
+     */
     regions: outputs.GetYdbDatabaseDedicatedLocationRegion[];
     zones: outputs.GetYdbDatabaseDedicatedLocationZone[];
 }
 
 export interface GetYdbDatabaseDedicatedLocationRegion {
+    /**
+     * Region ID of the Yandex Database cluster.
+     */
     id: string;
 }
 
 export interface GetYdbDatabaseDedicatedLocationZone {
+    /**
+     * Region ID of the Yandex Database cluster.
+     */
     id: string;
 }
 
 export interface GetYdbDatabaseDedicatedScalePolicy {
+    /**
+     * Fixed scaling policy of the Yandex Database cluster.
+     * The structure is documented below.
+     */
     fixedScales: outputs.GetYdbDatabaseDedicatedScalePolicyFixedScale[];
 }
 
 export interface GetYdbDatabaseDedicatedScalePolicyFixedScale {
+    /**
+     * Number of instances in the Yandex Database cluster.
+     */
     size: number;
 }
 
 export interface GetYdbDatabaseDedicatedStorageConfig {
+    /**
+     * Amount of storage groups of selected type in the Yandex Database cluster.
+     */
     groupCount: number;
+    /**
+     * Storage type ID of the Yandex Database cluster.
+     */
     storageTypeId: string;
 }
 
 export interface KubernetesClusterKmsProvider {
+    /**
+     * KMS key ID.
+     */
     keyId?: string;
 }
 
 export interface KubernetesClusterMaster {
+    /**
+     * (Computed) PEM-encoded public certificate that is the root of trust for the Kubernetes cluster.
+     */
     clusterCaCertificate: string;
+    /**
+     * (Computed) An IPv4 external network address that is assigned to the master.
+     */
     externalV4Address: string;
+    /**
+     * (Computed) External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).
+     */
     externalV4Endpoint: string;
+    /**
+     * (Computed) An IPv4 internal network address that is assigned to the master.
+     */
     internalV4Address: string;
+    /**
+     * (Computed) Internal endpoint that can be used to connect to the master from cloud networks.
+     */
     internalV4Endpoint: string;
+    /**
+     * (Optional) (Computed) Maintenance policy for Kubernetes master.
+     * If policy is omitted, automatic revision upgrades of the kubernetes master are enabled and could happen at any time.
+     * Revision upgrades are performed only within the same minor version, e.g. 1.13.
+     * Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.
+     */
     maintenancePolicy: outputs.KubernetesClusterMasterMaintenancePolicy;
+    /**
+     * (Optional) (Computed) Boolean flag. When `true`, Kubernetes master will have visible ipv4 address.
+     */
     publicIp: boolean;
+    /**
+     * (Optional) Initialize parameters for Regional Master (highly available master). The structure is documented below.
+     */
     regional: outputs.KubernetesClusterMasterRegional;
+    /**
+     * (Optional) List of security group IDs to which the Kubernetes cluster belongs.
+     */
     securityGroupIds?: string[];
+    /**
+     * (Optional) (Computed) Version of Kubernetes that will be used for master.
+     */
     version: string;
+    /**
+     * (Computed) Information about cluster version. The structure is documented below.
+     */
     versionInfos: outputs.KubernetesClusterMasterVersionInfo[];
+    /**
+     * (Optional) Initialize parameters for Zonal Master (single node master). The structure is documented below.
+     */
     zonal: outputs.KubernetesClusterMasterZonal;
 }
 
 export interface KubernetesClusterMasterMaintenancePolicy {
+    /**
+     * (Required) Boolean flag that specifies if master can be upgraded automatically. When omitted, default value is TRUE.
+     */
     autoUpgrade: boolean;
+    /**
+     * (Optional) (Computed) This structure specifies maintenance window, when update for master is allowed. When omitted, it defaults to any time.
+     * To specify time of day interval, for all days, one element should be provided, with two fields set, `startTime` and `duration`.
+     * Please see `zonalClusterResourceName` config example.
+     */
     maintenanceWindows?: outputs.KubernetesClusterMasterMaintenancePolicyMaintenanceWindow[];
 }
 
@@ -3460,28 +7997,66 @@ export interface KubernetesClusterMasterMaintenancePolicyMaintenanceWindow {
 }
 
 export interface KubernetesClusterMasterRegional {
+    /**
+     * Array of locations, where master instances will be allocated. The structure is documented below.
+     */
     locations: outputs.KubernetesClusterMasterRegionalLocation[];
+    /**
+     * (Required) Name of availability region (e.g. "ru-central1"), where master instances will be allocated.
+     */
     region: string;
 }
 
 export interface KubernetesClusterMasterRegionalLocation {
+    /**
+     * (Optional) ID of the subnet.
+     */
     subnetId?: string;
+    /**
+     * (Optional) ID of the availability zone.
+     */
     zone?: string;
 }
 
 export interface KubernetesClusterMasterVersionInfo {
+    /**
+     * Current Kubernetes version, major.minor (e.g. 1.15).
+     */
     currentVersion: string;
+    /**
+     * Boolean flag.
+     * Newer revisions may include Kubernetes patches (e.g 1.15.1 > 1.15.2) as well
+     * as some internal component updates - new features or bug fixes in yandex-specific
+     * components either on the master or nodes.
+     */
     newRevisionAvailable: boolean;
+    /**
+     * Human readable description of the changes to be applied
+     * when updating to the latest revision. Empty if newRevisionAvailable is false.
+     */
     newRevisionSummary: string;
+    /**
+     * Boolean flag. The current version is on the deprecation schedule,
+     * component (master or node group) should be upgraded.
+     */
     versionDeprecated: boolean;
 }
 
 export interface KubernetesClusterMasterZonal {
+    /**
+     * (Optional) ID of the subnet.
+     */
     subnetId?: string;
+    /**
+     * (Optional) ID of the availability zone.
+     */
     zone: string;
 }
 
 export interface KubernetesClusterNetworkImplementation {
+    /**
+     * (Optional) Cilium network implementation configuration. No options exist.
+     */
     cilium?: outputs.KubernetesClusterNetworkImplementationCilium;
 }
 
@@ -3489,74 +8064,185 @@ export interface KubernetesClusterNetworkImplementationCilium {
 }
 
 export interface KubernetesNodeGroupAllocationPolicy {
+    /**
+     * Repeated field, that specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+     */
     locations: outputs.KubernetesNodeGroupAllocationPolicyLocation[];
 }
 
 export interface KubernetesNodeGroupAllocationPolicyLocation {
     /**
+     * ID of the subnet, that will be used by one compute instance in node group.
+     *
      * @deprecated The 'subnet_id' field has been deprecated. Please use 'subnet_ids under network_interface' instead.
      */
     subnetId: string;
+    /**
+     * ID of the availability zone where for one compute instance in node group.
+     */
     zone: string;
 }
 
 export interface KubernetesNodeGroupDeployPolicy {
+    /**
+     * The maximum number of instances that can be temporarily allocated above the group's target size during the update.
+     */
     maxExpansion: number;
+    /**
+     * The maximum number of running instances that can be taken offline during update.
+     */
     maxUnavailable: number;
 }
 
 export interface KubernetesNodeGroupInstanceTemplate {
+    /**
+     * The specifications for boot disks that will be attached to the instance. The structure is documented below.
+     */
     bootDisk: outputs.KubernetesNodeGroupInstanceTemplateBootDisk;
+    /**
+     * Container runtime configuration. The structure is documented below.
+     */
     containerRuntime: outputs.KubernetesNodeGroupInstanceTemplateContainerRuntime;
+    /**
+     * Labels that will be assigned to compute nodes (instances), created by the Node Group.
+     * ---
+     */
     labels?: {[key: string]: string};
+    /**
+     * The set of metadata `key:value` pairs assigned to this instance template. This includes custom metadata and predefined keys. **Note**: key "user-data" won't be provided into instances. It reserved for internal activity in `kubernetesNodeGroup` resource.
+     */
     metadata: {[key: string]: string};
+    /**
+     * Name template of the instance.
+     * In order to be unique it must contain at least one of instance unique placeholders:
+     * {instance.short_id}
+     * {instance.index}
+     * combination of {instance.zone_id} and {instance.index_in_zone}
+     * Example: my-instance-{instance.index}
+     * If not set, default is used: {instance_group.id}-{instance.short_id}
+     * It may also contain another placeholders, see [Compute Instance group metadata doc](https://cloud.yandex.com/en-ru/docs/compute/api-ref/grpc/instance_group_service) for full list.
+     */
     name?: string;
     /**
+     * A public address that can be used to access the internet over NAT.
+     *
      * @deprecated The 'nat' field has been deprecated. Please use 'nat under network_interface' instead.
      */
     nat: boolean;
+    /**
+     * Type of network acceleration. Values: `standard`, `softwareAccelerated`.
+     */
     networkAccelerationType: string;
+    /**
+     * An array with the network interfaces that will be attached to the instance. The structure is documented below.
+     */
     networkInterfaces: outputs.KubernetesNodeGroupInstanceTemplateNetworkInterface[];
+    /**
+     * The placement policy configuration. The structure is documented below.
+     */
     placementPolicy?: outputs.KubernetesNodeGroupInstanceTemplatePlacementPolicy;
+    /**
+     * The ID of the hardware platform configuration for the node group compute instances.
+     */
     platformId: string;
     resources: outputs.KubernetesNodeGroupInstanceTemplateResources;
+    /**
+     * The scheduling policy for the instances in node group. The structure is documented below.
+     */
     schedulingPolicy: outputs.KubernetesNodeGroupInstanceTemplateSchedulingPolicy;
 }
 
 export interface KubernetesNodeGroupInstanceTemplateBootDisk {
+    /**
+     * The number of instances in the node group.
+     */
     size: number;
+    /**
+     * Type of container runtime. Values: `docker`, `containerd`.
+     */
     type: string;
 }
 
 export interface KubernetesNodeGroupInstanceTemplateContainerRuntime {
+    /**
+     * Type of container runtime. Values: `docker`, `containerd`.
+     */
     type: string;
 }
 
 export interface KubernetesNodeGroupInstanceTemplateNetworkInterface {
+    /**
+     * Allocate an IPv4 address for the interface. The default value is `true`.
+     */
     ipv4?: boolean;
+    /**
+     * List of configurations for creating ipv4 DNS records. The structure is documented below.
+     */
     ipv4DnsRecords?: outputs.KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecord[];
+    /**
+     * If true, allocate an IPv6 address for the interface. The address will be automatically assigned from the specified subnet.
+     */
     ipv6: boolean;
+    /**
+     * List of configurations for creating ipv6 DNS records. The structure is documented below.
+     */
     ipv6DnsRecords?: outputs.KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord[];
+    /**
+     * A public address that can be used to access the internet over NAT.
+     */
     nat: boolean;
+    /**
+     * Security group ids for network interface.
+     */
     securityGroupIds?: string[];
+    /**
+     * The IDs of the subnets.
+     */
     subnetIds: string[];
 }
 
 export interface KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone is used).
+     */
     dnsZoneId?: string;
+    /**
+     * DNS record FQDN.
+     */
     fqdn: string;
+    /**
+     * When set to true, also create a PTR DNS record.
+     */
     ptr?: boolean;
+    /**
+     * DNS record TTL (in seconds).
+     */
     ttl?: number;
 }
 
 export interface KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone is used).
+     */
     dnsZoneId?: string;
+    /**
+     * DNS record FQDN.
+     */
     fqdn: string;
+    /**
+     * When set to true, also create a PTR DNS record.
+     */
     ptr?: boolean;
+    /**
+     * DNS record TTL (in seconds).
+     */
     ttl?: number;
 }
 
 export interface KubernetesNodeGroupInstanceTemplatePlacementPolicy {
+    /**
+     * Specifies the id of the Placement Group to assign to the instances.
+     */
     placementGroupId: string;
 }
 
@@ -3568,12 +8254,25 @@ export interface KubernetesNodeGroupInstanceTemplateResources {
 }
 
 export interface KubernetesNodeGroupInstanceTemplateSchedulingPolicy {
+    /**
+     * Specifies if the instance is preemptible. Defaults to false.
+     * ---
+     */
     preemptible: boolean;
 }
 
 export interface KubernetesNodeGroupMaintenancePolicy {
+    /**
+     * Boolean flag that specifies if node group can be repaired automatically. When omitted, default value is TRUE.
+     */
     autoRepair: boolean;
+    /**
+     * Boolean flag that specifies if node group can be upgraded automatically. When omitted, default value is TRUE.
+     */
     autoUpgrade: boolean;
+    /**
+     * (Computed) Set of day intervals, when maintenance is allowed for this node group. When omitted, it defaults to any time.
+     */
     maintenanceWindows?: outputs.KubernetesNodeGroupMaintenancePolicyMaintenanceWindow[];
 }
 
@@ -3584,102 +8283,255 @@ export interface KubernetesNodeGroupMaintenancePolicyMaintenanceWindow {
 }
 
 export interface KubernetesNodeGroupScalePolicy {
+    /**
+     * Scale policy for an autoscaled node group. The structure is documented below.
+     */
     autoScale?: outputs.KubernetesNodeGroupScalePolicyAutoScale;
+    /**
+     * Scale policy for a fixed scale node group. The structure is documented below.
+     */
     fixedScale?: outputs.KubernetesNodeGroupScalePolicyFixedScale;
 }
 
 export interface KubernetesNodeGroupScalePolicyAutoScale {
+    /**
+     * Initial number of instances in the node group.
+     */
     initial: number;
+    /**
+     * Maximum number of instances in the node group.
+     */
     max: number;
+    /**
+     * Minimum number of instances in the node group.
+     */
     min: number;
 }
 
 export interface KubernetesNodeGroupScalePolicyFixedScale {
+    /**
+     * The number of instances in the node group.
+     */
     size: number;
 }
 
 export interface KubernetesNodeGroupVersionInfo {
+    /**
+     * Current Kubernetes version, major.minor (e.g. 1.15).
+     */
     currentVersion: string;
+    /**
+     * True/false flag.
+     * Newer revisions may include Kubernetes patches (e.g 1.15.1 > 1.15.2) as well
+     * as some internal component updates - new features or bug fixes in yandex-specific
+     * components either on the master or nodes.
+     */
     newRevisionAvailable: boolean;
+    /**
+     * Human readable description of the changes to be applied
+     * when updating to the latest revision. Empty if newRevisionAvailable is false.
+     */
     newRevisionSummary: string;
+    /**
+     * True/false flag. The current version is on the deprecation schedule,
+     * component (master or node group) should be upgraded.
+     */
     versionDeprecated: boolean;
 }
 
 export interface LbNetworkLoadBalancerAttachedTargetGroup {
+    /**
+     * A HealthCheck resource. The structure is documented below.
+     */
     healthchecks: outputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheck[];
+    /**
+     * ID of the target group.
+     */
     targetGroupId: string;
 }
 
 export interface LbNetworkLoadBalancerAttachedTargetGroupHealthcheck {
+    /**
+     * Number of successful health checks required in order to set the `HEALTHY` status for the target.
+     */
     healthyThreshold?: number;
+    /**
+     * Options for HTTP health check. The structure is documented below.
+     */
     httpOptions?: outputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptions;
+    /**
+     * The interval between health checks. The default is 2 seconds.
+     */
     interval?: number;
+    /**
+     * Name of the listener. The name must be unique for each listener on a single load balancer.
+     */
     name: string;
+    /**
+     * Options for TCP health check. The structure is documented below.
+     */
     tcpOptions?: outputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptions;
+    /**
+     * Timeout for a target to return a response for the health check. The default is 1 second.
+     */
     timeout?: number;
+    /**
+     * Number of failed health checks before changing the status to `UNHEALTHY`. The default is 2.
+     */
     unhealthyThreshold?: number;
 }
 
 export interface LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptions {
+    /**
+     * URL path to set for health checking requests for every target in the target group. For example `/ping`. The default path is `/`.
+     */
     path?: string;
+    /**
+     * Port for incoming traffic.
+     */
     port: number;
 }
 
 export interface LbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptions {
+    /**
+     * Port for incoming traffic.
+     */
     port: number;
 }
 
 export interface LbNetworkLoadBalancerListener {
+    /**
+     * External IP address specification. The structure is documented below.
+     */
     externalAddressSpec?: outputs.LbNetworkLoadBalancerListenerExternalAddressSpec;
+    /**
+     * Internal IP address specification. The structure is documented below.
+     */
     internalAddressSpec?: outputs.LbNetworkLoadBalancerListenerInternalAddressSpec;
+    /**
+     * Name of the listener. The name must be unique for each listener on a single load balancer.
+     */
     name: string;
+    /**
+     * Port for incoming traffic.
+     */
     port: number;
+    /**
+     * Protocol for incoming traffic. TCP or UDP and the default is TCP.
+     */
     protocol: string;
+    /**
+     * Port of a target. The default is the same as listener's port.
+     */
     targetPort: number;
 }
 
 export interface LbNetworkLoadBalancerListenerExternalAddressSpec {
+    /**
+     * Internal IP address for a listener. Must belong to the subnet that is referenced in subnet_id. IP address will be allocated if it wasn't been set.
+     */
     address: string;
+    /**
+     * IP version of the internal addresses that the load balancer works with. Must be one of ipv4 or ipv6. The default is ipv4.
+     */
     ipVersion?: string;
 }
 
 export interface LbNetworkLoadBalancerListenerInternalAddressSpec {
+    /**
+     * Internal IP address for a listener. Must belong to the subnet that is referenced in subnet_id. IP address will be allocated if it wasn't been set.
+     */
     address: string;
+    /**
+     * IP version of the internal addresses that the load balancer works with. Must be one of ipv4 or ipv6. The default is ipv4.
+     */
     ipVersion?: string;
+    /**
+     * ID of the subnet to which the internal IP address belongs.
+     */
     subnetId: string;
 }
 
 export interface LbTargetGroupTarget {
+    /**
+     * IP address of the target.
+     */
     address: string;
+    /**
+     * ID of the subnet that targets are connected to. 
+     * All targets in the target group must be connected to the same subnet within a single availability zone.
+     */
     subnetId: string;
 }
 
 export interface MdbClickhouseClusterAccess {
+    /**
+     * Allow access for DataLens. Can be either `true` or `false`.
+     */
     dataLens?: boolean;
+    /**
+     * Allow access for DataTransfer. Can be either `true` or `false`.
+     */
     dataTransfer?: boolean;
+    /**
+     * Allow access for Yandex.Metrika. Can be either `true` or `false`.
+     */
     metrika?: boolean;
+    /**
+     * Allow access for Serverless. Can be either `true` or `false`.
+     */
     serverless?: boolean;
+    /**
+     * Allow access for Web SQL. Can be either `true` or `false`.
+     */
     webSql?: boolean;
+    /**
+     * Allow access for YandexQuery. Can be either `true` or `false`.
+     */
     yandexQuery?: boolean;
 }
 
 export interface MdbClickhouseClusterBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours?: number;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes?: number;
 }
 
 export interface MdbClickhouseClusterClickhouse {
+    /**
+     * Main ClickHouse cluster configuration.
+     */
     config: outputs.MdbClickhouseClusterClickhouseConfig;
+    /**
+     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources: outputs.MdbClickhouseClusterClickhouseResources;
 }
 
 export interface MdbClickhouseClusterClickhouseConfig {
     backgroundPoolSize: number;
     backgroundSchedulePoolSize: number;
+    /**
+     * Data compression configuration. The structure is documented below.
+     */
     compressions?: outputs.MdbClickhouseClusterClickhouseConfigCompression[];
     geobaseUri: string;
+    /**
+     * Graphite rollup configuration. The structure is documented below.
+     */
     graphiteRollups?: outputs.MdbClickhouseClusterClickhouseConfigGraphiteRollup[];
+    /**
+     * Kafka connection configuration. The structure is documented below.
+     */
     kafka: outputs.MdbClickhouseClusterClickhouseConfigKafka;
+    /**
+     * Kafka topic connection configuration. The structure is documented below.
+     */
     kafkaTopics?: outputs.MdbClickhouseClusterClickhouseConfigKafkaTopic[];
     keepAliveTimeout: number;
     logLevel: string;
@@ -3688,6 +8540,9 @@ export interface MdbClickhouseClusterClickhouseConfig {
     maxConnections: number;
     maxPartitionSizeToDrop: number;
     maxTableSizeToDrop: number;
+    /**
+     * MergeTree engine configuration. The structure is documented below.
+     */
     mergeTree: outputs.MdbClickhouseClusterClickhouseConfigMergeTree;
     metricLogEnabled: boolean;
     metricLogRetentionSize: number;
@@ -3699,6 +8554,9 @@ export interface MdbClickhouseClusterClickhouseConfig {
     queryThreadLogEnabled: boolean;
     queryThreadLogRetentionSize: number;
     queryThreadLogRetentionTime: number;
+    /**
+     * RabbitMQ connection configuration. The structure is documented below.
+     */
     rabbitmq: outputs.MdbClickhouseClusterClickhouseConfigRabbitmq;
     textLogEnabled: boolean;
     textLogLevel: string;
@@ -3712,302 +8570,880 @@ export interface MdbClickhouseClusterClickhouseConfig {
 }
 
 export interface MdbClickhouseClusterClickhouseConfigCompression {
+    /**
+     * Method: Compression method. Two methods are available: LZ4 and zstd.
+     */
     method: string;
+    /**
+     * Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
+     */
     minPartSize: number;
+    /**
+     * Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
+     */
     minPartSizeRatio: number;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigGraphiteRollup {
+    /**
+     * Graphite rollup configuration name.
+     */
     name: string;
+    /**
+     * Set of thinning rules.
+     */
     patterns?: outputs.MdbClickhouseClusterClickhouseConfigGraphiteRollupPattern[];
 }
 
 export interface MdbClickhouseClusterClickhouseConfigGraphiteRollupPattern {
+    /**
+     * Aggregation function name.
+     */
     function: string;
+    /**
+     * Regular expression that the metric name must match.
+     */
     regexp: string;
+    /**
+     * Retain parameters.
+     */
     retentions?: outputs.MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetention[];
 }
 
 export interface MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetention {
+    /**
+     * Minimum data age in seconds.
+     */
     age: number;
+    /**
+     * Accuracy of determining the age of the data in seconds.
+     */
     precision: number;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigKafka {
+    /**
+     * SASL mechanism used in kafka authentication.
+     */
     saslMechanism: string;
+    /**
+     * User password on kafka server.
+     */
     saslPassword: string;
+    /**
+     * Username on kafka server.
+     */
     saslUsername: string;
+    /**
+     * Security protocol used to connect to kafka server.
+     */
     securityProtocol: string;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigKafkaTopic {
+    /**
+     * Graphite rollup configuration name.
+     */
     name: string;
+    /**
+     * Kafka connection settngs sanem as `kafka` block.
+     */
     settings?: outputs.MdbClickhouseClusterClickhouseConfigKafkaTopicSettings;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigKafkaTopicSettings {
+    /**
+     * SASL mechanism used in kafka authentication.
+     */
     saslMechanism?: string;
+    /**
+     * User password on kafka server.
+     */
     saslPassword?: string;
+    /**
+     * Username on kafka server.
+     */
     saslUsername?: string;
+    /**
+     * Security protocol used to connect to kafka server.
+     */
     securityProtocol?: string;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigMergeTree {
+    /**
+     * Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
+     */
     maxBytesToMergeAtMinSpaceInPool: number;
+    /**
+     * Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
+     */
     maxReplicatedMergesInQueue: number;
+    /**
+     * Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
+     */
     numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge: number;
+    /**
+     * Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
+     */
     partsToDelayInsert: number;
+    /**
+     * Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
+     */
     partsToThrowInsert: number;
+    /**
+     * Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
+     */
     replicatedDeduplicationWindow: number;
+    /**
+     * Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
+     */
     replicatedDeduplicationWindowSeconds: number;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigRabbitmq {
+    /**
+     * RabbitMQ user password.
+     */
     password: string;
+    /**
+     * RabbitMQ username.
+     */
     username: string;
 }
 
 export interface MdbClickhouseClusterClickhouseResources {
+    /**
+     * Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface MdbClickhouseClusterCloudStorage {
+    /**
+     * Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+     */
     enabled: boolean;
 }
 
 export interface MdbClickhouseClusterDatabase {
+    /**
+     * Graphite rollup configuration name.
+     */
     name: string;
 }
 
 export interface MdbClickhouseClusterFormatSchema {
+    /**
+     * Graphite rollup configuration name.
+     */
     name: string;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
+    /**
+     * Model file URL. You can only use models stored in Yandex Object Storage.
+     */
     uri: string;
 }
 
 export interface MdbClickhouseClusterHost {
+    /**
+     * Sets whether the host should get a public IP address on creation. Can be either `true` or `false`.
+     */
     assignPublicIp?: boolean;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn: string;
+    /**
+     * The name of the shard to which the host belongs.
+     */
     shardName: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
     subnetId: string;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
+    /**
+     * The availability zone where the ClickHouse host will be created.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+     */
     zone: string;
 }
 
 export interface MdbClickhouseClusterMaintenanceWindow {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day?: string;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
     hour?: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
 }
 
 export interface MdbClickhouseClusterMlModel {
+    /**
+     * Graphite rollup configuration name.
+     */
     name: string;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
+    /**
+     * Model file URL. You can only use models stored in Yandex Object Storage.
+     */
     uri: string;
 }
 
 export interface MdbClickhouseClusterShardGroup {
+    /**
+     * Description of the shard group.
+     */
     description?: string;
+    /**
+     * Graphite rollup configuration name.
+     */
     name: string;
+    /**
+     * List of shards names that belong to the shard group.
+     */
     shardNames: string[];
 }
 
 export interface MdbClickhouseClusterUser {
+    /**
+     * Graphite rollup configuration name.
+     */
     name: string;
+    /**
+     * RabbitMQ user password.
+     */
     password: string;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions: outputs.MdbClickhouseClusterUserPermission[];
+    /**
+     * Set of user quotas. The structure is documented below.
+     */
     quotas: outputs.MdbClickhouseClusterUserQuota[];
+    /**
+     * Kafka connection settngs sanem as `kafka` block.
+     */
     settings: outputs.MdbClickhouseClusterUserSettings;
 }
 
 export interface MdbClickhouseClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName: string;
 }
 
 export interface MdbClickhouseClusterUserQuota {
+    /**
+     * The number of queries that threw exception.
+     */
     errors: number;
+    /**
+     * The total query execution time, in milliseconds (wall time).
+     */
     executionTime: number;
+    /**
+     * Duration of interval for quota in milliseconds.
+     */
     intervalDuration: number;
+    /**
+     * The total number of queries.
+     */
     queries: number;
+    /**
+     * The total number of source rows read from tables for running the query, on all remote servers.
+     */
     readRows: number;
+    /**
+     * The total number of rows given as the result.
+     */
     resultRows: number;
 }
 
 export interface MdbClickhouseClusterUserSettings {
+    /**
+     * Include CORS headers in HTTP responces.
+     */
     addHttpCorsHeader: boolean;
+    /**
+     * Allows or denies DDL queries.
+     */
     allowDdl: boolean;
+    /**
+     * Enable compilation of queries.
+     */
     compile: boolean;
+    /**
+     * Turn on expression compilation.
+     */
     compileExpressions: boolean;
+    /**
+     * Connect timeout in milliseconds on the socket used for communicating with the client.
+     */
     connectTimeout: number;
+    /**
+     * Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
+     */
     countDistinctImplementation: string;
+    /**
+     * Sets behaviour on overflow when using DISTINCT. Possible values:
+     */
     distinctOverflowMode: string;
+    /**
+     * Determine the behavior of distributed subqueries.
+     */
     distributedAggregationMemoryEfficient: boolean;
+    /**
+     * Timeout for DDL queries, in milliseconds.
+     */
     distributedDdlTaskTimeout: number;
+    /**
+     * Changes the behaviour of distributed subqueries.
+     */
     distributedProductMode: string;
+    /**
+     * Allows to retunr empty result.
+     */
     emptyResultForAggregationByEmptySet: boolean;
+    /**
+     * Enables or disables data compression in the response to an HTTP request.
+     */
     enableHttpCompression: boolean;
+    /**
+     * Forces a query to an out-of-date replica if updated data is not available.
+     */
     fallbackToStaleReplicasForDistributedQueries: boolean;
+    /**
+     * Disables query execution if the index can’t be used by date.
+     */
     forceIndexByDate: boolean;
+    /**
+     * Disables query execution if indexing by the primary key is not possible.
+     */
     forcePrimaryKey: boolean;
+    /**
+     * Sets behaviour on overflow while GROUP BY operation. Possible values:
+     */
     groupByOverflowMode: string;
+    /**
+     * Sets the threshold of the number of keys, after that the two-level aggregation should be used.
+     */
     groupByTwoLevelThreshold: number;
+    /**
+     * Sets the threshold of the number of bytes, after that the two-level aggregation should be used.
+     */
     groupByTwoLevelThresholdBytes: number;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
     httpConnectionTimeout: number;
+    /**
+     * Sets minimal interval between notifications about request process in HTTP header X-ClickHouse-Progress.
+     */
     httpHeadersProgressInterval: number;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
     httpReceiveTimeout: number;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
     httpSendTimeout: number;
+    /**
+     * When performing INSERT queries, replace omitted input column values with default values of the respective columns.
+     */
     inputFormatDefaultsForOmittedFields: boolean;
+    /**
+     * Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
+     */
     inputFormatValuesInterpretExpressions: boolean;
+    /**
+     * Enables the quorum writes.
+     */
     insertQuorum: number;
+    /**
+     * Write to a quorum timeout in milliseconds.
+     */
     insertQuorumTimeout: number;
+    /**
+     * Sets behaviour on overflow in JOIN. Possible values:
+     */
     joinOverflowMode: string;
+    /**
+     * Sets the type of JOIN behaviour. When merging tables, empty cells may appear. ClickHouse fills them differently based on this setting.
+     */
     joinUseNulls: boolean;
+    /**
+     * Require aliases for subselects and table functions in FROM that more than one table is present.
+     */
     joinedSubqueryRequiresAlias: boolean;
+    /**
+     * Allows or restricts using the LowCardinality data type with the Native format.
+     */
     lowCardinalityAllowInNativeFormat: boolean;
+    /**
+     * Maximum abstract syntax tree depth.
+     */
     maxAstDepth: number;
+    /**
+     * Maximum abstract syntax tree elements.
+     */
     maxAstElements: number;
+    /**
+     * A recommendation for what size of the block (in a count of rows) to load from tables.
+     */
     maxBlockSize: number;
+    /**
+     * Limit in bytes for using memoru for GROUP BY before using swap on disk.
+     */
     maxBytesBeforeExternalGroupBy: number;
+    /**
+     * This setting is equivalent of the maxBytesBeforeExternalGroupBy setting, except for it is for sort operation (ORDER BY), not aggregation.
+     */
     maxBytesBeforeExternalSort: number;
+    /**
+     * Limits the maximum size of a hash table in bytes (uncompressed data) when using DISTINCT.
+     */
     maxBytesInDistinct: number;
+    /**
+     * Limit on maximum size of the hash table for JOIN, in bytes.
+     */
     maxBytesInJoin: number;
+    /**
+     * Limit on the number of bytes in the set resulting from the execution of the IN section.
+     */
     maxBytesInSet: number;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be read from a table when running a query.
+     */
     maxBytesToRead: number;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be read from a table for sorting.
+     */
     maxBytesToSort: number;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+     */
     maxBytesToTransfer: number;
+    /**
+     * Limits the maximum number of columns that can be read from a table in a single query.
+     */
     maxColumnsToRead: number;
+    /**
+     * Limits the maximum query execution time in milliseconds.
+     */
     maxExecutionTime: number;
+    /**
+     * Maximum abstract syntax tree depth after after expansion of aliases.
+     */
     maxExpandedAstElements: number;
+    /**
+     * The size of blocks (in a count of rows) to form for insertion into a table.
+     */
     maxInsertBlockSize: number;
+    /**
+     * Limits the maximum memory usage (in bytes) for processing queries on a single server.
+     */
     maxMemoryUsage: number;
+    /**
+     * Limits the maximum memory usage (in bytes) for processing of user's queries on a single server.
+     */
     maxMemoryUsageForUser: number;
+    /**
+     * Limits the speed of the data exchange over the network in bytes per second.
+     */
     maxNetworkBandwidth: number;
+    /**
+     * Limits the speed of the data exchange over the network in bytes per second.
+     */
     maxNetworkBandwidthForUser: number;
+    /**
+     * The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
+     */
     maxQuerySize: number;
+    /**
+     * Disables lagging replicas for distributed queries.
+     */
     maxReplicaDelayForDistributedQueries: number;
+    /**
+     * Limits the number of bytes in the result.
+     */
     maxResultBytes: number;
+    /**
+     * Limits the number of rows in the result.
+     */
     maxResultRows: number;
+    /**
+     * Limits the maximum number of different rows when using DISTINCT.
+     */
     maxRowsInDistinct: number;
+    /**
+     * Limit on maximum size of the hash table for JOIN, in rows.
+     */
     maxRowsInJoin: number;
+    /**
+     * Limit on the number of rows in the set resulting from the execution of the IN section.
+     */
     maxRowsInSet: number;
+    /**
+     * Limits the maximum number of unique keys received from aggregation function.
+     */
     maxRowsToGroupBy: number;
+    /**
+     * Limits the maximum number of rows that can be read from a table when running a query.
+     */
     maxRowsToRead: number;
+    /**
+     * Limits the maximum number of rows that can be read from a table for sorting.
+     */
     maxRowsToSort: number;
+    /**
+     * Limits the maximum number of rows that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+     */
     maxRowsToTransfer: number;
+    /**
+     * Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, including constant columns.
+     */
     maxTemporaryColumns: number;
+    /**
+     * Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, excluding constant columns.
+     */
     maxTemporaryNonConstColumns: number;
+    /**
+     * The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
+     */
     maxThreads: number;
+    /**
+     * If ClickHouse should read more than mergeTreeMaxBytesToUseCache bytes in one query, it doesn’t use the cache of uncompressed blocks.
+     */
     mergeTreeMaxBytesToUseCache: number;
+    /**
+     * If ClickHouse should read more than mergeTreeMaxRowsToUseCache rows in one query, it doesn’t use the cache of uncompressed blocks.
+     */
     mergeTreeMaxRowsToUseCache: number;
+    /**
+     * If the number of bytes to read from one file of a MergeTree-engine table exceeds merge_tree_min_bytes_for_concurrent_read, then ClickHouse tries to concurrently read from this file in several threads.
+     */
     mergeTreeMinBytesForConcurrentRead: number;
+    /**
+     * If the number of rows to be read from a file of a MergeTree table exceeds mergeTreeMinRowsForConcurrentRead then ClickHouse tries to perform a concurrent reading from this file on several threads.
+     */
     mergeTreeMinRowsForConcurrentRead: number;
+    /**
+     * The minimum data volume required for using direct I/O access to the storage disk.
+     */
     minBytesToUseDirectIo: number;
+    /**
+     * How many times to potentially use a compiled chunk of code before running compilation.
+     */
     minCountToCompile: number;
+    /**
+     * A query waits for expression compilation process to complete prior to continuing execution.
+     */
     minCountToCompileExpression: number;
+    /**
+     * Minimal execution speed in rows per second.
+     */
     minExecutionSpeed: number;
+    /**
+     * Minimal execution speed in bytes per second.
+     */
     minExecutionSpeedBytes: number;
+    /**
+     * Sets the minimum number of bytes in the block which can be inserted into a table by an INSERT query.
+     */
     minInsertBlockSizeBytes: number;
+    /**
+     * Sets the minimum number of rows in the block which can be inserted into a table by an INSERT query.
+     */
     minInsertBlockSizeRows: number;
+    /**
+     * If the value is true, integers appear in quotes when using JSON* Int64 and UInt64 formats (for compatibility with most JavaScript implementations); otherwise, integers are output without the quotes.
+     */
     outputFormatJsonQuote64bitIntegers: boolean;
+    /**
+     * Enables +nan, -nan, +inf, -inf outputs in JSON output format.
+     */
     outputFormatJsonQuoteDenormals: boolean;
+    /**
+     * Query priority.
+     */
     priority: number;
+    /**
+     * Quota accounting mode.
+     */
     quotaMode: string;
+    /**
+     * Sets behaviour on overflow while read. Possible values:
+     */
     readOverflowMode: string;
+    /**
+     * Restricts permissions for reading data, write data and change settings queries.
+     */
     readonly: number;
+    /**
+     * Receive timeout in milliseconds on the socket used for communicating with the client.
+     */
     receiveTimeout: number;
+    /**
+     * For ALTER ... ATTACH|DETACH|DROP queries, you can use the replicationAlterPartitionsSync setting to set up waiting.
+     */
     replicationAlterPartitionsSync: number;
+    /**
+     * Sets behaviour on overflow in result. Possible values:
+     */
     resultOverflowMode: string;
+    /**
+     * Enables or disables sequential consistency for SELECT queries.
+     */
     selectSequentialConsistency: boolean;
+    /**
+     * Enables or disables X-ClickHouse-Progress HTTP response headers in clickhouse-server responses.
+     */
     sendProgressInHttpHeaders: boolean;
+    /**
+     * Send timeout in milliseconds on the socket used for communicating with the client.
+     */
     sendTimeout: number;
+    /**
+     * Sets behaviour on overflow in the set resulting. Possible values:
+     */
     setOverflowMode: string;
+    /**
+     * Enables or disables silently skipping of unavailable shards.
+     */
     skipUnavailableShards: boolean;
+    /**
+     * Sets behaviour on overflow while sort. Possible values:
+     */
     sortOverflowMode: string;
+    /**
+     * Sets behaviour on overflow. Possible values:
+     */
     timeoutOverflowMode: string;
+    /**
+     * Sets behaviour on overflow. Possible values:
+     */
     transferOverflowMode: string;
+    /**
+     * Enables equality of NULL values for IN operator.
+     */
     transformNullIn: boolean;
+    /**
+     * Whether to use a cache of uncompressed blocks.
+     */
     useUncompressedCache: boolean;
 }
 
 export interface MdbClickhouseClusterZookeeper {
+    /**
+     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources: outputs.MdbClickhouseClusterZookeeperResources;
 }
 
 export interface MdbClickhouseClusterZookeeperResources {
+    /**
+     * Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface MdbElasticSearchClusterConfig {
+    /**
+     * Password for admin user of Elasticsearch.
+     */
     adminPassword: string;
+    /**
+     * Configuration for Elasticsearch data nodes subcluster. The structure is documented below.
+     */
     dataNode: outputs.MdbElasticSearchClusterConfigDataNode;
+    /**
+     * Edition of Elasticsearch. For more information, see [the official documentation](https://cloud.yandex.com/en-ru/docs/managed-elasticsearch/concepts/es-editions).
+     */
     edition: string;
+    /**
+     * Configuration for Elasticsearch master nodes subcluster. The structure is documented below.
+     */
     masterNode?: outputs.MdbElasticSearchClusterConfigMasterNode;
+    /**
+     * A set of Elasticsearch plugins to install.
+     */
     plugins?: string[];
+    /**
+     * Version of Elasticsearch.
+     */
     version: string;
 }
 
 export interface MdbElasticSearchClusterConfigDataNode {
+    /**
+     * Resources allocated to hosts of the Elasticsearch master nodes subcluster. The structure is documented below.
+     */
     resources: outputs.MdbElasticSearchClusterConfigDataNodeResources;
 }
 
 export interface MdbElasticSearchClusterConfigDataNodeResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of Elasticsearch hosts.
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface MdbElasticSearchClusterConfigMasterNode {
+    /**
+     * Resources allocated to hosts of the Elasticsearch master nodes subcluster. The structure is documented below.
+     */
     resources: outputs.MdbElasticSearchClusterConfigMasterNodeResources;
 }
 
 export interface MdbElasticSearchClusterConfigMasterNodeResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of Elasticsearch hosts.
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface MdbElasticSearchClusterHost {
+    /**
+     * Sets whether the host should get a public IP address on creation. Can be either `true` or `false`.
+     */
     assignPublicIp?: boolean;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn: string;
+    /**
+     * User defined host name.
+     */
     name: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must
+     * be a part of the network to which the cluster belongs.
+     */
     subnetId: string;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
+    /**
+     * The availability zone where the Elasticsearch host will be created.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+     */
     zone: string;
 }
 
 export interface MdbElasticSearchClusterMaintenanceWindow {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day?: string;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
     hour?: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
 }
 
 export interface MdbGreenplumClusterAccess {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
     dataLens?: boolean;
+    /**
+     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: boolean;
+    /**
+     * Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+     */
     webSql?: boolean;
 }
 
 export interface MdbGreenplumClusterBackupWindowStart {
+    /**
+     * The hour at which backup will be started (UTC).
+     */
     hours?: number;
+    /**
+     * The minute at which backup will be started (UTC).
+     */
     minutes?: number;
 }
 
 export interface MdbGreenplumClusterMaintenanceWindow {
+    /**
+     * Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+     */
     day?: string;
+    /**
+     * Hour of the day in UTC (in `HH` format). Allowed value is between 0 and 23.
+     */
     hour?: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
 }
 
 export interface MdbGreenplumClusterMasterHost {
+    /**
+     * Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+     */
     assignPublicIp: boolean;
+    /**
+     * (Computed) The fully qualified domain name of the host.
+     */
     fqdn: string;
 }
 
 export interface MdbGreenplumClusterMasterSubcluster {
+    /**
+     * Resources allocated to hosts for segment subcluster of the Greenplum cluster. The structure is documented below.
+     */
     resources: outputs.MdbGreenplumClusterMasterSubclusterResources;
 }
 
@@ -4018,16 +9454,31 @@ export interface MdbGreenplumClusterMasterSubclusterResources {
 }
 
 export interface MdbGreenplumClusterPoolerConfig {
+    /**
+     * Value for `poolClientIdleTimeout` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_ttl-integer).
+     */
     poolClientIdleTimeout?: number;
+    /**
+     * Value for `poolSize` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_size-integer).
+     */
     poolSize?: number;
+    /**
+     * Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
+     */
     poolingMode?: string;
 }
 
 export interface MdbGreenplumClusterSegmentHost {
+    /**
+     * (Computed) The fully qualified domain name of the host.
+     */
     fqdn: string;
 }
 
 export interface MdbGreenplumClusterSegmentSubcluster {
+    /**
+     * Resources allocated to hosts for segment subcluster of the Greenplum cluster. The structure is documented below.
+     */
     resources: outputs.MdbGreenplumClusterSegmentSubclusterResources;
 }
 
@@ -4038,23 +9489,59 @@ export interface MdbGreenplumClusterSegmentSubclusterResources {
 }
 
 export interface MdbKafkaClusterConfig {
+    /**
+     * Access policy to the Kafka cluster. The structure is documented below.
+     */
     access: outputs.MdbKafkaClusterConfigAccess;
+    /**
+     * Determines whether each broker will be assigned a public IP address. The default is `false`.
+     */
     assignPublicIp?: boolean;
+    /**
+     * Count of brokers per availability zone. The default is `1`.
+     */
     brokersCount?: number;
+    /**
+     * Configuration of the Kafka subcluster. The structure is documented below.
+     */
     kafka: outputs.MdbKafkaClusterConfigKafka;
+    /**
+     * Enables managed schema registry on cluster. The default is `false`.
+     */
     schemaRegistry?: boolean;
+    /**
+     * Allows to use Kafka AdminAPI to manage topics. The default is `false`.
+     */
     unmanagedTopics?: boolean;
+    /**
+     * Version of the Kafka server software.
+     */
     version: string;
+    /**
+     * List of availability zones.
+     */
     zones: string[];
+    /**
+     * Configuration of the ZooKeeper subcluster. The structure is documented below.
+     */
     zookeeper: outputs.MdbKafkaClusterConfigZookeeper;
 }
 
 export interface MdbKafkaClusterConfigAccess {
+    /**
+     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: boolean;
 }
 
 export interface MdbKafkaClusterConfigKafka {
+    /**
+     * User-defined settings for the Kafka cluster. The structure is documented below.
+     */
     kafkaConfig?: outputs.MdbKafkaClusterConfigKafkaKafkaConfig;
+    /**
+     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources: outputs.MdbKafkaClusterConfigKafkaResources;
 }
 
@@ -4081,40 +9568,96 @@ export interface MdbKafkaClusterConfigKafkaKafkaConfig {
 }
 
 export interface MdbKafkaClusterConfigKafkaResources {
+    /**
+     * Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface MdbKafkaClusterConfigZookeeper {
+    /**
+     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources: outputs.MdbKafkaClusterConfigZookeeperResources;
 }
 
 export interface MdbKafkaClusterConfigZookeeperResources {
+    /**
+     * Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface MdbKafkaClusterHost {
+    /**
+     * Determines whether each broker will be assigned a public IP address. The default is `false`.
+     */
     assignPublicIp: boolean;
+    /**
+     * Health of the host.
+     */
     health: string;
+    /**
+     * The name of the topic.
+     */
     name: string;
+    /**
+     * The role type to grant to the topic.
+     */
     role: string;
+    /**
+     * The ID of the subnet, to which the host belongs.
+     */
     subnetId: string;
+    /**
+     * The availability zone where the Kafka host was created.
+     */
     zoneId: string;
 }
 
 export interface MdbKafkaClusterMaintenanceWindow {
+    /**
+     * Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+     */
     day?: string;
+    /**
+     * Hour of the day in UTC (in `HH` format). Allowed value is between 1 and 24.
+     */
     hour?: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
 }
 
 export interface MdbKafkaClusterTopic {
+    /**
+     * The name of the topic.
+     */
     name: string;
+    /**
+     * The number of the topic's partitions.
+     */
     partitions: number;
+    /**
+     * Amount of data copies (replicas) for the topic in the cluster.
+     */
     replicationFactor: number;
+    /**
+     * User-defined settings for the topic. The structure is documented below.
+     */
     topicConfig?: outputs.MdbKafkaClusterTopicTopicConfig;
 }
 
@@ -4135,13 +9678,28 @@ export interface MdbKafkaClusterTopicTopicConfig {
 }
 
 export interface MdbKafkaClusterUser {
+    /**
+     * The name of the topic.
+     */
     name: string;
+    /**
+     * The password of the user.
+     */
     password: string;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions?: outputs.MdbKafkaClusterUserPermission[];
 }
 
 export interface MdbKafkaClusterUserPermission {
+    /**
+     * The role type to grant to the topic.
+     */
     role: string;
+    /**
+     * The name of the topic that the permission grants access to.
+     */
     topicName: string;
 }
 
@@ -4162,228 +9720,605 @@ export interface MdbKafkaTopicTopicConfig {
 }
 
 export interface MdbMongodbClusterClusterConfig {
+    /**
+     * Access policy to the MongoDB cluster. The structure is documented below.
+     */
     access: outputs.MdbMongodbClusterClusterConfigAccess;
+    /**
+     * Time to start the daily backup, in the UTC timezone. The structure is documented below.
+     */
     backupWindowStart: outputs.MdbMongodbClusterClusterConfigBackupWindowStart;
+    /**
+     * Feature compatibility version of MongoDB. If not provided version is taken. Can be either `5.0`, `4.4`, `4.2` and `4.0`.
+     */
     featureCompatibilityVersion: string;
+    /**
+     * Configuration of the mongod service. The structure is documented below.
+     */
     mongod: outputs.MdbMongodbClusterClusterConfigMongod;
+    /**
+     * Version of MongoDB (either 5.0, 4.4, 4.2 or 4.0).
+     */
     version: string;
 }
 
 export interface MdbMongodbClusterClusterConfigAccess {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
     dataLens?: boolean;
+    /**
+     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: boolean;
 }
 
 export interface MdbMongodbClusterClusterConfigBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours?: number;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes?: number;
 }
 
 export interface MdbMongodbClusterClusterConfigMongod {
+    /**
+     * A set of audit log settings 
+     * (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
+     * The structure is documented below. Available only in enterprise edition.
+     */
     auditLog: outputs.MdbMongodbClusterClusterConfigMongodAuditLog;
+    /**
+     * A set of MongoDB Security settings
+     * (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
+     * The structure is documented below. Available only in enterprise edition.
+     */
     security: outputs.MdbMongodbClusterClusterConfigMongodSecurity;
+    /**
+     * A set of MongoDB Server Parameters 
+     * (see the [setParameter](https://www.mongodb.com/docs/manual/reference/configuration-options/#setparameter-option) option).
+     * The structure is documented below.
+     */
     setParameter: outputs.MdbMongodbClusterClusterConfigMongodSetParameter;
 }
 
 export interface MdbMongodbClusterClusterConfigMongodAuditLog {
+    /**
+     * Configuration of the audit log filter in JSON format.
+     * For more information see [auditLog.filter](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.filter)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     filter?: string;
     runtimeConfiguration?: boolean;
 }
 
 export interface MdbMongodbClusterClusterConfigMongodSecurity {
+    /**
+     * Enables the encryption for the WiredTiger storage engine. Can be either true or false.
+     * For more information see [security.enableEncryption](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.enableEncryption)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     enableEncryption?: boolean;
+    /**
+     * Configuration of the third party key management appliance via the Key Management Interoperability Protocol (KMIP)
+     * (see [Encryption tutorial](https://www.mongodb.com/docs/rapid/tutorial/configure-encryption) ). Requires `enableEncryption` to be true.
+     * The structure is documented below. Available only in enterprise edition.
+     */
     kmip: outputs.MdbMongodbClusterClusterConfigMongodSecurityKmip;
 }
 
 export interface MdbMongodbClusterClusterConfigMongodSecurityKmip {
+    /**
+     * String containing the client certificate used for authenticating MongoDB to the KMIP server.
+     * For more information see [security.kmip.clientCertificateFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.clientCertificateFile)
+     * description in the official documentation.
+     */
     clientCertificate?: string;
+    /**
+     * Unique KMIP identifier for an existing key within the KMIP server.
+     * For more information see [security.kmip.keyIdentifier](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.keyIdentifier)
+     * description in the official documentation.
+     */
     keyIdentifier?: string;
+    /**
+     * Port number to use to communicate with the KMIP server. Default: 5696
+     * For more information see [security.kmip.port](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.port)
+     * description in the official documentation.
+     */
     port?: number;
+    /**
+     * Path to CA File. Used for validating secure client connection to KMIP server.
+     * For more information see [security.kmip.serverCAFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverCAFile)
+     * description in the official documentation.
+     */
     serverCa?: string;
+    /**
+     * Hostname or IP address of the KMIP server to connect to.
+     * For more information see [security.kmip.serverName](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverName)
+     * description in the official documentation.
+     */
     serverName?: string;
 }
 
 export interface MdbMongodbClusterClusterConfigMongodSetParameter {
+    /**
+     * Enables the auditing of authorization successes. Can be either true or false.
+     * For more information, see the [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.auditAuthorizationSuccess)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     auditAuthorizationSuccess?: boolean;
 }
 
 export interface MdbMongodbClusterDatabase {
+    /**
+     * The fully qualified domain name of the host. Computed on server side.
+     */
     name: string;
 }
 
 export interface MdbMongodbClusterHost {
+    /**
+     * -(Optional)  Should this host have assigned public IP assigned. Can be either `true` or `false`.
+     */
     assignPublicIp: boolean;
+    /**
+     * The health of the host.
+     */
     health: string;
+    /**
+     * The fully qualified domain name of the host. Computed on server side.
+     */
     name: string;
+    /**
+     * The role of the cluster (either PRIMARY or SECONDARY).
+     */
     role: string;
+    /**
+     * The name of the shard to which the host belongs.
+     */
     shardName: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must
+     * be a part of the network to which the cluster belongs.
+     */
     subnetId: string;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
+    /**
+     * The availability zone where the MongoDB host will be created.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+     */
     zoneId: string;
 }
 
 export interface MdbMongodbClusterMaintenanceWindow {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day?: string;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
     hour?: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
 }
 
 export interface MdbMongodbClusterResources {
+    /**
+     * Volume of the storage available to a MongoDB host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of MongoDB hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface MdbMongodbClusterUser {
+    /**
+     * The fully qualified domain name of the host. Computed on server side.
+     */
     name: string;
+    /**
+     * The password of the user.
+     */
     password: string;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions: outputs.MdbMongodbClusterUserPermission[];
 }
 
 export interface MdbMongodbClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName: string;
+    /**
+     * The roles of the user in this database. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/users-and-roles).
+     */
     roles?: string[];
 }
 
 export interface MdbMysqlClusterAccess {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
     dataLens?: boolean;
+    /**
+     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: boolean;
+    /**
+     * Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+     */
     webSql?: boolean;
 }
 
 export interface MdbMysqlClusterBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours?: number;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes?: number;
 }
 
 export interface MdbMysqlClusterDatabase {
+    /**
+     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replicationSourceName` parameter.
+     */
     name: string;
 }
 
 export interface MdbMysqlClusterHost {
+    /**
+     * Sets whether the host should get a public IP address. It can be changed on the fly only when `name` is set.
+     */
     assignPublicIp?: boolean;
+    /**
+     * Host backup priority. Value is between 0 and 100, default is 0.
+     */
     backupPriority?: number;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn: string;
+    /**
+     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replicationSourceName` parameter.
+     */
     name?: string;
+    /**
+     * Host master promotion priority. Value is between 0 and 100, default is 0.
+     */
     priority?: number;
+    /**
+     * Host replication source (fqdn), when replicationSource is empty then host is in HA group.
+     */
     replicationSource: string;
+    /**
+     * Host replication source name points to host's `name` from which this host should replicate. When not set then host in HA group. It works only when `name` is set.
+     */
     replicationSourceName?: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
     subnetId: string;
+    /**
+     * The availability zone where the MySQL host will be created.
+     */
     zone: string;
 }
 
 export interface MdbMysqlClusterMaintenanceWindow {
+    /**
+     * Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+     */
     day?: string;
+    /**
+     * Hour of the day in UTC (in `HH` format). Allowed value is between 0 and 23.
+     */
     hour?: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
 }
 
 export interface MdbMysqlClusterPerformanceDiagnostics {
+    /**
+     * Enable performance diagnostics
+     */
     enabled: boolean;
+    /**
+     * Interval (in seconds) for myStatActivity sampling Acceptable values are 1 to 86400, inclusive.
+     */
     sessionsSamplingInterval: number;
+    /**
+     * Interval (in seconds) for myStatStatements sampling Acceptable values are 1 to 86400, inclusive.
+     */
     statementsSamplingInterval: number;
 }
 
 export interface MdbMysqlClusterResources {
+    /**
+     * Volume of the storage available to a MySQL host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of MySQL hosts.
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface MdbMysqlClusterRestore {
+    /**
+     * Backup ID. The cluster will be created from the specified backup. [How to get a list of MySQL backups](https://cloud.yandex.com/docs/managed-mysql/operations/cluster-backups).
+     */
     backupId: string;
+    /**
+     * Timestamp of the moment to which the MySQL cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
+     */
     time?: string;
 }
 
 export interface MdbMysqlClusterUser {
+    /**
+     * Authentication plugin. Allowed values: `MYSQL_NATIVE_PASSWORD`, `CACHING_SHA2_PASSWORD`, `SHA256_PASSWORD` (for version 5.7 `MYSQL_NATIVE_PASSWORD`, `SHA256_PASSWORD`)
+     */
     authenticationPlugin: string;
+    /**
+     * User's connection limits. The structure is documented below.
+     * If the attribute is not specified there will be no changes.
+     */
     connectionLimits: outputs.MdbMysqlClusterUserConnectionLimits;
+    /**
+     * List user's global permissions     
+     * Allowed permissions:  `REPLICATION_CLIENT`, `REPLICATION_SLAVE`, `PROCESS` for clear list use empty list.
+     * If the attribute is not specified there will be no changes.
+     */
     globalPermissions: string[];
+    /**
+     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replicationSourceName` parameter.
+     */
     name: string;
+    /**
+     * The password of the user.
+     */
     password: string;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions: outputs.MdbMysqlClusterUserPermission[];
 }
 
 export interface MdbMysqlClusterUserConnectionLimits {
+    /**
+     * Max connections per hour.
+     */
     maxConnectionsPerHour?: number;
+    /**
+     * Max questions per hour.
+     */
     maxQuestionsPerHour?: number;
+    /**
+     * Max updates per hour.
+     */
     maxUpdatesPerHour?: number;
+    /**
+     * Max user connections.
+     */
     maxUserConnections?: number;
 }
 
 export interface MdbMysqlClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName: string;
+    /**
+     * List user's roles in the database.
+     * Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+     * `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+     */
     roles?: string[];
 }
 
 export interface MdbRedisClusterConfig {
+    /**
+     * Normal clients output buffer limits.
+     * See [redis config file](https://github.com/redis/redis/blob/6.2/redis.conf#L1841).
+     */
     clientOutputBufferLimitNormal: string;
+    /**
+     * Pubsub clients output buffer limits.
+     * See [redis config file](https://github.com/redis/redis/blob/6.2/redis.conf#L1843).
+     */
     clientOutputBufferLimitPubsub: string;
+    /**
+     * Number of databases (changing requires redis-server restart).
+     */
     databases: number;
+    /**
+     * Redis key eviction policy for a dataset that reaches maximum memory.
+     * Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/).
+     */
     maxmemoryPolicy: string;
+    /**
+     * Select the events that Redis will notify among a set of classes.
+     */
     notifyKeyspaceEvents: string;
+    /**
+     * Password for the Redis cluster.
+     */
     password: string;
+    /**
+     * Log slow queries below this number in microseconds.
+     */
     slowlogLogSlowerThan: number;
+    /**
+     * Slow queries log length.
+     */
     slowlogMaxLen: number;
+    /**
+     * Close the connection after a client is idle for N seconds.
+     */
     timeout: number;
+    /**
+     * Version of Redis (6.2).
+     */
     version: string;
 }
 
 export interface MdbRedisClusterHost {
+    /**
+     * Sets whether the host should get a public IP address or not.
+     */
     assignPublicIp?: boolean;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn: string;
+    /**
+     * Replica priority of a current replica (usable for non-sharded only).
+     */
     replicaPriority?: number;
+    /**
+     * The name of the shard to which the host belongs.
+     */
     shardName: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must
+     * be a part of the network to which the cluster belongs.
+     */
     subnetId: string;
+    /**
+     * The availability zone where the Redis host will be created.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+     */
     zone: string;
 }
 
 export interface MdbRedisClusterMaintenanceWindow {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day?: string;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
     hour?: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: string;
 }
 
 export interface MdbRedisClusterResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of Redis hosts - environment default is used if missing.
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface MdbSqlServerClusterBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours?: number;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes?: number;
 }
 
 export interface MdbSqlServerClusterDatabase {
+    /**
+     * The name of the database.
+     */
     name: string;
 }
 
 export interface MdbSqlServerClusterHost {
+    /**
+     * Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment
+     */
     assignPublicIp?: boolean;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
     subnetId: string;
+    /**
+     * The availability zone where the SQLServer host will be created.
+     */
     zone: string;
 }
 
 export interface MdbSqlServerClusterResources {
+    /**
+     * Volume of the storage available to a SQLServer host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * Type of the storage of SQLServer hosts.
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface MdbSqlServerClusterUser {
+    /**
+     * The name of the database.
+     */
     name: string;
+    /**
+     * The password of the user.
+     */
     password: string;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions?: outputs.MdbSqlServerClusterUserPermission[];
 }
 
 export interface MdbSqlServerClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName: string;
+    /**
+     * List user's roles in the database.
+     * Allowed roles: `OWNER`, `SECURITYADMIN`, `ACCESSADMIN`, `BACKUPOPERATOR`, `DDLADMIN`, `DATAWRITER`, `DATAREADER`, `DENYDATAWRITER`, `DENYDATAREADER`.
+     */
     roles?: string[];
 }
 
 export interface OrganizationmanagerSamlFederationSecuritySettings {
+    /**
+     * Enable encrypted assertions.
+     */
     encryptedAssertions: boolean;
 }
 
@@ -4392,6 +10327,9 @@ export interface ServerlessContainerImage {
     commands?: string[];
     digest: string;
     environment?: {[key: string]: string};
+    /**
+     * Invoke URL for the Yandex Cloud Serverless Container
+     */
     url: string;
     workDir?: string;
 }
@@ -4404,19 +10342,43 @@ export interface ServerlessContainerSecret {
 }
 
 export interface StorageBucketAnonymousAccessFlags {
+    /**
+     * Allows to list object in bucket anonymously.
+     */
     list?: boolean;
+    /**
+     * Allows to read objects in bucket anonymously.
+     */
     read?: boolean;
 }
 
 export interface StorageBucketCorsRule {
+    /**
+     * Specifies which headers are allowed.
+     */
     allowedHeaders?: string[];
+    /**
+     * Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+     */
     allowedMethods: string[];
+    /**
+     * Specifies which origins are allowed.
+     */
     allowedOrigins: string[];
+    /**
+     * Specifies expose header in the response.
+     */
     exposeHeaders?: string[];
+    /**
+     * Specifies time in seconds that browser can cache the response for a preflight request.
+     */
     maxAgeSeconds?: number;
 }
 
 export interface StorageBucketGrant {
+    /**
+     * Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+     */
     id?: string;
     permissions: string[];
     type: string;
@@ -4424,81 +10386,189 @@ export interface StorageBucketGrant {
 }
 
 export interface StorageBucketHttps {
+    /**
+     * — Id of the certificate in Certificate Manager, that will be used for bucket.
+     */
     certificateId: string;
 }
 
 export interface StorageBucketLifecycleRule {
+    /**
+     * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+     */
     abortIncompleteMultipartUploadDays?: number;
+    /**
+     * Specifies lifecycle rule status.
+     */
     enabled: boolean;
+    /**
+     * Specifies a period in the object's expire (documented below).
+     */
     expiration?: outputs.StorageBucketLifecycleRuleExpiration;
+    /**
+     * Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+     */
     id: string;
+    /**
+     * Specifies when noncurrent object versions expire (documented below).
+     */
     noncurrentVersionExpiration?: outputs.StorageBucketLifecycleRuleNoncurrentVersionExpiration;
+    /**
+     * Specifies when noncurrent object versions transitions (documented below).
+     */
     noncurrentVersionTransitions?: outputs.StorageBucketLifecycleRuleNoncurrentVersionTransition[];
+    /**
+     * Object key prefix identifying one or more objects to which the rule applies.
+     */
     prefix?: string;
+    /**
+     * Specifies a period in the object's transitions (documented below).
+     */
     transitions?: outputs.StorageBucketLifecycleRuleTransition[];
 }
 
 export interface StorageBucketLifecycleRuleExpiration {
+    /**
+     * Specifies the date after which you want the corresponding action to take effect.
+     */
     date?: string;
+    /**
+     * Specifies the number of days after object creation when the specific rule action takes effect.
+     */
     days?: number;
+    /**
+     * On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Object Storage to delete expired object delete markers.
+     */
     expiredObjectDeleteMarker?: boolean;
 }
 
 export interface StorageBucketLifecycleRuleNoncurrentVersionExpiration {
+    /**
+     * Specifies the number of days noncurrent object versions expire.
+     */
     days?: number;
 }
 
 export interface StorageBucketLifecycleRuleNoncurrentVersionTransition {
+    /**
+     * Specifies the number of days noncurrent object versions transition.
+     */
     days?: number;
+    /**
+     * Specifies the storage class to which you want the noncurrent object versions to transition. Can only be `COLD` or `STANDARD_IA`.
+     */
     storageClass: string;
 }
 
 export interface StorageBucketLifecycleRuleTransition {
+    /**
+     * Specifies the date after which you want the corresponding action to take effect.
+     */
     date?: string;
+    /**
+     * Specifies the number of days after object creation when the specific rule action takes effect.
+     */
     days?: number;
+    /**
+     * Specifies the storage class to which you want the object to transition. Can only be `COLD` or `STANDARD_IA`.
+     */
     storageClass: string;
 }
 
 export interface StorageBucketLogging {
+    /**
+     * The name of the bucket that will receive the log objects.
+     */
     targetBucket: string;
+    /**
+     * To specify a key prefix for log objects.
+     */
     targetPrefix?: string;
 }
 
 export interface StorageBucketServerSideEncryptionConfiguration {
+    /**
+     * A single object for server-side encryption by default configuration. (documented below)
+     */
     rule: outputs.StorageBucketServerSideEncryptionConfigurationRule;
 }
 
 export interface StorageBucketServerSideEncryptionConfigurationRule {
+    /**
+     * A single object for setting server-side encryption by default. (documented below)
+     */
     applyServerSideEncryptionByDefault: outputs.StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault;
 }
 
 export interface StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+    /**
+     * The KMS master key ID used for the SSE-KMS encryption.
+     */
     kmsMasterKeyId: string;
+    /**
+     * The server-side encryption algorithm to use. Single valid value is `aws:kms`
+     */
     sseAlgorithm: string;
 }
 
 export interface StorageBucketVersioning {
+    /**
+     * Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+     */
     enabled?: boolean;
 }
 
 export interface StorageBucketWebsite {
+    /**
+     * An absolute path to the document to return in case of a 4XX error.
+     */
     errorDocument?: string;
+    /**
+     * Storage returns this index document when requests are made to the root domain or any of the subfolders.
+     */
     indexDocument?: string;
+    /**
+     * A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (`http://` or `https://`) to use when redirecting requests. The default is the protocol that is used in the original request.
+     */
     redirectAllRequestsTo?: string;
+    /**
+     * A json array containing [routing rules](https://cloud.yandex.com/docs/storage/s3/api-ref/hosting/upload#request-scheme) describing redirect behavior and when redirects are applied.
+     */
     routingRules?: string;
 }
 
 export interface VpcAddressExternalIpv4Address {
+    /**
+     * Allocated IP address.
+     */
     address: string;
+    /**
+     * Enable DDOS protection. Possible values are: "qrator"
+     */
     ddosProtectionProvider: string;
+    /**
+     * Wanted outgoing smtp capability.
+     */
     outgoingSmtpCapability: string;
+    /**
+     * Zone for allocating address.
+     */
     zoneId: string;
 }
 
 export interface VpcDefaultSecurityGroupEgress {
+    /**
+     * Description of the security group.
+     */
     description?: string;
     fromPort?: number;
+    /**
+     * Id of the security group.
+     */
     id: string;
+    /**
+     * Labels to assign to this security group.
+     */
     labels: {[key: string]: string};
     port?: number;
     predefinedTarget?: string;
@@ -4510,9 +10580,18 @@ export interface VpcDefaultSecurityGroupEgress {
 }
 
 export interface VpcDefaultSecurityGroupIngress {
+    /**
+     * Description of the security group.
+     */
     description?: string;
     fromPort?: number;
+    /**
+     * Id of the security group.
+     */
     id: string;
+    /**
+     * Labels to assign to this security group.
+     */
     labels: {[key: string]: string};
     port?: number;
     predefinedTarget?: string;
@@ -4524,15 +10603,33 @@ export interface VpcDefaultSecurityGroupIngress {
 }
 
 export interface VpcRouteTableStaticRoute {
+    /**
+     * Route prefix in CIDR notation.
+     */
     destinationPrefix?: string;
+    /**
+     * ID of the gateway used ad next hop.
+     */
     gatewayId?: string;
+    /**
+     * Address of the next hop.
+     */
     nextHopAddress?: string;
 }
 
 export interface VpcSecurityGroupEgress {
+    /**
+     * Description of the security group.
+     */
     description?: string;
     fromPort?: number;
+    /**
+     * Id of the rule.
+     */
     id: string;
+    /**
+     * Labels to assign to this security group.
+     */
     labels: {[key: string]: string};
     port?: number;
     predefinedTarget?: string;
@@ -4544,9 +10641,18 @@ export interface VpcSecurityGroupEgress {
 }
 
 export interface VpcSecurityGroupIngress {
+    /**
+     * Description of the security group.
+     */
     description?: string;
     fromPort?: number;
+    /**
+     * Id of the rule.
+     */
     id: string;
+    /**
+     * Labels to assign to this security group.
+     */
     labels: {[key: string]: string};
     port?: number;
     predefinedTarget?: string;
@@ -4558,28 +10664,58 @@ export interface VpcSecurityGroupIngress {
 }
 
 export interface VpcSubnetDhcpOptions {
+    /**
+     * Domain name.
+     */
     domainName?: string;
+    /**
+     * Domain name server IP addresses.
+     */
     domainNameServers?: string[];
+    /**
+     * NTP server IP addresses.
+     */
     ntpServers?: string[];
 }
 
 export interface YdbDatabaseDedicatedLocation {
+    /**
+     * Region for the Yandex Database cluster.
+     * The structure is documented below.
+     */
     region?: outputs.YdbDatabaseDedicatedLocationRegion;
 }
 
 export interface YdbDatabaseDedicatedLocationRegion {
+    /**
+     * Region ID for the Yandex Database cluster.
+     */
     id: string;
 }
 
 export interface YdbDatabaseDedicatedScalePolicy {
+    /**
+     * Fixed scaling policy for the Yandex Database cluster.
+     * The structure is documented below.
+     */
     fixedScale: outputs.YdbDatabaseDedicatedScalePolicyFixedScale;
 }
 
 export interface YdbDatabaseDedicatedScalePolicyFixedScale {
+    /**
+     * Number of instances for the Yandex Database cluster.
+     */
     size: number;
 }
 
 export interface YdbDatabaseDedicatedStorageConfig {
+    /**
+     * Amount of storage groups of selected type for the Yandex Database cluster.
+     */
     groupCount: number;
+    /**
+     * Storage type ID for the Yandex Database cluster.
+     * Available presets can be obtained via `yc ydb storage-type list` command.
+     */
     storageTypeId: string;
 }

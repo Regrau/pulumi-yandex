@@ -5,6 +5,107 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a Redis cluster within the Yandex.Cloud. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/managed-redis/concepts).
+ *
+ * ## Example Usage
+ *
+ * Example of creating a Standalone Redis.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const fooVpcNetwork = new yandex.VpcNetwork("foo", {});
+ * const fooVpcSubnet = new yandex.VpcSubnet("foo", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.5.0.0/24"],
+ *     zone: "ru-central1-a",
+ * });
+ * const fooMdbRedisCluster = new yandex.MdbRedisCluster("foo", {
+ *     config: {
+ *         password: "your_password",
+ *         version: "6.2",
+ *     },
+ *     environment: "PRESTABLE",
+ *     hosts: [{
+ *         subnetId: fooVpcSubnet.id,
+ *         zone: "ru-central1-a",
+ *     }],
+ *     maintenanceWindow: {
+ *         type: "ANYTIME",
+ *     },
+ *     networkId: fooVpcNetwork.id,
+ *     resources: {
+ *         diskSize: 16,
+ *         resourcePresetId: "hm1.nano",
+ *     },
+ * });
+ * ```
+ *
+ * Example of creating a sharded Redis Cluster.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const fooVpcNetwork = new yandex.VpcNetwork("foo", {});
+ * const fooVpcSubnet = new yandex.VpcSubnet("foo", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.1.0.0/24"],
+ *     zone: "ru-central1-a",
+ * });
+ * const bar = new yandex.VpcSubnet("bar", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.2.0.0/24"],
+ *     zone: "ru-central1-b",
+ * });
+ * const baz = new yandex.VpcSubnet("baz", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.3.0.0/24"],
+ *     zone: "ru-central1-c",
+ * });
+ * const fooMdbRedisCluster = new yandex.MdbRedisCluster("foo", {
+ *     config: {
+ *         password: "your_password",
+ *         version: "6.2",
+ *     },
+ *     environment: "PRESTABLE",
+ *     hosts: [
+ *         {
+ *             shardName: "first",
+ *             subnetId: fooVpcSubnet.id,
+ *             zone: "ru-central1-a",
+ *         },
+ *         {
+ *             shardName: "second",
+ *             subnetId: bar.id,
+ *             zone: "ru-central1-b",
+ *         },
+ *         {
+ *             shardName: "third",
+ *             subnetId: baz.id,
+ *             zone: "ru-central1-c",
+ *         },
+ *     ],
+ *     networkId: fooVpcNetwork.id,
+ *     resources: {
+ *         diskSize: 16,
+ *         resourcePresetId: "hm1.nano",
+ *     },
+ *     sharded: true,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A cluster can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/mdbRedisCluster:MdbRedisCluster foo cluster_id
+ * ```
+ */
 export class MdbRedisCluster extends pulumi.CustomResource {
     /**
      * Get an existing MdbRedisCluster resource's state with the given name, ID, and optional extra
@@ -33,23 +134,77 @@ export class MdbRedisCluster extends pulumi.CustomResource {
         return obj['__pulumiType'] === MdbRedisCluster.__pulumiType;
     }
 
+    /**
+     * Configuration of the Redis cluster. The structure is documented below.
+     */
     public readonly config!: pulumi.Output<outputs.MdbRedisClusterConfig>;
+    /**
+     * Creation timestamp of the key.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     public readonly deletionProtection!: pulumi.Output<boolean>;
+    /**
+     * Description of the Redis cluster.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Deployment environment of the Redis cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+     */
     public readonly environment!: pulumi.Output<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+     * For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).
+     */
     public /*out*/ readonly health!: pulumi.Output<string>;
+    /**
+     * A host of the Redis cluster. The structure is documented below.
+     */
     public readonly hosts!: pulumi.Output<outputs.MdbRedisClusterHost[]>;
+    /**
+     * A set of key/value label pairs to assign to the Redis cluster.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     public readonly maintenanceWindow!: pulumi.Output<outputs.MdbRedisClusterMaintenanceWindow>;
+    /**
+     * Name of the Redis cluster. Provided by the client when the cluster is created.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * ID of the network, to which the Redis cluster belongs.
+     */
     public readonly networkId!: pulumi.Output<string>;
+    /**
+     * Persistence mode.
+     */
     public readonly persistenceMode!: pulumi.Output<string>;
+    /**
+     * Resources allocated to hosts of the Redis cluster. The structure is documented below.
+     */
     public readonly resources!: pulumi.Output<outputs.MdbRedisClusterResources>;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     public readonly securityGroupIds!: pulumi.Output<string[] | undefined>;
+    /**
+     * Redis Cluster mode enabled/disabled.
+     */
     public readonly sharded!: pulumi.Output<boolean | undefined>;
+    /**
+     * Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+     * For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).
+     */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * TLS support mode enabled/disabled.
+     */
     public readonly tlsEnabled!: pulumi.Output<boolean>;
 
     /**
@@ -128,23 +283,77 @@ export class MdbRedisCluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MdbRedisCluster resources.
  */
 export interface MdbRedisClusterState {
+    /**
+     * Configuration of the Redis cluster. The structure is documented below.
+     */
     config?: pulumi.Input<inputs.MdbRedisClusterConfig>;
+    /**
+     * Creation timestamp of the key.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * Description of the Redis cluster.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Deployment environment of the Redis cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+     */
     environment?: pulumi.Input<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+     * For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).
+     */
     health?: pulumi.Input<string>;
+    /**
+     * A host of the Redis cluster. The structure is documented below.
+     */
     hosts?: pulumi.Input<pulumi.Input<inputs.MdbRedisClusterHost>[]>;
+    /**
+     * A set of key/value label pairs to assign to the Redis cluster.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     maintenanceWindow?: pulumi.Input<inputs.MdbRedisClusterMaintenanceWindow>;
+    /**
+     * Name of the Redis cluster. Provided by the client when the cluster is created.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network, to which the Redis cluster belongs.
+     */
     networkId?: pulumi.Input<string>;
+    /**
+     * Persistence mode.
+     */
     persistenceMode?: pulumi.Input<string>;
+    /**
+     * Resources allocated to hosts of the Redis cluster. The structure is documented below.
+     */
     resources?: pulumi.Input<inputs.MdbRedisClusterResources>;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Redis Cluster mode enabled/disabled.
+     */
     sharded?: pulumi.Input<boolean>;
+    /**
+     * Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+     * For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).
+     */
     status?: pulumi.Input<string>;
+    /**
+     * TLS support mode enabled/disabled.
+     */
     tlsEnabled?: pulumi.Input<boolean>;
 }
 
@@ -152,19 +361,62 @@ export interface MdbRedisClusterState {
  * The set of arguments for constructing a MdbRedisCluster resource.
  */
 export interface MdbRedisClusterArgs {
+    /**
+     * Configuration of the Redis cluster. The structure is documented below.
+     */
     config: pulumi.Input<inputs.MdbRedisClusterConfig>;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * Description of the Redis cluster.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Deployment environment of the Redis cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+     */
     environment: pulumi.Input<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A host of the Redis cluster. The structure is documented below.
+     */
     hosts: pulumi.Input<pulumi.Input<inputs.MdbRedisClusterHost>[]>;
+    /**
+     * A set of key/value label pairs to assign to the Redis cluster.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     maintenanceWindow?: pulumi.Input<inputs.MdbRedisClusterMaintenanceWindow>;
+    /**
+     * Name of the Redis cluster. Provided by the client when the cluster is created.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network, to which the Redis cluster belongs.
+     */
     networkId: pulumi.Input<string>;
+    /**
+     * Persistence mode.
+     */
     persistenceMode?: pulumi.Input<string>;
+    /**
+     * Resources allocated to hosts of the Redis cluster. The structure is documented below.
+     */
     resources: pulumi.Input<inputs.MdbRedisClusterResources>;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Redis Cluster mode enabled/disabled.
+     */
     sharded?: pulumi.Input<boolean>;
+    /**
+     * TLS support mode enabled/disabled.
+     */
     tlsEnabled?: pulumi.Input<boolean>;
 }

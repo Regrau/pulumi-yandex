@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetKubernetesNodeGroupAllocationPolicyResult
     {
+        /// <summary>
+        /// Repeated field, that specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupAllocationPolicyLocationResult> Locations;
 
         [OutputConstructor]

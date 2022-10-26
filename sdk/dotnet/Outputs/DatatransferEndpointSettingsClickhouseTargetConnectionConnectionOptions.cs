@@ -13,10 +13,25 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptions
     {
+        /// <summary>
+        /// Database name.
+        /// </summary>
         public readonly string? Database;
+        /// <summary>
+        /// Identifier of the Managed ClickHouse cluster.
+        /// </summary>
         public readonly string? MdbClusterId;
+        /// <summary>
+        /// Connection settings of the on-premise ClickHouse server.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremise? OnPremise;
+        /// <summary>
+        /// Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsPassword? Password;
+        /// <summary>
+        /// User for database access.
+        /// </summary>
         public readonly string? User;
 
         [OutputConstructor]

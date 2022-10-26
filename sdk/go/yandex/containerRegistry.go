@@ -10,14 +10,60 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates a new container registry. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/registry)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewContainerRegistry(ctx, "default", &yandex.ContainerRegistryArgs{
+//				FolderId: pulumi.String("test_folder_id"),
+//				Labels: pulumi.StringMap{
+//					"my-label": pulumi.String("my-label-value"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A registry can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/containerRegistry:ContainerRegistry default registry_id
+//
+// ```
 type ContainerRegistry struct {
 	pulumi.CustomResourceState
 
-	CreatedAt pulumi.StringOutput    `pulumi:"createdAt"`
-	FolderId  pulumi.StringOutput    `pulumi:"folderId"`
-	Labels    pulumi.StringMapOutput `pulumi:"labels"`
-	Name      pulumi.StringOutput    `pulumi:"name"`
-	Status    pulumi.StringOutput    `pulumi:"status"`
+	// Creation timestamp of the registry.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the registry.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// A name of the registry.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Status of the registry.
+	Status pulumi.StringOutput `pulumi:"status"`
 }
 
 // NewContainerRegistry registers a new resource with the given unique name, arguments, and options.
@@ -50,19 +96,29 @@ func GetContainerRegistry(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ContainerRegistry resources.
 type containerRegistryState struct {
-	CreatedAt *string           `pulumi:"createdAt"`
-	FolderId  *string           `pulumi:"folderId"`
-	Labels    map[string]string `pulumi:"labels"`
-	Name      *string           `pulumi:"name"`
-	Status    *string           `pulumi:"status"`
+	// Creation timestamp of the registry.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the registry.
+	Labels map[string]string `pulumi:"labels"`
+	// A name of the registry.
+	Name *string `pulumi:"name"`
+	// Status of the registry.
+	Status *string `pulumi:"status"`
 }
 
 type ContainerRegistryState struct {
+	// Creation timestamp of the registry.
 	CreatedAt pulumi.StringPtrInput
-	FolderId  pulumi.StringPtrInput
-	Labels    pulumi.StringMapInput
-	Name      pulumi.StringPtrInput
-	Status    pulumi.StringPtrInput
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the registry.
+	Labels pulumi.StringMapInput
+	// A name of the registry.
+	Name pulumi.StringPtrInput
+	// Status of the registry.
+	Status pulumi.StringPtrInput
 }
 
 func (ContainerRegistryState) ElementType() reflect.Type {
@@ -70,16 +126,22 @@ func (ContainerRegistryState) ElementType() reflect.Type {
 }
 
 type containerRegistryArgs struct {
-	FolderId *string           `pulumi:"folderId"`
-	Labels   map[string]string `pulumi:"labels"`
-	Name     *string           `pulumi:"name"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the registry.
+	Labels map[string]string `pulumi:"labels"`
+	// A name of the registry.
+	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a ContainerRegistry resource.
 type ContainerRegistryArgs struct {
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
 	FolderId pulumi.StringPtrInput
-	Labels   pulumi.StringMapInput
-	Name     pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the registry.
+	Labels pulumi.StringMapInput
+	// A name of the registry.
+	Name pulumi.StringPtrInput
 }
 
 func (ContainerRegistryArgs) ElementType() reflect.Type {
@@ -169,22 +231,27 @@ func (o ContainerRegistryOutput) ToContainerRegistryOutputWithContext(ctx contex
 	return o
 }
 
+// Creation timestamp of the registry.
 func (o ContainerRegistryOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerRegistry) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
 func (o ContainerRegistryOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerRegistry) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the registry.
 func (o ContainerRegistryOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ContainerRegistry) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// A name of the registry.
 func (o ContainerRegistryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerRegistry) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Status of the registry.
 func (o ContainerRegistryOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerRegistry) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

@@ -12,15 +12,27 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+        /// </summary>
         [Input("localityAwareRoutingPercent", required: true)]
         public int LocalityAwareRoutingPercent { get; set; }
 
+        /// <summary>
+        /// Load balancing mode for the backend.
+        /// </summary>
         [Input("mode", required: true)]
         public string Mode { get; set; } = null!;
 
+        /// <summary>
+        /// If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+        /// </summary>
         [Input("panicThreshold", required: true)]
         public int PanicThreshold { get; set; }
 
+        /// <summary>
+        /// If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+        /// </summary>
         [Input("strictLocality", required: true)]
         public bool StrictLocality { get; set; }
 

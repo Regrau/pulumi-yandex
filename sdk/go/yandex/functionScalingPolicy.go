@@ -11,11 +11,58 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of [Yandex Cloud Function Scaling Policies](https://cloud.yandex.com/docs/functions/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewFunctionScalingPolicy(ctx, "myScalingPolicy", &yandex.FunctionScalingPolicyArgs{
+//				FunctionId: pulumi.String("are1samplefunction11"),
+//				Policies: FunctionScalingPolicyPolicyArray{
+//					&FunctionScalingPolicyPolicyArgs{
+//						Tag:                pulumi.String(fmt.Sprintf("$latest")),
+//						ZoneInstancesLimit: pulumi.Int(3),
+//						ZoneRequestsLimit:  pulumi.Int(100),
+//					},
+//					&FunctionScalingPolicyPolicyArgs{
+//						Tag:                pulumi.String("my_tag"),
+//						ZoneInstancesLimit: pulumi.Int(4),
+//						ZoneRequestsLimit:  pulumi.Int(150),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type FunctionScalingPolicy struct {
 	pulumi.CustomResourceState
 
-	FunctionId pulumi.StringOutput                    `pulumi:"functionId"`
-	Policies   FunctionScalingPolicyPolicyArrayOutput `pulumi:"policies"`
+	// Yandex Cloud Function id used to define function
+	FunctionId pulumi.StringOutput `pulumi:"functionId"`
+	// list definition for Yandex Cloud Function scaling policies
+	// * `policy.#` - number of Yandex Cloud Function scaling policies
+	// * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+	// * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+	// * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+	Policies FunctionScalingPolicyPolicyArrayOutput `pulumi:"policies"`
 }
 
 // NewFunctionScalingPolicy registers a new resource with the given unique name, arguments, and options.
@@ -51,13 +98,25 @@ func GetFunctionScalingPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FunctionScalingPolicy resources.
 type functionScalingPolicyState struct {
-	FunctionId *string                       `pulumi:"functionId"`
-	Policies   []FunctionScalingPolicyPolicy `pulumi:"policies"`
+	// Yandex Cloud Function id used to define function
+	FunctionId *string `pulumi:"functionId"`
+	// list definition for Yandex Cloud Function scaling policies
+	// * `policy.#` - number of Yandex Cloud Function scaling policies
+	// * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+	// * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+	// * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+	Policies []FunctionScalingPolicyPolicy `pulumi:"policies"`
 }
 
 type FunctionScalingPolicyState struct {
+	// Yandex Cloud Function id used to define function
 	FunctionId pulumi.StringPtrInput
-	Policies   FunctionScalingPolicyPolicyArrayInput
+	// list definition for Yandex Cloud Function scaling policies
+	// * `policy.#` - number of Yandex Cloud Function scaling policies
+	// * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+	// * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+	// * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+	Policies FunctionScalingPolicyPolicyArrayInput
 }
 
 func (FunctionScalingPolicyState) ElementType() reflect.Type {
@@ -65,14 +124,26 @@ func (FunctionScalingPolicyState) ElementType() reflect.Type {
 }
 
 type functionScalingPolicyArgs struct {
-	FunctionId string                        `pulumi:"functionId"`
-	Policies   []FunctionScalingPolicyPolicy `pulumi:"policies"`
+	// Yandex Cloud Function id used to define function
+	FunctionId string `pulumi:"functionId"`
+	// list definition for Yandex Cloud Function scaling policies
+	// * `policy.#` - number of Yandex Cloud Function scaling policies
+	// * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+	// * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+	// * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+	Policies []FunctionScalingPolicyPolicy `pulumi:"policies"`
 }
 
 // The set of arguments for constructing a FunctionScalingPolicy resource.
 type FunctionScalingPolicyArgs struct {
+	// Yandex Cloud Function id used to define function
 	FunctionId pulumi.StringInput
-	Policies   FunctionScalingPolicyPolicyArrayInput
+	// list definition for Yandex Cloud Function scaling policies
+	// * `policy.#` - number of Yandex Cloud Function scaling policies
+	// * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+	// * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+	// * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+	Policies FunctionScalingPolicyPolicyArrayInput
 }
 
 func (FunctionScalingPolicyArgs) ElementType() reflect.Type {
@@ -162,10 +233,16 @@ func (o FunctionScalingPolicyOutput) ToFunctionScalingPolicyOutputWithContext(ct
 	return o
 }
 
+// Yandex Cloud Function id used to define function
 func (o FunctionScalingPolicyOutput) FunctionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionScalingPolicy) pulumi.StringOutput { return v.FunctionId }).(pulumi.StringOutput)
 }
 
+// list definition for Yandex Cloud Function scaling policies
+// * `policy.#` - number of Yandex Cloud Function scaling policies
+// * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+// * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+// * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
 func (o FunctionScalingPolicyOutput) Policies() FunctionScalingPolicyPolicyArrayOutput {
 	return o.ApplyT(func(v *FunctionScalingPolicy) FunctionScalingPolicyPolicyArrayOutput { return v.Policies }).(FunctionScalingPolicyPolicyArrayOutput)
 }

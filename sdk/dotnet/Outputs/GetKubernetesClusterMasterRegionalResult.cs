@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetKubernetesClusterMasterRegionalResult
     {
+        /// <summary>
+        /// ID of the availability region where the master compute instances resides.
+        /// </summary>
         public readonly string Region;
 
         [OutputConstructor]

@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetComputeInstancePlacementPolicyHostAffinityRuleArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Affinity label or one of reserved values - `yc.hostId`, `yc.hostGroupId`.
+        /// </summary>
         [Input("key", required: true)]
         public string Key { get; set; } = null!;
 
+        /// <summary>
+        /// Affinity action. The only value supported is `IN`.
+        /// </summary>
         [Input("op", required: true)]
         public string Op { get; set; } = null!;
 

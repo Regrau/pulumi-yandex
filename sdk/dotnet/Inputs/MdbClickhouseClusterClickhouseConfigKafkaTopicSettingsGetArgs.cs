@@ -12,15 +12,27 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterClickhouseConfigKafkaTopicSettingsGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// SASL mechanism used in kafka authentication.
+        /// </summary>
         [Input("saslMechanism")]
         public Input<string>? SaslMechanism { get; set; }
 
+        /// <summary>
+        /// User password on kafka server.
+        /// </summary>
         [Input("saslPassword")]
         public Input<string>? SaslPassword { get; set; }
 
+        /// <summary>
+        /// Username on kafka server.
+        /// </summary>
         [Input("saslUsername")]
         public Input<string>? SaslUsername { get; set; }
 
+        /// <summary>
+        /// Security protocol used to connect to kafka server.
+        /// </summary>
         [Input("securityProtocol")]
         public Input<string>? SecurityProtocol { get; set; }
 

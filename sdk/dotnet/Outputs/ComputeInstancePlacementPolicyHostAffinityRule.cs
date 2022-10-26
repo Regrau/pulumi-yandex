@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstancePlacementPolicyHostAffinityRule
     {
+        /// <summary>
+        /// Affinity label or one of reserved values - `yc.hostId`, `yc.hostGroupId`.
+        /// </summary>
         public readonly string Key;
+        /// <summary>
+        /// Affinity action. The only value supported is `IN`.
+        /// </summary>
         public readonly string Op;
         public readonly ImmutableArray<string> Values;
 

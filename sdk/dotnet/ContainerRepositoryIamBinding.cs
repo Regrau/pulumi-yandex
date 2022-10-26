@@ -9,15 +9,86 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// ## yandex\_container\_repository\_iam\_binding
+    /// 
+    /// Allows creation and management of a single binding within IAM policy for
+    /// an existing Yandex Container Repository.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var your_registry = new Yandex.ContainerRegistry("your-registry", new()
+    ///     {
+    ///         FolderId = "your-folder-id",
+    ///     });
+    /// 
+    ///     var repo_1 = new Yandex.ContainerRepository("repo-1");
+    /// 
+    ///     var puller = new Yandex.ContainerRepositoryIamBinding("puller", new()
+    ///     {
+    ///         RepositoryId = repo_1.Id,
+    ///         Role = "container-registry.images.puller",
+    ///         Members = new[]
+    ///         {
+    ///             "system:allUsers",
+    ///         },
+    ///     });
+    /// 
+    ///     var repo_2 = Yandex.GetContainerRepository.Invoke(new()
+    ///     {
+    ///         Name = "some_repository_name",
+    ///     });
+    /// 
+    ///     var pusher = new Yandex.ContainerRepositoryIamBinding("pusher", new()
+    ///     {
+    ///         RepositoryId = repo_2.Apply(getContainerRepositoryResult =&gt; getContainerRepositoryResult).Apply(repo_2 =&gt; repo_2.Apply(getContainerRepositoryResult =&gt; getContainerRepositoryResult.Id)),
+    ///         Role = "container-registry.images.pusher",
+    ///         Members = new[]
+    ///         {
+    ///             "serviceAccount:your-service-account-id",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `repository_id` and role, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/containerRepositoryIamBinding:ContainerRepositoryIamBinding puller "repository_id container-registry.images.puller"
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/containerRepositoryIamBinding:ContainerRepositoryIamBinding")]
     public partial class ContainerRepositoryIamBinding : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Identities that will be granted the privilege in `role`.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        /// </summary>
         [Output("members")]
         public Output<ImmutableArray<string>> Members { get; private set; } = null!;
 
+        /// <summary>
+        /// The [Yandex Container Repository](https://cloud.yandex.com/docs/container-registry/concepts/repository) ID to apply a binding to.
+        /// </summary>
         [Output("repositoryId")]
         public Output<string> RepositoryId { get; private set; } = null!;
 
+        /// <summary>
+        /// The role that should be applied. See [roles](https://cloud.yandex.com/docs/container-registry/security/).
+        /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
 
@@ -47,7 +118,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -73,15 +144,29 @@ namespace Pulumi.Yandex
     {
         [Input("members", required: true)]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// Identities that will be granted the privilege in `role`.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// The [Yandex Container Repository](https://cloud.yandex.com/docs/container-registry/concepts/repository) ID to apply a binding to.
+        /// </summary>
         [Input("repositoryId", required: true)]
         public Input<string> RepositoryId { get; set; } = null!;
 
+        /// <summary>
+        /// The role that should be applied. See [roles](https://cloud.yandex.com/docs/container-registry/security/).
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
@@ -98,15 +183,29 @@ namespace Pulumi.Yandex
     {
         [Input("members")]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// Identities that will be granted the privilege in `role`.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// The [Yandex Container Repository](https://cloud.yandex.com/docs/container-registry/concepts/repository) ID to apply a binding to.
+        /// </summary>
         [Input("repositoryId")]
         public Input<string>? RepositoryId { get; set; }
 
+        /// <summary>
+        /// The role that should be applied. See [roles](https://cloud.yandex.com/docs/container-registry/security/).
+        /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 

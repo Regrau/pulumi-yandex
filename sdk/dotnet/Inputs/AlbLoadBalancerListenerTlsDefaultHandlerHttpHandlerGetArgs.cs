@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If set, will enable only HTTP1 protocol with HTTP1.0 support.
+        /// </summary>
         [Input("allowHttp10")]
         public Input<bool>? AllowHttp10 { get; set; }
 
+        /// <summary>
+        /// If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+        /// </summary>
         [Input("http2Options")]
         public Input<Inputs.AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2OptionsGetArgs>? Http2Options { get; set; }
 
+        /// <summary>
+        /// HTTP router id.
+        /// </summary>
         [Input("httpRouterId")]
         public Input<string>? HttpRouterId { get; set; }
 

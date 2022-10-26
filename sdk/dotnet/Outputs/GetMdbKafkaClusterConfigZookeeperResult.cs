@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbKafkaClusterConfigZookeeperResult
     {
+        /// <summary>
+        /// (Optional) Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        /// </summary>
         public readonly Outputs.GetMdbKafkaClusterConfigZookeeperResourcesResult Resources;
 
         [OutputConstructor]

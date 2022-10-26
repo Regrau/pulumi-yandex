@@ -5,6 +5,23 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Managed MongoDB cluster. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const foo = pulumi.output(yandex.getMdbMongodbCluster({
+ *     name: "test",
+ * }));
+ *
+ * export const networkId = foo.networkId!;
+ * ```
+ */
 export function getMdbMongodbCluster(args?: GetMdbMongodbClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetMdbMongodbClusterResult> {
     args = args || {};
     if (!opts) {
@@ -39,24 +56,75 @@ export function getMdbMongodbCluster(args?: GetMdbMongodbClusterArgs, opts?: pul
  * A collection of arguments for invoking getMdbMongodbCluster.
  */
 export interface GetMdbMongodbClusterArgs {
+    /**
+     * Configuration of the MongoDB cluster. The structure is documented below.
+     */
     clusterConfig?: inputs.GetMdbMongodbClusterClusterConfig;
+    /**
+     * The ID of the MongoDB cluster.
+     */
     clusterId?: string;
+    /**
+     * Creation timestamp of the key.
+     */
     createdAt?: string;
+    /**
+     * A database of the MongoDB cluster. The structure is documented below.
+     */
     databases?: inputs.GetMdbMongodbClusterDatabase[];
     deletionProtection?: boolean;
+    /**
+     * Description of the MongoDB cluster.
+     */
     description?: string;
+    /**
+     * Deployment environment of the MongoDB cluster.
+     */
     environment?: string;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * The health of the host.
+     */
     health?: string;
+    /**
+     * A host of the MongoDB cluster. The structure is documented below.
+     */
     hosts?: inputs.GetMdbMongodbClusterHost[];
+    /**
+     * A set of key/value label pairs to assign to the MongoDB cluster.
+     */
     labels?: {[key: string]: string};
     maintenanceWindow?: inputs.GetMdbMongodbClusterMaintenanceWindow;
+    /**
+     * The name of the MongoDB cluster.
+     */
     name?: string;
+    /**
+     * ID of the network, to which the MongoDB cluster belongs.
+     */
     networkId?: string;
+    /**
+     * Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+     */
     resources?: inputs.GetMdbMongodbClusterResources;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     securityGroupIds?: string[];
+    /**
+     * MongoDB Cluster mode enabled/disabled.
+     */
     sharded?: boolean;
+    /**
+     * Status of the cluster.
+     */
     status?: string;
+    /**
+     * A user of the MongoDB cluster. The structure is documented below.
+     */
     users?: inputs.GetMdbMongodbClusterUser[];
 }
 
@@ -64,28 +132,73 @@ export interface GetMdbMongodbClusterArgs {
  * A collection of values returned by getMdbMongodbCluster.
  */
 export interface GetMdbMongodbClusterResult {
+    /**
+     * Configuration of the MongoDB cluster. The structure is documented below.
+     */
     readonly clusterConfig?: outputs.GetMdbMongodbClusterClusterConfig;
     readonly clusterId: string;
+    /**
+     * Creation timestamp of the key.
+     */
     readonly createdAt: string;
+    /**
+     * A database of the MongoDB cluster. The structure is documented below.
+     */
     readonly databases?: outputs.GetMdbMongodbClusterDatabase[];
     readonly deletionProtection: boolean;
+    /**
+     * Description of the MongoDB cluster.
+     */
     readonly description: string;
+    /**
+     * Deployment environment of the MongoDB cluster.
+     */
     readonly environment?: string;
     readonly folderId: string;
+    /**
+     * The health of the host.
+     */
     readonly health: string;
+    /**
+     * A host of the MongoDB cluster. The structure is documented below.
+     */
     readonly hosts?: outputs.GetMdbMongodbClusterHost[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A set of key/value label pairs to assign to the MongoDB cluster.
+     */
     readonly labels: {[key: string]: string};
     readonly maintenanceWindow: outputs.GetMdbMongodbClusterMaintenanceWindow;
+    /**
+     * The name of the database.
+     */
     readonly name?: string;
+    /**
+     * ID of the network, to which the MongoDB cluster belongs.
+     */
     readonly networkId?: string;
+    /**
+     * Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+     */
     readonly resources?: outputs.GetMdbMongodbClusterResources;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     readonly securityGroupIds?: string[];
+    /**
+     * MongoDB Cluster mode enabled/disabled.
+     */
     readonly sharded: boolean;
+    /**
+     * Status of the cluster.
+     */
     readonly status: string;
+    /**
+     * A user of the MongoDB cluster. The structure is documented below.
+     */
     readonly users?: outputs.GetMdbMongodbClusterUser[];
 }
 
@@ -97,23 +210,74 @@ export function getMdbMongodbClusterOutput(args?: GetMdbMongodbClusterOutputArgs
  * A collection of arguments for invoking getMdbMongodbCluster.
  */
 export interface GetMdbMongodbClusterOutputArgs {
+    /**
+     * Configuration of the MongoDB cluster. The structure is documented below.
+     */
     clusterConfig?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigArgs>;
+    /**
+     * The ID of the MongoDB cluster.
+     */
     clusterId?: pulumi.Input<string>;
+    /**
+     * Creation timestamp of the key.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * A database of the MongoDB cluster. The structure is documented below.
+     */
     databases?: pulumi.Input<pulumi.Input<inputs.GetMdbMongodbClusterDatabaseArgs>[]>;
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * Description of the MongoDB cluster.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Deployment environment of the MongoDB cluster.
+     */
     environment?: pulumi.Input<string>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * The health of the host.
+     */
     health?: pulumi.Input<string>;
+    /**
+     * A host of the MongoDB cluster. The structure is documented below.
+     */
     hosts?: pulumi.Input<pulumi.Input<inputs.GetMdbMongodbClusterHostArgs>[]>;
+    /**
+     * A set of key/value label pairs to assign to the MongoDB cluster.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     maintenanceWindow?: pulumi.Input<inputs.GetMdbMongodbClusterMaintenanceWindowArgs>;
+    /**
+     * The name of the MongoDB cluster.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network, to which the MongoDB cluster belongs.
+     */
     networkId?: pulumi.Input<string>;
+    /**
+     * Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+     */
     resources?: pulumi.Input<inputs.GetMdbMongodbClusterResourcesArgs>;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * MongoDB Cluster mode enabled/disabled.
+     */
     sharded?: pulumi.Input<boolean>;
+    /**
+     * Status of the cluster.
+     */
     status?: pulumi.Input<string>;
+    /**
+     * A user of the MongoDB cluster. The structure is documented below.
+     */
     users?: pulumi.Input<pulumi.Input<inputs.GetMdbMongodbClusterUserArgs>[]>;
 }

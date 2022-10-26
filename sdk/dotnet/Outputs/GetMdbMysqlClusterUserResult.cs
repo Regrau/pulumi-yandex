@@ -13,11 +13,29 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbMysqlClusterUserResult
     {
+        /// <summary>
+        /// Authentication plugin. Allowed values: `MYSQL_NATIVE_PASSWORD`, `CACHING_SHA2_PASSWORD`, `SHA256_PASSWORD`
+        /// </summary>
         public readonly string AuthenticationPlugin;
+        /// <summary>
+        /// User's connection limits. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbMysqlClusterUserConnectionLimitResult> ConnectionLimits;
+        /// <summary>
+        /// List user's global permissions. Allowed values: `REPLICATION_CLIENT`, `REPLICATION_SLAVE`, `PROCESS` or empty list.
+        /// </summary>
         public readonly ImmutableArray<string> GlobalPermissions;
+        /// <summary>
+        /// The name of the MySQL cluster.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The password of the user.
+        /// </summary>
         public readonly string Password;
+        /// <summary>
+        /// Set of permissions granted to the user. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbMysqlClusterUserPermissionResult> Permissions;
 
         [OutputConstructor]

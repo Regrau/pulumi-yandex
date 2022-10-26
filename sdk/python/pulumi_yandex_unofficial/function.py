@@ -33,6 +33,25 @@ class FunctionArgs:
                  tags: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a Function resource.
+        :param pulumi.Input[str] entrypoint: Entrypoint for Yandex Cloud Function
+        :param pulumi.Input[int] memory: Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+        :param pulumi.Input[str] runtime: Runtime for Yandex Cloud Function
+        :param pulumi.Input[str] user_hash: User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+        :param pulumi.Input['FunctionContentArgs'] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+               * `content.0.zip_filename` - Filename to zip archive for the version.
+        :param pulumi.Input[str] description: Description of the Yandex Cloud Function
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment: A set of key/value environment variables for Yandex Cloud Function
+        :param pulumi.Input[str] execution_timeout: Execution timeout in seconds for Yandex Cloud Function
+        :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud Function
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud Function
+        :param pulumi.Input[str] name: Yandex Cloud Function name used to define trigger
+        :param pulumi.Input['FunctionPackageArgs'] package: Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+               * `package.0.sha_256` - SHA256 hash of the version deployment package.
+               * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+               * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+        :param pulumi.Input[Sequence[pulumi.Input['FunctionSecretArgs']]] secrets: Secrets for Yandex Cloud Function.
+        :param pulumi.Input[str] service_account_id: Service account ID for Yandex Cloud Function
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
         """
         pulumi.set(__self__, "entrypoint", entrypoint)
         pulumi.set(__self__, "memory", memory)
@@ -64,6 +83,9 @@ class FunctionArgs:
     @property
     @pulumi.getter
     def entrypoint(self) -> pulumi.Input[str]:
+        """
+        Entrypoint for Yandex Cloud Function
+        """
         return pulumi.get(self, "entrypoint")
 
     @entrypoint.setter
@@ -73,6 +95,9 @@ class FunctionArgs:
     @property
     @pulumi.getter
     def memory(self) -> pulumi.Input[int]:
+        """
+        Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+        """
         return pulumi.get(self, "memory")
 
     @memory.setter
@@ -82,6 +107,9 @@ class FunctionArgs:
     @property
     @pulumi.getter
     def runtime(self) -> pulumi.Input[str]:
+        """
+        Runtime for Yandex Cloud Function
+        """
         return pulumi.get(self, "runtime")
 
     @runtime.setter
@@ -91,6 +119,9 @@ class FunctionArgs:
     @property
     @pulumi.getter(name="userHash")
     def user_hash(self) -> pulumi.Input[str]:
+        """
+        User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+        """
         return pulumi.get(self, "user_hash")
 
     @user_hash.setter
@@ -100,6 +131,10 @@ class FunctionArgs:
     @property
     @pulumi.getter
     def content(self) -> Optional[pulumi.Input['FunctionContentArgs']]:
+        """
+        Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        * `content.0.zip_filename` - Filename to zip archive for the version.
+        """
         return pulumi.get(self, "content")
 
     @content.setter
@@ -109,6 +144,9 @@ class FunctionArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the Yandex Cloud Function
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -118,6 +156,9 @@ class FunctionArgs:
     @property
     @pulumi.getter
     def environment(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value environment variables for Yandex Cloud Function
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -127,6 +168,9 @@ class FunctionArgs:
     @property
     @pulumi.getter(name="executionTimeout")
     def execution_timeout(self) -> Optional[pulumi.Input[str]]:
+        """
+        Execution timeout in seconds for Yandex Cloud Function
+        """
         return pulumi.get(self, "execution_timeout")
 
     @execution_timeout.setter
@@ -136,6 +180,9 @@ class FunctionArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder ID for the Yandex Cloud Function
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -145,6 +192,9 @@ class FunctionArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Yandex Cloud Function
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -154,6 +204,9 @@ class FunctionArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Yandex Cloud Function name used to define trigger
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -163,6 +216,12 @@ class FunctionArgs:
     @property
     @pulumi.getter
     def package(self) -> Optional[pulumi.Input['FunctionPackageArgs']]:
+        """
+        Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        * `package.0.sha_256` - SHA256 hash of the version deployment package.
+        * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+        * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+        """
         return pulumi.get(self, "package")
 
     @package.setter
@@ -172,6 +231,9 @@ class FunctionArgs:
     @property
     @pulumi.getter
     def secrets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FunctionSecretArgs']]]]:
+        """
+        Secrets for Yandex Cloud Function.
+        """
         return pulumi.get(self, "secrets")
 
     @secrets.setter
@@ -181,6 +243,9 @@ class FunctionArgs:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service account ID for Yandex Cloud Function
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -190,6 +255,9 @@ class FunctionArgs:
     @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+        """
         return pulumi.get(self, "tags")
 
     @tags.setter
@@ -221,6 +289,29 @@ class _FunctionState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Function resources.
+        :param pulumi.Input['FunctionContentArgs'] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+               * `content.0.zip_filename` - Filename to zip archive for the version.
+        :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud Function.
+        :param pulumi.Input[str] description: Description of the Yandex Cloud Function
+        :param pulumi.Input[str] entrypoint: Entrypoint for Yandex Cloud Function
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment: A set of key/value environment variables for Yandex Cloud Function
+        :param pulumi.Input[str] execution_timeout: Execution timeout in seconds for Yandex Cloud Function
+        :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud Function
+        :param pulumi.Input[int] image_size: Image size for Yandex Cloud Function.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud Function
+        :param pulumi.Input[str] loggroup_id: Loggroup ID size for Yandex Cloud Function.
+        :param pulumi.Input[int] memory: Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+        :param pulumi.Input[str] name: Yandex Cloud Function name used to define trigger
+        :param pulumi.Input['FunctionPackageArgs'] package: Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+               * `package.0.sha_256` - SHA256 hash of the version deployment package.
+               * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+               * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+        :param pulumi.Input[str] runtime: Runtime for Yandex Cloud Function
+        :param pulumi.Input[Sequence[pulumi.Input['FunctionSecretArgs']]] secrets: Secrets for Yandex Cloud Function.
+        :param pulumi.Input[str] service_account_id: Service account ID for Yandex Cloud Function
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+        :param pulumi.Input[str] user_hash: User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+        :param pulumi.Input[str] version: Version for Yandex Cloud Function.
         """
         if content is not None:
             pulumi.set(__self__, "content", content)
@@ -264,6 +355,10 @@ class _FunctionState:
     @property
     @pulumi.getter
     def content(self) -> Optional[pulumi.Input['FunctionContentArgs']]:
+        """
+        Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        * `content.0.zip_filename` - Filename to zip archive for the version.
+        """
         return pulumi.get(self, "content")
 
     @content.setter
@@ -273,6 +368,9 @@ class _FunctionState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the Yandex Cloud Function.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -282,6 +380,9 @@ class _FunctionState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the Yandex Cloud Function
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -291,6 +392,9 @@ class _FunctionState:
     @property
     @pulumi.getter
     def entrypoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Entrypoint for Yandex Cloud Function
+        """
         return pulumi.get(self, "entrypoint")
 
     @entrypoint.setter
@@ -300,6 +404,9 @@ class _FunctionState:
     @property
     @pulumi.getter
     def environment(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value environment variables for Yandex Cloud Function
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -309,6 +416,9 @@ class _FunctionState:
     @property
     @pulumi.getter(name="executionTimeout")
     def execution_timeout(self) -> Optional[pulumi.Input[str]]:
+        """
+        Execution timeout in seconds for Yandex Cloud Function
+        """
         return pulumi.get(self, "execution_timeout")
 
     @execution_timeout.setter
@@ -318,6 +428,9 @@ class _FunctionState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder ID for the Yandex Cloud Function
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -327,6 +440,9 @@ class _FunctionState:
     @property
     @pulumi.getter(name="imageSize")
     def image_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Image size for Yandex Cloud Function.
+        """
         return pulumi.get(self, "image_size")
 
     @image_size.setter
@@ -336,6 +452,9 @@ class _FunctionState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Yandex Cloud Function
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -345,6 +464,9 @@ class _FunctionState:
     @property
     @pulumi.getter(name="loggroupId")
     def loggroup_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Loggroup ID size for Yandex Cloud Function.
+        """
         return pulumi.get(self, "loggroup_id")
 
     @loggroup_id.setter
@@ -354,6 +476,9 @@ class _FunctionState:
     @property
     @pulumi.getter
     def memory(self) -> Optional[pulumi.Input[int]]:
+        """
+        Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+        """
         return pulumi.get(self, "memory")
 
     @memory.setter
@@ -363,6 +488,9 @@ class _FunctionState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Yandex Cloud Function name used to define trigger
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -372,6 +500,12 @@ class _FunctionState:
     @property
     @pulumi.getter
     def package(self) -> Optional[pulumi.Input['FunctionPackageArgs']]:
+        """
+        Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        * `package.0.sha_256` - SHA256 hash of the version deployment package.
+        * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+        * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+        """
         return pulumi.get(self, "package")
 
     @package.setter
@@ -381,6 +515,9 @@ class _FunctionState:
     @property
     @pulumi.getter
     def runtime(self) -> Optional[pulumi.Input[str]]:
+        """
+        Runtime for Yandex Cloud Function
+        """
         return pulumi.get(self, "runtime")
 
     @runtime.setter
@@ -390,6 +527,9 @@ class _FunctionState:
     @property
     @pulumi.getter
     def secrets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FunctionSecretArgs']]]]:
+        """
+        Secrets for Yandex Cloud Function.
+        """
         return pulumi.get(self, "secrets")
 
     @secrets.setter
@@ -399,6 +539,9 @@ class _FunctionState:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service account ID for Yandex Cloud Function
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -408,6 +551,9 @@ class _FunctionState:
     @property
     @pulumi.getter
     def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+        """
         return pulumi.get(self, "tags")
 
     @tags.setter
@@ -417,6 +563,9 @@ class _FunctionState:
     @property
     @pulumi.getter(name="userHash")
     def user_hash(self) -> Optional[pulumi.Input[str]]:
+        """
+        User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+        """
         return pulumi.get(self, "user_hash")
 
     @user_hash.setter
@@ -426,6 +575,9 @@ class _FunctionState:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version for Yandex Cloud Function.
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -455,9 +607,49 @@ class Function(pulumi.CustomResource):
                  user_hash: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a Function resource with the given unique name, props, and options.
+        Allows management of [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        test_function = yandex.Function("test-function",
+            content=yandex.FunctionContentArgs(
+                zip_filename="function.zip",
+            ),
+            description="any description",
+            entrypoint="main",
+            execution_timeout="10",
+            memory=128,
+            runtime="python37",
+            service_account_id="are1service2account3id",
+            tags=["my_tag"],
+            user_hash="any_user_defined_string")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['FunctionContentArgs']] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+               * `content.0.zip_filename` - Filename to zip archive for the version.
+        :param pulumi.Input[str] description: Description of the Yandex Cloud Function
+        :param pulumi.Input[str] entrypoint: Entrypoint for Yandex Cloud Function
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment: A set of key/value environment variables for Yandex Cloud Function
+        :param pulumi.Input[str] execution_timeout: Execution timeout in seconds for Yandex Cloud Function
+        :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud Function
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud Function
+        :param pulumi.Input[int] memory: Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+        :param pulumi.Input[str] name: Yandex Cloud Function name used to define trigger
+        :param pulumi.Input[pulumi.InputType['FunctionPackageArgs']] package: Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+               * `package.0.sha_256` - SHA256 hash of the version deployment package.
+               * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+               * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+        :param pulumi.Input[str] runtime: Runtime for Yandex Cloud Function
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FunctionSecretArgs']]]] secrets: Secrets for Yandex Cloud Function.
+        :param pulumi.Input[str] service_account_id: Service account ID for Yandex Cloud Function
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+        :param pulumi.Input[str] user_hash: User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
         """
         ...
     @overload
@@ -466,7 +658,28 @@ class Function(pulumi.CustomResource):
                  args: FunctionArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a Function resource with the given unique name, props, and options.
+        Allows management of [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        test_function = yandex.Function("test-function",
+            content=yandex.FunctionContentArgs(
+                zip_filename="function.zip",
+            ),
+            description="any description",
+            entrypoint="main",
+            execution_timeout="10",
+            memory=128,
+            runtime="python37",
+            service_account_id="are1service2account3id",
+            tags=["my_tag"],
+            user_hash="any_user_defined_string")
+        ```
+
         :param str resource_name: The name of the resource.
         :param FunctionArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -569,6 +782,29 @@ class Function(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['FunctionContentArgs']] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+               * `content.0.zip_filename` - Filename to zip archive for the version.
+        :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud Function.
+        :param pulumi.Input[str] description: Description of the Yandex Cloud Function
+        :param pulumi.Input[str] entrypoint: Entrypoint for Yandex Cloud Function
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment: A set of key/value environment variables for Yandex Cloud Function
+        :param pulumi.Input[str] execution_timeout: Execution timeout in seconds for Yandex Cloud Function
+        :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud Function
+        :param pulumi.Input[int] image_size: Image size for Yandex Cloud Function.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud Function
+        :param pulumi.Input[str] loggroup_id: Loggroup ID size for Yandex Cloud Function.
+        :param pulumi.Input[int] memory: Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+        :param pulumi.Input[str] name: Yandex Cloud Function name used to define trigger
+        :param pulumi.Input[pulumi.InputType['FunctionPackageArgs']] package: Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+               * `package.0.sha_256` - SHA256 hash of the version deployment package.
+               * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+               * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+        :param pulumi.Input[str] runtime: Runtime for Yandex Cloud Function
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FunctionSecretArgs']]]] secrets: Secrets for Yandex Cloud Function.
+        :param pulumi.Input[str] service_account_id: Service account ID for Yandex Cloud Function
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] tags: Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+        :param pulumi.Input[str] user_hash: User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+        :param pulumi.Input[str] version: Version for Yandex Cloud Function.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -598,95 +834,156 @@ class Function(pulumi.CustomResource):
     @property
     @pulumi.getter
     def content(self) -> pulumi.Output[Optional['outputs.FunctionContent']]:
+        """
+        Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        * `content.0.zip_filename` - Filename to zip archive for the version.
+        """
         return pulumi.get(self, "content")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the Yandex Cloud Function.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the Yandex Cloud Function
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def entrypoint(self) -> pulumi.Output[str]:
+        """
+        Entrypoint for Yandex Cloud Function
+        """
         return pulumi.get(self, "entrypoint")
 
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value environment variables for Yandex Cloud Function
+        """
         return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="executionTimeout")
     def execution_timeout(self) -> pulumi.Output[Optional[str]]:
+        """
+        Execution timeout in seconds for Yandex Cloud Function
+        """
         return pulumi.get(self, "execution_timeout")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        Folder ID for the Yandex Cloud Function
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter(name="imageSize")
     def image_size(self) -> pulumi.Output[int]:
+        """
+        Image size for Yandex Cloud Function.
+        """
         return pulumi.get(self, "image_size")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the Yandex Cloud Function
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="loggroupId")
     def loggroup_id(self) -> pulumi.Output[str]:
+        """
+        Loggroup ID size for Yandex Cloud Function.
+        """
         return pulumi.get(self, "loggroup_id")
 
     @property
     @pulumi.getter
     def memory(self) -> pulumi.Output[int]:
+        """
+        Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+        """
         return pulumi.get(self, "memory")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Yandex Cloud Function name used to define trigger
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def package(self) -> pulumi.Output[Optional['outputs.FunctionPackage']]:
+        """
+        Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        * `package.0.sha_256` - SHA256 hash of the version deployment package.
+        * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+        * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+        """
         return pulumi.get(self, "package")
 
     @property
     @pulumi.getter
     def runtime(self) -> pulumi.Output[str]:
+        """
+        Runtime for Yandex Cloud Function
+        """
         return pulumi.get(self, "runtime")
 
     @property
     @pulumi.getter
     def secrets(self) -> pulumi.Output[Sequence['outputs.FunctionSecret']]:
+        """
+        Secrets for Yandex Cloud Function.
+        """
         return pulumi.get(self, "secrets")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Service account ID for Yandex Cloud Function
+        """
         return pulumi.get(self, "service_account_id")
 
     @property
     @pulumi.getter
     def tags(self) -> pulumi.Output[Sequence[str]]:
+        """
+        Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter(name="userHash")
     def user_hash(self) -> pulumi.Output[str]:
+        """
+        User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+        """
         return pulumi.get(self, "user_hash")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
+        """
+        Version for Yandex Cloud Function.
+        """
         return pulumi.get(self, "version")
 

@@ -66,7 +66,23 @@ def get_organizationmanager_saml_federation_user_account(federation_id: Optional
                                                          name_id: Optional[str] = None,
                                                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationmanagerSamlFederationUserAccountResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a user of Yandex SAML Federation. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/organization/operations/federations/integration-common).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    account = yandex.get_organizationmanager_saml_federation_user_account(federation_id="some_federation_id",
+        name_id="example@example.org")
+    pulumi.export("myFederation.id", account.id)
+    ```
+
+
+    :param str federation_id: ID of a SAML Federation.
+    :param str name_id: Name Id of the SAML federated user.
     """
     __args__ = dict()
     __args__['federationId'] = federation_id
@@ -85,6 +101,22 @@ def get_organizationmanager_saml_federation_user_account_output(federation_id: O
                                                                 name_id: Optional[pulumi.Input[str]] = None,
                                                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationmanagerSamlFederationUserAccountResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a user of Yandex SAML Federation. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/organization/operations/federations/integration-common).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    account = yandex.get_organizationmanager_saml_federation_user_account(federation_id="some_federation_id",
+        name_id="example@example.org")
+    pulumi.export("myFederation.id", account.id)
+    ```
+
+
+    :param str federation_id: ID of a SAML Federation.
+    :param str name_id: Name Id of the SAML federated user.
     """
     ...

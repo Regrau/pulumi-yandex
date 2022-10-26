@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class VpcSubnetDhcpOptions
     {
+        /// <summary>
+        /// Domain name.
+        /// </summary>
         public readonly string? DomainName;
+        /// <summary>
+        /// Domain name server IP addresses.
+        /// </summary>
         public readonly ImmutableArray<string> DomainNameServers;
+        /// <summary>
+        /// NTP server IP addresses.
+        /// </summary>
         public readonly ImmutableArray<string> NtpServers;
 
         [OutputConstructor]

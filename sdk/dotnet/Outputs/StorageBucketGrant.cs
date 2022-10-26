@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class StorageBucketGrant
     {
+        /// <summary>
+        /// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        /// </summary>
         public readonly string? Id;
         public readonly ImmutableArray<string> Permissions;
         public readonly string Type;

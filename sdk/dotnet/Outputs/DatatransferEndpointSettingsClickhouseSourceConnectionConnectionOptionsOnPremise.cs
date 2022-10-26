@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremise
     {
+        /// <summary>
+        /// TCP port number for the HTTP interface of the ClickHouse server.
+        /// </summary>
         public readonly int? HttpPort;
+        /// <summary>
+        /// TCP port number for the native interface of the ClickHouse server.
+        /// </summary>
         public readonly int? NativePort;
+        /// <summary>
+        /// The list of ClickHouse shards. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseShard> Shards;
+        /// <summary>
+        /// TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsMode? TlsMode;
 
         [OutputConstructor]

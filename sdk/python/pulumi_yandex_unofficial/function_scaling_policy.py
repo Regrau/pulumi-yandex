@@ -20,6 +20,12 @@ class FunctionScalingPolicyArgs:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionScalingPolicyPolicyArgs']]]] = None):
         """
         The set of arguments for constructing a FunctionScalingPolicy resource.
+        :param pulumi.Input[str] function_id: Yandex Cloud Function id used to define function
+        :param pulumi.Input[Sequence[pulumi.Input['FunctionScalingPolicyPolicyArgs']]] policies: list definition for Yandex Cloud Function scaling policies
+               * `policy.#` - number of Yandex Cloud Function scaling policies
+               * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+               * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+               * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
         """
         pulumi.set(__self__, "function_id", function_id)
         if policies is not None:
@@ -28,6 +34,9 @@ class FunctionScalingPolicyArgs:
     @property
     @pulumi.getter(name="functionId")
     def function_id(self) -> pulumi.Input[str]:
+        """
+        Yandex Cloud Function id used to define function
+        """
         return pulumi.get(self, "function_id")
 
     @function_id.setter
@@ -37,6 +46,13 @@ class FunctionScalingPolicyArgs:
     @property
     @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FunctionScalingPolicyPolicyArgs']]]]:
+        """
+        list definition for Yandex Cloud Function scaling policies
+        * `policy.#` - number of Yandex Cloud Function scaling policies
+        * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+        * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+        * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+        """
         return pulumi.get(self, "policies")
 
     @policies.setter
@@ -51,6 +67,12 @@ class _FunctionScalingPolicyState:
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input['FunctionScalingPolicyPolicyArgs']]]] = None):
         """
         Input properties used for looking up and filtering FunctionScalingPolicy resources.
+        :param pulumi.Input[str] function_id: Yandex Cloud Function id used to define function
+        :param pulumi.Input[Sequence[pulumi.Input['FunctionScalingPolicyPolicyArgs']]] policies: list definition for Yandex Cloud Function scaling policies
+               * `policy.#` - number of Yandex Cloud Function scaling policies
+               * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+               * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+               * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
         """
         if function_id is not None:
             pulumi.set(__self__, "function_id", function_id)
@@ -60,6 +82,9 @@ class _FunctionScalingPolicyState:
     @property
     @pulumi.getter(name="functionId")
     def function_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Yandex Cloud Function id used to define function
+        """
         return pulumi.get(self, "function_id")
 
     @function_id.setter
@@ -69,6 +94,13 @@ class _FunctionScalingPolicyState:
     @property
     @pulumi.getter
     def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FunctionScalingPolicyPolicyArgs']]]]:
+        """
+        list definition for Yandex Cloud Function scaling policies
+        * `policy.#` - number of Yandex Cloud Function scaling policies
+        * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+        * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+        * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+        """
         return pulumi.get(self, "policies")
 
     @policies.setter
@@ -85,9 +117,38 @@ class FunctionScalingPolicy(pulumi.CustomResource):
                  policies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FunctionScalingPolicyPolicyArgs']]]]] = None,
                  __props__=None):
         """
-        Create a FunctionScalingPolicy resource with the given unique name, props, and options.
+        Allows management of [Yandex Cloud Function Scaling Policies](https://cloud.yandex.com/docs/functions/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_scaling_policy = yandex.FunctionScalingPolicy("myScalingPolicy",
+            function_id="are1samplefunction11",
+            policies=[
+                yandex.FunctionScalingPolicyPolicyArgs(
+                    tag="$latest",
+                    zone_instances_limit=3,
+                    zone_requests_limit=100,
+                ),
+                yandex.FunctionScalingPolicyPolicyArgs(
+                    tag="my_tag",
+                    zone_instances_limit=4,
+                    zone_requests_limit=150,
+                ),
+            ])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] function_id: Yandex Cloud Function id used to define function
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FunctionScalingPolicyPolicyArgs']]]] policies: list definition for Yandex Cloud Function scaling policies
+               * `policy.#` - number of Yandex Cloud Function scaling policies
+               * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+               * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+               * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
         """
         ...
     @overload
@@ -96,7 +157,30 @@ class FunctionScalingPolicy(pulumi.CustomResource):
                  args: FunctionScalingPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a FunctionScalingPolicy resource with the given unique name, props, and options.
+        Allows management of [Yandex Cloud Function Scaling Policies](https://cloud.yandex.com/docs/functions/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_scaling_policy = yandex.FunctionScalingPolicy("myScalingPolicy",
+            function_id="are1samplefunction11",
+            policies=[
+                yandex.FunctionScalingPolicyPolicyArgs(
+                    tag="$latest",
+                    zone_instances_limit=3,
+                    zone_requests_limit=100,
+                ),
+                yandex.FunctionScalingPolicyPolicyArgs(
+                    tag="my_tag",
+                    zone_instances_limit=4,
+                    zone_requests_limit=150,
+                ),
+            ])
+        ```
+
         :param str resource_name: The name of the resource.
         :param FunctionScalingPolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -146,6 +230,12 @@ class FunctionScalingPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] function_id: Yandex Cloud Function id used to define function
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FunctionScalingPolicyPolicyArgs']]]] policies: list definition for Yandex Cloud Function scaling policies
+               * `policy.#` - number of Yandex Cloud Function scaling policies
+               * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+               * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+               * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -158,10 +248,20 @@ class FunctionScalingPolicy(pulumi.CustomResource):
     @property
     @pulumi.getter(name="functionId")
     def function_id(self) -> pulumi.Output[str]:
+        """
+        Yandex Cloud Function id used to define function
+        """
         return pulumi.get(self, "function_id")
 
     @property
     @pulumi.getter
     def policies(self) -> pulumi.Output[Optional[Sequence['outputs.FunctionScalingPolicyPolicy']]]:
+        """
+        list definition for Yandex Cloud Function scaling policies
+        * `policy.#` - number of Yandex Cloud Function scaling policies
+        * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+        * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+        * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+        """
         return pulumi.get(self, "policies")
 

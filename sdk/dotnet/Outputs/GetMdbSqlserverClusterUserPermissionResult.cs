@@ -13,7 +13,14 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbSqlserverClusterUserPermissionResult
     {
+        /// <summary>
+        /// The name of the database that the permission grants access to.
+        /// </summary>
         public readonly string DatabaseName;
+        /// <summary>
+        /// List user's roles in the database.
+        /// Allowed roles: `OWNER`, `SECURITYADMIN`, `ACCESSADMIN`, `BACKUPOPERATOR`, `DDLADMIN`, `DATAWRITER`, `DATAREADER`, `DENYDATAWRITER`, `DENYDATAREADER`.
+        /// </summary>
         public readonly ImmutableArray<string> Roles;
 
         [OutputConstructor]

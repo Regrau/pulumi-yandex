@@ -26,6 +26,17 @@ class LbNetworkLoadBalancerArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LbNetworkLoadBalancer resource.
+        :param pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupArgs']]] attached_target_groups: An AttachedTargetGroup resource. The structure is documented below.
+        :param pulumi.Input[str] description: An optional description of the network load balancer. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this network load balancer. A list of key/value pairs.
+        :param pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerListenerArgs']]] listeners: Listener specification that will be used by a network load balancer. The structure is documented below.
+        :param pulumi.Input[str] name: Name of the listener. The name must be unique for each listener on a single load balancer.
+        :param pulumi.Input[str] region_id: ID of the availability zone where the network load balancer resides.
+               The default is 'ru-central1'.
+        :param pulumi.Input[str] type: Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
         """
         if attached_target_groups is not None:
             pulumi.set(__self__, "attached_target_groups", attached_target_groups)
@@ -47,6 +58,9 @@ class LbNetworkLoadBalancerArgs:
     @property
     @pulumi.getter(name="attachedTargetGroups")
     def attached_target_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupArgs']]]]:
+        """
+        An AttachedTargetGroup resource. The structure is documented below.
+        """
         return pulumi.get(self, "attached_target_groups")
 
     @attached_target_groups.setter
@@ -56,6 +70,10 @@ class LbNetworkLoadBalancerArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of the network load balancer. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -65,6 +83,10 @@ class LbNetworkLoadBalancerArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder to which the resource belongs.
+        If omitted, the provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -74,6 +96,9 @@ class LbNetworkLoadBalancerArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this network load balancer. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -83,6 +108,9 @@ class LbNetworkLoadBalancerArgs:
     @property
     @pulumi.getter
     def listeners(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerListenerArgs']]]]:
+        """
+        Listener specification that will be used by a network load balancer. The structure is documented below.
+        """
         return pulumi.get(self, "listeners")
 
     @listeners.setter
@@ -92,6 +120,9 @@ class LbNetworkLoadBalancerArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the listener. The name must be unique for each listener on a single load balancer.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -101,6 +132,10 @@ class LbNetworkLoadBalancerArgs:
     @property
     @pulumi.getter(name="regionId")
     def region_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the availability zone where the network load balancer resides.
+        The default is 'ru-central1'.
+        """
         return pulumi.get(self, "region_id")
 
     @region_id.setter
@@ -110,6 +145,9 @@ class LbNetworkLoadBalancerArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -131,6 +169,18 @@ class _LbNetworkLoadBalancerState:
                  type: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LbNetworkLoadBalancer resources.
+        :param pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupArgs']]] attached_target_groups: An AttachedTargetGroup resource. The structure is documented below.
+        :param pulumi.Input[str] created_at: The network load balancer creation timestamp.
+        :param pulumi.Input[str] description: An optional description of the network load balancer. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this network load balancer. A list of key/value pairs.
+        :param pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerListenerArgs']]] listeners: Listener specification that will be used by a network load balancer. The structure is documented below.
+        :param pulumi.Input[str] name: Name of the listener. The name must be unique for each listener on a single load balancer.
+        :param pulumi.Input[str] region_id: ID of the availability zone where the network load balancer resides.
+               The default is 'ru-central1'.
+        :param pulumi.Input[str] type: Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
         """
         if attached_target_groups is not None:
             pulumi.set(__self__, "attached_target_groups", attached_target_groups)
@@ -154,6 +204,9 @@ class _LbNetworkLoadBalancerState:
     @property
     @pulumi.getter(name="attachedTargetGroups")
     def attached_target_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupArgs']]]]:
+        """
+        An AttachedTargetGroup resource. The structure is documented below.
+        """
         return pulumi.get(self, "attached_target_groups")
 
     @attached_target_groups.setter
@@ -163,6 +216,9 @@ class _LbNetworkLoadBalancerState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The network load balancer creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -172,6 +228,10 @@ class _LbNetworkLoadBalancerState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of the network load balancer. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -181,6 +241,10 @@ class _LbNetworkLoadBalancerState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder to which the resource belongs.
+        If omitted, the provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -190,6 +254,9 @@ class _LbNetworkLoadBalancerState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this network load balancer. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -199,6 +266,9 @@ class _LbNetworkLoadBalancerState:
     @property
     @pulumi.getter
     def listeners(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerListenerArgs']]]]:
+        """
+        Listener specification that will be used by a network load balancer. The structure is documented below.
+        """
         return pulumi.get(self, "listeners")
 
     @listeners.setter
@@ -208,6 +278,9 @@ class _LbNetworkLoadBalancerState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the listener. The name must be unique for each listener on a single load balancer.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -217,6 +290,10 @@ class _LbNetworkLoadBalancerState:
     @property
     @pulumi.getter(name="regionId")
     def region_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the availability zone where the network load balancer resides.
+        The default is 'ru-central1'.
+        """
         return pulumi.get(self, "region_id")
 
     @region_id.setter
@@ -226,6 +303,9 @@ class _LbNetworkLoadBalancerState:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -248,9 +328,56 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a LbNetworkLoadBalancer resource with the given unique name, props, and options.
+        Creates a network load balancer in the specified folder using the data specified in the config.
+        For more information, see [the official documentation](https://cloud.yandex.com/docs/load-balancer/concepts).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo = yandex.LbNetworkLoadBalancer("foo",
+            attached_target_groups=[yandex.LbNetworkLoadBalancerAttachedTargetGroupArgs(
+                healthchecks=[yandex.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs(
+                    http_options=yandex.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionsArgs(
+                        path="/ping",
+                        port=8080,
+                    ),
+                    name="http",
+                )],
+                target_group_id=yandex_lb_target_group["my-target-group"]["id"],
+            )],
+            listeners=[yandex.LbNetworkLoadBalancerListenerArgs(
+                external_address_spec=yandex.LbNetworkLoadBalancerListenerExternalAddressSpecArgs(
+                    ip_version="ipv4",
+                ),
+                name="my-listener",
+                port=8080,
+            )])
+        ```
+
+        ## Import
+
+        A network load balancer can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/lbNetworkLoadBalancer:LbNetworkLoadBalancer default network_load_balancer_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbNetworkLoadBalancerAttachedTargetGroupArgs']]]] attached_target_groups: An AttachedTargetGroup resource. The structure is documented below.
+        :param pulumi.Input[str] description: An optional description of the network load balancer. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this network load balancer. A list of key/value pairs.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbNetworkLoadBalancerListenerArgs']]]] listeners: Listener specification that will be used by a network load balancer. The structure is documented below.
+        :param pulumi.Input[str] name: Name of the listener. The name must be unique for each listener on a single load balancer.
+        :param pulumi.Input[str] region_id: ID of the availability zone where the network load balancer resides.
+               The default is 'ru-central1'.
+        :param pulumi.Input[str] type: Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
         """
         ...
     @overload
@@ -259,7 +386,43 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
                  args: Optional[LbNetworkLoadBalancerArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a LbNetworkLoadBalancer resource with the given unique name, props, and options.
+        Creates a network load balancer in the specified folder using the data specified in the config.
+        For more information, see [the official documentation](https://cloud.yandex.com/docs/load-balancer/concepts).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo = yandex.LbNetworkLoadBalancer("foo",
+            attached_target_groups=[yandex.LbNetworkLoadBalancerAttachedTargetGroupArgs(
+                healthchecks=[yandex.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs(
+                    http_options=yandex.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionsArgs(
+                        path="/ping",
+                        port=8080,
+                    ),
+                    name="http",
+                )],
+                target_group_id=yandex_lb_target_group["my-target-group"]["id"],
+            )],
+            listeners=[yandex.LbNetworkLoadBalancerListenerArgs(
+                external_address_spec=yandex.LbNetworkLoadBalancerListenerExternalAddressSpecArgs(
+                    ip_version="ipv4",
+                ),
+                name="my-listener",
+                port=8080,
+            )])
+        ```
+
+        ## Import
+
+        A network load balancer can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/lbNetworkLoadBalancer:LbNetworkLoadBalancer default network_load_balancer_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param LbNetworkLoadBalancerArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -327,6 +490,18 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbNetworkLoadBalancerAttachedTargetGroupArgs']]]] attached_target_groups: An AttachedTargetGroup resource. The structure is documented below.
+        :param pulumi.Input[str] created_at: The network load balancer creation timestamp.
+        :param pulumi.Input[str] description: An optional description of the network load balancer. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this network load balancer. A list of key/value pairs.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbNetworkLoadBalancerListenerArgs']]]] listeners: Listener specification that will be used by a network load balancer. The structure is documented below.
+        :param pulumi.Input[str] name: Name of the listener. The name must be unique for each listener on a single load balancer.
+        :param pulumi.Input[str] region_id: ID of the availability zone where the network load balancer resides.
+               The default is 'ru-central1'.
+        :param pulumi.Input[str] type: Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -346,45 +521,75 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
     @property
     @pulumi.getter(name="attachedTargetGroups")
     def attached_target_groups(self) -> pulumi.Output[Optional[Sequence['outputs.LbNetworkLoadBalancerAttachedTargetGroup']]]:
+        """
+        An AttachedTargetGroup resource. The structure is documented below.
+        """
         return pulumi.get(self, "attached_target_groups")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        The network load balancer creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        An optional description of the network load balancer. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder to which the resource belongs.
+        If omitted, the provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Labels to assign to this network load balancer. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def listeners(self) -> pulumi.Output[Optional[Sequence['outputs.LbNetworkLoadBalancerListener']]]:
+        """
+        Listener specification that will be used by a network load balancer. The structure is documented below.
+        """
         return pulumi.get(self, "listeners")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the listener. The name must be unique for each listener on a single load balancer.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="regionId")
     def region_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the availability zone where the network load balancer resides.
+        The default is 'ru-central1'.
+        """
         return pulumi.get(self, "region_id")
 
     @property
     @pulumi.getter
     def type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
+        """
         return pulumi.get(self, "type")
 

@@ -13,11 +13,29 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbKafkaClusterHostResult
     {
+        /// <summary>
+        /// The flag that defines whether a public IP address is assigned to the node.
+        /// </summary>
         public readonly bool AssignPublicIp;
+        /// <summary>
+        /// Health of the host.
+        /// </summary>
         public readonly string Health;
+        /// <summary>
+        /// The name of the Kafka cluster.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Role of the host in the cluster.
+        /// </summary>
         public readonly string Role;
+        /// <summary>
+        /// The ID of the subnet, to which the host belongs.
+        /// </summary>
         public readonly string SubnetId;
+        /// <summary>
+        /// The availability zone where the Kafka host was created.
+        /// </summary>
         public readonly string ZoneId;
 
         [OutputConstructor]

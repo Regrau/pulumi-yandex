@@ -53,11 +53,17 @@ class GetComputeDiskPlacementGroupResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The creation timestamp of the Disk Placement Group.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> Optional[str]:
+        """
+        Description of the Disk Placement Group.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -81,6 +87,9 @@ class GetComputeDiskPlacementGroupResult:
     @property
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        A set of key/value label pairs assigned to the Disk Placement Group.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -91,11 +100,17 @@ class GetComputeDiskPlacementGroupResult:
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the Disk Placement Group.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def zone(self) -> Optional[str]:
+        """
+        ID of the zone where the Disk Placement Group resides.
+        """
         return pulumi.get(self, "zone")
 
 
@@ -124,7 +139,26 @@ def get_compute_disk_placement_group(description: Optional[str] = None,
                                      zone: Optional[str] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetComputeDiskPlacementGroupResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Compute Disk Placement group. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/compute/concepts/disk#nr-disks).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_group = yandex.get_compute_disk_placement_group(group_id="some_group_id")
+    pulumi.export("placementGroupName", my_group.name)
+    ```
+
+
+    :param str description: Description of the Disk Placement Group.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str group_id: The ID of a specific group.
+    :param Mapping[str, str] labels: A set of key/value label pairs assigned to the Disk Placement Group.
+    :param str name: Name of the group.
+    :param str zone: ID of the zone where the Disk Placement Group resides.
     """
     __args__ = dict()
     __args__['description'] = description
@@ -157,6 +191,25 @@ def get_compute_disk_placement_group_output(description: Optional[pulumi.Input[O
                                             zone: Optional[pulumi.Input[Optional[str]]] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetComputeDiskPlacementGroupResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Compute Disk Placement group. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/compute/concepts/disk#nr-disks).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_group = yandex.get_compute_disk_placement_group(group_id="some_group_id")
+    pulumi.export("placementGroupName", my_group.name)
+    ```
+
+
+    :param str description: Description of the Disk Placement Group.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str group_id: The ID of a specific group.
+    :param Mapping[str, str] labels: A set of key/value label pairs assigned to the Disk Placement Group.
+    :param str name: Name of the group.
+    :param str zone: ID of the zone where the Disk Placement Group resides.
     """
     ...

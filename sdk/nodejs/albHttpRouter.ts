@@ -5,6 +5,33 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Creates an HTTP Router in the specified folder.
+ * For more information, see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/http-router).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const tf_router = new yandex.AlbHttpRouter("tf-router", {
+ *     labels: {
+ *         "empty-label": "",
+ *         s: [{}],
+ *         "tf-label": "tf-label-value",
+ *     },
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * An HTTP Router can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/albHttpRouter:AlbHttpRouter default http_router_id
+ * ```
+ */
 export class AlbHttpRouter extends pulumi.CustomResource {
     /**
      * Get an existing AlbHttpRouter resource's state with the given name, ID, and optional extra
@@ -33,10 +60,27 @@ export class AlbHttpRouter extends pulumi.CustomResource {
         return obj['__pulumiType'] === AlbHttpRouter.__pulumiType;
     }
 
+    /**
+     * The HTTP Router creation timestamp.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * An optional description of the HTTP Router. Provide this property when
+     * you create the resource.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * The ID of the folder to which the resource belongs.
+     * If omitted, the provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * Labels to assign to this HTTP Router. A list of key/value pairs.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Name of the HTTP Router. Provided by the client when the HTTP Router is created.
+     */
     public readonly name!: pulumi.Output<string>;
     public readonly routeOptions!: pulumi.Output<outputs.AlbHttpRouterRouteOptions | undefined>;
 
@@ -77,10 +121,27 @@ export class AlbHttpRouter extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AlbHttpRouter resources.
  */
 export interface AlbHttpRouterState {
+    /**
+     * The HTTP Router creation timestamp.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * An optional description of the HTTP Router. Provide this property when
+     * you create the resource.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the folder to which the resource belongs.
+     * If omitted, the provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Labels to assign to this HTTP Router. A list of key/value pairs.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the HTTP Router. Provided by the client when the HTTP Router is created.
+     */
     name?: pulumi.Input<string>;
     routeOptions?: pulumi.Input<inputs.AlbHttpRouterRouteOptions>;
 }
@@ -89,9 +150,23 @@ export interface AlbHttpRouterState {
  * The set of arguments for constructing a AlbHttpRouter resource.
  */
 export interface AlbHttpRouterArgs {
+    /**
+     * An optional description of the HTTP Router. Provide this property when
+     * you create the resource.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the folder to which the resource belongs.
+     * If omitted, the provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Labels to assign to this HTTP Router. A list of key/value pairs.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the HTTP Router. Provided by the client when the HTTP Router is created.
+     */
     name?: pulumi.Input<string>;
     routeOptions?: pulumi.Input<inputs.AlbHttpRouterRouteOptions>;
 }

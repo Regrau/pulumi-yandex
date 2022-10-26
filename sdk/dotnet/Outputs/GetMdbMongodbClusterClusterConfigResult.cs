@@ -13,10 +13,25 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbMongodbClusterClusterConfigResult
     {
+        /// <summary>
+        /// Access policy to MongoDB cluster. The structure is documented below.
+        /// </summary>
         public readonly Outputs.GetMdbMongodbClusterClusterConfigAccessResult Access;
+        /// <summary>
+        /// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        /// </summary>
         public readonly Outputs.GetMdbMongodbClusterClusterConfigBackupWindowStartResult BackupWindowStart;
+        /// <summary>
+        /// Feature compatibility version of MongoDB.
+        /// </summary>
         public readonly string FeatureCompatibilityVersion;
+        /// <summary>
+        /// (Optional) Configuration of the mongod service. The structure is documented below.
+        /// </summary>
         public readonly Outputs.GetMdbMongodbClusterClusterConfigMongodResult Mongod;
+        /// <summary>
+        /// Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+        /// </summary>
         public readonly string? Version;
 
         [OutputConstructor]

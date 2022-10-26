@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetAlbBackendGroupSessionAffinityCookieResult
     {
+        /// <summary>
+        /// - Name of the Backend Group.
+        /// </summary>
         public readonly string Name;
         public readonly string Ttl;
 

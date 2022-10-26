@@ -14,6 +14,10 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("properties")]
         private InputMap<string>? _properties;
+
+        /// <summary>
+        /// A set of key/value pairs that are used to configure cluster services.
+        /// </summary>
         public InputMap<string> Properties
         {
             get => _properties ?? (_properties = new InputMap<string>());
@@ -22,6 +26,10 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("services")]
         private InputList<string>? _services;
+
+        /// <summary>
+        /// List of services to run on Data Proc cluster.
+        /// </summary>
         public InputList<string> Services
         {
             get => _services ?? (_services = new InputList<string>());
@@ -30,6 +38,10 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("sshPublicKeys")]
         private InputList<string>? _sshPublicKeys;
+
+        /// <summary>
+        /// List of SSH public keys to put to the hosts of the cluster. For information on how to connect to the cluster, see [the official documentation](https://cloud.yandex.com/docs/data-proc/operations/connect).
+        /// </summary>
         public InputList<string> SshPublicKeys
         {
             get => _sshPublicKeys ?? (_sshPublicKeys = new InputList<string>());

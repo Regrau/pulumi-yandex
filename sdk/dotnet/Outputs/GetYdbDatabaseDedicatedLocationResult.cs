@@ -13,6 +13,10 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetYdbDatabaseDedicatedLocationResult
     {
+        /// <summary>
+        /// Region of the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetYdbDatabaseDedicatedLocationRegionResult> Regions;
         public readonly ImmutableArray<Outputs.GetYdbDatabaseDedicatedLocationZoneResult> Zones;
 

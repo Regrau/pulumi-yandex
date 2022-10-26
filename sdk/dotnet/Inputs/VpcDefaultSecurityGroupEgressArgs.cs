@@ -12,17 +12,27 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class VpcDefaultSecurityGroupEgressArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Description of the security group.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         [Input("fromPort")]
         public Input<int>? FromPort { get; set; }
 
+        /// <summary>
+        /// Id of the security group.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this security group.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());

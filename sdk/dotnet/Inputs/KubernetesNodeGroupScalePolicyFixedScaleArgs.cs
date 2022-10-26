@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesNodeGroupScalePolicyFixedScaleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The number of instances in the node group.
+        /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
 

@@ -13,10 +13,25 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsClickhouseSource
     {
+        /// <summary>
+        /// Connection settings. The structure is documented below.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsClickhouseSourceConnection? Connection;
+        /// <summary>
+        /// List of tables which will not be transfered, formatted as `schemaname.tablename`.
+        /// </summary>
         public readonly ImmutableArray<string> ExcludeTables;
+        /// <summary>
+        /// List of tables to transfer, formatted as `schemaname.tablename`. If omitted or an empty list is specified, all tables will be transferred.
+        /// </summary>
         public readonly ImmutableArray<string> IncludeTables;
+        /// <summary>
+        /// List of security groups that the transfer associated with this endpoint should use.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroups;
+        /// <summary>
+        /// Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        /// </summary>
         public readonly string? SubnetId;
 
         [OutputConstructor]

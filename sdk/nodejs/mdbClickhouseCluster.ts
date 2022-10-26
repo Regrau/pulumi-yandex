@@ -5,6 +5,399 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a ClickHouse cluster within the Yandex.Cloud. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts).
+ *
+ * ## Example Usage
+ *
+ * Example of creating a Single Node ClickHouse.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const fooVpcNetwork = new yandex.VpcNetwork("foo", {});
+ * const fooVpcSubnet = new yandex.VpcSubnet("foo", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.5.0.0/24"],
+ *     zone: "ru-central1-a",
+ * });
+ * const fooMdbClickhouseCluster = new yandex.MdbClickhouseCluster("foo", {
+ *     clickhouse: {
+ *         config: {
+ *             backgroundPoolSize: 16,
+ *             backgroundSchedulePoolSize: 16,
+ *             compressions: [
+ *                 {
+ *                     method: "LZ4",
+ *                     minPartSize: 1024,
+ *                     minPartSizeRatio: 0.5,
+ *                 },
+ *                 {
+ *                     method: "ZSTD",
+ *                     minPartSize: 2048,
+ *                     minPartSizeRatio: 0.7,
+ *                 },
+ *             ],
+ *             geobaseUri: "",
+ *             graphiteRollups: [
+ *                 {
+ *                     name: "rollup1",
+ *                     patterns: [{
+ *                         function: "func1",
+ *                         regexp: "abc",
+ *                         retentions: [{
+ *                             age: 1000,
+ *                             precision: 3,
+ *                         }],
+ *                     }],
+ *                 },
+ *                 {
+ *                     name: "rollup2",
+ *                     patterns: [{
+ *                         function: "func2",
+ *                         retentions: [{
+ *                             age: 2000,
+ *                             precision: 5,
+ *                         }],
+ *                     }],
+ *                 },
+ *             ],
+ *             kafka: {
+ *                 saslMechanism: "SASL_MECHANISM_GSSAPI",
+ *                 saslPassword: "pass1",
+ *                 saslUsername: "user1",
+ *                 securityProtocol: "SECURITY_PROTOCOL_PLAINTEXT",
+ *             },
+ *             kafkaTopics: [
+ *                 {
+ *                     name: "topic1",
+ *                     settings: {
+ *                         saslMechanism: "SASL_MECHANISM_SCRAM_SHA_256",
+ *                         saslPassword: "pass2",
+ *                         saslUsername: "user2",
+ *                         securityProtocol: "SECURITY_PROTOCOL_SSL",
+ *                     },
+ *                 },
+ *                 {
+ *                     name: "topic2",
+ *                     settings: {
+ *                         saslMechanism: "SASL_MECHANISM_PLAIN",
+ *                         securityProtocol: "SECURITY_PROTOCOL_SASL_PLAINTEXT",
+ *                     },
+ *                 },
+ *             ],
+ *             keepAliveTimeout: 3000,
+ *             logLevel: "TRACE",
+ *             markCacheSize: 5368709120,
+ *             maxConcurrentQueries: 50,
+ *             maxConnections: 100,
+ *             maxPartitionSizeToDrop: 53687091200,
+ *             maxTableSizeToDrop: 53687091200,
+ *             mergeTree: {
+ *                 maxBytesToMergeAtMinSpaceInPool: 1048576,
+ *                 maxReplicatedMergesInQueue: 16,
+ *                 numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge: 8,
+ *                 partsToDelayInsert: 150,
+ *                 partsToThrowInsert: 300,
+ *                 replicatedDeduplicationWindow: 100,
+ *                 replicatedDeduplicationWindowSeconds: 604800,
+ *             },
+ *             metricLogEnabled: true,
+ *             metricLogRetentionSize: 536870912,
+ *             metricLogRetentionTime: 2592000,
+ *             partLogRetentionSize: 536870912,
+ *             partLogRetentionTime: 2592000,
+ *             queryLogRetentionSize: 1073741824,
+ *             queryLogRetentionTime: 2592000,
+ *             queryThreadLogEnabled: true,
+ *             queryThreadLogRetentionSize: 536870912,
+ *             queryThreadLogRetentionTime: 2592000,
+ *             rabbitmq: {
+ *                 password: "rabbit_pass",
+ *                 username: "rabbit_user",
+ *             },
+ *             textLogEnabled: true,
+ *             textLogLevel: "TRACE",
+ *             textLogRetentionSize: 536870912,
+ *             textLogRetentionTime: 2592000,
+ *             timezone: "UTC",
+ *             traceLogEnabled: true,
+ *             traceLogRetentionSize: 536870912,
+ *             traceLogRetentionTime: 2592000,
+ *             uncompressedCacheSize: 8589934592,
+ *         },
+ *         resources: {
+ *             diskSize: 32,
+ *             diskTypeId: "network-ssd",
+ *             resourcePresetId: "s2.micro",
+ *         },
+ *     },
+ *     cloudStorage: {
+ *         enabled: false,
+ *     },
+ *     databases: [{
+ *         name: "db_name",
+ *     }],
+ *     environment: "PRESTABLE",
+ *     formatSchemas: [{
+ *         name: "test_schema",
+ *         type: "FORMAT_SCHEMA_TYPE_CAPNPROTO",
+ *         uri: "https://storage.yandexcloud.net/ch-data/schema.proto",
+ *     }],
+ *     hosts: [{
+ *         subnetId: fooVpcSubnet.id,
+ *         type: "CLICKHOUSE",
+ *         zone: "ru-central1-a",
+ *     }],
+ *     maintenanceWindow: {
+ *         type: "ANYTIME",
+ *     },
+ *     mlModels: [{
+ *         name: "test_model",
+ *         type: "ML_MODEL_TYPE_CATBOOST",
+ *         uri: "https://storage.yandexcloud.net/ch-data/train.csv",
+ *     }],
+ *     networkId: fooVpcNetwork.id,
+ *     serviceAccountId: "your_service_account_id",
+ *     users: [{
+ *         name: "user",
+ *         password: "your_password",
+ *         permissions: [{
+ *             databaseName: "db_name",
+ *         }],
+ *         quotas: [
+ *             {
+ *                 errors: 1000,
+ *                 intervalDuration: 3600000,
+ *                 queries: 10000,
+ *             },
+ *             {
+ *                 errors: 5000,
+ *                 intervalDuration: 79800000,
+ *                 queries: 50000,
+ *             },
+ *         ],
+ *         settings: {
+ *             maxMemoryUsageForUser: 1000000000,
+ *             outputFormatJsonQuote64bitIntegers: true,
+ *             readOverflowMode: "throw",
+ *         },
+ *     }],
+ * });
+ * ```
+ *
+ * Example of creating a HA ClickHouse Cluster.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const fooVpcNetwork = new yandex.VpcNetwork("foo", {});
+ * const fooVpcSubnet = new yandex.VpcSubnet("foo", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.1.0.0/24"],
+ *     zone: "ru-central1-a",
+ * });
+ * const bar = new yandex.VpcSubnet("bar", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.2.0.0/24"],
+ *     zone: "ru-central1-b",
+ * });
+ * const baz = new yandex.VpcSubnet("baz", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.3.0.0/24"],
+ *     zone: "ru-central1-c",
+ * });
+ * const fooMdbClickhouseCluster = new yandex.MdbClickhouseCluster("foo", {
+ *     clickhouse: {
+ *         resources: {
+ *             diskSize: 16,
+ *             diskTypeId: "network-ssd",
+ *             resourcePresetId: "s2.micro",
+ *         },
+ *     },
+ *     cloudStorage: {
+ *         enabled: false,
+ *     },
+ *     databases: [{
+ *         name: "db_name",
+ *     }],
+ *     environment: "PRESTABLE",
+ *     hosts: [
+ *         {
+ *             subnetId: fooVpcSubnet.id,
+ *             type: "CLICKHOUSE",
+ *             zone: "ru-central1-a",
+ *         },
+ *         {
+ *             subnetId: bar.id,
+ *             type: "CLICKHOUSE",
+ *             zone: "ru-central1-b",
+ *         },
+ *         {
+ *             subnetId: fooVpcSubnet.id,
+ *             type: "ZOOKEEPER",
+ *             zone: "ru-central1-a",
+ *         },
+ *         {
+ *             subnetId: bar.id,
+ *             type: "ZOOKEEPER",
+ *             zone: "ru-central1-b",
+ *         },
+ *         {
+ *             subnetId: baz.id,
+ *             type: "ZOOKEEPER",
+ *             zone: "ru-central1-c",
+ *         },
+ *     ],
+ *     networkId: fooVpcNetwork.id,
+ *     users: [{
+ *         name: "user",
+ *         password: "password",
+ *         permissions: [{
+ *             databaseName: "db_name",
+ *         }],
+ *         quotas: [
+ *             {
+ *                 errors: 1000,
+ *                 intervalDuration: 3600000,
+ *                 queries: 10000,
+ *             },
+ *             {
+ *                 errors: 5000,
+ *                 intervalDuration: 79800000,
+ *                 queries: 50000,
+ *             },
+ *         ],
+ *         settings: {
+ *             maxMemoryUsageForUser: 1000000000,
+ *             outputFormatJsonQuote64bitIntegers: true,
+ *             readOverflowMode: "throw",
+ *         },
+ *     }],
+ *     zookeeper: {
+ *         resources: {
+ *             diskSize: 10,
+ *             diskTypeId: "network-ssd",
+ *             resourcePresetId: "s2.micro",
+ *         },
+ *     },
+ * });
+ * ```
+ *
+ * Example of creating a sharded ClickHouse Cluster.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const fooVpcNetwork = new yandex.VpcNetwork("foo", {});
+ * const fooVpcSubnet = new yandex.VpcSubnet("foo", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.1.0.0/24"],
+ *     zone: "ru-central1-a",
+ * });
+ * const bar = new yandex.VpcSubnet("bar", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.2.0.0/24"],
+ *     zone: "ru-central1-b",
+ * });
+ * const baz = new yandex.VpcSubnet("baz", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.3.0.0/24"],
+ *     zone: "ru-central1-c",
+ * });
+ * const fooMdbClickhouseCluster = new yandex.MdbClickhouseCluster("foo", {
+ *     clickhouse: {
+ *         resources: {
+ *             diskSize: 16,
+ *             diskTypeId: "network-ssd",
+ *             resourcePresetId: "s2.micro",
+ *         },
+ *     },
+ *     cloudStorage: {
+ *         enabled: false,
+ *     },
+ *     databases: [{
+ *         name: "db_name",
+ *     }],
+ *     environment: "PRODUCTION",
+ *     hosts: [
+ *         {
+ *             shardName: "shard1",
+ *             subnetId: fooVpcSubnet.id,
+ *             type: "CLICKHOUSE",
+ *             zone: "ru-central1-a",
+ *         },
+ *         {
+ *             shardName: "shard1",
+ *             subnetId: bar.id,
+ *             type: "CLICKHOUSE",
+ *             zone: "ru-central1-b",
+ *         },
+ *         {
+ *             shardName: "shard2",
+ *             subnetId: bar.id,
+ *             type: "CLICKHOUSE",
+ *             zone: "ru-central1-b",
+ *         },
+ *         {
+ *             shardName: "shard2",
+ *             subnetId: baz.id,
+ *             type: "CLICKHOUSE",
+ *             zone: "ru-central1-c",
+ *         },
+ *     ],
+ *     networkId: fooVpcNetwork.id,
+ *     shardGroups: [{
+ *         description: "Cluster configuration that contain only shard1",
+ *         name: "single_shard_group",
+ *         shardNames: ["shard1"],
+ *     }],
+ *     users: [{
+ *         name: "user",
+ *         password: "password",
+ *         permissions: [{
+ *             databaseName: "db_name",
+ *         }],
+ *         quotas: [
+ *             {
+ *                 errors: 1000,
+ *                 intervalDuration: 3600000,
+ *                 queries: 10000,
+ *             },
+ *             {
+ *                 errors: 5000,
+ *                 intervalDuration: 79800000,
+ *                 queries: 50000,
+ *             },
+ *         ],
+ *         settings: {
+ *             maxMemoryUsageForUser: 1000000000,
+ *             outputFormatJsonQuote64bitIntegers: true,
+ *             readOverflowMode: "throw",
+ *         },
+ *     }],
+ *     zookeeper: {
+ *         resources: {
+ *             diskSize: 10,
+ *             diskTypeId: "network-ssd",
+ *             resourcePresetId: "s2.micro",
+ *         },
+ *     },
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A cluster can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/mdbClickhouseCluster:MdbClickhouseCluster foo cluster_id
+ * ```
+ */
 export class MdbClickhouseCluster extends pulumi.CustomResource {
     /**
      * Get an existing MdbClickhouseCluster resource's state with the given name, ID, and optional extra
@@ -33,35 +426,122 @@ export class MdbClickhouseCluster extends pulumi.CustomResource {
         return obj['__pulumiType'] === MdbClickhouseCluster.__pulumiType;
     }
 
+    /**
+     * Access policy to the ClickHouse cluster. The structure is documented below.
+     */
     public readonly access!: pulumi.Output<outputs.MdbClickhouseClusterAccess>;
+    /**
+     * A password used to authorize as user `admin` when `sqlUserManagement` enabled.
+     */
     public readonly adminPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Time to start the daily backup, in the UTC timezone. The structure is documented below.
+     */
     public readonly backupWindowStart!: pulumi.Output<outputs.MdbClickhouseClusterBackupWindowStart>;
+    /**
+     * Configuration of the ClickHouse subcluster. The structure is documented below.
+     */
     public readonly clickhouse!: pulumi.Output<outputs.MdbClickhouseClusterClickhouse>;
     public readonly cloudStorage!: pulumi.Output<outputs.MdbClickhouseClusterCloudStorage | undefined>;
+    /**
+     * Whether to copy schema on new ClickHouse hosts.
+     */
     public readonly copySchemaOnNewHosts!: pulumi.Output<boolean | undefined>;
+    /**
+     * Timestamp of cluster creation.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * A database of the ClickHouse cluster. The structure is documented below.
+     */
     public readonly databases!: pulumi.Output<outputs.MdbClickhouseClusterDatabase[] | undefined>;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     public readonly deletionProtection!: pulumi.Output<boolean>;
+    /**
+     * Description of the shard group.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+     */
     public readonly embeddedKeeper!: pulumi.Output<boolean>;
+    /**
+     * Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+     */
     public readonly environment!: pulumi.Output<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * A set of protobuf or capnproto format schemas. The structure is documented below.
+     */
     public readonly formatSchemas!: pulumi.Output<outputs.MdbClickhouseClusterFormatSchema[] | undefined>;
+    /**
+     * Aggregated health of the cluster. Can be `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+     * For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+     */
     public /*out*/ readonly health!: pulumi.Output<string>;
+    /**
+     * A host of the ClickHouse cluster. The structure is documented below.
+     */
     public readonly hosts!: pulumi.Output<outputs.MdbClickhouseClusterHost[]>;
+    /**
+     * A set of key/value label pairs to assign to the ClickHouse cluster.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
     public readonly maintenanceWindow!: pulumi.Output<outputs.MdbClickhouseClusterMaintenanceWindow>;
+    /**
+     * A group of machine learning models. The structure is documented below
+     */
     public readonly mlModels!: pulumi.Output<outputs.MdbClickhouseClusterMlModel[] | undefined>;
+    /**
+     * Graphite rollup configuration name.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * ID of the network, to which the ClickHouse cluster belongs.
+     */
     public readonly networkId!: pulumi.Output<string>;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     public readonly securityGroupIds!: pulumi.Output<string[]>;
+    /**
+     * ID of the service account used for access to Yandex Object Storage.
+     */
     public readonly serviceAccountId!: pulumi.Output<string>;
+    /**
+     * A group of clickhouse shards. The structure is documented below.
+     */
     public readonly shardGroups!: pulumi.Output<outputs.MdbClickhouseClusterShardGroup[] | undefined>;
+    /**
+     * Grants `admin` user database management permission.
+     */
     public readonly sqlDatabaseManagement!: pulumi.Output<boolean>;
+    /**
+     * Enables `admin` user with user management permission.
+     */
     public readonly sqlUserManagement!: pulumi.Output<boolean>;
+    /**
+     * Status of the cluster. Can be `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+     * For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+     */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * A user of the ClickHouse cluster. The structure is documented below.
+     */
     public readonly users!: pulumi.Output<outputs.MdbClickhouseClusterUser[] | undefined>;
+    /**
+     * Version of the ClickHouse server software.
+     */
     public readonly version!: pulumi.Output<string>;
+    /**
+     * Configuration of the ZooKeeper subcluster. The structure is documented below.
+     */
     public readonly zookeeper!: pulumi.Output<outputs.MdbClickhouseClusterZookeeper>;
 
     /**
@@ -161,35 +641,122 @@ export class MdbClickhouseCluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MdbClickhouseCluster resources.
  */
 export interface MdbClickhouseClusterState {
+    /**
+     * Access policy to the ClickHouse cluster. The structure is documented below.
+     */
     access?: pulumi.Input<inputs.MdbClickhouseClusterAccess>;
+    /**
+     * A password used to authorize as user `admin` when `sqlUserManagement` enabled.
+     */
     adminPassword?: pulumi.Input<string>;
+    /**
+     * Time to start the daily backup, in the UTC timezone. The structure is documented below.
+     */
     backupWindowStart?: pulumi.Input<inputs.MdbClickhouseClusterBackupWindowStart>;
+    /**
+     * Configuration of the ClickHouse subcluster. The structure is documented below.
+     */
     clickhouse?: pulumi.Input<inputs.MdbClickhouseClusterClickhouse>;
     cloudStorage?: pulumi.Input<inputs.MdbClickhouseClusterCloudStorage>;
+    /**
+     * Whether to copy schema on new ClickHouse hosts.
+     */
     copySchemaOnNewHosts?: pulumi.Input<boolean>;
+    /**
+     * Timestamp of cluster creation.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * A database of the ClickHouse cluster. The structure is documented below.
+     */
     databases?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterDatabase>[]>;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * Description of the shard group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+     */
     embeddedKeeper?: pulumi.Input<boolean>;
+    /**
+     * Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+     */
     environment?: pulumi.Input<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of protobuf or capnproto format schemas. The structure is documented below.
+     */
     formatSchemas?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterFormatSchema>[]>;
+    /**
+     * Aggregated health of the cluster. Can be `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+     * For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+     */
     health?: pulumi.Input<string>;
+    /**
+     * A host of the ClickHouse cluster. The structure is documented below.
+     */
     hosts?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterHost>[]>;
+    /**
+     * A set of key/value label pairs to assign to the ClickHouse cluster.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     maintenanceWindow?: pulumi.Input<inputs.MdbClickhouseClusterMaintenanceWindow>;
+    /**
+     * A group of machine learning models. The structure is documented below
+     */
     mlModels?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterMlModel>[]>;
+    /**
+     * Graphite rollup configuration name.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network, to which the ClickHouse cluster belongs.
+     */
     networkId?: pulumi.Input<string>;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * ID of the service account used for access to Yandex Object Storage.
+     */
     serviceAccountId?: pulumi.Input<string>;
+    /**
+     * A group of clickhouse shards. The structure is documented below.
+     */
     shardGroups?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterShardGroup>[]>;
+    /**
+     * Grants `admin` user database management permission.
+     */
     sqlDatabaseManagement?: pulumi.Input<boolean>;
+    /**
+     * Enables `admin` user with user management permission.
+     */
     sqlUserManagement?: pulumi.Input<boolean>;
+    /**
+     * Status of the cluster. Can be `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+     * For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+     */
     status?: pulumi.Input<string>;
+    /**
+     * A user of the ClickHouse cluster. The structure is documented below.
+     */
     users?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterUser>[]>;
+    /**
+     * Version of the ClickHouse server software.
+     */
     version?: pulumi.Input<string>;
+    /**
+     * Configuration of the ZooKeeper subcluster. The structure is documented below.
+     */
     zookeeper?: pulumi.Input<inputs.MdbClickhouseClusterZookeeper>;
 }
 
@@ -197,31 +764,107 @@ export interface MdbClickhouseClusterState {
  * The set of arguments for constructing a MdbClickhouseCluster resource.
  */
 export interface MdbClickhouseClusterArgs {
+    /**
+     * Access policy to the ClickHouse cluster. The structure is documented below.
+     */
     access?: pulumi.Input<inputs.MdbClickhouseClusterAccess>;
+    /**
+     * A password used to authorize as user `admin` when `sqlUserManagement` enabled.
+     */
     adminPassword?: pulumi.Input<string>;
+    /**
+     * Time to start the daily backup, in the UTC timezone. The structure is documented below.
+     */
     backupWindowStart?: pulumi.Input<inputs.MdbClickhouseClusterBackupWindowStart>;
+    /**
+     * Configuration of the ClickHouse subcluster. The structure is documented below.
+     */
     clickhouse: pulumi.Input<inputs.MdbClickhouseClusterClickhouse>;
     cloudStorage?: pulumi.Input<inputs.MdbClickhouseClusterCloudStorage>;
+    /**
+     * Whether to copy schema on new ClickHouse hosts.
+     */
     copySchemaOnNewHosts?: pulumi.Input<boolean>;
+    /**
+     * A database of the ClickHouse cluster. The structure is documented below.
+     */
     databases?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterDatabase>[]>;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * Description of the shard group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+     */
     embeddedKeeper?: pulumi.Input<boolean>;
+    /**
+     * Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+     */
     environment: pulumi.Input<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of protobuf or capnproto format schemas. The structure is documented below.
+     */
     formatSchemas?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterFormatSchema>[]>;
+    /**
+     * A host of the ClickHouse cluster. The structure is documented below.
+     */
     hosts: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterHost>[]>;
+    /**
+     * A set of key/value label pairs to assign to the ClickHouse cluster.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     maintenanceWindow?: pulumi.Input<inputs.MdbClickhouseClusterMaintenanceWindow>;
+    /**
+     * A group of machine learning models. The structure is documented below
+     */
     mlModels?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterMlModel>[]>;
+    /**
+     * Graphite rollup configuration name.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network, to which the ClickHouse cluster belongs.
+     */
     networkId: pulumi.Input<string>;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * ID of the service account used for access to Yandex Object Storage.
+     */
     serviceAccountId?: pulumi.Input<string>;
+    /**
+     * A group of clickhouse shards. The structure is documented below.
+     */
     shardGroups?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterShardGroup>[]>;
+    /**
+     * Grants `admin` user database management permission.
+     */
     sqlDatabaseManagement?: pulumi.Input<boolean>;
+    /**
+     * Enables `admin` user with user management permission.
+     */
     sqlUserManagement?: pulumi.Input<boolean>;
+    /**
+     * A user of the ClickHouse cluster. The structure is documented below.
+     */
     users?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterUser>[]>;
+    /**
+     * Version of the ClickHouse server software.
+     */
     version?: pulumi.Input<string>;
+    /**
+     * Configuration of the ZooKeeper subcluster. The structure is documented below.
+     */
     zookeeper?: pulumi.Input<inputs.MdbClickhouseClusterZookeeper>;
 }

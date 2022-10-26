@@ -12,27 +12,53 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbMongodbClusterHostArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// -(Optional)  Should this host have assigned public IP assigned. Can be either `true` or `false`.
+        /// </summary>
         [Input("assignPublicIp")]
         public Input<bool>? AssignPublicIp { get; set; }
 
+        /// <summary>
+        /// The health of the host.
+        /// </summary>
         [Input("health")]
         public Input<string>? Health { get; set; }
 
+        /// <summary>
+        /// The fully qualified domain name of the host. Computed on server side.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The role of the cluster (either PRIMARY or SECONDARY).
+        /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 
+        /// <summary>
+        /// The name of the shard to which the host belongs.
+        /// </summary>
         [Input("shardName")]
         public Input<string>? ShardName { get; set; }
 
+        /// <summary>
+        /// The ID of the subnet, to which the host belongs. The subnet must
+        /// be a part of the network to which the cluster belongs.
+        /// </summary>
         [Input("subnetId", required: true)]
         public Input<string> SubnetId { get; set; } = null!;
 
+        /// <summary>
+        /// Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
+        /// <summary>
+        /// The availability zone where the MongoDB host will be created.
+        /// For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+        /// </summary>
         [Input("zoneId", required: true)]
         public Input<string> ZoneId { get; set; } = null!;
 

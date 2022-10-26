@@ -9,33 +9,125 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var lab_net = new Yandex.VpcNetwork("lab-net");
+    /// 
+    ///     var default_sg = new Yandex.VpcDefaultSecurityGroup("default-sg", new()
+    ///     {
+    ///         Description = "description for default security group",
+    ///         Egresses = new[]
+    ///         {
+    ///             new Yandex.Inputs.VpcDefaultSecurityGroupEgressArgs
+    ///             {
+    ///                 Description = "rule2 description",
+    ///                 FromPort = 8090,
+    ///                 Protocol = "ANY",
+    ///                 ToPort = 8099,
+    ///                 V4CidrBlocks = new[]
+    ///                 {
+    ///                     "10.0.1.0/24",
+    ///                     "10.0.2.0/24",
+    ///                 },
+    ///             },
+    ///             new Yandex.Inputs.VpcDefaultSecurityGroupEgressArgs
+    ///             {
+    ///                 Description = "rule3 description",
+    ///                 FromPort = 8090,
+    ///                 Protocol = "UDP",
+    ///                 ToPort = 8099,
+    ///                 V4CidrBlocks = new[]
+    ///                 {
+    ///                     "10.0.1.0/24",
+    ///                 },
+    ///             },
+    ///         },
+    ///         Ingresses = new[]
+    ///         {
+    ///             new Yandex.Inputs.VpcDefaultSecurityGroupIngressArgs
+    ///             {
+    ///                 Description = "rule1 description",
+    ///                 Port = 8080,
+    ///                 Protocol = "TCP",
+    ///                 V4CidrBlocks = new[]
+    ///                 {
+    ///                     "10.0.1.0/24",
+    ///                     "10.0.2.0/24",
+    ///                 },
+    ///             },
+    ///         },
+    ///         Labels = 
+    ///         {
+    ///             { "my-label", "my-label-value" },
+    ///         },
+    ///         NetworkId = lab_net.Id,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/vpcDefaultSecurityGroup:VpcDefaultSecurityGroup")]
     public partial class VpcDefaultSecurityGroup : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Creation timestamp of this security group.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// Description of the security group.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// A list of egress rules. The structure is documented below.
+        /// </summary>
         [Output("egresses")]
         public Output<ImmutableArray<Outputs.VpcDefaultSecurityGroupEgress>> Egresses { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the folder this security group belongs to.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// A list of ingress rules.
+        /// </summary>
         [Output("ingresses")]
         public Output<ImmutableArray<Outputs.VpcDefaultSecurityGroupIngress>> Ingresses { get; private set; } = null!;
 
+        /// <summary>
+        /// Labels to assign to this security group.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of this security group.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the network this security group belongs to.
+        /// </summary>
         [Output("networkId")]
         public Output<string> NetworkId { get; private set; } = null!;
 
+        /// <summary>
+        /// Status of this security group.
+        /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
@@ -62,7 +154,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -86,22 +178,36 @@ namespace Pulumi.Yandex
 
     public sealed class VpcDefaultSecurityGroupArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Description of the security group.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         [Input("egresses")]
         private InputList<Inputs.VpcDefaultSecurityGroupEgressArgs>? _egresses;
+
+        /// <summary>
+        /// A list of egress rules. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.VpcDefaultSecurityGroupEgressArgs> Egresses
         {
             get => _egresses ?? (_egresses = new InputList<Inputs.VpcDefaultSecurityGroupEgressArgs>());
             set => _egresses = value;
         }
 
+        /// <summary>
+        /// ID of the folder this security group belongs to.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("ingresses")]
         private InputList<Inputs.VpcDefaultSecurityGroupIngressArgs>? _ingresses;
+
+        /// <summary>
+        /// A list of ingress rules.
+        /// </summary>
         public InputList<Inputs.VpcDefaultSecurityGroupIngressArgs> Ingresses
         {
             get => _ingresses ?? (_ingresses = new InputList<Inputs.VpcDefaultSecurityGroupIngressArgs>());
@@ -110,12 +216,19 @@ namespace Pulumi.Yandex
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this security group.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// ID of the network this security group belongs to.
+        /// </summary>
         [Input("networkId", required: true)]
         public Input<string> NetworkId { get; set; } = null!;
 
@@ -127,25 +240,42 @@ namespace Pulumi.Yandex
 
     public sealed class VpcDefaultSecurityGroupState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Creation timestamp of this security group.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// Description of the security group.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         [Input("egresses")]
         private InputList<Inputs.VpcDefaultSecurityGroupEgressGetArgs>? _egresses;
+
+        /// <summary>
+        /// A list of egress rules. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.VpcDefaultSecurityGroupEgressGetArgs> Egresses
         {
             get => _egresses ?? (_egresses = new InputList<Inputs.VpcDefaultSecurityGroupEgressGetArgs>());
             set => _egresses = value;
         }
 
+        /// <summary>
+        /// ID of the folder this security group belongs to.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("ingresses")]
         private InputList<Inputs.VpcDefaultSecurityGroupIngressGetArgs>? _ingresses;
+
+        /// <summary>
+        /// A list of ingress rules.
+        /// </summary>
         public InputList<Inputs.VpcDefaultSecurityGroupIngressGetArgs> Ingresses
         {
             get => _ingresses ?? (_ingresses = new InputList<Inputs.VpcDefaultSecurityGroupIngressGetArgs>());
@@ -154,18 +284,31 @@ namespace Pulumi.Yandex
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this security group.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of this security group.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the network this security group belongs to.
+        /// </summary>
         [Input("networkId")]
         public Input<string>? NetworkId { get; set; }
 
+        /// <summary>
+        /// Status of this security group.
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 

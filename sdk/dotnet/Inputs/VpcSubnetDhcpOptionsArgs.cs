@@ -12,11 +12,18 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class VpcSubnetDhcpOptionsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Domain name.
+        /// </summary>
         [Input("domainName")]
         public Input<string>? DomainName { get; set; }
 
         [Input("domainNameServers")]
         private InputList<string>? _domainNameServers;
+
+        /// <summary>
+        /// Domain name server IP addresses.
+        /// </summary>
         public InputList<string> DomainNameServers
         {
             get => _domainNameServers ?? (_domainNameServers = new InputList<string>());
@@ -25,6 +32,10 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("ntpServers")]
         private InputList<string>? _ntpServers;
+
+        /// <summary>
+        /// NTP server IP addresses.
+        /// </summary>
         public InputList<string> NtpServers
         {
             get => _ntpServers ?? (_ntpServers = new InputList<string>());

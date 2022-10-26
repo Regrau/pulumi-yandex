@@ -11,9 +11,51 @@ namespace Pulumi.Yandex
 {
     public static class GetLbNetworkLoadBalancer
     {
+        /// <summary>
+        /// Get information about a Yandex Load Balancer network load balancer. For more information, see
+        /// [Yandex.Cloud Network Load Balancer](https://cloud.yandex.com/docs/load-balancer/concepts/).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetLbNetworkLoadBalancer.Invoke(new()
+        ///     {
+        ///         NetworkLoadBalancerId = "my-network-load-balancer",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [Load Balancer Network Load Balancers] that can be used by other resources.
+        /// </summary>
         public static Task<GetLbNetworkLoadBalancerResult> InvokeAsync(GetLbNetworkLoadBalancerArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetLbNetworkLoadBalancerResult>("yandex:index/getLbNetworkLoadBalancer:getLbNetworkLoadBalancer", args ?? new GetLbNetworkLoadBalancerArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Load Balancer network load balancer. For more information, see
+        /// [Yandex.Cloud Network Load Balancer](https://cloud.yandex.com/docs/load-balancer/concepts/).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetLbNetworkLoadBalancer.Invoke(new()
+        ///     {
+        ///         NetworkLoadBalancerId = "my-network-load-balancer",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [Load Balancer Network Load Balancers] that can be used by other resources.
+        /// </summary>
         public static Output<GetLbNetworkLoadBalancerResult> Invoke(GetLbNetworkLoadBalancerInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetLbNetworkLoadBalancerResult>("yandex:index/getLbNetworkLoadBalancer:getLbNetworkLoadBalancer", args ?? new GetLbNetworkLoadBalancerInvokeArgs(), options.WithDefaults());
     }
@@ -21,12 +63,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetLbNetworkLoadBalancerArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// - Name of the network load balancer.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Network load balancer ID.
+        /// </summary>
         [Input("networkLoadBalancerId")]
         public string? NetworkLoadBalancerId { get; set; }
 
@@ -38,12 +89,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetLbNetworkLoadBalancerInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// - Name of the network load balancer.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Network load balancer ID.
+        /// </summary>
         [Input("networkLoadBalancerId")]
         public Input<string>? NetworkLoadBalancerId { get; set; }
 
@@ -57,19 +117,43 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetLbNetworkLoadBalancerResult
     {
+        /// <summary>
+        /// An attached target group is a group of targets that is attached to a load balancer. Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetLbNetworkLoadBalancerAttachedTargetGroupResult> AttachedTargetGroups;
+        /// <summary>
+        /// Creation timestamp of this network load balancer.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Description of the network load balancer.
+        /// </summary>
         public readonly string Description;
         public readonly string FolderId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Labels to assign to this network load balancer.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// Listener specification that will be used by a network load balancer. Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetLbNetworkLoadBalancerListenerResult> Listeners;
+        /// <summary>
+        /// Name of the listener.
+        /// </summary>
         public readonly string Name;
         public readonly string NetworkLoadBalancerId;
+        /// <summary>
+        /// ID of the region where the network load balancer resides.
+        /// </summary>
         public readonly string RegionId;
+        /// <summary>
+        /// Type of the network load balancer.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

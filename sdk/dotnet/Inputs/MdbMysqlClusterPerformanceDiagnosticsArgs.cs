@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbMysqlClusterPerformanceDiagnosticsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Enable performance diagnostics
+        /// </summary>
         [Input("enabled")]
         public Input<bool>? Enabled { get; set; }
 
+        /// <summary>
+        /// Interval (in seconds) for my_stat_activity sampling Acceptable values are 1 to 86400, inclusive.
+        /// </summary>
         [Input("sessionsSamplingInterval", required: true)]
         public Input<int> SessionsSamplingInterval { get; set; } = null!;
 
+        /// <summary>
+        /// Interval (in seconds) for my_stat_statements sampling Acceptable values are 1 to 86400, inclusive.
+        /// </summary>
         [Input("statementsSamplingInterval", required: true)]
         public Input<int> StatementsSamplingInterval { get; set; } = null!;
 

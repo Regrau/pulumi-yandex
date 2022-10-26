@@ -13,8 +13,14 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbMongodbClusterUserResult
     {
+        /// <summary>
+        /// The name of the MongoDB cluster.
+        /// </summary>
         public readonly string? Name;
         public readonly string? Password;
+        /// <summary>
+        /// Set of permissions granted to the user. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbMongodbClusterUserPermissionResult> Permissions;
 
         [OutputConstructor]

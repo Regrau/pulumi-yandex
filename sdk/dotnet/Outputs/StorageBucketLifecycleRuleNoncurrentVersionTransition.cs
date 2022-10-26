@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class StorageBucketLifecycleRuleNoncurrentVersionTransition
     {
+        /// <summary>
+        /// Specifies the number of days noncurrent object versions transition.
+        /// </summary>
         public readonly int? Days;
+        /// <summary>
+        /// Specifies the storage class to which you want the noncurrent object versions to transition. Can only be `COLD` or `STANDARD_IA`.
+        /// </summary>
         public readonly string StorageClass;
 
         [OutputConstructor]

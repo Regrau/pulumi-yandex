@@ -91,16 +91,25 @@ class GetComputeInstanceResult:
     @property
     @pulumi.getter(name="bootDisks")
     def boot_disks(self) -> Sequence['outputs.GetComputeInstanceBootDiskResult']:
+        """
+        The boot disk for the instance. Structure is documented below.
+        """
         return pulumi.get(self, "boot_disks")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Instance creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the boot disk.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -111,6 +120,9 @@ class GetComputeInstanceResult:
     @property
     @pulumi.getter
     def fqdn(self) -> str:
+        """
+        DNS record FQDN.
+        """
         return pulumi.get(self, "fqdn")
 
     @property
@@ -129,41 +141,68 @@ class GetComputeInstanceResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs assigned to the instance.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="localDisks")
     def local_disks(self) -> Optional[Sequence['outputs.GetComputeInstanceLocalDiskResult']]:
+        """
+        List of local disks that are attached to the instance. Structure is documented below.
+        """
         return pulumi.get(self, "local_disks")
 
     @property
     @pulumi.getter
     def metadata(self) -> Mapping[str, str]:
+        """
+        Metadata key/value pairs to make available from
+        within the instance.
+        """
         return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of the boot disk.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkAccelerationType")
     def network_acceleration_type(self) -> str:
+        """
+        Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
+        """
         return pulumi.get(self, "network_acceleration_type")
 
     @property
     @pulumi.getter(name="networkInterfaces")
     def network_interfaces(self) -> Sequence['outputs.GetComputeInstanceNetworkInterfaceResult']:
+        """
+        The networks attached to the instance. Structure is documented below.
+        * `network_interface.0.ip_address` - An internal IP address of the instance, either manually or dynamically assigned.
+        * `network_interface.0.nat_ip_address` - An assigned external IP address if the instance has NAT enabled.
+        """
         return pulumi.get(self, "network_interfaces")
 
     @property
     @pulumi.getter(name="placementPolicy")
     def placement_policy(self) -> Optional['outputs.GetComputeInstancePlacementPolicyResult']:
+        """
+        The placement policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "placement_policy")
 
     @property
     @pulumi.getter(name="platformId")
     def platform_id(self) -> str:
+        """
+        Type of virtual machine to create. Default is 'standard-v1'.
+        """
         return pulumi.get(self, "platform_id")
 
     @property
@@ -174,26 +213,45 @@ class GetComputeInstanceResult:
     @property
     @pulumi.getter(name="schedulingPolicies")
     def scheduling_policies(self) -> Sequence['outputs.GetComputeInstanceSchedulingPolicyResult']:
+        """
+        Scheduling policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "scheduling_policies")
 
     @property
     @pulumi.getter(name="secondaryDisks")
     def secondary_disks(self) -> Sequence['outputs.GetComputeInstanceSecondaryDiskResult']:
+        """
+        List of secondary disks attached to the instance. Structure is documented below.
+        """
         return pulumi.get(self, "secondary_disks")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> str:
+        """
+        ID of the service account authorized for this instance.
+        """
         return pulumi.get(self, "service_account_id")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the instance.
+        * `resources.0.memory` - Memory size allocated for the instance.
+        * `resources.0.cores` - Number of CPU cores allocated for the instance.
+        * `resources.0.core_fraction` - Baseline performance for a core, set as a percent.
+        * `resources.0.gpus` - Number of GPU cores allocated for the instance.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def zone(self) -> str:
+        """
+        Availability zone where the instance resides.
+        """
         return pulumi.get(self, "zone")
 
 
@@ -233,7 +291,25 @@ def get_compute_instance(folder_id: Optional[str] = None,
                          placement_policy: Optional[pulumi.InputType['GetComputeInstancePlacementPolicyArgs']] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetComputeInstanceResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Compute instance. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/compute/concepts/vm).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_instance = yandex.get_compute_instance(instance_id="some_instance_id")
+    pulumi.export("instanceExternalIp", my_instance.network_interfaces[0].nat_ip_address)
+    ```
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str instance_id: The ID of a specific instance.
+    :param Sequence[pulumi.InputType['GetComputeInstanceLocalDiskArgs']] local_disks: List of local disks that are attached to the instance. Structure is documented below.
+    :param str name: Name of the instance.
+    :param pulumi.InputType['GetComputeInstancePlacementPolicyArgs'] placement_policy: The placement policy configuration. The structure is documented below.
     """
     __args__ = dict()
     __args__['folderId'] = folder_id
@@ -276,6 +352,24 @@ def get_compute_instance_output(folder_id: Optional[pulumi.Input[Optional[str]]]
                                 placement_policy: Optional[pulumi.Input[Optional[pulumi.InputType['GetComputeInstancePlacementPolicyArgs']]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetComputeInstanceResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Compute instance. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/compute/concepts/vm).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_instance = yandex.get_compute_instance(instance_id="some_instance_id")
+    pulumi.export("instanceExternalIp", my_instance.network_interfaces[0].nat_ip_address)
+    ```
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str instance_id: The ID of a specific instance.
+    :param Sequence[pulumi.InputType['GetComputeInstanceLocalDiskArgs']] local_disks: List of local disks that are attached to the instance. Structure is documented below.
+    :param str name: Name of the instance.
+    :param pulumi.InputType['GetComputeInstancePlacementPolicyArgs'] placement_policy: The placement policy configuration. The structure is documented below.
     """
     ...

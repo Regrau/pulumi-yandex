@@ -26,6 +26,13 @@ class AlbBackendGroupArgs:
                  stream_backends: Optional[pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupStreamBackendArgs']]]] = None):
         """
         The set of arguments for constructing a AlbBackendGroup resource.
+        :param pulumi.Input[str] description: Description of the backend group.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupGrpcBackendArgs']]] grpc_backends: Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupHttpBackendArgs']]] http_backends: Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this backend group.
+        :param pulumi.Input[str] name: Name of the backend.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupStreamBackendArgs']]] stream_backends: Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -47,6 +54,9 @@ class AlbBackendGroupArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the backend group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -56,6 +66,9 @@ class AlbBackendGroupArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -65,6 +78,9 @@ class AlbBackendGroupArgs:
     @property
     @pulumi.getter(name="grpcBackends")
     def grpc_backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupGrpcBackendArgs']]]]:
+        """
+        Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        """
         return pulumi.get(self, "grpc_backends")
 
     @grpc_backends.setter
@@ -74,6 +90,9 @@ class AlbBackendGroupArgs:
     @property
     @pulumi.getter(name="httpBackends")
     def http_backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupHttpBackendArgs']]]]:
+        """
+        Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        """
         return pulumi.get(self, "http_backends")
 
     @http_backends.setter
@@ -83,6 +102,9 @@ class AlbBackendGroupArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this backend group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -92,6 +114,9 @@ class AlbBackendGroupArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the backend.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -110,6 +135,9 @@ class AlbBackendGroupArgs:
     @property
     @pulumi.getter(name="streamBackends")
     def stream_backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupStreamBackendArgs']]]]:
+        """
+        Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        """
         return pulumi.get(self, "stream_backends")
 
     @stream_backends.setter
@@ -131,6 +159,14 @@ class _AlbBackendGroupState:
                  stream_backends: Optional[pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupStreamBackendArgs']]]] = None):
         """
         Input properties used for looking up and filtering AlbBackendGroup resources.
+        :param pulumi.Input[str] created_at: The backend group creation timestamp.
+        :param pulumi.Input[str] description: Description of the backend group.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupGrpcBackendArgs']]] grpc_backends: Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupHttpBackendArgs']]] http_backends: Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this backend group.
+        :param pulumi.Input[str] name: Name of the backend.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupStreamBackendArgs']]] stream_backends: Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -154,6 +190,9 @@ class _AlbBackendGroupState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The backend group creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -163,6 +202,9 @@ class _AlbBackendGroupState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the backend group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -172,6 +214,9 @@ class _AlbBackendGroupState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -181,6 +226,9 @@ class _AlbBackendGroupState:
     @property
     @pulumi.getter(name="grpcBackends")
     def grpc_backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupGrpcBackendArgs']]]]:
+        """
+        Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        """
         return pulumi.get(self, "grpc_backends")
 
     @grpc_backends.setter
@@ -190,6 +238,9 @@ class _AlbBackendGroupState:
     @property
     @pulumi.getter(name="httpBackends")
     def http_backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupHttpBackendArgs']]]]:
+        """
+        Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        """
         return pulumi.get(self, "http_backends")
 
     @http_backends.setter
@@ -199,6 +250,9 @@ class _AlbBackendGroupState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this backend group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -208,6 +262,9 @@ class _AlbBackendGroupState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the backend.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -226,6 +283,9 @@ class _AlbBackendGroupState:
     @property
     @pulumi.getter(name="streamBackends")
     def stream_backends(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbBackendGroupStreamBackendArgs']]]]:
+        """
+        Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        """
         return pulumi.get(self, "stream_backends")
 
     @stream_backends.setter
@@ -248,9 +308,54 @@ class AlbBackendGroup(pulumi.CustomResource):
                  stream_backends: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbBackendGroupStreamBackendArgs']]]]] = None,
                  __props__=None):
         """
-        Create a AlbBackendGroup resource with the given unique name, props, and options.
+        Creates a backend group in the specified folder and adds the specified backends to it.
+        For more information, see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/backend-group).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        test_backend_group = yandex.AlbBackendGroup("test-backend-group", http_backends=[yandex.AlbBackendGroupHttpBackendArgs(
+            healthcheck=yandex.AlbBackendGroupHttpBackendHealthcheckArgs(
+                http_healthcheck=yandex.AlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs(
+                    path="/",
+                ),
+                interval="1s",
+                timeout="1s",
+            ),
+            http2=True,
+            load_balancing_config=yandex.AlbBackendGroupHttpBackendLoadBalancingConfigArgs(
+                panic_threshold=50,
+            ),
+            name="test-http-backend",
+            port=8080,
+            target_group_ids=[yandex_alb_target_group["test-target-group"]["id"]],
+            tls=yandex.AlbBackendGroupHttpBackendTlsArgs(
+                sni="backend-domain.internal",
+            ),
+            weight=1,
+        )])
+        ```
+
+        ## Import
+
+        A backend group can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/albBackendGroup:AlbBackendGroup default backend_group_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Description of the backend group.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbBackendGroupGrpcBackendArgs']]]] grpc_backends: Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbBackendGroupHttpBackendArgs']]]] http_backends: Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this backend group.
+        :param pulumi.Input[str] name: Name of the backend.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbBackendGroupStreamBackendArgs']]]] stream_backends: Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
         """
         ...
     @overload
@@ -259,7 +364,45 @@ class AlbBackendGroup(pulumi.CustomResource):
                  args: Optional[AlbBackendGroupArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AlbBackendGroup resource with the given unique name, props, and options.
+        Creates a backend group in the specified folder and adds the specified backends to it.
+        For more information, see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/backend-group).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        test_backend_group = yandex.AlbBackendGroup("test-backend-group", http_backends=[yandex.AlbBackendGroupHttpBackendArgs(
+            healthcheck=yandex.AlbBackendGroupHttpBackendHealthcheckArgs(
+                http_healthcheck=yandex.AlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs(
+                    path="/",
+                ),
+                interval="1s",
+                timeout="1s",
+            ),
+            http2=True,
+            load_balancing_config=yandex.AlbBackendGroupHttpBackendLoadBalancingConfigArgs(
+                panic_threshold=50,
+            ),
+            name="test-http-backend",
+            port=8080,
+            target_group_ids=[yandex_alb_target_group["test-target-group"]["id"]],
+            tls=yandex.AlbBackendGroupHttpBackendTlsArgs(
+                sni="backend-domain.internal",
+            ),
+            weight=1,
+        )])
+        ```
+
+        ## Import
+
+        A backend group can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/albBackendGroup:AlbBackendGroup default backend_group_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param AlbBackendGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -327,6 +470,14 @@ class AlbBackendGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: The backend group creation timestamp.
+        :param pulumi.Input[str] description: Description of the backend group.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbBackendGroupGrpcBackendArgs']]]] grpc_backends: Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbBackendGroupHttpBackendArgs']]]] http_backends: Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this backend group.
+        :param pulumi.Input[str] name: Name of the backend.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbBackendGroupStreamBackendArgs']]]] stream_backends: Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -346,36 +497,57 @@ class AlbBackendGroup(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        The backend group creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the backend group.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter(name="grpcBackends")
     def grpc_backends(self) -> pulumi.Output[Optional[Sequence['outputs.AlbBackendGroupGrpcBackend']]]:
+        """
+        Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        """
         return pulumi.get(self, "grpc_backends")
 
     @property
     @pulumi.getter(name="httpBackends")
     def http_backends(self) -> pulumi.Output[Optional[Sequence['outputs.AlbBackendGroupHttpBackend']]]:
+        """
+        Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        """
         return pulumi.get(self, "http_backends")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Labels to assign to this backend group.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the backend.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -386,5 +558,8 @@ class AlbBackendGroup(pulumi.CustomResource):
     @property
     @pulumi.getter(name="streamBackends")
     def stream_backends(self) -> pulumi.Output[Optional[Sequence['outputs.AlbBackendGroupStreamBackend']]]:
+        """
+        Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        """
         return pulumi.get(self, "stream_backends")
 

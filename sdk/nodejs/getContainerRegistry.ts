@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Container Registry. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/registry)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const source = pulumi.output(yandex.getContainerRegistry({
+ *     registryId: "some_registry_id",
+ * }));
+ * ```
+ */
 export function getContainerRegistry(args?: GetContainerRegistryArgs, opts?: pulumi.InvokeOptions): Promise<GetContainerRegistryResult> {
     args = args || {};
     if (!opts) {
@@ -23,9 +38,21 @@ export function getContainerRegistry(args?: GetContainerRegistryArgs, opts?: pul
  * A collection of arguments for invoking getContainerRegistry.
  */
 export interface GetContainerRegistryArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * Labels to assign to this registry.
+     */
     labels?: {[key: string]: string};
+    /**
+     * Name of the registry.
+     */
     name?: string;
+    /**
+     * The ID of a specific registry.
+     */
     registryId?: string;
 }
 
@@ -33,15 +60,24 @@ export interface GetContainerRegistryArgs {
  * A collection of values returned by getContainerRegistry.
  */
 export interface GetContainerRegistryResult {
+    /**
+     * Creation timestamp of this registry.
+     */
     readonly createdAt: string;
     readonly folderId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Labels to assign to this registry.
+     */
     readonly labels?: {[key: string]: string};
     readonly name: string;
     readonly registryId: string;
+    /**
+     * Status of the registry.
+     */
     readonly status: string;
 }
 
@@ -53,8 +89,20 @@ export function getContainerRegistryOutput(args?: GetContainerRegistryOutputArgs
  * A collection of arguments for invoking getContainerRegistry.
  */
 export interface GetContainerRegistryOutputArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Labels to assign to this registry.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the registry.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of a specific registry.
+     */
     registryId?: pulumi.Input<string>;
 }

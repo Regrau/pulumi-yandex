@@ -10,6 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex Managed MySQL cluster. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/managed-mysql/).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			foo, err := yandex.LookupMdbMysqlCluster(ctx, &GetMdbMysqlClusterArgs{
+//				Name: pulumi.StringRef("test"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("networkId", foo.NetworkId)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupMdbMysqlCluster(ctx *pulumi.Context, args *LookupMdbMysqlClusterArgs, opts ...pulumi.InvokeOption) (*LookupMdbMysqlClusterResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupMdbMysqlClusterResult
@@ -22,44 +51,70 @@ func LookupMdbMysqlCluster(ctx *pulumi.Context, args *LookupMdbMysqlClusterArgs,
 
 // A collection of arguments for invoking getMdbMysqlCluster.
 type LookupMdbMysqlClusterArgs struct {
-	Access             *GetMdbMysqlClusterAccess `pulumi:"access"`
-	ClusterId          *string                   `pulumi:"clusterId"`
-	DeletionProtection *bool                     `pulumi:"deletionProtection"`
-	Description        *string                   `pulumi:"description"`
-	FolderId           *string                   `pulumi:"folderId"`
-	Labels             map[string]string         `pulumi:"labels"`
-	MysqlConfig        map[string]string         `pulumi:"mysqlConfig"`
-	Name               *string                   `pulumi:"name"`
+	// Access policy to the MySQL cluster. The structure is documented below.
+	Access *GetMdbMysqlClusterAccess `pulumi:"access"`
+	// The ID of the MySQL cluster.
+	ClusterId          *string `pulumi:"clusterId"`
+	DeletionProtection *bool   `pulumi:"deletionProtection"`
+	// Description of the MySQL cluster.
+	Description *string `pulumi:"description"`
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the MySQL cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// MySQL cluster config.
+	MysqlConfig map[string]string `pulumi:"mysqlConfig"`
+	// The name of the MySQL cluster.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getMdbMysqlCluster.
 type LookupMdbMysqlClusterResult struct {
-	Access                 GetMdbMysqlClusterAccess              `pulumi:"access"`
+	// Access policy to the MySQL cluster. The structure is documented below.
+	Access GetMdbMysqlClusterAccess `pulumi:"access"`
+	// The period in days during which backups are stored.
 	BackupRetainPeriodDays int                                   `pulumi:"backupRetainPeriodDays"`
 	BackupWindowStarts     []GetMdbMysqlClusterBackupWindowStart `pulumi:"backupWindowStarts"`
 	ClusterId              string                                `pulumi:"clusterId"`
-	CreatedAt              string                                `pulumi:"createdAt"`
-	Databases              []GetMdbMysqlClusterDatabase          `pulumi:"databases"`
-	DeletionProtection     bool                                  `pulumi:"deletionProtection"`
-	Description            *string                               `pulumi:"description"`
-	Environment            string                                `pulumi:"environment"`
-	FolderId               string                                `pulumi:"folderId"`
-	Health                 string                                `pulumi:"health"`
-	HostGroupIds           []string                              `pulumi:"hostGroupIds"`
-	Hosts                  []GetMdbMysqlClusterHost              `pulumi:"hosts"`
+	// Creation timestamp of the key.
+	CreatedAt string `pulumi:"createdAt"`
+	// A database of the MySQL cluster. The structure is documented below.
+	Databases          []GetMdbMysqlClusterDatabase `pulumi:"databases"`
+	DeletionProtection bool                         `pulumi:"deletionProtection"`
+	// Description of the MySQL cluster.
+	Description *string `pulumi:"description"`
+	// Deployment environment of the MySQL cluster.
+	Environment string `pulumi:"environment"`
+	FolderId    string `pulumi:"folderId"`
+	// Aggregated health of the cluster.
+	Health       string   `pulumi:"health"`
+	HostGroupIds []string `pulumi:"hostGroupIds"`
+	// A host of the MySQL cluster. The structure is documented below.
+	Hosts []GetMdbMysqlClusterHost `pulumi:"hosts"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                     string                                    `pulumi:"id"`
-	Labels                 map[string]string                         `pulumi:"labels"`
-	MaintenanceWindows     []GetMdbMysqlClusterMaintenanceWindow     `pulumi:"maintenanceWindows"`
-	MysqlConfig            map[string]string                         `pulumi:"mysqlConfig"`
-	Name                   string                                    `pulumi:"name"`
-	NetworkId              string                                    `pulumi:"networkId"`
+	Id string `pulumi:"id"`
+	// A set of key/value label pairs to assign to the MySQL cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// Maintenance window settings of the MySQL cluster. The structure is documented below.
+	MaintenanceWindows []GetMdbMysqlClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
+	// MySQL cluster config.
+	MysqlConfig map[string]string `pulumi:"mysqlConfig"`
+	// The name of the database.
+	Name string `pulumi:"name"`
+	// ID of the network, to which the MySQL cluster belongs.
+	NetworkId string `pulumi:"networkId"`
+	// Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
 	PerformanceDiagnostics []GetMdbMysqlClusterPerformanceDiagnostic `pulumi:"performanceDiagnostics"`
-	Resources              []GetMdbMysqlClusterResource              `pulumi:"resources"`
-	SecurityGroupIds       []string                                  `pulumi:"securityGroupIds"`
-	Status                 string                                    `pulumi:"status"`
-	Users                  []GetMdbMysqlClusterUser                  `pulumi:"users"`
-	Version                string                                    `pulumi:"version"`
+	// Resources allocated to hosts of the MySQL cluster. The structure is documented below.
+	Resources []GetMdbMysqlClusterResource `pulumi:"resources"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// Status of the cluster.
+	Status string `pulumi:"status"`
+	// A user of the MySQL cluster. The structure is documented below.
+	Users []GetMdbMysqlClusterUser `pulumi:"users"`
+	// Version of the MySQL cluster.
+	Version string `pulumi:"version"`
 }
 
 func LookupMdbMysqlClusterOutput(ctx *pulumi.Context, args LookupMdbMysqlClusterOutputArgs, opts ...pulumi.InvokeOption) LookupMdbMysqlClusterResultOutput {
@@ -77,14 +132,21 @@ func LookupMdbMysqlClusterOutput(ctx *pulumi.Context, args LookupMdbMysqlCluster
 
 // A collection of arguments for invoking getMdbMysqlCluster.
 type LookupMdbMysqlClusterOutputArgs struct {
-	Access             GetMdbMysqlClusterAccessPtrInput `pulumi:"access"`
-	ClusterId          pulumi.StringPtrInput            `pulumi:"clusterId"`
-	DeletionProtection pulumi.BoolPtrInput              `pulumi:"deletionProtection"`
-	Description        pulumi.StringPtrInput            `pulumi:"description"`
-	FolderId           pulumi.StringPtrInput            `pulumi:"folderId"`
-	Labels             pulumi.StringMapInput            `pulumi:"labels"`
-	MysqlConfig        pulumi.StringMapInput            `pulumi:"mysqlConfig"`
-	Name               pulumi.StringPtrInput            `pulumi:"name"`
+	// Access policy to the MySQL cluster. The structure is documented below.
+	Access GetMdbMysqlClusterAccessPtrInput `pulumi:"access"`
+	// The ID of the MySQL cluster.
+	ClusterId          pulumi.StringPtrInput `pulumi:"clusterId"`
+	DeletionProtection pulumi.BoolPtrInput   `pulumi:"deletionProtection"`
+	// Description of the MySQL cluster.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the MySQL cluster.
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// MySQL cluster config.
+	MysqlConfig pulumi.StringMapInput `pulumi:"mysqlConfig"`
+	// The name of the MySQL cluster.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupMdbMysqlClusterOutputArgs) ElementType() reflect.Type {
@@ -106,10 +168,12 @@ func (o LookupMdbMysqlClusterResultOutput) ToLookupMdbMysqlClusterResultOutputWi
 	return o
 }
 
+// Access policy to the MySQL cluster. The structure is documented below.
 func (o LookupMdbMysqlClusterResultOutput) Access() GetMdbMysqlClusterAccessOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) GetMdbMysqlClusterAccess { return v.Access }).(GetMdbMysqlClusterAccessOutput)
 }
 
+// The period in days during which backups are stored.
 func (o LookupMdbMysqlClusterResultOutput) BackupRetainPeriodDays() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) int { return v.BackupRetainPeriodDays }).(pulumi.IntOutput)
 }
@@ -122,10 +186,12 @@ func (o LookupMdbMysqlClusterResultOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
+// Creation timestamp of the key.
 func (o LookupMdbMysqlClusterResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// A database of the MySQL cluster. The structure is documented below.
 func (o LookupMdbMysqlClusterResultOutput) Databases() GetMdbMysqlClusterDatabaseArrayOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) []GetMdbMysqlClusterDatabase { return v.Databases }).(GetMdbMysqlClusterDatabaseArrayOutput)
 }
@@ -134,10 +200,12 @@ func (o LookupMdbMysqlClusterResultOutput) DeletionProtection() pulumi.BoolOutpu
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) bool { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
+// Description of the MySQL cluster.
 func (o LookupMdbMysqlClusterResultOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Deployment environment of the MySQL cluster.
 func (o LookupMdbMysqlClusterResultOutput) Environment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) string { return v.Environment }).(pulumi.StringOutput)
 }
@@ -146,6 +214,7 @@ func (o LookupMdbMysqlClusterResultOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) string { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Aggregated health of the cluster.
 func (o LookupMdbMysqlClusterResultOutput) Health() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) string { return v.Health }).(pulumi.StringOutput)
 }
@@ -154,6 +223,7 @@ func (o LookupMdbMysqlClusterResultOutput) HostGroupIds() pulumi.StringArrayOutp
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) []string { return v.HostGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// A host of the MySQL cluster. The structure is documented below.
 func (o LookupMdbMysqlClusterResultOutput) Hosts() GetMdbMysqlClusterHostArrayOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) []GetMdbMysqlClusterHost { return v.Hosts }).(GetMdbMysqlClusterHostArrayOutput)
 }
@@ -163,48 +233,59 @@ func (o LookupMdbMysqlClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the MySQL cluster.
 func (o LookupMdbMysqlClusterResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Maintenance window settings of the MySQL cluster. The structure is documented below.
 func (o LookupMdbMysqlClusterResultOutput) MaintenanceWindows() GetMdbMysqlClusterMaintenanceWindowArrayOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) []GetMdbMysqlClusterMaintenanceWindow { return v.MaintenanceWindows }).(GetMdbMysqlClusterMaintenanceWindowArrayOutput)
 }
 
+// MySQL cluster config.
 func (o LookupMdbMysqlClusterResultOutput) MysqlConfig() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) map[string]string { return v.MysqlConfig }).(pulumi.StringMapOutput)
 }
 
+// The name of the database.
 func (o LookupMdbMysqlClusterResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network, to which the MySQL cluster belongs.
 func (o LookupMdbMysqlClusterResultOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) string { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
 func (o LookupMdbMysqlClusterResultOutput) PerformanceDiagnostics() GetMdbMysqlClusterPerformanceDiagnosticArrayOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) []GetMdbMysqlClusterPerformanceDiagnostic {
 		return v.PerformanceDiagnostics
 	}).(GetMdbMysqlClusterPerformanceDiagnosticArrayOutput)
 }
 
+// Resources allocated to hosts of the MySQL cluster. The structure is documented below.
 func (o LookupMdbMysqlClusterResultOutput) Resources() GetMdbMysqlClusterResourceArrayOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) []GetMdbMysqlClusterResource { return v.Resources }).(GetMdbMysqlClusterResourceArrayOutput)
 }
 
+// A set of ids of security groups assigned to hosts of the cluster.
 func (o LookupMdbMysqlClusterResultOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) []string { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// Status of the cluster.
 func (o LookupMdbMysqlClusterResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// A user of the MySQL cluster. The structure is documented below.
 func (o LookupMdbMysqlClusterResultOutput) Users() GetMdbMysqlClusterUserArrayOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) []GetMdbMysqlClusterUser { return v.Users }).(GetMdbMysqlClusterUserArrayOutput)
 }
 
+// Version of the MySQL cluster.
 func (o LookupMdbMysqlClusterResultOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbMysqlClusterResult) string { return v.Version }).(pulumi.StringOutput)
 }

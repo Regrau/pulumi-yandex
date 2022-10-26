@@ -9,18 +9,64 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Encrypts given plaintext with the specified Yandex KMS key and provides access to the ciphertext.
+    /// 
+    /// &gt; **Note:** Using this resource will allow you to conceal secret data within your
+    /// resource definitions, but it does not take care of protecting that data in the
+    /// logging output, plan output, or state output.  Please take care to secure your secret
+    /// data outside of resource definitions.
+    /// 
+    /// For more information, see [the official documentation](https://cloud.yandex.com/docs/kms/concepts/).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var example = new Yandex.KmsSymmetricKey("example", new()
+    ///     {
+    ///         Description = "description for key",
+    ///     });
+    /// 
+    ///     var password = new Yandex.KmsSecretCiphertext("password", new()
+    ///     {
+    ///         AadContext = "additional authenticated data",
+    ///         KeyId = example.Id,
+    ///         Plaintext = "strong password",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/kmsSecretCiphertext:KmsSecretCiphertext")]
     public partial class KmsSecretCiphertext : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
+        /// </summary>
         [Output("aadContext")]
         public Output<string?> AadContext { get; private set; } = null!;
 
+        /// <summary>
+        /// Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4
+        /// </summary>
         [Output("ciphertext")]
         public Output<string> Ciphertext { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the symmetric KMS key to use for encryption.
+        /// </summary>
         [Output("keyId")]
         public Output<string> KeyId { get; private set; } = null!;
 
+        /// <summary>
+        /// Plaintext to be encrypted.
+        /// </summary>
         [Output("plaintext")]
         public Output<string> Plaintext { get; private set; } = null!;
 
@@ -47,7 +93,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -71,12 +117,21 @@ namespace Pulumi.Yandex
 
     public sealed class KmsSecretCiphertextArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
+        /// </summary>
         [Input("aadContext")]
         public Input<string>? AadContext { get; set; }
 
+        /// <summary>
+        /// ID of the symmetric KMS key to use for encryption.
+        /// </summary>
         [Input("keyId", required: true)]
         public Input<string> KeyId { get; set; } = null!;
 
+        /// <summary>
+        /// Plaintext to be encrypted.
+        /// </summary>
         [Input("plaintext", required: true)]
         public Input<string> Plaintext { get; set; } = null!;
 
@@ -88,15 +143,27 @@ namespace Pulumi.Yandex
 
     public sealed class KmsSecretCiphertextState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
+        /// </summary>
         [Input("aadContext")]
         public Input<string>? AadContext { get; set; }
 
+        /// <summary>
+        /// Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4
+        /// </summary>
         [Input("ciphertext")]
         public Input<string>? Ciphertext { get; set; }
 
+        /// <summary>
+        /// ID of the symmetric KMS key to use for encryption.
+        /// </summary>
         [Input("keyId")]
         public Input<string>? KeyId { get; set; }
 
+        /// <summary>
+        /// Plaintext to be encrypted.
+        /// </summary>
         [Input("plaintext")]
         public Input<string>? Plaintext { get; set; }
 

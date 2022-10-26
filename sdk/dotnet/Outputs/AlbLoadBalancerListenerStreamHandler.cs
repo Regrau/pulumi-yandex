@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerListenerStreamHandler
     {
+        /// <summary>
+        /// Backend group id.
+        /// </summary>
         public readonly string? BackendGroupId;
 
         [OutputConstructor]

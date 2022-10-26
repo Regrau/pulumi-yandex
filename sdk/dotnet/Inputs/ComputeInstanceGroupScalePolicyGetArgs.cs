@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class ComputeInstanceGroupScalePolicyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The auto scaling policy of the instance group. The structure is documented below.
+        /// </summary>
         [Input("autoScale")]
         public Input<Inputs.ComputeInstanceGroupScalePolicyAutoScaleGetArgs>? AutoScale { get; set; }
 
+        /// <summary>
+        /// The fixed scaling policy of the instance group. The structure is documented below.
+        /// </summary>
         [Input("fixedScale")]
         public Input<Inputs.ComputeInstanceGroupScalePolicyFixedScaleGetArgs>? FixedScale { get; set; }
 
+        /// <summary>
+        /// The test auto scaling policy of the instance group. Use it to test how the auto scale works. The structure is documented below.
+        /// </summary>
         [Input("testAutoScale")]
         public Input<Inputs.ComputeInstanceGroupScalePolicyTestAutoScaleGetArgs>? TestAutoScale { get; set; }
 

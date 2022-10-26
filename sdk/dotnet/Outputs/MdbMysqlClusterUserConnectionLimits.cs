@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbMysqlClusterUserConnectionLimits
     {
+        /// <summary>
+        /// Max connections per hour.
+        /// </summary>
         public readonly int? MaxConnectionsPerHour;
+        /// <summary>
+        /// Max questions per hour.
+        /// </summary>
         public readonly int? MaxQuestionsPerHour;
+        /// <summary>
+        /// Max updates per hour.
+        /// </summary>
         public readonly int? MaxUpdatesPerHour;
+        /// <summary>
+        /// Max user connections.
+        /// </summary>
         public readonly int? MaxUserConnections;
 
         [OutputConstructor]

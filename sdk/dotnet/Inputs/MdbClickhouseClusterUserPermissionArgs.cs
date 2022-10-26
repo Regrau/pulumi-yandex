@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterUserPermissionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the database that the permission grants access to.
+        /// </summary>
         [Input("databaseName", required: true)]
         public Input<string> DatabaseName { get; set; } = null!;
 

@@ -15,9 +15,26 @@ namespace Pulumi.Yandex.Outputs
     {
         public readonly ImmutableArray<Outputs.GetLbNetworkLoadBalancerListenerExternalAddressSpecResult> ExternalAddressSpecs;
         public readonly ImmutableArray<Outputs.GetLbNetworkLoadBalancerListenerInternalAddressSpecResult> InternalAddressSpecs;
+        /// <summary>
+        /// - Name of the network load balancer.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Port for incoming traffic.
+        /// </summary>
         public readonly int Port;
+        /// <summary>
+        /// Protocol for incoming traffic.
+        /// </summary>
         public readonly string Protocol;
+        /// <summary>
+        /// Port of a target. 
+        /// * `external_address_spec.0.address` - External IP address of a listener.
+        /// * `external_address_spec.0.ip_version` - IP version of the external addresses.
+        /// * `internal_address_spec.0.subnet_id` - Subnet ID to which the internal IP address belongs
+        /// * `internal_address_spec.0.address` - Internal IP address of a listener.
+        /// * `internal_address_spec.0.ip_version` - IP version of the internal addresses.
+        /// </summary>
         public readonly int TargetPort;
 
         [OutputConstructor]

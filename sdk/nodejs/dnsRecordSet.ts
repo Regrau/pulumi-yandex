@@ -4,6 +4,47 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a DNS Recordset.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const foo = new yandex.VpcNetwork("foo", {});
+ * const zone1 = new yandex.DnsZone("zone1", {
+ *     description: "desc",
+ *     labels: {
+ *         label1: "label-1-value",
+ *     },
+ *     zone: "example.com.",
+ *     "public": false,
+ *     privateNetworks: [foo.id],
+ * });
+ * const rs1 = new yandex.DnsRecordSet("rs1", {
+ *     zoneId: zone1.id,
+ *     type: "A",
+ *     ttl: 200,
+ *     datas: ["10.1.0.1"],
+ * });
+ * const rs2 = new yandex.DnsRecordSet("rs2", {
+ *     zoneId: zone1.id,
+ *     type: "A",
+ *     ttl: 200,
+ *     datas: ["10.1.0.2"],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * DNS recordset can be imported using this format
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/dnsRecordSet:DnsRecordSet rs1 {{zone_id}}/{{name}}/{{type}}
+ * ```
+ */
 export class DnsRecordSet extends pulumi.CustomResource {
     /**
      * Get an existing DnsRecordSet resource's state with the given name, ID, and optional extra
@@ -32,10 +73,25 @@ export class DnsRecordSet extends pulumi.CustomResource {
         return obj['__pulumiType'] === DnsRecordSet.__pulumiType;
     }
 
+    /**
+     * The string data for the records in this record set.
+     */
     public readonly datas!: pulumi.Output<string[]>;
+    /**
+     * The DNS name this record set will apply to.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The time-to-live of this record set (seconds).
+     */
     public readonly ttl!: pulumi.Output<number>;
+    /**
+     * The DNS record set type.
+     */
     public readonly type!: pulumi.Output<string>;
+    /**
+     * The id of the zone in which this record set will reside.
+     */
     public readonly zoneId!: pulumi.Output<string>;
 
     /**
@@ -85,10 +141,25 @@ export class DnsRecordSet extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DnsRecordSet resources.
  */
 export interface DnsRecordSetState {
+    /**
+     * The string data for the records in this record set.
+     */
     datas?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The DNS name this record set will apply to.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The time-to-live of this record set (seconds).
+     */
     ttl?: pulumi.Input<number>;
+    /**
+     * The DNS record set type.
+     */
     type?: pulumi.Input<string>;
+    /**
+     * The id of the zone in which this record set will reside.
+     */
     zoneId?: pulumi.Input<string>;
 }
 
@@ -96,9 +167,24 @@ export interface DnsRecordSetState {
  * The set of arguments for constructing a DnsRecordSet resource.
  */
 export interface DnsRecordSetArgs {
+    /**
+     * The string data for the records in this record set.
+     */
     datas: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The DNS name this record set will apply to.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The time-to-live of this record set (seconds).
+     */
     ttl: pulumi.Input<number>;
+    /**
+     * The DNS record set type.
+     */
     type: pulumi.Input<string>;
+    /**
+     * The id of the zone in which this record set will reside.
+     */
     zoneId: pulumi.Input<string>;
 }

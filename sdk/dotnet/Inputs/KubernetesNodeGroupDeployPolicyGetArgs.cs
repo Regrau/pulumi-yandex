@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesNodeGroupDeployPolicyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The maximum number of instances that can be temporarily allocated above the group's target size during the update.
+        /// </summary>
         [Input("maxExpansion", required: true)]
         public Input<int> MaxExpansion { get; set; } = null!;
 
+        /// <summary>
+        /// The maximum number of running instances that can be taken offline during update.
+        /// </summary>
         [Input("maxUnavailable", required: true)]
         public Input<int> MaxUnavailable { get; set; } = null!;
 

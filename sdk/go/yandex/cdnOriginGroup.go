@@ -11,13 +11,69 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of [Yandex.Cloud CDN Origin Groups](https://cloud.yandex.ru/docs/cdn/concepts/origins).
+//
+// > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewCdnOriginGroup(ctx, "myGroup", &yandex.CdnOriginGroupArgs{
+//				Origins: CdnOriginGroupOriginArray{
+//					&CdnOriginGroupOriginArgs{
+//						Source: pulumi.String("ya.ru"),
+//					},
+//					&CdnOriginGroupOriginArgs{
+//						Source: pulumi.String("yandex.ru"),
+//					},
+//					&CdnOriginGroupOriginArgs{
+//						Source: pulumi.String("goo.gl"),
+//					},
+//					&CdnOriginGroupOriginArgs{
+//						Backup: pulumi.Bool(false),
+//						Source: pulumi.String("amazon.com"),
+//					},
+//				},
+//				UseNext: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// # A origin group can be imported using any of these accepted formats
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/cdnOriginGroup:CdnOriginGroup default origin_group_id
+//
+// ```
 type CdnOriginGroup struct {
 	pulumi.CustomResourceState
 
-	FolderId pulumi.StringOutput             `pulumi:"folderId"`
-	Name     pulumi.StringOutput             `pulumi:"name"`
-	Origins  CdnOriginGroupOriginArrayOutput `pulumi:"origins"`
-	UseNext  pulumi.BoolPtrOutput            `pulumi:"useNext"`
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// CDN Origin Group name used to define device.
+	Name    pulumi.StringOutput             `pulumi:"name"`
+	Origins CdnOriginGroupOriginArrayOutput `pulumi:"origins"`
+	// If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
+	UseNext pulumi.BoolPtrOutput `pulumi:"useNext"`
 }
 
 // NewCdnOriginGroup registers a new resource with the given unique name, arguments, and options.
@@ -53,17 +109,21 @@ func GetCdnOriginGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CdnOriginGroup resources.
 type cdnOriginGroupState struct {
-	FolderId *string                `pulumi:"folderId"`
-	Name     *string                `pulumi:"name"`
-	Origins  []CdnOriginGroupOrigin `pulumi:"origins"`
-	UseNext  *bool                  `pulumi:"useNext"`
+	FolderId *string `pulumi:"folderId"`
+	// CDN Origin Group name used to define device.
+	Name    *string                `pulumi:"name"`
+	Origins []CdnOriginGroupOrigin `pulumi:"origins"`
+	// If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
+	UseNext *bool `pulumi:"useNext"`
 }
 
 type CdnOriginGroupState struct {
 	FolderId pulumi.StringPtrInput
-	Name     pulumi.StringPtrInput
-	Origins  CdnOriginGroupOriginArrayInput
-	UseNext  pulumi.BoolPtrInput
+	// CDN Origin Group name used to define device.
+	Name    pulumi.StringPtrInput
+	Origins CdnOriginGroupOriginArrayInput
+	// If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
+	UseNext pulumi.BoolPtrInput
 }
 
 func (CdnOriginGroupState) ElementType() reflect.Type {
@@ -71,18 +131,22 @@ func (CdnOriginGroupState) ElementType() reflect.Type {
 }
 
 type cdnOriginGroupArgs struct {
-	FolderId *string                `pulumi:"folderId"`
-	Name     *string                `pulumi:"name"`
-	Origins  []CdnOriginGroupOrigin `pulumi:"origins"`
-	UseNext  *bool                  `pulumi:"useNext"`
+	FolderId *string `pulumi:"folderId"`
+	// CDN Origin Group name used to define device.
+	Name    *string                `pulumi:"name"`
+	Origins []CdnOriginGroupOrigin `pulumi:"origins"`
+	// If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
+	UseNext *bool `pulumi:"useNext"`
 }
 
 // The set of arguments for constructing a CdnOriginGroup resource.
 type CdnOriginGroupArgs struct {
 	FolderId pulumi.StringPtrInput
-	Name     pulumi.StringPtrInput
-	Origins  CdnOriginGroupOriginArrayInput
-	UseNext  pulumi.BoolPtrInput
+	// CDN Origin Group name used to define device.
+	Name    pulumi.StringPtrInput
+	Origins CdnOriginGroupOriginArrayInput
+	// If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
+	UseNext pulumi.BoolPtrInput
 }
 
 func (CdnOriginGroupArgs) ElementType() reflect.Type {
@@ -176,6 +240,7 @@ func (o CdnOriginGroupOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CdnOriginGroup) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// CDN Origin Group name used to define device.
 func (o CdnOriginGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *CdnOriginGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -184,6 +249,7 @@ func (o CdnOriginGroupOutput) Origins() CdnOriginGroupOriginArrayOutput {
 	return o.ApplyT(func(v *CdnOriginGroup) CdnOriginGroupOriginArrayOutput { return v.Origins }).(CdnOriginGroupOriginArrayOutput)
 }
 
+// If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
 func (o CdnOriginGroupOutput) UseNext() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CdnOriginGroup) pulumi.BoolPtrOutput { return v.UseNext }).(pulumi.BoolPtrOutput)
 }

@@ -13,7 +13,14 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbKafkaClusterConfigKafkaResourcesResult
     {
+        /// <summary>
+        /// (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
+        /// </summary>
         public readonly int DiskSize;
+        /// <summary>
+        /// (Optional) Type of the storage of ZooKeeper hosts.
+        /// For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+        /// </summary>
         public readonly string DiskTypeId;
         public readonly string ResourcePresetId;
 

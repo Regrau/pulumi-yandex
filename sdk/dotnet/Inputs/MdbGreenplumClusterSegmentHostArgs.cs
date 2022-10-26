@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbGreenplumClusterSegmentHostArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// (Computed) The fully qualified domain name of the host.
+        /// </summary>
         [Input("fqdn")]
         public Input<string>? Fqdn { get; set; }
 

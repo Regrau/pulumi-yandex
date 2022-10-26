@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbRedisClusterResources
     {
+        /// <summary>
+        /// Volume of the storage available to a host, in gigabytes.
+        /// </summary>
         public readonly int DiskSize;
+        /// <summary>
+        /// Type of the storage of Redis hosts - environment default is used if missing.
+        /// </summary>
         public readonly string? DiskTypeId;
         public readonly string ResourcePresetId;
 

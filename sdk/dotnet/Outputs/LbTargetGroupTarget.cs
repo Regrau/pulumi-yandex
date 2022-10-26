@@ -13,7 +13,14 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class LbTargetGroupTarget
     {
+        /// <summary>
+        /// IP address of the target.
+        /// </summary>
         public readonly string Address;
+        /// <summary>
+        /// ID of the subnet that targets are connected to. 
+        /// All targets in the target group must be connected to the same subnet within a single availability zone.
+        /// </summary>
         public readonly string SubnetId;
 
         [OutputConstructor]

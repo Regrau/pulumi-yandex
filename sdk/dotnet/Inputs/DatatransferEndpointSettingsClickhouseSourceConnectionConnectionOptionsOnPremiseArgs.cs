@@ -12,20 +12,33 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// TCP port number for the HTTP interface of the ClickHouse server.
+        /// </summary>
         [Input("httpPort")]
         public Input<int>? HttpPort { get; set; }
 
+        /// <summary>
+        /// TCP port number for the native interface of the ClickHouse server.
+        /// </summary>
         [Input("nativePort")]
         public Input<int>? NativePort { get; set; }
 
         [Input("shards")]
         private InputList<Inputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseShardArgs>? _shards;
+
+        /// <summary>
+        /// The list of ClickHouse shards. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseShardArgs> Shards
         {
             get => _shards ?? (_shards = new InputList<Inputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseShardArgs>());
             set => _shards = value;
         }
 
+        /// <summary>
+        /// TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        /// </summary>
         [Input("tlsMode")]
         public Input<Inputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeArgs>? TlsMode { get; set; }
 

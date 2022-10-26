@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetAlbVirtualHostRouteGrpcRouteGrpcMatchResult
     {
+        /// <summary>
+        /// If not set, all services/methods are assumed. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetAlbVirtualHostRouteGrpcRouteGrpcMatchFqmnResult> Fqmns;
 
         [OutputConstructor]

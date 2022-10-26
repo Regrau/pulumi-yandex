@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbClickhouseClusterCloudStorageInputArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+        /// </summary>
         [Input("enabled", required: true)]
         public Input<bool> Enabled { get; set; } = null!;
 

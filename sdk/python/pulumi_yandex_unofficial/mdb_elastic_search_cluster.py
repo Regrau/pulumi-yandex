@@ -30,6 +30,17 @@ class MdbElasticSearchClusterArgs:
                  service_account_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a MdbElasticSearchCluster resource.
+        :param pulumi.Input['MdbElasticSearchClusterConfigArgs'] config: Configuration of the Elasticsearch cluster. The structure is documented below.
+        :param pulumi.Input[str] environment: Deployment environment of the Elasticsearch cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[str] network_id: ID of the network, to which the Elasticsearch cluster belongs.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Elasticsearch cluster.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbElasticSearchClusterHostArgs']]] hosts: A host of the Elasticsearch cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Elasticsearch cluster.
+        :param pulumi.Input[str] name: User defined host name.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] service_account_id: ID of the service account authorized for this cluster.
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "environment", environment)
@@ -56,6 +67,9 @@ class MdbElasticSearchClusterArgs:
     @property
     @pulumi.getter
     def config(self) -> pulumi.Input['MdbElasticSearchClusterConfigArgs']:
+        """
+        Configuration of the Elasticsearch cluster. The structure is documented below.
+        """
         return pulumi.get(self, "config")
 
     @config.setter
@@ -65,6 +79,9 @@ class MdbElasticSearchClusterArgs:
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Input[str]:
+        """
+        Deployment environment of the Elasticsearch cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -74,6 +91,9 @@ class MdbElasticSearchClusterArgs:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Input[str]:
+        """
+        ID of the network, to which the Elasticsearch cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -83,6 +103,9 @@ class MdbElasticSearchClusterArgs:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -92,6 +115,9 @@ class MdbElasticSearchClusterArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the Elasticsearch cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -101,6 +127,9 @@ class MdbElasticSearchClusterArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -110,6 +139,9 @@ class MdbElasticSearchClusterArgs:
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbElasticSearchClusterHostArgs']]]]:
+        """
+        A host of the Elasticsearch cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -119,6 +151,9 @@ class MdbElasticSearchClusterArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Elasticsearch cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -137,6 +172,9 @@ class MdbElasticSearchClusterArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        User defined host name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -146,6 +184,9 @@ class MdbElasticSearchClusterArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -155,6 +196,9 @@ class MdbElasticSearchClusterArgs:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the service account authorized for this cluster.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -182,6 +226,22 @@ class _MdbElasticSearchClusterState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MdbElasticSearchCluster resources.
+        :param pulumi.Input['MdbElasticSearchClusterConfigArgs'] config: Configuration of the Elasticsearch cluster. The structure is documented below.
+        :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Elasticsearch cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the Elasticsearch cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[str] health: Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+               For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
+        :param pulumi.Input[Sequence[pulumi.Input['MdbElasticSearchClusterHostArgs']]] hosts: A host of the Elasticsearch cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Elasticsearch cluster.
+        :param pulumi.Input[str] name: User defined host name.
+        :param pulumi.Input[str] network_id: ID of the network, to which the Elasticsearch cluster belongs.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] service_account_id: ID of the service account authorized for this cluster.
+        :param pulumi.Input[str] status: Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+               For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
         """
         if config is not None:
             pulumi.set(__self__, "config", config)
@@ -217,6 +277,9 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter
     def config(self) -> Optional[pulumi.Input['MdbElasticSearchClusterConfigArgs']]:
+        """
+        Configuration of the Elasticsearch cluster. The structure is documented below.
+        """
         return pulumi.get(self, "config")
 
     @config.setter
@@ -226,6 +289,9 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -235,6 +301,9 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -244,6 +313,9 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the Elasticsearch cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -253,6 +325,9 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter
     def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deployment environment of the Elasticsearch cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -262,6 +337,9 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -271,6 +349,10 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter
     def health(self) -> Optional[pulumi.Input[str]]:
+        """
+        Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+        For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
+        """
         return pulumi.get(self, "health")
 
     @health.setter
@@ -280,6 +362,9 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbElasticSearchClusterHostArgs']]]]:
+        """
+        A host of the Elasticsearch cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -289,6 +374,9 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Elasticsearch cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -307,6 +395,9 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        User defined host name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -316,6 +407,9 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the network, to which the Elasticsearch cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -325,6 +419,9 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -334,6 +431,9 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the service account authorized for this cluster.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -343,6 +443,10 @@ class _MdbElasticSearchClusterState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+        For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -369,9 +473,30 @@ class MdbElasticSearchCluster(pulumi.CustomResource):
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a MdbElasticSearchCluster resource with the given unique name, props, and options.
+        Manages a Elasticsearch cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/concepts).
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbElasticSearchCluster:MdbElasticSearchCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbElasticSearchClusterConfigArgs']] config: Configuration of the Elasticsearch cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Elasticsearch cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the Elasticsearch cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbElasticSearchClusterHostArgs']]]] hosts: A host of the Elasticsearch cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Elasticsearch cluster.
+        :param pulumi.Input[str] name: User defined host name.
+        :param pulumi.Input[str] network_id: ID of the network, to which the Elasticsearch cluster belongs.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] service_account_id: ID of the service account authorized for this cluster.
         """
         ...
     @overload
@@ -380,7 +505,17 @@ class MdbElasticSearchCluster(pulumi.CustomResource):
                  args: MdbElasticSearchClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MdbElasticSearchCluster resource with the given unique name, props, and options.
+        Manages a Elasticsearch cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/concepts).
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbElasticSearchCluster:MdbElasticSearchCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param MdbElasticSearchClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -470,6 +605,22 @@ class MdbElasticSearchCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbElasticSearchClusterConfigArgs']] config: Configuration of the Elasticsearch cluster. The structure is documented below.
+        :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Elasticsearch cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the Elasticsearch cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[str] health: Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+               For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbElasticSearchClusterHostArgs']]]] hosts: A host of the Elasticsearch cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Elasticsearch cluster.
+        :param pulumi.Input[str] name: User defined host name.
+        :param pulumi.Input[str] network_id: ID of the network, to which the Elasticsearch cluster belongs.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] service_account_id: ID of the service account authorized for this cluster.
+        :param pulumi.Input[str] status: Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+               For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -495,46 +646,74 @@ class MdbElasticSearchCluster(pulumi.CustomResource):
     @property
     @pulumi.getter
     def config(self) -> pulumi.Output['outputs.MdbElasticSearchClusterConfig']:
+        """
+        Configuration of the Elasticsearch cluster. The structure is documented below.
+        """
         return pulumi.get(self, "config")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> pulumi.Output[bool]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the Elasticsearch cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Output[str]:
+        """
+        Deployment environment of the Elasticsearch cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        """
         return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def health(self) -> pulumi.Output[str]:
+        """
+        Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+        For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
+        """
         return pulumi.get(self, "health")
 
     @property
     @pulumi.getter
     def hosts(self) -> pulumi.Output[Sequence['outputs.MdbElasticSearchClusterHost']]:
+        """
+        A host of the Elasticsearch cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the Elasticsearch cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -545,25 +724,41 @@ class MdbElasticSearchCluster(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        User defined host name.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[str]:
+        """
+        ID of the network, to which the Elasticsearch cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the service account authorized for this cluster.
+        """
         return pulumi.get(self, "service_account_id")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+        For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
+        """
         return pulumi.get(self, "status")
 

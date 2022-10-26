@@ -11,9 +11,67 @@ namespace Pulumi.Yandex
 {
     public static class GetMdbRedisCluster
     {
+        /// <summary>
+        /// Get information about a Yandex Managed Redis cluster. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/managed-redis/concepts).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetMdbRedisCluster.Invoke(new()
+        ///     {
+        ///         Name = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["networkId"] = foo.Apply(getMdbRedisClusterResult =&gt; getMdbRedisClusterResult.NetworkId),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetMdbRedisClusterResult> InvokeAsync(GetMdbRedisClusterArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetMdbRedisClusterResult>("yandex:index/getMdbRedisCluster:getMdbRedisCluster", args ?? new GetMdbRedisClusterArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Managed Redis cluster. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/managed-redis/concepts).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetMdbRedisCluster.Invoke(new()
+        ///     {
+        ///         Name = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["networkId"] = foo.Apply(getMdbRedisClusterResult =&gt; getMdbRedisClusterResult.NetworkId),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetMdbRedisClusterResult> Invoke(GetMdbRedisClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetMdbRedisClusterResult>("yandex:index/getMdbRedisCluster:getMdbRedisCluster", args ?? new GetMdbRedisClusterInvokeArgs(), options.WithDefaults());
     }
@@ -21,15 +79,24 @@ namespace Pulumi.Yandex
 
     public sealed class GetMdbRedisClusterArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the Redis cluster.
+        /// </summary>
         [Input("clusterId")]
         public string? ClusterId { get; set; }
 
         [Input("deletionProtection")]
         public bool? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// The name of the Redis cluster.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -41,15 +108,24 @@ namespace Pulumi.Yandex
 
     public sealed class GetMdbRedisClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the Redis cluster.
+        /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// The name of the Redis cluster.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -64,27 +140,69 @@ namespace Pulumi.Yandex
     public sealed class GetMdbRedisClusterResult
     {
         public readonly string ClusterId;
+        /// <summary>
+        /// Configuration of the Redis cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbRedisClusterConfigResult> Configs;
+        /// <summary>
+        /// Creation timestamp of the key.
+        /// </summary>
         public readonly string CreatedAt;
         public readonly bool DeletionProtection;
+        /// <summary>
+        /// Description of the Redis cluster.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Deployment environment of the Redis cluster.
+        /// </summary>
         public readonly string Environment;
         public readonly string FolderId;
+        /// <summary>
+        /// Aggregated health of the cluster.
+        /// </summary>
         public readonly string Health;
+        /// <summary>
+        /// A host of the Redis cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbRedisClusterHostResult> Hosts;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A set of key/value label pairs to assign to the Redis cluster.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
         public readonly ImmutableArray<Outputs.GetMdbRedisClusterMaintenanceWindowResult> MaintenanceWindows;
         public readonly string Name;
+        /// <summary>
+        /// ID of the network, to which the Redis cluster belongs.
+        /// </summary>
         public readonly string NetworkId;
+        /// <summary>
+        /// Persistence mode.
+        /// </summary>
         public readonly string PersistenceMode;
+        /// <summary>
+        /// Resources allocated to hosts of the Redis cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbRedisClusterResourceResult> Resources;
+        /// <summary>
+        /// A set of ids of security groups assigned to hosts of the cluster.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// Redis Cluster mode enabled/disabled.
+        /// </summary>
         public readonly bool Sharded;
+        /// <summary>
+        /// Status of the cluster.
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// TLS support mode enabled/disabled.
+        /// </summary>
         public readonly bool TlsEnabled;
 
         [OutputConstructor]

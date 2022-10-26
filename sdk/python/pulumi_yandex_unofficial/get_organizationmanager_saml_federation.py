@@ -69,26 +69,41 @@ class GetOrganizationmanagerSamlFederationResult:
     @property
     @pulumi.getter(name="autoCreateAccountOnLogin")
     def auto_create_account_on_login(self) -> bool:
+        """
+        Indicates whether new users get added automatically on successful authentication.
+        """
         return pulumi.get(self, "auto_create_account_on_login")
 
     @property
     @pulumi.getter(name="caseInsensitiveNameIds")
     def case_insensitive_name_ids(self) -> bool:
+        """
+        Indicates whether case-insensitive name ids are in use.
+        """
         return pulumi.get(self, "case_insensitive_name_ids")
 
     @property
     @pulumi.getter(name="cookieMaxAge")
     def cookie_max_age(self) -> str:
+        """
+        The lifetime of a Browser cookie in seconds.
+        """
         return pulumi.get(self, "cookie_max_age")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The SAML Federation creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        The description of the SAML Federation.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -107,11 +122,17 @@ class GetOrganizationmanagerSamlFederationResult:
     @property
     @pulumi.getter
     def issuer(self) -> str:
+        """
+        The ID of the IdP server used for authentication.
+        """
         return pulumi.get(self, "issuer")
 
     @property
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        A set of key/value label pairs assigned to the SAML Federation.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -127,16 +148,25 @@ class GetOrganizationmanagerSamlFederationResult:
     @property
     @pulumi.getter(name="securitySettings")
     def security_settings(self) -> Sequence['outputs.GetOrganizationmanagerSamlFederationSecuritySettingResult']:
+        """
+        Federation security settings, structure is documented below.
+        """
         return pulumi.get(self, "security_settings")
 
     @property
     @pulumi.getter(name="ssoBinding")
     def sso_binding(self) -> str:
+        """
+        Single sign-on endpoint binding type.
+        """
         return pulumi.get(self, "sso_binding")
 
     @property
     @pulumi.getter(name="ssoUrl")
     def sso_url(self) -> str:
+        """
+        Single sign-on endpoint URL.
+        """
         return pulumi.get(self, "sso_url")
 
 
@@ -168,7 +198,25 @@ def get_organizationmanager_saml_federation(federation_id: Optional[str] = None,
                                             organization_id: Optional[str] = None,
                                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationmanagerSamlFederationResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex SAML Federation. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/organization/add-federation).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    federation = yandex.get_organizationmanager_saml_federation(federation_id="some_federation_id",
+        organization_id="some_organization_id")
+    pulumi.export("myFederation.name", federation.name)
+    ```
+
+
+    :param str federation_id: ID of a SAML Federation.
+    :param Mapping[str, str] labels: A set of key/value label pairs assigned to the SAML Federation.
+    :param str name: Name of a SAML Federation.
+    :param str organization_id: Organization that the federation belongs to. If value is omitted, the default provider organization is used.
     """
     __args__ = dict()
     __args__['federationId'] = federation_id
@@ -202,6 +250,24 @@ def get_organizationmanager_saml_federation_output(federation_id: Optional[pulum
                                                    organization_id: Optional[pulumi.Input[Optional[str]]] = None,
                                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationmanagerSamlFederationResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex SAML Federation. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/organization/add-federation).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    federation = yandex.get_organizationmanager_saml_federation(federation_id="some_federation_id",
+        organization_id="some_organization_id")
+    pulumi.export("myFederation.name", federation.name)
+    ```
+
+
+    :param str federation_id: ID of a SAML Federation.
+    :param Mapping[str, str] labels: A set of key/value label pairs assigned to the SAML Federation.
+    :param str name: Name of a SAML Federation.
+    :param str organization_id: Organization that the federation belongs to. If value is omitted, the default provider organization is used.
     """
     ...

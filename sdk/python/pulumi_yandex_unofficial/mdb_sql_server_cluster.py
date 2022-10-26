@@ -35,6 +35,24 @@ class MdbSqlServerClusterArgs:
                  sqlserver_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a MdbSqlServerCluster resource.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterDatabaseArgs']]] databases: A database of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[str] environment: Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+        :param pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterHostArgs']]] hosts: A host of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[str] network_id: ID of the network, to which the SQLServer cluster uses.
+        :param pulumi.Input['MdbSqlServerClusterResourcesArgs'] resources: Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterUserArgs']]] users: A user of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[str] version: Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
+        :param pulumi.Input['MdbSqlServerClusterBackupWindowStartArgs'] backup_window_start: Time to start the daily backup, in the UTC. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the SQLServer cluster.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] host_group_ids: A list of IDs of the host groups hosting VMs of the cluster.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the SQLServer cluster.
+        :param pulumi.Input[str] name: The name of the database.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] sqlcollation: SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] sqlserver_config: SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
         """
         pulumi.set(__self__, "databases", databases)
         pulumi.set(__self__, "environment", environment)
@@ -67,6 +85,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter
     def databases(self) -> pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterDatabaseArgs']]]:
+        """
+        A database of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "databases")
 
     @databases.setter
@@ -76,6 +97,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Input[str]:
+        """
+        Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -85,6 +109,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter
     def hosts(self) -> pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterHostArgs']]]:
+        """
+        A host of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -94,6 +121,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Input[str]:
+        """
+        ID of the network, to which the SQLServer cluster uses.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -103,6 +133,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Input['MdbSqlServerClusterResourcesArgs']:
+        """
+        Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -112,6 +145,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter
     def users(self) -> pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterUserArgs']]]:
+        """
+        A user of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "users")
 
     @users.setter
@@ -121,6 +157,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
+        """
+        Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -130,6 +169,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> Optional[pulumi.Input['MdbSqlServerClusterBackupWindowStartArgs']]:
+        """
+        Time to start the daily backup, in the UTC. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @backup_window_start.setter
@@ -139,6 +181,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -148,6 +193,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the SQLServer cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -157,6 +205,10 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -166,6 +218,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter(name="hostGroupIds")
     def host_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of IDs of the host groups hosting VMs of the cluster.
+        """
         return pulumi.get(self, "host_group_ids")
 
     @host_group_ids.setter
@@ -175,6 +230,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the SQLServer cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -184,6 +242,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the database.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -193,6 +254,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -202,6 +266,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter
     def sqlcollation(self) -> Optional[pulumi.Input[str]]:
+        """
+        SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+        """
         return pulumi.get(self, "sqlcollation")
 
     @sqlcollation.setter
@@ -211,6 +278,9 @@ class MdbSqlServerClusterArgs:
     @property
     @pulumi.getter(name="sqlserverConfig")
     def sqlserver_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+        """
         return pulumi.get(self, "sqlserver_config")
 
     @sqlserver_config.setter
@@ -243,6 +313,27 @@ class _MdbSqlServerClusterState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MdbSqlServerCluster resources.
+        :param pulumi.Input['MdbSqlServerClusterBackupWindowStartArgs'] backup_window_start: Time to start the daily backup, in the UTC. The structure is documented below.
+        :param pulumi.Input[str] created_at: Creation timestamp of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterDatabaseArgs']]] databases: A database of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the SQLServer cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[str] health: Aggregated health of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] host_group_ids: A list of IDs of the host groups hosting VMs of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterHostArgs']]] hosts: A host of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the SQLServer cluster.
+        :param pulumi.Input[str] name: The name of the database.
+        :param pulumi.Input[str] network_id: ID of the network, to which the SQLServer cluster uses.
+        :param pulumi.Input['MdbSqlServerClusterResourcesArgs'] resources: Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] sqlcollation: SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] sqlserver_config: SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+        :param pulumi.Input[str] status: Status of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterUserArgs']]] users: A user of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[str] version: Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
         """
         if backup_window_start is not None:
             pulumi.set(__self__, "backup_window_start", backup_window_start)
@@ -288,6 +379,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> Optional[pulumi.Input['MdbSqlServerClusterBackupWindowStartArgs']]:
+        """
+        Time to start the daily backup, in the UTC. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @backup_window_start.setter
@@ -297,6 +391,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the cluster.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -306,6 +403,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter
     def databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterDatabaseArgs']]]]:
+        """
+        A database of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "databases")
 
     @databases.setter
@@ -315,6 +415,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -324,6 +427,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the SQLServer cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -333,6 +439,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter
     def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -342,6 +451,10 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -351,6 +464,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter
     def health(self) -> Optional[pulumi.Input[str]]:
+        """
+        Aggregated health of the cluster.
+        """
         return pulumi.get(self, "health")
 
     @health.setter
@@ -360,6 +476,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter(name="hostGroupIds")
     def host_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of IDs of the host groups hosting VMs of the cluster.
+        """
         return pulumi.get(self, "host_group_ids")
 
     @host_group_ids.setter
@@ -369,6 +488,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterHostArgs']]]]:
+        """
+        A host of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -378,6 +500,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the SQLServer cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -387,6 +512,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the database.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -396,6 +524,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the network, to which the SQLServer cluster uses.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -405,6 +536,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter
     def resources(self) -> Optional[pulumi.Input['MdbSqlServerClusterResourcesArgs']]:
+        """
+        Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -414,6 +548,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -423,6 +560,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter
     def sqlcollation(self) -> Optional[pulumi.Input[str]]:
+        """
+        SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+        """
         return pulumi.get(self, "sqlcollation")
 
     @sqlcollation.setter
@@ -432,6 +572,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter(name="sqlserverConfig")
     def sqlserver_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+        """
         return pulumi.get(self, "sqlserver_config")
 
     @sqlserver_config.setter
@@ -441,6 +584,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the cluster.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -450,6 +596,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterUserArgs']]]]:
+        """
+        A user of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "users")
 
     @users.setter
@@ -459,6 +608,9 @@ class _MdbSqlServerClusterState:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -490,9 +642,165 @@ class MdbSqlServerCluster(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a MdbSqlServerCluster resource with the given unique name, props, and options.
+        Manages a SQLServer cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-sqlserver/).
+
+        Please read [Pricing for Managed Service for SQL Server](https://cloud.yandex.com/docs/managed-sqlserver/pricing#prices) before using SQLServer cluster.
+
+        ## Example Usage
+
+        Example of creating a Single Node SQLServer.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.5.0.0/24"])
+        test_sg_x = yandex.VpcSecurityGroup("test-sg-x",
+            network_id=foo_vpc_network.id,
+            ingresses=[yandex.VpcSecurityGroupIngressArgs(
+                protocol="ANY",
+                description="Allow incoming traffic from members of the same security group",
+                from_port=0,
+                to_port=65535,
+                v4_cidr_blocks=["0.0.0.0/0"],
+            )],
+            egresses=[yandex.VpcSecurityGroupEgressArgs(
+                protocol="ANY",
+                description="Allow outgoing traffic to members of the same security group",
+                from_port=0,
+                to_port=65535,
+                v4_cidr_blocks=["0.0.0.0/0"],
+            )])
+        foo_mdb_sql_server_cluster = yandex.MdbSqlServerCluster("fooMdbSqlServerCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="2016sp2std",
+            resources=yandex.MdbSqlServerClusterResourcesArgs(
+                resource_preset_id="s2.small",
+                disk_type_id="network-ssd",
+                disk_size=20,
+            ),
+            labels={
+                "test_key": "test_value",
+            },
+            backup_window_start=yandex.MdbSqlServerClusterBackupWindowStartArgs(
+                hours=20,
+                minutes=30,
+            ),
+            sqlserver_config={
+                "fill_factor_percent": "49",
+                "optimize_for_ad_hoc_workloads": "true",
+            },
+            databases=[
+                yandex.MdbSqlServerClusterDatabaseArgs(
+                    name="db_name_a",
+                ),
+                yandex.MdbSqlServerClusterDatabaseArgs(
+                    name="db_name",
+                ),
+                yandex.MdbSqlServerClusterDatabaseArgs(
+                    name="db_name_b",
+                ),
+            ],
+            users=[
+                yandex.MdbSqlServerClusterUserArgs(
+                    name="bob",
+                    password="mysecurepassword",
+                ),
+                yandex.MdbSqlServerClusterUserArgs(
+                    name="alice",
+                    password="mysecurepassword",
+                    permissions=[yandex.MdbSqlServerClusterUserPermissionArgs(
+                        database_name="db_name",
+                        roles=["DDLADMIN"],
+                    )],
+                ),
+                yandex.MdbSqlServerClusterUserArgs(
+                    name="chuck",
+                    password="mysecurepassword",
+                    permissions=[
+                        yandex.MdbSqlServerClusterUserPermissionArgs(
+                            database_name="db_name_a",
+                            roles=["OWNER"],
+                        ),
+                        yandex.MdbSqlServerClusterUserPermissionArgs(
+                            database_name="db_name",
+                            roles=[
+                                "OWNER",
+                                "DDLADMIN",
+                            ],
+                        ),
+                        yandex.MdbSqlServerClusterUserPermissionArgs(
+                            database_name="db_name_b",
+                            roles=[
+                                "OWNER",
+                                "DDLADMIN",
+                            ],
+                        ),
+                    ],
+                ),
+            ],
+            hosts=[yandex.MdbSqlServerClusterHostArgs(
+                zone="ru-central1-a",
+                subnet_id=foo_vpc_subnet.id,
+            )],
+            security_group_ids=[test_sg_x.id],
+            host_group_ids=[
+                "host_group_1",
+                "host_group_2",
+            ])
+        ```
+        ## SQLServer config
+
+        If not specified `sqlserver_config` then does not make any changes.
+
+        * max_degree_of_parallelism - Limits the number of processors to use in parallel plan execution per task. See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-max-degree-of-parallelism-server-configuration-option?view=sql-server-2016).
+
+        * cost_threshold_for_parallelism - Specifies the threshold at which SQL Server creates and runs parallel plans for queries. SQL Server creates and runs a parallel plan for a query only when the estimated cost to run a serial plan for the same query is higher than the value of the option. See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-cost-threshold-for-parallelism-server-configuration-option?view=sql-server-2016).
+
+        * audit_level - Describes how to configure login auditing to monitor SQL Server Database Engine login activity. Possible values:
+          - 0 — do not log login attempts,˚√
+          - 1 — log only failed login attempts,
+          - 2 — log only successful login attempts (not recommended),
+          - 3 — log all login attempts (not recommended).
+             See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/ssms/configure-login-auditing-sql-server-management-studio?view=sql-server-2016).
+
+        * fill_factor_percent - Manages the fill factor server configuration option. When an index is created or rebuilt the fill factor determines the percentage of space on each index leaf-level page to be filled with data, reserving the rest as free space for future growth. Values 0 and 100 mean full page usage (no space reserved). See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-fill-factor-server-configuration-option?view=sql-server-2016).
+        * optimize_for_ad_hoc_workloads - Determines whether plans should be cached only after second execution. Allows to avoid SQL cache bloat because of single-use plans. See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/optimize-for-ad-hoc-workloads-server-configuration-option?view=sql-server-2016).
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbSqlServerCluster:MdbSqlServerCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbSqlServerClusterBackupWindowStartArgs']] backup_window_start: Time to start the daily backup, in the UTC. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbSqlServerClusterDatabaseArgs']]]] databases: A database of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the SQLServer cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] host_group_ids: A list of IDs of the host groups hosting VMs of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbSqlServerClusterHostArgs']]]] hosts: A host of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the SQLServer cluster.
+        :param pulumi.Input[str] name: The name of the database.
+        :param pulumi.Input[str] network_id: ID of the network, to which the SQLServer cluster uses.
+        :param pulumi.Input[pulumi.InputType['MdbSqlServerClusterResourcesArgs']] resources: Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] sqlcollation: SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] sqlserver_config: SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbSqlServerClusterUserArgs']]]] users: A user of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[str] version: Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
         """
         ...
     @overload
@@ -501,7 +809,145 @@ class MdbSqlServerCluster(pulumi.CustomResource):
                  args: MdbSqlServerClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MdbSqlServerCluster resource with the given unique name, props, and options.
+        Manages a SQLServer cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-sqlserver/).
+
+        Please read [Pricing for Managed Service for SQL Server](https://cloud.yandex.com/docs/managed-sqlserver/pricing#prices) before using SQLServer cluster.
+
+        ## Example Usage
+
+        Example of creating a Single Node SQLServer.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.5.0.0/24"])
+        test_sg_x = yandex.VpcSecurityGroup("test-sg-x",
+            network_id=foo_vpc_network.id,
+            ingresses=[yandex.VpcSecurityGroupIngressArgs(
+                protocol="ANY",
+                description="Allow incoming traffic from members of the same security group",
+                from_port=0,
+                to_port=65535,
+                v4_cidr_blocks=["0.0.0.0/0"],
+            )],
+            egresses=[yandex.VpcSecurityGroupEgressArgs(
+                protocol="ANY",
+                description="Allow outgoing traffic to members of the same security group",
+                from_port=0,
+                to_port=65535,
+                v4_cidr_blocks=["0.0.0.0/0"],
+            )])
+        foo_mdb_sql_server_cluster = yandex.MdbSqlServerCluster("fooMdbSqlServerCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="2016sp2std",
+            resources=yandex.MdbSqlServerClusterResourcesArgs(
+                resource_preset_id="s2.small",
+                disk_type_id="network-ssd",
+                disk_size=20,
+            ),
+            labels={
+                "test_key": "test_value",
+            },
+            backup_window_start=yandex.MdbSqlServerClusterBackupWindowStartArgs(
+                hours=20,
+                minutes=30,
+            ),
+            sqlserver_config={
+                "fill_factor_percent": "49",
+                "optimize_for_ad_hoc_workloads": "true",
+            },
+            databases=[
+                yandex.MdbSqlServerClusterDatabaseArgs(
+                    name="db_name_a",
+                ),
+                yandex.MdbSqlServerClusterDatabaseArgs(
+                    name="db_name",
+                ),
+                yandex.MdbSqlServerClusterDatabaseArgs(
+                    name="db_name_b",
+                ),
+            ],
+            users=[
+                yandex.MdbSqlServerClusterUserArgs(
+                    name="bob",
+                    password="mysecurepassword",
+                ),
+                yandex.MdbSqlServerClusterUserArgs(
+                    name="alice",
+                    password="mysecurepassword",
+                    permissions=[yandex.MdbSqlServerClusterUserPermissionArgs(
+                        database_name="db_name",
+                        roles=["DDLADMIN"],
+                    )],
+                ),
+                yandex.MdbSqlServerClusterUserArgs(
+                    name="chuck",
+                    password="mysecurepassword",
+                    permissions=[
+                        yandex.MdbSqlServerClusterUserPermissionArgs(
+                            database_name="db_name_a",
+                            roles=["OWNER"],
+                        ),
+                        yandex.MdbSqlServerClusterUserPermissionArgs(
+                            database_name="db_name",
+                            roles=[
+                                "OWNER",
+                                "DDLADMIN",
+                            ],
+                        ),
+                        yandex.MdbSqlServerClusterUserPermissionArgs(
+                            database_name="db_name_b",
+                            roles=[
+                                "OWNER",
+                                "DDLADMIN",
+                            ],
+                        ),
+                    ],
+                ),
+            ],
+            hosts=[yandex.MdbSqlServerClusterHostArgs(
+                zone="ru-central1-a",
+                subnet_id=foo_vpc_subnet.id,
+            )],
+            security_group_ids=[test_sg_x.id],
+            host_group_ids=[
+                "host_group_1",
+                "host_group_2",
+            ])
+        ```
+        ## SQLServer config
+
+        If not specified `sqlserver_config` then does not make any changes.
+
+        * max_degree_of_parallelism - Limits the number of processors to use in parallel plan execution per task. See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-max-degree-of-parallelism-server-configuration-option?view=sql-server-2016).
+
+        * cost_threshold_for_parallelism - Specifies the threshold at which SQL Server creates and runs parallel plans for queries. SQL Server creates and runs a parallel plan for a query only when the estimated cost to run a serial plan for the same query is higher than the value of the option. See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-cost-threshold-for-parallelism-server-configuration-option?view=sql-server-2016).
+
+        * audit_level - Describes how to configure login auditing to monitor SQL Server Database Engine login activity. Possible values:
+          - 0 — do not log login attempts,˚√
+          - 1 — log only failed login attempts,
+          - 2 — log only successful login attempts (not recommended),
+          - 3 — log all login attempts (not recommended).
+             See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/ssms/configure-login-auditing-sql-server-management-studio?view=sql-server-2016).
+
+        * fill_factor_percent - Manages the fill factor server configuration option. When an index is created or rebuilt the fill factor determines the percentage of space on each index leaf-level page to be filled with data, reserving the rest as free space for future growth. Values 0 and 100 mean full page usage (no space reserved). See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-fill-factor-server-configuration-option?view=sql-server-2016).
+        * optimize_for_ad_hoc_workloads - Determines whether plans should be cached only after second execution. Allows to avoid SQL cache bloat because of single-use plans. See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/optimize-for-ad-hoc-workloads-server-configuration-option?view=sql-server-2016).
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbSqlServerCluster:MdbSqlServerCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param MdbSqlServerClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -614,6 +1060,27 @@ class MdbSqlServerCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbSqlServerClusterBackupWindowStartArgs']] backup_window_start: Time to start the daily backup, in the UTC. The structure is documented below.
+        :param pulumi.Input[str] created_at: Creation timestamp of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbSqlServerClusterDatabaseArgs']]]] databases: A database of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the SQLServer cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[str] health: Aggregated health of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] host_group_ids: A list of IDs of the host groups hosting VMs of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbSqlServerClusterHostArgs']]]] hosts: A host of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the SQLServer cluster.
+        :param pulumi.Input[str] name: The name of the database.
+        :param pulumi.Input[str] network_id: ID of the network, to which the SQLServer cluster uses.
+        :param pulumi.Input[pulumi.InputType['MdbSqlServerClusterResourcesArgs']] resources: Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] sqlcollation: SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] sqlserver_config: SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+        :param pulumi.Input[str] status: Status of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbSqlServerClusterUserArgs']]]] users: A user of the SQLServer cluster. The structure is documented below.
+        :param pulumi.Input[str] version: Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -644,100 +1111,161 @@ class MdbSqlServerCluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> pulumi.Output['outputs.MdbSqlServerClusterBackupWindowStart']:
+        """
+        Time to start the daily backup, in the UTC. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the cluster.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def databases(self) -> pulumi.Output[Sequence['outputs.MdbSqlServerClusterDatabase']]:
+        """
+        A database of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "databases")
 
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> pulumi.Output[bool]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the SQLServer cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Output[str]:
+        """
+        Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+        """
         return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def health(self) -> pulumi.Output[str]:
+        """
+        Aggregated health of the cluster.
+        """
         return pulumi.get(self, "health")
 
     @property
     @pulumi.getter(name="hostGroupIds")
     def host_group_ids(self) -> pulumi.Output[Sequence[str]]:
+        """
+        A list of IDs of the host groups hosting VMs of the cluster.
+        """
         return pulumi.get(self, "host_group_ids")
 
     @property
     @pulumi.getter
     def hosts(self) -> pulumi.Output[Sequence['outputs.MdbSqlServerClusterHost']]:
+        """
+        A host of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the SQLServer cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The name of the database.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[str]:
+        """
+        ID of the network, to which the SQLServer cluster uses.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Output['outputs.MdbSqlServerClusterResources']:
+        """
+        Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter
     def sqlcollation(self) -> pulumi.Output[str]:
+        """
+        SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+        """
         return pulumi.get(self, "sqlcollation")
 
     @property
     @pulumi.getter(name="sqlserverConfig")
     def sqlserver_config(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+        """
         return pulumi.get(self, "sqlserver_config")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        Status of the cluster.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def users(self) -> pulumi.Output[Sequence['outputs.MdbSqlServerClusterUser']]:
+        """
+        A user of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "users")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
+        """
+        Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
+        """
         return pulumi.get(self, "version")
 

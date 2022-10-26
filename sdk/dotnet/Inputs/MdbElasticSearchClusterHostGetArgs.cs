@@ -12,21 +12,41 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbElasticSearchClusterHostGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Sets whether the host should get a public IP address on creation. Can be either `true` or `false`.
+        /// </summary>
         [Input("assignPublicIp")]
         public Input<bool>? AssignPublicIp { get; set; }
 
+        /// <summary>
+        /// The fully qualified domain name of the host.
+        /// </summary>
         [Input("fqdn")]
         public Input<string>? Fqdn { get; set; }
 
+        /// <summary>
+        /// User defined host name.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of the subnet, to which the host belongs. The subnet must
+        /// be a part of the network to which the cluster belongs.
+        /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
 
+        /// <summary>
+        /// Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        /// <summary>
+        /// The availability zone where the Elasticsearch host will be created.
+        /// For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+        /// </summary>
         [Input("zone", required: true)]
         public Input<string> Zone { get; set; } = null!;
 

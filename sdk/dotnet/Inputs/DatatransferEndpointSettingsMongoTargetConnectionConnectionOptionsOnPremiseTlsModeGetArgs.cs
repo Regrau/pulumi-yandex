@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Empty block designating that the connection is not secured, i.e. plaintext connection.
+        /// </summary>
         [Input("disabled")]
         public Input<Inputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeDisabledGetArgs>? Disabled { get; set; }
 
+        /// <summary>
+        /// If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        /// </summary>
         [Input("enabled")]
         public Input<Inputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeEnabledGetArgs>? Enabled { get; set; }
 

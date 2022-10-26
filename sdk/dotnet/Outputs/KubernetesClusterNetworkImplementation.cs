@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class KubernetesClusterNetworkImplementation
     {
+        /// <summary>
+        /// (Optional) Cilium network implementation configuration. No options exist.
+        /// </summary>
         public readonly Outputs.KubernetesClusterNetworkImplementationCilium? Cilium;
 
         [OutputConstructor]

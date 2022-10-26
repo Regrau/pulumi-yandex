@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseShard
     {
+        /// <summary>
+        /// List of ClickHouse server host names.
+        /// </summary>
         public readonly ImmutableArray<string> Hosts;
+        /// <summary>
+        /// Arbitrary shard name. This name may be used in `sharding` block to specify custom sharding rules.
+        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

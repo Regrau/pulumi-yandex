@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbClickhouseClusterClickhouseConfigKafkaTopic
     {
+        /// <summary>
+        /// Graphite rollup configuration name.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Kafka connection settngs sanem as `kafka` block.
+        /// </summary>
         public readonly Outputs.MdbClickhouseClusterClickhouseConfigKafkaTopicSettings? Settings;
 
         [OutputConstructor]

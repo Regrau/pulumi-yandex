@@ -10,13 +10,32 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates an HTTP Router in the specified folder.
+// For more information, see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/http-router).
+//
+// ## Import
+//
+// An HTTP Router can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/albHttpRouter:AlbHttpRouter default http_router_id
+//
+// ```
 type AlbHttpRouter struct {
 	pulumi.CustomResourceState
 
-	CreatedAt    pulumi.StringOutput                `pulumi:"createdAt"`
-	Description  pulumi.StringPtrOutput             `pulumi:"description"`
-	FolderId     pulumi.StringOutput                `pulumi:"folderId"`
-	Labels       pulumi.StringMapOutput             `pulumi:"labels"`
+	// The HTTP Router creation timestamp.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// An optional description of the HTTP Router. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Labels to assign to this HTTP Router. A list of key/value pairs.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the HTTP Router. Provided by the client when the HTTP Router is created.
 	Name         pulumi.StringOutput                `pulumi:"name"`
 	RouteOptions AlbHttpRouterRouteOptionsPtrOutput `pulumi:"routeOptions"`
 }
@@ -51,19 +70,33 @@ func GetAlbHttpRouter(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AlbHttpRouter resources.
 type albHttpRouterState struct {
-	CreatedAt    *string                    `pulumi:"createdAt"`
-	Description  *string                    `pulumi:"description"`
-	FolderId     *string                    `pulumi:"folderId"`
-	Labels       map[string]string          `pulumi:"labels"`
+	// The HTTP Router creation timestamp.
+	CreatedAt *string `pulumi:"createdAt"`
+	// An optional description of the HTTP Router. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this HTTP Router. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the HTTP Router. Provided by the client when the HTTP Router is created.
 	Name         *string                    `pulumi:"name"`
 	RouteOptions *AlbHttpRouterRouteOptions `pulumi:"routeOptions"`
 }
 
 type AlbHttpRouterState struct {
-	CreatedAt    pulumi.StringPtrInput
-	Description  pulumi.StringPtrInput
-	FolderId     pulumi.StringPtrInput
-	Labels       pulumi.StringMapInput
+	// The HTTP Router creation timestamp.
+	CreatedAt pulumi.StringPtrInput
+	// An optional description of the HTTP Router. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrInput
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this HTTP Router. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the HTTP Router. Provided by the client when the HTTP Router is created.
 	Name         pulumi.StringPtrInput
 	RouteOptions AlbHttpRouterRouteOptionsPtrInput
 }
@@ -73,18 +106,30 @@ func (AlbHttpRouterState) ElementType() reflect.Type {
 }
 
 type albHttpRouterArgs struct {
-	Description  *string                    `pulumi:"description"`
-	FolderId     *string                    `pulumi:"folderId"`
-	Labels       map[string]string          `pulumi:"labels"`
+	// An optional description of the HTTP Router. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this HTTP Router. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the HTTP Router. Provided by the client when the HTTP Router is created.
 	Name         *string                    `pulumi:"name"`
 	RouteOptions *AlbHttpRouterRouteOptions `pulumi:"routeOptions"`
 }
 
 // The set of arguments for constructing a AlbHttpRouter resource.
 type AlbHttpRouterArgs struct {
-	Description  pulumi.StringPtrInput
-	FolderId     pulumi.StringPtrInput
-	Labels       pulumi.StringMapInput
+	// An optional description of the HTTP Router. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrInput
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this HTTP Router. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the HTTP Router. Provided by the client when the HTTP Router is created.
 	Name         pulumi.StringPtrInput
 	RouteOptions AlbHttpRouterRouteOptionsPtrInput
 }
@@ -176,22 +221,29 @@ func (o AlbHttpRouterOutput) ToAlbHttpRouterOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The HTTP Router creation timestamp.
 func (o AlbHttpRouterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbHttpRouter) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// An optional description of the HTTP Router. Provide this property when
+// you create the resource.
 func (o AlbHttpRouterOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlbHttpRouter) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the folder to which the resource belongs.
+// If omitted, the provider folder is used.
 func (o AlbHttpRouterOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbHttpRouter) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Labels to assign to this HTTP Router. A list of key/value pairs.
 func (o AlbHttpRouterOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AlbHttpRouter) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the HTTP Router. Provided by the client when the HTTP Router is created.
 func (o AlbHttpRouterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbHttpRouter) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

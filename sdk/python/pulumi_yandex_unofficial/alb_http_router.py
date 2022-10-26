@@ -23,6 +23,12 @@ class AlbHttpRouterArgs:
                  route_options: Optional[pulumi.Input['AlbHttpRouterRouteOptionsArgs']] = None):
         """
         The set of arguments for constructing a AlbHttpRouter resource.
+        :param pulumi.Input[str] description: An optional description of the HTTP Router. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this HTTP Router. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the HTTP Router. Provided by the client when the HTTP Router is created.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -38,6 +44,10 @@ class AlbHttpRouterArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of the HTTP Router. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -47,6 +57,10 @@ class AlbHttpRouterArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder to which the resource belongs.
+        If omitted, the provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -56,6 +70,9 @@ class AlbHttpRouterArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this HTTP Router. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -65,6 +82,9 @@ class AlbHttpRouterArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the HTTP Router. Provided by the client when the HTTP Router is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -92,6 +112,13 @@ class _AlbHttpRouterState:
                  route_options: Optional[pulumi.Input['AlbHttpRouterRouteOptionsArgs']] = None):
         """
         Input properties used for looking up and filtering AlbHttpRouter resources.
+        :param pulumi.Input[str] created_at: The HTTP Router creation timestamp.
+        :param pulumi.Input[str] description: An optional description of the HTTP Router. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this HTTP Router. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the HTTP Router. Provided by the client when the HTTP Router is created.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -109,6 +136,9 @@ class _AlbHttpRouterState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The HTTP Router creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -118,6 +148,10 @@ class _AlbHttpRouterState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of the HTTP Router. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -127,6 +161,10 @@ class _AlbHttpRouterState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder to which the resource belongs.
+        If omitted, the provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -136,6 +174,9 @@ class _AlbHttpRouterState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this HTTP Router. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -145,6 +186,9 @@ class _AlbHttpRouterState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the HTTP Router. Provided by the client when the HTTP Router is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -173,9 +217,25 @@ class AlbHttpRouter(pulumi.CustomResource):
                  route_options: Optional[pulumi.Input[pulumi.InputType['AlbHttpRouterRouteOptionsArgs']]] = None,
                  __props__=None):
         """
-        Create a AlbHttpRouter resource with the given unique name, props, and options.
+        Creates an HTTP Router in the specified folder.
+        For more information, see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/http-router).
+
+        ## Import
+
+        An HTTP Router can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/albHttpRouter:AlbHttpRouter default http_router_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: An optional description of the HTTP Router. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this HTTP Router. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the HTTP Router. Provided by the client when the HTTP Router is created.
         """
         ...
     @overload
@@ -184,7 +244,17 @@ class AlbHttpRouter(pulumi.CustomResource):
                  args: Optional[AlbHttpRouterArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AlbHttpRouter resource with the given unique name, props, and options.
+        Creates an HTTP Router in the specified folder.
+        For more information, see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/http-router).
+
+        ## Import
+
+        An HTTP Router can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/albHttpRouter:AlbHttpRouter default http_router_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param AlbHttpRouterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -243,6 +313,13 @@ class AlbHttpRouter(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: The HTTP Router creation timestamp.
+        :param pulumi.Input[str] description: An optional description of the HTTP Router. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this HTTP Router. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the HTTP Router. Provided by the client when the HTTP Router is created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -259,26 +336,43 @@ class AlbHttpRouter(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        The HTTP Router creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        An optional description of the HTTP Router. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder to which the resource belongs.
+        If omitted, the provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Labels to assign to this HTTP Router. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the HTTP Router. Provided by the client when the HTTP Router is created.
+        """
         return pulumi.get(self, "name")
 
     @property

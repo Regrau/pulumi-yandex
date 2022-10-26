@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstanceGroupHealthCheckHttpOption
     {
+        /// <summary>
+        /// The URL path used for health check requests.
+        /// </summary>
         public readonly string Path;
+        /// <summary>
+        /// The port used for TCP health checks.
+        /// </summary>
         public readonly int Port;
 
         [OutputConstructor]

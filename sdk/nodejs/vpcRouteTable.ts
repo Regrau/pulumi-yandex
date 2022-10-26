@@ -5,6 +5,47 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a route table within the Yandex.Cloud. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/vpc/concepts).
+ *
+ * * How-to Guides
+ *     * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const lab_net = new yandex.VpcNetwork("lab-net", {});
+ * const egress_gateway = new yandex.VpcGateway("egress-gateway", {
+ *     name: "egress-gateway",
+ *     sharedEgressGateway: {},
+ * });
+ * const lab_rt_a = new yandex.VpcRouteTable("lab-rt-a", {
+ *     networkId: lab_net.id,
+ *     staticRoutes: [
+ *         {
+ *             destinationPrefix: "10.2.0.0/16",
+ *             nextHopAddress: "172.16.10.10",
+ *         },
+ *         {
+ *             destinationPrefix: "0.0.0.0/0",
+ *             gatewayId: egress_gateway.id,
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A route table can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/vpcRouteTable:VpcRouteTable default route_table_id
+ * ```
+ */
 export class VpcRouteTable extends pulumi.CustomResource {
     /**
      * Get an existing VpcRouteTable resource's state with the given name, ID, and optional extra
@@ -33,12 +74,35 @@ export class VpcRouteTable extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpcRouteTable.__pulumiType;
     }
 
+    /**
+     * Creation timestamp of the route table.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * An optional description of the route table. Provide this property when
+     * you create the resource.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * The ID of the folder to which the resource belongs.
+     * If omitted, the provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * Labels to assign to this route table. A list of key/value pairs.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * Name of the route table. Provided by the client when the route table is created.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * ID of the network this route table belongs to.
+     */
     public readonly networkId!: pulumi.Output<string>;
+    /**
+     * A list of static route records for the route table. The structure is documented below.
+     */
     public readonly staticRoutes!: pulumi.Output<outputs.VpcRouteTableStaticRoute[] | undefined>;
 
     /**
@@ -83,12 +147,35 @@ export class VpcRouteTable extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpcRouteTable resources.
  */
 export interface VpcRouteTableState {
+    /**
+     * Creation timestamp of the route table.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * An optional description of the route table. Provide this property when
+     * you create the resource.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the folder to which the resource belongs.
+     * If omitted, the provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Labels to assign to this route table. A list of key/value pairs.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the route table. Provided by the client when the route table is created.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network this route table belongs to.
+     */
     networkId?: pulumi.Input<string>;
+    /**
+     * A list of static route records for the route table. The structure is documented below.
+     */
     staticRoutes?: pulumi.Input<pulumi.Input<inputs.VpcRouteTableStaticRoute>[]>;
 }
 
@@ -96,10 +183,30 @@ export interface VpcRouteTableState {
  * The set of arguments for constructing a VpcRouteTable resource.
  */
 export interface VpcRouteTableArgs {
+    /**
+     * An optional description of the route table. Provide this property when
+     * you create the resource.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the folder to which the resource belongs.
+     * If omitted, the provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Labels to assign to this route table. A list of key/value pairs.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the route table. Provided by the client when the route table is created.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network this route table belongs to.
+     */
     networkId: pulumi.Input<string>;
+    /**
+     * A list of static route records for the route table. The structure is documented below.
+     */
     staticRoutes?: pulumi.Input<pulumi.Input<inputs.VpcRouteTableStaticRoute>[]>;
 }

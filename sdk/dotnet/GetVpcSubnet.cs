@@ -11,9 +11,51 @@ namespace Pulumi.Yandex
 {
     public static class GetVpcSubnet
     {
+        /// <summary>
+        /// Get information about a Yandex VPC subnet. For more information, see
+        /// [Yandex.Cloud VPC](https://cloud.yandex.com/docs/vpc/concepts/index).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var admin = Yandex.GetVpcSubnet.Invoke(new()
+        ///     {
+        ///         SubnetId = "my-subnet-id",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [VPC Subnets] that can be used by other resources.
+        /// </summary>
         public static Task<GetVpcSubnetResult> InvokeAsync(GetVpcSubnetArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVpcSubnetResult>("yandex:index/getVpcSubnet:getVpcSubnet", args ?? new GetVpcSubnetArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex VPC subnet. For more information, see
+        /// [Yandex.Cloud VPC](https://cloud.yandex.com/docs/vpc/concepts/index).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var admin = Yandex.GetVpcSubnet.Invoke(new()
+        ///     {
+        ///         SubnetId = "my-subnet-id",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [VPC Subnets] that can be used by other resources.
+        /// </summary>
         public static Output<GetVpcSubnetResult> Invoke(GetVpcSubnetInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetVpcSubnetResult>("yandex:index/getVpcSubnet:getVpcSubnet", args ?? new GetVpcSubnetInvokeArgs(), options.WithDefaults());
     }
@@ -21,12 +63,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetVpcSubnetArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// - Name of the subnet.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Subnet ID.
+        /// </summary>
         [Input("subnetId")]
         public string? SubnetId { get; set; }
 
@@ -38,12 +89,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetVpcSubnetInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// - Name of the subnet.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Subnet ID.
+        /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
 
@@ -57,21 +117,48 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetVpcSubnetResult
     {
+        /// <summary>
+        /// Creation timestamp of this subnet.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Description of the subnet.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Options for DHCP client. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetVpcSubnetDhcpOptionResult> DhcpOptions;
         public readonly string FolderId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Labels to assign to this subnet.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
         public readonly string Name;
+        /// <summary>
+        /// ID of the network this subnet belongs to.
+        /// </summary>
         public readonly string NetworkId;
+        /// <summary>
+        /// ID of the route table to assign to this subnet.
+        /// </summary>
         public readonly string RouteTableId;
         public readonly string SubnetId;
+        /// <summary>
+        /// The blocks of internal IPv4 addresses owned by this subnet.
+        /// </summary>
         public readonly ImmutableArray<string> V4CidrBlocks;
+        /// <summary>
+        /// The blocks of internal IPv6 addresses owned by this subnet.
+        /// </summary>
         public readonly ImmutableArray<string> V6CidrBlocks;
+        /// <summary>
+        /// Name of the availability zone for this subnet.
+        /// </summary>
         public readonly string Zone;
 
         [OutputConstructor]

@@ -13,11 +13,29 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbClickhouseClusterAccess
     {
+        /// <summary>
+        /// Allow access for DataLens. Can be either `true` or `false`.
+        /// </summary>
         public readonly bool? DataLens;
+        /// <summary>
+        /// Allow access for DataTransfer. Can be either `true` or `false`.
+        /// </summary>
         public readonly bool? DataTransfer;
+        /// <summary>
+        /// Allow access for Yandex.Metrika. Can be either `true` or `false`.
+        /// </summary>
         public readonly bool? Metrika;
+        /// <summary>
+        /// Allow access for Serverless. Can be either `true` or `false`.
+        /// </summary>
         public readonly bool? Serverless;
+        /// <summary>
+        /// Allow access for Web SQL. Can be either `true` or `false`.
+        /// </summary>
         public readonly bool? WebSql;
+        /// <summary>
+        /// Allow access for YandexQuery. Can be either `true` or `false`.
+        /// </summary>
         public readonly bool? YandexQuery;
 
         [OutputConstructor]

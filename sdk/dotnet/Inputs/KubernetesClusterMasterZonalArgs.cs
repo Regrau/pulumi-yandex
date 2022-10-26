@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesClusterMasterZonalArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// (Optional) ID of the subnet.
+        /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
 
+        /// <summary>
+        /// (Optional) ID of the availability zone.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 

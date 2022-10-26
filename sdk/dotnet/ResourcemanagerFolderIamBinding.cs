@@ -9,15 +9,74 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows creation and management of a single binding within IAM policy for
+    /// an existing Yandex Resource Manager folder.
+    /// 
+    /// &gt; **Note:** This resource _must not_ be used in conjunction with
+    ///    `yandex.ResourcemanagerFolderIamPolicy` or they will conflict over what your policy
+    ///    should be.
+    /// 
+    /// &gt; **Note:** When you delete `yandex.ResourcemanagerFolderIamBinding` resource,
+    ///    the roles can be deleted from other users within the folder as well. Be careful!
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var project1 = Yandex.GetResourcemanagerFolder.Invoke(new()
+    ///     {
+    ///         FolderId = "some_folder_id",
+    ///     });
+    /// 
+    ///     var admin = new Yandex.ResourcemanagerFolderIamBinding("admin", new()
+    ///     {
+    ///         FolderId = project1.Apply(getResourcemanagerFolderResult =&gt; getResourcemanagerFolderResult.Id),
+    ///         Members = new[]
+    ///         {
+    ///             "userAccount:some_user_id",
+    ///         },
+    ///         Role = "editor",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `folder_id` and role, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/resourcemanagerFolderIamBinding:ResourcemanagerFolderIamBinding viewer "folder_id viewer"
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/resourcemanagerFolderIamBinding:ResourcemanagerFolderIamBinding")]
     public partial class ResourcemanagerFolderIamBinding : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// ID of the folder to attach a policy to.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// An array of identities that will be granted the privilege that is specified in the `role` field.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// </summary>
         [Output("members")]
         public Output<ImmutableArray<string>> Members { get; private set; } = null!;
 
+        /// <summary>
+        /// The role that should be assigned. Only one
+        /// `yandex.ResourcemanagerFolderIamBinding` can be used per role.
+        /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
 
@@ -47,7 +106,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -71,17 +130,31 @@ namespace Pulumi.Yandex
 
     public sealed class ResourcemanagerFolderIamBindingArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the folder to attach a policy to.
+        /// </summary>
         [Input("folderId", required: true)]
         public Input<string> FolderId { get; set; } = null!;
 
         [Input("members", required: true)]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// An array of identities that will be granted the privilege that is specified in the `role` field.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// The role that should be assigned. Only one
+        /// `yandex.ResourcemanagerFolderIamBinding` can be used per role.
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
@@ -96,17 +169,31 @@ namespace Pulumi.Yandex
 
     public sealed class ResourcemanagerFolderIamBindingState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the folder to attach a policy to.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("members")]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// An array of identities that will be granted the privilege that is specified in the `role` field.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// The role that should be assigned. Only one
+        /// `yandex.ResourcemanagerFolderIamBinding` can be used per role.
+        /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 

@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbElasticSearchClusterConfigDataNodeResourcesGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Volume of the storage available to a host, in gigabytes.
+        /// </summary>
         [Input("diskSize", required: true)]
         public Input<int> DiskSize { get; set; } = null!;
 
+        /// <summary>
+        /// Type of the storage of Elasticsearch hosts.
+        /// </summary>
         [Input("diskTypeId", required: true)]
         public Input<string> DiskTypeId { get; set; } = null!;
 

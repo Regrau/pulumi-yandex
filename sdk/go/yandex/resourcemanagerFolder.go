@@ -10,14 +10,46 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows creation and management of Cloud Folders for an existing Yandex Cloud. See [the official documentation](https://cloud.yandex.com/docs/resource-manager/concepts/resources-hierarchy) for additional info.
+// Note: deletion of folders may take up to 30 minutes as it requires a lot of communication between cloud services.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewResourcemanagerFolder(ctx, "folder1", &yandex.ResourcemanagerFolderArgs{
+//				CloudId: pulumi.String("my_cloud_id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type ResourcemanagerFolder struct {
 	pulumi.CustomResourceState
 
-	CloudId     pulumi.StringOutput    `pulumi:"cloudId"`
-	CreatedAt   pulumi.StringOutput    `pulumi:"createdAt"`
+	// Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+	CloudId   pulumi.StringOutput `pulumi:"cloudId"`
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// A description of the Folder.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	Labels      pulumi.StringMapOutput `pulumi:"labels"`
-	Name        pulumi.StringOutput    `pulumi:"name"`
+	// A set of key/value label pairs to assign to the Folder.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// The name of the Folder.
+	Name pulumi.StringOutput `pulumi:"name"`
 }
 
 // NewResourcemanagerFolder registers a new resource with the given unique name, arguments, and options.
@@ -50,19 +82,27 @@ func GetResourcemanagerFolder(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ResourcemanagerFolder resources.
 type resourcemanagerFolderState struct {
-	CloudId     *string           `pulumi:"cloudId"`
-	CreatedAt   *string           `pulumi:"createdAt"`
-	Description *string           `pulumi:"description"`
-	Labels      map[string]string `pulumi:"labels"`
-	Name        *string           `pulumi:"name"`
+	// Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+	CloudId   *string `pulumi:"cloudId"`
+	CreatedAt *string `pulumi:"createdAt"`
+	// A description of the Folder.
+	Description *string `pulumi:"description"`
+	// A set of key/value label pairs to assign to the Folder.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the Folder.
+	Name *string `pulumi:"name"`
 }
 
 type ResourcemanagerFolderState struct {
-	CloudId     pulumi.StringPtrInput
-	CreatedAt   pulumi.StringPtrInput
+	// Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+	CloudId   pulumi.StringPtrInput
+	CreatedAt pulumi.StringPtrInput
+	// A description of the Folder.
 	Description pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Folder.
+	Labels pulumi.StringMapInput
+	// The name of the Folder.
+	Name pulumi.StringPtrInput
 }
 
 func (ResourcemanagerFolderState) ElementType() reflect.Type {
@@ -70,18 +110,26 @@ func (ResourcemanagerFolderState) ElementType() reflect.Type {
 }
 
 type resourcemanagerFolderArgs struct {
-	CloudId     *string           `pulumi:"cloudId"`
-	Description *string           `pulumi:"description"`
-	Labels      map[string]string `pulumi:"labels"`
-	Name        *string           `pulumi:"name"`
+	// Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+	CloudId *string `pulumi:"cloudId"`
+	// A description of the Folder.
+	Description *string `pulumi:"description"`
+	// A set of key/value label pairs to assign to the Folder.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the Folder.
+	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a ResourcemanagerFolder resource.
 type ResourcemanagerFolderArgs struct {
-	CloudId     pulumi.StringPtrInput
+	// Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+	CloudId pulumi.StringPtrInput
+	// A description of the Folder.
 	Description pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Folder.
+	Labels pulumi.StringMapInput
+	// The name of the Folder.
+	Name pulumi.StringPtrInput
 }
 
 func (ResourcemanagerFolderArgs) ElementType() reflect.Type {
@@ -171,6 +219,7 @@ func (o ResourcemanagerFolderOutput) ToResourcemanagerFolderOutputWithContext(ct
 	return o
 }
 
+// Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
 func (o ResourcemanagerFolderOutput) CloudId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResourcemanagerFolder) pulumi.StringOutput { return v.CloudId }).(pulumi.StringOutput)
 }
@@ -179,14 +228,17 @@ func (o ResourcemanagerFolderOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResourcemanagerFolder) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// A description of the Folder.
 func (o ResourcemanagerFolderOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ResourcemanagerFolder) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// A set of key/value label pairs to assign to the Folder.
 func (o ResourcemanagerFolderOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ResourcemanagerFolder) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// The name of the Folder.
 func (o ResourcemanagerFolderOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResourcemanagerFolder) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

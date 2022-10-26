@@ -12,9 +12,16 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbMongodbClusterResourcesArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Volume of the storage available to a MongoDB host, in gigabytes.
+        /// </summary>
         [Input("diskSize", required: true)]
         public Input<int> DiskSize { get; set; } = null!;
 
+        /// <summary>
+        /// Type of the storage of MongoDB hosts.
+        /// For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        /// </summary>
         [Input("diskTypeId", required: true)]
         public Input<string> DiskTypeId { get; set; } = null!;
 

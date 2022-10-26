@@ -11,16 +11,65 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewIotCoreDevice(ctx, "myDevice", &yandex.IotCoreDeviceArgs{
+//				Aliases: pulumi.StringMap{
+//					"some_alias1/subtopic": pulumi.String(fmt.Sprintf("$devices/{id}/events/somesubtopic")),
+//					"some_alias2/subtopic": pulumi.String(fmt.Sprintf("$devices/{id}/events/aaa/bbb")),
+//				},
+//				Certificates: pulumi.StringArray{
+//					pulumi.String("public part of certificate1"),
+//					pulumi.String("public part of certificate2"),
+//				},
+//				Description: pulumi.String("any description"),
+//				Passwords: pulumi.StringArray{
+//					pulumi.String("my-password1"),
+//					pulumi.String("my-password2"),
+//				},
+//				RegistryId: pulumi.String("are1sampleregistryid11"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type IotCoreDevice struct {
 	pulumi.CustomResourceState
 
-	Aliases      pulumi.StringMapOutput   `pulumi:"aliases"`
+	// A set of key/value aliases pairs to assign to the IoT Core Device
+	Aliases pulumi.StringMapOutput `pulumi:"aliases"`
+	// A set of certificate's fingerprints for the IoT Core Device
 	Certificates pulumi.StringArrayOutput `pulumi:"certificates"`
-	CreatedAt    pulumi.StringOutput      `pulumi:"createdAt"`
-	Description  pulumi.StringPtrOutput   `pulumi:"description"`
-	Name         pulumi.StringOutput      `pulumi:"name"`
-	Passwords    pulumi.StringArrayOutput `pulumi:"passwords"`
-	RegistryId   pulumi.StringOutput      `pulumi:"registryId"`
+	// Creation timestamp of the IoT Core Device
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Description of the IoT Core Device
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// IoT Core Device name used to define device
+	Name pulumi.StringOutput `pulumi:"name"`
+	// A set of passwords's id for the IoT Core Device
+	Passwords pulumi.StringArrayOutput `pulumi:"passwords"`
+	// IoT Core Registry ID for the IoT Core Device
+	RegistryId pulumi.StringOutput `pulumi:"registryId"`
 }
 
 // NewIotCoreDevice registers a new resource with the given unique name, arguments, and options.
@@ -56,23 +105,37 @@ func GetIotCoreDevice(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IotCoreDevice resources.
 type iotCoreDeviceState struct {
-	Aliases      map[string]string `pulumi:"aliases"`
-	Certificates []string          `pulumi:"certificates"`
-	CreatedAt    *string           `pulumi:"createdAt"`
-	Description  *string           `pulumi:"description"`
-	Name         *string           `pulumi:"name"`
-	Passwords    []string          `pulumi:"passwords"`
-	RegistryId   *string           `pulumi:"registryId"`
+	// A set of key/value aliases pairs to assign to the IoT Core Device
+	Aliases map[string]string `pulumi:"aliases"`
+	// A set of certificate's fingerprints for the IoT Core Device
+	Certificates []string `pulumi:"certificates"`
+	// Creation timestamp of the IoT Core Device
+	CreatedAt *string `pulumi:"createdAt"`
+	// Description of the IoT Core Device
+	Description *string `pulumi:"description"`
+	// IoT Core Device name used to define device
+	Name *string `pulumi:"name"`
+	// A set of passwords's id for the IoT Core Device
+	Passwords []string `pulumi:"passwords"`
+	// IoT Core Registry ID for the IoT Core Device
+	RegistryId *string `pulumi:"registryId"`
 }
 
 type IotCoreDeviceState struct {
-	Aliases      pulumi.StringMapInput
+	// A set of key/value aliases pairs to assign to the IoT Core Device
+	Aliases pulumi.StringMapInput
+	// A set of certificate's fingerprints for the IoT Core Device
 	Certificates pulumi.StringArrayInput
-	CreatedAt    pulumi.StringPtrInput
-	Description  pulumi.StringPtrInput
-	Name         pulumi.StringPtrInput
-	Passwords    pulumi.StringArrayInput
-	RegistryId   pulumi.StringPtrInput
+	// Creation timestamp of the IoT Core Device
+	CreatedAt pulumi.StringPtrInput
+	// Description of the IoT Core Device
+	Description pulumi.StringPtrInput
+	// IoT Core Device name used to define device
+	Name pulumi.StringPtrInput
+	// A set of passwords's id for the IoT Core Device
+	Passwords pulumi.StringArrayInput
+	// IoT Core Registry ID for the IoT Core Device
+	RegistryId pulumi.StringPtrInput
 }
 
 func (IotCoreDeviceState) ElementType() reflect.Type {
@@ -80,22 +143,34 @@ func (IotCoreDeviceState) ElementType() reflect.Type {
 }
 
 type iotCoreDeviceArgs struct {
-	Aliases      map[string]string `pulumi:"aliases"`
-	Certificates []string          `pulumi:"certificates"`
-	Description  *string           `pulumi:"description"`
-	Name         *string           `pulumi:"name"`
-	Passwords    []string          `pulumi:"passwords"`
-	RegistryId   string            `pulumi:"registryId"`
+	// A set of key/value aliases pairs to assign to the IoT Core Device
+	Aliases map[string]string `pulumi:"aliases"`
+	// A set of certificate's fingerprints for the IoT Core Device
+	Certificates []string `pulumi:"certificates"`
+	// Description of the IoT Core Device
+	Description *string `pulumi:"description"`
+	// IoT Core Device name used to define device
+	Name *string `pulumi:"name"`
+	// A set of passwords's id for the IoT Core Device
+	Passwords []string `pulumi:"passwords"`
+	// IoT Core Registry ID for the IoT Core Device
+	RegistryId string `pulumi:"registryId"`
 }
 
 // The set of arguments for constructing a IotCoreDevice resource.
 type IotCoreDeviceArgs struct {
-	Aliases      pulumi.StringMapInput
+	// A set of key/value aliases pairs to assign to the IoT Core Device
+	Aliases pulumi.StringMapInput
+	// A set of certificate's fingerprints for the IoT Core Device
 	Certificates pulumi.StringArrayInput
-	Description  pulumi.StringPtrInput
-	Name         pulumi.StringPtrInput
-	Passwords    pulumi.StringArrayInput
-	RegistryId   pulumi.StringInput
+	// Description of the IoT Core Device
+	Description pulumi.StringPtrInput
+	// IoT Core Device name used to define device
+	Name pulumi.StringPtrInput
+	// A set of passwords's id for the IoT Core Device
+	Passwords pulumi.StringArrayInput
+	// IoT Core Registry ID for the IoT Core Device
+	RegistryId pulumi.StringInput
 }
 
 func (IotCoreDeviceArgs) ElementType() reflect.Type {
@@ -185,30 +260,37 @@ func (o IotCoreDeviceOutput) ToIotCoreDeviceOutputWithContext(ctx context.Contex
 	return o
 }
 
+// A set of key/value aliases pairs to assign to the IoT Core Device
 func (o IotCoreDeviceOutput) Aliases() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *IotCoreDevice) pulumi.StringMapOutput { return v.Aliases }).(pulumi.StringMapOutput)
 }
 
+// A set of certificate's fingerprints for the IoT Core Device
 func (o IotCoreDeviceOutput) Certificates() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IotCoreDevice) pulumi.StringArrayOutput { return v.Certificates }).(pulumi.StringArrayOutput)
 }
 
+// Creation timestamp of the IoT Core Device
 func (o IotCoreDeviceOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotCoreDevice) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the IoT Core Device
 func (o IotCoreDeviceOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IotCoreDevice) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// IoT Core Device name used to define device
 func (o IotCoreDeviceOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotCoreDevice) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// A set of passwords's id for the IoT Core Device
 func (o IotCoreDeviceOutput) Passwords() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IotCoreDevice) pulumi.StringArrayOutput { return v.Passwords }).(pulumi.StringArrayOutput)
 }
 
+// IoT Core Registry ID for the IoT Core Device
 func (o IotCoreDeviceOutput) RegistryId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotCoreDevice) pulumi.StringOutput { return v.RegistryId }).(pulumi.StringOutput)
 }

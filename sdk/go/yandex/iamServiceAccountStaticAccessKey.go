@@ -11,17 +11,59 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of [Yandex.Cloud IAM service account static access keys](https://cloud.yandex.com/docs/iam/operations/sa/create-access-key).
+// Generated pair of keys is used to access [Yandex Object Storage](https://cloud.yandex.com/docs/storage) on behalf of service account.
+//
+// Before using keys do not forget to [assign a proper role](https://cloud.yandex.com/docs/iam/operations/sa/assign-role-for-sa) to the service account.
+//
+// ## Example Usage
+//
+// This snippet creates a service account static access key.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewIamServiceAccountStaticAccessKey(ctx, "sa-static-key", &yandex.IamServiceAccountStaticAccessKeyArgs{
+//				Description:      pulumi.String("static access key for object storage"),
+//				PgpKey:           pulumi.String("keybase:keybaseusername"),
+//				ServiceAccountId: pulumi.String("some_sa_id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type IamServiceAccountStaticAccessKey struct {
 	pulumi.CustomResourceState
 
-	AccessKey          pulumi.StringOutput    `pulumi:"accessKey"`
-	CreatedAt          pulumi.StringOutput    `pulumi:"createdAt"`
-	Description        pulumi.StringPtrOutput `pulumi:"description"`
-	EncryptedSecretKey pulumi.StringOutput    `pulumi:"encryptedSecretKey"`
-	KeyFingerprint     pulumi.StringOutput    `pulumi:"keyFingerprint"`
-	PgpKey             pulumi.StringPtrOutput `pulumi:"pgpKey"`
-	SecretKey          pulumi.StringOutput    `pulumi:"secretKey"`
-	ServiceAccountId   pulumi.StringOutput    `pulumi:"serviceAccountId"`
+	// ID of the static access key.
+	AccessKey pulumi.StringOutput `pulumi:"accessKey"`
+	// Creation timestamp of the static access key.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// The description of the service account static key.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The encrypted secret, base64 encoded. This is only populated when `pgpKey` is supplied.
+	EncryptedSecretKey pulumi.StringOutput `pulumi:"encryptedSecretKey"`
+	// The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgpKey` is supplied.
+	KeyFingerprint pulumi.StringOutput `pulumi:"keyFingerprint"`
+	// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey pulumi.StringPtrOutput `pulumi:"pgpKey"`
+	// Private part of generated static access key. This is only populated when no `pgpKey` is provided.
+	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
+	// ID of the service account which is used to get a static key.
+	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
 }
 
 // NewIamServiceAccountStaticAccessKey registers a new resource with the given unique name, arguments, and options.
@@ -57,25 +99,41 @@ func GetIamServiceAccountStaticAccessKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IamServiceAccountStaticAccessKey resources.
 type iamServiceAccountStaticAccessKeyState struct {
-	AccessKey          *string `pulumi:"accessKey"`
-	CreatedAt          *string `pulumi:"createdAt"`
-	Description        *string `pulumi:"description"`
+	// ID of the static access key.
+	AccessKey *string `pulumi:"accessKey"`
+	// Creation timestamp of the static access key.
+	CreatedAt *string `pulumi:"createdAt"`
+	// The description of the service account static key.
+	Description *string `pulumi:"description"`
+	// The encrypted secret, base64 encoded. This is only populated when `pgpKey` is supplied.
 	EncryptedSecretKey *string `pulumi:"encryptedSecretKey"`
-	KeyFingerprint     *string `pulumi:"keyFingerprint"`
-	PgpKey             *string `pulumi:"pgpKey"`
-	SecretKey          *string `pulumi:"secretKey"`
-	ServiceAccountId   *string `pulumi:"serviceAccountId"`
+	// The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgpKey` is supplied.
+	KeyFingerprint *string `pulumi:"keyFingerprint"`
+	// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey *string `pulumi:"pgpKey"`
+	// Private part of generated static access key. This is only populated when no `pgpKey` is provided.
+	SecretKey *string `pulumi:"secretKey"`
+	// ID of the service account which is used to get a static key.
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
 }
 
 type IamServiceAccountStaticAccessKeyState struct {
-	AccessKey          pulumi.StringPtrInput
-	CreatedAt          pulumi.StringPtrInput
-	Description        pulumi.StringPtrInput
+	// ID of the static access key.
+	AccessKey pulumi.StringPtrInput
+	// Creation timestamp of the static access key.
+	CreatedAt pulumi.StringPtrInput
+	// The description of the service account static key.
+	Description pulumi.StringPtrInput
+	// The encrypted secret, base64 encoded. This is only populated when `pgpKey` is supplied.
 	EncryptedSecretKey pulumi.StringPtrInput
-	KeyFingerprint     pulumi.StringPtrInput
-	PgpKey             pulumi.StringPtrInput
-	SecretKey          pulumi.StringPtrInput
-	ServiceAccountId   pulumi.StringPtrInput
+	// The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgpKey` is supplied.
+	KeyFingerprint pulumi.StringPtrInput
+	// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey pulumi.StringPtrInput
+	// Private part of generated static access key. This is only populated when no `pgpKey` is provided.
+	SecretKey pulumi.StringPtrInput
+	// ID of the service account which is used to get a static key.
+	ServiceAccountId pulumi.StringPtrInput
 }
 
 func (IamServiceAccountStaticAccessKeyState) ElementType() reflect.Type {
@@ -83,15 +141,21 @@ func (IamServiceAccountStaticAccessKeyState) ElementType() reflect.Type {
 }
 
 type iamServiceAccountStaticAccessKeyArgs struct {
-	Description      *string `pulumi:"description"`
-	PgpKey           *string `pulumi:"pgpKey"`
-	ServiceAccountId string  `pulumi:"serviceAccountId"`
+	// The description of the service account static key.
+	Description *string `pulumi:"description"`
+	// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey *string `pulumi:"pgpKey"`
+	// ID of the service account which is used to get a static key.
+	ServiceAccountId string `pulumi:"serviceAccountId"`
 }
 
 // The set of arguments for constructing a IamServiceAccountStaticAccessKey resource.
 type IamServiceAccountStaticAccessKeyArgs struct {
-	Description      pulumi.StringPtrInput
-	PgpKey           pulumi.StringPtrInput
+	// The description of the service account static key.
+	Description pulumi.StringPtrInput
+	// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey pulumi.StringPtrInput
+	// ID of the service account which is used to get a static key.
 	ServiceAccountId pulumi.StringInput
 }
 
@@ -182,34 +246,42 @@ func (o IamServiceAccountStaticAccessKeyOutput) ToIamServiceAccountStaticAccessK
 	return o
 }
 
+// ID of the static access key.
 func (o IamServiceAccountStaticAccessKeyOutput) AccessKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountStaticAccessKey) pulumi.StringOutput { return v.AccessKey }).(pulumi.StringOutput)
 }
 
+// Creation timestamp of the static access key.
 func (o IamServiceAccountStaticAccessKeyOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountStaticAccessKey) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The description of the service account static key.
 func (o IamServiceAccountStaticAccessKeyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamServiceAccountStaticAccessKey) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The encrypted secret, base64 encoded. This is only populated when `pgpKey` is supplied.
 func (o IamServiceAccountStaticAccessKeyOutput) EncryptedSecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountStaticAccessKey) pulumi.StringOutput { return v.EncryptedSecretKey }).(pulumi.StringOutput)
 }
 
+// The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgpKey` is supplied.
 func (o IamServiceAccountStaticAccessKeyOutput) KeyFingerprint() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountStaticAccessKey) pulumi.StringOutput { return v.KeyFingerprint }).(pulumi.StringOutput)
 }
 
+// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
 func (o IamServiceAccountStaticAccessKeyOutput) PgpKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamServiceAccountStaticAccessKey) pulumi.StringPtrOutput { return v.PgpKey }).(pulumi.StringPtrOutput)
 }
 
+// Private part of generated static access key. This is only populated when no `pgpKey` is provided.
 func (o IamServiceAccountStaticAccessKeyOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountStaticAccessKey) pulumi.StringOutput { return v.SecretKey }).(pulumi.StringOutput)
 }
 
+// ID of the service account which is used to get a static key.
 func (o IamServiceAccountStaticAccessKeyOutput) ServiceAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountStaticAccessKey) pulumi.StringOutput { return v.ServiceAccountId }).(pulumi.StringOutput)
 }

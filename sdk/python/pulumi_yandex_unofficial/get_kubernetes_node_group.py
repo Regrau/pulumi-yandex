@@ -84,31 +84,49 @@ class GetKubernetesNodeGroupResult:
     @property
     @pulumi.getter(name="allocationPolicies")
     def allocation_policies(self) -> Sequence['outputs.GetKubernetesNodeGroupAllocationPolicyResult']:
+        """
+        This argument specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+        """
         return pulumi.get(self, "allocation_policies")
 
     @property
     @pulumi.getter(name="allowedUnsafeSysctls")
     def allowed_unsafe_sysctls(self) -> Sequence[str]:
+        """
+        A list of allowed unsafe sysctl parameters for this node group. For more details see [documentation](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/).
+        """
         return pulumi.get(self, "allowed_unsafe_sysctls")
 
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
+        """
+        The ID of the Kubernetes cluster that this node group belongs to.
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The Kubernetes node group creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="deployPolicies")
     def deploy_policies(self) -> Sequence['outputs.GetKubernetesNodeGroupDeployPolicyResult']:
+        """
+        Deploy policy of the node group. The structure is documented below.
+        """
         return pulumi.get(self, "deploy_policies")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        A description of the Kubernetes node group.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -127,26 +145,42 @@ class GetKubernetesNodeGroupResult:
     @property
     @pulumi.getter(name="instanceGroupId")
     def instance_group_id(self) -> str:
+        """
+        ID of instance group that is used to manage this Kubernetes node group.
+        """
         return pulumi.get(self, "instance_group_id")
 
     @property
     @pulumi.getter(name="instanceTemplates")
     def instance_templates(self) -> Sequence['outputs.GetKubernetesNodeGroupInstanceTemplateResult']:
+        """
+        Template used to create compute instances in this Kubernetes node group. The structure is documented below.
+        """
         return pulumi.get(self, "instance_templates")
 
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        Labels assigned to compute nodes (instances), created by the Node Group.
+        ---
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="maintenancePolicies")
     def maintenance_policies(self) -> Sequence['outputs.GetKubernetesNodeGroupMaintenancePolicyResult']:
+        """
+        Information about maintenance policy for this Kubernetes node group. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_policies")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name template of the instance.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -157,26 +191,41 @@ class GetKubernetesNodeGroupResult:
     @property
     @pulumi.getter(name="nodeLabels")
     def node_labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs, that are assigned to all the nodes of this Kubernetes node group.
+        """
         return pulumi.get(self, "node_labels")
 
     @property
     @pulumi.getter(name="nodeTaints")
     def node_taints(self) -> Sequence[str]:
+        """
+        A list of Kubernetes taints, that are applied to all the nodes of this Kubernetes node group.
+        """
         return pulumi.get(self, "node_taints")
 
     @property
     @pulumi.getter(name="scalePolicies")
     def scale_policies(self) -> Sequence['outputs.GetKubernetesNodeGroupScalePolicyResult']:
+        """
+        Scale policy of the node group. The structure is documented below.
+        """
         return pulumi.get(self, "scale_policies")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the Kubernetes node group.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="versionInfos")
     def version_infos(self) -> Sequence['outputs.GetKubernetesNodeGroupVersionInfoResult']:
+        """
+        Information about Kubernetes node group version. The structure is documented below.
+        """
         return pulumi.get(self, "version_infos")
 
 
@@ -212,7 +261,23 @@ def get_kubernetes_node_group(folder_id: Optional[str] = None,
                               node_group_id: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesNodeGroupResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Kubernetes Node Group. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-kubernetes/concepts/#node-group).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_node_group = yandex.get_kubernetes_node_group(node_group_id="some_k8s_node_group_id")
+    pulumi.export("myNodeGroup.status", my_node_group.status)
+    ```
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: Name of a specific Kubernetes node group.
+    :param str node_group_id: ID of a specific Kubernetes node group.
     """
     __args__ = dict()
     __args__['folderId'] = folder_id
@@ -249,6 +314,22 @@ def get_kubernetes_node_group_output(folder_id: Optional[pulumi.Input[Optional[s
                                      node_group_id: Optional[pulumi.Input[Optional[str]]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubernetesNodeGroupResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Kubernetes Node Group. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-kubernetes/concepts/#node-group).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_node_group = yandex.get_kubernetes_node_group(node_group_id="some_k8s_node_group_id")
+    pulumi.export("myNodeGroup.status", my_node_group.status)
+    ```
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: Name of a specific Kubernetes node group.
+    :param str node_group_id: ID of a specific Kubernetes node group.
     """
     ...

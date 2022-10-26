@@ -49,6 +49,9 @@ class GetIamServiceAccountResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the service account.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -94,7 +97,21 @@ def get_iam_service_account(folder_id: Optional[str] = None,
                             service_account_id: Optional[str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIamServiceAccountResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex IAM service account. For more information about accounts, see
+    [Yandex.Cloud IAM accounts](https://cloud.yandex.com/docs/iam/concepts/#accounts).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    builder = yandex.get_iam_service_account(service_account_id="sa_id")
+    deployer = yandex.get_iam_service_account(name="sa_name")
+    ```
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: Name of a specific service account.
+    :param str service_account_id: ID of a specific service account.
     """
     __args__ = dict()
     __args__['folderId'] = folder_id
@@ -118,6 +135,20 @@ def get_iam_service_account_output(folder_id: Optional[pulumi.Input[Optional[str
                                    service_account_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamServiceAccountResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex IAM service account. For more information about accounts, see
+    [Yandex.Cloud IAM accounts](https://cloud.yandex.com/docs/iam/concepts/#accounts).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    builder = yandex.get_iam_service_account(service_account_id="sa_id")
+    deployer = yandex.get_iam_service_account(name="sa_name")
+    ```
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: Name of a specific service account.
+    :param str service_account_id: ID of a specific service account.
     """
     ...

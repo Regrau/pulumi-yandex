@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Optional text that must be contained in the messages received from targets for a successful health check.
+        /// </summary>
         [Input("receive", required: true)]
         public string Receive { get; set; } = null!;
 
+        /// <summary>
+        /// Optional message text sent to targets during TCP data transfer.
+        /// </summary>
         [Input("send", required: true)]
         public string Send { get; set; } = null!;
 

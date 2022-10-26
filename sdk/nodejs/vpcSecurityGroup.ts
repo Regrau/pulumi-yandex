@@ -5,6 +5,54 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a Security Group within the Yandex.Cloud. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/security-groups).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const lab_net = new yandex.VpcNetwork("lab-net", {});
+ * const group1 = new yandex.VpcSecurityGroup("group1", {
+ *     description: "description for my security group",
+ *     egresses: [
+ *         {
+ *             description: "rule2 description",
+ *             fromPort: 8090,
+ *             protocol: "ANY",
+ *             toPort: 8099,
+ *             v4CidrBlocks: [
+ *                 "10.0.1.0/24",
+ *                 "10.0.2.0/24",
+ *             ],
+ *         },
+ *         {
+ *             description: "rule3 description",
+ *             fromPort: 8090,
+ *             protocol: "UDP",
+ *             toPort: 8099,
+ *             v4CidrBlocks: ["10.0.1.0/24"],
+ *         },
+ *     ],
+ *     ingresses: [{
+ *         description: "rule1 description",
+ *         port: 8080,
+ *         protocol: "TCP",
+ *         v4CidrBlocks: [
+ *             "10.0.1.0/24",
+ *             "10.0.2.0/24",
+ *         ],
+ *     }],
+ *     labels: {
+ *         "my-label": "my-label-value",
+ *     },
+ *     networkId: lab_net.id,
+ * });
+ * ```
+ */
 export class VpcSecurityGroup extends pulumi.CustomResource {
     /**
      * Get an existing VpcSecurityGroup resource's state with the given name, ID, and optional extra
@@ -33,14 +81,41 @@ export class VpcSecurityGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpcSecurityGroup.__pulumiType;
     }
 
+    /**
+     * Creation timestamp of this security group.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * Description of the security group.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * A list of egress rules. The structure is documented below.
+     */
     public readonly egresses!: pulumi.Output<outputs.VpcSecurityGroupEgress[]>;
+    /**
+     * ID of the folder this security group belongs to.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * A list of ingress rules.
+     */
     public readonly ingresses!: pulumi.Output<outputs.VpcSecurityGroupIngress[]>;
+    /**
+     * Labels to assign to this security group.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * Name of the security group.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * ID of the network this security group belongs to.
+     */
     public readonly networkId!: pulumi.Output<string>;
+    /**
+     * Status of this security group.
+     */
     public /*out*/ readonly status!: pulumi.Output<string>;
 
     /**
@@ -89,14 +164,41 @@ export class VpcSecurityGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpcSecurityGroup resources.
  */
 export interface VpcSecurityGroupState {
+    /**
+     * Creation timestamp of this security group.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Description of the security group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * A list of egress rules. The structure is documented below.
+     */
     egresses?: pulumi.Input<pulumi.Input<inputs.VpcSecurityGroupEgress>[]>;
+    /**
+     * ID of the folder this security group belongs to.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A list of ingress rules.
+     */
     ingresses?: pulumi.Input<pulumi.Input<inputs.VpcSecurityGroupIngress>[]>;
+    /**
+     * Labels to assign to this security group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the security group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network this security group belongs to.
+     */
     networkId?: pulumi.Input<string>;
+    /**
+     * Status of this security group.
+     */
     status?: pulumi.Input<string>;
 }
 
@@ -104,11 +206,32 @@ export interface VpcSecurityGroupState {
  * The set of arguments for constructing a VpcSecurityGroup resource.
  */
 export interface VpcSecurityGroupArgs {
+    /**
+     * Description of the security group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * A list of egress rules. The structure is documented below.
+     */
     egresses?: pulumi.Input<pulumi.Input<inputs.VpcSecurityGroupEgress>[]>;
+    /**
+     * ID of the folder this security group belongs to.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A list of ingress rules.
+     */
     ingresses?: pulumi.Input<pulumi.Input<inputs.VpcSecurityGroupIngress>[]>;
+    /**
+     * Labels to assign to this security group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the security group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network this security group belongs to.
+     */
     networkId: pulumi.Input<string>;
 }

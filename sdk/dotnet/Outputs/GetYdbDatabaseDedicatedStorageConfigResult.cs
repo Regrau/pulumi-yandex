@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetYdbDatabaseDedicatedStorageConfigResult
     {
+        /// <summary>
+        /// Amount of storage groups of selected type in the Yandex Database cluster.
+        /// </summary>
         public readonly int GroupCount;
+        /// <summary>
+        /// Storage type ID of the Yandex Database cluster.
+        /// </summary>
         public readonly string StorageTypeId;
 
         [OutputConstructor]

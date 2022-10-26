@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The KMS master key ID used for the SSE-KMS encryption.
+        /// </summary>
         [Input("kmsMasterKeyId", required: true)]
         public Input<string> KmsMasterKeyId { get; set; } = null!;
 
+        /// <summary>
+        /// The server-side encryption algorithm to use. Single valid value is `aws:kms`
+        /// </summary>
         [Input("sseAlgorithm", required: true)]
         public Input<string> SseAlgorithm { get; set; } = null!;
 

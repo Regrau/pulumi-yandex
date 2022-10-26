@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetDataprocClusterClusterConfigSubclusterSpecResourceResult
     {
+        /// <summary>
+        /// Volume of the storage available to a host, in gigabytes.
+        /// </summary>
         public readonly int DiskSize;
+        /// <summary>
+        /// Type of the storage of a host.
+        /// </summary>
         public readonly string DiskTypeId;
+        /// <summary>
+        /// The ID of the preset for computational resources available to a host. All available presets are listed in the [documentation](https://cloud.yandex.com/docs/data-proc/concepts/instance-types).
+        /// </summary>
         public readonly string ResourcePresetId;
 
         [OutputConstructor]

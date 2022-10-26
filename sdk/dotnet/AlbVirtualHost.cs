@@ -9,27 +9,90 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Creates a virtual host that belongs to specified HTTP router and adds the specified routes to it. For more information,
+    /// see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/http-router).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var my_virtual_host = new Yandex.AlbVirtualHost("my-virtual-host", new()
+    ///     {
+    ///         HttpRouterId = yandex_alb_http_router.My_router.Id,
+    ///         Routes = new[]
+    ///         {
+    ///             new Yandex.Inputs.AlbVirtualHostRouteArgs
+    ///             {
+    ///                 Name = "my-route",
+    ///                 HttpRoute = new Yandex.Inputs.AlbVirtualHostRouteHttpRouteArgs
+    ///                 {
+    ///                     HttpRouteAction = new Yandex.Inputs.AlbVirtualHostRouteHttpRouteHttpRouteActionArgs
+    ///                     {
+    ///                         BackendGroupId = yandex_alb_backend_group.My_bg.Id,
+    ///                         Timeout = "3s",
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// A virtual host can be imported using the `id` of the resource, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/albVirtualHost:AlbVirtualHost default virtual_host_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/albVirtualHost:AlbVirtualHost")]
     public partial class AlbVirtualHost : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+        /// hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+        /// </summary>
         [Output("authorities")]
         public Output<ImmutableArray<string>> Authorities { get; private set; } = null!;
 
         [Output("httpRouterId")]
         public Output<string> HttpRouterId { get; private set; } = null!;
 
+        /// <summary>
+        /// Apply the following modifications to the request
+        /// headers. The structure is documented below.
+        /// </summary>
         [Output("modifyRequestHeaders")]
         public Output<ImmutableArray<Outputs.AlbVirtualHostModifyRequestHeader>> ModifyRequestHeaders { get; private set; } = null!;
 
+        /// <summary>
+        /// Apply the following modifications to the response
+        /// headers. The structure is documented below.
+        /// </summary>
         [Output("modifyResponseHeaders")]
         public Output<ImmutableArray<Outputs.AlbVirtualHostModifyResponseHeader>> ModifyResponseHeaders { get; private set; } = null!;
 
+        /// <summary>
+        /// name of the route.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         [Output("routeOptions")]
         public Output<Outputs.AlbVirtualHostRouteOptions?> RouteOptions { get; private set; } = null!;
 
+        /// <summary>
+        /// A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+        /// http '/' match first makes all other routes unused. The structure is documented below.
+        /// </summary>
         [Output("routes")]
         public Output<ImmutableArray<Outputs.AlbVirtualHostRoute>> Routes { get; private set; } = null!;
 
@@ -56,7 +119,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -82,6 +145,11 @@ namespace Pulumi.Yandex
     {
         [Input("authorities")]
         private InputList<string>? _authorities;
+
+        /// <summary>
+        /// A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+        /// hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+        /// </summary>
         public InputList<string> Authorities
         {
             get => _authorities ?? (_authorities = new InputList<string>());
@@ -93,6 +161,11 @@ namespace Pulumi.Yandex
 
         [Input("modifyRequestHeaders")]
         private InputList<Inputs.AlbVirtualHostModifyRequestHeaderArgs>? _modifyRequestHeaders;
+
+        /// <summary>
+        /// Apply the following modifications to the request
+        /// headers. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbVirtualHostModifyRequestHeaderArgs> ModifyRequestHeaders
         {
             get => _modifyRequestHeaders ?? (_modifyRequestHeaders = new InputList<Inputs.AlbVirtualHostModifyRequestHeaderArgs>());
@@ -101,12 +174,20 @@ namespace Pulumi.Yandex
 
         [Input("modifyResponseHeaders")]
         private InputList<Inputs.AlbVirtualHostModifyResponseHeaderArgs>? _modifyResponseHeaders;
+
+        /// <summary>
+        /// Apply the following modifications to the response
+        /// headers. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbVirtualHostModifyResponseHeaderArgs> ModifyResponseHeaders
         {
             get => _modifyResponseHeaders ?? (_modifyResponseHeaders = new InputList<Inputs.AlbVirtualHostModifyResponseHeaderArgs>());
             set => _modifyResponseHeaders = value;
         }
 
+        /// <summary>
+        /// name of the route.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -115,6 +196,11 @@ namespace Pulumi.Yandex
 
         [Input("routes")]
         private InputList<Inputs.AlbVirtualHostRouteArgs>? _routes;
+
+        /// <summary>
+        /// A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+        /// http '/' match first makes all other routes unused. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbVirtualHostRouteArgs> Routes
         {
             get => _routes ?? (_routes = new InputList<Inputs.AlbVirtualHostRouteArgs>());
@@ -131,6 +217,11 @@ namespace Pulumi.Yandex
     {
         [Input("authorities")]
         private InputList<string>? _authorities;
+
+        /// <summary>
+        /// A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+        /// hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+        /// </summary>
         public InputList<string> Authorities
         {
             get => _authorities ?? (_authorities = new InputList<string>());
@@ -142,6 +233,11 @@ namespace Pulumi.Yandex
 
         [Input("modifyRequestHeaders")]
         private InputList<Inputs.AlbVirtualHostModifyRequestHeaderGetArgs>? _modifyRequestHeaders;
+
+        /// <summary>
+        /// Apply the following modifications to the request
+        /// headers. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbVirtualHostModifyRequestHeaderGetArgs> ModifyRequestHeaders
         {
             get => _modifyRequestHeaders ?? (_modifyRequestHeaders = new InputList<Inputs.AlbVirtualHostModifyRequestHeaderGetArgs>());
@@ -150,12 +246,20 @@ namespace Pulumi.Yandex
 
         [Input("modifyResponseHeaders")]
         private InputList<Inputs.AlbVirtualHostModifyResponseHeaderGetArgs>? _modifyResponseHeaders;
+
+        /// <summary>
+        /// Apply the following modifications to the response
+        /// headers. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbVirtualHostModifyResponseHeaderGetArgs> ModifyResponseHeaders
         {
             get => _modifyResponseHeaders ?? (_modifyResponseHeaders = new InputList<Inputs.AlbVirtualHostModifyResponseHeaderGetArgs>());
             set => _modifyResponseHeaders = value;
         }
 
+        /// <summary>
+        /// name of the route.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -164,6 +268,11 @@ namespace Pulumi.Yandex
 
         [Input("routes")]
         private InputList<Inputs.AlbVirtualHostRouteGetArgs>? _routes;
+
+        /// <summary>
+        /// A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+        /// http '/' match first makes all other routes unused. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbVirtualHostRouteGetArgs> Routes
         {
             get => _routes ?? (_routes = new InputList<Inputs.AlbVirtualHostRouteGetArgs>());

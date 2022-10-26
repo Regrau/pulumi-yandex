@@ -12,27 +12,51 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DataprocClusterClusterConfigSubclusterSpecArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If true then assign public IP addresses to the hosts of the subclusters.
+        /// </summary>
         [Input("assignPublicIp")]
         public Input<bool>? AssignPublicIp { get; set; }
 
+        /// <summary>
+        /// Autoscaling configuration for compute subclusters.
+        /// </summary>
         [Input("autoscalingConfig")]
         public Input<Inputs.DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs>? AutoscalingConfig { get; set; }
 
+        /// <summary>
+        /// Number of hosts within Data Proc subcluster.
+        /// </summary>
         [Input("hostsCount", required: true)]
         public Input<int> HostsCount { get; set; } = null!;
 
+        /// <summary>
+        /// (Computed) ID of a new Data Proc cluster.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 
+        /// <summary>
+        /// Name of the Data Proc subcluster.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Resources allocated to each host of the Data Proc subcluster. The structure is documented below.
+        /// </summary>
         [Input("resources", required: true)]
         public Input<Inputs.DataprocClusterClusterConfigSubclusterSpecResourcesArgs> Resources { get; set; } = null!;
 
+        /// <summary>
+        /// Role of the subcluster in the Data Proc cluster.
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of the subnet, to which hosts of the subcluster belong. Subnets of all the subclusters must belong to the same VPC network.
+        /// </summary>
         [Input("subnetId", required: true)]
         public Input<string> SubnetId { get; set; } = null!;
 

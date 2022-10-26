@@ -23,6 +23,13 @@ class DnsZoneArgs:
                  public: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a DnsZone resource.
+        :param pulumi.Input[str] zone: The DNS name of this zone, e.g. "example.com.". Must ends with dot.
+        :param pulumi.Input[str] description: Description of the DNS zone.
+        :param pulumi.Input[str] folder_id: ID of the folder to create a zone in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the DNS zone.
+        :param pulumi.Input[str] name: User assigned name of a specific resource. Must be unique within the folder.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] private_networks: For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+        :param pulumi.Input[bool] public: The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
         """
         pulumi.set(__self__, "zone", zone)
         if description is not None:
@@ -41,6 +48,9 @@ class DnsZoneArgs:
     @property
     @pulumi.getter
     def zone(self) -> pulumi.Input[str]:
+        """
+        The DNS name of this zone, e.g. "example.com.". Must ends with dot.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -50,6 +60,9 @@ class DnsZoneArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the DNS zone.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -59,6 +72,9 @@ class DnsZoneArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder to create a zone in. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -68,6 +84,9 @@ class DnsZoneArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the DNS zone.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -77,6 +96,9 @@ class DnsZoneArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        User assigned name of a specific resource. Must be unique within the folder.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -86,6 +108,9 @@ class DnsZoneArgs:
     @property
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+        """
         return pulumi.get(self, "private_networks")
 
     @private_networks.setter
@@ -95,6 +120,9 @@ class DnsZoneArgs:
     @property
     @pulumi.getter
     def public(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+        """
         return pulumi.get(self, "public")
 
     @public.setter
@@ -115,6 +143,14 @@ class _DnsZoneState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DnsZone resources.
+        :param pulumi.Input[str] created_at: (Computed) The DNS zone creation timestamp.
+        :param pulumi.Input[str] description: Description of the DNS zone.
+        :param pulumi.Input[str] folder_id: ID of the folder to create a zone in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the DNS zone.
+        :param pulumi.Input[str] name: User assigned name of a specific resource. Must be unique within the folder.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] private_networks: For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+        :param pulumi.Input[bool] public: The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+        :param pulumi.Input[str] zone: The DNS name of this zone, e.g. "example.com.". Must ends with dot.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -136,6 +172,9 @@ class _DnsZoneState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) The DNS zone creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -145,6 +184,9 @@ class _DnsZoneState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the DNS zone.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -154,6 +196,9 @@ class _DnsZoneState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder to create a zone in. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -163,6 +208,9 @@ class _DnsZoneState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the DNS zone.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -172,6 +220,9 @@ class _DnsZoneState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        User assigned name of a specific resource. Must be unique within the folder.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -181,6 +232,9 @@ class _DnsZoneState:
     @property
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+        """
         return pulumi.get(self, "private_networks")
 
     @private_networks.setter
@@ -190,6 +244,9 @@ class _DnsZoneState:
     @property
     @pulumi.getter
     def public(self) -> Optional[pulumi.Input[bool]]:
+        """
+        The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+        """
         return pulumi.get(self, "public")
 
     @public.setter
@@ -199,6 +256,9 @@ class _DnsZoneState:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        The DNS name of this zone, e.g. "example.com.". Must ends with dot.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -220,9 +280,39 @@ class DnsZone(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DnsZone resource with the given unique name, props, and options.
+        Manages a DNS Zone.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo = yandex.VpcNetwork("foo")
+        zone1 = yandex.DnsZone("zone1",
+            description="desc",
+            labels={
+                "label1": "label-1-value",
+            },
+            zone="example.com.",
+            public=False,
+            private_networks=[foo.id])
+        rs1 = yandex.DnsRecordSet("rs1",
+            zone_id=zone1.id,
+            type="A",
+            ttl=200,
+            datas=["10.1.0.1"])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Description of the DNS zone.
+        :param pulumi.Input[str] folder_id: ID of the folder to create a zone in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the DNS zone.
+        :param pulumi.Input[str] name: User assigned name of a specific resource. Must be unique within the folder.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] private_networks: For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+        :param pulumi.Input[bool] public: The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+        :param pulumi.Input[str] zone: The DNS name of this zone, e.g. "example.com.". Must ends with dot.
         """
         ...
     @overload
@@ -231,7 +321,30 @@ class DnsZone(pulumi.CustomResource):
                  args: DnsZoneArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DnsZone resource with the given unique name, props, and options.
+        Manages a DNS Zone.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo = yandex.VpcNetwork("foo")
+        zone1 = yandex.DnsZone("zone1",
+            description="desc",
+            labels={
+                "label1": "label-1-value",
+            },
+            zone="example.com.",
+            public=False,
+            private_networks=[foo.id])
+        rs1 = yandex.DnsRecordSet("rs1",
+            zone_id=zone1.id,
+            type="A",
+            ttl=200,
+            datas=["10.1.0.1"])
+        ```
+
         :param str resource_name: The name of the resource.
         :param DnsZoneArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -298,6 +411,14 @@ class DnsZone(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: (Computed) The DNS zone creation timestamp.
+        :param pulumi.Input[str] description: Description of the DNS zone.
+        :param pulumi.Input[str] folder_id: ID of the folder to create a zone in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the DNS zone.
+        :param pulumi.Input[str] name: User assigned name of a specific resource. Must be unique within the folder.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] private_networks: For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+        :param pulumi.Input[bool] public: The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+        :param pulumi.Input[str] zone: The DNS name of this zone, e.g. "example.com.". Must ends with dot.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -316,40 +437,64 @@ class DnsZone(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        (Computed) The DNS zone creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the DNS zone.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        ID of the folder to create a zone in. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the DNS zone.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        User assigned name of a specific resource. Must be unique within the folder.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> pulumi.Output[Sequence[str]]:
+        """
+        For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+        """
         return pulumi.get(self, "private_networks")
 
     @property
     @pulumi.getter
     def public(self) -> pulumi.Output[bool]:
+        """
+        The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+        """
         return pulumi.get(self, "public")
 
     @property
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
+        """
+        The DNS name of this zone, e.g. "example.com.". Must ends with dot.
+        """
         return pulumi.get(self, "zone")
 

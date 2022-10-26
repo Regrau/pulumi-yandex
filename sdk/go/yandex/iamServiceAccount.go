@@ -10,13 +10,60 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of a Yandex.Cloud IAM [service account](https://cloud.yandex.com/docs/iam/concepts/users/service-accounts).
+// To assign roles and permissions, use the yandex_iam_service_account_iam_binding,
+// IamServiceAccountIamMember and
+// IamServiceAccountIamPolicy resources.
+//
+// ## Example Usage
+//
+// This snippet creates a service account.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewIamServiceAccount(ctx, "sa", &yandex.IamServiceAccountArgs{
+//				Description: pulumi.String("service account to manage VMs"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A service account can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/iamServiceAccount:IamServiceAccount sa account_id
+//
+// ```
 type IamServiceAccount struct {
 	pulumi.CustomResourceState
 
-	CreatedAt   pulumi.StringOutput    `pulumi:"createdAt"`
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Description of the service account.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	FolderId    pulumi.StringOutput    `pulumi:"folderId"`
-	Name        pulumi.StringOutput    `pulumi:"name"`
+	// ID of the folder that the service account will be created in.
+	// Defaults to the provider folder configuration.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Name of the service account.
+	// Can be updated without creating a new resource.
+	Name pulumi.StringOutput `pulumi:"name"`
 }
 
 // NewIamServiceAccount registers a new resource with the given unique name, arguments, and options.
@@ -49,17 +96,27 @@ func GetIamServiceAccount(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IamServiceAccount resources.
 type iamServiceAccountState struct {
-	CreatedAt   *string `pulumi:"createdAt"`
+	CreatedAt *string `pulumi:"createdAt"`
+	// Description of the service account.
 	Description *string `pulumi:"description"`
-	FolderId    *string `pulumi:"folderId"`
-	Name        *string `pulumi:"name"`
+	// ID of the folder that the service account will be created in.
+	// Defaults to the provider folder configuration.
+	FolderId *string `pulumi:"folderId"`
+	// Name of the service account.
+	// Can be updated without creating a new resource.
+	Name *string `pulumi:"name"`
 }
 
 type IamServiceAccountState struct {
-	CreatedAt   pulumi.StringPtrInput
+	CreatedAt pulumi.StringPtrInput
+	// Description of the service account.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Name        pulumi.StringPtrInput
+	// ID of the folder that the service account will be created in.
+	// Defaults to the provider folder configuration.
+	FolderId pulumi.StringPtrInput
+	// Name of the service account.
+	// Can be updated without creating a new resource.
+	Name pulumi.StringPtrInput
 }
 
 func (IamServiceAccountState) ElementType() reflect.Type {
@@ -67,16 +124,26 @@ func (IamServiceAccountState) ElementType() reflect.Type {
 }
 
 type iamServiceAccountArgs struct {
+	// Description of the service account.
 	Description *string `pulumi:"description"`
-	FolderId    *string `pulumi:"folderId"`
-	Name        *string `pulumi:"name"`
+	// ID of the folder that the service account will be created in.
+	// Defaults to the provider folder configuration.
+	FolderId *string `pulumi:"folderId"`
+	// Name of the service account.
+	// Can be updated without creating a new resource.
+	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a IamServiceAccount resource.
 type IamServiceAccountArgs struct {
+	// Description of the service account.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Name        pulumi.StringPtrInput
+	// ID of the folder that the service account will be created in.
+	// Defaults to the provider folder configuration.
+	FolderId pulumi.StringPtrInput
+	// Name of the service account.
+	// Can be updated without creating a new resource.
+	Name pulumi.StringPtrInput
 }
 
 func (IamServiceAccountArgs) ElementType() reflect.Type {
@@ -170,14 +237,19 @@ func (o IamServiceAccountOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccount) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the service account.
 func (o IamServiceAccountOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamServiceAccount) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// ID of the folder that the service account will be created in.
+// Defaults to the provider folder configuration.
 func (o IamServiceAccountOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccount) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Name of the service account.
+// Can be updated without creating a new resource.
 func (o IamServiceAccountOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccount) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

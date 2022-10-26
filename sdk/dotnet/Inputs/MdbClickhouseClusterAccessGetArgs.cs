@@ -12,21 +12,39 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterAccessGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow access for DataLens. Can be either `true` or `false`.
+        /// </summary>
         [Input("dataLens")]
         public Input<bool>? DataLens { get; set; }
 
+        /// <summary>
+        /// Allow access for DataTransfer. Can be either `true` or `false`.
+        /// </summary>
         [Input("dataTransfer")]
         public Input<bool>? DataTransfer { get; set; }
 
+        /// <summary>
+        /// Allow access for Yandex.Metrika. Can be either `true` or `false`.
+        /// </summary>
         [Input("metrika")]
         public Input<bool>? Metrika { get; set; }
 
+        /// <summary>
+        /// Allow access for Serverless. Can be either `true` or `false`.
+        /// </summary>
         [Input("serverless")]
         public Input<bool>? Serverless { get; set; }
 
+        /// <summary>
+        /// Allow access for Web SQL. Can be either `true` or `false`.
+        /// </summary>
         [Input("webSql")]
         public Input<bool>? WebSql { get; set; }
 
+        /// <summary>
+        /// Allow access for YandexQuery. Can be either `true` or `false`.
+        /// </summary>
         [Input("yandexQuery")]
         public Input<bool>? YandexQuery { get; set; }
 

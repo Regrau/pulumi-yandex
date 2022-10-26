@@ -13,10 +13,25 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbClickhouseClusterUser
     {
+        /// <summary>
+        /// Graphite rollup configuration name.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// RabbitMQ user password.
+        /// </summary>
         public readonly string Password;
+        /// <summary>
+        /// Set of permissions granted to the user. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.MdbClickhouseClusterUserPermission> Permissions;
+        /// <summary>
+        /// Set of user quotas. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.MdbClickhouseClusterUserQuota> Quotas;
+        /// <summary>
+        /// Kafka connection settngs sanem as `kafka` block.
+        /// </summary>
         public readonly Outputs.MdbClickhouseClusterUserSettings? Settings;
 
         [OutputConstructor]

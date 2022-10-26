@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class ComputeInstanceGroupHealthCheckTcpOptionsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The port used for TCP health checks.
+        /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 

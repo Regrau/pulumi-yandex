@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbGreenplumClusterPoolerConfig
     {
+        /// <summary>
+        /// Value for `pool_client_idle_timeout` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_ttl-integer).
+        /// </summary>
         public readonly int? PoolClientIdleTimeout;
+        /// <summary>
+        /// Value for `pool_size` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_size-integer).
+        /// </summary>
         public readonly int? PoolSize;
+        /// <summary>
+        /// Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
+        /// </summary>
         public readonly string? PoolingMode;
 
         [OutputConstructor]

@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class ComputeInstanceGroupInstanceTemplatePlacementPolicyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Specifies the id of the Placement Group to assign to the instances.
+        /// </summary>
         [Input("placementGroupId", required: true)]
         public Input<string> PlacementGroupId { get; set; } = null!;
 

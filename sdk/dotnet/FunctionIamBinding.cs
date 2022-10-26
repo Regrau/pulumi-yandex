@@ -9,15 +9,51 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// ## yandex\_function\_iam\_binding
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var function_iam = new Yandex.FunctionIamBinding("function-iam", new()
+    ///     {
+    ///         FunctionId = "your-function-id",
+    ///         Members = new[]
+    ///         {
+    ///             "system:allUsers",
+    ///         },
+    ///         Role = "serverless.functions.invoker",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/functionIamBinding:FunctionIamBinding")]
     public partial class FunctionIamBinding : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.
+        /// </summary>
         [Output("functionId")]
         public Output<string> FunctionId { get; private set; } = null!;
 
+        /// <summary>
+        /// Identities that will be granted the privilege in `role`.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        /// </summary>
         [Output("members")]
         public Output<ImmutableArray<string>> Members { get; private set; } = null!;
 
+        /// <summary>
+        /// The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)
+        /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
 
@@ -47,7 +83,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -71,17 +107,31 @@ namespace Pulumi.Yandex
 
     public sealed class FunctionIamBindingArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.
+        /// </summary>
         [Input("functionId", required: true)]
         public Input<string> FunctionId { get; set; } = null!;
 
         [Input("members", required: true)]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// Identities that will be granted the privilege in `role`.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
@@ -96,17 +146,31 @@ namespace Pulumi.Yandex
 
     public sealed class FunctionIamBindingState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.
+        /// </summary>
         [Input("functionId")]
         public Input<string>? FunctionId { get; set; }
 
         [Input("members")]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// Identities that will be granted the privilege in `role`.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)
+        /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 

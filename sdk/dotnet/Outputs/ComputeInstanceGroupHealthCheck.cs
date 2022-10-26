@@ -13,11 +13,29 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstanceGroupHealthCheck
     {
+        /// <summary>
+        /// The number of successful health checks before the managed instance is declared healthy.
+        /// </summary>
         public readonly int? HealthyThreshold;
+        /// <summary>
+        /// HTTP check options. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ComputeInstanceGroupHealthCheckHttpOption> HttpOptions;
+        /// <summary>
+        /// The interval to wait between health checks in seconds.
+        /// </summary>
         public readonly int? Interval;
+        /// <summary>
+        /// TCP check options. The structure is documented below.
+        /// </summary>
         public readonly Outputs.ComputeInstanceGroupHealthCheckTcpOptions? TcpOptions;
+        /// <summary>
+        /// The length of time to wait for a response before the health check times out in seconds.
+        /// </summary>
         public readonly int? Timeout;
+        /// <summary>
+        /// The number of failed health checks before the managed instance is declared unhealthy.
+        /// </summary>
         public readonly int? UnhealthyThreshold;
 
         [OutputConstructor]

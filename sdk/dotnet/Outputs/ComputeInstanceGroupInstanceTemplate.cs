@@ -13,19 +13,79 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstanceGroupInstanceTemplate
     {
+        /// <summary>
+        /// Boot disk specifications for the instance. The structure is documented below.
+        /// </summary>
         public readonly Outputs.ComputeInstanceGroupInstanceTemplateBootDisk BootDisk;
+        /// <summary>
+        /// A description of the boot disk.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// Hostname template for the instance.   
+        /// This field is used to generate the FQDN value of instance.
+        /// The hostname must be unique within the network and region.
+        /// If not specified, the hostname will be equal to id of the instance
+        /// and FQDN will be `&lt;id&gt;.auto.internal`. Otherwise FQDN will be `&lt;hostname&gt;.&lt;region_id&gt;.internal`.
+        /// In order to be unique it must contain at least on of instance unique placeholders:
+        /// {instance.short_id}
+        /// {instance.index}
+        /// combination of {instance.zone_id} and {instance.index_in_zone}
+        /// Example: my-instance-{instance.index}
+        /// If not set, `name` value will be used
+        /// It may also contain another placeholders, see metadata doc for full list.
+        /// </summary>
         public readonly string? Hostname;
+        /// <summary>
+        /// A map of labels of metric.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
+        /// <summary>
+        /// A set of metadata key/value pairs to make available from within the instance.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Metadata;
+        /// <summary>
+        /// Name template of the instance.  
+        /// In order to be unique it must contain at least one of instance unique placeholders:
+        /// {instance.short_id}
+        /// {instance.index}
+        /// combination of {instance.zone_id} and {instance.index_in_zone}
+        /// Example: my-instance-{instance.index}
+        /// If not set, default is used: {instance_group.id}-{instance.short_id}
+        /// It may also contain another placeholders, see metadata doc for full list.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// Network specifications for the instance. This can be used multiple times for adding multiple interfaces. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ComputeInstanceGroupInstanceTemplateNetworkInterface> NetworkInterfaces;
+        /// <summary>
+        /// Network acceleration type for instance. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ComputeInstanceGroupInstanceTemplateNetworkSetting> NetworkSettings;
+        /// <summary>
+        /// The placement policy configuration. The structure is documented below.
+        /// </summary>
         public readonly Outputs.ComputeInstanceGroupInstanceTemplatePlacementPolicy? PlacementPolicy;
+        /// <summary>
+        /// The ID of the hardware platform configuration for the instance. The default is 'standard-v1'.
+        /// </summary>
         public readonly string? PlatformId;
+        /// <summary>
+        /// Compute resource specifications for the instance. The structure is documented below.
+        /// </summary>
         public readonly Outputs.ComputeInstanceGroupInstanceTemplateResources Resources;
+        /// <summary>
+        /// The scheduling policy configuration. The structure is documented below.
+        /// </summary>
         public readonly Outputs.ComputeInstanceGroupInstanceTemplateSchedulingPolicy? SchedulingPolicy;
+        /// <summary>
+        /// A list of disks to attach to the instance. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ComputeInstanceGroupInstanceTemplateSecondaryDisk> SecondaryDisks;
+        /// <summary>
+        /// The ID of the service account authorized for this instance.
+        /// </summary>
         public readonly string? ServiceAccountId;
 
         [OutputConstructor]

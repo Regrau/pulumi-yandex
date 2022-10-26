@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2Options
     {
+        /// <summary>
+        /// Maximum number of concurrent streams.
+        /// </summary>
         public readonly int? MaxConcurrentStreams;
 
         [OutputConstructor]

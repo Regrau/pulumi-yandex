@@ -12,15 +12,27 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class ComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// DNS zone id (if not set, private zone used).
+        /// </summary>
         [Input("dnsZoneId")]
         public Input<string>? DnsZoneId { get; set; }
 
+        /// <summary>
+        /// DNS record fqdn (must have dot at the end).
+        /// </summary>
         [Input("fqdn", required: true)]
         public Input<string> Fqdn { get; set; } = null!;
 
+        /// <summary>
+        /// When set to true, also create PTR DNS record.
+        /// </summary>
         [Input("ptr")]
         public Input<bool>? Ptr { get; set; }
 
+        /// <summary>
+        /// DNS record TTL.
+        /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 

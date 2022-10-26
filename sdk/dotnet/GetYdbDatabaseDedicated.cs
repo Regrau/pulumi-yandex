@@ -11,9 +11,67 @@ namespace Pulumi.Yandex
 {
     public static class GetYdbDatabaseDedicated
     {
+        /// <summary>
+        /// Get information about a Yandex Database (dedicated) cluster.
+        /// For more information, see [the official documentation](https://cloud.yandex.com/en/docs/ydb/concepts/serverless_and_dedicated).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myDatabase = Yandex.GetYdbDatabaseDedicated.Invoke(new()
+        ///     {
+        ///         DatabaseId = "some_ydb_dedicated_database_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["ydbApiEndpoint"] = myDatabase.Apply(getYdbDatabaseDedicatedResult =&gt; getYdbDatabaseDedicatedResult.YdbApiEndpoint),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetYdbDatabaseDedicatedResult> InvokeAsync(GetYdbDatabaseDedicatedArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetYdbDatabaseDedicatedResult>("yandex:index/getYdbDatabaseDedicated:getYdbDatabaseDedicated", args ?? new GetYdbDatabaseDedicatedArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Database (dedicated) cluster.
+        /// For more information, see [the official documentation](https://cloud.yandex.com/en/docs/ydb/concepts/serverless_and_dedicated).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myDatabase = Yandex.GetYdbDatabaseDedicated.Invoke(new()
+        ///     {
+        ///         DatabaseId = "some_ydb_dedicated_database_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["ydbApiEndpoint"] = myDatabase.Apply(getYdbDatabaseDedicatedResult =&gt; getYdbDatabaseDedicatedResult.YdbApiEndpoint),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetYdbDatabaseDedicatedResult> Invoke(GetYdbDatabaseDedicatedInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetYdbDatabaseDedicatedResult>("yandex:index/getYdbDatabaseDedicated:getYdbDatabaseDedicated", args ?? new GetYdbDatabaseDedicatedInvokeArgs(), options.WithDefaults());
     }
@@ -21,15 +79,28 @@ namespace Pulumi.Yandex
 
     public sealed class GetYdbDatabaseDedicatedArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the Yandex Database cluster.
+        /// </summary>
         [Input("databaseId")]
         public string? DatabaseId { get; set; }
 
+        /// <summary>
+        /// Inhibits deletion of the database. Can be either `true` or `false`
+        /// </summary>
         [Input("deletionProtection")]
         public bool? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// ID of the folder that the Yandex Database cluster belongs to.
+        /// It will be deduced from provider configuration if not set explicitly.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// Name of the Yandex Database cluster.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -41,15 +112,28 @@ namespace Pulumi.Yandex
 
     public sealed class GetYdbDatabaseDedicatedInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the Yandex Database cluster.
+        /// </summary>
         [Input("databaseId")]
         public Input<string>? DatabaseId { get; set; }
 
+        /// <summary>
+        /// Inhibits deletion of the database. Can be either `true` or `false`
+        /// </summary>
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// ID of the folder that the Yandex Database cluster belongs to.
+        /// It will be deduced from provider configuration if not set explicitly.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// Name of the Yandex Database cluster.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -63,29 +147,86 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetYdbDatabaseDedicatedResult
     {
+        /// <summary>
+        /// Whether public IP addresses are assigned to the Yandex Database cluster.
+        /// </summary>
         public readonly bool AssignPublicIps;
+        /// <summary>
+        /// The Yandex Database cluster creation timestamp.
+        /// </summary>
         public readonly string CreatedAt;
         public readonly string? DatabaseId;
+        /// <summary>
+        /// Full database path of the Yandex Database cluster.
+        /// Useful for SDK configuration.
+        /// </summary>
         public readonly string DatabasePath;
+        /// <summary>
+        /// Inhibits deletion of the database. Can be either `true` or `false`
+        /// </summary>
         public readonly bool DeletionProtection;
+        /// <summary>
+        /// A description of the Yandex Database cluster.
+        /// </summary>
         public readonly string Description;
         public readonly string? FolderId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A set of key/value label pairs assigned to the Yandex Database cluster.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// Location ID of the Yandex Database cluster.
+        /// </summary>
         public readonly string LocationId;
+        /// <summary>
+        /// Location of the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetYdbDatabaseDedicatedLocationResult> Locations;
         public readonly string? Name;
+        /// <summary>
+        /// ID of the network the Yandex Database cluster is attached to.
+        /// </summary>
         public readonly string NetworkId;
+        /// <summary>
+        /// The Yandex Database cluster preset.
+        /// </summary>
         public readonly string ResourcePresetId;
+        /// <summary>
+        /// Scaling policy of the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetYdbDatabaseDedicatedScalePolicyResult> ScalePolicies;
+        /// <summary>
+        /// Status of the Yandex Database cluster.
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// A list of storage configuration options of the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetYdbDatabaseDedicatedStorageConfigResult> StorageConfigs;
+        /// <summary>
+        /// List of subnet IDs the Yandex Database cluster is attached to.
+        /// </summary>
         public readonly ImmutableArray<string> SubnetIds;
+        /// <summary>
+        /// Whether TLS is enabled for the Yandex Database cluster.
+        /// Useful for SDK configuration.
+        /// </summary>
         public readonly bool TlsEnabled;
+        /// <summary>
+        /// API endpoint of the Yandex Database cluster.
+        /// Useful for SDK configuration.
+        /// </summary>
         public readonly string YdbApiEndpoint;
+        /// <summary>
+        /// Full endpoint of the Yandex Database cluster.
+        /// </summary>
         public readonly string YdbFullEndpoint;
 
         [OutputConstructor]

@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbKafkaClusterUserPermissionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The role type to grant to the topic.
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the topic that the permission grants access to.
+        /// </summary>
         [Input("topicName", required: true)]
         public Input<string> TopicName { get; set; } = null!;
 

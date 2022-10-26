@@ -10,6 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex Load Balancer target group. For more information, see
+// [Yandex.Cloud Load Balancer](https://cloud.yandex.com/docs/load-balancer/quickstart).
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.LookupLbTargetGroup(ctx, &GetLbTargetGroupArgs{
+//				TargetGroupId: pulumi.StringRef("my-target-group-id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// This data source is used to define [Load Balancer Target Groups] that can be used by other resources.
 func LookupLbTargetGroup(ctx *pulumi.Context, args *LookupLbTargetGroupArgs, opts ...pulumi.InvokeOption) (*LookupLbTargetGroupResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupLbTargetGroupResult
@@ -22,18 +50,26 @@ func LookupLbTargetGroup(ctx *pulumi.Context, args *LookupLbTargetGroupArgs, opt
 
 // A collection of arguments for invoking getLbTargetGroup.
 type LookupLbTargetGroupArgs struct {
-	FolderId      *string `pulumi:"folderId"`
-	Name          *string `pulumi:"name"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// - Name of the Target Group.
+	Name *string `pulumi:"name"`
+	// Target Group ID.
 	TargetGroupId *string `pulumi:"targetGroupId"`
 }
 
 // A collection of values returned by getLbTargetGroup.
 type LookupLbTargetGroupResult struct {
-	CreatedAt   string `pulumi:"createdAt"`
+	// Creation timestamp of this target group.
+	CreatedAt string `pulumi:"createdAt"`
+	// Description of the target group.
 	Description string `pulumi:"description"`
 	FolderId    string `pulumi:"folderId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id            string                   `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Labels to assign to this target group.
+	// * `target.0.address` - IP address of the target.
+	// * `target.0.subnet_id` - ID of the subnet that targets are connected to.
 	Labels        map[string]string        `pulumi:"labels"`
 	Name          string                   `pulumi:"name"`
 	TargetGroupId string                   `pulumi:"targetGroupId"`
@@ -55,8 +91,11 @@ func LookupLbTargetGroupOutput(ctx *pulumi.Context, args LookupLbTargetGroupOutp
 
 // A collection of arguments for invoking getLbTargetGroup.
 type LookupLbTargetGroupOutputArgs struct {
-	FolderId      pulumi.StringPtrInput `pulumi:"folderId"`
-	Name          pulumi.StringPtrInput `pulumi:"name"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// - Name of the Target Group.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Target Group ID.
 	TargetGroupId pulumi.StringPtrInput `pulumi:"targetGroupId"`
 }
 
@@ -79,10 +118,12 @@ func (o LookupLbTargetGroupResultOutput) ToLookupLbTargetGroupResultOutputWithCo
 	return o
 }
 
+// Creation timestamp of this target group.
 func (o LookupLbTargetGroupResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbTargetGroupResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the target group.
 func (o LookupLbTargetGroupResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbTargetGroupResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -96,6 +137,9 @@ func (o LookupLbTargetGroupResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbTargetGroupResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Labels to assign to this target group.
+// * `target.0.address` - IP address of the target.
+// * `target.0.subnet_id` - ID of the subnet that targets are connected to.
 func (o LookupLbTargetGroupResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupLbTargetGroupResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }

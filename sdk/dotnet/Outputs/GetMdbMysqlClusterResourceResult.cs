@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbMysqlClusterResourceResult
     {
+        /// <summary>
+        /// Volume of the storage available to a MySQL host, in gigabytes.
+        /// </summary>
         public readonly int DiskSize;
+        /// <summary>
+        /// Type of the storage for MySQL hosts.
+        /// </summary>
         public readonly string DiskTypeId;
         public readonly string ResourcePresetId;
 

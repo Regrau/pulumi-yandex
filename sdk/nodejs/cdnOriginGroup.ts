@@ -5,6 +5,45 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Allows management of [Yandex.Cloud CDN Origin Groups](https://cloud.yandex.ru/docs/cdn/concepts/origins).
+ *
+ * > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const myGroup = new yandex.CdnOriginGroup("my_group", {
+ *     origins: [
+ *         {
+ *             source: "ya.ru",
+ *         },
+ *         {
+ *             source: "yandex.ru",
+ *         },
+ *         {
+ *             source: "goo.gl",
+ *         },
+ *         {
+ *             backup: false,
+ *             source: "amazon.com",
+ *         },
+ *     ],
+ *     useNext: true,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A origin group can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/cdnOriginGroup:CdnOriginGroup default origin_group_id
+ * ```
+ */
 export class CdnOriginGroup extends pulumi.CustomResource {
     /**
      * Get an existing CdnOriginGroup resource's state with the given name, ID, and optional extra
@@ -34,8 +73,14 @@ export class CdnOriginGroup extends pulumi.CustomResource {
     }
 
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * CDN Origin Group name used to define device.
+     */
     public readonly name!: pulumi.Output<string>;
     public readonly origins!: pulumi.Output<outputs.CdnOriginGroupOrigin[]>;
+    /**
+     * If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
+     */
     public readonly useNext!: pulumi.Output<boolean | undefined>;
 
     /**
@@ -75,8 +120,14 @@ export class CdnOriginGroup extends pulumi.CustomResource {
  */
 export interface CdnOriginGroupState {
     folderId?: pulumi.Input<string>;
+    /**
+     * CDN Origin Group name used to define device.
+     */
     name?: pulumi.Input<string>;
     origins?: pulumi.Input<pulumi.Input<inputs.CdnOriginGroupOrigin>[]>;
+    /**
+     * If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
+     */
     useNext?: pulumi.Input<boolean>;
 }
 
@@ -85,7 +136,13 @@ export interface CdnOriginGroupState {
  */
 export interface CdnOriginGroupArgs {
     folderId?: pulumi.Input<string>;
+    /**
+     * CDN Origin Group name used to define device.
+     */
     name?: pulumi.Input<string>;
     origins: pulumi.Input<pulumi.Input<inputs.CdnOriginGroupOrigin>[]>;
+    /**
+     * If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
+     */
     useNext?: pulumi.Input<boolean>;
 }

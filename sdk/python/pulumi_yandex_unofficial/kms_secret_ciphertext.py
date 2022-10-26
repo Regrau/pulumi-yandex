@@ -19,6 +19,9 @@ class KmsSecretCiphertextArgs:
                  aad_context: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a KmsSecretCiphertext resource.
+        :param pulumi.Input[str] key_id: ID of the symmetric KMS key to use for encryption.
+        :param pulumi.Input[str] plaintext: Plaintext to be encrypted.
+        :param pulumi.Input[str] aad_context: Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
         """
         pulumi.set(__self__, "key_id", key_id)
         pulumi.set(__self__, "plaintext", plaintext)
@@ -28,6 +31,9 @@ class KmsSecretCiphertextArgs:
     @property
     @pulumi.getter(name="keyId")
     def key_id(self) -> pulumi.Input[str]:
+        """
+        ID of the symmetric KMS key to use for encryption.
+        """
         return pulumi.get(self, "key_id")
 
     @key_id.setter
@@ -37,6 +43,9 @@ class KmsSecretCiphertextArgs:
     @property
     @pulumi.getter
     def plaintext(self) -> pulumi.Input[str]:
+        """
+        Plaintext to be encrypted.
+        """
         return pulumi.get(self, "plaintext")
 
     @plaintext.setter
@@ -46,6 +55,9 @@ class KmsSecretCiphertextArgs:
     @property
     @pulumi.getter(name="aadContext")
     def aad_context(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
+        """
         return pulumi.get(self, "aad_context")
 
     @aad_context.setter
@@ -62,6 +74,10 @@ class _KmsSecretCiphertextState:
                  plaintext: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering KmsSecretCiphertext resources.
+        :param pulumi.Input[str] aad_context: Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
+        :param pulumi.Input[str] ciphertext: Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4
+        :param pulumi.Input[str] key_id: ID of the symmetric KMS key to use for encryption.
+        :param pulumi.Input[str] plaintext: Plaintext to be encrypted.
         """
         if aad_context is not None:
             pulumi.set(__self__, "aad_context", aad_context)
@@ -75,6 +91,9 @@ class _KmsSecretCiphertextState:
     @property
     @pulumi.getter(name="aadContext")
     def aad_context(self) -> Optional[pulumi.Input[str]]:
+        """
+        Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
+        """
         return pulumi.get(self, "aad_context")
 
     @aad_context.setter
@@ -84,6 +103,9 @@ class _KmsSecretCiphertextState:
     @property
     @pulumi.getter
     def ciphertext(self) -> Optional[pulumi.Input[str]]:
+        """
+        Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4
+        """
         return pulumi.get(self, "ciphertext")
 
     @ciphertext.setter
@@ -93,6 +115,9 @@ class _KmsSecretCiphertextState:
     @property
     @pulumi.getter(name="keyId")
     def key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the symmetric KMS key to use for encryption.
+        """
         return pulumi.get(self, "key_id")
 
     @key_id.setter
@@ -102,6 +127,9 @@ class _KmsSecretCiphertextState:
     @property
     @pulumi.getter
     def plaintext(self) -> Optional[pulumi.Input[str]]:
+        """
+        Plaintext to be encrypted.
+        """
         return pulumi.get(self, "plaintext")
 
     @plaintext.setter
@@ -119,9 +147,33 @@ class KmsSecretCiphertext(pulumi.CustomResource):
                  plaintext: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a KmsSecretCiphertext resource with the given unique name, props, and options.
+        Encrypts given plaintext with the specified Yandex KMS key and provides access to the ciphertext.
+
+        > **Note:** Using this resource will allow you to conceal secret data within your
+        resource definitions, but it does not take care of protecting that data in the
+        logging output, plan output, or state output.  Please take care to secure your secret
+        data outside of resource definitions.
+
+        For more information, see [the official documentation](https://cloud.yandex.com/docs/kms/concepts/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        example = yandex.KmsSymmetricKey("example", description="description for key")
+        password = yandex.KmsSecretCiphertext("password",
+            aad_context="additional authenticated data",
+            key_id=example.id,
+            plaintext="strong password")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] aad_context: Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
+        :param pulumi.Input[str] key_id: ID of the symmetric KMS key to use for encryption.
+        :param pulumi.Input[str] plaintext: Plaintext to be encrypted.
         """
         ...
     @overload
@@ -130,7 +182,28 @@ class KmsSecretCiphertext(pulumi.CustomResource):
                  args: KmsSecretCiphertextArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a KmsSecretCiphertext resource with the given unique name, props, and options.
+        Encrypts given plaintext with the specified Yandex KMS key and provides access to the ciphertext.
+
+        > **Note:** Using this resource will allow you to conceal secret data within your
+        resource definitions, but it does not take care of protecting that data in the
+        logging output, plan output, or state output.  Please take care to secure your secret
+        data outside of resource definitions.
+
+        For more information, see [the official documentation](https://cloud.yandex.com/docs/kms/concepts/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        example = yandex.KmsSymmetricKey("example", description="description for key")
+        password = yandex.KmsSecretCiphertext("password",
+            aad_context="additional authenticated data",
+            key_id=example.id,
+            plaintext="strong password")
+        ```
+
         :param str resource_name: The name of the resource.
         :param KmsSecretCiphertextArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -187,6 +260,10 @@ class KmsSecretCiphertext(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] aad_context: Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
+        :param pulumi.Input[str] ciphertext: Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4
+        :param pulumi.Input[str] key_id: ID of the symmetric KMS key to use for encryption.
+        :param pulumi.Input[str] plaintext: Plaintext to be encrypted.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -201,20 +278,32 @@ class KmsSecretCiphertext(pulumi.CustomResource):
     @property
     @pulumi.getter(name="aadContext")
     def aad_context(self) -> pulumi.Output[Optional[str]]:
+        """
+        Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
+        """
         return pulumi.get(self, "aad_context")
 
     @property
     @pulumi.getter
     def ciphertext(self) -> pulumi.Output[str]:
+        """
+        Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4
+        """
         return pulumi.get(self, "ciphertext")
 
     @property
     @pulumi.getter(name="keyId")
     def key_id(self) -> pulumi.Output[str]:
+        """
+        ID of the symmetric KMS key to use for encryption.
+        """
         return pulumi.get(self, "key_id")
 
     @property
     @pulumi.getter
     def plaintext(self) -> pulumi.Output[str]:
+        """
+        Plaintext to be encrypted.
+        """
         return pulumi.get(self, "plaintext")
 

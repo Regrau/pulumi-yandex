@@ -13,13 +13,38 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbMongodbClusterHostResult
     {
+        /// <summary>
+        /// Has assigned public IP.
+        /// </summary>
         public readonly bool AssignPublicIp;
+        /// <summary>
+        /// The health of the host.
+        /// </summary>
         public readonly string Health;
+        /// <summary>
+        /// The name of the MongoDB cluster.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The role of the cluster (either PRIMARY or SECONDARY).
+        /// </summary>
         public readonly string Role;
+        /// <summary>
+        /// The name of the shard to which the host belongs.
+        /// </summary>
         public readonly string ShardName;
+        /// <summary>
+        /// The ID of the subnet, to which the host belongs. The subnet must
+        /// be a part of the network to which the cluster belongs.
+        /// </summary>
         public readonly string? SubnetId;
+        /// <summary>
+        /// Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// The availability zone where the MongoDB host will be created.
+        /// </summary>
         public readonly string? ZoneId;
 
         [OutputConstructor]

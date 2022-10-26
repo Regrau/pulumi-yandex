@@ -11,9 +11,67 @@ namespace Pulumi.Yandex
 {
     public static class GetComputeDiskPlacementGroup
     {
+        /// <summary>
+        /// Get information about a Yandex Compute Disk Placement group. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/disk#nr-disks).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myGroup = Yandex.GetComputeDiskPlacementGroup.Invoke(new()
+        ///     {
+        ///         GroupId = "some_group_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["placementGroupName"] = myGroup.Apply(getComputeDiskPlacementGroupResult =&gt; getComputeDiskPlacementGroupResult.Name),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetComputeDiskPlacementGroupResult> InvokeAsync(GetComputeDiskPlacementGroupArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetComputeDiskPlacementGroupResult>("yandex:index/getComputeDiskPlacementGroup:getComputeDiskPlacementGroup", args ?? new GetComputeDiskPlacementGroupArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Compute Disk Placement group. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/disk#nr-disks).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myGroup = Yandex.GetComputeDiskPlacementGroup.Invoke(new()
+        ///     {
+        ///         GroupId = "some_group_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["placementGroupName"] = myGroup.Apply(getComputeDiskPlacementGroupResult =&gt; getComputeDiskPlacementGroupResult.Name),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetComputeDiskPlacementGroupResult> Invoke(GetComputeDiskPlacementGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetComputeDiskPlacementGroupResult>("yandex:index/getComputeDiskPlacementGroup:getComputeDiskPlacementGroup", args ?? new GetComputeDiskPlacementGroupInvokeArgs(), options.WithDefaults());
     }
@@ -21,26 +79,45 @@ namespace Pulumi.Yandex
 
     public sealed class GetComputeDiskPlacementGroupArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Description of the Disk Placement Group.
+        /// </summary>
         [Input("description")]
         public string? Description { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// The ID of a specific group.
+        /// </summary>
         [Input("groupId")]
         public string? GroupId { get; set; }
 
         [Input("labels")]
         private Dictionary<string, string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs assigned to the Disk Placement Group.
+        /// </summary>
         public Dictionary<string, string> Labels
         {
             get => _labels ?? (_labels = new Dictionary<string, string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the group.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// ID of the zone where the Disk Placement Group resides.
+        /// </summary>
         [Input("zone")]
         public string? Zone { get; set; }
 
@@ -52,26 +129,45 @@ namespace Pulumi.Yandex
 
     public sealed class GetComputeDiskPlacementGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Description of the Disk Placement Group.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// The ID of a specific group.
+        /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs assigned to the Disk Placement Group.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the group.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the zone where the Disk Placement Group resides.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
@@ -85,7 +181,13 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetComputeDiskPlacementGroupResult
     {
+        /// <summary>
+        /// The creation timestamp of the Disk Placement Group.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Description of the Disk Placement Group.
+        /// </summary>
         public readonly string? Description;
         public readonly string FolderId;
         public readonly string GroupId;
@@ -93,9 +195,18 @@ namespace Pulumi.Yandex
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A set of key/value label pairs assigned to the Disk Placement Group.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
         public readonly string? Name;
+        /// <summary>
+        /// Status of the Disk Placement Group.
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// ID of the zone where the Disk Placement Group resides.
+        /// </summary>
         public readonly string? Zone;
 
         [OutputConstructor]

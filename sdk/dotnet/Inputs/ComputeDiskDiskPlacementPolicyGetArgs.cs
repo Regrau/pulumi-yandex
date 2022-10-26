@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class ComputeDiskDiskPlacementPolicyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Specifies Disk Placement Group id.
+        /// </summary>
         [Input("diskPlacementGroupId", required: true)]
         public Input<string> DiskPlacementGroupId { get; set; } = null!;
 

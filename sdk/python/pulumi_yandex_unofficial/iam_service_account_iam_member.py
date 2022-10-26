@@ -20,6 +20,13 @@ class IamServiceAccountIamMemberArgs:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a IamServiceAccountIamMember resource.
+        :param pulumi.Input[str] member: Identity that will be granted the privilege in `role`.
+               Entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+        :param pulumi.Input[str] role: The role that should be applied. Only one
+               `IamServiceAccountIamBinding` can be used per role.
+        :param pulumi.Input[str] service_account_id: The service account ID to apply a policy to.
         """
         pulumi.set(__self__, "member", member)
         pulumi.set(__self__, "role", role)
@@ -30,6 +37,12 @@ class IamServiceAccountIamMemberArgs:
     @property
     @pulumi.getter
     def member(self) -> pulumi.Input[str]:
+        """
+        Identity that will be granted the privilege in `role`.
+        Entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        """
         return pulumi.get(self, "member")
 
     @member.setter
@@ -39,6 +52,10 @@ class IamServiceAccountIamMemberArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        The role that should be applied. Only one
+        `IamServiceAccountIamBinding` can be used per role.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -48,6 +65,9 @@ class IamServiceAccountIamMemberArgs:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Input[str]:
+        """
+        The service account ID to apply a policy to.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -73,6 +93,13 @@ class _IamServiceAccountIamMemberState:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering IamServiceAccountIamMember resources.
+        :param pulumi.Input[str] member: Identity that will be granted the privilege in `role`.
+               Entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+        :param pulumi.Input[str] role: The role that should be applied. Only one
+               `IamServiceAccountIamBinding` can be used per role.
+        :param pulumi.Input[str] service_account_id: The service account ID to apply a policy to.
         """
         if member is not None:
             pulumi.set(__self__, "member", member)
@@ -86,6 +113,12 @@ class _IamServiceAccountIamMemberState:
     @property
     @pulumi.getter
     def member(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identity that will be granted the privilege in `role`.
+        Entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        """
         return pulumi.get(self, "member")
 
     @member.setter
@@ -95,6 +128,10 @@ class _IamServiceAccountIamMemberState:
     @property
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role that should be applied. Only one
+        `IamServiceAccountIamBinding` can be used per role.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -104,6 +141,9 @@ class _IamServiceAccountIamMemberState:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The service account ID to apply a policy to.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -131,9 +171,50 @@ class IamServiceAccountIamMember(pulumi.CustomResource):
                  sleep_after: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a IamServiceAccountIamMember resource with the given unique name, props, and options.
+        When managing IAM roles, you can treat a service account either as a resource or as an identity.
+        This resource is used to add IAM policy bindings to a service account resource to configure permissions
+        that define who can edit the service account.
+
+        There are three different resources that help you manage your IAM policy for a service account.
+        Each of these resources is used for a different use case:
+
+        * yandex_iam_service_account_iam_policy: Authoritative. Sets the IAM policy for the service account and replaces any existing policy already attached.
+        * yandex_iam_service_account_iam_binding: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the service account are preserved.
+        * yandex_iam_service_account_iam_member: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role of the service account are preserved.
+
+        > **Note:** `IamServiceAccountIamPolicy` **cannot** be used in conjunction with `IamServiceAccountIamBinding` and `IamServiceAccountIamMember` or they will conflict over what your policy should be.
+
+        > **Note:** `IamServiceAccountIamBinding` resources **can be** used in conjunction with `IamServiceAccountIamMember` resources **only if** they do not grant privileges to the same role.
+
+        ## yandex\\_service\\_account\\_iam\\_member
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        admin_account_iam = yandex.IamServiceAccountIamMember("admin-account-iam",
+            member="userAccount:bar_user_id",
+            role="admin",
+            service_account_id="your-service-account-id")
+        ```
+
+        ## Import
+
+        Service account IAM member resources can be imported using the service account ID, role and member.
+
+        ```sh
+         $ pulumi import yandex:index/iamServiceAccountIamMember:IamServiceAccountIamMember admin-account-iam "service_account_id roles/editor foo@example.com"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] member: Identity that will be granted the privilege in `role`.
+               Entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+        :param pulumi.Input[str] role: The role that should be applied. Only one
+               `IamServiceAccountIamBinding` can be used per role.
+        :param pulumi.Input[str] service_account_id: The service account ID to apply a policy to.
         """
         ...
     @overload
@@ -142,7 +223,41 @@ class IamServiceAccountIamMember(pulumi.CustomResource):
                  args: IamServiceAccountIamMemberArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a IamServiceAccountIamMember resource with the given unique name, props, and options.
+        When managing IAM roles, you can treat a service account either as a resource or as an identity.
+        This resource is used to add IAM policy bindings to a service account resource to configure permissions
+        that define who can edit the service account.
+
+        There are three different resources that help you manage your IAM policy for a service account.
+        Each of these resources is used for a different use case:
+
+        * yandex_iam_service_account_iam_policy: Authoritative. Sets the IAM policy for the service account and replaces any existing policy already attached.
+        * yandex_iam_service_account_iam_binding: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the service account are preserved.
+        * yandex_iam_service_account_iam_member: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role of the service account are preserved.
+
+        > **Note:** `IamServiceAccountIamPolicy` **cannot** be used in conjunction with `IamServiceAccountIamBinding` and `IamServiceAccountIamMember` or they will conflict over what your policy should be.
+
+        > **Note:** `IamServiceAccountIamBinding` resources **can be** used in conjunction with `IamServiceAccountIamMember` resources **only if** they do not grant privileges to the same role.
+
+        ## yandex\\_service\\_account\\_iam\\_member
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        admin_account_iam = yandex.IamServiceAccountIamMember("admin-account-iam",
+            member="userAccount:bar_user_id",
+            role="admin",
+            service_account_id="your-service-account-id")
+        ```
+
+        ## Import
+
+        Service account IAM member resources can be imported using the service account ID, role and member.
+
+        ```sh
+         $ pulumi import yandex:index/iamServiceAccountIamMember:IamServiceAccountIamMember admin-account-iam "service_account_id roles/editor foo@example.com"
+        ```
+
         :param str resource_name: The name of the resource.
         :param IamServiceAccountIamMemberArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,6 +317,13 @@ class IamServiceAccountIamMember(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] member: Identity that will be granted the privilege in `role`.
+               Entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+        :param pulumi.Input[str] role: The role that should be applied. Only one
+               `IamServiceAccountIamBinding` can be used per role.
+        :param pulumi.Input[str] service_account_id: The service account ID to apply a policy to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -216,16 +338,29 @@ class IamServiceAccountIamMember(pulumi.CustomResource):
     @property
     @pulumi.getter
     def member(self) -> pulumi.Output[str]:
+        """
+        Identity that will be granted the privilege in `role`.
+        Entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        """
         return pulumi.get(self, "member")
 
     @property
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
+        """
+        The role that should be applied. Only one
+        `IamServiceAccountIamBinding` can be used per role.
+        """
         return pulumi.get(self, "role")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Output[str]:
+        """
+        The service account ID to apply a policy to.
+        """
         return pulumi.get(self, "service_account_id")
 
     @property

@@ -12,6 +12,10 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Specifies if the instance is preemptible. Defaults to false.
+        /// ---
+        /// </summary>
         [Input("preemptible")]
         public Input<bool>? Preemptible { get; set; }
 

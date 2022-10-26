@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbVirtualHostRouteGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// GRPC route resource. The structure is documented below.
+        /// </summary>
         [Input("grpcRoute")]
         public Input<Inputs.AlbVirtualHostRouteGrpcRouteGetArgs>? GrpcRoute { get; set; }
 
+        /// <summary>
+        /// HTTP route resource. The structure is documented below.
+        /// </summary>
         [Input("httpRoute")]
         public Input<Inputs.AlbVirtualHostRouteHttpRouteGetArgs>? HttpRoute { get; set; }
 
+        /// <summary>
+        /// name of the route.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class ComputeInstanceGroupScalePolicyFixedScaleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The number of instances in the instance group.
+        /// </summary>
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
 

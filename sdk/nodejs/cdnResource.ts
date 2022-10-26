@@ -5,6 +5,19 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Allows management of [Yandex.Cloud CDN Resource](https://cloud.yandex.ru/docs/cdn/concepts/resource).
+ *
+ * > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+ *
+ * ## Import
+ *
+ * A origin group can be imported using any of these accepted formats
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/cdnResource:CdnResource default origin_group_id
+ * ```
+ */
 export class CdnResource extends pulumi.CustomResource {
     /**
      * Get an existing CdnResource resource's state with the given name, ID, and optional extra
@@ -33,15 +46,34 @@ export class CdnResource extends pulumi.CustomResource {
         return obj['__pulumiType'] === CdnResource.__pulumiType;
     }
 
+    /**
+     * Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+     */
     public readonly active!: pulumi.Output<boolean | undefined>;
+    /**
+     * CDN endpoint CNAME, must be unique among resources.
+     */
     public readonly cname!: pulumi.Output<string>;
+    /**
+     * Creation timestamp of the IoT Core Device
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * CDN Resource settings and options to tune CDN edge behavior.
+     */
     public readonly options!: pulumi.Output<outputs.CdnResourceOptions>;
     public readonly originGroupId!: pulumi.Output<number | undefined>;
     public readonly originGroupName!: pulumi.Output<string | undefined>;
     public readonly originProtocol!: pulumi.Output<string | undefined>;
+    /**
+     * list of secondary hostname strings.
+     */
     public readonly secondaryHostnames!: pulumi.Output<string[] | undefined>;
+    /**
+     * SSL certificate of CDN resource.
+     * ---
+     */
     public readonly sslCertificate!: pulumi.Output<outputs.CdnResourceSslCertificate>;
     public readonly updatedAt!: pulumi.Output<string>;
 
@@ -92,15 +124,34 @@ export class CdnResource extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CdnResource resources.
  */
 export interface CdnResourceState {
+    /**
+     * Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+     */
     active?: pulumi.Input<boolean>;
+    /**
+     * CDN endpoint CNAME, must be unique among resources.
+     */
     cname?: pulumi.Input<string>;
+    /**
+     * Creation timestamp of the IoT Core Device
+     */
     createdAt?: pulumi.Input<string>;
     folderId?: pulumi.Input<string>;
+    /**
+     * CDN Resource settings and options to tune CDN edge behavior.
+     */
     options?: pulumi.Input<inputs.CdnResourceOptions>;
     originGroupId?: pulumi.Input<number>;
     originGroupName?: pulumi.Input<string>;
     originProtocol?: pulumi.Input<string>;
+    /**
+     * list of secondary hostname strings.
+     */
     secondaryHostnames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * SSL certificate of CDN resource.
+     * ---
+     */
     sslCertificate?: pulumi.Input<inputs.CdnResourceSslCertificate>;
     updatedAt?: pulumi.Input<string>;
 }
@@ -109,14 +160,30 @@ export interface CdnResourceState {
  * The set of arguments for constructing a CdnResource resource.
  */
 export interface CdnResourceArgs {
+    /**
+     * Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+     */
     active?: pulumi.Input<boolean>;
+    /**
+     * CDN endpoint CNAME, must be unique among resources.
+     */
     cname?: pulumi.Input<string>;
     folderId?: pulumi.Input<string>;
+    /**
+     * CDN Resource settings and options to tune CDN edge behavior.
+     */
     options?: pulumi.Input<inputs.CdnResourceOptions>;
     originGroupId?: pulumi.Input<number>;
     originGroupName?: pulumi.Input<string>;
     originProtocol?: pulumi.Input<string>;
+    /**
+     * list of secondary hostname strings.
+     */
     secondaryHostnames?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * SSL certificate of CDN resource.
+     * ---
+     */
     sslCertificate?: pulumi.Input<inputs.CdnResourceSslCertificate>;
     updatedAt?: pulumi.Input<string>;
 }

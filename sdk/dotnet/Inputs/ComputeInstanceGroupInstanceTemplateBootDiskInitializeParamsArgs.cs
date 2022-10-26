@@ -12,18 +12,33 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class ComputeInstanceGroupInstanceTemplateBootDiskInitializeParamsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A description of the boot disk.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The disk image to initialize this disk from.
+        /// </summary>
         [Input("imageId")]
         public Input<string>? ImageId { get; set; }
 
+        /// <summary>
+        /// The number of instances in the instance group.
+        /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
 
+        /// <summary>
+        /// The snapshot to initialize this disk from.
+        /// </summary>
         [Input("snapshotId")]
         public Input<string>? SnapshotId { get; set; }
 
+        /// <summary>
+        /// Network acceleration type. By default a network is in `STANDARD` mode.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 

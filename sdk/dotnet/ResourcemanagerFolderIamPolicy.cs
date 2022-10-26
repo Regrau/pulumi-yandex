@@ -9,12 +9,61 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows creation and management of the IAM policy for an existing Yandex Resource
+    /// Manager folder.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var project1 = Yandex.GetResourcemanagerFolder.Invoke(new()
+    ///     {
+    ///         FolderId = "my_folder_id",
+    ///     });
+    /// 
+    ///     var admin = Yandex.GetIamPolicy.Invoke(new()
+    ///     {
+    ///         Bindings = new[]
+    ///         {
+    ///             new Yandex.Inputs.GetIamPolicyBindingInputArgs
+    ///             {
+    ///                 Members = new[]
+    ///                 {
+    ///                     "userAccount:some_user_id",
+    ///                 },
+    ///                 Role = "editor",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var folderAdminPolicy = new Yandex.ResourcemanagerFolderIamPolicy("folderAdminPolicy", new()
+    ///     {
+    ///         FolderId = data.Yandex_folder.Project1.Id,
+    ///         PolicyData = admin.Apply(getIamPolicyResult =&gt; getIamPolicyResult.PolicyData),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/resourcemanagerFolderIamPolicy:ResourcemanagerFolderIamPolicy")]
     public partial class ResourcemanagerFolderIamPolicy : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// ID of the folder that the policy is attached to.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// The `yandex.getIamPolicy` data source that represents
+        /// the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
+        /// </summary>
         [Output("policyData")]
         public Output<string> PolicyData { get; private set; } = null!;
 
@@ -41,7 +90,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -65,9 +114,16 @@ namespace Pulumi.Yandex
 
     public sealed class ResourcemanagerFolderIamPolicyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the folder that the policy is attached to.
+        /// </summary>
         [Input("folderId", required: true)]
         public Input<string> FolderId { get; set; } = null!;
 
+        /// <summary>
+        /// The `yandex.getIamPolicy` data source that represents
+        /// the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
+        /// </summary>
         [Input("policyData", required: true)]
         public Input<string> PolicyData { get; set; } = null!;
 
@@ -79,9 +135,16 @@ namespace Pulumi.Yandex
 
     public sealed class ResourcemanagerFolderIamPolicyState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the folder that the policy is attached to.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// The `yandex.getIamPolicy` data source that represents
+        /// the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
+        /// </summary>
         [Input("policyData")]
         public Input<string>? PolicyData { get; set; }
 

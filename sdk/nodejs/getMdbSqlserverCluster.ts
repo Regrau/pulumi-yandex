@@ -5,6 +5,23 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Managed SQLServer cluster. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/managed-sqlserver/).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const foo = pulumi.output(yandex.getMdbSqlserverCluster({
+ *     name: "test",
+ * }));
+ *
+ * export const networkId = foo.networkId;
+ * ```
+ */
 export function getMdbSqlserverCluster(args?: GetMdbSqlserverClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetMdbSqlserverClusterResult> {
     args = args || {};
     if (!opts) {
@@ -26,11 +43,29 @@ export function getMdbSqlserverCluster(args?: GetMdbSqlserverClusterArgs, opts?:
  * A collection of arguments for invoking getMdbSqlserverCluster.
  */
 export interface GetMdbSqlserverClusterArgs {
+    /**
+     * The ID of the SQLServer cluster.
+     */
     clusterId?: string;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     deletionProtection?: boolean;
+    /**
+     * The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * The name of the SQLServer cluster.
+     */
     name?: string;
+    /**
+     * SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+     */
     sqlcollation?: string;
+    /**
+     * SQLServer cluster config.
+     */
     sqlserverConfig?: {[key: string]: string};
 }
 
@@ -40,28 +75,82 @@ export interface GetMdbSqlserverClusterArgs {
 export interface GetMdbSqlserverClusterResult {
     readonly backupWindowStarts: outputs.GetMdbSqlserverClusterBackupWindowStart[];
     readonly clusterId: string;
+    /**
+     * Creation timestamp of the key.
+     */
     readonly createdAt: string;
+    /**
+     * A database of the SQLServer cluster. The structure is documented below.
+     */
     readonly databases: outputs.GetMdbSqlserverClusterDatabase[];
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     readonly deletionProtection: boolean;
+    /**
+     * Description of the SQLServer cluster.
+     */
     readonly description: string;
+    /**
+     * Deployment environment of the SQLServer cluster.
+     */
     readonly environment: string;
     readonly folderId: string;
+    /**
+     * Aggregated health of the cluster.
+     */
     readonly health: string;
+    /**
+     * A list of IDs of the host groups hosting VMs of the cluster.
+     */
     readonly hostGroupIds: string[];
+    /**
+     * A host of the SQLServer cluster. The structure is documented below.
+     */
     readonly hosts: outputs.GetMdbSqlserverClusterHost[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A set of key/value label pairs to assign to the SQLServer cluster.
+     */
     readonly labels: {[key: string]: string};
+    /**
+     * The name of the database.
+     */
     readonly name: string;
+    /**
+     * ID of the network, to which the SQLServer cluster belongs.
+     */
     readonly networkId: string;
+    /**
+     * Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+     */
     readonly resources: outputs.GetMdbSqlserverClusterResource[];
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     readonly securityGroupIds: string[];
+    /**
+     * SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+     */
     readonly sqlcollation: string;
+    /**
+     * SQLServer cluster config.
+     */
     readonly sqlserverConfig: {[key: string]: string};
+    /**
+     * Status of the cluster.
+     */
     readonly status: string;
+    /**
+     * A user of the SQLServer cluster. The structure is documented below.
+     */
     readonly users: outputs.GetMdbSqlserverClusterUser[];
+    /**
+     * Version of the SQLServer cluster.
+     */
     readonly version: string;
 }
 
@@ -73,10 +162,28 @@ export function getMdbSqlserverClusterOutput(args?: GetMdbSqlserverClusterOutput
  * A collection of arguments for invoking getMdbSqlserverCluster.
  */
 export interface GetMdbSqlserverClusterOutputArgs {
+    /**
+     * The ID of the SQLServer cluster.
+     */
     clusterId?: pulumi.Input<string>;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * The name of the SQLServer cluster.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+     */
     sqlcollation?: pulumi.Input<string>;
+    /**
+     * SQLServer cluster config.
+     */
     sqlserverConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

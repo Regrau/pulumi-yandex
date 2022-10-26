@@ -13,7 +13,15 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbMysqlClusterUserPermission
     {
+        /// <summary>
+        /// The name of the database that the permission grants access to.
+        /// </summary>
         public readonly string DatabaseName;
+        /// <summary>
+        /// List user's roles in the database.
+        /// Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+        /// `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+        /// </summary>
         public readonly ImmutableArray<string> Roles;
 
         [OutputConstructor]

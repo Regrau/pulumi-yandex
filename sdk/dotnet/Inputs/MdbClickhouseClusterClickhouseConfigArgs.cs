@@ -20,6 +20,10 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("compressions")]
         private InputList<Inputs.MdbClickhouseClusterClickhouseConfigCompressionArgs>? _compressions;
+
+        /// <summary>
+        /// Data compression configuration. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.MdbClickhouseClusterClickhouseConfigCompressionArgs> Compressions
         {
             get => _compressions ?? (_compressions = new InputList<Inputs.MdbClickhouseClusterClickhouseConfigCompressionArgs>());
@@ -31,17 +35,28 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("graphiteRollups")]
         private InputList<Inputs.MdbClickhouseClusterClickhouseConfigGraphiteRollupArgs>? _graphiteRollups;
+
+        /// <summary>
+        /// Graphite rollup configuration. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.MdbClickhouseClusterClickhouseConfigGraphiteRollupArgs> GraphiteRollups
         {
             get => _graphiteRollups ?? (_graphiteRollups = new InputList<Inputs.MdbClickhouseClusterClickhouseConfigGraphiteRollupArgs>());
             set => _graphiteRollups = value;
         }
 
+        /// <summary>
+        /// Kafka connection configuration. The structure is documented below.
+        /// </summary>
         [Input("kafka")]
         public Input<Inputs.MdbClickhouseClusterClickhouseConfigKafkaArgs>? Kafka { get; set; }
 
         [Input("kafkaTopics")]
         private InputList<Inputs.MdbClickhouseClusterClickhouseConfigKafkaTopicArgs>? _kafkaTopics;
+
+        /// <summary>
+        /// Kafka topic connection configuration. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.MdbClickhouseClusterClickhouseConfigKafkaTopicArgs> KafkaTopics
         {
             get => _kafkaTopics ?? (_kafkaTopics = new InputList<Inputs.MdbClickhouseClusterClickhouseConfigKafkaTopicArgs>());
@@ -69,6 +84,9 @@ namespace Pulumi.Yandex.Inputs
         [Input("maxTableSizeToDrop")]
         public Input<int>? MaxTableSizeToDrop { get; set; }
 
+        /// <summary>
+        /// MergeTree engine configuration. The structure is documented below.
+        /// </summary>
         [Input("mergeTree")]
         public Input<Inputs.MdbClickhouseClusterClickhouseConfigMergeTreeArgs>? MergeTree { get; set; }
 
@@ -102,6 +120,9 @@ namespace Pulumi.Yandex.Inputs
         [Input("queryThreadLogRetentionTime")]
         public Input<int>? QueryThreadLogRetentionTime { get; set; }
 
+        /// <summary>
+        /// RabbitMQ connection configuration. The structure is documented below.
+        /// </summary>
         [Input("rabbitmq")]
         public Input<Inputs.MdbClickhouseClusterClickhouseConfigRabbitmqArgs>? Rabbitmq { get; set; }
 

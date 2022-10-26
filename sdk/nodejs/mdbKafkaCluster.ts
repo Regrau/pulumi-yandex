@@ -5,6 +5,203 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a Kafka cluster within the Yandex.Cloud. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts).
+ *
+ * ## Example Usage
+ *
+ * Example of creating a Single Node Kafka.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const fooVpcNetwork = new yandex.VpcNetwork("foo", {});
+ * const fooVpcSubnet = new yandex.VpcSubnet("foo", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.5.0.0/24"],
+ *     zone: "ru-central1-a",
+ * });
+ * const fooMdbKafkaCluster = new yandex.MdbKafkaCluster("foo", {
+ *     config: {
+ *         assignPublicIp: false,
+ *         brokersCount: 1,
+ *         kafka: {
+ *             kafkaConfig: {
+ *                 compressionType: "COMPRESSION_TYPE_ZSTD",
+ *                 defaultReplicationFactor: "1",
+ *                 logFlushIntervalMessages: "1024",
+ *                 logFlushIntervalMs: "1000",
+ *                 logFlushSchedulerIntervalMs: "1000",
+ *                 logPreallocate: true,
+ *                 logRetentionBytes: "1.073741824e+09",
+ *                 logRetentionHours: "168",
+ *                 logRetentionMinutes: "10080",
+ *                 logRetentionMs: "8.64e+07",
+ *                 logSegmentBytes: "1.34217728e+08",
+ *                 messageMaxBytes: "1.048588e+06",
+ *                 numPartitions: "10",
+ *                 offsetsRetentionMinutes: "10080",
+ *                 replicaFetchMaxBytes: "1.048576e+06",
+ *                 sslCipherSuites: [
+ *                     "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
+ *                     "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256",
+ *                 ],
+ *             },
+ *             resources: {
+ *                 diskSize: 32,
+ *                 diskTypeId: "network-ssd",
+ *                 resourcePresetId: "s2.micro",
+ *             },
+ *         },
+ *         schemaRegistry: false,
+ *         unmanagedTopics: false,
+ *         version: "2.8",
+ *         zones: ["ru-central1-a"],
+ *     },
+ *     environment: "PRESTABLE",
+ *     networkId: fooVpcNetwork.id,
+ *     subnetIds: [fooVpcSubnet.id],
+ *     users: [
+ *         {
+ *             name: "producer-application",
+ *             password: "password",
+ *             permissions: [{
+ *                 role: "ACCESS_ROLE_PRODUCER",
+ *                 topicName: "input",
+ *             }],
+ *         },
+ *         {
+ *             name: "worker",
+ *             password: "password",
+ *             permissions: [
+ *                 {
+ *                     role: "ACCESS_ROLE_CONSUMER",
+ *                     topicName: "input",
+ *                 },
+ *                 {
+ *                     role: "ACCESS_ROLE_PRODUCER",
+ *                     topicName: "output",
+ *                 },
+ *             ],
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * Example of creating a HA Kafka Cluster with two brokers per AZ (6 brokers + 3 zk)
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const fooVpcNetwork = new yandex.VpcNetwork("foo", {});
+ * const fooVpcSubnet = new yandex.VpcSubnet("foo", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.1.0.0/24"],
+ *     zone: "ru-central1-a",
+ * });
+ * const bar = new yandex.VpcSubnet("bar", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.2.0.0/24"],
+ *     zone: "ru-central1-b",
+ * });
+ * const baz = new yandex.VpcSubnet("baz", {
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.3.0.0/24"],
+ *     zone: "ru-central1-c",
+ * });
+ * const fooMdbKafkaCluster = new yandex.MdbKafkaCluster("foo", {
+ *     config: {
+ *         assignPublicIp: true,
+ *         brokersCount: 2,
+ *         kafka: {
+ *             kafkaConfig: {
+ *                 compressionType: "COMPRESSION_TYPE_ZSTD",
+ *                 defaultReplicationFactor: "6",
+ *                 logFlushIntervalMessages: "1024",
+ *                 logFlushIntervalMs: "1000",
+ *                 logFlushSchedulerIntervalMs: "1000",
+ *                 logPreallocate: true,
+ *                 logRetentionBytes: "1.073741824e+09",
+ *                 logRetentionHours: "168",
+ *                 logRetentionMinutes: "10080",
+ *                 logRetentionMs: "8.64e+07",
+ *                 logSegmentBytes: "1.34217728e+08",
+ *                 messageMaxBytes: "1.048588e+06",
+ *                 numPartitions: "10",
+ *                 offsetsRetentionMinutes: "10080",
+ *                 replicaFetchMaxBytes: "1.048576e+06",
+ *                 sslCipherSuites: [
+ *                     "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
+ *                     "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256",
+ *                 ],
+ *             },
+ *             resources: {
+ *                 diskSize: 128,
+ *                 diskTypeId: "network-ssd",
+ *                 resourcePresetId: "s2.medium",
+ *             },
+ *         },
+ *         schemaRegistry: false,
+ *         unmanagedTopics: false,
+ *         version: "2.8",
+ *         zones: [
+ *             "ru-central1-a",
+ *             "ru-central1-b",
+ *             "ru-central1-c",
+ *         ],
+ *         zookeeper: {
+ *             resources: {
+ *                 diskSize: 20,
+ *                 diskTypeId: "network-ssd",
+ *                 resourcePresetId: "s2.micro",
+ *             },
+ *         },
+ *     },
+ *     environment: "PRESTABLE",
+ *     networkId: fooVpcNetwork.id,
+ *     subnetIds: [
+ *         fooVpcSubnet.id,
+ *         bar.id,
+ *         baz.id,
+ *     ],
+ *     users: [
+ *         {
+ *             name: "producer-application",
+ *             password: "password",
+ *             permissions: [{
+ *                 role: "ACCESS_ROLE_PRODUCER",
+ *                 topicName: "input",
+ *             }],
+ *         },
+ *         {
+ *             name: "worker",
+ *             password: "password",
+ *             permissions: [
+ *                 {
+ *                     role: "ACCESS_ROLE_CONSUMER",
+ *                     topicName: "input",
+ *                 },
+ *                 {
+ *                     role: "ACCESS_ROLE_PRODUCER",
+ *                     topicName: "output",
+ *                 },
+ *             ],
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A cluster can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/mdbKafkaCluster:MdbKafkaCluster foo cluster_id
+ * ```
+ */
 export class MdbKafkaCluster extends pulumi.CustomResource {
     /**
      * Get an existing MdbKafkaCluster resource's state with the given name, ID, and optional extra
@@ -33,26 +230,81 @@ export class MdbKafkaCluster extends pulumi.CustomResource {
         return obj['__pulumiType'] === MdbKafkaCluster.__pulumiType;
     }
 
+    /**
+     * Configuration of the Kafka cluster. The structure is documented below.
+     */
     public readonly config!: pulumi.Output<outputs.MdbKafkaClusterConfig>;
+    /**
+     * Timestamp of cluster creation.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     public readonly deletionProtection!: pulumi.Output<boolean>;
+    /**
+     * Description of the Kafka cluster.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Deployment environment of the Kafka cluster. Can be either `PRESTABLE` or `PRODUCTION`. 
+     * The default is `PRODUCTION`.
+     */
     public readonly environment!: pulumi.Output<string | undefined>;
+    /**
+     * The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * Health of the host.
+     */
     public /*out*/ readonly health!: pulumi.Output<string>;
+    /**
+     * A list of IDs of the host groups to place VMs of the cluster on.
+     */
     public readonly hostGroupIds!: pulumi.Output<string[]>;
+    /**
+     * A host of the Kafka cluster. The structure is documented below.
+     */
     public /*out*/ readonly hosts!: pulumi.Output<outputs.MdbKafkaClusterHost[]>;
+    /**
+     * A set of key/value label pairs to assign to the Kafka cluster.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * Maintenance policy of the Kafka cluster. The structure is documented below.
+     */
     public readonly maintenanceWindow!: pulumi.Output<outputs.MdbKafkaClusterMaintenanceWindow>;
+    /**
+     * The name of the topic.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * ID of the network, to which the Kafka cluster belongs.
+     */
     public readonly networkId!: pulumi.Output<string>;
+    /**
+     * Security group ids, to which the Kafka cluster belongs.
+     */
     public readonly securityGroupIds!: pulumi.Output<string[]>;
+    /**
+     * Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+     * For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-kafka/api-ref/Cluster/).
+     */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * IDs of the subnets, to which the Kafka cluster belongs.
+     */
     public readonly subnetIds!: pulumi.Output<string[] | undefined>;
     /**
+     * To manage topics, please switch to using a separate resource type `yandex.MdbKafkaTopic`.
+     *
      * @deprecated to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
      */
     public readonly topics!: pulumi.Output<outputs.MdbKafkaClusterTopic[] | undefined>;
+    /**
+     * A user of the Kafka cluster. The structure is documented below.
+     */
     public readonly users!: pulumi.Output<outputs.MdbKafkaClusterUser[] | undefined>;
 
     /**
@@ -122,26 +374,81 @@ export class MdbKafkaCluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MdbKafkaCluster resources.
  */
 export interface MdbKafkaClusterState {
+    /**
+     * Configuration of the Kafka cluster. The structure is documented below.
+     */
     config?: pulumi.Input<inputs.MdbKafkaClusterConfig>;
+    /**
+     * Timestamp of cluster creation.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * Description of the Kafka cluster.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Deployment environment of the Kafka cluster. Can be either `PRESTABLE` or `PRODUCTION`. 
+     * The default is `PRODUCTION`.
+     */
     environment?: pulumi.Input<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Health of the host.
+     */
     health?: pulumi.Input<string>;
+    /**
+     * A list of IDs of the host groups to place VMs of the cluster on.
+     */
     hostGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A host of the Kafka cluster. The structure is documented below.
+     */
     hosts?: pulumi.Input<pulumi.Input<inputs.MdbKafkaClusterHost>[]>;
+    /**
+     * A set of key/value label pairs to assign to the Kafka cluster.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Maintenance policy of the Kafka cluster. The structure is documented below.
+     */
     maintenanceWindow?: pulumi.Input<inputs.MdbKafkaClusterMaintenanceWindow>;
+    /**
+     * The name of the topic.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network, to which the Kafka cluster belongs.
+     */
     networkId?: pulumi.Input<string>;
+    /**
+     * Security group ids, to which the Kafka cluster belongs.
+     */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+     * For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-kafka/api-ref/Cluster/).
+     */
     status?: pulumi.Input<string>;
+    /**
+     * IDs of the subnets, to which the Kafka cluster belongs.
+     */
     subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * To manage topics, please switch to using a separate resource type `yandex.MdbKafkaTopic`.
+     *
      * @deprecated to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
      */
     topics?: pulumi.Input<pulumi.Input<inputs.MdbKafkaClusterTopic>[]>;
+    /**
+     * A user of the Kafka cluster. The structure is documented below.
+     */
     users?: pulumi.Input<pulumi.Input<inputs.MdbKafkaClusterUser>[]>;
 }
 
@@ -149,21 +456,63 @@ export interface MdbKafkaClusterState {
  * The set of arguments for constructing a MdbKafkaCluster resource.
  */
 export interface MdbKafkaClusterArgs {
+    /**
+     * Configuration of the Kafka cluster. The structure is documented below.
+     */
     config: pulumi.Input<inputs.MdbKafkaClusterConfig>;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * Description of the Kafka cluster.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Deployment environment of the Kafka cluster. Can be either `PRESTABLE` or `PRODUCTION`. 
+     * The default is `PRODUCTION`.
+     */
     environment?: pulumi.Input<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A list of IDs of the host groups to place VMs of the cluster on.
+     */
     hostGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A set of key/value label pairs to assign to the Kafka cluster.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Maintenance policy of the Kafka cluster. The structure is documented below.
+     */
     maintenanceWindow?: pulumi.Input<inputs.MdbKafkaClusterMaintenanceWindow>;
+    /**
+     * The name of the topic.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network, to which the Kafka cluster belongs.
+     */
     networkId: pulumi.Input<string>;
+    /**
+     * Security group ids, to which the Kafka cluster belongs.
+     */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * IDs of the subnets, to which the Kafka cluster belongs.
+     */
     subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
+     * To manage topics, please switch to using a separate resource type `yandex.MdbKafkaTopic`.
+     *
      * @deprecated to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
      */
     topics?: pulumi.Input<pulumi.Input<inputs.MdbKafkaClusterTopic>[]>;
+    /**
+     * A user of the Kafka cluster. The structure is documented below.
+     */
     users?: pulumi.Input<pulumi.Input<inputs.MdbKafkaClusterUser>[]>;
 }

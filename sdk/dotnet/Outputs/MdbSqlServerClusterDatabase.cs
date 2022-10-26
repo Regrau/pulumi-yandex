@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbSqlServerClusterDatabase
     {
+        /// <summary>
+        /// The name of the database.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

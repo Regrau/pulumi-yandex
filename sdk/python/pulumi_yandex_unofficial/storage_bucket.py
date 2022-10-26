@@ -39,6 +39,29 @@ class StorageBucketArgs:
                  website_endpoint: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a StorageBucket resource.
+        :param pulumi.Input[str] access_key: The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        :param pulumi.Input[str] acl: The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        :param pulumi.Input['StorageBucketAnonymousAccessFlagsArgs'] anonymous_access_flags: Provides various access to objects.
+               See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
+               for more infomation.
+        :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketCorsRuleArgs']]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        :param pulumi.Input[str] default_storage_class: Storage class which is used for storing objects by default.
+               Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+               See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
+        :param pulumi.Input[str] folder_id: Allow to create bucket in different folder.
+        :param pulumi.Input[bool] force_destroy: A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
+        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketGrantArgs']]] grants: An [ACL policy grant](https://cloud.yandex.com/docs/storage/concepts/acl#permissions-types). Conflicts with `acl`.
+        :param pulumi.Input['StorageBucketHttpsArgs'] https: Manages https certificates for bucket. See [https](https://cloud.yandex.com/en-ru/docs/storage/operations/hosting/certificate) for more infomation.
+        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleArgs']]] lifecycle_rules: A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
+        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketLoggingArgs']]] loggings: A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
+        :param pulumi.Input[int] max_size: The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        :param pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs'] server_side_encryption_configuration: A configuration of server-side encryption for the bucket (documented below)
+        :param pulumi.Input['StorageBucketVersioningArgs'] versioning: A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
+        :param pulumi.Input['StorageBucketWebsiteArgs'] website: A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
+        :param pulumi.Input[str] website_domain: The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        :param pulumi.Input[str] website_endpoint: The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
         """
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
@@ -86,6 +109,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
@@ -95,6 +121,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter
     def acl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        """
         return pulumi.get(self, "acl")
 
     @acl.setter
@@ -104,6 +133,11 @@ class StorageBucketArgs:
     @property
     @pulumi.getter(name="anonymousAccessFlags")
     def anonymous_access_flags(self) -> Optional[pulumi.Input['StorageBucketAnonymousAccessFlagsArgs']]:
+        """
+        Provides various access to objects.
+        See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
+        for more infomation.
+        """
         return pulumi.get(self, "anonymous_access_flags")
 
     @anonymous_access_flags.setter
@@ -122,6 +156,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter(name="bucketPrefix")
     def bucket_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        """
         return pulumi.get(self, "bucket_prefix")
 
     @bucket_prefix.setter
@@ -131,6 +168,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter(name="corsRules")
     def cors_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketCorsRuleArgs']]]]:
+        """
+        A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        """
         return pulumi.get(self, "cors_rules")
 
     @cors_rules.setter
@@ -140,6 +180,11 @@ class StorageBucketArgs:
     @property
     @pulumi.getter(name="defaultStorageClass")
     def default_storage_class(self) -> Optional[pulumi.Input[str]]:
+        """
+        Storage class which is used for storing objects by default.
+        Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+        See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
+        """
         return pulumi.get(self, "default_storage_class")
 
     @default_storage_class.setter
@@ -149,6 +194,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Allow to create bucket in different folder.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -158,6 +206,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
+        """
         return pulumi.get(self, "force_destroy")
 
     @force_destroy.setter
@@ -167,6 +218,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter
     def grants(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketGrantArgs']]]]:
+        """
+        An [ACL policy grant](https://cloud.yandex.com/docs/storage/concepts/acl#permissions-types). Conflicts with `acl`.
+        """
         return pulumi.get(self, "grants")
 
     @grants.setter
@@ -176,6 +230,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter
     def https(self) -> Optional[pulumi.Input['StorageBucketHttpsArgs']]:
+        """
+        Manages https certificates for bucket. See [https](https://cloud.yandex.com/en-ru/docs/storage/operations/hosting/certificate) for more infomation.
+        """
         return pulumi.get(self, "https")
 
     @https.setter
@@ -185,6 +242,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter(name="lifecycleRules")
     def lifecycle_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleArgs']]]]:
+        """
+        A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
+        """
         return pulumi.get(self, "lifecycle_rules")
 
     @lifecycle_rules.setter
@@ -194,6 +254,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter
     def loggings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLoggingArgs']]]]:
+        """
+        A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
+        """
         return pulumi.get(self, "loggings")
 
     @loggings.setter
@@ -203,6 +266,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
@@ -221,6 +287,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
@@ -230,6 +299,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter(name="serverSideEncryptionConfiguration")
     def server_side_encryption_configuration(self) -> Optional[pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs']]:
+        """
+        A configuration of server-side encryption for the bucket (documented below)
+        """
         return pulumi.get(self, "server_side_encryption_configuration")
 
     @server_side_encryption_configuration.setter
@@ -239,6 +311,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter
     def versioning(self) -> Optional[pulumi.Input['StorageBucketVersioningArgs']]:
+        """
+        A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
+        """
         return pulumi.get(self, "versioning")
 
     @versioning.setter
@@ -248,6 +323,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter
     def website(self) -> Optional[pulumi.Input['StorageBucketWebsiteArgs']]:
+        """
+        A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
+        """
         return pulumi.get(self, "website")
 
     @website.setter
@@ -257,6 +335,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter(name="websiteDomain")
     def website_domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        """
         return pulumi.get(self, "website_domain")
 
     @website_domain.setter
@@ -266,6 +347,9 @@ class StorageBucketArgs:
     @property
     @pulumi.getter(name="websiteEndpoint")
     def website_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        """
         return pulumi.get(self, "website_endpoint")
 
     @website_endpoint.setter
@@ -300,6 +384,30 @@ class _StorageBucketState:
                  website_endpoint: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering StorageBucket resources.
+        :param pulumi.Input[str] access_key: The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        :param pulumi.Input[str] acl: The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        :param pulumi.Input['StorageBucketAnonymousAccessFlagsArgs'] anonymous_access_flags: Provides various access to objects.
+               See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
+               for more infomation.
+        :param pulumi.Input[str] bucket_domain_name: The bucket domain name.
+        :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketCorsRuleArgs']]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        :param pulumi.Input[str] default_storage_class: Storage class which is used for storing objects by default.
+               Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+               See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
+        :param pulumi.Input[str] folder_id: Allow to create bucket in different folder.
+        :param pulumi.Input[bool] force_destroy: A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
+        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketGrantArgs']]] grants: An [ACL policy grant](https://cloud.yandex.com/docs/storage/concepts/acl#permissions-types). Conflicts with `acl`.
+        :param pulumi.Input['StorageBucketHttpsArgs'] https: Manages https certificates for bucket. See [https](https://cloud.yandex.com/en-ru/docs/storage/operations/hosting/certificate) for more infomation.
+        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleArgs']]] lifecycle_rules: A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
+        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketLoggingArgs']]] loggings: A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
+        :param pulumi.Input[int] max_size: The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        :param pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs'] server_side_encryption_configuration: A configuration of server-side encryption for the bucket (documented below)
+        :param pulumi.Input['StorageBucketVersioningArgs'] versioning: A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
+        :param pulumi.Input['StorageBucketWebsiteArgs'] website: A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
+        :param pulumi.Input[str] website_domain: The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        :param pulumi.Input[str] website_endpoint: The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
         """
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
@@ -349,6 +457,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        """
         return pulumi.get(self, "access_key")
 
     @access_key.setter
@@ -358,6 +469,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter
     def acl(self) -> Optional[pulumi.Input[str]]:
+        """
+        The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        """
         return pulumi.get(self, "acl")
 
     @acl.setter
@@ -367,6 +481,11 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="anonymousAccessFlags")
     def anonymous_access_flags(self) -> Optional[pulumi.Input['StorageBucketAnonymousAccessFlagsArgs']]:
+        """
+        Provides various access to objects.
+        See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
+        for more infomation.
+        """
         return pulumi.get(self, "anonymous_access_flags")
 
     @anonymous_access_flags.setter
@@ -385,6 +504,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="bucketDomainName")
     def bucket_domain_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The bucket domain name.
+        """
         return pulumi.get(self, "bucket_domain_name")
 
     @bucket_domain_name.setter
@@ -394,6 +516,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="bucketPrefix")
     def bucket_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        """
         return pulumi.get(self, "bucket_prefix")
 
     @bucket_prefix.setter
@@ -403,6 +528,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="corsRules")
     def cors_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketCorsRuleArgs']]]]:
+        """
+        A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        """
         return pulumi.get(self, "cors_rules")
 
     @cors_rules.setter
@@ -412,6 +540,11 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="defaultStorageClass")
     def default_storage_class(self) -> Optional[pulumi.Input[str]]:
+        """
+        Storage class which is used for storing objects by default.
+        Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+        See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
+        """
         return pulumi.get(self, "default_storage_class")
 
     @default_storage_class.setter
@@ -421,6 +554,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Allow to create bucket in different folder.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -430,6 +566,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
+        """
         return pulumi.get(self, "force_destroy")
 
     @force_destroy.setter
@@ -439,6 +578,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter
     def grants(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketGrantArgs']]]]:
+        """
+        An [ACL policy grant](https://cloud.yandex.com/docs/storage/concepts/acl#permissions-types). Conflicts with `acl`.
+        """
         return pulumi.get(self, "grants")
 
     @grants.setter
@@ -448,6 +590,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter
     def https(self) -> Optional[pulumi.Input['StorageBucketHttpsArgs']]:
+        """
+        Manages https certificates for bucket. See [https](https://cloud.yandex.com/en-ru/docs/storage/operations/hosting/certificate) for more infomation.
+        """
         return pulumi.get(self, "https")
 
     @https.setter
@@ -457,6 +602,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="lifecycleRules")
     def lifecycle_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleArgs']]]]:
+        """
+        A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
+        """
         return pulumi.get(self, "lifecycle_rules")
 
     @lifecycle_rules.setter
@@ -466,6 +614,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter
     def loggings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLoggingArgs']]]]:
+        """
+        A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
+        """
         return pulumi.get(self, "loggings")
 
     @loggings.setter
@@ -475,6 +626,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
@@ -493,6 +647,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
@@ -502,6 +659,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="serverSideEncryptionConfiguration")
     def server_side_encryption_configuration(self) -> Optional[pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs']]:
+        """
+        A configuration of server-side encryption for the bucket (documented below)
+        """
         return pulumi.get(self, "server_side_encryption_configuration")
 
     @server_side_encryption_configuration.setter
@@ -511,6 +671,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter
     def versioning(self) -> Optional[pulumi.Input['StorageBucketVersioningArgs']]:
+        """
+        A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
+        """
         return pulumi.get(self, "versioning")
 
     @versioning.setter
@@ -520,6 +683,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter
     def website(self) -> Optional[pulumi.Input['StorageBucketWebsiteArgs']]:
+        """
+        A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
+        """
         return pulumi.get(self, "website")
 
     @website.setter
@@ -529,6 +695,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="websiteDomain")
     def website_domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        """
         return pulumi.get(self, "website_domain")
 
     @website_domain.setter
@@ -538,6 +707,9 @@ class _StorageBucketState:
     @property
     @pulumi.getter(name="websiteEndpoint")
     def website_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        """
         return pulumi.get(self, "website_endpoint")
 
     @website_endpoint.setter
@@ -573,9 +745,443 @@ class StorageBucket(pulumi.CustomResource):
                  website_endpoint: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a StorageBucket resource with the given unique name, props, and options.
+        Allows management of [Yandex.Cloud Storage Bucket](https://cloud.yandex.com/docs/storage/concepts/bucket).
+
+        > **Note:** Your need to provide [static access key](https://cloud.yandex.com/docs/iam/concepts/authorization/access-key) (Access and Secret) to create storage client to work with Storage Service. To create them you need Service Account and proper permissions.
+
+        > **Note:** For extended API usage, such as setting `max_size`, `folder_id`, `anonymous_access_flags`,
+        `default_storage_class` and `https` parameters for bucket, will be used default authorization method, i.e.
+        `IAM` / `OAuth` token from `provider` block will be used.
+        This might be a little bit confusing in cases when separate service account is used for managing buckets because
+        in this case buckets will be accessed by two different accounts that might have different permissions for buckets.
+
+        ## Example Usage
+        ### Simple Private Bucket
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        folder_id = "<folder-id>"
+        # Create SA
+        sa = yandex.IamServiceAccount("sa", folder_id=folder_id)
+        # Grant permissions
+        sa_editor = yandex.ResourcemanagerFolderIamMember("sa-editor",
+            folder_id=folder_id,
+            role="storage.editor",
+            member=sa.id.apply(lambda id: f"serviceAccount:{id}"))
+        # Create Static Access Keys
+        sa_static_key = yandex.IamServiceAccountStaticAccessKey("sa-static-key",
+            service_account_id=sa.id,
+            description="static access key for object storage")
+        # Use keys to create bucket
+        test = yandex.StorageBucket("test",
+            access_key=sa_static_key.access_key,
+            secret_key=sa_static_key.secret_key,
+            bucket="tf-test-bucket")
+        ```
+        ### Static Website Hosting
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        test = yandex.StorageBucket("test",
+            acl="public-read",
+            bucket="storage-website-test.hashicorp.com",
+            website=yandex.StorageBucketWebsiteArgs(
+                error_document="error.html",
+                index_document="index.html",
+                routing_rules=\"\"\"[{
+            "Condition": {
+                "KeyPrefixEquals": "docs/"
+            },
+            "Redirect": {
+                "ReplaceKeyPrefixWith": "documents/"
+            }
+        }]
+
+        \"\"\",
+            ))
+        ```
+        ### Using ACL policy grants
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        test = yandex.StorageBucket("test",
+            bucket="mybucket",
+            grants=[
+                yandex.StorageBucketGrantArgs(
+                    id="myuser",
+                    permissions=["FULL_CONTROL"],
+                    type="CanonicalUser",
+                ),
+                yandex.StorageBucketGrantArgs(
+                    permissions=[
+                        "READ",
+                        "WRITE",
+                    ],
+                    type="Group",
+                    uri="http://acs.amazonaws.com/groups/global/AllUsers",
+                ),
+            ])
+        ```
+        ### Using CORS
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            acl="public-read",
+            bucket="s3-website-test.hashicorp.com",
+            cors_rules=[yandex.StorageBucketCorsRuleArgs(
+                allowed_headers=["*"],
+                allowed_methods=[
+                    "PUT",
+                    "POST",
+                ],
+                allowed_origins=["https://s3-website-test.hashicorp.com"],
+                expose_headers=["ETag"],
+                max_age_seconds=3000,
+            )])
+        ```
+        ### Using versioning
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            acl="private",
+            bucket="my-tf-test-bucket",
+            versioning=yandex.StorageBucketVersioningArgs(
+                enabled=True,
+            ))
+        ```
+        ### Enable Logging
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        log_bucket = yandex.StorageBucket("logBucket", bucket="my-tf-log-bucket")
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-tf-test-bucket",
+            acl="private",
+            loggings=[yandex.StorageBucketLoggingArgs(
+                target_bucket=log_bucket.id,
+                target_prefix="log/",
+            )])
+        ```
+        ### Using object lifecycle
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        bucket = yandex.StorageBucket("bucket",
+            acl="private",
+            bucket="my-bucket",
+            lifecycle_rules=[
+                yandex.StorageBucketLifecycleRuleArgs(
+                    enabled=True,
+                    expiration=yandex.StorageBucketLifecycleRuleExpirationArgs(
+                        days=90,
+                    ),
+                    id="log",
+                    prefix="log/",
+                    transitions=[yandex.StorageBucketLifecycleRuleTransitionArgs(
+                        days=30,
+                        storage_class="COLD",
+                    )],
+                ),
+                yandex.StorageBucketLifecycleRuleArgs(
+                    enabled=True,
+                    expiration=yandex.StorageBucketLifecycleRuleExpirationArgs(
+                        date="2020-12-21",
+                    ),
+                    id="tmp",
+                    prefix="tmp/",
+                ),
+            ])
+        versioning_bucket = yandex.StorageBucket("versioningBucket",
+            acl="private",
+            bucket="my-versioning-bucket",
+            lifecycle_rules=[yandex.StorageBucketLifecycleRuleArgs(
+                enabled=True,
+                noncurrent_version_expiration=yandex.StorageBucketLifecycleRuleNoncurrentVersionExpirationArgs(
+                    days=90,
+                ),
+                noncurrent_version_transitions=[yandex.StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs(
+                    days=30,
+                    storage_class="COLD",
+                )],
+                prefix="config/",
+            )],
+            versioning=yandex.StorageBucketVersioningArgs(
+                enabled=True,
+            ))
+        ```
+        ### Using SSE
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        key_a = yandex.KmsSymmetricKey("key-a",
+            description="description for key",
+            default_algorithm="AES_128",
+            rotation_period="8760h")
+        # equal to 1 year
+        test = yandex.StorageBucket("test",
+            bucket="mybucket",
+            server_side_encryption_configuration=yandex.StorageBucketServerSideEncryptionConfigurationArgs(
+                rule=yandex.StorageBucketServerSideEncryptionConfigurationRuleArgs(
+                    apply_server_side_encryption_by_default=yandex.StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs(
+                        kms_master_key_id=key_a.id,
+                        sse_algorithm="aws:kms",
+                    ),
+                ),
+            ))
+        ```
+        ### Bucket Policy
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-policy-bucket",
+            policy=\"\"\"{
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "s3:*",
+              "Resource": [
+                "arn:aws:s3:::my-policy-bucket/*",
+                "arn:aws:s3:::my-policy-bucket"
+              ]
+            },
+            {
+              "Effect": "Deny",
+              "Principal": "*",
+              "Action": "s3:PutObject",
+              "Resource": [
+                "arn:aws:s3:::my-policy-bucket/*",
+                "arn:aws:s3:::my-policy-bucket"
+              ]
+            }
+          ]
+        }
+
+        \"\"\")
+        ```
+        ### Bucket Max Size
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-policy-bucket",
+            max_size=1048576)
+        ```
+        ### Bucket Folder Id
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-policy-bucket",
+            folder_id="<folder_id>")
+        ```
+        ### Bucket Anonymous Access Flags
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            anonymous_access_flags=yandex.StorageBucketAnonymousAccessFlagsArgs(
+                list=False,
+                read=True,
+            ),
+            bucket="my-policy-bucket")
+        ```
+        ### Bucket HTTPS Certificate
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-policy-bucket",
+            https=yandex.StorageBucketHttpsArgs(
+                certificate_id="<certificate_id_from_certificate_manager>",
+            ))
+        ```
+        ### Bucket Default Storage Class
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-policy-bucket",
+            default_storage_class="COLD")
+        ```
+        ### All settings example
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        log_bucket = yandex.StorageBucket("logBucket",
+            bucket="my-tf-log-bucket",
+            lifecycle_rules=[yandex.StorageBucketLifecycleRuleArgs(
+                id="cleanupoldlogs",
+                enabled=True,
+                expiration=yandex.StorageBucketLifecycleRuleExpirationArgs(
+                    days=365,
+                ),
+            )])
+        key_a = yandex.KmsSymmetricKey("key-a",
+            description="description for key",
+            default_algorithm="AES_128",
+            rotation_period="8760h")
+        # equal to 1 year
+        all_settings = yandex.StorageBucket("allSettings",
+            bucket="example-tf-settings-bucket",
+            website=yandex.StorageBucketWebsiteArgs(
+                index_document="index.html",
+                error_document="error.html",
+            ),
+            lifecycle_rules=[
+                yandex.StorageBucketLifecycleRuleArgs(
+                    id="test",
+                    enabled=True,
+                    prefix="prefix/",
+                    expiration=yandex.StorageBucketLifecycleRuleExpirationArgs(
+                        days=30,
+                    ),
+                ),
+                yandex.StorageBucketLifecycleRuleArgs(
+                    id="log",
+                    enabled=True,
+                    prefix="log/",
+                    transitions=[yandex.StorageBucketLifecycleRuleTransitionArgs(
+                        days=30,
+                        storage_class="COLD",
+                    )],
+                    expiration=yandex.StorageBucketLifecycleRuleExpirationArgs(
+                        days=90,
+                    ),
+                ),
+                yandex.StorageBucketLifecycleRuleArgs(
+                    id="everything180",
+                    prefix="",
+                    enabled=True,
+                    expiration=yandex.StorageBucketLifecycleRuleExpirationArgs(
+                        days=180,
+                    ),
+                ),
+                yandex.StorageBucketLifecycleRuleArgs(
+                    id="cleanupoldversions",
+                    prefix="config/",
+                    enabled=True,
+                    noncurrent_version_transitions=[yandex.StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs(
+                        days=30,
+                        storage_class="COLD",
+                    )],
+                    noncurrent_version_expiration=yandex.StorageBucketLifecycleRuleNoncurrentVersionExpirationArgs(
+                        days=90,
+                    ),
+                ),
+                yandex.StorageBucketLifecycleRuleArgs(
+                    id="abortmultiparts",
+                    prefix="",
+                    enabled=True,
+                    abort_incomplete_multipart_upload_days=7,
+                ),
+            ],
+            cors_rules=[yandex.StorageBucketCorsRuleArgs(
+                allowed_headers=["*"],
+                allowed_methods=[
+                    "GET",
+                    "PUT",
+                ],
+                allowed_origins=["https://storage-cloud.example.com"],
+                expose_headers=["ETag"],
+                max_age_seconds=3000,
+            )],
+            versioning=yandex.StorageBucketVersioningArgs(
+                enabled=True,
+            ),
+            server_side_encryption_configuration=yandex.StorageBucketServerSideEncryptionConfigurationArgs(
+                rule=yandex.StorageBucketServerSideEncryptionConfigurationRuleArgs(
+                    apply_server_side_encryption_by_default=yandex.StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs(
+                        kms_master_key_id=key_a.id,
+                        sse_algorithm="aws:kms",
+                    ),
+                ),
+            ),
+            loggings=[yandex.StorageBucketLoggingArgs(
+                target_bucket=log_bucket.id,
+                target_prefix="tf-logs/",
+            )],
+            max_size=1024,
+            folder_id="<folder_id>",
+            default_storage_class="COLD",
+            anonymous_access_flags=yandex.StorageBucketAnonymousAccessFlagsArgs(
+                read=True,
+                list=True,
+            ),
+            https=yandex.StorageBucketHttpsArgs(
+                certificate_id="<certificate_id>",
+            ))
+        ```
+
+        ## Import
+
+        Storage bucket can be imported using the `bucket`, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/storageBucket:StorageBucket bucket bucket-name
+        ```
+
+         `false` in state. If you've set it to `true` in config, run `terraform apply` to update the value set in state. If you delete this resource before updating the value, objects in the bucket will not be destroyed.
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] access_key: The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        :param pulumi.Input[str] acl: The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        :param pulumi.Input[pulumi.InputType['StorageBucketAnonymousAccessFlagsArgs']] anonymous_access_flags: Provides various access to objects.
+               See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
+               for more infomation.
+        :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        :param pulumi.Input[str] default_storage_class: Storage class which is used for storing objects by default.
+               Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+               See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
+        :param pulumi.Input[str] folder_id: Allow to create bucket in different folder.
+        :param pulumi.Input[bool] force_destroy: A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketGrantArgs']]]] grants: An [ACL policy grant](https://cloud.yandex.com/docs/storage/concepts/acl#permissions-types). Conflicts with `acl`.
+        :param pulumi.Input[pulumi.InputType['StorageBucketHttpsArgs']] https: Manages https certificates for bucket. See [https](https://cloud.yandex.com/en-ru/docs/storage/operations/hosting/certificate) for more infomation.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLifecycleRuleArgs']]]] lifecycle_rules: A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLoggingArgs']]]] loggings: A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
+        :param pulumi.Input[int] max_size: The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        :param pulumi.Input[pulumi.InputType['StorageBucketServerSideEncryptionConfigurationArgs']] server_side_encryption_configuration: A configuration of server-side encryption for the bucket (documented below)
+        :param pulumi.Input[pulumi.InputType['StorageBucketVersioningArgs']] versioning: A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
+        :param pulumi.Input[pulumi.InputType['StorageBucketWebsiteArgs']] website: A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
+        :param pulumi.Input[str] website_domain: The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        :param pulumi.Input[str] website_endpoint: The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
         """
         ...
     @overload
@@ -584,7 +1190,418 @@ class StorageBucket(pulumi.CustomResource):
                  args: Optional[StorageBucketArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a StorageBucket resource with the given unique name, props, and options.
+        Allows management of [Yandex.Cloud Storage Bucket](https://cloud.yandex.com/docs/storage/concepts/bucket).
+
+        > **Note:** Your need to provide [static access key](https://cloud.yandex.com/docs/iam/concepts/authorization/access-key) (Access and Secret) to create storage client to work with Storage Service. To create them you need Service Account and proper permissions.
+
+        > **Note:** For extended API usage, such as setting `max_size`, `folder_id`, `anonymous_access_flags`,
+        `default_storage_class` and `https` parameters for bucket, will be used default authorization method, i.e.
+        `IAM` / `OAuth` token from `provider` block will be used.
+        This might be a little bit confusing in cases when separate service account is used for managing buckets because
+        in this case buckets will be accessed by two different accounts that might have different permissions for buckets.
+
+        ## Example Usage
+        ### Simple Private Bucket
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        folder_id = "<folder-id>"
+        # Create SA
+        sa = yandex.IamServiceAccount("sa", folder_id=folder_id)
+        # Grant permissions
+        sa_editor = yandex.ResourcemanagerFolderIamMember("sa-editor",
+            folder_id=folder_id,
+            role="storage.editor",
+            member=sa.id.apply(lambda id: f"serviceAccount:{id}"))
+        # Create Static Access Keys
+        sa_static_key = yandex.IamServiceAccountStaticAccessKey("sa-static-key",
+            service_account_id=sa.id,
+            description="static access key for object storage")
+        # Use keys to create bucket
+        test = yandex.StorageBucket("test",
+            access_key=sa_static_key.access_key,
+            secret_key=sa_static_key.secret_key,
+            bucket="tf-test-bucket")
+        ```
+        ### Static Website Hosting
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        test = yandex.StorageBucket("test",
+            acl="public-read",
+            bucket="storage-website-test.hashicorp.com",
+            website=yandex.StorageBucketWebsiteArgs(
+                error_document="error.html",
+                index_document="index.html",
+                routing_rules=\"\"\"[{
+            "Condition": {
+                "KeyPrefixEquals": "docs/"
+            },
+            "Redirect": {
+                "ReplaceKeyPrefixWith": "documents/"
+            }
+        }]
+
+        \"\"\",
+            ))
+        ```
+        ### Using ACL policy grants
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        test = yandex.StorageBucket("test",
+            bucket="mybucket",
+            grants=[
+                yandex.StorageBucketGrantArgs(
+                    id="myuser",
+                    permissions=["FULL_CONTROL"],
+                    type="CanonicalUser",
+                ),
+                yandex.StorageBucketGrantArgs(
+                    permissions=[
+                        "READ",
+                        "WRITE",
+                    ],
+                    type="Group",
+                    uri="http://acs.amazonaws.com/groups/global/AllUsers",
+                ),
+            ])
+        ```
+        ### Using CORS
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            acl="public-read",
+            bucket="s3-website-test.hashicorp.com",
+            cors_rules=[yandex.StorageBucketCorsRuleArgs(
+                allowed_headers=["*"],
+                allowed_methods=[
+                    "PUT",
+                    "POST",
+                ],
+                allowed_origins=["https://s3-website-test.hashicorp.com"],
+                expose_headers=["ETag"],
+                max_age_seconds=3000,
+            )])
+        ```
+        ### Using versioning
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            acl="private",
+            bucket="my-tf-test-bucket",
+            versioning=yandex.StorageBucketVersioningArgs(
+                enabled=True,
+            ))
+        ```
+        ### Enable Logging
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        log_bucket = yandex.StorageBucket("logBucket", bucket="my-tf-log-bucket")
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-tf-test-bucket",
+            acl="private",
+            loggings=[yandex.StorageBucketLoggingArgs(
+                target_bucket=log_bucket.id,
+                target_prefix="log/",
+            )])
+        ```
+        ### Using object lifecycle
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        bucket = yandex.StorageBucket("bucket",
+            acl="private",
+            bucket="my-bucket",
+            lifecycle_rules=[
+                yandex.StorageBucketLifecycleRuleArgs(
+                    enabled=True,
+                    expiration=yandex.StorageBucketLifecycleRuleExpirationArgs(
+                        days=90,
+                    ),
+                    id="log",
+                    prefix="log/",
+                    transitions=[yandex.StorageBucketLifecycleRuleTransitionArgs(
+                        days=30,
+                        storage_class="COLD",
+                    )],
+                ),
+                yandex.StorageBucketLifecycleRuleArgs(
+                    enabled=True,
+                    expiration=yandex.StorageBucketLifecycleRuleExpirationArgs(
+                        date="2020-12-21",
+                    ),
+                    id="tmp",
+                    prefix="tmp/",
+                ),
+            ])
+        versioning_bucket = yandex.StorageBucket("versioningBucket",
+            acl="private",
+            bucket="my-versioning-bucket",
+            lifecycle_rules=[yandex.StorageBucketLifecycleRuleArgs(
+                enabled=True,
+                noncurrent_version_expiration=yandex.StorageBucketLifecycleRuleNoncurrentVersionExpirationArgs(
+                    days=90,
+                ),
+                noncurrent_version_transitions=[yandex.StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs(
+                    days=30,
+                    storage_class="COLD",
+                )],
+                prefix="config/",
+            )],
+            versioning=yandex.StorageBucketVersioningArgs(
+                enabled=True,
+            ))
+        ```
+        ### Using SSE
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        key_a = yandex.KmsSymmetricKey("key-a",
+            description="description for key",
+            default_algorithm="AES_128",
+            rotation_period="8760h")
+        # equal to 1 year
+        test = yandex.StorageBucket("test",
+            bucket="mybucket",
+            server_side_encryption_configuration=yandex.StorageBucketServerSideEncryptionConfigurationArgs(
+                rule=yandex.StorageBucketServerSideEncryptionConfigurationRuleArgs(
+                    apply_server_side_encryption_by_default=yandex.StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs(
+                        kms_master_key_id=key_a.id,
+                        sse_algorithm="aws:kms",
+                    ),
+                ),
+            ))
+        ```
+        ### Bucket Policy
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-policy-bucket",
+            policy=\"\"\"{
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": "*",
+              "Action": "s3:*",
+              "Resource": [
+                "arn:aws:s3:::my-policy-bucket/*",
+                "arn:aws:s3:::my-policy-bucket"
+              ]
+            },
+            {
+              "Effect": "Deny",
+              "Principal": "*",
+              "Action": "s3:PutObject",
+              "Resource": [
+                "arn:aws:s3:::my-policy-bucket/*",
+                "arn:aws:s3:::my-policy-bucket"
+              ]
+            }
+          ]
+        }
+
+        \"\"\")
+        ```
+        ### Bucket Max Size
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-policy-bucket",
+            max_size=1048576)
+        ```
+        ### Bucket Folder Id
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-policy-bucket",
+            folder_id="<folder_id>")
+        ```
+        ### Bucket Anonymous Access Flags
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            anonymous_access_flags=yandex.StorageBucketAnonymousAccessFlagsArgs(
+                list=False,
+                read=True,
+            ),
+            bucket="my-policy-bucket")
+        ```
+        ### Bucket HTTPS Certificate
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-policy-bucket",
+            https=yandex.StorageBucketHttpsArgs(
+                certificate_id="<certificate_id_from_certificate_manager>",
+            ))
+        ```
+        ### Bucket Default Storage Class
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-policy-bucket",
+            default_storage_class="COLD")
+        ```
+        ### All settings example
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        log_bucket = yandex.StorageBucket("logBucket",
+            bucket="my-tf-log-bucket",
+            lifecycle_rules=[yandex.StorageBucketLifecycleRuleArgs(
+                id="cleanupoldlogs",
+                enabled=True,
+                expiration=yandex.StorageBucketLifecycleRuleExpirationArgs(
+                    days=365,
+                ),
+            )])
+        key_a = yandex.KmsSymmetricKey("key-a",
+            description="description for key",
+            default_algorithm="AES_128",
+            rotation_period="8760h")
+        # equal to 1 year
+        all_settings = yandex.StorageBucket("allSettings",
+            bucket="example-tf-settings-bucket",
+            website=yandex.StorageBucketWebsiteArgs(
+                index_document="index.html",
+                error_document="error.html",
+            ),
+            lifecycle_rules=[
+                yandex.StorageBucketLifecycleRuleArgs(
+                    id="test",
+                    enabled=True,
+                    prefix="prefix/",
+                    expiration=yandex.StorageBucketLifecycleRuleExpirationArgs(
+                        days=30,
+                    ),
+                ),
+                yandex.StorageBucketLifecycleRuleArgs(
+                    id="log",
+                    enabled=True,
+                    prefix="log/",
+                    transitions=[yandex.StorageBucketLifecycleRuleTransitionArgs(
+                        days=30,
+                        storage_class="COLD",
+                    )],
+                    expiration=yandex.StorageBucketLifecycleRuleExpirationArgs(
+                        days=90,
+                    ),
+                ),
+                yandex.StorageBucketLifecycleRuleArgs(
+                    id="everything180",
+                    prefix="",
+                    enabled=True,
+                    expiration=yandex.StorageBucketLifecycleRuleExpirationArgs(
+                        days=180,
+                    ),
+                ),
+                yandex.StorageBucketLifecycleRuleArgs(
+                    id="cleanupoldversions",
+                    prefix="config/",
+                    enabled=True,
+                    noncurrent_version_transitions=[yandex.StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs(
+                        days=30,
+                        storage_class="COLD",
+                    )],
+                    noncurrent_version_expiration=yandex.StorageBucketLifecycleRuleNoncurrentVersionExpirationArgs(
+                        days=90,
+                    ),
+                ),
+                yandex.StorageBucketLifecycleRuleArgs(
+                    id="abortmultiparts",
+                    prefix="",
+                    enabled=True,
+                    abort_incomplete_multipart_upload_days=7,
+                ),
+            ],
+            cors_rules=[yandex.StorageBucketCorsRuleArgs(
+                allowed_headers=["*"],
+                allowed_methods=[
+                    "GET",
+                    "PUT",
+                ],
+                allowed_origins=["https://storage-cloud.example.com"],
+                expose_headers=["ETag"],
+                max_age_seconds=3000,
+            )],
+            versioning=yandex.StorageBucketVersioningArgs(
+                enabled=True,
+            ),
+            server_side_encryption_configuration=yandex.StorageBucketServerSideEncryptionConfigurationArgs(
+                rule=yandex.StorageBucketServerSideEncryptionConfigurationRuleArgs(
+                    apply_server_side_encryption_by_default=yandex.StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs(
+                        kms_master_key_id=key_a.id,
+                        sse_algorithm="aws:kms",
+                    ),
+                ),
+            ),
+            loggings=[yandex.StorageBucketLoggingArgs(
+                target_bucket=log_bucket.id,
+                target_prefix="tf-logs/",
+            )],
+            max_size=1024,
+            folder_id="<folder_id>",
+            default_storage_class="COLD",
+            anonymous_access_flags=yandex.StorageBucketAnonymousAccessFlagsArgs(
+                read=True,
+                list=True,
+            ),
+            https=yandex.StorageBucketHttpsArgs(
+                certificate_id="<certificate_id>",
+            ))
+        ```
+
+        ## Import
+
+        Storage bucket can be imported using the `bucket`, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/storageBucket:StorageBucket bucket bucket-name
+        ```
+
+         `false` in state. If you've set it to `true` in config, run `terraform apply` to update the value set in state. If you delete this resource before updating the value, objects in the bucket will not be destroyed.
+
         :param str resource_name: The name of the resource.
         :param StorageBucketArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -691,6 +1708,30 @@ class StorageBucket(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] access_key: The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        :param pulumi.Input[str] acl: The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        :param pulumi.Input[pulumi.InputType['StorageBucketAnonymousAccessFlagsArgs']] anonymous_access_flags: Provides various access to objects.
+               See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
+               for more infomation.
+        :param pulumi.Input[str] bucket_domain_name: The bucket domain name.
+        :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        :param pulumi.Input[str] default_storage_class: Storage class which is used for storing objects by default.
+               Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+               See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
+        :param pulumi.Input[str] folder_id: Allow to create bucket in different folder.
+        :param pulumi.Input[bool] force_destroy: A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketGrantArgs']]]] grants: An [ACL policy grant](https://cloud.yandex.com/docs/storage/concepts/acl#permissions-types). Conflicts with `acl`.
+        :param pulumi.Input[pulumi.InputType['StorageBucketHttpsArgs']] https: Manages https certificates for bucket. See [https](https://cloud.yandex.com/en-ru/docs/storage/operations/hosting/certificate) for more infomation.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLifecycleRuleArgs']]]] lifecycle_rules: A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLoggingArgs']]]] loggings: A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
+        :param pulumi.Input[int] max_size: The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        :param pulumi.Input[pulumi.InputType['StorageBucketServerSideEncryptionConfigurationArgs']] server_side_encryption_configuration: A configuration of server-side encryption for the bucket (documented below)
+        :param pulumi.Input[pulumi.InputType['StorageBucketVersioningArgs']] versioning: A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
+        :param pulumi.Input[pulumi.InputType['StorageBucketWebsiteArgs']] website: A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
+        :param pulumi.Input[str] website_domain: The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        :param pulumi.Input[str] website_endpoint: The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -723,16 +1764,27 @@ class StorageBucket(pulumi.CustomResource):
     @property
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        """
         return pulumi.get(self, "access_key")
 
     @property
     @pulumi.getter
     def acl(self) -> pulumi.Output[Optional[str]]:
+        """
+        The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        """
         return pulumi.get(self, "acl")
 
     @property
     @pulumi.getter(name="anonymousAccessFlags")
     def anonymous_access_flags(self) -> pulumi.Output['outputs.StorageBucketAnonymousAccessFlags']:
+        """
+        Provides various access to objects.
+        See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
+        for more infomation.
+        """
         return pulumi.get(self, "anonymous_access_flags")
 
     @property
@@ -743,56 +1795,91 @@ class StorageBucket(pulumi.CustomResource):
     @property
     @pulumi.getter(name="bucketDomainName")
     def bucket_domain_name(self) -> pulumi.Output[str]:
+        """
+        The bucket domain name.
+        """
         return pulumi.get(self, "bucket_domain_name")
 
     @property
     @pulumi.getter(name="bucketPrefix")
     def bucket_prefix(self) -> pulumi.Output[Optional[str]]:
+        """
+        Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        """
         return pulumi.get(self, "bucket_prefix")
 
     @property
     @pulumi.getter(name="corsRules")
     def cors_rules(self) -> pulumi.Output[Optional[Sequence['outputs.StorageBucketCorsRule']]]:
+        """
+        A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        """
         return pulumi.get(self, "cors_rules")
 
     @property
     @pulumi.getter(name="defaultStorageClass")
     def default_storage_class(self) -> pulumi.Output[str]:
+        """
+        Storage class which is used for storing objects by default.
+        Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+        See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
+        """
         return pulumi.get(self, "default_storage_class")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        Allow to create bucket in different folder.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter(name="forceDestroy")
     def force_destroy(self) -> pulumi.Output[Optional[bool]]:
+        """
+        A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
+        """
         return pulumi.get(self, "force_destroy")
 
     @property
     @pulumi.getter
     def grants(self) -> pulumi.Output[Optional[Sequence['outputs.StorageBucketGrant']]]:
+        """
+        An [ACL policy grant](https://cloud.yandex.com/docs/storage/concepts/acl#permissions-types). Conflicts with `acl`.
+        """
         return pulumi.get(self, "grants")
 
     @property
     @pulumi.getter
     def https(self) -> pulumi.Output[Optional['outputs.StorageBucketHttps']]:
+        """
+        Manages https certificates for bucket. See [https](https://cloud.yandex.com/en-ru/docs/storage/operations/hosting/certificate) for more infomation.
+        """
         return pulumi.get(self, "https")
 
     @property
     @pulumi.getter(name="lifecycleRules")
     def lifecycle_rules(self) -> pulumi.Output[Optional[Sequence['outputs.StorageBucketLifecycleRule']]]:
+        """
+        A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
+        """
         return pulumi.get(self, "lifecycle_rules")
 
     @property
     @pulumi.getter
     def loggings(self) -> pulumi.Output[Optional[Sequence['outputs.StorageBucketLogging']]]:
+        """
+        A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
+        """
         return pulumi.get(self, "loggings")
 
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> pulumi.Output[Optional[int]]:
+        """
+        The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        """
         return pulumi.get(self, "max_size")
 
     @property
@@ -803,30 +1890,48 @@ class StorageBucket(pulumi.CustomResource):
     @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        """
         return pulumi.get(self, "secret_key")
 
     @property
     @pulumi.getter(name="serverSideEncryptionConfiguration")
     def server_side_encryption_configuration(self) -> pulumi.Output[Optional['outputs.StorageBucketServerSideEncryptionConfiguration']]:
+        """
+        A configuration of server-side encryption for the bucket (documented below)
+        """
         return pulumi.get(self, "server_side_encryption_configuration")
 
     @property
     @pulumi.getter
     def versioning(self) -> pulumi.Output['outputs.StorageBucketVersioning']:
+        """
+        A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
+        """
         return pulumi.get(self, "versioning")
 
     @property
     @pulumi.getter
     def website(self) -> pulumi.Output[Optional['outputs.StorageBucketWebsite']]:
+        """
+        A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
+        """
         return pulumi.get(self, "website")
 
     @property
     @pulumi.getter(name="websiteDomain")
     def website_domain(self) -> pulumi.Output[str]:
+        """
+        The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        """
         return pulumi.get(self, "website_domain")
 
     @property
     @pulumi.getter(name="websiteEndpoint")
     def website_endpoint(self) -> pulumi.Output[str]:
+        """
+        The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        """
         return pulumi.get(self, "website_endpoint")
 

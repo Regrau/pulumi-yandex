@@ -9,48 +9,146 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows management of [Yandex.Cloud Message Queue](https://cloud.yandex.com/docs/message-queue).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleDeadletterQueue = new Yandex.MessageQueue("exampleDeadletterQueue");
+    /// 
+    ///     var exampleQueue = new Yandex.MessageQueue("exampleQueue", new()
+    ///     {
+    ///         VisibilityTimeoutSeconds = 600,
+    ///         ReceiveWaitTimeSeconds = 20,
+    ///         MessageRetentionSeconds = 1209600,
+    ///         RedrivePolicy = exampleDeadletterQueue.Arn.Apply(arn =&gt; JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///         {
+    ///             ["deadLetterTargetArn"] = arn,
+    ///             ["maxReceiveCount"] = 3,
+    ///         })),
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ## FIFO queue
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var exampleFifoQueue = new Yandex.MessageQueue("exampleFifoQueue", new()
+    ///     {
+    ///         ContentBasedDeduplication = true,
+    ///         FifoQueue = true,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Yandex Message Queues can be imported using its `queue url`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/messageQueue:MessageQueue example_import_queue https://message-queue.api.cloud.yandex.net/abcdefghijklmn123456/opqrstuvwxyz87654321/ymq_terraform_import_example
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/messageQueue:MessageQueue")]
     public partial class MessageQueue : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The [access key](https://cloud.yandex.com/docs/iam/operations/sa/create-access-key) to use when applying changes. If omitted, `ymq_access_key` specified in provider config is used. For more information see [documentation](https://cloud.yandex.com/docs/message-queue/quickstart).
+        /// </summary>
         [Output("accessKey")]
         public Output<string?> AccessKey { get; private set; } = null!;
 
+        /// <summary>
+        /// ARN of the Yandex Message Queue. It is used for setting up a [redrive policy](https://cloud.yandex.com/docs/message-queue/concepts/dlq). See [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/SetQueueAttributes).
+        /// </summary>
         [Output("arn")]
         public Output<string> Arn { get; private set; } = null!;
 
+        /// <summary>
+        /// Enables [content-based deduplication](https://cloud.yandex.com/docs/message-queue/concepts/deduplication#content-based-deduplication). Can be used only if queue is [FIFO](https://cloud.yandex.com/docs/message-queue/concepts/queue#fifo-queues).
+        /// </summary>
         [Output("contentBasedDeduplication")]
         public Output<bool?> ContentBasedDeduplication { get; private set; } = null!;
 
+        /// <summary>
+        /// Number of seconds to [delay the message from being available for processing](https://cloud.yandex.com/docs/message-queue/concepts/delay-queues#delay-queues). Valid values: from 0 to 900 seconds (15 minutes). Default: 0.
+        /// </summary>
         [Output("delaySeconds")]
         public Output<int?> DelaySeconds { get; private set; } = null!;
 
+        /// <summary>
+        /// Is this queue [FIFO](https://cloud.yandex.com/docs/message-queue/concepts/queue#fifo-queues). If this parameter is not used, a standard queue is created. You cannot change the parameter value for a created queue.
+        /// </summary>
         [Output("fifoQueue")]
         public Output<bool?> FifoQueue { get; private set; } = null!;
 
+        /// <summary>
+        /// Maximum message size in bytes. Valid values: from 1024 bytes (1 KB) to 262144 bytes (256 KB). Default: 262144 (256 KB). For more information see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue).
+        /// </summary>
         [Output("maxMessageSize")]
         public Output<int?> MaxMessageSize { get; private set; } = null!;
 
+        /// <summary>
+        /// The length of time in seconds to retain a message. Valid values: from 60 seconds (1 minute) to 1209600 seconds (14 days). Default: 345600 (4 days). For more information see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue).
+        /// </summary>
         [Output("messageRetentionSeconds")]
         public Output<int?> MessageRetentionSeconds { get; private set; } = null!;
 
+        /// <summary>
+        /// Queue name. The maximum length is 80 characters. You can use numbers, letters, underscores, and hyphens in the name. The name of a FIFO queue must end with the `.fifo` suffix. If not specified, random name will be generated. Conflicts with `name_prefix`. For more information see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue).
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Generates random name with the specified prefix. Conflicts with `name`.
+        /// </summary>
         [Output("namePrefix")]
         public Output<string?> NamePrefix { get; private set; } = null!;
 
+        /// <summary>
+        /// Wait time for the [ReceiveMessage](https://cloud.yandex.com/docs/message-queue/api-ref/message/ReceiveMessage) method (for long polling), in seconds. Valid values: from 0 to 20 seconds. Default: 0. For more information about long polling see [documentation](https://cloud.yandex.com/docs/message-queue/concepts/long-polling).
+        /// </summary>
         [Output("receiveWaitTimeSeconds")]
         public Output<int?> ReceiveWaitTimeSeconds { get; private set; } = null!;
 
+        /// <summary>
+        /// Message redrive policy in [Dead Letter Queue](https://cloud.yandex.com/docs/message-queue/concepts/dlq). The source queue and DLQ must be the same type: for FIFO queues, the DLQ must also be a FIFO queue. For more information about redrive policy see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue). Also you can use example in this page.
+        /// </summary>
         [Output("redrivePolicy")]
         public Output<string?> RedrivePolicy { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the region where the message queue is located at.
+        /// The default is 'ru-central1'.
+        /// </summary>
         [Output("regionId")]
         public Output<string?> RegionId { get; private set; } = null!;
 
+        /// <summary>
+        /// The [secret key](https://cloud.yandex.com/docs/iam/operations/sa/create-access-key) to use when applying changes. If omitted, `ymq_secret_key` specified in provider config is used. For more information see [documentation](https://cloud.yandex.com/docs/message-queue/quickstart).
+        /// </summary>
         [Output("secretKey")]
         public Output<string?> SecretKey { get; private set; } = null!;
 
+        /// <summary>
+        /// [Visibility timeout](https://cloud.yandex.com/docs/message-queue/concepts/visibility-timeout) for messages in a queue, specified in seconds. Valid values: from 0 to 43200 seconds (12 hours). Default: 30.
+        /// </summary>
         [Output("visibilityTimeoutSeconds")]
         public Output<int?> VisibilityTimeoutSeconds { get; private set; } = null!;
 
@@ -77,7 +175,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -101,42 +199,82 @@ namespace Pulumi.Yandex
 
     public sealed class MessageQueueArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The [access key](https://cloud.yandex.com/docs/iam/operations/sa/create-access-key) to use when applying changes. If omitted, `ymq_access_key` specified in provider config is used. For more information see [documentation](https://cloud.yandex.com/docs/message-queue/quickstart).
+        /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
+        /// <summary>
+        /// Enables [content-based deduplication](https://cloud.yandex.com/docs/message-queue/concepts/deduplication#content-based-deduplication). Can be used only if queue is [FIFO](https://cloud.yandex.com/docs/message-queue/concepts/queue#fifo-queues).
+        /// </summary>
         [Input("contentBasedDeduplication")]
         public Input<bool>? ContentBasedDeduplication { get; set; }
 
+        /// <summary>
+        /// Number of seconds to [delay the message from being available for processing](https://cloud.yandex.com/docs/message-queue/concepts/delay-queues#delay-queues). Valid values: from 0 to 900 seconds (15 minutes). Default: 0.
+        /// </summary>
         [Input("delaySeconds")]
         public Input<int>? DelaySeconds { get; set; }
 
+        /// <summary>
+        /// Is this queue [FIFO](https://cloud.yandex.com/docs/message-queue/concepts/queue#fifo-queues). If this parameter is not used, a standard queue is created. You cannot change the parameter value for a created queue.
+        /// </summary>
         [Input("fifoQueue")]
         public Input<bool>? FifoQueue { get; set; }
 
+        /// <summary>
+        /// Maximum message size in bytes. Valid values: from 1024 bytes (1 KB) to 262144 bytes (256 KB). Default: 262144 (256 KB). For more information see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue).
+        /// </summary>
         [Input("maxMessageSize")]
         public Input<int>? MaxMessageSize { get; set; }
 
+        /// <summary>
+        /// The length of time in seconds to retain a message. Valid values: from 60 seconds (1 minute) to 1209600 seconds (14 days). Default: 345600 (4 days). For more information see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue).
+        /// </summary>
         [Input("messageRetentionSeconds")]
         public Input<int>? MessageRetentionSeconds { get; set; }
 
+        /// <summary>
+        /// Queue name. The maximum length is 80 characters. You can use numbers, letters, underscores, and hyphens in the name. The name of a FIFO queue must end with the `.fifo` suffix. If not specified, random name will be generated. Conflicts with `name_prefix`. For more information see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue).
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Generates random name with the specified prefix. Conflicts with `name`.
+        /// </summary>
         [Input("namePrefix")]
         public Input<string>? NamePrefix { get; set; }
 
+        /// <summary>
+        /// Wait time for the [ReceiveMessage](https://cloud.yandex.com/docs/message-queue/api-ref/message/ReceiveMessage) method (for long polling), in seconds. Valid values: from 0 to 20 seconds. Default: 0. For more information about long polling see [documentation](https://cloud.yandex.com/docs/message-queue/concepts/long-polling).
+        /// </summary>
         [Input("receiveWaitTimeSeconds")]
         public Input<int>? ReceiveWaitTimeSeconds { get; set; }
 
+        /// <summary>
+        /// Message redrive policy in [Dead Letter Queue](https://cloud.yandex.com/docs/message-queue/concepts/dlq). The source queue and DLQ must be the same type: for FIFO queues, the DLQ must also be a FIFO queue. For more information about redrive policy see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue). Also you can use example in this page.
+        /// </summary>
         [Input("redrivePolicy")]
         public Input<string>? RedrivePolicy { get; set; }
 
+        /// <summary>
+        /// ID of the region where the message queue is located at.
+        /// The default is 'ru-central1'.
+        /// </summary>
         [Input("regionId")]
         public Input<string>? RegionId { get; set; }
 
+        /// <summary>
+        /// The [secret key](https://cloud.yandex.com/docs/iam/operations/sa/create-access-key) to use when applying changes. If omitted, `ymq_secret_key` specified in provider config is used. For more information see [documentation](https://cloud.yandex.com/docs/message-queue/quickstart).
+        /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
+        /// <summary>
+        /// [Visibility timeout](https://cloud.yandex.com/docs/message-queue/concepts/visibility-timeout) for messages in a queue, specified in seconds. Valid values: from 0 to 43200 seconds (12 hours). Default: 30.
+        /// </summary>
         [Input("visibilityTimeoutSeconds")]
         public Input<int>? VisibilityTimeoutSeconds { get; set; }
 
@@ -148,45 +286,88 @@ namespace Pulumi.Yandex
 
     public sealed class MessageQueueState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The [access key](https://cloud.yandex.com/docs/iam/operations/sa/create-access-key) to use when applying changes. If omitted, `ymq_access_key` specified in provider config is used. For more information see [documentation](https://cloud.yandex.com/docs/message-queue/quickstart).
+        /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
+        /// <summary>
+        /// ARN of the Yandex Message Queue. It is used for setting up a [redrive policy](https://cloud.yandex.com/docs/message-queue/concepts/dlq). See [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/SetQueueAttributes).
+        /// </summary>
         [Input("arn")]
         public Input<string>? Arn { get; set; }
 
+        /// <summary>
+        /// Enables [content-based deduplication](https://cloud.yandex.com/docs/message-queue/concepts/deduplication#content-based-deduplication). Can be used only if queue is [FIFO](https://cloud.yandex.com/docs/message-queue/concepts/queue#fifo-queues).
+        /// </summary>
         [Input("contentBasedDeduplication")]
         public Input<bool>? ContentBasedDeduplication { get; set; }
 
+        /// <summary>
+        /// Number of seconds to [delay the message from being available for processing](https://cloud.yandex.com/docs/message-queue/concepts/delay-queues#delay-queues). Valid values: from 0 to 900 seconds (15 minutes). Default: 0.
+        /// </summary>
         [Input("delaySeconds")]
         public Input<int>? DelaySeconds { get; set; }
 
+        /// <summary>
+        /// Is this queue [FIFO](https://cloud.yandex.com/docs/message-queue/concepts/queue#fifo-queues). If this parameter is not used, a standard queue is created. You cannot change the parameter value for a created queue.
+        /// </summary>
         [Input("fifoQueue")]
         public Input<bool>? FifoQueue { get; set; }
 
+        /// <summary>
+        /// Maximum message size in bytes. Valid values: from 1024 bytes (1 KB) to 262144 bytes (256 KB). Default: 262144 (256 KB). For more information see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue).
+        /// </summary>
         [Input("maxMessageSize")]
         public Input<int>? MaxMessageSize { get; set; }
 
+        /// <summary>
+        /// The length of time in seconds to retain a message. Valid values: from 60 seconds (1 minute) to 1209600 seconds (14 days). Default: 345600 (4 days). For more information see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue).
+        /// </summary>
         [Input("messageRetentionSeconds")]
         public Input<int>? MessageRetentionSeconds { get; set; }
 
+        /// <summary>
+        /// Queue name. The maximum length is 80 characters. You can use numbers, letters, underscores, and hyphens in the name. The name of a FIFO queue must end with the `.fifo` suffix. If not specified, random name will be generated. Conflicts with `name_prefix`. For more information see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue).
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Generates random name with the specified prefix. Conflicts with `name`.
+        /// </summary>
         [Input("namePrefix")]
         public Input<string>? NamePrefix { get; set; }
 
+        /// <summary>
+        /// Wait time for the [ReceiveMessage](https://cloud.yandex.com/docs/message-queue/api-ref/message/ReceiveMessage) method (for long polling), in seconds. Valid values: from 0 to 20 seconds. Default: 0. For more information about long polling see [documentation](https://cloud.yandex.com/docs/message-queue/concepts/long-polling).
+        /// </summary>
         [Input("receiveWaitTimeSeconds")]
         public Input<int>? ReceiveWaitTimeSeconds { get; set; }
 
+        /// <summary>
+        /// Message redrive policy in [Dead Letter Queue](https://cloud.yandex.com/docs/message-queue/concepts/dlq). The source queue and DLQ must be the same type: for FIFO queues, the DLQ must also be a FIFO queue. For more information about redrive policy see [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/CreateQueue). Also you can use example in this page.
+        /// </summary>
         [Input("redrivePolicy")]
         public Input<string>? RedrivePolicy { get; set; }
 
+        /// <summary>
+        /// ID of the region where the message queue is located at.
+        /// The default is 'ru-central1'.
+        /// </summary>
         [Input("regionId")]
         public Input<string>? RegionId { get; set; }
 
+        /// <summary>
+        /// The [secret key](https://cloud.yandex.com/docs/iam/operations/sa/create-access-key) to use when applying changes. If omitted, `ymq_secret_key` specified in provider config is used. For more information see [documentation](https://cloud.yandex.com/docs/message-queue/quickstart).
+        /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
+        /// <summary>
+        /// [Visibility timeout](https://cloud.yandex.com/docs/message-queue/concepts/visibility-timeout) for messages in a queue, specified in seconds. Valid values: from 0 to 43200 seconds (12 hours). Default: 30.
+        /// </summary>
         [Input("visibilityTimeoutSeconds")]
         public Input<int>? VisibilityTimeoutSeconds { get; set; }
 

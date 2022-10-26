@@ -10,26 +10,100 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates a virtual machine image resource for the Yandex Compute Cloud service from an existing
+// tarball. For more information, see [the official documentation](https://cloud.yandex.com/docs/compute/concepts/image).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewComputeImage(ctx, "foo-image", &yandex.ComputeImageArgs{
+//				SourceUrl: pulumi.String("https://storage.yandexcloud.net/lucky-images/kube-it.img"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewComputeInstance(ctx, "vm", &yandex.ComputeInstanceArgs{
+//				BootDisk: &ComputeInstanceBootDiskArgs{
+//					InitializeParams: &ComputeInstanceBootDiskInitializeParamsArgs{
+//						ImageId: foo_image.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A VM image can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/computeImage:ComputeImage web-image image_id
+//
+// ```
 type ComputeImage struct {
 	pulumi.CustomResourceState
 
-	CreatedAt      pulumi.StringOutput      `pulumi:"createdAt"`
-	Description    pulumi.StringPtrOutput   `pulumi:"description"`
-	Family         pulumi.StringPtrOutput   `pulumi:"family"`
-	FolderId       pulumi.StringOutput      `pulumi:"folderId"`
-	Labels         pulumi.StringMapOutput   `pulumi:"labels"`
-	MinDiskSize    pulumi.IntOutput         `pulumi:"minDiskSize"`
-	Name           pulumi.StringOutput      `pulumi:"name"`
-	OsType         pulumi.StringOutput      `pulumi:"osType"`
-	Pooled         pulumi.BoolOutput        `pulumi:"pooled"`
-	ProductIds     pulumi.StringArrayOutput `pulumi:"productIds"`
-	Size           pulumi.IntOutput         `pulumi:"size"`
-	SourceDisk     pulumi.StringOutput      `pulumi:"sourceDisk"`
-	SourceFamily   pulumi.StringOutput      `pulumi:"sourceFamily"`
-	SourceImage    pulumi.StringOutput      `pulumi:"sourceImage"`
-	SourceSnapshot pulumi.StringOutput      `pulumi:"sourceSnapshot"`
-	SourceUrl      pulumi.StringOutput      `pulumi:"sourceUrl"`
-	Status         pulumi.StringOutput      `pulumi:"status"`
+	// Creation timestamp of the image.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// An optional description of the image. Provide this property when
+	// you create a resource.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The name of the image family to which this image belongs.
+	Family pulumi.StringPtrOutput `pulumi:"family"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the image.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Minimum size in GB of the disk that will be created from this image.
+	MinDiskSize pulumi.IntOutput `pulumi:"minDiskSize"`
+	// Name of the disk.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Operating system type that is contained in the image. Possible values: "LINUX", "WINDOWS".
+	OsType pulumi.StringOutput `pulumi:"osType"`
+	// Optimize the image to create a disk.
+	Pooled pulumi.BoolOutput `pulumi:"pooled"`
+	// License IDs that indicate which licenses are
+	// attached to this image.
+	ProductIds pulumi.StringArrayOutput `pulumi:"productIds"`
+	// The size of the image, specified in GB.
+	Size pulumi.IntOutput `pulumi:"size"`
+	// The ID of a disk to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
+	SourceDisk pulumi.StringOutput `pulumi:"sourceDisk"`
+	// The name of the family to use as the source of the new image.
+	// The ID of the latest image is taken from the "standard-images" folder. Changing the family forces
+	// a new resource to be created.
+	SourceFamily pulumi.StringOutput `pulumi:"sourceFamily"`
+	// The ID of an existing image to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
+	SourceImage pulumi.StringOutput `pulumi:"sourceImage"`
+	// The ID of a snapshot to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
+	SourceSnapshot pulumi.StringOutput `pulumi:"sourceSnapshot"`
+	// The URL to use as the source of the
+	// image. Changing this URL forces a new resource to be created.
+	SourceUrl pulumi.StringOutput `pulumi:"sourceUrl"`
+	// The status of the image.
+	Status pulumi.StringOutput `pulumi:"status"`
 }
 
 // NewComputeImage registers a new resource with the given unique name, arguments, and options.
@@ -62,43 +136,95 @@ func GetComputeImage(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ComputeImage resources.
 type computeImageState struct {
-	CreatedAt      *string           `pulumi:"createdAt"`
-	Description    *string           `pulumi:"description"`
-	Family         *string           `pulumi:"family"`
-	FolderId       *string           `pulumi:"folderId"`
-	Labels         map[string]string `pulumi:"labels"`
-	MinDiskSize    *int              `pulumi:"minDiskSize"`
-	Name           *string           `pulumi:"name"`
-	OsType         *string           `pulumi:"osType"`
-	Pooled         *bool             `pulumi:"pooled"`
-	ProductIds     []string          `pulumi:"productIds"`
-	Size           *int              `pulumi:"size"`
-	SourceDisk     *string           `pulumi:"sourceDisk"`
-	SourceFamily   *string           `pulumi:"sourceFamily"`
-	SourceImage    *string           `pulumi:"sourceImage"`
-	SourceSnapshot *string           `pulumi:"sourceSnapshot"`
-	SourceUrl      *string           `pulumi:"sourceUrl"`
-	Status         *string           `pulumi:"status"`
+	// Creation timestamp of the image.
+	CreatedAt *string `pulumi:"createdAt"`
+	// An optional description of the image. Provide this property when
+	// you create a resource.
+	Description *string `pulumi:"description"`
+	// The name of the image family to which this image belongs.
+	Family *string `pulumi:"family"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the image.
+	Labels map[string]string `pulumi:"labels"`
+	// Minimum size in GB of the disk that will be created from this image.
+	MinDiskSize *int `pulumi:"minDiskSize"`
+	// Name of the disk.
+	Name *string `pulumi:"name"`
+	// Operating system type that is contained in the image. Possible values: "LINUX", "WINDOWS".
+	OsType *string `pulumi:"osType"`
+	// Optimize the image to create a disk.
+	Pooled *bool `pulumi:"pooled"`
+	// License IDs that indicate which licenses are
+	// attached to this image.
+	ProductIds []string `pulumi:"productIds"`
+	// The size of the image, specified in GB.
+	Size *int `pulumi:"size"`
+	// The ID of a disk to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
+	SourceDisk *string `pulumi:"sourceDisk"`
+	// The name of the family to use as the source of the new image.
+	// The ID of the latest image is taken from the "standard-images" folder. Changing the family forces
+	// a new resource to be created.
+	SourceFamily *string `pulumi:"sourceFamily"`
+	// The ID of an existing image to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
+	SourceImage *string `pulumi:"sourceImage"`
+	// The ID of a snapshot to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
+	SourceSnapshot *string `pulumi:"sourceSnapshot"`
+	// The URL to use as the source of the
+	// image. Changing this URL forces a new resource to be created.
+	SourceUrl *string `pulumi:"sourceUrl"`
+	// The status of the image.
+	Status *string `pulumi:"status"`
 }
 
 type ComputeImageState struct {
-	CreatedAt      pulumi.StringPtrInput
-	Description    pulumi.StringPtrInput
-	Family         pulumi.StringPtrInput
-	FolderId       pulumi.StringPtrInput
-	Labels         pulumi.StringMapInput
-	MinDiskSize    pulumi.IntPtrInput
-	Name           pulumi.StringPtrInput
-	OsType         pulumi.StringPtrInput
-	Pooled         pulumi.BoolPtrInput
-	ProductIds     pulumi.StringArrayInput
-	Size           pulumi.IntPtrInput
-	SourceDisk     pulumi.StringPtrInput
-	SourceFamily   pulumi.StringPtrInput
-	SourceImage    pulumi.StringPtrInput
+	// Creation timestamp of the image.
+	CreatedAt pulumi.StringPtrInput
+	// An optional description of the image. Provide this property when
+	// you create a resource.
+	Description pulumi.StringPtrInput
+	// The name of the image family to which this image belongs.
+	Family pulumi.StringPtrInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the image.
+	Labels pulumi.StringMapInput
+	// Minimum size in GB of the disk that will be created from this image.
+	MinDiskSize pulumi.IntPtrInput
+	// Name of the disk.
+	Name pulumi.StringPtrInput
+	// Operating system type that is contained in the image. Possible values: "LINUX", "WINDOWS".
+	OsType pulumi.StringPtrInput
+	// Optimize the image to create a disk.
+	Pooled pulumi.BoolPtrInput
+	// License IDs that indicate which licenses are
+	// attached to this image.
+	ProductIds pulumi.StringArrayInput
+	// The size of the image, specified in GB.
+	Size pulumi.IntPtrInput
+	// The ID of a disk to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
+	SourceDisk pulumi.StringPtrInput
+	// The name of the family to use as the source of the new image.
+	// The ID of the latest image is taken from the "standard-images" folder. Changing the family forces
+	// a new resource to be created.
+	SourceFamily pulumi.StringPtrInput
+	// The ID of an existing image to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
+	SourceImage pulumi.StringPtrInput
+	// The ID of a snapshot to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
 	SourceSnapshot pulumi.StringPtrInput
-	SourceUrl      pulumi.StringPtrInput
-	Status         pulumi.StringPtrInput
+	// The URL to use as the source of the
+	// image. Changing this URL forces a new resource to be created.
+	SourceUrl pulumi.StringPtrInput
+	// The status of the image.
+	Status pulumi.StringPtrInput
 }
 
 func (ComputeImageState) ElementType() reflect.Type {
@@ -106,38 +232,84 @@ func (ComputeImageState) ElementType() reflect.Type {
 }
 
 type computeImageArgs struct {
-	Description    *string           `pulumi:"description"`
-	Family         *string           `pulumi:"family"`
-	FolderId       *string           `pulumi:"folderId"`
-	Labels         map[string]string `pulumi:"labels"`
-	MinDiskSize    *int              `pulumi:"minDiskSize"`
-	Name           *string           `pulumi:"name"`
-	OsType         *string           `pulumi:"osType"`
-	Pooled         *bool             `pulumi:"pooled"`
-	ProductIds     []string          `pulumi:"productIds"`
-	SourceDisk     *string           `pulumi:"sourceDisk"`
-	SourceFamily   *string           `pulumi:"sourceFamily"`
-	SourceImage    *string           `pulumi:"sourceImage"`
-	SourceSnapshot *string           `pulumi:"sourceSnapshot"`
-	SourceUrl      *string           `pulumi:"sourceUrl"`
+	// An optional description of the image. Provide this property when
+	// you create a resource.
+	Description *string `pulumi:"description"`
+	// The name of the image family to which this image belongs.
+	Family *string `pulumi:"family"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the image.
+	Labels map[string]string `pulumi:"labels"`
+	// Minimum size in GB of the disk that will be created from this image.
+	MinDiskSize *int `pulumi:"minDiskSize"`
+	// Name of the disk.
+	Name *string `pulumi:"name"`
+	// Operating system type that is contained in the image. Possible values: "LINUX", "WINDOWS".
+	OsType *string `pulumi:"osType"`
+	// Optimize the image to create a disk.
+	Pooled *bool `pulumi:"pooled"`
+	// License IDs that indicate which licenses are
+	// attached to this image.
+	ProductIds []string `pulumi:"productIds"`
+	// The ID of a disk to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
+	SourceDisk *string `pulumi:"sourceDisk"`
+	// The name of the family to use as the source of the new image.
+	// The ID of the latest image is taken from the "standard-images" folder. Changing the family forces
+	// a new resource to be created.
+	SourceFamily *string `pulumi:"sourceFamily"`
+	// The ID of an existing image to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
+	SourceImage *string `pulumi:"sourceImage"`
+	// The ID of a snapshot to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
+	SourceSnapshot *string `pulumi:"sourceSnapshot"`
+	// The URL to use as the source of the
+	// image. Changing this URL forces a new resource to be created.
+	SourceUrl *string `pulumi:"sourceUrl"`
 }
 
 // The set of arguments for constructing a ComputeImage resource.
 type ComputeImageArgs struct {
-	Description    pulumi.StringPtrInput
-	Family         pulumi.StringPtrInput
-	FolderId       pulumi.StringPtrInput
-	Labels         pulumi.StringMapInput
-	MinDiskSize    pulumi.IntPtrInput
-	Name           pulumi.StringPtrInput
-	OsType         pulumi.StringPtrInput
-	Pooled         pulumi.BoolPtrInput
-	ProductIds     pulumi.StringArrayInput
-	SourceDisk     pulumi.StringPtrInput
-	SourceFamily   pulumi.StringPtrInput
-	SourceImage    pulumi.StringPtrInput
+	// An optional description of the image. Provide this property when
+	// you create a resource.
+	Description pulumi.StringPtrInput
+	// The name of the image family to which this image belongs.
+	Family pulumi.StringPtrInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the image.
+	Labels pulumi.StringMapInput
+	// Minimum size in GB of the disk that will be created from this image.
+	MinDiskSize pulumi.IntPtrInput
+	// Name of the disk.
+	Name pulumi.StringPtrInput
+	// Operating system type that is contained in the image. Possible values: "LINUX", "WINDOWS".
+	OsType pulumi.StringPtrInput
+	// Optimize the image to create a disk.
+	Pooled pulumi.BoolPtrInput
+	// License IDs that indicate which licenses are
+	// attached to this image.
+	ProductIds pulumi.StringArrayInput
+	// The ID of a disk to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
+	SourceDisk pulumi.StringPtrInput
+	// The name of the family to use as the source of the new image.
+	// The ID of the latest image is taken from the "standard-images" folder. Changing the family forces
+	// a new resource to be created.
+	SourceFamily pulumi.StringPtrInput
+	// The ID of an existing image to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
+	SourceImage pulumi.StringPtrInput
+	// The ID of a snapshot to use as the source of the
+	// image. Changing this ID forces a new resource to be created.
 	SourceSnapshot pulumi.StringPtrInput
-	SourceUrl      pulumi.StringPtrInput
+	// The URL to use as the source of the
+	// image. Changing this URL forces a new resource to be created.
+	SourceUrl pulumi.StringPtrInput
 }
 
 func (ComputeImageArgs) ElementType() reflect.Type {
@@ -227,70 +399,96 @@ func (o ComputeImageOutput) ToComputeImageOutputWithContext(ctx context.Context)
 	return o
 }
 
+// Creation timestamp of the image.
 func (o ComputeImageOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// An optional description of the image. Provide this property when
+// you create a resource.
 func (o ComputeImageOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The name of the image family to which this image belongs.
 func (o ComputeImageOutput) Family() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringPtrOutput { return v.Family }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the folder that the resource belongs to. If it
+// is not provided, the default provider folder is used.
 func (o ComputeImageOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the image.
 func (o ComputeImageOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Minimum size in GB of the disk that will be created from this image.
 func (o ComputeImageOutput) MinDiskSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.IntOutput { return v.MinDiskSize }).(pulumi.IntOutput)
 }
 
+// Name of the disk.
 func (o ComputeImageOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Operating system type that is contained in the image. Possible values: "LINUX", "WINDOWS".
 func (o ComputeImageOutput) OsType() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringOutput { return v.OsType }).(pulumi.StringOutput)
 }
 
+// Optimize the image to create a disk.
 func (o ComputeImageOutput) Pooled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.BoolOutput { return v.Pooled }).(pulumi.BoolOutput)
 }
 
+// License IDs that indicate which licenses are
+// attached to this image.
 func (o ComputeImageOutput) ProductIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringArrayOutput { return v.ProductIds }).(pulumi.StringArrayOutput)
 }
 
+// The size of the image, specified in GB.
 func (o ComputeImageOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
 }
 
+// The ID of a disk to use as the source of the
+// image. Changing this ID forces a new resource to be created.
 func (o ComputeImageOutput) SourceDisk() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringOutput { return v.SourceDisk }).(pulumi.StringOutput)
 }
 
+// The name of the family to use as the source of the new image.
+// The ID of the latest image is taken from the "standard-images" folder. Changing the family forces
+// a new resource to be created.
 func (o ComputeImageOutput) SourceFamily() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringOutput { return v.SourceFamily }).(pulumi.StringOutput)
 }
 
+// The ID of an existing image to use as the source of the
+// image. Changing this ID forces a new resource to be created.
 func (o ComputeImageOutput) SourceImage() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringOutput { return v.SourceImage }).(pulumi.StringOutput)
 }
 
+// The ID of a snapshot to use as the source of the
+// image. Changing this ID forces a new resource to be created.
 func (o ComputeImageOutput) SourceSnapshot() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringOutput { return v.SourceSnapshot }).(pulumi.StringOutput)
 }
 
+// The URL to use as the source of the
+// image. Changing this URL forces a new resource to be created.
 func (o ComputeImageOutput) SourceUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringOutput { return v.SourceUrl }).(pulumi.StringOutput)
 }
 
+// The status of the image.
 func (o ComputeImageOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeImage) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

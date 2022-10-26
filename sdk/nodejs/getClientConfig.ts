@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Get attributes used by provider to configure client connection.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const client = yandex.getClientConfig({});
+ * const kubernetes = yandex.getKubernetesCluster({
+ *     name: "kubernetes",
+ * });
+ * ```
+ */
 export function getClientConfig(opts?: pulumi.InvokeOptions): Promise<GetClientConfigResult> {
     if (!opts) {
         opts = {}
@@ -18,12 +33,24 @@ export function getClientConfig(opts?: pulumi.InvokeOptions): Promise<GetClientC
  * A collection of values returned by getClientConfig.
  */
 export interface GetClientConfigResult {
+    /**
+     * The ID of the cloud that the provider is connecting to.
+     */
     readonly cloudId: string;
+    /**
+     * The ID of the folder in which we operate.
+     */
     readonly folderId: string;
+    /**
+     * A short-lived token that can be used for authentication in a Kubernetes cluster.
+     */
     readonly iamToken: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The default availability zone.
+     */
     readonly zone: string;
 }

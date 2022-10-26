@@ -11,13 +11,70 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## yandex\_container\_registry\_iam\_binding
+//
+// Allows creation and management of a single binding within IAM policy for
+// an existing Yandex Container Registry.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewContainerRegistry(ctx, "your-registry", &yandex.ContainerRegistryArgs{
+//				FolderId: pulumi.String("your-folder-id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewContainerRegistryIamBinding(ctx, "puller", &yandex.ContainerRegistryIamBindingArgs{
+//				RegistryId: your_registry.ID(),
+//				Role:       pulumi.String("container-registry.images.puller"),
+//				Members: pulumi.StringArray{
+//					pulumi.String("system:allUsers"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `registry_id` and role, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/containerRegistryIamBinding:ContainerRegistryIamBinding puller "registry_id container-registry.images.puller"
+//
+// ```
 type ContainerRegistryIamBinding struct {
 	pulumi.CustomResourceState
 
-	Members    pulumi.StringArrayOutput `pulumi:"members"`
-	RegistryId pulumi.StringOutput      `pulumi:"registryId"`
-	Role       pulumi.StringOutput      `pulumi:"role"`
-	SleepAfter pulumi.IntPtrOutput      `pulumi:"sleepAfter"`
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+	Members pulumi.StringArrayOutput `pulumi:"members"`
+	// The [Yandex Container Registry](https://cloud.yandex.com/docs/container-registry/) ID to apply a binding to.
+	RegistryId pulumi.StringOutput `pulumi:"registryId"`
+	// The role that should be applied. See [roles](https://cloud.yandex.com/docs/container-registry/security/).
+	Role       pulumi.StringOutput `pulumi:"role"`
+	SleepAfter pulumi.IntPtrOutput `pulumi:"sleepAfter"`
 }
 
 // NewContainerRegistryIamBinding registers a new resource with the given unique name, arguments, and options.
@@ -59,15 +116,29 @@ func GetContainerRegistryIamBinding(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ContainerRegistryIamBinding resources.
 type containerRegistryIamBindingState struct {
-	Members    []string `pulumi:"members"`
-	RegistryId *string  `pulumi:"registryId"`
-	Role       *string  `pulumi:"role"`
-	SleepAfter *int     `pulumi:"sleepAfter"`
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+	Members []string `pulumi:"members"`
+	// The [Yandex Container Registry](https://cloud.yandex.com/docs/container-registry/) ID to apply a binding to.
+	RegistryId *string `pulumi:"registryId"`
+	// The role that should be applied. See [roles](https://cloud.yandex.com/docs/container-registry/security/).
+	Role       *string `pulumi:"role"`
+	SleepAfter *int    `pulumi:"sleepAfter"`
 }
 
 type ContainerRegistryIamBindingState struct {
-	Members    pulumi.StringArrayInput
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+	Members pulumi.StringArrayInput
+	// The [Yandex Container Registry](https://cloud.yandex.com/docs/container-registry/) ID to apply a binding to.
 	RegistryId pulumi.StringPtrInput
+	// The role that should be applied. See [roles](https://cloud.yandex.com/docs/container-registry/security/).
 	Role       pulumi.StringPtrInput
 	SleepAfter pulumi.IntPtrInput
 }
@@ -77,16 +148,30 @@ func (ContainerRegistryIamBindingState) ElementType() reflect.Type {
 }
 
 type containerRegistryIamBindingArgs struct {
-	Members    []string `pulumi:"members"`
-	RegistryId string   `pulumi:"registryId"`
-	Role       string   `pulumi:"role"`
-	SleepAfter *int     `pulumi:"sleepAfter"`
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+	Members []string `pulumi:"members"`
+	// The [Yandex Container Registry](https://cloud.yandex.com/docs/container-registry/) ID to apply a binding to.
+	RegistryId string `pulumi:"registryId"`
+	// The role that should be applied. See [roles](https://cloud.yandex.com/docs/container-registry/security/).
+	Role       string `pulumi:"role"`
+	SleepAfter *int   `pulumi:"sleepAfter"`
 }
 
 // The set of arguments for constructing a ContainerRegistryIamBinding resource.
 type ContainerRegistryIamBindingArgs struct {
-	Members    pulumi.StringArrayInput
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+	Members pulumi.StringArrayInput
+	// The [Yandex Container Registry](https://cloud.yandex.com/docs/container-registry/) ID to apply a binding to.
 	RegistryId pulumi.StringInput
+	// The role that should be applied. See [roles](https://cloud.yandex.com/docs/container-registry/security/).
 	Role       pulumi.StringInput
 	SleepAfter pulumi.IntPtrInput
 }
@@ -178,14 +263,21 @@ func (o ContainerRegistryIamBindingOutput) ToContainerRegistryIamBindingOutputWi
 	return o
 }
 
+// Identities that will be granted the privilege in `role`.
+// Each entry can have one of the following values:
+// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+// * **serviceAccount:{service_account_id}**: A unique service account ID.
+// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 func (o ContainerRegistryIamBindingOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ContainerRegistryIamBinding) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
 }
 
+// The [Yandex Container Registry](https://cloud.yandex.com/docs/container-registry/) ID to apply a binding to.
 func (o ContainerRegistryIamBindingOutput) RegistryId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerRegistryIamBinding) pulumi.StringOutput { return v.RegistryId }).(pulumi.StringOutput)
 }
 
+// The role that should be applied. See [roles](https://cloud.yandex.com/docs/container-registry/security/).
 func (o ContainerRegistryIamBindingOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerRegistryIamBinding) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
 }

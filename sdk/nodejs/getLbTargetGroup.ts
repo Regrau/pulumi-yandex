@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Load Balancer target group. For more information, see
+ * [Yandex.Cloud Load Balancer](https://cloud.yandex.com/docs/load-balancer/quickstart).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const foo = pulumi.output(yandex.getLbTargetGroup({
+ *     targetGroupId: "my-target-group-id",
+ * }));
+ * ```
+ *
+ * This data source is used to define [Load Balancer Target Groups] that can be used by other resources.
+ */
 export function getLbTargetGroup(args?: GetLbTargetGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetLbTargetGroupResult> {
     args = args || {};
     if (!opts) {
@@ -23,8 +38,17 @@ export function getLbTargetGroup(args?: GetLbTargetGroupArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getLbTargetGroup.
  */
 export interface GetLbTargetGroupArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * - Name of the Target Group.
+     */
     name?: string;
+    /**
+     * Target Group ID.
+     */
     targetGroupId?: string;
 }
 
@@ -32,13 +56,24 @@ export interface GetLbTargetGroupArgs {
  * A collection of values returned by getLbTargetGroup.
  */
 export interface GetLbTargetGroupResult {
+    /**
+     * Creation timestamp of this target group.
+     */
     readonly createdAt: string;
+    /**
+     * Description of the target group.
+     */
     readonly description: string;
     readonly folderId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Labels to assign to this target group.
+     * * `target.0.address` - IP address of the target.
+     * * `target.0.subnet_id` - ID of the subnet that targets are connected to.
+     */
     readonly labels: {[key: string]: string};
     readonly name: string;
     readonly targetGroupId: string;
@@ -53,7 +88,16 @@ export function getLbTargetGroupOutput(args?: GetLbTargetGroupOutputArgs, opts?:
  * A collection of arguments for invoking getLbTargetGroup.
  */
 export interface GetLbTargetGroupOutputArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * - Name of the Target Group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Target Group ID.
+     */
     targetGroupId?: pulumi.Input<string>;
 }

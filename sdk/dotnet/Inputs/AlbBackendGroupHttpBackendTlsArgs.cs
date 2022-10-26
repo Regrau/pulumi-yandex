@@ -12,6 +12,11 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbBackendGroupHttpBackendTlsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+        /// * `validation_context.0.trusted_ca_id` - (Optional) Trusted CA certificate ID in the Certificate Manager.
+        /// * `validation_context.0.trusted_ca_bytes` - (Optional) PEM-encoded trusted CA certificate chain.
+        /// </summary>
         [Input("sni")]
         public Input<string>? Sni { get; set; }
 

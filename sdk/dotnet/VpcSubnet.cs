@@ -9,39 +9,116 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Manages a subnet within the Yandex.Cloud. For more information, see
+    /// [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/network#subnet).
+    /// 
+    /// * How-to Guides
+    ///     * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+    ///     * [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var lab_net = new Yandex.VpcNetwork("lab-net");
+    /// 
+    ///     var lab_subnet_a = new Yandex.VpcSubnet("lab-subnet-a", new()
+    ///     {
+    ///         NetworkId = lab_net.Id,
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.2.0.0/16",
+    ///         },
+    ///         Zone = "ru-central1-a",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// A subnet can be imported using the `id` of the resource, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/vpcSubnet:VpcSubnet default subnet_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/vpcSubnet:VpcSubnet")]
     public partial class VpcSubnet : global::Pulumi.CustomResource
     {
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// An optional description of the subnet. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Options for DHCP client. The structure is documented below.
+        /// </summary>
         [Output("dhcpOptions")]
         public Output<Outputs.VpcSubnetDhcpOptions?> DhcpOptions { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of the folder to which the resource belongs.
+        /// If omitted, the provider folder is used.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// Labels to assign to this subnet. A list of key/value pairs.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the subnet. Provided by the client when the subnet is created.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the network this subnet belongs to.
+        /// Only networks that are in the distributed mode can have subnets.
+        /// </summary>
         [Output("networkId")]
         public Output<string> NetworkId { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of the route table to assign to this subnet. Assigned route table should
+        /// belong to the same network as this subnet.
+        /// </summary>
         [Output("routeTableId")]
         public Output<string?> RouteTableId { get; private set; } = null!;
 
+        /// <summary>
+        /// A list of blocks of internal IPv4 addresses that are owned by this subnet.
+        /// Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+        /// Blocks of addresses must be unique and non-overlapping within a network.
+        /// Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
+        /// </summary>
         [Output("v4CidrBlocks")]
         public Output<ImmutableArray<string>> V4CidrBlocks { get; private set; } = null!;
 
+        /// <summary>
+        /// An optional list of blocks of IPv6 addresses that are owned by this subnet.
+        /// </summary>
         [Output("v6CidrBlocks")]
         public Output<ImmutableArray<string>> V6CidrBlocks { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the Yandex.Cloud zone for this subnet.
+        /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
 
@@ -68,7 +145,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -92,40 +169,76 @@ namespace Pulumi.Yandex
 
     public sealed class VpcSubnetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// An optional description of the subnet. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Options for DHCP client. The structure is documented below.
+        /// </summary>
         [Input("dhcpOptions")]
         public Input<Inputs.VpcSubnetDhcpOptionsArgs>? DhcpOptions { get; set; }
 
+        /// <summary>
+        /// The ID of the folder to which the resource belongs.
+        /// If omitted, the provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this subnet. A list of key/value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the subnet. Provided by the client when the subnet is created.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the network this subnet belongs to.
+        /// Only networks that are in the distributed mode can have subnets.
+        /// </summary>
         [Input("networkId", required: true)]
         public Input<string> NetworkId { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of the route table to assign to this subnet. Assigned route table should
+        /// belong to the same network as this subnet.
+        /// </summary>
         [Input("routeTableId")]
         public Input<string>? RouteTableId { get; set; }
 
         [Input("v4CidrBlocks", required: true)]
         private InputList<string>? _v4CidrBlocks;
+
+        /// <summary>
+        /// A list of blocks of internal IPv4 addresses that are owned by this subnet.
+        /// Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+        /// Blocks of addresses must be unique and non-overlapping within a network.
+        /// Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
+        /// </summary>
         public InputList<string> V4CidrBlocks
         {
             get => _v4CidrBlocks ?? (_v4CidrBlocks = new InputList<string>());
             set => _v4CidrBlocks = value;
         }
 
+        /// <summary>
+        /// Name of the Yandex.Cloud zone for this subnet.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
@@ -140,34 +253,67 @@ namespace Pulumi.Yandex
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// An optional description of the subnet. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Options for DHCP client. The structure is documented below.
+        /// </summary>
         [Input("dhcpOptions")]
         public Input<Inputs.VpcSubnetDhcpOptionsGetArgs>? DhcpOptions { get; set; }
 
+        /// <summary>
+        /// The ID of the folder to which the resource belongs.
+        /// If omitted, the provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this subnet. A list of key/value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the subnet. Provided by the client when the subnet is created.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the network this subnet belongs to.
+        /// Only networks that are in the distributed mode can have subnets.
+        /// </summary>
         [Input("networkId")]
         public Input<string>? NetworkId { get; set; }
 
+        /// <summary>
+        /// The ID of the route table to assign to this subnet. Assigned route table should
+        /// belong to the same network as this subnet.
+        /// </summary>
         [Input("routeTableId")]
         public Input<string>? RouteTableId { get; set; }
 
         [Input("v4CidrBlocks")]
         private InputList<string>? _v4CidrBlocks;
+
+        /// <summary>
+        /// A list of blocks of internal IPv4 addresses that are owned by this subnet.
+        /// Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+        /// Blocks of addresses must be unique and non-overlapping within a network.
+        /// Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
+        /// </summary>
         public InputList<string> V4CidrBlocks
         {
             get => _v4CidrBlocks ?? (_v4CidrBlocks = new InputList<string>());
@@ -176,12 +322,19 @@ namespace Pulumi.Yandex
 
         [Input("v6CidrBlocks")]
         private InputList<string>? _v6CidrBlocks;
+
+        /// <summary>
+        /// An optional list of blocks of IPv6 addresses that are owned by this subnet.
+        /// </summary>
         public InputList<string> V6CidrBlocks
         {
             get => _v6CidrBlocks ?? (_v6CidrBlocks = new InputList<string>());
             set => _v6CidrBlocks = value;
         }
 
+        /// <summary>
+        /// Name of the Yandex.Cloud zone for this subnet.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 

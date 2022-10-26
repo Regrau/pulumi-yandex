@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerListenerStream
     {
+        /// <summary>
+        /// HTTP handler that sets plaintext HTTP router. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbLoadBalancerListenerStreamHandler? Handler;
 
         [OutputConstructor]

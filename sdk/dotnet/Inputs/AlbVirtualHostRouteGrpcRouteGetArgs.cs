@@ -14,15 +14,25 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("grpcMatches")]
         private InputList<Inputs.AlbVirtualHostRouteGrpcRouteGrpcMatchGetArgs>? _grpcMatches;
+
+        /// <summary>
+        /// Checks "/" prefix by default. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbVirtualHostRouteGrpcRouteGrpcMatchGetArgs> GrpcMatches
         {
             get => _grpcMatches ?? (_grpcMatches = new InputList<Inputs.AlbVirtualHostRouteGrpcRouteGrpcMatchGetArgs>());
             set => _grpcMatches = value;
         }
 
+        /// <summary>
+        /// GRPC route action resource. The structure is documented below.
+        /// </summary>
         [Input("grpcRouteAction")]
         public Input<Inputs.AlbVirtualHostRouteGrpcRouteGrpcRouteActionGetArgs>? GrpcRouteAction { get; set; }
 
+        /// <summary>
+        /// GRPC status response action resource. The structure is documented below.
+        /// </summary>
         [Input("grpcStatusResponseAction")]
         public Input<Inputs.AlbVirtualHostRouteGrpcRouteGrpcStatusResponseActionGetArgs>? GrpcStatusResponseAction { get; set; }
 

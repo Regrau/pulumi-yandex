@@ -47,11 +47,17 @@ class GetComputePlacementGroupResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Placement group creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> Optional[str]:
+        """
+        Description of the group.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -75,6 +81,9 @@ class GetComputePlacementGroupResult:
     @property
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        A set of key/value label pairs assigned to the group.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -105,7 +114,25 @@ def get_compute_placement_group(description: Optional[str] = None,
                                 name: Optional[str] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetComputePlacementGroupResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Compute Placement group. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/compute/concepts/placement-groups).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_group = yandex.get_compute_placement_group(group_id="some_group_id")
+    pulumi.export("placementGroupName", my_group.name)
+    ```
+
+
+    :param str description: Description of the group.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str group_id: The ID of a specific group.
+    :param Mapping[str, str] labels: A set of key/value label pairs assigned to the group.
+    :param str name: Name of the group.
     """
     __args__ = dict()
     __args__['description'] = description
@@ -134,6 +161,24 @@ def get_compute_placement_group_output(description: Optional[pulumi.Input[Option
                                        name: Optional[pulumi.Input[Optional[str]]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetComputePlacementGroupResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Compute Placement group. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/compute/concepts/placement-groups).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_group = yandex.get_compute_placement_group(group_id="some_group_id")
+    pulumi.export("placementGroupName", my_group.name)
+    ```
+
+
+    :param str description: Description of the group.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str group_id: The ID of a specific group.
+    :param Mapping[str, str] labels: A set of key/value label pairs assigned to the group.
+    :param str name: Name of the group.
     """
     ...

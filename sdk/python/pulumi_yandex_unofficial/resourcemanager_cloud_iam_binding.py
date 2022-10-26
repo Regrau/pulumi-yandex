@@ -20,6 +20,14 @@ class ResourcemanagerCloudIamBindingArgs:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a ResourcemanagerCloudIamBinding resource.
+        :param pulumi.Input[str] cloud_id: ID of the cloud to attach the policy to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: An array of identities that will be granted the privilege in the `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        :param pulumi.Input[str] role: The role that should be assigned. Only one
+               `ResourcemanagerCloudIamBinding` can be used per role.
         """
         pulumi.set(__self__, "cloud_id", cloud_id)
         pulumi.set(__self__, "members", members)
@@ -30,6 +38,9 @@ class ResourcemanagerCloudIamBindingArgs:
     @property
     @pulumi.getter(name="cloudId")
     def cloud_id(self) -> pulumi.Input[str]:
+        """
+        ID of the cloud to attach the policy to.
+        """
         return pulumi.get(self, "cloud_id")
 
     @cloud_id.setter
@@ -39,6 +50,13 @@ class ResourcemanagerCloudIamBindingArgs:
     @property
     @pulumi.getter
     def members(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        An array of identities that will be granted the privilege in the `role`.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        """
         return pulumi.get(self, "members")
 
     @members.setter
@@ -48,6 +66,10 @@ class ResourcemanagerCloudIamBindingArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        The role that should be assigned. Only one
+        `ResourcemanagerCloudIamBinding` can be used per role.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -73,6 +95,14 @@ class _ResourcemanagerCloudIamBindingState:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering ResourcemanagerCloudIamBinding resources.
+        :param pulumi.Input[str] cloud_id: ID of the cloud to attach the policy to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: An array of identities that will be granted the privilege in the `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        :param pulumi.Input[str] role: The role that should be assigned. Only one
+               `ResourcemanagerCloudIamBinding` can be used per role.
         """
         if cloud_id is not None:
             pulumi.set(__self__, "cloud_id", cloud_id)
@@ -86,6 +116,9 @@ class _ResourcemanagerCloudIamBindingState:
     @property
     @pulumi.getter(name="cloudId")
     def cloud_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the cloud to attach the policy to.
+        """
         return pulumi.get(self, "cloud_id")
 
     @cloud_id.setter
@@ -95,6 +128,13 @@ class _ResourcemanagerCloudIamBindingState:
     @property
     @pulumi.getter
     def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        An array of identities that will be granted the privilege in the `role`.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        """
         return pulumi.get(self, "members")
 
     @members.setter
@@ -104,6 +144,10 @@ class _ResourcemanagerCloudIamBindingState:
     @property
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role that should be assigned. Only one
+        `ResourcemanagerCloudIamBinding` can be used per role.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -131,9 +175,41 @@ class ResourcemanagerCloudIamBinding(pulumi.CustomResource):
                  sleep_after: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a ResourcemanagerCloudIamBinding resource with the given unique name, props, and options.
+        Allows creation and management of a single binding within IAM policy for
+        an existing Yandex Resource Manager cloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex as yandex
+        import pulumi_yandex_unofficial as yandex
+
+        project1 = yandex.get_resourcemanager_cloud(name="Project 1")
+        admin = yandex.ResourcemanagerCloudIamBinding("admin",
+            cloud_id=project1.id,
+            members=["userAccount:some_user_id"],
+            role="editor")
+        ```
+
+        ## Import
+
+        IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `cloud_id` and role, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/resourcemanagerCloudIamBinding:ResourcemanagerCloudIamBinding viewer "cloud_id viewer"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cloud_id: ID of the cloud to attach the policy to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: An array of identities that will be granted the privilege in the `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        :param pulumi.Input[str] role: The role that should be assigned. Only one
+               `ResourcemanagerCloudIamBinding` can be used per role.
         """
         ...
     @overload
@@ -142,7 +218,31 @@ class ResourcemanagerCloudIamBinding(pulumi.CustomResource):
                  args: ResourcemanagerCloudIamBindingArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ResourcemanagerCloudIamBinding resource with the given unique name, props, and options.
+        Allows creation and management of a single binding within IAM policy for
+        an existing Yandex Resource Manager cloud.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex as yandex
+        import pulumi_yandex_unofficial as yandex
+
+        project1 = yandex.get_resourcemanager_cloud(name="Project 1")
+        admin = yandex.ResourcemanagerCloudIamBinding("admin",
+            cloud_id=project1.id,
+            members=["userAccount:some_user_id"],
+            role="editor")
+        ```
+
+        ## Import
+
+        IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `cloud_id` and role, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/resourcemanagerCloudIamBinding:ResourcemanagerCloudIamBinding viewer "cloud_id viewer"
+        ```
+
         :param str resource_name: The name of the resource.
         :param ResourcemanagerCloudIamBindingArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,6 +302,14 @@ class ResourcemanagerCloudIamBinding(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cloud_id: ID of the cloud to attach the policy to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: An array of identities that will be granted the privilege in the `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        :param pulumi.Input[str] role: The role that should be assigned. Only one
+               `ResourcemanagerCloudIamBinding` can be used per role.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -216,16 +324,30 @@ class ResourcemanagerCloudIamBinding(pulumi.CustomResource):
     @property
     @pulumi.getter(name="cloudId")
     def cloud_id(self) -> pulumi.Output[str]:
+        """
+        ID of the cloud to attach the policy to.
+        """
         return pulumi.get(self, "cloud_id")
 
     @property
     @pulumi.getter
     def members(self) -> pulumi.Output[Sequence[str]]:
+        """
+        An array of identities that will be granted the privilege in the `role`.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        """
         return pulumi.get(self, "members")
 
     @property
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
+        """
+        The role that should be assigned. Only one
+        `ResourcemanagerCloudIamBinding` can be used per role.
+        """
         return pulumi.get(self, "role")
 
     @property

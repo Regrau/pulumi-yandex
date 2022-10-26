@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremise
     {
+        /// <summary>
+        /// Host names of the replica set.
+        /// </summary>
         public readonly ImmutableArray<string> Hosts;
+        /// <summary>
+        /// TCP Port number.
+        /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// Replica set name.
+        /// </summary>
         public readonly string? ReplicaSet;
+        /// <summary>
+        /// TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsMode? TlsMode;
 
         [OutputConstructor]

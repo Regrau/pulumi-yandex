@@ -54,11 +54,17 @@ class GetVpcRouteTableResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of this route table.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the route table.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -77,6 +83,9 @@ class GetVpcRouteTableResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        Labels to assign to this route table.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -87,6 +96,9 @@ class GetVpcRouteTableResult:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
+        """
+        ID of the network this route table belongs to.
+        """
         return pulumi.get(self, "network_id")
 
     @property
@@ -97,6 +109,9 @@ class GetVpcRouteTableResult:
     @property
     @pulumi.getter(name="staticRoutes")
     def static_routes(self) -> Sequence['outputs.GetVpcRouteTableStaticRouteResult']:
+        """
+        List of static route records of the route table. Structure is documented below.
+        """
         return pulumi.get(self, "static_routes")
 
 
@@ -122,7 +137,22 @@ def get_vpc_route_table(folder_id: Optional[str] = None,
                         route_table_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcRouteTableResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex VPC route table. For more information, see
+    [Yandex.Cloud VPC](https://cloud.yandex.com/docs/vpc/concepts/index).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    this = yandex.get_vpc_route_table(route_table_id="my-rt-id")
+    ```
+
+    This data source is used to define [VPC Route Table] that can be used by other resources.
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: - Name of the route table.
+    :param str route_table_id: Route table ID.
     """
     __args__ = dict()
     __args__['folderId'] = folder_id
@@ -149,6 +179,21 @@ def get_vpc_route_table_output(folder_id: Optional[pulumi.Input[Optional[str]]] 
                                route_table_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcRouteTableResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex VPC route table. For more information, see
+    [Yandex.Cloud VPC](https://cloud.yandex.com/docs/vpc/concepts/index).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    this = yandex.get_vpc_route_table(route_table_id="my-rt-id")
+    ```
+
+    This data source is used to define [VPC Route Table] that can be used by other resources.
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: - Name of the route table.
+    :param str route_table_id: Route table ID.
     """
     ...

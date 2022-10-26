@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstanceGroupInstanceTemplateNetworkSetting
     {
+        /// <summary>
+        /// Network acceleration type. By default a network is in `STANDARD` mode.
+        /// </summary>
         public readonly string? Type;
 
         [OutputConstructor]

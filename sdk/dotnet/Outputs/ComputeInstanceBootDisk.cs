@@ -13,10 +13,28 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstanceBootDisk
     {
+        /// <summary>
+        /// Whether the disk is auto-deleted when the instance
+        /// is deleted. The default value is false.
+        /// </summary>
         public readonly bool? AutoDelete;
+        /// <summary>
+        /// Name that can be used to access an attached disk
+        /// under `/dev/disk/by-id/`.
+        /// </summary>
         public readonly string? DeviceName;
+        /// <summary>
+        /// ID of the disk that is attached to the instance.
+        /// </summary>
         public readonly string? DiskId;
+        /// <summary>
+        /// Parameters for a new disk that will be created
+        /// alongside the new instance. Either `initialize_params` or `disk_id` must be set. The structure is documented below.
+        /// </summary>
         public readonly Outputs.ComputeInstanceBootDiskInitializeParams? InitializeParams;
+        /// <summary>
+        /// Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        /// </summary>
         public readonly string? Mode;
 
         [OutputConstructor]

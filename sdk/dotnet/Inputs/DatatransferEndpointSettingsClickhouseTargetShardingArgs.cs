@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsClickhouseTargetShardingArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Shard data by the hash value of the specified column. The structure is documented below.
+        /// </summary>
         [Input("columnValueHash")]
         public Input<Inputs.DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHashArgs>? ColumnValueHash { get; set; }
 
+        /// <summary>
+        /// Shard data by ID of the transfer.
+        /// </summary>
         [Input("transferId")]
         public Input<Inputs.DatatransferEndpointSettingsClickhouseTargetShardingTransferIdArgs>? TransferId { get; set; }
 

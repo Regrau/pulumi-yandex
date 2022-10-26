@@ -11,30 +11,70 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates a Yandex Kubernetes Cluster.
+//
+// ## Import
+//
+// A Managed Kubernetes cluster can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/kubernetesCluster:KubernetesCluster default cluster_id
+//
+// ```
 type KubernetesCluster struct {
 	pulumi.CustomResourceState
 
-	ClusterIpv4Range      pulumi.StringOutput                             `pulumi:"clusterIpv4Range"`
-	ClusterIpv6Range      pulumi.StringOutput                             `pulumi:"clusterIpv6Range"`
-	CreatedAt             pulumi.StringOutput                             `pulumi:"createdAt"`
-	Description           pulumi.StringOutput                             `pulumi:"description"`
-	FolderId              pulumi.StringOutput                             `pulumi:"folderId"`
-	Health                pulumi.StringOutput                             `pulumi:"health"`
-	KmsProvider           KubernetesClusterKmsProviderPtrOutput           `pulumi:"kmsProvider"`
-	Labels                pulumi.StringMapOutput                          `pulumi:"labels"`
-	LogGroupId            pulumi.StringOutput                             `pulumi:"logGroupId"`
-	Master                KubernetesClusterMasterOutput                   `pulumi:"master"`
-	Name                  pulumi.StringOutput                             `pulumi:"name"`
-	NetworkId             pulumi.StringOutput                             `pulumi:"networkId"`
+	// CIDR block. IP range for allocating pod addresses.
+	// It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+	// set up for this CIDR blocks in node subnets.
+	ClusterIpv4Range pulumi.StringOutput `pulumi:"clusterIpv4Range"`
+	// Identical to clusterIpv4Range but for IPv6 protocol.
+	ClusterIpv6Range pulumi.StringOutput `pulumi:"clusterIpv6Range"`
+	// (Computed) The Kubernetes cluster creation timestamp.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// A description of the Kubernetes cluster.
+	Description pulumi.StringOutput `pulumi:"description"`
+	// The ID of the folder that the Kubernetes cluster belongs to.
+	// If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// (Computed) Health of the Kubernetes cluster.
+	Health pulumi.StringOutput `pulumi:"health"`
+	// cluster KMS provider parameters.
+	KmsProvider KubernetesClusterKmsProviderPtrOutput `pulumi:"kmsProvider"`
+	// A set of key/value label pairs to assign to the Kubernetes cluster.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+	LogGroupId pulumi.StringOutput `pulumi:"logGroupId"`
+	// Kubernetes master configuration options. The structure is documented below.
+	Master KubernetesClusterMasterOutput `pulumi:"master"`
+	// Name of a specific Kubernetes cluster.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The ID of the cluster network.
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
+	// (Optional) Network Implementation options. The structure is documented below.
 	NetworkImplementation KubernetesClusterNetworkImplementationPtrOutput `pulumi:"networkImplementation"`
-	NetworkPolicyProvider pulumi.StringPtrOutput                          `pulumi:"networkPolicyProvider"`
-	NodeIpv4CidrMaskSize  pulumi.IntPtrOutput                             `pulumi:"nodeIpv4CidrMaskSize"`
-	NodeServiceAccountId  pulumi.StringOutput                             `pulumi:"nodeServiceAccountId"`
-	ReleaseChannel        pulumi.StringOutput                             `pulumi:"releaseChannel"`
-	ServiceAccountId      pulumi.StringOutput                             `pulumi:"serviceAccountId"`
-	ServiceIpv4Range      pulumi.StringOutput                             `pulumi:"serviceIpv4Range"`
-	ServiceIpv6Range      pulumi.StringOutput                             `pulumi:"serviceIpv6Range"`
-	Status                pulumi.StringOutput                             `pulumi:"status"`
+	// Network policy provider for the cluster. Possible values: `CALICO`.
+	NetworkPolicyProvider pulumi.StringPtrOutput `pulumi:"networkPolicyProvider"`
+	// Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+	NodeIpv4CidrMaskSize pulumi.IntPtrOutput `pulumi:"nodeIpv4CidrMaskSize"`
+	// Service account to be used by the worker nodes of the Kubernetes cluster
+	// to access Container Registry or to push node logs and metrics.
+	NodeServiceAccountId pulumi.StringOutput `pulumi:"nodeServiceAccountId"`
+	// Cluster release channel.
+	ReleaseChannel pulumi.StringOutput `pulumi:"releaseChannel"`
+	// Service account to be used for provisioning Compute Cloud and VPC resources
+	// for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+	// cluster will be located and on the folder where selected network resides.
+	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
+	// CIDR block. IP range Kubernetes service Kubernetes cluster
+	// IP addresses will be allocated from. It should not overlap with any subnet in the network
+	// the Kubernetes cluster located in.
+	ServiceIpv4Range pulumi.StringOutput `pulumi:"serviceIpv4Range"`
+	// Identical to serviceIpv4Range but for IPv6 protocol.
+	ServiceIpv6Range pulumi.StringOutput `pulumi:"serviceIpv6Range"`
+	// (Computed)Status of the Kubernetes cluster.
+	Status pulumi.StringOutput `pulumi:"status"`
 }
 
 // NewKubernetesCluster registers a new resource with the given unique name, arguments, and options.
@@ -79,51 +119,109 @@ func GetKubernetesCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KubernetesCluster resources.
 type kubernetesClusterState struct {
-	ClusterIpv4Range      *string                                 `pulumi:"clusterIpv4Range"`
-	ClusterIpv6Range      *string                                 `pulumi:"clusterIpv6Range"`
-	CreatedAt             *string                                 `pulumi:"createdAt"`
-	Description           *string                                 `pulumi:"description"`
-	FolderId              *string                                 `pulumi:"folderId"`
-	Health                *string                                 `pulumi:"health"`
-	KmsProvider           *KubernetesClusterKmsProvider           `pulumi:"kmsProvider"`
-	Labels                map[string]string                       `pulumi:"labels"`
-	LogGroupId            *string                                 `pulumi:"logGroupId"`
-	Master                *KubernetesClusterMaster                `pulumi:"master"`
-	Name                  *string                                 `pulumi:"name"`
-	NetworkId             *string                                 `pulumi:"networkId"`
+	// CIDR block. IP range for allocating pod addresses.
+	// It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+	// set up for this CIDR blocks in node subnets.
+	ClusterIpv4Range *string `pulumi:"clusterIpv4Range"`
+	// Identical to clusterIpv4Range but for IPv6 protocol.
+	ClusterIpv6Range *string `pulumi:"clusterIpv6Range"`
+	// (Computed) The Kubernetes cluster creation timestamp.
+	CreatedAt *string `pulumi:"createdAt"`
+	// A description of the Kubernetes cluster.
+	Description *string `pulumi:"description"`
+	// The ID of the folder that the Kubernetes cluster belongs to.
+	// If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// (Computed) Health of the Kubernetes cluster.
+	Health *string `pulumi:"health"`
+	// cluster KMS provider parameters.
+	KmsProvider *KubernetesClusterKmsProvider `pulumi:"kmsProvider"`
+	// A set of key/value label pairs to assign to the Kubernetes cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+	LogGroupId *string `pulumi:"logGroupId"`
+	// Kubernetes master configuration options. The structure is documented below.
+	Master *KubernetesClusterMaster `pulumi:"master"`
+	// Name of a specific Kubernetes cluster.
+	Name *string `pulumi:"name"`
+	// The ID of the cluster network.
+	NetworkId *string `pulumi:"networkId"`
+	// (Optional) Network Implementation options. The structure is documented below.
 	NetworkImplementation *KubernetesClusterNetworkImplementation `pulumi:"networkImplementation"`
-	NetworkPolicyProvider *string                                 `pulumi:"networkPolicyProvider"`
-	NodeIpv4CidrMaskSize  *int                                    `pulumi:"nodeIpv4CidrMaskSize"`
-	NodeServiceAccountId  *string                                 `pulumi:"nodeServiceAccountId"`
-	ReleaseChannel        *string                                 `pulumi:"releaseChannel"`
-	ServiceAccountId      *string                                 `pulumi:"serviceAccountId"`
-	ServiceIpv4Range      *string                                 `pulumi:"serviceIpv4Range"`
-	ServiceIpv6Range      *string                                 `pulumi:"serviceIpv6Range"`
-	Status                *string                                 `pulumi:"status"`
+	// Network policy provider for the cluster. Possible values: `CALICO`.
+	NetworkPolicyProvider *string `pulumi:"networkPolicyProvider"`
+	// Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+	NodeIpv4CidrMaskSize *int `pulumi:"nodeIpv4CidrMaskSize"`
+	// Service account to be used by the worker nodes of the Kubernetes cluster
+	// to access Container Registry or to push node logs and metrics.
+	NodeServiceAccountId *string `pulumi:"nodeServiceAccountId"`
+	// Cluster release channel.
+	ReleaseChannel *string `pulumi:"releaseChannel"`
+	// Service account to be used for provisioning Compute Cloud and VPC resources
+	// for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+	// cluster will be located and on the folder where selected network resides.
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
+	// CIDR block. IP range Kubernetes service Kubernetes cluster
+	// IP addresses will be allocated from. It should not overlap with any subnet in the network
+	// the Kubernetes cluster located in.
+	ServiceIpv4Range *string `pulumi:"serviceIpv4Range"`
+	// Identical to serviceIpv4Range but for IPv6 protocol.
+	ServiceIpv6Range *string `pulumi:"serviceIpv6Range"`
+	// (Computed)Status of the Kubernetes cluster.
+	Status *string `pulumi:"status"`
 }
 
 type KubernetesClusterState struct {
-	ClusterIpv4Range      pulumi.StringPtrInput
-	ClusterIpv6Range      pulumi.StringPtrInput
-	CreatedAt             pulumi.StringPtrInput
-	Description           pulumi.StringPtrInput
-	FolderId              pulumi.StringPtrInput
-	Health                pulumi.StringPtrInput
-	KmsProvider           KubernetesClusterKmsProviderPtrInput
-	Labels                pulumi.StringMapInput
-	LogGroupId            pulumi.StringPtrInput
-	Master                KubernetesClusterMasterPtrInput
-	Name                  pulumi.StringPtrInput
-	NetworkId             pulumi.StringPtrInput
+	// CIDR block. IP range for allocating pod addresses.
+	// It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+	// set up for this CIDR blocks in node subnets.
+	ClusterIpv4Range pulumi.StringPtrInput
+	// Identical to clusterIpv4Range but for IPv6 protocol.
+	ClusterIpv6Range pulumi.StringPtrInput
+	// (Computed) The Kubernetes cluster creation timestamp.
+	CreatedAt pulumi.StringPtrInput
+	// A description of the Kubernetes cluster.
+	Description pulumi.StringPtrInput
+	// The ID of the folder that the Kubernetes cluster belongs to.
+	// If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// (Computed) Health of the Kubernetes cluster.
+	Health pulumi.StringPtrInput
+	// cluster KMS provider parameters.
+	KmsProvider KubernetesClusterKmsProviderPtrInput
+	// A set of key/value label pairs to assign to the Kubernetes cluster.
+	Labels pulumi.StringMapInput
+	// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+	LogGroupId pulumi.StringPtrInput
+	// Kubernetes master configuration options. The structure is documented below.
+	Master KubernetesClusterMasterPtrInput
+	// Name of a specific Kubernetes cluster.
+	Name pulumi.StringPtrInput
+	// The ID of the cluster network.
+	NetworkId pulumi.StringPtrInput
+	// (Optional) Network Implementation options. The structure is documented below.
 	NetworkImplementation KubernetesClusterNetworkImplementationPtrInput
+	// Network policy provider for the cluster. Possible values: `CALICO`.
 	NetworkPolicyProvider pulumi.StringPtrInput
-	NodeIpv4CidrMaskSize  pulumi.IntPtrInput
-	NodeServiceAccountId  pulumi.StringPtrInput
-	ReleaseChannel        pulumi.StringPtrInput
-	ServiceAccountId      pulumi.StringPtrInput
-	ServiceIpv4Range      pulumi.StringPtrInput
-	ServiceIpv6Range      pulumi.StringPtrInput
-	Status                pulumi.StringPtrInput
+	// Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+	NodeIpv4CidrMaskSize pulumi.IntPtrInput
+	// Service account to be used by the worker nodes of the Kubernetes cluster
+	// to access Container Registry or to push node logs and metrics.
+	NodeServiceAccountId pulumi.StringPtrInput
+	// Cluster release channel.
+	ReleaseChannel pulumi.StringPtrInput
+	// Service account to be used for provisioning Compute Cloud and VPC resources
+	// for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+	// cluster will be located and on the folder where selected network resides.
+	ServiceAccountId pulumi.StringPtrInput
+	// CIDR block. IP range Kubernetes service Kubernetes cluster
+	// IP addresses will be allocated from. It should not overlap with any subnet in the network
+	// the Kubernetes cluster located in.
+	ServiceIpv4Range pulumi.StringPtrInput
+	// Identical to serviceIpv4Range but for IPv6 protocol.
+	ServiceIpv6Range pulumi.StringPtrInput
+	// (Computed)Status of the Kubernetes cluster.
+	Status pulumi.StringPtrInput
 }
 
 func (KubernetesClusterState) ElementType() reflect.Type {
@@ -131,44 +229,94 @@ func (KubernetesClusterState) ElementType() reflect.Type {
 }
 
 type kubernetesClusterArgs struct {
-	ClusterIpv4Range      *string                                 `pulumi:"clusterIpv4Range"`
-	ClusterIpv6Range      *string                                 `pulumi:"clusterIpv6Range"`
-	Description           *string                                 `pulumi:"description"`
-	FolderId              *string                                 `pulumi:"folderId"`
-	KmsProvider           *KubernetesClusterKmsProvider           `pulumi:"kmsProvider"`
-	Labels                map[string]string                       `pulumi:"labels"`
-	Master                KubernetesClusterMaster                 `pulumi:"master"`
-	Name                  *string                                 `pulumi:"name"`
-	NetworkId             string                                  `pulumi:"networkId"`
+	// CIDR block. IP range for allocating pod addresses.
+	// It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+	// set up for this CIDR blocks in node subnets.
+	ClusterIpv4Range *string `pulumi:"clusterIpv4Range"`
+	// Identical to clusterIpv4Range but for IPv6 protocol.
+	ClusterIpv6Range *string `pulumi:"clusterIpv6Range"`
+	// A description of the Kubernetes cluster.
+	Description *string `pulumi:"description"`
+	// The ID of the folder that the Kubernetes cluster belongs to.
+	// If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// cluster KMS provider parameters.
+	KmsProvider *KubernetesClusterKmsProvider `pulumi:"kmsProvider"`
+	// A set of key/value label pairs to assign to the Kubernetes cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// Kubernetes master configuration options. The structure is documented below.
+	Master KubernetesClusterMaster `pulumi:"master"`
+	// Name of a specific Kubernetes cluster.
+	Name *string `pulumi:"name"`
+	// The ID of the cluster network.
+	NetworkId string `pulumi:"networkId"`
+	// (Optional) Network Implementation options. The structure is documented below.
 	NetworkImplementation *KubernetesClusterNetworkImplementation `pulumi:"networkImplementation"`
-	NetworkPolicyProvider *string                                 `pulumi:"networkPolicyProvider"`
-	NodeIpv4CidrMaskSize  *int                                    `pulumi:"nodeIpv4CidrMaskSize"`
-	NodeServiceAccountId  string                                  `pulumi:"nodeServiceAccountId"`
-	ReleaseChannel        *string                                 `pulumi:"releaseChannel"`
-	ServiceAccountId      string                                  `pulumi:"serviceAccountId"`
-	ServiceIpv4Range      *string                                 `pulumi:"serviceIpv4Range"`
-	ServiceIpv6Range      *string                                 `pulumi:"serviceIpv6Range"`
+	// Network policy provider for the cluster. Possible values: `CALICO`.
+	NetworkPolicyProvider *string `pulumi:"networkPolicyProvider"`
+	// Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+	NodeIpv4CidrMaskSize *int `pulumi:"nodeIpv4CidrMaskSize"`
+	// Service account to be used by the worker nodes of the Kubernetes cluster
+	// to access Container Registry or to push node logs and metrics.
+	NodeServiceAccountId string `pulumi:"nodeServiceAccountId"`
+	// Cluster release channel.
+	ReleaseChannel *string `pulumi:"releaseChannel"`
+	// Service account to be used for provisioning Compute Cloud and VPC resources
+	// for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+	// cluster will be located and on the folder where selected network resides.
+	ServiceAccountId string `pulumi:"serviceAccountId"`
+	// CIDR block. IP range Kubernetes service Kubernetes cluster
+	// IP addresses will be allocated from. It should not overlap with any subnet in the network
+	// the Kubernetes cluster located in.
+	ServiceIpv4Range *string `pulumi:"serviceIpv4Range"`
+	// Identical to serviceIpv4Range but for IPv6 protocol.
+	ServiceIpv6Range *string `pulumi:"serviceIpv6Range"`
 }
 
 // The set of arguments for constructing a KubernetesCluster resource.
 type KubernetesClusterArgs struct {
-	ClusterIpv4Range      pulumi.StringPtrInput
-	ClusterIpv6Range      pulumi.StringPtrInput
-	Description           pulumi.StringPtrInput
-	FolderId              pulumi.StringPtrInput
-	KmsProvider           KubernetesClusterKmsProviderPtrInput
-	Labels                pulumi.StringMapInput
-	Master                KubernetesClusterMasterInput
-	Name                  pulumi.StringPtrInput
-	NetworkId             pulumi.StringInput
+	// CIDR block. IP range for allocating pod addresses.
+	// It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+	// set up for this CIDR blocks in node subnets.
+	ClusterIpv4Range pulumi.StringPtrInput
+	// Identical to clusterIpv4Range but for IPv6 protocol.
+	ClusterIpv6Range pulumi.StringPtrInput
+	// A description of the Kubernetes cluster.
+	Description pulumi.StringPtrInput
+	// The ID of the folder that the Kubernetes cluster belongs to.
+	// If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// cluster KMS provider parameters.
+	KmsProvider KubernetesClusterKmsProviderPtrInput
+	// A set of key/value label pairs to assign to the Kubernetes cluster.
+	Labels pulumi.StringMapInput
+	// Kubernetes master configuration options. The structure is documented below.
+	Master KubernetesClusterMasterInput
+	// Name of a specific Kubernetes cluster.
+	Name pulumi.StringPtrInput
+	// The ID of the cluster network.
+	NetworkId pulumi.StringInput
+	// (Optional) Network Implementation options. The structure is documented below.
 	NetworkImplementation KubernetesClusterNetworkImplementationPtrInput
+	// Network policy provider for the cluster. Possible values: `CALICO`.
 	NetworkPolicyProvider pulumi.StringPtrInput
-	NodeIpv4CidrMaskSize  pulumi.IntPtrInput
-	NodeServiceAccountId  pulumi.StringInput
-	ReleaseChannel        pulumi.StringPtrInput
-	ServiceAccountId      pulumi.StringInput
-	ServiceIpv4Range      pulumi.StringPtrInput
-	ServiceIpv6Range      pulumi.StringPtrInput
+	// Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+	NodeIpv4CidrMaskSize pulumi.IntPtrInput
+	// Service account to be used by the worker nodes of the Kubernetes cluster
+	// to access Container Registry or to push node logs and metrics.
+	NodeServiceAccountId pulumi.StringInput
+	// Cluster release channel.
+	ReleaseChannel pulumi.StringPtrInput
+	// Service account to be used for provisioning Compute Cloud and VPC resources
+	// for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+	// cluster will be located and on the folder where selected network resides.
+	ServiceAccountId pulumi.StringInput
+	// CIDR block. IP range Kubernetes service Kubernetes cluster
+	// IP addresses will be allocated from. It should not overlap with any subnet in the network
+	// the Kubernetes cluster located in.
+	ServiceIpv4Range pulumi.StringPtrInput
+	// Identical to serviceIpv4Range but for IPv6 protocol.
+	ServiceIpv6Range pulumi.StringPtrInput
 }
 
 func (KubernetesClusterArgs) ElementType() reflect.Type {
@@ -258,88 +406,117 @@ func (o KubernetesClusterOutput) ToKubernetesClusterOutputWithContext(ctx contex
 	return o
 }
 
+// CIDR block. IP range for allocating pod addresses.
+// It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+// set up for this CIDR blocks in node subnets.
 func (o KubernetesClusterOutput) ClusterIpv4Range() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.ClusterIpv4Range }).(pulumi.StringOutput)
 }
 
+// Identical to clusterIpv4Range but for IPv6 protocol.
 func (o KubernetesClusterOutput) ClusterIpv6Range() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.ClusterIpv6Range }).(pulumi.StringOutput)
 }
 
+// (Computed) The Kubernetes cluster creation timestamp.
 func (o KubernetesClusterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// A description of the Kubernetes cluster.
 func (o KubernetesClusterOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
+// The ID of the folder that the Kubernetes cluster belongs to.
+// If it is not provided, the default provider folder is used.
 func (o KubernetesClusterOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// (Computed) Health of the Kubernetes cluster.
 func (o KubernetesClusterOutput) Health() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Health }).(pulumi.StringOutput)
 }
 
+// cluster KMS provider parameters.
 func (o KubernetesClusterOutput) KmsProvider() KubernetesClusterKmsProviderPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) KubernetesClusterKmsProviderPtrOutput { return v.KmsProvider }).(KubernetesClusterKmsProviderPtrOutput)
 }
 
+// A set of key/value label pairs to assign to the Kubernetes cluster.
 func (o KubernetesClusterOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
 func (o KubernetesClusterOutput) LogGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.LogGroupId }).(pulumi.StringOutput)
 }
 
+// Kubernetes master configuration options. The structure is documented below.
 func (o KubernetesClusterOutput) Master() KubernetesClusterMasterOutput {
 	return o.ApplyT(func(v *KubernetesCluster) KubernetesClusterMasterOutput { return v.Master }).(KubernetesClusterMasterOutput)
 }
 
+// Name of a specific Kubernetes cluster.
 func (o KubernetesClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The ID of the cluster network.
 func (o KubernetesClusterOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// (Optional) Network Implementation options. The structure is documented below.
 func (o KubernetesClusterOutput) NetworkImplementation() KubernetesClusterNetworkImplementationPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) KubernetesClusterNetworkImplementationPtrOutput {
 		return v.NetworkImplementation
 	}).(KubernetesClusterNetworkImplementationPtrOutput)
 }
 
+// Network policy provider for the cluster. Possible values: `CALICO`.
 func (o KubernetesClusterOutput) NetworkPolicyProvider() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringPtrOutput { return v.NetworkPolicyProvider }).(pulumi.StringPtrOutput)
 }
 
+// Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
 func (o KubernetesClusterOutput) NodeIpv4CidrMaskSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.IntPtrOutput { return v.NodeIpv4CidrMaskSize }).(pulumi.IntPtrOutput)
 }
 
+// Service account to be used by the worker nodes of the Kubernetes cluster
+// to access Container Registry or to push node logs and metrics.
 func (o KubernetesClusterOutput) NodeServiceAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.NodeServiceAccountId }).(pulumi.StringOutput)
 }
 
+// Cluster release channel.
 func (o KubernetesClusterOutput) ReleaseChannel() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.ReleaseChannel }).(pulumi.StringOutput)
 }
 
+// Service account to be used for provisioning Compute Cloud and VPC resources
+// for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+// cluster will be located and on the folder where selected network resides.
 func (o KubernetesClusterOutput) ServiceAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.ServiceAccountId }).(pulumi.StringOutput)
 }
 
+// CIDR block. IP range Kubernetes service Kubernetes cluster
+// IP addresses will be allocated from. It should not overlap with any subnet in the network
+// the Kubernetes cluster located in.
 func (o KubernetesClusterOutput) ServiceIpv4Range() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.ServiceIpv4Range }).(pulumi.StringOutput)
 }
 
+// Identical to serviceIpv4Range but for IPv6 protocol.
 func (o KubernetesClusterOutput) ServiceIpv6Range() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.ServiceIpv6Range }).(pulumi.StringOutput)
 }
 
+// (Computed)Status of the Kubernetes cluster.
 func (o KubernetesClusterOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

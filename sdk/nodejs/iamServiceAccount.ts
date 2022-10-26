@@ -4,6 +4,33 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows management of a Yandex.Cloud IAM [service account](https://cloud.yandex.com/docs/iam/concepts/users/service-accounts).
+ * To assign roles and permissions, use the yandex_iam_service_account_iam_binding,
+ * yandex.IamServiceAccountIamMember and
+ * yandex.IamServiceAccountIamPolicy resources.
+ *
+ * ## Example Usage
+ *
+ * This snippet creates a service account.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const sa = new yandex.IamServiceAccount("sa", {
+ *     description: "service account to manage VMs",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A service account can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/iamServiceAccount:IamServiceAccount sa account_id
+ * ```
+ */
 export class IamServiceAccount extends pulumi.CustomResource {
     /**
      * Get an existing IamServiceAccount resource's state with the given name, ID, and optional extra
@@ -33,8 +60,19 @@ export class IamServiceAccount extends pulumi.CustomResource {
     }
 
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * Description of the service account.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * ID of the folder that the service account will be created in.
+     * Defaults to the provider folder configuration.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * Name of the service account.
+     * Can be updated without creating a new resource.
+     */
     public readonly name!: pulumi.Output<string>;
 
     /**
@@ -71,8 +109,19 @@ export class IamServiceAccount extends pulumi.CustomResource {
  */
 export interface IamServiceAccountState {
     createdAt?: pulumi.Input<string>;
+    /**
+     * Description of the service account.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * ID of the folder that the service account will be created in.
+     * Defaults to the provider folder configuration.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Name of the service account.
+     * Can be updated without creating a new resource.
+     */
     name?: pulumi.Input<string>;
 }
 
@@ -80,7 +129,18 @@ export interface IamServiceAccountState {
  * The set of arguments for constructing a IamServiceAccount resource.
  */
 export interface IamServiceAccountArgs {
+    /**
+     * Description of the service account.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * ID of the folder that the service account will be created in.
+     * Defaults to the provider folder configuration.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Name of the service account.
+     * Can be updated without creating a new resource.
+     */
     name?: pulumi.Input<string>;
 }

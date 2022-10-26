@@ -4,6 +4,27 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows management of a [Yandex.Cloud IAM service account API key](https://cloud.yandex.com/docs/iam/concepts/authorization/api-key).
+ * The API key is a private key used for simplified authorization in the Yandex.Cloud API. API keys are only used for [service accounts](https://cloud.yandex.com/docs/iam/concepts/users/service-accounts).
+ *
+ * API keys do not expire. This means that this authentication method is simpler, but less secure. Use it if you can't automatically request an [IAM token](https://cloud.yandex.com/docs/iam/concepts/authorization/iam-token).
+ *
+ * ## Example Usage
+ *
+ * This snippet creates an API key.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const sa_api_key = new yandex.IamServiceAccountApiKey("sa-api-key", {
+ *     description: "api key for authorization",
+ *     pgpKey: "keybase:keybaseusername",
+ *     serviceAccountId: "some_sa_id",
+ * });
+ * ```
+ */
 export class IamServiceAccountApiKey extends pulumi.CustomResource {
     /**
      * Get an existing IamServiceAccountApiKey resource's state with the given name, ID, and optional extra
@@ -32,12 +53,33 @@ export class IamServiceAccountApiKey extends pulumi.CustomResource {
         return obj['__pulumiType'] === IamServiceAccountApiKey.__pulumiType;
     }
 
+    /**
+     * Creation timestamp of the static access key.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * The description of the key.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * The encrypted secret key, base64 encoded. This is only populated when `pgpKey` is supplied.
+     */
     public /*out*/ readonly encryptedSecretKey!: pulumi.Output<string>;
+    /**
+     * The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgpKey` is supplied.
+     */
     public /*out*/ readonly keyFingerprint!: pulumi.Output<string>;
+    /**
+     * An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+     */
     public readonly pgpKey!: pulumi.Output<string | undefined>;
+    /**
+     * The secret key. This is only populated when no `pgpKey` is provided.
+     */
     public /*out*/ readonly secretKey!: pulumi.Output<string>;
+    /**
+     * ID of the service account to an API key for.
+     */
     public readonly serviceAccountId!: pulumi.Output<string>;
 
     /**
@@ -82,12 +124,33 @@ export class IamServiceAccountApiKey extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IamServiceAccountApiKey resources.
  */
 export interface IamServiceAccountApiKeyState {
+    /**
+     * Creation timestamp of the static access key.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * The description of the key.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The encrypted secret key, base64 encoded. This is only populated when `pgpKey` is supplied.
+     */
     encryptedSecretKey?: pulumi.Input<string>;
+    /**
+     * The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgpKey` is supplied.
+     */
     keyFingerprint?: pulumi.Input<string>;
+    /**
+     * An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+     */
     pgpKey?: pulumi.Input<string>;
+    /**
+     * The secret key. This is only populated when no `pgpKey` is provided.
+     */
     secretKey?: pulumi.Input<string>;
+    /**
+     * ID of the service account to an API key for.
+     */
     serviceAccountId?: pulumi.Input<string>;
 }
 
@@ -95,7 +158,16 @@ export interface IamServiceAccountApiKeyState {
  * The set of arguments for constructing a IamServiceAccountApiKey resource.
  */
 export interface IamServiceAccountApiKeyArgs {
+    /**
+     * The description of the key.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+     */
     pgpKey?: pulumi.Input<string>;
+    /**
+     * ID of the service account to an API key for.
+     */
     serviceAccountId: pulumi.Input<string>;
 }

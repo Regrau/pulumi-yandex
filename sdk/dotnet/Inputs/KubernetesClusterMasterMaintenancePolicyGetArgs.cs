@@ -12,11 +12,20 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesClusterMasterMaintenancePolicyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// (Required) Boolean flag that specifies if master can be upgraded automatically. When omitted, default value is TRUE.
+        /// </summary>
         [Input("autoUpgrade", required: true)]
         public Input<bool> AutoUpgrade { get; set; } = null!;
 
         [Input("maintenanceWindows")]
         private InputList<Inputs.KubernetesClusterMasterMaintenancePolicyMaintenanceWindowGetArgs>? _maintenanceWindows;
+
+        /// <summary>
+        /// (Optional) (Computed) This structure specifies maintenance window, when update for master is allowed. When omitted, it defaults to any time.
+        /// To specify time of day interval, for all days, one element should be provided, with two fields set, `start_time` and `duration`.
+        /// Please see `zonal_cluster_resource_name` config example.
+        /// </summary>
         public InputList<Inputs.KubernetesClusterMasterMaintenancePolicyMaintenanceWindowGetArgs> MaintenanceWindows
         {
             get => _maintenanceWindows ?? (_maintenanceWindows = new InputList<Inputs.KubernetesClusterMasterMaintenancePolicyMaintenanceWindowGetArgs>());

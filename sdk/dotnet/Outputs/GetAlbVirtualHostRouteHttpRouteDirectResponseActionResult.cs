@@ -13,7 +13,14 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetAlbVirtualHostRouteHttpRouteDirectResponseActionResult
     {
+        /// <summary>
+        /// Response body text.
+        /// </summary>
         public readonly string Body;
+        /// <summary>
+        /// The status of the response. Supported values are: ok, invalid_argumet, not_found, permission_denied,
+        /// unauthenticated, unimplemented, internal, unavailable.
+        /// </summary>
         public readonly int Status;
 
         [OutputConstructor]

@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesClusterKmsProviderArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// KMS key ID.
+        /// </summary>
         [Input("keyId")]
         public Input<string>? KeyId { get; set; }
 

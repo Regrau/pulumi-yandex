@@ -9,63 +9,158 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows management of [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test_function = new Yandex.Function("test-function", new()
+    ///     {
+    ///         Content = new Yandex.Inputs.FunctionContentArgs
+    ///         {
+    ///             ZipFilename = "function.zip",
+    ///         },
+    ///         Description = "any description",
+    ///         Entrypoint = "main",
+    ///         ExecutionTimeout = "10",
+    ///         Memory = 128,
+    ///         Runtime = "python37",
+    ///         ServiceAccountId = "are1service2account3id",
+    ///         Tags = new[]
+    ///         {
+    ///             "my_tag",
+    ///         },
+    ///         UserHash = "any_user_defined_string",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/function:Function")]
     public partial class Function : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        /// * `content.0.zip_filename` - Filename to zip archive for the version.
+        /// </summary>
         [Output("content")]
         public Output<Outputs.FunctionContent?> Content { get; private set; } = null!;
 
+        /// <summary>
+        /// Creation timestamp of the Yandex Cloud Function.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// Description of the Yandex Cloud Function
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Entrypoint for Yandex Cloud Function
+        /// </summary>
         [Output("entrypoint")]
         public Output<string> Entrypoint { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of key/value environment variables for Yandex Cloud Function
+        /// </summary>
         [Output("environment")]
         public Output<ImmutableDictionary<string, string>?> Environment { get; private set; } = null!;
 
+        /// <summary>
+        /// Execution timeout in seconds for Yandex Cloud Function
+        /// </summary>
         [Output("executionTimeout")]
         public Output<string?> ExecutionTimeout { get; private set; } = null!;
 
+        /// <summary>
+        /// Folder ID for the Yandex Cloud Function
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// Image size for Yandex Cloud Function.
+        /// </summary>
         [Output("imageSize")]
         public Output<int> ImageSize { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of key/value label pairs to assign to the Yandex Cloud Function
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Loggroup ID size for Yandex Cloud Function.
+        /// </summary>
         [Output("loggroupId")]
         public Output<string> LoggroupId { get; private set; } = null!;
 
+        /// <summary>
+        /// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+        /// </summary>
         [Output("memory")]
         public Output<int> Memory { get; private set; } = null!;
 
+        /// <summary>
+        /// Yandex Cloud Function name used to define trigger
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        /// * `package.0.sha_256` - SHA256 hash of the version deployment package.
+        /// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+        /// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+        /// </summary>
         [Output("package")]
         public Output<Outputs.FunctionPackage?> Package { get; private set; } = null!;
 
+        /// <summary>
+        /// Runtime for Yandex Cloud Function
+        /// </summary>
         [Output("runtime")]
         public Output<string> Runtime { get; private set; } = null!;
 
+        /// <summary>
+        /// Secrets for Yandex Cloud Function.
+        /// </summary>
         [Output("secrets")]
         public Output<ImmutableArray<Outputs.FunctionSecret>> Secrets { get; private set; } = null!;
 
+        /// <summary>
+        /// Service account ID for Yandex Cloud Function
+        /// </summary>
         [Output("serviceAccountId")]
         public Output<string?> ServiceAccountId { get; private set; } = null!;
 
+        /// <summary>
+        /// Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+        /// </summary>
         [Output("tags")]
         public Output<ImmutableArray<string>> Tags { get; private set; } = null!;
 
+        /// <summary>
+        /// User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+        /// </summary>
         [Output("userHash")]
         public Output<string> UserHash { get; private set; } = null!;
 
+        /// <summary>
+        /// Version for Yandex Cloud Function.
+        /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
 
@@ -92,7 +187,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -116,68 +211,121 @@ namespace Pulumi.Yandex
 
     public sealed class FunctionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        /// * `content.0.zip_filename` - Filename to zip archive for the version.
+        /// </summary>
         [Input("content")]
         public Input<Inputs.FunctionContentArgs>? Content { get; set; }
 
+        /// <summary>
+        /// Description of the Yandex Cloud Function
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Entrypoint for Yandex Cloud Function
+        /// </summary>
         [Input("entrypoint", required: true)]
         public Input<string> Entrypoint { get; set; } = null!;
 
         [Input("environment")]
         private InputMap<string>? _environment;
+
+        /// <summary>
+        /// A set of key/value environment variables for Yandex Cloud Function
+        /// </summary>
         public InputMap<string> Environment
         {
             get => _environment ?? (_environment = new InputMap<string>());
             set => _environment = value;
         }
 
+        /// <summary>
+        /// Execution timeout in seconds for Yandex Cloud Function
+        /// </summary>
         [Input("executionTimeout")]
         public Input<string>? ExecutionTimeout { get; set; }
 
+        /// <summary>
+        /// Folder ID for the Yandex Cloud Function
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the Yandex Cloud Function
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+        /// </summary>
         [Input("memory", required: true)]
         public Input<int> Memory { get; set; } = null!;
 
+        /// <summary>
+        /// Yandex Cloud Function name used to define trigger
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        /// * `package.0.sha_256` - SHA256 hash of the version deployment package.
+        /// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+        /// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+        /// </summary>
         [Input("package")]
         public Input<Inputs.FunctionPackageArgs>? Package { get; set; }
 
+        /// <summary>
+        /// Runtime for Yandex Cloud Function
+        /// </summary>
         [Input("runtime", required: true)]
         public Input<string> Runtime { get; set; } = null!;
 
         [Input("secrets")]
         private InputList<Inputs.FunctionSecretArgs>? _secrets;
+
+        /// <summary>
+        /// Secrets for Yandex Cloud Function.
+        /// </summary>
         public InputList<Inputs.FunctionSecretArgs> Secrets
         {
             get => _secrets ?? (_secrets = new InputList<Inputs.FunctionSecretArgs>());
             set => _secrets = value;
         }
 
+        /// <summary>
+        /// Service account ID for Yandex Cloud Function
+        /// </summary>
         [Input("serviceAccountId")]
         public Input<string>? ServiceAccountId { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
 
+        /// <summary>
+        /// User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+        /// </summary>
         [Input("userHash", required: true)]
         public Input<string> UserHash { get; set; } = null!;
 
@@ -189,80 +337,145 @@ namespace Pulumi.Yandex
 
     public sealed class FunctionState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        /// * `content.0.zip_filename` - Filename to zip archive for the version.
+        /// </summary>
         [Input("content")]
         public Input<Inputs.FunctionContentGetArgs>? Content { get; set; }
 
+        /// <summary>
+        /// Creation timestamp of the Yandex Cloud Function.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// Description of the Yandex Cloud Function
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Entrypoint for Yandex Cloud Function
+        /// </summary>
         [Input("entrypoint")]
         public Input<string>? Entrypoint { get; set; }
 
         [Input("environment")]
         private InputMap<string>? _environment;
+
+        /// <summary>
+        /// A set of key/value environment variables for Yandex Cloud Function
+        /// </summary>
         public InputMap<string> Environment
         {
             get => _environment ?? (_environment = new InputMap<string>());
             set => _environment = value;
         }
 
+        /// <summary>
+        /// Execution timeout in seconds for Yandex Cloud Function
+        /// </summary>
         [Input("executionTimeout")]
         public Input<string>? ExecutionTimeout { get; set; }
 
+        /// <summary>
+        /// Folder ID for the Yandex Cloud Function
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// Image size for Yandex Cloud Function.
+        /// </summary>
         [Input("imageSize")]
         public Input<int>? ImageSize { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the Yandex Cloud Function
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Loggroup ID size for Yandex Cloud Function.
+        /// </summary>
         [Input("loggroupId")]
         public Input<string>? LoggroupId { get; set; }
 
+        /// <summary>
+        /// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+        /// </summary>
         [Input("memory")]
         public Input<int>? Memory { get; set; }
 
+        /// <summary>
+        /// Yandex Cloud Function name used to define trigger
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        /// * `package.0.sha_256` - SHA256 hash of the version deployment package.
+        /// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+        /// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+        /// </summary>
         [Input("package")]
         public Input<Inputs.FunctionPackageGetArgs>? Package { get; set; }
 
+        /// <summary>
+        /// Runtime for Yandex Cloud Function
+        /// </summary>
         [Input("runtime")]
         public Input<string>? Runtime { get; set; }
 
         [Input("secrets")]
         private InputList<Inputs.FunctionSecretGetArgs>? _secrets;
+
+        /// <summary>
+        /// Secrets for Yandex Cloud Function.
+        /// </summary>
         public InputList<Inputs.FunctionSecretGetArgs> Secrets
         {
             get => _secrets ?? (_secrets = new InputList<Inputs.FunctionSecretGetArgs>());
             set => _secrets = value;
         }
 
+        /// <summary>
+        /// Service account ID for Yandex Cloud Function
+        /// </summary>
         [Input("serviceAccountId")]
         public Input<string>? ServiceAccountId { get; set; }
 
         [Input("tags")]
         private InputList<string>? _tags;
+
+        /// <summary>
+        /// Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+        /// </summary>
         public InputList<string> Tags
         {
             get => _tags ?? (_tags = new InputList<string>());
             set => _tags = value;
         }
 
+        /// <summary>
+        /// User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+        /// </summary>
         [Input("userHash")]
         public Input<string>? UserHash { get; set; }
 
+        /// <summary>
+        /// Version for Yandex Cloud Function.
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 

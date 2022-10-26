@@ -9,21 +9,46 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows management of [Yandex.Cloud CDN Resource](https://cloud.yandex.ru/docs/cdn/concepts/resource).
+    /// 
+    /// &gt; **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id &lt;folder-id&gt; --type gcore```
+    /// 
+    /// ## Import
+    /// 
+    /// A origin group can be imported using any of these accepted formats
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/cdnResource:CdnResource default origin_group_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/cdnResource:CdnResource")]
     public partial class CdnResource : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+        /// </summary>
         [Output("active")]
         public Output<bool?> Active { get; private set; } = null!;
 
+        /// <summary>
+        /// CDN endpoint CNAME, must be unique among resources.
+        /// </summary>
         [Output("cname")]
         public Output<string> Cname { get; private set; } = null!;
 
+        /// <summary>
+        /// Creation timestamp of the IoT Core Device
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// CDN Resource settings and options to tune CDN edge behavior.
+        /// </summary>
         [Output("options")]
         public Output<Outputs.CdnResourceOptions> Options { get; private set; } = null!;
 
@@ -36,9 +61,16 @@ namespace Pulumi.Yandex
         [Output("originProtocol")]
         public Output<string?> OriginProtocol { get; private set; } = null!;
 
+        /// <summary>
+        /// list of secondary hostname strings.
+        /// </summary>
         [Output("secondaryHostnames")]
         public Output<ImmutableArray<string>> SecondaryHostnames { get; private set; } = null!;
 
+        /// <summary>
+        /// SSL certificate of CDN resource.
+        /// ---
+        /// </summary>
         [Output("sslCertificate")]
         public Output<Outputs.CdnResourceSslCertificate> SslCertificate { get; private set; } = null!;
 
@@ -68,7 +100,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -92,15 +124,24 @@ namespace Pulumi.Yandex
 
     public sealed class CdnResourceArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+        /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
 
+        /// <summary>
+        /// CDN endpoint CNAME, must be unique among resources.
+        /// </summary>
         [Input("cname")]
         public Input<string>? Cname { get; set; }
 
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// CDN Resource settings and options to tune CDN edge behavior.
+        /// </summary>
         [Input("options")]
         public Input<Inputs.CdnResourceOptionsArgs>? Options { get; set; }
 
@@ -115,12 +156,20 @@ namespace Pulumi.Yandex
 
         [Input("secondaryHostnames")]
         private InputList<string>? _secondaryHostnames;
+
+        /// <summary>
+        /// list of secondary hostname strings.
+        /// </summary>
         public InputList<string> SecondaryHostnames
         {
             get => _secondaryHostnames ?? (_secondaryHostnames = new InputList<string>());
             set => _secondaryHostnames = value;
         }
 
+        /// <summary>
+        /// SSL certificate of CDN resource.
+        /// ---
+        /// </summary>
         [Input("sslCertificate")]
         public Input<Inputs.CdnResourceSslCertificateArgs>? SslCertificate { get; set; }
 
@@ -135,18 +184,30 @@ namespace Pulumi.Yandex
 
     public sealed class CdnResourceState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+        /// </summary>
         [Input("active")]
         public Input<bool>? Active { get; set; }
 
+        /// <summary>
+        /// CDN endpoint CNAME, must be unique among resources.
+        /// </summary>
         [Input("cname")]
         public Input<string>? Cname { get; set; }
 
+        /// <summary>
+        /// Creation timestamp of the IoT Core Device
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// CDN Resource settings and options to tune CDN edge behavior.
+        /// </summary>
         [Input("options")]
         public Input<Inputs.CdnResourceOptionsGetArgs>? Options { get; set; }
 
@@ -161,12 +222,20 @@ namespace Pulumi.Yandex
 
         [Input("secondaryHostnames")]
         private InputList<string>? _secondaryHostnames;
+
+        /// <summary>
+        /// list of secondary hostname strings.
+        /// </summary>
         public InputList<string> SecondaryHostnames
         {
             get => _secondaryHostnames ?? (_secondaryHostnames = new InputList<string>());
             set => _secondaryHostnames = value;
         }
 
+        /// <summary>
+        /// SSL certificate of CDN resource.
+        /// ---
+        /// </summary>
         [Input("sslCertificate")]
         public Input<Inputs.CdnResourceSslCertificateGetArgs>? SslCertificate { get; set; }
 

@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class KubernetesNodeGroupScalePolicyFixedScale
     {
+        /// <summary>
+        /// The number of instances in the node group.
+        /// </summary>
         public readonly int? Size;
 
         [OutputConstructor]

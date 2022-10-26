@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Load Balancer network load balancer. For more information, see
+ * [Yandex.Cloud Network Load Balancer](https://cloud.yandex.com/docs/load-balancer/concepts/).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const foo = pulumi.output(yandex.getLbNetworkLoadBalancer({
+ *     networkLoadBalancerId: "my-network-load-balancer",
+ * }));
+ * ```
+ *
+ * This data source is used to define [Load Balancer Network Load Balancers] that can be used by other resources.
+ */
 export function getLbNetworkLoadBalancer(args?: GetLbNetworkLoadBalancerArgs, opts?: pulumi.InvokeOptions): Promise<GetLbNetworkLoadBalancerResult> {
     args = args || {};
     if (!opts) {
@@ -23,8 +38,17 @@ export function getLbNetworkLoadBalancer(args?: GetLbNetworkLoadBalancerArgs, op
  * A collection of arguments for invoking getLbNetworkLoadBalancer.
  */
 export interface GetLbNetworkLoadBalancerArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * - Name of the network load balancer.
+     */
     name?: string;
+    /**
+     * Network load balancer ID.
+     */
     networkLoadBalancerId?: string;
 }
 
@@ -32,19 +56,43 @@ export interface GetLbNetworkLoadBalancerArgs {
  * A collection of values returned by getLbNetworkLoadBalancer.
  */
 export interface GetLbNetworkLoadBalancerResult {
+    /**
+     * An attached target group is a group of targets that is attached to a load balancer. Structure is documented below.
+     */
     readonly attachedTargetGroups: outputs.GetLbNetworkLoadBalancerAttachedTargetGroup[];
+    /**
+     * Creation timestamp of this network load balancer.
+     */
     readonly createdAt: string;
+    /**
+     * Description of the network load balancer.
+     */
     readonly description: string;
     readonly folderId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Labels to assign to this network load balancer.
+     */
     readonly labels: {[key: string]: string};
+    /**
+     * Listener specification that will be used by a network load balancer. Structure is documented below.
+     */
     readonly listeners: outputs.GetLbNetworkLoadBalancerListener[];
+    /**
+     * Name of the listener.
+     */
     readonly name: string;
     readonly networkLoadBalancerId: string;
+    /**
+     * ID of the region where the network load balancer resides.
+     */
     readonly regionId: string;
+    /**
+     * Type of the network load balancer.
+     */
     readonly type: string;
 }
 
@@ -56,7 +104,16 @@ export function getLbNetworkLoadBalancerOutput(args?: GetLbNetworkLoadBalancerOu
  * A collection of arguments for invoking getLbNetworkLoadBalancer.
  */
 export interface GetLbNetworkLoadBalancerOutputArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * - Name of the network load balancer.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Network load balancer ID.
+     */
     networkLoadBalancerId?: pulumi.Input<string>;
 }

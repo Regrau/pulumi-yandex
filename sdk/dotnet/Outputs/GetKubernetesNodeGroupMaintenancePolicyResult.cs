@@ -13,8 +13,18 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetKubernetesNodeGroupMaintenancePolicyResult
     {
+        /// <summary>
+        /// Boolean flag.
+        /// </summary>
         public readonly bool AutoRepair;
+        /// <summary>
+        /// Boolean flag.
+        /// </summary>
         public readonly bool AutoUpgrade;
+        /// <summary>
+        /// Set of day intervals, when maintenance is allowed for this node group.
+        /// When omitted, it defaults to any time.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowResult> MaintenanceWindows;
 
         [OutputConstructor]

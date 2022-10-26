@@ -17,9 +17,21 @@ namespace Pulumi.Yandex.Outputs
         public readonly Outputs.DatatransferEndpointSettingsClickhouseTarget? ClickhouseTarget;
         public readonly Outputs.DatatransferEndpointSettingsMongoSource? MongoSource;
         public readonly Outputs.DatatransferEndpointSettingsMongoTarget? MongoTarget;
+        /// <summary>
+        /// Settings specific to the MySQL source endpoint.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsMysqlSource? MysqlSource;
+        /// <summary>
+        /// Settings specific to the MySQL target endpoint.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsMysqlTarget? MysqlTarget;
+        /// <summary>
+        /// Settings specific to the PostgreSQL source endpoint.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsPostgresSource? PostgresSource;
+        /// <summary>
+        /// Settings specific to the PostgreSQL target endpoint.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsPostgresTarget? PostgresTarget;
 
         [OutputConstructor]

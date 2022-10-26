@@ -9,9 +9,40 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Creates a new container repository. For more information, see
+    /// [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/repository)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var my_registry = new Yandex.ContainerRegistry("my-registry");
+    /// 
+    ///     var my_repository = new Yandex.ContainerRepository("my-repository");
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// A repository can be imported using the `id` of the resource, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/containerRepository:ContainerRepository my-repository repository_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/containerRepository:ContainerRepository")]
     public partial class ContainerRepository : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -38,7 +69,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -62,6 +93,9 @@ namespace Pulumi.Yandex
 
     public sealed class ContainerRepositoryArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -73,6 +107,9 @@ namespace Pulumi.Yandex
 
     public sealed class ContainerRepositoryState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

@@ -13,17 +13,50 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstanceGroupInstanceTemplateNetworkInterface
     {
+        /// <summary>
+        /// List of dns records.  The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecord> DnsRecords;
+        /// <summary>
+        /// Manual set static IP address.
+        /// </summary>
         public readonly string? IpAddress;
+        /// <summary>
+        /// True if IPv4 address allocated for the network interface.
+        /// </summary>
         public readonly bool? Ipv4;
         public readonly bool? Ipv6;
+        /// <summary>
+        /// Manual set static IPv6 address.
+        /// </summary>
         public readonly string? Ipv6Address;
+        /// <summary>
+        /// List of ipv6 dns records.  The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord> Ipv6DnsRecords;
+        /// <summary>
+        /// Flag for using NAT.
+        /// </summary>
         public readonly bool? Nat;
+        /// <summary>
+        /// List of nat dns records.  The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecord> NatDnsRecords;
+        /// <summary>
+        /// A public address that can be used to access the internet over NAT. Use `variables` to set.
+        /// </summary>
         public readonly string? NatIpAddress;
+        /// <summary>
+        /// The ID of the network.
+        /// </summary>
         public readonly string? NetworkId;
+        /// <summary>
+        /// Security group ids for network interface.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// The ID of the subnets to attach this interface to.
+        /// </summary>
         public readonly ImmutableArray<string> SubnetIds;
 
         [OutputConstructor]

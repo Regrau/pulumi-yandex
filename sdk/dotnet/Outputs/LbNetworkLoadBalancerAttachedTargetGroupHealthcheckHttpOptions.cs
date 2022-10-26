@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptions
     {
+        /// <summary>
+        /// URL path to set for health checking requests for every target in the target group. For example `/ping`. The default path is `/`.
+        /// </summary>
         public readonly string? Path;
+        /// <summary>
+        /// Port for incoming traffic.
+        /// </summary>
         public readonly int Port;
 
         [OutputConstructor]

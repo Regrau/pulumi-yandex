@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbClickhouseClusterClickhouseConfigRabbitmqResult
     {
+        /// <summary>
+        /// RabbitMQ user password.
+        /// </summary>
         public readonly string? Password;
+        /// <summary>
+        /// RabbitMQ username.
+        /// </summary>
         public readonly string? Username;
 
         [OutputConstructor]

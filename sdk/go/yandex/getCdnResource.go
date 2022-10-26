@@ -10,6 +10,37 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex CDN Resource. For more information, see
+// [the official documentation](https://cloud.yandex.ru/docs/cdn/concepts/resource).
+//
+// > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myResource, err := yandex.LookupCdnResource(ctx, &GetCdnResourceArgs{
+//				ResourceId: pulumi.StringRef("some resource id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("resourceCname", myResource.Cname)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupCdnResource(ctx *pulumi.Context, args *LookupCdnResourceArgs, opts ...pulumi.InvokeOption) (*LookupCdnResourceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupCdnResourceResult
@@ -22,17 +53,23 @@ func LookupCdnResource(ctx *pulumi.Context, args *LookupCdnResourceArgs, opts ..
 
 // A collection of arguments for invoking getCdnResource.
 type LookupCdnResourceArgs struct {
-	Active             *bool                         `pulumi:"active"`
-	Cname              *string                       `pulumi:"cname"`
-	FolderId           *string                       `pulumi:"folderId"`
-	Options            *GetCdnResourceOptions        `pulumi:"options"`
-	OriginGroupId      *int                          `pulumi:"originGroupId"`
-	OriginGroupName    *string                       `pulumi:"originGroupName"`
-	OriginProtocol     *string                       `pulumi:"originProtocol"`
-	ResourceId         *string                       `pulumi:"resourceId"`
-	SecondaryHostnames []string                      `pulumi:"secondaryHostnames"`
-	SslCertificate     *GetCdnResourceSslCertificate `pulumi:"sslCertificate"`
-	UpdatedAt          *string                       `pulumi:"updatedAt"`
+	// Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+	Active *bool `pulumi:"active"`
+	// CDN endpoint CNAME, must be unique among resources.
+	Cname *string `pulumi:"cname"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// CDN Resource settings and options to tune CDN edge behavior.
+	Options         *GetCdnResourceOptions `pulumi:"options"`
+	OriginGroupId   *int                   `pulumi:"originGroupId"`
+	OriginGroupName *string                `pulumi:"originGroupName"`
+	OriginProtocol  *string                `pulumi:"originProtocol"`
+	ResourceId      *string                `pulumi:"resourceId"`
+	// list of secondary hostname strings.
+	SecondaryHostnames []string `pulumi:"secondaryHostnames"`
+	// SSL certificate of CDN resource.
+	SslCertificate *GetCdnResourceSslCertificate `pulumi:"sslCertificate"`
+	UpdatedAt      *string                       `pulumi:"updatedAt"`
 }
 
 // A collection of values returned by getCdnResource.
@@ -68,17 +105,23 @@ func LookupCdnResourceOutput(ctx *pulumi.Context, args LookupCdnResourceOutputAr
 
 // A collection of arguments for invoking getCdnResource.
 type LookupCdnResourceOutputArgs struct {
-	Active             pulumi.BoolPtrInput                  `pulumi:"active"`
-	Cname              pulumi.StringPtrInput                `pulumi:"cname"`
-	FolderId           pulumi.StringPtrInput                `pulumi:"folderId"`
-	Options            GetCdnResourceOptionsPtrInput        `pulumi:"options"`
-	OriginGroupId      pulumi.IntPtrInput                   `pulumi:"originGroupId"`
-	OriginGroupName    pulumi.StringPtrInput                `pulumi:"originGroupName"`
-	OriginProtocol     pulumi.StringPtrInput                `pulumi:"originProtocol"`
-	ResourceId         pulumi.StringPtrInput                `pulumi:"resourceId"`
-	SecondaryHostnames pulumi.StringArrayInput              `pulumi:"secondaryHostnames"`
-	SslCertificate     GetCdnResourceSslCertificatePtrInput `pulumi:"sslCertificate"`
-	UpdatedAt          pulumi.StringPtrInput                `pulumi:"updatedAt"`
+	// Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+	Active pulumi.BoolPtrInput `pulumi:"active"`
+	// CDN endpoint CNAME, must be unique among resources.
+	Cname pulumi.StringPtrInput `pulumi:"cname"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// CDN Resource settings and options to tune CDN edge behavior.
+	Options         GetCdnResourceOptionsPtrInput `pulumi:"options"`
+	OriginGroupId   pulumi.IntPtrInput            `pulumi:"originGroupId"`
+	OriginGroupName pulumi.StringPtrInput         `pulumi:"originGroupName"`
+	OriginProtocol  pulumi.StringPtrInput         `pulumi:"originProtocol"`
+	ResourceId      pulumi.StringPtrInput         `pulumi:"resourceId"`
+	// list of secondary hostname strings.
+	SecondaryHostnames pulumi.StringArrayInput `pulumi:"secondaryHostnames"`
+	// SSL certificate of CDN resource.
+	SslCertificate GetCdnResourceSslCertificatePtrInput `pulumi:"sslCertificate"`
+	UpdatedAt      pulumi.StringPtrInput                `pulumi:"updatedAt"`
 }
 
 func (LookupCdnResourceOutputArgs) ElementType() reflect.Type {

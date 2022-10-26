@@ -14,18 +14,31 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("hosts")]
         private InputList<string>? _hosts;
+
+        /// <summary>
+        /// Host names of the replica set.
+        /// </summary>
         public InputList<string> Hosts
         {
             get => _hosts ?? (_hosts = new InputList<string>());
             set => _hosts = value;
         }
 
+        /// <summary>
+        /// TCP Port number.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// Replica set name.
+        /// </summary>
         [Input("replicaSet")]
         public Input<string>? ReplicaSet { get; set; }
 
+        /// <summary>
+        /// TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        /// </summary>
         [Input("tlsMode")]
         public Input<Inputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeGetArgs>? TlsMode { get; set; }
 

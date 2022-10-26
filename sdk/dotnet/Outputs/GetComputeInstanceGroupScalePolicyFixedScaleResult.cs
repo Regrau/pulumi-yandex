@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetComputeInstanceGroupScalePolicyFixedScaleResult
     {
+        /// <summary>
+        /// The size of the disk in GB.
+        /// </summary>
         public readonly int Size;
 
         [OutputConstructor]

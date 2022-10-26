@@ -12,9 +12,16 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class LbTargetGroupTargetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// IP address of the target.
+        /// </summary>
         [Input("address", required: true)]
         public Input<string> Address { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the subnet that targets are connected to. 
+        /// All targets in the target group must be connected to the same subnet within a single availability zone.
+        /// </summary>
         [Input("subnetId", required: true)]
         public Input<string> SubnetId { get; set; } = null!;
 

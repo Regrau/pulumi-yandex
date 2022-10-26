@@ -4,6 +4,20 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## yandex\_function\_iam\_binding
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const function_iam = new yandex.FunctionIamBinding("function-iam", {
+ *     functionId: "your-function-id",
+ *     members: ["system:allUsers"],
+ *     role: "serverless.functions.invoker",
+ * });
+ * ```
+ */
 export class FunctionIamBinding extends pulumi.CustomResource {
     /**
      * Get an existing FunctionIamBinding resource's state with the given name, ID, and optional extra
@@ -32,8 +46,21 @@ export class FunctionIamBinding extends pulumi.CustomResource {
         return obj['__pulumiType'] === FunctionIamBinding.__pulumiType;
     }
 
+    /**
+     * The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.
+     */
     public readonly functionId!: pulumi.Output<string>;
+    /**
+     * Identities that will be granted the privilege in `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+     */
     public readonly members!: pulumi.Output<string[]>;
+    /**
+     * The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)
+     */
     public readonly role!: pulumi.Output<string>;
     public readonly sleepAfter!: pulumi.Output<number | undefined>;
 
@@ -79,8 +106,21 @@ export class FunctionIamBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FunctionIamBinding resources.
  */
 export interface FunctionIamBindingState {
+    /**
+     * The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.
+     */
     functionId?: pulumi.Input<string>;
+    /**
+     * Identities that will be granted the privilege in `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+     */
     members?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)
+     */
     role?: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }
@@ -89,8 +129,21 @@ export interface FunctionIamBindingState {
  * The set of arguments for constructing a FunctionIamBinding resource.
  */
 export interface FunctionIamBindingArgs {
+    /**
+     * The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.
+     */
     functionId: pulumi.Input<string>;
+    /**
+     * Identities that will be granted the privilege in `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+     */
     members: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)
+     */
     role: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }

@@ -10,16 +10,51 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A Disk Placement Group resource. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/disk#nr-disks).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewComputeDiskPlacementGroup(ctx, "group1", &yandex.ComputeDiskPlacementGroupArgs{
+//				Description: pulumi.String("my description"),
+//				FolderId:    pulumi.String("abc*********123"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type ComputeDiskPlacementGroup struct {
 	pulumi.CustomResourceState
 
-	CreatedAt   pulumi.StringOutput    `pulumi:"createdAt"`
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// A description of the Disk Placement Group.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	FolderId    pulumi.StringOutput    `pulumi:"folderId"`
-	Labels      pulumi.StringMapOutput `pulumi:"labels"`
-	Name        pulumi.StringOutput    `pulumi:"name"`
-	Status      pulumi.StringOutput    `pulumi:"status"`
-	Zone        pulumi.StringPtrOutput `pulumi:"zone"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Disk Placement Group.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// The name of the Disk Placement Group.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Status of the Disk Placement Group.
+	Status pulumi.StringOutput `pulumi:"status"`
+	// ID of the zone where the Disk Placement Group resides.
+	Zone pulumi.StringPtrOutput `pulumi:"zone"`
 }
 
 // NewComputeDiskPlacementGroup registers a new resource with the given unique name, arguments, and options.
@@ -52,23 +87,35 @@ func GetComputeDiskPlacementGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ComputeDiskPlacementGroup resources.
 type computeDiskPlacementGroupState struct {
-	CreatedAt   *string           `pulumi:"createdAt"`
-	Description *string           `pulumi:"description"`
-	FolderId    *string           `pulumi:"folderId"`
-	Labels      map[string]string `pulumi:"labels"`
-	Name        *string           `pulumi:"name"`
-	Status      *string           `pulumi:"status"`
-	Zone        *string           `pulumi:"zone"`
+	CreatedAt *string `pulumi:"createdAt"`
+	// A description of the Disk Placement Group.
+	Description *string `pulumi:"description"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Disk Placement Group.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the Disk Placement Group.
+	Name *string `pulumi:"name"`
+	// Status of the Disk Placement Group.
+	Status *string `pulumi:"status"`
+	// ID of the zone where the Disk Placement Group resides.
+	Zone *string `pulumi:"zone"`
 }
 
 type ComputeDiskPlacementGroupState struct {
-	CreatedAt   pulumi.StringPtrInput
+	CreatedAt pulumi.StringPtrInput
+	// A description of the Disk Placement Group.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
-	Status      pulumi.StringPtrInput
-	Zone        pulumi.StringPtrInput
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Disk Placement Group.
+	Labels pulumi.StringMapInput
+	// The name of the Disk Placement Group.
+	Name pulumi.StringPtrInput
+	// Status of the Disk Placement Group.
+	Status pulumi.StringPtrInput
+	// ID of the zone where the Disk Placement Group resides.
+	Zone pulumi.StringPtrInput
 }
 
 func (ComputeDiskPlacementGroupState) ElementType() reflect.Type {
@@ -76,20 +123,30 @@ func (ComputeDiskPlacementGroupState) ElementType() reflect.Type {
 }
 
 type computeDiskPlacementGroupArgs struct {
-	Description *string           `pulumi:"description"`
-	FolderId    *string           `pulumi:"folderId"`
-	Labels      map[string]string `pulumi:"labels"`
-	Name        *string           `pulumi:"name"`
-	Zone        *string           `pulumi:"zone"`
+	// A description of the Disk Placement Group.
+	Description *string `pulumi:"description"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Disk Placement Group.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the Disk Placement Group.
+	Name *string `pulumi:"name"`
+	// ID of the zone where the Disk Placement Group resides.
+	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a ComputeDiskPlacementGroup resource.
 type ComputeDiskPlacementGroupArgs struct {
+	// A description of the Disk Placement Group.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
-	Zone        pulumi.StringPtrInput
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Disk Placement Group.
+	Labels pulumi.StringMapInput
+	// The name of the Disk Placement Group.
+	Name pulumi.StringPtrInput
+	// ID of the zone where the Disk Placement Group resides.
+	Zone pulumi.StringPtrInput
 }
 
 func (ComputeDiskPlacementGroupArgs) ElementType() reflect.Type {
@@ -183,26 +240,32 @@ func (o ComputeDiskPlacementGroupOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeDiskPlacementGroup) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// A description of the Disk Placement Group.
 func (o ComputeDiskPlacementGroupOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputeDiskPlacementGroup) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
 func (o ComputeDiskPlacementGroupOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeDiskPlacementGroup) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the Disk Placement Group.
 func (o ComputeDiskPlacementGroupOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ComputeDiskPlacementGroup) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// The name of the Disk Placement Group.
 func (o ComputeDiskPlacementGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeDiskPlacementGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Status of the Disk Placement Group.
 func (o ComputeDiskPlacementGroupOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeDiskPlacementGroup) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
+// ID of the zone where the Disk Placement Group resides.
 func (o ComputeDiskPlacementGroupOutput) Zone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputeDiskPlacementGroup) pulumi.StringPtrOutput { return v.Zone }).(pulumi.StringPtrOutput)
 }

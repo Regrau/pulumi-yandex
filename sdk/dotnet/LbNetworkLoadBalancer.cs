@@ -9,33 +9,122 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Creates a network load balancer in the specified folder using the data specified in the config.
+    /// For more information, see [the official documentation](https://cloud.yandex.com/docs/load-balancer/concepts).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var foo = new Yandex.LbNetworkLoadBalancer("foo", new()
+    ///     {
+    ///         AttachedTargetGroups = new[]
+    ///         {
+    ///             new Yandex.Inputs.LbNetworkLoadBalancerAttachedTargetGroupArgs
+    ///             {
+    ///                 Healthchecks = new[]
+    ///                 {
+    ///                     new Yandex.Inputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs
+    ///                     {
+    ///                         HttpOptions = new Yandex.Inputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionsArgs
+    ///                         {
+    ///                             Path = "/ping",
+    ///                             Port = 8080,
+    ///                         },
+    ///                         Name = "http",
+    ///                     },
+    ///                 },
+    ///                 TargetGroupId = yandex_lb_target_group.My_target_group.Id,
+    ///             },
+    ///         },
+    ///         Listeners = new[]
+    ///         {
+    ///             new Yandex.Inputs.LbNetworkLoadBalancerListenerArgs
+    ///             {
+    ///                 ExternalAddressSpec = new Yandex.Inputs.LbNetworkLoadBalancerListenerExternalAddressSpecArgs
+    ///                 {
+    ///                     IpVersion = "ipv4",
+    ///                 },
+    ///                 Name = "my-listener",
+    ///                 Port = 8080,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// A network load balancer can be imported using the `id` of the resource, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/lbNetworkLoadBalancer:LbNetworkLoadBalancer default network_load_balancer_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/lbNetworkLoadBalancer:LbNetworkLoadBalancer")]
     public partial class LbNetworkLoadBalancer : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// An AttachedTargetGroup resource. The structure is documented below.
+        /// </summary>
         [Output("attachedTargetGroups")]
         public Output<ImmutableArray<Outputs.LbNetworkLoadBalancerAttachedTargetGroup>> AttachedTargetGroups { get; private set; } = null!;
 
+        /// <summary>
+        /// The network load balancer creation timestamp.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// An optional description of the network load balancer. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of the folder to which the resource belongs.
+        /// If omitted, the provider folder is used.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// Labels to assign to this network load balancer. A list of key/value pairs.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Listener specification that will be used by a network load balancer. The structure is documented below.
+        /// </summary>
         [Output("listeners")]
         public Output<ImmutableArray<Outputs.LbNetworkLoadBalancerListener>> Listeners { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the listener. The name must be unique for each listener on a single load balancer.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the availability zone where the network load balancer resides.
+        /// The default is 'ru-central1'.
+        /// </summary>
         [Output("regionId")]
         public Output<string?> RegionId { get; private set; } = null!;
 
+        /// <summary>
+        /// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
+        /// </summary>
         [Output("type")]
         public Output<string?> Type { get; private set; } = null!;
 
@@ -62,7 +151,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -88,20 +177,36 @@ namespace Pulumi.Yandex
     {
         [Input("attachedTargetGroups")]
         private InputList<Inputs.LbNetworkLoadBalancerAttachedTargetGroupArgs>? _attachedTargetGroups;
+
+        /// <summary>
+        /// An AttachedTargetGroup resource. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.LbNetworkLoadBalancerAttachedTargetGroupArgs> AttachedTargetGroups
         {
             get => _attachedTargetGroups ?? (_attachedTargetGroups = new InputList<Inputs.LbNetworkLoadBalancerAttachedTargetGroupArgs>());
             set => _attachedTargetGroups = value;
         }
 
+        /// <summary>
+        /// An optional description of the network load balancer. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The ID of the folder to which the resource belongs.
+        /// If omitted, the provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this network load balancer. A list of key/value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
@@ -110,18 +215,32 @@ namespace Pulumi.Yandex
 
         [Input("listeners")]
         private InputList<Inputs.LbNetworkLoadBalancerListenerArgs>? _listeners;
+
+        /// <summary>
+        /// Listener specification that will be used by a network load balancer. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.LbNetworkLoadBalancerListenerArgs> Listeners
         {
             get => _listeners ?? (_listeners = new InputList<Inputs.LbNetworkLoadBalancerListenerArgs>());
             set => _listeners = value;
         }
 
+        /// <summary>
+        /// Name of the listener. The name must be unique for each listener on a single load balancer.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the availability zone where the network load balancer resides.
+        /// The default is 'ru-central1'.
+        /// </summary>
         [Input("regionId")]
         public Input<string>? RegionId { get; set; }
 
+        /// <summary>
+        /// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
@@ -135,23 +254,42 @@ namespace Pulumi.Yandex
     {
         [Input("attachedTargetGroups")]
         private InputList<Inputs.LbNetworkLoadBalancerAttachedTargetGroupGetArgs>? _attachedTargetGroups;
+
+        /// <summary>
+        /// An AttachedTargetGroup resource. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.LbNetworkLoadBalancerAttachedTargetGroupGetArgs> AttachedTargetGroups
         {
             get => _attachedTargetGroups ?? (_attachedTargetGroups = new InputList<Inputs.LbNetworkLoadBalancerAttachedTargetGroupGetArgs>());
             set => _attachedTargetGroups = value;
         }
 
+        /// <summary>
+        /// The network load balancer creation timestamp.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// An optional description of the network load balancer. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The ID of the folder to which the resource belongs.
+        /// If omitted, the provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this network load balancer. A list of key/value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
@@ -160,18 +298,32 @@ namespace Pulumi.Yandex
 
         [Input("listeners")]
         private InputList<Inputs.LbNetworkLoadBalancerListenerGetArgs>? _listeners;
+
+        /// <summary>
+        /// Listener specification that will be used by a network load balancer. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.LbNetworkLoadBalancerListenerGetArgs> Listeners
         {
             get => _listeners ?? (_listeners = new InputList<Inputs.LbNetworkLoadBalancerListenerGetArgs>());
             set => _listeners = value;
         }
 
+        /// <summary>
+        /// Name of the listener. The name must be unique for each listener on a single load balancer.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the availability zone where the network load balancer resides.
+        /// The default is 'ru-central1'.
+        /// </summary>
         [Input("regionId")]
         public Input<string>? RegionId { get; set; }
 
+        /// <summary>
+        /// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 

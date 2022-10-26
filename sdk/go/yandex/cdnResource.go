@@ -10,20 +10,40 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of [Yandex.Cloud CDN Resource](https://cloud.yandex.ru/docs/cdn/concepts/resource).
+//
+// > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+//
+// ## Import
+//
+// # A origin group can be imported using any of these accepted formats
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/cdnResource:CdnResource default origin_group_id
+//
+// ```
 type CdnResource struct {
 	pulumi.CustomResourceState
 
-	Active             pulumi.BoolPtrOutput            `pulumi:"active"`
-	Cname              pulumi.StringOutput             `pulumi:"cname"`
-	CreatedAt          pulumi.StringOutput             `pulumi:"createdAt"`
-	FolderId           pulumi.StringOutput             `pulumi:"folderId"`
-	Options            CdnResourceOptionsOutput        `pulumi:"options"`
-	OriginGroupId      pulumi.IntPtrOutput             `pulumi:"originGroupId"`
-	OriginGroupName    pulumi.StringPtrOutput          `pulumi:"originGroupName"`
-	OriginProtocol     pulumi.StringPtrOutput          `pulumi:"originProtocol"`
-	SecondaryHostnames pulumi.StringArrayOutput        `pulumi:"secondaryHostnames"`
-	SslCertificate     CdnResourceSslCertificateOutput `pulumi:"sslCertificate"`
-	UpdatedAt          pulumi.StringOutput             `pulumi:"updatedAt"`
+	// Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+	Active pulumi.BoolPtrOutput `pulumi:"active"`
+	// CDN endpoint CNAME, must be unique among resources.
+	Cname pulumi.StringOutput `pulumi:"cname"`
+	// Creation timestamp of the IoT Core Device
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	FolderId  pulumi.StringOutput `pulumi:"folderId"`
+	// CDN Resource settings and options to tune CDN edge behavior.
+	Options         CdnResourceOptionsOutput `pulumi:"options"`
+	OriginGroupId   pulumi.IntPtrOutput      `pulumi:"originGroupId"`
+	OriginGroupName pulumi.StringPtrOutput   `pulumi:"originGroupName"`
+	OriginProtocol  pulumi.StringPtrOutput   `pulumi:"originProtocol"`
+	// list of secondary hostname strings.
+	SecondaryHostnames pulumi.StringArrayOutput `pulumi:"secondaryHostnames"`
+	// SSL certificate of CDN resource.
+	// ---
+	SslCertificate CdnResourceSslCertificateOutput `pulumi:"sslCertificate"`
+	UpdatedAt      pulumi.StringOutput             `pulumi:"updatedAt"`
 }
 
 // NewCdnResource registers a new resource with the given unique name, arguments, and options.
@@ -56,31 +76,45 @@ func GetCdnResource(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CdnResource resources.
 type cdnResourceState struct {
-	Active             *bool                      `pulumi:"active"`
-	Cname              *string                    `pulumi:"cname"`
-	CreatedAt          *string                    `pulumi:"createdAt"`
-	FolderId           *string                    `pulumi:"folderId"`
-	Options            *CdnResourceOptions        `pulumi:"options"`
-	OriginGroupId      *int                       `pulumi:"originGroupId"`
-	OriginGroupName    *string                    `pulumi:"originGroupName"`
-	OriginProtocol     *string                    `pulumi:"originProtocol"`
-	SecondaryHostnames []string                   `pulumi:"secondaryHostnames"`
-	SslCertificate     *CdnResourceSslCertificate `pulumi:"sslCertificate"`
-	UpdatedAt          *string                    `pulumi:"updatedAt"`
+	// Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+	Active *bool `pulumi:"active"`
+	// CDN endpoint CNAME, must be unique among resources.
+	Cname *string `pulumi:"cname"`
+	// Creation timestamp of the IoT Core Device
+	CreatedAt *string `pulumi:"createdAt"`
+	FolderId  *string `pulumi:"folderId"`
+	// CDN Resource settings and options to tune CDN edge behavior.
+	Options         *CdnResourceOptions `pulumi:"options"`
+	OriginGroupId   *int                `pulumi:"originGroupId"`
+	OriginGroupName *string             `pulumi:"originGroupName"`
+	OriginProtocol  *string             `pulumi:"originProtocol"`
+	// list of secondary hostname strings.
+	SecondaryHostnames []string `pulumi:"secondaryHostnames"`
+	// SSL certificate of CDN resource.
+	// ---
+	SslCertificate *CdnResourceSslCertificate `pulumi:"sslCertificate"`
+	UpdatedAt      *string                    `pulumi:"updatedAt"`
 }
 
 type CdnResourceState struct {
-	Active             pulumi.BoolPtrInput
-	Cname              pulumi.StringPtrInput
-	CreatedAt          pulumi.StringPtrInput
-	FolderId           pulumi.StringPtrInput
-	Options            CdnResourceOptionsPtrInput
-	OriginGroupId      pulumi.IntPtrInput
-	OriginGroupName    pulumi.StringPtrInput
-	OriginProtocol     pulumi.StringPtrInput
+	// Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+	Active pulumi.BoolPtrInput
+	// CDN endpoint CNAME, must be unique among resources.
+	Cname pulumi.StringPtrInput
+	// Creation timestamp of the IoT Core Device
+	CreatedAt pulumi.StringPtrInput
+	FolderId  pulumi.StringPtrInput
+	// CDN Resource settings and options to tune CDN edge behavior.
+	Options         CdnResourceOptionsPtrInput
+	OriginGroupId   pulumi.IntPtrInput
+	OriginGroupName pulumi.StringPtrInput
+	OriginProtocol  pulumi.StringPtrInput
+	// list of secondary hostname strings.
 	SecondaryHostnames pulumi.StringArrayInput
-	SslCertificate     CdnResourceSslCertificatePtrInput
-	UpdatedAt          pulumi.StringPtrInput
+	// SSL certificate of CDN resource.
+	// ---
+	SslCertificate CdnResourceSslCertificatePtrInput
+	UpdatedAt      pulumi.StringPtrInput
 }
 
 func (CdnResourceState) ElementType() reflect.Type {
@@ -88,30 +122,42 @@ func (CdnResourceState) ElementType() reflect.Type {
 }
 
 type cdnResourceArgs struct {
-	Active             *bool                      `pulumi:"active"`
-	Cname              *string                    `pulumi:"cname"`
-	FolderId           *string                    `pulumi:"folderId"`
-	Options            *CdnResourceOptions        `pulumi:"options"`
-	OriginGroupId      *int                       `pulumi:"originGroupId"`
-	OriginGroupName    *string                    `pulumi:"originGroupName"`
-	OriginProtocol     *string                    `pulumi:"originProtocol"`
-	SecondaryHostnames []string                   `pulumi:"secondaryHostnames"`
-	SslCertificate     *CdnResourceSslCertificate `pulumi:"sslCertificate"`
-	UpdatedAt          *string                    `pulumi:"updatedAt"`
+	// Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+	Active *bool `pulumi:"active"`
+	// CDN endpoint CNAME, must be unique among resources.
+	Cname    *string `pulumi:"cname"`
+	FolderId *string `pulumi:"folderId"`
+	// CDN Resource settings and options to tune CDN edge behavior.
+	Options         *CdnResourceOptions `pulumi:"options"`
+	OriginGroupId   *int                `pulumi:"originGroupId"`
+	OriginGroupName *string             `pulumi:"originGroupName"`
+	OriginProtocol  *string             `pulumi:"originProtocol"`
+	// list of secondary hostname strings.
+	SecondaryHostnames []string `pulumi:"secondaryHostnames"`
+	// SSL certificate of CDN resource.
+	// ---
+	SslCertificate *CdnResourceSslCertificate `pulumi:"sslCertificate"`
+	UpdatedAt      *string                    `pulumi:"updatedAt"`
 }
 
 // The set of arguments for constructing a CdnResource resource.
 type CdnResourceArgs struct {
-	Active             pulumi.BoolPtrInput
-	Cname              pulumi.StringPtrInput
-	FolderId           pulumi.StringPtrInput
-	Options            CdnResourceOptionsPtrInput
-	OriginGroupId      pulumi.IntPtrInput
-	OriginGroupName    pulumi.StringPtrInput
-	OriginProtocol     pulumi.StringPtrInput
+	// Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+	Active pulumi.BoolPtrInput
+	// CDN endpoint CNAME, must be unique among resources.
+	Cname    pulumi.StringPtrInput
+	FolderId pulumi.StringPtrInput
+	// CDN Resource settings and options to tune CDN edge behavior.
+	Options         CdnResourceOptionsPtrInput
+	OriginGroupId   pulumi.IntPtrInput
+	OriginGroupName pulumi.StringPtrInput
+	OriginProtocol  pulumi.StringPtrInput
+	// list of secondary hostname strings.
 	SecondaryHostnames pulumi.StringArrayInput
-	SslCertificate     CdnResourceSslCertificatePtrInput
-	UpdatedAt          pulumi.StringPtrInput
+	// SSL certificate of CDN resource.
+	// ---
+	SslCertificate CdnResourceSslCertificatePtrInput
+	UpdatedAt      pulumi.StringPtrInput
 }
 
 func (CdnResourceArgs) ElementType() reflect.Type {
@@ -201,14 +247,17 @@ func (o CdnResourceOutput) ToCdnResourceOutputWithContext(ctx context.Context) C
 	return o
 }
 
+// Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
 func (o CdnResourceOutput) Active() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CdnResource) pulumi.BoolPtrOutput { return v.Active }).(pulumi.BoolPtrOutput)
 }
 
+// CDN endpoint CNAME, must be unique among resources.
 func (o CdnResourceOutput) Cname() pulumi.StringOutput {
 	return o.ApplyT(func(v *CdnResource) pulumi.StringOutput { return v.Cname }).(pulumi.StringOutput)
 }
 
+// Creation timestamp of the IoT Core Device
 func (o CdnResourceOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *CdnResource) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -217,6 +266,7 @@ func (o CdnResourceOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *CdnResource) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// CDN Resource settings and options to tune CDN edge behavior.
 func (o CdnResourceOutput) Options() CdnResourceOptionsOutput {
 	return o.ApplyT(func(v *CdnResource) CdnResourceOptionsOutput { return v.Options }).(CdnResourceOptionsOutput)
 }
@@ -233,10 +283,13 @@ func (o CdnResourceOutput) OriginProtocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CdnResource) pulumi.StringPtrOutput { return v.OriginProtocol }).(pulumi.StringPtrOutput)
 }
 
+// list of secondary hostname strings.
 func (o CdnResourceOutput) SecondaryHostnames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *CdnResource) pulumi.StringArrayOutput { return v.SecondaryHostnames }).(pulumi.StringArrayOutput)
 }
 
+// SSL certificate of CDN resource.
+// ---
 func (o CdnResourceOutput) SslCertificate() CdnResourceSslCertificateOutput {
 	return o.ApplyT(func(v *CdnResource) CdnResourceSslCertificateOutput { return v.SslCertificate }).(CdnResourceSslCertificateOutput)
 }

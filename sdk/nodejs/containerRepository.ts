@@ -4,6 +4,28 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates a new container repository. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/repository)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const my_registry = new yandex.ContainerRegistry("my-registry", {});
+ * const my_repository = new yandex.ContainerRepository("my-repository", {});
+ * ```
+ *
+ * ## Import
+ *
+ * A repository can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/containerRepository:ContainerRepository my-repository repository_id
+ * ```
+ */
 export class ContainerRepository extends pulumi.CustomResource {
     /**
      * Get an existing ContainerRepository resource's state with the given name, ID, and optional extra
@@ -32,6 +54,9 @@ export class ContainerRepository extends pulumi.CustomResource {
         return obj['__pulumiType'] === ContainerRepository.__pulumiType;
     }
 
+    /**
+     * A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
+     */
     public readonly name!: pulumi.Output<string>;
 
     /**
@@ -61,6 +86,9 @@ export class ContainerRepository extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ContainerRepository resources.
  */
 export interface ContainerRepositoryState {
+    /**
+     * A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
+     */
     name?: pulumi.Input<string>;
 }
 
@@ -68,5 +96,8 @@ export interface ContainerRepositoryState {
  * The set of arguments for constructing a ContainerRepository resource.
  */
 export interface ContainerRepositoryArgs {
+    /**
+     * A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
+     */
     name?: pulumi.Input<string>;
 }

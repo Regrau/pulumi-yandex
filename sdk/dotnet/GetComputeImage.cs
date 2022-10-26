@@ -21,15 +21,27 @@ namespace Pulumi.Yandex
 
     public sealed class GetComputeImageArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The family name of an image. Used to search the latest image in a family.
+        /// </summary>
         [Input("family")]
         public string? Family { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// The ID of a specific image.
+        /// </summary>
         [Input("imageId")]
         public string? ImageId { get; set; }
 
+        /// <summary>
+        /// The name of the image.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -41,15 +53,27 @@ namespace Pulumi.Yandex
 
     public sealed class GetComputeImageInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The family name of an image. Used to search the latest image in a family.
+        /// </summary>
         [Input("family")]
         public Input<string>? Family { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// The ID of a specific image.
+        /// </summary>
         [Input("imageId")]
         public Input<string>? ImageId { get; set; }
 
+        /// <summary>
+        /// The name of the image.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -63,8 +87,17 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetComputeImageResult
     {
+        /// <summary>
+        /// Image creation timestamp.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// An optional description of this image.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// The OS family name of the image.
+        /// </summary>
         public readonly string Family;
         public readonly string FolderId;
         /// <summary>
@@ -72,13 +105,34 @@ namespace Pulumi.Yandex
         /// </summary>
         public readonly string Id;
         public readonly string ImageId;
+        /// <summary>
+        /// A map of labels applied to this image.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// Minimum size of the disk which is created from this image.
+        /// </summary>
         public readonly int MinDiskSize;
         public readonly string Name;
+        /// <summary>
+        /// Operating system type that the image contains.
+        /// </summary>
         public readonly string OsType;
+        /// <summary>
+        /// Optimize the image to create a disk.
+        /// </summary>
         public readonly bool Pooled;
+        /// <summary>
+        /// License IDs that indicate which licenses are attached to this image.
+        /// </summary>
         public readonly ImmutableArray<string> ProductIds;
+        /// <summary>
+        /// The size of the image, specified in Gb.
+        /// </summary>
         public readonly int Size;
+        /// <summary>
+        /// The status of the image.
+        /// </summary>
         public readonly string Status;
 
         [OutputConstructor]

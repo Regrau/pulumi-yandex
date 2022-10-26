@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetComputeInstanceGroupApplicationBalancerStateResult
     {
+        /// <summary>
+        /// The status message of the target group.
+        /// </summary>
         public readonly string StatusMessage;
+        /// <summary>
+        /// The ID of the target group.
+        /// </summary>
         public readonly string TargetGroupId;
 
         [OutputConstructor]

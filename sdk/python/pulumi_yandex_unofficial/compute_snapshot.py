@@ -21,6 +21,12 @@ class ComputeSnapshotArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ComputeSnapshot resource.
+        :param pulumi.Input[str] source_disk_id: ID of the disk to create a snapshot from.
+        :param pulumi.Input[str] description: Description of the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the snapshot.
+        :param pulumi.Input[str] name: A name for the resource.
         """
         pulumi.set(__self__, "source_disk_id", source_disk_id)
         if description is not None:
@@ -35,6 +41,9 @@ class ComputeSnapshotArgs:
     @property
     @pulumi.getter(name="sourceDiskId")
     def source_disk_id(self) -> pulumi.Input[str]:
+        """
+        ID of the disk to create a snapshot from.
+        """
         return pulumi.get(self, "source_disk_id")
 
     @source_disk_id.setter
@@ -44,6 +53,9 @@ class ComputeSnapshotArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -53,6 +65,10 @@ class ComputeSnapshotArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -62,6 +78,9 @@ class ComputeSnapshotArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the snapshot.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -71,6 +90,9 @@ class ComputeSnapshotArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A name for the resource.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -91,6 +113,15 @@ class _ComputeSnapshotState:
                  storage_size: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering ComputeSnapshot resources.
+        :param pulumi.Input[str] created_at: Creation timestamp of the snapshot.
+        :param pulumi.Input[str] description: Description of the resource.
+        :param pulumi.Input[int] disk_size: Size of the disk when the snapshot was created, specified in GB.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the snapshot.
+        :param pulumi.Input[str] name: A name for the resource.
+        :param pulumi.Input[str] source_disk_id: ID of the disk to create a snapshot from.
+        :param pulumi.Input[int] storage_size: Size of the snapshot, specified in GB.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -112,6 +143,9 @@ class _ComputeSnapshotState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the snapshot.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -121,6 +155,9 @@ class _ComputeSnapshotState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -130,6 +167,9 @@ class _ComputeSnapshotState:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Size of the disk when the snapshot was created, specified in GB.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -139,6 +179,10 @@ class _ComputeSnapshotState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -148,6 +192,9 @@ class _ComputeSnapshotState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the snapshot.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -157,6 +204,9 @@ class _ComputeSnapshotState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A name for the resource.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -166,6 +216,9 @@ class _ComputeSnapshotState:
     @property
     @pulumi.getter(name="sourceDiskId")
     def source_disk_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the disk to create a snapshot from.
+        """
         return pulumi.get(self, "source_disk_id")
 
     @source_disk_id.setter
@@ -175,6 +228,9 @@ class _ComputeSnapshotState:
     @property
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Size of the snapshot, specified in GB.
+        """
         return pulumi.get(self, "storage_size")
 
     @storage_size.setter
@@ -194,9 +250,38 @@ class ComputeSnapshot(pulumi.CustomResource):
                  source_disk_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ComputeSnapshot resource with the given unique name, props, and options.
+        Creates a new snapshot of a disk. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/compute/concepts/snapshot).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        default = yandex.ComputeSnapshot("default",
+            labels={
+                "my-label": "my-label-value",
+            },
+            source_disk_id="test_disk_id")
+        ```
+
+        ## Import
+
+        A snapshot can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/computeSnapshot:ComputeSnapshot disk-snapshot shapshot_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Description of the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the snapshot.
+        :param pulumi.Input[str] name: A name for the resource.
+        :param pulumi.Input[str] source_disk_id: ID of the disk to create a snapshot from.
         """
         ...
     @overload
@@ -205,7 +290,30 @@ class ComputeSnapshot(pulumi.CustomResource):
                  args: ComputeSnapshotArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ComputeSnapshot resource with the given unique name, props, and options.
+        Creates a new snapshot of a disk. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/compute/concepts/snapshot).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        default = yandex.ComputeSnapshot("default",
+            labels={
+                "my-label": "my-label-value",
+            },
+            source_disk_id="test_disk_id")
+        ```
+
+        ## Import
+
+        A snapshot can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/computeSnapshot:ComputeSnapshot disk-snapshot shapshot_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param ComputeSnapshotArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -270,6 +378,15 @@ class ComputeSnapshot(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: Creation timestamp of the snapshot.
+        :param pulumi.Input[str] description: Description of the resource.
+        :param pulumi.Input[int] disk_size: Size of the disk when the snapshot was created, specified in GB.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the snapshot.
+        :param pulumi.Input[str] name: A name for the resource.
+        :param pulumi.Input[str] source_disk_id: ID of the disk to create a snapshot from.
+        :param pulumi.Input[int] storage_size: Size of the snapshot, specified in GB.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -288,40 +405,65 @@ class ComputeSnapshot(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the snapshot.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the resource.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> pulumi.Output[int]:
+        """
+        Size of the disk when the snapshot was created, specified in GB.
+        """
         return pulumi.get(self, "disk_size")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the snapshot.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        A name for the resource.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="sourceDiskId")
     def source_disk_id(self) -> pulumi.Output[str]:
+        """
+        ID of the disk to create a snapshot from.
+        """
         return pulumi.get(self, "source_disk_id")
 
     @property
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> pulumi.Output[int]:
+        """
+        Size of the snapshot, specified in GB.
+        """
         return pulumi.get(self, "storage_size")
 

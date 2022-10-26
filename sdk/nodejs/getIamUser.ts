@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex IAM user account. For more information about accounts, see
+ * [Yandex.Cloud IAM accounts](https://cloud.yandex.com/docs/iam/concepts/#accounts).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const admin = pulumi.output(yandex.getIamUser({
+ *     login: "my-yandex-login",
+ * }));
+ * ```
+ *
+ * This data source is used to define [IAM User] that can be used by other resources.
+ */
 export function getIamUser(args?: GetIamUserArgs, opts?: pulumi.InvokeOptions): Promise<GetIamUserResult> {
     args = args || {};
     if (!opts) {
@@ -21,7 +36,13 @@ export function getIamUser(args?: GetIamUserArgs, opts?: pulumi.InvokeOptions): 
  * A collection of arguments for invoking getIamUser.
  */
 export interface GetIamUserArgs {
+    /**
+     * Login name used to sign in to Yandex Passport.
+     */
     login?: string;
+    /**
+     * User ID used to manage IAM access bindings.
+     */
     userId?: string;
 }
 
@@ -29,12 +50,21 @@ export interface GetIamUserArgs {
  * A collection of values returned by getIamUser.
  */
 export interface GetIamUserResult {
+    /**
+     * Email address of user account.
+     */
     readonly defaultEmail: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Login name of IAM user account.
+     */
     readonly login: string;
+    /**
+     * ID of IAM user account.
+     */
     readonly userId: string;
 }
 
@@ -46,6 +76,12 @@ export function getIamUserOutput(args?: GetIamUserOutputArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getIamUser.
  */
 export interface GetIamUserOutputArgs {
+    /**
+     * Login name used to sign in to Yandex Passport.
+     */
     login?: pulumi.Input<string>;
+    /**
+     * User ID used to manage IAM access bindings.
+     */
     userId?: pulumi.Input<string>;
 }

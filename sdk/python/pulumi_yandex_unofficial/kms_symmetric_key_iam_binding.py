@@ -20,6 +20,13 @@ class KmsSymmetricKeyIamBindingArgs:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a KmsSymmetricKeyIamBinding resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: Identities that will be granted the privilege in `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        :param pulumi.Input[str] role: The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+        :param pulumi.Input[str] symmetric_key_id: The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
         """
         pulumi.set(__self__, "members", members)
         pulumi.set(__self__, "role", role)
@@ -30,6 +37,13 @@ class KmsSymmetricKeyIamBindingArgs:
     @property
     @pulumi.getter
     def members(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Identities that will be granted the privilege in `role`.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        """
         return pulumi.get(self, "members")
 
     @members.setter
@@ -39,6 +53,9 @@ class KmsSymmetricKeyIamBindingArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -48,6 +65,9 @@ class KmsSymmetricKeyIamBindingArgs:
     @property
     @pulumi.getter(name="symmetricKeyId")
     def symmetric_key_id(self) -> pulumi.Input[str]:
+        """
+        The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
+        """
         return pulumi.get(self, "symmetric_key_id")
 
     @symmetric_key_id.setter
@@ -73,6 +93,13 @@ class _KmsSymmetricKeyIamBindingState:
                  symmetric_key_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering KmsSymmetricKeyIamBinding resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: Identities that will be granted the privilege in `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        :param pulumi.Input[str] role: The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+        :param pulumi.Input[str] symmetric_key_id: The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
         """
         if members is not None:
             pulumi.set(__self__, "members", members)
@@ -86,6 +113,13 @@ class _KmsSymmetricKeyIamBindingState:
     @property
     @pulumi.getter
     def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Identities that will be granted the privilege in `role`.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        """
         return pulumi.get(self, "members")
 
     @members.setter
@@ -95,6 +129,9 @@ class _KmsSymmetricKeyIamBindingState:
     @property
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -113,6 +150,9 @@ class _KmsSymmetricKeyIamBindingState:
     @property
     @pulumi.getter(name="symmetricKeyId")
     def symmetric_key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
+        """
         return pulumi.get(self, "symmetric_key_id")
 
     @symmetric_key_id.setter
@@ -131,9 +171,41 @@ class KmsSymmetricKeyIamBinding(pulumi.CustomResource):
                  symmetric_key_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a KmsSymmetricKeyIamBinding resource with the given unique name, props, and options.
+        ## yandex\\_kms\\_symmetric\\_key\\_iam\\_binding
+
+        Allows creation and management of a single binding within IAM policy for
+        an existing Yandex KMS Symmetric Key.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        your_key = yandex.KmsSymmetricKey("your-key", folder_id="your-folder-id")
+        viewer = yandex.KmsSymmetricKeyIamBinding("viewer",
+            symmetric_key_id=your_key.id,
+            role="viewer",
+            members=["userAccount:foo_user_id"])
+        ```
+
+        ## Import
+
+        IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `symmetric_key_id` and role, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/kmsSymmetricKeyIamBinding:KmsSymmetricKeyIamBinding viewer "symmetric_key_id viewer"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: Identities that will be granted the privilege in `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        :param pulumi.Input[str] role: The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+        :param pulumi.Input[str] symmetric_key_id: The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
         """
         ...
     @overload
@@ -142,7 +214,32 @@ class KmsSymmetricKeyIamBinding(pulumi.CustomResource):
                  args: KmsSymmetricKeyIamBindingArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a KmsSymmetricKeyIamBinding resource with the given unique name, props, and options.
+        ## yandex\\_kms\\_symmetric\\_key\\_iam\\_binding
+
+        Allows creation and management of a single binding within IAM policy for
+        an existing Yandex KMS Symmetric Key.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        your_key = yandex.KmsSymmetricKey("your-key", folder_id="your-folder-id")
+        viewer = yandex.KmsSymmetricKeyIamBinding("viewer",
+            symmetric_key_id=your_key.id,
+            role="viewer",
+            members=["userAccount:foo_user_id"])
+        ```
+
+        ## Import
+
+        IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `symmetric_key_id` and role, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/kmsSymmetricKeyIamBinding:KmsSymmetricKeyIamBinding viewer "symmetric_key_id viewer"
+        ```
+
         :param str resource_name: The name of the resource.
         :param KmsSymmetricKeyIamBindingArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,6 +299,13 @@ class KmsSymmetricKeyIamBinding(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: Identities that will be granted the privilege in `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        :param pulumi.Input[str] role: The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+        :param pulumi.Input[str] symmetric_key_id: The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -216,11 +320,21 @@ class KmsSymmetricKeyIamBinding(pulumi.CustomResource):
     @property
     @pulumi.getter
     def members(self) -> pulumi.Output[Sequence[str]]:
+        """
+        Identities that will be granted the privilege in `role`.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        """
         return pulumi.get(self, "members")
 
     @property
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
+        """
+        The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+        """
         return pulumi.get(self, "role")
 
     @property
@@ -231,5 +345,8 @@ class KmsSymmetricKeyIamBinding(pulumi.CustomResource):
     @property
     @pulumi.getter(name="symmetricKeyId")
     def symmetric_key_id(self) -> pulumi.Output[str]:
+        """
+        The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
+        """
         return pulumi.get(self, "symmetric_key_id")
 

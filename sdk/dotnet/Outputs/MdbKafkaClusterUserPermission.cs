@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbKafkaClusterUserPermission
     {
+        /// <summary>
+        /// The role type to grant to the topic.
+        /// </summary>
         public readonly string Role;
+        /// <summary>
+        /// The name of the topic that the permission grants access to.
+        /// </summary>
         public readonly string TopicName;
 
         [OutputConstructor]

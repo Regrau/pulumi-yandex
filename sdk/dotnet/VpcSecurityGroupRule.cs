@@ -9,42 +9,137 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Manages a single Secuirity Group Rule within the Yandex.Cloud. For more information, see the official documentation
+    /// of [security groups](https://cloud.yandex.com/docs/vpc/concepts/security-groups)
+    /// and [security group rules](https://cloud.yandex.com/docs/vpc/concepts/security-groups#rules).
+    /// 
+    /// &gt; **NOTE:** There is another way to manage security group rules by `ingress` and `egress` arguments in yandex_vpc_security_group. Both ways are equivalent but not compatible now. Using in-line rules of yandex.VpcSecurityGroup with Security Group Rule resource at the same time will cause a conflict of rules configuration.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var lab_net = new Yandex.VpcNetwork("lab-net");
+    /// 
+    ///     var group1 = new Yandex.VpcSecurityGroup("group1", new()
+    ///     {
+    ///         Description = "description for my security group",
+    ///         NetworkId = lab_net.Id,
+    ///         Labels = 
+    ///         {
+    ///             { "my-label", "my-label-value" },
+    ///         },
+    ///     });
+    /// 
+    ///     var rule1 = new Yandex.VpcSecurityGroupRule("rule1", new()
+    ///     {
+    ///         SecurityGroupBinding = group1.Id,
+    ///         Direction = "ingress",
+    ///         Description = "rule1 description",
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.0.1.0/24",
+    ///             "10.0.2.0/24",
+    ///         },
+    ///         Port = 8080,
+    ///         Protocol = "TCP",
+    ///     });
+    /// 
+    ///     var rule2 = new Yandex.VpcSecurityGroupRule("rule2", new()
+    ///     {
+    ///         SecurityGroupBinding = group1.Id,
+    ///         Direction = "egress",
+    ///         Description = "rule2 description",
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.0.1.0/24",
+    ///         },
+    ///         FromPort = 8090,
+    ///         ToPort = 8099,
+    ///         Protocol = "UDP",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/vpcSecurityGroupRule:VpcSecurityGroupRule")]
     public partial class VpcSecurityGroupRule : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Description of the rule.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+        /// </summary>
         [Output("direction")]
         public Output<string> Direction { get; private set; } = null!;
 
+        /// <summary>
+        /// Minimum port number.
+        /// </summary>
         [Output("fromPort")]
         public Output<int?> FromPort { get; private set; } = null!;
 
+        /// <summary>
+        /// Labels to assign to this rule.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Port number (if applied to a single port).
+        /// </summary>
         [Output("port")]
         public Output<int?> Port { get; private set; } = null!;
 
+        /// <summary>
+        /// Special-purpose targets such as "self_security_group". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+        /// </summary>
         [Output("predefinedTarget")]
         public Output<string?> PredefinedTarget { get; private set; } = null!;
 
+        /// <summary>
+        /// One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+        /// </summary>
         [Output("protocol")]
         public Output<string?> Protocol { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the security group this rule belongs to.
+        /// </summary>
         [Output("securityGroupBinding")]
         public Output<string> SecurityGroupBinding { get; private set; } = null!;
 
+        /// <summary>
+        /// Target security group ID for this rule.
+        /// </summary>
         [Output("securityGroupId")]
         public Output<string?> SecurityGroupId { get; private set; } = null!;
 
+        /// <summary>
+        /// Maximum port number.
+        /// </summary>
         [Output("toPort")]
         public Output<int?> ToPort { get; private set; } = null!;
 
+        /// <summary>
+        /// The blocks of IPv4 addresses for this rule.
+        /// </summary>
         [Output("v4CidrBlocks")]
         public Output<ImmutableArray<string>> V4CidrBlocks { get; private set; } = null!;
 
+        /// <summary>
+        /// The blocks of IPv6 addresses for this rule. `v6_cidr_blocks` argument is currently not supported. It will be available in the future.
+        /// </summary>
         [Output("v6CidrBlocks")]
         public Output<ImmutableArray<string>> V6CidrBlocks { get; private set; } = null!;
 
@@ -71,7 +166,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -95,43 +190,78 @@ namespace Pulumi.Yandex
 
     public sealed class VpcSecurityGroupRuleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Description of the rule.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+        /// </summary>
         [Input("direction", required: true)]
         public Input<string> Direction { get; set; } = null!;
 
+        /// <summary>
+        /// Minimum port number.
+        /// </summary>
         [Input("fromPort")]
         public Input<int>? FromPort { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this rule.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Port number (if applied to a single port).
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// Special-purpose targets such as "self_security_group". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+        /// </summary>
         [Input("predefinedTarget")]
         public Input<string>? PredefinedTarget { get; set; }
 
+        /// <summary>
+        /// One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+        /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
+        /// <summary>
+        /// ID of the security group this rule belongs to.
+        /// </summary>
         [Input("securityGroupBinding", required: true)]
         public Input<string> SecurityGroupBinding { get; set; } = null!;
 
+        /// <summary>
+        /// Target security group ID for this rule.
+        /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }
 
+        /// <summary>
+        /// Maximum port number.
+        /// </summary>
         [Input("toPort")]
         public Input<int>? ToPort { get; set; }
 
         [Input("v4CidrBlocks")]
         private InputList<string>? _v4CidrBlocks;
+
+        /// <summary>
+        /// The blocks of IPv4 addresses for this rule.
+        /// </summary>
         public InputList<string> V4CidrBlocks
         {
             get => _v4CidrBlocks ?? (_v4CidrBlocks = new InputList<string>());
@@ -140,6 +270,10 @@ namespace Pulumi.Yandex
 
         [Input("v6CidrBlocks")]
         private InputList<string>? _v6CidrBlocks;
+
+        /// <summary>
+        /// The blocks of IPv6 addresses for this rule. `v6_cidr_blocks` argument is currently not supported. It will be available in the future.
+        /// </summary>
         public InputList<string> V6CidrBlocks
         {
             get => _v6CidrBlocks ?? (_v6CidrBlocks = new InputList<string>());
@@ -154,43 +288,78 @@ namespace Pulumi.Yandex
 
     public sealed class VpcSecurityGroupRuleState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Description of the rule.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+        /// </summary>
         [Input("direction")]
         public Input<string>? Direction { get; set; }
 
+        /// <summary>
+        /// Minimum port number.
+        /// </summary>
         [Input("fromPort")]
         public Input<int>? FromPort { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this rule.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Port number (if applied to a single port).
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// Special-purpose targets such as "self_security_group". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+        /// </summary>
         [Input("predefinedTarget")]
         public Input<string>? PredefinedTarget { get; set; }
 
+        /// <summary>
+        /// One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+        /// </summary>
         [Input("protocol")]
         public Input<string>? Protocol { get; set; }
 
+        /// <summary>
+        /// ID of the security group this rule belongs to.
+        /// </summary>
         [Input("securityGroupBinding")]
         public Input<string>? SecurityGroupBinding { get; set; }
 
+        /// <summary>
+        /// Target security group ID for this rule.
+        /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }
 
+        /// <summary>
+        /// Maximum port number.
+        /// </summary>
         [Input("toPort")]
         public Input<int>? ToPort { get; set; }
 
         [Input("v4CidrBlocks")]
         private InputList<string>? _v4CidrBlocks;
+
+        /// <summary>
+        /// The blocks of IPv4 addresses for this rule.
+        /// </summary>
         public InputList<string> V4CidrBlocks
         {
             get => _v4CidrBlocks ?? (_v4CidrBlocks = new InputList<string>());
@@ -199,6 +368,10 @@ namespace Pulumi.Yandex
 
         [Input("v6CidrBlocks")]
         private InputList<string>? _v6CidrBlocks;
+
+        /// <summary>
+        /// The blocks of IPv6 addresses for this rule. `v6_cidr_blocks` argument is currently not supported. It will be available in the future.
+        /// </summary>
         public InputList<string> V6CidrBlocks
         {
             get => _v6CidrBlocks ?? (_v6CidrBlocks = new InputList<string>());

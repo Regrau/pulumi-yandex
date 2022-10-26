@@ -9,33 +9,84 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows management of [Yandex.Cloud Storage Object](https://cloud.yandex.com/docs/storage/concepts/object).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Example creating an object in an existing `cat-pictures` bucket.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var cute_cat_picture = new Yandex.StorageObject("cute-cat-picture", new()
+    ///     {
+    ///         Bucket = "cat-pictures",
+    ///         Key = "cute-cat",
+    ///         Source = "/images/cats/cute-cat.jpg",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/storageObject:StorageObject")]
     public partial class StorageObject : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The access key to use when applying changes. If omitted, `storage_access_key` specified in config is used.
+        /// </summary>
         [Output("accessKey")]
         public Output<string?> AccessKey { get; private set; } = null!;
 
+        /// <summary>
+        /// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`.
+        /// </summary>
         [Output("acl")]
         public Output<string?> Acl { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the containing bucket.
+        /// </summary>
         [Output("bucket")]
         public Output<string> Bucket { get; private set; } = null!;
 
+        /// <summary>
+        /// Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
+        /// </summary>
         [Output("content")]
         public Output<string?> Content { get; private set; } = null!;
 
+        /// <summary>
+        /// Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
+        /// </summary>
         [Output("contentBase64")]
         public Output<string?> ContentBase64 { get; private set; } = null!;
 
+        /// <summary>
+        /// A standard MIME type describing the format of the object data, e.g. `application/octet-stream`. All Valid MIME Types are valid for this input.
+        /// </summary>
         [Output("contentType")]
         public Output<string> ContentType { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the object once it is in the bucket.
+        /// </summary>
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
+        /// </summary>
         [Output("secretKey")]
         public Output<string?> SecretKey { get; private set; } = null!;
 
+        /// <summary>
+        /// The path to a file that will be read and uploaded as raw bytes for the object content.
+        /// </summary>
         [Output("source")]
         public Output<string?> Source { get; private set; } = null!;
 
@@ -62,7 +113,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -86,30 +137,57 @@ namespace Pulumi.Yandex
 
     public sealed class StorageObjectArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The access key to use when applying changes. If omitted, `storage_access_key` specified in config is used.
+        /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
+        /// <summary>
+        /// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`.
+        /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
 
+        /// <summary>
+        /// The name of the containing bucket.
+        /// </summary>
         [Input("bucket", required: true)]
         public Input<string> Bucket { get; set; } = null!;
 
+        /// <summary>
+        /// Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
+        /// </summary>
         [Input("content")]
         public Input<string>? Content { get; set; }
 
+        /// <summary>
+        /// Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
+        /// </summary>
         [Input("contentBase64")]
         public Input<string>? ContentBase64 { get; set; }
 
+        /// <summary>
+        /// A standard MIME type describing the format of the object data, e.g. `application/octet-stream`. All Valid MIME Types are valid for this input.
+        /// </summary>
         [Input("contentType")]
         public Input<string>? ContentType { get; set; }
 
+        /// <summary>
+        /// The name of the object once it is in the bucket.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
+        /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
+        /// <summary>
+        /// The path to a file that will be read and uploaded as raw bytes for the object content.
+        /// </summary>
         [Input("source")]
         public Input<string>? Source { get; set; }
 
@@ -121,30 +199,57 @@ namespace Pulumi.Yandex
 
     public sealed class StorageObjectState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The access key to use when applying changes. If omitted, `storage_access_key` specified in config is used.
+        /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
+        /// <summary>
+        /// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`.
+        /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
 
+        /// <summary>
+        /// The name of the containing bucket.
+        /// </summary>
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }
 
+        /// <summary>
+        /// Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
+        /// </summary>
         [Input("content")]
         public Input<string>? Content { get; set; }
 
+        /// <summary>
+        /// Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
+        /// </summary>
         [Input("contentBase64")]
         public Input<string>? ContentBase64 { get; set; }
 
+        /// <summary>
+        /// A standard MIME type describing the format of the object data, e.g. `application/octet-stream`. All Valid MIME Types are valid for this input.
+        /// </summary>
         [Input("contentType")]
         public Input<string>? ContentType { get; set; }
 
+        /// <summary>
+        /// The name of the object once it is in the bucket.
+        /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
 
+        /// <summary>
+        /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
+        /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
+        /// <summary>
+        /// The path to a file that will be read and uploaded as raw bytes for the object content.
+        /// </summary>
         [Input("source")]
         public Input<string>? Source { get; set; }
 

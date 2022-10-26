@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class LbNetworkLoadBalancerListenerExternalAddressSpec
     {
+        /// <summary>
+        /// Internal IP address for a listener. Must belong to the subnet that is referenced in subnet_id. IP address will be allocated if it wasn't been set.
+        /// </summary>
         public readonly string? Address;
+        /// <summary>
+        /// IP version of the internal addresses that the load balancer works with. Must be one of ipv4 or ipv6. The default is ipv4.
+        /// </summary>
         public readonly string? IpVersion;
 
         [OutputConstructor]

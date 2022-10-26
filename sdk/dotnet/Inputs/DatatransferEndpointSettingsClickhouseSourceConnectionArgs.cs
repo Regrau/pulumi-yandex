@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsClickhouseSourceConnectionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Connection options. The structure is documented below.
+        /// </summary>
         [Input("connectionOptions")]
         public Input<Inputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsArgs>? ConnectionOptions { get; set; }
 

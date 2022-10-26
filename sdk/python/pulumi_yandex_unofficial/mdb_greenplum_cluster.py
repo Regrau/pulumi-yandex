@@ -42,6 +42,31 @@ class MdbGreenplumClusterArgs:
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a MdbGreenplumCluster resource.
+        :param pulumi.Input[bool] assign_public_ip: Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+        :param pulumi.Input[str] environment: Deployment environment of the Greenplum cluster. (PRODUCTION, PRESTABLE)
+        :param pulumi.Input[int] master_host_count: Number of hosts in master subcluster (1 or 2).
+        :param pulumi.Input['MdbGreenplumClusterMasterSubclusterArgs'] master_subcluster: Settings for master subcluster. The structure is documented below.
+        :param pulumi.Input[str] network_id: ID of the network, to which the Greenplum cluster uses.
+        :param pulumi.Input[int] segment_host_count: Number of hosts in segment subcluster (from 1 to 32).
+        :param pulumi.Input[int] segment_in_host: Number of segments on segment host (not more then 1 + RAM/8).
+        :param pulumi.Input['MdbGreenplumClusterSegmentSubclusterArgs'] segment_subcluster: Settings for segment subcluster. The structure is documented below.
+        :param pulumi.Input[str] subnet_id: The ID of the subnet, to which the hosts belongs. The subnet must be a part of the network to which the cluster belongs.
+        :param pulumi.Input[str] user_name: Greenplum cluster admin user name.
+        :param pulumi.Input[str] user_password: Greenplum cluster admin password name.
+        :param pulumi.Input[str] version: Version of the Greenplum cluster. (6.19)
+        :param pulumi.Input[str] zone: The availability zone where the Greenplum hosts will be created.
+        :param pulumi.Input['MdbGreenplumClusterAccessArgs'] access: Access policy to the Greenplum cluster. The structure is documented below.
+        :param pulumi.Input['MdbGreenplumClusterBackupWindowStartArgs'] backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Greenplum cluster.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] greenplum_config: Greenplum cluster config. Detail info in "Greenplum cluster settings" section (documented below).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Greenplum cluster.
+        :param pulumi.Input['MdbGreenplumClusterMaintenanceWindowArgs'] maintenance_window: Maintenance policy of the Greenplum cluster. The structure is documented below.
+        :param pulumi.Input[str] name: Name of the Greenplum cluster. Provided by the client when the cluster is created.
+        :param pulumi.Input['MdbGreenplumClusterPoolerConfigArgs'] pooler_config: Configuration of the connection pooler. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         """
         pulumi.set(__self__, "assign_public_ip", assign_public_ip)
         pulumi.set(__self__, "environment", environment)
@@ -82,6 +107,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> pulumi.Input[bool]:
+        """
+        Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -91,6 +119,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Input[str]:
+        """
+        Deployment environment of the Greenplum cluster. (PRODUCTION, PRESTABLE)
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -100,6 +131,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="masterHostCount")
     def master_host_count(self) -> pulumi.Input[int]:
+        """
+        Number of hosts in master subcluster (1 or 2).
+        """
         return pulumi.get(self, "master_host_count")
 
     @master_host_count.setter
@@ -109,6 +143,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="masterSubcluster")
     def master_subcluster(self) -> pulumi.Input['MdbGreenplumClusterMasterSubclusterArgs']:
+        """
+        Settings for master subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "master_subcluster")
 
     @master_subcluster.setter
@@ -118,6 +155,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Input[str]:
+        """
+        ID of the network, to which the Greenplum cluster uses.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -127,6 +167,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="segmentHostCount")
     def segment_host_count(self) -> pulumi.Input[int]:
+        """
+        Number of hosts in segment subcluster (from 1 to 32).
+        """
         return pulumi.get(self, "segment_host_count")
 
     @segment_host_count.setter
@@ -136,6 +179,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="segmentInHost")
     def segment_in_host(self) -> pulumi.Input[int]:
+        """
+        Number of segments on segment host (not more then 1 + RAM/8).
+        """
         return pulumi.get(self, "segment_in_host")
 
     @segment_in_host.setter
@@ -145,6 +191,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="segmentSubcluster")
     def segment_subcluster(self) -> pulumi.Input['MdbGreenplumClusterSegmentSubclusterArgs']:
+        """
+        Settings for segment subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "segment_subcluster")
 
     @segment_subcluster.setter
@@ -154,6 +203,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the subnet, to which the hosts belongs. The subnet must be a part of the network to which the cluster belongs.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -163,6 +215,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Input[str]:
+        """
+        Greenplum cluster admin user name.
+        """
         return pulumi.get(self, "user_name")
 
     @user_name.setter
@@ -172,6 +227,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="userPassword")
     def user_password(self) -> pulumi.Input[str]:
+        """
+        Greenplum cluster admin password name.
+        """
         return pulumi.get(self, "user_password")
 
     @user_password.setter
@@ -181,6 +239,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
+        """
+        Version of the Greenplum cluster. (6.19)
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -190,6 +251,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter
     def zone(self) -> pulumi.Input[str]:
+        """
+        The availability zone where the Greenplum hosts will be created.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -199,6 +263,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter
     def access(self) -> Optional[pulumi.Input['MdbGreenplumClusterAccessArgs']]:
+        """
+        Access policy to the Greenplum cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @access.setter
@@ -208,6 +275,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> Optional[pulumi.Input['MdbGreenplumClusterBackupWindowStartArgs']]:
+        """
+        Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @backup_window_start.setter
@@ -217,6 +287,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -226,6 +299,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the Greenplum cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -235,6 +311,10 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -244,6 +324,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="greenplumConfig")
     def greenplum_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Greenplum cluster config. Detail info in "Greenplum cluster settings" section (documented below).
+        """
         return pulumi.get(self, "greenplum_config")
 
     @greenplum_config.setter
@@ -253,6 +336,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Greenplum cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -262,6 +348,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MdbGreenplumClusterMaintenanceWindowArgs']]:
+        """
+        Maintenance policy of the Greenplum cluster. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
@@ -271,6 +360,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Greenplum cluster. Provided by the client when the cluster is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -280,6 +372,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="poolerConfig")
     def pooler_config(self) -> Optional[pulumi.Input['MdbGreenplumClusterPoolerConfigArgs']]:
+        """
+        Configuration of the connection pooler. The structure is documented below.
+        """
         return pulumi.get(self, "pooler_config")
 
     @pooler_config.setter
@@ -289,6 +384,9 @@ class MdbGreenplumClusterArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -330,6 +428,36 @@ class _MdbGreenplumClusterState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MdbGreenplumCluster resources.
+        :param pulumi.Input['MdbGreenplumClusterAccessArgs'] access: Access policy to the Greenplum cluster. The structure is documented below.
+        :param pulumi.Input[bool] assign_public_ip: Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+        :param pulumi.Input['MdbGreenplumClusterBackupWindowStartArgs'] backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        :param pulumi.Input[str] created_at: Creation timestamp of the cluster.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Greenplum cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the Greenplum cluster. (PRODUCTION, PRESTABLE)
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] greenplum_config: Greenplum cluster config. Detail info in "Greenplum cluster settings" section (documented below).
+        :param pulumi.Input[str] health: Aggregated health of the cluster.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Greenplum cluster.
+        :param pulumi.Input['MdbGreenplumClusterMaintenanceWindowArgs'] maintenance_window: Maintenance policy of the Greenplum cluster. The structure is documented below.
+        :param pulumi.Input[int] master_host_count: Number of hosts in master subcluster (1 or 2).
+        :param pulumi.Input[Sequence[pulumi.Input['MdbGreenplumClusterMasterHostArgs']]] master_hosts: (Computed) Info about hosts in master subcluster. The structure is documented below.
+        :param pulumi.Input['MdbGreenplumClusterMasterSubclusterArgs'] master_subcluster: Settings for master subcluster. The structure is documented below.
+        :param pulumi.Input[str] name: Name of the Greenplum cluster. Provided by the client when the cluster is created.
+        :param pulumi.Input[str] network_id: ID of the network, to which the Greenplum cluster uses.
+        :param pulumi.Input['MdbGreenplumClusterPoolerConfigArgs'] pooler_config: Configuration of the connection pooler. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[int] segment_host_count: Number of hosts in segment subcluster (from 1 to 32).
+        :param pulumi.Input[Sequence[pulumi.Input['MdbGreenplumClusterSegmentHostArgs']]] segment_hosts: (Computed) Info about hosts in segment subcluster. The structure is documented below.
+        :param pulumi.Input[int] segment_in_host: Number of segments on segment host (not more then 1 + RAM/8).
+        :param pulumi.Input['MdbGreenplumClusterSegmentSubclusterArgs'] segment_subcluster: Settings for segment subcluster. The structure is documented below.
+        :param pulumi.Input[str] status: Status of the cluster.
+        :param pulumi.Input[str] subnet_id: The ID of the subnet, to which the hosts belongs. The subnet must be a part of the network to which the cluster belongs.
+        :param pulumi.Input[str] user_name: Greenplum cluster admin user name.
+        :param pulumi.Input[str] user_password: Greenplum cluster admin password name.
+        :param pulumi.Input[str] version: Version of the Greenplum cluster. (6.19)
+        :param pulumi.Input[str] zone: The availability zone where the Greenplum hosts will be created.
         """
         if access is not None:
             pulumi.set(__self__, "access", access)
@@ -393,6 +521,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter
     def access(self) -> Optional[pulumi.Input['MdbGreenplumClusterAccessArgs']]:
+        """
+        Access policy to the Greenplum cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @access.setter
@@ -402,6 +533,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -411,6 +545,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> Optional[pulumi.Input['MdbGreenplumClusterBackupWindowStartArgs']]:
+        """
+        Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @backup_window_start.setter
@@ -420,6 +557,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the cluster.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -429,6 +569,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -438,6 +581,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the Greenplum cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -447,6 +593,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter
     def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deployment environment of the Greenplum cluster. (PRODUCTION, PRESTABLE)
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -456,6 +605,10 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -465,6 +618,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="greenplumConfig")
     def greenplum_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Greenplum cluster config. Detail info in "Greenplum cluster settings" section (documented below).
+        """
         return pulumi.get(self, "greenplum_config")
 
     @greenplum_config.setter
@@ -474,6 +630,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter
     def health(self) -> Optional[pulumi.Input[str]]:
+        """
+        Aggregated health of the cluster.
+        """
         return pulumi.get(self, "health")
 
     @health.setter
@@ -483,6 +642,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Greenplum cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -492,6 +654,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MdbGreenplumClusterMaintenanceWindowArgs']]:
+        """
+        Maintenance policy of the Greenplum cluster. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
@@ -501,6 +666,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="masterHostCount")
     def master_host_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of hosts in master subcluster (1 or 2).
+        """
         return pulumi.get(self, "master_host_count")
 
     @master_host_count.setter
@@ -510,6 +678,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="masterHosts")
     def master_hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbGreenplumClusterMasterHostArgs']]]]:
+        """
+        (Computed) Info about hosts in master subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "master_hosts")
 
     @master_hosts.setter
@@ -519,6 +690,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="masterSubcluster")
     def master_subcluster(self) -> Optional[pulumi.Input['MdbGreenplumClusterMasterSubclusterArgs']]:
+        """
+        Settings for master subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "master_subcluster")
 
     @master_subcluster.setter
@@ -528,6 +702,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Greenplum cluster. Provided by the client when the cluster is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -537,6 +714,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the network, to which the Greenplum cluster uses.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -546,6 +726,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="poolerConfig")
     def pooler_config(self) -> Optional[pulumi.Input['MdbGreenplumClusterPoolerConfigArgs']]:
+        """
+        Configuration of the connection pooler. The structure is documented below.
+        """
         return pulumi.get(self, "pooler_config")
 
     @pooler_config.setter
@@ -555,6 +738,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -564,6 +750,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="segmentHostCount")
     def segment_host_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of hosts in segment subcluster (from 1 to 32).
+        """
         return pulumi.get(self, "segment_host_count")
 
     @segment_host_count.setter
@@ -573,6 +762,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="segmentHosts")
     def segment_hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbGreenplumClusterSegmentHostArgs']]]]:
+        """
+        (Computed) Info about hosts in segment subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "segment_hosts")
 
     @segment_hosts.setter
@@ -582,6 +774,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="segmentInHost")
     def segment_in_host(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of segments on segment host (not more then 1 + RAM/8).
+        """
         return pulumi.get(self, "segment_in_host")
 
     @segment_in_host.setter
@@ -591,6 +786,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="segmentSubcluster")
     def segment_subcluster(self) -> Optional[pulumi.Input['MdbGreenplumClusterSegmentSubclusterArgs']]:
+        """
+        Settings for segment subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "segment_subcluster")
 
     @segment_subcluster.setter
@@ -600,6 +798,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the cluster.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -609,6 +810,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the subnet, to which the hosts belongs. The subnet must be a part of the network to which the cluster belongs.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -618,6 +822,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Greenplum cluster admin user name.
+        """
         return pulumi.get(self, "user_name")
 
     @user_name.setter
@@ -627,6 +834,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter(name="userPassword")
     def user_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Greenplum cluster admin password name.
+        """
         return pulumi.get(self, "user_password")
 
     @user_password.setter
@@ -636,6 +846,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of the Greenplum cluster. (6.19)
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -645,6 +858,9 @@ class _MdbGreenplumClusterState:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        The availability zone where the Greenplum hosts will be created.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -683,9 +899,62 @@ class MdbGreenplumCluster(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a MdbGreenplumCluster resource with the given unique name, props, and options.
+        Manages a Greenplum cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.ru/docs/managed-greenplum/).
+
+        Please read [Pricing for Managed Service for Greenplum](https://cloud.yandex.ru/docs/managed-greenplum/) before using Greenplum cluster.
+
+        Yandex Managed Service for Greenplum® is now in preview
+
+        ## Greenplum cluster settings
+
+        | Setting name and type \\ Greenplum version | 6.17 | 6.19 |
+        | ------------------------------------------| ---- | ---- |
+        | max_connections : integer | supported | supported |
+        | max_prepared_transactions : integer | supported | supported |
+        | gp_workfile_limit_per_query : integer | supported | supported |
+        | gp_workfile_limit_files_per_query : integer | supported | supported |
+        | max_slot_wal_keep_size : integer | supported | supported |
+        | gp_workfile_limit_per_segment : integer | supported | supported |
+        | gp_workfile_compression : boolean | supported | supported |
+        | max_statement_mem : integer | - | supported |
+        | log_statement : one of<br>  - 0: " LOG_STATEMENT_UNSPECIFIED"<br>  - 1: " LOG_STATEMENT_NONE"<br>  - 2: " LOG_STATEMENT_DDL"<er>  - 3: " LOG_STATEMENT_MOD"<br>  - 4: " LOG_STATEMENT_ALL"  | - | supported |
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbGreenplumCluster:MdbGreenplumCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbGreenplumClusterAccessArgs']] access: Access policy to the Greenplum cluster. The structure is documented below.
+        :param pulumi.Input[bool] assign_public_ip: Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+        :param pulumi.Input[pulumi.InputType['MdbGreenplumClusterBackupWindowStartArgs']] backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Greenplum cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the Greenplum cluster. (PRODUCTION, PRESTABLE)
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] greenplum_config: Greenplum cluster config. Detail info in "Greenplum cluster settings" section (documented below).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Greenplum cluster.
+        :param pulumi.Input[pulumi.InputType['MdbGreenplumClusterMaintenanceWindowArgs']] maintenance_window: Maintenance policy of the Greenplum cluster. The structure is documented below.
+        :param pulumi.Input[int] master_host_count: Number of hosts in master subcluster (1 or 2).
+        :param pulumi.Input[pulumi.InputType['MdbGreenplumClusterMasterSubclusterArgs']] master_subcluster: Settings for master subcluster. The structure is documented below.
+        :param pulumi.Input[str] name: Name of the Greenplum cluster. Provided by the client when the cluster is created.
+        :param pulumi.Input[str] network_id: ID of the network, to which the Greenplum cluster uses.
+        :param pulumi.Input[pulumi.InputType['MdbGreenplumClusterPoolerConfigArgs']] pooler_config: Configuration of the connection pooler. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[int] segment_host_count: Number of hosts in segment subcluster (from 1 to 32).
+        :param pulumi.Input[int] segment_in_host: Number of segments on segment host (not more then 1 + RAM/8).
+        :param pulumi.Input[pulumi.InputType['MdbGreenplumClusterSegmentSubclusterArgs']] segment_subcluster: Settings for segment subcluster. The structure is documented below.
+        :param pulumi.Input[str] subnet_id: The ID of the subnet, to which the hosts belongs. The subnet must be a part of the network to which the cluster belongs.
+        :param pulumi.Input[str] user_name: Greenplum cluster admin user name.
+        :param pulumi.Input[str] user_password: Greenplum cluster admin password name.
+        :param pulumi.Input[str] version: Version of the Greenplum cluster. (6.19)
+        :param pulumi.Input[str] zone: The availability zone where the Greenplum hosts will be created.
         """
         ...
     @overload
@@ -694,7 +963,35 @@ class MdbGreenplumCluster(pulumi.CustomResource):
                  args: MdbGreenplumClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MdbGreenplumCluster resource with the given unique name, props, and options.
+        Manages a Greenplum cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.ru/docs/managed-greenplum/).
+
+        Please read [Pricing for Managed Service for Greenplum](https://cloud.yandex.ru/docs/managed-greenplum/) before using Greenplum cluster.
+
+        Yandex Managed Service for Greenplum® is now in preview
+
+        ## Greenplum cluster settings
+
+        | Setting name and type \\ Greenplum version | 6.17 | 6.19 |
+        | ------------------------------------------| ---- | ---- |
+        | max_connections : integer | supported | supported |
+        | max_prepared_transactions : integer | supported | supported |
+        | gp_workfile_limit_per_query : integer | supported | supported |
+        | gp_workfile_limit_files_per_query : integer | supported | supported |
+        | max_slot_wal_keep_size : integer | supported | supported |
+        | gp_workfile_limit_per_segment : integer | supported | supported |
+        | gp_workfile_compression : boolean | supported | supported |
+        | max_statement_mem : integer | - | supported |
+        | log_statement : one of<br>  - 0: " LOG_STATEMENT_UNSPECIFIED"<br>  - 1: " LOG_STATEMENT_NONE"<br>  - 2: " LOG_STATEMENT_DDL"<er>  - 3: " LOG_STATEMENT_MOD"<br>  - 4: " LOG_STATEMENT_ALL"  | - | supported |
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbGreenplumCluster:MdbGreenplumCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param MdbGreenplumClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -844,6 +1141,36 @@ class MdbGreenplumCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbGreenplumClusterAccessArgs']] access: Access policy to the Greenplum cluster. The structure is documented below.
+        :param pulumi.Input[bool] assign_public_ip: Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+        :param pulumi.Input[pulumi.InputType['MdbGreenplumClusterBackupWindowStartArgs']] backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        :param pulumi.Input[str] created_at: Creation timestamp of the cluster.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Greenplum cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the Greenplum cluster. (PRODUCTION, PRESTABLE)
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] greenplum_config: Greenplum cluster config. Detail info in "Greenplum cluster settings" section (documented below).
+        :param pulumi.Input[str] health: Aggregated health of the cluster.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Greenplum cluster.
+        :param pulumi.Input[pulumi.InputType['MdbGreenplumClusterMaintenanceWindowArgs']] maintenance_window: Maintenance policy of the Greenplum cluster. The structure is documented below.
+        :param pulumi.Input[int] master_host_count: Number of hosts in master subcluster (1 or 2).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbGreenplumClusterMasterHostArgs']]]] master_hosts: (Computed) Info about hosts in master subcluster. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbGreenplumClusterMasterSubclusterArgs']] master_subcluster: Settings for master subcluster. The structure is documented below.
+        :param pulumi.Input[str] name: Name of the Greenplum cluster. Provided by the client when the cluster is created.
+        :param pulumi.Input[str] network_id: ID of the network, to which the Greenplum cluster uses.
+        :param pulumi.Input[pulumi.InputType['MdbGreenplumClusterPoolerConfigArgs']] pooler_config: Configuration of the connection pooler. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[int] segment_host_count: Number of hosts in segment subcluster (from 1 to 32).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbGreenplumClusterSegmentHostArgs']]]] segment_hosts: (Computed) Info about hosts in segment subcluster. The structure is documented below.
+        :param pulumi.Input[int] segment_in_host: Number of segments on segment host (not more then 1 + RAM/8).
+        :param pulumi.Input[pulumi.InputType['MdbGreenplumClusterSegmentSubclusterArgs']] segment_subcluster: Settings for segment subcluster. The structure is documented below.
+        :param pulumi.Input[str] status: Status of the cluster.
+        :param pulumi.Input[str] subnet_id: The ID of the subnet, to which the hosts belongs. The subnet must be a part of the network to which the cluster belongs.
+        :param pulumi.Input[str] user_name: Greenplum cluster admin user name.
+        :param pulumi.Input[str] user_password: Greenplum cluster admin password name.
+        :param pulumi.Input[str] version: Version of the Greenplum cluster. (6.19)
+        :param pulumi.Input[str] zone: The availability zone where the Greenplum hosts will be created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -883,145 +1210,233 @@ class MdbGreenplumCluster(pulumi.CustomResource):
     @property
     @pulumi.getter
     def access(self) -> pulumi.Output['outputs.MdbGreenplumClusterAccess']:
+        """
+        Access policy to the Greenplum cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> pulumi.Output[bool]:
+        """
+        Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> pulumi.Output['outputs.MdbGreenplumClusterBackupWindowStart']:
+        """
+        Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the cluster.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> pulumi.Output[bool]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the Greenplum cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Output[str]:
+        """
+        Deployment environment of the Greenplum cluster. (PRODUCTION, PRESTABLE)
+        """
         return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter(name="greenplumConfig")
     def greenplum_config(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        Greenplum cluster config. Detail info in "Greenplum cluster settings" section (documented below).
+        """
         return pulumi.get(self, "greenplum_config")
 
     @property
     @pulumi.getter
     def health(self) -> pulumi.Output[str]:
+        """
+        Aggregated health of the cluster.
+        """
         return pulumi.get(self, "health")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the Greenplum cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> pulumi.Output['outputs.MdbGreenplumClusterMaintenanceWindow']:
+        """
+        Maintenance policy of the Greenplum cluster. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_window")
 
     @property
     @pulumi.getter(name="masterHostCount")
     def master_host_count(self) -> pulumi.Output[int]:
+        """
+        Number of hosts in master subcluster (1 or 2).
+        """
         return pulumi.get(self, "master_host_count")
 
     @property
     @pulumi.getter(name="masterHosts")
     def master_hosts(self) -> pulumi.Output[Sequence['outputs.MdbGreenplumClusterMasterHost']]:
+        """
+        (Computed) Info about hosts in master subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "master_hosts")
 
     @property
     @pulumi.getter(name="masterSubcluster")
     def master_subcluster(self) -> pulumi.Output['outputs.MdbGreenplumClusterMasterSubcluster']:
+        """
+        Settings for master subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "master_subcluster")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the Greenplum cluster. Provided by the client when the cluster is created.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[str]:
+        """
+        ID of the network, to which the Greenplum cluster uses.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="poolerConfig")
     def pooler_config(self) -> pulumi.Output[Optional['outputs.MdbGreenplumClusterPoolerConfig']]:
+        """
+        Configuration of the connection pooler. The structure is documented below.
+        """
         return pulumi.get(self, "pooler_config")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="segmentHostCount")
     def segment_host_count(self) -> pulumi.Output[int]:
+        """
+        Number of hosts in segment subcluster (from 1 to 32).
+        """
         return pulumi.get(self, "segment_host_count")
 
     @property
     @pulumi.getter(name="segmentHosts")
     def segment_hosts(self) -> pulumi.Output[Sequence['outputs.MdbGreenplumClusterSegmentHost']]:
+        """
+        (Computed) Info about hosts in segment subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "segment_hosts")
 
     @property
     @pulumi.getter(name="segmentInHost")
     def segment_in_host(self) -> pulumi.Output[int]:
+        """
+        Number of segments on segment host (not more then 1 + RAM/8).
+        """
         return pulumi.get(self, "segment_in_host")
 
     @property
     @pulumi.getter(name="segmentSubcluster")
     def segment_subcluster(self) -> pulumi.Output['outputs.MdbGreenplumClusterSegmentSubcluster']:
+        """
+        Settings for segment subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "segment_subcluster")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        Status of the cluster.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the subnet, to which the hosts belongs. The subnet must be a part of the network to which the cluster belongs.
+        """
         return pulumi.get(self, "subnet_id")
 
     @property
     @pulumi.getter(name="userName")
     def user_name(self) -> pulumi.Output[str]:
+        """
+        Greenplum cluster admin user name.
+        """
         return pulumi.get(self, "user_name")
 
     @property
     @pulumi.getter(name="userPassword")
     def user_password(self) -> pulumi.Output[str]:
+        """
+        Greenplum cluster admin password name.
+        """
         return pulumi.get(self, "user_password")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
+        """
+        Version of the Greenplum cluster. (6.19)
+        """
         return pulumi.get(self, "version")
 
     @property
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
+        """
+        The availability zone where the Greenplum hosts will be created.
+        """
         return pulumi.get(self, "zone")
 

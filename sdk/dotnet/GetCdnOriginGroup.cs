@@ -11,9 +11,71 @@ namespace Pulumi.Yandex
 {
     public static class GetCdnOriginGroup
     {
+        /// <summary>
+        /// Get information about a Yandex CDN Origin Group. For more information, see
+        /// [the official documentation](https://cloud.yandex.ru/docs/cdn/concepts/origins).
+        /// 
+        /// &gt; **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id &lt;folder-id&gt; --type gcore```
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myGroup = Yandex.GetCdnOriginGroup.Invoke(new()
+        ///     {
+        ///         OriginGroupId = "some_instance_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["originGroupName"] = myGroup.Apply(getCdnOriginGroupResult =&gt; getCdnOriginGroupResult.Name),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetCdnOriginGroupResult> InvokeAsync(GetCdnOriginGroupArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetCdnOriginGroupResult>("yandex:index/getCdnOriginGroup:getCdnOriginGroup", args ?? new GetCdnOriginGroupArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex CDN Origin Group. For more information, see
+        /// [the official documentation](https://cloud.yandex.ru/docs/cdn/concepts/origins).
+        /// 
+        /// &gt; **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id &lt;folder-id&gt; --type gcore```
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myGroup = Yandex.GetCdnOriginGroup.Invoke(new()
+        ///     {
+        ///         OriginGroupId = "some_instance_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["originGroupName"] = myGroup.Apply(getCdnOriginGroupResult =&gt; getCdnOriginGroupResult.Name),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetCdnOriginGroupResult> Invoke(GetCdnOriginGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetCdnOriginGroupResult>("yandex:index/getCdnOriginGroup:getCdnOriginGroup", args ?? new GetCdnOriginGroupInvokeArgs(), options.WithDefaults());
     }
@@ -21,12 +83,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetCdnOriginGroupArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// Name of the origin group.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The ID of a specific origin group.
+        /// </summary>
         [Input("originGroupId")]
         public int? OriginGroupId { get; set; }
 
@@ -38,12 +109,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetCdnOriginGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// Name of the origin group.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The ID of a specific origin group.
+        /// </summary>
         [Input("originGroupId")]
         public Input<int>? OriginGroupId { get; set; }
 

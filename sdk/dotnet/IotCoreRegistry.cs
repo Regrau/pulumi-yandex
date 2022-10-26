@@ -9,27 +9,82 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows management of [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myRegistry = new Yandex.IotCoreRegistry("myRegistry", new()
+    ///     {
+    ///         Certificates = new[]
+    ///         {
+    ///             "public part of certificate1",
+    ///             "public part of certificate2",
+    ///         },
+    ///         Description = "any description",
+    ///         Labels = 
+    ///         {
+    ///             { "my-label", "my-label-value" },
+    ///         },
+    ///         Passwords = new[]
+    ///         {
+    ///             "my-password1",
+    ///             "my-password2",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/iotCoreRegistry:IotCoreRegistry")]
     public partial class IotCoreRegistry : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// A set of certificate's fingerprints for the IoT Core Registry
+        /// </summary>
         [Output("certificates")]
         public Output<ImmutableArray<string>> Certificates { get; private set; } = null!;
 
+        /// <summary>
+        /// Creation timestamp of the IoT Core Registry
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// Description of the IoT Core Registry
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Folder ID for the IoT Core Registry
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of key/value label pairs to assign to the IoT Core Registry.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// IoT Core Device name used to define registry
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of passwords's id for the IoT Core Registry
+        /// </summary>
         [Output("passwords")]
         public Output<ImmutableArray<string>> Passwords { get; private set; } = null!;
 
@@ -56,7 +111,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -82,31 +137,52 @@ namespace Pulumi.Yandex
     {
         [Input("certificates")]
         private InputList<string>? _certificates;
+
+        /// <summary>
+        /// A set of certificate's fingerprints for the IoT Core Registry
+        /// </summary>
         public InputList<string> Certificates
         {
             get => _certificates ?? (_certificates = new InputList<string>());
             set => _certificates = value;
         }
 
+        /// <summary>
+        /// Description of the IoT Core Registry
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Folder ID for the IoT Core Registry
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the IoT Core Registry.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// IoT Core Device name used to define registry
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("passwords")]
         private InputList<string>? _passwords;
+
+        /// <summary>
+        /// A set of passwords's id for the IoT Core Registry
+        /// </summary>
         public InputList<string> Passwords
         {
             get => _passwords ?? (_passwords = new InputList<string>());
@@ -123,34 +199,58 @@ namespace Pulumi.Yandex
     {
         [Input("certificates")]
         private InputList<string>? _certificates;
+
+        /// <summary>
+        /// A set of certificate's fingerprints for the IoT Core Registry
+        /// </summary>
         public InputList<string> Certificates
         {
             get => _certificates ?? (_certificates = new InputList<string>());
             set => _certificates = value;
         }
 
+        /// <summary>
+        /// Creation timestamp of the IoT Core Registry
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// Description of the IoT Core Registry
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Folder ID for the IoT Core Registry
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the IoT Core Registry.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// IoT Core Device name used to define registry
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("passwords")]
         private InputList<string>? _passwords;
+
+        /// <summary>
+        /// A set of passwords's id for the IoT Core Registry
+        /// </summary>
         public InputList<string> Passwords
         {
             get => _passwords ?? (_passwords = new InputList<string>());

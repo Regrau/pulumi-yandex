@@ -11,39 +11,82 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a ClickHouse cluster within the Yandex.Cloud. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts).
+//
+// ## Import
+//
+// A cluster can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/mdbClickhouseCluster:MdbClickhouseCluster foo cluster_id
+//
+// ```
 type MdbClickhouseCluster struct {
 	pulumi.CustomResourceState
 
-	Access                MdbClickhouseClusterAccessOutput            `pulumi:"access"`
-	AdminPassword         pulumi.StringPtrOutput                      `pulumi:"adminPassword"`
-	BackupWindowStart     MdbClickhouseClusterBackupWindowStartOutput `pulumi:"backupWindowStart"`
-	Clickhouse            MdbClickhouseClusterClickhouseOutput        `pulumi:"clickhouse"`
-	CloudStorage          MdbClickhouseClusterCloudStoragePtrOutput   `pulumi:"cloudStorage"`
-	CopySchemaOnNewHosts  pulumi.BoolPtrOutput                        `pulumi:"copySchemaOnNewHosts"`
-	CreatedAt             pulumi.StringOutput                         `pulumi:"createdAt"`
-	Databases             MdbClickhouseClusterDatabaseArrayOutput     `pulumi:"databases"`
-	DeletionProtection    pulumi.BoolOutput                           `pulumi:"deletionProtection"`
-	Description           pulumi.StringPtrOutput                      `pulumi:"description"`
-	EmbeddedKeeper        pulumi.BoolOutput                           `pulumi:"embeddedKeeper"`
-	Environment           pulumi.StringOutput                         `pulumi:"environment"`
-	FolderId              pulumi.StringOutput                         `pulumi:"folderId"`
-	FormatSchemas         MdbClickhouseClusterFormatSchemaArrayOutput `pulumi:"formatSchemas"`
-	Health                pulumi.StringOutput                         `pulumi:"health"`
-	Hosts                 MdbClickhouseClusterHostArrayOutput         `pulumi:"hosts"`
-	Labels                pulumi.StringMapOutput                      `pulumi:"labels"`
-	MaintenanceWindow     MdbClickhouseClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
-	MlModels              MdbClickhouseClusterMlModelArrayOutput      `pulumi:"mlModels"`
-	Name                  pulumi.StringOutput                         `pulumi:"name"`
-	NetworkId             pulumi.StringOutput                         `pulumi:"networkId"`
-	SecurityGroupIds      pulumi.StringArrayOutput                    `pulumi:"securityGroupIds"`
-	ServiceAccountId      pulumi.StringOutput                         `pulumi:"serviceAccountId"`
-	ShardGroups           MdbClickhouseClusterShardGroupArrayOutput   `pulumi:"shardGroups"`
-	SqlDatabaseManagement pulumi.BoolOutput                           `pulumi:"sqlDatabaseManagement"`
-	SqlUserManagement     pulumi.BoolOutput                           `pulumi:"sqlUserManagement"`
-	Status                pulumi.StringOutput                         `pulumi:"status"`
-	Users                 MdbClickhouseClusterUserArrayOutput         `pulumi:"users"`
-	Version               pulumi.StringOutput                         `pulumi:"version"`
-	Zookeeper             MdbClickhouseClusterZookeeperOutput         `pulumi:"zookeeper"`
+	// Access policy to the ClickHouse cluster. The structure is documented below.
+	Access MdbClickhouseClusterAccessOutput `pulumi:"access"`
+	// A password used to authorize as user `admin` when `sqlUserManagement` enabled.
+	AdminPassword pulumi.StringPtrOutput `pulumi:"adminPassword"`
+	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+	BackupWindowStart MdbClickhouseClusterBackupWindowStartOutput `pulumi:"backupWindowStart"`
+	// Configuration of the ClickHouse subcluster. The structure is documented below.
+	Clickhouse   MdbClickhouseClusterClickhouseOutput      `pulumi:"clickhouse"`
+	CloudStorage MdbClickhouseClusterCloudStoragePtrOutput `pulumi:"cloudStorage"`
+	// Whether to copy schema on new ClickHouse hosts.
+	CopySchemaOnNewHosts pulumi.BoolPtrOutput `pulumi:"copySchemaOnNewHosts"`
+	// Timestamp of cluster creation.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// A database of the ClickHouse cluster. The structure is documented below.
+	Databases MdbClickhouseClusterDatabaseArrayOutput `pulumi:"databases"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection pulumi.BoolOutput `pulumi:"deletionProtection"`
+	// Description of the shard group.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+	EmbeddedKeeper pulumi.BoolOutput `pulumi:"embeddedKeeper"`
+	// Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment pulumi.StringOutput `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A set of protobuf or capnproto format schemas. The structure is documented below.
+	FormatSchemas MdbClickhouseClusterFormatSchemaArrayOutput `pulumi:"formatSchemas"`
+	// Aggregated health of the cluster. Can be `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+	// For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+	Health pulumi.StringOutput `pulumi:"health"`
+	// A host of the ClickHouse cluster. The structure is documented below.
+	Hosts MdbClickhouseClusterHostArrayOutput `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the ClickHouse cluster.
+	Labels            pulumi.StringMapOutput                      `pulumi:"labels"`
+	MaintenanceWindow MdbClickhouseClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
+	// A group of machine learning models. The structure is documented below
+	MlModels MdbClickhouseClusterMlModelArrayOutput `pulumi:"mlModels"`
+	// Graphite rollup configuration name.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the network, to which the ClickHouse cluster belongs.
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
+	// ID of the service account used for access to Yandex Object Storage.
+	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
+	// A group of clickhouse shards. The structure is documented below.
+	ShardGroups MdbClickhouseClusterShardGroupArrayOutput `pulumi:"shardGroups"`
+	// Grants `admin` user database management permission.
+	SqlDatabaseManagement pulumi.BoolOutput `pulumi:"sqlDatabaseManagement"`
+	// Enables `admin` user with user management permission.
+	SqlUserManagement pulumi.BoolOutput `pulumi:"sqlUserManagement"`
+	// Status of the cluster. Can be `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+	// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+	Status pulumi.StringOutput `pulumi:"status"`
+	// A user of the ClickHouse cluster. The structure is documented below.
+	Users MdbClickhouseClusterUserArrayOutput `pulumi:"users"`
+	// Version of the ClickHouse server software.
+	Version pulumi.StringOutput `pulumi:"version"`
+	// Configuration of the ZooKeeper subcluster. The structure is documented below.
+	Zookeeper MdbClickhouseClusterZookeeperOutput `pulumi:"zookeeper"`
 }
 
 // NewMdbClickhouseCluster registers a new resource with the given unique name, arguments, and options.
@@ -88,69 +131,131 @@ func GetMdbClickhouseCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MdbClickhouseCluster resources.
 type mdbClickhouseClusterState struct {
-	Access                *MdbClickhouseClusterAccess            `pulumi:"access"`
-	AdminPassword         *string                                `pulumi:"adminPassword"`
-	BackupWindowStart     *MdbClickhouseClusterBackupWindowStart `pulumi:"backupWindowStart"`
-	Clickhouse            *MdbClickhouseClusterClickhouse        `pulumi:"clickhouse"`
-	CloudStorage          *MdbClickhouseClusterCloudStorage      `pulumi:"cloudStorage"`
-	CopySchemaOnNewHosts  *bool                                  `pulumi:"copySchemaOnNewHosts"`
-	CreatedAt             *string                                `pulumi:"createdAt"`
-	Databases             []MdbClickhouseClusterDatabase         `pulumi:"databases"`
-	DeletionProtection    *bool                                  `pulumi:"deletionProtection"`
-	Description           *string                                `pulumi:"description"`
-	EmbeddedKeeper        *bool                                  `pulumi:"embeddedKeeper"`
-	Environment           *string                                `pulumi:"environment"`
-	FolderId              *string                                `pulumi:"folderId"`
-	FormatSchemas         []MdbClickhouseClusterFormatSchema     `pulumi:"formatSchemas"`
-	Health                *string                                `pulumi:"health"`
-	Hosts                 []MdbClickhouseClusterHost             `pulumi:"hosts"`
-	Labels                map[string]string                      `pulumi:"labels"`
-	MaintenanceWindow     *MdbClickhouseClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	MlModels              []MdbClickhouseClusterMlModel          `pulumi:"mlModels"`
-	Name                  *string                                `pulumi:"name"`
-	NetworkId             *string                                `pulumi:"networkId"`
-	SecurityGroupIds      []string                               `pulumi:"securityGroupIds"`
-	ServiceAccountId      *string                                `pulumi:"serviceAccountId"`
-	ShardGroups           []MdbClickhouseClusterShardGroup       `pulumi:"shardGroups"`
-	SqlDatabaseManagement *bool                                  `pulumi:"sqlDatabaseManagement"`
-	SqlUserManagement     *bool                                  `pulumi:"sqlUserManagement"`
-	Status                *string                                `pulumi:"status"`
-	Users                 []MdbClickhouseClusterUser             `pulumi:"users"`
-	Version               *string                                `pulumi:"version"`
-	Zookeeper             *MdbClickhouseClusterZookeeper         `pulumi:"zookeeper"`
+	// Access policy to the ClickHouse cluster. The structure is documented below.
+	Access *MdbClickhouseClusterAccess `pulumi:"access"`
+	// A password used to authorize as user `admin` when `sqlUserManagement` enabled.
+	AdminPassword *string `pulumi:"adminPassword"`
+	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+	BackupWindowStart *MdbClickhouseClusterBackupWindowStart `pulumi:"backupWindowStart"`
+	// Configuration of the ClickHouse subcluster. The structure is documented below.
+	Clickhouse   *MdbClickhouseClusterClickhouse   `pulumi:"clickhouse"`
+	CloudStorage *MdbClickhouseClusterCloudStorage `pulumi:"cloudStorage"`
+	// Whether to copy schema on new ClickHouse hosts.
+	CopySchemaOnNewHosts *bool `pulumi:"copySchemaOnNewHosts"`
+	// Timestamp of cluster creation.
+	CreatedAt *string `pulumi:"createdAt"`
+	// A database of the ClickHouse cluster. The structure is documented below.
+	Databases []MdbClickhouseClusterDatabase `pulumi:"databases"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// Description of the shard group.
+	Description *string `pulumi:"description"`
+	// Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+	EmbeddedKeeper *bool `pulumi:"embeddedKeeper"`
+	// Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment *string `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of protobuf or capnproto format schemas. The structure is documented below.
+	FormatSchemas []MdbClickhouseClusterFormatSchema `pulumi:"formatSchemas"`
+	// Aggregated health of the cluster. Can be `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+	// For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+	Health *string `pulumi:"health"`
+	// A host of the ClickHouse cluster. The structure is documented below.
+	Hosts []MdbClickhouseClusterHost `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the ClickHouse cluster.
+	Labels            map[string]string                      `pulumi:"labels"`
+	MaintenanceWindow *MdbClickhouseClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// A group of machine learning models. The structure is documented below
+	MlModels []MdbClickhouseClusterMlModel `pulumi:"mlModels"`
+	// Graphite rollup configuration name.
+	Name *string `pulumi:"name"`
+	// ID of the network, to which the ClickHouse cluster belongs.
+	NetworkId *string `pulumi:"networkId"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// ID of the service account used for access to Yandex Object Storage.
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
+	// A group of clickhouse shards. The structure is documented below.
+	ShardGroups []MdbClickhouseClusterShardGroup `pulumi:"shardGroups"`
+	// Grants `admin` user database management permission.
+	SqlDatabaseManagement *bool `pulumi:"sqlDatabaseManagement"`
+	// Enables `admin` user with user management permission.
+	SqlUserManagement *bool `pulumi:"sqlUserManagement"`
+	// Status of the cluster. Can be `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+	// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+	Status *string `pulumi:"status"`
+	// A user of the ClickHouse cluster. The structure is documented below.
+	Users []MdbClickhouseClusterUser `pulumi:"users"`
+	// Version of the ClickHouse server software.
+	Version *string `pulumi:"version"`
+	// Configuration of the ZooKeeper subcluster. The structure is documented below.
+	Zookeeper *MdbClickhouseClusterZookeeper `pulumi:"zookeeper"`
 }
 
 type MdbClickhouseClusterState struct {
-	Access                MdbClickhouseClusterAccessPtrInput
-	AdminPassword         pulumi.StringPtrInput
-	BackupWindowStart     MdbClickhouseClusterBackupWindowStartPtrInput
-	Clickhouse            MdbClickhouseClusterClickhousePtrInput
-	CloudStorage          MdbClickhouseClusterCloudStoragePtrInput
-	CopySchemaOnNewHosts  pulumi.BoolPtrInput
-	CreatedAt             pulumi.StringPtrInput
-	Databases             MdbClickhouseClusterDatabaseArrayInput
-	DeletionProtection    pulumi.BoolPtrInput
-	Description           pulumi.StringPtrInput
-	EmbeddedKeeper        pulumi.BoolPtrInput
-	Environment           pulumi.StringPtrInput
-	FolderId              pulumi.StringPtrInput
-	FormatSchemas         MdbClickhouseClusterFormatSchemaArrayInput
-	Health                pulumi.StringPtrInput
-	Hosts                 MdbClickhouseClusterHostArrayInput
-	Labels                pulumi.StringMapInput
-	MaintenanceWindow     MdbClickhouseClusterMaintenanceWindowPtrInput
-	MlModels              MdbClickhouseClusterMlModelArrayInput
-	Name                  pulumi.StringPtrInput
-	NetworkId             pulumi.StringPtrInput
-	SecurityGroupIds      pulumi.StringArrayInput
-	ServiceAccountId      pulumi.StringPtrInput
-	ShardGroups           MdbClickhouseClusterShardGroupArrayInput
+	// Access policy to the ClickHouse cluster. The structure is documented below.
+	Access MdbClickhouseClusterAccessPtrInput
+	// A password used to authorize as user `admin` when `sqlUserManagement` enabled.
+	AdminPassword pulumi.StringPtrInput
+	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+	BackupWindowStart MdbClickhouseClusterBackupWindowStartPtrInput
+	// Configuration of the ClickHouse subcluster. The structure is documented below.
+	Clickhouse   MdbClickhouseClusterClickhousePtrInput
+	CloudStorage MdbClickhouseClusterCloudStoragePtrInput
+	// Whether to copy schema on new ClickHouse hosts.
+	CopySchemaOnNewHosts pulumi.BoolPtrInput
+	// Timestamp of cluster creation.
+	CreatedAt pulumi.StringPtrInput
+	// A database of the ClickHouse cluster. The structure is documented below.
+	Databases MdbClickhouseClusterDatabaseArrayInput
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection pulumi.BoolPtrInput
+	// Description of the shard group.
+	Description pulumi.StringPtrInput
+	// Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+	EmbeddedKeeper pulumi.BoolPtrInput
+	// Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment pulumi.StringPtrInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of protobuf or capnproto format schemas. The structure is documented below.
+	FormatSchemas MdbClickhouseClusterFormatSchemaArrayInput
+	// Aggregated health of the cluster. Can be `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+	// For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+	Health pulumi.StringPtrInput
+	// A host of the ClickHouse cluster. The structure is documented below.
+	Hosts MdbClickhouseClusterHostArrayInput
+	// A set of key/value label pairs to assign to the ClickHouse cluster.
+	Labels            pulumi.StringMapInput
+	MaintenanceWindow MdbClickhouseClusterMaintenanceWindowPtrInput
+	// A group of machine learning models. The structure is documented below
+	MlModels MdbClickhouseClusterMlModelArrayInput
+	// Graphite rollup configuration name.
+	Name pulumi.StringPtrInput
+	// ID of the network, to which the ClickHouse cluster belongs.
+	NetworkId pulumi.StringPtrInput
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayInput
+	// ID of the service account used for access to Yandex Object Storage.
+	ServiceAccountId pulumi.StringPtrInput
+	// A group of clickhouse shards. The structure is documented below.
+	ShardGroups MdbClickhouseClusterShardGroupArrayInput
+	// Grants `admin` user database management permission.
 	SqlDatabaseManagement pulumi.BoolPtrInput
-	SqlUserManagement     pulumi.BoolPtrInput
-	Status                pulumi.StringPtrInput
-	Users                 MdbClickhouseClusterUserArrayInput
-	Version               pulumi.StringPtrInput
-	Zookeeper             MdbClickhouseClusterZookeeperPtrInput
+	// Enables `admin` user with user management permission.
+	SqlUserManagement pulumi.BoolPtrInput
+	// Status of the cluster. Can be `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+	// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+	Status pulumi.StringPtrInput
+	// A user of the ClickHouse cluster. The structure is documented below.
+	Users MdbClickhouseClusterUserArrayInput
+	// Version of the ClickHouse server software.
+	Version pulumi.StringPtrInput
+	// Configuration of the ZooKeeper subcluster. The structure is documented below.
+	Zookeeper MdbClickhouseClusterZookeeperPtrInput
 }
 
 func (MdbClickhouseClusterState) ElementType() reflect.Type {
@@ -158,64 +263,116 @@ func (MdbClickhouseClusterState) ElementType() reflect.Type {
 }
 
 type mdbClickhouseClusterArgs struct {
-	Access                *MdbClickhouseClusterAccess            `pulumi:"access"`
-	AdminPassword         *string                                `pulumi:"adminPassword"`
-	BackupWindowStart     *MdbClickhouseClusterBackupWindowStart `pulumi:"backupWindowStart"`
-	Clickhouse            MdbClickhouseClusterClickhouse         `pulumi:"clickhouse"`
-	CloudStorage          *MdbClickhouseClusterCloudStorage      `pulumi:"cloudStorage"`
-	CopySchemaOnNewHosts  *bool                                  `pulumi:"copySchemaOnNewHosts"`
-	Databases             []MdbClickhouseClusterDatabase         `pulumi:"databases"`
-	DeletionProtection    *bool                                  `pulumi:"deletionProtection"`
-	Description           *string                                `pulumi:"description"`
-	EmbeddedKeeper        *bool                                  `pulumi:"embeddedKeeper"`
-	Environment           string                                 `pulumi:"environment"`
-	FolderId              *string                                `pulumi:"folderId"`
-	FormatSchemas         []MdbClickhouseClusterFormatSchema     `pulumi:"formatSchemas"`
-	Hosts                 []MdbClickhouseClusterHost             `pulumi:"hosts"`
-	Labels                map[string]string                      `pulumi:"labels"`
-	MaintenanceWindow     *MdbClickhouseClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	MlModels              []MdbClickhouseClusterMlModel          `pulumi:"mlModels"`
-	Name                  *string                                `pulumi:"name"`
-	NetworkId             string                                 `pulumi:"networkId"`
-	SecurityGroupIds      []string                               `pulumi:"securityGroupIds"`
-	ServiceAccountId      *string                                `pulumi:"serviceAccountId"`
-	ShardGroups           []MdbClickhouseClusterShardGroup       `pulumi:"shardGroups"`
-	SqlDatabaseManagement *bool                                  `pulumi:"sqlDatabaseManagement"`
-	SqlUserManagement     *bool                                  `pulumi:"sqlUserManagement"`
-	Users                 []MdbClickhouseClusterUser             `pulumi:"users"`
-	Version               *string                                `pulumi:"version"`
-	Zookeeper             *MdbClickhouseClusterZookeeper         `pulumi:"zookeeper"`
+	// Access policy to the ClickHouse cluster. The structure is documented below.
+	Access *MdbClickhouseClusterAccess `pulumi:"access"`
+	// A password used to authorize as user `admin` when `sqlUserManagement` enabled.
+	AdminPassword *string `pulumi:"adminPassword"`
+	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+	BackupWindowStart *MdbClickhouseClusterBackupWindowStart `pulumi:"backupWindowStart"`
+	// Configuration of the ClickHouse subcluster. The structure is documented below.
+	Clickhouse   MdbClickhouseClusterClickhouse    `pulumi:"clickhouse"`
+	CloudStorage *MdbClickhouseClusterCloudStorage `pulumi:"cloudStorage"`
+	// Whether to copy schema on new ClickHouse hosts.
+	CopySchemaOnNewHosts *bool `pulumi:"copySchemaOnNewHosts"`
+	// A database of the ClickHouse cluster. The structure is documented below.
+	Databases []MdbClickhouseClusterDatabase `pulumi:"databases"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// Description of the shard group.
+	Description *string `pulumi:"description"`
+	// Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+	EmbeddedKeeper *bool `pulumi:"embeddedKeeper"`
+	// Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment string `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of protobuf or capnproto format schemas. The structure is documented below.
+	FormatSchemas []MdbClickhouseClusterFormatSchema `pulumi:"formatSchemas"`
+	// A host of the ClickHouse cluster. The structure is documented below.
+	Hosts []MdbClickhouseClusterHost `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the ClickHouse cluster.
+	Labels            map[string]string                      `pulumi:"labels"`
+	MaintenanceWindow *MdbClickhouseClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// A group of machine learning models. The structure is documented below
+	MlModels []MdbClickhouseClusterMlModel `pulumi:"mlModels"`
+	// Graphite rollup configuration name.
+	Name *string `pulumi:"name"`
+	// ID of the network, to which the ClickHouse cluster belongs.
+	NetworkId string `pulumi:"networkId"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// ID of the service account used for access to Yandex Object Storage.
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
+	// A group of clickhouse shards. The structure is documented below.
+	ShardGroups []MdbClickhouseClusterShardGroup `pulumi:"shardGroups"`
+	// Grants `admin` user database management permission.
+	SqlDatabaseManagement *bool `pulumi:"sqlDatabaseManagement"`
+	// Enables `admin` user with user management permission.
+	SqlUserManagement *bool `pulumi:"sqlUserManagement"`
+	// A user of the ClickHouse cluster. The structure is documented below.
+	Users []MdbClickhouseClusterUser `pulumi:"users"`
+	// Version of the ClickHouse server software.
+	Version *string `pulumi:"version"`
+	// Configuration of the ZooKeeper subcluster. The structure is documented below.
+	Zookeeper *MdbClickhouseClusterZookeeper `pulumi:"zookeeper"`
 }
 
 // The set of arguments for constructing a MdbClickhouseCluster resource.
 type MdbClickhouseClusterArgs struct {
-	Access                MdbClickhouseClusterAccessPtrInput
-	AdminPassword         pulumi.StringPtrInput
-	BackupWindowStart     MdbClickhouseClusterBackupWindowStartPtrInput
-	Clickhouse            MdbClickhouseClusterClickhouseInput
-	CloudStorage          MdbClickhouseClusterCloudStoragePtrInput
-	CopySchemaOnNewHosts  pulumi.BoolPtrInput
-	Databases             MdbClickhouseClusterDatabaseArrayInput
-	DeletionProtection    pulumi.BoolPtrInput
-	Description           pulumi.StringPtrInput
-	EmbeddedKeeper        pulumi.BoolPtrInput
-	Environment           pulumi.StringInput
-	FolderId              pulumi.StringPtrInput
-	FormatSchemas         MdbClickhouseClusterFormatSchemaArrayInput
-	Hosts                 MdbClickhouseClusterHostArrayInput
-	Labels                pulumi.StringMapInput
-	MaintenanceWindow     MdbClickhouseClusterMaintenanceWindowPtrInput
-	MlModels              MdbClickhouseClusterMlModelArrayInput
-	Name                  pulumi.StringPtrInput
-	NetworkId             pulumi.StringInput
-	SecurityGroupIds      pulumi.StringArrayInput
-	ServiceAccountId      pulumi.StringPtrInput
-	ShardGroups           MdbClickhouseClusterShardGroupArrayInput
+	// Access policy to the ClickHouse cluster. The structure is documented below.
+	Access MdbClickhouseClusterAccessPtrInput
+	// A password used to authorize as user `admin` when `sqlUserManagement` enabled.
+	AdminPassword pulumi.StringPtrInput
+	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+	BackupWindowStart MdbClickhouseClusterBackupWindowStartPtrInput
+	// Configuration of the ClickHouse subcluster. The structure is documented below.
+	Clickhouse   MdbClickhouseClusterClickhouseInput
+	CloudStorage MdbClickhouseClusterCloudStoragePtrInput
+	// Whether to copy schema on new ClickHouse hosts.
+	CopySchemaOnNewHosts pulumi.BoolPtrInput
+	// A database of the ClickHouse cluster. The structure is documented below.
+	Databases MdbClickhouseClusterDatabaseArrayInput
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection pulumi.BoolPtrInput
+	// Description of the shard group.
+	Description pulumi.StringPtrInput
+	// Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+	EmbeddedKeeper pulumi.BoolPtrInput
+	// Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment pulumi.StringInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of protobuf or capnproto format schemas. The structure is documented below.
+	FormatSchemas MdbClickhouseClusterFormatSchemaArrayInput
+	// A host of the ClickHouse cluster. The structure is documented below.
+	Hosts MdbClickhouseClusterHostArrayInput
+	// A set of key/value label pairs to assign to the ClickHouse cluster.
+	Labels            pulumi.StringMapInput
+	MaintenanceWindow MdbClickhouseClusterMaintenanceWindowPtrInput
+	// A group of machine learning models. The structure is documented below
+	MlModels MdbClickhouseClusterMlModelArrayInput
+	// Graphite rollup configuration name.
+	Name pulumi.StringPtrInput
+	// ID of the network, to which the ClickHouse cluster belongs.
+	NetworkId pulumi.StringInput
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayInput
+	// ID of the service account used for access to Yandex Object Storage.
+	ServiceAccountId pulumi.StringPtrInput
+	// A group of clickhouse shards. The structure is documented below.
+	ShardGroups MdbClickhouseClusterShardGroupArrayInput
+	// Grants `admin` user database management permission.
 	SqlDatabaseManagement pulumi.BoolPtrInput
-	SqlUserManagement     pulumi.BoolPtrInput
-	Users                 MdbClickhouseClusterUserArrayInput
-	Version               pulumi.StringPtrInput
-	Zookeeper             MdbClickhouseClusterZookeeperPtrInput
+	// Enables `admin` user with user management permission.
+	SqlUserManagement pulumi.BoolPtrInput
+	// A user of the ClickHouse cluster. The structure is documented below.
+	Users MdbClickhouseClusterUserArrayInput
+	// Version of the ClickHouse server software.
+	Version pulumi.StringPtrInput
+	// Configuration of the ZooKeeper subcluster. The structure is documented below.
+	Zookeeper MdbClickhouseClusterZookeeperPtrInput
 }
 
 func (MdbClickhouseClusterArgs) ElementType() reflect.Type {
@@ -305,18 +462,22 @@ func (o MdbClickhouseClusterOutput) ToMdbClickhouseClusterOutputWithContext(ctx 
 	return o
 }
 
+// Access policy to the ClickHouse cluster. The structure is documented below.
 func (o MdbClickhouseClusterOutput) Access() MdbClickhouseClusterAccessOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterAccessOutput { return v.Access }).(MdbClickhouseClusterAccessOutput)
 }
 
+// A password used to authorize as user `admin` when `sqlUserManagement` enabled.
 func (o MdbClickhouseClusterOutput) AdminPassword() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringPtrOutput { return v.AdminPassword }).(pulumi.StringPtrOutput)
 }
 
+// Time to start the daily backup, in the UTC timezone. The structure is documented below.
 func (o MdbClickhouseClusterOutput) BackupWindowStart() MdbClickhouseClusterBackupWindowStartOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterBackupWindowStartOutput { return v.BackupWindowStart }).(MdbClickhouseClusterBackupWindowStartOutput)
 }
 
+// Configuration of the ClickHouse subcluster. The structure is documented below.
 func (o MdbClickhouseClusterOutput) Clickhouse() MdbClickhouseClusterClickhouseOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterClickhouseOutput { return v.Clickhouse }).(MdbClickhouseClusterClickhouseOutput)
 }
@@ -325,50 +486,64 @@ func (o MdbClickhouseClusterOutput) CloudStorage() MdbClickhouseClusterCloudStor
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterCloudStoragePtrOutput { return v.CloudStorage }).(MdbClickhouseClusterCloudStoragePtrOutput)
 }
 
+// Whether to copy schema on new ClickHouse hosts.
 func (o MdbClickhouseClusterOutput) CopySchemaOnNewHosts() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.BoolPtrOutput { return v.CopySchemaOnNewHosts }).(pulumi.BoolPtrOutput)
 }
 
+// Timestamp of cluster creation.
 func (o MdbClickhouseClusterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// A database of the ClickHouse cluster. The structure is documented below.
 func (o MdbClickhouseClusterOutput) Databases() MdbClickhouseClusterDatabaseArrayOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterDatabaseArrayOutput { return v.Databases }).(MdbClickhouseClusterDatabaseArrayOutput)
 }
 
+// Inhibits deletion of the cluster.  Can be either `true` or `false`.
 func (o MdbClickhouseClusterOutput) DeletionProtection() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.BoolOutput { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
+// Description of the shard group.
 func (o MdbClickhouseClusterOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
 func (o MdbClickhouseClusterOutput) EmbeddedKeeper() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.BoolOutput { return v.EmbeddedKeeper }).(pulumi.BoolOutput)
 }
 
+// Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
 func (o MdbClickhouseClusterOutput) Environment() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringOutput { return v.Environment }).(pulumi.StringOutput)
 }
 
+// The ID of the folder that the resource belongs to. If it
+// is not provided, the default provider folder is used.
 func (o MdbClickhouseClusterOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A set of protobuf or capnproto format schemas. The structure is documented below.
 func (o MdbClickhouseClusterOutput) FormatSchemas() MdbClickhouseClusterFormatSchemaArrayOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterFormatSchemaArrayOutput { return v.FormatSchemas }).(MdbClickhouseClusterFormatSchemaArrayOutput)
 }
 
+// Aggregated health of the cluster. Can be `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+// For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
 func (o MdbClickhouseClusterOutput) Health() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringOutput { return v.Health }).(pulumi.StringOutput)
 }
 
+// A host of the ClickHouse cluster. The structure is documented below.
 func (o MdbClickhouseClusterOutput) Hosts() MdbClickhouseClusterHostArrayOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterHostArrayOutput { return v.Hosts }).(MdbClickhouseClusterHostArrayOutput)
 }
 
+// A set of key/value label pairs to assign to the ClickHouse cluster.
 func (o MdbClickhouseClusterOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -377,50 +552,63 @@ func (o MdbClickhouseClusterOutput) MaintenanceWindow() MdbClickhouseClusterMain
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterMaintenanceWindowOutput { return v.MaintenanceWindow }).(MdbClickhouseClusterMaintenanceWindowOutput)
 }
 
+// A group of machine learning models. The structure is documented below
 func (o MdbClickhouseClusterOutput) MlModels() MdbClickhouseClusterMlModelArrayOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterMlModelArrayOutput { return v.MlModels }).(MdbClickhouseClusterMlModelArrayOutput)
 }
 
+// Graphite rollup configuration name.
 func (o MdbClickhouseClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network, to which the ClickHouse cluster belongs.
 func (o MdbClickhouseClusterOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// A set of ids of security groups assigned to hosts of the cluster.
 func (o MdbClickhouseClusterOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringArrayOutput { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// ID of the service account used for access to Yandex Object Storage.
 func (o MdbClickhouseClusterOutput) ServiceAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringOutput { return v.ServiceAccountId }).(pulumi.StringOutput)
 }
 
+// A group of clickhouse shards. The structure is documented below.
 func (o MdbClickhouseClusterOutput) ShardGroups() MdbClickhouseClusterShardGroupArrayOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterShardGroupArrayOutput { return v.ShardGroups }).(MdbClickhouseClusterShardGroupArrayOutput)
 }
 
+// Grants `admin` user database management permission.
 func (o MdbClickhouseClusterOutput) SqlDatabaseManagement() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.BoolOutput { return v.SqlDatabaseManagement }).(pulumi.BoolOutput)
 }
 
+// Enables `admin` user with user management permission.
 func (o MdbClickhouseClusterOutput) SqlUserManagement() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.BoolOutput { return v.SqlUserManagement }).(pulumi.BoolOutput)
 }
 
+// Status of the cluster. Can be `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
 func (o MdbClickhouseClusterOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
+// A user of the ClickHouse cluster. The structure is documented below.
 func (o MdbClickhouseClusterOutput) Users() MdbClickhouseClusterUserArrayOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterUserArrayOutput { return v.Users }).(MdbClickhouseClusterUserArrayOutput)
 }
 
+// Version of the ClickHouse server software.
 func (o MdbClickhouseClusterOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }
 
+// Configuration of the ZooKeeper subcluster. The structure is documented below.
 func (o MdbClickhouseClusterOutput) Zookeeper() MdbClickhouseClusterZookeeperOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterZookeeperOutput { return v.Zookeeper }).(MdbClickhouseClusterZookeeperOutput)
 }

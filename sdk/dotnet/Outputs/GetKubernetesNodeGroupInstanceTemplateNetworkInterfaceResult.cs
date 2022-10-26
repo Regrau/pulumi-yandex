@@ -13,12 +13,33 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceResult
     {
+        /// <summary>
+        /// Indicates whether the IPv4 address has been assigned.
+        /// </summary>
         public readonly bool Ipv4;
+        /// <summary>
+        /// List of configurations for creating ipv4 DNS records. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordResult> Ipv4DnsRecords;
+        /// <summary>
+        /// Indicates whether the IPv6 address has been assigned.
+        /// </summary>
         public readonly bool Ipv6;
+        /// <summary>
+        /// List of configurations for creating ipv6 DNS records. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordResult> Ipv6DnsRecords;
+        /// <summary>
+        /// A public address that can be used to access the internet over NAT.
+        /// </summary>
         public readonly bool Nat;
+        /// <summary>
+        /// Security group ids for network interface.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// The IDs of the subnets.
+        /// </summary>
         public readonly ImmutableArray<string> SubnetIds;
 
         [OutputConstructor]

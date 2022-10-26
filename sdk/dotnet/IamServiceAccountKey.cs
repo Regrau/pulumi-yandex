@@ -9,36 +9,93 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows management of [Yandex.Cloud IAM service account authorized keys](https://cloud.yandex.com/docs/iam/concepts/authorization/key).
+    /// Generated pair of keys is used to create a [JSON Web Token](https://tools.ietf.org/html/rfc7519) which is necessary for requesting an [IAM Token](https://cloud.yandex.com/docs/iam/concepts/authorization/iam-token) for a [service account](https://cloud.yandex.com/docs/iam/concepts/users/service-accounts).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// This snippet creates an authorized keys pair.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var sa_auth_key = new Yandex.IamServiceAccountKey("sa-auth-key", new()
+    ///     {
+    ///         Description = "key for service account",
+    ///         KeyAlgorithm = "RSA_4096",
+    ///         PgpKey = "keybase:keybaseusername",
+    ///         ServiceAccountId = "some_sa_id",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/iamServiceAccountKey:IamServiceAccountKey")]
     public partial class IamServiceAccountKey : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Creation timestamp of the static access key.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// The description of the key pair.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// The encrypted private key, base64 encoded. This is only populated when `pgp_key` is supplied.
+        /// </summary>
         [Output("encryptedPrivateKey")]
         public Output<string> EncryptedPrivateKey { get; private set; } = null!;
 
+        /// <summary>
+        /// The output format of the keys. `PEM_FILE` is the default format.
+        /// </summary>
         [Output("format")]
         public Output<string?> Format { get; private set; } = null!;
 
+        /// <summary>
+        /// The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+        /// Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+        /// </summary>
         [Output("keyAlgorithm")]
         public Output<string?> KeyAlgorithm { get; private set; } = null!;
 
+        /// <summary>
+        /// The fingerprint of the PGP key used to encrypt the private key. This is only populated when `pgp_key` is supplied.
+        /// </summary>
         [Output("keyFingerprint")]
         public Output<string> KeyFingerprint { get; private set; } = null!;
 
+        /// <summary>
+        /// An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        /// </summary>
         [Output("pgpKey")]
         public Output<string?> PgpKey { get; private set; } = null!;
 
+        /// <summary>
+        /// The private key. This is only populated when no `pgp_key` is provided.
+        /// </summary>
         [Output("privateKey")]
         public Output<string> PrivateKey { get; private set; } = null!;
 
+        /// <summary>
+        /// The public key.
+        /// </summary>
         [Output("publicKey")]
         public Output<string> PublicKey { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the service account to create a pair for.
+        /// </summary>
         [Output("serviceAccountId")]
         public Output<string> ServiceAccountId { get; private set; } = null!;
 
@@ -65,7 +122,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -89,18 +146,34 @@ namespace Pulumi.Yandex
 
     public sealed class IamServiceAccountKeyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The description of the key pair.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The output format of the keys. `PEM_FILE` is the default format.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+        /// Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+        /// </summary>
         [Input("keyAlgorithm")]
         public Input<string>? KeyAlgorithm { get; set; }
 
+        /// <summary>
+        /// An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        /// </summary>
         [Input("pgpKey")]
         public Input<string>? PgpKey { get; set; }
 
+        /// <summary>
+        /// ID of the service account to create a pair for.
+        /// </summary>
         [Input("serviceAccountId", required: true)]
         public Input<string> ServiceAccountId { get; set; } = null!;
 
@@ -112,33 +185,64 @@ namespace Pulumi.Yandex
 
     public sealed class IamServiceAccountKeyState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Creation timestamp of the static access key.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// The description of the key pair.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The encrypted private key, base64 encoded. This is only populated when `pgp_key` is supplied.
+        /// </summary>
         [Input("encryptedPrivateKey")]
         public Input<string>? EncryptedPrivateKey { get; set; }
 
+        /// <summary>
+        /// The output format of the keys. `PEM_FILE` is the default format.
+        /// </summary>
         [Input("format")]
         public Input<string>? Format { get; set; }
 
+        /// <summary>
+        /// The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+        /// Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+        /// </summary>
         [Input("keyAlgorithm")]
         public Input<string>? KeyAlgorithm { get; set; }
 
+        /// <summary>
+        /// The fingerprint of the PGP key used to encrypt the private key. This is only populated when `pgp_key` is supplied.
+        /// </summary>
         [Input("keyFingerprint")]
         public Input<string>? KeyFingerprint { get; set; }
 
+        /// <summary>
+        /// An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        /// </summary>
         [Input("pgpKey")]
         public Input<string>? PgpKey { get; set; }
 
+        /// <summary>
+        /// The private key. This is only populated when no `pgp_key` is provided.
+        /// </summary>
         [Input("privateKey")]
         public Input<string>? PrivateKey { get; set; }
 
+        /// <summary>
+        /// The public key.
+        /// </summary>
         [Input("publicKey")]
         public Input<string>? PublicKey { get; set; }
 
+        /// <summary>
+        /// ID of the service account to create a pair for.
+        /// </summary>
         [Input("serviceAccountId")]
         public Input<string>? ServiceAccountId { get; set; }
 

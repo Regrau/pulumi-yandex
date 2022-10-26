@@ -9,15 +9,68 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows creation and management of a single binding within IAM policy for
+    /// an existing Yandex Resource Manager cloud.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var project1 = Yandex.GetResourcemanagerCloud.Invoke(new()
+    ///     {
+    ///         Name = "Project 1",
+    ///     });
+    /// 
+    ///     var admin = new Yandex.ResourcemanagerCloudIamBinding("admin", new()
+    ///     {
+    ///         CloudId = project1.Apply(getResourcemanagerCloudResult =&gt; getResourcemanagerCloudResult.Id),
+    ///         Members = new[]
+    ///         {
+    ///             "userAccount:some_user_id",
+    ///         },
+    ///         Role = "editor",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `cloud_id` and role, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/resourcemanagerCloudIamBinding:ResourcemanagerCloudIamBinding viewer "cloud_id viewer"
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/resourcemanagerCloudIamBinding:ResourcemanagerCloudIamBinding")]
     public partial class ResourcemanagerCloudIamBinding : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// ID of the cloud to attach the policy to.
+        /// </summary>
         [Output("cloudId")]
         public Output<string> CloudId { get; private set; } = null!;
 
+        /// <summary>
+        /// An array of identities that will be granted the privilege in the `role`.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        /// </summary>
         [Output("members")]
         public Output<ImmutableArray<string>> Members { get; private set; } = null!;
 
+        /// <summary>
+        /// The role that should be assigned. Only one
+        /// `yandex.ResourcemanagerCloudIamBinding` can be used per role.
+        /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
 
@@ -47,7 +100,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -71,17 +124,32 @@ namespace Pulumi.Yandex
 
     public sealed class ResourcemanagerCloudIamBindingArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the cloud to attach the policy to.
+        /// </summary>
         [Input("cloudId", required: true)]
         public Input<string> CloudId { get; set; } = null!;
 
         [Input("members", required: true)]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// An array of identities that will be granted the privilege in the `role`.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// The role that should be assigned. Only one
+        /// `yandex.ResourcemanagerCloudIamBinding` can be used per role.
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
@@ -96,17 +164,32 @@ namespace Pulumi.Yandex
 
     public sealed class ResourcemanagerCloudIamBindingState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the cloud to attach the policy to.
+        /// </summary>
         [Input("cloudId")]
         public Input<string>? CloudId { get; set; }
 
         [Input("members")]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// An array of identities that will be granted the privilege in the `role`.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// The role that should be assigned. Only one
+        /// `yandex.ResourcemanagerCloudIamBinding` can be used per role.
+        /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 

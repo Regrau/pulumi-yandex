@@ -83,11 +83,17 @@ class GetMdbElasticSearchClusterResult:
     @property
     @pulumi.getter
     def configs(self) -> Sequence['outputs.GetMdbElasticSearchClusterConfigResult']:
+        """
+        Configuration of the Elasticsearch cluster. The structure is documented below.
+        """
         return pulumi.get(self, "configs")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
@@ -98,11 +104,17 @@ class GetMdbElasticSearchClusterResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the Elasticsearch cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def environment(self) -> str:
+        """
+        Deployment environment of the Elasticsearch cluster.
+        """
         return pulumi.get(self, "environment")
 
     @property
@@ -113,11 +125,17 @@ class GetMdbElasticSearchClusterResult:
     @property
     @pulumi.getter
     def health(self) -> str:
+        """
+        Aggregated health of the cluster.
+        """
         return pulumi.get(self, "health")
 
     @property
     @pulumi.getter
     def hosts(self) -> Sequence['outputs.GetMdbElasticSearchClusterHostResult']:
+        """
+        A host of the Elasticsearch cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @property
@@ -131,6 +149,9 @@ class GetMdbElasticSearchClusterResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs to assign to the Elasticsearch cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -146,21 +167,33 @@ class GetMdbElasticSearchClusterResult:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
+        """
+        ID of the network, to which the Elasticsearch cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Sequence[str]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> str:
+        """
+        ID of the service account authorized for this cluster.
+        """
         return pulumi.get(self, "service_account_id")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the cluster.
+        """
         return pulumi.get(self, "status")
 
 
@@ -199,7 +232,27 @@ def get_mdb_elastic_search_cluster(cluster_id: Optional[str] = None,
                                    service_account_id: Optional[str] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMdbElasticSearchClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed Elasticsearch cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/concepts).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_elastic_search_cluster(name="test")
+    pulumi.export("networkId", foo.network_id)
+    ```
+
+
+    :param str cluster_id: The ID of the Elasticsearch cluster.
+    :param str description: Description of the Elasticsearch cluster.
+    :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+    :param Mapping[str, str] labels: A set of key/value label pairs to assign to the Elasticsearch cluster.
+    :param str name: The name of the Elasticsearch cluster.
+    :param Sequence[str] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+    :param str service_account_id: ID of the service account authorized for this cluster.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -244,6 +297,26 @@ def get_mdb_elastic_search_cluster_output(cluster_id: Optional[pulumi.Input[Opti
                                           service_account_id: Optional[pulumi.Input[Optional[str]]] = None,
                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMdbElasticSearchClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed Elasticsearch cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/concepts).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_elastic_search_cluster(name="test")
+    pulumi.export("networkId", foo.network_id)
+    ```
+
+
+    :param str cluster_id: The ID of the Elasticsearch cluster.
+    :param str description: Description of the Elasticsearch cluster.
+    :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+    :param Mapping[str, str] labels: A set of key/value label pairs to assign to the Elasticsearch cluster.
+    :param str name: The name of the Elasticsearch cluster.
+    :param Sequence[str] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+    :param str service_account_id: ID of the service account authorized for this cluster.
     """
     ...

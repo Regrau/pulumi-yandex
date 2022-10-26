@@ -79,6 +79,9 @@ class GetServerlessContainerResult:
     @property
     @pulumi.getter
     def concurrency(self) -> int:
+        """
+        Concurrency of Yandex Cloud Serverless Container
+        """
         return pulumi.get(self, "concurrency")
 
     @property
@@ -89,6 +92,9 @@ class GetServerlessContainerResult:
     @property
     @pulumi.getter(name="coreFraction")
     def core_fraction(self) -> int:
+        """
+        Core fraction (**0...100**) of the Yandex Cloud Serverless Container
+        """
         return pulumi.get(self, "core_fraction")
 
     @property
@@ -99,16 +105,25 @@ class GetServerlessContainerResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of the Yandex Cloud Serverless Container
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the Yandex Cloud Serverless Container
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="executionTimeout")
     def execution_timeout(self) -> str:
+        """
+        Execution timeout (duration format) of Yandex Cloud Serverless Container
+        """
         return pulumi.get(self, "execution_timeout")
 
     @property
@@ -132,11 +147,17 @@ class GetServerlessContainerResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs assigned to the Yandex Cloud Serverless Container
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def memory(self) -> int:
+        """
+        Memory in megabytes of Yandex Cloud Serverless Container
+        """
         return pulumi.get(self, "memory")
 
     @property
@@ -147,21 +168,39 @@ class GetServerlessContainerResult:
     @property
     @pulumi.getter(name="revisionId")
     def revision_id(self) -> str:
+        """
+        Last revision ID of the Yandex Cloud Serverless Container
+        """
         return pulumi.get(self, "revision_id")
 
     @property
     @pulumi.getter
     def secrets(self) -> Sequence['outputs.GetServerlessContainerSecretResult']:
+        """
+        Secrets for Yandex Cloud Serverless Container
+        * `image.0.url` - URL of image that deployed as Yandex Cloud Serverless Container
+        * `image.0.work_dir` - Working directory of Yandex Cloud Serverless Container
+        * `image.0.digest` - Digest of image that deployed as Yandex Cloud Serverless Container
+        * `image.0.command` - List of commands of the Yandex Cloud Serverless Container
+        * `image.0.args` - List of arguments of the Yandex Cloud Serverless Container
+        * `image.0.environment` -  A set of key/value environment variable pairs of Yandex Cloud Serverless Container
+        """
         return pulumi.get(self, "secrets")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> str:
+        """
+        Service account ID of Yandex Cloud Serverless Container
+        """
         return pulumi.get(self, "service_account_id")
 
     @property
     @pulumi.getter
     def url(self) -> str:
+        """
+        Invoke URL of the Yandex Cloud Serverless Container
+        """
         return pulumi.get(self, "url")
 
 
@@ -196,7 +235,28 @@ def get_serverless_container(container_id: Optional[str] = None,
                              secrets: Optional[Sequence[pulumi.InputType['GetServerlessContainerSecretArgs']]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServerlessContainerResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Cloud Serverless Container.
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_container = yandex.get_serverless_container(container_id="are1samplecontainer11")
+    ```
+
+    This data source is used to define Yandex Cloud Container that can be used by other resources.
+
+
+    :param str container_id: Yandex Cloud Serverless Container id used to define container
+    :param str folder_id: Folder ID for the Yandex Cloud Serverless Container
+    :param str name: Yandex Cloud Serverless Container name used to define container
+    :param Sequence[pulumi.InputType['GetServerlessContainerSecretArgs']] secrets: Secrets for Yandex Cloud Serverless Container
+           * `image.0.url` - URL of image that deployed as Yandex Cloud Serverless Container
+           * `image.0.work_dir` - Working directory of Yandex Cloud Serverless Container
+           * `image.0.digest` - Digest of image that deployed as Yandex Cloud Serverless Container
+           * `image.0.command` - List of commands of the Yandex Cloud Serverless Container
+           * `image.0.args` - List of arguments of the Yandex Cloud Serverless Container
+           * `image.0.environment` -  A set of key/value environment variable pairs of Yandex Cloud Serverless Container
     """
     __args__ = dict()
     __args__['containerId'] = container_id
@@ -233,6 +293,27 @@ def get_serverless_container_output(container_id: Optional[pulumi.Input[Optional
                                     secrets: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetServerlessContainerSecretArgs']]]]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetServerlessContainerResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Cloud Serverless Container.
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_container = yandex.get_serverless_container(container_id="are1samplecontainer11")
+    ```
+
+    This data source is used to define Yandex Cloud Container that can be used by other resources.
+
+
+    :param str container_id: Yandex Cloud Serverless Container id used to define container
+    :param str folder_id: Folder ID for the Yandex Cloud Serverless Container
+    :param str name: Yandex Cloud Serverless Container name used to define container
+    :param Sequence[pulumi.InputType['GetServerlessContainerSecretArgs']] secrets: Secrets for Yandex Cloud Serverless Container
+           * `image.0.url` - URL of image that deployed as Yandex Cloud Serverless Container
+           * `image.0.work_dir` - Working directory of Yandex Cloud Serverless Container
+           * `image.0.digest` - Digest of image that deployed as Yandex Cloud Serverless Container
+           * `image.0.command` - List of commands of the Yandex Cloud Serverless Container
+           * `image.0.args` - List of arguments of the Yandex Cloud Serverless Container
+           * `image.0.environment` -  A set of key/value environment variable pairs of Yandex Cloud Serverless Container
     """
     ...

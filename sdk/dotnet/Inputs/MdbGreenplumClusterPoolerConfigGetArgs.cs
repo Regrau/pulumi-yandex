@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbGreenplumClusterPoolerConfigGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Value for `pool_client_idle_timeout` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_ttl-integer).
+        /// </summary>
         [Input("poolClientIdleTimeout")]
         public Input<int>? PoolClientIdleTimeout { get; set; }
 
+        /// <summary>
+        /// Value for `pool_size` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_size-integer).
+        /// </summary>
         [Input("poolSize")]
         public Input<int>? PoolSize { get; set; }
 
+        /// <summary>
+        /// Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
+        /// </summary>
         [Input("poolingMode")]
         public Input<string>? PoolingMode { get; set; }
 

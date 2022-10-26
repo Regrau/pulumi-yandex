@@ -11,28 +11,140 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a MongoDB cluster within the Yandex.Cloud. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts).
+//
+// ## Example Usage
+//
+// Example of creating a Single Node MongoDB.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.1.0.0/24"),
+//				},
+//				Zone: pulumi.String("ru-central1-a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewMdbMongodbCluster(ctx, "fooMdbMongodbCluster", &yandex.MdbMongodbClusterArgs{
+//				ClusterConfig: &MdbMongodbClusterClusterConfigArgs{
+//					Version: pulumi.String("4.2"),
+//				},
+//				Databases: MdbMongodbClusterDatabaseArray{
+//					&MdbMongodbClusterDatabaseArgs{
+//						Name: pulumi.String("testdb"),
+//					},
+//				},
+//				Environment: pulumi.String("PRESTABLE"),
+//				Hosts: MdbMongodbClusterHostArray{
+//					&MdbMongodbClusterHostArgs{
+//						SubnetId: fooVpcSubnet.ID(),
+//						ZoneId:   pulumi.String("ru-central1-a"),
+//					},
+//				},
+//				Labels: pulumi.StringMap{
+//					"test_key": pulumi.String("test_value"),
+//				},
+//				MaintenanceWindow: &MdbMongodbClusterMaintenanceWindowArgs{
+//					Type: pulumi.String("ANYTIME"),
+//				},
+//				NetworkId: fooVpcNetwork.ID(),
+//				Resources: &MdbMongodbClusterResourcesArgs{
+//					DiskSize:         pulumi.Int(16),
+//					DiskTypeId:       pulumi.String("network-hdd"),
+//					ResourcePresetId: pulumi.String("b1.nano"),
+//				},
+//				Users: MdbMongodbClusterUserArray{
+//					&MdbMongodbClusterUserArgs{
+//						Name:     pulumi.String("john"),
+//						Password: pulumi.String("password"),
+//						Permissions: MdbMongodbClusterUserPermissionArray{
+//							&MdbMongodbClusterUserPermissionArgs{
+//								DatabaseName: pulumi.String("testdb"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A cluster can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/mdbMongodbCluster:MdbMongodbCluster foo cluster_id
+//
+// ```
 type MdbMongodbCluster struct {
 	pulumi.CustomResourceState
 
-	ClusterConfig      MdbMongodbClusterClusterConfigOutput     `pulumi:"clusterConfig"`
-	ClusterId          pulumi.StringOutput                      `pulumi:"clusterId"`
-	CreatedAt          pulumi.StringOutput                      `pulumi:"createdAt"`
-	Databases          MdbMongodbClusterDatabaseArrayOutput     `pulumi:"databases"`
-	DeletionProtection pulumi.BoolOutput                        `pulumi:"deletionProtection"`
-	Description        pulumi.StringOutput                      `pulumi:"description"`
-	Environment        pulumi.StringOutput                      `pulumi:"environment"`
-	FolderId           pulumi.StringOutput                      `pulumi:"folderId"`
-	Health             pulumi.StringOutput                      `pulumi:"health"`
-	Hosts              MdbMongodbClusterHostArrayOutput         `pulumi:"hosts"`
-	Labels             pulumi.StringMapOutput                   `pulumi:"labels"`
-	MaintenanceWindow  MdbMongodbClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
-	Name               pulumi.StringOutput                      `pulumi:"name"`
-	NetworkId          pulumi.StringOutput                      `pulumi:"networkId"`
-	Resources          MdbMongodbClusterResourcesOutput         `pulumi:"resources"`
-	SecurityGroupIds   pulumi.StringArrayOutput                 `pulumi:"securityGroupIds"`
-	Sharded            pulumi.BoolOutput                        `pulumi:"sharded"`
-	Status             pulumi.StringOutput                      `pulumi:"status"`
-	Users              MdbMongodbClusterUserArrayOutput         `pulumi:"users"`
+	// Configuration of the MongoDB subcluster. The structure is documented below.
+	ClusterConfig MdbMongodbClusterClusterConfigOutput `pulumi:"clusterConfig"`
+	// The ID of the cluster.
+	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
+	// Creation timestamp of the key.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// A database of the MongoDB cluster. The structure is documented below.
+	Databases MdbMongodbClusterDatabaseArrayOutput `pulumi:"databases"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	// ***
+	DeletionProtection pulumi.BoolOutput `pulumi:"deletionProtection"`
+	// Description of the MongoDB cluster.
+	Description pulumi.StringOutput `pulumi:"description"`
+	// Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment pulumi.StringOutput `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// The health of the host.
+	Health pulumi.StringOutput `pulumi:"health"`
+	// A host of the MongoDB cluster. The structure is documented below.
+	Hosts MdbMongodbClusterHostArrayOutput `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the MongoDB cluster.
+	Labels            pulumi.StringMapOutput                   `pulumi:"labels"`
+	MaintenanceWindow MdbMongodbClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
+	// The fully qualified domain name of the host. Computed on server side.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the network, to which the MongoDB cluster belongs.
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
+	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+	Resources MdbMongodbClusterResourcesOutput `pulumi:"resources"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
+	// MongoDB Cluster mode enabled/disabled.
+	Sharded pulumi.BoolOutput `pulumi:"sharded"`
+	// Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+	// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/api-ref/Cluster/).
+	Status pulumi.StringOutput `pulumi:"status"`
+	// A user of the MongoDB cluster. The structure is documented below.
+	Users MdbMongodbClusterUserArrayOutput `pulumi:"users"`
 }
 
 // NewMdbMongodbCluster registers a new resource with the given unique name, arguments, and options.
@@ -86,47 +198,89 @@ func GetMdbMongodbCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MdbMongodbCluster resources.
 type mdbMongodbClusterState struct {
-	ClusterConfig      *MdbMongodbClusterClusterConfig     `pulumi:"clusterConfig"`
-	ClusterId          *string                             `pulumi:"clusterId"`
-	CreatedAt          *string                             `pulumi:"createdAt"`
-	Databases          []MdbMongodbClusterDatabase         `pulumi:"databases"`
-	DeletionProtection *bool                               `pulumi:"deletionProtection"`
-	Description        *string                             `pulumi:"description"`
-	Environment        *string                             `pulumi:"environment"`
-	FolderId           *string                             `pulumi:"folderId"`
-	Health             *string                             `pulumi:"health"`
-	Hosts              []MdbMongodbClusterHost             `pulumi:"hosts"`
-	Labels             map[string]string                   `pulumi:"labels"`
-	MaintenanceWindow  *MdbMongodbClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	Name               *string                             `pulumi:"name"`
-	NetworkId          *string                             `pulumi:"networkId"`
-	Resources          *MdbMongodbClusterResources         `pulumi:"resources"`
-	SecurityGroupIds   []string                            `pulumi:"securityGroupIds"`
-	Sharded            *bool                               `pulumi:"sharded"`
-	Status             *string                             `pulumi:"status"`
-	Users              []MdbMongodbClusterUser             `pulumi:"users"`
+	// Configuration of the MongoDB subcluster. The structure is documented below.
+	ClusterConfig *MdbMongodbClusterClusterConfig `pulumi:"clusterConfig"`
+	// The ID of the cluster.
+	ClusterId *string `pulumi:"clusterId"`
+	// Creation timestamp of the key.
+	CreatedAt *string `pulumi:"createdAt"`
+	// A database of the MongoDB cluster. The structure is documented below.
+	Databases []MdbMongodbClusterDatabase `pulumi:"databases"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	// ***
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// Description of the MongoDB cluster.
+	Description *string `pulumi:"description"`
+	// Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment *string `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// The health of the host.
+	Health *string `pulumi:"health"`
+	// A host of the MongoDB cluster. The structure is documented below.
+	Hosts []MdbMongodbClusterHost `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the MongoDB cluster.
+	Labels            map[string]string                   `pulumi:"labels"`
+	MaintenanceWindow *MdbMongodbClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// The fully qualified domain name of the host. Computed on server side.
+	Name *string `pulumi:"name"`
+	// ID of the network, to which the MongoDB cluster belongs.
+	NetworkId *string `pulumi:"networkId"`
+	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+	Resources *MdbMongodbClusterResources `pulumi:"resources"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// MongoDB Cluster mode enabled/disabled.
+	Sharded *bool `pulumi:"sharded"`
+	// Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+	// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/api-ref/Cluster/).
+	Status *string `pulumi:"status"`
+	// A user of the MongoDB cluster. The structure is documented below.
+	Users []MdbMongodbClusterUser `pulumi:"users"`
 }
 
 type MdbMongodbClusterState struct {
-	ClusterConfig      MdbMongodbClusterClusterConfigPtrInput
-	ClusterId          pulumi.StringPtrInput
-	CreatedAt          pulumi.StringPtrInput
-	Databases          MdbMongodbClusterDatabaseArrayInput
+	// Configuration of the MongoDB subcluster. The structure is documented below.
+	ClusterConfig MdbMongodbClusterClusterConfigPtrInput
+	// The ID of the cluster.
+	ClusterId pulumi.StringPtrInput
+	// Creation timestamp of the key.
+	CreatedAt pulumi.StringPtrInput
+	// A database of the MongoDB cluster. The structure is documented below.
+	Databases MdbMongodbClusterDatabaseArrayInput
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	// ***
 	DeletionProtection pulumi.BoolPtrInput
-	Description        pulumi.StringPtrInput
-	Environment        pulumi.StringPtrInput
-	FolderId           pulumi.StringPtrInput
-	Health             pulumi.StringPtrInput
-	Hosts              MdbMongodbClusterHostArrayInput
-	Labels             pulumi.StringMapInput
-	MaintenanceWindow  MdbMongodbClusterMaintenanceWindowPtrInput
-	Name               pulumi.StringPtrInput
-	NetworkId          pulumi.StringPtrInput
-	Resources          MdbMongodbClusterResourcesPtrInput
-	SecurityGroupIds   pulumi.StringArrayInput
-	Sharded            pulumi.BoolPtrInput
-	Status             pulumi.StringPtrInput
-	Users              MdbMongodbClusterUserArrayInput
+	// Description of the MongoDB cluster.
+	Description pulumi.StringPtrInput
+	// Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment pulumi.StringPtrInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// The health of the host.
+	Health pulumi.StringPtrInput
+	// A host of the MongoDB cluster. The structure is documented below.
+	Hosts MdbMongodbClusterHostArrayInput
+	// A set of key/value label pairs to assign to the MongoDB cluster.
+	Labels            pulumi.StringMapInput
+	MaintenanceWindow MdbMongodbClusterMaintenanceWindowPtrInput
+	// The fully qualified domain name of the host. Computed on server side.
+	Name pulumi.StringPtrInput
+	// ID of the network, to which the MongoDB cluster belongs.
+	NetworkId pulumi.StringPtrInput
+	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+	Resources MdbMongodbClusterResourcesPtrInput
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayInput
+	// MongoDB Cluster mode enabled/disabled.
+	Sharded pulumi.BoolPtrInput
+	// Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+	// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/api-ref/Cluster/).
+	Status pulumi.StringPtrInput
+	// A user of the MongoDB cluster. The structure is documented below.
+	Users MdbMongodbClusterUserArrayInput
 }
 
 func (MdbMongodbClusterState) ElementType() reflect.Type {
@@ -134,40 +288,72 @@ func (MdbMongodbClusterState) ElementType() reflect.Type {
 }
 
 type mdbMongodbClusterArgs struct {
-	ClusterConfig      MdbMongodbClusterClusterConfig      `pulumi:"clusterConfig"`
-	ClusterId          *string                             `pulumi:"clusterId"`
-	Databases          []MdbMongodbClusterDatabase         `pulumi:"databases"`
-	DeletionProtection *bool                               `pulumi:"deletionProtection"`
-	Description        *string                             `pulumi:"description"`
-	Environment        string                              `pulumi:"environment"`
-	FolderId           *string                             `pulumi:"folderId"`
-	Hosts              []MdbMongodbClusterHost             `pulumi:"hosts"`
-	Labels             map[string]string                   `pulumi:"labels"`
-	MaintenanceWindow  *MdbMongodbClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	Name               *string                             `pulumi:"name"`
-	NetworkId          string                              `pulumi:"networkId"`
-	Resources          MdbMongodbClusterResources          `pulumi:"resources"`
-	SecurityGroupIds   []string                            `pulumi:"securityGroupIds"`
-	Users              []MdbMongodbClusterUser             `pulumi:"users"`
+	// Configuration of the MongoDB subcluster. The structure is documented below.
+	ClusterConfig MdbMongodbClusterClusterConfig `pulumi:"clusterConfig"`
+	// The ID of the cluster.
+	ClusterId *string `pulumi:"clusterId"`
+	// A database of the MongoDB cluster. The structure is documented below.
+	Databases []MdbMongodbClusterDatabase `pulumi:"databases"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	// ***
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// Description of the MongoDB cluster.
+	Description *string `pulumi:"description"`
+	// Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment string `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A host of the MongoDB cluster. The structure is documented below.
+	Hosts []MdbMongodbClusterHost `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the MongoDB cluster.
+	Labels            map[string]string                   `pulumi:"labels"`
+	MaintenanceWindow *MdbMongodbClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// The fully qualified domain name of the host. Computed on server side.
+	Name *string `pulumi:"name"`
+	// ID of the network, to which the MongoDB cluster belongs.
+	NetworkId string `pulumi:"networkId"`
+	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+	Resources MdbMongodbClusterResources `pulumi:"resources"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// A user of the MongoDB cluster. The structure is documented below.
+	Users []MdbMongodbClusterUser `pulumi:"users"`
 }
 
 // The set of arguments for constructing a MdbMongodbCluster resource.
 type MdbMongodbClusterArgs struct {
-	ClusterConfig      MdbMongodbClusterClusterConfigInput
-	ClusterId          pulumi.StringPtrInput
-	Databases          MdbMongodbClusterDatabaseArrayInput
+	// Configuration of the MongoDB subcluster. The structure is documented below.
+	ClusterConfig MdbMongodbClusterClusterConfigInput
+	// The ID of the cluster.
+	ClusterId pulumi.StringPtrInput
+	// A database of the MongoDB cluster. The structure is documented below.
+	Databases MdbMongodbClusterDatabaseArrayInput
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	// ***
 	DeletionProtection pulumi.BoolPtrInput
-	Description        pulumi.StringPtrInput
-	Environment        pulumi.StringInput
-	FolderId           pulumi.StringPtrInput
-	Hosts              MdbMongodbClusterHostArrayInput
-	Labels             pulumi.StringMapInput
-	MaintenanceWindow  MdbMongodbClusterMaintenanceWindowPtrInput
-	Name               pulumi.StringPtrInput
-	NetworkId          pulumi.StringInput
-	Resources          MdbMongodbClusterResourcesInput
-	SecurityGroupIds   pulumi.StringArrayInput
-	Users              MdbMongodbClusterUserArrayInput
+	// Description of the MongoDB cluster.
+	Description pulumi.StringPtrInput
+	// Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment pulumi.StringInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A host of the MongoDB cluster. The structure is documented below.
+	Hosts MdbMongodbClusterHostArrayInput
+	// A set of key/value label pairs to assign to the MongoDB cluster.
+	Labels            pulumi.StringMapInput
+	MaintenanceWindow MdbMongodbClusterMaintenanceWindowPtrInput
+	// The fully qualified domain name of the host. Computed on server side.
+	Name pulumi.StringPtrInput
+	// ID of the network, to which the MongoDB cluster belongs.
+	NetworkId pulumi.StringInput
+	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+	Resources MdbMongodbClusterResourcesInput
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayInput
+	// A user of the MongoDB cluster. The structure is documented below.
+	Users MdbMongodbClusterUserArrayInput
 }
 
 func (MdbMongodbClusterArgs) ElementType() reflect.Type {
@@ -257,46 +443,59 @@ func (o MdbMongodbClusterOutput) ToMdbMongodbClusterOutputWithContext(ctx contex
 	return o
 }
 
+// Configuration of the MongoDB subcluster. The structure is documented below.
 func (o MdbMongodbClusterOutput) ClusterConfig() MdbMongodbClusterClusterConfigOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterClusterConfigOutput { return v.ClusterConfig }).(MdbMongodbClusterClusterConfigOutput)
 }
 
+// The ID of the cluster.
 func (o MdbMongodbClusterOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
 }
 
+// Creation timestamp of the key.
 func (o MdbMongodbClusterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// A database of the MongoDB cluster. The structure is documented below.
 func (o MdbMongodbClusterOutput) Databases() MdbMongodbClusterDatabaseArrayOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterDatabaseArrayOutput { return v.Databases }).(MdbMongodbClusterDatabaseArrayOutput)
 }
 
+// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+// ***
 func (o MdbMongodbClusterOutput) DeletionProtection() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.BoolOutput { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
+// Description of the MongoDB cluster.
 func (o MdbMongodbClusterOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
+// Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
 func (o MdbMongodbClusterOutput) Environment() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.StringOutput { return v.Environment }).(pulumi.StringOutput)
 }
 
+// The ID of the folder that the resource belongs to. If it
+// is not provided, the default provider folder is used.
 func (o MdbMongodbClusterOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// The health of the host.
 func (o MdbMongodbClusterOutput) Health() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.StringOutput { return v.Health }).(pulumi.StringOutput)
 }
 
+// A host of the MongoDB cluster. The structure is documented below.
 func (o MdbMongodbClusterOutput) Hosts() MdbMongodbClusterHostArrayOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterHostArrayOutput { return v.Hosts }).(MdbMongodbClusterHostArrayOutput)
 }
 
+// A set of key/value label pairs to assign to the MongoDB cluster.
 func (o MdbMongodbClusterOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -305,30 +504,38 @@ func (o MdbMongodbClusterOutput) MaintenanceWindow() MdbMongodbClusterMaintenanc
 	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterMaintenanceWindowOutput { return v.MaintenanceWindow }).(MdbMongodbClusterMaintenanceWindowOutput)
 }
 
+// The fully qualified domain name of the host. Computed on server side.
 func (o MdbMongodbClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network, to which the MongoDB cluster belongs.
 func (o MdbMongodbClusterOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
 func (o MdbMongodbClusterOutput) Resources() MdbMongodbClusterResourcesOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterResourcesOutput { return v.Resources }).(MdbMongodbClusterResourcesOutput)
 }
 
+// A set of ids of security groups assigned to hosts of the cluster.
 func (o MdbMongodbClusterOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.StringArrayOutput { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// MongoDB Cluster mode enabled/disabled.
 func (o MdbMongodbClusterOutput) Sharded() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.BoolOutput { return v.Sharded }).(pulumi.BoolOutput)
 }
 
+// Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/api-ref/Cluster/).
 func (o MdbMongodbClusterOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
+// A user of the MongoDB cluster. The structure is documented below.
 func (o MdbMongodbClusterOutput) Users() MdbMongodbClusterUserArrayOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterUserArrayOutput { return v.Users }).(MdbMongodbClusterUserArrayOutput)
 }

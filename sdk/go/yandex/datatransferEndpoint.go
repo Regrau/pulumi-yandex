@@ -10,14 +10,91 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a Data Transfer endpoint. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-transfer/).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewDatatransferEndpoint(ctx, "pgSource", &yandex.DatatransferEndpointArgs{
+//				Settings: &DatatransferEndpointSettingsArgs{
+//					PostgresSource: &DatatransferEndpointSettingsPostgresSourceArgs{
+//						Connection: &DatatransferEndpointSettingsPostgresSourceConnectionArgs{
+//							OnPremise: &DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs{
+//								Hosts: pulumi.StringArray{
+//									pulumi.String("example.org"),
+//								},
+//								Port: pulumi.Int(5432),
+//							},
+//						},
+//						Database: pulumi.String("db1"),
+//						Password: &DatatransferEndpointSettingsPostgresSourcePasswordArgs{
+//							Raw: pulumi.String("123"),
+//						},
+//						SlotGigabyteLagLimit: pulumi.Int(100),
+//						User:                 pulumi.String("user1"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewDatatransferEndpoint(ctx, "pgTarget", &yandex.DatatransferEndpointArgs{
+//				FolderId: pulumi.String("some_folder_id"),
+//				Settings: &DatatransferEndpointSettingsArgs{
+//					PostgresTarget: &DatatransferEndpointSettingsPostgresTargetArgs{
+//						Connection: &DatatransferEndpointSettingsPostgresTargetConnectionArgs{
+//							MdbClusterId: pulumi.String("some_cluster_id"),
+//						},
+//						Database: pulumi.String("db2"),
+//						Password: &DatatransferEndpointSettingsPostgresTargetPasswordArgs{
+//							Raw: pulumi.String("321"),
+//						},
+//						User: pulumi.String("user2"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// An endpoint can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/datatransferEndpoint:DatatransferEndpoint foo endpoint_id
+//
+// ```
 type DatatransferEndpoint struct {
 	pulumi.CustomResourceState
 
-	Description pulumi.StringOutput                `pulumi:"description"`
-	FolderId    pulumi.StringOutput                `pulumi:"folderId"`
-	Labels      pulumi.StringMapOutput             `pulumi:"labels"`
-	Name        pulumi.StringOutput                `pulumi:"name"`
-	Settings    DatatransferEndpointSettingsOutput `pulumi:"settings"`
+	// Arbitrary description text for the endpoint.
+	Description pulumi.StringOutput `pulumi:"description"`
+	// ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Data Transfer endpoint.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the endpoint.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Settings for the endpoint. The structure is documented below.
+	Settings DatatransferEndpointSettingsOutput `pulumi:"settings"`
 }
 
 // NewDatatransferEndpoint registers a new resource with the given unique name, arguments, and options.
@@ -50,19 +127,29 @@ func GetDatatransferEndpoint(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatatransferEndpoint resources.
 type datatransferEndpointState struct {
-	Description *string                       `pulumi:"description"`
-	FolderId    *string                       `pulumi:"folderId"`
-	Labels      map[string]string             `pulumi:"labels"`
-	Name        *string                       `pulumi:"name"`
-	Settings    *DatatransferEndpointSettings `pulumi:"settings"`
+	// Arbitrary description text for the endpoint.
+	Description *string `pulumi:"description"`
+	// ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Data Transfer endpoint.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the endpoint.
+	Name *string `pulumi:"name"`
+	// Settings for the endpoint. The structure is documented below.
+	Settings *DatatransferEndpointSettings `pulumi:"settings"`
 }
 
 type DatatransferEndpointState struct {
+	// Arbitrary description text for the endpoint.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
-	Settings    DatatransferEndpointSettingsPtrInput
+	// ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Data Transfer endpoint.
+	Labels pulumi.StringMapInput
+	// Name of the endpoint.
+	Name pulumi.StringPtrInput
+	// Settings for the endpoint. The structure is documented below.
+	Settings DatatransferEndpointSettingsPtrInput
 }
 
 func (DatatransferEndpointState) ElementType() reflect.Type {
@@ -70,20 +157,30 @@ func (DatatransferEndpointState) ElementType() reflect.Type {
 }
 
 type datatransferEndpointArgs struct {
-	Description *string                       `pulumi:"description"`
-	FolderId    *string                       `pulumi:"folderId"`
-	Labels      map[string]string             `pulumi:"labels"`
-	Name        *string                       `pulumi:"name"`
-	Settings    *DatatransferEndpointSettings `pulumi:"settings"`
+	// Arbitrary description text for the endpoint.
+	Description *string `pulumi:"description"`
+	// ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Data Transfer endpoint.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the endpoint.
+	Name *string `pulumi:"name"`
+	// Settings for the endpoint. The structure is documented below.
+	Settings *DatatransferEndpointSettings `pulumi:"settings"`
 }
 
 // The set of arguments for constructing a DatatransferEndpoint resource.
 type DatatransferEndpointArgs struct {
+	// Arbitrary description text for the endpoint.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
-	Settings    DatatransferEndpointSettingsPtrInput
+	// ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Data Transfer endpoint.
+	Labels pulumi.StringMapInput
+	// Name of the endpoint.
+	Name pulumi.StringPtrInput
+	// Settings for the endpoint. The structure is documented below.
+	Settings DatatransferEndpointSettingsPtrInput
 }
 
 func (DatatransferEndpointArgs) ElementType() reflect.Type {
@@ -173,22 +270,27 @@ func (o DatatransferEndpointOutput) ToDatatransferEndpointOutputWithContext(ctx 
 	return o
 }
 
+// Arbitrary description text for the endpoint.
 func (o DatatransferEndpointOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatatransferEndpoint) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
+// ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
 func (o DatatransferEndpointOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatatransferEndpoint) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the Data Transfer endpoint.
 func (o DatatransferEndpointOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *DatatransferEndpoint) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the endpoint.
 func (o DatatransferEndpointOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatatransferEndpoint) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Settings for the endpoint. The structure is documented below.
 func (o DatatransferEndpointOutput) Settings() DatatransferEndpointSettingsOutput {
 	return o.ApplyT(func(v *DatatransferEndpoint) DatatransferEndpointSettingsOutput { return v.Settings }).(DatatransferEndpointSettingsOutput)
 }

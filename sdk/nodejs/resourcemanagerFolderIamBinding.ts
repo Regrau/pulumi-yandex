@@ -4,6 +4,41 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows creation and management of a single binding within IAM policy for
+ * an existing Yandex Resource Manager folder.
+ *
+ * > **Note:** This resource _must not_ be used in conjunction with
+ *    `yandex.ResourcemanagerFolderIamPolicy` or they will conflict over what your policy
+ *    should be.
+ *
+ * > **Note:** When you delete `yandex.ResourcemanagerFolderIamBinding` resource,
+ *    the roles can be deleted from other users within the folder as well. Be careful!
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const project1 = pulumi.output(yandex.getResourcemanagerFolder({
+ *     folderId: "some_folder_id",
+ * }));
+ * const admin = new yandex.ResourcemanagerFolderIamBinding("admin", {
+ *     folderId: project1.id,
+ *     members: ["userAccount:some_user_id"],
+ *     role: "editor",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `folder_id` and role, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/resourcemanagerFolderIamBinding:ResourcemanagerFolderIamBinding viewer "folder_id viewer"
+ * ```
+ */
 export class ResourcemanagerFolderIamBinding extends pulumi.CustomResource {
     /**
      * Get an existing ResourcemanagerFolderIamBinding resource's state with the given name, ID, and optional extra
@@ -32,8 +67,21 @@ export class ResourcemanagerFolderIamBinding extends pulumi.CustomResource {
         return obj['__pulumiType'] === ResourcemanagerFolderIamBinding.__pulumiType;
     }
 
+    /**
+     * ID of the folder to attach a policy to.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * An array of identities that will be granted the privilege that is specified in the `role` field.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     */
     public readonly members!: pulumi.Output<string[]>;
+    /**
+     * The role that should be assigned. Only one
+     * `yandex.ResourcemanagerFolderIamBinding` can be used per role.
+     */
     public readonly role!: pulumi.Output<string>;
     public readonly sleepAfter!: pulumi.Output<number | undefined>;
 
@@ -79,8 +127,21 @@ export class ResourcemanagerFolderIamBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ResourcemanagerFolderIamBinding resources.
  */
 export interface ResourcemanagerFolderIamBindingState {
+    /**
+     * ID of the folder to attach a policy to.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * An array of identities that will be granted the privilege that is specified in the `role` field.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     */
     members?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The role that should be assigned. Only one
+     * `yandex.ResourcemanagerFolderIamBinding` can be used per role.
+     */
     role?: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }
@@ -89,8 +150,21 @@ export interface ResourcemanagerFolderIamBindingState {
  * The set of arguments for constructing a ResourcemanagerFolderIamBinding resource.
  */
 export interface ResourcemanagerFolderIamBindingArgs {
+    /**
+     * ID of the folder to attach a policy to.
+     */
     folderId: pulumi.Input<string>;
+    /**
+     * An array of identities that will be granted the privilege that is specified in the `role` field.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     */
     members: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The role that should be assigned. Only one
+     * `yandex.ResourcemanagerFolderIamBinding` can be used per role.
+     */
     role: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }

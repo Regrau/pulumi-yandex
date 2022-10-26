@@ -4,6 +4,31 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows creation and management of a single binding within IAM policy for
+ * an existing Yandex.Cloud Organization Manager organization.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const editor = new yandex.OrganizationManagerOrganizationIamBinding("editor", {
+ *     members: ["userAccount:some_user_id"],
+ *     organizationId: "some_organization_id",
+ *     role: "editor",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `organization_id` and role, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/organizationManagerOrganizationIamBinding:OrganizationManagerOrganizationIamBinding viewer "organization_id viewer"
+ * ```
+ */
 export class OrganizationManagerOrganizationIamBinding extends pulumi.CustomResource {
     /**
      * Get an existing OrganizationManagerOrganizationIamBinding resource's state with the given name, ID, and optional extra
@@ -32,8 +57,22 @@ export class OrganizationManagerOrganizationIamBinding extends pulumi.CustomReso
         return obj['__pulumiType'] === OrganizationManagerOrganizationIamBinding.__pulumiType;
     }
 
+    /**
+     * An array of identities that will be granted the privilege in the `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **federatedUser:{federated_user_id}**: A unique federated user ID.
+     */
     public readonly members!: pulumi.Output<string[]>;
+    /**
+     * ID of the organization to attach the policy to.
+     */
     public readonly organizationId!: pulumi.Output<string>;
+    /**
+     * The role that should be assigned. Only one
+     * `yandex.OrganizationManagerOrganizationIamBinding` can be used per role.
+     */
     public readonly role!: pulumi.Output<string>;
     public readonly sleepAfter!: pulumi.Output<number | undefined>;
 
@@ -79,8 +118,22 @@ export class OrganizationManagerOrganizationIamBinding extends pulumi.CustomReso
  * Input properties used for looking up and filtering OrganizationManagerOrganizationIamBinding resources.
  */
 export interface OrganizationManagerOrganizationIamBindingState {
+    /**
+     * An array of identities that will be granted the privilege in the `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **federatedUser:{federated_user_id}**: A unique federated user ID.
+     */
     members?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * ID of the organization to attach the policy to.
+     */
     organizationId?: pulumi.Input<string>;
+    /**
+     * The role that should be assigned. Only one
+     * `yandex.OrganizationManagerOrganizationIamBinding` can be used per role.
+     */
     role?: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }
@@ -89,8 +142,22 @@ export interface OrganizationManagerOrganizationIamBindingState {
  * The set of arguments for constructing a OrganizationManagerOrganizationIamBinding resource.
  */
 export interface OrganizationManagerOrganizationIamBindingArgs {
+    /**
+     * An array of identities that will be granted the privilege in the `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **federatedUser:{federated_user_id}**: A unique federated user ID.
+     */
     members: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * ID of the organization to attach the policy to.
+     */
     organizationId: pulumi.Input<string>;
+    /**
+     * The role that should be assigned. Only one
+     * `yandex.OrganizationManagerOrganizationIamBinding` can be used per role.
+     */
     role: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }

@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbMysqlClusterPerformanceDiagnosticResult
     {
+        /// <summary>
+        /// Enable performance diagnostics
+        /// </summary>
         public readonly bool Enabled;
+        /// <summary>
+        /// Interval (in seconds) for my_stat_activity sampling Acceptable values are 1 to 86400, inclusive.
+        /// </summary>
         public readonly int SessionsSamplingInterval;
+        /// <summary>
+        /// Interval (in seconds) for my_stat_statements sampling Acceptable values are 1 to 86400, inclusive.
+        /// </summary>
         public readonly int StatementsSamplingInterval;
 
         [OutputConstructor]

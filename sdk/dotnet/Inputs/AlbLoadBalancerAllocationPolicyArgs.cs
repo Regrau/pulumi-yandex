@@ -14,6 +14,10 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("locations", required: true)]
         private InputList<Inputs.AlbLoadBalancerAllocationPolicyLocationArgs>? _locations;
+
+        /// <summary>
+        /// Unique set of locations. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbLoadBalancerAllocationPolicyLocationArgs> Locations
         {
             get => _locations ?? (_locations = new InputList<Inputs.AlbLoadBalancerAllocationPolicyLocationArgs>());

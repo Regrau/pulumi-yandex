@@ -10,18 +10,87 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates a backend group in the specified folder and adds the specified backends to it.
+// For more information, see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/backend-group).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewAlbBackendGroup(ctx, "test-backend-group", &yandex.AlbBackendGroupArgs{
+//				HttpBackends: AlbBackendGroupHttpBackendArray{
+//					&AlbBackendGroupHttpBackendArgs{
+//						Healthcheck: &AlbBackendGroupHttpBackendHealthcheckArgs{
+//							HttpHealthcheck: &AlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs{
+//								Path: pulumi.String("/"),
+//							},
+//							Interval: pulumi.String("1s"),
+//							Timeout:  pulumi.String("1s"),
+//						},
+//						Http2: pulumi.Bool(true),
+//						LoadBalancingConfig: &AlbBackendGroupHttpBackendLoadBalancingConfigArgs{
+//							PanicThreshold: pulumi.Int(50),
+//						},
+//						Name: pulumi.String("test-http-backend"),
+//						Port: pulumi.Int(8080),
+//						TargetGroupIds: pulumi.StringArray{
+//							pulumi.Any(yandex_alb_target_group.Test - target - group.Id),
+//						},
+//						Tls: &AlbBackendGroupHttpBackendTlsArgs{
+//							Sni: pulumi.String("backend-domain.internal"),
+//						},
+//						Weight: pulumi.Int(1),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A backend group can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/albBackendGroup:AlbBackendGroup default backend_group_id
+//
+// ```
 type AlbBackendGroup struct {
 	pulumi.CustomResourceState
 
-	CreatedAt       pulumi.StringOutput                     `pulumi:"createdAt"`
-	Description     pulumi.StringPtrOutput                  `pulumi:"description"`
-	FolderId        pulumi.StringOutput                     `pulumi:"folderId"`
-	GrpcBackends    AlbBackendGroupGrpcBackendArrayOutput   `pulumi:"grpcBackends"`
-	HttpBackends    AlbBackendGroupHttpBackendArrayOutput   `pulumi:"httpBackends"`
-	Labels          pulumi.StringMapOutput                  `pulumi:"labels"`
+	// The backend group creation timestamp.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Description of the backend group.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	GrpcBackends AlbBackendGroupGrpcBackendArrayOutput `pulumi:"grpcBackends"`
+	// Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	HttpBackends AlbBackendGroupHttpBackendArrayOutput `pulumi:"httpBackends"`
+	// Labels to assign to this backend group.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the backend.
 	Name            pulumi.StringOutput                     `pulumi:"name"`
 	SessionAffinity AlbBackendGroupSessionAffinityPtrOutput `pulumi:"sessionAffinity"`
-	StreamBackends  AlbBackendGroupStreamBackendArrayOutput `pulumi:"streamBackends"`
+	// Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	StreamBackends AlbBackendGroupStreamBackendArrayOutput `pulumi:"streamBackends"`
 }
 
 // NewAlbBackendGroup registers a new resource with the given unique name, arguments, and options.
@@ -54,27 +123,43 @@ func GetAlbBackendGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AlbBackendGroup resources.
 type albBackendGroupState struct {
-	CreatedAt       *string                         `pulumi:"createdAt"`
-	Description     *string                         `pulumi:"description"`
-	FolderId        *string                         `pulumi:"folderId"`
-	GrpcBackends    []AlbBackendGroupGrpcBackend    `pulumi:"grpcBackends"`
-	HttpBackends    []AlbBackendGroupHttpBackend    `pulumi:"httpBackends"`
-	Labels          map[string]string               `pulumi:"labels"`
+	// The backend group creation timestamp.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Description of the backend group.
+	Description *string `pulumi:"description"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	GrpcBackends []AlbBackendGroupGrpcBackend `pulumi:"grpcBackends"`
+	// Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	HttpBackends []AlbBackendGroupHttpBackend `pulumi:"httpBackends"`
+	// Labels to assign to this backend group.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the backend.
 	Name            *string                         `pulumi:"name"`
 	SessionAffinity *AlbBackendGroupSessionAffinity `pulumi:"sessionAffinity"`
-	StreamBackends  []AlbBackendGroupStreamBackend  `pulumi:"streamBackends"`
+	// Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	StreamBackends []AlbBackendGroupStreamBackend `pulumi:"streamBackends"`
 }
 
 type AlbBackendGroupState struct {
-	CreatedAt       pulumi.StringPtrInput
-	Description     pulumi.StringPtrInput
-	FolderId        pulumi.StringPtrInput
-	GrpcBackends    AlbBackendGroupGrpcBackendArrayInput
-	HttpBackends    AlbBackendGroupHttpBackendArrayInput
-	Labels          pulumi.StringMapInput
+	// The backend group creation timestamp.
+	CreatedAt pulumi.StringPtrInput
+	// Description of the backend group.
+	Description pulumi.StringPtrInput
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	GrpcBackends AlbBackendGroupGrpcBackendArrayInput
+	// Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	HttpBackends AlbBackendGroupHttpBackendArrayInput
+	// Labels to assign to this backend group.
+	Labels pulumi.StringMapInput
+	// Name of the backend.
 	Name            pulumi.StringPtrInput
 	SessionAffinity AlbBackendGroupSessionAffinityPtrInput
-	StreamBackends  AlbBackendGroupStreamBackendArrayInput
+	// Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	StreamBackends AlbBackendGroupStreamBackendArrayInput
 }
 
 func (AlbBackendGroupState) ElementType() reflect.Type {
@@ -82,26 +167,40 @@ func (AlbBackendGroupState) ElementType() reflect.Type {
 }
 
 type albBackendGroupArgs struct {
-	Description     *string                         `pulumi:"description"`
-	FolderId        *string                         `pulumi:"folderId"`
-	GrpcBackends    []AlbBackendGroupGrpcBackend    `pulumi:"grpcBackends"`
-	HttpBackends    []AlbBackendGroupHttpBackend    `pulumi:"httpBackends"`
-	Labels          map[string]string               `pulumi:"labels"`
+	// Description of the backend group.
+	Description *string `pulumi:"description"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	GrpcBackends []AlbBackendGroupGrpcBackend `pulumi:"grpcBackends"`
+	// Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	HttpBackends []AlbBackendGroupHttpBackend `pulumi:"httpBackends"`
+	// Labels to assign to this backend group.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the backend.
 	Name            *string                         `pulumi:"name"`
 	SessionAffinity *AlbBackendGroupSessionAffinity `pulumi:"sessionAffinity"`
-	StreamBackends  []AlbBackendGroupStreamBackend  `pulumi:"streamBackends"`
+	// Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	StreamBackends []AlbBackendGroupStreamBackend `pulumi:"streamBackends"`
 }
 
 // The set of arguments for constructing a AlbBackendGroup resource.
 type AlbBackendGroupArgs struct {
-	Description     pulumi.StringPtrInput
-	FolderId        pulumi.StringPtrInput
-	GrpcBackends    AlbBackendGroupGrpcBackendArrayInput
-	HttpBackends    AlbBackendGroupHttpBackendArrayInput
-	Labels          pulumi.StringMapInput
+	// Description of the backend group.
+	Description pulumi.StringPtrInput
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	GrpcBackends AlbBackendGroupGrpcBackendArrayInput
+	// Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	HttpBackends AlbBackendGroupHttpBackendArrayInput
+	// Labels to assign to this backend group.
+	Labels pulumi.StringMapInput
+	// Name of the backend.
 	Name            pulumi.StringPtrInput
 	SessionAffinity AlbBackendGroupSessionAffinityPtrInput
-	StreamBackends  AlbBackendGroupStreamBackendArrayInput
+	// Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+	StreamBackends AlbBackendGroupStreamBackendArrayInput
 }
 
 func (AlbBackendGroupArgs) ElementType() reflect.Type {
@@ -191,30 +290,37 @@ func (o AlbBackendGroupOutput) ToAlbBackendGroupOutputWithContext(ctx context.Co
 	return o
 }
 
+// The backend group creation timestamp.
 func (o AlbBackendGroupOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbBackendGroup) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the backend group.
 func (o AlbBackendGroupOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlbBackendGroup) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
 func (o AlbBackendGroupOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbBackendGroup) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
 func (o AlbBackendGroupOutput) GrpcBackends() AlbBackendGroupGrpcBackendArrayOutput {
 	return o.ApplyT(func(v *AlbBackendGroup) AlbBackendGroupGrpcBackendArrayOutput { return v.GrpcBackends }).(AlbBackendGroupGrpcBackendArrayOutput)
 }
 
+// Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
 func (o AlbBackendGroupOutput) HttpBackends() AlbBackendGroupHttpBackendArrayOutput {
 	return o.ApplyT(func(v *AlbBackendGroup) AlbBackendGroupHttpBackendArrayOutput { return v.HttpBackends }).(AlbBackendGroupHttpBackendArrayOutput)
 }
 
+// Labels to assign to this backend group.
 func (o AlbBackendGroupOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AlbBackendGroup) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the backend.
 func (o AlbBackendGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbBackendGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -223,6 +329,7 @@ func (o AlbBackendGroupOutput) SessionAffinity() AlbBackendGroupSessionAffinityP
 	return o.ApplyT(func(v *AlbBackendGroup) AlbBackendGroupSessionAffinityPtrOutput { return v.SessionAffinity }).(AlbBackendGroupSessionAffinityPtrOutput)
 }
 
+// Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
 func (o AlbBackendGroupOutput) StreamBackends() AlbBackendGroupStreamBackendArrayOutput {
 	return o.ApplyT(func(v *AlbBackendGroup) AlbBackendGroupStreamBackendArrayOutput { return v.StreamBackends }).(AlbBackendGroupStreamBackendArrayOutput)
 }

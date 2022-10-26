@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbKafkaClusterConfigKafka
     {
+        /// <summary>
+        /// User-defined settings for the Kafka cluster. The structure is documented below.
+        /// </summary>
         public readonly Outputs.MdbKafkaClusterConfigKafkaKafkaConfig? KafkaConfig;
+        /// <summary>
+        /// Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        /// </summary>
         public readonly Outputs.MdbKafkaClusterConfigKafkaResources Resources;
 
         [OutputConstructor]

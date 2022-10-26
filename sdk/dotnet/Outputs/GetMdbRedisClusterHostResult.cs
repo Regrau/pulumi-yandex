@@ -13,11 +13,30 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbRedisClusterHostResult
     {
+        /// <summary>
+        /// Sets whether the host should get a public IP address or not.
+        /// </summary>
         public readonly bool? AssignPublicIp;
+        /// <summary>
+        /// The fully qualified domain name of the host.
+        /// </summary>
         public readonly string Fqdn;
+        /// <summary>
+        /// Replica priority of a current replica (usable for non-sharded only).
+        /// </summary>
         public readonly int? ReplicaPriority;
+        /// <summary>
+        /// The name of the shard to which the host belongs.
+        /// </summary>
         public readonly string ShardName;
+        /// <summary>
+        /// The ID of the subnet, to which the host belongs. The subnet must
+        /// be a part of the network to which the cluster belongs.
+        /// </summary>
         public readonly string SubnetId;
+        /// <summary>
+        /// The availability zone where the Redis host will be created.
+        /// </summary>
         public readonly string Zone;
 
         [OutputConstructor]

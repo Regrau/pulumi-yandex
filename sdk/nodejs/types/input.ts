@@ -5,50 +5,133 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "../types";
 
 export interface AlbBackendGroupGrpcBackend {
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck?: pulumi.Input<inputs.AlbBackendGroupGrpcBackendHealthcheck>;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig?: pulumi.Input<inputs.AlbBackendGroupGrpcBackendLoadBalancingConfig>;
+    /**
+     * Name of the backend.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Port for incoming traffic.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls?: pulumi.Input<inputs.AlbBackendGroupGrpcBackendTls>;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight?: pulumi.Input<number>;
 }
 
 export interface AlbBackendGroupGrpcBackendHealthcheck {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck?: pulumi.Input<inputs.AlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheck>;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort?: pulumi.Input<number>;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold?: pulumi.Input<number>;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck?: pulumi.Input<inputs.AlbBackendGroupGrpcBackendHealthcheckHttpHealthcheck>;
+    /**
+     * Interval between health checks.
+     */
     interval: pulumi.Input<string>;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent?: pulumi.Input<number>;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck?: pulumi.Input<inputs.AlbBackendGroupGrpcBackendHealthcheckStreamHealthcheck>;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout: pulumi.Input<string>;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold?: pulumi.Input<number>;
 }
 
 export interface AlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheck {
+    /**
+     * Service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName?: pulumi.Input<string>;
 }
 
 export interface AlbBackendGroupGrpcBackendHealthcheckHttpHealthcheck {
+    /**
+     * "Host" HTTP header value.
+     */
     host?: pulumi.Input<string>;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: pulumi.Input<boolean>;
+    /**
+     * HTTP path.
+     */
     path: pulumi.Input<string>;
 }
 
 export interface AlbBackendGroupGrpcBackendHealthcheckStreamHealthcheck {
+    /**
+     * Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+     */
     receive?: pulumi.Input<string>;
+    /**
+     * Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+     */
     send?: pulumi.Input<string>;
 }
 
 export interface AlbBackendGroupGrpcBackendLoadBalancingConfig {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent?: pulumi.Input<number>;
+    /**
+     * Load balancing mode for the backend. Possible values: "ROUND_ROBIN", "RANDOM", "LEAST_REQUEST", "MAGLEV_HASH".
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold?: pulumi.Input<number>;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality?: pulumi.Input<boolean>;
 }
 
 export interface AlbBackendGroupGrpcBackendTls {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - (Optional) Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - (Optional) PEM-encoded trusted CA certificate chain.
+     */
     sni?: pulumi.Input<string>;
     validationContext?: pulumi.Input<inputs.AlbBackendGroupGrpcBackendTlsValidationContext>;
 }
@@ -59,52 +142,138 @@ export interface AlbBackendGroupGrpcBackendTlsValidationContext {
 }
 
 export interface AlbBackendGroupHttpBackend {
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck?: pulumi.Input<inputs.AlbBackendGroupHttpBackendHealthcheck>;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: pulumi.Input<boolean>;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig?: pulumi.Input<inputs.AlbBackendGroupHttpBackendLoadBalancingConfig>;
+    /**
+     * Name of the backend.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Port for incoming traffic.
+     */
     port?: pulumi.Input<number>;
     storageBucket?: pulumi.Input<string>;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls?: pulumi.Input<inputs.AlbBackendGroupHttpBackendTls>;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight?: pulumi.Input<number>;
 }
 
 export interface AlbBackendGroupHttpBackendHealthcheck {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck?: pulumi.Input<inputs.AlbBackendGroupHttpBackendHealthcheckGrpcHealthcheck>;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort?: pulumi.Input<number>;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold?: pulumi.Input<number>;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck?: pulumi.Input<inputs.AlbBackendGroupHttpBackendHealthcheckHttpHealthcheck>;
+    /**
+     * Interval between health checks.
+     */
     interval: pulumi.Input<string>;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent?: pulumi.Input<number>;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck?: pulumi.Input<inputs.AlbBackendGroupHttpBackendHealthcheckStreamHealthcheck>;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout: pulumi.Input<string>;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold?: pulumi.Input<number>;
 }
 
 export interface AlbBackendGroupHttpBackendHealthcheckGrpcHealthcheck {
+    /**
+     * Service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName?: pulumi.Input<string>;
 }
 
 export interface AlbBackendGroupHttpBackendHealthcheckHttpHealthcheck {
+    /**
+     * "Host" HTTP header value.
+     */
     host?: pulumi.Input<string>;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: pulumi.Input<boolean>;
+    /**
+     * HTTP path.
+     */
     path: pulumi.Input<string>;
 }
 
 export interface AlbBackendGroupHttpBackendHealthcheckStreamHealthcheck {
+    /**
+     * Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+     */
     receive?: pulumi.Input<string>;
+    /**
+     * Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+     */
     send?: pulumi.Input<string>;
 }
 
 export interface AlbBackendGroupHttpBackendLoadBalancingConfig {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent?: pulumi.Input<number>;
+    /**
+     * Load balancing mode for the backend. Possible values: "ROUND_ROBIN", "RANDOM", "LEAST_REQUEST", "MAGLEV_HASH".
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold?: pulumi.Input<number>;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality?: pulumi.Input<boolean>;
 }
 
 export interface AlbBackendGroupHttpBackendTls {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - (Optional) Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - (Optional) PEM-encoded trusted CA certificate chain.
+     */
     sni?: pulumi.Input<string>;
     validationContext?: pulumi.Input<inputs.AlbBackendGroupHttpBackendTlsValidationContext>;
 }
@@ -125,6 +294,9 @@ export interface AlbBackendGroupSessionAffinityConnection {
 }
 
 export interface AlbBackendGroupSessionAffinityCookie {
+    /**
+     * Name of the backend.
+     */
     name: pulumi.Input<string>;
     ttl?: pulumi.Input<string>;
 }
@@ -135,50 +307,133 @@ export interface AlbBackendGroupSessionAffinityHeader {
 
 export interface AlbBackendGroupStreamBackend {
     enableProxyProtocol?: pulumi.Input<boolean>;
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck?: pulumi.Input<inputs.AlbBackendGroupStreamBackendHealthcheck>;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig?: pulumi.Input<inputs.AlbBackendGroupStreamBackendLoadBalancingConfig>;
+    /**
+     * Name of the backend.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Port for incoming traffic.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls?: pulumi.Input<inputs.AlbBackendGroupStreamBackendTls>;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight?: pulumi.Input<number>;
 }
 
 export interface AlbBackendGroupStreamBackendHealthcheck {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck?: pulumi.Input<inputs.AlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck>;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort?: pulumi.Input<number>;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold?: pulumi.Input<number>;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck?: pulumi.Input<inputs.AlbBackendGroupStreamBackendHealthcheckHttpHealthcheck>;
+    /**
+     * Interval between health checks.
+     */
     interval: pulumi.Input<string>;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent?: pulumi.Input<number>;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck?: pulumi.Input<inputs.AlbBackendGroupStreamBackendHealthcheckStreamHealthcheck>;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout: pulumi.Input<string>;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold?: pulumi.Input<number>;
 }
 
 export interface AlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck {
+    /**
+     * Service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName?: pulumi.Input<string>;
 }
 
 export interface AlbBackendGroupStreamBackendHealthcheckHttpHealthcheck {
+    /**
+     * "Host" HTTP header value.
+     */
     host?: pulumi.Input<string>;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: pulumi.Input<boolean>;
+    /**
+     * HTTP path.
+     */
     path: pulumi.Input<string>;
 }
 
 export interface AlbBackendGroupStreamBackendHealthcheckStreamHealthcheck {
+    /**
+     * Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+     */
     receive?: pulumi.Input<string>;
+    /**
+     * Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+     */
     send?: pulumi.Input<string>;
 }
 
 export interface AlbBackendGroupStreamBackendLoadBalancingConfig {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent?: pulumi.Input<number>;
+    /**
+     * Load balancing mode for the backend. Possible values: "ROUND_ROBIN", "RANDOM", "LEAST_REQUEST", "MAGLEV_HASH".
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold?: pulumi.Input<number>;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality?: pulumi.Input<boolean>;
 }
 
 export interface AlbBackendGroupStreamBackendTls {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - (Optional) Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - (Optional) PEM-encoded trusted CA certificate chain.
+     */
     sni?: pulumi.Input<string>;
     validationContext?: pulumi.Input<inputs.AlbBackendGroupStreamBackendTlsValidationContext>;
 }
@@ -208,6 +463,9 @@ export interface AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipal {
 }
 
 export interface AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeader {
+    /**
+     * Name of the HTTP Router. Provided by the client when the HTTP Router is created.
+     */
     name: pulumi.Input<string>;
     value?: pulumi.Input<inputs.AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderValue>;
 }
@@ -218,218 +476,525 @@ export interface AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderValue {
 }
 
 export interface AlbLoadBalancerAllocationPolicy {
+    /**
+     * Unique set of locations. The structure is documented below.
+     */
     locations: pulumi.Input<pulumi.Input<inputs.AlbLoadBalancerAllocationPolicyLocation>[]>;
 }
 
 export interface AlbLoadBalancerAllocationPolicyLocation {
+    /**
+     * If set, will disable all L7 instances in the zone for request handling.
+     */
     disableTraffic?: pulumi.Input<boolean>;
+    /**
+     * Provided by the client or computed automatically.
+     */
     subnetId: pulumi.Input<string>;
+    /**
+     * ID of the zone that location is located at.
+     */
     zoneId: pulumi.Input<string>;
 }
 
 export interface AlbLoadBalancerListener {
+    /**
+     * Network endpoints (addresses and ports) of the listener. The structure is documented below.
+     */
     endpoints?: pulumi.Input<pulumi.Input<inputs.AlbLoadBalancerListenerEndpoint>[]>;
+    /**
+     * HTTP listener resource. The structure is documented below.
+     */
     http?: pulumi.Input<inputs.AlbLoadBalancerListenerHttp>;
+    /**
+     * name of SNI match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Stream listener resource. The structure is documented below.
+     */
     stream?: pulumi.Input<inputs.AlbLoadBalancerListenerStream>;
+    /**
+     * TLS listener resource. The structure is documented below.
+     */
     tls?: pulumi.Input<inputs.AlbLoadBalancerListenerTls>;
 }
 
 export interface AlbLoadBalancerListenerEndpoint {
+    /**
+     * Provided by the client or computed automatically.
+     */
     addresses: pulumi.Input<pulumi.Input<inputs.AlbLoadBalancerListenerEndpointAddress>[]>;
+    /**
+     * One or more ports to listen on.
+     */
     ports: pulumi.Input<pulumi.Input<number>[]>;
 }
 
 export interface AlbLoadBalancerListenerEndpointAddress {
+    /**
+     * External IPv4 address. The structure is documented below.
+     */
     externalIpv4Address?: pulumi.Input<inputs.AlbLoadBalancerListenerEndpointAddressExternalIpv4Address>;
+    /**
+     * External IPv6 address. The structure is documented below.
+     */
     externalIpv6Address?: pulumi.Input<inputs.AlbLoadBalancerListenerEndpointAddressExternalIpv6Address>;
+    /**
+     * Internal IPv4 address. The structure is documented below.
+     */
     internalIpv4Address?: pulumi.Input<inputs.AlbLoadBalancerListenerEndpointAddressInternalIpv4Address>;
 }
 
 export interface AlbLoadBalancerListenerEndpointAddressExternalIpv4Address {
+    /**
+     * Provided by the client or computed automatically.
+     */
     address?: pulumi.Input<string>;
 }
 
 export interface AlbLoadBalancerListenerEndpointAddressExternalIpv6Address {
+    /**
+     * Provided by the client or computed automatically.
+     */
     address?: pulumi.Input<string>;
 }
 
 export interface AlbLoadBalancerListenerEndpointAddressInternalIpv4Address {
+    /**
+     * Provided by the client or computed automatically.
+     */
     address?: pulumi.Input<string>;
+    /**
+     * Provided by the client or computed automatically.
+     */
     subnetId?: pulumi.Input<string>;
 }
 
 export interface AlbLoadBalancerListenerHttp {
+    /**
+     * HTTP handler that sets plaintext HTTP router. The structure is documented below.
+     */
     handler?: pulumi.Input<inputs.AlbLoadBalancerListenerHttpHandler>;
+    /**
+     * Shortcut for adding http > https redirects. The structure is documented below.
+     */
     redirects?: pulumi.Input<inputs.AlbLoadBalancerListenerHttpRedirects>;
 }
 
 export interface AlbLoadBalancerListenerHttpHandler {
+    /**
+     * If set, will enable only HTTP1 protocol with HTTP1.0 support.
+     */
     allowHttp10?: pulumi.Input<boolean>;
+    /**
+     * If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+     */
     http2Options?: pulumi.Input<inputs.AlbLoadBalancerListenerHttpHandlerHttp2Options>;
+    /**
+     * HTTP router id.
+     */
     httpRouterId?: pulumi.Input<string>;
 }
 
 export interface AlbLoadBalancerListenerHttpHandlerHttp2Options {
+    /**
+     * Maximum number of concurrent streams.
+     */
     maxConcurrentStreams?: pulumi.Input<number>;
 }
 
 export interface AlbLoadBalancerListenerHttpRedirects {
+    /**
+     * If set redirects all unencrypted HTTP requests to the same URI with scheme changed to `https`.
+     */
     httpToHttps?: pulumi.Input<boolean>;
 }
 
 export interface AlbLoadBalancerListenerStream {
+    /**
+     * HTTP handler that sets plaintext HTTP router. The structure is documented below.
+     */
     handler?: pulumi.Input<inputs.AlbLoadBalancerListenerStreamHandler>;
 }
 
 export interface AlbLoadBalancerListenerStreamHandler {
+    /**
+     * Backend group id.
+     */
     backendGroupId?: pulumi.Input<string>;
 }
 
 export interface AlbLoadBalancerListenerTls {
+    /**
+     * TLS handler resource. The structure is documented below.
+     */
     defaultHandler: pulumi.Input<inputs.AlbLoadBalancerListenerTlsDefaultHandler>;
+    /**
+     * SNI match resource. The structure is documented below.
+     */
     sniHandlers?: pulumi.Input<pulumi.Input<inputs.AlbLoadBalancerListenerTlsSniHandler>[]>;
 }
 
 export interface AlbLoadBalancerListenerTlsDefaultHandler {
+    /**
+     * Certificate IDs in the Certificate Manager. Multiple TLS certificates can be associated
+     * with the same context to allow both RSA and ECDSA certificates. Only the first certificate of each type will be used.
+     */
     certificateIds: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * HTTP handler resource. The structure is documented below.
+     */
     httpHandler?: pulumi.Input<inputs.AlbLoadBalancerListenerTlsDefaultHandlerHttpHandler>;
+    /**
+     * Stream handler resource. The structure is documented below.
+     */
     streamHandler?: pulumi.Input<inputs.AlbLoadBalancerListenerTlsDefaultHandlerStreamHandler>;
 }
 
 export interface AlbLoadBalancerListenerTlsDefaultHandlerHttpHandler {
+    /**
+     * If set, will enable only HTTP1 protocol with HTTP1.0 support.
+     */
     allowHttp10?: pulumi.Input<boolean>;
+    /**
+     * If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+     */
     http2Options?: pulumi.Input<inputs.AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2Options>;
+    /**
+     * HTTP router id.
+     */
     httpRouterId?: pulumi.Input<string>;
 }
 
 export interface AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2Options {
+    /**
+     * Maximum number of concurrent streams.
+     */
     maxConcurrentStreams?: pulumi.Input<number>;
 }
 
 export interface AlbLoadBalancerListenerTlsDefaultHandlerStreamHandler {
+    /**
+     * Backend group id.
+     */
     backendGroupId?: pulumi.Input<string>;
 }
 
 export interface AlbLoadBalancerListenerTlsSniHandler {
+    /**
+     * HTTP handler that sets plaintext HTTP router. The structure is documented below.
+     */
     handler: pulumi.Input<inputs.AlbLoadBalancerListenerTlsSniHandlerHandler>;
+    /**
+     * name of SNI match.
+     */
     name: pulumi.Input<string>;
+    /**
+     * A set of server names.
+     */
     serverNames: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface AlbLoadBalancerListenerTlsSniHandlerHandler {
+    /**
+     * Certificate IDs in the Certificate Manager. Multiple TLS certificates can be associated
+     * with the same context to allow both RSA and ECDSA certificates. Only the first certificate of each type will be used.
+     */
     certificateIds: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * HTTP handler resource. The structure is documented below.
+     */
     httpHandler?: pulumi.Input<inputs.AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandler>;
+    /**
+     * Stream handler resource. The structure is documented below.
+     */
     streamHandler?: pulumi.Input<inputs.AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandler>;
 }
 
 export interface AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandler {
+    /**
+     * If set, will enable only HTTP1 protocol with HTTP1.0 support.
+     */
     allowHttp10?: pulumi.Input<boolean>;
+    /**
+     * If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+     */
     http2Options?: pulumi.Input<inputs.AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2Options>;
+    /**
+     * HTTP router id.
+     */
     httpRouterId?: pulumi.Input<string>;
 }
 
 export interface AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2Options {
+    /**
+     * Maximum number of concurrent streams.
+     */
     maxConcurrentStreams?: pulumi.Input<number>;
 }
 
 export interface AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandler {
+    /**
+     * Backend group id.
+     */
     backendGroupId?: pulumi.Input<string>;
 }
 
 export interface AlbTargetGroupTarget {
+    /**
+     * IP address of the target.
+     */
     ipAddress: pulumi.Input<string>;
     privateIpv4Address?: pulumi.Input<boolean>;
+    /**
+     * ID of the subnet that targets are connected to.
+     * All targets in the target group must be connected to the same subnet within a single availability zone.
+     */
     subnetId?: pulumi.Input<string>;
 }
 
 export interface AlbVirtualHostModifyRequestHeader {
+    /**
+     * Append string to the header value.
+     */
     append?: pulumi.Input<string>;
+    /**
+     * name of the route.
+     */
     name: pulumi.Input<string>;
+    /**
+     * If set, remove the header.
+     */
     remove?: pulumi.Input<boolean>;
+    /**
+     * New value for a header. Header values support the following 
+     * [formatters](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#custom-request-response-headers).
+     */
     replace?: pulumi.Input<string>;
 }
 
 export interface AlbVirtualHostModifyResponseHeader {
+    /**
+     * Append string to the header value.
+     */
     append?: pulumi.Input<string>;
+    /**
+     * name of the route.
+     */
     name: pulumi.Input<string>;
+    /**
+     * If set, remove the header.
+     */
     remove?: pulumi.Input<boolean>;
+    /**
+     * New value for a header. Header values support the following 
+     * [formatters](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#custom-request-response-headers).
+     */
     replace?: pulumi.Input<string>;
 }
 
 export interface AlbVirtualHostRoute {
+    /**
+     * GRPC route resource. The structure is documented below.
+     */
     grpcRoute?: pulumi.Input<inputs.AlbVirtualHostRouteGrpcRoute>;
+    /**
+     * HTTP route resource. The structure is documented below.
+     */
     httpRoute?: pulumi.Input<inputs.AlbVirtualHostRouteHttpRoute>;
+    /**
+     * name of the route.
+     */
     name?: pulumi.Input<string>;
     routeOptions?: pulumi.Input<inputs.AlbVirtualHostRouteRouteOptions>;
 }
 
 export interface AlbVirtualHostRouteGrpcRoute {
+    /**
+     * Checks "/" prefix by default. The structure is documented below.
+     */
     grpcMatches?: pulumi.Input<pulumi.Input<inputs.AlbVirtualHostRouteGrpcRouteGrpcMatch>[]>;
+    /**
+     * GRPC route action resource. The structure is documented below.
+     */
     grpcRouteAction?: pulumi.Input<inputs.AlbVirtualHostRouteGrpcRouteGrpcRouteAction>;
+    /**
+     * GRPC status response action resource. The structure is documented below.
+     */
     grpcStatusResponseAction?: pulumi.Input<inputs.AlbVirtualHostRouteGrpcRouteGrpcStatusResponseAction>;
 }
 
 export interface AlbVirtualHostRouteGrpcRouteGrpcMatch {
+    /**
+     * If not set, all services/methods are assumed. The structure is documented below.
+     */
     fqmn?: pulumi.Input<inputs.AlbVirtualHostRouteGrpcRouteGrpcMatchFqmn>;
 }
 
 export interface AlbVirtualHostRouteGrpcRouteGrpcMatchFqmn {
+    /**
+     * Match exactly.
+     */
     exact?: pulumi.Input<string>;
+    /**
+     * Match prefix.
+     */
     prefix?: pulumi.Input<string>;
 }
 
 export interface AlbVirtualHostRouteGrpcRouteGrpcRouteAction {
+    /**
+     * If set, will automatically rewrite host.
+     */
     autoHostRewrite?: pulumi.Input<boolean>;
+    /**
+     * Backend group to route requests.
+     */
     backendGroupId: pulumi.Input<string>;
+    /**
+     * Host rewrite specifier.
+     */
     hostRewrite?: pulumi.Input<string>;
+    /**
+     * Specifies the idle timeout (time without any data transfer for the active request) for the
+     * route. It is useful for streaming scenarios - one should set idleTimeout to something meaningful and maxTimeout
+     * to the maximum time the stream is allowed to be alive. If not specified, there is no
+     * per-route idle timeout.
+     */
     idleTimeout?: pulumi.Input<string>;
+    /**
+     * Lower timeout may be specified by the client (using grpc-timeout header). If not set, default is 
+     * 60 seconds.
+     */
     maxTimeout?: pulumi.Input<string>;
 }
 
 export interface AlbVirtualHostRouteGrpcRouteGrpcStatusResponseAction {
+    /**
+     * The status of the response. Supported values are: ok, invalid_argumet, not_found, 
+     * permission_denied, unauthenticated, unimplemented, internal, unavailable.
+     */
     status?: pulumi.Input<string>;
 }
 
 export interface AlbVirtualHostRouteHttpRoute {
+    /**
+     * Direct response action resource. The structure is documented below.
+     */
     directResponseAction?: pulumi.Input<inputs.AlbVirtualHostRouteHttpRouteDirectResponseAction>;
+    /**
+     * Checks "/" prefix by default. The structure is documented below.
+     */
     httpMatches?: pulumi.Input<pulumi.Input<inputs.AlbVirtualHostRouteHttpRouteHttpMatch>[]>;
+    /**
+     * HTTP route action resource. The structure is documented below.
+     */
     httpRouteAction?: pulumi.Input<inputs.AlbVirtualHostRouteHttpRouteHttpRouteAction>;
+    /**
+     * Redirect action resource. The structure is documented below.
+     */
     redirectAction?: pulumi.Input<inputs.AlbVirtualHostRouteHttpRouteRedirectAction>;
 }
 
 export interface AlbVirtualHostRouteHttpRouteDirectResponseAction {
+    /**
+     * Response body text.
+     */
     body?: pulumi.Input<string>;
+    /**
+     * The status of the response. Supported values are: ok, invalid_argumet, not_found, 
+     * permission_denied, unauthenticated, unimplemented, internal, unavailable.
+     */
     status?: pulumi.Input<number>;
 }
 
 export interface AlbVirtualHostRouteHttpRouteHttpMatch {
+    /**
+     * List of methods(strings).
+     */
     httpMethods?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * If not set, '/' is assumed. The structure is documented below.
+     */
     path?: pulumi.Input<inputs.AlbVirtualHostRouteHttpRouteHttpMatchPath>;
 }
 
 export interface AlbVirtualHostRouteHttpRouteHttpMatchPath {
+    /**
+     * Match exactly.
+     */
     exact?: pulumi.Input<string>;
+    /**
+     * Match prefix.
+     */
     prefix?: pulumi.Input<string>;
 }
 
 export interface AlbVirtualHostRouteHttpRouteHttpRouteAction {
+    /**
+     * If set, will automatically rewrite host.
+     */
     autoHostRewrite?: pulumi.Input<boolean>;
+    /**
+     * Backend group to route requests.
+     */
     backendGroupId: pulumi.Input<string>;
+    /**
+     * Host rewrite specifier.
+     */
     hostRewrite?: pulumi.Input<string>;
+    /**
+     * Specifies the idle timeout (time without any data transfer for the active request) for the
+     * route. It is useful for streaming scenarios - one should set idleTimeout to something meaningful and maxTimeout
+     * to the maximum time the stream is allowed to be alive. If not specified, there is no
+     * per-route idle timeout.
+     */
     idleTimeout?: pulumi.Input<string>;
+    /**
+     * If not empty, matched path prefix will be replaced by this value.
+     */
     prefixRewrite?: pulumi.Input<string>;
+    /**
+     * Specifies the request timeout (overall time request processing is allowed to take) for the 
+     * route. If not set, default is 60 seconds.
+     */
     timeout?: pulumi.Input<string>;
+    /**
+     * List of upgrade types. Only specified upgrade types will be allowed. For example, 
+     * "websocket".
+     */
     upgradeTypes?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface AlbVirtualHostRouteHttpRouteRedirectAction {
     removeQuery?: pulumi.Input<boolean>;
+    /**
+     * Replaces hostname.
+     */
     replaceHost?: pulumi.Input<string>;
+    /**
+     * Replace path.
+     */
     replacePath?: pulumi.Input<string>;
+    /**
+     * Replaces port.
+     */
     replacePort?: pulumi.Input<number>;
+    /**
+     * Replace only matched prefix. Example:<br/> match:{ prefix_match: "/some" } <br/> 
+     * redirect: { replace_prefix: "/other" } <br/> will redirect "/something" to "/otherthing".
+     */
     replacePrefix?: pulumi.Input<string>;
+    /**
+     * Replaces scheme. If the original scheme is `http` or `https`, will also remove the 
+     * 80 or 443 port, if present.
+     */
     replaceScheme?: pulumi.Input<string>;
+    /**
+     * The HTTP status code to use in the redirect response. Supported values are: 
+     * moved_permanently, found, see_other, temporary_redirect, permanent_redirect.
+     */
     responseCode?: pulumi.Input<string>;
 }
 
@@ -453,12 +1018,21 @@ export interface AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipal {
 }
 
 export interface AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeader {
+    /**
+     * name of the route.
+     */
     name: pulumi.Input<string>;
     value?: pulumi.Input<inputs.AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderValue>;
 }
 
 export interface AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderValue {
+    /**
+     * Match exactly.
+     */
     exact?: pulumi.Input<string>;
+    /**
+     * Match prefix.
+     */
     prefix?: pulumi.Input<string>;
 }
 
@@ -482,12 +1056,21 @@ export interface AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipal {
 }
 
 export interface AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeader {
+    /**
+     * name of the route.
+     */
     name: pulumi.Input<string>;
     value?: pulumi.Input<inputs.AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderValue>;
 }
 
 export interface AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderValue {
+    /**
+     * Match exactly.
+     */
     exact?: pulumi.Input<string>;
+    /**
+     * Match prefix.
+     */
     prefix?: pulumi.Input<string>;
 }
 
@@ -499,26 +1082,89 @@ export interface CdnOriginGroupOrigin {
 }
 
 export interface CdnResourceOptions {
+    /**
+     * HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
+     */
     allowedHttpMethods?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * set up a cache period for the end-users browser. Content will be cached due to origin settings. If there are no cache settings on your origin, the content will not be cached. The list of HTTP response codes that can be cached in browsers: 200, 201, 204, 206, 301, 302, 303, 304, 307, 308. Other response codes will not be cached. The default value is 4 days.
+     */
     browserCacheSettings?: pulumi.Input<number>;
+    /**
+     * list HTTP headers that must be included in responses to clients.
+     */
     cacheHttpHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * parameter that lets browsers get access to selected resources from a domain different to a domain from which the request is received.
+     */
     cors?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * custom value for the Host header. Your server must be able to process requests with the chosen header.
+     */
     customHostHeader?: pulumi.Input<string>;
+    /**
+     * wildcard additional CNAME. If a resource has a wildcard additional CNAME, you can use your own certificate for content delivery via HTTPS. Read-only.
+     */
     customServerName?: pulumi.Input<string>;
+    /**
+     * setup a cache status.
+     */
     disableCache?: pulumi.Input<boolean>;
+    /**
+     * disabling proxy force ranges.
+     */
     disableProxyForceRanges?: pulumi.Input<boolean>;
+    /**
+     * content will be cached according to origin cache settings. The value applies for a response with codes 200, 201, 204, 206, 301, 302, 303, 304, 307, 308 if an origin server does not have caching HTTP headers. Responses with other codes will not be cached.
+     */
     edgeCacheSettings?: pulumi.Input<number>;
+    /**
+     * option helps you to reduce the bandwidth between origin and CDN servers. Also, content delivery speed becomes higher because of reducing the time for compressing files in a CDN.
+     */
     fetchedCompressed?: pulumi.Input<boolean>;
+    /**
+     * choose the Forward Host header option if is important to send in the request to the Origin the same Host header as was sent in the request to CDN server.
+     */
     forwardHostHeader?: pulumi.Input<boolean>;
+    /**
+     * GZip compression at CDN servers reduces file size by 70% and can be as high as 90%.
+     */
     gzipOn?: pulumi.Input<boolean>;
+    /**
+     * set for ignoring cookie.
+     */
     ignoreCookie?: pulumi.Input<boolean>;
+    /**
+     * files with different query parameters are cached as objects with the same key regardless of the parameter value. selected by default.
+     */
     ignoreQueryParams?: pulumi.Input<boolean>;
+    /**
+     * allows caching for GET, HEAD and POST requests.
+     */
     proxyCacheMethodsSet?: pulumi.Input<boolean>;
+    /**
+     * files with the specified query parameters are cached as objects with the same key, files with other parameters are cached as objects with different keys.
+     */
     queryParamsBlacklists?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * files with the specified query parameters are cached as objects with different keys, files with other parameters are cached as objects with the same key.
+     */
     queryParamsWhitelists?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * set up a redirect from HTTP to HTTPS.
+     */
     redirectHttpToHttps?: pulumi.Input<boolean>;
+    /**
+     * set up a redirect from HTTPS to HTTP.
+     */
     redirectHttpsToHttp?: pulumi.Input<boolean>;
+    /**
+     * files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
+     */
     slice?: pulumi.Input<boolean>;
+    /**
+     * set up custom headers that CDN servers send in requests to origins.
+     */
     staticRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
     staticResponseHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
@@ -530,362 +1176,1054 @@ export interface CdnResourceSslCertificate {
 }
 
 export interface ComputeDiskDiskPlacementPolicy {
+    /**
+     * Specifies Disk Placement Group id.
+     */
     diskPlacementGroupId: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceBootDisk {
+    /**
+     * Whether the disk is auto-deleted when the instance
+     * is deleted. The default value is false.
+     */
     autoDelete?: pulumi.Input<boolean>;
+    /**
+     * Name that can be used to access an attached disk
+     * under `/dev/disk/by-id/`.
+     */
     deviceName?: pulumi.Input<string>;
+    /**
+     * ID of the disk that is attached to the instance.
+     */
     diskId?: pulumi.Input<string>;
+    /**
+     * Parameters for a new disk that will be created
+     * alongside the new instance. Either `initializeParams` or `diskId` must be set. The structure is documented below.
+     */
     initializeParams?: pulumi.Input<inputs.ComputeInstanceBootDiskInitializeParams>;
+    /**
+     * Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+     */
     mode?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceBootDiskInitializeParams {
+    /**
+     * Block size of the disk, specified in bytes.
+     */
     blockSize?: pulumi.Input<number>;
+    /**
+     * Description of the boot disk.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * A disk image to initialize this disk from.
+     */
     imageId?: pulumi.Input<string>;
+    /**
+     * Name of the boot disk.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Size of the disk in GB.
+     */
     size?: pulumi.Input<number>;
+    /**
+     * A snapshot to initialize this disk from.
+     */
     snapshotId?: pulumi.Input<string>;
+    /**
+     * Disk type.
+     */
     type?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupAllocationPolicy {
+    /**
+     * A list of availability zones.
+     */
     zones: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface ComputeInstanceGroupApplicationLoadBalancer {
+    /**
+     * Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+     */
     maxOpeningTrafficDuration?: pulumi.Input<number>;
+    /**
+     * The status message of the instance.
+     */
     statusMessage?: pulumi.Input<string>;
+    /**
+     * A description of the target group.
+     */
     targetGroupDescription?: pulumi.Input<string>;
     targetGroupId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs.
+     */
     targetGroupLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the target group.
+     */
     targetGroupName?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupDeployPolicy {
+    /**
+     * The maximum number of instances that can be created at the same time.
+     */
     maxCreating?: pulumi.Input<number>;
+    /**
+     * The maximum number of instances that can be deleted at the same time.
+     */
     maxDeleting?: pulumi.Input<number>;
+    /**
+     * The maximum number of instances that can be temporarily allocated above the group's target size
+     * during the update process.
+     */
     maxExpansion: pulumi.Input<number>;
+    /**
+     * The maximum number of running instances that can be taken offline (stopped or deleted) at the same time
+     * during the update process.
+     */
     maxUnavailable: pulumi.Input<number>;
+    /**
+     * The amount of time in seconds to allow for an instance to start.
+     * Instance will be considered up and running (and start receiving traffic) only after the startupDuration
+     * has elapsed and all health checks are passed.
+     */
     startupDuration?: pulumi.Input<number>;
+    /**
+     * Affects the lifecycle of the instance during deployment. If set to `proactive` (default), Instance Groups
+     * can forcefully stop a running instance. If `opportunistic`, Instance Groups does not stop a running instance. Instead,
+     * it will wait until the instance stops itself or becomes unhealthy.
+     */
     strategy?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupHealthCheck {
+    /**
+     * The number of successful health checks before the managed instance is declared healthy.
+     */
     healthyThreshold?: pulumi.Input<number>;
+    /**
+     * HTTP check options. The structure is documented below.
+     */
     httpOptions?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceGroupHealthCheckHttpOption>[]>;
+    /**
+     * The interval to wait between health checks in seconds.
+     */
     interval?: pulumi.Input<number>;
+    /**
+     * TCP check options. The structure is documented below.
+     */
     tcpOptions?: pulumi.Input<inputs.ComputeInstanceGroupHealthCheckTcpOptions>;
+    /**
+     * The length of time to wait for a response before the health check times out in seconds.
+     */
     timeout?: pulumi.Input<number>;
+    /**
+     * The number of failed health checks before the managed instance is declared unhealthy.
+     */
     unhealthyThreshold?: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceGroupHealthCheckHttpOption {
+    /**
+     * The URL path used for health check requests.
+     */
     path: pulumi.Input<string>;
+    /**
+     * The port used for TCP health checks.
+     */
     port: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceGroupHealthCheckTcpOptions {
+    /**
+     * The port used for TCP health checks.
+     */
     port: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceGroupInstance {
+    /**
+     * DNS record fqdn (must have dot at the end).
+     */
     fqdn?: pulumi.Input<string>;
+    /**
+     * The ID of the instance.
+     */
     instanceId?: pulumi.Input<string>;
+    /**
+     * Name template of the instance.  
+     * In order to be unique it must contain at least one of instance unique placeholders:
+     * {instance.short_id}
+     * {instance.index}
+     * combination of {instance.zone_id} and {instance.index_in_zone}
+     * Example: my-instance-{instance.index}
+     * If not set, default is used: {instance_group.id}-{instance.short_id}
+     * It may also contain another placeholders, see metadata doc for full list.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Network specifications for the instance. This can be used multiple times for adding multiple interfaces. The structure is documented below.
+     */
     networkInterfaces?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceGroupInstanceNetworkInterface>[]>;
+    /**
+     * The status of the instance.
+     */
     status?: pulumi.Input<string>;
     statusChangedAt?: pulumi.Input<string>;
+    /**
+     * The status message of the instance.
+     */
     statusMessage?: pulumi.Input<string>;
+    /**
+     * The ID of the availability zone where the instance resides.
+     */
     zoneId?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupInstanceNetworkInterface {
+    /**
+     * The index of the network interface as generated by the server.
+     */
     index?: pulumi.Input<number>;
+    /**
+     * Manual set static IP address.
+     */
     ipAddress?: pulumi.Input<string>;
+    /**
+     * True if IPv4 address allocated for the network interface.
+     */
     ipv4?: pulumi.Input<boolean>;
     ipv6?: pulumi.Input<boolean>;
+    /**
+     * Manual set static IPv6 address.
+     */
     ipv6Address?: pulumi.Input<string>;
+    /**
+     * The MAC address assigned to the network interface.
+     */
     macAddress?: pulumi.Input<string>;
+    /**
+     * Flag for using NAT.
+     */
     nat?: pulumi.Input<boolean>;
+    /**
+     * A public address that can be used to access the internet over NAT. Use `variables` to set.
+     */
     natIpAddress?: pulumi.Input<string>;
+    /**
+     * The IP version for the public address.
+     */
     natIpVersion?: pulumi.Input<string>;
+    /**
+     * The ID of the subnet to attach this interface to. The subnet must reside in the same zone where this instance was created.
+     */
     subnetId?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupInstanceTemplate {
+    /**
+     * Boot disk specifications for the instance. The structure is documented below.
+     */
     bootDisk: pulumi.Input<inputs.ComputeInstanceGroupInstanceTemplateBootDisk>;
+    /**
+     * A description of the boot disk.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Hostname template for the instance.   
+     * This field is used to generate the FQDN value of instance.
+     * The hostname must be unique within the network and region.
+     * If not specified, the hostname will be equal to id of the instance
+     * and FQDN will be `<id>.auto.internal`. Otherwise FQDN will be `<hostname>.<region_id>.internal`.
+     * In order to be unique it must contain at least on of instance unique placeholders:
+     * {instance.short_id}
+     * {instance.index}
+     * combination of {instance.zone_id} and {instance.index_in_zone}
+     * Example: my-instance-{instance.index}
+     * If not set, `name` value will be used
+     * It may also contain another placeholders, see metadata doc for full list.
+     */
     hostname?: pulumi.Input<string>;
+    /**
+     * A map of labels of metric.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * A set of metadata key/value pairs to make available from within the instance.
+     */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name template of the instance.  
+     * In order to be unique it must contain at least one of instance unique placeholders:
+     * {instance.short_id}
+     * {instance.index}
+     * combination of {instance.zone_id} and {instance.index_in_zone}
+     * Example: my-instance-{instance.index}
+     * If not set, default is used: {instance_group.id}-{instance.short_id}
+     * It may also contain another placeholders, see metadata doc for full list.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Network specifications for the instance. This can be used multiple times for adding multiple interfaces. The structure is documented below.
+     */
     networkInterfaces: pulumi.Input<pulumi.Input<inputs.ComputeInstanceGroupInstanceTemplateNetworkInterface>[]>;
+    /**
+     * Network acceleration type for instance. The structure is documented below.
+     */
     networkSettings?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceGroupInstanceTemplateNetworkSetting>[]>;
+    /**
+     * The placement policy configuration. The structure is documented below.
+     */
     placementPolicy?: pulumi.Input<inputs.ComputeInstanceGroupInstanceTemplatePlacementPolicy>;
+    /**
+     * The ID of the hardware platform configuration for the instance. The default is 'standard-v1'.
+     */
     platformId?: pulumi.Input<string>;
+    /**
+     * Compute resource specifications for the instance. The structure is documented below.
+     */
     resources: pulumi.Input<inputs.ComputeInstanceGroupInstanceTemplateResources>;
+    /**
+     * The scheduling policy configuration. The structure is documented below.
+     */
     schedulingPolicy?: pulumi.Input<inputs.ComputeInstanceGroupInstanceTemplateSchedulingPolicy>;
+    /**
+     * A list of disks to attach to the instance. The structure is documented below.
+     */
     secondaryDisks?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceGroupInstanceTemplateSecondaryDisk>[]>;
+    /**
+     * The ID of the service account authorized for this instance.
+     */
     serviceAccountId?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateBootDisk {
+    /**
+     * This value can be used to reference the device under `/dev/disk/by-id/`.
+     */
     deviceName?: pulumi.Input<string>;
+    /**
+     * ID of the existing disk. To set use variables.
+     */
     diskId?: pulumi.Input<string>;
+    /**
+     * Parameters for creating a disk alongside the instance. The structure is documented below.
+     */
     initializeParams?: pulumi.Input<inputs.ComputeInstanceGroupInstanceTemplateBootDiskInitializeParams>;
+    /**
+     * The access mode to the disk resource. By default a disk is attached in `READ_WRITE` mode.
+     */
     mode?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateBootDiskInitializeParams {
+    /**
+     * A description of the boot disk.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The disk image to initialize this disk from.
+     */
     imageId?: pulumi.Input<string>;
+    /**
+     * The number of instances in the instance group.
+     */
     size?: pulumi.Input<number>;
+    /**
+     * The snapshot to initialize this disk from.
+     */
     snapshotId?: pulumi.Input<string>;
+    /**
+     * Network acceleration type. By default a network is in `STANDARD` mode.
+     */
     type?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateNetworkInterface {
+    /**
+     * List of dns records.  The structure is documented below.
+     */
     dnsRecords?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecord>[]>;
+    /**
+     * Manual set static IP address.
+     */
     ipAddress?: pulumi.Input<string>;
+    /**
+     * True if IPv4 address allocated for the network interface.
+     */
     ipv4?: pulumi.Input<boolean>;
     ipv6?: pulumi.Input<boolean>;
+    /**
+     * Manual set static IPv6 address.
+     */
     ipv6Address?: pulumi.Input<string>;
+    /**
+     * List of ipv6 dns records.  The structure is documented below.
+     */
     ipv6DnsRecords?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord>[]>;
+    /**
+     * Flag for using NAT.
+     */
     nat?: pulumi.Input<boolean>;
+    /**
+     * List of nat dns records.  The structure is documented below.
+     */
     natDnsRecords?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecord>[]>;
+    /**
+     * A public address that can be used to access the internet over NAT. Use `variables` to set.
+     */
     natIpAddress?: pulumi.Input<string>;
+    /**
+     * The ID of the network.
+     */
     networkId?: pulumi.Input<string>;
+    /**
+     * Security group ids for network interface.
+     */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The ID of the subnets to attach this interface to.
+     */
     subnetIds?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecord {
+    /**
+     * DNS zone id (if not set, private zone used).
+     */
     dnsZoneId?: pulumi.Input<string>;
+    /**
+     * DNS record fqdn (must have dot at the end).
+     */
     fqdn: pulumi.Input<string>;
+    /**
+     * When set to true, also create PTR DNS record.
+     */
     ptr?: pulumi.Input<boolean>;
+    /**
+     * DNS record TTL.
+     */
     ttl?: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord {
+    /**
+     * DNS zone id (if not set, private zone used).
+     */
     dnsZoneId?: pulumi.Input<string>;
+    /**
+     * DNS record fqdn (must have dot at the end).
+     */
     fqdn: pulumi.Input<string>;
+    /**
+     * When set to true, also create PTR DNS record.
+     */
     ptr?: pulumi.Input<boolean>;
+    /**
+     * DNS record TTL.
+     */
     ttl?: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecord {
+    /**
+     * DNS zone id (if not set, private zone used).
+     */
     dnsZoneId?: pulumi.Input<string>;
+    /**
+     * DNS record fqdn (must have dot at the end).
+     */
     fqdn: pulumi.Input<string>;
+    /**
+     * When set to true, also create PTR DNS record.
+     */
     ptr?: pulumi.Input<boolean>;
+    /**
+     * DNS record TTL.
+     */
     ttl?: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateNetworkSetting {
+    /**
+     * Network acceleration type. By default a network is in `STANDARD` mode.
+     */
     type?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupInstanceTemplatePlacementPolicy {
+    /**
+     * Specifies the id of the Placement Group to assign to the instances.
+     */
     placementGroupId: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateResources {
+    /**
+     * If provided, specifies baseline core performance as a percent.
+     */
     coreFraction?: pulumi.Input<number>;
+    /**
+     * The number of CPU cores for the instance.
+     */
     cores: pulumi.Input<number>;
     gpus?: pulumi.Input<number>;
+    /**
+     * The memory size in GB.
+     */
     memory: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateSchedulingPolicy {
+    /**
+     * Specifies if the instance is preemptible. Defaults to false.
+     */
     preemptible?: pulumi.Input<boolean>;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateSecondaryDisk {
+    /**
+     * This value can be used to reference the device under `/dev/disk/by-id/`.
+     */
     deviceName?: pulumi.Input<string>;
+    /**
+     * ID of the existing disk. To set use variables.
+     */
     diskId?: pulumi.Input<string>;
+    /**
+     * Parameters for creating a disk alongside the instance. The structure is documented below.
+     */
     initializeParams?: pulumi.Input<inputs.ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParams>;
+    /**
+     * The access mode to the disk resource. By default a disk is attached in `READ_WRITE` mode.
+     */
     mode?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParams {
+    /**
+     * A description of the boot disk.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The disk image to initialize this disk from.
+     */
     imageId?: pulumi.Input<string>;
+    /**
+     * The number of instances in the instance group.
+     */
     size?: pulumi.Input<number>;
+    /**
+     * The snapshot to initialize this disk from.
+     */
     snapshotId?: pulumi.Input<string>;
+    /**
+     * Network acceleration type. By default a network is in `STANDARD` mode.
+     */
     type?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupLoadBalancer {
+    /**
+     * Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+     */
     maxOpeningTrafficDuration?: pulumi.Input<number>;
+    /**
+     * The status message of the instance.
+     */
     statusMessage?: pulumi.Input<string>;
+    /**
+     * A description of the target group.
+     */
     targetGroupDescription?: pulumi.Input<string>;
     targetGroupId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs.
+     */
     targetGroupLabels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the target group.
+     */
     targetGroupName?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupScalePolicy {
+    /**
+     * The auto scaling policy of the instance group. The structure is documented below.
+     */
     autoScale?: pulumi.Input<inputs.ComputeInstanceGroupScalePolicyAutoScale>;
+    /**
+     * The fixed scaling policy of the instance group. The structure is documented below.
+     */
     fixedScale?: pulumi.Input<inputs.ComputeInstanceGroupScalePolicyFixedScale>;
+    /**
+     * The test auto scaling policy of the instance group. Use it to test how the auto scale works. The structure is documented below.
+     */
     testAutoScale?: pulumi.Input<inputs.ComputeInstanceGroupScalePolicyTestAutoScale>;
 }
 
 export interface ComputeInstanceGroupScalePolicyAutoScale {
+    /**
+     * Target CPU load level.
+     */
     cpuUtilizationTarget?: pulumi.Input<number>;
+    /**
+     * A list of custom rules. The structure is documented below.
+     */
     customRules?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceGroupScalePolicyAutoScaleCustomRule>[]>;
+    /**
+     * The initial number of instances in the instance group.
+     */
     initialSize: pulumi.Input<number>;
+    /**
+     * The maximum number of virtual machines in the group.
+     */
     maxSize?: pulumi.Input<number>;
+    /**
+     * The amount of time, in seconds, that metrics are averaged for.
+     * If the average value at the end of the interval is higher than the `cpuUtilizationTarget`,
+     * the instance group will increase the number of virtual machines in the group.
+     */
     measurementDuration: pulumi.Input<number>;
+    /**
+     * The minimum number of virtual machines in a single availability zone.
+     */
     minZoneSize?: pulumi.Input<number>;
+    /**
+     * The minimum time interval, in seconds, to monitor the load before
+     * an instance group can reduce the number of virtual machines in the group. During this time, the group
+     * will not decrease even if the average load falls below the value of `cpuUtilizationTarget`.
+     */
     stabilizationDuration?: pulumi.Input<number>;
+    /**
+     * The warm-up time of the virtual machine, in seconds. During this time,
+     * traffic is fed to the virtual machine, but load metrics are not taken into account.
+     */
     warmupDuration?: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceGroupScalePolicyAutoScaleCustomRule {
+    /**
+     * Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A map of labels of metric.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of metric.
+     */
     metricName: pulumi.Input<string>;
+    /**
+     * Metric type, `GAUGE` or `COUNTER`.
+     */
     metricType: pulumi.Input<string>;
+    /**
+     * Rule type: `UTILIZATION` - This type means that the metric applies to one instance.
+     * First, Instance Groups calculates the average metric value for each instance,
+     * then averages the values for instances in one availability zone.
+     * This type of metric must have the `instanceId` label. `WORKLOAD` - This type means that the metric applies to instances in one availability zone.
+     * This type of metric must have the `zoneId` label.
+     */
     ruleType: pulumi.Input<string>;
+    /**
+     * Service of custom metric in Yandex Monitoring that should be used for scaling.
+     */
     service?: pulumi.Input<string>;
+    /**
+     * Target metric value level.
+     */
     target: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceGroupScalePolicyFixedScale {
+    /**
+     * The number of instances in the instance group.
+     */
     size: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceGroupScalePolicyTestAutoScale {
+    /**
+     * Target CPU load level.
+     */
     cpuUtilizationTarget?: pulumi.Input<number>;
+    /**
+     * A list of custom rules. The structure is documented below.
+     */
     customRules?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceGroupScalePolicyTestAutoScaleCustomRule>[]>;
+    /**
+     * The initial number of instances in the instance group.
+     */
     initialSize: pulumi.Input<number>;
+    /**
+     * The maximum number of virtual machines in the group.
+     */
     maxSize?: pulumi.Input<number>;
+    /**
+     * The amount of time, in seconds, that metrics are averaged for.
+     * If the average value at the end of the interval is higher than the `cpuUtilizationTarget`,
+     * the instance group will increase the number of virtual machines in the group.
+     */
     measurementDuration: pulumi.Input<number>;
+    /**
+     * The minimum number of virtual machines in a single availability zone.
+     */
     minZoneSize?: pulumi.Input<number>;
+    /**
+     * The minimum time interval, in seconds, to monitor the load before
+     * an instance group can reduce the number of virtual machines in the group. During this time, the group
+     * will not decrease even if the average load falls below the value of `cpuUtilizationTarget`.
+     */
     stabilizationDuration?: pulumi.Input<number>;
+    /**
+     * The warm-up time of the virtual machine, in seconds. During this time,
+     * traffic is fed to the virtual machine, but load metrics are not taken into account.
+     */
     warmupDuration?: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceGroupScalePolicyTestAutoScaleCustomRule {
+    /**
+     * Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A map of labels of metric.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of metric.
+     */
     metricName: pulumi.Input<string>;
+    /**
+     * Metric type, `GAUGE` or `COUNTER`.
+     */
     metricType: pulumi.Input<string>;
+    /**
+     * Rule type: `UTILIZATION` - This type means that the metric applies to one instance.
+     * First, Instance Groups calculates the average metric value for each instance,
+     * then averages the values for instances in one availability zone.
+     * This type of metric must have the `instanceId` label. `WORKLOAD` - This type means that the metric applies to instances in one availability zone.
+     * This type of metric must have the `zoneId` label.
+     */
     ruleType: pulumi.Input<string>;
+    /**
+     * Service of custom metric in Yandex Monitoring that should be used for scaling.
+     */
     service?: pulumi.Input<string>;
+    /**
+     * Target metric value level.
+     */
     target: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceLocalDisk {
+    /**
+     * Name that can be used to access an attached disk
+     * under `/dev/disk/by-id/`.
+     */
     deviceName?: pulumi.Input<string>;
+    /**
+     * Size of the disk, specified in bytes.
+     */
     sizeBytes: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceNetworkInterface {
+    /**
+     * List of configurations for creating ipv4 DNS records. The structure is documented below.
+     */
     dnsRecords?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceNetworkInterfaceDnsRecord>[]>;
     index?: pulumi.Input<number>;
+    /**
+     * The private IP address to assign to the instance. If
+     * empty, the address will be automatically assigned from the specified subnet.
+     */
     ipAddress?: pulumi.Input<string>;
+    /**
+     * Allocate an IPv4 address for the interface. The default value is `true`.
+     */
     ipv4?: pulumi.Input<boolean>;
+    /**
+     * If true, allocate an IPv6 address for the interface.
+     * The address will be automatically assigned from the specified subnet.
+     */
     ipv6?: pulumi.Input<boolean>;
+    /**
+     * The private IPv6 address to assign to the instance.
+     */
     ipv6Address?: pulumi.Input<string>;
+    /**
+     * List of configurations for creating ipv6 DNS records. The structure is documented below.
+     */
     ipv6DnsRecords?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceNetworkInterfaceIpv6DnsRecord>[]>;
     macAddress?: pulumi.Input<string>;
+    /**
+     * Provide a public address, for instance, to access the internet over NAT.
+     */
     nat?: pulumi.Input<boolean>;
+    /**
+     * List of configurations for creating ipv4 NAT DNS records. The structure is documented below.
+     */
     natDnsRecords?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceNetworkInterfaceNatDnsRecord>[]>;
+    /**
+     * Provide a public address, for instance, to access the internet over NAT. Address should be already reserved in web UI.
+     */
     natIpAddress?: pulumi.Input<string>;
     natIpVersion?: pulumi.Input<string>;
+    /**
+     * Security group ids for network interface.
+     */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * ID of the subnet to attach this
+     * interface to. The subnet must exist in the same zone where this instance will be
+     * created.
+     */
     subnetId: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceNetworkInterfaceDnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone used).
+     */
     dnsZoneId?: pulumi.Input<string>;
+    /**
+     * DNS record FQDN (must have a dot at the end).
+     */
     fqdn: pulumi.Input<string>;
+    /**
+     * When set to true, also create a PTR DNS record.
+     */
     ptr?: pulumi.Input<boolean>;
+    /**
+     * DNS record TTL. in seconds
+     */
     ttl?: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceNetworkInterfaceIpv6DnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone used).
+     */
     dnsZoneId?: pulumi.Input<string>;
+    /**
+     * DNS record FQDN (must have a dot at the end).
+     */
     fqdn: pulumi.Input<string>;
+    /**
+     * When set to true, also create a PTR DNS record.
+     */
     ptr?: pulumi.Input<boolean>;
+    /**
+     * DNS record TTL. in seconds
+     */
     ttl?: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceNetworkInterfaceNatDnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone used).
+     */
     dnsZoneId?: pulumi.Input<string>;
+    /**
+     * DNS record FQDN (must have a dot at the end).
+     */
     fqdn: pulumi.Input<string>;
+    /**
+     * When set to true, also create a PTR DNS record.
+     */
     ptr?: pulumi.Input<boolean>;
+    /**
+     * DNS record TTL. in seconds
+     */
     ttl?: pulumi.Input<number>;
 }
 
 export interface ComputeInstancePlacementPolicy {
+    /**
+     * List of host affinity rules. The structure is documented below.
+     */
     hostAffinityRules?: pulumi.Input<pulumi.Input<inputs.ComputeInstancePlacementPolicyHostAffinityRule>[]>;
+    /**
+     * Specifies the id of the Placement Group to assign to the instance.
+     */
     placementGroupId?: pulumi.Input<string>;
 }
 
 export interface ComputeInstancePlacementPolicyHostAffinityRule {
+    /**
+     * Affinity label or one of reserved values - `yc.hostId`, `yc.hostGroupId`.
+     */
     key: pulumi.Input<string>;
+    /**
+     * Affinity action. The only value supported is `IN`.
+     */
     op: pulumi.Input<string>;
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface ComputeInstanceResources {
+    /**
+     * If provided, specifies baseline performance for a core as a percent.
+     */
     coreFraction?: pulumi.Input<number>;
+    /**
+     * CPU cores for the instance.
+     */
     cores: pulumi.Input<number>;
     gpus?: pulumi.Input<number>;
+    /**
+     * Memory size in GB.
+     */
     memory: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceSchedulingPolicy {
+    /**
+     * Specifies if the instance is preemptible. Defaults to false.
+     */
     preemptible?: pulumi.Input<boolean>;
 }
 
 export interface ComputeInstanceSecondaryDisk {
+    /**
+     * Whether the disk is auto-deleted when the instance
+     * is deleted. The default value is false.
+     */
     autoDelete?: pulumi.Input<boolean>;
+    /**
+     * Name that can be used to access an attached disk
+     * under `/dev/disk/by-id/`.
+     */
     deviceName?: pulumi.Input<string>;
+    /**
+     * ID of the disk that is attached to the instance.
+     */
     diskId: pulumi.Input<string>;
+    /**
+     * Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+     */
     mode?: pulumi.Input<string>;
 }
 
 export interface DataprocClusterClusterConfig {
+    /**
+     * Data Proc specific options. The structure is documented below.
+     */
     hadoop?: pulumi.Input<inputs.DataprocClusterClusterConfigHadoop>;
+    /**
+     * Configuration of the Data Proc subcluster. The structure is documented below.
+     */
     subclusterSpecs: pulumi.Input<pulumi.Input<inputs.DataprocClusterClusterConfigSubclusterSpec>[]>;
+    /**
+     * Version of Data Proc image.
+     */
     versionId?: pulumi.Input<string>;
 }
 
 export interface DataprocClusterClusterConfigHadoop {
+    /**
+     * A set of key/value pairs that are used to configure cluster services.
+     */
     properties?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * List of services to run on Data Proc cluster.
+     */
     services?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of SSH public keys to put to the hosts of the cluster. For information on how to connect to the cluster, see [the official documentation](https://cloud.yandex.com/docs/data-proc/operations/connect).
+     */
     sshPublicKeys?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface DataprocClusterClusterConfigSubclusterSpec {
+    /**
+     * If true then assign public IP addresses to the hosts of the subclusters.
+     */
     assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * Autoscaling configuration for compute subclusters.
+     */
     autoscalingConfig?: pulumi.Input<inputs.DataprocClusterClusterConfigSubclusterSpecAutoscalingConfig>;
+    /**
+     * Number of hosts within Data Proc subcluster.
+     */
     hostsCount: pulumi.Input<number>;
+    /**
+     * (Computed) ID of a new Data Proc cluster.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * Name of the Data Proc subcluster.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Resources allocated to each host of the Data Proc subcluster. The structure is documented below.
+     */
     resources: pulumi.Input<inputs.DataprocClusterClusterConfigSubclusterSpecResources>;
+    /**
+     * Role of the subcluster in the Data Proc cluster.
+     */
     role: pulumi.Input<string>;
+    /**
+     * The ID of the subnet, to which hosts of the subcluster belong. Subnets of all the subclusters must belong to the same VPC network.
+     */
     subnetId: pulumi.Input<string>;
 }
 
 export interface DataprocClusterClusterConfigSubclusterSpecAutoscalingConfig {
+    /**
+     * Defines an autoscaling rule based on the average CPU utilization of the instance group. If not set default autoscaling metric will be used.
+     */
     cpuUtilizationTarget?: pulumi.Input<number>;
+    /**
+     * Timeout to gracefully decommission nodes during downscaling. In seconds.
+     */
     decommissionTimeout?: pulumi.Input<number>;
+    /**
+     * Maximum number of nodes in autoscaling subclusters.
+     */
     maxHostsCount: pulumi.Input<number>;
+    /**
+     * Time in seconds allotted for averaging metrics.
+     */
     measurementDuration?: pulumi.Input<number>;
+    /**
+     * Bool flag -- whether to use preemptible compute instances. Preemptible instances are stopped at least once every 24 hours, and can be stopped at any time if their resources are needed by Compute. For more information, see [Preemptible Virtual Machines](https://cloud.yandex.com/docs/compute/concepts/preemptible-vm).
+     */
     preemptible?: pulumi.Input<boolean>;
+    /**
+     * Minimum amount of time in seconds allotted for monitoring before Instance Groups can reduce the number of instances in the group. During this time, the group size doesn't decrease, even if the new metric values indicate that it should.
+     */
     stabilizationDuration?: pulumi.Input<number>;
+    /**
+     * The warmup time of the instance in seconds. During this time, traffic is sent to the instance, but instance metrics are not collected.
+     */
     warmupDuration?: pulumi.Input<number>;
 }
 
 export interface DataprocClusterClusterConfigSubclusterSpecResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
     diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of a host. One of `network-hdd` (default) or `network-ssd`.
+     */
     diskTypeId?: pulumi.Input<string>;
+    /**
+     * The ID of the preset for computational resources available to a host. All available presets are listed in the [documentation](https://cloud.yandex.com/docs/data-proc/concepts/instance-types).
+     */
     resourcePresetId: pulumi.Input<string>;
 }
 
@@ -894,46 +2232,115 @@ export interface DatatransferEndpointSettings {
     clickhouseTarget?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTarget>;
     mongoSource?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoSource>;
     mongoTarget?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoTarget>;
+    /**
+     * Settings specific to the MySQL source endpoint.
+     */
     mysqlSource?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlSource>;
+    /**
+     * Settings specific to the MySQL target endpoint.
+     */
     mysqlTarget?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlTarget>;
+    /**
+     * Settings specific to the PostgreSQL source endpoint.
+     */
     postgresSource?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresSource>;
+    /**
+     * Settings specific to the PostgreSQL target endpoint.
+     */
     postgresTarget?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresTarget>;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSource {
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseSourceConnection>;
+    /**
+     * List of tables which will not be transfered, formatted as `schemaname.tablename`.
+     */
     excludeTables?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of tables to transfer, formatted as `schemaname.tablename`. If omitted or an empty list is specified, all tables will be transferred.
+     */
     includeTables?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSourceConnection {
+    /**
+     * Connection options. The structure is documented below.
+     */
     connectionOptions?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptions>;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptions {
+    /**
+     * Database name.
+     */
     database?: pulumi.Input<string>;
+    /**
+     * Identifier of the Managed ClickHouse cluster.
+     */
     mdbClusterId?: pulumi.Input<string>;
+    /**
+     * Connection settings of the on-premise ClickHouse server.
+     */
     onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremise>;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsPassword>;
+    /**
+     * User for database access.
+     */
     user?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremise {
+    /**
+     * TCP port number for the HTTP interface of the ClickHouse server.
+     */
     httpPort?: pulumi.Input<number>;
+    /**
+     * TCP port number for the native interface of the ClickHouse server.
+     */
     nativePort?: pulumi.Input<number>;
+    /**
+     * The list of ClickHouse shards. The structure is documented below.
+     */
     shards?: pulumi.Input<pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseShard>[]>;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsMode>;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseShard {
+    /**
+     * List of ClickHouse server host names.
+     */
     hosts?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Arbitrary shard name. This name may be used in `sharding` block to specify custom sharding rules.
+     */
     name?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeDisabled>;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeEnabled>;
 }
 
@@ -941,6 +2348,9 @@ export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectio
 }
 
 export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate?: pulumi.Input<string>;
 }
 
@@ -949,12 +2359,33 @@ export interface DatatransferEndpointSettingsClickhouseSourceConnectionConnectio
 }
 
 export interface DatatransferEndpointSettingsClickhouseTarget {
+    /**
+     * Table renaming rules. The structure is documented below.
+     */
     altNames?: pulumi.Input<pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTargetAltName>[]>;
+    /**
+     * How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+     */
     cleanupPolicy?: pulumi.Input<string>;
+    /**
+     * Name of the ClickHouse cluster. For managed ClickHouse clusters defaults to managed cluster ID.
+     */
     clickhouseClusterName?: pulumi.Input<string>;
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTargetConnection>;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Shard selection rules for the data being transferred. The structure is documented below.
+     */
     sharding?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTargetSharding>;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId?: pulumi.Input<string>;
 }
 
@@ -964,31 +2395,73 @@ export interface DatatransferEndpointSettingsClickhouseTargetAltName {
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetConnection {
+    /**
+     * Connection options. The structure is documented below.
+     */
     connectionOptions?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptions>;
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptions {
+    /**
+     * Database name.
+     */
     database?: pulumi.Input<string>;
+    /**
+     * Identifier of the Managed ClickHouse cluster.
+     */
     mdbClusterId?: pulumi.Input<string>;
+    /**
+     * Connection settings of the on-premise ClickHouse server.
+     */
     onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremise>;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsPassword>;
+    /**
+     * User for database access.
+     */
     user?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremise {
+    /**
+     * TCP port number for the HTTP interface of the ClickHouse server.
+     */
     httpPort?: pulumi.Input<number>;
+    /**
+     * TCP port number for the native interface of the ClickHouse server.
+     */
     nativePort?: pulumi.Input<number>;
+    /**
+     * The list of ClickHouse shards. The structure is documented below.
+     */
     shards?: pulumi.Input<pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseShard>[]>;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsMode>;
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseShard {
+    /**
+     * List of ClickHouse server host names.
+     */
     hosts?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Arbitrary shard name. This name may be used in `sharding` block to specify custom sharding rules.
+     */
     name?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeDisabled>;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeEnabled>;
 }
 
@@ -996,6 +2469,9 @@ export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectio
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate?: pulumi.Input<string>;
 }
 
@@ -1004,11 +2480,20 @@ export interface DatatransferEndpointSettingsClickhouseTargetConnectionConnectio
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetSharding {
+    /**
+     * Shard data by the hash value of the specified column. The structure is documented below.
+     */
     columnValueHash?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHash>;
+    /**
+     * Shard data by ID of the transfer.
+     */
     transferId?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTargetShardingTransferId>;
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHash {
+    /**
+     * The name of the column to calculate hash from.
+     */
     columnName?: pulumi.Input<string>;
 }
 
@@ -1016,40 +2501,100 @@ export interface DatatransferEndpointSettingsClickhouseTargetShardingTransferId 
 }
 
 export interface DatatransferEndpointSettingsMongoSource {
+    /**
+     * The list of the MongoDB collections that should be transferred. If omitted, all available collections will be transferred. The structure of the list item is documented below.
+     */
     collections?: pulumi.Input<pulumi.Input<inputs.DatatransferEndpointSettingsMongoSourceCollection>[]>;
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoSourceConnection>;
+    /**
+     * The list of the MongoDB collections that should not be transferred.
+     */
     excludedCollections?: pulumi.Input<pulumi.Input<inputs.DatatransferEndpointSettingsMongoSourceExcludedCollection>[]>;
+    /**
+     * whether the secondary server should be preferred to the primary when copying data.
+     */
     secondaryPreferredMode?: pulumi.Input<boolean>;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsMongoSourceCollection {
+    /**
+     * Collection name.
+     */
     collectionName?: pulumi.Input<string>;
+    /**
+     * Database name.
+     */
     databaseName?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsMongoSourceConnection {
+    /**
+     * Connection options. The structure is documented below.
+     */
     connectionOptions?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptions>;
 }
 
 export interface DatatransferEndpointSettingsMongoSourceConnectionConnectionOptions {
+    /**
+     * Name of the database associated with the credentials.
+     */
     authSource?: pulumi.Input<string>;
+    /**
+     * Identifier of the Managed ClickHouse cluster.
+     */
     mdbClusterId?: pulumi.Input<string>;
+    /**
+     * Connection settings of the on-premise ClickHouse server.
+     */
     onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremise>;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsPassword>;
+    /**
+     * User for database access.
+     */
     user?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremise {
+    /**
+     * Host names of the replica set.
+     */
     hosts?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * TCP Port number.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * Replica set name.
+     */
     replicaSet?: pulumi.Input<string>;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsMode>;
 }
 
 export interface DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeDisabled>;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeEnabled>;
 }
 
@@ -1057,6 +2602,9 @@ export interface DatatransferEndpointSettingsMongoSourceConnectionConnectionOpti
 }
 
 export interface DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate?: pulumi.Input<string>;
 }
 
@@ -1065,39 +2613,96 @@ export interface DatatransferEndpointSettingsMongoSourceConnectionConnectionOpti
 }
 
 export interface DatatransferEndpointSettingsMongoSourceExcludedCollection {
+    /**
+     * Collection name.
+     */
     collectionName?: pulumi.Input<string>;
+    /**
+     * Database name.
+     */
     databaseName?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsMongoTarget {
+    /**
+     * How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+     */
     cleanupPolicy?: pulumi.Input<string>;
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoTargetConnection>;
+    /**
+     * Name of the database to transfer.
+     */
     database?: pulumi.Input<string>;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsMongoTargetConnection {
+    /**
+     * Connection options. The structure is documented below.
+     */
     connectionOptions?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptions>;
 }
 
 export interface DatatransferEndpointSettingsMongoTargetConnectionConnectionOptions {
+    /**
+     * Name of the database associated with the credentials.
+     */
     authSource?: pulumi.Input<string>;
+    /**
+     * Identifier of the Managed ClickHouse cluster.
+     */
     mdbClusterId?: pulumi.Input<string>;
+    /**
+     * Connection settings of the on-premise ClickHouse server.
+     */
     onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremise>;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsPassword>;
+    /**
+     * User for database access.
+     */
     user?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremise {
+    /**
+     * Host names of the replica set.
+     */
     hosts?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * TCP Port number.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * Replica set name.
+     */
     replicaSet?: pulumi.Input<string>;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsMode>;
 }
 
 export interface DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeDisabled>;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeEnabled>;
 }
 
@@ -1105,6 +2710,9 @@ export interface DatatransferEndpointSettingsMongoTargetConnectionConnectionOpti
 }
 
 export interface DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate?: pulumi.Input<string>;
 }
 
@@ -1113,32 +2721,83 @@ export interface DatatransferEndpointSettingsMongoTargetConnectionConnectionOpti
 }
 
 export interface DatatransferEndpointSettingsMysqlSource {
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlSourceConnection>;
+    /**
+     * Name of the database to transfer.
+     */
     database?: pulumi.Input<string>;
+    /**
+     * Opposite of `includeTableRegex`. The tables matching the specified regular expressions will not be transferred.
+     */
     excludeTablesRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of regular expressions of table names which should be transferred. A table name is formatted as schemaname.tablename. For example, a single regular expression may look like `^mydb.employees$`.
+     */
     includeTablesRegexes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Defines which database schema objects should be transferred, e.g. views, functions, etc.
+     */
     objectTransferSettings?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlSourceObjectTransferSettings>;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlSourcePassword>;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups?: pulumi.Input<pulumi.Input<string>[]>;
     serviceDatabase?: pulumi.Input<string>;
+    /**
+     * Timezone to use for parsing timestamps for saving source timezones. Accepts values from IANA timezone database. Default: local timezone.
+     */
     timezone?: pulumi.Input<string>;
+    /**
+     * User for the database access.
+     */
     user?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsMysqlSourceConnection {
+    /**
+     * Identifier of the Managed MySQL cluster.
+     */
     mdbClusterId?: pulumi.Input<string>;
+    /**
+     * Connection settings of the on-premise MySQL server.
+     */
     onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlSourceConnectionOnPremise>;
 }
 
 export interface DatatransferEndpointSettingsMysqlSourceConnectionOnPremise {
+    /**
+     * Host names of the replica set.
+     */
     hosts?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * TCP Port number.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId?: pulumi.Input<string>;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsMode>;
 }
 
 export interface DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeDisabled>;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeEnabled>;
 }
 
@@ -1146,6 +2805,9 @@ export interface DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsMo
 }
 
 export interface DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate?: pulumi.Input<string>;
 }
 
@@ -1160,30 +2822,78 @@ export interface DatatransferEndpointSettingsMysqlSourcePassword {
 }
 
 export interface DatatransferEndpointSettingsMysqlTarget {
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlTargetConnection>;
+    /**
+     * Name of the database to transfer.
+     */
     database?: pulumi.Input<string>;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlTargetPassword>;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * When true, disables foreign key checks. See [foreignKeyChecks](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_foreign_key_checks). False by default.
+     */
     skipConstraintChecks?: pulumi.Input<boolean>;
+    /**
+     * [sqlMode](https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html) to use when interacting with the server. Defaults to "NO_AUTO_VALUE_ON_ZERO,NO_DIR_IN_CREATE,NO_ENGINE_SUBSTITUTION".
+     */
     sqlMode?: pulumi.Input<string>;
+    /**
+     * Timezone to use for parsing timestamps for saving source timezones. Accepts values from IANA timezone database. Default: local timezone.
+     */
     timezone?: pulumi.Input<string>;
+    /**
+     * User for the database access.
+     */
     user?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsMysqlTargetConnection {
+    /**
+     * Identifier of the Managed MySQL cluster.
+     */
     mdbClusterId?: pulumi.Input<string>;
+    /**
+     * Connection settings of the on-premise MySQL server.
+     */
     onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremise>;
 }
 
 export interface DatatransferEndpointSettingsMysqlTargetConnectionOnPremise {
+    /**
+     * Host names of the replica set.
+     */
     hosts?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * TCP Port number.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId?: pulumi.Input<string>;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsMode>;
 }
 
 export interface DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeDisabled>;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeEnabled>;
 }
 
@@ -1191,6 +2901,9 @@ export interface DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsMo
 }
 
 export interface DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate?: pulumi.Input<string>;
 }
 
@@ -1199,32 +2912,86 @@ export interface DatatransferEndpointSettingsMysqlTargetPassword {
 }
 
 export interface DatatransferEndpointSettingsPostgresSource {
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresSourceConnection>;
+    /**
+     * Name of the database to transfer.
+     */
     database?: pulumi.Input<string>;
+    /**
+     * List of tables which will not be transfered, formatted as `schemaname.tablename`.
+     */
     excludeTables?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * List of tables to transfer, formatted as `schemaname.tablename`. If omitted or an empty list is specified, all tables will be transferred.
+     */
     includeTables?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Defines which database schema objects should be transferred, e.g. views, functions, etc.
+     */
     objectTransferSettings?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresSourceObjectTransferSettings>;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresSourcePassword>;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Name of the database schema in which auxiliary tables needed for the transfer will be created. Empty `serviceSchema` implies schema "public".
+     */
     serviceSchema?: pulumi.Input<string>;
+    /**
+     * Maximum WAL size held by the replication slot, in gigabytes. Exceeding this limit will result in a replication failure and deletion of the replication slot. Unlimited by default.
+     */
     slotGigabyteLagLimit?: pulumi.Input<number>;
+    /**
+     * User for the database access.
+     */
     user?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsPostgresSourceConnection {
+    /**
+     * Identifier of the Managed MySQL cluster.
+     */
     mdbClusterId?: pulumi.Input<string>;
+    /**
+     * Connection settings of the on-premise MySQL server.
+     */
     onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremise>;
 }
 
 export interface DatatransferEndpointSettingsPostgresSourceConnectionOnPremise {
+    /**
+     * Host names of the replica set.
+     */
     hosts?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * TCP Port number.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId?: pulumi.Input<string>;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsMode>;
 }
 
 export interface DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeDisabled>;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeEnabled>;
 }
 
@@ -1232,6 +2999,9 @@ export interface DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTl
 }
 
 export interface DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate?: pulumi.Input<string>;
 }
 
@@ -1260,27 +3030,66 @@ export interface DatatransferEndpointSettingsPostgresSourcePassword {
 }
 
 export interface DatatransferEndpointSettingsPostgresTarget {
+    /**
+     * Connection settings. The structure is documented below.
+     */
     connection?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresTargetConnection>;
+    /**
+     * Name of the database to transfer.
+     */
     database?: pulumi.Input<string>;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
     password?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresTargetPassword>;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
     securityGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * User for the database access.
+     */
     user?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsPostgresTargetConnection {
+    /**
+     * Identifier of the Managed MySQL cluster.
+     */
     mdbClusterId?: pulumi.Input<string>;
+    /**
+     * Connection settings of the on-premise MySQL server.
+     */
     onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremise>;
 }
 
 export interface DatatransferEndpointSettingsPostgresTargetConnectionOnPremise {
+    /**
+     * Host names of the replica set.
+     */
     hosts?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * TCP Port number.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
     subnetId?: pulumi.Input<string>;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
     tlsMode?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsMode>;
 }
 
 export interface DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
     disabled?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeDisabled>;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
     enabled?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeEnabled>;
 }
 
@@ -1288,6 +3097,9 @@ export interface DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTl
 }
 
 export interface DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
     caCertificate?: pulumi.Input<string>;
 }
 
@@ -1374,99 +3186,265 @@ export interface FunctionTriggerTimer {
 }
 
 export interface GetAlbBackendGroupGrpcBackend {
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck?: inputs.GetAlbBackendGroupGrpcBackendHealthcheck;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig?: inputs.GetAlbBackendGroupGrpcBackendLoadBalancingConfig;
+    /**
+     * - Name of the Backend Group.
+     */
     name?: string;
+    /**
+     * Port for incoming traffic.
+     */
     port?: number;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds?: string[];
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls?: inputs.GetAlbBackendGroupGrpcBackendTls;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight?: number;
 }
 
 export interface GetAlbBackendGroupGrpcBackendArgs {
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck?: pulumi.Input<inputs.GetAlbBackendGroupGrpcBackendHealthcheckArgs>;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig?: pulumi.Input<inputs.GetAlbBackendGroupGrpcBackendLoadBalancingConfigArgs>;
+    /**
+     * - Name of the Backend Group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Port for incoming traffic.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls?: pulumi.Input<inputs.GetAlbBackendGroupGrpcBackendTlsArgs>;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight?: pulumi.Input<number>;
 }
 
 export interface GetAlbBackendGroupGrpcBackendHealthcheck {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck?: inputs.GetAlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheck;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort?: number;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold?: number;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck?: inputs.GetAlbBackendGroupGrpcBackendHealthcheckHttpHealthcheck;
+    /**
+     * Interval between health checks.
+     */
     interval?: string;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent?: number;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck?: inputs.GetAlbBackendGroupGrpcBackendHealthcheckStreamHealthcheck;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout?: string;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold?: number;
 }
 
 export interface GetAlbBackendGroupGrpcBackendHealthcheckArgs {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck?: pulumi.Input<inputs.GetAlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheckArgs>;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort?: pulumi.Input<number>;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold?: pulumi.Input<number>;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck?: pulumi.Input<inputs.GetAlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs>;
+    /**
+     * Interval between health checks.
+     */
     interval?: pulumi.Input<string>;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent?: pulumi.Input<number>;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck?: pulumi.Input<inputs.GetAlbBackendGroupGrpcBackendHealthcheckStreamHealthcheckArgs>;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout?: pulumi.Input<string>;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold?: pulumi.Input<number>;
 }
 
 export interface GetAlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheck {
+    /**
+     * Optional service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName?: string;
 }
 
 export interface GetAlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheckArgs {
+    /**
+     * Optional service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName?: pulumi.Input<string>;
 }
 
 export interface GetAlbBackendGroupGrpcBackendHealthcheckHttpHealthcheck {
+    /**
+     * Optional "Host" HTTP header value.
+     */
     host?: string;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: boolean;
+    /**
+     * HTTP path.
+     */
     path?: string;
 }
 
 export interface GetAlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs {
+    /**
+     * Optional "Host" HTTP header value.
+     */
     host?: pulumi.Input<string>;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: pulumi.Input<boolean>;
+    /**
+     * HTTP path.
+     */
     path?: pulumi.Input<string>;
 }
 
 export interface GetAlbBackendGroupGrpcBackendHealthcheckStreamHealthcheck {
+    /**
+     * Optional text that must be contained in the messages received from targets for a successful health check.
+     */
     receive?: string;
+    /**
+     * Optional message text sent to targets during TCP data transfer.
+     */
     send?: string;
 }
 
 export interface GetAlbBackendGroupGrpcBackendHealthcheckStreamHealthcheckArgs {
+    /**
+     * Optional text that must be contained in the messages received from targets for a successful health check.
+     */
     receive?: pulumi.Input<string>;
+    /**
+     * Optional message text sent to targets during TCP data transfer.
+     */
     send?: pulumi.Input<string>;
 }
 
 export interface GetAlbBackendGroupGrpcBackendLoadBalancingConfig {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent?: number;
+    /**
+     * Load balancing mode for the backend.
+     */
     mode?: string;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold?: number;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality?: boolean;
 }
 
 export interface GetAlbBackendGroupGrpcBackendLoadBalancingConfigArgs {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent?: pulumi.Input<number>;
+    /**
+     * Load balancing mode for the backend.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold?: pulumi.Input<number>;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality?: pulumi.Input<boolean>;
 }
 
 export interface GetAlbBackendGroupGrpcBackendTls {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+     */
     sni?: string;
     validationContext?: inputs.GetAlbBackendGroupGrpcBackendTlsValidationContext;
 }
 
 export interface GetAlbBackendGroupGrpcBackendTlsArgs {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+     */
     sni?: pulumi.Input<string>;
     validationContext?: pulumi.Input<inputs.GetAlbBackendGroupGrpcBackendTlsValidationContextArgs>;
 }
@@ -1482,103 +3460,275 @@ export interface GetAlbBackendGroupGrpcBackendTlsValidationContextArgs {
 }
 
 export interface GetAlbBackendGroupHttpBackend {
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck?: inputs.GetAlbBackendGroupHttpBackendHealthcheck;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: boolean;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig?: inputs.GetAlbBackendGroupHttpBackendLoadBalancingConfig;
+    /**
+     * - Name of the Backend Group.
+     */
     name?: string;
+    /**
+     * Port for incoming traffic.
+     */
     port?: number;
     storageBucket?: string;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds?: string[];
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls?: inputs.GetAlbBackendGroupHttpBackendTls;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight?: number;
 }
 
 export interface GetAlbBackendGroupHttpBackendArgs {
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck?: pulumi.Input<inputs.GetAlbBackendGroupHttpBackendHealthcheckArgs>;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: pulumi.Input<boolean>;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig?: pulumi.Input<inputs.GetAlbBackendGroupHttpBackendLoadBalancingConfigArgs>;
+    /**
+     * - Name of the Backend Group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Port for incoming traffic.
+     */
     port?: pulumi.Input<number>;
     storageBucket?: pulumi.Input<string>;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls?: pulumi.Input<inputs.GetAlbBackendGroupHttpBackendTlsArgs>;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight?: pulumi.Input<number>;
 }
 
 export interface GetAlbBackendGroupHttpBackendHealthcheck {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck?: inputs.GetAlbBackendGroupHttpBackendHealthcheckGrpcHealthcheck;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort?: number;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold?: number;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck?: inputs.GetAlbBackendGroupHttpBackendHealthcheckHttpHealthcheck;
+    /**
+     * Interval between health checks.
+     */
     interval?: string;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent?: number;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck?: inputs.GetAlbBackendGroupHttpBackendHealthcheckStreamHealthcheck;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout?: string;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold?: number;
 }
 
 export interface GetAlbBackendGroupHttpBackendHealthcheckArgs {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck?: pulumi.Input<inputs.GetAlbBackendGroupHttpBackendHealthcheckGrpcHealthcheckArgs>;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort?: pulumi.Input<number>;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold?: pulumi.Input<number>;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck?: pulumi.Input<inputs.GetAlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs>;
+    /**
+     * Interval between health checks.
+     */
     interval?: pulumi.Input<string>;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent?: pulumi.Input<number>;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck?: pulumi.Input<inputs.GetAlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs>;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout?: pulumi.Input<string>;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold?: pulumi.Input<number>;
 }
 
 export interface GetAlbBackendGroupHttpBackendHealthcheckGrpcHealthcheck {
+    /**
+     * Optional service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName?: string;
 }
 
 export interface GetAlbBackendGroupHttpBackendHealthcheckGrpcHealthcheckArgs {
+    /**
+     * Optional service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName?: pulumi.Input<string>;
 }
 
 export interface GetAlbBackendGroupHttpBackendHealthcheckHttpHealthcheck {
+    /**
+     * Optional "Host" HTTP header value.
+     */
     host?: string;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: boolean;
+    /**
+     * HTTP path.
+     */
     path?: string;
 }
 
 export interface GetAlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs {
+    /**
+     * Optional "Host" HTTP header value.
+     */
     host?: pulumi.Input<string>;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: pulumi.Input<boolean>;
+    /**
+     * HTTP path.
+     */
     path?: pulumi.Input<string>;
 }
 
 export interface GetAlbBackendGroupHttpBackendHealthcheckStreamHealthcheck {
+    /**
+     * Optional text that must be contained in the messages received from targets for a successful health check.
+     */
     receive?: string;
+    /**
+     * Optional message text sent to targets during TCP data transfer.
+     */
     send?: string;
 }
 
 export interface GetAlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs {
+    /**
+     * Optional text that must be contained in the messages received from targets for a successful health check.
+     */
     receive?: pulumi.Input<string>;
+    /**
+     * Optional message text sent to targets during TCP data transfer.
+     */
     send?: pulumi.Input<string>;
 }
 
 export interface GetAlbBackendGroupHttpBackendLoadBalancingConfig {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent?: number;
+    /**
+     * Load balancing mode for the backend.
+     */
     mode?: string;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold?: number;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality?: boolean;
 }
 
 export interface GetAlbBackendGroupHttpBackendLoadBalancingConfigArgs {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent?: pulumi.Input<number>;
+    /**
+     * Load balancing mode for the backend.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold?: pulumi.Input<number>;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality?: pulumi.Input<boolean>;
 }
 
 export interface GetAlbBackendGroupHttpBackendTls {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+     */
     sni?: string;
     validationContext?: inputs.GetAlbBackendGroupHttpBackendTlsValidationContext;
 }
 
 export interface GetAlbBackendGroupHttpBackendTlsArgs {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+     */
     sni?: pulumi.Input<string>;
     validationContext?: pulumi.Input<inputs.GetAlbBackendGroupHttpBackendTlsValidationContextArgs>;
 }
@@ -1614,11 +3764,17 @@ export interface GetAlbBackendGroupSessionAffinityConnectionArgs {
 }
 
 export interface GetAlbBackendGroupSessionAffinityCookie {
+    /**
+     * - Name of the Backend Group.
+     */
     name?: string;
     ttl?: string;
 }
 
 export interface GetAlbBackendGroupSessionAffinityCookieArgs {
+    /**
+     * - Name of the Backend Group.
+     */
     name?: pulumi.Input<string>;
     ttl?: pulumi.Input<string>;
 }
@@ -1633,100 +3789,266 @@ export interface GetAlbBackendGroupSessionAffinityHeaderArgs {
 
 export interface GetAlbBackendGroupStreamBackendArgs {
     enableProxyProtocol?: pulumi.Input<boolean>;
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck?: pulumi.Input<inputs.GetAlbBackendGroupStreamBackendHealthcheckArgs>;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig?: pulumi.Input<inputs.GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs>;
+    /**
+     * - Name of the Backend Group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Port for incoming traffic.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls?: pulumi.Input<inputs.GetAlbBackendGroupStreamBackendTlsArgs>;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight?: pulumi.Input<number>;
 }
 
 export interface GetAlbBackendGroupStreamBackend {
     enableProxyProtocol?: boolean;
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
     healthcheck?: inputs.GetAlbBackendGroupStreamBackendHealthcheck;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
     loadBalancingConfig?: inputs.GetAlbBackendGroupStreamBackendLoadBalancingConfig;
+    /**
+     * - Name of the Backend Group.
+     */
     name?: string;
+    /**
+     * Port for incoming traffic.
+     */
     port?: number;
+    /**
+     * References target groups for the backend.
+     */
     targetGroupIds?: string[];
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
     tls?: inputs.GetAlbBackendGroupStreamBackendTls;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
     weight?: number;
 }
 
 export interface GetAlbBackendGroupStreamBackendHealthcheck {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck?: inputs.GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort?: number;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold?: number;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck?: inputs.GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheck;
+    /**
+     * Interval between health checks.
+     */
     interval?: string;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent?: number;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck?: inputs.GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheck;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout?: string;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold?: number;
 }
 
 export interface GetAlbBackendGroupStreamBackendHealthcheckArgs {
+    /**
+     * Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     grpcHealthcheck?: pulumi.Input<inputs.GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs>;
+    /**
+     * Optional alternative port for health checking.
+     */
     healthcheckPort?: pulumi.Input<number>;
+    /**
+     * Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+     */
     healthyThreshold?: pulumi.Input<number>;
+    /**
+     * Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     httpHealthcheck?: pulumi.Input<inputs.GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs>;
+    /**
+     * Interval between health checks.
+     */
     interval?: pulumi.Input<string>;
+    /**
+     * An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+     */
     intervalJitterPercent?: pulumi.Input<number>;
+    /**
+     * Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+     */
     streamHealthcheck?: pulumi.Input<inputs.GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs>;
+    /**
+     * Time to wait for a health check response.
+     */
     timeout?: pulumi.Input<string>;
+    /**
+     * Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+     */
     unhealthyThreshold?: pulumi.Input<number>;
 }
 
 export interface GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck {
+    /**
+     * Optional service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName?: string;
 }
 
 export interface GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs {
+    /**
+     * Optional service name for grpc.health.v1.HealthCheckRequest message.
+     */
     serviceName?: pulumi.Input<string>;
 }
 
 export interface GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheck {
+    /**
+     * Optional "Host" HTTP header value.
+     */
     host?: string;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: boolean;
+    /**
+     * HTTP path.
+     */
     path?: string;
 }
 
 export interface GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs {
+    /**
+     * Optional "Host" HTTP header value.
+     */
     host?: pulumi.Input<string>;
+    /**
+     * If set, health checks will use HTTP2.
+     */
     http2?: pulumi.Input<boolean>;
+    /**
+     * HTTP path.
+     */
     path?: pulumi.Input<string>;
 }
 
 export interface GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheck {
+    /**
+     * Optional text that must be contained in the messages received from targets for a successful health check.
+     */
     receive?: string;
+    /**
+     * Optional message text sent to targets during TCP data transfer.
+     */
     send?: string;
 }
 
 export interface GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs {
+    /**
+     * Optional text that must be contained in the messages received from targets for a successful health check.
+     */
     receive?: pulumi.Input<string>;
+    /**
+     * Optional message text sent to targets during TCP data transfer.
+     */
     send?: pulumi.Input<string>;
 }
 
 export interface GetAlbBackendGroupStreamBackendLoadBalancingConfig {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent?: number;
+    /**
+     * Load balancing mode for the backend.
+     */
     mode?: string;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold?: number;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality?: boolean;
 }
 
 export interface GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs {
+    /**
+     * Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+     */
     localityAwareRoutingPercent?: pulumi.Input<number>;
+    /**
+     * Load balancing mode for the backend.
+     */
     mode?: pulumi.Input<string>;
+    /**
+     * If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+     */
     panicThreshold?: pulumi.Input<number>;
+    /**
+     * If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+     */
     strictLocality?: pulumi.Input<boolean>;
 }
 
 export interface GetAlbBackendGroupStreamBackendTls {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+     */
     sni?: string;
     validationContext?: inputs.GetAlbBackendGroupStreamBackendTlsValidationContext;
 }
 
 export interface GetAlbBackendGroupStreamBackendTlsArgs {
+    /**
+     * [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+     * * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+     * * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+     */
     sni?: pulumi.Input<string>;
     validationContext?: pulumi.Input<inputs.GetAlbBackendGroupStreamBackendTlsValidationContextArgs>;
 }
@@ -1742,51 +4064,177 @@ export interface GetAlbBackendGroupStreamBackendTlsValidationContextArgs {
 }
 
 export interface GetCdnResourceOptions {
+    /**
+     * HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
+     */
     allowedHttpMethods?: string[];
+    /**
+     * set up a cache period for the end-users browser. Content will be cached due to origin settings. If there are no cache settings on your origin, the content will not be cached. The list of HTTP response codes that can be cached in browsers: 200, 201, 204, 206, 301, 302, 303, 304, 307, 308. Other response codes will not be cached. The default value is 4 days.
+     */
     browserCacheSettings?: number;
+    /**
+     * list HTTP headers that must be included in responses to clients.
+     */
     cacheHttpHeaders?: string[];
+    /**
+     * parameter that lets browsers get access to selected resources from a domain different to a domain from which the request is received.
+     */
     cors?: string[];
+    /**
+     * custom value for the Host header. Your server must be able to process requests with the chosen header.
+     */
     customHostHeader?: string;
+    /**
+     * wildcard additional CNAME. If a resource has a wildcard additional CNAME, you can use your own certificate for content delivery via HTTPS. Read-only.
+     */
     customServerName?: string;
+    /**
+     * setup a cache status.
+     */
     disableCache?: boolean;
+    /**
+     * disabling proxy force ranges.
+     */
     disableProxyForceRanges?: boolean;
+    /**
+     * content will be cached according to origin cache settings. The value applies for a response with codes 200, 201, 204, 206, 301, 302, 303, 304, 307, 308 if an origin server does not have caching HTTP headers. Responses with other codes will not be cached.
+     */
     edgeCacheSettings?: number;
+    /**
+     * option helps you to reduce the bandwidth between origin and CDN servers. Also, content delivery speed becomes higher because of reducing the time for compressing files in a CDN.
+     */
     fetchedCompressed?: boolean;
+    /**
+     * choose the Forward Host header option if is important to send in the request to the Origin the same Host header as was sent in the request to CDN server.
+     */
     forwardHostHeader?: boolean;
+    /**
+     * GZip compression at CDN servers reduces file size by 70% and can be as high as 90%.
+     */
     gzipOn?: boolean;
+    /**
+     * set for ignoring cookie.
+     */
     ignoreCookie?: boolean;
+    /**
+     * files with different query parameters are cached as objects with the same key regardless of the parameter value. selected by default.
+     */
     ignoreQueryParams?: boolean;
+    /**
+     * allows caching for GET, HEAD and POST requests.
+     */
     proxyCacheMethodsSet?: boolean;
+    /**
+     * files with the specified query parameters are cached as objects with the same key, files with other parameters are cached as objects with different keys.
+     */
     queryParamsBlacklists?: string[];
+    /**
+     * files with the specified query parameters are cached as objects with different keys, files with other parameters are cached as objects with the same key.
+     */
     queryParamsWhitelists?: string[];
+    /**
+     * set up a redirect from HTTPS to HTTP.
+     */
     redirectHttpToHttps?: boolean;
+    /**
+     * set up a redirect from HTTP to HTTPS.
+     */
     redirectHttpsToHttp?: boolean;
+    /**
+     * files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
+     */
     slice?: boolean;
+    /**
+     * set up custom headers that CDN servers send in requests to origins.
+     */
     staticRequestHeaders?: string[];
     staticResponseHeaders?: {[key: string]: string};
 }
 
 export interface GetCdnResourceOptionsArgs {
+    /**
+     * HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
+     */
     allowedHttpMethods?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * set up a cache period for the end-users browser. Content will be cached due to origin settings. If there are no cache settings on your origin, the content will not be cached. The list of HTTP response codes that can be cached in browsers: 200, 201, 204, 206, 301, 302, 303, 304, 307, 308. Other response codes will not be cached. The default value is 4 days.
+     */
     browserCacheSettings?: pulumi.Input<number>;
+    /**
+     * list HTTP headers that must be included in responses to clients.
+     */
     cacheHttpHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * parameter that lets browsers get access to selected resources from a domain different to a domain from which the request is received.
+     */
     cors?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * custom value for the Host header. Your server must be able to process requests with the chosen header.
+     */
     customHostHeader?: pulumi.Input<string>;
+    /**
+     * wildcard additional CNAME. If a resource has a wildcard additional CNAME, you can use your own certificate for content delivery via HTTPS. Read-only.
+     */
     customServerName?: pulumi.Input<string>;
+    /**
+     * setup a cache status.
+     */
     disableCache?: pulumi.Input<boolean>;
+    /**
+     * disabling proxy force ranges.
+     */
     disableProxyForceRanges?: pulumi.Input<boolean>;
+    /**
+     * content will be cached according to origin cache settings. The value applies for a response with codes 200, 201, 204, 206, 301, 302, 303, 304, 307, 308 if an origin server does not have caching HTTP headers. Responses with other codes will not be cached.
+     */
     edgeCacheSettings?: pulumi.Input<number>;
+    /**
+     * option helps you to reduce the bandwidth between origin and CDN servers. Also, content delivery speed becomes higher because of reducing the time for compressing files in a CDN.
+     */
     fetchedCompressed?: pulumi.Input<boolean>;
+    /**
+     * choose the Forward Host header option if is important to send in the request to the Origin the same Host header as was sent in the request to CDN server.
+     */
     forwardHostHeader?: pulumi.Input<boolean>;
+    /**
+     * GZip compression at CDN servers reduces file size by 70% and can be as high as 90%.
+     */
     gzipOn?: pulumi.Input<boolean>;
+    /**
+     * set for ignoring cookie.
+     */
     ignoreCookie?: pulumi.Input<boolean>;
+    /**
+     * files with different query parameters are cached as objects with the same key regardless of the parameter value. selected by default.
+     */
     ignoreQueryParams?: pulumi.Input<boolean>;
+    /**
+     * allows caching for GET, HEAD and POST requests.
+     */
     proxyCacheMethodsSet?: pulumi.Input<boolean>;
+    /**
+     * files with the specified query parameters are cached as objects with the same key, files with other parameters are cached as objects with different keys.
+     */
     queryParamsBlacklists?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * files with the specified query parameters are cached as objects with different keys, files with other parameters are cached as objects with the same key.
+     */
     queryParamsWhitelists?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * set up a redirect from HTTPS to HTTP.
+     */
     redirectHttpToHttps?: pulumi.Input<boolean>;
+    /**
+     * set up a redirect from HTTP to HTTPS.
+     */
     redirectHttpsToHttp?: pulumi.Input<boolean>;
+    /**
+     * files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
+     */
     slice?: pulumi.Input<boolean>;
+    /**
+     * set up custom headers that CDN servers send in requests to origins.
+     */
     staticRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
     staticResponseHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
@@ -1812,33 +4260,69 @@ export interface GetComputeDiskDiskPlacementPolicyArgs {
 }
 
 export interface GetComputeInstanceLocalDiskArgs {
+    /**
+     * Name of the device.
+     */
     deviceName?: pulumi.Input<string>;
+    /**
+     * Size of the disk, specified in bytes.
+     */
     sizeBytes: pulumi.Input<number>;
 }
 
 export interface GetComputeInstanceLocalDisk {
+    /**
+     * Name of the device.
+     */
     deviceName?: string;
+    /**
+     * Size of the disk, specified in bytes.
+     */
     sizeBytes: number;
 }
 
 export interface GetComputeInstancePlacementPolicy {
+    /**
+     * List of host affinity rules. The structure is documented below.
+     */
     hostAffinityRules?: inputs.GetComputeInstancePlacementPolicyHostAffinityRule[];
+    /**
+     * Specifies the id of the Placement Group to assign to the instance.
+     */
     placementGroupId?: string;
 }
 
 export interface GetComputeInstancePlacementPolicyArgs {
+    /**
+     * List of host affinity rules. The structure is documented below.
+     */
     hostAffinityRules?: pulumi.Input<pulumi.Input<inputs.GetComputeInstancePlacementPolicyHostAffinityRuleArgs>[]>;
+    /**
+     * Specifies the id of the Placement Group to assign to the instance.
+     */
     placementGroupId?: pulumi.Input<string>;
 }
 
 export interface GetComputeInstancePlacementPolicyHostAffinityRule {
+    /**
+     * Affinity label or one of reserved values - `yc.hostId`, `yc.hostGroupId`.
+     */
     key: string;
+    /**
+     * Affinity action. The only value supported is `IN`.
+     */
     op: string;
     values: string[];
 }
 
 export interface GetComputeInstancePlacementPolicyHostAffinityRuleArgs {
+    /**
+     * Affinity label or one of reserved values - `yc.hostId`, `yc.hostGroupId`.
+     */
     key: pulumi.Input<string>;
+    /**
+     * Affinity action. The only value supported is `IN`.
+     */
     op: pulumi.Input<string>;
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -1870,20 +4354,46 @@ export interface GetFunctionSecretArgs {
 }
 
 export interface GetIamPolicyBinding {
+    /**
+     * An array of identities that will be granted the privilege in the `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     */
     members: string[];
+    /**
+     * The role/permission that will be granted to the members.
+     * See the [IAM Roles] documentation for a complete list of roles.
+     */
     role: string;
 }
 
 export interface GetIamPolicyBindingArgs {
+    /**
+     * An array of identities that will be granted the privilege in the `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     */
     members: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The role/permission that will be granted to the members.
+     * See the [IAM Roles] documentation for a complete list of roles.
+     */
     role: pulumi.Input<string>;
 }
 
 export interface GetMdbClickhouseClusterCloudStorage {
+    /**
+     * (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+     */
     enabled: boolean;
 }
 
 export interface GetMdbClickhouseClusterCloudStorageArgs {
+    /**
+     * (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+     */
     enabled: pulumi.Input<boolean>;
 }
 
@@ -1900,44 +4410,116 @@ export interface GetMdbGreenplumClusterPoolerConfigArgs {
 }
 
 export interface GetMdbKafkaClusterConfig {
+    /**
+     * (Optional) Access policy to the Kafka cluster. The structure is documented below.
+     */
     access?: inputs.GetMdbKafkaClusterConfigAccess;
+    /**
+     * The flag that defines whether a public IP address is assigned to the node.
+     */
     assignPublicIp?: boolean;
+    /**
+     * (Optional) Count of brokers per availability zone.
+     */
     brokersCount?: number;
+    /**
+     * (Optional) Configuration of the Kafka subcluster. The structure is documented below.
+     */
     kafka: inputs.GetMdbKafkaClusterConfigKafka;
+    /**
+     * (Optional) Enables managed schema registry on cluster. Can be either `true` or `false`.
+     */
     schemaRegistry?: boolean;
+    /**
+     * (Optional) Allows to use Kafka AdminAPI to manage topics. Can be either `true` or `false`.
+     */
     unmanagedTopics?: boolean;
+    /**
+     * (Required) Version of the Kafka server software.
+     */
     version: string;
+    /**
+     * (Optional) List of availability zones.
+     */
     zones: string[];
+    /**
+     * (Optional) Configuration of the ZooKeeper subcluster. The structure is documented below.
+     */
     zookeeper?: inputs.GetMdbKafkaClusterConfigZookeeper;
 }
 
 export interface GetMdbKafkaClusterConfigArgs {
+    /**
+     * (Optional) Access policy to the Kafka cluster. The structure is documented below.
+     */
     access?: pulumi.Input<inputs.GetMdbKafkaClusterConfigAccessArgs>;
+    /**
+     * The flag that defines whether a public IP address is assigned to the node.
+     */
     assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Count of brokers per availability zone.
+     */
     brokersCount?: pulumi.Input<number>;
+    /**
+     * (Optional) Configuration of the Kafka subcluster. The structure is documented below.
+     */
     kafka: pulumi.Input<inputs.GetMdbKafkaClusterConfigKafkaArgs>;
+    /**
+     * (Optional) Enables managed schema registry on cluster. Can be either `true` or `false`.
+     */
     schemaRegistry?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Allows to use Kafka AdminAPI to manage topics. Can be either `true` or `false`.
+     */
     unmanagedTopics?: pulumi.Input<boolean>;
+    /**
+     * (Required) Version of the Kafka server software.
+     */
     version: pulumi.Input<string>;
+    /**
+     * (Optional) List of availability zones.
+     */
     zones: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * (Optional) Configuration of the ZooKeeper subcluster. The structure is documented below.
+     */
     zookeeper?: pulumi.Input<inputs.GetMdbKafkaClusterConfigZookeeperArgs>;
 }
 
 export interface GetMdbKafkaClusterConfigAccess {
+    /**
+     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: boolean;
 }
 
 export interface GetMdbKafkaClusterConfigAccessArgs {
+    /**
+     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: pulumi.Input<boolean>;
 }
 
 export interface GetMdbKafkaClusterConfigKafka {
+    /**
+     * (Optional) User-defined settings for the Kafka cluster. The structure is documented below.
+     */
     kafkaConfig?: inputs.GetMdbKafkaClusterConfigKafkaKafkaConfig;
+    /**
+     * (Optional) Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources: inputs.GetMdbKafkaClusterConfigKafkaResources;
 }
 
 export interface GetMdbKafkaClusterConfigKafkaArgs {
+    /**
+     * (Optional) User-defined settings for the Kafka cluster. The structure is documented below.
+     */
     kafkaConfig?: pulumi.Input<inputs.GetMdbKafkaClusterConfigKafkaKafkaConfigArgs>;
+    /**
+     * (Optional) Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources: pulumi.Input<inputs.GetMdbKafkaClusterConfigKafkaResourcesArgs>;
 }
 
@@ -1986,50 +4568,114 @@ export interface GetMdbKafkaClusterConfigKafkaKafkaConfigArgs {
 }
 
 export interface GetMdbKafkaClusterConfigKafkaResources {
+    /**
+     * (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize: number;
+    /**
+     * (Optional) Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+     */
     diskTypeId: string;
     resourcePresetId: string;
 }
 
 export interface GetMdbKafkaClusterConfigKafkaResourcesArgs {
+    /**
+     * (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize: pulumi.Input<number>;
+    /**
+     * (Optional) Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+     */
     diskTypeId: pulumi.Input<string>;
     resourcePresetId: pulumi.Input<string>;
 }
 
 export interface GetMdbKafkaClusterConfigZookeeper {
+    /**
+     * (Optional) Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources?: inputs.GetMdbKafkaClusterConfigZookeeperResources;
 }
 
 export interface GetMdbKafkaClusterConfigZookeeperArgs {
+    /**
+     * (Optional) Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources?: pulumi.Input<inputs.GetMdbKafkaClusterConfigZookeeperResourcesArgs>;
 }
 
 export interface GetMdbKafkaClusterConfigZookeeperResourcesArgs {
+    /**
+     * (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize?: pulumi.Input<number>;
+    /**
+     * (Optional) Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+     */
     diskTypeId?: pulumi.Input<string>;
     resourcePresetId?: pulumi.Input<string>;
 }
 
 export interface GetMdbKafkaClusterConfigZookeeperResources {
+    /**
+     * (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize?: number;
+    /**
+     * (Optional) Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+     */
     diskTypeId?: string;
     resourcePresetId?: string;
 }
 
 export interface GetMdbKafkaClusterTopic {
+    /**
+     * The ID of the Kafka cluster.
+     */
     clusterId: string;
+    /**
+     * The name of the Kafka cluster.
+     */
     name: string;
+    /**
+     * (Required) The number of the topic's partitions.
+     */
     partitions: number;
+    /**
+     * (Required) Amount of data copies (replicas) for the topic in the cluster.
+     */
     replicationFactor: number;
+    /**
+     * (Required) User-defined settings for the topic. The structure is documented below.
+     */
     topicConfig?: inputs.GetMdbKafkaClusterTopicTopicConfig;
 }
 
 export interface GetMdbKafkaClusterTopicArgs {
+    /**
+     * The ID of the Kafka cluster.
+     */
     clusterId: pulumi.Input<string>;
+    /**
+     * The name of the Kafka cluster.
+     */
     name: pulumi.Input<string>;
+    /**
+     * (Required) The number of the topic's partitions.
+     */
     partitions: pulumi.Input<number>;
+    /**
+     * (Required) Amount of data copies (replicas) for the topic in the cluster.
+     */
     replicationFactor: pulumi.Input<number>;
+    /**
+     * (Required) User-defined settings for the topic. The structure is documented below.
+     */
     topicConfig?: pulumi.Input<inputs.GetMdbKafkaClusterTopicTopicConfigArgs>;
 }
 
@@ -2066,204 +4712,536 @@ export interface GetMdbKafkaClusterTopicTopicConfig {
 }
 
 export interface GetMdbKafkaClusterUserArgs {
+    /**
+     * The name of the Kafka cluster.
+     */
     name: pulumi.Input<string>;
+    /**
+     * (Required) The password of the user.
+     */
     password: pulumi.Input<string>;
+    /**
+     * (Optional) Set of permissions granted to the user. The structure is documented below.
+     */
     permissions?: pulumi.Input<pulumi.Input<inputs.GetMdbKafkaClusterUserPermissionArgs>[]>;
 }
 
 export interface GetMdbKafkaClusterUser {
+    /**
+     * The name of the Kafka cluster.
+     */
     name: string;
+    /**
+     * (Required) The password of the user.
+     */
     password: string;
+    /**
+     * (Optional) Set of permissions granted to the user. The structure is documented below.
+     */
     permissions?: inputs.GetMdbKafkaClusterUserPermission[];
 }
 
 export interface GetMdbKafkaClusterUserPermission {
+    /**
+     * Role of the host in the cluster.
+     */
     role: string;
+    /**
+     * (Required) The name of the topic that the permission grants access to.
+     */
     topicName: string;
 }
 
 export interface GetMdbKafkaClusterUserPermissionArgs {
+    /**
+     * Role of the host in the cluster.
+     */
     role: pulumi.Input<string>;
+    /**
+     * (Required) The name of the topic that the permission grants access to.
+     */
     topicName: pulumi.Input<string>;
 }
 
 export interface GetMdbMongodbClusterClusterConfig {
+    /**
+     * Access policy to MongoDB cluster. The structure is documented below.
+     */
     access?: inputs.GetMdbMongodbClusterClusterConfigAccess;
+    /**
+     * Time to start the daily backup, in the UTC timezone. The structure is documented below.
+     */
     backupWindowStart?: inputs.GetMdbMongodbClusterClusterConfigBackupWindowStart;
+    /**
+     * Feature compatibility version of MongoDB.
+     */
     featureCompatibilityVersion?: string;
+    /**
+     * (Optional) Configuration of the mongod service. The structure is documented below.
+     */
     mongod?: inputs.GetMdbMongodbClusterClusterConfigMongod;
+    /**
+     * Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+     */
     version?: string;
 }
 
 export interface GetMdbMongodbClusterClusterConfigArgs {
+    /**
+     * Access policy to MongoDB cluster. The structure is documented below.
+     */
     access?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigAccessArgs>;
+    /**
+     * Time to start the daily backup, in the UTC timezone. The structure is documented below.
+     */
     backupWindowStart?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigBackupWindowStartArgs>;
+    /**
+     * Feature compatibility version of MongoDB.
+     */
     featureCompatibilityVersion?: pulumi.Input<string>;
+    /**
+     * (Optional) Configuration of the mongod service. The structure is documented below.
+     */
     mongod?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodArgs>;
+    /**
+     * Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+     */
     version?: pulumi.Input<string>;
 }
 
 export interface GetMdbMongodbClusterClusterConfigAccessArgs {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
     dataLens?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: pulumi.Input<boolean>;
 }
 
 export interface GetMdbMongodbClusterClusterConfigAccess {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
     dataLens?: boolean;
+    /**
+     * (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: boolean;
 }
 
 export interface GetMdbMongodbClusterClusterConfigBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours?: number;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes?: number;
 }
 
 export interface GetMdbMongodbClusterClusterConfigBackupWindowStartArgs {
+    /**
+     * The hour at which backup will be started.
+     */
     hours?: pulumi.Input<number>;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes?: pulumi.Input<number>;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongod {
+    /**
+     * (Optional) A set of audit log settings
+     * (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
+     * The structure is documented below. Available only in enterprise edition.
+     */
     auditLog?: inputs.GetMdbMongodbClusterClusterConfigMongodAuditLog;
+    /**
+     * (Optional) A set of MongoDB Security settings
+     * (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
+     * The structure is documented below. Available only in enterprise edition.
+     */
     security?: inputs.GetMdbMongodbClusterClusterConfigMongodSecurity;
+    /**
+     * (Optional) A set of MongoDB Server Parameters
+     * (see the [setParameter](https://www.mongodb.com/docs/manual/reference/configuration-options/#setparameter-option) option).
+     * The structure is documented below.
+     */
     setParameter?: inputs.GetMdbMongodbClusterClusterConfigMongodSetParameter;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodArgs {
+    /**
+     * (Optional) A set of audit log settings
+     * (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
+     * The structure is documented below. Available only in enterprise edition.
+     */
     auditLog?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodAuditLogArgs>;
+    /**
+     * (Optional) A set of MongoDB Security settings
+     * (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
+     * The structure is documented below. Available only in enterprise edition.
+     */
     security?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodSecurityArgs>;
+    /**
+     * (Optional) A set of MongoDB Server Parameters
+     * (see the [setParameter](https://www.mongodb.com/docs/manual/reference/configuration-options/#setparameter-option) option).
+     * The structure is documented below.
+     */
     setParameter?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodSetParameterArgs>;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodAuditLog {
+    /**
+     * (Optional) Configuration of the audit log filter in JSON format.
+     * For more information see [auditLog.filter](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.filter)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     filter?: string;
     runtimeConfiguration?: boolean;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodAuditLogArgs {
+    /**
+     * (Optional) Configuration of the audit log filter in JSON format.
+     * For more information see [auditLog.filter](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.filter)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     filter?: pulumi.Input<string>;
     runtimeConfiguration?: pulumi.Input<boolean>;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodSecurity {
+    /**
+     * (Optional) Enables the encryption for the WiredTiger storage engine. Can be either true or false.
+     * For more information see [security.enableEncryption](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.enableEncryption)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     enableEncryption?: boolean;
+    /**
+     * (Optional) Configuration of the third party key management appliance via the Key Management Interoperability Protocol (KMIP)
+     * (see [Encryption tutorial](https://www.mongodb.com/docs/rapid/tutorial/configure-encryption) ). Requires `enableEncryption` to be true.
+     * The structure is documented below. Available only in enterprise edition.
+     */
     kmip?: inputs.GetMdbMongodbClusterClusterConfigMongodSecurityKmip;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodSecurityArgs {
+    /**
+     * (Optional) Enables the encryption for the WiredTiger storage engine. Can be either true or false.
+     * For more information see [security.enableEncryption](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.enableEncryption)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     enableEncryption?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Configuration of the third party key management appliance via the Key Management Interoperability Protocol (KMIP)
+     * (see [Encryption tutorial](https://www.mongodb.com/docs/rapid/tutorial/configure-encryption) ). Requires `enableEncryption` to be true.
+     * The structure is documented below. Available only in enterprise edition.
+     */
     kmip?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs>;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs {
+    /**
+     * (Required) String containing the client certificate used for authenticating MongoDB to the KMIP server.
+     * For more information see [security.kmip.clientCertificateFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.clientCertificateFile)
+     * description in the official documentation.
+     */
     clientCertificate?: pulumi.Input<string>;
+    /**
+     * (Optional) Unique KMIP identifier for an existing key within the KMIP server.
+     * For more information see [security.kmip.keyIdentifier](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.keyIdentifier)
+     * description in the official documentation.
+     */
     keyIdentifier?: pulumi.Input<string>;
+    /**
+     * (Optional) Port number to use to communicate with the KMIP server. Default: 5696
+     * For more information see [security.kmip.port](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.port)
+     * description in the official documentation.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * (Required) Path to CA File. Used for validating secure client connection to KMIP server.
+     * For more information see [security.kmip.serverCAFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverCAFile)
+     * description in the official documentation.
+     */
     serverCa?: pulumi.Input<string>;
+    /**
+     * (Required) Hostname or IP address of the KMIP server to connect to.
+     * For more information see [security.kmip.serverName](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverName)
+     * description in the official documentation.
+     */
     serverName?: pulumi.Input<string>;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodSecurityKmip {
+    /**
+     * (Required) String containing the client certificate used for authenticating MongoDB to the KMIP server.
+     * For more information see [security.kmip.clientCertificateFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.clientCertificateFile)
+     * description in the official documentation.
+     */
     clientCertificate?: string;
+    /**
+     * (Optional) Unique KMIP identifier for an existing key within the KMIP server.
+     * For more information see [security.kmip.keyIdentifier](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.keyIdentifier)
+     * description in the official documentation.
+     */
     keyIdentifier?: string;
+    /**
+     * (Optional) Port number to use to communicate with the KMIP server. Default: 5696
+     * For more information see [security.kmip.port](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.port)
+     * description in the official documentation.
+     */
     port?: number;
+    /**
+     * (Required) Path to CA File. Used for validating secure client connection to KMIP server.
+     * For more information see [security.kmip.serverCAFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverCAFile)
+     * description in the official documentation.
+     */
     serverCa?: string;
+    /**
+     * (Required) Hostname or IP address of the KMIP server to connect to.
+     * For more information see [security.kmip.serverName](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverName)
+     * description in the official documentation.
+     */
     serverName?: string;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodSetParameter {
+    /**
+     * (Optional) Enables the auditing of authorization successes. Can be either true or false.
+     * For more information, see the [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.auditAuthorizationSuccess)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     auditAuthorizationSuccess?: boolean;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodSetParameterArgs {
+    /**
+     * (Optional) Enables the auditing of authorization successes. Can be either true or false.
+     * For more information, see the [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.auditAuthorizationSuccess)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     auditAuthorizationSuccess?: pulumi.Input<boolean>;
 }
 
 export interface GetMdbMongodbClusterDatabase {
+    /**
+     * The name of the MongoDB cluster.
+     */
     name?: string;
 }
 
 export interface GetMdbMongodbClusterDatabaseArgs {
+    /**
+     * The name of the MongoDB cluster.
+     */
     name?: pulumi.Input<string>;
 }
 
 export interface GetMdbMongodbClusterHost {
+    /**
+     * Has assigned public IP.
+     */
     assignPublicIp?: boolean;
+    /**
+     * The health of the host.
+     */
     health?: string;
+    /**
+     * The name of the MongoDB cluster.
+     */
     name?: string;
+    /**
+     * The role of the cluster (either PRIMARY or SECONDARY).
+     */
     role?: string;
+    /**
+     * The name of the shard to which the host belongs.
+     */
     shardName?: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must
+     * be a part of the network to which the cluster belongs.
+     */
     subnetId?: string;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type?: string;
+    /**
+     * The availability zone where the MongoDB host will be created.
+     */
     zoneId?: string;
 }
 
 export interface GetMdbMongodbClusterHostArgs {
+    /**
+     * Has assigned public IP.
+     */
     assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * The health of the host.
+     */
     health?: pulumi.Input<string>;
+    /**
+     * The name of the MongoDB cluster.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The role of the cluster (either PRIMARY or SECONDARY).
+     */
     role?: pulumi.Input<string>;
+    /**
+     * The name of the shard to which the host belongs.
+     */
     shardName?: pulumi.Input<string>;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must
+     * be a part of the network to which the cluster belongs.
+     */
     subnetId?: pulumi.Input<string>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type?: pulumi.Input<string>;
+    /**
+     * The availability zone where the MongoDB host will be created.
+     */
     zoneId?: pulumi.Input<string>;
 }
 
 export interface GetMdbMongodbClusterMaintenanceWindow {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day?: string;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
     hour?: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type?: string;
 }
 
 export interface GetMdbMongodbClusterMaintenanceWindowArgs {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day?: pulumi.Input<string>;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
     hour?: pulumi.Input<number>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type?: pulumi.Input<string>;
 }
 
 export interface GetMdbMongodbClusterResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
     diskSize?: number;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
     diskTypeId?: string;
     resourcePresetId?: string;
 }
 
 export interface GetMdbMongodbClusterResourcesArgs {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
     diskSize?: pulumi.Input<number>;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
     diskTypeId?: pulumi.Input<string>;
     resourcePresetId?: pulumi.Input<string>;
 }
 
 export interface GetMdbMongodbClusterUser {
+    /**
+     * The name of the MongoDB cluster.
+     */
     name?: string;
     password?: string;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions?: inputs.GetMdbMongodbClusterUserPermission[];
 }
 
 export interface GetMdbMongodbClusterUserArgs {
+    /**
+     * The name of the MongoDB cluster.
+     */
     name?: pulumi.Input<string>;
     password?: pulumi.Input<string>;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions?: pulumi.Input<pulumi.Input<inputs.GetMdbMongodbClusterUserPermissionArgs>[]>;
 }
 
 export interface GetMdbMongodbClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName?: string;
+    /**
+     * (Optional) List of strings. The roles of the user in this database. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/users-and-roles).
+     */
     roles?: string[];
 }
 
 export interface GetMdbMongodbClusterUserPermissionArgs {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName?: pulumi.Input<string>;
+    /**
+     * (Optional) List of strings. The roles of the user in this database. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/users-and-roles).
+     */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface GetMdbMysqlClusterAccessArgs {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
     dataLens?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: pulumi.Input<boolean>;
+    /**
+     * Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+     */
     webSql?: pulumi.Input<boolean>;
 }
 
 export interface GetMdbMysqlClusterAccess {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
     dataLens?: boolean;
+    /**
+     * (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: boolean;
+    /**
+     * Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+     */
     webSql?: boolean;
 }
 
@@ -2282,26 +5260,76 @@ export interface GetServerlessContainerSecretArgs {
 }
 
 export interface KubernetesClusterKmsProvider {
+    /**
+     * KMS key ID.
+     */
     keyId?: pulumi.Input<string>;
 }
 
 export interface KubernetesClusterMaster {
+    /**
+     * (Computed) PEM-encoded public certificate that is the root of trust for the Kubernetes cluster.
+     */
     clusterCaCertificate?: pulumi.Input<string>;
+    /**
+     * (Computed) An IPv4 external network address that is assigned to the master.
+     */
     externalV4Address?: pulumi.Input<string>;
+    /**
+     * (Computed) External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).
+     */
     externalV4Endpoint?: pulumi.Input<string>;
+    /**
+     * (Computed) An IPv4 internal network address that is assigned to the master.
+     */
     internalV4Address?: pulumi.Input<string>;
+    /**
+     * (Computed) Internal endpoint that can be used to connect to the master from cloud networks.
+     */
     internalV4Endpoint?: pulumi.Input<string>;
+    /**
+     * (Optional) (Computed) Maintenance policy for Kubernetes master.
+     * If policy is omitted, automatic revision upgrades of the kubernetes master are enabled and could happen at any time.
+     * Revision upgrades are performed only within the same minor version, e.g. 1.13.
+     * Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.
+     */
     maintenancePolicy?: pulumi.Input<inputs.KubernetesClusterMasterMaintenancePolicy>;
+    /**
+     * (Optional) (Computed) Boolean flag. When `true`, Kubernetes master will have visible ipv4 address.
+     */
     publicIp?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Initialize parameters for Regional Master (highly available master). The structure is documented below.
+     */
     regional?: pulumi.Input<inputs.KubernetesClusterMasterRegional>;
+    /**
+     * (Optional) List of security group IDs to which the Kubernetes cluster belongs.
+     */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * (Optional) (Computed) Version of Kubernetes that will be used for master.
+     */
     version?: pulumi.Input<string>;
+    /**
+     * (Computed) Information about cluster version. The structure is documented below.
+     */
     versionInfos?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterMasterVersionInfo>[]>;
+    /**
+     * (Optional) Initialize parameters for Zonal Master (single node master). The structure is documented below.
+     */
     zonal?: pulumi.Input<inputs.KubernetesClusterMasterZonal>;
 }
 
 export interface KubernetesClusterMasterMaintenancePolicy {
+    /**
+     * (Required) Boolean flag that specifies if master can be upgraded automatically. When omitted, default value is TRUE.
+     */
     autoUpgrade: pulumi.Input<boolean>;
+    /**
+     * (Optional) (Computed) This structure specifies maintenance window, when update for master is allowed. When omitted, it defaults to any time.
+     * To specify time of day interval, for all days, one element should be provided, with two fields set, `startTime` and `duration`.
+     * Please see `zonalClusterResourceName` config example.
+     */
     maintenanceWindows?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterMasterMaintenancePolicyMaintenanceWindow>[]>;
 }
 
@@ -2312,28 +5340,66 @@ export interface KubernetesClusterMasterMaintenancePolicyMaintenanceWindow {
 }
 
 export interface KubernetesClusterMasterRegional {
+    /**
+     * Array of locations, where master instances will be allocated. The structure is documented below.
+     */
     locations?: pulumi.Input<pulumi.Input<inputs.KubernetesClusterMasterRegionalLocation>[]>;
+    /**
+     * (Required) Name of availability region (e.g. "ru-central1"), where master instances will be allocated.
+     */
     region: pulumi.Input<string>;
 }
 
 export interface KubernetesClusterMasterRegionalLocation {
+    /**
+     * (Optional) ID of the subnet.
+     */
     subnetId?: pulumi.Input<string>;
+    /**
+     * (Optional) ID of the availability zone.
+     */
     zone?: pulumi.Input<string>;
 }
 
 export interface KubernetesClusterMasterVersionInfo {
+    /**
+     * Current Kubernetes version, major.minor (e.g. 1.15).
+     */
     currentVersion?: pulumi.Input<string>;
+    /**
+     * Boolean flag.
+     * Newer revisions may include Kubernetes patches (e.g 1.15.1 > 1.15.2) as well
+     * as some internal component updates - new features or bug fixes in yandex-specific
+     * components either on the master or nodes.
+     */
     newRevisionAvailable?: pulumi.Input<boolean>;
+    /**
+     * Human readable description of the changes to be applied
+     * when updating to the latest revision. Empty if newRevisionAvailable is false.
+     */
     newRevisionSummary?: pulumi.Input<string>;
+    /**
+     * Boolean flag. The current version is on the deprecation schedule,
+     * component (master or node group) should be upgraded.
+     */
     versionDeprecated?: pulumi.Input<boolean>;
 }
 
 export interface KubernetesClusterMasterZonal {
+    /**
+     * (Optional) ID of the subnet.
+     */
     subnetId?: pulumi.Input<string>;
+    /**
+     * (Optional) ID of the availability zone.
+     */
     zone?: pulumi.Input<string>;
 }
 
 export interface KubernetesClusterNetworkImplementation {
+    /**
+     * (Optional) Cilium network implementation configuration. No options exist.
+     */
     cilium?: pulumi.Input<inputs.KubernetesClusterNetworkImplementationCilium>;
 }
 
@@ -2341,74 +5407,185 @@ export interface KubernetesClusterNetworkImplementationCilium {
 }
 
 export interface KubernetesNodeGroupAllocationPolicy {
+    /**
+     * Repeated field, that specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+     */
     locations?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupAllocationPolicyLocation>[]>;
 }
 
 export interface KubernetesNodeGroupAllocationPolicyLocation {
     /**
+     * ID of the subnet, that will be used by one compute instance in node group.
+     *
      * @deprecated The 'subnet_id' field has been deprecated. Please use 'subnet_ids under network_interface' instead.
      */
     subnetId?: pulumi.Input<string>;
+    /**
+     * ID of the availability zone where for one compute instance in node group.
+     */
     zone?: pulumi.Input<string>;
 }
 
 export interface KubernetesNodeGroupDeployPolicy {
+    /**
+     * The maximum number of instances that can be temporarily allocated above the group's target size during the update.
+     */
     maxExpansion: pulumi.Input<number>;
+    /**
+     * The maximum number of running instances that can be taken offline during update.
+     */
     maxUnavailable: pulumi.Input<number>;
 }
 
 export interface KubernetesNodeGroupInstanceTemplate {
+    /**
+     * The specifications for boot disks that will be attached to the instance. The structure is documented below.
+     */
     bootDisk?: pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplateBootDisk>;
+    /**
+     * Container runtime configuration. The structure is documented below.
+     */
     containerRuntime?: pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplateContainerRuntime>;
+    /**
+     * Labels that will be assigned to compute nodes (instances), created by the Node Group.
+     * ---
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The set of metadata `key:value` pairs assigned to this instance template. This includes custom metadata and predefined keys. **Note**: key "user-data" won't be provided into instances. It reserved for internal activity in `kubernetesNodeGroup` resource.
+     */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name template of the instance.
+     * In order to be unique it must contain at least one of instance unique placeholders:
+     * {instance.short_id}
+     * {instance.index}
+     * combination of {instance.zone_id} and {instance.index_in_zone}
+     * Example: my-instance-{instance.index}
+     * If not set, default is used: {instance_group.id}-{instance.short_id}
+     * It may also contain another placeholders, see [Compute Instance group metadata doc](https://cloud.yandex.com/en-ru/docs/compute/api-ref/grpc/instance_group_service) for full list.
+     */
     name?: pulumi.Input<string>;
     /**
+     * A public address that can be used to access the internet over NAT.
+     *
      * @deprecated The 'nat' field has been deprecated. Please use 'nat under network_interface' instead.
      */
     nat?: pulumi.Input<boolean>;
+    /**
+     * Type of network acceleration. Values: `standard`, `softwareAccelerated`.
+     */
     networkAccelerationType?: pulumi.Input<string>;
+    /**
+     * An array with the network interfaces that will be attached to the instance. The structure is documented below.
+     */
     networkInterfaces?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplateNetworkInterface>[]>;
+    /**
+     * The placement policy configuration. The structure is documented below.
+     */
     placementPolicy?: pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplatePlacementPolicy>;
+    /**
+     * The ID of the hardware platform configuration for the node group compute instances.
+     */
     platformId?: pulumi.Input<string>;
     resources?: pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplateResources>;
+    /**
+     * The scheduling policy for the instances in node group. The structure is documented below.
+     */
     schedulingPolicy?: pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplateSchedulingPolicy>;
 }
 
 export interface KubernetesNodeGroupInstanceTemplateBootDisk {
+    /**
+     * The number of instances in the node group.
+     */
     size?: pulumi.Input<number>;
+    /**
+     * Type of container runtime. Values: `docker`, `containerd`.
+     */
     type?: pulumi.Input<string>;
 }
 
 export interface KubernetesNodeGroupInstanceTemplateContainerRuntime {
+    /**
+     * Type of container runtime. Values: `docker`, `containerd`.
+     */
     type: pulumi.Input<string>;
 }
 
 export interface KubernetesNodeGroupInstanceTemplateNetworkInterface {
+    /**
+     * Allocate an IPv4 address for the interface. The default value is `true`.
+     */
     ipv4?: pulumi.Input<boolean>;
+    /**
+     * List of configurations for creating ipv4 DNS records. The structure is documented below.
+     */
     ipv4DnsRecords?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecord>[]>;
+    /**
+     * If true, allocate an IPv6 address for the interface. The address will be automatically assigned from the specified subnet.
+     */
     ipv6?: pulumi.Input<boolean>;
+    /**
+     * List of configurations for creating ipv6 DNS records. The structure is documented below.
+     */
     ipv6DnsRecords?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord>[]>;
+    /**
+     * A public address that can be used to access the internet over NAT.
+     */
     nat?: pulumi.Input<boolean>;
+    /**
+     * Security group ids for network interface.
+     */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The IDs of the subnets.
+     */
     subnetIds: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone is used).
+     */
     dnsZoneId?: pulumi.Input<string>;
+    /**
+     * DNS record FQDN.
+     */
     fqdn: pulumi.Input<string>;
+    /**
+     * When set to true, also create a PTR DNS record.
+     */
     ptr?: pulumi.Input<boolean>;
+    /**
+     * DNS record TTL (in seconds).
+     */
     ttl?: pulumi.Input<number>;
 }
 
 export interface KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord {
+    /**
+     * DNS zone ID (if not set, private zone is used).
+     */
     dnsZoneId?: pulumi.Input<string>;
+    /**
+     * DNS record FQDN.
+     */
     fqdn: pulumi.Input<string>;
+    /**
+     * When set to true, also create a PTR DNS record.
+     */
     ptr?: pulumi.Input<boolean>;
+    /**
+     * DNS record TTL (in seconds).
+     */
     ttl?: pulumi.Input<number>;
 }
 
 export interface KubernetesNodeGroupInstanceTemplatePlacementPolicy {
+    /**
+     * Specifies the id of the Placement Group to assign to the instances.
+     */
     placementGroupId: pulumi.Input<string>;
 }
 
@@ -2420,12 +5597,25 @@ export interface KubernetesNodeGroupInstanceTemplateResources {
 }
 
 export interface KubernetesNodeGroupInstanceTemplateSchedulingPolicy {
+    /**
+     * Specifies if the instance is preemptible. Defaults to false.
+     * ---
+     */
     preemptible?: pulumi.Input<boolean>;
 }
 
 export interface KubernetesNodeGroupMaintenancePolicy {
+    /**
+     * Boolean flag that specifies if node group can be repaired automatically. When omitted, default value is TRUE.
+     */
     autoRepair: pulumi.Input<boolean>;
+    /**
+     * Boolean flag that specifies if node group can be upgraded automatically. When omitted, default value is TRUE.
+     */
     autoUpgrade: pulumi.Input<boolean>;
+    /**
+     * (Computed) Set of day intervals, when maintenance is allowed for this node group. When omitted, it defaults to any time.
+     */
     maintenanceWindows?: pulumi.Input<pulumi.Input<inputs.KubernetesNodeGroupMaintenancePolicyMaintenanceWindow>[]>;
 }
 
@@ -2436,102 +5626,255 @@ export interface KubernetesNodeGroupMaintenancePolicyMaintenanceWindow {
 }
 
 export interface KubernetesNodeGroupScalePolicy {
+    /**
+     * Scale policy for an autoscaled node group. The structure is documented below.
+     */
     autoScale?: pulumi.Input<inputs.KubernetesNodeGroupScalePolicyAutoScale>;
+    /**
+     * Scale policy for a fixed scale node group. The structure is documented below.
+     */
     fixedScale?: pulumi.Input<inputs.KubernetesNodeGroupScalePolicyFixedScale>;
 }
 
 export interface KubernetesNodeGroupScalePolicyAutoScale {
+    /**
+     * Initial number of instances in the node group.
+     */
     initial: pulumi.Input<number>;
+    /**
+     * Maximum number of instances in the node group.
+     */
     max: pulumi.Input<number>;
+    /**
+     * Minimum number of instances in the node group.
+     */
     min: pulumi.Input<number>;
 }
 
 export interface KubernetesNodeGroupScalePolicyFixedScale {
+    /**
+     * The number of instances in the node group.
+     */
     size?: pulumi.Input<number>;
 }
 
 export interface KubernetesNodeGroupVersionInfo {
+    /**
+     * Current Kubernetes version, major.minor (e.g. 1.15).
+     */
     currentVersion?: pulumi.Input<string>;
+    /**
+     * True/false flag.
+     * Newer revisions may include Kubernetes patches (e.g 1.15.1 > 1.15.2) as well
+     * as some internal component updates - new features or bug fixes in yandex-specific
+     * components either on the master or nodes.
+     */
     newRevisionAvailable?: pulumi.Input<boolean>;
+    /**
+     * Human readable description of the changes to be applied
+     * when updating to the latest revision. Empty if newRevisionAvailable is false.
+     */
     newRevisionSummary?: pulumi.Input<string>;
+    /**
+     * True/false flag. The current version is on the deprecation schedule,
+     * component (master or node group) should be upgraded.
+     */
     versionDeprecated?: pulumi.Input<boolean>;
 }
 
 export interface LbNetworkLoadBalancerAttachedTargetGroup {
+    /**
+     * A HealthCheck resource. The structure is documented below.
+     */
     healthchecks: pulumi.Input<pulumi.Input<inputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheck>[]>;
+    /**
+     * ID of the target group.
+     */
     targetGroupId: pulumi.Input<string>;
 }
 
 export interface LbNetworkLoadBalancerAttachedTargetGroupHealthcheck {
+    /**
+     * Number of successful health checks required in order to set the `HEALTHY` status for the target.
+     */
     healthyThreshold?: pulumi.Input<number>;
+    /**
+     * Options for HTTP health check. The structure is documented below.
+     */
     httpOptions?: pulumi.Input<inputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptions>;
+    /**
+     * The interval between health checks. The default is 2 seconds.
+     */
     interval?: pulumi.Input<number>;
+    /**
+     * Name of the listener. The name must be unique for each listener on a single load balancer.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Options for TCP health check. The structure is documented below.
+     */
     tcpOptions?: pulumi.Input<inputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptions>;
+    /**
+     * Timeout for a target to return a response for the health check. The default is 1 second.
+     */
     timeout?: pulumi.Input<number>;
+    /**
+     * Number of failed health checks before changing the status to `UNHEALTHY`. The default is 2.
+     */
     unhealthyThreshold?: pulumi.Input<number>;
 }
 
 export interface LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptions {
+    /**
+     * URL path to set for health checking requests for every target in the target group. For example `/ping`. The default path is `/`.
+     */
     path?: pulumi.Input<string>;
+    /**
+     * Port for incoming traffic.
+     */
     port: pulumi.Input<number>;
 }
 
 export interface LbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptions {
+    /**
+     * Port for incoming traffic.
+     */
     port: pulumi.Input<number>;
 }
 
 export interface LbNetworkLoadBalancerListener {
+    /**
+     * External IP address specification. The structure is documented below.
+     */
     externalAddressSpec?: pulumi.Input<inputs.LbNetworkLoadBalancerListenerExternalAddressSpec>;
+    /**
+     * Internal IP address specification. The structure is documented below.
+     */
     internalAddressSpec?: pulumi.Input<inputs.LbNetworkLoadBalancerListenerInternalAddressSpec>;
+    /**
+     * Name of the listener. The name must be unique for each listener on a single load balancer.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Port for incoming traffic.
+     */
     port: pulumi.Input<number>;
+    /**
+     * Protocol for incoming traffic. TCP or UDP and the default is TCP.
+     */
     protocol?: pulumi.Input<string>;
+    /**
+     * Port of a target. The default is the same as listener's port.
+     */
     targetPort?: pulumi.Input<number>;
 }
 
 export interface LbNetworkLoadBalancerListenerExternalAddressSpec {
+    /**
+     * Internal IP address for a listener. Must belong to the subnet that is referenced in subnet_id. IP address will be allocated if it wasn't been set.
+     */
     address?: pulumi.Input<string>;
+    /**
+     * IP version of the internal addresses that the load balancer works with. Must be one of ipv4 or ipv6. The default is ipv4.
+     */
     ipVersion?: pulumi.Input<string>;
 }
 
 export interface LbNetworkLoadBalancerListenerInternalAddressSpec {
+    /**
+     * Internal IP address for a listener. Must belong to the subnet that is referenced in subnet_id. IP address will be allocated if it wasn't been set.
+     */
     address?: pulumi.Input<string>;
+    /**
+     * IP version of the internal addresses that the load balancer works with. Must be one of ipv4 or ipv6. The default is ipv4.
+     */
     ipVersion?: pulumi.Input<string>;
+    /**
+     * ID of the subnet to which the internal IP address belongs.
+     */
     subnetId: pulumi.Input<string>;
 }
 
 export interface LbTargetGroupTarget {
+    /**
+     * IP address of the target.
+     */
     address: pulumi.Input<string>;
+    /**
+     * ID of the subnet that targets are connected to. 
+     * All targets in the target group must be connected to the same subnet within a single availability zone.
+     */
     subnetId: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterAccess {
+    /**
+     * Allow access for DataLens. Can be either `true` or `false`.
+     */
     dataLens?: pulumi.Input<boolean>;
+    /**
+     * Allow access for DataTransfer. Can be either `true` or `false`.
+     */
     dataTransfer?: pulumi.Input<boolean>;
+    /**
+     * Allow access for Yandex.Metrika. Can be either `true` or `false`.
+     */
     metrika?: pulumi.Input<boolean>;
+    /**
+     * Allow access for Serverless. Can be either `true` or `false`.
+     */
     serverless?: pulumi.Input<boolean>;
+    /**
+     * Allow access for Web SQL. Can be either `true` or `false`.
+     */
     webSql?: pulumi.Input<boolean>;
+    /**
+     * Allow access for YandexQuery. Can be either `true` or `false`.
+     */
     yandexQuery?: pulumi.Input<boolean>;
 }
 
 export interface MdbClickhouseClusterBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours?: pulumi.Input<number>;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes?: pulumi.Input<number>;
 }
 
 export interface MdbClickhouseClusterClickhouse {
+    /**
+     * Main ClickHouse cluster configuration.
+     */
     config?: pulumi.Input<inputs.MdbClickhouseClusterClickhouseConfig>;
+    /**
+     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources: pulumi.Input<inputs.MdbClickhouseClusterClickhouseResources>;
 }
 
 export interface MdbClickhouseClusterClickhouseConfig {
     backgroundPoolSize?: pulumi.Input<number>;
     backgroundSchedulePoolSize?: pulumi.Input<number>;
+    /**
+     * Data compression configuration. The structure is documented below.
+     */
     compressions?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterClickhouseConfigCompression>[]>;
     geobaseUri?: pulumi.Input<string>;
+    /**
+     * Graphite rollup configuration. The structure is documented below.
+     */
     graphiteRollups?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterClickhouseConfigGraphiteRollup>[]>;
+    /**
+     * Kafka connection configuration. The structure is documented below.
+     */
     kafka?: pulumi.Input<inputs.MdbClickhouseClusterClickhouseConfigKafka>;
+    /**
+     * Kafka topic connection configuration. The structure is documented below.
+     */
     kafkaTopics?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterClickhouseConfigKafkaTopic>[]>;
     keepAliveTimeout?: pulumi.Input<number>;
     logLevel?: pulumi.Input<string>;
@@ -2540,6 +5883,9 @@ export interface MdbClickhouseClusterClickhouseConfig {
     maxConnections?: pulumi.Input<number>;
     maxPartitionSizeToDrop?: pulumi.Input<number>;
     maxTableSizeToDrop?: pulumi.Input<number>;
+    /**
+     * MergeTree engine configuration. The structure is documented below.
+     */
     mergeTree?: pulumi.Input<inputs.MdbClickhouseClusterClickhouseConfigMergeTree>;
     metricLogEnabled?: pulumi.Input<boolean>;
     metricLogRetentionSize?: pulumi.Input<number>;
@@ -2551,6 +5897,9 @@ export interface MdbClickhouseClusterClickhouseConfig {
     queryThreadLogEnabled?: pulumi.Input<boolean>;
     queryThreadLogRetentionSize?: pulumi.Input<number>;
     queryThreadLogRetentionTime?: pulumi.Input<number>;
+    /**
+     * RabbitMQ connection configuration. The structure is documented below.
+     */
     rabbitmq?: pulumi.Input<inputs.MdbClickhouseClusterClickhouseConfigRabbitmq>;
     textLogEnabled?: pulumi.Input<boolean>;
     textLogLevel?: pulumi.Input<string>;
@@ -2564,302 +5913,880 @@ export interface MdbClickhouseClusterClickhouseConfig {
 }
 
 export interface MdbClickhouseClusterClickhouseConfigCompression {
+    /**
+     * Method: Compression method. Two methods are available: LZ4 and zstd.
+     */
     method: pulumi.Input<string>;
+    /**
+     * Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
+     */
     minPartSize: pulumi.Input<number>;
+    /**
+     * Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
+     */
     minPartSizeRatio: pulumi.Input<number>;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigGraphiteRollup {
+    /**
+     * Graphite rollup configuration name.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Set of thinning rules.
+     */
     patterns?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterClickhouseConfigGraphiteRollupPattern>[]>;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigGraphiteRollupPattern {
+    /**
+     * Aggregation function name.
+     */
     function: pulumi.Input<string>;
+    /**
+     * Regular expression that the metric name must match.
+     */
     regexp?: pulumi.Input<string>;
+    /**
+     * Retain parameters.
+     */
     retentions?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetention>[]>;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetention {
+    /**
+     * Minimum data age in seconds.
+     */
     age: pulumi.Input<number>;
+    /**
+     * Accuracy of determining the age of the data in seconds.
+     */
     precision: pulumi.Input<number>;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigKafka {
+    /**
+     * SASL mechanism used in kafka authentication.
+     */
     saslMechanism?: pulumi.Input<string>;
+    /**
+     * User password on kafka server.
+     */
     saslPassword?: pulumi.Input<string>;
+    /**
+     * Username on kafka server.
+     */
     saslUsername?: pulumi.Input<string>;
+    /**
+     * Security protocol used to connect to kafka server.
+     */
     securityProtocol?: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigKafkaTopic {
+    /**
+     * Graphite rollup configuration name.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Kafka connection settngs sanem as `kafka` block.
+     */
     settings?: pulumi.Input<inputs.MdbClickhouseClusterClickhouseConfigKafkaTopicSettings>;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigKafkaTopicSettings {
+    /**
+     * SASL mechanism used in kafka authentication.
+     */
     saslMechanism?: pulumi.Input<string>;
+    /**
+     * User password on kafka server.
+     */
     saslPassword?: pulumi.Input<string>;
+    /**
+     * Username on kafka server.
+     */
     saslUsername?: pulumi.Input<string>;
+    /**
+     * Security protocol used to connect to kafka server.
+     */
     securityProtocol?: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigMergeTree {
+    /**
+     * Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
+     */
     maxBytesToMergeAtMinSpaceInPool?: pulumi.Input<number>;
+    /**
+     * Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
+     */
     maxReplicatedMergesInQueue?: pulumi.Input<number>;
+    /**
+     * Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
+     */
     numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge?: pulumi.Input<number>;
+    /**
+     * Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
+     */
     partsToDelayInsert?: pulumi.Input<number>;
+    /**
+     * Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
+     */
     partsToThrowInsert?: pulumi.Input<number>;
+    /**
+     * Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
+     */
     replicatedDeduplicationWindow?: pulumi.Input<number>;
+    /**
+     * Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
+     */
     replicatedDeduplicationWindowSeconds?: pulumi.Input<number>;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigRabbitmq {
+    /**
+     * RabbitMQ user password.
+     */
     password?: pulumi.Input<string>;
+    /**
+     * RabbitMQ username.
+     */
     username?: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterClickhouseResources {
+    /**
+     * Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
     diskTypeId: pulumi.Input<string>;
     resourcePresetId: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterCloudStorage {
+    /**
+     * Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+     */
     enabled: pulumi.Input<boolean>;
 }
 
 export interface MdbClickhouseClusterDatabase {
+    /**
+     * Graphite rollup configuration name.
+     */
     name: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterFormatSchema {
+    /**
+     * Graphite rollup configuration name.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: pulumi.Input<string>;
+    /**
+     * Model file URL. You can only use models stored in Yandex Object Storage.
+     */
     uri: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterHost {
+    /**
+     * Sets whether the host should get a public IP address on creation. Can be either `true` or `false`.
+     */
     assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn?: pulumi.Input<string>;
+    /**
+     * The name of the shard to which the host belongs.
+     */
     shardName?: pulumi.Input<string>;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
     subnetId?: pulumi.Input<string>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: pulumi.Input<string>;
+    /**
+     * The availability zone where the ClickHouse host will be created.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+     */
     zone: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterMaintenanceWindow {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day?: pulumi.Input<string>;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
     hour?: pulumi.Input<number>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterMlModel {
+    /**
+     * Graphite rollup configuration name.
+     */
     name: pulumi.Input<string>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: pulumi.Input<string>;
+    /**
+     * Model file URL. You can only use models stored in Yandex Object Storage.
+     */
     uri: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterShardGroup {
+    /**
+     * Description of the shard group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Graphite rollup configuration name.
+     */
     name: pulumi.Input<string>;
+    /**
+     * List of shards names that belong to the shard group.
+     */
     shardNames: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface MdbClickhouseClusterUser {
+    /**
+     * Graphite rollup configuration name.
+     */
     name: pulumi.Input<string>;
+    /**
+     * RabbitMQ user password.
+     */
     password: pulumi.Input<string>;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterUserPermission>[]>;
+    /**
+     * Set of user quotas. The structure is documented below.
+     */
     quotas?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterUserQuota>[]>;
+    /**
+     * Kafka connection settngs sanem as `kafka` block.
+     */
     settings?: pulumi.Input<inputs.MdbClickhouseClusterUserSettings>;
 }
 
 export interface MdbClickhouseClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterUserQuota {
+    /**
+     * The number of queries that threw exception.
+     */
     errors?: pulumi.Input<number>;
+    /**
+     * The total query execution time, in milliseconds (wall time).
+     */
     executionTime?: pulumi.Input<number>;
+    /**
+     * Duration of interval for quota in milliseconds.
+     */
     intervalDuration: pulumi.Input<number>;
+    /**
+     * The total number of queries.
+     */
     queries?: pulumi.Input<number>;
+    /**
+     * The total number of source rows read from tables for running the query, on all remote servers.
+     */
     readRows?: pulumi.Input<number>;
+    /**
+     * The total number of rows given as the result.
+     */
     resultRows?: pulumi.Input<number>;
 }
 
 export interface MdbClickhouseClusterUserSettings {
+    /**
+     * Include CORS headers in HTTP responces.
+     */
     addHttpCorsHeader?: pulumi.Input<boolean>;
+    /**
+     * Allows or denies DDL queries.
+     */
     allowDdl?: pulumi.Input<boolean>;
+    /**
+     * Enable compilation of queries.
+     */
     compile?: pulumi.Input<boolean>;
+    /**
+     * Turn on expression compilation.
+     */
     compileExpressions?: pulumi.Input<boolean>;
+    /**
+     * Connect timeout in milliseconds on the socket used for communicating with the client.
+     */
     connectTimeout?: pulumi.Input<number>;
+    /**
+     * Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
+     */
     countDistinctImplementation?: pulumi.Input<string>;
+    /**
+     * Sets behaviour on overflow when using DISTINCT. Possible values:
+     */
     distinctOverflowMode?: pulumi.Input<string>;
+    /**
+     * Determine the behavior of distributed subqueries.
+     */
     distributedAggregationMemoryEfficient?: pulumi.Input<boolean>;
+    /**
+     * Timeout for DDL queries, in milliseconds.
+     */
     distributedDdlTaskTimeout?: pulumi.Input<number>;
+    /**
+     * Changes the behaviour of distributed subqueries.
+     */
     distributedProductMode?: pulumi.Input<string>;
+    /**
+     * Allows to retunr empty result.
+     */
     emptyResultForAggregationByEmptySet?: pulumi.Input<boolean>;
+    /**
+     * Enables or disables data compression in the response to an HTTP request.
+     */
     enableHttpCompression?: pulumi.Input<boolean>;
+    /**
+     * Forces a query to an out-of-date replica if updated data is not available.
+     */
     fallbackToStaleReplicasForDistributedQueries?: pulumi.Input<boolean>;
+    /**
+     * Disables query execution if the index can’t be used by date.
+     */
     forceIndexByDate?: pulumi.Input<boolean>;
+    /**
+     * Disables query execution if indexing by the primary key is not possible.
+     */
     forcePrimaryKey?: pulumi.Input<boolean>;
+    /**
+     * Sets behaviour on overflow while GROUP BY operation. Possible values:
+     */
     groupByOverflowMode?: pulumi.Input<string>;
+    /**
+     * Sets the threshold of the number of keys, after that the two-level aggregation should be used.
+     */
     groupByTwoLevelThreshold?: pulumi.Input<number>;
+    /**
+     * Sets the threshold of the number of bytes, after that the two-level aggregation should be used.
+     */
     groupByTwoLevelThresholdBytes?: pulumi.Input<number>;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
     httpConnectionTimeout?: pulumi.Input<number>;
+    /**
+     * Sets minimal interval between notifications about request process in HTTP header X-ClickHouse-Progress.
+     */
     httpHeadersProgressInterval?: pulumi.Input<number>;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
     httpReceiveTimeout?: pulumi.Input<number>;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
     httpSendTimeout?: pulumi.Input<number>;
+    /**
+     * When performing INSERT queries, replace omitted input column values with default values of the respective columns.
+     */
     inputFormatDefaultsForOmittedFields?: pulumi.Input<boolean>;
+    /**
+     * Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
+     */
     inputFormatValuesInterpretExpressions?: pulumi.Input<boolean>;
+    /**
+     * Enables the quorum writes.
+     */
     insertQuorum?: pulumi.Input<number>;
+    /**
+     * Write to a quorum timeout in milliseconds.
+     */
     insertQuorumTimeout?: pulumi.Input<number>;
+    /**
+     * Sets behaviour on overflow in JOIN. Possible values:
+     */
     joinOverflowMode?: pulumi.Input<string>;
+    /**
+     * Sets the type of JOIN behaviour. When merging tables, empty cells may appear. ClickHouse fills them differently based on this setting.
+     */
     joinUseNulls?: pulumi.Input<boolean>;
+    /**
+     * Require aliases for subselects and table functions in FROM that more than one table is present.
+     */
     joinedSubqueryRequiresAlias?: pulumi.Input<boolean>;
+    /**
+     * Allows or restricts using the LowCardinality data type with the Native format.
+     */
     lowCardinalityAllowInNativeFormat?: pulumi.Input<boolean>;
+    /**
+     * Maximum abstract syntax tree depth.
+     */
     maxAstDepth?: pulumi.Input<number>;
+    /**
+     * Maximum abstract syntax tree elements.
+     */
     maxAstElements?: pulumi.Input<number>;
+    /**
+     * A recommendation for what size of the block (in a count of rows) to load from tables.
+     */
     maxBlockSize?: pulumi.Input<number>;
+    /**
+     * Limit in bytes for using memoru for GROUP BY before using swap on disk.
+     */
     maxBytesBeforeExternalGroupBy?: pulumi.Input<number>;
+    /**
+     * This setting is equivalent of the maxBytesBeforeExternalGroupBy setting, except for it is for sort operation (ORDER BY), not aggregation.
+     */
     maxBytesBeforeExternalSort?: pulumi.Input<number>;
+    /**
+     * Limits the maximum size of a hash table in bytes (uncompressed data) when using DISTINCT.
+     */
     maxBytesInDistinct?: pulumi.Input<number>;
+    /**
+     * Limit on maximum size of the hash table for JOIN, in bytes.
+     */
     maxBytesInJoin?: pulumi.Input<number>;
+    /**
+     * Limit on the number of bytes in the set resulting from the execution of the IN section.
+     */
     maxBytesInSet?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be read from a table when running a query.
+     */
     maxBytesToRead?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be read from a table for sorting.
+     */
     maxBytesToSort?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+     */
     maxBytesToTransfer?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of columns that can be read from a table in a single query.
+     */
     maxColumnsToRead?: pulumi.Input<number>;
+    /**
+     * Limits the maximum query execution time in milliseconds.
+     */
     maxExecutionTime?: pulumi.Input<number>;
+    /**
+     * Maximum abstract syntax tree depth after after expansion of aliases.
+     */
     maxExpandedAstElements?: pulumi.Input<number>;
+    /**
+     * The size of blocks (in a count of rows) to form for insertion into a table.
+     */
     maxInsertBlockSize?: pulumi.Input<number>;
+    /**
+     * Limits the maximum memory usage (in bytes) for processing queries on a single server.
+     */
     maxMemoryUsage?: pulumi.Input<number>;
+    /**
+     * Limits the maximum memory usage (in bytes) for processing of user's queries on a single server.
+     */
     maxMemoryUsageForUser?: pulumi.Input<number>;
+    /**
+     * Limits the speed of the data exchange over the network in bytes per second.
+     */
     maxNetworkBandwidth?: pulumi.Input<number>;
+    /**
+     * Limits the speed of the data exchange over the network in bytes per second.
+     */
     maxNetworkBandwidthForUser?: pulumi.Input<number>;
+    /**
+     * The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
+     */
     maxQuerySize?: pulumi.Input<number>;
+    /**
+     * Disables lagging replicas for distributed queries.
+     */
     maxReplicaDelayForDistributedQueries?: pulumi.Input<number>;
+    /**
+     * Limits the number of bytes in the result.
+     */
     maxResultBytes?: pulumi.Input<number>;
+    /**
+     * Limits the number of rows in the result.
+     */
     maxResultRows?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of different rows when using DISTINCT.
+     */
     maxRowsInDistinct?: pulumi.Input<number>;
+    /**
+     * Limit on maximum size of the hash table for JOIN, in rows.
+     */
     maxRowsInJoin?: pulumi.Input<number>;
+    /**
+     * Limit on the number of rows in the set resulting from the execution of the IN section.
+     */
     maxRowsInSet?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of unique keys received from aggregation function.
+     */
     maxRowsToGroupBy?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of rows that can be read from a table when running a query.
+     */
     maxRowsToRead?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of rows that can be read from a table for sorting.
+     */
     maxRowsToSort?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of rows that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+     */
     maxRowsToTransfer?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, including constant columns.
+     */
     maxTemporaryColumns?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, excluding constant columns.
+     */
     maxTemporaryNonConstColumns?: pulumi.Input<number>;
+    /**
+     * The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
+     */
     maxThreads?: pulumi.Input<number>;
+    /**
+     * If ClickHouse should read more than mergeTreeMaxBytesToUseCache bytes in one query, it doesn’t use the cache of uncompressed blocks.
+     */
     mergeTreeMaxBytesToUseCache?: pulumi.Input<number>;
+    /**
+     * If ClickHouse should read more than mergeTreeMaxRowsToUseCache rows in one query, it doesn’t use the cache of uncompressed blocks.
+     */
     mergeTreeMaxRowsToUseCache?: pulumi.Input<number>;
+    /**
+     * If the number of bytes to read from one file of a MergeTree-engine table exceeds merge_tree_min_bytes_for_concurrent_read, then ClickHouse tries to concurrently read from this file in several threads.
+     */
     mergeTreeMinBytesForConcurrentRead?: pulumi.Input<number>;
+    /**
+     * If the number of rows to be read from a file of a MergeTree table exceeds mergeTreeMinRowsForConcurrentRead then ClickHouse tries to perform a concurrent reading from this file on several threads.
+     */
     mergeTreeMinRowsForConcurrentRead?: pulumi.Input<number>;
+    /**
+     * The minimum data volume required for using direct I/O access to the storage disk.
+     */
     minBytesToUseDirectIo?: pulumi.Input<number>;
+    /**
+     * How many times to potentially use a compiled chunk of code before running compilation.
+     */
     minCountToCompile?: pulumi.Input<number>;
+    /**
+     * A query waits for expression compilation process to complete prior to continuing execution.
+     */
     minCountToCompileExpression?: pulumi.Input<number>;
+    /**
+     * Minimal execution speed in rows per second.
+     */
     minExecutionSpeed?: pulumi.Input<number>;
+    /**
+     * Minimal execution speed in bytes per second.
+     */
     minExecutionSpeedBytes?: pulumi.Input<number>;
+    /**
+     * Sets the minimum number of bytes in the block which can be inserted into a table by an INSERT query.
+     */
     minInsertBlockSizeBytes?: pulumi.Input<number>;
+    /**
+     * Sets the minimum number of rows in the block which can be inserted into a table by an INSERT query.
+     */
     minInsertBlockSizeRows?: pulumi.Input<number>;
+    /**
+     * If the value is true, integers appear in quotes when using JSON* Int64 and UInt64 formats (for compatibility with most JavaScript implementations); otherwise, integers are output without the quotes.
+     */
     outputFormatJsonQuote64bitIntegers?: pulumi.Input<boolean>;
+    /**
+     * Enables +nan, -nan, +inf, -inf outputs in JSON output format.
+     */
     outputFormatJsonQuoteDenormals?: pulumi.Input<boolean>;
+    /**
+     * Query priority.
+     */
     priority?: pulumi.Input<number>;
+    /**
+     * Quota accounting mode.
+     */
     quotaMode?: pulumi.Input<string>;
+    /**
+     * Sets behaviour on overflow while read. Possible values:
+     */
     readOverflowMode?: pulumi.Input<string>;
+    /**
+     * Restricts permissions for reading data, write data and change settings queries.
+     */
     readonly?: pulumi.Input<number>;
+    /**
+     * Receive timeout in milliseconds on the socket used for communicating with the client.
+     */
     receiveTimeout?: pulumi.Input<number>;
+    /**
+     * For ALTER ... ATTACH|DETACH|DROP queries, you can use the replicationAlterPartitionsSync setting to set up waiting.
+     */
     replicationAlterPartitionsSync?: pulumi.Input<number>;
+    /**
+     * Sets behaviour on overflow in result. Possible values:
+     */
     resultOverflowMode?: pulumi.Input<string>;
+    /**
+     * Enables or disables sequential consistency for SELECT queries.
+     */
     selectSequentialConsistency?: pulumi.Input<boolean>;
+    /**
+     * Enables or disables X-ClickHouse-Progress HTTP response headers in clickhouse-server responses.
+     */
     sendProgressInHttpHeaders?: pulumi.Input<boolean>;
+    /**
+     * Send timeout in milliseconds on the socket used for communicating with the client.
+     */
     sendTimeout?: pulumi.Input<number>;
+    /**
+     * Sets behaviour on overflow in the set resulting. Possible values:
+     */
     setOverflowMode?: pulumi.Input<string>;
+    /**
+     * Enables or disables silently skipping of unavailable shards.
+     */
     skipUnavailableShards?: pulumi.Input<boolean>;
+    /**
+     * Sets behaviour on overflow while sort. Possible values:
+     */
     sortOverflowMode?: pulumi.Input<string>;
+    /**
+     * Sets behaviour on overflow. Possible values:
+     */
     timeoutOverflowMode?: pulumi.Input<string>;
+    /**
+     * Sets behaviour on overflow. Possible values:
+     */
     transferOverflowMode?: pulumi.Input<string>;
+    /**
+     * Enables equality of NULL values for IN operator.
+     */
     transformNullIn?: pulumi.Input<boolean>;
+    /**
+     * Whether to use a cache of uncompressed blocks.
+     */
     useUncompressedCache?: pulumi.Input<boolean>;
 }
 
 export interface MdbClickhouseClusterZookeeper {
+    /**
+     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources?: pulumi.Input<inputs.MdbClickhouseClusterZookeeperResources>;
 }
 
 export interface MdbClickhouseClusterZookeeperResources {
+    /**
+     * Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize?: pulumi.Input<number>;
+    /**
+     * Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
     diskTypeId?: pulumi.Input<string>;
     resourcePresetId?: pulumi.Input<string>;
 }
 
 export interface MdbElasticSearchClusterConfig {
+    /**
+     * Password for admin user of Elasticsearch.
+     */
     adminPassword: pulumi.Input<string>;
+    /**
+     * Configuration for Elasticsearch data nodes subcluster. The structure is documented below.
+     */
     dataNode: pulumi.Input<inputs.MdbElasticSearchClusterConfigDataNode>;
+    /**
+     * Edition of Elasticsearch. For more information, see [the official documentation](https://cloud.yandex.com/en-ru/docs/managed-elasticsearch/concepts/es-editions).
+     */
     edition?: pulumi.Input<string>;
+    /**
+     * Configuration for Elasticsearch master nodes subcluster. The structure is documented below.
+     */
     masterNode?: pulumi.Input<inputs.MdbElasticSearchClusterConfigMasterNode>;
+    /**
+     * A set of Elasticsearch plugins to install.
+     */
     plugins?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Version of Elasticsearch.
+     */
     version?: pulumi.Input<string>;
 }
 
 export interface MdbElasticSearchClusterConfigDataNode {
+    /**
+     * Resources allocated to hosts of the Elasticsearch master nodes subcluster. The structure is documented below.
+     */
     resources: pulumi.Input<inputs.MdbElasticSearchClusterConfigDataNodeResources>;
 }
 
 export interface MdbElasticSearchClusterConfigDataNodeResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
     diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of Elasticsearch hosts.
+     */
     diskTypeId: pulumi.Input<string>;
     resourcePresetId: pulumi.Input<string>;
 }
 
 export interface MdbElasticSearchClusterConfigMasterNode {
+    /**
+     * Resources allocated to hosts of the Elasticsearch master nodes subcluster. The structure is documented below.
+     */
     resources: pulumi.Input<inputs.MdbElasticSearchClusterConfigMasterNodeResources>;
 }
 
 export interface MdbElasticSearchClusterConfigMasterNodeResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
     diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of Elasticsearch hosts.
+     */
     diskTypeId: pulumi.Input<string>;
     resourcePresetId: pulumi.Input<string>;
 }
 
 export interface MdbElasticSearchClusterHost {
+    /**
+     * Sets whether the host should get a public IP address on creation. Can be either `true` or `false`.
+     */
     assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn?: pulumi.Input<string>;
+    /**
+     * User defined host name.
+     */
     name: pulumi.Input<string>;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must
+     * be a part of the network to which the cluster belongs.
+     */
     subnetId?: pulumi.Input<string>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: pulumi.Input<string>;
+    /**
+     * The availability zone where the Elasticsearch host will be created.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+     */
     zone: pulumi.Input<string>;
 }
 
 export interface MdbElasticSearchClusterMaintenanceWindow {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day?: pulumi.Input<string>;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
     hour?: pulumi.Input<number>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: pulumi.Input<string>;
 }
 
 export interface MdbGreenplumClusterAccess {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
     dataLens?: pulumi.Input<boolean>;
+    /**
+     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: pulumi.Input<boolean>;
+    /**
+     * Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+     */
     webSql?: pulumi.Input<boolean>;
 }
 
 export interface MdbGreenplumClusterBackupWindowStart {
+    /**
+     * The hour at which backup will be started (UTC).
+     */
     hours?: pulumi.Input<number>;
+    /**
+     * The minute at which backup will be started (UTC).
+     */
     minutes?: pulumi.Input<number>;
 }
 
 export interface MdbGreenplumClusterMaintenanceWindow {
+    /**
+     * Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+     */
     day?: pulumi.Input<string>;
+    /**
+     * Hour of the day in UTC (in `HH` format). Allowed value is between 0 and 23.
+     */
     hour?: pulumi.Input<number>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: pulumi.Input<string>;
 }
 
 export interface MdbGreenplumClusterMasterHost {
+    /**
+     * Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+     */
     assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * (Computed) The fully qualified domain name of the host.
+     */
     fqdn?: pulumi.Input<string>;
 }
 
 export interface MdbGreenplumClusterMasterSubcluster {
+    /**
+     * Resources allocated to hosts for segment subcluster of the Greenplum cluster. The structure is documented below.
+     */
     resources: pulumi.Input<inputs.MdbGreenplumClusterMasterSubclusterResources>;
 }
 
@@ -2870,16 +6797,31 @@ export interface MdbGreenplumClusterMasterSubclusterResources {
 }
 
 export interface MdbGreenplumClusterPoolerConfig {
+    /**
+     * Value for `poolClientIdleTimeout` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_ttl-integer).
+     */
     poolClientIdleTimeout?: pulumi.Input<number>;
+    /**
+     * Value for `poolSize` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_size-integer).
+     */
     poolSize?: pulumi.Input<number>;
+    /**
+     * Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
+     */
     poolingMode?: pulumi.Input<string>;
 }
 
 export interface MdbGreenplumClusterSegmentHost {
+    /**
+     * (Computed) The fully qualified domain name of the host.
+     */
     fqdn?: pulumi.Input<string>;
 }
 
 export interface MdbGreenplumClusterSegmentSubcluster {
+    /**
+     * Resources allocated to hosts for segment subcluster of the Greenplum cluster. The structure is documented below.
+     */
     resources: pulumi.Input<inputs.MdbGreenplumClusterSegmentSubclusterResources>;
 }
 
@@ -2890,23 +6832,59 @@ export interface MdbGreenplumClusterSegmentSubclusterResources {
 }
 
 export interface MdbKafkaClusterConfig {
+    /**
+     * Access policy to the Kafka cluster. The structure is documented below.
+     */
     access?: pulumi.Input<inputs.MdbKafkaClusterConfigAccess>;
+    /**
+     * Determines whether each broker will be assigned a public IP address. The default is `false`.
+     */
     assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * Count of brokers per availability zone. The default is `1`.
+     */
     brokersCount?: pulumi.Input<number>;
+    /**
+     * Configuration of the Kafka subcluster. The structure is documented below.
+     */
     kafka: pulumi.Input<inputs.MdbKafkaClusterConfigKafka>;
+    /**
+     * Enables managed schema registry on cluster. The default is `false`.
+     */
     schemaRegistry?: pulumi.Input<boolean>;
+    /**
+     * Allows to use Kafka AdminAPI to manage topics. The default is `false`.
+     */
     unmanagedTopics?: pulumi.Input<boolean>;
+    /**
+     * Version of the Kafka server software.
+     */
     version: pulumi.Input<string>;
+    /**
+     * List of availability zones.
+     */
     zones: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Configuration of the ZooKeeper subcluster. The structure is documented below.
+     */
     zookeeper?: pulumi.Input<inputs.MdbKafkaClusterConfigZookeeper>;
 }
 
 export interface MdbKafkaClusterConfigAccess {
+    /**
+     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: pulumi.Input<boolean>;
 }
 
 export interface MdbKafkaClusterConfigKafka {
+    /**
+     * User-defined settings for the Kafka cluster. The structure is documented below.
+     */
     kafkaConfig?: pulumi.Input<inputs.MdbKafkaClusterConfigKafkaKafkaConfig>;
+    /**
+     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources: pulumi.Input<inputs.MdbKafkaClusterConfigKafkaResources>;
 }
 
@@ -2933,40 +6911,96 @@ export interface MdbKafkaClusterConfigKafkaKafkaConfig {
 }
 
 export interface MdbKafkaClusterConfigKafkaResources {
+    /**
+     * Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+     */
     diskTypeId: pulumi.Input<string>;
     resourcePresetId: pulumi.Input<string>;
 }
 
 export interface MdbKafkaClusterConfigZookeeper {
+    /**
+     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     */
     resources?: pulumi.Input<inputs.MdbKafkaClusterConfigZookeeperResources>;
 }
 
 export interface MdbKafkaClusterConfigZookeeperResources {
+    /**
+     * Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
     diskSize?: pulumi.Input<number>;
+    /**
+     * Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+     */
     diskTypeId?: pulumi.Input<string>;
     resourcePresetId?: pulumi.Input<string>;
 }
 
 export interface MdbKafkaClusterHost {
+    /**
+     * Determines whether each broker will be assigned a public IP address. The default is `false`.
+     */
     assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * Health of the host.
+     */
     health?: pulumi.Input<string>;
+    /**
+     * The name of the topic.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The role type to grant to the topic.
+     */
     role?: pulumi.Input<string>;
+    /**
+     * The ID of the subnet, to which the host belongs.
+     */
     subnetId?: pulumi.Input<string>;
+    /**
+     * The availability zone where the Kafka host was created.
+     */
     zoneId?: pulumi.Input<string>;
 }
 
 export interface MdbKafkaClusterMaintenanceWindow {
+    /**
+     * Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+     */
     day?: pulumi.Input<string>;
+    /**
+     * Hour of the day in UTC (in `HH` format). Allowed value is between 1 and 24.
+     */
     hour?: pulumi.Input<number>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: pulumi.Input<string>;
 }
 
 export interface MdbKafkaClusterTopic {
+    /**
+     * The name of the topic.
+     */
     name: pulumi.Input<string>;
+    /**
+     * The number of the topic's partitions.
+     */
     partitions: pulumi.Input<number>;
+    /**
+     * Amount of data copies (replicas) for the topic in the cluster.
+     */
     replicationFactor: pulumi.Input<number>;
+    /**
+     * User-defined settings for the topic. The structure is documented below.
+     */
     topicConfig?: pulumi.Input<inputs.MdbKafkaClusterTopicTopicConfig>;
 }
 
@@ -2987,13 +7021,28 @@ export interface MdbKafkaClusterTopicTopicConfig {
 }
 
 export interface MdbKafkaClusterUser {
+    /**
+     * The name of the topic.
+     */
     name: pulumi.Input<string>;
+    /**
+     * The password of the user.
+     */
     password: pulumi.Input<string>;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions?: pulumi.Input<pulumi.Input<inputs.MdbKafkaClusterUserPermission>[]>;
 }
 
 export interface MdbKafkaClusterUserPermission {
+    /**
+     * The role type to grant to the topic.
+     */
     role: pulumi.Input<string>;
+    /**
+     * The name of the topic that the permission grants access to.
+     */
     topicName: pulumi.Input<string>;
 }
 
@@ -3014,228 +7063,605 @@ export interface MdbKafkaTopicTopicConfig {
 }
 
 export interface MdbMongodbClusterClusterConfig {
+    /**
+     * Access policy to the MongoDB cluster. The structure is documented below.
+     */
     access?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigAccess>;
+    /**
+     * Time to start the daily backup, in the UTC timezone. The structure is documented below.
+     */
     backupWindowStart?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigBackupWindowStart>;
+    /**
+     * Feature compatibility version of MongoDB. If not provided version is taken. Can be either `5.0`, `4.4`, `4.2` and `4.0`.
+     */
     featureCompatibilityVersion?: pulumi.Input<string>;
+    /**
+     * Configuration of the mongod service. The structure is documented below.
+     */
     mongod?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongod>;
+    /**
+     * Version of MongoDB (either 5.0, 4.4, 4.2 or 4.0).
+     */
     version: pulumi.Input<string>;
 }
 
 export interface MdbMongodbClusterClusterConfigAccess {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
     dataLens?: pulumi.Input<boolean>;
+    /**
+     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: pulumi.Input<boolean>;
 }
 
 export interface MdbMongodbClusterClusterConfigBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours?: pulumi.Input<number>;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes?: pulumi.Input<number>;
 }
 
 export interface MdbMongodbClusterClusterConfigMongod {
+    /**
+     * A set of audit log settings 
+     * (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
+     * The structure is documented below. Available only in enterprise edition.
+     */
     auditLog?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongodAuditLog>;
+    /**
+     * A set of MongoDB Security settings
+     * (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
+     * The structure is documented below. Available only in enterprise edition.
+     */
     security?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongodSecurity>;
+    /**
+     * A set of MongoDB Server Parameters 
+     * (see the [setParameter](https://www.mongodb.com/docs/manual/reference/configuration-options/#setparameter-option) option).
+     * The structure is documented below.
+     */
     setParameter?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongodSetParameter>;
 }
 
 export interface MdbMongodbClusterClusterConfigMongodAuditLog {
+    /**
+     * Configuration of the audit log filter in JSON format.
+     * For more information see [auditLog.filter](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.filter)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     filter?: pulumi.Input<string>;
     runtimeConfiguration?: pulumi.Input<boolean>;
 }
 
 export interface MdbMongodbClusterClusterConfigMongodSecurity {
+    /**
+     * Enables the encryption for the WiredTiger storage engine. Can be either true or false.
+     * For more information see [security.enableEncryption](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.enableEncryption)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     enableEncryption?: pulumi.Input<boolean>;
+    /**
+     * Configuration of the third party key management appliance via the Key Management Interoperability Protocol (KMIP)
+     * (see [Encryption tutorial](https://www.mongodb.com/docs/rapid/tutorial/configure-encryption) ). Requires `enableEncryption` to be true.
+     * The structure is documented below. Available only in enterprise edition.
+     */
     kmip?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongodSecurityKmip>;
 }
 
 export interface MdbMongodbClusterClusterConfigMongodSecurityKmip {
+    /**
+     * String containing the client certificate used for authenticating MongoDB to the KMIP server.
+     * For more information see [security.kmip.clientCertificateFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.clientCertificateFile)
+     * description in the official documentation.
+     */
     clientCertificate?: pulumi.Input<string>;
+    /**
+     * Unique KMIP identifier for an existing key within the KMIP server.
+     * For more information see [security.kmip.keyIdentifier](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.keyIdentifier)
+     * description in the official documentation.
+     */
     keyIdentifier?: pulumi.Input<string>;
+    /**
+     * Port number to use to communicate with the KMIP server. Default: 5696
+     * For more information see [security.kmip.port](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.port)
+     * description in the official documentation.
+     */
     port?: pulumi.Input<number>;
+    /**
+     * Path to CA File. Used for validating secure client connection to KMIP server.
+     * For more information see [security.kmip.serverCAFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverCAFile)
+     * description in the official documentation.
+     */
     serverCa?: pulumi.Input<string>;
+    /**
+     * Hostname or IP address of the KMIP server to connect to.
+     * For more information see [security.kmip.serverName](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverName)
+     * description in the official documentation.
+     */
     serverName?: pulumi.Input<string>;
 }
 
 export interface MdbMongodbClusterClusterConfigMongodSetParameter {
+    /**
+     * Enables the auditing of authorization successes. Can be either true or false.
+     * For more information, see the [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.auditAuthorizationSuccess)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     auditAuthorizationSuccess?: pulumi.Input<boolean>;
 }
 
 export interface MdbMongodbClusterDatabase {
+    /**
+     * The fully qualified domain name of the host. Computed on server side.
+     */
     name: pulumi.Input<string>;
 }
 
 export interface MdbMongodbClusterHost {
+    /**
+     * -(Optional)  Should this host have assigned public IP assigned. Can be either `true` or `false`.
+     */
     assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * The health of the host.
+     */
     health?: pulumi.Input<string>;
+    /**
+     * The fully qualified domain name of the host. Computed on server side.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The role of the cluster (either PRIMARY or SECONDARY).
+     */
     role?: pulumi.Input<string>;
+    /**
+     * The name of the shard to which the host belongs.
+     */
     shardName?: pulumi.Input<string>;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must
+     * be a part of the network to which the cluster belongs.
+     */
     subnetId: pulumi.Input<string>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type?: pulumi.Input<string>;
+    /**
+     * The availability zone where the MongoDB host will be created.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+     */
     zoneId: pulumi.Input<string>;
 }
 
 export interface MdbMongodbClusterMaintenanceWindow {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day?: pulumi.Input<string>;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
     hour?: pulumi.Input<number>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: pulumi.Input<string>;
 }
 
 export interface MdbMongodbClusterResources {
+    /**
+     * Volume of the storage available to a MongoDB host, in gigabytes.
+     */
     diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of MongoDB hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
     diskTypeId: pulumi.Input<string>;
     resourcePresetId: pulumi.Input<string>;
 }
 
 export interface MdbMongodbClusterUser {
+    /**
+     * The fully qualified domain name of the host. Computed on server side.
+     */
     name: pulumi.Input<string>;
+    /**
+     * The password of the user.
+     */
     password: pulumi.Input<string>;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions?: pulumi.Input<pulumi.Input<inputs.MdbMongodbClusterUserPermission>[]>;
 }
 
 export interface MdbMongodbClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName: pulumi.Input<string>;
+    /**
+     * The roles of the user in this database. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/users-and-roles).
+     */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface MdbMysqlClusterAccess {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
     dataLens?: pulumi.Input<boolean>;
+    /**
+     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
     dataTransfer?: pulumi.Input<boolean>;
+    /**
+     * Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+     */
     webSql?: pulumi.Input<boolean>;
 }
 
 export interface MdbMysqlClusterBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours?: pulumi.Input<number>;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes?: pulumi.Input<number>;
 }
 
 export interface MdbMysqlClusterDatabase {
+    /**
+     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replicationSourceName` parameter.
+     */
     name: pulumi.Input<string>;
 }
 
 export interface MdbMysqlClusterHost {
+    /**
+     * Sets whether the host should get a public IP address. It can be changed on the fly only when `name` is set.
+     */
     assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * Host backup priority. Value is between 0 and 100, default is 0.
+     */
     backupPriority?: pulumi.Input<number>;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn?: pulumi.Input<string>;
+    /**
+     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replicationSourceName` parameter.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Host master promotion priority. Value is between 0 and 100, default is 0.
+     */
     priority?: pulumi.Input<number>;
+    /**
+     * Host replication source (fqdn), when replicationSource is empty then host is in HA group.
+     */
     replicationSource?: pulumi.Input<string>;
+    /**
+     * Host replication source name points to host's `name` from which this host should replicate. When not set then host in HA group. It works only when `name` is set.
+     */
     replicationSourceName?: pulumi.Input<string>;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
     subnetId?: pulumi.Input<string>;
+    /**
+     * The availability zone where the MySQL host will be created.
+     */
     zone: pulumi.Input<string>;
 }
 
 export interface MdbMysqlClusterMaintenanceWindow {
+    /**
+     * Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+     */
     day?: pulumi.Input<string>;
+    /**
+     * Hour of the day in UTC (in `HH` format). Allowed value is between 0 and 23.
+     */
     hour?: pulumi.Input<number>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: pulumi.Input<string>;
 }
 
 export interface MdbMysqlClusterPerformanceDiagnostics {
+    /**
+     * Enable performance diagnostics
+     */
     enabled?: pulumi.Input<boolean>;
+    /**
+     * Interval (in seconds) for myStatActivity sampling Acceptable values are 1 to 86400, inclusive.
+     */
     sessionsSamplingInterval: pulumi.Input<number>;
+    /**
+     * Interval (in seconds) for myStatStatements sampling Acceptable values are 1 to 86400, inclusive.
+     */
     statementsSamplingInterval: pulumi.Input<number>;
 }
 
 export interface MdbMysqlClusterResources {
+    /**
+     * Volume of the storage available to a MySQL host, in gigabytes.
+     */
     diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of MySQL hosts.
+     */
     diskTypeId: pulumi.Input<string>;
     resourcePresetId: pulumi.Input<string>;
 }
 
 export interface MdbMysqlClusterRestore {
+    /**
+     * Backup ID. The cluster will be created from the specified backup. [How to get a list of MySQL backups](https://cloud.yandex.com/docs/managed-mysql/operations/cluster-backups).
+     */
     backupId: pulumi.Input<string>;
+    /**
+     * Timestamp of the moment to which the MySQL cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
+     */
     time?: pulumi.Input<string>;
 }
 
 export interface MdbMysqlClusterUser {
+    /**
+     * Authentication plugin. Allowed values: `MYSQL_NATIVE_PASSWORD`, `CACHING_SHA2_PASSWORD`, `SHA256_PASSWORD` (for version 5.7 `MYSQL_NATIVE_PASSWORD`, `SHA256_PASSWORD`)
+     */
     authenticationPlugin?: pulumi.Input<string>;
+    /**
+     * User's connection limits. The structure is documented below.
+     * If the attribute is not specified there will be no changes.
+     */
     connectionLimits?: pulumi.Input<inputs.MdbMysqlClusterUserConnectionLimits>;
+    /**
+     * List user's global permissions     
+     * Allowed permissions:  `REPLICATION_CLIENT`, `REPLICATION_SLAVE`, `PROCESS` for clear list use empty list.
+     * If the attribute is not specified there will be no changes.
+     */
     globalPermissions?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replicationSourceName` parameter.
+     */
     name: pulumi.Input<string>;
+    /**
+     * The password of the user.
+     */
     password: pulumi.Input<string>;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions?: pulumi.Input<pulumi.Input<inputs.MdbMysqlClusterUserPermission>[]>;
 }
 
 export interface MdbMysqlClusterUserConnectionLimits {
+    /**
+     * Max connections per hour.
+     */
     maxConnectionsPerHour?: pulumi.Input<number>;
+    /**
+     * Max questions per hour.
+     */
     maxQuestionsPerHour?: pulumi.Input<number>;
+    /**
+     * Max updates per hour.
+     */
     maxUpdatesPerHour?: pulumi.Input<number>;
+    /**
+     * Max user connections.
+     */
     maxUserConnections?: pulumi.Input<number>;
 }
 
 export interface MdbMysqlClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName: pulumi.Input<string>;
+    /**
+     * List user's roles in the database.
+     * Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+     * `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+     */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface MdbRedisClusterConfig {
+    /**
+     * Normal clients output buffer limits.
+     * See [redis config file](https://github.com/redis/redis/blob/6.2/redis.conf#L1841).
+     */
     clientOutputBufferLimitNormal?: pulumi.Input<string>;
+    /**
+     * Pubsub clients output buffer limits.
+     * See [redis config file](https://github.com/redis/redis/blob/6.2/redis.conf#L1843).
+     */
     clientOutputBufferLimitPubsub?: pulumi.Input<string>;
+    /**
+     * Number of databases (changing requires redis-server restart).
+     */
     databases?: pulumi.Input<number>;
+    /**
+     * Redis key eviction policy for a dataset that reaches maximum memory.
+     * Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/).
+     */
     maxmemoryPolicy?: pulumi.Input<string>;
+    /**
+     * Select the events that Redis will notify among a set of classes.
+     */
     notifyKeyspaceEvents?: pulumi.Input<string>;
+    /**
+     * Password for the Redis cluster.
+     */
     password: pulumi.Input<string>;
+    /**
+     * Log slow queries below this number in microseconds.
+     */
     slowlogLogSlowerThan?: pulumi.Input<number>;
+    /**
+     * Slow queries log length.
+     */
     slowlogMaxLen?: pulumi.Input<number>;
+    /**
+     * Close the connection after a client is idle for N seconds.
+     */
     timeout?: pulumi.Input<number>;
+    /**
+     * Version of Redis (6.2).
+     */
     version: pulumi.Input<string>;
 }
 
 export interface MdbRedisClusterHost {
+    /**
+     * Sets whether the host should get a public IP address or not.
+     */
     assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn?: pulumi.Input<string>;
+    /**
+     * Replica priority of a current replica (usable for non-sharded only).
+     */
     replicaPriority?: pulumi.Input<number>;
+    /**
+     * The name of the shard to which the host belongs.
+     */
     shardName?: pulumi.Input<string>;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must
+     * be a part of the network to which the cluster belongs.
+     */
     subnetId?: pulumi.Input<string>;
+    /**
+     * The availability zone where the Redis host will be created.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+     */
     zone: pulumi.Input<string>;
 }
 
 export interface MdbRedisClusterMaintenanceWindow {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
     day?: pulumi.Input<string>;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
     hour?: pulumi.Input<number>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
     type: pulumi.Input<string>;
 }
 
 export interface MdbRedisClusterResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
     diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of Redis hosts - environment default is used if missing.
+     */
     diskTypeId?: pulumi.Input<string>;
     resourcePresetId: pulumi.Input<string>;
 }
 
 export interface MdbSqlServerClusterBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
     hours?: pulumi.Input<number>;
+    /**
+     * The minute at which backup will be started.
+     */
     minutes?: pulumi.Input<number>;
 }
 
 export interface MdbSqlServerClusterDatabase {
+    /**
+     * The name of the database.
+     */
     name: pulumi.Input<string>;
 }
 
 export interface MdbSqlServerClusterHost {
+    /**
+     * Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment
+     */
     assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * The fully qualified domain name of the host.
+     */
     fqdn?: pulumi.Input<string>;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
     subnetId?: pulumi.Input<string>;
+    /**
+     * The availability zone where the SQLServer host will be created.
+     */
     zone: pulumi.Input<string>;
 }
 
 export interface MdbSqlServerClusterResources {
+    /**
+     * Volume of the storage available to a SQLServer host, in gigabytes.
+     */
     diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of SQLServer hosts.
+     */
     diskTypeId: pulumi.Input<string>;
     resourcePresetId: pulumi.Input<string>;
 }
 
 export interface MdbSqlServerClusterUser {
+    /**
+     * The name of the database.
+     */
     name: pulumi.Input<string>;
+    /**
+     * The password of the user.
+     */
     password: pulumi.Input<string>;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
     permissions?: pulumi.Input<pulumi.Input<inputs.MdbSqlServerClusterUserPermission>[]>;
 }
 
 export interface MdbSqlServerClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName: pulumi.Input<string>;
+    /**
+     * List user's roles in the database.
+     * Allowed roles: `OWNER`, `SECURITYADMIN`, `ACCESSADMIN`, `BACKUPOPERATOR`, `DDLADMIN`, `DATAWRITER`, `DATAREADER`, `DENYDATAWRITER`, `DENYDATAREADER`.
+     */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface OrganizationmanagerSamlFederationSecuritySettings {
+    /**
+     * Enable encrypted assertions.
+     */
     encryptedAssertions: pulumi.Input<boolean>;
 }
 
@@ -3244,6 +7670,9 @@ export interface ServerlessContainerImage {
     commands?: pulumi.Input<pulumi.Input<string>[]>;
     digest?: pulumi.Input<string>;
     environment?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Invoke URL for the Yandex Cloud Serverless Container
+     */
     url: pulumi.Input<string>;
     workDir?: pulumi.Input<string>;
 }
@@ -3256,19 +7685,43 @@ export interface ServerlessContainerSecret {
 }
 
 export interface StorageBucketAnonymousAccessFlags {
+    /**
+     * Allows to list object in bucket anonymously.
+     */
     list?: pulumi.Input<boolean>;
+    /**
+     * Allows to read objects in bucket anonymously.
+     */
     read?: pulumi.Input<boolean>;
 }
 
 export interface StorageBucketCorsRule {
+    /**
+     * Specifies which headers are allowed.
+     */
     allowedHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+     */
     allowedMethods: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies which origins are allowed.
+     */
     allowedOrigins: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies expose header in the response.
+     */
     exposeHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies time in seconds that browser can cache the response for a preflight request.
+     */
     maxAgeSeconds?: pulumi.Input<number>;
 }
 
 export interface StorageBucketGrant {
+    /**
+     * Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+     */
     id?: pulumi.Input<string>;
     permissions: pulumi.Input<pulumi.Input<string>[]>;
     type: pulumi.Input<string>;
@@ -3276,81 +7729,189 @@ export interface StorageBucketGrant {
 }
 
 export interface StorageBucketHttps {
+    /**
+     * — Id of the certificate in Certificate Manager, that will be used for bucket.
+     */
     certificateId: pulumi.Input<string>;
 }
 
 export interface StorageBucketLifecycleRule {
+    /**
+     * Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+     */
     abortIncompleteMultipartUploadDays?: pulumi.Input<number>;
+    /**
+     * Specifies lifecycle rule status.
+     */
     enabled: pulumi.Input<boolean>;
+    /**
+     * Specifies a period in the object's expire (documented below).
+     */
     expiration?: pulumi.Input<inputs.StorageBucketLifecycleRuleExpiration>;
+    /**
+     * Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * Specifies when noncurrent object versions expire (documented below).
+     */
     noncurrentVersionExpiration?: pulumi.Input<inputs.StorageBucketLifecycleRuleNoncurrentVersionExpiration>;
+    /**
+     * Specifies when noncurrent object versions transitions (documented below).
+     */
     noncurrentVersionTransitions?: pulumi.Input<pulumi.Input<inputs.StorageBucketLifecycleRuleNoncurrentVersionTransition>[]>;
+    /**
+     * Object key prefix identifying one or more objects to which the rule applies.
+     */
     prefix?: pulumi.Input<string>;
+    /**
+     * Specifies a period in the object's transitions (documented below).
+     */
     transitions?: pulumi.Input<pulumi.Input<inputs.StorageBucketLifecycleRuleTransition>[]>;
 }
 
 export interface StorageBucketLifecycleRuleExpiration {
+    /**
+     * Specifies the date after which you want the corresponding action to take effect.
+     */
     date?: pulumi.Input<string>;
+    /**
+     * Specifies the number of days after object creation when the specific rule action takes effect.
+     */
     days?: pulumi.Input<number>;
+    /**
+     * On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Object Storage to delete expired object delete markers.
+     */
     expiredObjectDeleteMarker?: pulumi.Input<boolean>;
 }
 
 export interface StorageBucketLifecycleRuleNoncurrentVersionExpiration {
+    /**
+     * Specifies the number of days noncurrent object versions expire.
+     */
     days?: pulumi.Input<number>;
 }
 
 export interface StorageBucketLifecycleRuleNoncurrentVersionTransition {
+    /**
+     * Specifies the number of days noncurrent object versions transition.
+     */
     days?: pulumi.Input<number>;
+    /**
+     * Specifies the storage class to which you want the noncurrent object versions to transition. Can only be `COLD` or `STANDARD_IA`.
+     */
     storageClass: pulumi.Input<string>;
 }
 
 export interface StorageBucketLifecycleRuleTransition {
+    /**
+     * Specifies the date after which you want the corresponding action to take effect.
+     */
     date?: pulumi.Input<string>;
+    /**
+     * Specifies the number of days after object creation when the specific rule action takes effect.
+     */
     days?: pulumi.Input<number>;
+    /**
+     * Specifies the storage class to which you want the object to transition. Can only be `COLD` or `STANDARD_IA`.
+     */
     storageClass: pulumi.Input<string>;
 }
 
 export interface StorageBucketLogging {
+    /**
+     * The name of the bucket that will receive the log objects.
+     */
     targetBucket: pulumi.Input<string>;
+    /**
+     * To specify a key prefix for log objects.
+     */
     targetPrefix?: pulumi.Input<string>;
 }
 
 export interface StorageBucketServerSideEncryptionConfiguration {
+    /**
+     * A single object for server-side encryption by default configuration. (documented below)
+     */
     rule: pulumi.Input<inputs.StorageBucketServerSideEncryptionConfigurationRule>;
 }
 
 export interface StorageBucketServerSideEncryptionConfigurationRule {
+    /**
+     * A single object for setting server-side encryption by default. (documented below)
+     */
     applyServerSideEncryptionByDefault: pulumi.Input<inputs.StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault>;
 }
 
 export interface StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault {
+    /**
+     * The KMS master key ID used for the SSE-KMS encryption.
+     */
     kmsMasterKeyId: pulumi.Input<string>;
+    /**
+     * The server-side encryption algorithm to use. Single valid value is `aws:kms`
+     */
     sseAlgorithm: pulumi.Input<string>;
 }
 
 export interface StorageBucketVersioning {
+    /**
+     * Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+     */
     enabled?: pulumi.Input<boolean>;
 }
 
 export interface StorageBucketWebsite {
+    /**
+     * An absolute path to the document to return in case of a 4XX error.
+     */
     errorDocument?: pulumi.Input<string>;
+    /**
+     * Storage returns this index document when requests are made to the root domain or any of the subfolders.
+     */
     indexDocument?: pulumi.Input<string>;
+    /**
+     * A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (`http://` or `https://`) to use when redirecting requests. The default is the protocol that is used in the original request.
+     */
     redirectAllRequestsTo?: pulumi.Input<string>;
+    /**
+     * A json array containing [routing rules](https://cloud.yandex.com/docs/storage/s3/api-ref/hosting/upload#request-scheme) describing redirect behavior and when redirects are applied.
+     */
     routingRules?: pulumi.Input<string>;
 }
 
 export interface VpcAddressExternalIpv4Address {
+    /**
+     * Allocated IP address.
+     */
     address?: pulumi.Input<string>;
+    /**
+     * Enable DDOS protection. Possible values are: "qrator"
+     */
     ddosProtectionProvider?: pulumi.Input<string>;
+    /**
+     * Wanted outgoing smtp capability.
+     */
     outgoingSmtpCapability?: pulumi.Input<string>;
+    /**
+     * Zone for allocating address.
+     */
     zoneId?: pulumi.Input<string>;
 }
 
 export interface VpcDefaultSecurityGroupEgress {
+    /**
+     * Description of the security group.
+     */
     description?: pulumi.Input<string>;
     fromPort?: pulumi.Input<number>;
+    /**
+     * Id of the security group.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * Labels to assign to this security group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     port?: pulumi.Input<number>;
     predefinedTarget?: pulumi.Input<string>;
@@ -3362,9 +7923,18 @@ export interface VpcDefaultSecurityGroupEgress {
 }
 
 export interface VpcDefaultSecurityGroupIngress {
+    /**
+     * Description of the security group.
+     */
     description?: pulumi.Input<string>;
     fromPort?: pulumi.Input<number>;
+    /**
+     * Id of the security group.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * Labels to assign to this security group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     port?: pulumi.Input<number>;
     predefinedTarget?: pulumi.Input<string>;
@@ -3376,15 +7946,33 @@ export interface VpcDefaultSecurityGroupIngress {
 }
 
 export interface VpcRouteTableStaticRoute {
+    /**
+     * Route prefix in CIDR notation.
+     */
     destinationPrefix?: pulumi.Input<string>;
+    /**
+     * ID of the gateway used ad next hop.
+     */
     gatewayId?: pulumi.Input<string>;
+    /**
+     * Address of the next hop.
+     */
     nextHopAddress?: pulumi.Input<string>;
 }
 
 export interface VpcSecurityGroupEgress {
+    /**
+     * Description of the security group.
+     */
     description?: pulumi.Input<string>;
     fromPort?: pulumi.Input<number>;
+    /**
+     * Id of the rule.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * Labels to assign to this security group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     port?: pulumi.Input<number>;
     predefinedTarget?: pulumi.Input<string>;
@@ -3396,9 +7984,18 @@ export interface VpcSecurityGroupEgress {
 }
 
 export interface VpcSecurityGroupIngress {
+    /**
+     * Description of the security group.
+     */
     description?: pulumi.Input<string>;
     fromPort?: pulumi.Input<number>;
+    /**
+     * Id of the rule.
+     */
     id?: pulumi.Input<string>;
+    /**
+     * Labels to assign to this security group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     port?: pulumi.Input<number>;
     predefinedTarget?: pulumi.Input<string>;
@@ -3410,29 +8007,59 @@ export interface VpcSecurityGroupIngress {
 }
 
 export interface VpcSubnetDhcpOptions {
+    /**
+     * Domain name.
+     */
     domainName?: pulumi.Input<string>;
+    /**
+     * Domain name server IP addresses.
+     */
     domainNameServers?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * NTP server IP addresses.
+     */
     ntpServers?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface YdbDatabaseDedicatedLocation {
+    /**
+     * Region for the Yandex Database cluster.
+     * The structure is documented below.
+     */
     region?: pulumi.Input<inputs.YdbDatabaseDedicatedLocationRegion>;
 }
 
 export interface YdbDatabaseDedicatedLocationRegion {
+    /**
+     * Region ID for the Yandex Database cluster.
+     */
     id: pulumi.Input<string>;
 }
 
 export interface YdbDatabaseDedicatedScalePolicy {
+    /**
+     * Fixed scaling policy for the Yandex Database cluster.
+     * The structure is documented below.
+     */
     fixedScale: pulumi.Input<inputs.YdbDatabaseDedicatedScalePolicyFixedScale>;
 }
 
 export interface YdbDatabaseDedicatedScalePolicyFixedScale {
+    /**
+     * Number of instances for the Yandex Database cluster.
+     */
     size: pulumi.Input<number>;
 }
 
 export interface YdbDatabaseDedicatedStorageConfig {
+    /**
+     * Amount of storage groups of selected type for the Yandex Database cluster.
+     */
     groupCount: pulumi.Input<number>;
+    /**
+     * Storage type ID for the Yandex Database cluster.
+     * Available presets can be obtained via `yc ydb storage-type list` command.
+     */
     storageTypeId: pulumi.Input<string>;
 }
 

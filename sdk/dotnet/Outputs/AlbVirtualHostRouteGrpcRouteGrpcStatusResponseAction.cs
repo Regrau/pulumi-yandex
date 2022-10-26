@@ -13,6 +13,10 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbVirtualHostRouteGrpcRouteGrpcStatusResponseAction
     {
+        /// <summary>
+        /// The status of the response. Supported values are: ok, invalid_argumet, not_found, 
+        /// permission_denied, unauthenticated, unimplemented, internal, unavailable.
+        /// </summary>
         public readonly string? Status;
 
         [OutputConstructor]

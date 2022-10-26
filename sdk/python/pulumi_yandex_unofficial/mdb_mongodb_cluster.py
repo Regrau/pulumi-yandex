@@ -33,6 +33,22 @@ class MdbMongodbClusterArgs:
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a MdbMongodbCluster resource.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigArgs'] cluster_config: Configuration of the MongoDB subcluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterDatabaseArgs']]] databases: A database of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[str] environment: Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterHostArgs']]] hosts: A host of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[str] network_id: ID of the network, to which the MongoDB cluster belongs.
+        :param pulumi.Input['MdbMongodbClusterResourcesArgs'] resources: Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterUserArgs']]] users: A user of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[str] cluster_id: The ID of the cluster.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+               - - -
+        :param pulumi.Input[str] description: Description of the MongoDB cluster.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the MongoDB cluster.
+        :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         """
         pulumi.set(__self__, "cluster_config", cluster_config)
         pulumi.set(__self__, "databases", databases)
@@ -61,6 +77,9 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter(name="clusterConfig")
     def cluster_config(self) -> pulumi.Input['MdbMongodbClusterClusterConfigArgs']:
+        """
+        Configuration of the MongoDB subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "cluster_config")
 
     @cluster_config.setter
@@ -70,6 +89,9 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter
     def databases(self) -> pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterDatabaseArgs']]]:
+        """
+        A database of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "databases")
 
     @databases.setter
@@ -79,6 +101,9 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Input[str]:
+        """
+        Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -88,6 +113,9 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter
     def hosts(self) -> pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterHostArgs']]]:
+        """
+        A host of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -97,6 +125,9 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Input[str]:
+        """
+        ID of the network, to which the MongoDB cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -106,6 +137,9 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Input['MdbMongodbClusterResourcesArgs']:
+        """
+        Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -115,6 +149,9 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter
     def users(self) -> pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterUserArgs']]]:
+        """
+        A user of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "users")
 
     @users.setter
@@ -124,6 +161,9 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the cluster.
+        """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
@@ -133,6 +173,10 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        - - -
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -142,6 +186,9 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the MongoDB cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -151,6 +198,10 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -160,6 +211,9 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the MongoDB cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -178,6 +232,9 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fully qualified domain name of the host. Computed on server side.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -187,6 +244,9 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -218,6 +278,27 @@ class _MdbMongodbClusterState:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterUserArgs']]]] = None):
         """
         Input properties used for looking up and filtering MdbMongodbCluster resources.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigArgs'] cluster_config: Configuration of the MongoDB subcluster. The structure is documented below.
+        :param pulumi.Input[str] cluster_id: The ID of the cluster.
+        :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterDatabaseArgs']]] databases: A database of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+               - - -
+        :param pulumi.Input[str] description: Description of the MongoDB cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[str] health: The health of the host.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterHostArgs']]] hosts: A host of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the MongoDB cluster.
+        :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
+        :param pulumi.Input[str] network_id: ID of the network, to which the MongoDB cluster belongs.
+        :param pulumi.Input['MdbMongodbClusterResourcesArgs'] resources: Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[bool] sharded: MongoDB Cluster mode enabled/disabled.
+        :param pulumi.Input[str] status: Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+               For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/api-ref/Cluster/).
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterUserArgs']]] users: A user of the MongoDB cluster. The structure is documented below.
         """
         if cluster_config is not None:
             pulumi.set(__self__, "cluster_config", cluster_config)
@@ -261,6 +342,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter(name="clusterConfig")
     def cluster_config(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigArgs']]:
+        """
+        Configuration of the MongoDB subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "cluster_config")
 
     @cluster_config.setter
@@ -270,6 +354,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the cluster.
+        """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
@@ -279,6 +366,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -288,6 +378,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter
     def databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterDatabaseArgs']]]]:
+        """
+        A database of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "databases")
 
     @databases.setter
@@ -297,6 +390,10 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        - - -
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -306,6 +403,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the MongoDB cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -315,6 +415,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter
     def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -324,6 +427,10 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -333,6 +440,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter
     def health(self) -> Optional[pulumi.Input[str]]:
+        """
+        The health of the host.
+        """
         return pulumi.get(self, "health")
 
     @health.setter
@@ -342,6 +452,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterHostArgs']]]]:
+        """
+        A host of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -351,6 +464,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the MongoDB cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -369,6 +485,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fully qualified domain name of the host. Computed on server side.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -378,6 +497,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the network, to which the MongoDB cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -387,6 +509,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter
     def resources(self) -> Optional[pulumi.Input['MdbMongodbClusterResourcesArgs']]:
+        """
+        Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -396,6 +521,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -405,6 +533,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter
     def sharded(self) -> Optional[pulumi.Input[bool]]:
+        """
+        MongoDB Cluster mode enabled/disabled.
+        """
         return pulumi.get(self, "sharded")
 
     @sharded.setter
@@ -414,6 +545,10 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+        For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/api-ref/Cluster/).
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -423,6 +558,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterUserArgs']]]]:
+        """
+        A user of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "users")
 
     @users.setter
@@ -452,9 +590,81 @@ class MdbMongodbCluster(pulumi.CustomResource):
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterUserArgs']]]]] = None,
                  __props__=None):
         """
-        Create a MdbMongodbCluster resource with the given unique name, props, and options.
+        Manages a MongoDB cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts).
+
+        ## Example Usage
+
+        Example of creating a Single Node MongoDB.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"],
+            zone="ru-central1-a")
+        foo_mdb_mongodb_cluster = yandex.MdbMongodbCluster("fooMdbMongodbCluster",
+            cluster_config=yandex.MdbMongodbClusterClusterConfigArgs(
+                version="4.2",
+            ),
+            databases=[yandex.MdbMongodbClusterDatabaseArgs(
+                name="testdb",
+            )],
+            environment="PRESTABLE",
+            hosts=[yandex.MdbMongodbClusterHostArgs(
+                subnet_id=foo_vpc_subnet.id,
+                zone_id="ru-central1-a",
+            )],
+            labels={
+                "test_key": "test_value",
+            },
+            maintenance_window=yandex.MdbMongodbClusterMaintenanceWindowArgs(
+                type="ANYTIME",
+            ),
+            network_id=foo_vpc_network.id,
+            resources=yandex.MdbMongodbClusterResourcesArgs(
+                disk_size=16,
+                disk_type_id="network-hdd",
+                resource_preset_id="b1.nano",
+            ),
+            users=[yandex.MdbMongodbClusterUserArgs(
+                name="john",
+                password="password",
+                permissions=[yandex.MdbMongodbClusterUserPermissionArgs(
+                    database_name="testdb",
+                )],
+            )])
+        ```
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbMongodbCluster:MdbMongodbCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterClusterConfigArgs']] cluster_config: Configuration of the MongoDB subcluster. The structure is documented below.
+        :param pulumi.Input[str] cluster_id: The ID of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterDatabaseArgs']]]] databases: A database of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+               - - -
+        :param pulumi.Input[str] description: Description of the MongoDB cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterHostArgs']]]] hosts: A host of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the MongoDB cluster.
+        :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
+        :param pulumi.Input[str] network_id: ID of the network, to which the MongoDB cluster belongs.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesArgs']] resources: Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterUserArgs']]]] users: A user of the MongoDB cluster. The structure is documented below.
         """
         ...
     @overload
@@ -463,7 +673,63 @@ class MdbMongodbCluster(pulumi.CustomResource):
                  args: MdbMongodbClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MdbMongodbCluster resource with the given unique name, props, and options.
+        Manages a MongoDB cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts).
+
+        ## Example Usage
+
+        Example of creating a Single Node MongoDB.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"],
+            zone="ru-central1-a")
+        foo_mdb_mongodb_cluster = yandex.MdbMongodbCluster("fooMdbMongodbCluster",
+            cluster_config=yandex.MdbMongodbClusterClusterConfigArgs(
+                version="4.2",
+            ),
+            databases=[yandex.MdbMongodbClusterDatabaseArgs(
+                name="testdb",
+            )],
+            environment="PRESTABLE",
+            hosts=[yandex.MdbMongodbClusterHostArgs(
+                subnet_id=foo_vpc_subnet.id,
+                zone_id="ru-central1-a",
+            )],
+            labels={
+                "test_key": "test_value",
+            },
+            maintenance_window=yandex.MdbMongodbClusterMaintenanceWindowArgs(
+                type="ANYTIME",
+            ),
+            network_id=foo_vpc_network.id,
+            resources=yandex.MdbMongodbClusterResourcesArgs(
+                disk_size=16,
+                disk_type_id="network-hdd",
+                resource_preset_id="b1.nano",
+            ),
+            users=[yandex.MdbMongodbClusterUserArgs(
+                name="john",
+                password="password",
+                permissions=[yandex.MdbMongodbClusterUserPermissionArgs(
+                    database_name="testdb",
+                )],
+            )])
+        ```
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbMongodbCluster:MdbMongodbCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param MdbMongodbClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -572,6 +838,27 @@ class MdbMongodbCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterClusterConfigArgs']] cluster_config: Configuration of the MongoDB subcluster. The structure is documented below.
+        :param pulumi.Input[str] cluster_id: The ID of the cluster.
+        :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterDatabaseArgs']]]] databases: A database of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+               - - -
+        :param pulumi.Input[str] description: Description of the MongoDB cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[str] health: The health of the host.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterHostArgs']]]] hosts: A host of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the MongoDB cluster.
+        :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
+        :param pulumi.Input[str] network_id: ID of the network, to which the MongoDB cluster belongs.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesArgs']] resources: Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[bool] sharded: MongoDB Cluster mode enabled/disabled.
+        :param pulumi.Input[str] status: Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+               For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/api-ref/Cluster/).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterUserArgs']]]] users: A user of the MongoDB cluster. The structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -601,56 +888,91 @@ class MdbMongodbCluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="clusterConfig")
     def cluster_config(self) -> pulumi.Output['outputs.MdbMongodbClusterClusterConfig']:
+        """
+        Configuration of the MongoDB subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "cluster_config")
 
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the cluster.
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def databases(self) -> pulumi.Output[Sequence['outputs.MdbMongodbClusterDatabase']]:
+        """
+        A database of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "databases")
 
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> pulumi.Output[bool]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        - - -
+        """
         return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[str]:
+        """
+        Description of the MongoDB cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Output[str]:
+        """
+        Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        """
         return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def health(self) -> pulumi.Output[str]:
+        """
+        The health of the host.
+        """
         return pulumi.get(self, "health")
 
     @property
     @pulumi.getter
     def hosts(self) -> pulumi.Output[Sequence['outputs.MdbMongodbClusterHost']]:
+        """
+        A host of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        A set of key/value label pairs to assign to the MongoDB cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -661,35 +983,57 @@ class MdbMongodbCluster(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The fully qualified domain name of the host. Computed on server side.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[str]:
+        """
+        ID of the network, to which the MongoDB cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Output['outputs.MdbMongodbClusterResources']:
+        """
+        Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter
     def sharded(self) -> pulumi.Output[bool]:
+        """
+        MongoDB Cluster mode enabled/disabled.
+        """
         return pulumi.get(self, "sharded")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+        For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/api-ref/Cluster/).
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def users(self) -> pulumi.Output[Sequence['outputs.MdbMongodbClusterUser']]:
+        """
+        A user of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "users")
 

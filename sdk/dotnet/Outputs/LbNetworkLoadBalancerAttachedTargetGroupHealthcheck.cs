@@ -13,12 +13,33 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class LbNetworkLoadBalancerAttachedTargetGroupHealthcheck
     {
+        /// <summary>
+        /// Number of successful health checks required in order to set the `HEALTHY` status for the target.
+        /// </summary>
         public readonly int? HealthyThreshold;
+        /// <summary>
+        /// Options for HTTP health check. The structure is documented below.
+        /// </summary>
         public readonly Outputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptions? HttpOptions;
+        /// <summary>
+        /// The interval between health checks. The default is 2 seconds.
+        /// </summary>
         public readonly int? Interval;
+        /// <summary>
+        /// Name of the listener. The name must be unique for each listener on a single load balancer.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Options for TCP health check. The structure is documented below.
+        /// </summary>
         public readonly Outputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptions? TcpOptions;
+        /// <summary>
+        /// Timeout for a target to return a response for the health check. The default is 1 second.
+        /// </summary>
         public readonly int? Timeout;
+        /// <summary>
+        /// Number of failed health checks before changing the status to `UNHEALTHY`. The default is 2.
+        /// </summary>
         public readonly int? UnhealthyThreshold;
 
         [OutputConstructor]

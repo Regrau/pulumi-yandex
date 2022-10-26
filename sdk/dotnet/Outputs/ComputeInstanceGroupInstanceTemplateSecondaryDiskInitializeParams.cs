@@ -13,10 +13,25 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParams
     {
+        /// <summary>
+        /// A description of the boot disk.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// The disk image to initialize this disk from.
+        /// </summary>
         public readonly string? ImageId;
+        /// <summary>
+        /// The number of instances in the instance group.
+        /// </summary>
         public readonly int? Size;
+        /// <summary>
+        /// The snapshot to initialize this disk from.
+        /// </summary>
         public readonly string? SnapshotId;
+        /// <summary>
+        /// Network acceleration type. By default a network is in `STANDARD` mode.
+        /// </summary>
         public readonly string? Type;
 
         [OutputConstructor]

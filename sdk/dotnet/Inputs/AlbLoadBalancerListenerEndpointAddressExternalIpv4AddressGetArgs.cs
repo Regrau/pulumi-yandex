@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbLoadBalancerListenerEndpointAddressExternalIpv4AddressGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Provided by the client or computed automatically.
+        /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 

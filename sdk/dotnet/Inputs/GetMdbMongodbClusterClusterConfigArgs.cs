@@ -12,18 +12,33 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbMongodbClusterClusterConfigInputArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Access policy to MongoDB cluster. The structure is documented below.
+        /// </summary>
         [Input("access", required: true)]
         public Input<Inputs.GetMdbMongodbClusterClusterConfigAccessInputArgs> Access { get; set; } = null!;
 
+        /// <summary>
+        /// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        /// </summary>
         [Input("backupWindowStart", required: true)]
         public Input<Inputs.GetMdbMongodbClusterClusterConfigBackupWindowStartInputArgs> BackupWindowStart { get; set; } = null!;
 
+        /// <summary>
+        /// Feature compatibility version of MongoDB.
+        /// </summary>
         [Input("featureCompatibilityVersion", required: true)]
         public Input<string> FeatureCompatibilityVersion { get; set; } = null!;
 
+        /// <summary>
+        /// (Optional) Configuration of the mongod service. The structure is documented below.
+        /// </summary>
         [Input("mongod", required: true)]
         public Input<Inputs.GetMdbMongodbClusterClusterConfigMongodInputArgs> Mongod { get; set; } = null!;
 
+        /// <summary>
+        /// Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 

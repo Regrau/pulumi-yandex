@@ -4,6 +4,22 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * A Placement group resource. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/compute/concepts/placement-groups).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const group1 = new yandex.ComputePlacementGroup("group1", {
+ *     description: "my description",
+ *     folderId: "abc*********123",
+ * });
+ * ```
+ */
 export class ComputePlacementGroup extends pulumi.CustomResource {
     /**
      * Get an existing ComputePlacementGroup resource's state with the given name, ID, and optional extra
@@ -33,9 +49,21 @@ export class ComputePlacementGroup extends pulumi.CustomResource {
     }
 
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * A description of the Placement Group.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * A set of key/value label pairs to assign to the Placement Group.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * The name of the Placement Group.
+     */
     public readonly name!: pulumi.Output<string>;
 
     /**
@@ -74,9 +102,21 @@ export class ComputePlacementGroup extends pulumi.CustomResource {
  */
 export interface ComputePlacementGroupState {
     createdAt?: pulumi.Input<string>;
+    /**
+     * A description of the Placement Group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the Placement Group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the Placement Group.
+     */
     name?: pulumi.Input<string>;
 }
 
@@ -84,8 +124,20 @@ export interface ComputePlacementGroupState {
  * The set of arguments for constructing a ComputePlacementGroup resource.
  */
 export interface ComputePlacementGroupArgs {
+    /**
+     * A description of the Placement Group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the Placement Group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the Placement Group.
+     */
     name?: pulumi.Input<string>;
 }

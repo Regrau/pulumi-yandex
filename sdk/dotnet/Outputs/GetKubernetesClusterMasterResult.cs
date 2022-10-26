@@ -13,17 +13,53 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetKubernetesClusterMasterResult
     {
+        /// <summary>
+        /// PEM-encoded public certificate that is the root of trust for the Kubernetes cluster.
+        /// </summary>
         public readonly string ClusterCaCertificate;
+        /// <summary>
+        /// An IPv4 external network address that is assigned to the master.
+        /// </summary>
         public readonly string ExternalV4Address;
+        /// <summary>
+        /// External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).
+        /// </summary>
         public readonly string ExternalV4Endpoint;
+        /// <summary>
+        /// An IPv4 internal network address that is assigned to the master.
+        /// </summary>
         public readonly string InternalV4Address;
+        /// <summary>
+        /// Internal endpoint that can be used to connect to the master from cloud networks.
+        /// </summary>
         public readonly string InternalV4Endpoint;
+        /// <summary>
+        /// Maintenance policy for Kubernetes master. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterMasterMaintenancePolicyResult> MaintenancePolicies;
+        /// <summary>
+        /// Boolean flag. When `true`, Kubernetes master have visible ipv4 address.
+        /// </summary>
         public readonly bool PublicIp;
+        /// <summary>
+        /// Information about cluster regional master. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterMasterRegionalResult> Regionals;
+        /// <summary>
+        /// A list of security groups IDs of the Kubernetes cluster.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// Version of Kubernetes master.
+        /// </summary>
         public readonly string Version;
+        /// <summary>
+        /// Information about cluster version. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterMasterVersionInfoResult> VersionInfos;
+        /// <summary>
+        /// Information about cluster zonal master. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterMasterZonalResult> Zonals;
 
         [OutputConstructor]

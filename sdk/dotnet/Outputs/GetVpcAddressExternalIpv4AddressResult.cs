@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetVpcAddressExternalIpv4AddressResult
     {
+        /// <summary>
+        /// IP address.
+        /// </summary>
         public readonly string Address;
+        /// <summary>
+        /// DDOS protection provider.
+        /// </summary>
         public readonly string DdosProtectionProvider;
+        /// <summary>
+        /// Outgoing smtp capability.
+        /// </summary>
         public readonly string OutgoingSmtpCapability;
+        /// <summary>
+        /// Zone for allocating address.
+        /// </summary>
         public readonly string ZoneId;
 
         [OutputConstructor]

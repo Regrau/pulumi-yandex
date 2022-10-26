@@ -11,15 +11,39 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a route table within the Yandex.Cloud. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/vpc/concepts).
+//
+// * How-to Guides
+//   - [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+//
+// ## Import
+//
+// A route table can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/vpcRouteTable:VpcRouteTable default route_table_id
+//
+// ```
 type VpcRouteTable struct {
 	pulumi.CustomResourceState
 
-	CreatedAt    pulumi.StringOutput                 `pulumi:"createdAt"`
-	Description  pulumi.StringPtrOutput              `pulumi:"description"`
-	FolderId     pulumi.StringOutput                 `pulumi:"folderId"`
-	Labels       pulumi.StringMapOutput              `pulumi:"labels"`
-	Name         pulumi.StringOutput                 `pulumi:"name"`
-	NetworkId    pulumi.StringOutput                 `pulumi:"networkId"`
+	// Creation timestamp of the route table.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// An optional description of the route table. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Labels to assign to this route table. A list of key/value pairs.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the route table. Provided by the client when the route table is created.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the network this route table belongs to.
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
+	// A list of static route records for the route table. The structure is documented below.
 	StaticRoutes VpcRouteTableStaticRouteArrayOutput `pulumi:"staticRoutes"`
 }
 
@@ -56,22 +80,40 @@ func GetVpcRouteTable(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcRouteTable resources.
 type vpcRouteTableState struct {
-	CreatedAt    *string                    `pulumi:"createdAt"`
-	Description  *string                    `pulumi:"description"`
-	FolderId     *string                    `pulumi:"folderId"`
-	Labels       map[string]string          `pulumi:"labels"`
-	Name         *string                    `pulumi:"name"`
-	NetworkId    *string                    `pulumi:"networkId"`
+	// Creation timestamp of the route table.
+	CreatedAt *string `pulumi:"createdAt"`
+	// An optional description of the route table. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this route table. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the route table. Provided by the client when the route table is created.
+	Name *string `pulumi:"name"`
+	// ID of the network this route table belongs to.
+	NetworkId *string `pulumi:"networkId"`
+	// A list of static route records for the route table. The structure is documented below.
 	StaticRoutes []VpcRouteTableStaticRoute `pulumi:"staticRoutes"`
 }
 
 type VpcRouteTableState struct {
-	CreatedAt    pulumi.StringPtrInput
-	Description  pulumi.StringPtrInput
-	FolderId     pulumi.StringPtrInput
-	Labels       pulumi.StringMapInput
-	Name         pulumi.StringPtrInput
-	NetworkId    pulumi.StringPtrInput
+	// Creation timestamp of the route table.
+	CreatedAt pulumi.StringPtrInput
+	// An optional description of the route table. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrInput
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this route table. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the route table. Provided by the client when the route table is created.
+	Name pulumi.StringPtrInput
+	// ID of the network this route table belongs to.
+	NetworkId pulumi.StringPtrInput
+	// A list of static route records for the route table. The structure is documented below.
 	StaticRoutes VpcRouteTableStaticRouteArrayInput
 }
 
@@ -80,21 +122,37 @@ func (VpcRouteTableState) ElementType() reflect.Type {
 }
 
 type vpcRouteTableArgs struct {
-	Description  *string                    `pulumi:"description"`
-	FolderId     *string                    `pulumi:"folderId"`
-	Labels       map[string]string          `pulumi:"labels"`
-	Name         *string                    `pulumi:"name"`
-	NetworkId    string                     `pulumi:"networkId"`
+	// An optional description of the route table. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this route table. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the route table. Provided by the client when the route table is created.
+	Name *string `pulumi:"name"`
+	// ID of the network this route table belongs to.
+	NetworkId string `pulumi:"networkId"`
+	// A list of static route records for the route table. The structure is documented below.
 	StaticRoutes []VpcRouteTableStaticRoute `pulumi:"staticRoutes"`
 }
 
 // The set of arguments for constructing a VpcRouteTable resource.
 type VpcRouteTableArgs struct {
-	Description  pulumi.StringPtrInput
-	FolderId     pulumi.StringPtrInput
-	Labels       pulumi.StringMapInput
-	Name         pulumi.StringPtrInput
-	NetworkId    pulumi.StringInput
+	// An optional description of the route table. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrInput
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this route table. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the route table. Provided by the client when the route table is created.
+	Name pulumi.StringPtrInput
+	// ID of the network this route table belongs to.
+	NetworkId pulumi.StringInput
+	// A list of static route records for the route table. The structure is documented below.
 	StaticRoutes VpcRouteTableStaticRouteArrayInput
 }
 
@@ -185,30 +243,39 @@ func (o VpcRouteTableOutput) ToVpcRouteTableOutputWithContext(ctx context.Contex
 	return o
 }
 
+// Creation timestamp of the route table.
 func (o VpcRouteTableOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcRouteTable) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// An optional description of the route table. Provide this property when
+// you create the resource.
 func (o VpcRouteTableOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcRouteTable) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the folder to which the resource belongs.
+// If omitted, the provider folder is used.
 func (o VpcRouteTableOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcRouteTable) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Labels to assign to this route table. A list of key/value pairs.
 func (o VpcRouteTableOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *VpcRouteTable) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the route table. Provided by the client when the route table is created.
 func (o VpcRouteTableOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcRouteTable) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network this route table belongs to.
 func (o VpcRouteTableOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcRouteTable) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// A list of static route records for the route table. The structure is documented below.
 func (o VpcRouteTableOutput) StaticRoutes() VpcRouteTableStaticRouteArrayOutput {
 	return o.ApplyT(func(v *VpcRouteTable) VpcRouteTableStaticRouteArrayOutput { return v.StaticRoutes }).(VpcRouteTableStaticRouteArrayOutput)
 }

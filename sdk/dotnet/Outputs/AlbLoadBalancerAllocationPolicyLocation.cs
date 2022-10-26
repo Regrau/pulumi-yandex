@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerAllocationPolicyLocation
     {
+        /// <summary>
+        /// If set, will disable all L7 instances in the zone for request handling.
+        /// </summary>
         public readonly bool? DisableTraffic;
+        /// <summary>
+        /// Provided by the client or computed automatically.
+        /// </summary>
         public readonly string SubnetId;
+        /// <summary>
+        /// ID of the zone that location is located at.
+        /// </summary>
         public readonly string ZoneId;
 
         [OutputConstructor]

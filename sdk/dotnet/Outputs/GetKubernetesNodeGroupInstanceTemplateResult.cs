@@ -13,17 +13,51 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetKubernetesNodeGroupInstanceTemplateResult
     {
+        /// <summary>
+        /// The specifications for boot disks that will be attached to the instance. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateBootDiskResult> BootDisks;
+        /// <summary>
+        /// Container runtime configuration. The structure is documented below.
+        /// </summary>
         public readonly Outputs.GetKubernetesNodeGroupInstanceTemplateContainerRuntimeResult ContainerRuntime;
+        /// <summary>
+        /// Labels assigned to compute nodes (instances), created by the Node Group.
+        /// ---
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// The set of metadata `key:value` pairs assigned to this instance template. This includes custom metadata and predefined keys.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Metadata;
+        /// <summary>
+        /// Name of a specific Kubernetes node group.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// A public address that can be used to access the internet over NAT.
+        /// </summary>
         public readonly bool Nat;
+        /// <summary>
+        /// Type of network acceleration. Values: `standard`, `software_accelerated`.
+        /// </summary>
         public readonly string NetworkAccelerationType;
+        /// <summary>
+        /// An array with the network interfaces that will be attached to the instance. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceResult> NetworkInterfaces;
+        /// <summary>
+        /// (Optional) The placement policy configuration. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplatePlacementPolicyResult> PlacementPolicies;
+        /// <summary>
+        /// The ID of the hardware platform configuration for the instance.
+        /// </summary>
         public readonly string PlatformId;
         public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateResourceResult> Resources;
+        /// <summary>
+        /// The scheduling policy for the instances in node group. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyResult> SchedulingPolicies;
 
         [OutputConstructor]

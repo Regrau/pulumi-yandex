@@ -11,25 +11,109 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of Yandex Cloud Serverless Containers
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewServerlessContainer(ctx, "test-container", &yandex.ServerlessContainerArgs{
+//				CoreFraction:     pulumi.Int(100),
+//				Cores:            pulumi.Int(1),
+//				Description:      pulumi.String("any description"),
+//				ExecutionTimeout: pulumi.String("15s"),
+//				Image: &ServerlessContainerImageArgs{
+//					Url: pulumi.String("cr.yandex/yc/test-image:v1"),
+//				},
+//				Memory:           pulumi.Int(256),
+//				ServiceAccountId: pulumi.String("are1service2account3id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewServerlessContainer(ctx, "test-container-with-digest", &yandex.ServerlessContainerArgs{
+//				Image: &ServerlessContainerImageArgs{
+//					Digest: pulumi.String("sha256:e1d772fa8795adac847a2420c87d0d2e3d38fb02f168cab8c0b5fe2fb95c47f4"),
+//					Url:    pulumi.String("cr.yandex/yc/test-image:v1"),
+//				},
+//				Memory: pulumi.Int(128),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type ServerlessContainer struct {
 	pulumi.CustomResourceState
 
-	Concurrency      pulumi.IntPtrOutput            `pulumi:"concurrency"`
-	CoreFraction     pulumi.IntOutput               `pulumi:"coreFraction"`
-	Cores            pulumi.IntPtrOutput            `pulumi:"cores"`
-	CreatedAt        pulumi.StringOutput            `pulumi:"createdAt"`
-	Description      pulumi.StringPtrOutput         `pulumi:"description"`
-	ExecutionTimeout pulumi.StringOutput            `pulumi:"executionTimeout"`
-	FolderId         pulumi.StringOutput            `pulumi:"folderId"`
-	Image            ServerlessContainerImageOutput `pulumi:"image"`
-	Labels           pulumi.StringMapOutput         `pulumi:"labels"`
-	// Container memory in megabytes, should be aligned to 128
-	Memory           pulumi.IntOutput                     `pulumi:"memory"`
-	Name             pulumi.StringOutput                  `pulumi:"name"`
-	RevisionId       pulumi.StringOutput                  `pulumi:"revisionId"`
-	Secrets          ServerlessContainerSecretArrayOutput `pulumi:"secrets"`
-	ServiceAccountId pulumi.StringPtrOutput               `pulumi:"serviceAccountId"`
-	Url              pulumi.StringOutput                  `pulumi:"url"`
+	// Concurrency of Yandex Cloud Serverless Container
+	Concurrency pulumi.IntPtrOutput `pulumi:"concurrency"`
+	// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
+	CoreFraction pulumi.IntOutput    `pulumi:"coreFraction"`
+	Cores        pulumi.IntPtrOutput `pulumi:"cores"`
+	// Creation timestamp of the Yandex Cloud Serverless Container
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Description of the Yandex Cloud Serverless Container
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Execution timeout in seconds (**duration format**) for Yandex Cloud Serverless Container
+	ExecutionTimeout pulumi.StringOutput `pulumi:"executionTimeout"`
+	// Folder ID for the Yandex Cloud Serverless Container
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Revision deployment image for Yandex Cloud Serverless Container
+	// * `image.0.url` (Required) - URL of image that will be deployed as Yandex Cloud Serverless Container
+	// * `image.0.work_dir` - Working directory for Yandex Cloud Serverless Container
+	// * `image.0.digest` - Digest of image that will be deployed as Yandex Cloud Serverless Container.
+	//   If presented, should be equal to digest that will be resolved at server side by URL.
+	//   Container will be updated on digest change even if `image.0.url` stays the same.
+	//   If field not specified then its value will be computed.
+	// * `image.0.command` - List of commands for Yandex Cloud Serverless Container
+	// * `image.0.args` - List of arguments for Yandex Cloud Serverless Container
+	// * `image.0.environment` -  A set of key/value environment variable pairs for Yandex Cloud Serverless Container
+	Image ServerlessContainerImageOutput `pulumi:"image"`
+	// A set of key/value label pairs to assign to the Yandex Cloud Serverless Container
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Serverless Container
+	Memory pulumi.IntOutput `pulumi:"memory"`
+	// Yandex Cloud Serverless Container name
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Last revision ID of the Yandex Cloud Serverless Container
+	RevisionId pulumi.StringOutput `pulumi:"revisionId"`
+	// Secrets for Yandex Cloud Serverless Container
+	Secrets ServerlessContainerSecretArrayOutput `pulumi:"secrets"`
+	// Service account ID for Yandex Cloud Serverless Container
+	ServiceAccountId pulumi.StringPtrOutput `pulumi:"serviceAccountId"`
+	// Invoke URL for the Yandex Cloud Serverless Container
+	Url pulumi.StringOutput `pulumi:"url"`
 }
 
 // NewServerlessContainer registers a new resource with the given unique name, arguments, and options.
@@ -68,41 +152,85 @@ func GetServerlessContainer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServerlessContainer resources.
 type serverlessContainerState struct {
-	Concurrency      *int                      `pulumi:"concurrency"`
-	CoreFraction     *int                      `pulumi:"coreFraction"`
-	Cores            *int                      `pulumi:"cores"`
-	CreatedAt        *string                   `pulumi:"createdAt"`
-	Description      *string                   `pulumi:"description"`
-	ExecutionTimeout *string                   `pulumi:"executionTimeout"`
-	FolderId         *string                   `pulumi:"folderId"`
-	Image            *ServerlessContainerImage `pulumi:"image"`
-	Labels           map[string]string         `pulumi:"labels"`
-	// Container memory in megabytes, should be aligned to 128
-	Memory           *int                        `pulumi:"memory"`
-	Name             *string                     `pulumi:"name"`
-	RevisionId       *string                     `pulumi:"revisionId"`
-	Secrets          []ServerlessContainerSecret `pulumi:"secrets"`
-	ServiceAccountId *string                     `pulumi:"serviceAccountId"`
-	Url              *string                     `pulumi:"url"`
+	// Concurrency of Yandex Cloud Serverless Container
+	Concurrency *int `pulumi:"concurrency"`
+	// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
+	CoreFraction *int `pulumi:"coreFraction"`
+	Cores        *int `pulumi:"cores"`
+	// Creation timestamp of the Yandex Cloud Serverless Container
+	CreatedAt *string `pulumi:"createdAt"`
+	// Description of the Yandex Cloud Serverless Container
+	Description *string `pulumi:"description"`
+	// Execution timeout in seconds (**duration format**) for Yandex Cloud Serverless Container
+	ExecutionTimeout *string `pulumi:"executionTimeout"`
+	// Folder ID for the Yandex Cloud Serverless Container
+	FolderId *string `pulumi:"folderId"`
+	// Revision deployment image for Yandex Cloud Serverless Container
+	// * `image.0.url` (Required) - URL of image that will be deployed as Yandex Cloud Serverless Container
+	// * `image.0.work_dir` - Working directory for Yandex Cloud Serverless Container
+	// * `image.0.digest` - Digest of image that will be deployed as Yandex Cloud Serverless Container.
+	//   If presented, should be equal to digest that will be resolved at server side by URL.
+	//   Container will be updated on digest change even if `image.0.url` stays the same.
+	//   If field not specified then its value will be computed.
+	// * `image.0.command` - List of commands for Yandex Cloud Serverless Container
+	// * `image.0.args` - List of arguments for Yandex Cloud Serverless Container
+	// * `image.0.environment` -  A set of key/value environment variable pairs for Yandex Cloud Serverless Container
+	Image *ServerlessContainerImage `pulumi:"image"`
+	// A set of key/value label pairs to assign to the Yandex Cloud Serverless Container
+	Labels map[string]string `pulumi:"labels"`
+	// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Serverless Container
+	Memory *int `pulumi:"memory"`
+	// Yandex Cloud Serverless Container name
+	Name *string `pulumi:"name"`
+	// Last revision ID of the Yandex Cloud Serverless Container
+	RevisionId *string `pulumi:"revisionId"`
+	// Secrets for Yandex Cloud Serverless Container
+	Secrets []ServerlessContainerSecret `pulumi:"secrets"`
+	// Service account ID for Yandex Cloud Serverless Container
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
+	// Invoke URL for the Yandex Cloud Serverless Container
+	Url *string `pulumi:"url"`
 }
 
 type ServerlessContainerState struct {
-	Concurrency      pulumi.IntPtrInput
-	CoreFraction     pulumi.IntPtrInput
-	Cores            pulumi.IntPtrInput
-	CreatedAt        pulumi.StringPtrInput
-	Description      pulumi.StringPtrInput
+	// Concurrency of Yandex Cloud Serverless Container
+	Concurrency pulumi.IntPtrInput
+	// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
+	CoreFraction pulumi.IntPtrInput
+	Cores        pulumi.IntPtrInput
+	// Creation timestamp of the Yandex Cloud Serverless Container
+	CreatedAt pulumi.StringPtrInput
+	// Description of the Yandex Cloud Serverless Container
+	Description pulumi.StringPtrInput
+	// Execution timeout in seconds (**duration format**) for Yandex Cloud Serverless Container
 	ExecutionTimeout pulumi.StringPtrInput
-	FolderId         pulumi.StringPtrInput
-	Image            ServerlessContainerImagePtrInput
-	Labels           pulumi.StringMapInput
-	// Container memory in megabytes, should be aligned to 128
-	Memory           pulumi.IntPtrInput
-	Name             pulumi.StringPtrInput
-	RevisionId       pulumi.StringPtrInput
-	Secrets          ServerlessContainerSecretArrayInput
+	// Folder ID for the Yandex Cloud Serverless Container
+	FolderId pulumi.StringPtrInput
+	// Revision deployment image for Yandex Cloud Serverless Container
+	// * `image.0.url` (Required) - URL of image that will be deployed as Yandex Cloud Serverless Container
+	// * `image.0.work_dir` - Working directory for Yandex Cloud Serverless Container
+	// * `image.0.digest` - Digest of image that will be deployed as Yandex Cloud Serverless Container.
+	//   If presented, should be equal to digest that will be resolved at server side by URL.
+	//   Container will be updated on digest change even if `image.0.url` stays the same.
+	//   If field not specified then its value will be computed.
+	// * `image.0.command` - List of commands for Yandex Cloud Serverless Container
+	// * `image.0.args` - List of arguments for Yandex Cloud Serverless Container
+	// * `image.0.environment` -  A set of key/value environment variable pairs for Yandex Cloud Serverless Container
+	Image ServerlessContainerImagePtrInput
+	// A set of key/value label pairs to assign to the Yandex Cloud Serverless Container
+	Labels pulumi.StringMapInput
+	// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Serverless Container
+	Memory pulumi.IntPtrInput
+	// Yandex Cloud Serverless Container name
+	Name pulumi.StringPtrInput
+	// Last revision ID of the Yandex Cloud Serverless Container
+	RevisionId pulumi.StringPtrInput
+	// Secrets for Yandex Cloud Serverless Container
+	Secrets ServerlessContainerSecretArrayInput
+	// Service account ID for Yandex Cloud Serverless Container
 	ServiceAccountId pulumi.StringPtrInput
-	Url              pulumi.StringPtrInput
+	// Invoke URL for the Yandex Cloud Serverless Container
+	Url pulumi.StringPtrInput
 }
 
 func (ServerlessContainerState) ElementType() reflect.Type {
@@ -110,35 +238,73 @@ func (ServerlessContainerState) ElementType() reflect.Type {
 }
 
 type serverlessContainerArgs struct {
-	Concurrency      *int                     `pulumi:"concurrency"`
-	CoreFraction     *int                     `pulumi:"coreFraction"`
-	Cores            *int                     `pulumi:"cores"`
-	Description      *string                  `pulumi:"description"`
-	ExecutionTimeout *string                  `pulumi:"executionTimeout"`
-	FolderId         *string                  `pulumi:"folderId"`
-	Image            ServerlessContainerImage `pulumi:"image"`
-	Labels           map[string]string        `pulumi:"labels"`
-	// Container memory in megabytes, should be aligned to 128
-	Memory           int                         `pulumi:"memory"`
-	Name             *string                     `pulumi:"name"`
-	Secrets          []ServerlessContainerSecret `pulumi:"secrets"`
-	ServiceAccountId *string                     `pulumi:"serviceAccountId"`
+	// Concurrency of Yandex Cloud Serverless Container
+	Concurrency *int `pulumi:"concurrency"`
+	// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
+	CoreFraction *int `pulumi:"coreFraction"`
+	Cores        *int `pulumi:"cores"`
+	// Description of the Yandex Cloud Serverless Container
+	Description *string `pulumi:"description"`
+	// Execution timeout in seconds (**duration format**) for Yandex Cloud Serverless Container
+	ExecutionTimeout *string `pulumi:"executionTimeout"`
+	// Folder ID for the Yandex Cloud Serverless Container
+	FolderId *string `pulumi:"folderId"`
+	// Revision deployment image for Yandex Cloud Serverless Container
+	// * `image.0.url` (Required) - URL of image that will be deployed as Yandex Cloud Serverless Container
+	// * `image.0.work_dir` - Working directory for Yandex Cloud Serverless Container
+	// * `image.0.digest` - Digest of image that will be deployed as Yandex Cloud Serverless Container.
+	//   If presented, should be equal to digest that will be resolved at server side by URL.
+	//   Container will be updated on digest change even if `image.0.url` stays the same.
+	//   If field not specified then its value will be computed.
+	// * `image.0.command` - List of commands for Yandex Cloud Serverless Container
+	// * `image.0.args` - List of arguments for Yandex Cloud Serverless Container
+	// * `image.0.environment` -  A set of key/value environment variable pairs for Yandex Cloud Serverless Container
+	Image ServerlessContainerImage `pulumi:"image"`
+	// A set of key/value label pairs to assign to the Yandex Cloud Serverless Container
+	Labels map[string]string `pulumi:"labels"`
+	// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Serverless Container
+	Memory int `pulumi:"memory"`
+	// Yandex Cloud Serverless Container name
+	Name *string `pulumi:"name"`
+	// Secrets for Yandex Cloud Serverless Container
+	Secrets []ServerlessContainerSecret `pulumi:"secrets"`
+	// Service account ID for Yandex Cloud Serverless Container
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
 }
 
 // The set of arguments for constructing a ServerlessContainer resource.
 type ServerlessContainerArgs struct {
-	Concurrency      pulumi.IntPtrInput
-	CoreFraction     pulumi.IntPtrInput
-	Cores            pulumi.IntPtrInput
-	Description      pulumi.StringPtrInput
+	// Concurrency of Yandex Cloud Serverless Container
+	Concurrency pulumi.IntPtrInput
+	// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
+	CoreFraction pulumi.IntPtrInput
+	Cores        pulumi.IntPtrInput
+	// Description of the Yandex Cloud Serverless Container
+	Description pulumi.StringPtrInput
+	// Execution timeout in seconds (**duration format**) for Yandex Cloud Serverless Container
 	ExecutionTimeout pulumi.StringPtrInput
-	FolderId         pulumi.StringPtrInput
-	Image            ServerlessContainerImageInput
-	Labels           pulumi.StringMapInput
-	// Container memory in megabytes, should be aligned to 128
-	Memory           pulumi.IntInput
-	Name             pulumi.StringPtrInput
-	Secrets          ServerlessContainerSecretArrayInput
+	// Folder ID for the Yandex Cloud Serverless Container
+	FolderId pulumi.StringPtrInput
+	// Revision deployment image for Yandex Cloud Serverless Container
+	// * `image.0.url` (Required) - URL of image that will be deployed as Yandex Cloud Serverless Container
+	// * `image.0.work_dir` - Working directory for Yandex Cloud Serverless Container
+	// * `image.0.digest` - Digest of image that will be deployed as Yandex Cloud Serverless Container.
+	//   If presented, should be equal to digest that will be resolved at server side by URL.
+	//   Container will be updated on digest change even if `image.0.url` stays the same.
+	//   If field not specified then its value will be computed.
+	// * `image.0.command` - List of commands for Yandex Cloud Serverless Container
+	// * `image.0.args` - List of arguments for Yandex Cloud Serverless Container
+	// * `image.0.environment` -  A set of key/value environment variable pairs for Yandex Cloud Serverless Container
+	Image ServerlessContainerImageInput
+	// A set of key/value label pairs to assign to the Yandex Cloud Serverless Container
+	Labels pulumi.StringMapInput
+	// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Serverless Container
+	Memory pulumi.IntInput
+	// Yandex Cloud Serverless Container name
+	Name pulumi.StringPtrInput
+	// Secrets for Yandex Cloud Serverless Container
+	Secrets ServerlessContainerSecretArrayInput
+	// Service account ID for Yandex Cloud Serverless Container
 	ServiceAccountId pulumi.StringPtrInput
 }
 
@@ -229,10 +395,12 @@ func (o ServerlessContainerOutput) ToServerlessContainerOutputWithContext(ctx co
 	return o
 }
 
+// Concurrency of Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) Concurrency() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.IntPtrOutput { return v.Concurrency }).(pulumi.IntPtrOutput)
 }
 
+// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) CoreFraction() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.IntOutput { return v.CoreFraction }).(pulumi.IntOutput)
 }
@@ -241,51 +409,71 @@ func (o ServerlessContainerOutput) Cores() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.IntPtrOutput { return v.Cores }).(pulumi.IntPtrOutput)
 }
 
+// Creation timestamp of the Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Execution timeout in seconds (**duration format**) for Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) ExecutionTimeout() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.StringOutput { return v.ExecutionTimeout }).(pulumi.StringOutput)
 }
 
+// Folder ID for the Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Revision deployment image for Yandex Cloud Serverless Container
+//   - `image.0.url` (Required) - URL of image that will be deployed as Yandex Cloud Serverless Container
+//   - `image.0.work_dir` - Working directory for Yandex Cloud Serverless Container
+//   - `image.0.digest` - Digest of image that will be deployed as Yandex Cloud Serverless Container.
+//     If presented, should be equal to digest that will be resolved at server side by URL.
+//     Container will be updated on digest change even if `image.0.url` stays the same.
+//     If field not specified then its value will be computed.
+//   - `image.0.command` - List of commands for Yandex Cloud Serverless Container
+//   - `image.0.args` - List of arguments for Yandex Cloud Serverless Container
+//   - `image.0.environment` -  A set of key/value environment variable pairs for Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) Image() ServerlessContainerImageOutput {
 	return o.ApplyT(func(v *ServerlessContainer) ServerlessContainerImageOutput { return v.Image }).(ServerlessContainerImageOutput)
 }
 
+// A set of key/value label pairs to assign to the Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
-// Container memory in megabytes, should be aligned to 128
+// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) Memory() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.IntOutput { return v.Memory }).(pulumi.IntOutput)
 }
 
+// Yandex Cloud Serverless Container name
 func (o ServerlessContainerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Last revision ID of the Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) RevisionId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.StringOutput { return v.RevisionId }).(pulumi.StringOutput)
 }
 
+// Secrets for Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) Secrets() ServerlessContainerSecretArrayOutput {
 	return o.ApplyT(func(v *ServerlessContainer) ServerlessContainerSecretArrayOutput { return v.Secrets }).(ServerlessContainerSecretArrayOutput)
 }
 
+// Service account ID for Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) ServiceAccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.StringPtrOutput { return v.ServiceAccountId }).(pulumi.StringPtrOutput)
 }
 
+// Invoke URL for the Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }

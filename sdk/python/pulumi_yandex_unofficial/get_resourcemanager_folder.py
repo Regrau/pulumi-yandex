@@ -50,16 +50,25 @@ class GetResourcemanagerFolderResult:
     @property
     @pulumi.getter(name="cloudId")
     def cloud_id(self) -> str:
+        """
+        ID of the cloud that contains the folder.
+        """
         return pulumi.get(self, "cloud_id")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Folder creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the folder.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -78,6 +87,9 @@ class GetResourcemanagerFolderResult:
     @property
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        A map of labels applied to this folder.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -88,6 +100,9 @@ class GetResourcemanagerFolderResult:
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Current status of the folder.
+        """
         return pulumi.get(self, "status")
 
 
@@ -113,7 +128,25 @@ def get_resourcemanager_folder(cloud_id: Optional[str] = None,
                                name: Optional[str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourcemanagerFolderResult:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to get information about a Yandex Resource Manager Folder. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/resource-manager/concepts/resources-hierarchy#folder).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_folder1 = yandex.get_resourcemanager_folder(folder_id="folder_id_number_1")
+    my_folder2 = yandex.get_resourcemanager_folder(cloud_id="some_cloud_id",
+        name="folder_name")
+    pulumi.export("myFolder1Name", my_folder1.name)
+    pulumi.export("myFolder2CloudId", my_folder2.cloud_id)
+    ```
+
+
+    :param str cloud_id: Cloud that the resource belongs to. If value is omitted, the default provider cloud is used.
+    :param str folder_id: ID of the folder.
+    :param Mapping[str, str] labels: A map of labels applied to this folder.
+    :param str name: Name of the folder.
     """
     __args__ = dict()
     __args__['cloudId'] = cloud_id
@@ -141,6 +174,24 @@ def get_resourcemanager_folder_output(cloud_id: Optional[pulumi.Input[Optional[s
                                       name: Optional[pulumi.Input[Optional[str]]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetResourcemanagerFolderResult]:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to get information about a Yandex Resource Manager Folder. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/resource-manager/concepts/resources-hierarchy#folder).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_folder1 = yandex.get_resourcemanager_folder(folder_id="folder_id_number_1")
+    my_folder2 = yandex.get_resourcemanager_folder(cloud_id="some_cloud_id",
+        name="folder_name")
+    pulumi.export("myFolder1Name", my_folder1.name)
+    pulumi.export("myFolder2CloudId", my_folder2.cloud_id)
+    ```
+
+
+    :param str cloud_id: Cloud that the resource belongs to. If value is omitted, the default provider cloud is used.
+    :param str folder_id: ID of the folder.
+    :param Mapping[str, str] labels: A map of labels applied to this folder.
+    :param str name: Name of the folder.
     """
     ...

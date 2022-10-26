@@ -20,6 +20,13 @@ class OrganizationManagerOrganizationIamMemberArgs:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a OrganizationManagerOrganizationIamMember resource.
+        :param pulumi.Input[str] member: The identity that will be granted the privilege that is specified in the `role` field.
+               This field can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        :param pulumi.Input[str] organization_id: ID of the organization to attach a policy to.
+        :param pulumi.Input[str] role: The role that should be assigned.
         """
         pulumi.set(__self__, "member", member)
         pulumi.set(__self__, "organization_id", organization_id)
@@ -30,6 +37,13 @@ class OrganizationManagerOrganizationIamMemberArgs:
     @property
     @pulumi.getter
     def member(self) -> pulumi.Input[str]:
+        """
+        The identity that will be granted the privilege that is specified in the `role` field.
+        This field can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        """
         return pulumi.get(self, "member")
 
     @member.setter
@@ -39,6 +53,9 @@ class OrganizationManagerOrganizationIamMemberArgs:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Input[str]:
+        """
+        ID of the organization to attach a policy to.
+        """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
@@ -48,6 +65,9 @@ class OrganizationManagerOrganizationIamMemberArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        The role that should be assigned.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -73,6 +93,13 @@ class _OrganizationManagerOrganizationIamMemberState:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering OrganizationManagerOrganizationIamMember resources.
+        :param pulumi.Input[str] member: The identity that will be granted the privilege that is specified in the `role` field.
+               This field can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        :param pulumi.Input[str] organization_id: ID of the organization to attach a policy to.
+        :param pulumi.Input[str] role: The role that should be assigned.
         """
         if member is not None:
             pulumi.set(__self__, "member", member)
@@ -86,6 +113,13 @@ class _OrganizationManagerOrganizationIamMemberState:
     @property
     @pulumi.getter
     def member(self) -> Optional[pulumi.Input[str]]:
+        """
+        The identity that will be granted the privilege that is specified in the `role` field.
+        This field can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        """
         return pulumi.get(self, "member")
 
     @member.setter
@@ -95,6 +129,9 @@ class _OrganizationManagerOrganizationIamMemberState:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the organization to attach a policy to.
+        """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
@@ -104,6 +141,9 @@ class _OrganizationManagerOrganizationIamMemberState:
     @property
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role that should be assigned.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -131,9 +171,44 @@ class OrganizationManagerOrganizationIamMember(pulumi.CustomResource):
                  sleep_after: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a OrganizationManagerOrganizationIamMember resource with the given unique name, props, and options.
+        Allows creation and management of a single member for a single binding within
+        the IAM policy for an existing Yandex Organization Manager organization.
+
+        > **Note:** Roles controlled by `OrganizationManagerOrganizationIamBinding`
+           should not be assigned using `OrganizationManagerOrganizationIamMember`.
+
+        > **Note:** When you delete `OrganizationManagerOrganizationIamBinding` resource,
+           the roles can be deleted from other users within the organization as well. Be careful!
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        editor = yandex.OrganizationManagerOrganizationIamMember("editor",
+            member="userAccount:user_id",
+            organization_id="some_organization_id",
+            role="editor")
+        ```
+
+        ## Import
+
+        IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the `organization id`, role, and account, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/organizationManagerOrganizationIamMember:OrganizationManagerOrganizationIamMember my_project "organization_id viewer foo@example.com"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] member: The identity that will be granted the privilege that is specified in the `role` field.
+               This field can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        :param pulumi.Input[str] organization_id: ID of the organization to attach a policy to.
+        :param pulumi.Input[str] role: The role that should be assigned.
         """
         ...
     @overload
@@ -142,7 +217,35 @@ class OrganizationManagerOrganizationIamMember(pulumi.CustomResource):
                  args: OrganizationManagerOrganizationIamMemberArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a OrganizationManagerOrganizationIamMember resource with the given unique name, props, and options.
+        Allows creation and management of a single member for a single binding within
+        the IAM policy for an existing Yandex Organization Manager organization.
+
+        > **Note:** Roles controlled by `OrganizationManagerOrganizationIamBinding`
+           should not be assigned using `OrganizationManagerOrganizationIamMember`.
+
+        > **Note:** When you delete `OrganizationManagerOrganizationIamBinding` resource,
+           the roles can be deleted from other users within the organization as well. Be careful!
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        editor = yandex.OrganizationManagerOrganizationIamMember("editor",
+            member="userAccount:user_id",
+            organization_id="some_organization_id",
+            role="editor")
+        ```
+
+        ## Import
+
+        IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the `organization id`, role, and account, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/organizationManagerOrganizationIamMember:OrganizationManagerOrganizationIamMember my_project "organization_id viewer foo@example.com"
+        ```
+
         :param str resource_name: The name of the resource.
         :param OrganizationManagerOrganizationIamMemberArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,6 +305,13 @@ class OrganizationManagerOrganizationIamMember(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] member: The identity that will be granted the privilege that is specified in the `role` field.
+               This field can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        :param pulumi.Input[str] organization_id: ID of the organization to attach a policy to.
+        :param pulumi.Input[str] role: The role that should be assigned.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -216,16 +326,29 @@ class OrganizationManagerOrganizationIamMember(pulumi.CustomResource):
     @property
     @pulumi.getter
     def member(self) -> pulumi.Output[str]:
+        """
+        The identity that will be granted the privilege that is specified in the `role` field.
+        This field can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        """
         return pulumi.get(self, "member")
 
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
+        """
+        ID of the organization to attach a policy to.
+        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
+        """
+        The role that should be assigned.
+        """
         return pulumi.get(self, "role")
 
     @property

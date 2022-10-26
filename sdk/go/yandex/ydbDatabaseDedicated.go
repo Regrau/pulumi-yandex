@@ -11,28 +11,103 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Yandex Database (dedicated) resource.
+// For more information, see [the official documentation](https://cloud.yandex.com/en/docs/ydb/concepts/serverless_and_dedicated).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewYdbDatabaseDedicated(ctx, "database1", &yandex.YdbDatabaseDedicatedArgs{
+//				DeletionProtection: pulumi.Bool(true),
+//				FolderId:           pulumi.Any(data.Yandex_resourcemanager_folder.Test_folder.Id),
+//				Location: &YdbDatabaseDedicatedLocationArgs{
+//					Region: &YdbDatabaseDedicatedLocationRegionArgs{
+//						Id: pulumi.String("ru-central1"),
+//					},
+//				},
+//				NetworkId:        pulumi.Any(yandex_vpc_network.My - inst - group - network.Id),
+//				ResourcePresetId: pulumi.String("medium"),
+//				ScalePolicy: &YdbDatabaseDedicatedScalePolicyArgs{
+//					FixedScale: &YdbDatabaseDedicatedScalePolicyFixedScaleArgs{
+//						Size: pulumi.Int(1),
+//					},
+//				},
+//				StorageConfig: &YdbDatabaseDedicatedStorageConfigArgs{
+//					GroupCount:    pulumi.Int(1),
+//					StorageTypeId: pulumi.String("ssd"),
+//				},
+//				SubnetIds: pulumi.StringArray{
+//					pulumi.Any(yandex_vpc_subnet.My - inst - group - subnet.Id),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type YdbDatabaseDedicated struct {
 	pulumi.CustomResourceState
 
-	AssignPublicIps    pulumi.BoolPtrOutput                    `pulumi:"assignPublicIps"`
-	CreatedAt          pulumi.StringOutput                     `pulumi:"createdAt"`
-	DatabasePath       pulumi.StringOutput                     `pulumi:"databasePath"`
-	DeletionProtection pulumi.BoolPtrOutput                    `pulumi:"deletionProtection"`
-	Description        pulumi.StringPtrOutput                  `pulumi:"description"`
-	FolderId           pulumi.StringOutput                     `pulumi:"folderId"`
-	Labels             pulumi.StringMapOutput                  `pulumi:"labels"`
-	Location           YdbDatabaseDedicatedLocationPtrOutput   `pulumi:"location"`
-	LocationId         pulumi.StringOutput                     `pulumi:"locationId"`
-	Name               pulumi.StringOutput                     `pulumi:"name"`
-	NetworkId          pulumi.StringOutput                     `pulumi:"networkId"`
-	ResourcePresetId   pulumi.StringOutput                     `pulumi:"resourcePresetId"`
-	ScalePolicy        YdbDatabaseDedicatedScalePolicyOutput   `pulumi:"scalePolicy"`
-	Status             pulumi.StringOutput                     `pulumi:"status"`
-	StorageConfig      YdbDatabaseDedicatedStorageConfigOutput `pulumi:"storageConfig"`
-	SubnetIds          pulumi.StringArrayOutput                `pulumi:"subnetIds"`
-	TlsEnabled         pulumi.BoolOutput                       `pulumi:"tlsEnabled"`
-	YdbApiEndpoint     pulumi.StringOutput                     `pulumi:"ydbApiEndpoint"`
-	YdbFullEndpoint    pulumi.StringOutput                     `pulumi:"ydbFullEndpoint"`
+	// Whether public IP addresses should be assigned to the Yandex Database cluster.
+	AssignPublicIps pulumi.BoolPtrOutput `pulumi:"assignPublicIps"`
+	// The Yandex Database cluster creation timestamp.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Full database path of the Yandex Database cluster.
+	// Useful for SDK configuration.
+	DatabasePath pulumi.StringOutput `pulumi:"databasePath"`
+	// Inhibits deletion of the database. Can be either `true` or `false`
+	DeletionProtection pulumi.BoolPtrOutput `pulumi:"deletionProtection"`
+	// A description for the Yandex Database cluster.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// ID of the folder that the Yandex Database cluster belongs to.
+	// It will be deduced from provider configuration if not set explicitly.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Yandex Database cluster.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Location for the Yandex Database cluster.
+	// The structure is documented below.
+	Location YdbDatabaseDedicatedLocationPtrOutput `pulumi:"location"`
+	// Location ID for the Yandex Database cluster.
+	LocationId pulumi.StringOutput `pulumi:"locationId"`
+	// Name of the Yandex Database cluster.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the network to attach the Yandex Database cluster to.
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
+	// The Yandex Database cluster preset.
+	// Available presets can be obtained via `yc ydb resource-preset list` command.
+	ResourcePresetId pulumi.StringOutput `pulumi:"resourcePresetId"`
+	// Scaling policy for the Yandex Database cluster.
+	// The structure is documented below.
+	ScalePolicy YdbDatabaseDedicatedScalePolicyOutput `pulumi:"scalePolicy"`
+	// Status of the Yandex Database cluster.
+	Status pulumi.StringOutput `pulumi:"status"`
+	// A list of storage configuration options for the Yandex Database cluster.
+	// The structure is documented below.
+	StorageConfig YdbDatabaseDedicatedStorageConfigOutput `pulumi:"storageConfig"`
+	// List of subnet IDs to attach the Yandex Database cluster to.
+	SubnetIds pulumi.StringArrayOutput `pulumi:"subnetIds"`
+	// Whether TLS is enabled for the Yandex Database cluster.
+	// Useful for SDK configuration.
+	TlsEnabled pulumi.BoolOutput `pulumi:"tlsEnabled"`
+	// API endpoint of the Yandex Database cluster.
+	// Useful for SDK configuration.
+	YdbApiEndpoint pulumi.StringOutput `pulumi:"ydbApiEndpoint"`
+	// Full endpoint of the Yandex Database cluster.
+	YdbFullEndpoint pulumi.StringOutput `pulumi:"ydbFullEndpoint"`
 }
 
 // NewYdbDatabaseDedicated registers a new resource with the given unique name, arguments, and options.
@@ -80,47 +155,101 @@ func GetYdbDatabaseDedicated(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering YdbDatabaseDedicated resources.
 type ydbDatabaseDedicatedState struct {
-	AssignPublicIps    *bool                              `pulumi:"assignPublicIps"`
-	CreatedAt          *string                            `pulumi:"createdAt"`
-	DatabasePath       *string                            `pulumi:"databasePath"`
-	DeletionProtection *bool                              `pulumi:"deletionProtection"`
-	Description        *string                            `pulumi:"description"`
-	FolderId           *string                            `pulumi:"folderId"`
-	Labels             map[string]string                  `pulumi:"labels"`
-	Location           *YdbDatabaseDedicatedLocation      `pulumi:"location"`
-	LocationId         *string                            `pulumi:"locationId"`
-	Name               *string                            `pulumi:"name"`
-	NetworkId          *string                            `pulumi:"networkId"`
-	ResourcePresetId   *string                            `pulumi:"resourcePresetId"`
-	ScalePolicy        *YdbDatabaseDedicatedScalePolicy   `pulumi:"scalePolicy"`
-	Status             *string                            `pulumi:"status"`
-	StorageConfig      *YdbDatabaseDedicatedStorageConfig `pulumi:"storageConfig"`
-	SubnetIds          []string                           `pulumi:"subnetIds"`
-	TlsEnabled         *bool                              `pulumi:"tlsEnabled"`
-	YdbApiEndpoint     *string                            `pulumi:"ydbApiEndpoint"`
-	YdbFullEndpoint    *string                            `pulumi:"ydbFullEndpoint"`
+	// Whether public IP addresses should be assigned to the Yandex Database cluster.
+	AssignPublicIps *bool `pulumi:"assignPublicIps"`
+	// The Yandex Database cluster creation timestamp.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Full database path of the Yandex Database cluster.
+	// Useful for SDK configuration.
+	DatabasePath *string `pulumi:"databasePath"`
+	// Inhibits deletion of the database. Can be either `true` or `false`
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// A description for the Yandex Database cluster.
+	Description *string `pulumi:"description"`
+	// ID of the folder that the Yandex Database cluster belongs to.
+	// It will be deduced from provider configuration if not set explicitly.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Yandex Database cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// Location for the Yandex Database cluster.
+	// The structure is documented below.
+	Location *YdbDatabaseDedicatedLocation `pulumi:"location"`
+	// Location ID for the Yandex Database cluster.
+	LocationId *string `pulumi:"locationId"`
+	// Name of the Yandex Database cluster.
+	Name *string `pulumi:"name"`
+	// ID of the network to attach the Yandex Database cluster to.
+	NetworkId *string `pulumi:"networkId"`
+	// The Yandex Database cluster preset.
+	// Available presets can be obtained via `yc ydb resource-preset list` command.
+	ResourcePresetId *string `pulumi:"resourcePresetId"`
+	// Scaling policy for the Yandex Database cluster.
+	// The structure is documented below.
+	ScalePolicy *YdbDatabaseDedicatedScalePolicy `pulumi:"scalePolicy"`
+	// Status of the Yandex Database cluster.
+	Status *string `pulumi:"status"`
+	// A list of storage configuration options for the Yandex Database cluster.
+	// The structure is documented below.
+	StorageConfig *YdbDatabaseDedicatedStorageConfig `pulumi:"storageConfig"`
+	// List of subnet IDs to attach the Yandex Database cluster to.
+	SubnetIds []string `pulumi:"subnetIds"`
+	// Whether TLS is enabled for the Yandex Database cluster.
+	// Useful for SDK configuration.
+	TlsEnabled *bool `pulumi:"tlsEnabled"`
+	// API endpoint of the Yandex Database cluster.
+	// Useful for SDK configuration.
+	YdbApiEndpoint *string `pulumi:"ydbApiEndpoint"`
+	// Full endpoint of the Yandex Database cluster.
+	YdbFullEndpoint *string `pulumi:"ydbFullEndpoint"`
 }
 
 type YdbDatabaseDedicatedState struct {
-	AssignPublicIps    pulumi.BoolPtrInput
-	CreatedAt          pulumi.StringPtrInput
-	DatabasePath       pulumi.StringPtrInput
+	// Whether public IP addresses should be assigned to the Yandex Database cluster.
+	AssignPublicIps pulumi.BoolPtrInput
+	// The Yandex Database cluster creation timestamp.
+	CreatedAt pulumi.StringPtrInput
+	// Full database path of the Yandex Database cluster.
+	// Useful for SDK configuration.
+	DatabasePath pulumi.StringPtrInput
+	// Inhibits deletion of the database. Can be either `true` or `false`
 	DeletionProtection pulumi.BoolPtrInput
-	Description        pulumi.StringPtrInput
-	FolderId           pulumi.StringPtrInput
-	Labels             pulumi.StringMapInput
-	Location           YdbDatabaseDedicatedLocationPtrInput
-	LocationId         pulumi.StringPtrInput
-	Name               pulumi.StringPtrInput
-	NetworkId          pulumi.StringPtrInput
-	ResourcePresetId   pulumi.StringPtrInput
-	ScalePolicy        YdbDatabaseDedicatedScalePolicyPtrInput
-	Status             pulumi.StringPtrInput
-	StorageConfig      YdbDatabaseDedicatedStorageConfigPtrInput
-	SubnetIds          pulumi.StringArrayInput
-	TlsEnabled         pulumi.BoolPtrInput
-	YdbApiEndpoint     pulumi.StringPtrInput
-	YdbFullEndpoint    pulumi.StringPtrInput
+	// A description for the Yandex Database cluster.
+	Description pulumi.StringPtrInput
+	// ID of the folder that the Yandex Database cluster belongs to.
+	// It will be deduced from provider configuration if not set explicitly.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Yandex Database cluster.
+	Labels pulumi.StringMapInput
+	// Location for the Yandex Database cluster.
+	// The structure is documented below.
+	Location YdbDatabaseDedicatedLocationPtrInput
+	// Location ID for the Yandex Database cluster.
+	LocationId pulumi.StringPtrInput
+	// Name of the Yandex Database cluster.
+	Name pulumi.StringPtrInput
+	// ID of the network to attach the Yandex Database cluster to.
+	NetworkId pulumi.StringPtrInput
+	// The Yandex Database cluster preset.
+	// Available presets can be obtained via `yc ydb resource-preset list` command.
+	ResourcePresetId pulumi.StringPtrInput
+	// Scaling policy for the Yandex Database cluster.
+	// The structure is documented below.
+	ScalePolicy YdbDatabaseDedicatedScalePolicyPtrInput
+	// Status of the Yandex Database cluster.
+	Status pulumi.StringPtrInput
+	// A list of storage configuration options for the Yandex Database cluster.
+	// The structure is documented below.
+	StorageConfig YdbDatabaseDedicatedStorageConfigPtrInput
+	// List of subnet IDs to attach the Yandex Database cluster to.
+	SubnetIds pulumi.StringArrayInput
+	// Whether TLS is enabled for the Yandex Database cluster.
+	// Useful for SDK configuration.
+	TlsEnabled pulumi.BoolPtrInput
+	// API endpoint of the Yandex Database cluster.
+	// Useful for SDK configuration.
+	YdbApiEndpoint pulumi.StringPtrInput
+	// Full endpoint of the Yandex Database cluster.
+	YdbFullEndpoint pulumi.StringPtrInput
 }
 
 func (YdbDatabaseDedicatedState) ElementType() reflect.Type {
@@ -128,36 +257,72 @@ func (YdbDatabaseDedicatedState) ElementType() reflect.Type {
 }
 
 type ydbDatabaseDedicatedArgs struct {
-	AssignPublicIps    *bool                             `pulumi:"assignPublicIps"`
-	DeletionProtection *bool                             `pulumi:"deletionProtection"`
-	Description        *string                           `pulumi:"description"`
-	FolderId           *string                           `pulumi:"folderId"`
-	Labels             map[string]string                 `pulumi:"labels"`
-	Location           *YdbDatabaseDedicatedLocation     `pulumi:"location"`
-	LocationId         *string                           `pulumi:"locationId"`
-	Name               *string                           `pulumi:"name"`
-	NetworkId          string                            `pulumi:"networkId"`
-	ResourcePresetId   string                            `pulumi:"resourcePresetId"`
-	ScalePolicy        YdbDatabaseDedicatedScalePolicy   `pulumi:"scalePolicy"`
-	StorageConfig      YdbDatabaseDedicatedStorageConfig `pulumi:"storageConfig"`
-	SubnetIds          []string                          `pulumi:"subnetIds"`
+	// Whether public IP addresses should be assigned to the Yandex Database cluster.
+	AssignPublicIps *bool `pulumi:"assignPublicIps"`
+	// Inhibits deletion of the database. Can be either `true` or `false`
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// A description for the Yandex Database cluster.
+	Description *string `pulumi:"description"`
+	// ID of the folder that the Yandex Database cluster belongs to.
+	// It will be deduced from provider configuration if not set explicitly.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Yandex Database cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// Location for the Yandex Database cluster.
+	// The structure is documented below.
+	Location *YdbDatabaseDedicatedLocation `pulumi:"location"`
+	// Location ID for the Yandex Database cluster.
+	LocationId *string `pulumi:"locationId"`
+	// Name of the Yandex Database cluster.
+	Name *string `pulumi:"name"`
+	// ID of the network to attach the Yandex Database cluster to.
+	NetworkId string `pulumi:"networkId"`
+	// The Yandex Database cluster preset.
+	// Available presets can be obtained via `yc ydb resource-preset list` command.
+	ResourcePresetId string `pulumi:"resourcePresetId"`
+	// Scaling policy for the Yandex Database cluster.
+	// The structure is documented below.
+	ScalePolicy YdbDatabaseDedicatedScalePolicy `pulumi:"scalePolicy"`
+	// A list of storage configuration options for the Yandex Database cluster.
+	// The structure is documented below.
+	StorageConfig YdbDatabaseDedicatedStorageConfig `pulumi:"storageConfig"`
+	// List of subnet IDs to attach the Yandex Database cluster to.
+	SubnetIds []string `pulumi:"subnetIds"`
 }
 
 // The set of arguments for constructing a YdbDatabaseDedicated resource.
 type YdbDatabaseDedicatedArgs struct {
-	AssignPublicIps    pulumi.BoolPtrInput
+	// Whether public IP addresses should be assigned to the Yandex Database cluster.
+	AssignPublicIps pulumi.BoolPtrInput
+	// Inhibits deletion of the database. Can be either `true` or `false`
 	DeletionProtection pulumi.BoolPtrInput
-	Description        pulumi.StringPtrInput
-	FolderId           pulumi.StringPtrInput
-	Labels             pulumi.StringMapInput
-	Location           YdbDatabaseDedicatedLocationPtrInput
-	LocationId         pulumi.StringPtrInput
-	Name               pulumi.StringPtrInput
-	NetworkId          pulumi.StringInput
-	ResourcePresetId   pulumi.StringInput
-	ScalePolicy        YdbDatabaseDedicatedScalePolicyInput
-	StorageConfig      YdbDatabaseDedicatedStorageConfigInput
-	SubnetIds          pulumi.StringArrayInput
+	// A description for the Yandex Database cluster.
+	Description pulumi.StringPtrInput
+	// ID of the folder that the Yandex Database cluster belongs to.
+	// It will be deduced from provider configuration if not set explicitly.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Yandex Database cluster.
+	Labels pulumi.StringMapInput
+	// Location for the Yandex Database cluster.
+	// The structure is documented below.
+	Location YdbDatabaseDedicatedLocationPtrInput
+	// Location ID for the Yandex Database cluster.
+	LocationId pulumi.StringPtrInput
+	// Name of the Yandex Database cluster.
+	Name pulumi.StringPtrInput
+	// ID of the network to attach the Yandex Database cluster to.
+	NetworkId pulumi.StringInput
+	// The Yandex Database cluster preset.
+	// Available presets can be obtained via `yc ydb resource-preset list` command.
+	ResourcePresetId pulumi.StringInput
+	// Scaling policy for the Yandex Database cluster.
+	// The structure is documented below.
+	ScalePolicy YdbDatabaseDedicatedScalePolicyInput
+	// A list of storage configuration options for the Yandex Database cluster.
+	// The structure is documented below.
+	StorageConfig YdbDatabaseDedicatedStorageConfigInput
+	// List of subnet IDs to attach the Yandex Database cluster to.
+	SubnetIds pulumi.StringArrayInput
 }
 
 func (YdbDatabaseDedicatedArgs) ElementType() reflect.Type {
@@ -247,78 +412,105 @@ func (o YdbDatabaseDedicatedOutput) ToYdbDatabaseDedicatedOutputWithContext(ctx 
 	return o
 }
 
+// Whether public IP addresses should be assigned to the Yandex Database cluster.
 func (o YdbDatabaseDedicatedOutput) AssignPublicIps() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.BoolPtrOutput { return v.AssignPublicIps }).(pulumi.BoolPtrOutput)
 }
 
+// The Yandex Database cluster creation timestamp.
 func (o YdbDatabaseDedicatedOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Full database path of the Yandex Database cluster.
+// Useful for SDK configuration.
 func (o YdbDatabaseDedicatedOutput) DatabasePath() pulumi.StringOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.StringOutput { return v.DatabasePath }).(pulumi.StringOutput)
 }
 
+// Inhibits deletion of the database. Can be either `true` or `false`
 func (o YdbDatabaseDedicatedOutput) DeletionProtection() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.BoolPtrOutput { return v.DeletionProtection }).(pulumi.BoolPtrOutput)
 }
 
+// A description for the Yandex Database cluster.
 func (o YdbDatabaseDedicatedOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// ID of the folder that the Yandex Database cluster belongs to.
+// It will be deduced from provider configuration if not set explicitly.
 func (o YdbDatabaseDedicatedOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the Yandex Database cluster.
 func (o YdbDatabaseDedicatedOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Location for the Yandex Database cluster.
+// The structure is documented below.
 func (o YdbDatabaseDedicatedOutput) Location() YdbDatabaseDedicatedLocationPtrOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) YdbDatabaseDedicatedLocationPtrOutput { return v.Location }).(YdbDatabaseDedicatedLocationPtrOutput)
 }
 
+// Location ID for the Yandex Database cluster.
 func (o YdbDatabaseDedicatedOutput) LocationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.StringOutput { return v.LocationId }).(pulumi.StringOutput)
 }
 
+// Name of the Yandex Database cluster.
 func (o YdbDatabaseDedicatedOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network to attach the Yandex Database cluster to.
 func (o YdbDatabaseDedicatedOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// The Yandex Database cluster preset.
+// Available presets can be obtained via `yc ydb resource-preset list` command.
 func (o YdbDatabaseDedicatedOutput) ResourcePresetId() pulumi.StringOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.StringOutput { return v.ResourcePresetId }).(pulumi.StringOutput)
 }
 
+// Scaling policy for the Yandex Database cluster.
+// The structure is documented below.
 func (o YdbDatabaseDedicatedOutput) ScalePolicy() YdbDatabaseDedicatedScalePolicyOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) YdbDatabaseDedicatedScalePolicyOutput { return v.ScalePolicy }).(YdbDatabaseDedicatedScalePolicyOutput)
 }
 
+// Status of the Yandex Database cluster.
 func (o YdbDatabaseDedicatedOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
+// A list of storage configuration options for the Yandex Database cluster.
+// The structure is documented below.
 func (o YdbDatabaseDedicatedOutput) StorageConfig() YdbDatabaseDedicatedStorageConfigOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) YdbDatabaseDedicatedStorageConfigOutput { return v.StorageConfig }).(YdbDatabaseDedicatedStorageConfigOutput)
 }
 
+// List of subnet IDs to attach the Yandex Database cluster to.
 func (o YdbDatabaseDedicatedOutput) SubnetIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.StringArrayOutput { return v.SubnetIds }).(pulumi.StringArrayOutput)
 }
 
+// Whether TLS is enabled for the Yandex Database cluster.
+// Useful for SDK configuration.
 func (o YdbDatabaseDedicatedOutput) TlsEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.BoolOutput { return v.TlsEnabled }).(pulumi.BoolOutput)
 }
 
+// API endpoint of the Yandex Database cluster.
+// Useful for SDK configuration.
 func (o YdbDatabaseDedicatedOutput) YdbApiEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.StringOutput { return v.YdbApiEndpoint }).(pulumi.StringOutput)
 }
 
+// Full endpoint of the Yandex Database cluster.
 func (o YdbDatabaseDedicatedOutput) YdbFullEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *YdbDatabaseDedicated) pulumi.StringOutput { return v.YdbFullEndpoint }).(pulumi.StringOutput)
 }

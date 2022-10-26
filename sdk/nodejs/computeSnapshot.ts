@@ -4,6 +4,32 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates a new snapshot of a disk. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/compute/concepts/snapshot).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const defaultComputeSnapshot = new yandex.ComputeSnapshot("default", {
+ *     labels: {
+ *         "my-label": "my-label-value",
+ *     },
+ *     sourceDiskId: "test_disk_id",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A snapshot can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/computeSnapshot:ComputeSnapshot disk-snapshot shapshot_id
+ * ```
+ */
 export class ComputeSnapshot extends pulumi.CustomResource {
     /**
      * Get an existing ComputeSnapshot resource's state with the given name, ID, and optional extra
@@ -32,13 +58,38 @@ export class ComputeSnapshot extends pulumi.CustomResource {
         return obj['__pulumiType'] === ComputeSnapshot.__pulumiType;
     }
 
+    /**
+     * Creation timestamp of the snapshot.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * Description of the resource.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Size of the disk when the snapshot was created, specified in GB.
+     */
     public /*out*/ readonly diskSize!: pulumi.Output<number>;
+    /**
+     * The ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * A set of key/value label pairs to assign to the snapshot.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * A name for the resource.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * ID of the disk to create a snapshot from.
+     */
     public readonly sourceDiskId!: pulumi.Output<string>;
+    /**
+     * Size of the snapshot, specified in GB.
+     */
     public /*out*/ readonly storageSize!: pulumi.Output<number>;
 
     /**
@@ -85,13 +136,38 @@ export class ComputeSnapshot extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ComputeSnapshot resources.
  */
 export interface ComputeSnapshotState {
+    /**
+     * Creation timestamp of the snapshot.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Description of the resource.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Size of the disk when the snapshot was created, specified in GB.
+     */
     diskSize?: pulumi.Input<number>;
+    /**
+     * The ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the snapshot.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * A name for the resource.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the disk to create a snapshot from.
+     */
     sourceDiskId?: pulumi.Input<string>;
+    /**
+     * Size of the snapshot, specified in GB.
+     */
     storageSize?: pulumi.Input<number>;
 }
 
@@ -99,9 +175,25 @@ export interface ComputeSnapshotState {
  * The set of arguments for constructing a ComputeSnapshot resource.
  */
 export interface ComputeSnapshotArgs {
+    /**
+     * Description of the resource.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the snapshot.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * A name for the resource.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the disk to create a snapshot from.
+     */
     sourceDiskId: pulumi.Input<string>;
 }

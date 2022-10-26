@@ -20,6 +20,14 @@ class OrganizationManagerOrganizationIamBindingArgs:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a OrganizationManagerOrganizationIamBinding resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: An array of identities that will be granted the privilege in the `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        :param pulumi.Input[str] organization_id: ID of the organization to attach the policy to.
+        :param pulumi.Input[str] role: The role that should be assigned. Only one
+               `OrganizationManagerOrganizationIamBinding` can be used per role.
         """
         pulumi.set(__self__, "members", members)
         pulumi.set(__self__, "organization_id", organization_id)
@@ -30,6 +38,13 @@ class OrganizationManagerOrganizationIamBindingArgs:
     @property
     @pulumi.getter
     def members(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        An array of identities that will be granted the privilege in the `role`.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        """
         return pulumi.get(self, "members")
 
     @members.setter
@@ -39,6 +54,9 @@ class OrganizationManagerOrganizationIamBindingArgs:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Input[str]:
+        """
+        ID of the organization to attach the policy to.
+        """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
@@ -48,6 +66,10 @@ class OrganizationManagerOrganizationIamBindingArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        The role that should be assigned. Only one
+        `OrganizationManagerOrganizationIamBinding` can be used per role.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -73,6 +95,14 @@ class _OrganizationManagerOrganizationIamBindingState:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering OrganizationManagerOrganizationIamBinding resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: An array of identities that will be granted the privilege in the `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        :param pulumi.Input[str] organization_id: ID of the organization to attach the policy to.
+        :param pulumi.Input[str] role: The role that should be assigned. Only one
+               `OrganizationManagerOrganizationIamBinding` can be used per role.
         """
         if members is not None:
             pulumi.set(__self__, "members", members)
@@ -86,6 +116,13 @@ class _OrganizationManagerOrganizationIamBindingState:
     @property
     @pulumi.getter
     def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        An array of identities that will be granted the privilege in the `role`.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        """
         return pulumi.get(self, "members")
 
     @members.setter
@@ -95,6 +132,9 @@ class _OrganizationManagerOrganizationIamBindingState:
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the organization to attach the policy to.
+        """
         return pulumi.get(self, "organization_id")
 
     @organization_id.setter
@@ -104,6 +144,10 @@ class _OrganizationManagerOrganizationIamBindingState:
     @property
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role that should be assigned. Only one
+        `OrganizationManagerOrganizationIamBinding` can be used per role.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -131,9 +175,39 @@ class OrganizationManagerOrganizationIamBinding(pulumi.CustomResource):
                  sleep_after: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a OrganizationManagerOrganizationIamBinding resource with the given unique name, props, and options.
+        Allows creation and management of a single binding within IAM policy for
+        an existing Yandex.Cloud Organization Manager organization.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        editor = yandex.OrganizationManagerOrganizationIamBinding("editor",
+            members=["userAccount:some_user_id"],
+            organization_id="some_organization_id",
+            role="editor")
+        ```
+
+        ## Import
+
+        IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `organization_id` and role, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/organizationManagerOrganizationIamBinding:OrganizationManagerOrganizationIamBinding viewer "organization_id viewer"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: An array of identities that will be granted the privilege in the `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        :param pulumi.Input[str] organization_id: ID of the organization to attach the policy to.
+        :param pulumi.Input[str] role: The role that should be assigned. Only one
+               `OrganizationManagerOrganizationIamBinding` can be used per role.
         """
         ...
     @overload
@@ -142,7 +216,29 @@ class OrganizationManagerOrganizationIamBinding(pulumi.CustomResource):
                  args: OrganizationManagerOrganizationIamBindingArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a OrganizationManagerOrganizationIamBinding resource with the given unique name, props, and options.
+        Allows creation and management of a single binding within IAM policy for
+        an existing Yandex.Cloud Organization Manager organization.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        editor = yandex.OrganizationManagerOrganizationIamBinding("editor",
+            members=["userAccount:some_user_id"],
+            organization_id="some_organization_id",
+            role="editor")
+        ```
+
+        ## Import
+
+        IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `organization_id` and role, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/organizationManagerOrganizationIamBinding:OrganizationManagerOrganizationIamBinding viewer "organization_id viewer"
+        ```
+
         :param str resource_name: The name of the resource.
         :param OrganizationManagerOrganizationIamBindingArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,6 +298,14 @@ class OrganizationManagerOrganizationIamBinding(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: An array of identities that will be granted the privilege in the `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        :param pulumi.Input[str] organization_id: ID of the organization to attach the policy to.
+        :param pulumi.Input[str] role: The role that should be assigned. Only one
+               `OrganizationManagerOrganizationIamBinding` can be used per role.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -216,16 +320,30 @@ class OrganizationManagerOrganizationIamBinding(pulumi.CustomResource):
     @property
     @pulumi.getter
     def members(self) -> pulumi.Output[Sequence[str]]:
+        """
+        An array of identities that will be granted the privilege in the `role`.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        """
         return pulumi.get(self, "members")
 
     @property
     @pulumi.getter(name="organizationId")
     def organization_id(self) -> pulumi.Output[str]:
+        """
+        ID of the organization to attach the policy to.
+        """
         return pulumi.get(self, "organization_id")
 
     @property
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
+        """
+        The role that should be assigned. Only one
+        `OrganizationManagerOrganizationIamBinding` can be used per role.
+        """
         return pulumi.get(self, "role")
 
     @property

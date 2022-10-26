@@ -13,7 +13,15 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class KubernetesClusterMasterMaintenancePolicy
     {
+        /// <summary>
+        /// (Required) Boolean flag that specifies if master can be upgraded automatically. When omitted, default value is TRUE.
+        /// </summary>
         public readonly bool AutoUpgrade;
+        /// <summary>
+        /// (Optional) (Computed) This structure specifies maintenance window, when update for master is allowed. When omitted, it defaults to any time.
+        /// To specify time of day interval, for all days, one element should be provided, with two fields set, `start_time` and `duration`.
+        /// Please see `zonal_cluster_resource_name` config example.
+        /// </summary>
         public readonly ImmutableArray<Outputs.KubernetesClusterMasterMaintenancePolicyMaintenanceWindow> MaintenanceWindows;
 
         [OutputConstructor]

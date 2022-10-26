@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbGreenplumClusterMaintenanceWindowGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+        /// </summary>
         [Input("day")]
         public Input<string>? Day { get; set; }
 
+        /// <summary>
+        /// Hour of the day in UTC (in `HH` format). Allowed value is between 0 and 23.
+        /// </summary>
         [Input("hour")]
         public Input<int>? Hour { get; set; }
 
+        /// <summary>
+        /// Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 

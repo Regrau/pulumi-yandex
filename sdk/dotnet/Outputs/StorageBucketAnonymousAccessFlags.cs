@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class StorageBucketAnonymousAccessFlags
     {
+        /// <summary>
+        /// Allows to list object in bucket anonymously.
+        /// </summary>
         public readonly bool? List;
+        /// <summary>
+        /// Allows to read objects in bucket anonymously.
+        /// </summary>
         public readonly bool? Read;
 
         [OutputConstructor]

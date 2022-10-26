@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class OrganizationmanagerSamlFederationSecuritySettings
     {
+        /// <summary>
+        /// Enable encrypted assertions.
+        /// </summary>
         public readonly bool EncryptedAssertions;
 
         [OutputConstructor]

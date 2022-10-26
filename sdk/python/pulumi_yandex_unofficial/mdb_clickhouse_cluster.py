@@ -45,6 +45,32 @@ class MdbClickhouseClusterArgs:
                  zookeeper: Optional[pulumi.Input['MdbClickhouseClusterZookeeperArgs']] = None):
         """
         The set of arguments for constructing a MdbClickhouseCluster resource.
+        :param pulumi.Input['MdbClickhouseClusterClickhouseArgs'] clickhouse: Configuration of the ClickHouse subcluster. The structure is documented below.
+        :param pulumi.Input[str] environment: Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterHostArgs']]] hosts: A host of the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[str] network_id: ID of the network, to which the ClickHouse cluster belongs.
+        :param pulumi.Input['MdbClickhouseClusterAccessArgs'] access: Access policy to the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[str] admin_password: A password used to authorize as user `admin` when `sql_user_management` enabled.
+        :param pulumi.Input['MdbClickhouseClusterBackupWindowStartArgs'] backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        :param pulumi.Input[bool] copy_schema_on_new_hosts: Whether to copy schema on new ClickHouse hosts.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterDatabaseArgs']]] databases: A database of the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the shard group.
+        :param pulumi.Input[bool] embedded_keeper: Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterFormatSchemaArgs']]] format_schemas: A set of protobuf or capnproto format schemas. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the ClickHouse cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterMlModelArgs']]] ml_models: A group of machine learning models. The structure is documented below
+        :param pulumi.Input[str] name: Graphite rollup configuration name.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] service_account_id: ID of the service account used for access to Yandex Object Storage.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterShardGroupArgs']]] shard_groups: A group of clickhouse shards. The structure is documented below.
+        :param pulumi.Input[bool] sql_database_management: Grants `admin` user database management permission.
+        :param pulumi.Input[bool] sql_user_management: Enables `admin` user with user management permission.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterUserArgs']]] users: A user of the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[str] version: Version of the ClickHouse server software.
+        :param pulumi.Input['MdbClickhouseClusterZookeeperArgs'] zookeeper: Configuration of the ZooKeeper subcluster. The structure is documented below.
         """
         pulumi.set(__self__, "clickhouse", clickhouse)
         pulumi.set(__self__, "environment", environment)
@@ -100,6 +126,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter
     def clickhouse(self) -> pulumi.Input['MdbClickhouseClusterClickhouseArgs']:
+        """
+        Configuration of the ClickHouse subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "clickhouse")
 
     @clickhouse.setter
@@ -109,6 +138,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Input[str]:
+        """
+        Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -118,6 +150,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter
     def hosts(self) -> pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterHostArgs']]]:
+        """
+        A host of the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -127,6 +162,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Input[str]:
+        """
+        ID of the network, to which the ClickHouse cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -136,6 +174,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter
     def access(self) -> Optional[pulumi.Input['MdbClickhouseClusterAccessArgs']]:
+        """
+        Access policy to the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @access.setter
@@ -145,6 +186,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="adminPassword")
     def admin_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        A password used to authorize as user `admin` when `sql_user_management` enabled.
+        """
         return pulumi.get(self, "admin_password")
 
     @admin_password.setter
@@ -154,6 +198,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> Optional[pulumi.Input['MdbClickhouseClusterBackupWindowStartArgs']]:
+        """
+        Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @backup_window_start.setter
@@ -172,6 +219,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="copySchemaOnNewHosts")
     def copy_schema_on_new_hosts(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to copy schema on new ClickHouse hosts.
+        """
         return pulumi.get(self, "copy_schema_on_new_hosts")
 
     @copy_schema_on_new_hosts.setter
@@ -181,6 +231,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter
     def databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterDatabaseArgs']]]]:
+        """
+        A database of the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "databases")
 
     @databases.setter
@@ -190,6 +243,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -199,6 +255,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the shard group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -208,6 +267,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="embeddedKeeper")
     def embedded_keeper(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+        """
         return pulumi.get(self, "embedded_keeper")
 
     @embedded_keeper.setter
@@ -217,6 +279,10 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -226,6 +292,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="formatSchemas")
     def format_schemas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterFormatSchemaArgs']]]]:
+        """
+        A set of protobuf or capnproto format schemas. The structure is documented below.
+        """
         return pulumi.get(self, "format_schemas")
 
     @format_schemas.setter
@@ -235,6 +304,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the ClickHouse cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -253,6 +325,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="mlModels")
     def ml_models(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterMlModelArgs']]]]:
+        """
+        A group of machine learning models. The structure is documented below
+        """
         return pulumi.get(self, "ml_models")
 
     @ml_models.setter
@@ -262,6 +337,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Graphite rollup configuration name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -271,6 +349,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -280,6 +361,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the service account used for access to Yandex Object Storage.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -289,6 +373,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="shardGroups")
     def shard_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterShardGroupArgs']]]]:
+        """
+        A group of clickhouse shards. The structure is documented below.
+        """
         return pulumi.get(self, "shard_groups")
 
     @shard_groups.setter
@@ -298,6 +385,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="sqlDatabaseManagement")
     def sql_database_management(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Grants `admin` user database management permission.
+        """
         return pulumi.get(self, "sql_database_management")
 
     @sql_database_management.setter
@@ -307,6 +397,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter(name="sqlUserManagement")
     def sql_user_management(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables `admin` user with user management permission.
+        """
         return pulumi.get(self, "sql_user_management")
 
     @sql_user_management.setter
@@ -316,6 +409,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterUserArgs']]]]:
+        """
+        A user of the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "users")
 
     @users.setter
@@ -325,6 +421,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of the ClickHouse server software.
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -334,6 +433,9 @@ class MdbClickhouseClusterArgs:
     @property
     @pulumi.getter
     def zookeeper(self) -> Optional[pulumi.Input['MdbClickhouseClusterZookeeperArgs']]:
+        """
+        Configuration of the ZooKeeper subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "zookeeper")
 
     @zookeeper.setter
@@ -376,6 +478,37 @@ class _MdbClickhouseClusterState:
                  zookeeper: Optional[pulumi.Input['MdbClickhouseClusterZookeeperArgs']] = None):
         """
         Input properties used for looking up and filtering MdbClickhouseCluster resources.
+        :param pulumi.Input['MdbClickhouseClusterAccessArgs'] access: Access policy to the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[str] admin_password: A password used to authorize as user `admin` when `sql_user_management` enabled.
+        :param pulumi.Input['MdbClickhouseClusterBackupWindowStartArgs'] backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        :param pulumi.Input['MdbClickhouseClusterClickhouseArgs'] clickhouse: Configuration of the ClickHouse subcluster. The structure is documented below.
+        :param pulumi.Input[bool] copy_schema_on_new_hosts: Whether to copy schema on new ClickHouse hosts.
+        :param pulumi.Input[str] created_at: Timestamp of cluster creation.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterDatabaseArgs']]] databases: A database of the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the shard group.
+        :param pulumi.Input[bool] embedded_keeper: Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+        :param pulumi.Input[str] environment: Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterFormatSchemaArgs']]] format_schemas: A set of protobuf or capnproto format schemas. The structure is documented below.
+        :param pulumi.Input[str] health: Aggregated health of the cluster. Can be `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+               For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterHostArgs']]] hosts: A host of the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the ClickHouse cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterMlModelArgs']]] ml_models: A group of machine learning models. The structure is documented below
+        :param pulumi.Input[str] name: Graphite rollup configuration name.
+        :param pulumi.Input[str] network_id: ID of the network, to which the ClickHouse cluster belongs.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] service_account_id: ID of the service account used for access to Yandex Object Storage.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterShardGroupArgs']]] shard_groups: A group of clickhouse shards. The structure is documented below.
+        :param pulumi.Input[bool] sql_database_management: Grants `admin` user database management permission.
+        :param pulumi.Input[bool] sql_user_management: Enables `admin` user with user management permission.
+        :param pulumi.Input[str] status: Status of the cluster. Can be `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+               For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterUserArgs']]] users: A user of the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[str] version: Version of the ClickHouse server software.
+        :param pulumi.Input['MdbClickhouseClusterZookeeperArgs'] zookeeper: Configuration of the ZooKeeper subcluster. The structure is documented below.
         """
         if access is not None:
             pulumi.set(__self__, "access", access)
@@ -441,6 +574,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter
     def access(self) -> Optional[pulumi.Input['MdbClickhouseClusterAccessArgs']]:
+        """
+        Access policy to the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @access.setter
@@ -450,6 +586,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="adminPassword")
     def admin_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        A password used to authorize as user `admin` when `sql_user_management` enabled.
+        """
         return pulumi.get(self, "admin_password")
 
     @admin_password.setter
@@ -459,6 +598,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> Optional[pulumi.Input['MdbClickhouseClusterBackupWindowStartArgs']]:
+        """
+        Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @backup_window_start.setter
@@ -468,6 +610,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter
     def clickhouse(self) -> Optional[pulumi.Input['MdbClickhouseClusterClickhouseArgs']]:
+        """
+        Configuration of the ClickHouse subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "clickhouse")
 
     @clickhouse.setter
@@ -486,6 +631,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="copySchemaOnNewHosts")
     def copy_schema_on_new_hosts(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to copy schema on new ClickHouse hosts.
+        """
         return pulumi.get(self, "copy_schema_on_new_hosts")
 
     @copy_schema_on_new_hosts.setter
@@ -495,6 +643,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Timestamp of cluster creation.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -504,6 +655,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter
     def databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterDatabaseArgs']]]]:
+        """
+        A database of the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "databases")
 
     @databases.setter
@@ -513,6 +667,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -522,6 +679,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the shard group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -531,6 +691,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="embeddedKeeper")
     def embedded_keeper(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+        """
         return pulumi.get(self, "embedded_keeper")
 
     @embedded_keeper.setter
@@ -540,6 +703,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter
     def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -549,6 +715,10 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -558,6 +728,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="formatSchemas")
     def format_schemas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterFormatSchemaArgs']]]]:
+        """
+        A set of protobuf or capnproto format schemas. The structure is documented below.
+        """
         return pulumi.get(self, "format_schemas")
 
     @format_schemas.setter
@@ -567,6 +740,10 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter
     def health(self) -> Optional[pulumi.Input[str]]:
+        """
+        Aggregated health of the cluster. Can be `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+        For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+        """
         return pulumi.get(self, "health")
 
     @health.setter
@@ -576,6 +753,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterHostArgs']]]]:
+        """
+        A host of the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -585,6 +765,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the ClickHouse cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -603,6 +786,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="mlModels")
     def ml_models(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterMlModelArgs']]]]:
+        """
+        A group of machine learning models. The structure is documented below
+        """
         return pulumi.get(self, "ml_models")
 
     @ml_models.setter
@@ -612,6 +798,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Graphite rollup configuration name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -621,6 +810,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the network, to which the ClickHouse cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -630,6 +822,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -639,6 +834,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the service account used for access to Yandex Object Storage.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -648,6 +846,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="shardGroups")
     def shard_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterShardGroupArgs']]]]:
+        """
+        A group of clickhouse shards. The structure is documented below.
+        """
         return pulumi.get(self, "shard_groups")
 
     @shard_groups.setter
@@ -657,6 +858,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="sqlDatabaseManagement")
     def sql_database_management(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Grants `admin` user database management permission.
+        """
         return pulumi.get(self, "sql_database_management")
 
     @sql_database_management.setter
@@ -666,6 +870,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter(name="sqlUserManagement")
     def sql_user_management(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables `admin` user with user management permission.
+        """
         return pulumi.get(self, "sql_user_management")
 
     @sql_user_management.setter
@@ -675,6 +882,10 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the cluster. Can be `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+        For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -684,6 +895,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterUserArgs']]]]:
+        """
+        A user of the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "users")
 
     @users.setter
@@ -693,6 +907,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of the ClickHouse server software.
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -702,6 +919,9 @@ class _MdbClickhouseClusterState:
     @property
     @pulumi.getter
     def zookeeper(self) -> Optional[pulumi.Input['MdbClickhouseClusterZookeeperArgs']]:
+        """
+        Configuration of the ZooKeeper subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "zookeeper")
 
     @zookeeper.setter
@@ -743,9 +963,45 @@ class MdbClickhouseCluster(pulumi.CustomResource):
                  zookeeper: Optional[pulumi.Input[pulumi.InputType['MdbClickhouseClusterZookeeperArgs']]] = None,
                  __props__=None):
         """
-        Create a MdbClickhouseCluster resource with the given unique name, props, and options.
+        Manages a ClickHouse cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts).
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbClickhouseCluster:MdbClickhouseCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbClickhouseClusterAccessArgs']] access: Access policy to the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[str] admin_password: A password used to authorize as user `admin` when `sql_user_management` enabled.
+        :param pulumi.Input[pulumi.InputType['MdbClickhouseClusterBackupWindowStartArgs']] backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbClickhouseClusterClickhouseArgs']] clickhouse: Configuration of the ClickHouse subcluster. The structure is documented below.
+        :param pulumi.Input[bool] copy_schema_on_new_hosts: Whether to copy schema on new ClickHouse hosts.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterDatabaseArgs']]]] databases: A database of the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the shard group.
+        :param pulumi.Input[bool] embedded_keeper: Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+        :param pulumi.Input[str] environment: Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterFormatSchemaArgs']]]] format_schemas: A set of protobuf or capnproto format schemas. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterHostArgs']]]] hosts: A host of the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the ClickHouse cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterMlModelArgs']]]] ml_models: A group of machine learning models. The structure is documented below
+        :param pulumi.Input[str] name: Graphite rollup configuration name.
+        :param pulumi.Input[str] network_id: ID of the network, to which the ClickHouse cluster belongs.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] service_account_id: ID of the service account used for access to Yandex Object Storage.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterShardGroupArgs']]]] shard_groups: A group of clickhouse shards. The structure is documented below.
+        :param pulumi.Input[bool] sql_database_management: Grants `admin` user database management permission.
+        :param pulumi.Input[bool] sql_user_management: Enables `admin` user with user management permission.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterUserArgs']]]] users: A user of the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[str] version: Version of the ClickHouse server software.
+        :param pulumi.Input[pulumi.InputType['MdbClickhouseClusterZookeeperArgs']] zookeeper: Configuration of the ZooKeeper subcluster. The structure is documented below.
         """
         ...
     @overload
@@ -754,7 +1010,17 @@ class MdbClickhouseCluster(pulumi.CustomResource):
                  args: MdbClickhouseClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MdbClickhouseCluster resource with the given unique name, props, and options.
+        Manages a ClickHouse cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts).
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbClickhouseCluster:MdbClickhouseCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param MdbClickhouseClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -891,6 +1157,37 @@ class MdbClickhouseCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbClickhouseClusterAccessArgs']] access: Access policy to the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[str] admin_password: A password used to authorize as user `admin` when `sql_user_management` enabled.
+        :param pulumi.Input[pulumi.InputType['MdbClickhouseClusterBackupWindowStartArgs']] backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbClickhouseClusterClickhouseArgs']] clickhouse: Configuration of the ClickHouse subcluster. The structure is documented below.
+        :param pulumi.Input[bool] copy_schema_on_new_hosts: Whether to copy schema on new ClickHouse hosts.
+        :param pulumi.Input[str] created_at: Timestamp of cluster creation.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterDatabaseArgs']]]] databases: A database of the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the shard group.
+        :param pulumi.Input[bool] embedded_keeper: Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+        :param pulumi.Input[str] environment: Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterFormatSchemaArgs']]]] format_schemas: A set of protobuf or capnproto format schemas. The structure is documented below.
+        :param pulumi.Input[str] health: Aggregated health of the cluster. Can be `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+               For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterHostArgs']]]] hosts: A host of the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the ClickHouse cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterMlModelArgs']]]] ml_models: A group of machine learning models. The structure is documented below
+        :param pulumi.Input[str] name: Graphite rollup configuration name.
+        :param pulumi.Input[str] network_id: ID of the network, to which the ClickHouse cluster belongs.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] service_account_id: ID of the service account used for access to Yandex Object Storage.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterShardGroupArgs']]]] shard_groups: A group of clickhouse shards. The structure is documented below.
+        :param pulumi.Input[bool] sql_database_management: Grants `admin` user database management permission.
+        :param pulumi.Input[bool] sql_user_management: Enables `admin` user with user management permission.
+        :param pulumi.Input[str] status: Status of the cluster. Can be `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+               For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterUserArgs']]]] users: A user of the ClickHouse cluster. The structure is documented below.
+        :param pulumi.Input[str] version: Version of the ClickHouse server software.
+        :param pulumi.Input[pulumi.InputType['MdbClickhouseClusterZookeeperArgs']] zookeeper: Configuration of the ZooKeeper subcluster. The structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -931,21 +1228,33 @@ class MdbClickhouseCluster(pulumi.CustomResource):
     @property
     @pulumi.getter
     def access(self) -> pulumi.Output['outputs.MdbClickhouseClusterAccess']:
+        """
+        Access policy to the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @property
     @pulumi.getter(name="adminPassword")
     def admin_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        A password used to authorize as user `admin` when `sql_user_management` enabled.
+        """
         return pulumi.get(self, "admin_password")
 
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> pulumi.Output['outputs.MdbClickhouseClusterBackupWindowStart']:
+        """
+        Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @property
     @pulumi.getter
     def clickhouse(self) -> pulumi.Output['outputs.MdbClickhouseClusterClickhouse']:
+        """
+        Configuration of the ClickHouse subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "clickhouse")
 
     @property
@@ -956,61 +1265,99 @@ class MdbClickhouseCluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="copySchemaOnNewHosts")
     def copy_schema_on_new_hosts(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to copy schema on new ClickHouse hosts.
+        """
         return pulumi.get(self, "copy_schema_on_new_hosts")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Timestamp of cluster creation.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def databases(self) -> pulumi.Output[Optional[Sequence['outputs.MdbClickhouseClusterDatabase']]]:
+        """
+        A database of the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "databases")
 
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> pulumi.Output[bool]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the shard group.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="embeddedKeeper")
     def embedded_keeper(self) -> pulumi.Output[bool]:
+        """
+        Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+        """
         return pulumi.get(self, "embedded_keeper")
 
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Output[str]:
+        """
+        Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        """
         return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter(name="formatSchemas")
     def format_schemas(self) -> pulumi.Output[Optional[Sequence['outputs.MdbClickhouseClusterFormatSchema']]]:
+        """
+        A set of protobuf or capnproto format schemas. The structure is documented below.
+        """
         return pulumi.get(self, "format_schemas")
 
     @property
     @pulumi.getter
     def health(self) -> pulumi.Output[str]:
+        """
+        Aggregated health of the cluster. Can be `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+        For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+        """
         return pulumi.get(self, "health")
 
     @property
     @pulumi.getter
     def hosts(self) -> pulumi.Output[Sequence['outputs.MdbClickhouseClusterHost']]:
+        """
+        A host of the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        A set of key/value label pairs to assign to the ClickHouse cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -1021,60 +1368,97 @@ class MdbClickhouseCluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="mlModels")
     def ml_models(self) -> pulumi.Output[Optional[Sequence['outputs.MdbClickhouseClusterMlModel']]]:
+        """
+        A group of machine learning models. The structure is documented below
+        """
         return pulumi.get(self, "ml_models")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Graphite rollup configuration name.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[str]:
+        """
+        ID of the network, to which the ClickHouse cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Output[Sequence[str]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Output[str]:
+        """
+        ID of the service account used for access to Yandex Object Storage.
+        """
         return pulumi.get(self, "service_account_id")
 
     @property
     @pulumi.getter(name="shardGroups")
     def shard_groups(self) -> pulumi.Output[Optional[Sequence['outputs.MdbClickhouseClusterShardGroup']]]:
+        """
+        A group of clickhouse shards. The structure is documented below.
+        """
         return pulumi.get(self, "shard_groups")
 
     @property
     @pulumi.getter(name="sqlDatabaseManagement")
     def sql_database_management(self) -> pulumi.Output[bool]:
+        """
+        Grants `admin` user database management permission.
+        """
         return pulumi.get(self, "sql_database_management")
 
     @property
     @pulumi.getter(name="sqlUserManagement")
     def sql_user_management(self) -> pulumi.Output[bool]:
+        """
+        Enables `admin` user with user management permission.
+        """
         return pulumi.get(self, "sql_user_management")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        Status of the cluster. Can be `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+        For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/api-ref/Cluster/).
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def users(self) -> pulumi.Output[Optional[Sequence['outputs.MdbClickhouseClusterUser']]]:
+        """
+        A user of the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "users")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
+        """
+        Version of the ClickHouse server software.
+        """
         return pulumi.get(self, "version")
 
     @property
     @pulumi.getter
     def zookeeper(self) -> pulumi.Output['outputs.MdbClickhouseClusterZookeeper']:
+        """
+        Configuration of the ZooKeeper subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "zookeeper")
 

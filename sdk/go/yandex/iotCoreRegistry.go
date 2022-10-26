@@ -10,16 +10,61 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewIotCoreRegistry(ctx, "myRegistry", &yandex.IotCoreRegistryArgs{
+//				Certificates: pulumi.StringArray{
+//					pulumi.String("public part of certificate1"),
+//					pulumi.String("public part of certificate2"),
+//				},
+//				Description: pulumi.String("any description"),
+//				Labels: pulumi.StringMap{
+//					"my-label": pulumi.String("my-label-value"),
+//				},
+//				Passwords: pulumi.StringArray{
+//					pulumi.String("my-password1"),
+//					pulumi.String("my-password2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type IotCoreRegistry struct {
 	pulumi.CustomResourceState
 
+	// A set of certificate's fingerprints for the IoT Core Registry
 	Certificates pulumi.StringArrayOutput `pulumi:"certificates"`
-	CreatedAt    pulumi.StringOutput      `pulumi:"createdAt"`
-	Description  pulumi.StringPtrOutput   `pulumi:"description"`
-	FolderId     pulumi.StringOutput      `pulumi:"folderId"`
-	Labels       pulumi.StringMapOutput   `pulumi:"labels"`
-	Name         pulumi.StringOutput      `pulumi:"name"`
-	Passwords    pulumi.StringArrayOutput `pulumi:"passwords"`
+	// Creation timestamp of the IoT Core Registry
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Description of the IoT Core Registry
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Folder ID for the IoT Core Registry
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the IoT Core Registry.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// IoT Core Device name used to define registry
+	Name pulumi.StringOutput `pulumi:"name"`
+	// A set of passwords's id for the IoT Core Registry
+	Passwords pulumi.StringArrayOutput `pulumi:"passwords"`
 }
 
 // NewIotCoreRegistry registers a new resource with the given unique name, arguments, and options.
@@ -52,23 +97,37 @@ func GetIotCoreRegistry(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IotCoreRegistry resources.
 type iotCoreRegistryState struct {
-	Certificates []string          `pulumi:"certificates"`
-	CreatedAt    *string           `pulumi:"createdAt"`
-	Description  *string           `pulumi:"description"`
-	FolderId     *string           `pulumi:"folderId"`
-	Labels       map[string]string `pulumi:"labels"`
-	Name         *string           `pulumi:"name"`
-	Passwords    []string          `pulumi:"passwords"`
+	// A set of certificate's fingerprints for the IoT Core Registry
+	Certificates []string `pulumi:"certificates"`
+	// Creation timestamp of the IoT Core Registry
+	CreatedAt *string `pulumi:"createdAt"`
+	// Description of the IoT Core Registry
+	Description *string `pulumi:"description"`
+	// Folder ID for the IoT Core Registry
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the IoT Core Registry.
+	Labels map[string]string `pulumi:"labels"`
+	// IoT Core Device name used to define registry
+	Name *string `pulumi:"name"`
+	// A set of passwords's id for the IoT Core Registry
+	Passwords []string `pulumi:"passwords"`
 }
 
 type IotCoreRegistryState struct {
+	// A set of certificate's fingerprints for the IoT Core Registry
 	Certificates pulumi.StringArrayInput
-	CreatedAt    pulumi.StringPtrInput
-	Description  pulumi.StringPtrInput
-	FolderId     pulumi.StringPtrInput
-	Labels       pulumi.StringMapInput
-	Name         pulumi.StringPtrInput
-	Passwords    pulumi.StringArrayInput
+	// Creation timestamp of the IoT Core Registry
+	CreatedAt pulumi.StringPtrInput
+	// Description of the IoT Core Registry
+	Description pulumi.StringPtrInput
+	// Folder ID for the IoT Core Registry
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the IoT Core Registry.
+	Labels pulumi.StringMapInput
+	// IoT Core Device name used to define registry
+	Name pulumi.StringPtrInput
+	// A set of passwords's id for the IoT Core Registry
+	Passwords pulumi.StringArrayInput
 }
 
 func (IotCoreRegistryState) ElementType() reflect.Type {
@@ -76,22 +135,34 @@ func (IotCoreRegistryState) ElementType() reflect.Type {
 }
 
 type iotCoreRegistryArgs struct {
-	Certificates []string          `pulumi:"certificates"`
-	Description  *string           `pulumi:"description"`
-	FolderId     *string           `pulumi:"folderId"`
-	Labels       map[string]string `pulumi:"labels"`
-	Name         *string           `pulumi:"name"`
-	Passwords    []string          `pulumi:"passwords"`
+	// A set of certificate's fingerprints for the IoT Core Registry
+	Certificates []string `pulumi:"certificates"`
+	// Description of the IoT Core Registry
+	Description *string `pulumi:"description"`
+	// Folder ID for the IoT Core Registry
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the IoT Core Registry.
+	Labels map[string]string `pulumi:"labels"`
+	// IoT Core Device name used to define registry
+	Name *string `pulumi:"name"`
+	// A set of passwords's id for the IoT Core Registry
+	Passwords []string `pulumi:"passwords"`
 }
 
 // The set of arguments for constructing a IotCoreRegistry resource.
 type IotCoreRegistryArgs struct {
+	// A set of certificate's fingerprints for the IoT Core Registry
 	Certificates pulumi.StringArrayInput
-	Description  pulumi.StringPtrInput
-	FolderId     pulumi.StringPtrInput
-	Labels       pulumi.StringMapInput
-	Name         pulumi.StringPtrInput
-	Passwords    pulumi.StringArrayInput
+	// Description of the IoT Core Registry
+	Description pulumi.StringPtrInput
+	// Folder ID for the IoT Core Registry
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the IoT Core Registry.
+	Labels pulumi.StringMapInput
+	// IoT Core Device name used to define registry
+	Name pulumi.StringPtrInput
+	// A set of passwords's id for the IoT Core Registry
+	Passwords pulumi.StringArrayInput
 }
 
 func (IotCoreRegistryArgs) ElementType() reflect.Type {
@@ -181,30 +252,37 @@ func (o IotCoreRegistryOutput) ToIotCoreRegistryOutputWithContext(ctx context.Co
 	return o
 }
 
+// A set of certificate's fingerprints for the IoT Core Registry
 func (o IotCoreRegistryOutput) Certificates() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IotCoreRegistry) pulumi.StringArrayOutput { return v.Certificates }).(pulumi.StringArrayOutput)
 }
 
+// Creation timestamp of the IoT Core Registry
 func (o IotCoreRegistryOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotCoreRegistry) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the IoT Core Registry
 func (o IotCoreRegistryOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IotCoreRegistry) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Folder ID for the IoT Core Registry
 func (o IotCoreRegistryOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotCoreRegistry) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the IoT Core Registry.
 func (o IotCoreRegistryOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *IotCoreRegistry) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// IoT Core Device name used to define registry
 func (o IotCoreRegistryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *IotCoreRegistry) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// A set of passwords's id for the IoT Core Registry
 func (o IotCoreRegistryOutput) Passwords() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IotCoreRegistry) pulumi.StringArrayOutput { return v.Passwords }).(pulumi.StringArrayOutput)
 }

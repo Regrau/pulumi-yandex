@@ -21,6 +21,12 @@ class IamServiceAccountKeyArgs:
                  pgp_key: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IamServiceAccountKey resource.
+        :param pulumi.Input[str] service_account_id: ID of the service account to create a pair for.
+        :param pulumi.Input[str] description: The description of the key pair.
+        :param pulumi.Input[str] format: The output format of the keys. `PEM_FILE` is the default format.
+        :param pulumi.Input[str] key_algorithm: The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+               Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+        :param pulumi.Input[str] pgp_key: An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
         """
         pulumi.set(__self__, "service_account_id", service_account_id)
         if description is not None:
@@ -35,6 +41,9 @@ class IamServiceAccountKeyArgs:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Input[str]:
+        """
+        ID of the service account to create a pair for.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -44,6 +53,9 @@ class IamServiceAccountKeyArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the key pair.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -53,6 +65,9 @@ class IamServiceAccountKeyArgs:
     @property
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
+        """
+        The output format of the keys. `PEM_FILE` is the default format.
+        """
         return pulumi.get(self, "format")
 
     @format.setter
@@ -62,6 +77,10 @@ class IamServiceAccountKeyArgs:
     @property
     @pulumi.getter(name="keyAlgorithm")
     def key_algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+        Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+        """
         return pulumi.get(self, "key_algorithm")
 
     @key_algorithm.setter
@@ -71,6 +90,9 @@ class IamServiceAccountKeyArgs:
     @property
     @pulumi.getter(name="pgpKey")
     def pgp_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        """
         return pulumi.get(self, "pgp_key")
 
     @pgp_key.setter
@@ -93,6 +115,17 @@ class _IamServiceAccountKeyState:
                  service_account_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IamServiceAccountKey resources.
+        :param pulumi.Input[str] created_at: Creation timestamp of the static access key.
+        :param pulumi.Input[str] description: The description of the key pair.
+        :param pulumi.Input[str] encrypted_private_key: The encrypted private key, base64 encoded. This is only populated when `pgp_key` is supplied.
+        :param pulumi.Input[str] format: The output format of the keys. `PEM_FILE` is the default format.
+        :param pulumi.Input[str] key_algorithm: The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+               Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+        :param pulumi.Input[str] key_fingerprint: The fingerprint of the PGP key used to encrypt the private key. This is only populated when `pgp_key` is supplied.
+        :param pulumi.Input[str] pgp_key: An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        :param pulumi.Input[str] private_key: The private key. This is only populated when no `pgp_key` is provided.
+        :param pulumi.Input[str] public_key: The public key.
+        :param pulumi.Input[str] service_account_id: ID of the service account to create a pair for.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -118,6 +151,9 @@ class _IamServiceAccountKeyState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the static access key.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -127,6 +163,9 @@ class _IamServiceAccountKeyState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the key pair.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -136,6 +175,9 @@ class _IamServiceAccountKeyState:
     @property
     @pulumi.getter(name="encryptedPrivateKey")
     def encrypted_private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The encrypted private key, base64 encoded. This is only populated when `pgp_key` is supplied.
+        """
         return pulumi.get(self, "encrypted_private_key")
 
     @encrypted_private_key.setter
@@ -145,6 +187,9 @@ class _IamServiceAccountKeyState:
     @property
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
+        """
+        The output format of the keys. `PEM_FILE` is the default format.
+        """
         return pulumi.get(self, "format")
 
     @format.setter
@@ -154,6 +199,10 @@ class _IamServiceAccountKeyState:
     @property
     @pulumi.getter(name="keyAlgorithm")
     def key_algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+        Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+        """
         return pulumi.get(self, "key_algorithm")
 
     @key_algorithm.setter
@@ -163,6 +212,9 @@ class _IamServiceAccountKeyState:
     @property
     @pulumi.getter(name="keyFingerprint")
     def key_fingerprint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fingerprint of the PGP key used to encrypt the private key. This is only populated when `pgp_key` is supplied.
+        """
         return pulumi.get(self, "key_fingerprint")
 
     @key_fingerprint.setter
@@ -172,6 +224,9 @@ class _IamServiceAccountKeyState:
     @property
     @pulumi.getter(name="pgpKey")
     def pgp_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        """
         return pulumi.get(self, "pgp_key")
 
     @pgp_key.setter
@@ -181,6 +236,9 @@ class _IamServiceAccountKeyState:
     @property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private key. This is only populated when no `pgp_key` is provided.
+        """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
@@ -190,6 +248,9 @@ class _IamServiceAccountKeyState:
     @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The public key.
+        """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
@@ -199,6 +260,9 @@ class _IamServiceAccountKeyState:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the service account to create a pair for.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -218,9 +282,32 @@ class IamServiceAccountKey(pulumi.CustomResource):
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a IamServiceAccountKey resource with the given unique name, props, and options.
+        Allows management of [Yandex.Cloud IAM service account authorized keys](https://cloud.yandex.com/docs/iam/concepts/authorization/key).
+        Generated pair of keys is used to create a [JSON Web Token](https://tools.ietf.org/html/rfc7519) which is necessary for requesting an [IAM Token](https://cloud.yandex.com/docs/iam/concepts/authorization/iam-token) for a [service account](https://cloud.yandex.com/docs/iam/concepts/users/service-accounts).
+
+        ## Example Usage
+
+        This snippet creates an authorized keys pair.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        sa_auth_key = yandex.IamServiceAccountKey("sa-auth-key",
+            description="key for service account",
+            key_algorithm="RSA_4096",
+            pgp_key="keybase:keybaseusername",
+            service_account_id="some_sa_id")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: The description of the key pair.
+        :param pulumi.Input[str] format: The output format of the keys. `PEM_FILE` is the default format.
+        :param pulumi.Input[str] key_algorithm: The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+               Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+        :param pulumi.Input[str] pgp_key: An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        :param pulumi.Input[str] service_account_id: ID of the service account to create a pair for.
         """
         ...
     @overload
@@ -229,7 +316,24 @@ class IamServiceAccountKey(pulumi.CustomResource):
                  args: IamServiceAccountKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a IamServiceAccountKey resource with the given unique name, props, and options.
+        Allows management of [Yandex.Cloud IAM service account authorized keys](https://cloud.yandex.com/docs/iam/concepts/authorization/key).
+        Generated pair of keys is used to create a [JSON Web Token](https://tools.ietf.org/html/rfc7519) which is necessary for requesting an [IAM Token](https://cloud.yandex.com/docs/iam/concepts/authorization/iam-token) for a [service account](https://cloud.yandex.com/docs/iam/concepts/users/service-accounts).
+
+        ## Example Usage
+
+        This snippet creates an authorized keys pair.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        sa_auth_key = yandex.IamServiceAccountKey("sa-auth-key",
+            description="key for service account",
+            key_algorithm="RSA_4096",
+            pgp_key="keybase:keybaseusername",
+            service_account_id="some_sa_id")
+        ```
+
         :param str resource_name: The name of the resource.
         :param IamServiceAccountKeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -298,6 +402,17 @@ class IamServiceAccountKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: Creation timestamp of the static access key.
+        :param pulumi.Input[str] description: The description of the key pair.
+        :param pulumi.Input[str] encrypted_private_key: The encrypted private key, base64 encoded. This is only populated when `pgp_key` is supplied.
+        :param pulumi.Input[str] format: The output format of the keys. `PEM_FILE` is the default format.
+        :param pulumi.Input[str] key_algorithm: The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+               Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+        :param pulumi.Input[str] key_fingerprint: The fingerprint of the PGP key used to encrypt the private key. This is only populated when `pgp_key` is supplied.
+        :param pulumi.Input[str] pgp_key: An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        :param pulumi.Input[str] private_key: The private key. This is only populated when no `pgp_key` is provided.
+        :param pulumi.Input[str] public_key: The public key.
+        :param pulumi.Input[str] service_account_id: ID of the service account to create a pair for.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -318,50 +433,81 @@ class IamServiceAccountKey(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the static access key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        The description of the key pair.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="encryptedPrivateKey")
     def encrypted_private_key(self) -> pulumi.Output[str]:
+        """
+        The encrypted private key, base64 encoded. This is only populated when `pgp_key` is supplied.
+        """
         return pulumi.get(self, "encrypted_private_key")
 
     @property
     @pulumi.getter
     def format(self) -> pulumi.Output[Optional[str]]:
+        """
+        The output format of the keys. `PEM_FILE` is the default format.
+        """
         return pulumi.get(self, "format")
 
     @property
     @pulumi.getter(name="keyAlgorithm")
     def key_algorithm(self) -> pulumi.Output[Optional[str]]:
+        """
+        The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+        Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+        """
         return pulumi.get(self, "key_algorithm")
 
     @property
     @pulumi.getter(name="keyFingerprint")
     def key_fingerprint(self) -> pulumi.Output[str]:
+        """
+        The fingerprint of the PGP key used to encrypt the private key. This is only populated when `pgp_key` is supplied.
+        """
         return pulumi.get(self, "key_fingerprint")
 
     @property
     @pulumi.getter(name="pgpKey")
     def pgp_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        """
         return pulumi.get(self, "pgp_key")
 
     @property
     @pulumi.getter(name="privateKey")
     def private_key(self) -> pulumi.Output[str]:
+        """
+        The private key. This is only populated when no `pgp_key` is provided.
+        """
         return pulumi.get(self, "private_key")
 
     @property
     @pulumi.getter(name="publicKey")
     def public_key(self) -> pulumi.Output[str]:
+        """
+        The public key.
+        """
         return pulumi.get(self, "public_key")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Output[str]:
+        """
+        ID of the service account to create a pair for.
+        """
         return pulumi.get(self, "service_account_id")
 

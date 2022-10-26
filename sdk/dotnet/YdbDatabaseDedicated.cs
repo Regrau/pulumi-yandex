@@ -9,63 +9,175 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Yandex Database (dedicated) resource.
+    /// For more information, see [the official documentation](https://cloud.yandex.com/en/docs/ydb/concepts/serverless_and_dedicated).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var database1 = new Yandex.YdbDatabaseDedicated("database1", new()
+    ///     {
+    ///         DeletionProtection = true,
+    ///         FolderId = data.Yandex_resourcemanager_folder.Test_folder.Id,
+    ///         Location = new Yandex.Inputs.YdbDatabaseDedicatedLocationArgs
+    ///         {
+    ///             Region = new Yandex.Inputs.YdbDatabaseDedicatedLocationRegionArgs
+    ///             {
+    ///                 Id = "ru-central1",
+    ///             },
+    ///         },
+    ///         NetworkId = yandex_vpc_network.My_inst_group_network.Id,
+    ///         ResourcePresetId = "medium",
+    ///         ScalePolicy = new Yandex.Inputs.YdbDatabaseDedicatedScalePolicyArgs
+    ///         {
+    ///             FixedScale = new Yandex.Inputs.YdbDatabaseDedicatedScalePolicyFixedScaleArgs
+    ///             {
+    ///                 Size = 1,
+    ///             },
+    ///         },
+    ///         StorageConfig = new Yandex.Inputs.YdbDatabaseDedicatedStorageConfigArgs
+    ///         {
+    ///             GroupCount = 1,
+    ///             StorageTypeId = "ssd",
+    ///         },
+    ///         SubnetIds = new[]
+    ///         {
+    ///             yandex_vpc_subnet.My_inst_group_subnet.Id,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/ydbDatabaseDedicated:YdbDatabaseDedicated")]
     public partial class YdbDatabaseDedicated : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Whether public IP addresses should be assigned to the Yandex Database cluster.
+        /// </summary>
         [Output("assignPublicIps")]
         public Output<bool?> AssignPublicIps { get; private set; } = null!;
 
+        /// <summary>
+        /// The Yandex Database cluster creation timestamp.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// Full database path of the Yandex Database cluster.
+        /// Useful for SDK configuration.
+        /// </summary>
         [Output("databasePath")]
         public Output<string> DatabasePath { get; private set; } = null!;
 
+        /// <summary>
+        /// Inhibits deletion of the database. Can be either `true` or `false`
+        /// </summary>
         [Output("deletionProtection")]
         public Output<bool?> DeletionProtection { get; private set; } = null!;
 
+        /// <summary>
+        /// A description for the Yandex Database cluster.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the folder that the Yandex Database cluster belongs to.
+        /// It will be deduced from provider configuration if not set explicitly.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of key/value label pairs to assign to the Yandex Database cluster.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Location for the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         [Output("location")]
         public Output<Outputs.YdbDatabaseDedicatedLocation?> Location { get; private set; } = null!;
 
+        /// <summary>
+        /// Location ID for the Yandex Database cluster.
+        /// </summary>
         [Output("locationId")]
         public Output<string> LocationId { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the Yandex Database cluster.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the network to attach the Yandex Database cluster to.
+        /// </summary>
         [Output("networkId")]
         public Output<string> NetworkId { get; private set; } = null!;
 
+        /// <summary>
+        /// The Yandex Database cluster preset.
+        /// Available presets can be obtained via `yc ydb resource-preset list` command.
+        /// </summary>
         [Output("resourcePresetId")]
         public Output<string> ResourcePresetId { get; private set; } = null!;
 
+        /// <summary>
+        /// Scaling policy for the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         [Output("scalePolicy")]
         public Output<Outputs.YdbDatabaseDedicatedScalePolicy> ScalePolicy { get; private set; } = null!;
 
+        /// <summary>
+        /// Status of the Yandex Database cluster.
+        /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
+        /// <summary>
+        /// A list of storage configuration options for the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         [Output("storageConfig")]
         public Output<Outputs.YdbDatabaseDedicatedStorageConfig> StorageConfig { get; private set; } = null!;
 
+        /// <summary>
+        /// List of subnet IDs to attach the Yandex Database cluster to.
+        /// </summary>
         [Output("subnetIds")]
         public Output<ImmutableArray<string>> SubnetIds { get; private set; } = null!;
 
+        /// <summary>
+        /// Whether TLS is enabled for the Yandex Database cluster.
+        /// Useful for SDK configuration.
+        /// </summary>
         [Output("tlsEnabled")]
         public Output<bool> TlsEnabled { get; private set; } = null!;
 
+        /// <summary>
+        /// API endpoint of the Yandex Database cluster.
+        /// Useful for SDK configuration.
+        /// </summary>
         [Output("ydbApiEndpoint")]
         public Output<string> YdbApiEndpoint { get; private set; } = null!;
 
+        /// <summary>
+        /// Full endpoint of the Yandex Database cluster.
+        /// </summary>
         [Output("ydbFullEndpoint")]
         public Output<string> YdbFullEndpoint { get; private set; } = null!;
 
@@ -92,7 +204,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -116,49 +228,95 @@ namespace Pulumi.Yandex
 
     public sealed class YdbDatabaseDedicatedArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Whether public IP addresses should be assigned to the Yandex Database cluster.
+        /// </summary>
         [Input("assignPublicIps")]
         public Input<bool>? AssignPublicIps { get; set; }
 
+        /// <summary>
+        /// Inhibits deletion of the database. Can be either `true` or `false`
+        /// </summary>
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// A description for the Yandex Database cluster.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// ID of the folder that the Yandex Database cluster belongs to.
+        /// It will be deduced from provider configuration if not set explicitly.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the Yandex Database cluster.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Location for the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         [Input("location")]
         public Input<Inputs.YdbDatabaseDedicatedLocationArgs>? Location { get; set; }
 
+        /// <summary>
+        /// Location ID for the Yandex Database cluster.
+        /// </summary>
         [Input("locationId")]
         public Input<string>? LocationId { get; set; }
 
+        /// <summary>
+        /// Name of the Yandex Database cluster.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the network to attach the Yandex Database cluster to.
+        /// </summary>
         [Input("networkId", required: true)]
         public Input<string> NetworkId { get; set; } = null!;
 
+        /// <summary>
+        /// The Yandex Database cluster preset.
+        /// Available presets can be obtained via `yc ydb resource-preset list` command.
+        /// </summary>
         [Input("resourcePresetId", required: true)]
         public Input<string> ResourcePresetId { get; set; } = null!;
 
+        /// <summary>
+        /// Scaling policy for the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         [Input("scalePolicy", required: true)]
         public Input<Inputs.YdbDatabaseDedicatedScalePolicyArgs> ScalePolicy { get; set; } = null!;
 
+        /// <summary>
+        /// A list of storage configuration options for the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         [Input("storageConfig", required: true)]
         public Input<Inputs.YdbDatabaseDedicatedStorageConfigArgs> StorageConfig { get; set; } = null!;
 
         [Input("subnetIds", required: true)]
         private InputList<string>? _subnetIds;
+
+        /// <summary>
+        /// List of subnet IDs to attach the Yandex Database cluster to.
+        /// </summary>
         public InputList<string> SubnetIds
         {
             get => _subnetIds ?? (_subnetIds = new InputList<string>());
@@ -173,70 +331,137 @@ namespace Pulumi.Yandex
 
     public sealed class YdbDatabaseDedicatedState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Whether public IP addresses should be assigned to the Yandex Database cluster.
+        /// </summary>
         [Input("assignPublicIps")]
         public Input<bool>? AssignPublicIps { get; set; }
 
+        /// <summary>
+        /// The Yandex Database cluster creation timestamp.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// Full database path of the Yandex Database cluster.
+        /// Useful for SDK configuration.
+        /// </summary>
         [Input("databasePath")]
         public Input<string>? DatabasePath { get; set; }
 
+        /// <summary>
+        /// Inhibits deletion of the database. Can be either `true` or `false`
+        /// </summary>
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// A description for the Yandex Database cluster.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// ID of the folder that the Yandex Database cluster belongs to.
+        /// It will be deduced from provider configuration if not set explicitly.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the Yandex Database cluster.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Location for the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         [Input("location")]
         public Input<Inputs.YdbDatabaseDedicatedLocationGetArgs>? Location { get; set; }
 
+        /// <summary>
+        /// Location ID for the Yandex Database cluster.
+        /// </summary>
         [Input("locationId")]
         public Input<string>? LocationId { get; set; }
 
+        /// <summary>
+        /// Name of the Yandex Database cluster.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the network to attach the Yandex Database cluster to.
+        /// </summary>
         [Input("networkId")]
         public Input<string>? NetworkId { get; set; }
 
+        /// <summary>
+        /// The Yandex Database cluster preset.
+        /// Available presets can be obtained via `yc ydb resource-preset list` command.
+        /// </summary>
         [Input("resourcePresetId")]
         public Input<string>? ResourcePresetId { get; set; }
 
+        /// <summary>
+        /// Scaling policy for the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         [Input("scalePolicy")]
         public Input<Inputs.YdbDatabaseDedicatedScalePolicyGetArgs>? ScalePolicy { get; set; }
 
+        /// <summary>
+        /// Status of the Yandex Database cluster.
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
+        /// <summary>
+        /// A list of storage configuration options for the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         [Input("storageConfig")]
         public Input<Inputs.YdbDatabaseDedicatedStorageConfigGetArgs>? StorageConfig { get; set; }
 
         [Input("subnetIds")]
         private InputList<string>? _subnetIds;
+
+        /// <summary>
+        /// List of subnet IDs to attach the Yandex Database cluster to.
+        /// </summary>
         public InputList<string> SubnetIds
         {
             get => _subnetIds ?? (_subnetIds = new InputList<string>());
             set => _subnetIds = value;
         }
 
+        /// <summary>
+        /// Whether TLS is enabled for the Yandex Database cluster.
+        /// Useful for SDK configuration.
+        /// </summary>
         [Input("tlsEnabled")]
         public Input<bool>? TlsEnabled { get; set; }
 
+        /// <summary>
+        /// API endpoint of the Yandex Database cluster.
+        /// Useful for SDK configuration.
+        /// </summary>
         [Input("ydbApiEndpoint")]
         public Input<string>? YdbApiEndpoint { get; set; }
 
+        /// <summary>
+        /// Full endpoint of the Yandex Database cluster.
+        /// </summary>
         [Input("ydbFullEndpoint")]
         public Input<string>? YdbFullEndpoint { get; set; }
 

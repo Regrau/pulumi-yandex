@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbLoadBalancerListenerHttpRedirectsGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If set redirects all unencrypted HTTP requests to the same URI with scheme changed to `https`.
+        /// </summary>
         [Input("httpToHttps")]
         public Input<bool>? HttpToHttps { get; set; }
 

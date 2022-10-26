@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbBackendGroupGrpcBackendHealthcheckStreamHealthcheck
     {
+        /// <summary>
+        /// Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+        /// </summary>
         public readonly string? Receive;
+        /// <summary>
+        /// Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+        /// </summary>
         public readonly string? Send;
 
         [OutputConstructor]

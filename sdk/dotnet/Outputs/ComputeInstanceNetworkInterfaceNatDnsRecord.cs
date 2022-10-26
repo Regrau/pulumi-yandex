@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstanceNetworkInterfaceNatDnsRecord
     {
+        /// <summary>
+        /// DNS zone ID (if not set, private zone used).
+        /// </summary>
         public readonly string? DnsZoneId;
+        /// <summary>
+        /// DNS record FQDN (must have a dot at the end).
+        /// </summary>
         public readonly string Fqdn;
+        /// <summary>
+        /// When set to true, also create a PTR DNS record.
+        /// </summary>
         public readonly bool? Ptr;
+        /// <summary>
+        /// DNS record TTL. in seconds
+        /// </summary>
         public readonly int? Ttl;
 
         [OutputConstructor]

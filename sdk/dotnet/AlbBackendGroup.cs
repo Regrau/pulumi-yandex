@@ -9,33 +9,116 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Creates a backend group in the specified folder and adds the specified backends to it.
+    /// For more information, see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/backend-group).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test_backend_group = new Yandex.AlbBackendGroup("test-backend-group", new()
+    ///     {
+    ///         HttpBackends = new[]
+    ///         {
+    ///             new Yandex.Inputs.AlbBackendGroupHttpBackendArgs
+    ///             {
+    ///                 Healthcheck = new Yandex.Inputs.AlbBackendGroupHttpBackendHealthcheckArgs
+    ///                 {
+    ///                     HttpHealthcheck = new Yandex.Inputs.AlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs
+    ///                     {
+    ///                         Path = "/",
+    ///                     },
+    ///                     Interval = "1s",
+    ///                     Timeout = "1s",
+    ///                 },
+    ///                 Http2 = true,
+    ///                 LoadBalancingConfig = new Yandex.Inputs.AlbBackendGroupHttpBackendLoadBalancingConfigArgs
+    ///                 {
+    ///                     PanicThreshold = 50,
+    ///                 },
+    ///                 Name = "test-http-backend",
+    ///                 Port = 8080,
+    ///                 TargetGroupIds = new[]
+    ///                 {
+    ///                     yandex_alb_target_group.Test_target_group.Id,
+    ///                 },
+    ///                 Tls = new Yandex.Inputs.AlbBackendGroupHttpBackendTlsArgs
+    ///                 {
+    ///                     Sni = "backend-domain.internal",
+    ///                 },
+    ///                 Weight = 1,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// A backend group can be imported using the `id` of the resource, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/albBackendGroup:AlbBackendGroup default backend_group_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/albBackendGroup:AlbBackendGroup")]
     public partial class AlbBackendGroup : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The backend group creation timestamp.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// Description of the backend group.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        /// </summary>
         [Output("grpcBackends")]
         public Output<ImmutableArray<Outputs.AlbBackendGroupGrpcBackend>> GrpcBackends { get; private set; } = null!;
 
+        /// <summary>
+        /// Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        /// </summary>
         [Output("httpBackends")]
         public Output<ImmutableArray<Outputs.AlbBackendGroupHttpBackend>> HttpBackends { get; private set; } = null!;
 
+        /// <summary>
+        /// Labels to assign to this backend group.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the backend.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         [Output("sessionAffinity")]
         public Output<Outputs.AlbBackendGroupSessionAffinity?> SessionAffinity { get; private set; } = null!;
 
+        /// <summary>
+        /// Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        /// </summary>
         [Output("streamBackends")]
         public Output<ImmutableArray<Outputs.AlbBackendGroupStreamBackend>> StreamBackends { get; private set; } = null!;
 
@@ -62,7 +145,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -86,14 +169,24 @@ namespace Pulumi.Yandex
 
     public sealed class AlbBackendGroupArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Description of the backend group.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("grpcBackends")]
         private InputList<Inputs.AlbBackendGroupGrpcBackendArgs>? _grpcBackends;
+
+        /// <summary>
+        /// Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbBackendGroupGrpcBackendArgs> GrpcBackends
         {
             get => _grpcBackends ?? (_grpcBackends = new InputList<Inputs.AlbBackendGroupGrpcBackendArgs>());
@@ -102,6 +195,10 @@ namespace Pulumi.Yandex
 
         [Input("httpBackends")]
         private InputList<Inputs.AlbBackendGroupHttpBackendArgs>? _httpBackends;
+
+        /// <summary>
+        /// Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbBackendGroupHttpBackendArgs> HttpBackends
         {
             get => _httpBackends ?? (_httpBackends = new InputList<Inputs.AlbBackendGroupHttpBackendArgs>());
@@ -110,12 +207,19 @@ namespace Pulumi.Yandex
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this backend group.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the backend.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -124,6 +228,10 @@ namespace Pulumi.Yandex
 
         [Input("streamBackends")]
         private InputList<Inputs.AlbBackendGroupStreamBackendArgs>? _streamBackends;
+
+        /// <summary>
+        /// Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbBackendGroupStreamBackendArgs> StreamBackends
         {
             get => _streamBackends ?? (_streamBackends = new InputList<Inputs.AlbBackendGroupStreamBackendArgs>());
@@ -138,17 +246,30 @@ namespace Pulumi.Yandex
 
     public sealed class AlbBackendGroupState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The backend group creation timestamp.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// Description of the backend group.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("grpcBackends")]
         private InputList<Inputs.AlbBackendGroupGrpcBackendGetArgs>? _grpcBackends;
+
+        /// <summary>
+        /// Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbBackendGroupGrpcBackendGetArgs> GrpcBackends
         {
             get => _grpcBackends ?? (_grpcBackends = new InputList<Inputs.AlbBackendGroupGrpcBackendGetArgs>());
@@ -157,6 +278,10 @@ namespace Pulumi.Yandex
 
         [Input("httpBackends")]
         private InputList<Inputs.AlbBackendGroupHttpBackendGetArgs>? _httpBackends;
+
+        /// <summary>
+        /// Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbBackendGroupHttpBackendGetArgs> HttpBackends
         {
             get => _httpBackends ?? (_httpBackends = new InputList<Inputs.AlbBackendGroupHttpBackendGetArgs>());
@@ -165,12 +290,19 @@ namespace Pulumi.Yandex
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this backend group.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the backend.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -179,6 +311,10 @@ namespace Pulumi.Yandex
 
         [Input("streamBackends")]
         private InputList<Inputs.AlbBackendGroupStreamBackendGetArgs>? _streamBackends;
+
+        /// <summary>
+        /// Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbBackendGroupStreamBackendGetArgs> StreamBackends
         {
             get => _streamBackends ?? (_streamBackends = new InputList<Inputs.AlbBackendGroupStreamBackendGetArgs>());

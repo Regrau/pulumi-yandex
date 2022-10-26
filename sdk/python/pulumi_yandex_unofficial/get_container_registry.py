@@ -47,6 +47,9 @@ class GetContainerRegistryResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of this registry.
+        """
         return pulumi.get(self, "created_at")
 
     @property
@@ -65,6 +68,9 @@ class GetContainerRegistryResult:
     @property
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        Labels to assign to this registry.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -80,6 +86,9 @@ class GetContainerRegistryResult:
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the registry.
+        """
         return pulumi.get(self, "status")
 
 
@@ -104,7 +113,23 @@ def get_container_registry(folder_id: Optional[str] = None,
                            registry_id: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContainerRegistryResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Container Registry. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/registry)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    source = yandex.get_container_registry(registry_id="some_registry_id")
+    ```
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param Mapping[str, str] labels: Labels to assign to this registry.
+    :param str name: Name of the registry.
+    :param str registry_id: The ID of a specific registry.
     """
     __args__ = dict()
     __args__['folderId'] = folder_id
@@ -131,6 +156,22 @@ def get_container_registry_output(folder_id: Optional[pulumi.Input[Optional[str]
                                   registry_id: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetContainerRegistryResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Container Registry. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/registry)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    source = yandex.get_container_registry(registry_id="some_registry_id")
+    ```
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param Mapping[str, str] labels: Labels to assign to this registry.
+    :param str name: Name of the registry.
+    :param str registry_id: The ID of a specific registry.
     """
     ...

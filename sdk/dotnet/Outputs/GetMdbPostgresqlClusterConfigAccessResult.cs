@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbPostgresqlClusterConfigAccessResult
     {
+        /// <summary>
+        /// Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        /// </summary>
         public readonly bool DataLens;
+        /// <summary>
+        /// (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        /// </summary>
         public readonly bool DataTransfer;
+        /// <summary>
+        /// Allow access for [connection to managed databases from functions](https://cloud.yandex.com/docs/functions/operations/database-connection)
+        /// </summary>
         public readonly bool Serverless;
+        /// <summary>
+        /// Allow access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-postgresql/operations/web-sql-query)
+        /// </summary>
         public readonly bool WebSql;
 
         [OutputConstructor]

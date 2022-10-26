@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbMongodbClusterClusterConfigBackupWindowStartArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The hour at which backup will be started.
+        /// </summary>
         [Input("hours")]
         public int? Hours { get; set; }
 
+        /// <summary>
+        /// The minute at which backup will be started.
+        /// </summary>
         [Input("minutes")]
         public int? Minutes { get; set; }
 

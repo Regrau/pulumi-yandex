@@ -19,6 +19,9 @@ class ContainerRegistryArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ContainerRegistry resource.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the registry.
+        :param pulumi.Input[str] name: A name of the registry.
         """
         if folder_id is not None:
             pulumi.set(__self__, "folder_id", folder_id)
@@ -30,6 +33,9 @@ class ContainerRegistryArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -39,6 +45,9 @@ class ContainerRegistryArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the registry.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -48,6 +57,9 @@ class ContainerRegistryArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A name of the registry.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -65,6 +77,11 @@ class _ContainerRegistryState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ContainerRegistry resources.
+        :param pulumi.Input[str] created_at: Creation timestamp of the registry.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the registry.
+        :param pulumi.Input[str] name: A name of the registry.
+        :param pulumi.Input[str] status: Status of the registry.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -80,6 +97,9 @@ class _ContainerRegistryState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the registry.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -89,6 +109,9 @@ class _ContainerRegistryState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -98,6 +121,9 @@ class _ContainerRegistryState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the registry.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -107,6 +133,9 @@ class _ContainerRegistryState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A name of the registry.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -116,6 +145,9 @@ class _ContainerRegistryState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the registry.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -133,9 +165,35 @@ class ContainerRegistry(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ContainerRegistry resource with the given unique name, props, and options.
+        Creates a new container registry. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/registry)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        default = yandex.ContainerRegistry("default",
+            folder_id="test_folder_id",
+            labels={
+                "my-label": "my-label-value",
+            })
+        ```
+
+        ## Import
+
+        A registry can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/containerRegistry:ContainerRegistry default registry_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the registry.
+        :param pulumi.Input[str] name: A name of the registry.
         """
         ...
     @overload
@@ -144,7 +202,30 @@ class ContainerRegistry(pulumi.CustomResource):
                  args: Optional[ContainerRegistryArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ContainerRegistry resource with the given unique name, props, and options.
+        Creates a new container registry. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/registry)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        default = yandex.ContainerRegistry("default",
+            folder_id="test_folder_id",
+            labels={
+                "my-label": "my-label-value",
+            })
+        ```
+
+        ## Import
+
+        A registry can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/containerRegistry:ContainerRegistry default registry_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param ContainerRegistryArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -199,6 +280,11 @@ class ContainerRegistry(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: Creation timestamp of the registry.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the registry.
+        :param pulumi.Input[str] name: A name of the registry.
+        :param pulumi.Input[str] status: Status of the registry.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -214,25 +300,40 @@ class ContainerRegistry(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the registry.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the registry.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        A name of the registry.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        Status of the registry.
+        """
         return pulumi.get(self, "status")
 

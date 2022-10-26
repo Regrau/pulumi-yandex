@@ -11,28 +11,310 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a Kafka cluster within the Yandex.Cloud. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts).
+//
+// ## Example Usage
+//
+// Example of creating a Single Node Kafka.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.5.0.0/24"),
+//				},
+//				Zone: pulumi.String("ru-central1-a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewMdbKafkaCluster(ctx, "fooMdbKafkaCluster", &yandex.MdbKafkaClusterArgs{
+//				Config: &MdbKafkaClusterConfigArgs{
+//					AssignPublicIp: pulumi.Bool(false),
+//					BrokersCount:   pulumi.Int(1),
+//					Kafka: &MdbKafkaClusterConfigKafkaArgs{
+//						KafkaConfig: &MdbKafkaClusterConfigKafkaKafkaConfigArgs{
+//							CompressionType:             pulumi.String("COMPRESSION_TYPE_ZSTD"),
+//							DefaultReplicationFactor:    pulumi.String("1"),
+//							LogFlushIntervalMessages:    pulumi.String("1024"),
+//							LogFlushIntervalMs:          pulumi.String("1000"),
+//							LogFlushSchedulerIntervalMs: pulumi.String("1000"),
+//							LogPreallocate:              pulumi.Bool(true),
+//							LogRetentionBytes:           pulumi.String("1073741824"),
+//							LogRetentionHours:           pulumi.String("168"),
+//							LogRetentionMinutes:         pulumi.String("10080"),
+//							LogRetentionMs:              pulumi.String("86400000"),
+//							LogSegmentBytes:             pulumi.String("134217728"),
+//							MessageMaxBytes:             pulumi.String("1048588"),
+//							NumPartitions:               pulumi.String("10"),
+//							OffsetsRetentionMinutes:     pulumi.String("10080"),
+//							ReplicaFetchMaxBytes:        pulumi.String("1048576"),
+//							SslCipherSuites: pulumi.StringArray{
+//								pulumi.String("TLS_DHE_RSA_WITH_AES_128_CBC_SHA"),
+//								pulumi.String("TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"),
+//							},
+//						},
+//						Resources: &MdbKafkaClusterConfigKafkaResourcesArgs{
+//							DiskSize:         pulumi.Int(32),
+//							DiskTypeId:       pulumi.String("network-ssd"),
+//							ResourcePresetId: pulumi.String("s2.micro"),
+//						},
+//					},
+//					SchemaRegistry:  pulumi.Bool(false),
+//					UnmanagedTopics: pulumi.Bool(false),
+//					Version:         pulumi.String("2.8"),
+//					Zones: pulumi.StringArray{
+//						pulumi.String("ru-central1-a"),
+//					},
+//				},
+//				Environment: pulumi.String("PRESTABLE"),
+//				NetworkId:   fooVpcNetwork.ID(),
+//				SubnetIds: pulumi.StringArray{
+//					fooVpcSubnet.ID(),
+//				},
+//				Users: MdbKafkaClusterUserArray{
+//					&MdbKafkaClusterUserArgs{
+//						Name:     pulumi.String("producer-application"),
+//						Password: pulumi.String("password"),
+//						Permissions: MdbKafkaClusterUserPermissionArray{
+//							&MdbKafkaClusterUserPermissionArgs{
+//								Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
+//								TopicName: pulumi.String("input"),
+//							},
+//						},
+//					},
+//					&MdbKafkaClusterUserArgs{
+//						Name:     pulumi.String("worker"),
+//						Password: pulumi.String("password"),
+//						Permissions: MdbKafkaClusterUserPermissionArray{
+//							&MdbKafkaClusterUserPermissionArgs{
+//								Role:      pulumi.String("ACCESS_ROLE_CONSUMER"),
+//								TopicName: pulumi.String("input"),
+//							},
+//							&MdbKafkaClusterUserPermissionArgs{
+//								Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
+//								TopicName: pulumi.String("output"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Example of creating a HA Kafka Cluster with two brokers per AZ (6 brokers + 3 zk)
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.1.0.0/24"),
+//				},
+//				Zone: pulumi.String("ru-central1-a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			bar, err := yandex.NewVpcSubnet(ctx, "bar", &yandex.VpcSubnetArgs{
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.2.0.0/24"),
+//				},
+//				Zone: pulumi.String("ru-central1-b"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			baz, err := yandex.NewVpcSubnet(ctx, "baz", &yandex.VpcSubnetArgs{
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.3.0.0/24"),
+//				},
+//				Zone: pulumi.String("ru-central1-c"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewMdbKafkaCluster(ctx, "fooMdbKafkaCluster", &yandex.MdbKafkaClusterArgs{
+//				Config: &MdbKafkaClusterConfigArgs{
+//					AssignPublicIp: pulumi.Bool(true),
+//					BrokersCount:   pulumi.Int(2),
+//					Kafka: &MdbKafkaClusterConfigKafkaArgs{
+//						KafkaConfig: &MdbKafkaClusterConfigKafkaKafkaConfigArgs{
+//							CompressionType:             pulumi.String("COMPRESSION_TYPE_ZSTD"),
+//							DefaultReplicationFactor:    pulumi.String("6"),
+//							LogFlushIntervalMessages:    pulumi.String("1024"),
+//							LogFlushIntervalMs:          pulumi.String("1000"),
+//							LogFlushSchedulerIntervalMs: pulumi.String("1000"),
+//							LogPreallocate:              pulumi.Bool(true),
+//							LogRetentionBytes:           pulumi.String("1073741824"),
+//							LogRetentionHours:           pulumi.String("168"),
+//							LogRetentionMinutes:         pulumi.String("10080"),
+//							LogRetentionMs:              pulumi.String("86400000"),
+//							LogSegmentBytes:             pulumi.String("134217728"),
+//							MessageMaxBytes:             pulumi.String("1048588"),
+//							NumPartitions:               pulumi.String("10"),
+//							OffsetsRetentionMinutes:     pulumi.String("10080"),
+//							ReplicaFetchMaxBytes:        pulumi.String("1048576"),
+//							SslCipherSuites: pulumi.StringArray{
+//								pulumi.String("TLS_DHE_RSA_WITH_AES_128_CBC_SHA"),
+//								pulumi.String("TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"),
+//							},
+//						},
+//						Resources: &MdbKafkaClusterConfigKafkaResourcesArgs{
+//							DiskSize:         pulumi.Int(128),
+//							DiskTypeId:       pulumi.String("network-ssd"),
+//							ResourcePresetId: pulumi.String("s2.medium"),
+//						},
+//					},
+//					SchemaRegistry:  pulumi.Bool(false),
+//					UnmanagedTopics: pulumi.Bool(false),
+//					Version:         pulumi.String("2.8"),
+//					Zones: pulumi.StringArray{
+//						pulumi.String("ru-central1-a"),
+//						pulumi.String("ru-central1-b"),
+//						pulumi.String("ru-central1-c"),
+//					},
+//					Zookeeper: &MdbKafkaClusterConfigZookeeperArgs{
+//						Resources: &MdbKafkaClusterConfigZookeeperResourcesArgs{
+//							DiskSize:         pulumi.Int(20),
+//							DiskTypeId:       pulumi.String("network-ssd"),
+//							ResourcePresetId: pulumi.String("s2.micro"),
+//						},
+//					},
+//				},
+//				Environment: pulumi.String("PRESTABLE"),
+//				NetworkId:   fooVpcNetwork.ID(),
+//				SubnetIds: pulumi.StringArray{
+//					fooVpcSubnet.ID(),
+//					bar.ID(),
+//					baz.ID(),
+//				},
+//				Users: MdbKafkaClusterUserArray{
+//					&MdbKafkaClusterUserArgs{
+//						Name:     pulumi.String("producer-application"),
+//						Password: pulumi.String("password"),
+//						Permissions: MdbKafkaClusterUserPermissionArray{
+//							&MdbKafkaClusterUserPermissionArgs{
+//								Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
+//								TopicName: pulumi.String("input"),
+//							},
+//						},
+//					},
+//					&MdbKafkaClusterUserArgs{
+//						Name:     pulumi.String("worker"),
+//						Password: pulumi.String("password"),
+//						Permissions: MdbKafkaClusterUserPermissionArray{
+//							&MdbKafkaClusterUserPermissionArgs{
+//								Role:      pulumi.String("ACCESS_ROLE_CONSUMER"),
+//								TopicName: pulumi.String("input"),
+//							},
+//							&MdbKafkaClusterUserPermissionArgs{
+//								Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
+//								TopicName: pulumi.String("output"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A cluster can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/mdbKafkaCluster:MdbKafkaCluster foo cluster_id
+//
+// ```
 type MdbKafkaCluster struct {
 	pulumi.CustomResourceState
 
-	Config             MdbKafkaClusterConfigOutput            `pulumi:"config"`
-	CreatedAt          pulumi.StringOutput                    `pulumi:"createdAt"`
-	DeletionProtection pulumi.BoolOutput                      `pulumi:"deletionProtection"`
-	Description        pulumi.StringPtrOutput                 `pulumi:"description"`
-	Environment        pulumi.StringPtrOutput                 `pulumi:"environment"`
-	FolderId           pulumi.StringOutput                    `pulumi:"folderId"`
-	Health             pulumi.StringOutput                    `pulumi:"health"`
-	HostGroupIds       pulumi.StringArrayOutput               `pulumi:"hostGroupIds"`
-	Hosts              MdbKafkaClusterHostArrayOutput         `pulumi:"hosts"`
-	Labels             pulumi.StringMapOutput                 `pulumi:"labels"`
-	MaintenanceWindow  MdbKafkaClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
-	Name               pulumi.StringOutput                    `pulumi:"name"`
-	NetworkId          pulumi.StringOutput                    `pulumi:"networkId"`
-	SecurityGroupIds   pulumi.StringArrayOutput               `pulumi:"securityGroupIds"`
-	Status             pulumi.StringOutput                    `pulumi:"status"`
-	SubnetIds          pulumi.StringArrayOutput               `pulumi:"subnetIds"`
+	// Configuration of the Kafka cluster. The structure is documented below.
+	Config MdbKafkaClusterConfigOutput `pulumi:"config"`
+	// Timestamp of cluster creation.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection pulumi.BoolOutput `pulumi:"deletionProtection"`
+	// Description of the Kafka cluster.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Deployment environment of the Kafka cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	// The default is `PRODUCTION`.
+	Environment pulumi.StringPtrOutput `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Health of the host.
+	Health pulumi.StringOutput `pulumi:"health"`
+	// A list of IDs of the host groups to place VMs of the cluster on.
+	HostGroupIds pulumi.StringArrayOutput `pulumi:"hostGroupIds"`
+	// A host of the Kafka cluster. The structure is documented below.
+	Hosts MdbKafkaClusterHostArrayOutput `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the Kafka cluster.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Maintenance policy of the Kafka cluster. The structure is documented below.
+	MaintenanceWindow MdbKafkaClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
+	// The name of the topic.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the network, to which the Kafka cluster belongs.
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
+	// Security group ids, to which the Kafka cluster belongs.
+	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
+	// Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+	// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-kafka/api-ref/Cluster/).
+	Status pulumi.StringOutput `pulumi:"status"`
+	// IDs of the subnets, to which the Kafka cluster belongs.
+	SubnetIds pulumi.StringArrayOutput `pulumi:"subnetIds"`
+	// To manage topics, please switch to using a separate resource type `MdbKafkaTopic`.
+	//
 	// Deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
 	Topics MdbKafkaClusterTopicArrayOutput `pulumi:"topics"`
-	Users  MdbKafkaClusterUserArrayOutput  `pulumi:"users"`
+	// A user of the Kafka cluster. The structure is documented below.
+	Users MdbKafkaClusterUserArrayOutput `pulumi:"users"`
 }
 
 // NewMdbKafkaCluster registers a new resource with the given unique name, arguments, and options.
@@ -71,47 +353,89 @@ func GetMdbKafkaCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MdbKafkaCluster resources.
 type mdbKafkaClusterState struct {
-	Config             *MdbKafkaClusterConfig            `pulumi:"config"`
-	CreatedAt          *string                           `pulumi:"createdAt"`
-	DeletionProtection *bool                             `pulumi:"deletionProtection"`
-	Description        *string                           `pulumi:"description"`
-	Environment        *string                           `pulumi:"environment"`
-	FolderId           *string                           `pulumi:"folderId"`
-	Health             *string                           `pulumi:"health"`
-	HostGroupIds       []string                          `pulumi:"hostGroupIds"`
-	Hosts              []MdbKafkaClusterHost             `pulumi:"hosts"`
-	Labels             map[string]string                 `pulumi:"labels"`
-	MaintenanceWindow  *MdbKafkaClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	Name               *string                           `pulumi:"name"`
-	NetworkId          *string                           `pulumi:"networkId"`
-	SecurityGroupIds   []string                          `pulumi:"securityGroupIds"`
-	Status             *string                           `pulumi:"status"`
-	SubnetIds          []string                          `pulumi:"subnetIds"`
+	// Configuration of the Kafka cluster. The structure is documented below.
+	Config *MdbKafkaClusterConfig `pulumi:"config"`
+	// Timestamp of cluster creation.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// Description of the Kafka cluster.
+	Description *string `pulumi:"description"`
+	// Deployment environment of the Kafka cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	// The default is `PRODUCTION`.
+	Environment *string `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Health of the host.
+	Health *string `pulumi:"health"`
+	// A list of IDs of the host groups to place VMs of the cluster on.
+	HostGroupIds []string `pulumi:"hostGroupIds"`
+	// A host of the Kafka cluster. The structure is documented below.
+	Hosts []MdbKafkaClusterHost `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the Kafka cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// Maintenance policy of the Kafka cluster. The structure is documented below.
+	MaintenanceWindow *MdbKafkaClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// The name of the topic.
+	Name *string `pulumi:"name"`
+	// ID of the network, to which the Kafka cluster belongs.
+	NetworkId *string `pulumi:"networkId"`
+	// Security group ids, to which the Kafka cluster belongs.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+	// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-kafka/api-ref/Cluster/).
+	Status *string `pulumi:"status"`
+	// IDs of the subnets, to which the Kafka cluster belongs.
+	SubnetIds []string `pulumi:"subnetIds"`
+	// To manage topics, please switch to using a separate resource type `MdbKafkaTopic`.
+	//
 	// Deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
 	Topics []MdbKafkaClusterTopic `pulumi:"topics"`
-	Users  []MdbKafkaClusterUser  `pulumi:"users"`
+	// A user of the Kafka cluster. The structure is documented below.
+	Users []MdbKafkaClusterUser `pulumi:"users"`
 }
 
 type MdbKafkaClusterState struct {
-	Config             MdbKafkaClusterConfigPtrInput
-	CreatedAt          pulumi.StringPtrInput
+	// Configuration of the Kafka cluster. The structure is documented below.
+	Config MdbKafkaClusterConfigPtrInput
+	// Timestamp of cluster creation.
+	CreatedAt pulumi.StringPtrInput
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
 	DeletionProtection pulumi.BoolPtrInput
-	Description        pulumi.StringPtrInput
-	Environment        pulumi.StringPtrInput
-	FolderId           pulumi.StringPtrInput
-	Health             pulumi.StringPtrInput
-	HostGroupIds       pulumi.StringArrayInput
-	Hosts              MdbKafkaClusterHostArrayInput
-	Labels             pulumi.StringMapInput
-	MaintenanceWindow  MdbKafkaClusterMaintenanceWindowPtrInput
-	Name               pulumi.StringPtrInput
-	NetworkId          pulumi.StringPtrInput
-	SecurityGroupIds   pulumi.StringArrayInput
-	Status             pulumi.StringPtrInput
-	SubnetIds          pulumi.StringArrayInput
+	// Description of the Kafka cluster.
+	Description pulumi.StringPtrInput
+	// Deployment environment of the Kafka cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	// The default is `PRODUCTION`.
+	Environment pulumi.StringPtrInput
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Health of the host.
+	Health pulumi.StringPtrInput
+	// A list of IDs of the host groups to place VMs of the cluster on.
+	HostGroupIds pulumi.StringArrayInput
+	// A host of the Kafka cluster. The structure is documented below.
+	Hosts MdbKafkaClusterHostArrayInput
+	// A set of key/value label pairs to assign to the Kafka cluster.
+	Labels pulumi.StringMapInput
+	// Maintenance policy of the Kafka cluster. The structure is documented below.
+	MaintenanceWindow MdbKafkaClusterMaintenanceWindowPtrInput
+	// The name of the topic.
+	Name pulumi.StringPtrInput
+	// ID of the network, to which the Kafka cluster belongs.
+	NetworkId pulumi.StringPtrInput
+	// Security group ids, to which the Kafka cluster belongs.
+	SecurityGroupIds pulumi.StringArrayInput
+	// Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+	// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-kafka/api-ref/Cluster/).
+	Status pulumi.StringPtrInput
+	// IDs of the subnets, to which the Kafka cluster belongs.
+	SubnetIds pulumi.StringArrayInput
+	// To manage topics, please switch to using a separate resource type `MdbKafkaTopic`.
+	//
 	// Deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
 	Topics MdbKafkaClusterTopicArrayInput
-	Users  MdbKafkaClusterUserArrayInput
+	// A user of the Kafka cluster. The structure is documented below.
+	Users MdbKafkaClusterUserArrayInput
 }
 
 func (MdbKafkaClusterState) ElementType() reflect.Type {
@@ -119,40 +443,72 @@ func (MdbKafkaClusterState) ElementType() reflect.Type {
 }
 
 type mdbKafkaClusterArgs struct {
-	Config             MdbKafkaClusterConfig             `pulumi:"config"`
-	DeletionProtection *bool                             `pulumi:"deletionProtection"`
-	Description        *string                           `pulumi:"description"`
-	Environment        *string                           `pulumi:"environment"`
-	FolderId           *string                           `pulumi:"folderId"`
-	HostGroupIds       []string                          `pulumi:"hostGroupIds"`
-	Labels             map[string]string                 `pulumi:"labels"`
-	MaintenanceWindow  *MdbKafkaClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	Name               *string                           `pulumi:"name"`
-	NetworkId          string                            `pulumi:"networkId"`
-	SecurityGroupIds   []string                          `pulumi:"securityGroupIds"`
-	SubnetIds          []string                          `pulumi:"subnetIds"`
+	// Configuration of the Kafka cluster. The structure is documented below.
+	Config MdbKafkaClusterConfig `pulumi:"config"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// Description of the Kafka cluster.
+	Description *string `pulumi:"description"`
+	// Deployment environment of the Kafka cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	// The default is `PRODUCTION`.
+	Environment *string `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A list of IDs of the host groups to place VMs of the cluster on.
+	HostGroupIds []string `pulumi:"hostGroupIds"`
+	// A set of key/value label pairs to assign to the Kafka cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// Maintenance policy of the Kafka cluster. The structure is documented below.
+	MaintenanceWindow *MdbKafkaClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// The name of the topic.
+	Name *string `pulumi:"name"`
+	// ID of the network, to which the Kafka cluster belongs.
+	NetworkId string `pulumi:"networkId"`
+	// Security group ids, to which the Kafka cluster belongs.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// IDs of the subnets, to which the Kafka cluster belongs.
+	SubnetIds []string `pulumi:"subnetIds"`
+	// To manage topics, please switch to using a separate resource type `MdbKafkaTopic`.
+	//
 	// Deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
 	Topics []MdbKafkaClusterTopic `pulumi:"topics"`
-	Users  []MdbKafkaClusterUser  `pulumi:"users"`
+	// A user of the Kafka cluster. The structure is documented below.
+	Users []MdbKafkaClusterUser `pulumi:"users"`
 }
 
 // The set of arguments for constructing a MdbKafkaCluster resource.
 type MdbKafkaClusterArgs struct {
-	Config             MdbKafkaClusterConfigInput
+	// Configuration of the Kafka cluster. The structure is documented below.
+	Config MdbKafkaClusterConfigInput
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
 	DeletionProtection pulumi.BoolPtrInput
-	Description        pulumi.StringPtrInput
-	Environment        pulumi.StringPtrInput
-	FolderId           pulumi.StringPtrInput
-	HostGroupIds       pulumi.StringArrayInput
-	Labels             pulumi.StringMapInput
-	MaintenanceWindow  MdbKafkaClusterMaintenanceWindowPtrInput
-	Name               pulumi.StringPtrInput
-	NetworkId          pulumi.StringInput
-	SecurityGroupIds   pulumi.StringArrayInput
-	SubnetIds          pulumi.StringArrayInput
+	// Description of the Kafka cluster.
+	Description pulumi.StringPtrInput
+	// Deployment environment of the Kafka cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	// The default is `PRODUCTION`.
+	Environment pulumi.StringPtrInput
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A list of IDs of the host groups to place VMs of the cluster on.
+	HostGroupIds pulumi.StringArrayInput
+	// A set of key/value label pairs to assign to the Kafka cluster.
+	Labels pulumi.StringMapInput
+	// Maintenance policy of the Kafka cluster. The structure is documented below.
+	MaintenanceWindow MdbKafkaClusterMaintenanceWindowPtrInput
+	// The name of the topic.
+	Name pulumi.StringPtrInput
+	// ID of the network, to which the Kafka cluster belongs.
+	NetworkId pulumi.StringInput
+	// Security group ids, to which the Kafka cluster belongs.
+	SecurityGroupIds pulumi.StringArrayInput
+	// IDs of the subnets, to which the Kafka cluster belongs.
+	SubnetIds pulumi.StringArrayInput
+	// To manage topics, please switch to using a separate resource type `MdbKafkaTopic`.
+	//
 	// Deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
 	Topics MdbKafkaClusterTopicArrayInput
-	Users  MdbKafkaClusterUserArrayInput
+	// A user of the Kafka cluster. The structure is documented below.
+	Users MdbKafkaClusterUserArrayInput
 }
 
 func (MdbKafkaClusterArgs) ElementType() reflect.Type {
@@ -242,75 +598,96 @@ func (o MdbKafkaClusterOutput) ToMdbKafkaClusterOutputWithContext(ctx context.Co
 	return o
 }
 
+// Configuration of the Kafka cluster. The structure is documented below.
 func (o MdbKafkaClusterOutput) Config() MdbKafkaClusterConfigOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) MdbKafkaClusterConfigOutput { return v.Config }).(MdbKafkaClusterConfigOutput)
 }
 
+// Timestamp of cluster creation.
 func (o MdbKafkaClusterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Inhibits deletion of the cluster.  Can be either `true` or `false`.
 func (o MdbKafkaClusterOutput) DeletionProtection() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) pulumi.BoolOutput { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
+// Description of the Kafka cluster.
 func (o MdbKafkaClusterOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Deployment environment of the Kafka cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+// The default is `PRODUCTION`.
 func (o MdbKafkaClusterOutput) Environment() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) pulumi.StringPtrOutput { return v.Environment }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
 func (o MdbKafkaClusterOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Health of the host.
 func (o MdbKafkaClusterOutput) Health() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) pulumi.StringOutput { return v.Health }).(pulumi.StringOutput)
 }
 
+// A list of IDs of the host groups to place VMs of the cluster on.
 func (o MdbKafkaClusterOutput) HostGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) pulumi.StringArrayOutput { return v.HostGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// A host of the Kafka cluster. The structure is documented below.
 func (o MdbKafkaClusterOutput) Hosts() MdbKafkaClusterHostArrayOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) MdbKafkaClusterHostArrayOutput { return v.Hosts }).(MdbKafkaClusterHostArrayOutput)
 }
 
+// A set of key/value label pairs to assign to the Kafka cluster.
 func (o MdbKafkaClusterOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Maintenance policy of the Kafka cluster. The structure is documented below.
 func (o MdbKafkaClusterOutput) MaintenanceWindow() MdbKafkaClusterMaintenanceWindowOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) MdbKafkaClusterMaintenanceWindowOutput { return v.MaintenanceWindow }).(MdbKafkaClusterMaintenanceWindowOutput)
 }
 
+// The name of the topic.
 func (o MdbKafkaClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network, to which the Kafka cluster belongs.
 func (o MdbKafkaClusterOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// Security group ids, to which the Kafka cluster belongs.
 func (o MdbKafkaClusterOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) pulumi.StringArrayOutput { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-kafka/api-ref/Cluster/).
 func (o MdbKafkaClusterOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
+// IDs of the subnets, to which the Kafka cluster belongs.
 func (o MdbKafkaClusterOutput) SubnetIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) pulumi.StringArrayOutput { return v.SubnetIds }).(pulumi.StringArrayOutput)
 }
 
+// To manage topics, please switch to using a separate resource type `MdbKafkaTopic`.
+//
 // Deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
 func (o MdbKafkaClusterOutput) Topics() MdbKafkaClusterTopicArrayOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) MdbKafkaClusterTopicArrayOutput { return v.Topics }).(MdbKafkaClusterTopicArrayOutput)
 }
 
+// A user of the Kafka cluster. The structure is documented below.
 func (o MdbKafkaClusterOutput) Users() MdbKafkaClusterUserArrayOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) MdbKafkaClusterUserArrayOutput { return v.Users }).(MdbKafkaClusterUserArrayOutput)
 }

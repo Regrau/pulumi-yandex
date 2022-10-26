@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbLoadBalancerListenerStreamGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// HTTP handler that sets plaintext HTTP router. The structure is documented below.
+        /// </summary>
         [Input("handler")]
         public Input<Inputs.AlbLoadBalancerListenerStreamHandlerGetArgs>? Handler { get; set; }
 

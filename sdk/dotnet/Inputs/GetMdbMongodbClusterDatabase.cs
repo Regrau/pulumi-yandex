@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbMongodbClusterDatabaseArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The name of the MongoDB cluster.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 

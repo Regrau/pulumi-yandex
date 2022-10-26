@@ -12,14 +12,24 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbLoadBalancerListenerTlsSniHandlerArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// HTTP handler that sets plaintext HTTP router. The structure is documented below.
+        /// </summary>
         [Input("handler", required: true)]
         public Input<Inputs.AlbLoadBalancerListenerTlsSniHandlerHandlerArgs> Handler { get; set; } = null!;
 
+        /// <summary>
+        /// name of SNI match.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("serverNames", required: true)]
         private InputList<string>? _serverNames;
+
+        /// <summary>
+        /// A set of server names.
+        /// </summary>
         public InputList<string> ServerNames
         {
             get => _serverNames ?? (_serverNames = new InputList<string>());

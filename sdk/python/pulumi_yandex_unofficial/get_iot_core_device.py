@@ -53,21 +53,33 @@ class GetIotCoreDeviceResult:
     @property
     @pulumi.getter
     def aliases(self) -> Mapping[str, str]:
+        """
+        A set of key/value aliases pairs to assign to the IoT Core Device
+        """
         return pulumi.get(self, "aliases")
 
     @property
     @pulumi.getter
     def certificates(self) -> Sequence[str]:
+        """
+        A set of certificate's fingerprints for the IoT Core Device
+        """
         return pulumi.get(self, "certificates")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of the IoT Core Device
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the IoT Core Device
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -91,11 +103,17 @@ class GetIotCoreDeviceResult:
     @property
     @pulumi.getter
     def passwords(self) -> Sequence[str]:
+        """
+        A set of passwords's id for the IoT Core Device
+        """
         return pulumi.get(self, "passwords")
 
     @property
     @pulumi.getter(name="registryId")
     def registry_id(self) -> str:
+        """
+        IoT Core Registry ID for the IoT Core Device
+        """
         return pulumi.get(self, "registry_id")
 
 
@@ -120,7 +138,21 @@ def get_iot_core_device(device_id: Optional[str] = None,
                         name: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIotCoreDeviceResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex IoT Core device. For more information about IoT Core, see
+    [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_device = yandex.get_iot_core_device(device_id="are1sampleregistry11")
+    ```
+
+    This data source is used to define [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
+
+
+    :param str device_id: IoT Core Device id used to define device
+    :param str name: IoT Core Device name used to define device
     """
     __args__ = dict()
     __args__['deviceId'] = device_id
@@ -145,6 +177,20 @@ def get_iot_core_device_output(device_id: Optional[pulumi.Input[Optional[str]]] 
                                name: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIotCoreDeviceResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex IoT Core device. For more information about IoT Core, see
+    [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_device = yandex.get_iot_core_device(device_id="are1sampleregistry11")
+    ```
+
+    This data source is used to define [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
+
+
+    :param str device_id: IoT Core Device id used to define device
+    :param str name: IoT Core Device name used to define device
     """
     ...

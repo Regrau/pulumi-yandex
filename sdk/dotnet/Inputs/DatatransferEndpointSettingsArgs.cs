@@ -24,15 +24,27 @@ namespace Pulumi.Yandex.Inputs
         [Input("mongoTarget")]
         public Input<Inputs.DatatransferEndpointSettingsMongoTargetArgs>? MongoTarget { get; set; }
 
+        /// <summary>
+        /// Settings specific to the MySQL source endpoint.
+        /// </summary>
         [Input("mysqlSource")]
         public Input<Inputs.DatatransferEndpointSettingsMysqlSourceArgs>? MysqlSource { get; set; }
 
+        /// <summary>
+        /// Settings specific to the MySQL target endpoint.
+        /// </summary>
         [Input("mysqlTarget")]
         public Input<Inputs.DatatransferEndpointSettingsMysqlTargetArgs>? MysqlTarget { get; set; }
 
+        /// <summary>
+        /// Settings specific to the PostgreSQL source endpoint.
+        /// </summary>
         [Input("postgresSource")]
         public Input<Inputs.DatatransferEndpointSettingsPostgresSourceArgs>? PostgresSource { get; set; }
 
+        /// <summary>
+        /// Settings specific to the PostgreSQL target endpoint.
+        /// </summary>
         [Input("postgresTarget")]
         public Input<Inputs.DatatransferEndpointSettingsPostgresTargetArgs>? PostgresTarget { get; set; }
 

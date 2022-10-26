@@ -11,9 +11,51 @@ namespace Pulumi.Yandex
 {
     public static class GetAlbTargetGroup
     {
+        /// <summary>
+        /// Get information about a Yandex Application Load Balancer target group. For more information, see
+        /// [Yandex.Cloud Application Load Balancer](https://cloud.yandex.com/en/docs/application-load-balancer/quickstart).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetAlbTargetGroup.Invoke(new()
+        ///     {
+        ///         TargetGroupId = "my-target-group-id",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [Application Load Balancer Target Groups] that can be used by other resources.
+        /// </summary>
         public static Task<GetAlbTargetGroupResult> InvokeAsync(GetAlbTargetGroupArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetAlbTargetGroupResult>("yandex:index/getAlbTargetGroup:getAlbTargetGroup", args ?? new GetAlbTargetGroupArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Application Load Balancer target group. For more information, see
+        /// [Yandex.Cloud Application Load Balancer](https://cloud.yandex.com/en/docs/application-load-balancer/quickstart).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetAlbTargetGroup.Invoke(new()
+        ///     {
+        ///         TargetGroupId = "my-target-group-id",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [Application Load Balancer Target Groups] that can be used by other resources.
+        /// </summary>
         public static Output<GetAlbTargetGroupResult> Invoke(GetAlbTargetGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetAlbTargetGroupResult>("yandex:index/getAlbTargetGroup:getAlbTargetGroup", args ?? new GetAlbTargetGroupInvokeArgs(), options.WithDefaults());
     }
@@ -21,15 +63,27 @@ namespace Pulumi.Yandex
 
     public sealed class GetAlbTargetGroupArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Description of the target group.
+        /// </summary>
         [Input("description")]
         public string? Description { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// - Name of the Target Group.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Target Group ID.
+        /// </summary>
         [Input("targetGroupId")]
         public string? TargetGroupId { get; set; }
 
@@ -41,15 +95,27 @@ namespace Pulumi.Yandex
 
     public sealed class GetAlbTargetGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Description of the target group.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// - Name of the Target Group.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Target Group ID.
+        /// </summary>
         [Input("targetGroupId")]
         public Input<string>? TargetGroupId { get; set; }
 
@@ -63,13 +129,24 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetAlbTargetGroupResult
     {
+        /// <summary>
+        /// Creation timestamp of this target group.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Description of the target group.
+        /// </summary>
         public readonly string Description;
         public readonly string FolderId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Labels to assign to this target group.
+        /// * `target.0.ip_address` - IP address of the target.
+        /// * `target.0.subnet_id` - ID of the subnet that targets are connected to.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
         public readonly string Name;
         public readonly string TargetGroupId;

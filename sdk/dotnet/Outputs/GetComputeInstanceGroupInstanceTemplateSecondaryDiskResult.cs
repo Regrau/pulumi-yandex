@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetComputeInstanceGroupInstanceTemplateSecondaryDiskResult
     {
+        /// <summary>
+        /// This value can be used to reference the device under `/dev/disk/by-id/`.
+        /// </summary>
         public readonly string DeviceName;
+        /// <summary>
+        /// ID of the existing disk. To set use variables.
+        /// </summary>
         public readonly string DiskId;
+        /// <summary>
+        /// The parameters used for creating a disk alongside the instance. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamResult> InitializeParams;
+        /// <summary>
+        /// The access mode to the disk resource. By default a disk is attached in `READ_WRITE` mode.
+        /// </summary>
         public readonly string Mode;
 
         [OutputConstructor]

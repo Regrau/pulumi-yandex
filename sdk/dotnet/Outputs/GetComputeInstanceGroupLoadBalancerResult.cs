@@ -13,11 +13,29 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetComputeInstanceGroupLoadBalancerResult
     {
+        /// <summary>
+        /// Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+        /// </summary>
         public readonly int MaxOpeningTrafficDuration;
+        /// <summary>
+        /// The status message of the target group.
+        /// </summary>
         public readonly string StatusMessage;
+        /// <summary>
+        /// A description of the target group.
+        /// </summary>
         public readonly string TargetGroupDescription;
+        /// <summary>
+        /// The ID of the target group.
+        /// </summary>
         public readonly string TargetGroupId;
+        /// <summary>
+        /// A set of key/value label pairs.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> TargetGroupLabels;
+        /// <summary>
+        /// The name of the target group.
+        /// </summary>
         public readonly string TargetGroupName;
 
         [OutputConstructor]

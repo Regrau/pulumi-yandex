@@ -11,9 +11,69 @@ namespace Pulumi.Yandex
 {
     public static class GetMdbPostgresqlCluster
     {
+        /// <summary>
+        /// Get information about a Yandex Managed PostgreSQL cluster. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/).
+        /// [How to connect to the DB](https://cloud.yandex.com/en-ru/docs/managed-postgresql/quickstart#connect). To connect, use port 6432. The port number is not configurable.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetMdbPostgresqlCluster.Invoke(new()
+        ///     {
+        ///         Name = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["fqdn"] = foo.Apply(getMdbPostgresqlClusterResult =&gt; getMdbPostgresqlClusterResult.Hosts[0]?.Fqdn),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetMdbPostgresqlClusterResult> InvokeAsync(GetMdbPostgresqlClusterArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetMdbPostgresqlClusterResult>("yandex:index/getMdbPostgresqlCluster:getMdbPostgresqlCluster", args ?? new GetMdbPostgresqlClusterArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Managed PostgreSQL cluster. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/).
+        /// [How to connect to the DB](https://cloud.yandex.com/en-ru/docs/managed-postgresql/quickstart#connect). To connect, use port 6432. The port number is not configurable.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetMdbPostgresqlCluster.Invoke(new()
+        ///     {
+        ///         Name = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["fqdn"] = foo.Apply(getMdbPostgresqlClusterResult =&gt; getMdbPostgresqlClusterResult.Hosts[0]?.Fqdn),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetMdbPostgresqlClusterResult> Invoke(GetMdbPostgresqlClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetMdbPostgresqlClusterResult>("yandex:index/getMdbPostgresqlCluster:getMdbPostgresqlCluster", args ?? new GetMdbPostgresqlClusterInvokeArgs(), options.WithDefaults());
     }
@@ -21,18 +81,30 @@ namespace Pulumi.Yandex
 
     public sealed class GetMdbPostgresqlClusterArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the PostgreSQL cluster.
+        /// </summary>
         [Input("clusterId")]
         public string? ClusterId { get; set; }
 
         [Input("deletionProtection")]
         public bool? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// Description of the PostgreSQL cluster.
+        /// </summary>
         [Input("description")]
         public string? Description { get; set; }
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// The name of the PostgreSQL cluster.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -44,18 +116,30 @@ namespace Pulumi.Yandex
 
     public sealed class GetMdbPostgresqlClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the PostgreSQL cluster.
+        /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// Description of the PostgreSQL cluster.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// The name of the PostgreSQL cluster.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -70,24 +154,57 @@ namespace Pulumi.Yandex
     public sealed class GetMdbPostgresqlClusterResult
     {
         public readonly string ClusterId;
+        /// <summary>
+        /// Configuration of the PostgreSQL cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbPostgresqlClusterConfigResult> Configs;
+        /// <summary>
+        /// Timestamp of cluster creation.
+        /// </summary>
         public readonly string CreatedAt;
         public readonly bool DeletionProtection;
+        /// <summary>
+        /// Description of the PostgreSQL cluster.
+        /// </summary>
         public readonly string? Description;
+        /// <summary>
+        /// Deployment environment of the PostgreSQL cluster.
+        /// </summary>
         public readonly string Environment;
         public readonly string FolderId;
+        /// <summary>
+        /// Aggregated health of the cluster.
+        /// </summary>
         public readonly string Health;
         public readonly ImmutableArray<string> HostGroupIds;
+        /// <summary>
+        /// A host of the PostgreSQL cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbPostgresqlClusterHostResult> Hosts;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A set of key/value label pairs to assign to the PostgreSQL cluster.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// Maintenance window settings of the PostgreSQL cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbPostgresqlClusterMaintenanceWindowResult> MaintenanceWindows;
         public readonly string Name;
+        /// <summary>
+        /// ID of the network, to which the PostgreSQL cluster belongs.
+        /// </summary>
         public readonly string NetworkId;
+        /// <summary>
+        /// A set of ids of security groups assigned to hosts of the cluster.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// Status of the cluster.
+        /// </summary>
         public readonly string Status;
 
         [OutputConstructor]

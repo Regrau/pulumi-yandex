@@ -14,11 +14,32 @@ namespace Pulumi.Yandex.Outputs
     public sealed class GetAlbVirtualHostRouteHttpRouteRedirectActionResult
     {
         public readonly bool RemoveQuery;
+        /// <summary>
+        /// Replaces hostname.
+        /// </summary>
         public readonly string ReplaceHost;
+        /// <summary>
+        /// Replace path.
+        /// </summary>
         public readonly string ReplacePath;
+        /// <summary>
+        /// Replaces port.
+        /// </summary>
         public readonly int ReplacePort;
+        /// <summary>
+        /// Replace only matched prefix. Example:&lt;br/&gt; match:{ prefix_match: "/some" } &lt;br/&gt;
+        /// redirect: { replace_prefix: "/other" } &lt;br/&gt; will redirect "/something" to "/otherthing".
+        /// </summary>
         public readonly string ReplacePrefix;
+        /// <summary>
+        /// Replaces scheme. If the original scheme is `http` or `https`, will also remove the 80 or 443 port,
+        /// if present.
+        /// </summary>
         public readonly string ReplaceScheme;
+        /// <summary>
+        /// The HTTP status code to use in the redirect response. Supported values are:
+        /// moved_permanently, found, see_other, temporary_redirect, permanent_redirect.
+        /// </summary>
         public readonly string ResponseCode;
 
         [OutputConstructor]

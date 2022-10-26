@@ -12,6 +12,10 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class YdbDatabaseDedicatedScalePolicyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Fixed scaling policy for the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         [Input("fixedScale", required: true)]
         public Input<Inputs.YdbDatabaseDedicatedScalePolicyFixedScaleGetArgs> FixedScale { get; set; } = null!;
 

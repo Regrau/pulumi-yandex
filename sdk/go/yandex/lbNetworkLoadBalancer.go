@@ -10,18 +10,90 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates a network load balancer in the specified folder using the data specified in the config.
+// For more information, see [the official documentation](https://cloud.yandex.com/docs/load-balancer/concepts).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewLbNetworkLoadBalancer(ctx, "foo", &yandex.LbNetworkLoadBalancerArgs{
+//				AttachedTargetGroups: LbNetworkLoadBalancerAttachedTargetGroupArray{
+//					&LbNetworkLoadBalancerAttachedTargetGroupArgs{
+//						Healthchecks: LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArray{
+//							&LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs{
+//								HttpOptions: &LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionsArgs{
+//									Path: pulumi.String("/ping"),
+//									Port: pulumi.Int(8080),
+//								},
+//								Name: pulumi.String("http"),
+//							},
+//						},
+//						TargetGroupId: pulumi.Any(yandex_lb_target_group.My - target - group.Id),
+//					},
+//				},
+//				Listeners: LbNetworkLoadBalancerListenerArray{
+//					&LbNetworkLoadBalancerListenerArgs{
+//						ExternalAddressSpec: &LbNetworkLoadBalancerListenerExternalAddressSpecArgs{
+//							IpVersion: pulumi.String("ipv4"),
+//						},
+//						Name: pulumi.String("my-listener"),
+//						Port: pulumi.Int(8080),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A network load balancer can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/lbNetworkLoadBalancer:LbNetworkLoadBalancer default network_load_balancer_id
+//
+// ```
 type LbNetworkLoadBalancer struct {
 	pulumi.CustomResourceState
 
+	// An AttachedTargetGroup resource. The structure is documented below.
 	AttachedTargetGroups LbNetworkLoadBalancerAttachedTargetGroupArrayOutput `pulumi:"attachedTargetGroups"`
-	CreatedAt            pulumi.StringOutput                                 `pulumi:"createdAt"`
-	Description          pulumi.StringPtrOutput                              `pulumi:"description"`
-	FolderId             pulumi.StringOutput                                 `pulumi:"folderId"`
-	Labels               pulumi.StringMapOutput                              `pulumi:"labels"`
-	Listeners            LbNetworkLoadBalancerListenerArrayOutput            `pulumi:"listeners"`
-	Name                 pulumi.StringOutput                                 `pulumi:"name"`
-	RegionId             pulumi.StringPtrOutput                              `pulumi:"regionId"`
-	Type                 pulumi.StringPtrOutput                              `pulumi:"type"`
+	// The network load balancer creation timestamp.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// An optional description of the network load balancer. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Labels to assign to this network load balancer. A list of key/value pairs.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Listener specification that will be used by a network load balancer. The structure is documented below.
+	Listeners LbNetworkLoadBalancerListenerArrayOutput `pulumi:"listeners"`
+	// Name of the listener. The name must be unique for each listener on a single load balancer.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the availability zone where the network load balancer resides.
+	// The default is 'ru-central1'.
+	RegionId pulumi.StringPtrOutput `pulumi:"regionId"`
+	// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
+	Type pulumi.StringPtrOutput `pulumi:"type"`
 }
 
 // NewLbNetworkLoadBalancer registers a new resource with the given unique name, arguments, and options.
@@ -54,27 +126,51 @@ func GetLbNetworkLoadBalancer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LbNetworkLoadBalancer resources.
 type lbNetworkLoadBalancerState struct {
+	// An AttachedTargetGroup resource. The structure is documented below.
 	AttachedTargetGroups []LbNetworkLoadBalancerAttachedTargetGroup `pulumi:"attachedTargetGroups"`
-	CreatedAt            *string                                    `pulumi:"createdAt"`
-	Description          *string                                    `pulumi:"description"`
-	FolderId             *string                                    `pulumi:"folderId"`
-	Labels               map[string]string                          `pulumi:"labels"`
-	Listeners            []LbNetworkLoadBalancerListener            `pulumi:"listeners"`
-	Name                 *string                                    `pulumi:"name"`
-	RegionId             *string                                    `pulumi:"regionId"`
-	Type                 *string                                    `pulumi:"type"`
+	// The network load balancer creation timestamp.
+	CreatedAt *string `pulumi:"createdAt"`
+	// An optional description of the network load balancer. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this network load balancer. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Listener specification that will be used by a network load balancer. The structure is documented below.
+	Listeners []LbNetworkLoadBalancerListener `pulumi:"listeners"`
+	// Name of the listener. The name must be unique for each listener on a single load balancer.
+	Name *string `pulumi:"name"`
+	// ID of the availability zone where the network load balancer resides.
+	// The default is 'ru-central1'.
+	RegionId *string `pulumi:"regionId"`
+	// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
+	Type *string `pulumi:"type"`
 }
 
 type LbNetworkLoadBalancerState struct {
+	// An AttachedTargetGroup resource. The structure is documented below.
 	AttachedTargetGroups LbNetworkLoadBalancerAttachedTargetGroupArrayInput
-	CreatedAt            pulumi.StringPtrInput
-	Description          pulumi.StringPtrInput
-	FolderId             pulumi.StringPtrInput
-	Labels               pulumi.StringMapInput
-	Listeners            LbNetworkLoadBalancerListenerArrayInput
-	Name                 pulumi.StringPtrInput
-	RegionId             pulumi.StringPtrInput
-	Type                 pulumi.StringPtrInput
+	// The network load balancer creation timestamp.
+	CreatedAt pulumi.StringPtrInput
+	// An optional description of the network load balancer. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrInput
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this network load balancer. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Listener specification that will be used by a network load balancer. The structure is documented below.
+	Listeners LbNetworkLoadBalancerListenerArrayInput
+	// Name of the listener. The name must be unique for each listener on a single load balancer.
+	Name pulumi.StringPtrInput
+	// ID of the availability zone where the network load balancer resides.
+	// The default is 'ru-central1'.
+	RegionId pulumi.StringPtrInput
+	// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
+	Type pulumi.StringPtrInput
 }
 
 func (LbNetworkLoadBalancerState) ElementType() reflect.Type {
@@ -82,26 +178,48 @@ func (LbNetworkLoadBalancerState) ElementType() reflect.Type {
 }
 
 type lbNetworkLoadBalancerArgs struct {
+	// An AttachedTargetGroup resource. The structure is documented below.
 	AttachedTargetGroups []LbNetworkLoadBalancerAttachedTargetGroup `pulumi:"attachedTargetGroups"`
-	Description          *string                                    `pulumi:"description"`
-	FolderId             *string                                    `pulumi:"folderId"`
-	Labels               map[string]string                          `pulumi:"labels"`
-	Listeners            []LbNetworkLoadBalancerListener            `pulumi:"listeners"`
-	Name                 *string                                    `pulumi:"name"`
-	RegionId             *string                                    `pulumi:"regionId"`
-	Type                 *string                                    `pulumi:"type"`
+	// An optional description of the network load balancer. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this network load balancer. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Listener specification that will be used by a network load balancer. The structure is documented below.
+	Listeners []LbNetworkLoadBalancerListener `pulumi:"listeners"`
+	// Name of the listener. The name must be unique for each listener on a single load balancer.
+	Name *string `pulumi:"name"`
+	// ID of the availability zone where the network load balancer resides.
+	// The default is 'ru-central1'.
+	RegionId *string `pulumi:"regionId"`
+	// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
+	Type *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a LbNetworkLoadBalancer resource.
 type LbNetworkLoadBalancerArgs struct {
+	// An AttachedTargetGroup resource. The structure is documented below.
 	AttachedTargetGroups LbNetworkLoadBalancerAttachedTargetGroupArrayInput
-	Description          pulumi.StringPtrInput
-	FolderId             pulumi.StringPtrInput
-	Labels               pulumi.StringMapInput
-	Listeners            LbNetworkLoadBalancerListenerArrayInput
-	Name                 pulumi.StringPtrInput
-	RegionId             pulumi.StringPtrInput
-	Type                 pulumi.StringPtrInput
+	// An optional description of the network load balancer. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrInput
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this network load balancer. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Listener specification that will be used by a network load balancer. The structure is documented below.
+	Listeners LbNetworkLoadBalancerListenerArrayInput
+	// Name of the listener. The name must be unique for each listener on a single load balancer.
+	Name pulumi.StringPtrInput
+	// ID of the availability zone where the network load balancer resides.
+	// The default is 'ru-central1'.
+	RegionId pulumi.StringPtrInput
+	// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
+	Type pulumi.StringPtrInput
 }
 
 func (LbNetworkLoadBalancerArgs) ElementType() reflect.Type {
@@ -191,40 +309,52 @@ func (o LbNetworkLoadBalancerOutput) ToLbNetworkLoadBalancerOutputWithContext(ct
 	return o
 }
 
+// An AttachedTargetGroup resource. The structure is documented below.
 func (o LbNetworkLoadBalancerOutput) AttachedTargetGroups() LbNetworkLoadBalancerAttachedTargetGroupArrayOutput {
 	return o.ApplyT(func(v *LbNetworkLoadBalancer) LbNetworkLoadBalancerAttachedTargetGroupArrayOutput {
 		return v.AttachedTargetGroups
 	}).(LbNetworkLoadBalancerAttachedTargetGroupArrayOutput)
 }
 
+// The network load balancer creation timestamp.
 func (o LbNetworkLoadBalancerOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbNetworkLoadBalancer) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// An optional description of the network load balancer. Provide this property when
+// you create the resource.
 func (o LbNetworkLoadBalancerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbNetworkLoadBalancer) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the folder to which the resource belongs.
+// If omitted, the provider folder is used.
 func (o LbNetworkLoadBalancerOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbNetworkLoadBalancer) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Labels to assign to this network load balancer. A list of key/value pairs.
 func (o LbNetworkLoadBalancerOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *LbNetworkLoadBalancer) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Listener specification that will be used by a network load balancer. The structure is documented below.
 func (o LbNetworkLoadBalancerOutput) Listeners() LbNetworkLoadBalancerListenerArrayOutput {
 	return o.ApplyT(func(v *LbNetworkLoadBalancer) LbNetworkLoadBalancerListenerArrayOutput { return v.Listeners }).(LbNetworkLoadBalancerListenerArrayOutput)
 }
 
+// Name of the listener. The name must be unique for each listener on a single load balancer.
 func (o LbNetworkLoadBalancerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbNetworkLoadBalancer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the availability zone where the network load balancer resides.
+// The default is 'ru-central1'.
 func (o LbNetworkLoadBalancerOutput) RegionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbNetworkLoadBalancer) pulumi.StringPtrOutput { return v.RegionId }).(pulumi.StringPtrOutput)
 }
 
+// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
 func (o LbNetworkLoadBalancerOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbNetworkLoadBalancer) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }

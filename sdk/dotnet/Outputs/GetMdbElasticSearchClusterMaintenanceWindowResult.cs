@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbElasticSearchClusterMaintenanceWindowResult
     {
+        /// <summary>
+        /// Day of the week for a maintenance window if the window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        /// </summary>
         public readonly string Day;
+        /// <summary>
+        /// Hour of the day in UTC time zone (1-24) for a maintenance window if the window type is weekly.
+        /// </summary>
         public readonly int Hour;
+        /// <summary>
+        /// Type of a maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour need to be specified with the weekly window.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

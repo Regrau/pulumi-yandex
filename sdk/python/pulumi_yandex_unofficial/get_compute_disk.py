@@ -79,16 +79,25 @@ class GetComputeDiskResult:
     @property
     @pulumi.getter(name="blockSize")
     def block_size(self) -> int:
+        """
+        The block size of the disk in bytes.
+        """
         return pulumi.get(self, "block_size")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Disk creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Optional description of this disk.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -104,6 +113,9 @@ class GetComputeDiskResult:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> str:
+        """
+        ID of the folder that the disk belongs to.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
@@ -117,16 +129,25 @@ class GetComputeDiskResult:
     @property
     @pulumi.getter(name="imageId")
     def image_id(self) -> str:
+        """
+        ID of the source image that was used to create this disk.
+        """
         return pulumi.get(self, "image_id")
 
     @property
     @pulumi.getter(name="instanceIds")
     def instance_ids(self) -> Sequence[str]:
+        """
+        IDs of instances to which this disk is attached.
+        """
         return pulumi.get(self, "instance_ids")
 
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        Map of labels applied to this disk.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -137,31 +158,49 @@ class GetComputeDiskResult:
     @property
     @pulumi.getter(name="productIds")
     def product_ids(self) -> Sequence[str]:
+        """
+        License IDs that indicate which licenses are attached to this disk.
+        """
         return pulumi.get(self, "product_ids")
 
     @property
     @pulumi.getter
     def size(self) -> int:
+        """
+        Size of the disk, specified in Gb.
+        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> str:
+        """
+        Source snapshot that was used to create this disk.
+        """
         return pulumi.get(self, "snapshot_id")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the disk.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        Type of the disk.
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def zone(self) -> str:
+        """
+        ID of the zone where the disk resides.
+        """
         return pulumi.get(self, "zone")
 
 
@@ -196,7 +235,13 @@ def get_compute_disk(disk_id: Optional[str] = None,
                      name: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetComputeDiskResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Compute disk. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/compute/concepts/disk).
+
+
+    :param str disk_id: The ID of a specific disk.
+    :param str folder_id: ID of the folder that the disk belongs to.
+    :param str name: Name of the disk.
     """
     __args__ = dict()
     __args__['diskId'] = disk_id
@@ -233,6 +278,12 @@ def get_compute_disk_output(disk_id: Optional[pulumi.Input[Optional[str]]] = Non
                             name: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetComputeDiskResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Compute disk. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/compute/concepts/disk).
+
+
+    :param str disk_id: The ID of a specific disk.
+    :param str folder_id: ID of the folder that the disk belongs to.
+    :param str name: Name of the disk.
     """
     ...

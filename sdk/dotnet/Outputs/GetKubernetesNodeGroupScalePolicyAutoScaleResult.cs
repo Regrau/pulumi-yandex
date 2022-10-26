@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetKubernetesNodeGroupScalePolicyAutoScaleResult
     {
+        /// <summary>
+        /// Initial number of instances in the node group.
+        /// </summary>
         public readonly int Initial;
+        /// <summary>
+        /// Maximum number of instances in the node group.
+        /// </summary>
         public readonly int Max;
+        /// <summary>
+        /// Minimum number of instances in the node group.
+        /// </summary>
         public readonly int Min;
 
         [OutputConstructor]

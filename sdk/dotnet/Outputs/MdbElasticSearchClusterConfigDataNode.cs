@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbElasticSearchClusterConfigDataNode
     {
+        /// <summary>
+        /// Resources allocated to hosts of the Elasticsearch master nodes subcluster. The structure is documented below.
+        /// </summary>
         public readonly Outputs.MdbElasticSearchClusterConfigDataNodeResources Resources;
 
         [OutputConstructor]

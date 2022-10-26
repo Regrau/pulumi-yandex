@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbKafkaClusterConfigAccess
     {
+        /// <summary>
+        /// Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        /// </summary>
         public readonly bool? DataTransfer;
 
         [OutputConstructor]

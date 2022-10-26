@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetCdnOriginGroupOriginResult
     {
+        /// <summary>
+        /// specifies whether the origin is used in its origin group as backup. A backup origin is used when one of active origins becomes unavailable.
+        /// </summary>
         public readonly bool? Backup;
+        /// <summary>
+        /// the origin is enabled and used as a source for the CDN. Default is enabled.
+        /// </summary>
         public readonly bool? Enabled;
+        /// <summary>
+        /// The ID of a specific origin group.
+        /// </summary>
         public readonly int OriginGroupId;
+        /// <summary>
+        /// IP address or Domain name of your origin and the port;
+        /// </summary>
         public readonly string Source;
 
         [OutputConstructor]

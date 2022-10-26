@@ -17,6 +17,7 @@ class ContainerRepositoryArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ContainerRepository resource.
+        :param pulumi.Input[str] name: A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -24,6 +25,9 @@ class ContainerRepositoryArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -37,6 +41,7 @@ class _ContainerRepositoryState:
                  name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ContainerRepository resources.
+        :param pulumi.Input[str] name: A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -44,6 +49,9 @@ class _ContainerRepositoryState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -59,9 +67,30 @@ class ContainerRepository(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ContainerRepository resource with the given unique name, props, and options.
+        Creates a new container repository. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/repository)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_registry = yandex.ContainerRegistry("my-registry")
+        my_repository = yandex.ContainerRepository("my-repository")
+        ```
+
+        ## Import
+
+        A repository can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/containerRepository:ContainerRepository my-repository repository_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] name: A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
         """
         ...
     @overload
@@ -70,7 +99,27 @@ class ContainerRepository(pulumi.CustomResource):
                  args: Optional[ContainerRepositoryArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ContainerRepository resource with the given unique name, props, and options.
+        Creates a new container repository. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/repository)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_registry = yandex.ContainerRegistry("my-registry")
+        my_repository = yandex.ContainerRepository("my-repository")
+        ```
+
+        ## Import
+
+        A repository can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/containerRepository:ContainerRepository my-repository repository_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param ContainerRepositoryArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -115,6 +164,7 @@ class ContainerRepository(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] name: A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -126,5 +176,8 @@ class ContainerRepository(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
+        """
         return pulumi.get(self, "name")
 

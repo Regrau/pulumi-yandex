@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsMongoSourceExcludedCollection
     {
+        /// <summary>
+        /// Collection name.
+        /// </summary>
         public readonly string? CollectionName;
+        /// <summary>
+        /// Database name.
+        /// </summary>
         public readonly string? DatabaseName;
 
         [OutputConstructor]

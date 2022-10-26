@@ -13,17 +13,50 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetComputeInstanceGroupInstanceTemplateNetworkInterfaceResult
     {
+        /// <summary>
+        /// List of dns records.  The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordResult> DnsRecords;
+        /// <summary>
+        /// The private IP address to assign to the instance. If empty, the address is automatically assigned from the specified subnet.
+        /// </summary>
         public readonly string IpAddress;
+        /// <summary>
+        /// Is IPv4 address assigned.
+        /// </summary>
         public readonly bool Ipv4;
         public readonly bool Ipv6;
+        /// <summary>
+        /// Manual set static IPv6 address.
+        /// </summary>
         public readonly string Ipv6Address;
+        /// <summary>
+        /// List of ipv6 dns records.  The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordResult> Ipv6DnsRecords;
+        /// <summary>
+        /// The instance's public address for accessing the internet over NAT.
+        /// </summary>
         public readonly bool Nat;
+        /// <summary>
+        /// List of nat dns records.  The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordResult> NatDnsRecords;
+        /// <summary>
+        /// The public IP address of the instance.
+        /// </summary>
         public readonly string NatIpAddress;
+        /// <summary>
+        /// The ID of the network.
+        /// </summary>
         public readonly string NetworkId;
+        /// <summary>
+        /// Security group ids for network interface.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// The IDs of the subnets.
+        /// </summary>
         public readonly ImmutableArray<string> SubnetIds;
 
         [OutputConstructor]

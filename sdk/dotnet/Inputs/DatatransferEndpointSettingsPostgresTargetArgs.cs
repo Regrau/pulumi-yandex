@@ -12,23 +12,39 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsPostgresTargetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Connection settings. The structure is documented below.
+        /// </summary>
         [Input("connection")]
         public Input<Inputs.DatatransferEndpointSettingsPostgresTargetConnectionArgs>? Connection { get; set; }
 
+        /// <summary>
+        /// Name of the database to transfer.
+        /// </summary>
         [Input("database")]
         public Input<string>? Database { get; set; }
 
+        /// <summary>
+        /// Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        /// </summary>
         [Input("password")]
         public Input<Inputs.DatatransferEndpointSettingsPostgresTargetPasswordArgs>? Password { get; set; }
 
         [Input("securityGroups")]
         private InputList<string>? _securityGroups;
+
+        /// <summary>
+        /// List of security groups that the transfer associated with this endpoint should use.
+        /// </summary>
         public InputList<string> SecurityGroups
         {
             get => _securityGroups ?? (_securityGroups = new InputList<string>());
             set => _securityGroups = value;
         }
 
+        /// <summary>
+        /// User for the database access.
+        /// </summary>
         [Input("user")]
         public Input<string>? User { get; set; }
 

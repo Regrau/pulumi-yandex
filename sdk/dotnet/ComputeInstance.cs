@@ -9,6 +9,69 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// A VM instance resource. For more information, see
+    /// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/vm).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.IO;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var fooVpcNetwork = new Yandex.VpcNetwork("fooVpcNetwork");
+    /// 
+    ///     var fooVpcSubnet = new Yandex.VpcSubnet("fooVpcSubnet", new()
+    ///     {
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         Zone = "ru-central1-a",
+    ///     });
+    /// 
+    ///     var @default = new Yandex.ComputeInstance("default", new()
+    ///     {
+    ///         BootDisk = new Yandex.Inputs.ComputeInstanceBootDiskArgs
+    ///         {
+    ///             InitializeParams = new Yandex.Inputs.ComputeInstanceBootDiskInitializeParamsArgs
+    ///             {
+    ///                 ImageId = "image_id",
+    ///             },
+    ///         },
+    ///         Metadata = 
+    ///         {
+    ///             { "foo", "bar" },
+    ///             { "ssh-keys", $"ubuntu:{File.ReadAllText("~/.ssh/id_rsa.pub")}" },
+    ///         },
+    ///         NetworkInterfaces = new[]
+    ///         {
+    ///             new Yandex.Inputs.ComputeInstanceNetworkInterfaceArgs
+    ///             {
+    ///                 SubnetId = fooVpcSubnet.Id,
+    ///             },
+    ///         },
+    ///         PlatformId = "standard-v1",
+    ///         Resources = new Yandex.Inputs.ComputeInstanceResourcesArgs
+    ///         {
+    ///             Cores = 2,
+    ///             Memory = 4,
+    ///         },
+    ///         Zone = "ru-central1-a",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Instances can be imported using the `ID` of an instance, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/computeInstance:ComputeInstance default instance_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/computeInstance:ComputeInstance")]
     public partial class ComputeInstance : global::Pulumi.CustomResource
     {
@@ -18,63 +81,131 @@ namespace Pulumi.Yandex
         [Output("allowStoppingForUpdate")]
         public Output<bool?> AllowStoppingForUpdate { get; private set; } = null!;
 
+        /// <summary>
+        /// The boot disk for the instance. The structure is documented below.
+        /// </summary>
         [Output("bootDisk")]
         public Output<Outputs.ComputeInstanceBootDisk> BootDisk { get; private set; } = null!;
 
+        /// <summary>
+        /// Creation timestamp of the instance.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// Description of the boot disk.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// DNS record FQDN (must have a dot at the end).
+        /// </summary>
         [Output("fqdn")]
         public Output<string> Fqdn { get; private set; } = null!;
 
+        /// <summary>
+        /// Host name for the instance. This field is used to generate the instance `fqdn` value. 
+        /// The host name must be unique within the network and region. If not specified, the host name will be equal
+        /// to `id` of the instance and `fqdn` will be `&lt;id&gt;.auto.internal`.
+        /// Otherwise FQDN will be `&lt;hostname&gt;.&lt;region_id&gt;.internal`.
+        /// </summary>
         [Output("hostname")]
         public Output<string> Hostname { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of key/value label pairs to assign to the instance.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// List of local disks that are attached to the instance. Structure is documented below.
+        /// </summary>
         [Output("localDisks")]
         public Output<ImmutableArray<Outputs.ComputeInstanceLocalDisk>> LocalDisks { get; private set; } = null!;
 
+        /// <summary>
+        /// Metadata key/value pairs to make available from
+        /// within the instance.
+        /// </summary>
         [Output("metadata")]
         public Output<ImmutableDictionary<string, string>?> Metadata { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the boot disk.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
+        /// </summary>
         [Output("networkAccelerationType")]
         public Output<string?> NetworkAccelerationType { get; private set; } = null!;
 
+        /// <summary>
+        /// Networks to attach to the instance. This can
+        /// be specified multiple times. The structure is documented below.
+        /// </summary>
         [Output("networkInterfaces")]
         public Output<ImmutableArray<Outputs.ComputeInstanceNetworkInterface>> NetworkInterfaces { get; private set; } = null!;
 
+        /// <summary>
+        /// The placement policy configuration. The structure is documented below.
+        /// </summary>
         [Output("placementPolicy")]
         public Output<Outputs.ComputeInstancePlacementPolicy> PlacementPolicy { get; private set; } = null!;
 
+        /// <summary>
+        /// The type of virtual machine to create. The default is 'standard-v1'.
+        /// </summary>
         [Output("platformId")]
         public Output<string?> PlatformId { get; private set; } = null!;
 
+        /// <summary>
+        /// Compute resources that are allocated for the instance. The structure is documented below.
+        /// </summary>
         [Output("resources")]
         public Output<Outputs.ComputeInstanceResources> Resources { get; private set; } = null!;
 
+        /// <summary>
+        /// Scheduling policy configuration. The structure is documented below.
+        /// </summary>
         [Output("schedulingPolicy")]
         public Output<Outputs.ComputeInstanceSchedulingPolicy> SchedulingPolicy { get; private set; } = null!;
 
+        /// <summary>
+        /// A list of disks to attach to the instance. The structure is documented below.
+        /// **Note**: The `allow_stopping_for_update` property must be set to true in order to update this structure.
+        /// </summary>
         [Output("secondaryDisks")]
         public Output<ImmutableArray<Outputs.ComputeInstanceSecondaryDisk>> SecondaryDisks { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the service account authorized for this instance.
+        /// </summary>
         [Output("serviceAccountId")]
         public Output<string> ServiceAccountId { get; private set; } = null!;
 
+        /// <summary>
+        /// The status of this instance.
+        /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
+        /// <summary>
+        /// The availability zone where the virtual machine will be created. If it is not provided,
+        /// the default provider folder is used.
+        /// </summary>
         [Output("zone")]
         public Output<string> Zone { get; private set; } = null!;
 
@@ -101,7 +232,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -131,20 +262,40 @@ namespace Pulumi.Yandex
         [Input("allowStoppingForUpdate")]
         public Input<bool>? AllowStoppingForUpdate { get; set; }
 
+        /// <summary>
+        /// The boot disk for the instance. The structure is documented below.
+        /// </summary>
         [Input("bootDisk", required: true)]
         public Input<Inputs.ComputeInstanceBootDiskArgs> BootDisk { get; set; } = null!;
 
+        /// <summary>
+        /// Description of the boot disk.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// Host name for the instance. This field is used to generate the instance `fqdn` value. 
+        /// The host name must be unique within the network and region. If not specified, the host name will be equal
+        /// to `id` of the instance and `fqdn` will be `&lt;id&gt;.auto.internal`.
+        /// Otherwise FQDN will be `&lt;hostname&gt;.&lt;region_id&gt;.internal`.
+        /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the instance.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
@@ -153,6 +304,10 @@ namespace Pulumi.Yandex
 
         [Input("localDisks")]
         private InputList<Inputs.ComputeInstanceLocalDiskArgs>? _localDisks;
+
+        /// <summary>
+        /// List of local disks that are attached to the instance. Structure is documented below.
+        /// </summary>
         public InputList<Inputs.ComputeInstanceLocalDiskArgs> LocalDisks
         {
             get => _localDisks ?? (_localDisks = new InputList<Inputs.ComputeInstanceLocalDiskArgs>());
@@ -161,49 +316,89 @@ namespace Pulumi.Yandex
 
         [Input("metadata")]
         private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// Metadata key/value pairs to make available from
+        /// within the instance.
+        /// </summary>
         public InputMap<string> Metadata
         {
             get => _metadata ?? (_metadata = new InputMap<string>());
             set => _metadata = value;
         }
 
+        /// <summary>
+        /// Name of the boot disk.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
+        /// </summary>
         [Input("networkAccelerationType")]
         public Input<string>? NetworkAccelerationType { get; set; }
 
         [Input("networkInterfaces", required: true)]
         private InputList<Inputs.ComputeInstanceNetworkInterfaceArgs>? _networkInterfaces;
+
+        /// <summary>
+        /// Networks to attach to the instance. This can
+        /// be specified multiple times. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.ComputeInstanceNetworkInterfaceArgs> NetworkInterfaces
         {
             get => _networkInterfaces ?? (_networkInterfaces = new InputList<Inputs.ComputeInstanceNetworkInterfaceArgs>());
             set => _networkInterfaces = value;
         }
 
+        /// <summary>
+        /// The placement policy configuration. The structure is documented below.
+        /// </summary>
         [Input("placementPolicy")]
         public Input<Inputs.ComputeInstancePlacementPolicyArgs>? PlacementPolicy { get; set; }
 
+        /// <summary>
+        /// The type of virtual machine to create. The default is 'standard-v1'.
+        /// </summary>
         [Input("platformId")]
         public Input<string>? PlatformId { get; set; }
 
+        /// <summary>
+        /// Compute resources that are allocated for the instance. The structure is documented below.
+        /// </summary>
         [Input("resources", required: true)]
         public Input<Inputs.ComputeInstanceResourcesArgs> Resources { get; set; } = null!;
 
+        /// <summary>
+        /// Scheduling policy configuration. The structure is documented below.
+        /// </summary>
         [Input("schedulingPolicy")]
         public Input<Inputs.ComputeInstanceSchedulingPolicyArgs>? SchedulingPolicy { get; set; }
 
         [Input("secondaryDisks")]
         private InputList<Inputs.ComputeInstanceSecondaryDiskArgs>? _secondaryDisks;
+
+        /// <summary>
+        /// A list of disks to attach to the instance. The structure is documented below.
+        /// **Note**: The `allow_stopping_for_update` property must be set to true in order to update this structure.
+        /// </summary>
         public InputList<Inputs.ComputeInstanceSecondaryDiskArgs> SecondaryDisks
         {
             get => _secondaryDisks ?? (_secondaryDisks = new InputList<Inputs.ComputeInstanceSecondaryDiskArgs>());
             set => _secondaryDisks = value;
         }
 
+        /// <summary>
+        /// ID of the service account authorized for this instance.
+        /// </summary>
         [Input("serviceAccountId")]
         public Input<string>? ServiceAccountId { get; set; }
 
+        /// <summary>
+        /// The availability zone where the virtual machine will be created. If it is not provided,
+        /// the default provider folder is used.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 
@@ -221,26 +416,52 @@ namespace Pulumi.Yandex
         [Input("allowStoppingForUpdate")]
         public Input<bool>? AllowStoppingForUpdate { get; set; }
 
+        /// <summary>
+        /// The boot disk for the instance. The structure is documented below.
+        /// </summary>
         [Input("bootDisk")]
         public Input<Inputs.ComputeInstanceBootDiskGetArgs>? BootDisk { get; set; }
 
+        /// <summary>
+        /// Creation timestamp of the instance.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// Description of the boot disk.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// DNS record FQDN (must have a dot at the end).
+        /// </summary>
         [Input("fqdn")]
         public Input<string>? Fqdn { get; set; }
 
+        /// <summary>
+        /// Host name for the instance. This field is used to generate the instance `fqdn` value. 
+        /// The host name must be unique within the network and region. If not specified, the host name will be equal
+        /// to `id` of the instance and `fqdn` will be `&lt;id&gt;.auto.internal`.
+        /// Otherwise FQDN will be `&lt;hostname&gt;.&lt;region_id&gt;.internal`.
+        /// </summary>
         [Input("hostname")]
         public Input<string>? Hostname { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the instance.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
@@ -249,6 +470,10 @@ namespace Pulumi.Yandex
 
         [Input("localDisks")]
         private InputList<Inputs.ComputeInstanceLocalDiskGetArgs>? _localDisks;
+
+        /// <summary>
+        /// List of local disks that are attached to the instance. Structure is documented below.
+        /// </summary>
         public InputList<Inputs.ComputeInstanceLocalDiskGetArgs> LocalDisks
         {
             get => _localDisks ?? (_localDisks = new InputList<Inputs.ComputeInstanceLocalDiskGetArgs>());
@@ -257,52 +482,95 @@ namespace Pulumi.Yandex
 
         [Input("metadata")]
         private InputMap<string>? _metadata;
+
+        /// <summary>
+        /// Metadata key/value pairs to make available from
+        /// within the instance.
+        /// </summary>
         public InputMap<string> Metadata
         {
             get => _metadata ?? (_metadata = new InputMap<string>());
             set => _metadata = value;
         }
 
+        /// <summary>
+        /// Name of the boot disk.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
+        /// </summary>
         [Input("networkAccelerationType")]
         public Input<string>? NetworkAccelerationType { get; set; }
 
         [Input("networkInterfaces")]
         private InputList<Inputs.ComputeInstanceNetworkInterfaceGetArgs>? _networkInterfaces;
+
+        /// <summary>
+        /// Networks to attach to the instance. This can
+        /// be specified multiple times. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.ComputeInstanceNetworkInterfaceGetArgs> NetworkInterfaces
         {
             get => _networkInterfaces ?? (_networkInterfaces = new InputList<Inputs.ComputeInstanceNetworkInterfaceGetArgs>());
             set => _networkInterfaces = value;
         }
 
+        /// <summary>
+        /// The placement policy configuration. The structure is documented below.
+        /// </summary>
         [Input("placementPolicy")]
         public Input<Inputs.ComputeInstancePlacementPolicyGetArgs>? PlacementPolicy { get; set; }
 
+        /// <summary>
+        /// The type of virtual machine to create. The default is 'standard-v1'.
+        /// </summary>
         [Input("platformId")]
         public Input<string>? PlatformId { get; set; }
 
+        /// <summary>
+        /// Compute resources that are allocated for the instance. The structure is documented below.
+        /// </summary>
         [Input("resources")]
         public Input<Inputs.ComputeInstanceResourcesGetArgs>? Resources { get; set; }
 
+        /// <summary>
+        /// Scheduling policy configuration. The structure is documented below.
+        /// </summary>
         [Input("schedulingPolicy")]
         public Input<Inputs.ComputeInstanceSchedulingPolicyGetArgs>? SchedulingPolicy { get; set; }
 
         [Input("secondaryDisks")]
         private InputList<Inputs.ComputeInstanceSecondaryDiskGetArgs>? _secondaryDisks;
+
+        /// <summary>
+        /// A list of disks to attach to the instance. The structure is documented below.
+        /// **Note**: The `allow_stopping_for_update` property must be set to true in order to update this structure.
+        /// </summary>
         public InputList<Inputs.ComputeInstanceSecondaryDiskGetArgs> SecondaryDisks
         {
             get => _secondaryDisks ?? (_secondaryDisks = new InputList<Inputs.ComputeInstanceSecondaryDiskGetArgs>());
             set => _secondaryDisks = value;
         }
 
+        /// <summary>
+        /// ID of the service account authorized for this instance.
+        /// </summary>
         [Input("serviceAccountId")]
         public Input<string>? ServiceAccountId { get; set; }
 
+        /// <summary>
+        /// The status of this instance.
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
+        /// <summary>
+        /// The availability zone where the virtual machine will be created. If it is not provided,
+        /// the default provider folder is used.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 

@@ -13,9 +13,22 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetAlbVirtualHostModifyRequestHeaderResult
     {
+        /// <summary>
+        /// Append string to the header value.
+        /// </summary>
         public readonly string Append;
+        /// <summary>
+        /// Name of the Virtual Host.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// If set, remove the header.
+        /// </summary>
         public readonly bool Remove;
+        /// <summary>
+        /// New value for a header. Header values support the following
+        /// [formatters](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#custom-request-response-headers).
+        /// </summary>
         public readonly string Replace;
 
         [OutputConstructor]

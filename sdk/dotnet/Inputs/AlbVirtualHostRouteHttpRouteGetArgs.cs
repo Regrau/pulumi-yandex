@@ -12,20 +12,33 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbVirtualHostRouteHttpRouteGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Direct response action resource. The structure is documented below.
+        /// </summary>
         [Input("directResponseAction")]
         public Input<Inputs.AlbVirtualHostRouteHttpRouteDirectResponseActionGetArgs>? DirectResponseAction { get; set; }
 
         [Input("httpMatches")]
         private InputList<Inputs.AlbVirtualHostRouteHttpRouteHttpMatchGetArgs>? _httpMatches;
+
+        /// <summary>
+        /// Checks "/" prefix by default. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbVirtualHostRouteHttpRouteHttpMatchGetArgs> HttpMatches
         {
             get => _httpMatches ?? (_httpMatches = new InputList<Inputs.AlbVirtualHostRouteHttpRouteHttpMatchGetArgs>());
             set => _httpMatches = value;
         }
 
+        /// <summary>
+        /// HTTP route action resource. The structure is documented below.
+        /// </summary>
         [Input("httpRouteAction")]
         public Input<Inputs.AlbVirtualHostRouteHttpRouteHttpRouteActionGetArgs>? HttpRouteAction { get; set; }
 
+        /// <summary>
+        /// Redirect action resource. The structure is documented below.
+        /// </summary>
         [Input("redirectAction")]
         public Input<Inputs.AlbVirtualHostRouteHttpRouteRedirectActionGetArgs>? RedirectAction { get; set; }
 

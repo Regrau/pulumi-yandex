@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckResult
     {
+        /// <summary>
+        /// Optional text that must be contained in the messages received from targets for a successful health check.
+        /// </summary>
         public readonly string Receive;
+        /// <summary>
+        /// Optional message text sent to targets during TCP data transfer.
+        /// </summary>
         public readonly string Send;
 
         [OutputConstructor]

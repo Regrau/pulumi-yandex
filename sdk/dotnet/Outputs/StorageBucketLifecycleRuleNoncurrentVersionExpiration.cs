@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class StorageBucketLifecycleRuleNoncurrentVersionExpiration
     {
+        /// <summary>
+        /// Specifies the number of days noncurrent object versions expire.
+        /// </summary>
         public readonly int? Days;
 
         [OutputConstructor]

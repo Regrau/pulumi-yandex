@@ -12,6 +12,11 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbMongodbClusterClusterConfigMongodAuditLogInputArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// (Optional) Configuration of the audit log filter in JSON format.
+        /// For more information see [auditLog.filter](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.filter)
+        /// description in the official documentation. Available only in enterprise edition.
+        /// </summary>
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 

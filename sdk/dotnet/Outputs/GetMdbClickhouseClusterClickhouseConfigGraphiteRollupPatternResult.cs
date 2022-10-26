@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternResult
     {
+        /// <summary>
+        /// Aggregation function name.
+        /// </summary>
         public readonly string Function;
+        /// <summary>
+        /// Regular expression that the metric name must match.
+        /// </summary>
         public readonly string? Regexp;
+        /// <summary>
+        /// Retain parameters.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionResult> Retentions;
 
         [OutputConstructor]

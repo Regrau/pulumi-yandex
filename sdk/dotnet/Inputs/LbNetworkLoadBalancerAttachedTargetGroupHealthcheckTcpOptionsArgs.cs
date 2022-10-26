@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Port for incoming traffic.
+        /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 

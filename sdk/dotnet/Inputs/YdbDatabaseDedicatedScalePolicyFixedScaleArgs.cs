@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class YdbDatabaseDedicatedScalePolicyFixedScaleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Number of instances for the Yandex Database cluster.
+        /// </summary>
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
 

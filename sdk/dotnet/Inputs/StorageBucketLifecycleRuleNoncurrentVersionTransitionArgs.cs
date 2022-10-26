@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Specifies the number of days noncurrent object versions transition.
+        /// </summary>
         [Input("days")]
         public Input<int>? Days { get; set; }
 
+        /// <summary>
+        /// Specifies the storage class to which you want the noncurrent object versions to transition. Can only be `COLD` or `STANDARD_IA`.
+        /// </summary>
         [Input("storageClass", required: true)]
         public Input<string> StorageClass { get; set; } = null!;
 

@@ -12,11 +12,18 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterClickhouseConfigGraphiteRollupGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Graphite rollup configuration name.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
         [Input("patterns")]
         private InputList<Inputs.MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternGetArgs>? _patterns;
+
+        /// <summary>
+        /// Set of thinning rules.
+        /// </summary>
         public InputList<Inputs.MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternGetArgs> Patterns
         {
             get => _patterns ?? (_patterns = new InputList<Inputs.MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternGetArgs>());

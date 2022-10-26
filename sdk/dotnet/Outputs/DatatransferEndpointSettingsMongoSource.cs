@@ -13,11 +13,29 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsMongoSource
     {
+        /// <summary>
+        /// The list of the MongoDB collections that should be transferred. If omitted, all available collections will be transferred. The structure of the list item is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.DatatransferEndpointSettingsMongoSourceCollection> Collections;
+        /// <summary>
+        /// Connection settings. The structure is documented below.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsMongoSourceConnection? Connection;
+        /// <summary>
+        /// The list of the MongoDB collections that should not be transferred.
+        /// </summary>
         public readonly ImmutableArray<Outputs.DatatransferEndpointSettingsMongoSourceExcludedCollection> ExcludedCollections;
+        /// <summary>
+        /// whether the secondary server should be preferred to the primary when copying data.
+        /// </summary>
         public readonly bool? SecondaryPreferredMode;
+        /// <summary>
+        /// List of security groups that the transfer associated with this endpoint should use.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroups;
+        /// <summary>
+        /// Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        /// </summary>
         public readonly string? SubnetId;
 
         [OutputConstructor]

@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex VPC subnet. For more information, see
+ * [Yandex.Cloud VPC](https://cloud.yandex.com/docs/vpc/concepts/index).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const admin = pulumi.output(yandex.getVpcSubnet({
+ *     subnetId: "my-subnet-id",
+ * }));
+ * ```
+ *
+ * This data source is used to define [VPC Subnets] that can be used by other resources.
+ */
 export function getVpcSubnet(args?: GetVpcSubnetArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcSubnetResult> {
     args = args || {};
     if (!opts) {
@@ -23,8 +38,17 @@ export function getVpcSubnet(args?: GetVpcSubnetArgs, opts?: pulumi.InvokeOption
  * A collection of arguments for invoking getVpcSubnet.
  */
 export interface GetVpcSubnetArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * - Name of the subnet.
+     */
     name?: string;
+    /**
+     * Subnet ID.
+     */
     subnetId?: string;
 }
 
@@ -32,21 +56,48 @@ export interface GetVpcSubnetArgs {
  * A collection of values returned by getVpcSubnet.
  */
 export interface GetVpcSubnetResult {
+    /**
+     * Creation timestamp of this subnet.
+     */
     readonly createdAt: string;
+    /**
+     * Description of the subnet.
+     */
     readonly description: string;
+    /**
+     * Options for DHCP client. The structure is documented below.
+     */
     readonly dhcpOptions: outputs.GetVpcSubnetDhcpOption[];
     readonly folderId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Labels to assign to this subnet.
+     */
     readonly labels: {[key: string]: string};
     readonly name: string;
+    /**
+     * ID of the network this subnet belongs to.
+     */
     readonly networkId: string;
+    /**
+     * ID of the route table to assign to this subnet.
+     */
     readonly routeTableId: string;
     readonly subnetId: string;
+    /**
+     * The blocks of internal IPv4 addresses owned by this subnet.
+     */
     readonly v4CidrBlocks: string[];
+    /**
+     * The blocks of internal IPv6 addresses owned by this subnet.
+     */
     readonly v6CidrBlocks: string[];
+    /**
+     * Name of the availability zone for this subnet.
+     */
     readonly zone: string;
 }
 
@@ -58,7 +109,16 @@ export function getVpcSubnetOutput(args?: GetVpcSubnetOutputArgs, opts?: pulumi.
  * A collection of arguments for invoking getVpcSubnet.
  */
 export interface GetVpcSubnetOutputArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * - Name of the subnet.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Subnet ID.
+     */
     subnetId?: pulumi.Input<string>;
 }

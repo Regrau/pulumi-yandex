@@ -14,6 +14,9 @@ namespace Pulumi.Yandex.Outputs
     public sealed class GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionResult
     {
         public readonly string Path;
+        /// <summary>
+        /// Port for incoming traffic.
+        /// </summary>
         public readonly int Port;
 
         [OutputConstructor]

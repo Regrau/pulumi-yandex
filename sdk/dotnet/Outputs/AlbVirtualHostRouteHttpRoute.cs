@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbVirtualHostRouteHttpRoute
     {
+        /// <summary>
+        /// Direct response action resource. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbVirtualHostRouteHttpRouteDirectResponseAction? DirectResponseAction;
+        /// <summary>
+        /// Checks "/" prefix by default. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.AlbVirtualHostRouteHttpRouteHttpMatch> HttpMatches;
+        /// <summary>
+        /// HTTP route action resource. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbVirtualHostRouteHttpRouteHttpRouteAction? HttpRouteAction;
+        /// <summary>
+        /// Redirect action resource. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbVirtualHostRouteHttpRouteRedirectAction? RedirectAction;
 
         [OutputConstructor]

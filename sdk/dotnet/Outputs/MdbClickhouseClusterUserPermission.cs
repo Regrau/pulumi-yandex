@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbClickhouseClusterUserPermission
     {
+        /// <summary>
+        /// The name of the database that the permission grants access to.
+        /// </summary>
         public readonly string DatabaseName;
 
         [OutputConstructor]

@@ -12,18 +12,36 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class ComputeInstanceBootDiskArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Whether the disk is auto-deleted when the instance
+        /// is deleted. The default value is false.
+        /// </summary>
         [Input("autoDelete")]
         public Input<bool>? AutoDelete { get; set; }
 
+        /// <summary>
+        /// Name that can be used to access an attached disk
+        /// under `/dev/disk/by-id/`.
+        /// </summary>
         [Input("deviceName")]
         public Input<string>? DeviceName { get; set; }
 
+        /// <summary>
+        /// ID of the disk that is attached to the instance.
+        /// </summary>
         [Input("diskId")]
         public Input<string>? DiskId { get; set; }
 
+        /// <summary>
+        /// Parameters for a new disk that will be created
+        /// alongside the new instance. Either `initialize_params` or `disk_id` must be set. The structure is documented below.
+        /// </summary>
         [Input("initializeParams")]
         public Input<Inputs.ComputeInstanceBootDiskInitializeParamsArgs>? InitializeParams { get; set; }
 
+        /// <summary>
+        /// Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 

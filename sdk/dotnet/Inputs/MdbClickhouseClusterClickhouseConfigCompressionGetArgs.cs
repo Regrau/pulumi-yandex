@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterClickhouseConfigCompressionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Method: Compression method. Two methods are available: LZ4 and zstd.
+        /// </summary>
         [Input("method", required: true)]
         public Input<string> Method { get; set; } = null!;
 
+        /// <summary>
+        /// Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
+        /// </summary>
         [Input("minPartSize", required: true)]
         public Input<int> MinPartSize { get; set; } = null!;
 
+        /// <summary>
+        /// Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
+        /// </summary>
         [Input("minPartSizeRatio", required: true)]
         public Input<double> MinPartSizeRatio { get; set; } = null!;
 

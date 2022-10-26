@@ -17,6 +17,9 @@ namespace Pulumi.Yandex.Outputs
         public readonly ImmutableArray<string> Commands;
         public readonly string Digest;
         public readonly ImmutableDictionary<string, string> Environment;
+        /// <summary>
+        /// Invoke URL of the Yandex Cloud Serverless Container
+        /// </summary>
         public readonly string Url;
         public readonly string WorkDir;
 

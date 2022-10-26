@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetKubernetesNodeGroupAllocationPolicyLocationResult
     {
+        /// <summary>
+        /// ID of the subnet, that will be used by one compute instance in node group.
+        /// </summary>
         public readonly string SubnetId;
+        /// <summary>
+        /// ID of the availability zone where for one compute instance in node group.
+        /// </summary>
         public readonly string Zone;
 
         [OutputConstructor]

@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerListenerTlsDefaultHandlerHttpHandler
     {
+        /// <summary>
+        /// If set, will enable only HTTP1 protocol with HTTP1.0 support.
+        /// </summary>
         public readonly bool? AllowHttp10;
+        /// <summary>
+        /// If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2Options? Http2Options;
+        /// <summary>
+        /// HTTP router id.
+        /// </summary>
         public readonly string? HttpRouterId;
 
         [OutputConstructor]

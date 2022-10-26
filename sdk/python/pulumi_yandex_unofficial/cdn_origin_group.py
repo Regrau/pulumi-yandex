@@ -22,6 +22,8 @@ class CdnOriginGroupArgs:
                  use_next: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a CdnOriginGroup resource.
+        :param pulumi.Input[str] name: CDN Origin Group name used to define device.
+        :param pulumi.Input[bool] use_next: If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
         """
         pulumi.set(__self__, "origins", origins)
         if folder_id is not None:
@@ -52,6 +54,9 @@ class CdnOriginGroupArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        CDN Origin Group name used to define device.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -61,6 +66,9 @@ class CdnOriginGroupArgs:
     @property
     @pulumi.getter(name="useNext")
     def use_next(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
+        """
         return pulumi.get(self, "use_next")
 
     @use_next.setter
@@ -77,6 +85,8 @@ class _CdnOriginGroupState:
                  use_next: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering CdnOriginGroup resources.
+        :param pulumi.Input[str] name: CDN Origin Group name used to define device.
+        :param pulumi.Input[bool] use_next: If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
         """
         if folder_id is not None:
             pulumi.set(__self__, "folder_id", folder_id)
@@ -99,6 +109,9 @@ class _CdnOriginGroupState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        CDN Origin Group name used to define device.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -117,6 +130,9 @@ class _CdnOriginGroupState:
     @property
     @pulumi.getter(name="useNext")
     def use_next(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
+        """
         return pulumi.get(self, "use_next")
 
     @use_next.setter
@@ -135,9 +151,47 @@ class CdnOriginGroup(pulumi.CustomResource):
                  use_next: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        Create a CdnOriginGroup resource with the given unique name, props, and options.
+        Allows management of [Yandex.Cloud CDN Origin Groups](https://cloud.yandex.ru/docs/cdn/concepts/origins).
+
+        > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_group = yandex.CdnOriginGroup("myGroup",
+            origins=[
+                yandex.CdnOriginGroupOriginArgs(
+                    source="ya.ru",
+                ),
+                yandex.CdnOriginGroupOriginArgs(
+                    source="yandex.ru",
+                ),
+                yandex.CdnOriginGroupOriginArgs(
+                    source="goo.gl",
+                ),
+                yandex.CdnOriginGroupOriginArgs(
+                    backup=False,
+                    source="amazon.com",
+                ),
+            ],
+            use_next=True)
+        ```
+
+        ## Import
+
+        A origin group can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import yandex:index/cdnOriginGroup:CdnOriginGroup default origin_group_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] name: CDN Origin Group name used to define device.
+        :param pulumi.Input[bool] use_next: If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
         """
         ...
     @overload
@@ -146,7 +200,43 @@ class CdnOriginGroup(pulumi.CustomResource):
                  args: CdnOriginGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a CdnOriginGroup resource with the given unique name, props, and options.
+        Allows management of [Yandex.Cloud CDN Origin Groups](https://cloud.yandex.ru/docs/cdn/concepts/origins).
+
+        > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_group = yandex.CdnOriginGroup("myGroup",
+            origins=[
+                yandex.CdnOriginGroupOriginArgs(
+                    source="ya.ru",
+                ),
+                yandex.CdnOriginGroupOriginArgs(
+                    source="yandex.ru",
+                ),
+                yandex.CdnOriginGroupOriginArgs(
+                    source="goo.gl",
+                ),
+                yandex.CdnOriginGroupOriginArgs(
+                    backup=False,
+                    source="amazon.com",
+                ),
+            ],
+            use_next=True)
+        ```
+
+        ## Import
+
+        A origin group can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import yandex:index/cdnOriginGroup:CdnOriginGroup default origin_group_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param CdnOriginGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,6 +292,8 @@ class CdnOriginGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] name: CDN Origin Group name used to define device.
+        :param pulumi.Input[bool] use_next: If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -221,6 +313,9 @@ class CdnOriginGroup(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        CDN Origin Group name used to define device.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -231,5 +326,8 @@ class CdnOriginGroup(pulumi.CustomResource):
     @property
     @pulumi.getter(name="useNext")
     def use_next(self) -> pulumi.Output[Optional[bool]]:
+        """
+        If the option is active (has true value), in case the origin responds with 4XX or 5XX codes, use the next origin from the list.
+        """
         return pulumi.get(self, "use_next")
 

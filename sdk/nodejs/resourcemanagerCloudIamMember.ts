@@ -4,6 +4,40 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows creation and management of a single member for a single binding within
+ * the IAM policy for an existing Yandex Resource Manager cloud.
+ *
+ * > **Note:** Roles controlled by `yandex.ResourcemanagerCloudIamBinding`
+ *    should not be assigned using `yandex.ResourcemanagerCloudIamMember`.
+ *
+ * > **Note:** When you delete `yandex.ResourcemanagerCloudIamBinding` resource,
+ *    the roles can be deleted from other users within the cloud as well. Be careful!
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const department1 = pulumi.output(yandex.getResourcemanagerCloud({
+ *     name: "Department 1",
+ * }));
+ * const admin = new yandex.ResourcemanagerCloudIamMember("admin", {
+ *     cloudId: department1.id,
+ *     member: "userAccount:user_id",
+ *     role: "editor",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the `cloud id`, role, and account, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/resourcemanagerCloudIamMember:ResourcemanagerCloudIamMember my_project "cloud_id viewer foo@example.com"
+ * ```
+ */
 export class ResourcemanagerCloudIamMember extends pulumi.CustomResource {
     /**
      * Get an existing ResourcemanagerCloudIamMember resource's state with the given name, ID, and optional extra
@@ -32,8 +66,20 @@ export class ResourcemanagerCloudIamMember extends pulumi.CustomResource {
         return obj['__pulumiType'] === ResourcemanagerCloudIamMember.__pulumiType;
     }
 
+    /**
+     * ID of the cloud to attach a policy to.
+     */
     public readonly cloudId!: pulumi.Output<string>;
+    /**
+     * The identity that will be granted the privilege that is specified in the `role` field.
+     * This field can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     */
     public readonly member!: pulumi.Output<string>;
+    /**
+     * The role that should be assigned.
+     */
     public readonly role!: pulumi.Output<string>;
     public readonly sleepAfter!: pulumi.Output<number | undefined>;
 
@@ -79,8 +125,20 @@ export class ResourcemanagerCloudIamMember extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ResourcemanagerCloudIamMember resources.
  */
 export interface ResourcemanagerCloudIamMemberState {
+    /**
+     * ID of the cloud to attach a policy to.
+     */
     cloudId?: pulumi.Input<string>;
+    /**
+     * The identity that will be granted the privilege that is specified in the `role` field.
+     * This field can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     */
     member?: pulumi.Input<string>;
+    /**
+     * The role that should be assigned.
+     */
     role?: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }
@@ -89,8 +147,20 @@ export interface ResourcemanagerCloudIamMemberState {
  * The set of arguments for constructing a ResourcemanagerCloudIamMember resource.
  */
 export interface ResourcemanagerCloudIamMemberArgs {
+    /**
+     * ID of the cloud to attach a policy to.
+     */
     cloudId: pulumi.Input<string>;
+    /**
+     * The identity that will be granted the privilege that is specified in the `role` field.
+     * This field can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     */
     member: pulumi.Input<string>;
+    /**
+     * The role that should be assigned.
+     */
     role: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }

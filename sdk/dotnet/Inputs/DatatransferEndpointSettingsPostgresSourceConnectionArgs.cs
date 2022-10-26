@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsPostgresSourceConnectionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Identifier of the Managed MySQL cluster.
+        /// </summary>
         [Input("mdbClusterId")]
         public Input<string>? MdbClusterId { get; set; }
 
+        /// <summary>
+        /// Connection settings of the on-premise MySQL server.
+        /// </summary>
         [Input("onPremise")]
         public Input<Inputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs>? OnPremise { get; set; }
 

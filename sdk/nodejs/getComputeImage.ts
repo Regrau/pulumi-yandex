@@ -23,9 +23,21 @@ export function getComputeImage(args?: GetComputeImageArgs, opts?: pulumi.Invoke
  * A collection of arguments for invoking getComputeImage.
  */
 export interface GetComputeImageArgs {
+    /**
+     * The family name of an image. Used to search the latest image in a family.
+     */
     family?: string;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * The ID of a specific image.
+     */
     imageId?: string;
+    /**
+     * The name of the image.
+     */
     name?: string;
 }
 
@@ -33,8 +45,17 @@ export interface GetComputeImageArgs {
  * A collection of values returned by getComputeImage.
  */
 export interface GetComputeImageResult {
+    /**
+     * Image creation timestamp.
+     */
     readonly createdAt: string;
+    /**
+     * An optional description of this image.
+     */
     readonly description: string;
+    /**
+     * The OS family name of the image.
+     */
     readonly family: string;
     readonly folderId: string;
     /**
@@ -42,13 +63,34 @@ export interface GetComputeImageResult {
      */
     readonly id: string;
     readonly imageId: string;
+    /**
+     * A map of labels applied to this image.
+     */
     readonly labels: {[key: string]: string};
+    /**
+     * Minimum size of the disk which is created from this image.
+     */
     readonly minDiskSize: number;
     readonly name: string;
+    /**
+     * Operating system type that the image contains.
+     */
     readonly osType: string;
+    /**
+     * Optimize the image to create a disk.
+     */
     readonly pooled: boolean;
+    /**
+     * License IDs that indicate which licenses are attached to this image.
+     */
     readonly productIds: string[];
+    /**
+     * The size of the image, specified in Gb.
+     */
     readonly size: number;
+    /**
+     * The status of the image.
+     */
     readonly status: string;
 }
 
@@ -60,8 +102,20 @@ export function getComputeImageOutput(args?: GetComputeImageOutputArgs, opts?: p
  * A collection of arguments for invoking getComputeImage.
  */
 export interface GetComputeImageOutputArgs {
+    /**
+     * The family name of an image. Used to search the latest image in a family.
+     */
     family?: pulumi.Input<string>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * The ID of a specific image.
+     */
     imageId?: pulumi.Input<string>;
+    /**
+     * The name of the image.
+     */
     name?: pulumi.Input<string>;
 }

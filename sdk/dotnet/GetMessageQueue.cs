@@ -11,9 +11,59 @@ namespace Pulumi.Yandex
 {
     public static class GetMessageQueue
     {
+        /// <summary>
+        /// Get information about a Yandex Message Queue. For more information about Yandex Message Queue, see
+        /// [Yandex.Cloud Message Queue](https://cloud.yandex.com/docs/message-queue).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleQueue = Yandex.GetMessageQueue.Invoke(new()
+        ///     {
+        ///         Name = "ymq_terraform_example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetMessageQueueResult> InvokeAsync(GetMessageQueueArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetMessageQueueResult>("yandex:index/getMessageQueue:getMessageQueue", args ?? new GetMessageQueueArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Message Queue. For more information about Yandex Message Queue, see
+        /// [Yandex.Cloud Message Queue](https://cloud.yandex.com/docs/message-queue).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var exampleQueue = Yandex.GetMessageQueue.Invoke(new()
+        ///     {
+        ///         Name = "ymq_terraform_example",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetMessageQueueResult> Invoke(GetMessageQueueInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetMessageQueueResult>("yandex:index/getMessageQueue:getMessageQueue", args ?? new GetMessageQueueInvokeArgs(), options.WithDefaults());
     }
@@ -24,9 +74,15 @@ namespace Pulumi.Yandex
         [Input("accessKey")]
         public string? AccessKey { get; set; }
 
+        /// <summary>
+        /// Queue name.
+        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
+        /// <summary>
+        /// The region ID where the message queue is located.
+        /// </summary>
         [Input("regionId")]
         public string? RegionId { get; set; }
 
@@ -44,9 +100,15 @@ namespace Pulumi.Yandex
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
+        /// <summary>
+        /// Queue name.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The region ID where the message queue is located.
+        /// </summary>
         [Input("regionId")]
         public Input<string>? RegionId { get; set; }
 
@@ -64,6 +126,9 @@ namespace Pulumi.Yandex
     public sealed class GetMessageQueueResult
     {
         public readonly string? AccessKey;
+        /// <summary>
+        /// ARN of the queue. It is used for setting up a [redrive policy](https://cloud.yandex.com/docs/message-queue/concepts/dlq). See [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/SetQueueAttributes).
+        /// </summary>
         public readonly string Arn;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
@@ -72,6 +137,9 @@ namespace Pulumi.Yandex
         public readonly string Name;
         public readonly string? RegionId;
         public readonly string? SecretKey;
+        /// <summary>
+        /// URL of the queue.
+        /// </summary>
         public readonly string Url;
 
         [OutputConstructor]

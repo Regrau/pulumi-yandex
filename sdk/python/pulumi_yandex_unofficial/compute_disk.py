@@ -30,6 +30,26 @@ class ComputeDiskArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ComputeDisk resource.
+        :param pulumi.Input[int] block_size: Block size of the disk, specified in bytes.
+        :param pulumi.Input[str] description: -
+               (Optional) Description of the disk. Provide this property when
+               you create a resource.
+        :param pulumi.Input['ComputeDiskDiskPlacementPolicyArgs'] disk_placement_policy: Disk placement policy configuration. The structure is documented below.
+        :param pulumi.Input[str] folder_id: (Optional) The ID of the folder that the disk belongs to.
+               If it is not provided, the default provider folder is used.
+        :param pulumi.Input[str] image_id: The source image to use for disk creation.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this disk. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the disk. Provide this property when
+               you create a resource.
+        :param pulumi.Input[int] size: Size of the persistent disk, specified in GB. You can specify this
+               field when creating a persistent disk using the `image_id` or `snapshot_id`
+               parameter, or specify it alone to create an empty persistent disk.
+               If you specify this field along with `image_id` or `snapshot_id`,
+               the size value must not be less than the size of the source image
+               or the size of the snapshot.
+        :param pulumi.Input[str] snapshot_id: The source snapshot to use for disk creation.
+        :param pulumi.Input[str] type: Type of disk to create. Provide this when creating a disk.
+        :param pulumi.Input[str] zone: Availability zone where the disk will reside.
         """
         if allow_recreate is not None:
             pulumi.set(__self__, "allow_recreate", allow_recreate)
@@ -68,6 +88,9 @@ class ComputeDiskArgs:
     @property
     @pulumi.getter(name="blockSize")
     def block_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Block size of the disk, specified in bytes.
+        """
         return pulumi.get(self, "block_size")
 
     @block_size.setter
@@ -77,6 +100,11 @@ class ComputeDiskArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        -
+        (Optional) Description of the disk. Provide this property when
+        you create a resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -86,6 +114,9 @@ class ComputeDiskArgs:
     @property
     @pulumi.getter(name="diskPlacementPolicy")
     def disk_placement_policy(self) -> Optional[pulumi.Input['ComputeDiskDiskPlacementPolicyArgs']]:
+        """
+        Disk placement policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "disk_placement_policy")
 
     @disk_placement_policy.setter
@@ -95,6 +126,10 @@ class ComputeDiskArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) The ID of the folder that the disk belongs to.
+        If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -104,6 +139,9 @@ class ComputeDiskArgs:
     @property
     @pulumi.getter(name="imageId")
     def image_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source image to use for disk creation.
+        """
         return pulumi.get(self, "image_id")
 
     @image_id.setter
@@ -113,6 +151,9 @@ class ComputeDiskArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this disk. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -122,6 +163,10 @@ class ComputeDiskArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the disk. Provide this property when
+        you create a resource.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -131,6 +176,14 @@ class ComputeDiskArgs:
     @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Size of the persistent disk, specified in GB. You can specify this
+        field when creating a persistent disk using the `image_id` or `snapshot_id`
+        parameter, or specify it alone to create an empty persistent disk.
+        If you specify this field along with `image_id` or `snapshot_id`,
+        the size value must not be less than the size of the source image
+        or the size of the snapshot.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -140,6 +193,9 @@ class ComputeDiskArgs:
     @property
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source snapshot to use for disk creation.
+        """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
@@ -149,6 +205,9 @@ class ComputeDiskArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of disk to create. Provide this when creating a disk.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -158,6 +217,9 @@ class ComputeDiskArgs:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        Availability zone where the disk will reside.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -185,6 +247,28 @@ class _ComputeDiskState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ComputeDisk resources.
+        :param pulumi.Input[int] block_size: Block size of the disk, specified in bytes.
+        :param pulumi.Input[str] created_at: Creation timestamp of the disk.
+        :param pulumi.Input[str] description: -
+               (Optional) Description of the disk. Provide this property when
+               you create a resource.
+        :param pulumi.Input['ComputeDiskDiskPlacementPolicyArgs'] disk_placement_policy: Disk placement policy configuration. The structure is documented below.
+        :param pulumi.Input[str] folder_id: (Optional) The ID of the folder that the disk belongs to.
+               If it is not provided, the default provider folder is used.
+        :param pulumi.Input[str] image_id: The source image to use for disk creation.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this disk. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the disk. Provide this property when
+               you create a resource.
+        :param pulumi.Input[int] size: Size of the persistent disk, specified in GB. You can specify this
+               field when creating a persistent disk using the `image_id` or `snapshot_id`
+               parameter, or specify it alone to create an empty persistent disk.
+               If you specify this field along with `image_id` or `snapshot_id`,
+               the size value must not be less than the size of the source image
+               or the size of the snapshot.
+        :param pulumi.Input[str] snapshot_id: The source snapshot to use for disk creation.
+        :param pulumi.Input[str] status: The status of the disk.
+        :param pulumi.Input[str] type: Type of disk to create. Provide this when creating a disk.
+        :param pulumi.Input[str] zone: Availability zone where the disk will reside.
         """
         if allow_recreate is not None:
             pulumi.set(__self__, "allow_recreate", allow_recreate)
@@ -229,6 +313,9 @@ class _ComputeDiskState:
     @property
     @pulumi.getter(name="blockSize")
     def block_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Block size of the disk, specified in bytes.
+        """
         return pulumi.get(self, "block_size")
 
     @block_size.setter
@@ -238,6 +325,9 @@ class _ComputeDiskState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the disk.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -247,6 +337,11 @@ class _ComputeDiskState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        -
+        (Optional) Description of the disk. Provide this property when
+        you create a resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -256,6 +351,9 @@ class _ComputeDiskState:
     @property
     @pulumi.getter(name="diskPlacementPolicy")
     def disk_placement_policy(self) -> Optional[pulumi.Input['ComputeDiskDiskPlacementPolicyArgs']]:
+        """
+        Disk placement policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "disk_placement_policy")
 
     @disk_placement_policy.setter
@@ -265,6 +363,10 @@ class _ComputeDiskState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) The ID of the folder that the disk belongs to.
+        If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -274,6 +376,9 @@ class _ComputeDiskState:
     @property
     @pulumi.getter(name="imageId")
     def image_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source image to use for disk creation.
+        """
         return pulumi.get(self, "image_id")
 
     @image_id.setter
@@ -283,6 +388,9 @@ class _ComputeDiskState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this disk. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -292,6 +400,10 @@ class _ComputeDiskState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the disk. Provide this property when
+        you create a resource.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -310,6 +422,14 @@ class _ComputeDiskState:
     @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Size of the persistent disk, specified in GB. You can specify this
+        field when creating a persistent disk using the `image_id` or `snapshot_id`
+        parameter, or specify it alone to create an empty persistent disk.
+        If you specify this field along with `image_id` or `snapshot_id`,
+        the size value must not be less than the size of the source image
+        or the size of the snapshot.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -319,6 +439,9 @@ class _ComputeDiskState:
     @property
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The source snapshot to use for disk creation.
+        """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
@@ -328,6 +451,9 @@ class _ComputeDiskState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the disk.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -337,6 +463,9 @@ class _ComputeDiskState:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of disk to create. Provide this when creating a disk.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -346,6 +475,9 @@ class _ComputeDiskState:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        Availability zone where the disk will reside.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -372,9 +504,80 @@ class ComputeDisk(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ComputeDisk resource with the given unique name, props, and options.
+        Persistent disks are used for data storage and function similarly to physical hard and solid state drives.
+
+        A disk can be attached or detached from the virtual machine and can be located locally. A disk can be moved between virtual machines within the same availability zone. Each disk can be attached to only one virtual machine at a time.
+
+        For more information about disks in Yandex.Cloud, see:
+
+        * [Documentation](https://cloud.yandex.com/docs/compute/concepts/disk)
+        * How-to Guides
+            * [Attach and detach a disk](https://cloud.yandex.com/docs/compute/concepts/disk#attach-detach)
+            * [Backup operation](https://cloud.yandex.com/docs/compute/concepts/disk#backup)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        default = yandex.ComputeDisk("default",
+            image_id="ubuntu-16.04-v20180727",
+            labels={
+                "environment": "test",
+            },
+            type="network-ssd",
+            zone="ru-central1-a")
+        ```
+        ### Non-Replicated Disk
+
+        **Note**: Non-replicated disks are at the [Preview](https://cloud.yandex.com/docs/overview/concepts/launch-stages)
+                  stage.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        this = yandex.ComputeDiskPlacementGroup("this", zone="ru-central1-b")
+        nr = yandex.ComputeDisk("nr",
+            size=93,
+            type="network-ssd-nonreplicated",
+            zone="ru-central1-b",
+            disk_placement_policy=yandex.ComputeDiskDiskPlacementPolicyArgs(
+                disk_placement_group_id=this.id,
+            ))
+        ```
+
+        ## Import
+
+        A disk can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import yandex:index/computeDisk:ComputeDisk default disk_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] block_size: Block size of the disk, specified in bytes.
+        :param pulumi.Input[str] description: -
+               (Optional) Description of the disk. Provide this property when
+               you create a resource.
+        :param pulumi.Input[pulumi.InputType['ComputeDiskDiskPlacementPolicyArgs']] disk_placement_policy: Disk placement policy configuration. The structure is documented below.
+        :param pulumi.Input[str] folder_id: (Optional) The ID of the folder that the disk belongs to.
+               If it is not provided, the default provider folder is used.
+        :param pulumi.Input[str] image_id: The source image to use for disk creation.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this disk. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the disk. Provide this property when
+               you create a resource.
+        :param pulumi.Input[int] size: Size of the persistent disk, specified in GB. You can specify this
+               field when creating a persistent disk using the `image_id` or `snapshot_id`
+               parameter, or specify it alone to create an empty persistent disk.
+               If you specify this field along with `image_id` or `snapshot_id`,
+               the size value must not be less than the size of the source image
+               or the size of the snapshot.
+        :param pulumi.Input[str] snapshot_id: The source snapshot to use for disk creation.
+        :param pulumi.Input[str] type: Type of disk to create. Provide this when creating a disk.
+        :param pulumi.Input[str] zone: Availability zone where the disk will reside.
         """
         ...
     @overload
@@ -383,7 +586,58 @@ class ComputeDisk(pulumi.CustomResource):
                  args: Optional[ComputeDiskArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ComputeDisk resource with the given unique name, props, and options.
+        Persistent disks are used for data storage and function similarly to physical hard and solid state drives.
+
+        A disk can be attached or detached from the virtual machine and can be located locally. A disk can be moved between virtual machines within the same availability zone. Each disk can be attached to only one virtual machine at a time.
+
+        For more information about disks in Yandex.Cloud, see:
+
+        * [Documentation](https://cloud.yandex.com/docs/compute/concepts/disk)
+        * How-to Guides
+            * [Attach and detach a disk](https://cloud.yandex.com/docs/compute/concepts/disk#attach-detach)
+            * [Backup operation](https://cloud.yandex.com/docs/compute/concepts/disk#backup)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        default = yandex.ComputeDisk("default",
+            image_id="ubuntu-16.04-v20180727",
+            labels={
+                "environment": "test",
+            },
+            type="network-ssd",
+            zone="ru-central1-a")
+        ```
+        ### Non-Replicated Disk
+
+        **Note**: Non-replicated disks are at the [Preview](https://cloud.yandex.com/docs/overview/concepts/launch-stages)
+                  stage.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        this = yandex.ComputeDiskPlacementGroup("this", zone="ru-central1-b")
+        nr = yandex.ComputeDisk("nr",
+            size=93,
+            type="network-ssd-nonreplicated",
+            zone="ru-central1-b",
+            disk_placement_policy=yandex.ComputeDiskDiskPlacementPolicyArgs(
+                disk_placement_group_id=this.id,
+            ))
+        ```
+
+        ## Import
+
+        A disk can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import yandex:index/computeDisk:ComputeDisk default disk_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param ComputeDiskArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -467,6 +721,28 @@ class ComputeDisk(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] block_size: Block size of the disk, specified in bytes.
+        :param pulumi.Input[str] created_at: Creation timestamp of the disk.
+        :param pulumi.Input[str] description: -
+               (Optional) Description of the disk. Provide this property when
+               you create a resource.
+        :param pulumi.Input[pulumi.InputType['ComputeDiskDiskPlacementPolicyArgs']] disk_placement_policy: Disk placement policy configuration. The structure is documented below.
+        :param pulumi.Input[str] folder_id: (Optional) The ID of the folder that the disk belongs to.
+               If it is not provided, the default provider folder is used.
+        :param pulumi.Input[str] image_id: The source image to use for disk creation.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this disk. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the disk. Provide this property when
+               you create a resource.
+        :param pulumi.Input[int] size: Size of the persistent disk, specified in GB. You can specify this
+               field when creating a persistent disk using the `image_id` or `snapshot_id`
+               parameter, or specify it alone to create an empty persistent disk.
+               If you specify this field along with `image_id` or `snapshot_id`,
+               the size value must not be less than the size of the source image
+               or the size of the snapshot.
+        :param pulumi.Input[str] snapshot_id: The source snapshot to use for disk creation.
+        :param pulumi.Input[str] status: The status of the disk.
+        :param pulumi.Input[str] type: Type of disk to create. Provide this when creating a disk.
+        :param pulumi.Input[str] zone: Availability zone where the disk will reside.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -497,41 +773,69 @@ class ComputeDisk(pulumi.CustomResource):
     @property
     @pulumi.getter(name="blockSize")
     def block_size(self) -> pulumi.Output[Optional[int]]:
+        """
+        Block size of the disk, specified in bytes.
+        """
         return pulumi.get(self, "block_size")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the disk.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        -
+        (Optional) Description of the disk. Provide this property when
+        you create a resource.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="diskPlacementPolicy")
     def disk_placement_policy(self) -> pulumi.Output['outputs.ComputeDiskDiskPlacementPolicy']:
+        """
+        Disk placement policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "disk_placement_policy")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        (Optional) The ID of the folder that the disk belongs to.
+        If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter(name="imageId")
     def image_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The source image to use for disk creation.
+        """
         return pulumi.get(self, "image_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Labels to assign to this disk. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the disk. Provide this property when
+        you create a resource.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -542,25 +846,45 @@ class ComputeDisk(pulumi.CustomResource):
     @property
     @pulumi.getter
     def size(self) -> pulumi.Output[Optional[int]]:
+        """
+        Size of the persistent disk, specified in GB. You can specify this
+        field when creating a persistent disk using the `image_id` or `snapshot_id`
+        parameter, or specify it alone to create an empty persistent disk.
+        If you specify this field along with `image_id` or `snapshot_id`,
+        the size value must not be less than the size of the source image
+        or the size of the snapshot.
+        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The source snapshot to use for disk creation.
+        """
         return pulumi.get(self, "snapshot_id")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        The status of the disk.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Type of disk to create. Provide this when creating a disk.
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
+        """
+        Availability zone where the disk will reside.
+        """
         return pulumi.get(self, "zone")
 

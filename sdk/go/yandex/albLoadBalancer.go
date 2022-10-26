@@ -11,21 +11,102 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates an Application Load Balancer in the specified folder. For more information, see
+// [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/application-load-balancer)
+// .
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewAlbLoadBalancer(ctx, "test-balancer", &yandex.AlbLoadBalancerArgs{
+//				NetworkId: pulumi.Any(yandex_vpc_network.Test - network.Id),
+//				AllocationPolicy: &AlbLoadBalancerAllocationPolicyArgs{
+//					Locations: AlbLoadBalancerAllocationPolicyLocationArray{
+//						&AlbLoadBalancerAllocationPolicyLocationArgs{
+//							ZoneId:   pulumi.String("ru-central1-a"),
+//							SubnetId: pulumi.Any(yandex_vpc_subnet.Test - subnet.Id),
+//						},
+//					},
+//				},
+//				Listeners: AlbLoadBalancerListenerArray{
+//					&AlbLoadBalancerListenerArgs{
+//						Name: pulumi.String("my-listener"),
+//						Endpoints: AlbLoadBalancerListenerEndpointArray{
+//							&AlbLoadBalancerListenerEndpointArgs{
+//								Addresses: AlbLoadBalancerListenerEndpointAddressArray{
+//									&AlbLoadBalancerListenerEndpointAddressArgs{
+//										ExternalIpv4Address: nil,
+//									},
+//								},
+//								Ports: pulumi.IntArray{
+//									pulumi.Int(8080),
+//								},
+//							},
+//						},
+//						Http: &AlbLoadBalancerListenerHttpArgs{
+//							Handler: &AlbLoadBalancerListenerHttpHandlerArgs{
+//								HttpRouterId: pulumi.Any(yandex_alb_http_router.Test - router.Id),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// An Application Load Balancer can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/albLoadBalancer:AlbLoadBalancer default load_balancer_id
+//
+// ```
 type AlbLoadBalancer struct {
 	pulumi.CustomResourceState
 
+	// Allocation zones for the Load Balancer instance. The structure is documented below.
 	AllocationPolicy AlbLoadBalancerAllocationPolicyOutput `pulumi:"allocationPolicy"`
-	CreatedAt        pulumi.StringOutput                   `pulumi:"createdAt"`
-	Description      pulumi.StringPtrOutput                `pulumi:"description"`
-	FolderId         pulumi.StringOutput                   `pulumi:"folderId"`
-	Labels           pulumi.StringMapOutput                `pulumi:"labels"`
-	Listeners        AlbLoadBalancerListenerArrayOutput    `pulumi:"listeners"`
-	LogGroupId       pulumi.StringOutput                   `pulumi:"logGroupId"`
-	Name             pulumi.StringOutput                   `pulumi:"name"`
-	NetworkId        pulumi.StringOutput                   `pulumi:"networkId"`
-	RegionId         pulumi.StringPtrOutput                `pulumi:"regionId"`
-	SecurityGroupIds pulumi.StringArrayOutput              `pulumi:"securityGroupIds"`
-	Status           pulumi.StringOutput                   `pulumi:"status"`
+	// The Load Balancer creation timestamp.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// An optional description of the Load Balancer.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The ID of the folder to which the resource belongs. If omitted, the provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Labels to assign to this Load Balancer. A list of key/value pairs.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// List of listeners for the Load Balancer. The structure is documented below.
+	Listeners AlbLoadBalancerListenerArrayOutput `pulumi:"listeners"`
+	// Cloud log group used by the Load Balancer to store access logs.
+	LogGroupId pulumi.StringOutput `pulumi:"logGroupId"`
+	// name of SNI match.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the network that the Load Balancer is located at.
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
+	// ID of the region that the Load Balancer is located at.
+	RegionId pulumi.StringPtrOutput `pulumi:"regionId"`
+	// A list of ID's of security groups attached to the Load Balancer.
+	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
+	// Status of the Load Balancer.
+	Status pulumi.StringOutput `pulumi:"status"`
 }
 
 // NewAlbLoadBalancer registers a new resource with the given unique name, arguments, and options.
@@ -64,33 +145,57 @@ func GetAlbLoadBalancer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AlbLoadBalancer resources.
 type albLoadBalancerState struct {
+	// Allocation zones for the Load Balancer instance. The structure is documented below.
 	AllocationPolicy *AlbLoadBalancerAllocationPolicy `pulumi:"allocationPolicy"`
-	CreatedAt        *string                          `pulumi:"createdAt"`
-	Description      *string                          `pulumi:"description"`
-	FolderId         *string                          `pulumi:"folderId"`
-	Labels           map[string]string                `pulumi:"labels"`
-	Listeners        []AlbLoadBalancerListener        `pulumi:"listeners"`
-	LogGroupId       *string                          `pulumi:"logGroupId"`
-	Name             *string                          `pulumi:"name"`
-	NetworkId        *string                          `pulumi:"networkId"`
-	RegionId         *string                          `pulumi:"regionId"`
-	SecurityGroupIds []string                         `pulumi:"securityGroupIds"`
-	Status           *string                          `pulumi:"status"`
+	// The Load Balancer creation timestamp.
+	CreatedAt *string `pulumi:"createdAt"`
+	// An optional description of the Load Balancer.
+	Description *string `pulumi:"description"`
+	// The ID of the folder to which the resource belongs. If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this Load Balancer. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// List of listeners for the Load Balancer. The structure is documented below.
+	Listeners []AlbLoadBalancerListener `pulumi:"listeners"`
+	// Cloud log group used by the Load Balancer to store access logs.
+	LogGroupId *string `pulumi:"logGroupId"`
+	// name of SNI match.
+	Name *string `pulumi:"name"`
+	// ID of the network that the Load Balancer is located at.
+	NetworkId *string `pulumi:"networkId"`
+	// ID of the region that the Load Balancer is located at.
+	RegionId *string `pulumi:"regionId"`
+	// A list of ID's of security groups attached to the Load Balancer.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// Status of the Load Balancer.
+	Status *string `pulumi:"status"`
 }
 
 type AlbLoadBalancerState struct {
+	// Allocation zones for the Load Balancer instance. The structure is documented below.
 	AllocationPolicy AlbLoadBalancerAllocationPolicyPtrInput
-	CreatedAt        pulumi.StringPtrInput
-	Description      pulumi.StringPtrInput
-	FolderId         pulumi.StringPtrInput
-	Labels           pulumi.StringMapInput
-	Listeners        AlbLoadBalancerListenerArrayInput
-	LogGroupId       pulumi.StringPtrInput
-	Name             pulumi.StringPtrInput
-	NetworkId        pulumi.StringPtrInput
-	RegionId         pulumi.StringPtrInput
+	// The Load Balancer creation timestamp.
+	CreatedAt pulumi.StringPtrInput
+	// An optional description of the Load Balancer.
+	Description pulumi.StringPtrInput
+	// The ID of the folder to which the resource belongs. If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this Load Balancer. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// List of listeners for the Load Balancer. The structure is documented below.
+	Listeners AlbLoadBalancerListenerArrayInput
+	// Cloud log group used by the Load Balancer to store access logs.
+	LogGroupId pulumi.StringPtrInput
+	// name of SNI match.
+	Name pulumi.StringPtrInput
+	// ID of the network that the Load Balancer is located at.
+	NetworkId pulumi.StringPtrInput
+	// ID of the region that the Load Balancer is located at.
+	RegionId pulumi.StringPtrInput
+	// A list of ID's of security groups attached to the Load Balancer.
 	SecurityGroupIds pulumi.StringArrayInput
-	Status           pulumi.StringPtrInput
+	// Status of the Load Balancer.
+	Status pulumi.StringPtrInput
 }
 
 func (AlbLoadBalancerState) ElementType() reflect.Type {
@@ -98,27 +203,45 @@ func (AlbLoadBalancerState) ElementType() reflect.Type {
 }
 
 type albLoadBalancerArgs struct {
+	// Allocation zones for the Load Balancer instance. The structure is documented below.
 	AllocationPolicy AlbLoadBalancerAllocationPolicy `pulumi:"allocationPolicy"`
-	Description      *string                         `pulumi:"description"`
-	FolderId         *string                         `pulumi:"folderId"`
-	Labels           map[string]string               `pulumi:"labels"`
-	Listeners        []AlbLoadBalancerListener       `pulumi:"listeners"`
-	Name             *string                         `pulumi:"name"`
-	NetworkId        string                          `pulumi:"networkId"`
-	RegionId         *string                         `pulumi:"regionId"`
-	SecurityGroupIds []string                        `pulumi:"securityGroupIds"`
+	// An optional description of the Load Balancer.
+	Description *string `pulumi:"description"`
+	// The ID of the folder to which the resource belongs. If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this Load Balancer. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// List of listeners for the Load Balancer. The structure is documented below.
+	Listeners []AlbLoadBalancerListener `pulumi:"listeners"`
+	// name of SNI match.
+	Name *string `pulumi:"name"`
+	// ID of the network that the Load Balancer is located at.
+	NetworkId string `pulumi:"networkId"`
+	// ID of the region that the Load Balancer is located at.
+	RegionId *string `pulumi:"regionId"`
+	// A list of ID's of security groups attached to the Load Balancer.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 }
 
 // The set of arguments for constructing a AlbLoadBalancer resource.
 type AlbLoadBalancerArgs struct {
+	// Allocation zones for the Load Balancer instance. The structure is documented below.
 	AllocationPolicy AlbLoadBalancerAllocationPolicyInput
-	Description      pulumi.StringPtrInput
-	FolderId         pulumi.StringPtrInput
-	Labels           pulumi.StringMapInput
-	Listeners        AlbLoadBalancerListenerArrayInput
-	Name             pulumi.StringPtrInput
-	NetworkId        pulumi.StringInput
-	RegionId         pulumi.StringPtrInput
+	// An optional description of the Load Balancer.
+	Description pulumi.StringPtrInput
+	// The ID of the folder to which the resource belongs. If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this Load Balancer. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// List of listeners for the Load Balancer. The structure is documented below.
+	Listeners AlbLoadBalancerListenerArrayInput
+	// name of SNI match.
+	Name pulumi.StringPtrInput
+	// ID of the network that the Load Balancer is located at.
+	NetworkId pulumi.StringInput
+	// ID of the region that the Load Balancer is located at.
+	RegionId pulumi.StringPtrInput
+	// A list of ID's of security groups attached to the Load Balancer.
 	SecurityGroupIds pulumi.StringArrayInput
 }
 
@@ -209,50 +332,62 @@ func (o AlbLoadBalancerOutput) ToAlbLoadBalancerOutputWithContext(ctx context.Co
 	return o
 }
 
+// Allocation zones for the Load Balancer instance. The structure is documented below.
 func (o AlbLoadBalancerOutput) AllocationPolicy() AlbLoadBalancerAllocationPolicyOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) AlbLoadBalancerAllocationPolicyOutput { return v.AllocationPolicy }).(AlbLoadBalancerAllocationPolicyOutput)
 }
 
+// The Load Balancer creation timestamp.
 func (o AlbLoadBalancerOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// An optional description of the Load Balancer.
 func (o AlbLoadBalancerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the folder to which the resource belongs. If omitted, the provider folder is used.
 func (o AlbLoadBalancerOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Labels to assign to this Load Balancer. A list of key/value pairs.
 func (o AlbLoadBalancerOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// List of listeners for the Load Balancer. The structure is documented below.
 func (o AlbLoadBalancerOutput) Listeners() AlbLoadBalancerListenerArrayOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) AlbLoadBalancerListenerArrayOutput { return v.Listeners }).(AlbLoadBalancerListenerArrayOutput)
 }
 
+// Cloud log group used by the Load Balancer to store access logs.
 func (o AlbLoadBalancerOutput) LogGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) pulumi.StringOutput { return v.LogGroupId }).(pulumi.StringOutput)
 }
 
+// name of SNI match.
 func (o AlbLoadBalancerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network that the Load Balancer is located at.
 func (o AlbLoadBalancerOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// ID of the region that the Load Balancer is located at.
 func (o AlbLoadBalancerOutput) RegionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) pulumi.StringPtrOutput { return v.RegionId }).(pulumi.StringPtrOutput)
 }
 
+// A list of ID's of security groups attached to the Load Balancer.
 func (o AlbLoadBalancerOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) pulumi.StringArrayOutput { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// Status of the Load Balancer.
 func (o AlbLoadBalancerOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

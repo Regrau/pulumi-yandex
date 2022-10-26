@@ -9,30 +9,113 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Manages a address within the Yandex.Cloud. You can only create a reserved (static) address via this resource. An ephemeral address could be obtained via implicit creation at a compute instance creation only. For more information, see [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/address).
+    /// 
+    /// * How-to Guides
+    ///     * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+    ///     * [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+    /// 
+    /// ## Example Usage
+    /// ### External ipv4 address
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var addr = new Yandex.VpcAddress("addr", new()
+    ///     {
+    ///         ExternalIpv4Address = new Yandex.Inputs.VpcAddressExternalIpv4AddressArgs
+    ///         {
+    ///             ZoneId = "ru-central1-a",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Address with DDoS protection
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var vpnaddr = new Yandex.VpcAddress("vpnaddr", new()
+    ///     {
+    ///         ExternalIpv4Address = new Yandex.Inputs.VpcAddressExternalIpv4AddressArgs
+    ///         {
+    ///             DdosProtectionProvider = "qrator",
+    ///             ZoneId = "ru-central1-a",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// A address can be imported using the `id` of the resource, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/vpcAddress:VpcAddress addr address_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/vpcAddress:VpcAddress")]
     public partial class VpcAddress : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Creation timestamp of the key.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// spec of IP v4 address
+        /// ---
+        /// </summary>
         [Output("externalIpv4Address")]
         public Output<Outputs.VpcAddressExternalIpv4Address?> ExternalIpv4Address { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// Labels to apply to this resource. A list of key/value pairs.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the address. Provided by the client when the address is created.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// `false` means that address is ephemeral.
+        /// </summary>
         [Output("reserved")]
         public Output<bool> Reserved { get; private set; } = null!;
 
+        /// <summary>
+        /// `true` if address is used.
+        /// </summary>
         [Output("used")]
         public Output<bool> Used { get; private set; } = null!;
 
@@ -59,7 +142,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -83,23 +166,42 @@ namespace Pulumi.Yandex
 
     public sealed class VpcAddressArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// spec of IP v4 address
+        /// ---
+        /// </summary>
         [Input("externalIpv4Address")]
         public Input<Inputs.VpcAddressExternalIpv4AddressArgs>? ExternalIpv4Address { get; set; }
 
+        /// <summary>
+        /// ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to apply to this resource. A list of key/value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the address. Provided by the client when the address is created.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -111,32 +213,60 @@ namespace Pulumi.Yandex
 
     public sealed class VpcAddressState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Creation timestamp of the key.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// spec of IP v4 address
+        /// ---
+        /// </summary>
         [Input("externalIpv4Address")]
         public Input<Inputs.VpcAddressExternalIpv4AddressGetArgs>? ExternalIpv4Address { get; set; }
 
+        /// <summary>
+        /// ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to apply to this resource. A list of key/value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the address. Provided by the client when the address is created.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// `false` means that address is ephemeral.
+        /// </summary>
         [Input("reserved")]
         public Input<bool>? Reserved { get; set; }
 
+        /// <summary>
+        /// `true` if address is used.
+        /// </summary>
         [Input("used")]
         public Input<bool>? Used { get; set; }
 

@@ -13,11 +13,29 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbClickhouseClusterUserQuotaResult
     {
+        /// <summary>
+        /// The number of queries that threw exception.
+        /// </summary>
         public readonly int Errors;
+        /// <summary>
+        /// The total query execution time, in milliseconds (wall time).
+        /// </summary>
         public readonly int ExecutionTime;
+        /// <summary>
+        /// Duration of interval for quota in milliseconds.
+        /// </summary>
         public readonly int IntervalDuration;
+        /// <summary>
+        /// The total number of queries.
+        /// </summary>
         public readonly int Queries;
+        /// <summary>
+        /// The total number of source rows read from tables for running the query, on all remote servers.
+        /// </summary>
         public readonly int ReadRows;
+        /// <summary>
+        /// The total number of rows given as the result.
+        /// </summary>
         public readonly int ResultRows;
 
         [OutputConstructor]

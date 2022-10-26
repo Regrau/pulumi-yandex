@@ -11,18 +11,58 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of [Yandex.Cloud Storage Object](https://cloud.yandex.com/docs/storage/concepts/object).
+//
+// ## Example Usage
+//
+// Example creating an object in an existing `cat-pictures` bucket.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewStorageObject(ctx, "cute-cat-picture", &yandex.StorageObjectArgs{
+//				Bucket: pulumi.String("cat-pictures"),
+//				Key:    pulumi.String("cute-cat"),
+//				Source: pulumi.String("/images/cats/cute-cat.jpg"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type StorageObject struct {
 	pulumi.CustomResourceState
 
-	AccessKey     pulumi.StringPtrOutput `pulumi:"accessKey"`
-	Acl           pulumi.StringPtrOutput `pulumi:"acl"`
-	Bucket        pulumi.StringOutput    `pulumi:"bucket"`
-	Content       pulumi.StringPtrOutput `pulumi:"content"`
+	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in config is used.
+	AccessKey pulumi.StringPtrOutput `pulumi:"accessKey"`
+	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`.
+	Acl pulumi.StringPtrOutput `pulumi:"acl"`
+	// The name of the containing bucket.
+	Bucket pulumi.StringOutput `pulumi:"bucket"`
+	// Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
+	Content pulumi.StringPtrOutput `pulumi:"content"`
+	// Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
 	ContentBase64 pulumi.StringPtrOutput `pulumi:"contentBase64"`
-	ContentType   pulumi.StringOutput    `pulumi:"contentType"`
-	Key           pulumi.StringOutput    `pulumi:"key"`
-	SecretKey     pulumi.StringPtrOutput `pulumi:"secretKey"`
-	Source        pulumi.StringPtrOutput `pulumi:"source"`
+	// A standard MIME type describing the format of the object data, e.g. `application/octet-stream`. All Valid MIME Types are valid for this input.
+	ContentType pulumi.StringOutput `pulumi:"contentType"`
+	// The name of the object once it is in the bucket.
+	Key pulumi.StringOutput `pulumi:"key"`
+	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in config is used.
+	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
+	// The path to a file that will be read and uploaded as raw bytes for the object content.
+	Source pulumi.StringPtrOutput `pulumi:"source"`
 }
 
 // NewStorageObject registers a new resource with the given unique name, arguments, and options.
@@ -61,27 +101,45 @@ func GetStorageObject(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering StorageObject resources.
 type storageObjectState struct {
-	AccessKey     *string `pulumi:"accessKey"`
-	Acl           *string `pulumi:"acl"`
-	Bucket        *string `pulumi:"bucket"`
-	Content       *string `pulumi:"content"`
+	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in config is used.
+	AccessKey *string `pulumi:"accessKey"`
+	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`.
+	Acl *string `pulumi:"acl"`
+	// The name of the containing bucket.
+	Bucket *string `pulumi:"bucket"`
+	// Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
+	Content *string `pulumi:"content"`
+	// Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
 	ContentBase64 *string `pulumi:"contentBase64"`
-	ContentType   *string `pulumi:"contentType"`
-	Key           *string `pulumi:"key"`
-	SecretKey     *string `pulumi:"secretKey"`
-	Source        *string `pulumi:"source"`
+	// A standard MIME type describing the format of the object data, e.g. `application/octet-stream`. All Valid MIME Types are valid for this input.
+	ContentType *string `pulumi:"contentType"`
+	// The name of the object once it is in the bucket.
+	Key *string `pulumi:"key"`
+	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in config is used.
+	SecretKey *string `pulumi:"secretKey"`
+	// The path to a file that will be read and uploaded as raw bytes for the object content.
+	Source *string `pulumi:"source"`
 }
 
 type StorageObjectState struct {
-	AccessKey     pulumi.StringPtrInput
-	Acl           pulumi.StringPtrInput
-	Bucket        pulumi.StringPtrInput
-	Content       pulumi.StringPtrInput
+	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in config is used.
+	AccessKey pulumi.StringPtrInput
+	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`.
+	Acl pulumi.StringPtrInput
+	// The name of the containing bucket.
+	Bucket pulumi.StringPtrInput
+	// Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
+	Content pulumi.StringPtrInput
+	// Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
 	ContentBase64 pulumi.StringPtrInput
-	ContentType   pulumi.StringPtrInput
-	Key           pulumi.StringPtrInput
-	SecretKey     pulumi.StringPtrInput
-	Source        pulumi.StringPtrInput
+	// A standard MIME type describing the format of the object data, e.g. `application/octet-stream`. All Valid MIME Types are valid for this input.
+	ContentType pulumi.StringPtrInput
+	// The name of the object once it is in the bucket.
+	Key pulumi.StringPtrInput
+	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in config is used.
+	SecretKey pulumi.StringPtrInput
+	// The path to a file that will be read and uploaded as raw bytes for the object content.
+	Source pulumi.StringPtrInput
 }
 
 func (StorageObjectState) ElementType() reflect.Type {
@@ -89,28 +147,46 @@ func (StorageObjectState) ElementType() reflect.Type {
 }
 
 type storageObjectArgs struct {
-	AccessKey     *string `pulumi:"accessKey"`
-	Acl           *string `pulumi:"acl"`
-	Bucket        string  `pulumi:"bucket"`
-	Content       *string `pulumi:"content"`
+	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in config is used.
+	AccessKey *string `pulumi:"accessKey"`
+	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`.
+	Acl *string `pulumi:"acl"`
+	// The name of the containing bucket.
+	Bucket string `pulumi:"bucket"`
+	// Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
+	Content *string `pulumi:"content"`
+	// Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
 	ContentBase64 *string `pulumi:"contentBase64"`
-	ContentType   *string `pulumi:"contentType"`
-	Key           string  `pulumi:"key"`
-	SecretKey     *string `pulumi:"secretKey"`
-	Source        *string `pulumi:"source"`
+	// A standard MIME type describing the format of the object data, e.g. `application/octet-stream`. All Valid MIME Types are valid for this input.
+	ContentType *string `pulumi:"contentType"`
+	// The name of the object once it is in the bucket.
+	Key string `pulumi:"key"`
+	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in config is used.
+	SecretKey *string `pulumi:"secretKey"`
+	// The path to a file that will be read and uploaded as raw bytes for the object content.
+	Source *string `pulumi:"source"`
 }
 
 // The set of arguments for constructing a StorageObject resource.
 type StorageObjectArgs struct {
-	AccessKey     pulumi.StringPtrInput
-	Acl           pulumi.StringPtrInput
-	Bucket        pulumi.StringInput
-	Content       pulumi.StringPtrInput
+	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in config is used.
+	AccessKey pulumi.StringPtrInput
+	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`.
+	Acl pulumi.StringPtrInput
+	// The name of the containing bucket.
+	Bucket pulumi.StringInput
+	// Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
+	Content pulumi.StringPtrInput
+	// Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
 	ContentBase64 pulumi.StringPtrInput
-	ContentType   pulumi.StringPtrInput
-	Key           pulumi.StringInput
-	SecretKey     pulumi.StringPtrInput
-	Source        pulumi.StringPtrInput
+	// A standard MIME type describing the format of the object data, e.g. `application/octet-stream`. All Valid MIME Types are valid for this input.
+	ContentType pulumi.StringPtrInput
+	// The name of the object once it is in the bucket.
+	Key pulumi.StringInput
+	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in config is used.
+	SecretKey pulumi.StringPtrInput
+	// The path to a file that will be read and uploaded as raw bytes for the object content.
+	Source pulumi.StringPtrInput
 }
 
 func (StorageObjectArgs) ElementType() reflect.Type {
@@ -200,38 +276,47 @@ func (o StorageObjectOutput) ToStorageObjectOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The access key to use when applying changes. If omitted, `storageAccessKey` specified in config is used.
 func (o StorageObjectOutput) AccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageObject) pulumi.StringPtrOutput { return v.AccessKey }).(pulumi.StringPtrOutput)
 }
 
+// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`.
 func (o StorageObjectOutput) Acl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageObject) pulumi.StringPtrOutput { return v.Acl }).(pulumi.StringPtrOutput)
 }
 
+// The name of the containing bucket.
 func (o StorageObjectOutput) Bucket() pulumi.StringOutput {
 	return o.ApplyT(func(v *StorageObject) pulumi.StringOutput { return v.Bucket }).(pulumi.StringOutput)
 }
 
+// Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
 func (o StorageObjectOutput) Content() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageObject) pulumi.StringPtrOutput { return v.Content }).(pulumi.StringPtrOutput)
 }
 
+// Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
 func (o StorageObjectOutput) ContentBase64() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageObject) pulumi.StringPtrOutput { return v.ContentBase64 }).(pulumi.StringPtrOutput)
 }
 
+// A standard MIME type describing the format of the object data, e.g. `application/octet-stream`. All Valid MIME Types are valid for this input.
 func (o StorageObjectOutput) ContentType() pulumi.StringOutput {
 	return o.ApplyT(func(v *StorageObject) pulumi.StringOutput { return v.ContentType }).(pulumi.StringOutput)
 }
 
+// The name of the object once it is in the bucket.
 func (o StorageObjectOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v *StorageObject) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
 }
 
+// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in config is used.
 func (o StorageObjectOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageObject) pulumi.StringPtrOutput { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
+// The path to a file that will be read and uploaded as raw bytes for the object content.
 func (o StorageObjectOutput) Source() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageObject) pulumi.StringPtrOutput { return v.Source }).(pulumi.StringPtrOutput)
 }

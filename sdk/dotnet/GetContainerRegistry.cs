@@ -11,9 +11,59 @@ namespace Pulumi.Yandex
 {
     public static class GetContainerRegistry
     {
+        /// <summary>
+        /// Get information about a Yandex Container Registry. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/registry)
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var source = Yandex.GetContainerRegistry.Invoke(new()
+        ///     {
+        ///         RegistryId = "some_registry_id",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetContainerRegistryResult> InvokeAsync(GetContainerRegistryArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetContainerRegistryResult>("yandex:index/getContainerRegistry:getContainerRegistry", args ?? new GetContainerRegistryArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Container Registry. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/registry)
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var source = Yandex.GetContainerRegistry.Invoke(new()
+        ///     {
+        ///         RegistryId = "some_registry_id",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetContainerRegistryResult> Invoke(GetContainerRegistryInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetContainerRegistryResult>("yandex:index/getContainerRegistry:getContainerRegistry", args ?? new GetContainerRegistryInvokeArgs(), options.WithDefaults());
     }
@@ -21,20 +71,33 @@ namespace Pulumi.Yandex
 
     public sealed class GetContainerRegistryArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
         [Input("labels")]
         private Dictionary<string, string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this registry.
+        /// </summary>
         public Dictionary<string, string> Labels
         {
             get => _labels ?? (_labels = new Dictionary<string, string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the registry.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The ID of a specific registry.
+        /// </summary>
         [Input("registryId")]
         public string? RegistryId { get; set; }
 
@@ -46,20 +109,33 @@ namespace Pulumi.Yandex
 
     public sealed class GetContainerRegistryInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this registry.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the registry.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The ID of a specific registry.
+        /// </summary>
         [Input("registryId")]
         public Input<string>? RegistryId { get; set; }
 
@@ -73,15 +149,24 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetContainerRegistryResult
     {
+        /// <summary>
+        /// Creation timestamp of this registry.
+        /// </summary>
         public readonly string CreatedAt;
         public readonly string FolderId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Labels to assign to this registry.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
         public readonly string Name;
         public readonly string RegistryId;
+        /// <summary>
+        /// Status of the registry.
+        /// </summary>
         public readonly string Status;
 
         [OutputConstructor]

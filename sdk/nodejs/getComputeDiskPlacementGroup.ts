@@ -4,6 +4,23 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Compute Disk Placement group. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/compute/concepts/disk#nr-disks).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const myGroup = pulumi.output(yandex.getComputeDiskPlacementGroup({
+ *     groupId: "some_group_id",
+ * }));
+ *
+ * export const placementGroupName = myGroup.name!;
+ * ```
+ */
 export function getComputeDiskPlacementGroup(args?: GetComputeDiskPlacementGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetComputeDiskPlacementGroupResult> {
     args = args || {};
     if (!opts) {
@@ -25,11 +42,29 @@ export function getComputeDiskPlacementGroup(args?: GetComputeDiskPlacementGroup
  * A collection of arguments for invoking getComputeDiskPlacementGroup.
  */
 export interface GetComputeDiskPlacementGroupArgs {
+    /**
+     * Description of the Disk Placement Group.
+     */
     description?: string;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * The ID of a specific group.
+     */
     groupId?: string;
+    /**
+     * A set of key/value label pairs assigned to the Disk Placement Group.
+     */
     labels?: {[key: string]: string};
+    /**
+     * Name of the group.
+     */
     name?: string;
+    /**
+     * ID of the zone where the Disk Placement Group resides.
+     */
     zone?: string;
 }
 
@@ -37,7 +72,13 @@ export interface GetComputeDiskPlacementGroupArgs {
  * A collection of values returned by getComputeDiskPlacementGroup.
  */
 export interface GetComputeDiskPlacementGroupResult {
+    /**
+     * The creation timestamp of the Disk Placement Group.
+     */
     readonly createdAt: string;
+    /**
+     * Description of the Disk Placement Group.
+     */
     readonly description?: string;
     readonly folderId: string;
     readonly groupId: string;
@@ -45,9 +86,18 @@ export interface GetComputeDiskPlacementGroupResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A set of key/value label pairs assigned to the Disk Placement Group.
+     */
     readonly labels?: {[key: string]: string};
     readonly name?: string;
+    /**
+     * Status of the Disk Placement Group.
+     */
     readonly status: string;
+    /**
+     * ID of the zone where the Disk Placement Group resides.
+     */
     readonly zone?: string;
 }
 
@@ -59,10 +109,28 @@ export function getComputeDiskPlacementGroupOutput(args?: GetComputeDiskPlacemen
  * A collection of arguments for invoking getComputeDiskPlacementGroup.
  */
 export interface GetComputeDiskPlacementGroupOutputArgs {
+    /**
+     * Description of the Disk Placement Group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * The ID of a specific group.
+     */
     groupId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs assigned to the Disk Placement Group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the zone where the Disk Placement Group resides.
+     */
     zone?: pulumi.Input<string>;
 }

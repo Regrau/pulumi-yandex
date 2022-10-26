@@ -11,9 +11,93 @@ namespace Pulumi.Yandex
 {
     public static class GetIamPolicy
     {
+        /// <summary>
+        /// Generates an [IAM] policy document that may be referenced by and applied to
+        /// other Yandex.Cloud Platform resources, such as the `yandex.ResourcemanagerFolder` resource. 
+        /// 
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var admin = Yandex.GetIamPolicy.Invoke(new()
+        ///     {
+        ///         Bindings = new[]
+        ///         {
+        ///             new Yandex.Inputs.GetIamPolicyBindingInputArgs
+        ///             {
+        ///                 Members = new[]
+        ///                 {
+        ///                     "userAccount:user_id_1",
+        ///                 },
+        ///                 Role = "admin",
+        ///             },
+        ///             new Yandex.Inputs.GetIamPolicyBindingInputArgs
+        ///             {
+        ///                 Members = new[]
+        ///                 {
+        ///                     "userAccount:user_id_2",
+        ///                 },
+        ///                 Role = "viewer",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [IAM] policies to apply to other resources.
+        /// Currently, defining a policy through a data source and referencing that policy
+        /// from another resource is the only way to apply an IAM policy to a resource.
+        /// </summary>
         public static Task<GetIamPolicyResult> InvokeAsync(GetIamPolicyArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetIamPolicyResult>("yandex:index/getIamPolicy:getIamPolicy", args ?? new GetIamPolicyArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Generates an [IAM] policy document that may be referenced by and applied to
+        /// other Yandex.Cloud Platform resources, such as the `yandex.ResourcemanagerFolder` resource. 
+        /// 
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var admin = Yandex.GetIamPolicy.Invoke(new()
+        ///     {
+        ///         Bindings = new[]
+        ///         {
+        ///             new Yandex.Inputs.GetIamPolicyBindingInputArgs
+        ///             {
+        ///                 Members = new[]
+        ///                 {
+        ///                     "userAccount:user_id_1",
+        ///                 },
+        ///                 Role = "admin",
+        ///             },
+        ///             new Yandex.Inputs.GetIamPolicyBindingInputArgs
+        ///             {
+        ///                 Members = new[]
+        ///                 {
+        ///                     "userAccount:user_id_2",
+        ///                 },
+        ///                 Role = "viewer",
+        ///             },
+        ///         },
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [IAM] policies to apply to other resources.
+        /// Currently, defining a policy through a data source and referencing that policy
+        /// from another resource is the only way to apply an IAM policy to a resource.
+        /// </summary>
         public static Output<GetIamPolicyResult> Invoke(GetIamPolicyInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetIamPolicyResult>("yandex:index/getIamPolicy:getIamPolicy", args ?? new GetIamPolicyInvokeArgs(), options.WithDefaults());
     }
@@ -23,6 +107,12 @@ namespace Pulumi.Yandex
     {
         [Input("bindings", required: true)]
         private List<Inputs.GetIamPolicyBindingArgs>? _bindings;
+
+        /// <summary>
+        /// A nested configuration block (described below)
+        /// that defines a binding to be included in the policy document. Multiple
+        /// `binding` arguments are supported.
+        /// </summary>
         public List<Inputs.GetIamPolicyBindingArgs> Bindings
         {
             get => _bindings ?? (_bindings = new List<Inputs.GetIamPolicyBindingArgs>());
@@ -39,6 +129,12 @@ namespace Pulumi.Yandex
     {
         [Input("bindings", required: true)]
         private InputList<Inputs.GetIamPolicyBindingInputArgs>? _bindings;
+
+        /// <summary>
+        /// A nested configuration block (described below)
+        /// that defines a binding to be included in the policy document. Multiple
+        /// `binding` arguments are supported.
+        /// </summary>
         public InputList<Inputs.GetIamPolicyBindingInputArgs> Bindings
         {
             get => _bindings ?? (_bindings = new InputList<Inputs.GetIamPolicyBindingInputArgs>());
@@ -60,6 +156,10 @@ namespace Pulumi.Yandex
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The above bindings serialized in a format suitable for
+        /// referencing from a resource that supports IAM.
+        /// </summary>
         public readonly string PolicyData;
 
         [OutputConstructor]

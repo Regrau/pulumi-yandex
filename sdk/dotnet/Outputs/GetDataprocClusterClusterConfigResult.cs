@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetDataprocClusterClusterConfigResult
     {
+        /// <summary>
+        /// Data Proc specific options. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDataprocClusterClusterConfigHadoopResult> Hadoops;
+        /// <summary>
+        /// Configuration of the Data Proc subcluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDataprocClusterClusterConfigSubclusterSpecResult> SubclusterSpecs;
+        /// <summary>
+        /// Version of Data Proc image.
+        /// </summary>
         public readonly string VersionId;
 
         [OutputConstructor]

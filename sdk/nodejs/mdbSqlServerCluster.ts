@@ -5,6 +5,149 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a SQLServer cluster within the Yandex.Cloud. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/managed-sqlserver/).
+ *
+ * Please read [Pricing for Managed Service for SQL Server](https://cloud.yandex.com/docs/managed-sqlserver/pricing#prices) before using SQLServer cluster.
+ *
+ * ## Example Usage
+ *
+ * Example of creating a Single Node SQLServer.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const fooVpcNetwork = new yandex.VpcNetwork("fooVpcNetwork", {});
+ * const fooVpcSubnet = new yandex.VpcSubnet("fooVpcSubnet", {
+ *     zone: "ru-central1-a",
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.5.0.0/24"],
+ * });
+ * const test_sg_x = new yandex.VpcSecurityGroup("test-sg-x", {
+ *     networkId: fooVpcNetwork.id,
+ *     ingresses: [{
+ *         protocol: "ANY",
+ *         description: "Allow incoming traffic from members of the same security group",
+ *         fromPort: 0,
+ *         toPort: 65535,
+ *         v4CidrBlocks: ["0.0.0.0/0"],
+ *     }],
+ *     egresses: [{
+ *         protocol: "ANY",
+ *         description: "Allow outgoing traffic to members of the same security group",
+ *         fromPort: 0,
+ *         toPort: 65535,
+ *         v4CidrBlocks: ["0.0.0.0/0"],
+ *     }],
+ * });
+ * const fooMdbSqlServerCluster = new yandex.MdbSqlServerCluster("fooMdbSqlServerCluster", {
+ *     environment: "PRESTABLE",
+ *     networkId: fooVpcNetwork.id,
+ *     version: "2016sp2std",
+ *     resources: {
+ *         resourcePresetId: "s2.small",
+ *         diskTypeId: "network-ssd",
+ *         diskSize: 20,
+ *     },
+ *     labels: {
+ *         test_key: "test_value",
+ *     },
+ *     backupWindowStart: {
+ *         hours: 20,
+ *         minutes: 30,
+ *     },
+ *     sqlserverConfig: {
+ *         fill_factor_percent: "49",
+ *         optimize_for_ad_hoc_workloads: "true",
+ *     },
+ *     databases: [
+ *         {
+ *             name: "db_name_a",
+ *         },
+ *         {
+ *             name: "db_name",
+ *         },
+ *         {
+ *             name: "db_name_b",
+ *         },
+ *     ],
+ *     users: [
+ *         {
+ *             name: "bob",
+ *             password: "mysecurepassword",
+ *         },
+ *         {
+ *             name: "alice",
+ *             password: "mysecurepassword",
+ *             permissions: [{
+ *                 databaseName: "db_name",
+ *                 roles: ["DDLADMIN"],
+ *             }],
+ *         },
+ *         {
+ *             name: "chuck",
+ *             password: "mysecurepassword",
+ *             permissions: [
+ *                 {
+ *                     databaseName: "db_name_a",
+ *                     roles: ["OWNER"],
+ *                 },
+ *                 {
+ *                     databaseName: "db_name",
+ *                     roles: [
+ *                         "OWNER",
+ *                         "DDLADMIN",
+ *                     ],
+ *                 },
+ *                 {
+ *                     databaseName: "db_name_b",
+ *                     roles: [
+ *                         "OWNER",
+ *                         "DDLADMIN",
+ *                     ],
+ *                 },
+ *             ],
+ *         },
+ *     ],
+ *     hosts: [{
+ *         zone: "ru-central1-a",
+ *         subnetId: fooVpcSubnet.id,
+ *     }],
+ *     securityGroupIds: [test_sg_x.id],
+ *     hostGroupIds: [
+ *         "host_group_1",
+ *         "host_group_2",
+ *     ],
+ * });
+ * ```
+ * ## SQLServer config
+ *
+ * If not specified `sqlserverConfig` then does not make any changes.
+ *
+ * * maxDegreeOfParallelism - Limits the number of processors to use in parallel plan execution per task. See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-max-degree-of-parallelism-server-configuration-option?view=sql-server-2016).
+ *
+ * * costThresholdForParallelism - Specifies the threshold at which SQL Server creates and runs parallel plans for queries. SQL Server creates and runs a parallel plan for a query only when the estimated cost to run a serial plan for the same query is higher than the value of the option. See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-cost-threshold-for-parallelism-server-configuration-option?view=sql-server-2016).
+ *
+ * * auditLevel - Describes how to configure login auditing to monitor SQL Server Database Engine login activity. Possible values:
+ *   - 0 — do not log login attempts,˚√
+ *   - 1 — log only failed login attempts,
+ *   - 2 — log only successful login attempts (not recommended),
+ *   - 3 — log all login attempts (not recommended).
+ *      See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/ssms/configure-login-auditing-sql-server-management-studio?view=sql-server-2016).
+ *
+ * * fillFactorPercent - Manages the fill factor server configuration option. When an index is created or rebuilt the fill factor determines the percentage of space on each index leaf-level page to be filled with data, reserving the rest as free space for future growth. Values 0 and 100 mean full page usage (no space reserved). See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-fill-factor-server-configuration-option?view=sql-server-2016).
+ * * optimizeForAdHocWorkloads - Determines whether plans should be cached only after second execution. Allows to avoid SQL cache bloat because of single-use plans. See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/optimize-for-ad-hoc-workloads-server-configuration-option?view=sql-server-2016).
+ *
+ * ## Import
+ *
+ * A cluster can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/mdbSqlServerCluster:MdbSqlServerCluster foo cluster_id
+ * ```
+ */
 export class MdbSqlServerCluster extends pulumi.CustomResource {
     /**
      * Get an existing MdbSqlServerCluster resource's state with the given name, ID, and optional extra
@@ -33,25 +176,86 @@ export class MdbSqlServerCluster extends pulumi.CustomResource {
         return obj['__pulumiType'] === MdbSqlServerCluster.__pulumiType;
     }
 
+    /**
+     * Time to start the daily backup, in the UTC. The structure is documented below.
+     */
     public readonly backupWindowStart!: pulumi.Output<outputs.MdbSqlServerClusterBackupWindowStart>;
+    /**
+     * Creation timestamp of the cluster.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * A database of the SQLServer cluster. The structure is documented below.
+     */
     public readonly databases!: pulumi.Output<outputs.MdbSqlServerClusterDatabase[]>;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     public readonly deletionProtection!: pulumi.Output<boolean>;
+    /**
+     * Description of the SQLServer cluster.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+     */
     public readonly environment!: pulumi.Output<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * Aggregated health of the cluster.
+     */
     public /*out*/ readonly health!: pulumi.Output<string>;
+    /**
+     * A list of IDs of the host groups hosting VMs of the cluster.
+     */
     public readonly hostGroupIds!: pulumi.Output<string[]>;
+    /**
+     * A host of the SQLServer cluster. The structure is documented below.
+     */
     public readonly hosts!: pulumi.Output<outputs.MdbSqlServerClusterHost[]>;
+    /**
+     * A set of key/value label pairs to assign to the SQLServer cluster.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * The name of the database.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * ID of the network, to which the SQLServer cluster uses.
+     */
     public readonly networkId!: pulumi.Output<string>;
+    /**
+     * Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+     */
     public readonly resources!: pulumi.Output<outputs.MdbSqlServerClusterResources>;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     public readonly securityGroupIds!: pulumi.Output<string[] | undefined>;
+    /**
+     * SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+     */
     public readonly sqlcollation!: pulumi.Output<string>;
+    /**
+     * SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+     */
     public readonly sqlserverConfig!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * Status of the cluster.
+     */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * A user of the SQLServer cluster. The structure is documented below.
+     */
     public readonly users!: pulumi.Output<outputs.MdbSqlServerClusterUser[]>;
+    /**
+     * Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
+     */
     public readonly version!: pulumi.Output<string>;
 
     /**
@@ -140,25 +344,86 @@ export class MdbSqlServerCluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MdbSqlServerCluster resources.
  */
 export interface MdbSqlServerClusterState {
+    /**
+     * Time to start the daily backup, in the UTC. The structure is documented below.
+     */
     backupWindowStart?: pulumi.Input<inputs.MdbSqlServerClusterBackupWindowStart>;
+    /**
+     * Creation timestamp of the cluster.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * A database of the SQLServer cluster. The structure is documented below.
+     */
     databases?: pulumi.Input<pulumi.Input<inputs.MdbSqlServerClusterDatabase>[]>;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * Description of the SQLServer cluster.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+     */
     environment?: pulumi.Input<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Aggregated health of the cluster.
+     */
     health?: pulumi.Input<string>;
+    /**
+     * A list of IDs of the host groups hosting VMs of the cluster.
+     */
     hostGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A host of the SQLServer cluster. The structure is documented below.
+     */
     hosts?: pulumi.Input<pulumi.Input<inputs.MdbSqlServerClusterHost>[]>;
+    /**
+     * A set of key/value label pairs to assign to the SQLServer cluster.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the database.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network, to which the SQLServer cluster uses.
+     */
     networkId?: pulumi.Input<string>;
+    /**
+     * Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+     */
     resources?: pulumi.Input<inputs.MdbSqlServerClusterResources>;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+     */
     sqlcollation?: pulumi.Input<string>;
+    /**
+     * SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+     */
     sqlserverConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Status of the cluster.
+     */
     status?: pulumi.Input<string>;
+    /**
+     * A user of the SQLServer cluster. The structure is documented below.
+     */
     users?: pulumi.Input<pulumi.Input<inputs.MdbSqlServerClusterUser>[]>;
+    /**
+     * Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
+     */
     version?: pulumi.Input<string>;
 }
 
@@ -166,21 +431,73 @@ export interface MdbSqlServerClusterState {
  * The set of arguments for constructing a MdbSqlServerCluster resource.
  */
 export interface MdbSqlServerClusterArgs {
+    /**
+     * Time to start the daily backup, in the UTC. The structure is documented below.
+     */
     backupWindowStart?: pulumi.Input<inputs.MdbSqlServerClusterBackupWindowStart>;
+    /**
+     * A database of the SQLServer cluster. The structure is documented below.
+     */
     databases: pulumi.Input<pulumi.Input<inputs.MdbSqlServerClusterDatabase>[]>;
+    /**
+     * Inhibits deletion of the cluster.  Can be either `true` or `false`.
+     */
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * Description of the SQLServer cluster.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+     */
     environment: pulumi.Input<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A list of IDs of the host groups hosting VMs of the cluster.
+     */
     hostGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A host of the SQLServer cluster. The structure is documented below.
+     */
     hosts: pulumi.Input<pulumi.Input<inputs.MdbSqlServerClusterHost>[]>;
+    /**
+     * A set of key/value label pairs to assign to the SQLServer cluster.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the database.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network, to which the SQLServer cluster uses.
+     */
     networkId: pulumi.Input<string>;
+    /**
+     * Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+     */
     resources: pulumi.Input<inputs.MdbSqlServerClusterResources>;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+     */
     sqlcollation?: pulumi.Input<string>;
+    /**
+     * SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+     */
     sqlserverConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * A user of the SQLServer cluster. The structure is documented below.
+     */
     users: pulumi.Input<pulumi.Input<inputs.MdbSqlServerClusterUser>[]>;
+    /**
+     * Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
+     */
     version: pulumi.Input<string>;
 }

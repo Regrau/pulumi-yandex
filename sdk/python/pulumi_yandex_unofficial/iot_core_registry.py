@@ -22,6 +22,12 @@ class IotCoreRegistryArgs:
                  passwords: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a IotCoreRegistry resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificates: A set of certificate's fingerprints for the IoT Core Registry
+        :param pulumi.Input[str] description: Description of the IoT Core Registry
+        :param pulumi.Input[str] folder_id: Folder ID for the IoT Core Registry
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the IoT Core Registry.
+        :param pulumi.Input[str] name: IoT Core Device name used to define registry
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passwords: A set of passwords's id for the IoT Core Registry
         """
         if certificates is not None:
             pulumi.set(__self__, "certificates", certificates)
@@ -39,6 +45,9 @@ class IotCoreRegistryArgs:
     @property
     @pulumi.getter
     def certificates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of certificate's fingerprints for the IoT Core Registry
+        """
         return pulumi.get(self, "certificates")
 
     @certificates.setter
@@ -48,6 +57,9 @@ class IotCoreRegistryArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the IoT Core Registry
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -57,6 +69,9 @@ class IotCoreRegistryArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder ID for the IoT Core Registry
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -66,6 +81,9 @@ class IotCoreRegistryArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the IoT Core Registry.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -75,6 +93,9 @@ class IotCoreRegistryArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        IoT Core Device name used to define registry
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -84,6 +105,9 @@ class IotCoreRegistryArgs:
     @property
     @pulumi.getter
     def passwords(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of passwords's id for the IoT Core Registry
+        """
         return pulumi.get(self, "passwords")
 
     @passwords.setter
@@ -103,6 +127,13 @@ class _IotCoreRegistryState:
                  passwords: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering IotCoreRegistry resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificates: A set of certificate's fingerprints for the IoT Core Registry
+        :param pulumi.Input[str] created_at: Creation timestamp of the IoT Core Registry
+        :param pulumi.Input[str] description: Description of the IoT Core Registry
+        :param pulumi.Input[str] folder_id: Folder ID for the IoT Core Registry
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the IoT Core Registry.
+        :param pulumi.Input[str] name: IoT Core Device name used to define registry
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passwords: A set of passwords's id for the IoT Core Registry
         """
         if certificates is not None:
             pulumi.set(__self__, "certificates", certificates)
@@ -122,6 +153,9 @@ class _IotCoreRegistryState:
     @property
     @pulumi.getter
     def certificates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of certificate's fingerprints for the IoT Core Registry
+        """
         return pulumi.get(self, "certificates")
 
     @certificates.setter
@@ -131,6 +165,9 @@ class _IotCoreRegistryState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the IoT Core Registry
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -140,6 +177,9 @@ class _IotCoreRegistryState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the IoT Core Registry
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -149,6 +189,9 @@ class _IotCoreRegistryState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder ID for the IoT Core Registry
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -158,6 +201,9 @@ class _IotCoreRegistryState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the IoT Core Registry.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -167,6 +213,9 @@ class _IotCoreRegistryState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        IoT Core Device name used to define registry
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -176,6 +225,9 @@ class _IotCoreRegistryState:
     @property
     @pulumi.getter
     def passwords(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of passwords's id for the IoT Core Registry
+        """
         return pulumi.get(self, "passwords")
 
     @passwords.setter
@@ -196,9 +248,37 @@ class IotCoreRegistry(pulumi.CustomResource):
                  passwords: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Create a IotCoreRegistry resource with the given unique name, props, and options.
+        Allows management of [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_registry = yandex.IotCoreRegistry("myRegistry",
+            certificates=[
+                "public part of certificate1",
+                "public part of certificate2",
+            ],
+            description="any description",
+            labels={
+                "my-label": "my-label-value",
+            },
+            passwords=[
+                "my-password1",
+                "my-password2",
+            ])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificates: A set of certificate's fingerprints for the IoT Core Registry
+        :param pulumi.Input[str] description: Description of the IoT Core Registry
+        :param pulumi.Input[str] folder_id: Folder ID for the IoT Core Registry
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the IoT Core Registry.
+        :param pulumi.Input[str] name: IoT Core Device name used to define registry
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passwords: A set of passwords's id for the IoT Core Registry
         """
         ...
     @overload
@@ -207,7 +287,29 @@ class IotCoreRegistry(pulumi.CustomResource):
                  args: Optional[IotCoreRegistryArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a IotCoreRegistry resource with the given unique name, props, and options.
+        Allows management of [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_registry = yandex.IotCoreRegistry("myRegistry",
+            certificates=[
+                "public part of certificate1",
+                "public part of certificate2",
+            ],
+            description="any description",
+            labels={
+                "my-label": "my-label-value",
+            },
+            passwords=[
+                "my-password1",
+                "my-password2",
+            ])
+        ```
+
         :param str resource_name: The name of the resource.
         :param IotCoreRegistryArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -269,6 +371,13 @@ class IotCoreRegistry(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificates: A set of certificate's fingerprints for the IoT Core Registry
+        :param pulumi.Input[str] created_at: Creation timestamp of the IoT Core Registry
+        :param pulumi.Input[str] description: Description of the IoT Core Registry
+        :param pulumi.Input[str] folder_id: Folder ID for the IoT Core Registry
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the IoT Core Registry.
+        :param pulumi.Input[str] name: IoT Core Device name used to define registry
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passwords: A set of passwords's id for the IoT Core Registry
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -286,35 +395,56 @@ class IotCoreRegistry(pulumi.CustomResource):
     @property
     @pulumi.getter
     def certificates(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A set of certificate's fingerprints for the IoT Core Registry
+        """
         return pulumi.get(self, "certificates")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the IoT Core Registry
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the IoT Core Registry
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        Folder ID for the IoT Core Registry
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the IoT Core Registry.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        IoT Core Device name used to define registry
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def passwords(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A set of passwords's id for the IoT Core Registry
+        """
         return pulumi.get(self, "passwords")
 

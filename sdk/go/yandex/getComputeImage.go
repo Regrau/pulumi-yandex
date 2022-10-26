@@ -22,29 +22,43 @@ func LookupComputeImage(ctx *pulumi.Context, args *LookupComputeImageArgs, opts 
 
 // A collection of arguments for invoking getComputeImage.
 type LookupComputeImageArgs struct {
-	Family   *string `pulumi:"family"`
+	// The family name of an image. Used to search the latest image in a family.
+	Family *string `pulumi:"family"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
 	FolderId *string `pulumi:"folderId"`
-	ImageId  *string `pulumi:"imageId"`
-	Name     *string `pulumi:"name"`
+	// The ID of a specific image.
+	ImageId *string `pulumi:"imageId"`
+	// The name of the image.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getComputeImage.
 type LookupComputeImageResult struct {
-	CreatedAt   string `pulumi:"createdAt"`
+	// Image creation timestamp.
+	CreatedAt string `pulumi:"createdAt"`
+	// An optional description of this image.
 	Description string `pulumi:"description"`
-	Family      string `pulumi:"family"`
-	FolderId    string `pulumi:"folderId"`
+	// The OS family name of the image.
+	Family   string `pulumi:"family"`
+	FolderId string `pulumi:"folderId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string            `pulumi:"id"`
-	ImageId     string            `pulumi:"imageId"`
-	Labels      map[string]string `pulumi:"labels"`
-	MinDiskSize int               `pulumi:"minDiskSize"`
-	Name        string            `pulumi:"name"`
-	OsType      string            `pulumi:"osType"`
-	Pooled      bool              `pulumi:"pooled"`
-	ProductIds  []string          `pulumi:"productIds"`
-	Size        int               `pulumi:"size"`
-	Status      string            `pulumi:"status"`
+	Id      string `pulumi:"id"`
+	ImageId string `pulumi:"imageId"`
+	// A map of labels applied to this image.
+	Labels map[string]string `pulumi:"labels"`
+	// Minimum size of the disk which is created from this image.
+	MinDiskSize int    `pulumi:"minDiskSize"`
+	Name        string `pulumi:"name"`
+	// Operating system type that the image contains.
+	OsType string `pulumi:"osType"`
+	// Optimize the image to create a disk.
+	Pooled bool `pulumi:"pooled"`
+	// License IDs that indicate which licenses are attached to this image.
+	ProductIds []string `pulumi:"productIds"`
+	// The size of the image, specified in Gb.
+	Size int `pulumi:"size"`
+	// The status of the image.
+	Status string `pulumi:"status"`
 }
 
 func LookupComputeImageOutput(ctx *pulumi.Context, args LookupComputeImageOutputArgs, opts ...pulumi.InvokeOption) LookupComputeImageResultOutput {
@@ -62,10 +76,14 @@ func LookupComputeImageOutput(ctx *pulumi.Context, args LookupComputeImageOutput
 
 // A collection of arguments for invoking getComputeImage.
 type LookupComputeImageOutputArgs struct {
-	Family   pulumi.StringPtrInput `pulumi:"family"`
+	// The family name of an image. Used to search the latest image in a family.
+	Family pulumi.StringPtrInput `pulumi:"family"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
 	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
-	ImageId  pulumi.StringPtrInput `pulumi:"imageId"`
-	Name     pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of a specific image.
+	ImageId pulumi.StringPtrInput `pulumi:"imageId"`
+	// The name of the image.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupComputeImageOutputArgs) ElementType() reflect.Type {
@@ -87,14 +105,17 @@ func (o LookupComputeImageResultOutput) ToLookupComputeImageResultOutputWithCont
 	return o
 }
 
+// Image creation timestamp.
 func (o LookupComputeImageResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupComputeImageResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// An optional description of this image.
 func (o LookupComputeImageResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupComputeImageResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// The OS family name of the image.
 func (o LookupComputeImageResultOutput) Family() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupComputeImageResult) string { return v.Family }).(pulumi.StringOutput)
 }
@@ -112,10 +133,12 @@ func (o LookupComputeImageResultOutput) ImageId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupComputeImageResult) string { return v.ImageId }).(pulumi.StringOutput)
 }
 
+// A map of labels applied to this image.
 func (o LookupComputeImageResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupComputeImageResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Minimum size of the disk which is created from this image.
 func (o LookupComputeImageResultOutput) MinDiskSize() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupComputeImageResult) int { return v.MinDiskSize }).(pulumi.IntOutput)
 }
@@ -124,22 +147,27 @@ func (o LookupComputeImageResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupComputeImageResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Operating system type that the image contains.
 func (o LookupComputeImageResultOutput) OsType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupComputeImageResult) string { return v.OsType }).(pulumi.StringOutput)
 }
 
+// Optimize the image to create a disk.
 func (o LookupComputeImageResultOutput) Pooled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupComputeImageResult) bool { return v.Pooled }).(pulumi.BoolOutput)
 }
 
+// License IDs that indicate which licenses are attached to this image.
 func (o LookupComputeImageResultOutput) ProductIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupComputeImageResult) []string { return v.ProductIds }).(pulumi.StringArrayOutput)
 }
 
+// The size of the image, specified in Gb.
 func (o LookupComputeImageResultOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupComputeImageResult) int { return v.Size }).(pulumi.IntOutput)
 }
 
+// The status of the image.
 func (o LookupComputeImageResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupComputeImageResult) string { return v.Status }).(pulumi.StringOutput)
 }

@@ -4,6 +4,24 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a user of Yandex SAML Federation. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/organization/operations/federations/integration-common).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const account = pulumi.output(yandex.getOrganizationmanagerSamlFederationUserAccount({
+ *     federationId: "some_federation_id",
+ *     nameId: "example@example.org",
+ * }));
+ *
+ * export const my_federation_id = account.id;
+ * ```
+ */
 export function getOrganizationmanagerSamlFederationUserAccount(args: GetOrganizationmanagerSamlFederationUserAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationmanagerSamlFederationUserAccountResult> {
     if (!opts) {
         opts = {}
@@ -20,7 +38,13 @@ export function getOrganizationmanagerSamlFederationUserAccount(args: GetOrganiz
  * A collection of arguments for invoking getOrganizationmanagerSamlFederationUserAccount.
  */
 export interface GetOrganizationmanagerSamlFederationUserAccountArgs {
+    /**
+     * ID of a SAML Federation.
+     */
     federationId: string;
+    /**
+     * Name Id of the SAML federated user.
+     */
     nameId: string;
 }
 
@@ -44,6 +68,12 @@ export function getOrganizationmanagerSamlFederationUserAccountOutput(args: GetO
  * A collection of arguments for invoking getOrganizationmanagerSamlFederationUserAccount.
  */
 export interface GetOrganizationmanagerSamlFederationUserAccountOutputArgs {
+    /**
+     * ID of a SAML Federation.
+     */
     federationId: pulumi.Input<string>;
+    /**
+     * Name Id of the SAML federated user.
+     */
     nameId: pulumi.Input<string>;
 }

@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class KubernetesClusterMasterZonal
     {
+        /// <summary>
+        /// (Optional) ID of the subnet.
+        /// </summary>
         public readonly string? SubnetId;
+        /// <summary>
+        /// (Optional) ID of the availability zone.
+        /// </summary>
         public readonly string? Zone;
 
         [OutputConstructor]

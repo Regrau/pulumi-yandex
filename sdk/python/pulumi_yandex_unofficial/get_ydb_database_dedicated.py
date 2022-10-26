@@ -90,11 +90,17 @@ class GetYdbDatabaseDedicatedResult:
     @property
     @pulumi.getter(name="assignPublicIps")
     def assign_public_ips(self) -> bool:
+        """
+        Whether public IP addresses are assigned to the Yandex Database cluster.
+        """
         return pulumi.get(self, "assign_public_ips")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The Yandex Database cluster creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
@@ -105,16 +111,26 @@ class GetYdbDatabaseDedicatedResult:
     @property
     @pulumi.getter(name="databasePath")
     def database_path(self) -> str:
+        """
+        Full database path of the Yandex Database cluster.
+        Useful for SDK configuration.
+        """
         return pulumi.get(self, "database_path")
 
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> bool:
+        """
+        Inhibits deletion of the database. Can be either `true` or `false`
+        """
         return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        A description of the Yandex Database cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -133,16 +149,26 @@ class GetYdbDatabaseDedicatedResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs assigned to the Yandex Database cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="locationId")
     def location_id(self) -> str:
+        """
+        Location ID of the Yandex Database cluster.
+        """
         return pulumi.get(self, "location_id")
 
     @property
     @pulumi.getter
     def locations(self) -> Sequence['outputs.GetYdbDatabaseDedicatedLocationResult']:
+        """
+        Location of the Yandex Database cluster.
+        The structure is documented below.
+        """
         return pulumi.get(self, "locations")
 
     @property
@@ -153,46 +179,77 @@ class GetYdbDatabaseDedicatedResult:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
+        """
+        ID of the network the Yandex Database cluster is attached to.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="resourcePresetId")
     def resource_preset_id(self) -> str:
+        """
+        The Yandex Database cluster preset.
+        """
         return pulumi.get(self, "resource_preset_id")
 
     @property
     @pulumi.getter(name="scalePolicies")
     def scale_policies(self) -> Sequence['outputs.GetYdbDatabaseDedicatedScalePolicyResult']:
+        """
+        Scaling policy of the Yandex Database cluster.
+        The structure is documented below.
+        """
         return pulumi.get(self, "scale_policies")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the Yandex Database cluster.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="storageConfigs")
     def storage_configs(self) -> Sequence['outputs.GetYdbDatabaseDedicatedStorageConfigResult']:
+        """
+        A list of storage configuration options of the Yandex Database cluster.
+        The structure is documented below.
+        """
         return pulumi.get(self, "storage_configs")
 
     @property
     @pulumi.getter(name="subnetIds")
     def subnet_ids(self) -> Sequence[str]:
+        """
+        List of subnet IDs the Yandex Database cluster is attached to.
+        """
         return pulumi.get(self, "subnet_ids")
 
     @property
     @pulumi.getter(name="tlsEnabled")
     def tls_enabled(self) -> bool:
+        """
+        Whether TLS is enabled for the Yandex Database cluster.
+        Useful for SDK configuration.
+        """
         return pulumi.get(self, "tls_enabled")
 
     @property
     @pulumi.getter(name="ydbApiEndpoint")
     def ydb_api_endpoint(self) -> str:
+        """
+        API endpoint of the Yandex Database cluster.
+        Useful for SDK configuration.
+        """
         return pulumi.get(self, "ydb_api_endpoint")
 
     @property
     @pulumi.getter(name="ydbFullEndpoint")
     def ydb_full_endpoint(self) -> str:
+        """
+        Full endpoint of the Yandex Database cluster.
+        """
         return pulumi.get(self, "ydb_full_endpoint")
 
 
@@ -231,7 +288,25 @@ def get_ydb_database_dedicated(database_id: Optional[str] = None,
                                name: Optional[str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetYdbDatabaseDedicatedResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Database (dedicated) cluster.
+    For more information, see [the official documentation](https://cloud.yandex.com/en/docs/ydb/concepts/serverless_and_dedicated).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_database = yandex.get_ydb_database_dedicated(database_id="some_ydb_dedicated_database_id")
+    pulumi.export("ydbApiEndpoint", my_database.ydb_api_endpoint)
+    ```
+
+
+    :param str database_id: ID of the Yandex Database cluster.
+    :param bool deletion_protection: Inhibits deletion of the database. Can be either `true` or `false`
+    :param str folder_id: ID of the folder that the Yandex Database cluster belongs to.
+           It will be deduced from provider configuration if not set explicitly.
+    :param str name: Name of the Yandex Database cluster.
     """
     __args__ = dict()
     __args__['databaseId'] = database_id
@@ -272,6 +347,24 @@ def get_ydb_database_dedicated_output(database_id: Optional[pulumi.Input[Optiona
                                       name: Optional[pulumi.Input[Optional[str]]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetYdbDatabaseDedicatedResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Database (dedicated) cluster.
+    For more information, see [the official documentation](https://cloud.yandex.com/en/docs/ydb/concepts/serverless_and_dedicated).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_database = yandex.get_ydb_database_dedicated(database_id="some_ydb_dedicated_database_id")
+    pulumi.export("ydbApiEndpoint", my_database.ydb_api_endpoint)
+    ```
+
+
+    :param str database_id: ID of the Yandex Database cluster.
+    :param bool deletion_protection: Inhibits deletion of the database. Can be either `true` or `false`
+    :param str folder_id: ID of the folder that the Yandex Database cluster belongs to.
+           It will be deduced from provider configuration if not set explicitly.
+    :param str name: Name of the Yandex Database cluster.
     """
     ...

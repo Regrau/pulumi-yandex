@@ -5,6 +5,61 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a topic of a Kafka cluster within the Yandex.Cloud. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const foo = new yandex.MdbKafkaCluster("foo", {
+ *     networkId: "c64vs98keiqc7f24pvkd",
+ *     config: {
+ *         version: "2.8",
+ *         zones: ["ru-central1-a"],
+ *         unmanagedTopics: true,
+ *         kafka: {
+ *             resources: {
+ *                 resourcePresetId: "s2.micro",
+ *                 diskTypeId: "network-hdd",
+ *                 diskSize: 16,
+ *             },
+ *         },
+ *     },
+ * });
+ * const events = new yandex.MdbKafkaTopic("events", {
+ *     clusterId: foo.id,
+ *     partitions: 4,
+ *     replicationFactor: 1,
+ *     topicConfig: {
+ *         cleanupPolicy: "CLEANUP_POLICY_COMPACT",
+ *         compressionType: "COMPRESSION_TYPE_LZ4",
+ *         deleteRetentionMs: "86400000",
+ *         fileDeleteDelayMs: "60000",
+ *         flushMessages: "128",
+ *         flushMs: "1000",
+ *         minCompactionLagMs: "0",
+ *         retentionBytes: "10737418240",
+ *         retentionMs: "604800000",
+ *         maxMessageBytes: "1048588",
+ *         minInsyncReplicas: "1",
+ *         segmentBytes: "268435456",
+ *         preallocate: true,
+ *     },
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Kafka topic can be imported using following format
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/mdbKafkaTopic:MdbKafkaTopic foo {{cluster_id}}:{{topic_name}}
+ * ```
+ */
 export class MdbKafkaTopic extends pulumi.CustomResource {
     /**
      * Get an existing MdbKafkaTopic resource's state with the given name, ID, and optional extra
@@ -34,9 +89,21 @@ export class MdbKafkaTopic extends pulumi.CustomResource {
     }
 
     public readonly clusterId!: pulumi.Output<string>;
+    /**
+     * The name of the topic.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The number of the topic's partitions.
+     */
     public readonly partitions!: pulumi.Output<number>;
+    /**
+     * Amount of data copies (replicas) for the topic in the cluster.
+     */
     public readonly replicationFactor!: pulumi.Output<number>;
+    /**
+     * User-defined settings for the topic. The structure is documented below.
+     */
     public readonly topicConfig!: pulumi.Output<outputs.MdbKafkaTopicTopicConfig | undefined>;
 
     /**
@@ -84,9 +151,21 @@ export class MdbKafkaTopic extends pulumi.CustomResource {
  */
 export interface MdbKafkaTopicState {
     clusterId?: pulumi.Input<string>;
+    /**
+     * The name of the topic.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The number of the topic's partitions.
+     */
     partitions?: pulumi.Input<number>;
+    /**
+     * Amount of data copies (replicas) for the topic in the cluster.
+     */
     replicationFactor?: pulumi.Input<number>;
+    /**
+     * User-defined settings for the topic. The structure is documented below.
+     */
     topicConfig?: pulumi.Input<inputs.MdbKafkaTopicTopicConfig>;
 }
 
@@ -95,8 +174,20 @@ export interface MdbKafkaTopicState {
  */
 export interface MdbKafkaTopicArgs {
     clusterId: pulumi.Input<string>;
+    /**
+     * The name of the topic.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The number of the topic's partitions.
+     */
     partitions: pulumi.Input<number>;
+    /**
+     * Amount of data copies (replicas) for the topic in the cluster.
+     */
     replicationFactor: pulumi.Input<number>;
+    /**
+     * User-defined settings for the topic. The structure is documented below.
+     */
     topicConfig?: pulumi.Input<inputs.MdbKafkaTopicTopicConfig>;
 }

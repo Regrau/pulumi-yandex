@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class StorageBucketHttps
     {
+        /// <summary>
+        /// — Id of the certificate in Certificate Manager, that will be used for bucket.
+        /// </summary>
         public readonly string CertificateId;
 
         [OutputConstructor]

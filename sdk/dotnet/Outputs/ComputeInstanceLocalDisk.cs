@@ -13,7 +13,14 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstanceLocalDisk
     {
+        /// <summary>
+        /// Name that can be used to access an attached disk
+        /// under `/dev/disk/by-id/`.
+        /// </summary>
         public readonly string? DeviceName;
+        /// <summary>
+        /// Size of the disk, specified in bytes.
+        /// </summary>
         public readonly int SizeBytes;
 
         [OutputConstructor]

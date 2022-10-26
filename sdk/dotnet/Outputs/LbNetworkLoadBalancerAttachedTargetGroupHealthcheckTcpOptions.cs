@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptions
     {
+        /// <summary>
+        /// Port for incoming traffic.
+        /// </summary>
         public readonly int Port;
 
         [OutputConstructor]

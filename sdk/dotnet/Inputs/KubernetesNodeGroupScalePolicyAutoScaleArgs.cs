@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesNodeGroupScalePolicyAutoScaleArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Initial number of instances in the node group.
+        /// </summary>
         [Input("initial", required: true)]
         public Input<int> Initial { get; set; } = null!;
 
+        /// <summary>
+        /// Maximum number of instances in the node group.
+        /// </summary>
         [Input("max", required: true)]
         public Input<int> Max { get; set; } = null!;
 
+        /// <summary>
+        /// Minimum number of instances in the node group.
+        /// </summary>
         [Input("min", required: true)]
         public Input<int> Min { get; set; } = null!;
 

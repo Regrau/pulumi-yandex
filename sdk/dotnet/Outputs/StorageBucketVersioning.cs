@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class StorageBucketVersioning
     {
+        /// <summary>
+        /// Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+        /// </summary>
         public readonly bool? Enabled;
 
         [OutputConstructor]

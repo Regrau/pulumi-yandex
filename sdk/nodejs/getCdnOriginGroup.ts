@@ -5,6 +5,25 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex CDN Origin Group. For more information, see
+ * [the official documentation](https://cloud.yandex.ru/docs/cdn/concepts/origins).
+ *
+ * > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const myGroup = pulumi.output(yandex.getCdnOriginGroup({
+ *     originGroupId: Number.parseFloat("some_instance_id"),
+ * }));
+ *
+ * export const originGroupName = myGroup.name!;
+ * ```
+ */
 export function getCdnOriginGroup(args?: GetCdnOriginGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetCdnOriginGroupResult> {
     args = args || {};
     if (!opts) {
@@ -23,8 +42,17 @@ export function getCdnOriginGroup(args?: GetCdnOriginGroupArgs, opts?: pulumi.In
  * A collection of arguments for invoking getCdnOriginGroup.
  */
 export interface GetCdnOriginGroupArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * Name of the origin group.
+     */
     name?: string;
+    /**
+     * The ID of a specific origin group.
+     */
     originGroupId?: number;
 }
 
@@ -51,7 +79,16 @@ export function getCdnOriginGroupOutput(args?: GetCdnOriginGroupOutputArgs, opts
  * A collection of arguments for invoking getCdnOriginGroup.
  */
 export interface GetCdnOriginGroupOutputArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Name of the origin group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of a specific origin group.
+     */
     originGroupId?: pulumi.Input<number>;
 }

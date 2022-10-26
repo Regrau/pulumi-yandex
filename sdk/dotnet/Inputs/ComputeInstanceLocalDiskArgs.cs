@@ -12,9 +12,16 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class ComputeInstanceLocalDiskArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name that can be used to access an attached disk
+        /// under `/dev/disk/by-id/`.
+        /// </summary>
         [Input("deviceName")]
         public Input<string>? DeviceName { get; set; }
 
+        /// <summary>
+        /// Size of the disk, specified in bytes.
+        /// </summary>
         [Input("sizeBytes", required: true)]
         public Input<int> SizeBytes { get; set; } = null!;
 

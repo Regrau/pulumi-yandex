@@ -12,33 +12,66 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbRedisClusterConfigArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Normal clients output buffer limits.
+        /// See [redis config file](https://github.com/redis/redis/blob/6.2/redis.conf#L1841).
+        /// </summary>
         [Input("clientOutputBufferLimitNormal")]
         public Input<string>? ClientOutputBufferLimitNormal { get; set; }
 
+        /// <summary>
+        /// Pubsub clients output buffer limits.
+        /// See [redis config file](https://github.com/redis/redis/blob/6.2/redis.conf#L1843).
+        /// </summary>
         [Input("clientOutputBufferLimitPubsub")]
         public Input<string>? ClientOutputBufferLimitPubsub { get; set; }
 
+        /// <summary>
+        /// Number of databases (changing requires redis-server restart).
+        /// </summary>
         [Input("databases")]
         public Input<int>? Databases { get; set; }
 
+        /// <summary>
+        /// Redis key eviction policy for a dataset that reaches maximum memory.
+        /// Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/).
+        /// </summary>
         [Input("maxmemoryPolicy")]
         public Input<string>? MaxmemoryPolicy { get; set; }
 
+        /// <summary>
+        /// Select the events that Redis will notify among a set of classes.
+        /// </summary>
         [Input("notifyKeyspaceEvents")]
         public Input<string>? NotifyKeyspaceEvents { get; set; }
 
+        /// <summary>
+        /// Password for the Redis cluster.
+        /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
+        /// <summary>
+        /// Log slow queries below this number in microseconds.
+        /// </summary>
         [Input("slowlogLogSlowerThan")]
         public Input<int>? SlowlogLogSlowerThan { get; set; }
 
+        /// <summary>
+        /// Slow queries log length.
+        /// </summary>
         [Input("slowlogMaxLen")]
         public Input<int>? SlowlogMaxLen { get; set; }
 
+        /// <summary>
+        /// Close the connection after a client is idle for N seconds.
+        /// </summary>
         [Input("timeout")]
         public Input<int>? Timeout { get; set; }
 
+        /// <summary>
+        /// Version of Redis (6.2).
+        /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
 

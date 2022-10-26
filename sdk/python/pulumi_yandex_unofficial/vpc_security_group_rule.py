@@ -28,6 +28,18 @@ class VpcSecurityGroupRuleArgs:
                  v6_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a VpcSecurityGroupRule resource.
+        :param pulumi.Input[str] direction: direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+        :param pulumi.Input[str] security_group_binding: ID of the security group this rule belongs to.
+        :param pulumi.Input[str] description: Description of the rule.
+        :param pulumi.Input[int] from_port: Minimum port number.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this rule.
+        :param pulumi.Input[int] port: Port number (if applied to a single port).
+        :param pulumi.Input[str] predefined_target: Special-purpose targets such as "self_security_group". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+        :param pulumi.Input[str] protocol: One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+        :param pulumi.Input[str] security_group_id: Target security group ID for this rule.
+        :param pulumi.Input[int] to_port: Maximum port number.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v4_cidr_blocks: The blocks of IPv4 addresses for this rule.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v6_cidr_blocks: The blocks of IPv6 addresses for this rule. `v6_cidr_blocks` argument is currently not supported. It will be available in the future.
         """
         pulumi.set(__self__, "direction", direction)
         pulumi.set(__self__, "security_group_binding", security_group_binding)
@@ -55,6 +67,9 @@ class VpcSecurityGroupRuleArgs:
     @property
     @pulumi.getter
     def direction(self) -> pulumi.Input[str]:
+        """
+        direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+        """
         return pulumi.get(self, "direction")
 
     @direction.setter
@@ -64,6 +79,9 @@ class VpcSecurityGroupRuleArgs:
     @property
     @pulumi.getter(name="securityGroupBinding")
     def security_group_binding(self) -> pulumi.Input[str]:
+        """
+        ID of the security group this rule belongs to.
+        """
         return pulumi.get(self, "security_group_binding")
 
     @security_group_binding.setter
@@ -73,6 +91,9 @@ class VpcSecurityGroupRuleArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the rule.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -82,6 +103,9 @@ class VpcSecurityGroupRuleArgs:
     @property
     @pulumi.getter(name="fromPort")
     def from_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimum port number.
+        """
         return pulumi.get(self, "from_port")
 
     @from_port.setter
@@ -91,6 +115,9 @@ class VpcSecurityGroupRuleArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this rule.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -100,6 +127,9 @@ class VpcSecurityGroupRuleArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port number (if applied to a single port).
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -109,6 +139,9 @@ class VpcSecurityGroupRuleArgs:
     @property
     @pulumi.getter(name="predefinedTarget")
     def predefined_target(self) -> Optional[pulumi.Input[str]]:
+        """
+        Special-purpose targets such as "self_security_group". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+        """
         return pulumi.get(self, "predefined_target")
 
     @predefined_target.setter
@@ -118,6 +151,9 @@ class VpcSecurityGroupRuleArgs:
     @property
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+        """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
@@ -127,6 +163,9 @@ class VpcSecurityGroupRuleArgs:
     @property
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Target security group ID for this rule.
+        """
         return pulumi.get(self, "security_group_id")
 
     @security_group_id.setter
@@ -136,6 +175,9 @@ class VpcSecurityGroupRuleArgs:
     @property
     @pulumi.getter(name="toPort")
     def to_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum port number.
+        """
         return pulumi.get(self, "to_port")
 
     @to_port.setter
@@ -145,6 +187,9 @@ class VpcSecurityGroupRuleArgs:
     @property
     @pulumi.getter(name="v4CidrBlocks")
     def v4_cidr_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The blocks of IPv4 addresses for this rule.
+        """
         return pulumi.get(self, "v4_cidr_blocks")
 
     @v4_cidr_blocks.setter
@@ -154,6 +199,9 @@ class VpcSecurityGroupRuleArgs:
     @property
     @pulumi.getter(name="v6CidrBlocks")
     def v6_cidr_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The blocks of IPv6 addresses for this rule. `v6_cidr_blocks` argument is currently not supported. It will be available in the future.
+        """
         return pulumi.get(self, "v6_cidr_blocks")
 
     @v6_cidr_blocks.setter
@@ -178,6 +226,18 @@ class _VpcSecurityGroupRuleState:
                  v6_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering VpcSecurityGroupRule resources.
+        :param pulumi.Input[str] description: Description of the rule.
+        :param pulumi.Input[str] direction: direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+        :param pulumi.Input[int] from_port: Minimum port number.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this rule.
+        :param pulumi.Input[int] port: Port number (if applied to a single port).
+        :param pulumi.Input[str] predefined_target: Special-purpose targets such as "self_security_group". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+        :param pulumi.Input[str] protocol: One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+        :param pulumi.Input[str] security_group_binding: ID of the security group this rule belongs to.
+        :param pulumi.Input[str] security_group_id: Target security group ID for this rule.
+        :param pulumi.Input[int] to_port: Maximum port number.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v4_cidr_blocks: The blocks of IPv4 addresses for this rule.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v6_cidr_blocks: The blocks of IPv6 addresses for this rule. `v6_cidr_blocks` argument is currently not supported. It will be available in the future.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -207,6 +267,9 @@ class _VpcSecurityGroupRuleState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the rule.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -216,6 +279,9 @@ class _VpcSecurityGroupRuleState:
     @property
     @pulumi.getter
     def direction(self) -> Optional[pulumi.Input[str]]:
+        """
+        direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+        """
         return pulumi.get(self, "direction")
 
     @direction.setter
@@ -225,6 +291,9 @@ class _VpcSecurityGroupRuleState:
     @property
     @pulumi.getter(name="fromPort")
     def from_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimum port number.
+        """
         return pulumi.get(self, "from_port")
 
     @from_port.setter
@@ -234,6 +303,9 @@ class _VpcSecurityGroupRuleState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this rule.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -243,6 +315,9 @@ class _VpcSecurityGroupRuleState:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port number (if applied to a single port).
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -252,6 +327,9 @@ class _VpcSecurityGroupRuleState:
     @property
     @pulumi.getter(name="predefinedTarget")
     def predefined_target(self) -> Optional[pulumi.Input[str]]:
+        """
+        Special-purpose targets such as "self_security_group". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+        """
         return pulumi.get(self, "predefined_target")
 
     @predefined_target.setter
@@ -261,6 +339,9 @@ class _VpcSecurityGroupRuleState:
     @property
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+        """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
@@ -270,6 +351,9 @@ class _VpcSecurityGroupRuleState:
     @property
     @pulumi.getter(name="securityGroupBinding")
     def security_group_binding(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the security group this rule belongs to.
+        """
         return pulumi.get(self, "security_group_binding")
 
     @security_group_binding.setter
@@ -279,6 +363,9 @@ class _VpcSecurityGroupRuleState:
     @property
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Target security group ID for this rule.
+        """
         return pulumi.get(self, "security_group_id")
 
     @security_group_id.setter
@@ -288,6 +375,9 @@ class _VpcSecurityGroupRuleState:
     @property
     @pulumi.getter(name="toPort")
     def to_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum port number.
+        """
         return pulumi.get(self, "to_port")
 
     @to_port.setter
@@ -297,6 +387,9 @@ class _VpcSecurityGroupRuleState:
     @property
     @pulumi.getter(name="v4CidrBlocks")
     def v4_cidr_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The blocks of IPv4 addresses for this rule.
+        """
         return pulumi.get(self, "v4_cidr_blocks")
 
     @v4_cidr_blocks.setter
@@ -306,6 +399,9 @@ class _VpcSecurityGroupRuleState:
     @property
     @pulumi.getter(name="v6CidrBlocks")
     def v6_cidr_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The blocks of IPv6 addresses for this rule. `v6_cidr_blocks` argument is currently not supported. It will be available in the future.
+        """
         return pulumi.get(self, "v6_cidr_blocks")
 
     @v6_cidr_blocks.setter
@@ -332,9 +428,59 @@ class VpcSecurityGroupRule(pulumi.CustomResource):
                  v6_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
-        Create a VpcSecurityGroupRule resource with the given unique name, props, and options.
+        Manages a single Secuirity Group Rule within the Yandex.Cloud. For more information, see the official documentation
+        of [security groups](https://cloud.yandex.com/docs/vpc/concepts/security-groups)
+        and [security group rules](https://cloud.yandex.com/docs/vpc/concepts/security-groups#rules).
+
+        > **NOTE:** There is another way to manage security group rules by `ingress` and `egress` arguments in yandex_vpc_security_group. Both ways are equivalent but not compatible now. Using in-line rules of VpcSecurityGroup with Security Group Rule resource at the same time will cause a conflict of rules configuration.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        lab_net = yandex.VpcNetwork("lab-net")
+        group1 = yandex.VpcSecurityGroup("group1",
+            description="description for my security group",
+            network_id=lab_net.id,
+            labels={
+                "my-label": "my-label-value",
+            })
+        rule1 = yandex.VpcSecurityGroupRule("rule1",
+            security_group_binding=group1.id,
+            direction="ingress",
+            description="rule1 description",
+            v4_cidr_blocks=[
+                "10.0.1.0/24",
+                "10.0.2.0/24",
+            ],
+            port=8080,
+            protocol="TCP")
+        rule2 = yandex.VpcSecurityGroupRule("rule2",
+            security_group_binding=group1.id,
+            direction="egress",
+            description="rule2 description",
+            v4_cidr_blocks=["10.0.1.0/24"],
+            from_port=8090,
+            to_port=8099,
+            protocol="UDP")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Description of the rule.
+        :param pulumi.Input[str] direction: direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+        :param pulumi.Input[int] from_port: Minimum port number.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this rule.
+        :param pulumi.Input[int] port: Port number (if applied to a single port).
+        :param pulumi.Input[str] predefined_target: Special-purpose targets such as "self_security_group". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+        :param pulumi.Input[str] protocol: One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+        :param pulumi.Input[str] security_group_binding: ID of the security group this rule belongs to.
+        :param pulumi.Input[str] security_group_id: Target security group ID for this rule.
+        :param pulumi.Input[int] to_port: Maximum port number.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v4_cidr_blocks: The blocks of IPv4 addresses for this rule.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v6_cidr_blocks: The blocks of IPv6 addresses for this rule. `v6_cidr_blocks` argument is currently not supported. It will be available in the future.
         """
         ...
     @overload
@@ -343,7 +489,45 @@ class VpcSecurityGroupRule(pulumi.CustomResource):
                  args: VpcSecurityGroupRuleArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a VpcSecurityGroupRule resource with the given unique name, props, and options.
+        Manages a single Secuirity Group Rule within the Yandex.Cloud. For more information, see the official documentation
+        of [security groups](https://cloud.yandex.com/docs/vpc/concepts/security-groups)
+        and [security group rules](https://cloud.yandex.com/docs/vpc/concepts/security-groups#rules).
+
+        > **NOTE:** There is another way to manage security group rules by `ingress` and `egress` arguments in yandex_vpc_security_group. Both ways are equivalent but not compatible now. Using in-line rules of VpcSecurityGroup with Security Group Rule resource at the same time will cause a conflict of rules configuration.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        lab_net = yandex.VpcNetwork("lab-net")
+        group1 = yandex.VpcSecurityGroup("group1",
+            description="description for my security group",
+            network_id=lab_net.id,
+            labels={
+                "my-label": "my-label-value",
+            })
+        rule1 = yandex.VpcSecurityGroupRule("rule1",
+            security_group_binding=group1.id,
+            direction="ingress",
+            description="rule1 description",
+            v4_cidr_blocks=[
+                "10.0.1.0/24",
+                "10.0.2.0/24",
+            ],
+            port=8080,
+            protocol="TCP")
+        rule2 = yandex.VpcSecurityGroupRule("rule2",
+            security_group_binding=group1.id,
+            direction="egress",
+            description="rule2 description",
+            v4_cidr_blocks=["10.0.1.0/24"],
+            from_port=8090,
+            to_port=8099,
+            protocol="UDP")
+        ```
+
         :param str resource_name: The name of the resource.
         :param VpcSecurityGroupRuleArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -425,6 +609,18 @@ class VpcSecurityGroupRule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Description of the rule.
+        :param pulumi.Input[str] direction: direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+        :param pulumi.Input[int] from_port: Minimum port number.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this rule.
+        :param pulumi.Input[int] port: Port number (if applied to a single port).
+        :param pulumi.Input[str] predefined_target: Special-purpose targets such as "self_security_group". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+        :param pulumi.Input[str] protocol: One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+        :param pulumi.Input[str] security_group_binding: ID of the security group this rule belongs to.
+        :param pulumi.Input[str] security_group_id: Target security group ID for this rule.
+        :param pulumi.Input[int] to_port: Maximum port number.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v4_cidr_blocks: The blocks of IPv4 addresses for this rule.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v6_cidr_blocks: The blocks of IPv6 addresses for this rule. `v6_cidr_blocks` argument is currently not supported. It will be available in the future.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -447,60 +643,96 @@ class VpcSecurityGroupRule(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the rule.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def direction(self) -> pulumi.Output[str]:
+        """
+        direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+        """
         return pulumi.get(self, "direction")
 
     @property
     @pulumi.getter(name="fromPort")
     def from_port(self) -> pulumi.Output[Optional[int]]:
+        """
+        Minimum port number.
+        """
         return pulumi.get(self, "from_port")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        Labels to assign to this rule.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def port(self) -> pulumi.Output[Optional[int]]:
+        """
+        Port number (if applied to a single port).
+        """
         return pulumi.get(self, "port")
 
     @property
     @pulumi.getter(name="predefinedTarget")
     def predefined_target(self) -> pulumi.Output[Optional[str]]:
+        """
+        Special-purpose targets such as "self_security_group". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+        """
         return pulumi.get(self, "predefined_target")
 
     @property
     @pulumi.getter
     def protocol(self) -> pulumi.Output[Optional[str]]:
+        """
+        One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+        """
         return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter(name="securityGroupBinding")
     def security_group_binding(self) -> pulumi.Output[str]:
+        """
+        ID of the security group this rule belongs to.
+        """
         return pulumi.get(self, "security_group_binding")
 
     @property
     @pulumi.getter(name="securityGroupId")
     def security_group_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        Target security group ID for this rule.
+        """
         return pulumi.get(self, "security_group_id")
 
     @property
     @pulumi.getter(name="toPort")
     def to_port(self) -> pulumi.Output[Optional[int]]:
+        """
+        Maximum port number.
+        """
         return pulumi.get(self, "to_port")
 
     @property
     @pulumi.getter(name="v4CidrBlocks")
     def v4_cidr_blocks(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The blocks of IPv4 addresses for this rule.
+        """
         return pulumi.get(self, "v4_cidr_blocks")
 
     @property
     @pulumi.getter(name="v6CidrBlocks")
     def v6_cidr_blocks(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        The blocks of IPv6 addresses for this rule. `v6_cidr_blocks` argument is currently not supported. It will be available in the future.
+        """
         return pulumi.get(self, "v6_cidr_blocks")
 

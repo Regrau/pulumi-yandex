@@ -21,6 +21,12 @@ class LoggingGroupArgs:
                  retention_period: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoggingGroup resource.
+        :param pulumi.Input[str] description: A description for the Yandex Cloud Logging group.
+        :param pulumi.Input[str] folder_id: ID of the folder that the Yandex Cloud Logging group belongs to.
+               It will be deduced from provider configuration if not set explicitly.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+        :param pulumi.Input[str] name: Name for the Yandex Cloud Logging group.
+        :param pulumi.Input[str] retention_period: Log entries retention period for the Yandex Cloud Logging group.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -36,6 +42,9 @@ class LoggingGroupArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description for the Yandex Cloud Logging group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -45,6 +54,10 @@ class LoggingGroupArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder that the Yandex Cloud Logging group belongs to.
+        It will be deduced from provider configuration if not set explicitly.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -54,6 +67,9 @@ class LoggingGroupArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -63,6 +79,9 @@ class LoggingGroupArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name for the Yandex Cloud Logging group.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -72,6 +91,9 @@ class LoggingGroupArgs:
     @property
     @pulumi.getter(name="retentionPeriod")
     def retention_period(self) -> Optional[pulumi.Input[str]]:
+        """
+        Log entries retention period for the Yandex Cloud Logging group.
+        """
         return pulumi.get(self, "retention_period")
 
     @retention_period.setter
@@ -92,6 +114,15 @@ class _LoggingGroupState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LoggingGroup resources.
+        :param pulumi.Input[str] cloud_id: ID of the cloud that the Yandex Cloud Logging group belong to.
+        :param pulumi.Input[str] created_at: The Yandex Cloud Logging group creation timestamp.
+        :param pulumi.Input[str] description: A description for the Yandex Cloud Logging group.
+        :param pulumi.Input[str] folder_id: ID of the folder that the Yandex Cloud Logging group belongs to.
+               It will be deduced from provider configuration if not set explicitly.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+        :param pulumi.Input[str] name: Name for the Yandex Cloud Logging group.
+        :param pulumi.Input[str] retention_period: Log entries retention period for the Yandex Cloud Logging group.
+        :param pulumi.Input[str] status: The Yandex Cloud Logging group status.
         """
         if cloud_id is not None:
             pulumi.set(__self__, "cloud_id", cloud_id)
@@ -113,6 +144,9 @@ class _LoggingGroupState:
     @property
     @pulumi.getter(name="cloudId")
     def cloud_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the cloud that the Yandex Cloud Logging group belong to.
+        """
         return pulumi.get(self, "cloud_id")
 
     @cloud_id.setter
@@ -122,6 +156,9 @@ class _LoggingGroupState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Yandex Cloud Logging group creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -131,6 +168,9 @@ class _LoggingGroupState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description for the Yandex Cloud Logging group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -140,6 +180,10 @@ class _LoggingGroupState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder that the Yandex Cloud Logging group belongs to.
+        It will be deduced from provider configuration if not set explicitly.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -149,6 +193,9 @@ class _LoggingGroupState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -158,6 +205,9 @@ class _LoggingGroupState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name for the Yandex Cloud Logging group.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -167,6 +217,9 @@ class _LoggingGroupState:
     @property
     @pulumi.getter(name="retentionPeriod")
     def retention_period(self) -> Optional[pulumi.Input[str]]:
+        """
+        Log entries retention period for the Yandex Cloud Logging group.
+        """
         return pulumi.get(self, "retention_period")
 
     @retention_period.setter
@@ -176,6 +229,9 @@ class _LoggingGroupState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Yandex Cloud Logging group status.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -195,9 +251,26 @@ class LoggingGroup(pulumi.CustomResource):
                  retention_period: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a LoggingGroup resource with the given unique name, props, and options.
+        Yandex Cloud Logging group resource. For more information, see
+        [the official documentation](https://cloud.yandex.com/en/docs/logging/concepts/log-group).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        group1 = yandex.LoggingGroup("group1", folder_id=data["yandex_resourcemanager_folder"]["test_folder"]["id"])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: A description for the Yandex Cloud Logging group.
+        :param pulumi.Input[str] folder_id: ID of the folder that the Yandex Cloud Logging group belongs to.
+               It will be deduced from provider configuration if not set explicitly.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+        :param pulumi.Input[str] name: Name for the Yandex Cloud Logging group.
+        :param pulumi.Input[str] retention_period: Log entries retention period for the Yandex Cloud Logging group.
         """
         ...
     @overload
@@ -206,7 +279,18 @@ class LoggingGroup(pulumi.CustomResource):
                  args: Optional[LoggingGroupArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a LoggingGroup resource with the given unique name, props, and options.
+        Yandex Cloud Logging group resource. For more information, see
+        [the official documentation](https://cloud.yandex.com/en/docs/logging/concepts/log-group).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        group1 = yandex.LoggingGroup("group1", folder_id=data["yandex_resourcemanager_folder"]["test_folder"]["id"])
+        ```
+
         :param str resource_name: The name of the resource.
         :param LoggingGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -269,6 +353,15 @@ class LoggingGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cloud_id: ID of the cloud that the Yandex Cloud Logging group belong to.
+        :param pulumi.Input[str] created_at: The Yandex Cloud Logging group creation timestamp.
+        :param pulumi.Input[str] description: A description for the Yandex Cloud Logging group.
+        :param pulumi.Input[str] folder_id: ID of the folder that the Yandex Cloud Logging group belongs to.
+               It will be deduced from provider configuration if not set explicitly.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+        :param pulumi.Input[str] name: Name for the Yandex Cloud Logging group.
+        :param pulumi.Input[str] retention_period: Log entries retention period for the Yandex Cloud Logging group.
+        :param pulumi.Input[str] status: The Yandex Cloud Logging group status.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -287,40 +380,65 @@ class LoggingGroup(pulumi.CustomResource):
     @property
     @pulumi.getter(name="cloudId")
     def cloud_id(self) -> pulumi.Output[str]:
+        """
+        ID of the cloud that the Yandex Cloud Logging group belong to.
+        """
         return pulumi.get(self, "cloud_id")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        The Yandex Cloud Logging group creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        A description for the Yandex Cloud Logging group.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        ID of the folder that the Yandex Cloud Logging group belongs to.
+        It will be deduced from provider configuration if not set explicitly.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name for the Yandex Cloud Logging group.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="retentionPeriod")
     def retention_period(self) -> pulumi.Output[str]:
+        """
+        Log entries retention period for the Yandex Cloud Logging group.
+        """
         return pulumi.get(self, "retention_period")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        The Yandex Cloud Logging group status.
+        """
         return pulumi.get(self, "status")
 

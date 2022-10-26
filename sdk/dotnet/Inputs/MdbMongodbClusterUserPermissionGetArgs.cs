@@ -12,11 +12,18 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbMongodbClusterUserPermissionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the database that the permission grants access to.
+        /// </summary>
         [Input("databaseName", required: true)]
         public Input<string> DatabaseName { get; set; } = null!;
 
         [Input("roles")]
         private InputList<string>? _roles;
+
+        /// <summary>
+        /// The roles of the user in this database. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/users-and-roles).
+        /// </summary>
         public InputList<string> Roles
         {
             get => _roles ?? (_roles = new InputList<string>());

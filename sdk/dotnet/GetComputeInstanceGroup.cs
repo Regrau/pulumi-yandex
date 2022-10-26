@@ -11,9 +11,15 @@ namespace Pulumi.Yandex
 {
     public static class GetComputeInstanceGroup
     {
+        /// <summary>
+        /// Get information about a Yandex Compute instance group.
+        /// </summary>
         public static Task<GetComputeInstanceGroupResult> InvokeAsync(GetComputeInstanceGroupArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetComputeInstanceGroupResult>("yandex:index/getComputeInstanceGroup:getComputeInstanceGroup", args ?? new GetComputeInstanceGroupArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Compute instance group.
+        /// </summary>
         public static Output<GetComputeInstanceGroupResult> Invoke(GetComputeInstanceGroupInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetComputeInstanceGroupResult>("yandex:index/getComputeInstanceGroup:getComputeInstanceGroup", args ?? new GetComputeInstanceGroupInvokeArgs(), options.WithDefaults());
     }
@@ -21,6 +27,9 @@ namespace Pulumi.Yandex
 
     public sealed class GetComputeInstanceGroupArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of a specific instance group.
+        /// </summary>
         [Input("instanceGroupId", required: true)]
         public string InstanceGroupId { get; set; } = null!;
 
@@ -32,6 +41,9 @@ namespace Pulumi.Yandex
 
     public sealed class GetComputeInstanceGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of a specific instance group.
+        /// </summary>
         [Input("instanceGroupId", required: true)]
         public Input<string> InstanceGroupId { get; set; } = null!;
 
@@ -45,30 +57,91 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetComputeInstanceGroupResult
     {
+        /// <summary>
+        /// The allocation policy of the instance group by zone and region. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupAllocationPolicyResult> AllocationPolicies;
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupApplicationBalancerStateResult> ApplicationBalancerStates;
+        /// <summary>
+        /// Application Load balancing (L7) specifications. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupApplicationLoadBalancerResult> ApplicationLoadBalancers;
+        /// <summary>
+        /// The instance group creation timestamp.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Flag that protects the instance group from accidental deletion.
+        /// </summary>
         public readonly bool DeletionProtection;
+        /// <summary>
+        /// The deployment policy of the instance group. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupDeployPolicyResult> DeployPolicies;
+        /// <summary>
+        /// A description of the boot disk.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+        /// </summary>
         public readonly string FolderId;
+        /// <summary>
+        /// Health check specification. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupHealthCheckResult> HealthChecks;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string InstanceGroupId;
+        /// <summary>
+        /// The instance template that the instance group belongs to. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupInstanceTemplateResult> InstanceTemplates;
+        /// <summary>
+        /// A list of instances in the specified instance group. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupInstanceResult> Instances;
+        /// <summary>
+        /// A map of labels applied to this instance.
+        /// * `resources.0.memory` - The memory size allocated to the instance.
+        /// * `resources.0.cores` - Number of CPU cores allocated to the instance.
+        /// * `resources.0.core_fraction` - Baseline core performance as a percent.
+        /// * `resources.0.gpus` - Number of GPU cores allocated to the instance.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// Information about which entities can be attached to this load balancer. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupLoadBalancerStateResult> LoadBalancerStates;
+        /// <summary>
+        /// Load balancing specification. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupLoadBalancerResult> LoadBalancers;
+        /// <summary>
+        /// Timeout for waiting for the VM to become healthy. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+        /// </summary>
         public readonly int MaxCheckingHealthDuration;
+        /// <summary>
+        /// The name of the managed instance.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The scaling policy of the instance group. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupScalePolicyResult> ScalePolicies;
+        /// <summary>
+        /// The service account ID for the instance.
+        /// </summary>
         public readonly string ServiceAccountId;
+        /// <summary>
+        /// The status of the instance.
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// A set of key/value  variables pairs to assign to the instance group.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Variables;
 
         [OutputConstructor]

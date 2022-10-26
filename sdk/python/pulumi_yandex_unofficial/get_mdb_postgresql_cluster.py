@@ -83,11 +83,17 @@ class GetMdbPostgresqlClusterResult:
     @property
     @pulumi.getter
     def configs(self) -> Sequence['outputs.GetMdbPostgresqlClusterConfigResult']:
+        """
+        Configuration of the PostgreSQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "configs")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Timestamp of cluster creation.
+        """
         return pulumi.get(self, "created_at")
 
     @property
@@ -98,11 +104,17 @@ class GetMdbPostgresqlClusterResult:
     @property
     @pulumi.getter
     def description(self) -> Optional[str]:
+        """
+        Description of the PostgreSQL cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def environment(self) -> str:
+        """
+        Deployment environment of the PostgreSQL cluster.
+        """
         return pulumi.get(self, "environment")
 
     @property
@@ -113,6 +125,9 @@ class GetMdbPostgresqlClusterResult:
     @property
     @pulumi.getter
     def health(self) -> str:
+        """
+        Aggregated health of the cluster.
+        """
         return pulumi.get(self, "health")
 
     @property
@@ -123,6 +138,9 @@ class GetMdbPostgresqlClusterResult:
     @property
     @pulumi.getter
     def hosts(self) -> Sequence['outputs.GetMdbPostgresqlClusterHostResult']:
+        """
+        A host of the PostgreSQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @property
@@ -136,11 +154,17 @@ class GetMdbPostgresqlClusterResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs to assign to the PostgreSQL cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Sequence['outputs.GetMdbPostgresqlClusterMaintenanceWindowResult']:
+        """
+        Maintenance window settings of the PostgreSQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_windows")
 
     @property
@@ -151,16 +175,25 @@ class GetMdbPostgresqlClusterResult:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
+        """
+        ID of the network, to which the PostgreSQL cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Sequence[str]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the cluster.
+        """
         return pulumi.get(self, "status")
 
 
@@ -196,7 +229,25 @@ def get_mdb_postgresql_cluster(cluster_id: Optional[str] = None,
                                name: Optional[str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMdbPostgresqlClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed PostgreSQL cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/).
+    [How to connect to the DB](https://cloud.yandex.com/en-ru/docs/managed-postgresql/quickstart#connect). To connect, use port 6432. The port number is not configurable.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_postgresql_cluster(name="test")
+    pulumi.export("fqdn", foo.hosts[0].fqdn)
+    ```
+
+
+    :param str cluster_id: The ID of the PostgreSQL cluster.
+    :param str description: Description of the PostgreSQL cluster.
+    :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+    :param str name: The name of the PostgreSQL cluster.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -235,6 +286,24 @@ def get_mdb_postgresql_cluster_output(cluster_id: Optional[pulumi.Input[Optional
                                       name: Optional[pulumi.Input[Optional[str]]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMdbPostgresqlClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed PostgreSQL cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/).
+    [How to connect to the DB](https://cloud.yandex.com/en-ru/docs/managed-postgresql/quickstart#connect). To connect, use port 6432. The port number is not configurable.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_postgresql_cluster(name="test")
+    pulumi.export("fqdn", foo.hosts[0].fqdn)
+    ```
+
+
+    :param str cluster_id: The ID of the PostgreSQL cluster.
+    :param str description: Description of the PostgreSQL cluster.
+    :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+    :param str name: The name of the PostgreSQL cluster.
     """
     ...

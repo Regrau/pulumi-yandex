@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetVpcRouteTableStaticRouteResult
     {
+        /// <summary>
+        /// Route prefix in CIDR notation.
+        /// </summary>
         public readonly string DestinationPrefix;
+        /// <summary>
+        /// ID of the gateway used as next hop.
+        /// </summary>
         public readonly string GatewayId;
+        /// <summary>
+        /// Address of the next hop.
+        /// </summary>
         public readonly string NextHopAddress;
 
         [OutputConstructor]

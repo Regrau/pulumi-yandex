@@ -13,13 +13,37 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class StorageBucketLifecycleRule
     {
+        /// <summary>
+        /// Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        /// </summary>
         public readonly int? AbortIncompleteMultipartUploadDays;
+        /// <summary>
+        /// Specifies lifecycle rule status.
+        /// </summary>
         public readonly bool Enabled;
+        /// <summary>
+        /// Specifies a period in the object's expire (documented below).
+        /// </summary>
         public readonly Outputs.StorageBucketLifecycleRuleExpiration? Expiration;
+        /// <summary>
+        /// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// Specifies when noncurrent object versions expire (documented below).
+        /// </summary>
         public readonly Outputs.StorageBucketLifecycleRuleNoncurrentVersionExpiration? NoncurrentVersionExpiration;
+        /// <summary>
+        /// Specifies when noncurrent object versions transitions (documented below).
+        /// </summary>
         public readonly ImmutableArray<Outputs.StorageBucketLifecycleRuleNoncurrentVersionTransition> NoncurrentVersionTransitions;
+        /// <summary>
+        /// Object key prefix identifying one or more objects to which the rule applies.
+        /// </summary>
         public readonly string? Prefix;
+        /// <summary>
+        /// Specifies a period in the object's transitions (documented below).
+        /// </summary>
         public readonly ImmutableArray<Outputs.StorageBucketLifecycleRuleTransition> Transitions;
 
         [OutputConstructor]

@@ -52,6 +52,9 @@ class GetMessageQueueResult:
     @property
     @pulumi.getter
     def arn(self) -> str:
+        """
+        ARN of the queue. It is used for setting up a [redrive policy](https://cloud.yandex.com/docs/message-queue/concepts/dlq). See [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/SetQueueAttributes).
+        """
         return pulumi.get(self, "arn")
 
     @property
@@ -80,6 +83,9 @@ class GetMessageQueueResult:
     @property
     @pulumi.getter
     def url(self) -> str:
+        """
+        URL of the queue.
+        """
         return pulumi.get(self, "url")
 
 
@@ -104,7 +110,21 @@ def get_message_queue(access_key: Optional[str] = None,
                       secret_key: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMessageQueueResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Message Queue. For more information about Yandex Message Queue, see
+    [Yandex.Cloud Message Queue](https://cloud.yandex.com/docs/message-queue).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    example_queue = yandex.get_message_queue(name="ymq_terraform_example")
+    ```
+
+
+    :param str name: Queue name.
+    :param str region_id: The region ID where the message queue is located.
     """
     __args__ = dict()
     __args__['accessKey'] = access_key
@@ -131,6 +151,20 @@ def get_message_queue_output(access_key: Optional[pulumi.Input[Optional[str]]] =
                              secret_key: Optional[pulumi.Input[Optional[str]]] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMessageQueueResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Message Queue. For more information about Yandex Message Queue, see
+    [Yandex.Cloud Message Queue](https://cloud.yandex.com/docs/message-queue).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    example_queue = yandex.get_message_queue(name="ymq_terraform_example")
+    ```
+
+
+    :param str name: Queue name.
+    :param str region_id: The region ID where the message queue is located.
     """
     ...

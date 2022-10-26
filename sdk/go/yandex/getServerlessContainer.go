@@ -10,6 +10,33 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex Cloud Serverless Container.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.LookupServerlessContainer(ctx, &GetServerlessContainerArgs{
+//				ContainerId: pulumi.StringRef("are1samplecontainer11"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// This data source is used to define Yandex Cloud Container that can be used by other resources.
 func LookupServerlessContainer(ctx *pulumi.Context, args *LookupServerlessContainerArgs, opts ...pulumi.InvokeOption) (*LookupServerlessContainerResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupServerlessContainerResult
@@ -22,32 +49,59 @@ func LookupServerlessContainer(ctx *pulumi.Context, args *LookupServerlessContai
 
 // A collection of arguments for invoking getServerlessContainer.
 type LookupServerlessContainerArgs struct {
-	ContainerId *string                        `pulumi:"containerId"`
-	FolderId    *string                        `pulumi:"folderId"`
-	Name        *string                        `pulumi:"name"`
-	Secrets     []GetServerlessContainerSecret `pulumi:"secrets"`
+	// Yandex Cloud Serverless Container id used to define container
+	ContainerId *string `pulumi:"containerId"`
+	// Folder ID for the Yandex Cloud Serverless Container
+	FolderId *string `pulumi:"folderId"`
+	// Yandex Cloud Serverless Container name used to define container
+	Name *string `pulumi:"name"`
+	// Secrets for Yandex Cloud Serverless Container
+	// * `image.0.url` - URL of image that deployed as Yandex Cloud Serverless Container
+	// * `image.0.work_dir` - Working directory of Yandex Cloud Serverless Container
+	// * `image.0.digest` - Digest of image that deployed as Yandex Cloud Serverless Container
+	// * `image.0.command` - List of commands of the Yandex Cloud Serverless Container
+	// * `image.0.args` - List of arguments of the Yandex Cloud Serverless Container
+	// * `image.0.environment` -  A set of key/value environment variable pairs of Yandex Cloud Serverless Container
+	Secrets []GetServerlessContainerSecret `pulumi:"secrets"`
 }
 
 // A collection of values returned by getServerlessContainer.
 type LookupServerlessContainerResult struct {
-	Concurrency      int     `pulumi:"concurrency"`
-	ContainerId      *string `pulumi:"containerId"`
-	CoreFraction     int     `pulumi:"coreFraction"`
-	Cores            int     `pulumi:"cores"`
-	CreatedAt        string  `pulumi:"createdAt"`
-	Description      string  `pulumi:"description"`
+	// Concurrency of Yandex Cloud Serverless Container
+	Concurrency int     `pulumi:"concurrency"`
+	ContainerId *string `pulumi:"containerId"`
+	// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
+	CoreFraction int `pulumi:"coreFraction"`
+	Cores        int `pulumi:"cores"`
+	// Creation timestamp of the Yandex Cloud Serverless Container
+	CreatedAt string `pulumi:"createdAt"`
+	// Description of the Yandex Cloud Serverless Container
+	Description string `pulumi:"description"`
+	// Execution timeout (duration format) of Yandex Cloud Serverless Container
 	ExecutionTimeout string  `pulumi:"executionTimeout"`
 	FolderId         *string `pulumi:"folderId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id               string                         `pulumi:"id"`
-	Images           []GetServerlessContainerImage  `pulumi:"images"`
-	Labels           map[string]string              `pulumi:"labels"`
-	Memory           int                            `pulumi:"memory"`
-	Name             *string                        `pulumi:"name"`
-	RevisionId       string                         `pulumi:"revisionId"`
-	Secrets          []GetServerlessContainerSecret `pulumi:"secrets"`
-	ServiceAccountId string                         `pulumi:"serviceAccountId"`
-	Url              string                         `pulumi:"url"`
+	Id     string                        `pulumi:"id"`
+	Images []GetServerlessContainerImage `pulumi:"images"`
+	// A set of key/value label pairs assigned to the Yandex Cloud Serverless Container
+	Labels map[string]string `pulumi:"labels"`
+	// Memory in megabytes of Yandex Cloud Serverless Container
+	Memory int     `pulumi:"memory"`
+	Name   *string `pulumi:"name"`
+	// Last revision ID of the Yandex Cloud Serverless Container
+	RevisionId string `pulumi:"revisionId"`
+	// Secrets for Yandex Cloud Serverless Container
+	// * `image.0.url` - URL of image that deployed as Yandex Cloud Serverless Container
+	// * `image.0.work_dir` - Working directory of Yandex Cloud Serverless Container
+	// * `image.0.digest` - Digest of image that deployed as Yandex Cloud Serverless Container
+	// * `image.0.command` - List of commands of the Yandex Cloud Serverless Container
+	// * `image.0.args` - List of arguments of the Yandex Cloud Serverless Container
+	// * `image.0.environment` -  A set of key/value environment variable pairs of Yandex Cloud Serverless Container
+	Secrets []GetServerlessContainerSecret `pulumi:"secrets"`
+	// Service account ID of Yandex Cloud Serverless Container
+	ServiceAccountId string `pulumi:"serviceAccountId"`
+	// Invoke URL of the Yandex Cloud Serverless Container
+	Url string `pulumi:"url"`
 }
 
 func LookupServerlessContainerOutput(ctx *pulumi.Context, args LookupServerlessContainerOutputArgs, opts ...pulumi.InvokeOption) LookupServerlessContainerResultOutput {
@@ -65,10 +119,20 @@ func LookupServerlessContainerOutput(ctx *pulumi.Context, args LookupServerlessC
 
 // A collection of arguments for invoking getServerlessContainer.
 type LookupServerlessContainerOutputArgs struct {
-	ContainerId pulumi.StringPtrInput                  `pulumi:"containerId"`
-	FolderId    pulumi.StringPtrInput                  `pulumi:"folderId"`
-	Name        pulumi.StringPtrInput                  `pulumi:"name"`
-	Secrets     GetServerlessContainerSecretArrayInput `pulumi:"secrets"`
+	// Yandex Cloud Serverless Container id used to define container
+	ContainerId pulumi.StringPtrInput `pulumi:"containerId"`
+	// Folder ID for the Yandex Cloud Serverless Container
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// Yandex Cloud Serverless Container name used to define container
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Secrets for Yandex Cloud Serverless Container
+	// * `image.0.url` - URL of image that deployed as Yandex Cloud Serverless Container
+	// * `image.0.work_dir` - Working directory of Yandex Cloud Serverless Container
+	// * `image.0.digest` - Digest of image that deployed as Yandex Cloud Serverless Container
+	// * `image.0.command` - List of commands of the Yandex Cloud Serverless Container
+	// * `image.0.args` - List of arguments of the Yandex Cloud Serverless Container
+	// * `image.0.environment` -  A set of key/value environment variable pairs of Yandex Cloud Serverless Container
+	Secrets GetServerlessContainerSecretArrayInput `pulumi:"secrets"`
 }
 
 func (LookupServerlessContainerOutputArgs) ElementType() reflect.Type {
@@ -90,6 +154,7 @@ func (o LookupServerlessContainerResultOutput) ToLookupServerlessContainerResult
 	return o
 }
 
+// Concurrency of Yandex Cloud Serverless Container
 func (o LookupServerlessContainerResultOutput) Concurrency() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) int { return v.Concurrency }).(pulumi.IntOutput)
 }
@@ -98,6 +163,7 @@ func (o LookupServerlessContainerResultOutput) ContainerId() pulumi.StringPtrOut
 	return o.ApplyT(func(v LookupServerlessContainerResult) *string { return v.ContainerId }).(pulumi.StringPtrOutput)
 }
 
+// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
 func (o LookupServerlessContainerResultOutput) CoreFraction() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) int { return v.CoreFraction }).(pulumi.IntOutput)
 }
@@ -106,14 +172,17 @@ func (o LookupServerlessContainerResultOutput) Cores() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) int { return v.Cores }).(pulumi.IntOutput)
 }
 
+// Creation timestamp of the Yandex Cloud Serverless Container
 func (o LookupServerlessContainerResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the Yandex Cloud Serverless Container
 func (o LookupServerlessContainerResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Execution timeout (duration format) of Yandex Cloud Serverless Container
 func (o LookupServerlessContainerResultOutput) ExecutionTimeout() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) string { return v.ExecutionTimeout }).(pulumi.StringOutput)
 }
@@ -131,10 +200,12 @@ func (o LookupServerlessContainerResultOutput) Images() GetServerlessContainerIm
 	return o.ApplyT(func(v LookupServerlessContainerResult) []GetServerlessContainerImage { return v.Images }).(GetServerlessContainerImageArrayOutput)
 }
 
+// A set of key/value label pairs assigned to the Yandex Cloud Serverless Container
 func (o LookupServerlessContainerResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Memory in megabytes of Yandex Cloud Serverless Container
 func (o LookupServerlessContainerResultOutput) Memory() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) int { return v.Memory }).(pulumi.IntOutput)
 }
@@ -143,18 +214,28 @@ func (o LookupServerlessContainerResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Last revision ID of the Yandex Cloud Serverless Container
 func (o LookupServerlessContainerResultOutput) RevisionId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) string { return v.RevisionId }).(pulumi.StringOutput)
 }
 
+// Secrets for Yandex Cloud Serverless Container
+// * `image.0.url` - URL of image that deployed as Yandex Cloud Serverless Container
+// * `image.0.work_dir` - Working directory of Yandex Cloud Serverless Container
+// * `image.0.digest` - Digest of image that deployed as Yandex Cloud Serverless Container
+// * `image.0.command` - List of commands of the Yandex Cloud Serverless Container
+// * `image.0.args` - List of arguments of the Yandex Cloud Serverless Container
+// * `image.0.environment` -  A set of key/value environment variable pairs of Yandex Cloud Serverless Container
 func (o LookupServerlessContainerResultOutput) Secrets() GetServerlessContainerSecretArrayOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) []GetServerlessContainerSecret { return v.Secrets }).(GetServerlessContainerSecretArrayOutput)
 }
 
+// Service account ID of Yandex Cloud Serverless Container
 func (o LookupServerlessContainerResultOutput) ServiceAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) string { return v.ServiceAccountId }).(pulumi.StringOutput)
 }
 
+// Invoke URL of the Yandex Cloud Serverless Container
 func (o LookupServerlessContainerResultOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) string { return v.Url }).(pulumi.StringOutput)
 }

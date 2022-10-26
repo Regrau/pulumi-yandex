@@ -4,6 +4,34 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## yandex\_kms\_symmetric\_key\_iam\_binding
+ *
+ * Allows creation and management of a single binding within IAM policy for
+ * an existing Yandex KMS Symmetric Key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const your_key = new yandex.KmsSymmetricKey("your-key", {folderId: "your-folder-id"});
+ * const viewer = new yandex.KmsSymmetricKeyIamBinding("viewer", {
+ *     symmetricKeyId: your_key.id,
+ *     role: "viewer",
+ *     members: ["userAccount:foo_user_id"],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `symmetric_key_id` and role, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/kmsSymmetricKeyIamBinding:KmsSymmetricKeyIamBinding viewer "symmetric_key_id viewer"
+ * ```
+ */
 export class KmsSymmetricKeyIamBinding extends pulumi.CustomResource {
     /**
      * Get an existing KmsSymmetricKeyIamBinding resource's state with the given name, ID, and optional extra
@@ -32,9 +60,22 @@ export class KmsSymmetricKeyIamBinding extends pulumi.CustomResource {
         return obj['__pulumiType'] === KmsSymmetricKeyIamBinding.__pulumiType;
     }
 
+    /**
+     * Identities that will be granted the privilege in `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+     */
     public readonly members!: pulumi.Output<string[]>;
+    /**
+     * The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+     */
     public readonly role!: pulumi.Output<string>;
     public readonly sleepAfter!: pulumi.Output<number | undefined>;
+    /**
+     * The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
+     */
     public readonly symmetricKeyId!: pulumi.Output<string>;
 
     /**
@@ -79,9 +120,22 @@ export class KmsSymmetricKeyIamBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering KmsSymmetricKeyIamBinding resources.
  */
 export interface KmsSymmetricKeyIamBindingState {
+    /**
+     * Identities that will be granted the privilege in `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+     */
     members?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+     */
     role?: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
+    /**
+     * The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
+     */
     symmetricKeyId?: pulumi.Input<string>;
 }
 
@@ -89,8 +143,21 @@ export interface KmsSymmetricKeyIamBindingState {
  * The set of arguments for constructing a KmsSymmetricKeyIamBinding resource.
  */
 export interface KmsSymmetricKeyIamBindingArgs {
+    /**
+     * Identities that will be granted the privilege in `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+     */
     members: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+     */
     role: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
+    /**
+     * The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
+     */
     symmetricKeyId: pulumi.Input<string>;
 }

@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'yandex', PLUGIN_VERSION, '--server', 'https://github/regrau/pulumi-yandex/releases'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'yandex', PLUGIN_VERSION, '--server', 'https://github.com/regrau/pulumi-yandex/releases'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""

@@ -12,9 +12,16 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class YdbDatabaseDedicatedStorageConfigArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Amount of storage groups of selected type for the Yandex Database cluster.
+        /// </summary>
         [Input("groupCount", required: true)]
         public Input<int> GroupCount { get; set; } = null!;
 
+        /// <summary>
+        /// Storage type ID for the Yandex Database cluster.
+        /// Available presets can be obtained via `yc ydb storage-type list` command.
+        /// </summary>
         [Input("storageTypeId", required: true)]
         public Input<string> StorageTypeId { get; set; } = null!;
 

@@ -9,21 +9,103 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Manages a topic of a Kafka cluster within the Yandex.Cloud. For more information, see
+    /// [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var foo = new Yandex.MdbKafkaCluster("foo", new()
+    ///     {
+    ///         NetworkId = "c64vs98keiqc7f24pvkd",
+    ///         Config = new Yandex.Inputs.MdbKafkaClusterConfigArgs
+    ///         {
+    ///             Version = "2.8",
+    ///             Zones = new[]
+    ///             {
+    ///                 "ru-central1-a",
+    ///             },
+    ///             UnmanagedTopics = true,
+    ///             Kafka = new Yandex.Inputs.MdbKafkaClusterConfigKafkaArgs
+    ///             {
+    ///                 Resources = new Yandex.Inputs.MdbKafkaClusterConfigKafkaResourcesArgs
+    ///                 {
+    ///                     ResourcePresetId = "s2.micro",
+    ///                     DiskTypeId = "network-hdd",
+    ///                     DiskSize = 16,
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var events = new Yandex.MdbKafkaTopic("events", new()
+    ///     {
+    ///         ClusterId = foo.Id,
+    ///         Partitions = 4,
+    ///         ReplicationFactor = 1,
+    ///         TopicConfig = new Yandex.Inputs.MdbKafkaTopicTopicConfigArgs
+    ///         {
+    ///             CleanupPolicy = "CLEANUP_POLICY_COMPACT",
+    ///             CompressionType = "COMPRESSION_TYPE_LZ4",
+    ///             DeleteRetentionMs = "86400000",
+    ///             FileDeleteDelayMs = "60000",
+    ///             FlushMessages = "128",
+    ///             FlushMs = "1000",
+    ///             MinCompactionLagMs = "0",
+    ///             RetentionBytes = "10737418240",
+    ///             RetentionMs = "604800000",
+    ///             MaxMessageBytes = "1048588",
+    ///             MinInsyncReplicas = "1",
+    ///             SegmentBytes = "268435456",
+    ///             Preallocate = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Kafka topic can be imported using following format
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/mdbKafkaTopic:MdbKafkaTopic foo {{cluster_id}}:{{topic_name}}
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/mdbKafkaTopic:MdbKafkaTopic")]
     public partial class MdbKafkaTopic : global::Pulumi.CustomResource
     {
         [Output("clusterId")]
         public Output<string> ClusterId { get; private set; } = null!;
 
+        /// <summary>
+        /// The name of the topic.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The number of the topic's partitions.
+        /// </summary>
         [Output("partitions")]
         public Output<int> Partitions { get; private set; } = null!;
 
+        /// <summary>
+        /// Amount of data copies (replicas) for the topic in the cluster.
+        /// </summary>
         [Output("replicationFactor")]
         public Output<int> ReplicationFactor { get; private set; } = null!;
 
+        /// <summary>
+        /// User-defined settings for the topic. The structure is documented below.
+        /// </summary>
         [Output("topicConfig")]
         public Output<Outputs.MdbKafkaTopicTopicConfig?> TopicConfig { get; private set; } = null!;
 
@@ -50,7 +132,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -77,15 +159,27 @@ namespace Pulumi.Yandex
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the topic.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The number of the topic's partitions.
+        /// </summary>
         [Input("partitions", required: true)]
         public Input<int> Partitions { get; set; } = null!;
 
+        /// <summary>
+        /// Amount of data copies (replicas) for the topic in the cluster.
+        /// </summary>
         [Input("replicationFactor", required: true)]
         public Input<int> ReplicationFactor { get; set; } = null!;
 
+        /// <summary>
+        /// User-defined settings for the topic. The structure is documented below.
+        /// </summary>
         [Input("topicConfig")]
         public Input<Inputs.MdbKafkaTopicTopicConfigArgs>? TopicConfig { get; set; }
 
@@ -100,15 +194,27 @@ namespace Pulumi.Yandex
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
+        /// <summary>
+        /// The name of the topic.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The number of the topic's partitions.
+        /// </summary>
         [Input("partitions")]
         public Input<int>? Partitions { get; set; }
 
+        /// <summary>
+        /// Amount of data copies (replicas) for the topic in the cluster.
+        /// </summary>
         [Input("replicationFactor")]
         public Input<int>? ReplicationFactor { get; set; }
 
+        /// <summary>
+        /// User-defined settings for the topic. The structure is documented below.
+        /// </summary>
         [Input("topicConfig")]
         public Input<Inputs.MdbKafkaTopicTopicConfigGetArgs>? TopicConfig { get; set; }
 

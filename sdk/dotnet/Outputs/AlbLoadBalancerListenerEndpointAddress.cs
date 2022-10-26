@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerListenerEndpointAddress
     {
+        /// <summary>
+        /// External IPv4 address. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbLoadBalancerListenerEndpointAddressExternalIpv4Address? ExternalIpv4Address;
+        /// <summary>
+        /// External IPv6 address. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbLoadBalancerListenerEndpointAddressExternalIpv6Address? ExternalIpv6Address;
+        /// <summary>
+        /// Internal IPv4 address. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbLoadBalancerListenerEndpointAddressInternalIpv4Address? InternalIpv4Address;
 
         [OutputConstructor]

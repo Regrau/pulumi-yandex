@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class KubernetesClusterKmsProvider
     {
+        /// <summary>
+        /// KMS key ID.
+        /// </summary>
         public readonly string? KeyId;
 
         [OutputConstructor]

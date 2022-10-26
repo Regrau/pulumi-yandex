@@ -11,21 +11,100 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a single Secuirity Group Rule within the Yandex.Cloud. For more information, see the official documentation
+// of [security groups](https://cloud.yandex.com/docs/vpc/concepts/security-groups)
+// and [security group rules](https://cloud.yandex.com/docs/vpc/concepts/security-groups#rules).
+//
+// > **NOTE:** There is another way to manage security group rules by `ingress` and `egress` arguments in yandex_vpc_security_group. Both ways are equivalent but not compatible now. Using in-line rules of VpcSecurityGroup with Security Group Rule resource at the same time will cause a conflict of rules configuration.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewVpcNetwork(ctx, "lab-net", nil)
+//			if err != nil {
+//				return err
+//			}
+//			group1, err := yandex.NewVpcSecurityGroup(ctx, "group1", &yandex.VpcSecurityGroupArgs{
+//				Description: pulumi.String("description for my security group"),
+//				NetworkId:   lab_net.ID(),
+//				Labels: pulumi.StringMap{
+//					"my-label": pulumi.String("my-label-value"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewVpcSecurityGroupRule(ctx, "rule1", &yandex.VpcSecurityGroupRuleArgs{
+//				SecurityGroupBinding: group1.ID(),
+//				Direction:            pulumi.String("ingress"),
+//				Description:          pulumi.String("rule1 description"),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.0.1.0/24"),
+//					pulumi.String("10.0.2.0/24"),
+//				},
+//				Port:     pulumi.Int(8080),
+//				Protocol: pulumi.String("TCP"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewVpcSecurityGroupRule(ctx, "rule2", &yandex.VpcSecurityGroupRuleArgs{
+//				SecurityGroupBinding: group1.ID(),
+//				Direction:            pulumi.String("egress"),
+//				Description:          pulumi.String("rule2 description"),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.0.1.0/24"),
+//				},
+//				FromPort: pulumi.Int(8090),
+//				ToPort:   pulumi.Int(8099),
+//				Protocol: pulumi.String("UDP"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type VpcSecurityGroupRule struct {
 	pulumi.CustomResourceState
 
-	Description          pulumi.StringPtrOutput   `pulumi:"description"`
-	Direction            pulumi.StringOutput      `pulumi:"direction"`
-	FromPort             pulumi.IntPtrOutput      `pulumi:"fromPort"`
-	Labels               pulumi.StringMapOutput   `pulumi:"labels"`
-	Port                 pulumi.IntPtrOutput      `pulumi:"port"`
-	PredefinedTarget     pulumi.StringPtrOutput   `pulumi:"predefinedTarget"`
-	Protocol             pulumi.StringPtrOutput   `pulumi:"protocol"`
-	SecurityGroupBinding pulumi.StringOutput      `pulumi:"securityGroupBinding"`
-	SecurityGroupId      pulumi.StringPtrOutput   `pulumi:"securityGroupId"`
-	ToPort               pulumi.IntPtrOutput      `pulumi:"toPort"`
-	V4CidrBlocks         pulumi.StringArrayOutput `pulumi:"v4CidrBlocks"`
-	V6CidrBlocks         pulumi.StringArrayOutput `pulumi:"v6CidrBlocks"`
+	// Description of the rule.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+	Direction pulumi.StringOutput `pulumi:"direction"`
+	// Minimum port number.
+	FromPort pulumi.IntPtrOutput `pulumi:"fromPort"`
+	// Labels to assign to this rule.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Port number (if applied to a single port).
+	Port pulumi.IntPtrOutput `pulumi:"port"`
+	// Special-purpose targets such as "selfSecurityGroup". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+	PredefinedTarget pulumi.StringPtrOutput `pulumi:"predefinedTarget"`
+	// One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+	Protocol pulumi.StringPtrOutput `pulumi:"protocol"`
+	// ID of the security group this rule belongs to.
+	SecurityGroupBinding pulumi.StringOutput `pulumi:"securityGroupBinding"`
+	// Target security group ID for this rule.
+	SecurityGroupId pulumi.StringPtrOutput `pulumi:"securityGroupId"`
+	// Maximum port number.
+	ToPort pulumi.IntPtrOutput `pulumi:"toPort"`
+	// The blocks of IPv4 addresses for this rule.
+	V4CidrBlocks pulumi.StringArrayOutput `pulumi:"v4CidrBlocks"`
+	// The blocks of IPv6 addresses for this rule. `v6CidrBlocks` argument is currently not supported. It will be available in the future.
+	V6CidrBlocks pulumi.StringArrayOutput `pulumi:"v6CidrBlocks"`
 }
 
 // NewVpcSecurityGroupRule registers a new resource with the given unique name, arguments, and options.
@@ -64,33 +143,57 @@ func GetVpcSecurityGroupRule(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcSecurityGroupRule resources.
 type vpcSecurityGroupRuleState struct {
-	Description          *string           `pulumi:"description"`
-	Direction            *string           `pulumi:"direction"`
-	FromPort             *int              `pulumi:"fromPort"`
-	Labels               map[string]string `pulumi:"labels"`
-	Port                 *int              `pulumi:"port"`
-	PredefinedTarget     *string           `pulumi:"predefinedTarget"`
-	Protocol             *string           `pulumi:"protocol"`
-	SecurityGroupBinding *string           `pulumi:"securityGroupBinding"`
-	SecurityGroupId      *string           `pulumi:"securityGroupId"`
-	ToPort               *int              `pulumi:"toPort"`
-	V4CidrBlocks         []string          `pulumi:"v4CidrBlocks"`
-	V6CidrBlocks         []string          `pulumi:"v6CidrBlocks"`
+	// Description of the rule.
+	Description *string `pulumi:"description"`
+	// direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+	Direction *string `pulumi:"direction"`
+	// Minimum port number.
+	FromPort *int `pulumi:"fromPort"`
+	// Labels to assign to this rule.
+	Labels map[string]string `pulumi:"labels"`
+	// Port number (if applied to a single port).
+	Port *int `pulumi:"port"`
+	// Special-purpose targets such as "selfSecurityGroup". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+	PredefinedTarget *string `pulumi:"predefinedTarget"`
+	// One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+	Protocol *string `pulumi:"protocol"`
+	// ID of the security group this rule belongs to.
+	SecurityGroupBinding *string `pulumi:"securityGroupBinding"`
+	// Target security group ID for this rule.
+	SecurityGroupId *string `pulumi:"securityGroupId"`
+	// Maximum port number.
+	ToPort *int `pulumi:"toPort"`
+	// The blocks of IPv4 addresses for this rule.
+	V4CidrBlocks []string `pulumi:"v4CidrBlocks"`
+	// The blocks of IPv6 addresses for this rule. `v6CidrBlocks` argument is currently not supported. It will be available in the future.
+	V6CidrBlocks []string `pulumi:"v6CidrBlocks"`
 }
 
 type VpcSecurityGroupRuleState struct {
-	Description          pulumi.StringPtrInput
-	Direction            pulumi.StringPtrInput
-	FromPort             pulumi.IntPtrInput
-	Labels               pulumi.StringMapInput
-	Port                 pulumi.IntPtrInput
-	PredefinedTarget     pulumi.StringPtrInput
-	Protocol             pulumi.StringPtrInput
+	// Description of the rule.
+	Description pulumi.StringPtrInput
+	// direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+	Direction pulumi.StringPtrInput
+	// Minimum port number.
+	FromPort pulumi.IntPtrInput
+	// Labels to assign to this rule.
+	Labels pulumi.StringMapInput
+	// Port number (if applied to a single port).
+	Port pulumi.IntPtrInput
+	// Special-purpose targets such as "selfSecurityGroup". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+	PredefinedTarget pulumi.StringPtrInput
+	// One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+	Protocol pulumi.StringPtrInput
+	// ID of the security group this rule belongs to.
 	SecurityGroupBinding pulumi.StringPtrInput
-	SecurityGroupId      pulumi.StringPtrInput
-	ToPort               pulumi.IntPtrInput
-	V4CidrBlocks         pulumi.StringArrayInput
-	V6CidrBlocks         pulumi.StringArrayInput
+	// Target security group ID for this rule.
+	SecurityGroupId pulumi.StringPtrInput
+	// Maximum port number.
+	ToPort pulumi.IntPtrInput
+	// The blocks of IPv4 addresses for this rule.
+	V4CidrBlocks pulumi.StringArrayInput
+	// The blocks of IPv6 addresses for this rule. `v6CidrBlocks` argument is currently not supported. It will be available in the future.
+	V6CidrBlocks pulumi.StringArrayInput
 }
 
 func (VpcSecurityGroupRuleState) ElementType() reflect.Type {
@@ -98,34 +201,58 @@ func (VpcSecurityGroupRuleState) ElementType() reflect.Type {
 }
 
 type vpcSecurityGroupRuleArgs struct {
-	Description          *string           `pulumi:"description"`
-	Direction            string            `pulumi:"direction"`
-	FromPort             *int              `pulumi:"fromPort"`
-	Labels               map[string]string `pulumi:"labels"`
-	Port                 *int              `pulumi:"port"`
-	PredefinedTarget     *string           `pulumi:"predefinedTarget"`
-	Protocol             *string           `pulumi:"protocol"`
-	SecurityGroupBinding string            `pulumi:"securityGroupBinding"`
-	SecurityGroupId      *string           `pulumi:"securityGroupId"`
-	ToPort               *int              `pulumi:"toPort"`
-	V4CidrBlocks         []string          `pulumi:"v4CidrBlocks"`
-	V6CidrBlocks         []string          `pulumi:"v6CidrBlocks"`
+	// Description of the rule.
+	Description *string `pulumi:"description"`
+	// direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+	Direction string `pulumi:"direction"`
+	// Minimum port number.
+	FromPort *int `pulumi:"fromPort"`
+	// Labels to assign to this rule.
+	Labels map[string]string `pulumi:"labels"`
+	// Port number (if applied to a single port).
+	Port *int `pulumi:"port"`
+	// Special-purpose targets such as "selfSecurityGroup". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+	PredefinedTarget *string `pulumi:"predefinedTarget"`
+	// One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+	Protocol *string `pulumi:"protocol"`
+	// ID of the security group this rule belongs to.
+	SecurityGroupBinding string `pulumi:"securityGroupBinding"`
+	// Target security group ID for this rule.
+	SecurityGroupId *string `pulumi:"securityGroupId"`
+	// Maximum port number.
+	ToPort *int `pulumi:"toPort"`
+	// The blocks of IPv4 addresses for this rule.
+	V4CidrBlocks []string `pulumi:"v4CidrBlocks"`
+	// The blocks of IPv6 addresses for this rule. `v6CidrBlocks` argument is currently not supported. It will be available in the future.
+	V6CidrBlocks []string `pulumi:"v6CidrBlocks"`
 }
 
 // The set of arguments for constructing a VpcSecurityGroupRule resource.
 type VpcSecurityGroupRuleArgs struct {
-	Description          pulumi.StringPtrInput
-	Direction            pulumi.StringInput
-	FromPort             pulumi.IntPtrInput
-	Labels               pulumi.StringMapInput
-	Port                 pulumi.IntPtrInput
-	PredefinedTarget     pulumi.StringPtrInput
-	Protocol             pulumi.StringPtrInput
+	// Description of the rule.
+	Description pulumi.StringPtrInput
+	// direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+	Direction pulumi.StringInput
+	// Minimum port number.
+	FromPort pulumi.IntPtrInput
+	// Labels to assign to this rule.
+	Labels pulumi.StringMapInput
+	// Port number (if applied to a single port).
+	Port pulumi.IntPtrInput
+	// Special-purpose targets such as "selfSecurityGroup". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+	PredefinedTarget pulumi.StringPtrInput
+	// One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+	Protocol pulumi.StringPtrInput
+	// ID of the security group this rule belongs to.
 	SecurityGroupBinding pulumi.StringInput
-	SecurityGroupId      pulumi.StringPtrInput
-	ToPort               pulumi.IntPtrInput
-	V4CidrBlocks         pulumi.StringArrayInput
-	V6CidrBlocks         pulumi.StringArrayInput
+	// Target security group ID for this rule.
+	SecurityGroupId pulumi.StringPtrInput
+	// Maximum port number.
+	ToPort pulumi.IntPtrInput
+	// The blocks of IPv4 addresses for this rule.
+	V4CidrBlocks pulumi.StringArrayInput
+	// The blocks of IPv6 addresses for this rule. `v6CidrBlocks` argument is currently not supported. It will be available in the future.
+	V6CidrBlocks pulumi.StringArrayInput
 }
 
 func (VpcSecurityGroupRuleArgs) ElementType() reflect.Type {
@@ -215,50 +342,62 @@ func (o VpcSecurityGroupRuleOutput) ToVpcSecurityGroupRuleOutputWithContext(ctx 
 	return o
 }
 
+// Description of the rule.
 func (o VpcSecurityGroupRuleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcSecurityGroupRule) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
 func (o VpcSecurityGroupRuleOutput) Direction() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcSecurityGroupRule) pulumi.StringOutput { return v.Direction }).(pulumi.StringOutput)
 }
 
+// Minimum port number.
 func (o VpcSecurityGroupRuleOutput) FromPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *VpcSecurityGroupRule) pulumi.IntPtrOutput { return v.FromPort }).(pulumi.IntPtrOutput)
 }
 
+// Labels to assign to this rule.
 func (o VpcSecurityGroupRuleOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *VpcSecurityGroupRule) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Port number (if applied to a single port).
 func (o VpcSecurityGroupRuleOutput) Port() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *VpcSecurityGroupRule) pulumi.IntPtrOutput { return v.Port }).(pulumi.IntPtrOutput)
 }
 
+// Special-purpose targets such as "selfSecurityGroup". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
 func (o VpcSecurityGroupRuleOutput) PredefinedTarget() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcSecurityGroupRule) pulumi.StringPtrOutput { return v.PredefinedTarget }).(pulumi.StringPtrOutput)
 }
 
+// One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
 func (o VpcSecurityGroupRuleOutput) Protocol() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcSecurityGroupRule) pulumi.StringPtrOutput { return v.Protocol }).(pulumi.StringPtrOutput)
 }
 
+// ID of the security group this rule belongs to.
 func (o VpcSecurityGroupRuleOutput) SecurityGroupBinding() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcSecurityGroupRule) pulumi.StringOutput { return v.SecurityGroupBinding }).(pulumi.StringOutput)
 }
 
+// Target security group ID for this rule.
 func (o VpcSecurityGroupRuleOutput) SecurityGroupId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcSecurityGroupRule) pulumi.StringPtrOutput { return v.SecurityGroupId }).(pulumi.StringPtrOutput)
 }
 
+// Maximum port number.
 func (o VpcSecurityGroupRuleOutput) ToPort() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *VpcSecurityGroupRule) pulumi.IntPtrOutput { return v.ToPort }).(pulumi.IntPtrOutput)
 }
 
+// The blocks of IPv4 addresses for this rule.
 func (o VpcSecurityGroupRuleOutput) V4CidrBlocks() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VpcSecurityGroupRule) pulumi.StringArrayOutput { return v.V4CidrBlocks }).(pulumi.StringArrayOutput)
 }
 
+// The blocks of IPv6 addresses for this rule. `v6CidrBlocks` argument is currently not supported. It will be available in the future.
 func (o VpcSecurityGroupRuleOutput) V6CidrBlocks() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VpcSecurityGroupRule) pulumi.StringArrayOutput { return v.V6CidrBlocks }).(pulumi.StringArrayOutput)
 }

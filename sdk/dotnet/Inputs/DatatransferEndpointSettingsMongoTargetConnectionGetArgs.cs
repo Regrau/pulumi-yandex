@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsMongoTargetConnectionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Connection options. The structure is documented below.
+        /// </summary>
         [Input("connectionOptions")]
         public Input<Inputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsGetArgs>? ConnectionOptions { get; set; }
 

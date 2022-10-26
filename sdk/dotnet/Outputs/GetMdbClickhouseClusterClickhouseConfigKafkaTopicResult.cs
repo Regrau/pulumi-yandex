@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbClickhouseClusterClickhouseConfigKafkaTopicResult
     {
+        /// <summary>
+        /// The name of the ClickHouse cluster.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Kafka connection settngs sanem as `kafka` block.
+        /// </summary>
         public readonly Outputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsResult? Settings;
 
         [OutputConstructor]

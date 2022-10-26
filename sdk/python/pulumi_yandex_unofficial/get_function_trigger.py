@@ -72,26 +72,48 @@ class GetFunctionTriggerResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of the Yandex Cloud Functions Trigger
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the Yandex Cloud Functions Trigger
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def dlqs(self) -> Sequence['outputs.GetFunctionTriggerDlqResult']:
+        """
+        Dead Letter Queue settings definition for Yandex Cloud Functions Trigger
+        * `dlq.0.queue_id` - ID of Dead Letter Queue for Trigger (Queue ARN)
+        * `dlq.0.service_account_id` - Service Account ID for Dead Letter Queue for Yandex Cloud Functions Trigger
+        """
         return pulumi.get(self, "dlqs")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[str]:
+        """
+        Folder ID for the Yandex Cloud Functions Trigger
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def functions(self) -> Sequence['outputs.GetFunctionTriggerFunctionResult']:
+        """
+        [Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger
+        * `function.0.id` - Yandex.Cloud Function ID for Yandex Cloud Functions Trigger
+        * `function.0.service_account_id` - Service account ID for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+        * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+        * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+        * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+        """
         return pulumi.get(self, "functions")
 
     @property
@@ -105,11 +127,20 @@ class GetFunctionTriggerResult:
     @property
     @pulumi.getter
     def iots(self) -> Sequence['outputs.GetFunctionTriggerIotResult']:
+        """
+        [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+        * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
+        * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
+        * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+        """
         return pulumi.get(self, "iots")
 
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -125,6 +156,14 @@ class GetFunctionTriggerResult:
     @property
     @pulumi.getter(name="messageQueues")
     def message_queues(self) -> Sequence['outputs.GetFunctionTriggerMessageQueueResult']:
+        """
+        [Message Queue](https://cloud.yandex.com/docs/functions/concepts/trigger/ymq-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+        * `message_queue.0.queue_id` - Message Queue ID for Yandex Cloud Functions Trigger
+        * `message_queue.0.service_account_id` - Message Queue Service Account ID for Yandex Cloud Functions Trigger
+        * `message_queue.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+        * `message_queue.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
+        * `message_queue.0.visibility_timeout` - Visibility timeout for Yandex Cloud Functions Trigger
+        """
         return pulumi.get(self, "message_queues")
 
     @property
@@ -135,11 +174,24 @@ class GetFunctionTriggerResult:
     @property
     @pulumi.getter(name="objectStorages")
     def object_storages(self) -> Sequence['outputs.GetFunctionTriggerObjectStorageResult']:
+        """
+        [Object Storage](https://cloud.yandex.com/docs/functions/concepts/trigger/os-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+        * `object_storage.0.bucket_id` - Object Storage Bucket ID for Yandex Cloud Functions Trigger
+        * `object_storage.0.prefix` - Prefix for Object Storage for Yandex Cloud Functions Trigger
+        * `object_storage.0.suffix` - Suffix for Object Storage for Yandex Cloud Functions Trigger
+        * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
+        * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
+        * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
+        """
         return pulumi.get(self, "object_storages")
 
     @property
     @pulumi.getter
     def timers(self) -> Sequence['outputs.GetFunctionTriggerTimerResult']:
+        """
+        [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
+        * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+        """
         return pulumi.get(self, "timers")
 
     @property
@@ -176,7 +228,22 @@ def get_function_trigger(folder_id: Optional[str] = None,
                          trigger_id: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionTriggerResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Cloud Function Trigger. For more information about Yandex Cloud Functions, see
+    [Yandex Cloud Functions](https://cloud.yandex.com/docs/functions/).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_trigger = yandex.get_function_trigger(trigger_id="are1sampletrigger11")
+    ```
+
+    This data source is used to define [Yandex Cloud Functions Trigger](https://cloud.yandex.com/docs/functions/concepts/trigger) that can be used by other resources.
+
+
+    :param str folder_id: Folder ID for the Yandex Cloud Functions Trigger
+    :param str name: Yandex Cloud Functions Trigger name used to define trigger
+    :param str trigger_id: Yandex Cloud Functions Trigger id used to define trigger
     """
     __args__ = dict()
     __args__['folderId'] = folder_id
@@ -209,6 +276,21 @@ def get_function_trigger_output(folder_id: Optional[pulumi.Input[Optional[str]]]
                                 trigger_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFunctionTriggerResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Cloud Function Trigger. For more information about Yandex Cloud Functions, see
+    [Yandex Cloud Functions](https://cloud.yandex.com/docs/functions/).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_trigger = yandex.get_function_trigger(trigger_id="are1sampletrigger11")
+    ```
+
+    This data source is used to define [Yandex Cloud Functions Trigger](https://cloud.yandex.com/docs/functions/concepts/trigger) that can be used by other resources.
+
+
+    :param str folder_id: Folder ID for the Yandex Cloud Functions Trigger
+    :param str name: Yandex Cloud Functions Trigger name used to define trigger
+    :param str trigger_id: Yandex Cloud Functions Trigger id used to define trigger
     """
     ...

@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class ComputeInstanceGroupInstanceTemplateNetworkSettingGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Network acceleration type. By default a network is in `STANDARD` mode.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 

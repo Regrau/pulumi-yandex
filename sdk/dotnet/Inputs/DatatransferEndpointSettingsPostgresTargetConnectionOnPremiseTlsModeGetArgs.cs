@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Empty block designating that the connection is not secured, i.e. plaintext connection.
+        /// </summary>
         [Input("disabled")]
         public Input<Inputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeDisabledGetArgs>? Disabled { get; set; }
 
+        /// <summary>
+        /// If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        /// </summary>
         [Input("enabled")]
         public Input<Inputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeEnabledGetArgs>? Enabled { get; set; }
 

@@ -13,12 +13,33 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class KubernetesNodeGroupInstanceTemplateNetworkInterface
     {
+        /// <summary>
+        /// Allocate an IPv4 address for the interface. The default value is `true`.
+        /// </summary>
         public readonly bool? Ipv4;
+        /// <summary>
+        /// List of configurations for creating ipv4 DNS records. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecord> Ipv4DnsRecords;
+        /// <summary>
+        /// If true, allocate an IPv6 address for the interface. The address will be automatically assigned from the specified subnet.
+        /// </summary>
         public readonly bool? Ipv6;
+        /// <summary>
+        /// List of configurations for creating ipv6 DNS records. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord> Ipv6DnsRecords;
+        /// <summary>
+        /// A public address that can be used to access the internet over NAT.
+        /// </summary>
         public readonly bool? Nat;
+        /// <summary>
+        /// Security group ids for network interface.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// The IDs of the subnets.
+        /// </summary>
         public readonly ImmutableArray<string> SubnetIds;
 
         [OutputConstructor]

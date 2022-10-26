@@ -11,9 +11,69 @@ namespace Pulumi.Yandex
 {
     public static class GetOrganizationmanagerSamlFederation
     {
+        /// <summary>
+        /// Get information about a Yandex SAML Federation. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/organization/add-federation).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var federation = Yandex.GetOrganizationmanagerSamlFederation.Invoke(new()
+        ///     {
+        ///         FederationId = "some_federation_id",
+        ///         OrganizationId = "some_organization_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["myFederation.name"] = federation.Apply(getOrganizationmanagerSamlFederationResult =&gt; getOrganizationmanagerSamlFederationResult.Name),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetOrganizationmanagerSamlFederationResult> InvokeAsync(GetOrganizationmanagerSamlFederationArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationmanagerSamlFederationResult>("yandex:index/getOrganizationmanagerSamlFederation:getOrganizationmanagerSamlFederation", args ?? new GetOrganizationmanagerSamlFederationArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex SAML Federation. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/organization/add-federation).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var federation = Yandex.GetOrganizationmanagerSamlFederation.Invoke(new()
+        ///     {
+        ///         FederationId = "some_federation_id",
+        ///         OrganizationId = "some_organization_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["myFederation.name"] = federation.Apply(getOrganizationmanagerSamlFederationResult =&gt; getOrganizationmanagerSamlFederationResult.Name),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetOrganizationmanagerSamlFederationResult> Invoke(GetOrganizationmanagerSamlFederationInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetOrganizationmanagerSamlFederationResult>("yandex:index/getOrganizationmanagerSamlFederation:getOrganizationmanagerSamlFederation", args ?? new GetOrganizationmanagerSamlFederationInvokeArgs(), options.WithDefaults());
     }
@@ -21,20 +81,33 @@ namespace Pulumi.Yandex
 
     public sealed class GetOrganizationmanagerSamlFederationArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of a SAML Federation.
+        /// </summary>
         [Input("federationId")]
         public string? FederationId { get; set; }
 
         [Input("labels")]
         private Dictionary<string, string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs assigned to the SAML Federation.
+        /// </summary>
         public Dictionary<string, string> Labels
         {
             get => _labels ?? (_labels = new Dictionary<string, string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of a SAML Federation.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Organization that the federation belongs to. If value is omitted, the default provider organization is used.
+        /// </summary>
         [Input("organizationId")]
         public string? OrganizationId { get; set; }
 
@@ -46,20 +119,33 @@ namespace Pulumi.Yandex
 
     public sealed class GetOrganizationmanagerSamlFederationInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of a SAML Federation.
+        /// </summary>
         [Input("federationId")]
         public Input<string>? FederationId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs assigned to the SAML Federation.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of a SAML Federation.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Organization that the federation belongs to. If value is omitted, the default provider organization is used.
+        /// </summary>
         [Input("organizationId")]
         public Input<string>? OrganizationId { get; set; }
 
@@ -73,22 +159,52 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetOrganizationmanagerSamlFederationResult
     {
+        /// <summary>
+        /// Indicates whether new users get added automatically on successful authentication.
+        /// </summary>
         public readonly bool AutoCreateAccountOnLogin;
+        /// <summary>
+        /// Indicates whether case-insensitive name ids are in use.
+        /// </summary>
         public readonly bool CaseInsensitiveNameIds;
+        /// <summary>
+        /// The lifetime of a Browser cookie in seconds.
+        /// </summary>
         public readonly string CookieMaxAge;
+        /// <summary>
+        /// The SAML Federation creation timestamp.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// The description of the SAML Federation.
+        /// </summary>
         public readonly string Description;
         public readonly string FederationId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// The ID of the IdP server used for authentication.
+        /// </summary>
         public readonly string Issuer;
+        /// <summary>
+        /// A set of key/value label pairs assigned to the SAML Federation.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
         public readonly string Name;
         public readonly string? OrganizationId;
+        /// <summary>
+        /// Federation security settings, structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetOrganizationmanagerSamlFederationSecuritySettingResult> SecuritySettings;
+        /// <summary>
+        /// Single sign-on endpoint binding type.
+        /// </summary>
         public readonly string SsoBinding;
+        /// <summary>
+        /// Single sign-on endpoint URL.
+        /// </summary>
         public readonly string SsoUrl;
 
         [OutputConstructor]

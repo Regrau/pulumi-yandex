@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterClickhouseGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Main ClickHouse cluster configuration.
+        /// </summary>
         [Input("config")]
         public Input<Inputs.MdbClickhouseClusterClickhouseConfigGetArgs>? Config { get; set; }
 
+        /// <summary>
+        /// Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        /// </summary>
         [Input("resources", required: true)]
         public Input<Inputs.MdbClickhouseClusterClickhouseResourcesGetArgs> Resources { get; set; } = null!;
 

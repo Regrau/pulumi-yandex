@@ -11,9 +11,67 @@ namespace Pulumi.Yandex
 {
     public static class GetComputeInstance
     {
+        /// <summary>
+        /// Get information about a Yandex Compute instance. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/vm).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myInstance = Yandex.GetComputeInstance.Invoke(new()
+        ///     {
+        ///         InstanceId = "some_instance_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["instanceExternalIp"] = myInstance.Apply(getComputeInstanceResult =&gt; getComputeInstanceResult.NetworkInterfaces[0]?.NatIpAddress),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetComputeInstanceResult> InvokeAsync(GetComputeInstanceArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetComputeInstanceResult>("yandex:index/getComputeInstance:getComputeInstance", args ?? new GetComputeInstanceArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Compute instance. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/vm).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myInstance = Yandex.GetComputeInstance.Invoke(new()
+        ///     {
+        ///         InstanceId = "some_instance_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["instanceExternalIp"] = myInstance.Apply(getComputeInstanceResult =&gt; getComputeInstanceResult.NetworkInterfaces[0]?.NatIpAddress),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetComputeInstanceResult> Invoke(GetComputeInstanceInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetComputeInstanceResult>("yandex:index/getComputeInstance:getComputeInstance", args ?? new GetComputeInstanceInvokeArgs(), options.WithDefaults());
     }
@@ -21,23 +79,39 @@ namespace Pulumi.Yandex
 
     public sealed class GetComputeInstanceArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// The ID of a specific instance.
+        /// </summary>
         [Input("instanceId")]
         public string? InstanceId { get; set; }
 
         [Input("localDisks")]
         private List<Inputs.GetComputeInstanceLocalDiskArgs>? _localDisks;
+
+        /// <summary>
+        /// List of local disks that are attached to the instance. Structure is documented below.
+        /// </summary>
         public List<Inputs.GetComputeInstanceLocalDiskArgs> LocalDisks
         {
             get => _localDisks ?? (_localDisks = new List<Inputs.GetComputeInstanceLocalDiskArgs>());
             set => _localDisks = value;
         }
 
+        /// <summary>
+        /// Name of the instance.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// The placement policy configuration. The structure is documented below.
+        /// </summary>
         [Input("placementPolicy")]
         public Inputs.GetComputeInstancePlacementPolicyArgs? PlacementPolicy { get; set; }
 
@@ -49,23 +123,39 @@ namespace Pulumi.Yandex
 
     public sealed class GetComputeInstanceInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// The ID of a specific instance.
+        /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
 
         [Input("localDisks")]
         private InputList<Inputs.GetComputeInstanceLocalDiskInputArgs>? _localDisks;
+
+        /// <summary>
+        /// List of local disks that are attached to the instance. Structure is documented below.
+        /// </summary>
         public InputList<Inputs.GetComputeInstanceLocalDiskInputArgs> LocalDisks
         {
             get => _localDisks ?? (_localDisks = new InputList<Inputs.GetComputeInstanceLocalDiskInputArgs>());
             set => _localDisks = value;
         }
 
+        /// <summary>
+        /// Name of the instance.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The placement policy configuration. The structure is documented below.
+        /// </summary>
         [Input("placementPolicy")]
         public Input<Inputs.GetComputeInstancePlacementPolicyInputArgs>? PlacementPolicy { get; set; }
 
@@ -79,29 +169,87 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetComputeInstanceResult
     {
+        /// <summary>
+        /// The boot disk for the instance. Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceBootDiskResult> BootDisks;
+        /// <summary>
+        /// Instance creation timestamp.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Description of the boot disk.
+        /// </summary>
         public readonly string Description;
         public readonly string FolderId;
+        /// <summary>
+        /// DNS record FQDN.
+        /// </summary>
         public readonly string Fqdn;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         public readonly string InstanceId;
+        /// <summary>
+        /// A set of key/value label pairs assigned to the instance.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// List of local disks that are attached to the instance. Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceLocalDiskResult> LocalDisks;
+        /// <summary>
+        /// Metadata key/value pairs to make available from
+        /// within the instance.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Metadata;
+        /// <summary>
+        /// Name of the boot disk.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
+        /// </summary>
         public readonly string NetworkAccelerationType;
+        /// <summary>
+        /// The networks attached to the instance. Structure is documented below.
+        /// * `network_interface.0.ip_address` - An internal IP address of the instance, either manually or dynamically assigned.
+        /// * `network_interface.0.nat_ip_address` - An assigned external IP address if the instance has NAT enabled.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceNetworkInterfaceResult> NetworkInterfaces;
+        /// <summary>
+        /// The placement policy configuration. The structure is documented below.
+        /// </summary>
         public readonly Outputs.GetComputeInstancePlacementPolicyResult? PlacementPolicy;
+        /// <summary>
+        /// Type of virtual machine to create. Default is 'standard-v1'.
+        /// </summary>
         public readonly string PlatformId;
         public readonly ImmutableArray<Outputs.GetComputeInstanceResourceResult> Resources;
+        /// <summary>
+        /// Scheduling policy configuration. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceSchedulingPolicyResult> SchedulingPolicies;
+        /// <summary>
+        /// List of secondary disks attached to the instance. Structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceSecondaryDiskResult> SecondaryDisks;
+        /// <summary>
+        /// ID of the service account authorized for this instance.
+        /// </summary>
         public readonly string ServiceAccountId;
+        /// <summary>
+        /// Status of the instance.
+        /// * `resources.0.memory` - Memory size allocated for the instance.
+        /// * `resources.0.cores` - Number of CPU cores allocated for the instance.
+        /// * `resources.0.core_fraction` - Baseline performance for a core, set as a percent.
+        /// * `resources.0.gpus` - Number of GPU cores allocated for the instance.
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// Availability zone where the instance resides.
+        /// </summary>
         public readonly string Zone;
 
         [OutputConstructor]

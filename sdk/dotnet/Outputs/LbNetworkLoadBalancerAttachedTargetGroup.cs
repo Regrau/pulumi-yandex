@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class LbNetworkLoadBalancerAttachedTargetGroup
     {
+        /// <summary>
+        /// A HealthCheck resource. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheck> Healthchecks;
+        /// <summary>
+        /// ID of the target group.
+        /// </summary>
         public readonly string TargetGroupId;
 
         [OutputConstructor]

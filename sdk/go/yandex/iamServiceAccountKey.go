@@ -11,19 +11,63 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of [Yandex.Cloud IAM service account authorized keys](https://cloud.yandex.com/docs/iam/concepts/authorization/key).
+// Generated pair of keys is used to create a [JSON Web Token](https://tools.ietf.org/html/rfc7519) which is necessary for requesting an [IAM Token](https://cloud.yandex.com/docs/iam/concepts/authorization/iam-token) for a [service account](https://cloud.yandex.com/docs/iam/concepts/users/service-accounts).
+//
+// ## Example Usage
+//
+// This snippet creates an authorized keys pair.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewIamServiceAccountKey(ctx, "sa-auth-key", &yandex.IamServiceAccountKeyArgs{
+//				Description:      pulumi.String("key for service account"),
+//				KeyAlgorithm:     pulumi.String("RSA_4096"),
+//				PgpKey:           pulumi.String("keybase:keybaseusername"),
+//				ServiceAccountId: pulumi.String("some_sa_id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type IamServiceAccountKey struct {
 	pulumi.CustomResourceState
 
-	CreatedAt           pulumi.StringOutput    `pulumi:"createdAt"`
-	Description         pulumi.StringPtrOutput `pulumi:"description"`
-	EncryptedPrivateKey pulumi.StringOutput    `pulumi:"encryptedPrivateKey"`
-	Format              pulumi.StringPtrOutput `pulumi:"format"`
-	KeyAlgorithm        pulumi.StringPtrOutput `pulumi:"keyAlgorithm"`
-	KeyFingerprint      pulumi.StringOutput    `pulumi:"keyFingerprint"`
-	PgpKey              pulumi.StringPtrOutput `pulumi:"pgpKey"`
-	PrivateKey          pulumi.StringOutput    `pulumi:"privateKey"`
-	PublicKey           pulumi.StringOutput    `pulumi:"publicKey"`
-	ServiceAccountId    pulumi.StringOutput    `pulumi:"serviceAccountId"`
+	// Creation timestamp of the static access key.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// The description of the key pair.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The encrypted private key, base64 encoded. This is only populated when `pgpKey` is supplied.
+	EncryptedPrivateKey pulumi.StringOutput `pulumi:"encryptedPrivateKey"`
+	// The output format of the keys. `PEM_FILE` is the default format.
+	Format pulumi.StringPtrOutput `pulumi:"format"`
+	// The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+	// Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+	KeyAlgorithm pulumi.StringPtrOutput `pulumi:"keyAlgorithm"`
+	// The fingerprint of the PGP key used to encrypt the private key. This is only populated when `pgpKey` is supplied.
+	KeyFingerprint pulumi.StringOutput `pulumi:"keyFingerprint"`
+	// An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey pulumi.StringPtrOutput `pulumi:"pgpKey"`
+	// The private key. This is only populated when no `pgpKey` is provided.
+	PrivateKey pulumi.StringOutput `pulumi:"privateKey"`
+	// The public key.
+	PublicKey pulumi.StringOutput `pulumi:"publicKey"`
+	// ID of the service account to create a pair for.
+	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
 }
 
 // NewIamServiceAccountKey registers a new resource with the given unique name, arguments, and options.
@@ -59,29 +103,51 @@ func GetIamServiceAccountKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IamServiceAccountKey resources.
 type iamServiceAccountKeyState struct {
-	CreatedAt           *string `pulumi:"createdAt"`
-	Description         *string `pulumi:"description"`
+	// Creation timestamp of the static access key.
+	CreatedAt *string `pulumi:"createdAt"`
+	// The description of the key pair.
+	Description *string `pulumi:"description"`
+	// The encrypted private key, base64 encoded. This is only populated when `pgpKey` is supplied.
 	EncryptedPrivateKey *string `pulumi:"encryptedPrivateKey"`
-	Format              *string `pulumi:"format"`
-	KeyAlgorithm        *string `pulumi:"keyAlgorithm"`
-	KeyFingerprint      *string `pulumi:"keyFingerprint"`
-	PgpKey              *string `pulumi:"pgpKey"`
-	PrivateKey          *string `pulumi:"privateKey"`
-	PublicKey           *string `pulumi:"publicKey"`
-	ServiceAccountId    *string `pulumi:"serviceAccountId"`
+	// The output format of the keys. `PEM_FILE` is the default format.
+	Format *string `pulumi:"format"`
+	// The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+	// Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+	KeyAlgorithm *string `pulumi:"keyAlgorithm"`
+	// The fingerprint of the PGP key used to encrypt the private key. This is only populated when `pgpKey` is supplied.
+	KeyFingerprint *string `pulumi:"keyFingerprint"`
+	// An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey *string `pulumi:"pgpKey"`
+	// The private key. This is only populated when no `pgpKey` is provided.
+	PrivateKey *string `pulumi:"privateKey"`
+	// The public key.
+	PublicKey *string `pulumi:"publicKey"`
+	// ID of the service account to create a pair for.
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
 }
 
 type IamServiceAccountKeyState struct {
-	CreatedAt           pulumi.StringPtrInput
-	Description         pulumi.StringPtrInput
+	// Creation timestamp of the static access key.
+	CreatedAt pulumi.StringPtrInput
+	// The description of the key pair.
+	Description pulumi.StringPtrInput
+	// The encrypted private key, base64 encoded. This is only populated when `pgpKey` is supplied.
 	EncryptedPrivateKey pulumi.StringPtrInput
-	Format              pulumi.StringPtrInput
-	KeyAlgorithm        pulumi.StringPtrInput
-	KeyFingerprint      pulumi.StringPtrInput
-	PgpKey              pulumi.StringPtrInput
-	PrivateKey          pulumi.StringPtrInput
-	PublicKey           pulumi.StringPtrInput
-	ServiceAccountId    pulumi.StringPtrInput
+	// The output format of the keys. `PEM_FILE` is the default format.
+	Format pulumi.StringPtrInput
+	// The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+	// Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+	KeyAlgorithm pulumi.StringPtrInput
+	// The fingerprint of the PGP key used to encrypt the private key. This is only populated when `pgpKey` is supplied.
+	KeyFingerprint pulumi.StringPtrInput
+	// An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey pulumi.StringPtrInput
+	// The private key. This is only populated when no `pgpKey` is provided.
+	PrivateKey pulumi.StringPtrInput
+	// The public key.
+	PublicKey pulumi.StringPtrInput
+	// ID of the service account to create a pair for.
+	ServiceAccountId pulumi.StringPtrInput
 }
 
 func (IamServiceAccountKeyState) ElementType() reflect.Type {
@@ -89,19 +155,31 @@ func (IamServiceAccountKeyState) ElementType() reflect.Type {
 }
 
 type iamServiceAccountKeyArgs struct {
-	Description      *string `pulumi:"description"`
-	Format           *string `pulumi:"format"`
-	KeyAlgorithm     *string `pulumi:"keyAlgorithm"`
-	PgpKey           *string `pulumi:"pgpKey"`
-	ServiceAccountId string  `pulumi:"serviceAccountId"`
+	// The description of the key pair.
+	Description *string `pulumi:"description"`
+	// The output format of the keys. `PEM_FILE` is the default format.
+	Format *string `pulumi:"format"`
+	// The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+	// Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+	KeyAlgorithm *string `pulumi:"keyAlgorithm"`
+	// An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey *string `pulumi:"pgpKey"`
+	// ID of the service account to create a pair for.
+	ServiceAccountId string `pulumi:"serviceAccountId"`
 }
 
 // The set of arguments for constructing a IamServiceAccountKey resource.
 type IamServiceAccountKeyArgs struct {
-	Description      pulumi.StringPtrInput
-	Format           pulumi.StringPtrInput
-	KeyAlgorithm     pulumi.StringPtrInput
-	PgpKey           pulumi.StringPtrInput
+	// The description of the key pair.
+	Description pulumi.StringPtrInput
+	// The output format of the keys. `PEM_FILE` is the default format.
+	Format pulumi.StringPtrInput
+	// The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+	// Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
+	KeyAlgorithm pulumi.StringPtrInput
+	// An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey pulumi.StringPtrInput
+	// ID of the service account to create a pair for.
 	ServiceAccountId pulumi.StringInput
 }
 
@@ -192,42 +270,53 @@ func (o IamServiceAccountKeyOutput) ToIamServiceAccountKeyOutputWithContext(ctx 
 	return o
 }
 
+// Creation timestamp of the static access key.
 func (o IamServiceAccountKeyOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountKey) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The description of the key pair.
 func (o IamServiceAccountKeyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamServiceAccountKey) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The encrypted private key, base64 encoded. This is only populated when `pgpKey` is supplied.
 func (o IamServiceAccountKeyOutput) EncryptedPrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountKey) pulumi.StringOutput { return v.EncryptedPrivateKey }).(pulumi.StringOutput)
 }
 
+// The output format of the keys. `PEM_FILE` is the default format.
 func (o IamServiceAccountKeyOutput) Format() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamServiceAccountKey) pulumi.StringPtrOutput { return v.Format }).(pulumi.StringPtrOutput)
 }
 
+// The algorithm used to generate the key. `RSA_2048` is the default algorithm.
+// Valid values are listed in the [API reference](https://cloud.yandex.com/docs/iam/api-ref/Key).
 func (o IamServiceAccountKeyOutput) KeyAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamServiceAccountKey) pulumi.StringPtrOutput { return v.KeyAlgorithm }).(pulumi.StringPtrOutput)
 }
 
+// The fingerprint of the PGP key used to encrypt the private key. This is only populated when `pgpKey` is supplied.
 func (o IamServiceAccountKeyOutput) KeyFingerprint() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountKey) pulumi.StringOutput { return v.KeyFingerprint }).(pulumi.StringOutput)
 }
 
+// An optional PGP key to encrypt the resulting private key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
 func (o IamServiceAccountKeyOutput) PgpKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamServiceAccountKey) pulumi.StringPtrOutput { return v.PgpKey }).(pulumi.StringPtrOutput)
 }
 
+// The private key. This is only populated when no `pgpKey` is provided.
 func (o IamServiceAccountKeyOutput) PrivateKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountKey) pulumi.StringOutput { return v.PrivateKey }).(pulumi.StringOutput)
 }
 
+// The public key.
 func (o IamServiceAccountKeyOutput) PublicKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountKey) pulumi.StringOutput { return v.PublicKey }).(pulumi.StringOutput)
 }
 
+// ID of the service account to create a pair for.
 func (o IamServiceAccountKeyOutput) ServiceAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountKey) pulumi.StringOutput { return v.ServiceAccountId }).(pulumi.StringOutput)
 }

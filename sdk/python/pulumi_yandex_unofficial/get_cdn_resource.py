@@ -167,7 +167,28 @@ def get_cdn_resource(active: Optional[bool] = None,
                      updated_at: Optional[str] = None,
                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCdnResourceResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex CDN Resource. For more information, see
+    [the official documentation](https://cloud.yandex.ru/docs/cdn/concepts/resource).
+
+    > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_resource = yandex.get_cdn_resource(resource_id="some resource id")
+    pulumi.export("resourceCname", my_resource.cname)
+    ```
+
+
+    :param bool active: Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+    :param str cname: CDN endpoint CNAME, must be unique among resources.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param pulumi.InputType['GetCdnResourceOptionsArgs'] options: CDN Resource settings and options to tune CDN edge behavior.
+    :param Sequence[str] secondary_hostnames: list of secondary hostname strings.
+    :param pulumi.InputType['GetCdnResourceSslCertificateArgs'] ssl_certificate: SSL certificate of CDN resource.
     """
     __args__ = dict()
     __args__['active'] = active
@@ -214,6 +235,27 @@ def get_cdn_resource_output(active: Optional[pulumi.Input[Optional[bool]]] = Non
                             updated_at: Optional[pulumi.Input[Optional[str]]] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCdnResourceResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex CDN Resource. For more information, see
+    [the official documentation](https://cloud.yandex.ru/docs/cdn/concepts/resource).
+
+    > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_resource = yandex.get_cdn_resource(resource_id="some resource id")
+    pulumi.export("resourceCname", my_resource.cname)
+    ```
+
+
+    :param bool active: Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+    :param str cname: CDN endpoint CNAME, must be unique among resources.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param pulumi.InputType['GetCdnResourceOptionsArgs'] options: CDN Resource settings and options to tune CDN edge behavior.
+    :param Sequence[str] secondary_hostnames: list of secondary hostname strings.
+    :param pulumi.InputType['GetCdnResourceSslCertificateArgs'] ssl_certificate: SSL certificate of CDN resource.
     """
     ...

@@ -4,6 +4,49 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a single Secuirity Group Rule within the Yandex.Cloud. For more information, see the official documentation
+ * of [security groups](https://cloud.yandex.com/docs/vpc/concepts/security-groups)
+ * and [security group rules](https://cloud.yandex.com/docs/vpc/concepts/security-groups#rules).
+ *
+ * > **NOTE:** There is another way to manage security group rules by `ingress` and `egress` arguments in yandex_vpc_security_group. Both ways are equivalent but not compatible now. Using in-line rules of yandex.VpcSecurityGroup with Security Group Rule resource at the same time will cause a conflict of rules configuration.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const lab_net = new yandex.VpcNetwork("lab-net", {});
+ * const group1 = new yandex.VpcSecurityGroup("group1", {
+ *     description: "description for my security group",
+ *     networkId: lab_net.id,
+ *     labels: {
+ *         "my-label": "my-label-value",
+ *     },
+ * });
+ * const rule1 = new yandex.VpcSecurityGroupRule("rule1", {
+ *     securityGroupBinding: group1.id,
+ *     direction: "ingress",
+ *     description: "rule1 description",
+ *     v4CidrBlocks: [
+ *         "10.0.1.0/24",
+ *         "10.0.2.0/24",
+ *     ],
+ *     port: 8080,
+ *     protocol: "TCP",
+ * });
+ * const rule2 = new yandex.VpcSecurityGroupRule("rule2", {
+ *     securityGroupBinding: group1.id,
+ *     direction: "egress",
+ *     description: "rule2 description",
+ *     v4CidrBlocks: ["10.0.1.0/24"],
+ *     fromPort: 8090,
+ *     toPort: 8099,
+ *     protocol: "UDP",
+ * });
+ * ```
+ */
 export class VpcSecurityGroupRule extends pulumi.CustomResource {
     /**
      * Get an existing VpcSecurityGroupRule resource's state with the given name, ID, and optional extra
@@ -32,17 +75,53 @@ export class VpcSecurityGroupRule extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpcSecurityGroupRule.__pulumiType;
     }
 
+    /**
+     * Description of the rule.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+     */
     public readonly direction!: pulumi.Output<string>;
+    /**
+     * Minimum port number.
+     */
     public readonly fromPort!: pulumi.Output<number | undefined>;
+    /**
+     * Labels to assign to this rule.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * Port number (if applied to a single port).
+     */
     public readonly port!: pulumi.Output<number | undefined>;
+    /**
+     * Special-purpose targets such as "selfSecurityGroup". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+     */
     public readonly predefinedTarget!: pulumi.Output<string | undefined>;
+    /**
+     * One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+     */
     public readonly protocol!: pulumi.Output<string | undefined>;
+    /**
+     * ID of the security group this rule belongs to.
+     */
     public readonly securityGroupBinding!: pulumi.Output<string>;
+    /**
+     * Target security group ID for this rule.
+     */
     public readonly securityGroupId!: pulumi.Output<string | undefined>;
+    /**
+     * Maximum port number.
+     */
     public readonly toPort!: pulumi.Output<number | undefined>;
+    /**
+     * The blocks of IPv4 addresses for this rule.
+     */
     public readonly v4CidrBlocks!: pulumi.Output<string[] | undefined>;
+    /**
+     * The blocks of IPv6 addresses for this rule. `v6CidrBlocks` argument is currently not supported. It will be available in the future.
+     */
     public readonly v6CidrBlocks!: pulumi.Output<string[] | undefined>;
 
     /**
@@ -100,17 +179,53 @@ export class VpcSecurityGroupRule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpcSecurityGroupRule resources.
  */
 export interface VpcSecurityGroupRuleState {
+    /**
+     * Description of the rule.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+     */
     direction?: pulumi.Input<string>;
+    /**
+     * Minimum port number.
+     */
     fromPort?: pulumi.Input<number>;
+    /**
+     * Labels to assign to this rule.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Port number (if applied to a single port).
+     */
     port?: pulumi.Input<number>;
+    /**
+     * Special-purpose targets such as "selfSecurityGroup". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+     */
     predefinedTarget?: pulumi.Input<string>;
+    /**
+     * One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+     */
     protocol?: pulumi.Input<string>;
+    /**
+     * ID of the security group this rule belongs to.
+     */
     securityGroupBinding?: pulumi.Input<string>;
+    /**
+     * Target security group ID for this rule.
+     */
     securityGroupId?: pulumi.Input<string>;
+    /**
+     * Maximum port number.
+     */
     toPort?: pulumi.Input<number>;
+    /**
+     * The blocks of IPv4 addresses for this rule.
+     */
     v4CidrBlocks?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The blocks of IPv6 addresses for this rule. `v6CidrBlocks` argument is currently not supported. It will be available in the future.
+     */
     v6CidrBlocks?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -118,16 +233,52 @@ export interface VpcSecurityGroupRuleState {
  * The set of arguments for constructing a VpcSecurityGroupRule resource.
  */
 export interface VpcSecurityGroupRuleArgs {
+    /**
+     * Description of the rule.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * direction of the rule. Can be `ingress` (inbound) or `egress` (outbound).
+     */
     direction: pulumi.Input<string>;
+    /**
+     * Minimum port number.
+     */
     fromPort?: pulumi.Input<number>;
+    /**
+     * Labels to assign to this rule.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Port number (if applied to a single port).
+     */
     port?: pulumi.Input<number>;
+    /**
+     * Special-purpose targets such as "selfSecurityGroup". [See docs](https://cloud.yandex.com/docs/vpc/concepts/security-groups) for possible options.
+     */
     predefinedTarget?: pulumi.Input<string>;
+    /**
+     * One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+     */
     protocol?: pulumi.Input<string>;
+    /**
+     * ID of the security group this rule belongs to.
+     */
     securityGroupBinding: pulumi.Input<string>;
+    /**
+     * Target security group ID for this rule.
+     */
     securityGroupId?: pulumi.Input<string>;
+    /**
+     * Maximum port number.
+     */
     toPort?: pulumi.Input<number>;
+    /**
+     * The blocks of IPv4 addresses for this rule.
+     */
     v4CidrBlocks?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The blocks of IPv6 addresses for this rule. `v6CidrBlocks` argument is currently not supported. It will be available in the future.
+     */
     v6CidrBlocks?: pulumi.Input<pulumi.Input<string>[]>;
 }

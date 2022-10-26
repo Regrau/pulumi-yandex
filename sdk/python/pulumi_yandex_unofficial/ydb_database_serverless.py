@@ -22,6 +22,13 @@ class YdbDatabaseServerlessArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a YdbDatabaseServerless resource.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the database. Can be either `true` or `false`
+        :param pulumi.Input[str] description: A description for the Yandex Database serverless cluster.
+        :param pulumi.Input[str] folder_id: ID of the folder that the Yandex Database serverless cluster belongs to.
+               It will be deduced from provider configuration if not set explicitly.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Database serverless cluster.
+        :param pulumi.Input[str] location_id: Location ID for the Yandex Database serverless cluster.
+        :param pulumi.Input[str] name: Name for the Yandex Database serverless cluster.
         """
         if deletion_protection is not None:
             pulumi.set(__self__, "deletion_protection", deletion_protection)
@@ -39,6 +46,9 @@ class YdbDatabaseServerlessArgs:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the database. Can be either `true` or `false`
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -48,6 +58,9 @@ class YdbDatabaseServerlessArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description for the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -57,6 +70,10 @@ class YdbDatabaseServerlessArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder that the Yandex Database serverless cluster belongs to.
+        It will be deduced from provider configuration if not set explicitly.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -66,6 +83,9 @@ class YdbDatabaseServerlessArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -75,6 +95,9 @@ class YdbDatabaseServerlessArgs:
     @property
     @pulumi.getter(name="locationId")
     def location_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Location ID for the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "location_id")
 
     @location_id.setter
@@ -84,6 +107,9 @@ class YdbDatabaseServerlessArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name for the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -109,6 +135,23 @@ class _YdbDatabaseServerlessState:
                  ydb_full_endpoint: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering YdbDatabaseServerless resources.
+        :param pulumi.Input[str] created_at: The Yandex Database serverless cluster creation timestamp.
+        :param pulumi.Input[str] database_path: Full database path of the Yandex Database serverless cluster.
+               Useful for SDK configuration.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the database. Can be either `true` or `false`
+        :param pulumi.Input[str] description: A description for the Yandex Database serverless cluster.
+        :param pulumi.Input[str] document_api_endpoint: Document API endpoint of the Yandex Database serverless cluster.
+        :param pulumi.Input[str] folder_id: ID of the folder that the Yandex Database serverless cluster belongs to.
+               It will be deduced from provider configuration if not set explicitly.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Database serverless cluster.
+        :param pulumi.Input[str] location_id: Location ID for the Yandex Database serverless cluster.
+        :param pulumi.Input[str] name: Name for the Yandex Database serverless cluster.
+        :param pulumi.Input[str] status: Status of the Yandex Database serverless cluster.
+        :param pulumi.Input[bool] tls_enabled: Whether TLS is enabled for the Yandex Database serverless cluster.
+               Useful for SDK configuration.
+        :param pulumi.Input[str] ydb_api_endpoint: API endpoint of the Yandex Database serverless cluster.
+               Useful for SDK configuration.
+        :param pulumi.Input[str] ydb_full_endpoint: Full endpoint of the Yandex Database serverless cluster.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -140,6 +183,9 @@ class _YdbDatabaseServerlessState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        The Yandex Database serverless cluster creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -149,6 +195,10 @@ class _YdbDatabaseServerlessState:
     @property
     @pulumi.getter(name="databasePath")
     def database_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Full database path of the Yandex Database serverless cluster.
+        Useful for SDK configuration.
+        """
         return pulumi.get(self, "database_path")
 
     @database_path.setter
@@ -158,6 +208,9 @@ class _YdbDatabaseServerlessState:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the database. Can be either `true` or `false`
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -167,6 +220,9 @@ class _YdbDatabaseServerlessState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description for the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -176,6 +232,9 @@ class _YdbDatabaseServerlessState:
     @property
     @pulumi.getter(name="documentApiEndpoint")
     def document_api_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Document API endpoint of the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "document_api_endpoint")
 
     @document_api_endpoint.setter
@@ -185,6 +244,10 @@ class _YdbDatabaseServerlessState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder that the Yandex Database serverless cluster belongs to.
+        It will be deduced from provider configuration if not set explicitly.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -194,6 +257,9 @@ class _YdbDatabaseServerlessState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -203,6 +269,9 @@ class _YdbDatabaseServerlessState:
     @property
     @pulumi.getter(name="locationId")
     def location_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Location ID for the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "location_id")
 
     @location_id.setter
@@ -212,6 +281,9 @@ class _YdbDatabaseServerlessState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name for the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -221,6 +293,9 @@ class _YdbDatabaseServerlessState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -230,6 +305,10 @@ class _YdbDatabaseServerlessState:
     @property
     @pulumi.getter(name="tlsEnabled")
     def tls_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether TLS is enabled for the Yandex Database serverless cluster.
+        Useful for SDK configuration.
+        """
         return pulumi.get(self, "tls_enabled")
 
     @tls_enabled.setter
@@ -239,6 +318,10 @@ class _YdbDatabaseServerlessState:
     @property
     @pulumi.getter(name="ydbApiEndpoint")
     def ydb_api_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        API endpoint of the Yandex Database serverless cluster.
+        Useful for SDK configuration.
+        """
         return pulumi.get(self, "ydb_api_endpoint")
 
     @ydb_api_endpoint.setter
@@ -248,6 +331,9 @@ class _YdbDatabaseServerlessState:
     @property
     @pulumi.getter(name="ydbFullEndpoint")
     def ydb_full_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        Full endpoint of the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "ydb_full_endpoint")
 
     @ydb_full_endpoint.setter
@@ -268,9 +354,29 @@ class YdbDatabaseServerless(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a YdbDatabaseServerless resource with the given unique name, props, and options.
+        Yandex Database (serverless) resource. For more information, see
+            [the official documentation](https://cloud.yandex.com/en/docs/ydb/concepts/serverless_and_dedicated).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        database1 = yandex.YdbDatabaseServerless("database1",
+            deletion_protection=True,
+            folder_id=data["yandex_resourcemanager_folder"]["test_folder"]["id"])
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the database. Can be either `true` or `false`
+        :param pulumi.Input[str] description: A description for the Yandex Database serverless cluster.
+        :param pulumi.Input[str] folder_id: ID of the folder that the Yandex Database serverless cluster belongs to.
+               It will be deduced from provider configuration if not set explicitly.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Database serverless cluster.
+        :param pulumi.Input[str] location_id: Location ID for the Yandex Database serverless cluster.
+        :param pulumi.Input[str] name: Name for the Yandex Database serverless cluster.
         """
         ...
     @overload
@@ -279,7 +385,20 @@ class YdbDatabaseServerless(pulumi.CustomResource):
                  args: Optional[YdbDatabaseServerlessArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a YdbDatabaseServerless resource with the given unique name, props, and options.
+        Yandex Database (serverless) resource. For more information, see
+            [the official documentation](https://cloud.yandex.com/en/docs/ydb/concepts/serverless_and_dedicated).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        database1 = yandex.YdbDatabaseServerless("database1",
+            deletion_protection=True,
+            folder_id=data["yandex_resourcemanager_folder"]["test_folder"]["id"])
+        ```
+
         :param str resource_name: The name of the resource.
         :param YdbDatabaseServerlessArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -353,6 +472,23 @@ class YdbDatabaseServerless(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: The Yandex Database serverless cluster creation timestamp.
+        :param pulumi.Input[str] database_path: Full database path of the Yandex Database serverless cluster.
+               Useful for SDK configuration.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the database. Can be either `true` or `false`
+        :param pulumi.Input[str] description: A description for the Yandex Database serverless cluster.
+        :param pulumi.Input[str] document_api_endpoint: Document API endpoint of the Yandex Database serverless cluster.
+        :param pulumi.Input[str] folder_id: ID of the folder that the Yandex Database serverless cluster belongs to.
+               It will be deduced from provider configuration if not set explicitly.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Database serverless cluster.
+        :param pulumi.Input[str] location_id: Location ID for the Yandex Database serverless cluster.
+        :param pulumi.Input[str] name: Name for the Yandex Database serverless cluster.
+        :param pulumi.Input[str] status: Status of the Yandex Database serverless cluster.
+        :param pulumi.Input[bool] tls_enabled: Whether TLS is enabled for the Yandex Database serverless cluster.
+               Useful for SDK configuration.
+        :param pulumi.Input[str] ydb_api_endpoint: API endpoint of the Yandex Database serverless cluster.
+               Useful for SDK configuration.
+        :param pulumi.Input[str] ydb_full_endpoint: Full endpoint of the Yandex Database serverless cluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -376,65 +512,108 @@ class YdbDatabaseServerless(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        The Yandex Database serverless cluster creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="databasePath")
     def database_path(self) -> pulumi.Output[str]:
+        """
+        Full database path of the Yandex Database serverless cluster.
+        Useful for SDK configuration.
+        """
         return pulumi.get(self, "database_path")
 
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Inhibits deletion of the database. Can be either `true` or `false`
+        """
         return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        A description for the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="documentApiEndpoint")
     def document_api_endpoint(self) -> pulumi.Output[str]:
+        """
+        Document API endpoint of the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "document_api_endpoint")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        ID of the folder that the Yandex Database serverless cluster belongs to.
+        It will be deduced from provider configuration if not set explicitly.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="locationId")
     def location_id(self) -> pulumi.Output[str]:
+        """
+        Location ID for the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "location_id")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name for the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        Status of the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="tlsEnabled")
     def tls_enabled(self) -> pulumi.Output[bool]:
+        """
+        Whether TLS is enabled for the Yandex Database serverless cluster.
+        Useful for SDK configuration.
+        """
         return pulumi.get(self, "tls_enabled")
 
     @property
     @pulumi.getter(name="ydbApiEndpoint")
     def ydb_api_endpoint(self) -> pulumi.Output[str]:
+        """
+        API endpoint of the Yandex Database serverless cluster.
+        Useful for SDK configuration.
+        """
         return pulumi.get(self, "ydb_api_endpoint")
 
     @property
     @pulumi.getter(name="ydbFullEndpoint")
     def ydb_full_endpoint(self) -> pulumi.Output[str]:
+        """
+        Full endpoint of the Yandex Database serverless cluster.
+        """
         return pulumi.get(self, "ydb_full_endpoint")
 

@@ -11,9 +11,51 @@ namespace Pulumi.Yandex
 {
     public static class GetIotCoreRegistry
     {
+        /// <summary>
+        /// Get information about a Yandex IoT Core Registry. For more information IoT Core, see 
+        /// [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myRegistry = Yandex.GetIotCoreRegistry.Invoke(new()
+        ///     {
+        ///         RegistryId = "are1sampleregistry11",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
+        /// </summary>
         public static Task<GetIotCoreRegistryResult> InvokeAsync(GetIotCoreRegistryArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetIotCoreRegistryResult>("yandex:index/getIotCoreRegistry:getIotCoreRegistry", args ?? new GetIotCoreRegistryArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex IoT Core Registry. For more information IoT Core, see 
+        /// [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myRegistry = Yandex.GetIotCoreRegistry.Invoke(new()
+        ///     {
+        ///         RegistryId = "are1sampleregistry11",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
+        /// </summary>
         public static Output<GetIotCoreRegistryResult> Invoke(GetIotCoreRegistryInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetIotCoreRegistryResult>("yandex:index/getIotCoreRegistry:getIotCoreRegistry", args ?? new GetIotCoreRegistryInvokeArgs(), options.WithDefaults());
     }
@@ -21,12 +63,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetIotCoreRegistryArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder ID for the IoT Core Registry
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// IoT Core Registry name used to define registry
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// IoT Core Registry id used to define registry
+        /// </summary>
         [Input("registryId")]
         public string? RegistryId { get; set; }
 
@@ -38,12 +89,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetIotCoreRegistryInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder ID for the IoT Core Registry
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// IoT Core Registry name used to define registry
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// IoT Core Registry id used to define registry
+        /// </summary>
         [Input("registryId")]
         public Input<string>? RegistryId { get; set; }
 
@@ -57,16 +117,31 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetIotCoreRegistryResult
     {
+        /// <summary>
+        /// A set of certificate's fingerprints for the IoT Core Registry
+        /// </summary>
         public readonly ImmutableArray<string> Certificates;
+        /// <summary>
+        /// Creation timestamp of the IoT Core Registry
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Description of the IoT Core Registry
+        /// </summary>
         public readonly string Description;
         public readonly string? FolderId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A set of key/value label pairs to assign to the IoT Core Registry.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
         public readonly string? Name;
+        /// <summary>
+        /// A set of passwords's id for the IoT Core Registry
+        /// </summary>
         public readonly ImmutableArray<string> Passwords;
         public readonly string? RegistryId;
 

@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbMongodbClusterDatabase
     {
+        /// <summary>
+        /// The fully qualified domain name of the host. Computed on server side.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

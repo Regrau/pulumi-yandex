@@ -82,26 +82,41 @@ class GetFunctionResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of the Yandex Cloud Function
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the Yandex Cloud Function
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def entrypoint(self) -> str:
+        """
+        Entrypoint for Yandex Cloud Function
+        """
         return pulumi.get(self, "entrypoint")
 
     @property
     @pulumi.getter
     def environment(self) -> Mapping[str, str]:
+        """
+        A set of key/value environment variables for Yandex Cloud Function
+        """
         return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="executionTimeout")
     def execution_timeout(self) -> str:
+        """
+        Execution timeout in seconds for Yandex Cloud Function
+        """
         return pulumi.get(self, "execution_timeout")
 
     @property
@@ -125,21 +140,33 @@ class GetFunctionResult:
     @property
     @pulumi.getter(name="imageSize")
     def image_size(self) -> int:
+        """
+        Image size for Yandex Cloud Function.
+        """
         return pulumi.get(self, "image_size")
 
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs to assign to the Yandex Cloud Function
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="loggroupId")
     def loggroup_id(self) -> str:
+        """
+        Log group ID size for Yandex Cloud Function.
+        """
         return pulumi.get(self, "loggroup_id")
 
     @property
     @pulumi.getter
     def memory(self) -> int:
+        """
+        Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+        """
         return pulumi.get(self, "memory")
 
     @property
@@ -150,26 +177,41 @@ class GetFunctionResult:
     @property
     @pulumi.getter
     def runtime(self) -> str:
+        """
+        Runtime for Yandex Cloud Function
+        """
         return pulumi.get(self, "runtime")
 
     @property
     @pulumi.getter
     def secrets(self) -> Sequence['outputs.GetFunctionSecretResult']:
+        """
+        Secrets for Yandex Cloud Function.
+        """
         return pulumi.get(self, "secrets")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> str:
+        """
+        Service account ID for Yandex Cloud Function
+        """
         return pulumi.get(self, "service_account_id")
 
     @property
     @pulumi.getter
     def tags(self) -> Sequence[str]:
+        """
+        Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+        """
         return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        Version for Yandex Cloud Function.
+        """
         return pulumi.get(self, "version")
 
 
@@ -205,7 +247,23 @@ def get_function(folder_id: Optional[str] = None,
                  secrets: Optional[Sequence[pulumi.InputType['GetFunctionSecretArgs']]] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFunctionResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Cloud Function. For more information about Yandex Cloud Functions, see
+    [Yandex Cloud Functions](https://cloud.yandex.com/docs/functions/).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_function = yandex.get_function(function_id="are1samplefunction11")
+    ```
+
+    This data source is used to define [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) that can be used by other resources.
+
+
+    :param str folder_id: Folder ID for the Yandex Cloud Function
+    :param str function_id: Yandex Cloud Function id used to define function
+    :param str name: Yandex Cloud Function name used to define function
+    :param Sequence[pulumi.InputType['GetFunctionSecretArgs']] secrets: Secrets for Yandex Cloud Function.
     """
     __args__ = dict()
     __args__['folderId'] = folder_id
@@ -243,6 +301,22 @@ def get_function_output(folder_id: Optional[pulumi.Input[Optional[str]]] = None,
                         secrets: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetFunctionSecretArgs']]]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFunctionResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Cloud Function. For more information about Yandex Cloud Functions, see
+    [Yandex Cloud Functions](https://cloud.yandex.com/docs/functions/).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_function = yandex.get_function(function_id="are1samplefunction11")
+    ```
+
+    This data source is used to define [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) that can be used by other resources.
+
+
+    :param str folder_id: Folder ID for the Yandex Cloud Function
+    :param str function_id: Yandex Cloud Function id used to define function
+    :param str name: Yandex Cloud Function name used to define function
+    :param Sequence[pulumi.InputType['GetFunctionSecretArgs']] secrets: Secrets for Yandex Cloud Function.
     """
     ...

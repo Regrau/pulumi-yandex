@@ -12,30 +12,57 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbMysqlClusterHostArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Sets whether the host should get a public IP address. It can be changed on the fly only when `name` is set.
+        /// </summary>
         [Input("assignPublicIp")]
         public Input<bool>? AssignPublicIp { get; set; }
 
+        /// <summary>
+        /// Host backup priority. Value is between 0 and 100, default is 0.
+        /// </summary>
         [Input("backupPriority")]
         public Input<int>? BackupPriority { get; set; }
 
+        /// <summary>
+        /// The fully qualified domain name of the host.
+        /// </summary>
         [Input("fqdn")]
         public Input<string>? Fqdn { get; set; }
 
+        /// <summary>
+        /// Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Host master promotion priority. Value is between 0 and 100, default is 0.
+        /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
+        /// <summary>
+        /// Host replication source (fqdn), when replication_source is empty then host is in HA group.
+        /// </summary>
         [Input("replicationSource")]
         public Input<string>? ReplicationSource { get; set; }
 
+        /// <summary>
+        /// Host replication source name points to host's `name` from which this host should replicate. When not set then host in HA group. It works only when `name` is set.
+        /// </summary>
         [Input("replicationSourceName")]
         public Input<string>? ReplicationSourceName { get; set; }
 
+        /// <summary>
+        /// The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
 
+        /// <summary>
+        /// The availability zone where the MySQL host will be created.
+        /// </summary>
         [Input("zone", required: true)]
         public Input<string> Zone { get; set; } = null!;
 

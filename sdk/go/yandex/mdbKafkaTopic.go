@@ -11,14 +11,93 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a topic of a Kafka cluster within the Yandex.Cloud. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			foo, err := yandex.NewMdbKafkaCluster(ctx, "foo", &yandex.MdbKafkaClusterArgs{
+//				NetworkId: pulumi.String("c64vs98keiqc7f24pvkd"),
+//				Config: &MdbKafkaClusterConfigArgs{
+//					Version: pulumi.String("2.8"),
+//					Zones: pulumi.StringArray{
+//						pulumi.String("ru-central1-a"),
+//					},
+//					UnmanagedTopics: pulumi.Bool(true),
+//					Kafka: &MdbKafkaClusterConfigKafkaArgs{
+//						Resources: &MdbKafkaClusterConfigKafkaResourcesArgs{
+//							ResourcePresetId: pulumi.String("s2.micro"),
+//							DiskTypeId:       pulumi.String("network-hdd"),
+//							DiskSize:         pulumi.Int(16),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewMdbKafkaTopic(ctx, "events", &yandex.MdbKafkaTopicArgs{
+//				ClusterId:         foo.ID(),
+//				Partitions:        pulumi.Int(4),
+//				ReplicationFactor: pulumi.Int(1),
+//				TopicConfig: &MdbKafkaTopicTopicConfigArgs{
+//					CleanupPolicy:      pulumi.String("CLEANUP_POLICY_COMPACT"),
+//					CompressionType:    pulumi.String("COMPRESSION_TYPE_LZ4"),
+//					DeleteRetentionMs:  pulumi.String("86400000"),
+//					FileDeleteDelayMs:  pulumi.String("60000"),
+//					FlushMessages:      pulumi.String("128"),
+//					FlushMs:            pulumi.String("1000"),
+//					MinCompactionLagMs: pulumi.String("0"),
+//					RetentionBytes:     pulumi.String("10737418240"),
+//					RetentionMs:        pulumi.String("604800000"),
+//					MaxMessageBytes:    pulumi.String("1048588"),
+//					MinInsyncReplicas:  pulumi.String("1"),
+//					SegmentBytes:       pulumi.String("268435456"),
+//					Preallocate:        pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// # Kafka topic can be imported using following format
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/mdbKafkaTopic:MdbKafkaTopic foo {{cluster_id}}:{{topic_name}}
+//
+// ```
 type MdbKafkaTopic struct {
 	pulumi.CustomResourceState
 
-	ClusterId         pulumi.StringOutput               `pulumi:"clusterId"`
-	Name              pulumi.StringOutput               `pulumi:"name"`
-	Partitions        pulumi.IntOutput                  `pulumi:"partitions"`
-	ReplicationFactor pulumi.IntOutput                  `pulumi:"replicationFactor"`
-	TopicConfig       MdbKafkaTopicTopicConfigPtrOutput `pulumi:"topicConfig"`
+	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
+	// The name of the topic.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The number of the topic's partitions.
+	Partitions pulumi.IntOutput `pulumi:"partitions"`
+	// Amount of data copies (replicas) for the topic in the cluster.
+	ReplicationFactor pulumi.IntOutput `pulumi:"replicationFactor"`
+	// User-defined settings for the topic. The structure is documented below.
+	TopicConfig MdbKafkaTopicTopicConfigPtrOutput `pulumi:"topicConfig"`
 }
 
 // NewMdbKafkaTopic registers a new resource with the given unique name, arguments, and options.
@@ -60,19 +139,27 @@ func GetMdbKafkaTopic(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MdbKafkaTopic resources.
 type mdbKafkaTopicState struct {
-	ClusterId         *string                   `pulumi:"clusterId"`
-	Name              *string                   `pulumi:"name"`
-	Partitions        *int                      `pulumi:"partitions"`
-	ReplicationFactor *int                      `pulumi:"replicationFactor"`
-	TopicConfig       *MdbKafkaTopicTopicConfig `pulumi:"topicConfig"`
+	ClusterId *string `pulumi:"clusterId"`
+	// The name of the topic.
+	Name *string `pulumi:"name"`
+	// The number of the topic's partitions.
+	Partitions *int `pulumi:"partitions"`
+	// Amount of data copies (replicas) for the topic in the cluster.
+	ReplicationFactor *int `pulumi:"replicationFactor"`
+	// User-defined settings for the topic. The structure is documented below.
+	TopicConfig *MdbKafkaTopicTopicConfig `pulumi:"topicConfig"`
 }
 
 type MdbKafkaTopicState struct {
-	ClusterId         pulumi.StringPtrInput
-	Name              pulumi.StringPtrInput
-	Partitions        pulumi.IntPtrInput
+	ClusterId pulumi.StringPtrInput
+	// The name of the topic.
+	Name pulumi.StringPtrInput
+	// The number of the topic's partitions.
+	Partitions pulumi.IntPtrInput
+	// Amount of data copies (replicas) for the topic in the cluster.
 	ReplicationFactor pulumi.IntPtrInput
-	TopicConfig       MdbKafkaTopicTopicConfigPtrInput
+	// User-defined settings for the topic. The structure is documented below.
+	TopicConfig MdbKafkaTopicTopicConfigPtrInput
 }
 
 func (MdbKafkaTopicState) ElementType() reflect.Type {
@@ -80,20 +167,28 @@ func (MdbKafkaTopicState) ElementType() reflect.Type {
 }
 
 type mdbKafkaTopicArgs struct {
-	ClusterId         string                    `pulumi:"clusterId"`
-	Name              *string                   `pulumi:"name"`
-	Partitions        int                       `pulumi:"partitions"`
-	ReplicationFactor int                       `pulumi:"replicationFactor"`
-	TopicConfig       *MdbKafkaTopicTopicConfig `pulumi:"topicConfig"`
+	ClusterId string `pulumi:"clusterId"`
+	// The name of the topic.
+	Name *string `pulumi:"name"`
+	// The number of the topic's partitions.
+	Partitions int `pulumi:"partitions"`
+	// Amount of data copies (replicas) for the topic in the cluster.
+	ReplicationFactor int `pulumi:"replicationFactor"`
+	// User-defined settings for the topic. The structure is documented below.
+	TopicConfig *MdbKafkaTopicTopicConfig `pulumi:"topicConfig"`
 }
 
 // The set of arguments for constructing a MdbKafkaTopic resource.
 type MdbKafkaTopicArgs struct {
-	ClusterId         pulumi.StringInput
-	Name              pulumi.StringPtrInput
-	Partitions        pulumi.IntInput
+	ClusterId pulumi.StringInput
+	// The name of the topic.
+	Name pulumi.StringPtrInput
+	// The number of the topic's partitions.
+	Partitions pulumi.IntInput
+	// Amount of data copies (replicas) for the topic in the cluster.
 	ReplicationFactor pulumi.IntInput
-	TopicConfig       MdbKafkaTopicTopicConfigPtrInput
+	// User-defined settings for the topic. The structure is documented below.
+	TopicConfig MdbKafkaTopicTopicConfigPtrInput
 }
 
 func (MdbKafkaTopicArgs) ElementType() reflect.Type {
@@ -187,18 +282,22 @@ func (o MdbKafkaTopicOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbKafkaTopic) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
 }
 
+// The name of the topic.
 func (o MdbKafkaTopicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbKafkaTopic) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The number of the topic's partitions.
 func (o MdbKafkaTopicOutput) Partitions() pulumi.IntOutput {
 	return o.ApplyT(func(v *MdbKafkaTopic) pulumi.IntOutput { return v.Partitions }).(pulumi.IntOutput)
 }
 
+// Amount of data copies (replicas) for the topic in the cluster.
 func (o MdbKafkaTopicOutput) ReplicationFactor() pulumi.IntOutput {
 	return o.ApplyT(func(v *MdbKafkaTopic) pulumi.IntOutput { return v.ReplicationFactor }).(pulumi.IntOutput)
 }
 
+// User-defined settings for the topic. The structure is documented below.
 func (o MdbKafkaTopicOutput) TopicConfig() MdbKafkaTopicTopicConfigPtrOutput {
 	return o.ApplyT(func(v *MdbKafkaTopic) MdbKafkaTopicTopicConfigPtrOutput { return v.TopicConfig }).(MdbKafkaTopicTopicConfigPtrOutput)
 }

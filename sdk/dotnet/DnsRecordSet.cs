@@ -9,21 +9,98 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Manages a DNS Recordset.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var foo = new Yandex.VpcNetwork("foo");
+    /// 
+    ///     var zone1 = new Yandex.DnsZone("zone1", new()
+    ///     {
+    ///         Description = "desc",
+    ///         Labels = 
+    ///         {
+    ///             { "label1", "label-1-value" },
+    ///         },
+    ///         Zone = "example.com.",
+    ///         Public = false,
+    ///         PrivateNetworks = new[]
+    ///         {
+    ///             foo.Id,
+    ///         },
+    ///     });
+    /// 
+    ///     var rs1 = new Yandex.DnsRecordSet("rs1", new()
+    ///     {
+    ///         ZoneId = zone1.Id,
+    ///         Type = "A",
+    ///         Ttl = 200,
+    ///         Datas = new[]
+    ///         {
+    ///             "10.1.0.1",
+    ///         },
+    ///     });
+    /// 
+    ///     var rs2 = new Yandex.DnsRecordSet("rs2", new()
+    ///     {
+    ///         ZoneId = zone1.Id,
+    ///         Type = "A",
+    ///         Ttl = 200,
+    ///         Datas = new[]
+    ///         {
+    ///             "10.1.0.2",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// DNS recordset can be imported using this format
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/dnsRecordSet:DnsRecordSet rs1 {{zone_id}}/{{name}}/{{type}}
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/dnsRecordSet:DnsRecordSet")]
     public partial class DnsRecordSet : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The string data for the records in this record set.
+        /// </summary>
         [Output("datas")]
         public Output<ImmutableArray<string>> Datas { get; private set; } = null!;
 
+        /// <summary>
+        /// The DNS name this record set will apply to.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The time-to-live of this record set (seconds).
+        /// </summary>
         [Output("ttl")]
         public Output<int> Ttl { get; private set; } = null!;
 
+        /// <summary>
+        /// The DNS record set type.
+        /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
 
+        /// <summary>
+        /// The id of the zone in which this record set will reside.
+        /// </summary>
         [Output("zoneId")]
         public Output<string> ZoneId { get; private set; } = null!;
 
@@ -50,7 +127,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -76,21 +153,37 @@ namespace Pulumi.Yandex
     {
         [Input("datas", required: true)]
         private InputList<string>? _datas;
+
+        /// <summary>
+        /// The string data for the records in this record set.
+        /// </summary>
         public InputList<string> Datas
         {
             get => _datas ?? (_datas = new InputList<string>());
             set => _datas = value;
         }
 
+        /// <summary>
+        /// The DNS name this record set will apply to.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The time-to-live of this record set (seconds).
+        /// </summary>
         [Input("ttl", required: true)]
         public Input<int> Ttl { get; set; } = null!;
 
+        /// <summary>
+        /// The DNS record set type.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        /// <summary>
+        /// The id of the zone in which this record set will reside.
+        /// </summary>
         [Input("zoneId", required: true)]
         public Input<string> ZoneId { get; set; } = null!;
 
@@ -104,21 +197,37 @@ namespace Pulumi.Yandex
     {
         [Input("datas")]
         private InputList<string>? _datas;
+
+        /// <summary>
+        /// The string data for the records in this record set.
+        /// </summary>
         public InputList<string> Datas
         {
             get => _datas ?? (_datas = new InputList<string>());
             set => _datas = value;
         }
 
+        /// <summary>
+        /// The DNS name this record set will apply to.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The time-to-live of this record set (seconds).
+        /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 
+        /// <summary>
+        /// The DNS record set type.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 
+        /// <summary>
+        /// The id of the zone in which this record set will reside.
+        /// </summary>
         [Input("zoneId")]
         public Input<string>? ZoneId { get; set; }
 

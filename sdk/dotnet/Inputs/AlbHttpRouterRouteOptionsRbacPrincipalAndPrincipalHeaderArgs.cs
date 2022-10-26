@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Name of the HTTP Router. Provided by the client when the HTTP Router is created.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 

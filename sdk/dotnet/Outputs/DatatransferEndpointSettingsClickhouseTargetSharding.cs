@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsClickhouseTargetSharding
     {
+        /// <summary>
+        /// Shard data by the hash value of the specified column. The structure is documented below.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHash? ColumnValueHash;
+        /// <summary>
+        /// Shard data by ID of the transfer.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsClickhouseTargetShardingTransferId? TransferId;
 
         [OutputConstructor]

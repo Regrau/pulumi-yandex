@@ -56,11 +56,17 @@ class GetDnsZoneResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        (Computed) The DNS zone creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        (Computed) Description of the DNS zone.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -71,6 +77,9 @@ class GetDnsZoneResult:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> str:
+        """
+        (Computed) The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
@@ -84,26 +93,41 @@ class GetDnsZoneResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        (Computed) A set of key/value label pairs to assign to the DNS zone.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        (Computed) User assigned name of a specific resource. Must be unique within the folder.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="privateNetworks")
     def private_networks(self) -> Sequence[str]:
+        """
+        (Computed) For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+        """
         return pulumi.get(self, "private_networks")
 
     @property
     @pulumi.getter
     def public(self) -> bool:
+        """
+        (Computed) The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+        """
         return pulumi.get(self, "public")
 
     @property
     @pulumi.getter
     def zone(self) -> str:
+        """
+        (Computed) The DNS name of this zone, e.g. "example.com.". Must ends with dot.
+        """
         return pulumi.get(self, "zone")
 
 
@@ -130,7 +154,22 @@ def get_dns_zone(dns_zone_id: Optional[str] = None,
                  name: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDnsZoneResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a DNS Zone.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_dns_zone(dns_zone_id=yandex_dns_zone["zone1"]["id"])
+    pulumi.export("zone", foo.zone)
+    ```
+
+
+    :param str dns_zone_id: The ID of the DNS Zone.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: - Name of the DNS Zone.
     """
     __args__ = dict()
     __args__['dnsZoneId'] = dns_zone_id
@@ -158,6 +197,21 @@ def get_dns_zone_output(dns_zone_id: Optional[pulumi.Input[Optional[str]]] = Non
                         name: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDnsZoneResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a DNS Zone.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_dns_zone(dns_zone_id=yandex_dns_zone["zone1"]["id"])
+    pulumi.export("zone", foo.zone)
+    ```
+
+
+    :param str dns_zone_id: The ID of the DNS Zone.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: - Name of the DNS Zone.
     """
     ...

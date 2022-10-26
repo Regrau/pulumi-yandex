@@ -14,15 +14,26 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("certificateIds", required: true)]
         private InputList<string>? _certificateIds;
+
+        /// <summary>
+        /// Certificate IDs in the Certificate Manager. Multiple TLS certificates can be associated
+        /// with the same context to allow both RSA and ECDSA certificates. Only the first certificate of each type will be used.
+        /// </summary>
         public InputList<string> CertificateIds
         {
             get => _certificateIds ?? (_certificateIds = new InputList<string>());
             set => _certificateIds = value;
         }
 
+        /// <summary>
+        /// HTTP handler resource. The structure is documented below.
+        /// </summary>
         [Input("httpHandler")]
         public Input<Inputs.AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerGetArgs>? HttpHandler { get; set; }
 
+        /// <summary>
+        /// Stream handler resource. The structure is documented below.
+        /// </summary>
         [Input("streamHandler")]
         public Input<Inputs.AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandlerGetArgs>? StreamHandler { get; set; }
 

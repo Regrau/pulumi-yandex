@@ -19,6 +19,9 @@ class IamServiceAccountApiKeyArgs:
                  pgp_key: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IamServiceAccountApiKey resource.
+        :param pulumi.Input[str] service_account_id: ID of the service account to an API key for.
+        :param pulumi.Input[str] description: The description of the key.
+        :param pulumi.Input[str] pgp_key: An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
         """
         pulumi.set(__self__, "service_account_id", service_account_id)
         if description is not None:
@@ -29,6 +32,9 @@ class IamServiceAccountApiKeyArgs:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Input[str]:
+        """
+        ID of the service account to an API key for.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -38,6 +44,9 @@ class IamServiceAccountApiKeyArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the key.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -47,6 +56,9 @@ class IamServiceAccountApiKeyArgs:
     @property
     @pulumi.getter(name="pgpKey")
     def pgp_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        """
         return pulumi.get(self, "pgp_key")
 
     @pgp_key.setter
@@ -66,6 +78,13 @@ class _IamServiceAccountApiKeyState:
                  service_account_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IamServiceAccountApiKey resources.
+        :param pulumi.Input[str] created_at: Creation timestamp of the static access key.
+        :param pulumi.Input[str] description: The description of the key.
+        :param pulumi.Input[str] encrypted_secret_key: The encrypted secret key, base64 encoded. This is only populated when `pgp_key` is supplied.
+        :param pulumi.Input[str] key_fingerprint: The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgp_key` is supplied.
+        :param pulumi.Input[str] pgp_key: An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        :param pulumi.Input[str] secret_key: The secret key. This is only populated when no `pgp_key` is provided.
+        :param pulumi.Input[str] service_account_id: ID of the service account to an API key for.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -85,6 +104,9 @@ class _IamServiceAccountApiKeyState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the static access key.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -94,6 +116,9 @@ class _IamServiceAccountApiKeyState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        The description of the key.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -103,6 +128,9 @@ class _IamServiceAccountApiKeyState:
     @property
     @pulumi.getter(name="encryptedSecretKey")
     def encrypted_secret_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The encrypted secret key, base64 encoded. This is only populated when `pgp_key` is supplied.
+        """
         return pulumi.get(self, "encrypted_secret_key")
 
     @encrypted_secret_key.setter
@@ -112,6 +140,9 @@ class _IamServiceAccountApiKeyState:
     @property
     @pulumi.getter(name="keyFingerprint")
     def key_fingerprint(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgp_key` is supplied.
+        """
         return pulumi.get(self, "key_fingerprint")
 
     @key_fingerprint.setter
@@ -121,6 +152,9 @@ class _IamServiceAccountApiKeyState:
     @property
     @pulumi.getter(name="pgpKey")
     def pgp_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        """
         return pulumi.get(self, "pgp_key")
 
     @pgp_key.setter
@@ -130,6 +164,9 @@ class _IamServiceAccountApiKeyState:
     @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        The secret key. This is only populated when no `pgp_key` is provided.
+        """
         return pulumi.get(self, "secret_key")
 
     @secret_key.setter
@@ -139,6 +176,9 @@ class _IamServiceAccountApiKeyState:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the service account to an API key for.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -156,9 +196,30 @@ class IamServiceAccountApiKey(pulumi.CustomResource):
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a IamServiceAccountApiKey resource with the given unique name, props, and options.
+        Allows management of a [Yandex.Cloud IAM service account API key](https://cloud.yandex.com/docs/iam/concepts/authorization/api-key).
+        The API key is a private key used for simplified authorization in the Yandex.Cloud API. API keys are only used for [service accounts](https://cloud.yandex.com/docs/iam/concepts/users/service-accounts).
+
+        API keys do not expire. This means that this authentication method is simpler, but less secure. Use it if you can't automatically request an [IAM token](https://cloud.yandex.com/docs/iam/concepts/authorization/iam-token).
+
+        ## Example Usage
+
+        This snippet creates an API key.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        sa_api_key = yandex.IamServiceAccountApiKey("sa-api-key",
+            description="api key for authorization",
+            pgp_key="keybase:keybaseusername",
+            service_account_id="some_sa_id")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: The description of the key.
+        :param pulumi.Input[str] pgp_key: An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        :param pulumi.Input[str] service_account_id: ID of the service account to an API key for.
         """
         ...
     @overload
@@ -167,7 +228,25 @@ class IamServiceAccountApiKey(pulumi.CustomResource):
                  args: IamServiceAccountApiKeyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a IamServiceAccountApiKey resource with the given unique name, props, and options.
+        Allows management of a [Yandex.Cloud IAM service account API key](https://cloud.yandex.com/docs/iam/concepts/authorization/api-key).
+        The API key is a private key used for simplified authorization in the Yandex.Cloud API. API keys are only used for [service accounts](https://cloud.yandex.com/docs/iam/concepts/users/service-accounts).
+
+        API keys do not expire. This means that this authentication method is simpler, but less secure. Use it if you can't automatically request an [IAM token](https://cloud.yandex.com/docs/iam/concepts/authorization/iam-token).
+
+        ## Example Usage
+
+        This snippet creates an API key.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        sa_api_key = yandex.IamServiceAccountApiKey("sa-api-key",
+            description="api key for authorization",
+            pgp_key="keybase:keybaseusername",
+            service_account_id="some_sa_id")
+        ```
+
         :param str resource_name: The name of the resource.
         :param IamServiceAccountApiKeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -228,6 +307,13 @@ class IamServiceAccountApiKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: Creation timestamp of the static access key.
+        :param pulumi.Input[str] description: The description of the key.
+        :param pulumi.Input[str] encrypted_secret_key: The encrypted secret key, base64 encoded. This is only populated when `pgp_key` is supplied.
+        :param pulumi.Input[str] key_fingerprint: The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgp_key` is supplied.
+        :param pulumi.Input[str] pgp_key: An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        :param pulumi.Input[str] secret_key: The secret key. This is only populated when no `pgp_key` is provided.
+        :param pulumi.Input[str] service_account_id: ID of the service account to an API key for.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -245,35 +331,56 @@ class IamServiceAccountApiKey(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the static access key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        The description of the key.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="encryptedSecretKey")
     def encrypted_secret_key(self) -> pulumi.Output[str]:
+        """
+        The encrypted secret key, base64 encoded. This is only populated when `pgp_key` is supplied.
+        """
         return pulumi.get(self, "encrypted_secret_key")
 
     @property
     @pulumi.getter(name="keyFingerprint")
     def key_fingerprint(self) -> pulumi.Output[str]:
+        """
+        The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgp_key` is supplied.
+        """
         return pulumi.get(self, "key_fingerprint")
 
     @property
     @pulumi.getter(name="pgpKey")
     def pgp_key(self) -> pulumi.Output[Optional[str]]:
+        """
+        An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        """
         return pulumi.get(self, "pgp_key")
 
     @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Output[str]:
+        """
+        The secret key. This is only populated when no `pgp_key` is provided.
+        """
         return pulumi.get(self, "secret_key")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Output[str]:
+        """
+        ID of the service account to an API key for.
+        """
         return pulumi.get(self, "service_account_id")
 

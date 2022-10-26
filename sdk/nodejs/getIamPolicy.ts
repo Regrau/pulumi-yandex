@@ -5,6 +5,32 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Generates an [IAM] policy document that may be referenced by and applied to
+ * other Yandex.Cloud Platform resources, such as the `yandex.ResourcemanagerFolder` resource.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const admin = pulumi.output(yandex.getIamPolicy({
+ *     bindings: [
+ *         {
+ *             members: ["userAccount:user_id_1"],
+ *             role: "admin",
+ *         },
+ *         {
+ *             members: ["userAccount:user_id_2"],
+ *             role: "viewer",
+ *         },
+ *     ],
+ * }));
+ * ```
+ *
+ * This data source is used to define [IAM] policies to apply to other resources.
+ * Currently, defining a policy through a data source and referencing that policy
+ * from another resource is the only way to apply an IAM policy to a resource.
+ */
 export function getIamPolicy(args: GetIamPolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetIamPolicyResult> {
     if (!opts) {
         opts = {}
@@ -20,6 +46,11 @@ export function getIamPolicy(args: GetIamPolicyArgs, opts?: pulumi.InvokeOptions
  * A collection of arguments for invoking getIamPolicy.
  */
 export interface GetIamPolicyArgs {
+    /**
+     * A nested configuration block (described below)
+     * that defines a binding to be included in the policy document. Multiple
+     * `binding` arguments are supported.
+     */
     bindings: inputs.GetIamPolicyBinding[];
 }
 
@@ -32,6 +63,10 @@ export interface GetIamPolicyResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The above bindings serialized in a format suitable for
+     * referencing from a resource that supports IAM.
+     */
     readonly policyData: string;
 }
 
@@ -43,5 +78,10 @@ export function getIamPolicyOutput(args: GetIamPolicyOutputArgs, opts?: pulumi.I
  * A collection of arguments for invoking getIamPolicy.
  */
 export interface GetIamPolicyOutputArgs {
+    /**
+     * A nested configuration block (described below)
+     * that defines a binding to be included in the policy document. Multiple
+     * `binding` arguments are supported.
+     */
     bindings: pulumi.Input<pulumi.Input<inputs.GetIamPolicyBindingArgs>[]>;
 }

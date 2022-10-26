@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetKubernetesNodeGroupScalePolicyResult
     {
+        /// <summary>
+        /// Scale policy for an autoscaled node group. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupScalePolicyAutoScaleResult> AutoScales;
+        /// <summary>
+        /// Scale policy for a fixed scale node group. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupScalePolicyFixedScaleResult> FixedScales;
 
         [OutputConstructor]

@@ -12,33 +12,54 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesNodeGroupInstanceTemplateNetworkInterfaceGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allocate an IPv4 address for the interface. The default value is `true`.
+        /// </summary>
         [Input("ipv4")]
         public Input<bool>? Ipv4 { get; set; }
 
         [Input("ipv4DnsRecords")]
         private InputList<Inputs.KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordGetArgs>? _ipv4DnsRecords;
+
+        /// <summary>
+        /// List of configurations for creating ipv4 DNS records. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordGetArgs> Ipv4DnsRecords
         {
             get => _ipv4DnsRecords ?? (_ipv4DnsRecords = new InputList<Inputs.KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordGetArgs>());
             set => _ipv4DnsRecords = value;
         }
 
+        /// <summary>
+        /// If true, allocate an IPv6 address for the interface. The address will be automatically assigned from the specified subnet.
+        /// </summary>
         [Input("ipv6")]
         public Input<bool>? Ipv6 { get; set; }
 
         [Input("ipv6DnsRecords")]
         private InputList<Inputs.KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordGetArgs>? _ipv6DnsRecords;
+
+        /// <summary>
+        /// List of configurations for creating ipv6 DNS records. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordGetArgs> Ipv6DnsRecords
         {
             get => _ipv6DnsRecords ?? (_ipv6DnsRecords = new InputList<Inputs.KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordGetArgs>());
             set => _ipv6DnsRecords = value;
         }
 
+        /// <summary>
+        /// A public address that can be used to access the internet over NAT.
+        /// </summary>
         [Input("nat")]
         public Input<bool>? Nat { get; set; }
 
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
+
+        /// <summary>
+        /// Security group ids for network interface.
+        /// </summary>
         public InputList<string> SecurityGroupIds
         {
             get => _securityGroupIds ?? (_securityGroupIds = new InputList<string>());
@@ -47,6 +68,10 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("subnetIds", required: true)]
         private InputList<string>? _subnetIds;
+
+        /// <summary>
+        /// The IDs of the subnets.
+        /// </summary>
         public InputList<string> SubnetIds
         {
             get => _subnetIds ?? (_subnetIds = new InputList<string>());

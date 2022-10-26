@@ -12,14 +12,24 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Aggregation function name.
+        /// </summary>
         [Input("function", required: true)]
         public Input<string> Function { get; set; } = null!;
 
+        /// <summary>
+        /// Regular expression that the metric name must match.
+        /// </summary>
         [Input("regexp")]
         public Input<string>? Regexp { get; set; }
 
         [Input("retentions")]
         private InputList<Inputs.MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs>? _retentions;
+
+        /// <summary>
+        /// Retain parameters.
+        /// </summary>
         public InputList<Inputs.MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs> Retentions
         {
             get => _retentions ?? (_retentions = new InputList<Inputs.MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs>());

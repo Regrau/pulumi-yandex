@@ -11,38 +11,98 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a Greenplum cluster within the Yandex.Cloud. For more information, see
+// [the official documentation](https://cloud.yandex.ru/docs/managed-greenplum/).
+//
+// Please read [Pricing for Managed Service for Greenplum](https://cloud.yandex.ru/docs/managed-greenplum/) before using Greenplum cluster.
+//
+// # Yandex Managed Service for Greenplum® is now in preview
+//
+// ## Greenplum cluster settings
+//
+// | Setting name and type \ Greenplum version | 6.17 | 6.19 |
+// | ------------------------------------------| ---- | ---- |
+// | maxConnections : integer | supported | supported |
+// | maxPreparedTransactions : integer | supported | supported |
+// | gpWorkfileLimitPerQuery : integer | supported | supported |
+// | gpWorkfileLimitFilesPerQuery : integer | supported | supported |
+// | maxSlotWalKeepSize : integer | supported | supported |
+// | gpWorkfileLimitPerSegment : integer | supported | supported |
+// | gpWorkfileCompression : boolean | supported | supported |
+// | maxStatementMem : integer | - | supported |
+// | logStatement : one of<br>  - 0: " LOG_STATEMENT_UNSPECIFIED"<br>  - 1: " LOG_STATEMENT_NONE"<br>  - 2: " LOG_STATEMENT_DDL"<er>  - 3: " LOG_STATEMENT_MOD"<br>  - 4: " LOG_STATEMENT_ALL"  | - | supported |
+//
+// ## Import
+//
+// A cluster can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/mdbGreenplumCluster:MdbGreenplumCluster foo cluster_id
+//
+// ```
 type MdbGreenplumCluster struct {
 	pulumi.CustomResourceState
 
-	Access             MdbGreenplumClusterAccessOutput            `pulumi:"access"`
-	AssignPublicIp     pulumi.BoolOutput                          `pulumi:"assignPublicIp"`
-	BackupWindowStart  MdbGreenplumClusterBackupWindowStartOutput `pulumi:"backupWindowStart"`
-	CreatedAt          pulumi.StringOutput                        `pulumi:"createdAt"`
-	DeletionProtection pulumi.BoolOutput                          `pulumi:"deletionProtection"`
-	Description        pulumi.StringPtrOutput                     `pulumi:"description"`
-	Environment        pulumi.StringOutput                        `pulumi:"environment"`
-	FolderId           pulumi.StringOutput                        `pulumi:"folderId"`
-	GreenplumConfig    pulumi.StringMapOutput                     `pulumi:"greenplumConfig"`
-	Health             pulumi.StringOutput                        `pulumi:"health"`
-	Labels             pulumi.StringMapOutput                     `pulumi:"labels"`
-	MaintenanceWindow  MdbGreenplumClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
-	MasterHostCount    pulumi.IntOutput                           `pulumi:"masterHostCount"`
-	MasterHosts        MdbGreenplumClusterMasterHostArrayOutput   `pulumi:"masterHosts"`
-	MasterSubcluster   MdbGreenplumClusterMasterSubclusterOutput  `pulumi:"masterSubcluster"`
-	Name               pulumi.StringOutput                        `pulumi:"name"`
-	NetworkId          pulumi.StringOutput                        `pulumi:"networkId"`
-	PoolerConfig       MdbGreenplumClusterPoolerConfigPtrOutput   `pulumi:"poolerConfig"`
-	SecurityGroupIds   pulumi.StringArrayOutput                   `pulumi:"securityGroupIds"`
-	SegmentHostCount   pulumi.IntOutput                           `pulumi:"segmentHostCount"`
-	SegmentHosts       MdbGreenplumClusterSegmentHostArrayOutput  `pulumi:"segmentHosts"`
-	SegmentInHost      pulumi.IntOutput                           `pulumi:"segmentInHost"`
-	SegmentSubcluster  MdbGreenplumClusterSegmentSubclusterOutput `pulumi:"segmentSubcluster"`
-	Status             pulumi.StringOutput                        `pulumi:"status"`
-	SubnetId           pulumi.StringOutput                        `pulumi:"subnetId"`
-	UserName           pulumi.StringOutput                        `pulumi:"userName"`
-	UserPassword       pulumi.StringOutput                        `pulumi:"userPassword"`
-	Version            pulumi.StringOutput                        `pulumi:"version"`
-	Zone               pulumi.StringOutput                        `pulumi:"zone"`
+	// Access policy to the Greenplum cluster. The structure is documented below.
+	Access MdbGreenplumClusterAccessOutput `pulumi:"access"`
+	// Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+	AssignPublicIp pulumi.BoolOutput `pulumi:"assignPublicIp"`
+	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+	BackupWindowStart MdbGreenplumClusterBackupWindowStartOutput `pulumi:"backupWindowStart"`
+	// Creation timestamp of the cluster.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection pulumi.BoolOutput `pulumi:"deletionProtection"`
+	// Description of the Greenplum cluster.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Deployment environment of the Greenplum cluster. (PRODUCTION, PRESTABLE)
+	Environment pulumi.StringOutput `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Greenplum cluster config. Detail info in "Greenplum cluster settings" section (documented below).
+	GreenplumConfig pulumi.StringMapOutput `pulumi:"greenplumConfig"`
+	// Aggregated health of the cluster.
+	Health pulumi.StringOutput `pulumi:"health"`
+	// A set of key/value label pairs to assign to the Greenplum cluster.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Maintenance policy of the Greenplum cluster. The structure is documented below.
+	MaintenanceWindow MdbGreenplumClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
+	// Number of hosts in master subcluster (1 or 2).
+	MasterHostCount pulumi.IntOutput `pulumi:"masterHostCount"`
+	// (Computed) Info about hosts in master subcluster. The structure is documented below.
+	MasterHosts MdbGreenplumClusterMasterHostArrayOutput `pulumi:"masterHosts"`
+	// Settings for master subcluster. The structure is documented below.
+	MasterSubcluster MdbGreenplumClusterMasterSubclusterOutput `pulumi:"masterSubcluster"`
+	// Name of the Greenplum cluster. Provided by the client when the cluster is created.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the network, to which the Greenplum cluster uses.
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
+	// Configuration of the connection pooler. The structure is documented below.
+	PoolerConfig MdbGreenplumClusterPoolerConfigPtrOutput `pulumi:"poolerConfig"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
+	// Number of hosts in segment subcluster (from 1 to 32).
+	SegmentHostCount pulumi.IntOutput `pulumi:"segmentHostCount"`
+	// (Computed) Info about hosts in segment subcluster. The structure is documented below.
+	SegmentHosts MdbGreenplumClusterSegmentHostArrayOutput `pulumi:"segmentHosts"`
+	// Number of segments on segment host (not more then 1 + RAM/8).
+	SegmentInHost pulumi.IntOutput `pulumi:"segmentInHost"`
+	// Settings for segment subcluster. The structure is documented below.
+	SegmentSubcluster MdbGreenplumClusterSegmentSubclusterOutput `pulumi:"segmentSubcluster"`
+	// Status of the cluster.
+	Status pulumi.StringOutput `pulumi:"status"`
+	// The ID of the subnet, to which the hosts belongs. The subnet must be a part of the network to which the cluster belongs.
+	SubnetId pulumi.StringOutput `pulumi:"subnetId"`
+	// Greenplum cluster admin user name.
+	UserName pulumi.StringOutput `pulumi:"userName"`
+	// Greenplum cluster admin password name.
+	UserPassword pulumi.StringOutput `pulumi:"userPassword"`
+	// Version of the Greenplum cluster. (6.19)
+	Version pulumi.StringOutput `pulumi:"version"`
+	// The availability zone where the Greenplum hosts will be created.
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewMdbGreenplumCluster registers a new resource with the given unique name, arguments, and options.
@@ -114,67 +174,127 @@ func GetMdbGreenplumCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MdbGreenplumCluster resources.
 type mdbGreenplumClusterState struct {
-	Access             *MdbGreenplumClusterAccess            `pulumi:"access"`
-	AssignPublicIp     *bool                                 `pulumi:"assignPublicIp"`
-	BackupWindowStart  *MdbGreenplumClusterBackupWindowStart `pulumi:"backupWindowStart"`
-	CreatedAt          *string                               `pulumi:"createdAt"`
-	DeletionProtection *bool                                 `pulumi:"deletionProtection"`
-	Description        *string                               `pulumi:"description"`
-	Environment        *string                               `pulumi:"environment"`
-	FolderId           *string                               `pulumi:"folderId"`
-	GreenplumConfig    map[string]string                     `pulumi:"greenplumConfig"`
-	Health             *string                               `pulumi:"health"`
-	Labels             map[string]string                     `pulumi:"labels"`
-	MaintenanceWindow  *MdbGreenplumClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	MasterHostCount    *int                                  `pulumi:"masterHostCount"`
-	MasterHosts        []MdbGreenplumClusterMasterHost       `pulumi:"masterHosts"`
-	MasterSubcluster   *MdbGreenplumClusterMasterSubcluster  `pulumi:"masterSubcluster"`
-	Name               *string                               `pulumi:"name"`
-	NetworkId          *string                               `pulumi:"networkId"`
-	PoolerConfig       *MdbGreenplumClusterPoolerConfig      `pulumi:"poolerConfig"`
-	SecurityGroupIds   []string                              `pulumi:"securityGroupIds"`
-	SegmentHostCount   *int                                  `pulumi:"segmentHostCount"`
-	SegmentHosts       []MdbGreenplumClusterSegmentHost      `pulumi:"segmentHosts"`
-	SegmentInHost      *int                                  `pulumi:"segmentInHost"`
-	SegmentSubcluster  *MdbGreenplumClusterSegmentSubcluster `pulumi:"segmentSubcluster"`
-	Status             *string                               `pulumi:"status"`
-	SubnetId           *string                               `pulumi:"subnetId"`
-	UserName           *string                               `pulumi:"userName"`
-	UserPassword       *string                               `pulumi:"userPassword"`
-	Version            *string                               `pulumi:"version"`
-	Zone               *string                               `pulumi:"zone"`
+	// Access policy to the Greenplum cluster. The structure is documented below.
+	Access *MdbGreenplumClusterAccess `pulumi:"access"`
+	// Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+	AssignPublicIp *bool `pulumi:"assignPublicIp"`
+	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+	BackupWindowStart *MdbGreenplumClusterBackupWindowStart `pulumi:"backupWindowStart"`
+	// Creation timestamp of the cluster.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// Description of the Greenplum cluster.
+	Description *string `pulumi:"description"`
+	// Deployment environment of the Greenplum cluster. (PRODUCTION, PRESTABLE)
+	Environment *string `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Greenplum cluster config. Detail info in "Greenplum cluster settings" section (documented below).
+	GreenplumConfig map[string]string `pulumi:"greenplumConfig"`
+	// Aggregated health of the cluster.
+	Health *string `pulumi:"health"`
+	// A set of key/value label pairs to assign to the Greenplum cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// Maintenance policy of the Greenplum cluster. The structure is documented below.
+	MaintenanceWindow *MdbGreenplumClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// Number of hosts in master subcluster (1 or 2).
+	MasterHostCount *int `pulumi:"masterHostCount"`
+	// (Computed) Info about hosts in master subcluster. The structure is documented below.
+	MasterHosts []MdbGreenplumClusterMasterHost `pulumi:"masterHosts"`
+	// Settings for master subcluster. The structure is documented below.
+	MasterSubcluster *MdbGreenplumClusterMasterSubcluster `pulumi:"masterSubcluster"`
+	// Name of the Greenplum cluster. Provided by the client when the cluster is created.
+	Name *string `pulumi:"name"`
+	// ID of the network, to which the Greenplum cluster uses.
+	NetworkId *string `pulumi:"networkId"`
+	// Configuration of the connection pooler. The structure is documented below.
+	PoolerConfig *MdbGreenplumClusterPoolerConfig `pulumi:"poolerConfig"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// Number of hosts in segment subcluster (from 1 to 32).
+	SegmentHostCount *int `pulumi:"segmentHostCount"`
+	// (Computed) Info about hosts in segment subcluster. The structure is documented below.
+	SegmentHosts []MdbGreenplumClusterSegmentHost `pulumi:"segmentHosts"`
+	// Number of segments on segment host (not more then 1 + RAM/8).
+	SegmentInHost *int `pulumi:"segmentInHost"`
+	// Settings for segment subcluster. The structure is documented below.
+	SegmentSubcluster *MdbGreenplumClusterSegmentSubcluster `pulumi:"segmentSubcluster"`
+	// Status of the cluster.
+	Status *string `pulumi:"status"`
+	// The ID of the subnet, to which the hosts belongs. The subnet must be a part of the network to which the cluster belongs.
+	SubnetId *string `pulumi:"subnetId"`
+	// Greenplum cluster admin user name.
+	UserName *string `pulumi:"userName"`
+	// Greenplum cluster admin password name.
+	UserPassword *string `pulumi:"userPassword"`
+	// Version of the Greenplum cluster. (6.19)
+	Version *string `pulumi:"version"`
+	// The availability zone where the Greenplum hosts will be created.
+	Zone *string `pulumi:"zone"`
 }
 
 type MdbGreenplumClusterState struct {
-	Access             MdbGreenplumClusterAccessPtrInput
-	AssignPublicIp     pulumi.BoolPtrInput
-	BackupWindowStart  MdbGreenplumClusterBackupWindowStartPtrInput
-	CreatedAt          pulumi.StringPtrInput
+	// Access policy to the Greenplum cluster. The structure is documented below.
+	Access MdbGreenplumClusterAccessPtrInput
+	// Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+	AssignPublicIp pulumi.BoolPtrInput
+	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+	BackupWindowStart MdbGreenplumClusterBackupWindowStartPtrInput
+	// Creation timestamp of the cluster.
+	CreatedAt pulumi.StringPtrInput
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
 	DeletionProtection pulumi.BoolPtrInput
-	Description        pulumi.StringPtrInput
-	Environment        pulumi.StringPtrInput
-	FolderId           pulumi.StringPtrInput
-	GreenplumConfig    pulumi.StringMapInput
-	Health             pulumi.StringPtrInput
-	Labels             pulumi.StringMapInput
-	MaintenanceWindow  MdbGreenplumClusterMaintenanceWindowPtrInput
-	MasterHostCount    pulumi.IntPtrInput
-	MasterHosts        MdbGreenplumClusterMasterHostArrayInput
-	MasterSubcluster   MdbGreenplumClusterMasterSubclusterPtrInput
-	Name               pulumi.StringPtrInput
-	NetworkId          pulumi.StringPtrInput
-	PoolerConfig       MdbGreenplumClusterPoolerConfigPtrInput
-	SecurityGroupIds   pulumi.StringArrayInput
-	SegmentHostCount   pulumi.IntPtrInput
-	SegmentHosts       MdbGreenplumClusterSegmentHostArrayInput
-	SegmentInHost      pulumi.IntPtrInput
-	SegmentSubcluster  MdbGreenplumClusterSegmentSubclusterPtrInput
-	Status             pulumi.StringPtrInput
-	SubnetId           pulumi.StringPtrInput
-	UserName           pulumi.StringPtrInput
-	UserPassword       pulumi.StringPtrInput
-	Version            pulumi.StringPtrInput
-	Zone               pulumi.StringPtrInput
+	// Description of the Greenplum cluster.
+	Description pulumi.StringPtrInput
+	// Deployment environment of the Greenplum cluster. (PRODUCTION, PRESTABLE)
+	Environment pulumi.StringPtrInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Greenplum cluster config. Detail info in "Greenplum cluster settings" section (documented below).
+	GreenplumConfig pulumi.StringMapInput
+	// Aggregated health of the cluster.
+	Health pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Greenplum cluster.
+	Labels pulumi.StringMapInput
+	// Maintenance policy of the Greenplum cluster. The structure is documented below.
+	MaintenanceWindow MdbGreenplumClusterMaintenanceWindowPtrInput
+	// Number of hosts in master subcluster (1 or 2).
+	MasterHostCount pulumi.IntPtrInput
+	// (Computed) Info about hosts in master subcluster. The structure is documented below.
+	MasterHosts MdbGreenplumClusterMasterHostArrayInput
+	// Settings for master subcluster. The structure is documented below.
+	MasterSubcluster MdbGreenplumClusterMasterSubclusterPtrInput
+	// Name of the Greenplum cluster. Provided by the client when the cluster is created.
+	Name pulumi.StringPtrInput
+	// ID of the network, to which the Greenplum cluster uses.
+	NetworkId pulumi.StringPtrInput
+	// Configuration of the connection pooler. The structure is documented below.
+	PoolerConfig MdbGreenplumClusterPoolerConfigPtrInput
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayInput
+	// Number of hosts in segment subcluster (from 1 to 32).
+	SegmentHostCount pulumi.IntPtrInput
+	// (Computed) Info about hosts in segment subcluster. The structure is documented below.
+	SegmentHosts MdbGreenplumClusterSegmentHostArrayInput
+	// Number of segments on segment host (not more then 1 + RAM/8).
+	SegmentInHost pulumi.IntPtrInput
+	// Settings for segment subcluster. The structure is documented below.
+	SegmentSubcluster MdbGreenplumClusterSegmentSubclusterPtrInput
+	// Status of the cluster.
+	Status pulumi.StringPtrInput
+	// The ID of the subnet, to which the hosts belongs. The subnet must be a part of the network to which the cluster belongs.
+	SubnetId pulumi.StringPtrInput
+	// Greenplum cluster admin user name.
+	UserName pulumi.StringPtrInput
+	// Greenplum cluster admin password name.
+	UserPassword pulumi.StringPtrInput
+	// Version of the Greenplum cluster. (6.19)
+	Version pulumi.StringPtrInput
+	// The availability zone where the Greenplum hosts will be created.
+	Zone pulumi.StringPtrInput
 }
 
 func (MdbGreenplumClusterState) ElementType() reflect.Type {
@@ -182,58 +302,108 @@ func (MdbGreenplumClusterState) ElementType() reflect.Type {
 }
 
 type mdbGreenplumClusterArgs struct {
-	Access             *MdbGreenplumClusterAccess            `pulumi:"access"`
-	AssignPublicIp     bool                                  `pulumi:"assignPublicIp"`
-	BackupWindowStart  *MdbGreenplumClusterBackupWindowStart `pulumi:"backupWindowStart"`
-	DeletionProtection *bool                                 `pulumi:"deletionProtection"`
-	Description        *string                               `pulumi:"description"`
-	Environment        string                                `pulumi:"environment"`
-	FolderId           *string                               `pulumi:"folderId"`
-	GreenplumConfig    map[string]string                     `pulumi:"greenplumConfig"`
-	Labels             map[string]string                     `pulumi:"labels"`
-	MaintenanceWindow  *MdbGreenplumClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	MasterHostCount    int                                   `pulumi:"masterHostCount"`
-	MasterSubcluster   MdbGreenplumClusterMasterSubcluster   `pulumi:"masterSubcluster"`
-	Name               *string                               `pulumi:"name"`
-	NetworkId          string                                `pulumi:"networkId"`
-	PoolerConfig       *MdbGreenplumClusterPoolerConfig      `pulumi:"poolerConfig"`
-	SecurityGroupIds   []string                              `pulumi:"securityGroupIds"`
-	SegmentHostCount   int                                   `pulumi:"segmentHostCount"`
-	SegmentInHost      int                                   `pulumi:"segmentInHost"`
-	SegmentSubcluster  MdbGreenplumClusterSegmentSubcluster  `pulumi:"segmentSubcluster"`
-	SubnetId           string                                `pulumi:"subnetId"`
-	UserName           string                                `pulumi:"userName"`
-	UserPassword       string                                `pulumi:"userPassword"`
-	Version            string                                `pulumi:"version"`
-	Zone               string                                `pulumi:"zone"`
+	// Access policy to the Greenplum cluster. The structure is documented below.
+	Access *MdbGreenplumClusterAccess `pulumi:"access"`
+	// Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+	AssignPublicIp bool `pulumi:"assignPublicIp"`
+	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+	BackupWindowStart *MdbGreenplumClusterBackupWindowStart `pulumi:"backupWindowStart"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// Description of the Greenplum cluster.
+	Description *string `pulumi:"description"`
+	// Deployment environment of the Greenplum cluster. (PRODUCTION, PRESTABLE)
+	Environment string `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Greenplum cluster config. Detail info in "Greenplum cluster settings" section (documented below).
+	GreenplumConfig map[string]string `pulumi:"greenplumConfig"`
+	// A set of key/value label pairs to assign to the Greenplum cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// Maintenance policy of the Greenplum cluster. The structure is documented below.
+	MaintenanceWindow *MdbGreenplumClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// Number of hosts in master subcluster (1 or 2).
+	MasterHostCount int `pulumi:"masterHostCount"`
+	// Settings for master subcluster. The structure is documented below.
+	MasterSubcluster MdbGreenplumClusterMasterSubcluster `pulumi:"masterSubcluster"`
+	// Name of the Greenplum cluster. Provided by the client when the cluster is created.
+	Name *string `pulumi:"name"`
+	// ID of the network, to which the Greenplum cluster uses.
+	NetworkId string `pulumi:"networkId"`
+	// Configuration of the connection pooler. The structure is documented below.
+	PoolerConfig *MdbGreenplumClusterPoolerConfig `pulumi:"poolerConfig"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// Number of hosts in segment subcluster (from 1 to 32).
+	SegmentHostCount int `pulumi:"segmentHostCount"`
+	// Number of segments on segment host (not more then 1 + RAM/8).
+	SegmentInHost int `pulumi:"segmentInHost"`
+	// Settings for segment subcluster. The structure is documented below.
+	SegmentSubcluster MdbGreenplumClusterSegmentSubcluster `pulumi:"segmentSubcluster"`
+	// The ID of the subnet, to which the hosts belongs. The subnet must be a part of the network to which the cluster belongs.
+	SubnetId string `pulumi:"subnetId"`
+	// Greenplum cluster admin user name.
+	UserName string `pulumi:"userName"`
+	// Greenplum cluster admin password name.
+	UserPassword string `pulumi:"userPassword"`
+	// Version of the Greenplum cluster. (6.19)
+	Version string `pulumi:"version"`
+	// The availability zone where the Greenplum hosts will be created.
+	Zone string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a MdbGreenplumCluster resource.
 type MdbGreenplumClusterArgs struct {
-	Access             MdbGreenplumClusterAccessPtrInput
-	AssignPublicIp     pulumi.BoolInput
-	BackupWindowStart  MdbGreenplumClusterBackupWindowStartPtrInput
+	// Access policy to the Greenplum cluster. The structure is documented below.
+	Access MdbGreenplumClusterAccessPtrInput
+	// Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+	AssignPublicIp pulumi.BoolInput
+	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+	BackupWindowStart MdbGreenplumClusterBackupWindowStartPtrInput
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
 	DeletionProtection pulumi.BoolPtrInput
-	Description        pulumi.StringPtrInput
-	Environment        pulumi.StringInput
-	FolderId           pulumi.StringPtrInput
-	GreenplumConfig    pulumi.StringMapInput
-	Labels             pulumi.StringMapInput
-	MaintenanceWindow  MdbGreenplumClusterMaintenanceWindowPtrInput
-	MasterHostCount    pulumi.IntInput
-	MasterSubcluster   MdbGreenplumClusterMasterSubclusterInput
-	Name               pulumi.StringPtrInput
-	NetworkId          pulumi.StringInput
-	PoolerConfig       MdbGreenplumClusterPoolerConfigPtrInput
-	SecurityGroupIds   pulumi.StringArrayInput
-	SegmentHostCount   pulumi.IntInput
-	SegmentInHost      pulumi.IntInput
-	SegmentSubcluster  MdbGreenplumClusterSegmentSubclusterInput
-	SubnetId           pulumi.StringInput
-	UserName           pulumi.StringInput
-	UserPassword       pulumi.StringInput
-	Version            pulumi.StringInput
-	Zone               pulumi.StringInput
+	// Description of the Greenplum cluster.
+	Description pulumi.StringPtrInput
+	// Deployment environment of the Greenplum cluster. (PRODUCTION, PRESTABLE)
+	Environment pulumi.StringInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Greenplum cluster config. Detail info in "Greenplum cluster settings" section (documented below).
+	GreenplumConfig pulumi.StringMapInput
+	// A set of key/value label pairs to assign to the Greenplum cluster.
+	Labels pulumi.StringMapInput
+	// Maintenance policy of the Greenplum cluster. The structure is documented below.
+	MaintenanceWindow MdbGreenplumClusterMaintenanceWindowPtrInput
+	// Number of hosts in master subcluster (1 or 2).
+	MasterHostCount pulumi.IntInput
+	// Settings for master subcluster. The structure is documented below.
+	MasterSubcluster MdbGreenplumClusterMasterSubclusterInput
+	// Name of the Greenplum cluster. Provided by the client when the cluster is created.
+	Name pulumi.StringPtrInput
+	// ID of the network, to which the Greenplum cluster uses.
+	NetworkId pulumi.StringInput
+	// Configuration of the connection pooler. The structure is documented below.
+	PoolerConfig MdbGreenplumClusterPoolerConfigPtrInput
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayInput
+	// Number of hosts in segment subcluster (from 1 to 32).
+	SegmentHostCount pulumi.IntInput
+	// Number of segments on segment host (not more then 1 + RAM/8).
+	SegmentInHost pulumi.IntInput
+	// Settings for segment subcluster. The structure is documented below.
+	SegmentSubcluster MdbGreenplumClusterSegmentSubclusterInput
+	// The ID of the subnet, to which the hosts belongs. The subnet must be a part of the network to which the cluster belongs.
+	SubnetId pulumi.StringInput
+	// Greenplum cluster admin user name.
+	UserName pulumi.StringInput
+	// Greenplum cluster admin password name.
+	UserPassword pulumi.StringInput
+	// Version of the Greenplum cluster. (6.19)
+	Version pulumi.StringInput
+	// The availability zone where the Greenplum hosts will be created.
+	Zone pulumi.StringInput
 }
 
 func (MdbGreenplumClusterArgs) ElementType() reflect.Type {
@@ -323,118 +493,148 @@ func (o MdbGreenplumClusterOutput) ToMdbGreenplumClusterOutputWithContext(ctx co
 	return o
 }
 
+// Access policy to the Greenplum cluster. The structure is documented below.
 func (o MdbGreenplumClusterOutput) Access() MdbGreenplumClusterAccessOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) MdbGreenplumClusterAccessOutput { return v.Access }).(MdbGreenplumClusterAccessOutput)
 }
 
+// Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
 func (o MdbGreenplumClusterOutput) AssignPublicIp() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.BoolOutput { return v.AssignPublicIp }).(pulumi.BoolOutput)
 }
 
+// Time to start the daily backup, in the UTC timezone. The structure is documented below.
 func (o MdbGreenplumClusterOutput) BackupWindowStart() MdbGreenplumClusterBackupWindowStartOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) MdbGreenplumClusterBackupWindowStartOutput { return v.BackupWindowStart }).(MdbGreenplumClusterBackupWindowStartOutput)
 }
 
+// Creation timestamp of the cluster.
 func (o MdbGreenplumClusterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Inhibits deletion of the cluster.  Can be either `true` or `false`.
 func (o MdbGreenplumClusterOutput) DeletionProtection() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.BoolOutput { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
+// Description of the Greenplum cluster.
 func (o MdbGreenplumClusterOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Deployment environment of the Greenplum cluster. (PRODUCTION, PRESTABLE)
 func (o MdbGreenplumClusterOutput) Environment() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringOutput { return v.Environment }).(pulumi.StringOutput)
 }
 
+// The ID of the folder that the resource belongs to. If it
+// is not provided, the default provider folder is used.
 func (o MdbGreenplumClusterOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Greenplum cluster config. Detail info in "Greenplum cluster settings" section (documented below).
 func (o MdbGreenplumClusterOutput) GreenplumConfig() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringMapOutput { return v.GreenplumConfig }).(pulumi.StringMapOutput)
 }
 
+// Aggregated health of the cluster.
 func (o MdbGreenplumClusterOutput) Health() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringOutput { return v.Health }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the Greenplum cluster.
 func (o MdbGreenplumClusterOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Maintenance policy of the Greenplum cluster. The structure is documented below.
 func (o MdbGreenplumClusterOutput) MaintenanceWindow() MdbGreenplumClusterMaintenanceWindowOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) MdbGreenplumClusterMaintenanceWindowOutput { return v.MaintenanceWindow }).(MdbGreenplumClusterMaintenanceWindowOutput)
 }
 
+// Number of hosts in master subcluster (1 or 2).
 func (o MdbGreenplumClusterOutput) MasterHostCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.IntOutput { return v.MasterHostCount }).(pulumi.IntOutput)
 }
 
+// (Computed) Info about hosts in master subcluster. The structure is documented below.
 func (o MdbGreenplumClusterOutput) MasterHosts() MdbGreenplumClusterMasterHostArrayOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) MdbGreenplumClusterMasterHostArrayOutput { return v.MasterHosts }).(MdbGreenplumClusterMasterHostArrayOutput)
 }
 
+// Settings for master subcluster. The structure is documented below.
 func (o MdbGreenplumClusterOutput) MasterSubcluster() MdbGreenplumClusterMasterSubclusterOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) MdbGreenplumClusterMasterSubclusterOutput { return v.MasterSubcluster }).(MdbGreenplumClusterMasterSubclusterOutput)
 }
 
+// Name of the Greenplum cluster. Provided by the client when the cluster is created.
 func (o MdbGreenplumClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network, to which the Greenplum cluster uses.
 func (o MdbGreenplumClusterOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// Configuration of the connection pooler. The structure is documented below.
 func (o MdbGreenplumClusterOutput) PoolerConfig() MdbGreenplumClusterPoolerConfigPtrOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) MdbGreenplumClusterPoolerConfigPtrOutput { return v.PoolerConfig }).(MdbGreenplumClusterPoolerConfigPtrOutput)
 }
 
+// A set of ids of security groups assigned to hosts of the cluster.
 func (o MdbGreenplumClusterOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringArrayOutput { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// Number of hosts in segment subcluster (from 1 to 32).
 func (o MdbGreenplumClusterOutput) SegmentHostCount() pulumi.IntOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.IntOutput { return v.SegmentHostCount }).(pulumi.IntOutput)
 }
 
+// (Computed) Info about hosts in segment subcluster. The structure is documented below.
 func (o MdbGreenplumClusterOutput) SegmentHosts() MdbGreenplumClusterSegmentHostArrayOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) MdbGreenplumClusterSegmentHostArrayOutput { return v.SegmentHosts }).(MdbGreenplumClusterSegmentHostArrayOutput)
 }
 
+// Number of segments on segment host (not more then 1 + RAM/8).
 func (o MdbGreenplumClusterOutput) SegmentInHost() pulumi.IntOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.IntOutput { return v.SegmentInHost }).(pulumi.IntOutput)
 }
 
+// Settings for segment subcluster. The structure is documented below.
 func (o MdbGreenplumClusterOutput) SegmentSubcluster() MdbGreenplumClusterSegmentSubclusterOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) MdbGreenplumClusterSegmentSubclusterOutput { return v.SegmentSubcluster }).(MdbGreenplumClusterSegmentSubclusterOutput)
 }
 
+// Status of the cluster.
 func (o MdbGreenplumClusterOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
+// The ID of the subnet, to which the hosts belongs. The subnet must be a part of the network to which the cluster belongs.
 func (o MdbGreenplumClusterOutput) SubnetId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringOutput { return v.SubnetId }).(pulumi.StringOutput)
 }
 
+// Greenplum cluster admin user name.
 func (o MdbGreenplumClusterOutput) UserName() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringOutput { return v.UserName }).(pulumi.StringOutput)
 }
 
+// Greenplum cluster admin password name.
 func (o MdbGreenplumClusterOutput) UserPassword() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringOutput { return v.UserPassword }).(pulumi.StringOutput)
 }
 
+// Version of the Greenplum cluster. (6.19)
 func (o MdbGreenplumClusterOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }
 
+// The availability zone where the Greenplum hosts will be created.
 func (o MdbGreenplumClusterOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbGreenplumCluster) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

@@ -24,6 +24,12 @@ class VpcDefaultSecurityGroupArgs:
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a VpcDefaultSecurityGroup resource.
+        :param pulumi.Input[str] network_id: ID of the network this security group belongs to.
+        :param pulumi.Input[str] description: Description of the security group.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcDefaultSecurityGroupEgressArgs']]] egresses: A list of egress rules. The structure is documented below.
+        :param pulumi.Input[str] folder_id: ID of the folder this security group belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcDefaultSecurityGroupIngressArgs']]] ingresses: A list of ingress rules.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this security group.
         """
         pulumi.set(__self__, "network_id", network_id)
         if description is not None:
@@ -40,6 +46,9 @@ class VpcDefaultSecurityGroupArgs:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Input[str]:
+        """
+        ID of the network this security group belongs to.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -49,6 +58,9 @@ class VpcDefaultSecurityGroupArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the security group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -58,6 +70,9 @@ class VpcDefaultSecurityGroupArgs:
     @property
     @pulumi.getter
     def egresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcDefaultSecurityGroupEgressArgs']]]]:
+        """
+        A list of egress rules. The structure is documented below.
+        """
         return pulumi.get(self, "egresses")
 
     @egresses.setter
@@ -67,6 +82,9 @@ class VpcDefaultSecurityGroupArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder this security group belongs to.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -76,6 +94,9 @@ class VpcDefaultSecurityGroupArgs:
     @property
     @pulumi.getter
     def ingresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcDefaultSecurityGroupIngressArgs']]]]:
+        """
+        A list of ingress rules.
+        """
         return pulumi.get(self, "ingresses")
 
     @ingresses.setter
@@ -85,6 +106,9 @@ class VpcDefaultSecurityGroupArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this security group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -106,6 +130,15 @@ class _VpcDefaultSecurityGroupState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcDefaultSecurityGroup resources.
+        :param pulumi.Input[str] created_at: Creation timestamp of this security group.
+        :param pulumi.Input[str] description: Description of the security group.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcDefaultSecurityGroupEgressArgs']]] egresses: A list of egress rules. The structure is documented below.
+        :param pulumi.Input[str] folder_id: ID of the folder this security group belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcDefaultSecurityGroupIngressArgs']]] ingresses: A list of ingress rules.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this security group.
+        :param pulumi.Input[str] name: Name of this security group.
+        :param pulumi.Input[str] network_id: ID of the network this security group belongs to.
+        :param pulumi.Input[str] status: Status of this security group.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -129,6 +162,9 @@ class _VpcDefaultSecurityGroupState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of this security group.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -138,6 +174,9 @@ class _VpcDefaultSecurityGroupState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the security group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -147,6 +186,9 @@ class _VpcDefaultSecurityGroupState:
     @property
     @pulumi.getter
     def egresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcDefaultSecurityGroupEgressArgs']]]]:
+        """
+        A list of egress rules. The structure is documented below.
+        """
         return pulumi.get(self, "egresses")
 
     @egresses.setter
@@ -156,6 +198,9 @@ class _VpcDefaultSecurityGroupState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder this security group belongs to.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -165,6 +210,9 @@ class _VpcDefaultSecurityGroupState:
     @property
     @pulumi.getter
     def ingresses(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcDefaultSecurityGroupIngressArgs']]]]:
+        """
+        A list of ingress rules.
+        """
         return pulumi.get(self, "ingresses")
 
     @ingresses.setter
@@ -174,6 +222,9 @@ class _VpcDefaultSecurityGroupState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this security group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -183,6 +234,9 @@ class _VpcDefaultSecurityGroupState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of this security group.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -192,6 +246,9 @@ class _VpcDefaultSecurityGroupState:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the network this security group belongs to.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -201,6 +258,9 @@ class _VpcDefaultSecurityGroupState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of this security group.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -221,9 +281,57 @@ class VpcDefaultSecurityGroup(pulumi.CustomResource):
                  network_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a VpcDefaultSecurityGroup resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        lab_net = yandex.VpcNetwork("lab-net")
+        default_sg = yandex.VpcDefaultSecurityGroup("default-sg",
+            description="description for default security group",
+            egresses=[
+                yandex.VpcDefaultSecurityGroupEgressArgs(
+                    description="rule2 description",
+                    from_port=8090,
+                    protocol="ANY",
+                    to_port=8099,
+                    v4_cidr_blocks=[
+                        "10.0.1.0/24",
+                        "10.0.2.0/24",
+                    ],
+                ),
+                yandex.VpcDefaultSecurityGroupEgressArgs(
+                    description="rule3 description",
+                    from_port=8090,
+                    protocol="UDP",
+                    to_port=8099,
+                    v4_cidr_blocks=["10.0.1.0/24"],
+                ),
+            ],
+            ingresses=[yandex.VpcDefaultSecurityGroupIngressArgs(
+                description="rule1 description",
+                port=8080,
+                protocol="TCP",
+                v4_cidr_blocks=[
+                    "10.0.1.0/24",
+                    "10.0.2.0/24",
+                ],
+            )],
+            labels={
+                "my-label": "my-label-value",
+            },
+            network_id=lab_net.id)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Description of the security group.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcDefaultSecurityGroupEgressArgs']]]] egresses: A list of egress rules. The structure is documented below.
+        :param pulumi.Input[str] folder_id: ID of the folder this security group belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcDefaultSecurityGroupIngressArgs']]]] ingresses: A list of ingress rules.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this security group.
+        :param pulumi.Input[str] network_id: ID of the network this security group belongs to.
         """
         ...
     @overload
@@ -232,7 +340,49 @@ class VpcDefaultSecurityGroup(pulumi.CustomResource):
                  args: VpcDefaultSecurityGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a VpcDefaultSecurityGroup resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        lab_net = yandex.VpcNetwork("lab-net")
+        default_sg = yandex.VpcDefaultSecurityGroup("default-sg",
+            description="description for default security group",
+            egresses=[
+                yandex.VpcDefaultSecurityGroupEgressArgs(
+                    description="rule2 description",
+                    from_port=8090,
+                    protocol="ANY",
+                    to_port=8099,
+                    v4_cidr_blocks=[
+                        "10.0.1.0/24",
+                        "10.0.2.0/24",
+                    ],
+                ),
+                yandex.VpcDefaultSecurityGroupEgressArgs(
+                    description="rule3 description",
+                    from_port=8090,
+                    protocol="UDP",
+                    to_port=8099,
+                    v4_cidr_blocks=["10.0.1.0/24"],
+                ),
+            ],
+            ingresses=[yandex.VpcDefaultSecurityGroupIngressArgs(
+                description="rule1 description",
+                port=8080,
+                protocol="TCP",
+                v4_cidr_blocks=[
+                    "10.0.1.0/24",
+                    "10.0.2.0/24",
+                ],
+            )],
+            labels={
+                "my-label": "my-label-value",
+            },
+            network_id=lab_net.id)
+        ```
+
         :param str resource_name: The name of the resource.
         :param VpcDefaultSecurityGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -300,6 +450,15 @@ class VpcDefaultSecurityGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: Creation timestamp of this security group.
+        :param pulumi.Input[str] description: Description of the security group.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcDefaultSecurityGroupEgressArgs']]]] egresses: A list of egress rules. The structure is documented below.
+        :param pulumi.Input[str] folder_id: ID of the folder this security group belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcDefaultSecurityGroupIngressArgs']]]] ingresses: A list of ingress rules.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this security group.
+        :param pulumi.Input[str] name: Name of this security group.
+        :param pulumi.Input[str] network_id: ID of the network this security group belongs to.
+        :param pulumi.Input[str] status: Status of this security group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -319,45 +478,72 @@ class VpcDefaultSecurityGroup(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of this security group.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the security group.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def egresses(self) -> pulumi.Output[Sequence['outputs.VpcDefaultSecurityGroupEgress']]:
+        """
+        A list of egress rules. The structure is documented below.
+        """
         return pulumi.get(self, "egresses")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        ID of the folder this security group belongs to.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def ingresses(self) -> pulumi.Output[Sequence['outputs.VpcDefaultSecurityGroupIngress']]:
+        """
+        A list of ingress rules.
+        """
         return pulumi.get(self, "ingresses")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        Labels to assign to this security group.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of this security group.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[str]:
+        """
+        ID of the network this security group belongs to.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        Status of this security group.
+        """
         return pulumi.get(self, "status")
 

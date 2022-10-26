@@ -20,6 +20,12 @@ class ResourcemanagerCloudIamMemberArgs:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a ResourcemanagerCloudIamMember resource.
+        :param pulumi.Input[str] cloud_id: ID of the cloud to attach a policy to.
+        :param pulumi.Input[str] member: The identity that will be granted the privilege that is specified in the `role` field.
+               This field can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+        :param pulumi.Input[str] role: The role that should be assigned.
         """
         pulumi.set(__self__, "cloud_id", cloud_id)
         pulumi.set(__self__, "member", member)
@@ -30,6 +36,9 @@ class ResourcemanagerCloudIamMemberArgs:
     @property
     @pulumi.getter(name="cloudId")
     def cloud_id(self) -> pulumi.Input[str]:
+        """
+        ID of the cloud to attach a policy to.
+        """
         return pulumi.get(self, "cloud_id")
 
     @cloud_id.setter
@@ -39,6 +48,12 @@ class ResourcemanagerCloudIamMemberArgs:
     @property
     @pulumi.getter
     def member(self) -> pulumi.Input[str]:
+        """
+        The identity that will be granted the privilege that is specified in the `role` field.
+        This field can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        """
         return pulumi.get(self, "member")
 
     @member.setter
@@ -48,6 +63,9 @@ class ResourcemanagerCloudIamMemberArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        The role that should be assigned.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -73,6 +91,12 @@ class _ResourcemanagerCloudIamMemberState:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering ResourcemanagerCloudIamMember resources.
+        :param pulumi.Input[str] cloud_id: ID of the cloud to attach a policy to.
+        :param pulumi.Input[str] member: The identity that will be granted the privilege that is specified in the `role` field.
+               This field can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+        :param pulumi.Input[str] role: The role that should be assigned.
         """
         if cloud_id is not None:
             pulumi.set(__self__, "cloud_id", cloud_id)
@@ -86,6 +110,9 @@ class _ResourcemanagerCloudIamMemberState:
     @property
     @pulumi.getter(name="cloudId")
     def cloud_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the cloud to attach a policy to.
+        """
         return pulumi.get(self, "cloud_id")
 
     @cloud_id.setter
@@ -95,6 +122,12 @@ class _ResourcemanagerCloudIamMemberState:
     @property
     @pulumi.getter
     def member(self) -> Optional[pulumi.Input[str]]:
+        """
+        The identity that will be granted the privilege that is specified in the `role` field.
+        This field can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        """
         return pulumi.get(self, "member")
 
     @member.setter
@@ -104,6 +137,9 @@ class _ResourcemanagerCloudIamMemberState:
     @property
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role that should be assigned.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -131,9 +167,45 @@ class ResourcemanagerCloudIamMember(pulumi.CustomResource):
                  sleep_after: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a ResourcemanagerCloudIamMember resource with the given unique name, props, and options.
+        Allows creation and management of a single member for a single binding within
+        the IAM policy for an existing Yandex Resource Manager cloud.
+
+        > **Note:** Roles controlled by `ResourcemanagerCloudIamBinding`
+           should not be assigned using `ResourcemanagerCloudIamMember`.
+
+        > **Note:** When you delete `ResourcemanagerCloudIamBinding` resource,
+           the roles can be deleted from other users within the cloud as well. Be careful!
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex as yandex
+        import pulumi_yandex_unofficial as yandex
+
+        department1 = yandex.get_resourcemanager_cloud(name="Department 1")
+        admin = yandex.ResourcemanagerCloudIamMember("admin",
+            cloud_id=department1.id,
+            member="userAccount:user_id",
+            role="editor")
+        ```
+
+        ## Import
+
+        IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the `cloud id`, role, and account, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/resourcemanagerCloudIamMember:ResourcemanagerCloudIamMember my_project "cloud_id viewer foo@example.com"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cloud_id: ID of the cloud to attach a policy to.
+        :param pulumi.Input[str] member: The identity that will be granted the privilege that is specified in the `role` field.
+               This field can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+        :param pulumi.Input[str] role: The role that should be assigned.
         """
         ...
     @overload
@@ -142,7 +214,37 @@ class ResourcemanagerCloudIamMember(pulumi.CustomResource):
                  args: ResourcemanagerCloudIamMemberArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ResourcemanagerCloudIamMember resource with the given unique name, props, and options.
+        Allows creation and management of a single member for a single binding within
+        the IAM policy for an existing Yandex Resource Manager cloud.
+
+        > **Note:** Roles controlled by `ResourcemanagerCloudIamBinding`
+           should not be assigned using `ResourcemanagerCloudIamMember`.
+
+        > **Note:** When you delete `ResourcemanagerCloudIamBinding` resource,
+           the roles can be deleted from other users within the cloud as well. Be careful!
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex as yandex
+        import pulumi_yandex_unofficial as yandex
+
+        department1 = yandex.get_resourcemanager_cloud(name="Department 1")
+        admin = yandex.ResourcemanagerCloudIamMember("admin",
+            cloud_id=department1.id,
+            member="userAccount:user_id",
+            role="editor")
+        ```
+
+        ## Import
+
+        IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the `cloud id`, role, and account, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/resourcemanagerCloudIamMember:ResourcemanagerCloudIamMember my_project "cloud_id viewer foo@example.com"
+        ```
+
         :param str resource_name: The name of the resource.
         :param ResourcemanagerCloudIamMemberArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,6 +304,12 @@ class ResourcemanagerCloudIamMember(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cloud_id: ID of the cloud to attach a policy to.
+        :param pulumi.Input[str] member: The identity that will be granted the privilege that is specified in the `role` field.
+               This field can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+        :param pulumi.Input[str] role: The role that should be assigned.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -216,16 +324,28 @@ class ResourcemanagerCloudIamMember(pulumi.CustomResource):
     @property
     @pulumi.getter(name="cloudId")
     def cloud_id(self) -> pulumi.Output[str]:
+        """
+        ID of the cloud to attach a policy to.
+        """
         return pulumi.get(self, "cloud_id")
 
     @property
     @pulumi.getter
     def member(self) -> pulumi.Output[str]:
+        """
+        The identity that will be granted the privilege that is specified in the `role` field.
+        This field can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        """
         return pulumi.get(self, "member")
 
     @property
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
+        """
+        The role that should be assigned.
+        """
         return pulumi.get(self, "role")
 
     @property

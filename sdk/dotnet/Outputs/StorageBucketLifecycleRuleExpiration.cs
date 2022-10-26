@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class StorageBucketLifecycleRuleExpiration
     {
+        /// <summary>
+        /// Specifies the date after which you want the corresponding action to take effect.
+        /// </summary>
         public readonly string? Date;
+        /// <summary>
+        /// Specifies the number of days after object creation when the specific rule action takes effect.
+        /// </summary>
         public readonly int? Days;
+        /// <summary>
+        /// On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Object Storage to delete expired object delete markers.
+        /// </summary>
         public readonly bool? ExpiredObjectDeleteMarker;
 
         [OutputConstructor]

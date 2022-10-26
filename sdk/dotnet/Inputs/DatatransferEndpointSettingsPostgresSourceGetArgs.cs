@@ -12,14 +12,24 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsPostgresSourceGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Connection settings. The structure is documented below.
+        /// </summary>
         [Input("connection")]
         public Input<Inputs.DatatransferEndpointSettingsPostgresSourceConnectionGetArgs>? Connection { get; set; }
 
+        /// <summary>
+        /// Name of the database to transfer.
+        /// </summary>
         [Input("database")]
         public Input<string>? Database { get; set; }
 
         [Input("excludeTables")]
         private InputList<string>? _excludeTables;
+
+        /// <summary>
+        /// List of tables which will not be transfered, formatted as `schemaname.tablename`.
+        /// </summary>
         public InputList<string> ExcludeTables
         {
             get => _excludeTables ?? (_excludeTables = new InputList<string>());
@@ -28,32 +38,55 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("includeTables")]
         private InputList<string>? _includeTables;
+
+        /// <summary>
+        /// List of tables to transfer, formatted as `schemaname.tablename`. If omitted or an empty list is specified, all tables will be transferred.
+        /// </summary>
         public InputList<string> IncludeTables
         {
             get => _includeTables ?? (_includeTables = new InputList<string>());
             set => _includeTables = value;
         }
 
+        /// <summary>
+        /// Defines which database schema objects should be transferred, e.g. views, functions, etc.
+        /// </summary>
         [Input("objectTransferSettings")]
         public Input<Inputs.DatatransferEndpointSettingsPostgresSourceObjectTransferSettingsGetArgs>? ObjectTransferSettings { get; set; }
 
+        /// <summary>
+        /// Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        /// </summary>
         [Input("password")]
         public Input<Inputs.DatatransferEndpointSettingsPostgresSourcePasswordGetArgs>? Password { get; set; }
 
         [Input("securityGroups")]
         private InputList<string>? _securityGroups;
+
+        /// <summary>
+        /// List of security groups that the transfer associated with this endpoint should use.
+        /// </summary>
         public InputList<string> SecurityGroups
         {
             get => _securityGroups ?? (_securityGroups = new InputList<string>());
             set => _securityGroups = value;
         }
 
+        /// <summary>
+        /// Name of the database schema in which auxiliary tables needed for the transfer will be created. Empty `service_schema` implies schema "public".
+        /// </summary>
         [Input("serviceSchema")]
         public Input<string>? ServiceSchema { get; set; }
 
+        /// <summary>
+        /// Maximum WAL size held by the replication slot, in gigabytes. Exceeding this limit will result in a replication failure and deletion of the replication slot. Unlimited by default.
+        /// </summary>
         [Input("slotGigabyteLagLimit")]
         public Input<int>? SlotGigabyteLagLimit { get; set; }
 
+        /// <summary>
+        /// User for the database access.
+        /// </summary>
         [Input("user")]
         public Input<string>? User { get; set; }
 

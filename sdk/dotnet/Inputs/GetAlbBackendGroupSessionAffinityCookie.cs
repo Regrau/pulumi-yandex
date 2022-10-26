@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetAlbBackendGroupSessionAffinityCookieArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// - Name of the Backend Group.
+        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 

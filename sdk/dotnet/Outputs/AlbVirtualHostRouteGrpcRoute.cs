@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbVirtualHostRouteGrpcRoute
     {
+        /// <summary>
+        /// Checks "/" prefix by default. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.AlbVirtualHostRouteGrpcRouteGrpcMatch> GrpcMatches;
+        /// <summary>
+        /// GRPC route action resource. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbVirtualHostRouteGrpcRouteGrpcRouteAction? GrpcRouteAction;
+        /// <summary>
+        /// GRPC status response action resource. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbVirtualHostRouteGrpcRouteGrpcStatusResponseAction? GrpcStatusResponseAction;
 
         [OutputConstructor]

@@ -13,11 +13,29 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbKafkaClusterHost
     {
+        /// <summary>
+        /// Determines whether each broker will be assigned a public IP address. The default is `false`.
+        /// </summary>
         public readonly bool? AssignPublicIp;
+        /// <summary>
+        /// Health of the host.
+        /// </summary>
         public readonly string? Health;
+        /// <summary>
+        /// The name of the topic.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// The role type to grant to the topic.
+        /// </summary>
         public readonly string? Role;
+        /// <summary>
+        /// The ID of the subnet, to which the host belongs.
+        /// </summary>
         public readonly string? SubnetId;
+        /// <summary>
+        /// The availability zone where the Kafka host was created.
+        /// </summary>
         public readonly string? ZoneId;
 
         [OutputConstructor]

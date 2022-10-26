@@ -13,7 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbMongodbClusterClusterConfigMongodSecurity
     {
+        /// <summary>
+        /// Enables the encryption for the WiredTiger storage engine. Can be either true or false.
+        /// For more information see [security.enableEncryption](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.enableEncryption)
+        /// description in the official documentation. Available only in enterprise edition.
+        /// </summary>
         public readonly bool? EnableEncryption;
+        /// <summary>
+        /// Configuration of the third party key management appliance via the Key Management Interoperability Protocol (KMIP)
+        /// (see [Encryption tutorial](https://www.mongodb.com/docs/rapid/tutorial/configure-encryption) ). Requires `enable_encryption` to be true.
+        /// The structure is documented below. Available only in enterprise edition.
+        /// </summary>
         public readonly Outputs.MdbMongodbClusterClusterConfigMongodSecurityKmip? Kmip;
 
         [OutputConstructor]

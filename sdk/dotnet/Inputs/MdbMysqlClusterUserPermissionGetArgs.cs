@@ -12,11 +12,20 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbMysqlClusterUserPermissionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the database that the permission grants access to.
+        /// </summary>
         [Input("databaseName", required: true)]
         public Input<string> DatabaseName { get; set; } = null!;
 
         [Input("roles")]
         private InputList<string>? _roles;
+
+        /// <summary>
+        /// List user's roles in the database.
+        /// Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+        /// `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+        /// </summary>
         public InputList<string> Roles
         {
             get => _roles ?? (_roles = new InputList<string>());

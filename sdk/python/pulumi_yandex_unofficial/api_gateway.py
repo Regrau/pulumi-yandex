@@ -21,6 +21,11 @@ class ApiGatewayArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ApiGateway resource.
+        :param pulumi.Input[str] spec: OpenAPI specification for Yandex API Gateway.
+        :param pulumi.Input[str] description: Description of the Yandex Cloud API Gateway.
+        :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud API Gateway.
+        :param pulumi.Input[str] name: Yandex Cloud API Gateway name used to define API Gateway.
         """
         pulumi.set(__self__, "spec", spec)
         if description is not None:
@@ -35,6 +40,9 @@ class ApiGatewayArgs:
     @property
     @pulumi.getter
     def spec(self) -> pulumi.Input[str]:
+        """
+        OpenAPI specification for Yandex API Gateway.
+        """
         return pulumi.get(self, "spec")
 
     @spec.setter
@@ -44,6 +52,9 @@ class ApiGatewayArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the Yandex Cloud API Gateway.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -53,6 +64,9 @@ class ApiGatewayArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -62,6 +76,9 @@ class ApiGatewayArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Yandex Cloud API Gateway.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -71,6 +88,9 @@ class ApiGatewayArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Yandex Cloud API Gateway name used to define API Gateway.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -93,6 +113,15 @@ class _ApiGatewayState:
                  user_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering ApiGateway resources.
+        :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud API Gateway.
+        :param pulumi.Input[str] description: Description of the Yandex Cloud API Gateway.
+        :param pulumi.Input[str] domain: Default domain for the Yandex API Gateway. Generated at creation time.
+        :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud API Gateway.
+        :param pulumi.Input[str] name: Yandex Cloud API Gateway name used to define API Gateway.
+        :param pulumi.Input[str] spec: OpenAPI specification for Yandex API Gateway.
+        :param pulumi.Input[str] status: Status of the Yandex API Gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_domains: Set of user domains attached to Yandex API Gateway.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -118,6 +147,9 @@ class _ApiGatewayState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the Yandex Cloud API Gateway.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -127,6 +159,9 @@ class _ApiGatewayState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the Yandex Cloud API Gateway.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -136,6 +171,9 @@ class _ApiGatewayState:
     @property
     @pulumi.getter
     def domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Default domain for the Yandex API Gateway. Generated at creation time.
+        """
         return pulumi.get(self, "domain")
 
     @domain.setter
@@ -145,6 +183,9 @@ class _ApiGatewayState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -154,6 +195,9 @@ class _ApiGatewayState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Yandex Cloud API Gateway.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -172,6 +216,9 @@ class _ApiGatewayState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Yandex Cloud API Gateway name used to define API Gateway.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -181,6 +228,9 @@ class _ApiGatewayState:
     @property
     @pulumi.getter
     def spec(self) -> Optional[pulumi.Input[str]]:
+        """
+        OpenAPI specification for Yandex API Gateway.
+        """
         return pulumi.get(self, "spec")
 
     @spec.setter
@@ -190,6 +240,9 @@ class _ApiGatewayState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the Yandex API Gateway.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -199,6 +252,9 @@ class _ApiGatewayState:
     @property
     @pulumi.getter(name="userDomains")
     def user_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Set of user domains attached to Yandex API Gateway.
+        """
         return pulumi.get(self, "user_domains")
 
     @user_domains.setter
@@ -218,9 +274,61 @@ class ApiGateway(pulumi.CustomResource):
                  spec: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ApiGateway resource with the given unique name, props, and options.
+        Allows management of [Yandex Cloud API Gateway](https://cloud.yandex.com/docs/api-gateway/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        test_api_gateway = yandex.ApiGateway("test-api-gateway",
+            description="any description",
+            labels={
+                "label": "label",
+                "empty-label": "",
+            },
+            spec=\"\"\"openapi: "3.0.0"
+        info:
+          version: 1.0.0
+          title: Test API
+        paths:
+          /hello:
+            get:
+              summary: Say hello
+              operationId: hello
+              parameters:
+                - name: user
+                  in: query
+                  description: User name to appear in greetings
+                  required: false
+                  schema:
+                    type: string
+                    default: 'world'
+              responses:
+                '200':
+                  description: Greeting
+                  content:
+                    'text/plain':
+                      schema:
+                        type: "string"
+              x-yc-apigateway-integration:
+                type: dummy
+                http_code: 200
+                http_headers:
+                  'Content-Type': "text/plain"
+                content:
+                  'text/plain': "Hello again, {user}!\\n"
+        \"\"\")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Description of the Yandex Cloud API Gateway.
+        :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud API Gateway.
+        :param pulumi.Input[str] name: Yandex Cloud API Gateway name used to define API Gateway.
+        :param pulumi.Input[str] spec: OpenAPI specification for Yandex API Gateway.
         """
         ...
     @overload
@@ -229,7 +337,54 @@ class ApiGateway(pulumi.CustomResource):
                  args: ApiGatewayArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ApiGateway resource with the given unique name, props, and options.
+        Allows management of [Yandex Cloud API Gateway](https://cloud.yandex.com/docs/api-gateway/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        test_api_gateway = yandex.ApiGateway("test-api-gateway",
+            description="any description",
+            labels={
+                "label": "label",
+                "empty-label": "",
+            },
+            spec=\"\"\"openapi: "3.0.0"
+        info:
+          version: 1.0.0
+          title: Test API
+        paths:
+          /hello:
+            get:
+              summary: Say hello
+              operationId: hello
+              parameters:
+                - name: user
+                  in: query
+                  description: User name to appear in greetings
+                  required: false
+                  schema:
+                    type: string
+                    default: 'world'
+              responses:
+                '200':
+                  description: Greeting
+                  content:
+                    'text/plain':
+                      schema:
+                        type: "string"
+              x-yc-apigateway-integration:
+                type: dummy
+                http_code: 200
+                http_headers:
+                  'Content-Type': "text/plain"
+                content:
+                  'text/plain': "Hello again, {user}!\\n"
+        \"\"\")
+        ```
+
         :param str resource_name: The name of the resource.
         :param ApiGatewayArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -298,6 +453,15 @@ class ApiGateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud API Gateway.
+        :param pulumi.Input[str] description: Description of the Yandex Cloud API Gateway.
+        :param pulumi.Input[str] domain: Default domain for the Yandex API Gateway. Generated at creation time.
+        :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud API Gateway.
+        :param pulumi.Input[str] name: Yandex Cloud API Gateway name used to define API Gateway.
+        :param pulumi.Input[str] spec: OpenAPI specification for Yandex API Gateway.
+        :param pulumi.Input[str] status: Status of the Yandex API Gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_domains: Set of user domains attached to Yandex API Gateway.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -318,26 +482,41 @@ class ApiGateway(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the Yandex Cloud API Gateway.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the Yandex Cloud API Gateway.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def domain(self) -> pulumi.Output[str]:
+        """
+        Default domain for the Yandex API Gateway. Generated at creation time.
+        """
         return pulumi.get(self, "domain")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the Yandex Cloud API Gateway.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -348,20 +527,32 @@ class ApiGateway(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Yandex Cloud API Gateway name used to define API Gateway.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def spec(self) -> pulumi.Output[str]:
+        """
+        OpenAPI specification for Yandex API Gateway.
+        """
         return pulumi.get(self, "spec")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        Status of the Yandex API Gateway.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="userDomains")
     def user_domains(self) -> pulumi.Output[Sequence[str]]:
+        """
+        Set of user domains attached to Yandex API Gateway.
+        """
         return pulumi.get(self, "user_domains")
 

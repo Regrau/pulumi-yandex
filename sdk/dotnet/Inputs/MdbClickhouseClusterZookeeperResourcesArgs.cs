@@ -12,9 +12,16 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterZookeeperResourcesArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Volume of the storage available to a ZooKeeper host, in gigabytes.
+        /// </summary>
         [Input("diskSize")]
         public Input<int>? DiskSize { get; set; }
 
+        /// <summary>
+        /// Type of the storage of ZooKeeper hosts.
+        /// For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        /// </summary>
         [Input("diskTypeId")]
         public Input<string>? DiskTypeId { get; set; }
 

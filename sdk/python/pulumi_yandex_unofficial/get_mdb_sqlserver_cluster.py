@@ -103,26 +103,41 @@ class GetMdbSqlserverClusterResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def databases(self) -> Sequence['outputs.GetMdbSqlserverClusterDatabaseResult']:
+        """
+        A database of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "databases")
 
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> bool:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the SQLServer cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def environment(self) -> str:
+        """
+        Deployment environment of the SQLServer cluster.
+        """
         return pulumi.get(self, "environment")
 
     @property
@@ -133,16 +148,25 @@ class GetMdbSqlserverClusterResult:
     @property
     @pulumi.getter
     def health(self) -> str:
+        """
+        Aggregated health of the cluster.
+        """
         return pulumi.get(self, "health")
 
     @property
     @pulumi.getter(name="hostGroupIds")
     def host_group_ids(self) -> Sequence[str]:
+        """
+        A list of IDs of the host groups hosting VMs of the cluster.
+        """
         return pulumi.get(self, "host_group_ids")
 
     @property
     @pulumi.getter
     def hosts(self) -> Sequence['outputs.GetMdbSqlserverClusterHostResult']:
+        """
+        A host of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @property
@@ -156,51 +180,81 @@ class GetMdbSqlserverClusterResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs to assign to the SQLServer cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the database.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
+        """
+        ID of the network, to which the SQLServer cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter
     def resources(self) -> Sequence['outputs.GetMdbSqlserverClusterResourceResult']:
+        """
+        Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Sequence[str]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter
     def sqlcollation(self) -> str:
+        """
+        SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+        """
         return pulumi.get(self, "sqlcollation")
 
     @property
     @pulumi.getter(name="sqlserverConfig")
     def sqlserver_config(self) -> Mapping[str, str]:
+        """
+        SQLServer cluster config.
+        """
         return pulumi.get(self, "sqlserver_config")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the cluster.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def users(self) -> Sequence['outputs.GetMdbSqlserverClusterUserResult']:
+        """
+        A user of the SQLServer cluster. The structure is documented below.
+        """
         return pulumi.get(self, "users")
 
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        Version of the SQLServer cluster.
+        """
         return pulumi.get(self, "version")
 
 
@@ -242,7 +296,26 @@ def get_mdb_sqlserver_cluster(cluster_id: Optional[str] = None,
                               sqlserver_config: Optional[Mapping[str, str]] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMdbSqlserverClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed SQLServer cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-sqlserver/).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_sqlserver_cluster(name="test")
+    pulumi.export("networkId", foo.network_id)
+    ```
+
+
+    :param str cluster_id: The ID of the SQLServer cluster.
+    :param bool deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+    :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+    :param str name: The name of the SQLServer cluster.
+    :param str sqlcollation: SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+    :param Mapping[str, str] sqlserver_config: SQLServer cluster config.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -288,6 +361,25 @@ def get_mdb_sqlserver_cluster_output(cluster_id: Optional[pulumi.Input[Optional[
                                      sqlserver_config: Optional[pulumi.Input[Optional[Mapping[str, str]]]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMdbSqlserverClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed SQLServer cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-sqlserver/).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_sqlserver_cluster(name="test")
+    pulumi.export("networkId", foo.network_id)
+    ```
+
+
+    :param str cluster_id: The ID of the SQLServer cluster.
+    :param bool deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+    :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+    :param str name: The name of the SQLServer cluster.
+    :param str sqlcollation: SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+    :param Mapping[str, str] sqlserver_config: SQLServer cluster config.
     """
     ...

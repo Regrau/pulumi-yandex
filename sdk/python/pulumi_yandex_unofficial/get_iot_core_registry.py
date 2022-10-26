@@ -53,16 +53,25 @@ class GetIotCoreRegistryResult:
     @property
     @pulumi.getter
     def certificates(self) -> Sequence[str]:
+        """
+        A set of certificate's fingerprints for the IoT Core Registry
+        """
         return pulumi.get(self, "certificates")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of the IoT Core Registry
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the IoT Core Registry
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -81,6 +90,9 @@ class GetIotCoreRegistryResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs to assign to the IoT Core Registry.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -91,6 +103,9 @@ class GetIotCoreRegistryResult:
     @property
     @pulumi.getter
     def passwords(self) -> Sequence[str]:
+        """
+        A set of passwords's id for the IoT Core Registry
+        """
         return pulumi.get(self, "passwords")
 
     @property
@@ -121,7 +136,22 @@ def get_iot_core_registry(folder_id: Optional[str] = None,
                           registry_id: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIotCoreRegistryResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex IoT Core Registry. For more information IoT Core, see
+    [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_registry = yandex.get_iot_core_registry(registry_id="are1sampleregistry11")
+    ```
+
+    This data source is used to define [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
+
+
+    :param str folder_id: Folder ID for the IoT Core Registry
+    :param str name: IoT Core Registry name used to define registry
+    :param str registry_id: IoT Core Registry id used to define registry
     """
     __args__ = dict()
     __args__['folderId'] = folder_id
@@ -148,6 +178,21 @@ def get_iot_core_registry_output(folder_id: Optional[pulumi.Input[Optional[str]]
                                  registry_id: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIotCoreRegistryResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex IoT Core Registry. For more information IoT Core, see
+    [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_registry = yandex.get_iot_core_registry(registry_id="are1sampleregistry11")
+    ```
+
+    This data source is used to define [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
+
+
+    :param str folder_id: Folder ID for the IoT Core Registry
+    :param str name: IoT Core Registry name used to define registry
+    :param str registry_id: IoT Core Registry id used to define registry
     """
     ...

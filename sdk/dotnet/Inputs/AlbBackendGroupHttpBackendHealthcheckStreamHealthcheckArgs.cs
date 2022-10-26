@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+        /// </summary>
         [Input("receive")]
         public Input<string>? Receive { get; set; }
 
+        /// <summary>
+        /// Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+        /// </summary>
         [Input("send")]
         public Input<string>? Send { get; set; }
 

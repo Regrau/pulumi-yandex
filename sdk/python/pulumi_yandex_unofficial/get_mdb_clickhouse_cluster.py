@@ -118,16 +118,25 @@ class GetMdbClickhouseClusterResult:
     @property
     @pulumi.getter
     def accesses(self) -> Sequence['outputs.GetMdbClickhouseClusterAccessResult']:
+        """
+        Access policy to the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "accesses")
 
     @property
     @pulumi.getter(name="backupWindowStarts")
     def backup_window_starts(self) -> Sequence['outputs.GetMdbClickhouseClusterBackupWindowStartResult']:
+        """
+        Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_starts")
 
     @property
     @pulumi.getter
     def clickhouses(self) -> Sequence['outputs.GetMdbClickhouseClusterClickhouseResult']:
+        """
+        Configuration of the ClickHouse subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "clickhouses")
 
     @property
@@ -143,11 +152,17 @@ class GetMdbClickhouseClusterResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def databases(self) -> Sequence['outputs.GetMdbClickhouseClusterDatabaseResult']:
+        """
+        A database of the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "databases")
 
     @property
@@ -158,16 +173,25 @@ class GetMdbClickhouseClusterResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the shard group.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="embeddedKeeper")
     def embedded_keeper(self) -> bool:
+        """
+        Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+        """
         return pulumi.get(self, "embedded_keeper")
 
     @property
     @pulumi.getter
     def environment(self) -> str:
+        """
+        Deployment environment of the ClickHouse cluster.
+        """
         return pulumi.get(self, "environment")
 
     @property
@@ -178,16 +202,25 @@ class GetMdbClickhouseClusterResult:
     @property
     @pulumi.getter(name="formatSchemas")
     def format_schemas(self) -> Sequence['outputs.GetMdbClickhouseClusterFormatSchemaResult']:
+        """
+        A set of protobuf or cap'n proto format schemas. The structure is documented below.
+        """
         return pulumi.get(self, "format_schemas")
 
     @property
     @pulumi.getter
     def health(self) -> str:
+        """
+        Aggregated health of the cluster.
+        """
         return pulumi.get(self, "health")
 
     @property
     @pulumi.getter
     def hosts(self) -> Sequence['outputs.GetMdbClickhouseClusterHostResult']:
+        """
+        A host of the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @property
@@ -201,6 +234,9 @@ class GetMdbClickhouseClusterResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs to assign to the ClickHouse cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -211,21 +247,33 @@ class GetMdbClickhouseClusterResult:
     @property
     @pulumi.getter(name="mlModels")
     def ml_models(self) -> Sequence['outputs.GetMdbClickhouseClusterMlModelResult']:
+        """
+        A group of machine learning models. The structure is documented below.
+        """
         return pulumi.get(self, "ml_models")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Graphite rollup configuration name.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
+        """
+        ID of the network, to which the ClickHouse cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Sequence[str]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
@@ -236,26 +284,41 @@ class GetMdbClickhouseClusterResult:
     @property
     @pulumi.getter(name="shardGroups")
     def shard_groups(self) -> Sequence['outputs.GetMdbClickhouseClusterShardGroupResult']:
+        """
+        A group of clickhouse shards. The structure is documented below.
+        """
         return pulumi.get(self, "shard_groups")
 
     @property
     @pulumi.getter(name="sqlDatabaseManagement")
     def sql_database_management(self) -> bool:
+        """
+        Grants `admin` user database management permission.
+        """
         return pulumi.get(self, "sql_database_management")
 
     @property
     @pulumi.getter(name="sqlUserManagement")
     def sql_user_management(self) -> bool:
+        """
+        Enables `admin` user with user management permission.
+        """
         return pulumi.get(self, "sql_user_management")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the cluster.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def users(self) -> Sequence['outputs.GetMdbClickhouseClusterUserResult']:
+        """
+        A user of the ClickHouse cluster. The structure is documented below.
+        """
         return pulumi.get(self, "users")
 
     @property
@@ -266,6 +329,9 @@ class GetMdbClickhouseClusterResult:
     @property
     @pulumi.getter
     def zookeepers(self) -> Sequence['outputs.GetMdbClickhouseClusterZookeeperResult']:
+        """
+        Configuration of the ZooKeeper subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "zookeepers")
 
 
@@ -315,7 +381,23 @@ def get_mdb_clickhouse_cluster(cloud_storage: Optional[pulumi.InputType['GetMdbC
                                service_account_id: Optional[str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMdbClickhouseClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed ClickHouse cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_clickhouse_cluster(name="test")
+    pulumi.export("networkId", foo.network_id)
+    ```
+
+
+    :param str cluster_id: The ID of the ClickHouse cluster.
+    :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+    :param str name: The name of the ClickHouse cluster.
     """
     __args__ = dict()
     __args__['cloudStorage'] = cloud_storage
@@ -369,6 +451,22 @@ def get_mdb_clickhouse_cluster_output(cloud_storage: Optional[pulumi.Input[Optio
                                       service_account_id: Optional[pulumi.Input[Optional[str]]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMdbClickhouseClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed ClickHouse cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_clickhouse_cluster(name="test")
+    pulumi.export("networkId", foo.network_id)
+    ```
+
+
+    :param str cluster_id: The ID of the ClickHouse cluster.
+    :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+    :param str name: The name of the ClickHouse cluster.
     """
     ...

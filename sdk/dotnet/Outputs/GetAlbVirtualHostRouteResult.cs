@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetAlbVirtualHostRouteResult
     {
+        /// <summary>
+        /// GRPC route resource. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetAlbVirtualHostRouteGrpcRouteResult> GrpcRoutes;
+        /// <summary>
+        /// HTTP route resource. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetAlbVirtualHostRouteHttpRouteResult> HttpRoutes;
+        /// <summary>
+        /// Name of the Virtual Host.
+        /// </summary>
         public readonly string Name;
         public readonly ImmutableArray<Outputs.GetAlbVirtualHostRouteRouteOptionResult> RouteOptions;
 

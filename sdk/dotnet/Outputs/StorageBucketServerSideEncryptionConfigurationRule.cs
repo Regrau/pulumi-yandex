@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class StorageBucketServerSideEncryptionConfigurationRule
     {
+        /// <summary>
+        /// A single object for setting server-side encryption by default. (documented below)
+        /// </summary>
         public readonly Outputs.StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault ApplyServerSideEncryptionByDefault;
 
         [OutputConstructor]

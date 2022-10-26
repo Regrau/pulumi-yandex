@@ -15,10 +15,22 @@ namespace Pulumi.Yandex.Outputs
     {
         public readonly int? BackgroundPoolSize;
         public readonly int? BackgroundSchedulePoolSize;
+        /// <summary>
+        /// Data compression configuration. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigCompressionResult> Compressions;
         public readonly string? GeobaseUri;
+        /// <summary>
+        /// Graphite rollup configuration. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupResult> GraphiteRollups;
+        /// <summary>
+        /// Kafka topic connection configuration. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopicResult> KafkaTopics;
+        /// <summary>
+        /// Kafka connection configuration. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigKafkaResult> Kafkas;
         public readonly int? KeepAliveTimeout;
         public readonly string? LogLevel;
@@ -27,6 +39,9 @@ namespace Pulumi.Yandex.Outputs
         public readonly int? MaxConnections;
         public readonly int? MaxPartitionSizeToDrop;
         public readonly int? MaxTableSizeToDrop;
+        /// <summary>
+        /// MergeTree engine configuration. The structure is documented below.
+        /// </summary>
         public readonly Outputs.GetMdbClickhouseClusterClickhouseConfigMergeTreeResult MergeTree;
         public readonly bool? MetricLogEnabled;
         public readonly int? MetricLogRetentionSize;
@@ -38,6 +53,9 @@ namespace Pulumi.Yandex.Outputs
         public readonly bool? QueryThreadLogEnabled;
         public readonly int? QueryThreadLogRetentionSize;
         public readonly int? QueryThreadLogRetentionTime;
+        /// <summary>
+        /// RabbitMQ connection configuration. The structure is documented below.
+        /// </summary>
         public readonly Outputs.GetMdbClickhouseClusterClickhouseConfigRabbitmqResult Rabbitmq;
         public readonly bool? TextLogEnabled;
         public readonly string? TextLogLevel;

@@ -13,11 +13,29 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbElasticSearchClusterHostResult
     {
+        /// <summary>
+        /// Sets whether the host should get a public IP address on creation.
+        /// </summary>
         public readonly bool AssignPublicIp;
+        /// <summary>
+        /// The fully qualified domain name of the host.
+        /// </summary>
         public readonly string Fqdn;
+        /// <summary>
+        /// The name of the Elasticsearch cluster.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        /// </summary>
         public readonly string SubnetId;
+        /// <summary>
+        /// Type of a maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour need to be specified with the weekly window.
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// The availability zone where the Elasticsearch host will be created.
+        /// </summary>
         public readonly string Zone;
 
         [OutputConstructor]

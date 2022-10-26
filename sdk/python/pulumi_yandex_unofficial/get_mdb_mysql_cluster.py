@@ -103,11 +103,17 @@ class GetMdbMysqlClusterResult:
     @property
     @pulumi.getter
     def access(self) -> 'outputs.GetMdbMysqlClusterAccessResult':
+        """
+        Access policy to the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @property
     @pulumi.getter(name="backupRetainPeriodDays")
     def backup_retain_period_days(self) -> int:
+        """
+        The period in days during which backups are stored.
+        """
         return pulumi.get(self, "backup_retain_period_days")
 
     @property
@@ -123,11 +129,17 @@ class GetMdbMysqlClusterResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def databases(self) -> Sequence['outputs.GetMdbMysqlClusterDatabaseResult']:
+        """
+        A database of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "databases")
 
     @property
@@ -138,11 +150,17 @@ class GetMdbMysqlClusterResult:
     @property
     @pulumi.getter
     def description(self) -> Optional[str]:
+        """
+        Description of the MySQL cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def environment(self) -> str:
+        """
+        Deployment environment of the MySQL cluster.
+        """
         return pulumi.get(self, "environment")
 
     @property
@@ -153,6 +171,9 @@ class GetMdbMysqlClusterResult:
     @property
     @pulumi.getter
     def health(self) -> str:
+        """
+        Aggregated health of the cluster.
+        """
         return pulumi.get(self, "health")
 
     @property
@@ -163,6 +184,9 @@ class GetMdbMysqlClusterResult:
     @property
     @pulumi.getter
     def hosts(self) -> Sequence['outputs.GetMdbMysqlClusterHostResult']:
+        """
+        A host of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @property
@@ -176,56 +200,89 @@ class GetMdbMysqlClusterResult:
     @property
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        A set of key/value label pairs to assign to the MySQL cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Sequence['outputs.GetMdbMysqlClusterMaintenanceWindowResult']:
+        """
+        Maintenance window settings of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_windows")
 
     @property
     @pulumi.getter(name="mysqlConfig")
     def mysql_config(self) -> Mapping[str, str]:
+        """
+        MySQL cluster config.
+        """
         return pulumi.get(self, "mysql_config")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the database.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
+        """
+        ID of the network, to which the MySQL cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="performanceDiagnostics")
     def performance_diagnostics(self) -> Sequence['outputs.GetMdbMysqlClusterPerformanceDiagnosticResult']:
+        """
+        Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        """
         return pulumi.get(self, "performance_diagnostics")
 
     @property
     @pulumi.getter
     def resources(self) -> Sequence['outputs.GetMdbMysqlClusterResourceResult']:
+        """
+        Resources allocated to hosts of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Sequence[str]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the cluster.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def users(self) -> Sequence['outputs.GetMdbMysqlClusterUserResult']:
+        """
+        A user of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "users")
 
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        Version of the MySQL cluster.
+        """
         return pulumi.get(self, "version")
 
 
@@ -272,7 +329,27 @@ def get_mdb_mysql_cluster(access: Optional[pulumi.InputType['GetMdbMysqlClusterA
                           name: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMdbMysqlClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed MySQL cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-mysql/).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_mysql_cluster(name="test")
+    pulumi.export("networkId", foo.network_id)
+    ```
+
+
+    :param pulumi.InputType['GetMdbMysqlClusterAccessArgs'] access: Access policy to the MySQL cluster. The structure is documented below.
+    :param str cluster_id: The ID of the MySQL cluster.
+    :param str description: Description of the MySQL cluster.
+    :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+    :param Mapping[str, str] labels: A set of key/value label pairs to assign to the MySQL cluster.
+    :param Mapping[str, str] mysql_config: MySQL cluster config.
+    :param str name: The name of the MySQL cluster.
     """
     __args__ = dict()
     __args__['access'] = access
@@ -325,6 +402,26 @@ def get_mdb_mysql_cluster_output(access: Optional[pulumi.Input[Optional[pulumi.I
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMdbMysqlClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed MySQL cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-mysql/).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_mysql_cluster(name="test")
+    pulumi.export("networkId", foo.network_id)
+    ```
+
+
+    :param pulumi.InputType['GetMdbMysqlClusterAccessArgs'] access: Access policy to the MySQL cluster. The structure is documented below.
+    :param str cluster_id: The ID of the MySQL cluster.
+    :param str description: Description of the MySQL cluster.
+    :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+    :param Mapping[str, str] labels: A set of key/value label pairs to assign to the MySQL cluster.
+    :param Mapping[str, str] mysql_config: MySQL cluster config.
+    :param str name: The name of the MySQL cluster.
     """
     ...

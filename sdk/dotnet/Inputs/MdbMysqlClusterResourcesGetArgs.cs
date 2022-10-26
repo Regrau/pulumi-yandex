@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbMysqlClusterResourcesGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Volume of the storage available to a MySQL host, in gigabytes.
+        /// </summary>
         [Input("diskSize", required: true)]
         public Input<int> DiskSize { get; set; } = null!;
 
+        /// <summary>
+        /// Type of the storage of MySQL hosts.
+        /// </summary>
         [Input("diskTypeId", required: true)]
         public Input<string> DiskTypeId { get; set; } = null!;
 

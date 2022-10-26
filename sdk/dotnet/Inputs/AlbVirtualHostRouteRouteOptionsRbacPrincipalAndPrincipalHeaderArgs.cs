@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// name of the route.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 

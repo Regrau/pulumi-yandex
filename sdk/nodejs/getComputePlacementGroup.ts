@@ -4,6 +4,23 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Compute Placement group. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/compute/concepts/placement-groups).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const myGroup = pulumi.output(yandex.getComputePlacementGroup({
+ *     groupId: "some_group_id",
+ * }));
+ *
+ * export const placementGroupName = myGroup.name!;
+ * ```
+ */
 export function getComputePlacementGroup(args?: GetComputePlacementGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetComputePlacementGroupResult> {
     args = args || {};
     if (!opts) {
@@ -24,10 +41,25 @@ export function getComputePlacementGroup(args?: GetComputePlacementGroupArgs, op
  * A collection of arguments for invoking getComputePlacementGroup.
  */
 export interface GetComputePlacementGroupArgs {
+    /**
+     * Description of the group.
+     */
     description?: string;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * The ID of a specific group.
+     */
     groupId?: string;
+    /**
+     * A set of key/value label pairs assigned to the group.
+     */
     labels?: {[key: string]: string};
+    /**
+     * Name of the group.
+     */
     name?: string;
 }
 
@@ -35,7 +67,13 @@ export interface GetComputePlacementGroupArgs {
  * A collection of values returned by getComputePlacementGroup.
  */
 export interface GetComputePlacementGroupResult {
+    /**
+     * Placement group creation timestamp.
+     */
     readonly createdAt: string;
+    /**
+     * Description of the group.
+     */
     readonly description?: string;
     readonly folderId: string;
     readonly groupId: string;
@@ -43,6 +81,9 @@ export interface GetComputePlacementGroupResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A set of key/value label pairs assigned to the group.
+     */
     readonly labels?: {[key: string]: string};
     readonly name?: string;
 }
@@ -55,9 +96,24 @@ export function getComputePlacementGroupOutput(args?: GetComputePlacementGroupOu
  * A collection of arguments for invoking getComputePlacementGroup.
  */
 export interface GetComputePlacementGroupOutputArgs {
+    /**
+     * Description of the group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * The ID of a specific group.
+     */
     groupId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs assigned to the group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the group.
+     */
     name?: pulumi.Input<string>;
 }

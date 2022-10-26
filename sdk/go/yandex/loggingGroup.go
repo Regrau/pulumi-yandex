@@ -10,17 +10,54 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Yandex Cloud Logging group resource. For more information, see
+// [the official documentation](https://cloud.yandex.com/en/docs/logging/concepts/log-group).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewLoggingGroup(ctx, "group1", &yandex.LoggingGroupArgs{
+//				FolderId: pulumi.Any(data.Yandex_resourcemanager_folder.Test_folder.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type LoggingGroup struct {
 	pulumi.CustomResourceState
 
-	CloudId         pulumi.StringOutput    `pulumi:"cloudId"`
-	CreatedAt       pulumi.StringOutput    `pulumi:"createdAt"`
-	Description     pulumi.StringPtrOutput `pulumi:"description"`
-	FolderId        pulumi.StringOutput    `pulumi:"folderId"`
-	Labels          pulumi.StringMapOutput `pulumi:"labels"`
-	Name            pulumi.StringOutput    `pulumi:"name"`
-	RetentionPeriod pulumi.StringOutput    `pulumi:"retentionPeriod"`
-	Status          pulumi.StringOutput    `pulumi:"status"`
+	// ID of the cloud that the Yandex Cloud Logging group belong to.
+	CloudId pulumi.StringOutput `pulumi:"cloudId"`
+	// The Yandex Cloud Logging group creation timestamp.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// A description for the Yandex Cloud Logging group.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// ID of the folder that the Yandex Cloud Logging group belongs to.
+	// It will be deduced from provider configuration if not set explicitly.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name for the Yandex Cloud Logging group.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Log entries retention period for the Yandex Cloud Logging group.
+	RetentionPeriod pulumi.StringOutput `pulumi:"retentionPeriod"`
+	// The Yandex Cloud Logging group status.
+	Status pulumi.StringOutput `pulumi:"status"`
 }
 
 // NewLoggingGroup registers a new resource with the given unique name, arguments, and options.
@@ -53,25 +90,43 @@ func GetLoggingGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LoggingGroup resources.
 type loggingGroupState struct {
-	CloudId         *string           `pulumi:"cloudId"`
-	CreatedAt       *string           `pulumi:"createdAt"`
-	Description     *string           `pulumi:"description"`
-	FolderId        *string           `pulumi:"folderId"`
-	Labels          map[string]string `pulumi:"labels"`
-	Name            *string           `pulumi:"name"`
-	RetentionPeriod *string           `pulumi:"retentionPeriod"`
-	Status          *string           `pulumi:"status"`
+	// ID of the cloud that the Yandex Cloud Logging group belong to.
+	CloudId *string `pulumi:"cloudId"`
+	// The Yandex Cloud Logging group creation timestamp.
+	CreatedAt *string `pulumi:"createdAt"`
+	// A description for the Yandex Cloud Logging group.
+	Description *string `pulumi:"description"`
+	// ID of the folder that the Yandex Cloud Logging group belongs to.
+	// It will be deduced from provider configuration if not set explicitly.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+	Labels map[string]string `pulumi:"labels"`
+	// Name for the Yandex Cloud Logging group.
+	Name *string `pulumi:"name"`
+	// Log entries retention period for the Yandex Cloud Logging group.
+	RetentionPeriod *string `pulumi:"retentionPeriod"`
+	// The Yandex Cloud Logging group status.
+	Status *string `pulumi:"status"`
 }
 
 type LoggingGroupState struct {
-	CloudId         pulumi.StringPtrInput
-	CreatedAt       pulumi.StringPtrInput
-	Description     pulumi.StringPtrInput
-	FolderId        pulumi.StringPtrInput
-	Labels          pulumi.StringMapInput
-	Name            pulumi.StringPtrInput
+	// ID of the cloud that the Yandex Cloud Logging group belong to.
+	CloudId pulumi.StringPtrInput
+	// The Yandex Cloud Logging group creation timestamp.
+	CreatedAt pulumi.StringPtrInput
+	// A description for the Yandex Cloud Logging group.
+	Description pulumi.StringPtrInput
+	// ID of the folder that the Yandex Cloud Logging group belongs to.
+	// It will be deduced from provider configuration if not set explicitly.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+	Labels pulumi.StringMapInput
+	// Name for the Yandex Cloud Logging group.
+	Name pulumi.StringPtrInput
+	// Log entries retention period for the Yandex Cloud Logging group.
 	RetentionPeriod pulumi.StringPtrInput
-	Status          pulumi.StringPtrInput
+	// The Yandex Cloud Logging group status.
+	Status pulumi.StringPtrInput
 }
 
 func (LoggingGroupState) ElementType() reflect.Type {
@@ -79,19 +134,31 @@ func (LoggingGroupState) ElementType() reflect.Type {
 }
 
 type loggingGroupArgs struct {
-	Description     *string           `pulumi:"description"`
-	FolderId        *string           `pulumi:"folderId"`
-	Labels          map[string]string `pulumi:"labels"`
-	Name            *string           `pulumi:"name"`
-	RetentionPeriod *string           `pulumi:"retentionPeriod"`
+	// A description for the Yandex Cloud Logging group.
+	Description *string `pulumi:"description"`
+	// ID of the folder that the Yandex Cloud Logging group belongs to.
+	// It will be deduced from provider configuration if not set explicitly.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+	Labels map[string]string `pulumi:"labels"`
+	// Name for the Yandex Cloud Logging group.
+	Name *string `pulumi:"name"`
+	// Log entries retention period for the Yandex Cloud Logging group.
+	RetentionPeriod *string `pulumi:"retentionPeriod"`
 }
 
 // The set of arguments for constructing a LoggingGroup resource.
 type LoggingGroupArgs struct {
-	Description     pulumi.StringPtrInput
-	FolderId        pulumi.StringPtrInput
-	Labels          pulumi.StringMapInput
-	Name            pulumi.StringPtrInput
+	// A description for the Yandex Cloud Logging group.
+	Description pulumi.StringPtrInput
+	// ID of the folder that the Yandex Cloud Logging group belongs to.
+	// It will be deduced from provider configuration if not set explicitly.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+	Labels pulumi.StringMapInput
+	// Name for the Yandex Cloud Logging group.
+	Name pulumi.StringPtrInput
+	// Log entries retention period for the Yandex Cloud Logging group.
 	RetentionPeriod pulumi.StringPtrInput
 }
 
@@ -182,34 +249,43 @@ func (o LoggingGroupOutput) ToLoggingGroupOutputWithContext(ctx context.Context)
 	return o
 }
 
+// ID of the cloud that the Yandex Cloud Logging group belong to.
 func (o LoggingGroupOutput) CloudId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoggingGroup) pulumi.StringOutput { return v.CloudId }).(pulumi.StringOutput)
 }
 
+// The Yandex Cloud Logging group creation timestamp.
 func (o LoggingGroupOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoggingGroup) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// A description for the Yandex Cloud Logging group.
 func (o LoggingGroupOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LoggingGroup) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// ID of the folder that the Yandex Cloud Logging group belongs to.
+// It will be deduced from provider configuration if not set explicitly.
 func (o LoggingGroupOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoggingGroup) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the Yandex Cloud Logging group.
 func (o LoggingGroupOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *LoggingGroup) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name for the Yandex Cloud Logging group.
 func (o LoggingGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoggingGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Log entries retention period for the Yandex Cloud Logging group.
 func (o LoggingGroupOutput) RetentionPeriod() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoggingGroup) pulumi.StringOutput { return v.RetentionPeriod }).(pulumi.StringOutput)
 }
 
+// The Yandex Cloud Logging group status.
 func (o LoggingGroupOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoggingGroup) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

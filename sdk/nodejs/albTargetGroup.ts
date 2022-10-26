@@ -5,6 +5,38 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Creates a target group in the specified folder and adds the specified targets to it.
+ * For more information, see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/target-group).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const foo = new yandex.AlbTargetGroup("foo", {
+ *     targets: [
+ *         {
+ *             ipAddress: yandex_compute_instance_my_instance_1.networkInterface.0.ipAddress,
+ *             subnetId: yandex_vpc_subnet_my_subnet.id,
+ *         },
+ *         {
+ *             ipAddress: yandex_compute_instance_my_instance_2.networkInterface.0.ipAddress,
+ *             subnetId: yandex_vpc_subnet_my_subnet.id,
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A target group can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/albTargetGroup:AlbTargetGroup default target_group_id
+ * ```
+ */
 export class AlbTargetGroup extends pulumi.CustomResource {
     /**
      * Get an existing AlbTargetGroup resource's state with the given name, ID, and optional extra
@@ -33,11 +65,31 @@ export class AlbTargetGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === AlbTargetGroup.__pulumiType;
     }
 
+    /**
+     * The target group creation timestamp.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * An optional description of the target group. Provide this property when
+     * you create the resource.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * The ID of the folder to which the resource belongs.
+     * If omitted, the provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * Labels to assign to this target group. A list of key/value pairs.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Name of the target group. Provided by the client when the target group is created.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * A Target resource. The structure is documented below.
+     */
     public readonly targets!: pulumi.Output<outputs.AlbTargetGroupTarget[] | undefined>;
 
     /**
@@ -77,11 +129,31 @@ export class AlbTargetGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AlbTargetGroup resources.
  */
 export interface AlbTargetGroupState {
+    /**
+     * The target group creation timestamp.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * An optional description of the target group. Provide this property when
+     * you create the resource.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the folder to which the resource belongs.
+     * If omitted, the provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Labels to assign to this target group. A list of key/value pairs.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the target group. Provided by the client when the target group is created.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * A Target resource. The structure is documented below.
+     */
     targets?: pulumi.Input<pulumi.Input<inputs.AlbTargetGroupTarget>[]>;
 }
 
@@ -89,9 +161,26 @@ export interface AlbTargetGroupState {
  * The set of arguments for constructing a AlbTargetGroup resource.
  */
 export interface AlbTargetGroupArgs {
+    /**
+     * An optional description of the target group. Provide this property when
+     * you create the resource.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the folder to which the resource belongs.
+     * If omitted, the provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Labels to assign to this target group. A list of key/value pairs.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the target group. Provided by the client when the target group is created.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * A Target resource. The structure is documented below.
+     */
     targets?: pulumi.Input<pulumi.Input<inputs.AlbTargetGroupTarget>[]>;
 }

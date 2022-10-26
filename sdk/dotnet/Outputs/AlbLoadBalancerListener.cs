@@ -13,10 +13,25 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerListener
     {
+        /// <summary>
+        /// Network endpoints (addresses and ports) of the listener. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.AlbLoadBalancerListenerEndpoint> Endpoints;
+        /// <summary>
+        /// HTTP listener resource. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbLoadBalancerListenerHttp? Http;
+        /// <summary>
+        /// name of SNI match.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Stream listener resource. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbLoadBalancerListenerStream? Stream;
+        /// <summary>
+        /// TLS listener resource. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbLoadBalancerListenerTls? Tls;
 
         [OutputConstructor]

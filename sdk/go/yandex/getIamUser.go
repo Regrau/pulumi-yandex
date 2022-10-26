@@ -10,6 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex IAM user account. For more information about accounts, see
+// [Yandex.Cloud IAM accounts](https://cloud.yandex.com/docs/iam/concepts/#accounts).
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.GetIamUser(ctx, &GetIamUserArgs{
+//				Login: pulumi.StringRef("my-yandex-login"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// This data source is used to define [IAM User] that can be used by other resources.
 func GetIamUser(ctx *pulumi.Context, args *GetIamUserArgs, opts ...pulumi.InvokeOption) (*GetIamUserResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetIamUserResult
@@ -22,16 +50,21 @@ func GetIamUser(ctx *pulumi.Context, args *GetIamUserArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getIamUser.
 type GetIamUserArgs struct {
-	Login  *string `pulumi:"login"`
+	// Login name used to sign in to Yandex Passport.
+	Login *string `pulumi:"login"`
+	// User ID used to manage IAM access bindings.
 	UserId *string `pulumi:"userId"`
 }
 
 // A collection of values returned by getIamUser.
 type GetIamUserResult struct {
+	// Email address of user account.
 	DefaultEmail string `pulumi:"defaultEmail"`
 	// The provider-assigned unique ID for this managed resource.
-	Id     string `pulumi:"id"`
-	Login  string `pulumi:"login"`
+	Id string `pulumi:"id"`
+	// Login name of IAM user account.
+	Login string `pulumi:"login"`
+	// ID of IAM user account.
 	UserId string `pulumi:"userId"`
 }
 
@@ -50,7 +83,9 @@ func GetIamUserOutput(ctx *pulumi.Context, args GetIamUserOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getIamUser.
 type GetIamUserOutputArgs struct {
-	Login  pulumi.StringPtrInput `pulumi:"login"`
+	// Login name used to sign in to Yandex Passport.
+	Login pulumi.StringPtrInput `pulumi:"login"`
+	// User ID used to manage IAM access bindings.
 	UserId pulumi.StringPtrInput `pulumi:"userId"`
 }
 
@@ -73,6 +108,7 @@ func (o GetIamUserResultOutput) ToGetIamUserResultOutputWithContext(ctx context.
 	return o
 }
 
+// Email address of user account.
 func (o GetIamUserResultOutput) DefaultEmail() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIamUserResult) string { return v.DefaultEmail }).(pulumi.StringOutput)
 }
@@ -82,10 +118,12 @@ func (o GetIamUserResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIamUserResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Login name of IAM user account.
 func (o GetIamUserResultOutput) Login() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIamUserResult) string { return v.Login }).(pulumi.StringOutput)
 }
 
+// ID of IAM user account.
 func (o GetIamUserResultOutput) UserId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIamUserResult) string { return v.UserId }).(pulumi.StringOutput)
 }

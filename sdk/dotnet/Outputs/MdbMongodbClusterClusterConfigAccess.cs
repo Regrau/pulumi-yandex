@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbMongodbClusterClusterConfigAccess
     {
+        /// <summary>
+        /// Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        /// </summary>
         public readonly bool? DataLens;
+        /// <summary>
+        /// Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        /// </summary>
         public readonly bool? DataTransfer;
 
         [OutputConstructor]

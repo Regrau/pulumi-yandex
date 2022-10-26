@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class StorageBucketServerSideEncryptionConfigurationGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// A single object for server-side encryption by default configuration. (documented below)
+        /// </summary>
         [Input("rule", required: true)]
         public Input<Inputs.StorageBucketServerSideEncryptionConfigurationRuleGetArgs> Rule { get; set; } = null!;
 

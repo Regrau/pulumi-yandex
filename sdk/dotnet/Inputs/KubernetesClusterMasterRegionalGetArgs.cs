@@ -14,12 +14,19 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("locations")]
         private InputList<Inputs.KubernetesClusterMasterRegionalLocationGetArgs>? _locations;
+
+        /// <summary>
+        /// Array of locations, where master instances will be allocated. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.KubernetesClusterMasterRegionalLocationGetArgs> Locations
         {
             get => _locations ?? (_locations = new InputList<Inputs.KubernetesClusterMasterRegionalLocationGetArgs>());
             set => _locations = value;
         }
 
+        /// <summary>
+        /// (Required) Name of availability region (e.g. "ru-central1"), where master instances will be allocated.
+        /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
 

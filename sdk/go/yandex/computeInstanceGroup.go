@@ -11,27 +11,147 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// An Instance group resource. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/instance-groups/).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewComputeInstanceGroup(ctx, "group1", &yandex.ComputeInstanceGroupArgs{
+//				AllocationPolicy: &ComputeInstanceGroupAllocationPolicyArgs{
+//					Zones: pulumi.StringArray{
+//						pulumi.String("ru-central1-a"),
+//					},
+//				},
+//				DeletionProtection: pulumi.Bool(true),
+//				DeployPolicy: &ComputeInstanceGroupDeployPolicyArgs{
+//					MaxCreating:    pulumi.Int(2),
+//					MaxDeleting:    pulumi.Int(2),
+//					MaxExpansion:   pulumi.Int(2),
+//					MaxUnavailable: pulumi.Int(2),
+//				},
+//				FolderId: pulumi.Any(data.Yandex_resourcemanager_folder.Test_folder.Id),
+//				InstanceTemplate: &ComputeInstanceGroupInstanceTemplateArgs{
+//					BootDisk: &ComputeInstanceGroupInstanceTemplateBootDiskArgs{
+//						InitializeParams: &ComputeInstanceGroupInstanceTemplateBootDiskInitializeParamsArgs{
+//							ImageId: pulumi.Any(data.Yandex_compute_image.Ubuntu.Id),
+//							Size:    pulumi.Int(4),
+//						},
+//						Mode: pulumi.String("READ_WRITE"),
+//					},
+//					Labels: pulumi.StringMap{
+//						"label1": pulumi.String("label1-value"),
+//						"label2": pulumi.String("label2-value"),
+//					},
+//					Metadata: pulumi.StringMap{
+//						"foo":      pulumi.String("bar"),
+//						"ssh-keys": pulumi.String(fmt.Sprintf("ubuntu:%v", readFileOrPanic("~/.ssh/id_rsa.pub"))),
+//					},
+//					NetworkInterfaces: ComputeInstanceGroupInstanceTemplateNetworkInterfaceArray{
+//						&ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs{
+//							NetworkId: pulumi.Any(yandex_vpc_network.My - inst - group - network.Id),
+//							SubnetIds: pulumi.StringArray{
+//								pulumi.Any(yandex_vpc_subnet.My - inst - group - subnet.Id),
+//							},
+//						},
+//					},
+//					NetworkSettings: ComputeInstanceGroupInstanceTemplateNetworkSettingArray{
+//						&ComputeInstanceGroupInstanceTemplateNetworkSettingArgs{
+//							Type: pulumi.String("STANDARD"),
+//						},
+//					},
+//					PlatformId: pulumi.String("standard-v1"),
+//					Resources: &ComputeInstanceGroupInstanceTemplateResourcesArgs{
+//						Cores:  pulumi.Int(2),
+//						Memory: pulumi.Float64(2),
+//					},
+//				},
+//				ScalePolicy: &ComputeInstanceGroupScalePolicyArgs{
+//					FixedScale: &ComputeInstanceGroupScalePolicyFixedScaleArgs{
+//						Size: pulumi.Int(3),
+//					},
+//				},
+//				ServiceAccountId: pulumi.Any(yandex_iam_service_account.Test_account.Id),
+//				Variables: pulumi.StringMap{
+//					"test_key1": pulumi.String("test_value1"),
+//					"test_key2": pulumi.String("test_value2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type ComputeInstanceGroup struct {
 	pulumi.CustomResourceState
 
-	AllocationPolicy          ComputeInstanceGroupAllocationPolicyOutput           `pulumi:"allocationPolicy"`
-	ApplicationLoadBalancer   ComputeInstanceGroupApplicationLoadBalancerPtrOutput `pulumi:"applicationLoadBalancer"`
-	CreatedAt                 pulumi.StringOutput                                  `pulumi:"createdAt"`
-	DeletionProtection        pulumi.BoolPtrOutput                                 `pulumi:"deletionProtection"`
-	DeployPolicy              ComputeInstanceGroupDeployPolicyOutput               `pulumi:"deployPolicy"`
-	Description               pulumi.StringPtrOutput                               `pulumi:"description"`
-	FolderId                  pulumi.StringOutput                                  `pulumi:"folderId"`
-	HealthChecks              ComputeInstanceGroupHealthCheckArrayOutput           `pulumi:"healthChecks"`
-	InstanceTemplate          ComputeInstanceGroupInstanceTemplateOutput           `pulumi:"instanceTemplate"`
-	Instances                 ComputeInstanceGroupInstanceArrayOutput              `pulumi:"instances"`
-	Labels                    pulumi.StringMapOutput                               `pulumi:"labels"`
-	LoadBalancer              ComputeInstanceGroupLoadBalancerPtrOutput            `pulumi:"loadBalancer"`
-	MaxCheckingHealthDuration pulumi.IntPtrOutput                                  `pulumi:"maxCheckingHealthDuration"`
-	Name                      pulumi.StringOutput                                  `pulumi:"name"`
-	ScalePolicy               ComputeInstanceGroupScalePolicyOutput                `pulumi:"scalePolicy"`
-	ServiceAccountId          pulumi.StringOutput                                  `pulumi:"serviceAccountId"`
-	Status                    pulumi.StringOutput                                  `pulumi:"status"`
-	Variables                 pulumi.StringMapOutput                               `pulumi:"variables"`
+	// The allocation policy of the instance group by zone and region. The structure is documented below.
+	AllocationPolicy ComputeInstanceGroupAllocationPolicyOutput `pulumi:"allocationPolicy"`
+	// Application Load balancing (L7) specifications. The structure is documented below.
+	ApplicationLoadBalancer ComputeInstanceGroupApplicationLoadBalancerPtrOutput `pulumi:"applicationLoadBalancer"`
+	// The instance group creation timestamp.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Flag that protects the instance group from accidental deletion.
+	DeletionProtection pulumi.BoolPtrOutput `pulumi:"deletionProtection"`
+	// The deployment policy of the instance group. The structure is documented below.
+	DeployPolicy ComputeInstanceGroupDeployPolicyOutput `pulumi:"deployPolicy"`
+	// A description of the boot disk.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Health check specifications. The structure is documented below.
+	HealthChecks ComputeInstanceGroupHealthCheckArrayOutput `pulumi:"healthChecks"`
+	// The template for creating new instances. The structure is documented below.
+	InstanceTemplate ComputeInstanceGroupInstanceTemplateOutput `pulumi:"instanceTemplate"`
+	Instances        ComputeInstanceGroupInstanceArrayOutput    `pulumi:"instances"`
+	// A map of labels of metric.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Load balancing specifications. The structure is documented below.
+	LoadBalancer ComputeInstanceGroupLoadBalancerPtrOutput `pulumi:"loadBalancer"`
+	// Timeout for waiting for the VM to become healthy. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+	MaxCheckingHealthDuration pulumi.IntPtrOutput `pulumi:"maxCheckingHealthDuration"`
+	// Name template of the instance.\
+	// In order to be unique it must contain at least one of instance unique placeholders:
+	// {instance.short_id}
+	// {instance.index}
+	// combination of {instance.zone_id} and {instance.index_in_zone}
+	// Example: my-instance-{instance.index}
+	// If not set, default is used: {instance_group.id}-{instance.short_id}
+	// It may also contain another placeholders, see metadata doc for full list.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The scaling policy of the instance group. The structure is documented below.
+	ScalePolicy ComputeInstanceGroupScalePolicyOutput `pulumi:"scalePolicy"`
+	// The ID of the service account authorized for this instance.
+	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
+	// The status of the instance.
+	Status pulumi.StringOutput `pulumi:"status"`
+	// A set of key/value  variables pairs to assign to the instance group.
+	Variables pulumi.StringMapOutput `pulumi:"variables"`
 }
 
 // NewComputeInstanceGroup registers a new resource with the given unique name, arguments, and options.
@@ -79,45 +199,93 @@ func GetComputeInstanceGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ComputeInstanceGroup resources.
 type computeInstanceGroupState struct {
-	AllocationPolicy          *ComputeInstanceGroupAllocationPolicy        `pulumi:"allocationPolicy"`
-	ApplicationLoadBalancer   *ComputeInstanceGroupApplicationLoadBalancer `pulumi:"applicationLoadBalancer"`
-	CreatedAt                 *string                                      `pulumi:"createdAt"`
-	DeletionProtection        *bool                                        `pulumi:"deletionProtection"`
-	DeployPolicy              *ComputeInstanceGroupDeployPolicy            `pulumi:"deployPolicy"`
-	Description               *string                                      `pulumi:"description"`
-	FolderId                  *string                                      `pulumi:"folderId"`
-	HealthChecks              []ComputeInstanceGroupHealthCheck            `pulumi:"healthChecks"`
-	InstanceTemplate          *ComputeInstanceGroupInstanceTemplate        `pulumi:"instanceTemplate"`
-	Instances                 []ComputeInstanceGroupInstance               `pulumi:"instances"`
-	Labels                    map[string]string                            `pulumi:"labels"`
-	LoadBalancer              *ComputeInstanceGroupLoadBalancer            `pulumi:"loadBalancer"`
-	MaxCheckingHealthDuration *int                                         `pulumi:"maxCheckingHealthDuration"`
-	Name                      *string                                      `pulumi:"name"`
-	ScalePolicy               *ComputeInstanceGroupScalePolicy             `pulumi:"scalePolicy"`
-	ServiceAccountId          *string                                      `pulumi:"serviceAccountId"`
-	Status                    *string                                      `pulumi:"status"`
-	Variables                 map[string]string                            `pulumi:"variables"`
+	// The allocation policy of the instance group by zone and region. The structure is documented below.
+	AllocationPolicy *ComputeInstanceGroupAllocationPolicy `pulumi:"allocationPolicy"`
+	// Application Load balancing (L7) specifications. The structure is documented below.
+	ApplicationLoadBalancer *ComputeInstanceGroupApplicationLoadBalancer `pulumi:"applicationLoadBalancer"`
+	// The instance group creation timestamp.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Flag that protects the instance group from accidental deletion.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// The deployment policy of the instance group. The structure is documented below.
+	DeployPolicy *ComputeInstanceGroupDeployPolicy `pulumi:"deployPolicy"`
+	// A description of the boot disk.
+	Description *string `pulumi:"description"`
+	// Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+	FolderId *string `pulumi:"folderId"`
+	// Health check specifications. The structure is documented below.
+	HealthChecks []ComputeInstanceGroupHealthCheck `pulumi:"healthChecks"`
+	// The template for creating new instances. The structure is documented below.
+	InstanceTemplate *ComputeInstanceGroupInstanceTemplate `pulumi:"instanceTemplate"`
+	Instances        []ComputeInstanceGroupInstance        `pulumi:"instances"`
+	// A map of labels of metric.
+	Labels map[string]string `pulumi:"labels"`
+	// Load balancing specifications. The structure is documented below.
+	LoadBalancer *ComputeInstanceGroupLoadBalancer `pulumi:"loadBalancer"`
+	// Timeout for waiting for the VM to become healthy. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+	MaxCheckingHealthDuration *int `pulumi:"maxCheckingHealthDuration"`
+	// Name template of the instance.\
+	// In order to be unique it must contain at least one of instance unique placeholders:
+	// {instance.short_id}
+	// {instance.index}
+	// combination of {instance.zone_id} and {instance.index_in_zone}
+	// Example: my-instance-{instance.index}
+	// If not set, default is used: {instance_group.id}-{instance.short_id}
+	// It may also contain another placeholders, see metadata doc for full list.
+	Name *string `pulumi:"name"`
+	// The scaling policy of the instance group. The structure is documented below.
+	ScalePolicy *ComputeInstanceGroupScalePolicy `pulumi:"scalePolicy"`
+	// The ID of the service account authorized for this instance.
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
+	// The status of the instance.
+	Status *string `pulumi:"status"`
+	// A set of key/value  variables pairs to assign to the instance group.
+	Variables map[string]string `pulumi:"variables"`
 }
 
 type ComputeInstanceGroupState struct {
-	AllocationPolicy          ComputeInstanceGroupAllocationPolicyPtrInput
-	ApplicationLoadBalancer   ComputeInstanceGroupApplicationLoadBalancerPtrInput
-	CreatedAt                 pulumi.StringPtrInput
-	DeletionProtection        pulumi.BoolPtrInput
-	DeployPolicy              ComputeInstanceGroupDeployPolicyPtrInput
-	Description               pulumi.StringPtrInput
-	FolderId                  pulumi.StringPtrInput
-	HealthChecks              ComputeInstanceGroupHealthCheckArrayInput
-	InstanceTemplate          ComputeInstanceGroupInstanceTemplatePtrInput
-	Instances                 ComputeInstanceGroupInstanceArrayInput
-	Labels                    pulumi.StringMapInput
-	LoadBalancer              ComputeInstanceGroupLoadBalancerPtrInput
+	// The allocation policy of the instance group by zone and region. The structure is documented below.
+	AllocationPolicy ComputeInstanceGroupAllocationPolicyPtrInput
+	// Application Load balancing (L7) specifications. The structure is documented below.
+	ApplicationLoadBalancer ComputeInstanceGroupApplicationLoadBalancerPtrInput
+	// The instance group creation timestamp.
+	CreatedAt pulumi.StringPtrInput
+	// Flag that protects the instance group from accidental deletion.
+	DeletionProtection pulumi.BoolPtrInput
+	// The deployment policy of the instance group. The structure is documented below.
+	DeployPolicy ComputeInstanceGroupDeployPolicyPtrInput
+	// A description of the boot disk.
+	Description pulumi.StringPtrInput
+	// Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+	FolderId pulumi.StringPtrInput
+	// Health check specifications. The structure is documented below.
+	HealthChecks ComputeInstanceGroupHealthCheckArrayInput
+	// The template for creating new instances. The structure is documented below.
+	InstanceTemplate ComputeInstanceGroupInstanceTemplatePtrInput
+	Instances        ComputeInstanceGroupInstanceArrayInput
+	// A map of labels of metric.
+	Labels pulumi.StringMapInput
+	// Load balancing specifications. The structure is documented below.
+	LoadBalancer ComputeInstanceGroupLoadBalancerPtrInput
+	// Timeout for waiting for the VM to become healthy. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
 	MaxCheckingHealthDuration pulumi.IntPtrInput
-	Name                      pulumi.StringPtrInput
-	ScalePolicy               ComputeInstanceGroupScalePolicyPtrInput
-	ServiceAccountId          pulumi.StringPtrInput
-	Status                    pulumi.StringPtrInput
-	Variables                 pulumi.StringMapInput
+	// Name template of the instance.\
+	// In order to be unique it must contain at least one of instance unique placeholders:
+	// {instance.short_id}
+	// {instance.index}
+	// combination of {instance.zone_id} and {instance.index_in_zone}
+	// Example: my-instance-{instance.index}
+	// If not set, default is used: {instance_group.id}-{instance.short_id}
+	// It may also contain another placeholders, see metadata doc for full list.
+	Name pulumi.StringPtrInput
+	// The scaling policy of the instance group. The structure is documented below.
+	ScalePolicy ComputeInstanceGroupScalePolicyPtrInput
+	// The ID of the service account authorized for this instance.
+	ServiceAccountId pulumi.StringPtrInput
+	// The status of the instance.
+	Status pulumi.StringPtrInput
+	// A set of key/value  variables pairs to assign to the instance group.
+	Variables pulumi.StringMapInput
 }
 
 func (ComputeInstanceGroupState) ElementType() reflect.Type {
@@ -125,40 +293,84 @@ func (ComputeInstanceGroupState) ElementType() reflect.Type {
 }
 
 type computeInstanceGroupArgs struct {
-	AllocationPolicy          ComputeInstanceGroupAllocationPolicy         `pulumi:"allocationPolicy"`
-	ApplicationLoadBalancer   *ComputeInstanceGroupApplicationLoadBalancer `pulumi:"applicationLoadBalancer"`
-	DeletionProtection        *bool                                        `pulumi:"deletionProtection"`
-	DeployPolicy              ComputeInstanceGroupDeployPolicy             `pulumi:"deployPolicy"`
-	Description               *string                                      `pulumi:"description"`
-	FolderId                  *string                                      `pulumi:"folderId"`
-	HealthChecks              []ComputeInstanceGroupHealthCheck            `pulumi:"healthChecks"`
-	InstanceTemplate          ComputeInstanceGroupInstanceTemplate         `pulumi:"instanceTemplate"`
-	Labels                    map[string]string                            `pulumi:"labels"`
-	LoadBalancer              *ComputeInstanceGroupLoadBalancer            `pulumi:"loadBalancer"`
-	MaxCheckingHealthDuration *int                                         `pulumi:"maxCheckingHealthDuration"`
-	Name                      *string                                      `pulumi:"name"`
-	ScalePolicy               ComputeInstanceGroupScalePolicy              `pulumi:"scalePolicy"`
-	ServiceAccountId          string                                       `pulumi:"serviceAccountId"`
-	Variables                 map[string]string                            `pulumi:"variables"`
+	// The allocation policy of the instance group by zone and region. The structure is documented below.
+	AllocationPolicy ComputeInstanceGroupAllocationPolicy `pulumi:"allocationPolicy"`
+	// Application Load balancing (L7) specifications. The structure is documented below.
+	ApplicationLoadBalancer *ComputeInstanceGroupApplicationLoadBalancer `pulumi:"applicationLoadBalancer"`
+	// Flag that protects the instance group from accidental deletion.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// The deployment policy of the instance group. The structure is documented below.
+	DeployPolicy ComputeInstanceGroupDeployPolicy `pulumi:"deployPolicy"`
+	// A description of the boot disk.
+	Description *string `pulumi:"description"`
+	// Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+	FolderId *string `pulumi:"folderId"`
+	// Health check specifications. The structure is documented below.
+	HealthChecks []ComputeInstanceGroupHealthCheck `pulumi:"healthChecks"`
+	// The template for creating new instances. The structure is documented below.
+	InstanceTemplate ComputeInstanceGroupInstanceTemplate `pulumi:"instanceTemplate"`
+	// A map of labels of metric.
+	Labels map[string]string `pulumi:"labels"`
+	// Load balancing specifications. The structure is documented below.
+	LoadBalancer *ComputeInstanceGroupLoadBalancer `pulumi:"loadBalancer"`
+	// Timeout for waiting for the VM to become healthy. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+	MaxCheckingHealthDuration *int `pulumi:"maxCheckingHealthDuration"`
+	// Name template of the instance.\
+	// In order to be unique it must contain at least one of instance unique placeholders:
+	// {instance.short_id}
+	// {instance.index}
+	// combination of {instance.zone_id} and {instance.index_in_zone}
+	// Example: my-instance-{instance.index}
+	// If not set, default is used: {instance_group.id}-{instance.short_id}
+	// It may also contain another placeholders, see metadata doc for full list.
+	Name *string `pulumi:"name"`
+	// The scaling policy of the instance group. The structure is documented below.
+	ScalePolicy ComputeInstanceGroupScalePolicy `pulumi:"scalePolicy"`
+	// The ID of the service account authorized for this instance.
+	ServiceAccountId string `pulumi:"serviceAccountId"`
+	// A set of key/value  variables pairs to assign to the instance group.
+	Variables map[string]string `pulumi:"variables"`
 }
 
 // The set of arguments for constructing a ComputeInstanceGroup resource.
 type ComputeInstanceGroupArgs struct {
-	AllocationPolicy          ComputeInstanceGroupAllocationPolicyInput
-	ApplicationLoadBalancer   ComputeInstanceGroupApplicationLoadBalancerPtrInput
-	DeletionProtection        pulumi.BoolPtrInput
-	DeployPolicy              ComputeInstanceGroupDeployPolicyInput
-	Description               pulumi.StringPtrInput
-	FolderId                  pulumi.StringPtrInput
-	HealthChecks              ComputeInstanceGroupHealthCheckArrayInput
-	InstanceTemplate          ComputeInstanceGroupInstanceTemplateInput
-	Labels                    pulumi.StringMapInput
-	LoadBalancer              ComputeInstanceGroupLoadBalancerPtrInput
+	// The allocation policy of the instance group by zone and region. The structure is documented below.
+	AllocationPolicy ComputeInstanceGroupAllocationPolicyInput
+	// Application Load balancing (L7) specifications. The structure is documented below.
+	ApplicationLoadBalancer ComputeInstanceGroupApplicationLoadBalancerPtrInput
+	// Flag that protects the instance group from accidental deletion.
+	DeletionProtection pulumi.BoolPtrInput
+	// The deployment policy of the instance group. The structure is documented below.
+	DeployPolicy ComputeInstanceGroupDeployPolicyInput
+	// A description of the boot disk.
+	Description pulumi.StringPtrInput
+	// Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+	FolderId pulumi.StringPtrInput
+	// Health check specifications. The structure is documented below.
+	HealthChecks ComputeInstanceGroupHealthCheckArrayInput
+	// The template for creating new instances. The structure is documented below.
+	InstanceTemplate ComputeInstanceGroupInstanceTemplateInput
+	// A map of labels of metric.
+	Labels pulumi.StringMapInput
+	// Load balancing specifications. The structure is documented below.
+	LoadBalancer ComputeInstanceGroupLoadBalancerPtrInput
+	// Timeout for waiting for the VM to become healthy. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
 	MaxCheckingHealthDuration pulumi.IntPtrInput
-	Name                      pulumi.StringPtrInput
-	ScalePolicy               ComputeInstanceGroupScalePolicyInput
-	ServiceAccountId          pulumi.StringInput
-	Variables                 pulumi.StringMapInput
+	// Name template of the instance.\
+	// In order to be unique it must contain at least one of instance unique placeholders:
+	// {instance.short_id}
+	// {instance.index}
+	// combination of {instance.zone_id} and {instance.index_in_zone}
+	// Example: my-instance-{instance.index}
+	// If not set, default is used: {instance_group.id}-{instance.short_id}
+	// It may also contain another placeholders, see metadata doc for full list.
+	Name pulumi.StringPtrInput
+	// The scaling policy of the instance group. The structure is documented below.
+	ScalePolicy ComputeInstanceGroupScalePolicyInput
+	// The ID of the service account authorized for this instance.
+	ServiceAccountId pulumi.StringInput
+	// A set of key/value  variables pairs to assign to the instance group.
+	Variables pulumi.StringMapInput
 }
 
 func (ComputeInstanceGroupArgs) ElementType() reflect.Type {
@@ -248,40 +460,49 @@ func (o ComputeInstanceGroupOutput) ToComputeInstanceGroupOutputWithContext(ctx 
 	return o
 }
 
+// The allocation policy of the instance group by zone and region. The structure is documented below.
 func (o ComputeInstanceGroupOutput) AllocationPolicy() ComputeInstanceGroupAllocationPolicyOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) ComputeInstanceGroupAllocationPolicyOutput { return v.AllocationPolicy }).(ComputeInstanceGroupAllocationPolicyOutput)
 }
 
+// Application Load balancing (L7) specifications. The structure is documented below.
 func (o ComputeInstanceGroupOutput) ApplicationLoadBalancer() ComputeInstanceGroupApplicationLoadBalancerPtrOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) ComputeInstanceGroupApplicationLoadBalancerPtrOutput {
 		return v.ApplicationLoadBalancer
 	}).(ComputeInstanceGroupApplicationLoadBalancerPtrOutput)
 }
 
+// The instance group creation timestamp.
 func (o ComputeInstanceGroupOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Flag that protects the instance group from accidental deletion.
 func (o ComputeInstanceGroupOutput) DeletionProtection() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) pulumi.BoolPtrOutput { return v.DeletionProtection }).(pulumi.BoolPtrOutput)
 }
 
+// The deployment policy of the instance group. The structure is documented below.
 func (o ComputeInstanceGroupOutput) DeployPolicy() ComputeInstanceGroupDeployPolicyOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) ComputeInstanceGroupDeployPolicyOutput { return v.DeployPolicy }).(ComputeInstanceGroupDeployPolicyOutput)
 }
 
+// A description of the boot disk.
 func (o ComputeInstanceGroupOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
 func (o ComputeInstanceGroupOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Health check specifications. The structure is documented below.
 func (o ComputeInstanceGroupOutput) HealthChecks() ComputeInstanceGroupHealthCheckArrayOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) ComputeInstanceGroupHealthCheckArrayOutput { return v.HealthChecks }).(ComputeInstanceGroupHealthCheckArrayOutput)
 }
 
+// The template for creating new instances. The structure is documented below.
 func (o ComputeInstanceGroupOutput) InstanceTemplate() ComputeInstanceGroupInstanceTemplateOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) ComputeInstanceGroupInstanceTemplateOutput { return v.InstanceTemplate }).(ComputeInstanceGroupInstanceTemplateOutput)
 }
@@ -290,34 +511,49 @@ func (o ComputeInstanceGroupOutput) Instances() ComputeInstanceGroupInstanceArra
 	return o.ApplyT(func(v *ComputeInstanceGroup) ComputeInstanceGroupInstanceArrayOutput { return v.Instances }).(ComputeInstanceGroupInstanceArrayOutput)
 }
 
+// A map of labels of metric.
 func (o ComputeInstanceGroupOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Load balancing specifications. The structure is documented below.
 func (o ComputeInstanceGroupOutput) LoadBalancer() ComputeInstanceGroupLoadBalancerPtrOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) ComputeInstanceGroupLoadBalancerPtrOutput { return v.LoadBalancer }).(ComputeInstanceGroupLoadBalancerPtrOutput)
 }
 
+// Timeout for waiting for the VM to become healthy. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
 func (o ComputeInstanceGroupOutput) MaxCheckingHealthDuration() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) pulumi.IntPtrOutput { return v.MaxCheckingHealthDuration }).(pulumi.IntPtrOutput)
 }
 
+// Name template of the instance.\
+// In order to be unique it must contain at least one of instance unique placeholders:
+// {instance.short_id}
+// {instance.index}
+// combination of {instance.zone_id} and {instance.index_in_zone}
+// Example: my-instance-{instance.index}
+// If not set, default is used: {instance_group.id}-{instance.short_id}
+// It may also contain another placeholders, see metadata doc for full list.
 func (o ComputeInstanceGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The scaling policy of the instance group. The structure is documented below.
 func (o ComputeInstanceGroupOutput) ScalePolicy() ComputeInstanceGroupScalePolicyOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) ComputeInstanceGroupScalePolicyOutput { return v.ScalePolicy }).(ComputeInstanceGroupScalePolicyOutput)
 }
 
+// The ID of the service account authorized for this instance.
 func (o ComputeInstanceGroupOutput) ServiceAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) pulumi.StringOutput { return v.ServiceAccountId }).(pulumi.StringOutput)
 }
 
+// The status of the instance.
 func (o ComputeInstanceGroupOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
+// A set of key/value  variables pairs to assign to the instance group.
 func (o ComputeInstanceGroupOutput) Variables() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ComputeInstanceGroup) pulumi.StringMapOutput { return v.Variables }).(pulumi.StringMapOutput)
 }

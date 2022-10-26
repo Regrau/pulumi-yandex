@@ -11,14 +11,90 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a DNS Recordset.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			foo, err := yandex.NewVpcNetwork(ctx, "foo", nil)
+//			if err != nil {
+//				return err
+//			}
+//			zone1, err := yandex.NewDnsZone(ctx, "zone1", &yandex.DnsZoneArgs{
+//				Description: pulumi.String("desc"),
+//				Labels: pulumi.StringMap{
+//					"label1": pulumi.String("label-1-value"),
+//				},
+//				Zone:   pulumi.String("example.com."),
+//				Public: pulumi.Bool(false),
+//				PrivateNetworks: pulumi.StringArray{
+//					foo.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewDnsRecordSet(ctx, "rs1", &yandex.DnsRecordSetArgs{
+//				ZoneId: zone1.ID(),
+//				Type:   pulumi.String("A"),
+//				Ttl:    pulumi.Int(200),
+//				Datas: pulumi.StringArray{
+//					pulumi.String("10.1.0.1"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewDnsRecordSet(ctx, "rs2", &yandex.DnsRecordSetArgs{
+//				ZoneId: zone1.ID(),
+//				Type:   pulumi.String("A"),
+//				Ttl:    pulumi.Int(200),
+//				Datas: pulumi.StringArray{
+//					pulumi.String("10.1.0.2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// # DNS recordset can be imported using this format
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/dnsRecordSet:DnsRecordSet rs1 {{zone_id}}/{{name}}/{{type}}
+//
+// ```
 type DnsRecordSet struct {
 	pulumi.CustomResourceState
 
-	Datas  pulumi.StringArrayOutput `pulumi:"datas"`
-	Name   pulumi.StringOutput      `pulumi:"name"`
-	Ttl    pulumi.IntOutput         `pulumi:"ttl"`
-	Type   pulumi.StringOutput      `pulumi:"type"`
-	ZoneId pulumi.StringOutput      `pulumi:"zoneId"`
+	// The string data for the records in this record set.
+	Datas pulumi.StringArrayOutput `pulumi:"datas"`
+	// The DNS name this record set will apply to.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The time-to-live of this record set (seconds).
+	Ttl pulumi.IntOutput `pulumi:"ttl"`
+	// The DNS record set type.
+	Type pulumi.StringOutput `pulumi:"type"`
+	// The id of the zone in which this record set will reside.
+	ZoneId pulumi.StringOutput `pulumi:"zoneId"`
 }
 
 // NewDnsRecordSet registers a new resource with the given unique name, arguments, and options.
@@ -63,18 +139,28 @@ func GetDnsRecordSet(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DnsRecordSet resources.
 type dnsRecordSetState struct {
-	Datas  []string `pulumi:"datas"`
-	Name   *string  `pulumi:"name"`
-	Ttl    *int     `pulumi:"ttl"`
-	Type   *string  `pulumi:"type"`
-	ZoneId *string  `pulumi:"zoneId"`
+	// The string data for the records in this record set.
+	Datas []string `pulumi:"datas"`
+	// The DNS name this record set will apply to.
+	Name *string `pulumi:"name"`
+	// The time-to-live of this record set (seconds).
+	Ttl *int `pulumi:"ttl"`
+	// The DNS record set type.
+	Type *string `pulumi:"type"`
+	// The id of the zone in which this record set will reside.
+	ZoneId *string `pulumi:"zoneId"`
 }
 
 type DnsRecordSetState struct {
-	Datas  pulumi.StringArrayInput
-	Name   pulumi.StringPtrInput
-	Ttl    pulumi.IntPtrInput
-	Type   pulumi.StringPtrInput
+	// The string data for the records in this record set.
+	Datas pulumi.StringArrayInput
+	// The DNS name this record set will apply to.
+	Name pulumi.StringPtrInput
+	// The time-to-live of this record set (seconds).
+	Ttl pulumi.IntPtrInput
+	// The DNS record set type.
+	Type pulumi.StringPtrInput
+	// The id of the zone in which this record set will reside.
 	ZoneId pulumi.StringPtrInput
 }
 
@@ -83,19 +169,29 @@ func (DnsRecordSetState) ElementType() reflect.Type {
 }
 
 type dnsRecordSetArgs struct {
-	Datas  []string `pulumi:"datas"`
-	Name   *string  `pulumi:"name"`
-	Ttl    int      `pulumi:"ttl"`
-	Type   string   `pulumi:"type"`
-	ZoneId string   `pulumi:"zoneId"`
+	// The string data for the records in this record set.
+	Datas []string `pulumi:"datas"`
+	// The DNS name this record set will apply to.
+	Name *string `pulumi:"name"`
+	// The time-to-live of this record set (seconds).
+	Ttl int `pulumi:"ttl"`
+	// The DNS record set type.
+	Type string `pulumi:"type"`
+	// The id of the zone in which this record set will reside.
+	ZoneId string `pulumi:"zoneId"`
 }
 
 // The set of arguments for constructing a DnsRecordSet resource.
 type DnsRecordSetArgs struct {
-	Datas  pulumi.StringArrayInput
-	Name   pulumi.StringPtrInput
-	Ttl    pulumi.IntInput
-	Type   pulumi.StringInput
+	// The string data for the records in this record set.
+	Datas pulumi.StringArrayInput
+	// The DNS name this record set will apply to.
+	Name pulumi.StringPtrInput
+	// The time-to-live of this record set (seconds).
+	Ttl pulumi.IntInput
+	// The DNS record set type.
+	Type pulumi.StringInput
+	// The id of the zone in which this record set will reside.
 	ZoneId pulumi.StringInput
 }
 
@@ -186,22 +282,27 @@ func (o DnsRecordSetOutput) ToDnsRecordSetOutputWithContext(ctx context.Context)
 	return o
 }
 
+// The string data for the records in this record set.
 func (o DnsRecordSetOutput) Datas() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DnsRecordSet) pulumi.StringArrayOutput { return v.Datas }).(pulumi.StringArrayOutput)
 }
 
+// The DNS name this record set will apply to.
 func (o DnsRecordSetOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnsRecordSet) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The time-to-live of this record set (seconds).
 func (o DnsRecordSetOutput) Ttl() pulumi.IntOutput {
 	return o.ApplyT(func(v *DnsRecordSet) pulumi.IntOutput { return v.Ttl }).(pulumi.IntOutput)
 }
 
+// The DNS record set type.
 func (o DnsRecordSetOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnsRecordSet) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }
 
+// The id of the zone in which this record set will reside.
 func (o DnsRecordSetOutput) ZoneId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnsRecordSet) pulumi.StringOutput { return v.ZoneId }).(pulumi.StringOutput)
 }

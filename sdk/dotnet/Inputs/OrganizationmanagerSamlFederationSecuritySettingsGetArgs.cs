@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class OrganizationmanagerSamlFederationSecuritySettingsGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Enable encrypted assertions.
+        /// </summary>
         [Input("encryptedAssertions", required: true)]
         public Input<bool> EncryptedAssertions { get; set; } = null!;
 

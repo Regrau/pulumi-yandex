@@ -11,17 +11,75 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a DNS Zone.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			foo, err := yandex.NewVpcNetwork(ctx, "foo", nil)
+//			if err != nil {
+//				return err
+//			}
+//			zone1, err := yandex.NewDnsZone(ctx, "zone1", &yandex.DnsZoneArgs{
+//				Description: pulumi.String("desc"),
+//				Labels: pulumi.StringMap{
+//					"label1": pulumi.String("label-1-value"),
+//				},
+//				Zone:   pulumi.String("example.com."),
+//				Public: pulumi.Bool(false),
+//				PrivateNetworks: pulumi.StringArray{
+//					foo.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewDnsRecordSet(ctx, "rs1", &yandex.DnsRecordSetArgs{
+//				ZoneId: zone1.ID(),
+//				Type:   pulumi.String("A"),
+//				Ttl:    pulumi.Int(200),
+//				Datas: pulumi.StringArray{
+//					pulumi.String("10.1.0.1"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type DnsZone struct {
 	pulumi.CustomResourceState
 
-	CreatedAt       pulumi.StringOutput      `pulumi:"createdAt"`
-	Description     pulumi.StringPtrOutput   `pulumi:"description"`
-	FolderId        pulumi.StringOutput      `pulumi:"folderId"`
-	Labels          pulumi.StringMapOutput   `pulumi:"labels"`
-	Name            pulumi.StringOutput      `pulumi:"name"`
+	// (Computed) The DNS zone creation timestamp.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Description of the DNS zone.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// ID of the folder to create a zone in. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the DNS zone.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// User assigned name of a specific resource. Must be unique within the folder.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
 	PrivateNetworks pulumi.StringArrayOutput `pulumi:"privateNetworks"`
-	Public          pulumi.BoolOutput        `pulumi:"public"`
-	Zone            pulumi.StringOutput      `pulumi:"zone"`
+	// The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+	Public pulumi.BoolOutput `pulumi:"public"`
+	// The DNS name of this zone, e.g. "example.com.". Must ends with dot.
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewDnsZone registers a new resource with the given unique name, arguments, and options.
@@ -57,25 +115,41 @@ func GetDnsZone(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DnsZone resources.
 type dnsZoneState struct {
-	CreatedAt       *string           `pulumi:"createdAt"`
-	Description     *string           `pulumi:"description"`
-	FolderId        *string           `pulumi:"folderId"`
-	Labels          map[string]string `pulumi:"labels"`
-	Name            *string           `pulumi:"name"`
-	PrivateNetworks []string          `pulumi:"privateNetworks"`
-	Public          *bool             `pulumi:"public"`
-	Zone            *string           `pulumi:"zone"`
+	// (Computed) The DNS zone creation timestamp.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Description of the DNS zone.
+	Description *string `pulumi:"description"`
+	// ID of the folder to create a zone in. If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the DNS zone.
+	Labels map[string]string `pulumi:"labels"`
+	// User assigned name of a specific resource. Must be unique within the folder.
+	Name *string `pulumi:"name"`
+	// For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+	PrivateNetworks []string `pulumi:"privateNetworks"`
+	// The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+	Public *bool `pulumi:"public"`
+	// The DNS name of this zone, e.g. "example.com.". Must ends with dot.
+	Zone *string `pulumi:"zone"`
 }
 
 type DnsZoneState struct {
-	CreatedAt       pulumi.StringPtrInput
-	Description     pulumi.StringPtrInput
-	FolderId        pulumi.StringPtrInput
-	Labels          pulumi.StringMapInput
-	Name            pulumi.StringPtrInput
+	// (Computed) The DNS zone creation timestamp.
+	CreatedAt pulumi.StringPtrInput
+	// Description of the DNS zone.
+	Description pulumi.StringPtrInput
+	// ID of the folder to create a zone in. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the DNS zone.
+	Labels pulumi.StringMapInput
+	// User assigned name of a specific resource. Must be unique within the folder.
+	Name pulumi.StringPtrInput
+	// For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
 	PrivateNetworks pulumi.StringArrayInput
-	Public          pulumi.BoolPtrInput
-	Zone            pulumi.StringPtrInput
+	// The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+	Public pulumi.BoolPtrInput
+	// The DNS name of this zone, e.g. "example.com.". Must ends with dot.
+	Zone pulumi.StringPtrInput
 }
 
 func (DnsZoneState) ElementType() reflect.Type {
@@ -83,24 +157,38 @@ func (DnsZoneState) ElementType() reflect.Type {
 }
 
 type dnsZoneArgs struct {
-	Description     *string           `pulumi:"description"`
-	FolderId        *string           `pulumi:"folderId"`
-	Labels          map[string]string `pulumi:"labels"`
-	Name            *string           `pulumi:"name"`
-	PrivateNetworks []string          `pulumi:"privateNetworks"`
-	Public          *bool             `pulumi:"public"`
-	Zone            string            `pulumi:"zone"`
+	// Description of the DNS zone.
+	Description *string `pulumi:"description"`
+	// ID of the folder to create a zone in. If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the DNS zone.
+	Labels map[string]string `pulumi:"labels"`
+	// User assigned name of a specific resource. Must be unique within the folder.
+	Name *string `pulumi:"name"`
+	// For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+	PrivateNetworks []string `pulumi:"privateNetworks"`
+	// The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+	Public *bool `pulumi:"public"`
+	// The DNS name of this zone, e.g. "example.com.". Must ends with dot.
+	Zone string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a DnsZone resource.
 type DnsZoneArgs struct {
-	Description     pulumi.StringPtrInput
-	FolderId        pulumi.StringPtrInput
-	Labels          pulumi.StringMapInput
-	Name            pulumi.StringPtrInput
+	// Description of the DNS zone.
+	Description pulumi.StringPtrInput
+	// ID of the folder to create a zone in. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the DNS zone.
+	Labels pulumi.StringMapInput
+	// User assigned name of a specific resource. Must be unique within the folder.
+	Name pulumi.StringPtrInput
+	// For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
 	PrivateNetworks pulumi.StringArrayInput
-	Public          pulumi.BoolPtrInput
-	Zone            pulumi.StringInput
+	// The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+	Public pulumi.BoolPtrInput
+	// The DNS name of this zone, e.g. "example.com.". Must ends with dot.
+	Zone pulumi.StringInput
 }
 
 func (DnsZoneArgs) ElementType() reflect.Type {
@@ -190,34 +278,42 @@ func (o DnsZoneOutput) ToDnsZoneOutputWithContext(ctx context.Context) DnsZoneOu
 	return o
 }
 
+// (Computed) The DNS zone creation timestamp.
 func (o DnsZoneOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnsZone) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the DNS zone.
 func (o DnsZoneOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DnsZone) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// ID of the folder to create a zone in. If it is not provided, the default provider folder is used.
 func (o DnsZoneOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnsZone) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the DNS zone.
 func (o DnsZoneOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *DnsZone) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// User assigned name of a specific resource. Must be unique within the folder.
 func (o DnsZoneOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnsZone) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
 func (o DnsZoneOutput) PrivateNetworks() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *DnsZone) pulumi.StringArrayOutput { return v.PrivateNetworks }).(pulumi.StringArrayOutput)
 }
 
+// The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
 func (o DnsZoneOutput) Public() pulumi.BoolOutput {
 	return o.ApplyT(func(v *DnsZone) pulumi.BoolOutput { return v.Public }).(pulumi.BoolOutput)
 }
 
+// The DNS name of this zone, e.g. "example.com.". Must ends with dot.
 func (o DnsZoneOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *DnsZone) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

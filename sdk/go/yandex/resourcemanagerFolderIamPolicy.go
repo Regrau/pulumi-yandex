@@ -11,10 +11,61 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows creation and management of the IAM policy for an existing Yandex Resource
+// Manager folder.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
+//				FolderId: pulumi.StringRef("my_folder_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			admin, err := yandex.GetIamPolicy(ctx, &GetIamPolicyArgs{
+//				Bindings: []GetIamPolicyBinding{
+//					GetIamPolicyBinding{
+//						Members: []string{
+//							"userAccount:some_user_id",
+//						},
+//						Role: "editor",
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewResourcemanagerFolderIamPolicy(ctx, "folderAdminPolicy", &yandex.ResourcemanagerFolderIamPolicyArgs{
+//				FolderId:   pulumi.Any(data.Yandex_folder.Project1.Id),
+//				PolicyData: pulumi.String(admin.PolicyData),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type ResourcemanagerFolderIamPolicy struct {
 	pulumi.CustomResourceState
 
-	FolderId   pulumi.StringOutput `pulumi:"folderId"`
+	// ID of the folder that the policy is attached to.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// The `getIamPolicy` data source that represents
+	// the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
 	PolicyData pulumi.StringOutput `pulumi:"policyData"`
 }
 
@@ -54,12 +105,18 @@ func GetResourcemanagerFolderIamPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ResourcemanagerFolderIamPolicy resources.
 type resourcemanagerFolderIamPolicyState struct {
-	FolderId   *string `pulumi:"folderId"`
+	// ID of the folder that the policy is attached to.
+	FolderId *string `pulumi:"folderId"`
+	// The `getIamPolicy` data source that represents
+	// the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
 	PolicyData *string `pulumi:"policyData"`
 }
 
 type ResourcemanagerFolderIamPolicyState struct {
-	FolderId   pulumi.StringPtrInput
+	// ID of the folder that the policy is attached to.
+	FolderId pulumi.StringPtrInput
+	// The `getIamPolicy` data source that represents
+	// the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
 	PolicyData pulumi.StringPtrInput
 }
 
@@ -68,13 +125,19 @@ func (ResourcemanagerFolderIamPolicyState) ElementType() reflect.Type {
 }
 
 type resourcemanagerFolderIamPolicyArgs struct {
-	FolderId   string `pulumi:"folderId"`
+	// ID of the folder that the policy is attached to.
+	FolderId string `pulumi:"folderId"`
+	// The `getIamPolicy` data source that represents
+	// the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
 	PolicyData string `pulumi:"policyData"`
 }
 
 // The set of arguments for constructing a ResourcemanagerFolderIamPolicy resource.
 type ResourcemanagerFolderIamPolicyArgs struct {
-	FolderId   pulumi.StringInput
+	// ID of the folder that the policy is attached to.
+	FolderId pulumi.StringInput
+	// The `getIamPolicy` data source that represents
+	// the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
 	PolicyData pulumi.StringInput
 }
 
@@ -165,10 +228,13 @@ func (o ResourcemanagerFolderIamPolicyOutput) ToResourcemanagerFolderIamPolicyOu
 	return o
 }
 
+// ID of the folder that the policy is attached to.
 func (o ResourcemanagerFolderIamPolicyOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResourcemanagerFolderIamPolicy) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// The `getIamPolicy` data source that represents
+// the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
 func (o ResourcemanagerFolderIamPolicyOutput) PolicyData() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResourcemanagerFolderIamPolicy) pulumi.StringOutput { return v.PolicyData }).(pulumi.StringOutput)
 }

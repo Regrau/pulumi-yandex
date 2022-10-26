@@ -31,6 +31,30 @@ class KubernetesNodeGroupArgs:
                  version: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a KubernetesNodeGroup resource.
+        :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster that this node group belongs to.
+        :param pulumi.Input['KubernetesNodeGroupInstanceTemplateArgs'] instance_template: Template used to create compute instances in this Kubernetes node group. The structure is documented below.
+        :param pulumi.Input['KubernetesNodeGroupScalePolicyArgs'] scale_policy: Scale policy of the node group. The structure is documented below.
+        :param pulumi.Input['KubernetesNodeGroupAllocationPolicyArgs'] allocation_policy: This argument specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_unsafe_sysctls: A list of allowed unsafe sysctl parameters for this node group. For more details see [documentation](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/).
+        :param pulumi.Input['KubernetesNodeGroupDeployPolicyArgs'] deploy_policy: Deploy policy of the node group. The structure is documented below.
+        :param pulumi.Input[str] description: A description of the Kubernetes node group.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels that will be assigned to compute nodes (instances), created by the Node Group.
+               ---
+        :param pulumi.Input['KubernetesNodeGroupMaintenancePolicyArgs'] maintenance_policy: (Computed) Maintenance policy for this Kubernetes node group.
+               If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
+               Revision upgrades are performed only within the same minor version, e.g. 1.13.
+               Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.
+        :param pulumi.Input[str] name: Name template of the instance.
+               In order to be unique it must contain at least one of instance unique placeholders:
+               {instance.short_id}
+               {instance.index}
+               combination of {instance.zone_id} and {instance.index_in_zone}
+               Example: my-instance-{instance.index}
+               If not set, default is used: {instance_group.id}-{instance.short_id}
+               It may also contain another placeholders, see [Compute Instance group metadata doc](https://cloud.yandex.com/en-ru/docs/compute/api-ref/grpc/instance_group_service) for full list.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] node_labels: A set of key/value label pairs, that are assigned to all the nodes of this Kubernetes node group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_taints: A list of Kubernetes taints, that are applied to all the nodes of this Kubernetes node group.
+        :param pulumi.Input[str] version: Version of Kubernetes that will be used for Kubernetes node group.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "instance_template", instance_template)
@@ -59,6 +83,9 @@ class KubernetesNodeGroupArgs:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the Kubernetes cluster that this node group belongs to.
+        """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
@@ -68,6 +95,9 @@ class KubernetesNodeGroupArgs:
     @property
     @pulumi.getter(name="instanceTemplate")
     def instance_template(self) -> pulumi.Input['KubernetesNodeGroupInstanceTemplateArgs']:
+        """
+        Template used to create compute instances in this Kubernetes node group. The structure is documented below.
+        """
         return pulumi.get(self, "instance_template")
 
     @instance_template.setter
@@ -77,6 +107,9 @@ class KubernetesNodeGroupArgs:
     @property
     @pulumi.getter(name="scalePolicy")
     def scale_policy(self) -> pulumi.Input['KubernetesNodeGroupScalePolicyArgs']:
+        """
+        Scale policy of the node group. The structure is documented below.
+        """
         return pulumi.get(self, "scale_policy")
 
     @scale_policy.setter
@@ -86,6 +119,9 @@ class KubernetesNodeGroupArgs:
     @property
     @pulumi.getter(name="allocationPolicy")
     def allocation_policy(self) -> Optional[pulumi.Input['KubernetesNodeGroupAllocationPolicyArgs']]:
+        """
+        This argument specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+        """
         return pulumi.get(self, "allocation_policy")
 
     @allocation_policy.setter
@@ -95,6 +131,9 @@ class KubernetesNodeGroupArgs:
     @property
     @pulumi.getter(name="allowedUnsafeSysctls")
     def allowed_unsafe_sysctls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of allowed unsafe sysctl parameters for this node group. For more details see [documentation](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/).
+        """
         return pulumi.get(self, "allowed_unsafe_sysctls")
 
     @allowed_unsafe_sysctls.setter
@@ -104,6 +143,9 @@ class KubernetesNodeGroupArgs:
     @property
     @pulumi.getter(name="deployPolicy")
     def deploy_policy(self) -> Optional[pulumi.Input['KubernetesNodeGroupDeployPolicyArgs']]:
+        """
+        Deploy policy of the node group. The structure is documented below.
+        """
         return pulumi.get(self, "deploy_policy")
 
     @deploy_policy.setter
@@ -113,6 +155,9 @@ class KubernetesNodeGroupArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the Kubernetes node group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -122,6 +167,10 @@ class KubernetesNodeGroupArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels that will be assigned to compute nodes (instances), created by the Node Group.
+        ---
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -131,6 +180,12 @@ class KubernetesNodeGroupArgs:
     @property
     @pulumi.getter(name="maintenancePolicy")
     def maintenance_policy(self) -> Optional[pulumi.Input['KubernetesNodeGroupMaintenancePolicyArgs']]:
+        """
+        (Computed) Maintenance policy for this Kubernetes node group.
+        If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
+        Revision upgrades are performed only within the same minor version, e.g. 1.13.
+        Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_policy")
 
     @maintenance_policy.setter
@@ -140,6 +195,16 @@ class KubernetesNodeGroupArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name template of the instance.
+        In order to be unique it must contain at least one of instance unique placeholders:
+        {instance.short_id}
+        {instance.index}
+        combination of {instance.zone_id} and {instance.index_in_zone}
+        Example: my-instance-{instance.index}
+        If not set, default is used: {instance_group.id}-{instance.short_id}
+        It may also contain another placeholders, see [Compute Instance group metadata doc](https://cloud.yandex.com/en-ru/docs/compute/api-ref/grpc/instance_group_service) for full list.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -149,6 +214,9 @@ class KubernetesNodeGroupArgs:
     @property
     @pulumi.getter(name="nodeLabels")
     def node_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs, that are assigned to all the nodes of this Kubernetes node group.
+        """
         return pulumi.get(self, "node_labels")
 
     @node_labels.setter
@@ -158,6 +226,9 @@ class KubernetesNodeGroupArgs:
     @property
     @pulumi.getter(name="nodeTaints")
     def node_taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of Kubernetes taints, that are applied to all the nodes of this Kubernetes node group.
+        """
         return pulumi.get(self, "node_taints")
 
     @node_taints.setter
@@ -167,6 +238,9 @@ class KubernetesNodeGroupArgs:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of Kubernetes that will be used for Kubernetes node group.
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -196,6 +270,34 @@ class _KubernetesNodeGroupState:
                  version_infos: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupVersionInfoArgs']]]] = None):
         """
         Input properties used for looking up and filtering KubernetesNodeGroup resources.
+        :param pulumi.Input['KubernetesNodeGroupAllocationPolicyArgs'] allocation_policy: This argument specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_unsafe_sysctls: A list of allowed unsafe sysctl parameters for this node group. For more details see [documentation](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/).
+        :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster that this node group belongs to.
+        :param pulumi.Input[str] created_at: (Computed) The Kubernetes node group creation timestamp.
+        :param pulumi.Input['KubernetesNodeGroupDeployPolicyArgs'] deploy_policy: Deploy policy of the node group. The structure is documented below.
+        :param pulumi.Input[str] description: A description of the Kubernetes node group.
+        :param pulumi.Input[str] instance_group_id: ID of instance group that is used to manage this Kubernetes node group.
+        :param pulumi.Input['KubernetesNodeGroupInstanceTemplateArgs'] instance_template: Template used to create compute instances in this Kubernetes node group. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels that will be assigned to compute nodes (instances), created by the Node Group.
+               ---
+        :param pulumi.Input['KubernetesNodeGroupMaintenancePolicyArgs'] maintenance_policy: (Computed) Maintenance policy for this Kubernetes node group.
+               If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
+               Revision upgrades are performed only within the same minor version, e.g. 1.13.
+               Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.
+        :param pulumi.Input[str] name: Name template of the instance.
+               In order to be unique it must contain at least one of instance unique placeholders:
+               {instance.short_id}
+               {instance.index}
+               combination of {instance.zone_id} and {instance.index_in_zone}
+               Example: my-instance-{instance.index}
+               If not set, default is used: {instance_group.id}-{instance.short_id}
+               It may also contain another placeholders, see [Compute Instance group metadata doc](https://cloud.yandex.com/en-ru/docs/compute/api-ref/grpc/instance_group_service) for full list.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] node_labels: A set of key/value label pairs, that are assigned to all the nodes of this Kubernetes node group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_taints: A list of Kubernetes taints, that are applied to all the nodes of this Kubernetes node group.
+        :param pulumi.Input['KubernetesNodeGroupScalePolicyArgs'] scale_policy: Scale policy of the node group. The structure is documented below.
+        :param pulumi.Input[str] status: (Computed) Status of the Kubernetes node group.
+        :param pulumi.Input[str] version: Version of Kubernetes that will be used for Kubernetes node group.
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupVersionInfoArgs']]] version_infos: Information about Kubernetes node group version. The structure is documented below.
         """
         if allocation_policy is not None:
             pulumi.set(__self__, "allocation_policy", allocation_policy)
@@ -235,6 +337,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter(name="allocationPolicy")
     def allocation_policy(self) -> Optional[pulumi.Input['KubernetesNodeGroupAllocationPolicyArgs']]:
+        """
+        This argument specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+        """
         return pulumi.get(self, "allocation_policy")
 
     @allocation_policy.setter
@@ -244,6 +349,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter(name="allowedUnsafeSysctls")
     def allowed_unsafe_sysctls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of allowed unsafe sysctl parameters for this node group. For more details see [documentation](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/).
+        """
         return pulumi.get(self, "allowed_unsafe_sysctls")
 
     @allowed_unsafe_sysctls.setter
@@ -253,6 +361,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the Kubernetes cluster that this node group belongs to.
+        """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
@@ -262,6 +373,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) The Kubernetes node group creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -271,6 +385,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter(name="deployPolicy")
     def deploy_policy(self) -> Optional[pulumi.Input['KubernetesNodeGroupDeployPolicyArgs']]:
+        """
+        Deploy policy of the node group. The structure is documented below.
+        """
         return pulumi.get(self, "deploy_policy")
 
     @deploy_policy.setter
@@ -280,6 +397,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the Kubernetes node group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -289,6 +409,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter(name="instanceGroupId")
     def instance_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of instance group that is used to manage this Kubernetes node group.
+        """
         return pulumi.get(self, "instance_group_id")
 
     @instance_group_id.setter
@@ -298,6 +421,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter(name="instanceTemplate")
     def instance_template(self) -> Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateArgs']]:
+        """
+        Template used to create compute instances in this Kubernetes node group. The structure is documented below.
+        """
         return pulumi.get(self, "instance_template")
 
     @instance_template.setter
@@ -307,6 +433,10 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels that will be assigned to compute nodes (instances), created by the Node Group.
+        ---
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -316,6 +446,12 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter(name="maintenancePolicy")
     def maintenance_policy(self) -> Optional[pulumi.Input['KubernetesNodeGroupMaintenancePolicyArgs']]:
+        """
+        (Computed) Maintenance policy for this Kubernetes node group.
+        If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
+        Revision upgrades are performed only within the same minor version, e.g. 1.13.
+        Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_policy")
 
     @maintenance_policy.setter
@@ -325,6 +461,16 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name template of the instance.
+        In order to be unique it must contain at least one of instance unique placeholders:
+        {instance.short_id}
+        {instance.index}
+        combination of {instance.zone_id} and {instance.index_in_zone}
+        Example: my-instance-{instance.index}
+        If not set, default is used: {instance_group.id}-{instance.short_id}
+        It may also contain another placeholders, see [Compute Instance group metadata doc](https://cloud.yandex.com/en-ru/docs/compute/api-ref/grpc/instance_group_service) for full list.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -334,6 +480,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter(name="nodeLabels")
     def node_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs, that are assigned to all the nodes of this Kubernetes node group.
+        """
         return pulumi.get(self, "node_labels")
 
     @node_labels.setter
@@ -343,6 +492,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter(name="nodeTaints")
     def node_taints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of Kubernetes taints, that are applied to all the nodes of this Kubernetes node group.
+        """
         return pulumi.get(self, "node_taints")
 
     @node_taints.setter
@@ -352,6 +504,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter(name="scalePolicy")
     def scale_policy(self) -> Optional[pulumi.Input['KubernetesNodeGroupScalePolicyArgs']]:
+        """
+        Scale policy of the node group. The structure is documented below.
+        """
         return pulumi.get(self, "scale_policy")
 
     @scale_policy.setter
@@ -361,6 +516,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) Status of the Kubernetes node group.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -370,6 +528,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of Kubernetes that will be used for Kubernetes node group.
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -379,6 +540,9 @@ class _KubernetesNodeGroupState:
     @property
     @pulumi.getter(name="versionInfos")
     def version_infos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupVersionInfoArgs']]]]:
+        """
+        Information about Kubernetes node group version. The structure is documented below.
+        """
         return pulumi.get(self, "version_infos")
 
     @version_infos.setter
@@ -406,9 +570,104 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a KubernetesNodeGroup resource with the given unique name, props, and options.
+        Creates a Yandex Kubernetes Node Group.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_node_group = yandex.KubernetesNodeGroup("myNodeGroup",
+            allocation_policy=yandex.KubernetesNodeGroupAllocationPolicyArgs(
+                locations=[yandex.KubernetesNodeGroupAllocationPolicyLocationArgs(
+                    zone="ru-central1-a",
+                )],
+            ),
+            cluster_id=yandex_kubernetes_cluster["my_cluster"]["id"],
+            description="description",
+            instance_template=yandex.KubernetesNodeGroupInstanceTemplateArgs(
+                boot_disk=yandex.KubernetesNodeGroupInstanceTemplateBootDiskArgs(
+                    size=64,
+                    type="network-hdd",
+                ),
+                container_runtime=yandex.KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs(
+                    type="containerd",
+                ),
+                network_interfaces=[yandex.KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs(
+                    nat=True,
+                    subnet_ids=[yandex_vpc_subnet["my_subnet"]["id"]],
+                )],
+                platform_id="standard-v2",
+                resources=yandex.KubernetesNodeGroupInstanceTemplateResourcesArgs(
+                    cores=2,
+                    memory=2,
+                ),
+                scheduling_policy=yandex.KubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs(
+                    preemptible=False,
+                ),
+            ),
+            labels={
+                "key": "value",
+            },
+            maintenance_policy=yandex.KubernetesNodeGroupMaintenancePolicyArgs(
+                auto_repair=True,
+                auto_upgrade=True,
+                maintenance_windows=[
+                    yandex.KubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs(
+                        day="monday",
+                        duration="3h",
+                        start_time="15:00",
+                    ),
+                    yandex.KubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs(
+                        day="friday",
+                        duration="4h30m",
+                        start_time="10:00",
+                    ),
+                ],
+            ),
+            scale_policy=yandex.KubernetesNodeGroupScalePolicyArgs(
+                fixed_scale=yandex.KubernetesNodeGroupScalePolicyFixedScaleArgs(
+                    size=1,
+                ),
+            ),
+            version="1.17")
+        ```
+
+        ## Import
+
+        A Yandex Kubernetes Node Group can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/kubernetesNodeGroup:KubernetesNodeGroup default node_group_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupAllocationPolicyArgs']] allocation_policy: This argument specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_unsafe_sysctls: A list of allowed unsafe sysctl parameters for this node group. For more details see [documentation](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/).
+        :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster that this node group belongs to.
+        :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupDeployPolicyArgs']] deploy_policy: Deploy policy of the node group. The structure is documented below.
+        :param pulumi.Input[str] description: A description of the Kubernetes node group.
+        :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupInstanceTemplateArgs']] instance_template: Template used to create compute instances in this Kubernetes node group. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels that will be assigned to compute nodes (instances), created by the Node Group.
+               ---
+        :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupMaintenancePolicyArgs']] maintenance_policy: (Computed) Maintenance policy for this Kubernetes node group.
+               If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
+               Revision upgrades are performed only within the same minor version, e.g. 1.13.
+               Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.
+        :param pulumi.Input[str] name: Name template of the instance.
+               In order to be unique it must contain at least one of instance unique placeholders:
+               {instance.short_id}
+               {instance.index}
+               combination of {instance.zone_id} and {instance.index_in_zone}
+               Example: my-instance-{instance.index}
+               If not set, default is used: {instance_group.id}-{instance.short_id}
+               It may also contain another placeholders, see [Compute Instance group metadata doc](https://cloud.yandex.com/en-ru/docs/compute/api-ref/grpc/instance_group_service) for full list.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] node_labels: A set of key/value label pairs, that are assigned to all the nodes of this Kubernetes node group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_taints: A list of Kubernetes taints, that are applied to all the nodes of this Kubernetes node group.
+        :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupScalePolicyArgs']] scale_policy: Scale policy of the node group. The structure is documented below.
+        :param pulumi.Input[str] version: Version of Kubernetes that will be used for Kubernetes node group.
         """
         ...
     @overload
@@ -417,7 +676,78 @@ class KubernetesNodeGroup(pulumi.CustomResource):
                  args: KubernetesNodeGroupArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a KubernetesNodeGroup resource with the given unique name, props, and options.
+        Creates a Yandex Kubernetes Node Group.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_node_group = yandex.KubernetesNodeGroup("myNodeGroup",
+            allocation_policy=yandex.KubernetesNodeGroupAllocationPolicyArgs(
+                locations=[yandex.KubernetesNodeGroupAllocationPolicyLocationArgs(
+                    zone="ru-central1-a",
+                )],
+            ),
+            cluster_id=yandex_kubernetes_cluster["my_cluster"]["id"],
+            description="description",
+            instance_template=yandex.KubernetesNodeGroupInstanceTemplateArgs(
+                boot_disk=yandex.KubernetesNodeGroupInstanceTemplateBootDiskArgs(
+                    size=64,
+                    type="network-hdd",
+                ),
+                container_runtime=yandex.KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs(
+                    type="containerd",
+                ),
+                network_interfaces=[yandex.KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs(
+                    nat=True,
+                    subnet_ids=[yandex_vpc_subnet["my_subnet"]["id"]],
+                )],
+                platform_id="standard-v2",
+                resources=yandex.KubernetesNodeGroupInstanceTemplateResourcesArgs(
+                    cores=2,
+                    memory=2,
+                ),
+                scheduling_policy=yandex.KubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs(
+                    preemptible=False,
+                ),
+            ),
+            labels={
+                "key": "value",
+            },
+            maintenance_policy=yandex.KubernetesNodeGroupMaintenancePolicyArgs(
+                auto_repair=True,
+                auto_upgrade=True,
+                maintenance_windows=[
+                    yandex.KubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs(
+                        day="monday",
+                        duration="3h",
+                        start_time="15:00",
+                    ),
+                    yandex.KubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs(
+                        day="friday",
+                        duration="4h30m",
+                        start_time="10:00",
+                    ),
+                ],
+            ),
+            scale_policy=yandex.KubernetesNodeGroupScalePolicyArgs(
+                fixed_scale=yandex.KubernetesNodeGroupScalePolicyFixedScaleArgs(
+                    size=1,
+                ),
+            ),
+            version="1.17")
+        ```
+
+        ## Import
+
+        A Yandex Kubernetes Node Group can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/kubernetesNodeGroup:KubernetesNodeGroup default node_group_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param KubernetesNodeGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -512,6 +842,34 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupAllocationPolicyArgs']] allocation_policy: This argument specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_unsafe_sysctls: A list of allowed unsafe sysctl parameters for this node group. For more details see [documentation](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/).
+        :param pulumi.Input[str] cluster_id: The ID of the Kubernetes cluster that this node group belongs to.
+        :param pulumi.Input[str] created_at: (Computed) The Kubernetes node group creation timestamp.
+        :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupDeployPolicyArgs']] deploy_policy: Deploy policy of the node group. The structure is documented below.
+        :param pulumi.Input[str] description: A description of the Kubernetes node group.
+        :param pulumi.Input[str] instance_group_id: ID of instance group that is used to manage this Kubernetes node group.
+        :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupInstanceTemplateArgs']] instance_template: Template used to create compute instances in this Kubernetes node group. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels that will be assigned to compute nodes (instances), created by the Node Group.
+               ---
+        :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupMaintenancePolicyArgs']] maintenance_policy: (Computed) Maintenance policy for this Kubernetes node group.
+               If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
+               Revision upgrades are performed only within the same minor version, e.g. 1.13.
+               Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.
+        :param pulumi.Input[str] name: Name template of the instance.
+               In order to be unique it must contain at least one of instance unique placeholders:
+               {instance.short_id}
+               {instance.index}
+               combination of {instance.zone_id} and {instance.index_in_zone}
+               Example: my-instance-{instance.index}
+               If not set, default is used: {instance_group.id}-{instance.short_id}
+               It may also contain another placeholders, see [Compute Instance group metadata doc](https://cloud.yandex.com/en-ru/docs/compute/api-ref/grpc/instance_group_service) for full list.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] node_labels: A set of key/value label pairs, that are assigned to all the nodes of this Kubernetes node group.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] node_taints: A list of Kubernetes taints, that are applied to all the nodes of this Kubernetes node group.
+        :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupScalePolicyArgs']] scale_policy: Scale policy of the node group. The structure is documented below.
+        :param pulumi.Input[str] status: (Computed) Status of the Kubernetes node group.
+        :param pulumi.Input[str] version: Version of Kubernetes that will be used for Kubernetes node group.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubernetesNodeGroupVersionInfoArgs']]]] version_infos: Information about Kubernetes node group version. The structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -539,85 +897,147 @@ class KubernetesNodeGroup(pulumi.CustomResource):
     @property
     @pulumi.getter(name="allocationPolicy")
     def allocation_policy(self) -> pulumi.Output['outputs.KubernetesNodeGroupAllocationPolicy']:
+        """
+        This argument specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+        """
         return pulumi.get(self, "allocation_policy")
 
     @property
     @pulumi.getter(name="allowedUnsafeSysctls")
     def allowed_unsafe_sysctls(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A list of allowed unsafe sysctl parameters for this node group. For more details see [documentation](https://kubernetes.io/docs/tasks/administer-cluster/sysctl-cluster/).
+        """
         return pulumi.get(self, "allowed_unsafe_sysctls")
 
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the Kubernetes cluster that this node group belongs to.
+        """
         return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        (Computed) The Kubernetes node group creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="deployPolicy")
     def deploy_policy(self) -> pulumi.Output['outputs.KubernetesNodeGroupDeployPolicy']:
+        """
+        Deploy policy of the node group. The structure is documented below.
+        """
         return pulumi.get(self, "deploy_policy")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[str]:
+        """
+        A description of the Kubernetes node group.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="instanceGroupId")
     def instance_group_id(self) -> pulumi.Output[str]:
+        """
+        ID of instance group that is used to manage this Kubernetes node group.
+        """
         return pulumi.get(self, "instance_group_id")
 
     @property
     @pulumi.getter(name="instanceTemplate")
     def instance_template(self) -> pulumi.Output['outputs.KubernetesNodeGroupInstanceTemplate']:
+        """
+        Template used to create compute instances in this Kubernetes node group. The structure is documented below.
+        """
         return pulumi.get(self, "instance_template")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        Labels that will be assigned to compute nodes (instances), created by the Node Group.
+        ---
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="maintenancePolicy")
     def maintenance_policy(self) -> pulumi.Output['outputs.KubernetesNodeGroupMaintenancePolicy']:
+        """
+        (Computed) Maintenance policy for this Kubernetes node group.
+        If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
+        Revision upgrades are performed only within the same minor version, e.g. 1.13.
+        Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_policy")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name template of the instance.
+        In order to be unique it must contain at least one of instance unique placeholders:
+        {instance.short_id}
+        {instance.index}
+        combination of {instance.zone_id} and {instance.index_in_zone}
+        Example: my-instance-{instance.index}
+        If not set, default is used: {instance_group.id}-{instance.short_id}
+        It may also contain another placeholders, see [Compute Instance group metadata doc](https://cloud.yandex.com/en-ru/docs/compute/api-ref/grpc/instance_group_service) for full list.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="nodeLabels")
     def node_labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs, that are assigned to all the nodes of this Kubernetes node group.
+        """
         return pulumi.get(self, "node_labels")
 
     @property
     @pulumi.getter(name="nodeTaints")
     def node_taints(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A list of Kubernetes taints, that are applied to all the nodes of this Kubernetes node group.
+        """
         return pulumi.get(self, "node_taints")
 
     @property
     @pulumi.getter(name="scalePolicy")
     def scale_policy(self) -> pulumi.Output['outputs.KubernetesNodeGroupScalePolicy']:
+        """
+        Scale policy of the node group. The structure is documented below.
+        """
         return pulumi.get(self, "scale_policy")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        (Computed) Status of the Kubernetes node group.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
+        """
+        Version of Kubernetes that will be used for Kubernetes node group.
+        """
         return pulumi.get(self, "version")
 
     @property
     @pulumi.getter(name="versionInfos")
     def version_infos(self) -> pulumi.Output[Sequence['outputs.KubernetesNodeGroupVersionInfo']]:
+        """
+        Information about Kubernetes node group version. The structure is documented below.
+        """
         return pulumi.get(self, "version_infos")
 

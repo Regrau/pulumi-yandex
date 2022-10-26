@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbGreenplumClusterMasterHost
     {
+        /// <summary>
+        /// Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+        /// </summary>
         public readonly bool? AssignPublicIp;
+        /// <summary>
+        /// (Computed) The fully qualified domain name of the host.
+        /// </summary>
         public readonly string? Fqdn;
 
         [OutputConstructor]

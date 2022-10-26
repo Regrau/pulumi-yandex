@@ -464,6 +464,15 @@ class AlbBackendGroupGrpcBackendArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  tls: Optional[pulumi.Input['AlbBackendGroupGrpcBackendTlsArgs']] = None,
                  weight: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the backend.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] target_group_ids: References target groups for the backend.
+        :param pulumi.Input['AlbBackendGroupGrpcBackendHealthcheckArgs'] healthcheck: Healthcheck specification that will be used by this backend. Structure is documented below.
+        :param pulumi.Input['AlbBackendGroupGrpcBackendLoadBalancingConfigArgs'] load_balancing_config: Load Balancing Config specification that will be used by this backend. Structure is documented below.
+        :param pulumi.Input[int] port: Port for incoming traffic.
+        :param pulumi.Input['AlbBackendGroupGrpcBackendTlsArgs'] tls: Tls specification that will be used by this backend. Structure is documented below.
+        :param pulumi.Input[int] weight: Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "target_group_ids", target_group_ids)
         if healthcheck is not None:
@@ -480,6 +489,9 @@ class AlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the backend.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -489,6 +501,9 @@ class AlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter(name="targetGroupIds")
     def target_group_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        References target groups for the backend.
+        """
         return pulumi.get(self, "target_group_ids")
 
     @target_group_ids.setter
@@ -498,6 +513,9 @@ class AlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter
     def healthcheck(self) -> Optional[pulumi.Input['AlbBackendGroupGrpcBackendHealthcheckArgs']]:
+        """
+        Healthcheck specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "healthcheck")
 
     @healthcheck.setter
@@ -507,6 +525,9 @@ class AlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter(name="loadBalancingConfig")
     def load_balancing_config(self) -> Optional[pulumi.Input['AlbBackendGroupGrpcBackendLoadBalancingConfigArgs']]:
+        """
+        Load Balancing Config specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "load_balancing_config")
 
     @load_balancing_config.setter
@@ -516,6 +537,9 @@ class AlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port for incoming traffic.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -525,6 +549,9 @@ class AlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input['AlbBackendGroupGrpcBackendTlsArgs']]:
+        """
+        Tls specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "tls")
 
     @tls.setter
@@ -534,6 +561,9 @@ class AlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter
     def weight(self) -> Optional[pulumi.Input[int]]:
+        """
+        Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+        """
         return pulumi.get(self, "weight")
 
     @weight.setter
@@ -553,6 +583,17 @@ class AlbBackendGroupGrpcBackendHealthcheckArgs:
                  interval_jitter_percent: Optional[pulumi.Input[float]] = None,
                  stream_healthcheck: Optional[pulumi.Input['AlbBackendGroupGrpcBackendHealthcheckStreamHealthcheckArgs']] = None,
                  unhealthy_threshold: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] interval: Interval between health checks.
+        :param pulumi.Input[str] timeout: Time to wait for a health check response.
+        :param pulumi.Input['AlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheckArgs'] grpc_healthcheck: Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param pulumi.Input[int] healthcheck_port: Optional alternative port for health checking.
+        :param pulumi.Input[int] healthy_threshold: Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+        :param pulumi.Input['AlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs'] http_healthcheck: Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param pulumi.Input[float] interval_jitter_percent: An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * interval_jitter_percent / 100) will be added to the wait time.
+        :param pulumi.Input['AlbBackendGroupGrpcBackendHealthcheckStreamHealthcheckArgs'] stream_healthcheck: Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param pulumi.Input[int] unhealthy_threshold: Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+        """
         pulumi.set(__self__, "interval", interval)
         pulumi.set(__self__, "timeout", timeout)
         if grpc_healthcheck is not None:
@@ -573,6 +614,9 @@ class AlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter
     def interval(self) -> pulumi.Input[str]:
+        """
+        Interval between health checks.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -582,6 +626,9 @@ class AlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter
     def timeout(self) -> pulumi.Input[str]:
+        """
+        Time to wait for a health check response.
+        """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
@@ -591,6 +638,9 @@ class AlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="grpcHealthcheck")
     def grpc_healthcheck(self) -> Optional[pulumi.Input['AlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheckArgs']]:
+        """
+        Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "grpc_healthcheck")
 
     @grpc_healthcheck.setter
@@ -600,6 +650,9 @@ class AlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="healthcheckPort")
     def healthcheck_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Optional alternative port for health checking.
+        """
         return pulumi.get(self, "healthcheck_port")
 
     @healthcheck_port.setter
@@ -609,6 +662,9 @@ class AlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="healthyThreshold")
     def healthy_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+        """
         return pulumi.get(self, "healthy_threshold")
 
     @healthy_threshold.setter
@@ -618,6 +674,9 @@ class AlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="httpHealthcheck")
     def http_healthcheck(self) -> Optional[pulumi.Input['AlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs']]:
+        """
+        Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "http_healthcheck")
 
     @http_healthcheck.setter
@@ -627,6 +686,9 @@ class AlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="intervalJitterPercent")
     def interval_jitter_percent(self) -> Optional[pulumi.Input[float]]:
+        """
+        An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * interval_jitter_percent / 100) will be added to the wait time.
+        """
         return pulumi.get(self, "interval_jitter_percent")
 
     @interval_jitter_percent.setter
@@ -636,6 +698,9 @@ class AlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="streamHealthcheck")
     def stream_healthcheck(self) -> Optional[pulumi.Input['AlbBackendGroupGrpcBackendHealthcheckStreamHealthcheckArgs']]:
+        """
+        Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "stream_healthcheck")
 
     @stream_healthcheck.setter
@@ -645,6 +710,9 @@ class AlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="unhealthyThreshold")
     def unhealthy_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+        """
         return pulumi.get(self, "unhealthy_threshold")
 
     @unhealthy_threshold.setter
@@ -656,12 +724,18 @@ class AlbBackendGroupGrpcBackendHealthcheckArgs:
 class AlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheckArgs:
     def __init__(__self__, *,
                  service_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] service_name: Service name for grpc.health.v1.HealthCheckRequest message.
+        """
         if service_name is not None:
             pulumi.set(__self__, "service_name", service_name)
 
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service name for grpc.health.v1.HealthCheckRequest message.
+        """
         return pulumi.get(self, "service_name")
 
     @service_name.setter
@@ -675,6 +749,11 @@ class AlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs:
                  path: pulumi.Input[str],
                  host: Optional[pulumi.Input[str]] = None,
                  http2: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] path: HTTP path.
+        :param pulumi.Input[str] host: "Host" HTTP header value.
+        :param pulumi.Input[bool] http2: If set, health checks will use HTTP2.
+        """
         pulumi.set(__self__, "path", path)
         if host is not None:
             pulumi.set(__self__, "host", host)
@@ -684,6 +763,9 @@ class AlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def path(self) -> pulumi.Input[str]:
+        """
+        HTTP path.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -693,6 +775,9 @@ class AlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        "Host" HTTP header value.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -702,6 +787,9 @@ class AlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def http2(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, health checks will use HTTP2.
+        """
         return pulumi.get(self, "http2")
 
     @http2.setter
@@ -714,6 +802,10 @@ class AlbBackendGroupGrpcBackendHealthcheckStreamHealthcheckArgs:
     def __init__(__self__, *,
                  receive: Optional[pulumi.Input[str]] = None,
                  send: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] receive: Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+        :param pulumi.Input[str] send: Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+        """
         if receive is not None:
             pulumi.set(__self__, "receive", receive)
         if send is not None:
@@ -722,6 +814,9 @@ class AlbBackendGroupGrpcBackendHealthcheckStreamHealthcheckArgs:
     @property
     @pulumi.getter
     def receive(self) -> Optional[pulumi.Input[str]]:
+        """
+        Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+        """
         return pulumi.get(self, "receive")
 
     @receive.setter
@@ -731,6 +826,9 @@ class AlbBackendGroupGrpcBackendHealthcheckStreamHealthcheckArgs:
     @property
     @pulumi.getter
     def send(self) -> Optional[pulumi.Input[str]]:
+        """
+        Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+        """
         return pulumi.get(self, "send")
 
     @send.setter
@@ -745,6 +843,12 @@ class AlbBackendGroupGrpcBackendLoadBalancingConfigArgs:
                  mode: Optional[pulumi.Input[str]] = None,
                  panic_threshold: Optional[pulumi.Input[int]] = None,
                  strict_locality: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[int] locality_aware_routing_percent: Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+        :param pulumi.Input[str] mode: Load balancing mode for the backend. Possible values: "ROUND_ROBIN", "RANDOM", "LEAST_REQUEST", "MAGLEV_HASH".
+        :param pulumi.Input[int] panic_threshold: If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+        :param pulumi.Input[bool] strict_locality: If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+        """
         if locality_aware_routing_percent is not None:
             pulumi.set(__self__, "locality_aware_routing_percent", locality_aware_routing_percent)
         if mode is not None:
@@ -757,6 +861,9 @@ class AlbBackendGroupGrpcBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="localityAwareRoutingPercent")
     def locality_aware_routing_percent(self) -> Optional[pulumi.Input[int]]:
+        """
+        Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+        """
         return pulumi.get(self, "locality_aware_routing_percent")
 
     @locality_aware_routing_percent.setter
@@ -766,6 +873,9 @@ class AlbBackendGroupGrpcBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Load balancing mode for the backend. Possible values: "ROUND_ROBIN", "RANDOM", "LEAST_REQUEST", "MAGLEV_HASH".
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -775,6 +885,9 @@ class AlbBackendGroupGrpcBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="panicThreshold")
     def panic_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+        """
         return pulumi.get(self, "panic_threshold")
 
     @panic_threshold.setter
@@ -784,6 +897,9 @@ class AlbBackendGroupGrpcBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="strictLocality")
     def strict_locality(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+        """
         return pulumi.get(self, "strict_locality")
 
     @strict_locality.setter
@@ -796,6 +912,11 @@ class AlbBackendGroupGrpcBackendTlsArgs:
     def __init__(__self__, *,
                  sni: Optional[pulumi.Input[str]] = None,
                  validation_context: Optional[pulumi.Input['AlbBackendGroupGrpcBackendTlsValidationContextArgs']] = None):
+        """
+        :param pulumi.Input[str] sni: [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+               * `validation_context.0.trusted_ca_id` - (Optional) Trusted CA certificate ID in the Certificate Manager.
+               * `validation_context.0.trusted_ca_bytes` - (Optional) PEM-encoded trusted CA certificate chain.
+        """
         if sni is not None:
             pulumi.set(__self__, "sni", sni)
         if validation_context is not None:
@@ -804,6 +925,11 @@ class AlbBackendGroupGrpcBackendTlsArgs:
     @property
     @pulumi.getter
     def sni(self) -> Optional[pulumi.Input[str]]:
+        """
+        [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+        * `validation_context.0.trusted_ca_id` - (Optional) Trusted CA certificate ID in the Certificate Manager.
+        * `validation_context.0.trusted_ca_bytes` - (Optional) PEM-encoded trusted CA certificate chain.
+        """
         return pulumi.get(self, "sni")
 
     @sni.setter
@@ -861,6 +987,16 @@ class AlbBackendGroupHttpBackendArgs:
                  target_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  tls: Optional[pulumi.Input['AlbBackendGroupHttpBackendTlsArgs']] = None,
                  weight: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the backend.
+        :param pulumi.Input['AlbBackendGroupHttpBackendHealthcheckArgs'] healthcheck: Healthcheck specification that will be used by this backend. Structure is documented below.
+        :param pulumi.Input[bool] http2: If set, health checks will use HTTP2.
+        :param pulumi.Input['AlbBackendGroupHttpBackendLoadBalancingConfigArgs'] load_balancing_config: Load Balancing Config specification that will be used by this backend. Structure is documented below.
+        :param pulumi.Input[int] port: Port for incoming traffic.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] target_group_ids: References target groups for the backend.
+        :param pulumi.Input['AlbBackendGroupHttpBackendTlsArgs'] tls: Tls specification that will be used by this backend. Structure is documented below.
+        :param pulumi.Input[int] weight: Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+        """
         pulumi.set(__self__, "name", name)
         if healthcheck is not None:
             pulumi.set(__self__, "healthcheck", healthcheck)
@@ -882,6 +1018,9 @@ class AlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the backend.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -891,6 +1030,9 @@ class AlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter
     def healthcheck(self) -> Optional[pulumi.Input['AlbBackendGroupHttpBackendHealthcheckArgs']]:
+        """
+        Healthcheck specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "healthcheck")
 
     @healthcheck.setter
@@ -900,6 +1042,9 @@ class AlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter
     def http2(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, health checks will use HTTP2.
+        """
         return pulumi.get(self, "http2")
 
     @http2.setter
@@ -909,6 +1054,9 @@ class AlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter(name="loadBalancingConfig")
     def load_balancing_config(self) -> Optional[pulumi.Input['AlbBackendGroupHttpBackendLoadBalancingConfigArgs']]:
+        """
+        Load Balancing Config specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "load_balancing_config")
 
     @load_balancing_config.setter
@@ -918,6 +1066,9 @@ class AlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port for incoming traffic.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -936,6 +1087,9 @@ class AlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter(name="targetGroupIds")
     def target_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        References target groups for the backend.
+        """
         return pulumi.get(self, "target_group_ids")
 
     @target_group_ids.setter
@@ -945,6 +1099,9 @@ class AlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input['AlbBackendGroupHttpBackendTlsArgs']]:
+        """
+        Tls specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "tls")
 
     @tls.setter
@@ -954,6 +1111,9 @@ class AlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter
     def weight(self) -> Optional[pulumi.Input[int]]:
+        """
+        Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+        """
         return pulumi.get(self, "weight")
 
     @weight.setter
@@ -973,6 +1133,17 @@ class AlbBackendGroupHttpBackendHealthcheckArgs:
                  interval_jitter_percent: Optional[pulumi.Input[float]] = None,
                  stream_healthcheck: Optional[pulumi.Input['AlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs']] = None,
                  unhealthy_threshold: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] interval: Interval between health checks.
+        :param pulumi.Input[str] timeout: Time to wait for a health check response.
+        :param pulumi.Input['AlbBackendGroupHttpBackendHealthcheckGrpcHealthcheckArgs'] grpc_healthcheck: Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param pulumi.Input[int] healthcheck_port: Optional alternative port for health checking.
+        :param pulumi.Input[int] healthy_threshold: Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+        :param pulumi.Input['AlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs'] http_healthcheck: Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param pulumi.Input[float] interval_jitter_percent: An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * interval_jitter_percent / 100) will be added to the wait time.
+        :param pulumi.Input['AlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs'] stream_healthcheck: Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param pulumi.Input[int] unhealthy_threshold: Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+        """
         pulumi.set(__self__, "interval", interval)
         pulumi.set(__self__, "timeout", timeout)
         if grpc_healthcheck is not None:
@@ -993,6 +1164,9 @@ class AlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter
     def interval(self) -> pulumi.Input[str]:
+        """
+        Interval between health checks.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -1002,6 +1176,9 @@ class AlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter
     def timeout(self) -> pulumi.Input[str]:
+        """
+        Time to wait for a health check response.
+        """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
@@ -1011,6 +1188,9 @@ class AlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="grpcHealthcheck")
     def grpc_healthcheck(self) -> Optional[pulumi.Input['AlbBackendGroupHttpBackendHealthcheckGrpcHealthcheckArgs']]:
+        """
+        Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "grpc_healthcheck")
 
     @grpc_healthcheck.setter
@@ -1020,6 +1200,9 @@ class AlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="healthcheckPort")
     def healthcheck_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Optional alternative port for health checking.
+        """
         return pulumi.get(self, "healthcheck_port")
 
     @healthcheck_port.setter
@@ -1029,6 +1212,9 @@ class AlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="healthyThreshold")
     def healthy_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+        """
         return pulumi.get(self, "healthy_threshold")
 
     @healthy_threshold.setter
@@ -1038,6 +1224,9 @@ class AlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="httpHealthcheck")
     def http_healthcheck(self) -> Optional[pulumi.Input['AlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs']]:
+        """
+        Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "http_healthcheck")
 
     @http_healthcheck.setter
@@ -1047,6 +1236,9 @@ class AlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="intervalJitterPercent")
     def interval_jitter_percent(self) -> Optional[pulumi.Input[float]]:
+        """
+        An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * interval_jitter_percent / 100) will be added to the wait time.
+        """
         return pulumi.get(self, "interval_jitter_percent")
 
     @interval_jitter_percent.setter
@@ -1056,6 +1248,9 @@ class AlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="streamHealthcheck")
     def stream_healthcheck(self) -> Optional[pulumi.Input['AlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs']]:
+        """
+        Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "stream_healthcheck")
 
     @stream_healthcheck.setter
@@ -1065,6 +1260,9 @@ class AlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="unhealthyThreshold")
     def unhealthy_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+        """
         return pulumi.get(self, "unhealthy_threshold")
 
     @unhealthy_threshold.setter
@@ -1076,12 +1274,18 @@ class AlbBackendGroupHttpBackendHealthcheckArgs:
 class AlbBackendGroupHttpBackendHealthcheckGrpcHealthcheckArgs:
     def __init__(__self__, *,
                  service_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] service_name: Service name for grpc.health.v1.HealthCheckRequest message.
+        """
         if service_name is not None:
             pulumi.set(__self__, "service_name", service_name)
 
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service name for grpc.health.v1.HealthCheckRequest message.
+        """
         return pulumi.get(self, "service_name")
 
     @service_name.setter
@@ -1095,6 +1299,11 @@ class AlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs:
                  path: pulumi.Input[str],
                  host: Optional[pulumi.Input[str]] = None,
                  http2: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] path: HTTP path.
+        :param pulumi.Input[str] host: "Host" HTTP header value.
+        :param pulumi.Input[bool] http2: If set, health checks will use HTTP2.
+        """
         pulumi.set(__self__, "path", path)
         if host is not None:
             pulumi.set(__self__, "host", host)
@@ -1104,6 +1313,9 @@ class AlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def path(self) -> pulumi.Input[str]:
+        """
+        HTTP path.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -1113,6 +1325,9 @@ class AlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        "Host" HTTP header value.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -1122,6 +1337,9 @@ class AlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def http2(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, health checks will use HTTP2.
+        """
         return pulumi.get(self, "http2")
 
     @http2.setter
@@ -1134,6 +1352,10 @@ class AlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs:
     def __init__(__self__, *,
                  receive: Optional[pulumi.Input[str]] = None,
                  send: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] receive: Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+        :param pulumi.Input[str] send: Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+        """
         if receive is not None:
             pulumi.set(__self__, "receive", receive)
         if send is not None:
@@ -1142,6 +1364,9 @@ class AlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs:
     @property
     @pulumi.getter
     def receive(self) -> Optional[pulumi.Input[str]]:
+        """
+        Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+        """
         return pulumi.get(self, "receive")
 
     @receive.setter
@@ -1151,6 +1376,9 @@ class AlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs:
     @property
     @pulumi.getter
     def send(self) -> Optional[pulumi.Input[str]]:
+        """
+        Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+        """
         return pulumi.get(self, "send")
 
     @send.setter
@@ -1165,6 +1393,12 @@ class AlbBackendGroupHttpBackendLoadBalancingConfigArgs:
                  mode: Optional[pulumi.Input[str]] = None,
                  panic_threshold: Optional[pulumi.Input[int]] = None,
                  strict_locality: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[int] locality_aware_routing_percent: Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+        :param pulumi.Input[str] mode: Load balancing mode for the backend. Possible values: "ROUND_ROBIN", "RANDOM", "LEAST_REQUEST", "MAGLEV_HASH".
+        :param pulumi.Input[int] panic_threshold: If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+        :param pulumi.Input[bool] strict_locality: If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+        """
         if locality_aware_routing_percent is not None:
             pulumi.set(__self__, "locality_aware_routing_percent", locality_aware_routing_percent)
         if mode is not None:
@@ -1177,6 +1411,9 @@ class AlbBackendGroupHttpBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="localityAwareRoutingPercent")
     def locality_aware_routing_percent(self) -> Optional[pulumi.Input[int]]:
+        """
+        Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+        """
         return pulumi.get(self, "locality_aware_routing_percent")
 
     @locality_aware_routing_percent.setter
@@ -1186,6 +1423,9 @@ class AlbBackendGroupHttpBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Load balancing mode for the backend. Possible values: "ROUND_ROBIN", "RANDOM", "LEAST_REQUEST", "MAGLEV_HASH".
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -1195,6 +1435,9 @@ class AlbBackendGroupHttpBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="panicThreshold")
     def panic_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+        """
         return pulumi.get(self, "panic_threshold")
 
     @panic_threshold.setter
@@ -1204,6 +1447,9 @@ class AlbBackendGroupHttpBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="strictLocality")
     def strict_locality(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+        """
         return pulumi.get(self, "strict_locality")
 
     @strict_locality.setter
@@ -1216,6 +1462,11 @@ class AlbBackendGroupHttpBackendTlsArgs:
     def __init__(__self__, *,
                  sni: Optional[pulumi.Input[str]] = None,
                  validation_context: Optional[pulumi.Input['AlbBackendGroupHttpBackendTlsValidationContextArgs']] = None):
+        """
+        :param pulumi.Input[str] sni: [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+               * `validation_context.0.trusted_ca_id` - (Optional) Trusted CA certificate ID in the Certificate Manager.
+               * `validation_context.0.trusted_ca_bytes` - (Optional) PEM-encoded trusted CA certificate chain.
+        """
         if sni is not None:
             pulumi.set(__self__, "sni", sni)
         if validation_context is not None:
@@ -1224,6 +1475,11 @@ class AlbBackendGroupHttpBackendTlsArgs:
     @property
     @pulumi.getter
     def sni(self) -> Optional[pulumi.Input[str]]:
+        """
+        [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+        * `validation_context.0.trusted_ca_id` - (Optional) Trusted CA certificate ID in the Certificate Manager.
+        * `validation_context.0.trusted_ca_bytes` - (Optional) PEM-encoded trusted CA certificate chain.
+        """
         return pulumi.get(self, "sni")
 
     @sni.setter
@@ -1332,6 +1588,9 @@ class AlbBackendGroupSessionAffinityCookieArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  ttl: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the backend.
+        """
         pulumi.set(__self__, "name", name)
         if ttl is not None:
             pulumi.set(__self__, "ttl", ttl)
@@ -1339,6 +1598,9 @@ class AlbBackendGroupSessionAffinityCookieArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the backend.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -1382,6 +1644,15 @@ class AlbBackendGroupStreamBackendArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  tls: Optional[pulumi.Input['AlbBackendGroupStreamBackendTlsArgs']] = None,
                  weight: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the backend.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] target_group_ids: References target groups for the backend.
+        :param pulumi.Input['AlbBackendGroupStreamBackendHealthcheckArgs'] healthcheck: Healthcheck specification that will be used by this backend. Structure is documented below.
+        :param pulumi.Input['AlbBackendGroupStreamBackendLoadBalancingConfigArgs'] load_balancing_config: Load Balancing Config specification that will be used by this backend. Structure is documented below.
+        :param pulumi.Input[int] port: Port for incoming traffic.
+        :param pulumi.Input['AlbBackendGroupStreamBackendTlsArgs'] tls: Tls specification that will be used by this backend. Structure is documented below.
+        :param pulumi.Input[int] weight: Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "target_group_ids", target_group_ids)
         if enable_proxy_protocol is not None:
@@ -1400,6 +1671,9 @@ class AlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the backend.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -1409,6 +1683,9 @@ class AlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter(name="targetGroupIds")
     def target_group_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        References target groups for the backend.
+        """
         return pulumi.get(self, "target_group_ids")
 
     @target_group_ids.setter
@@ -1427,6 +1704,9 @@ class AlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter
     def healthcheck(self) -> Optional[pulumi.Input['AlbBackendGroupStreamBackendHealthcheckArgs']]:
+        """
+        Healthcheck specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "healthcheck")
 
     @healthcheck.setter
@@ -1436,6 +1716,9 @@ class AlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter(name="loadBalancingConfig")
     def load_balancing_config(self) -> Optional[pulumi.Input['AlbBackendGroupStreamBackendLoadBalancingConfigArgs']]:
+        """
+        Load Balancing Config specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "load_balancing_config")
 
     @load_balancing_config.setter
@@ -1445,6 +1728,9 @@ class AlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port for incoming traffic.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -1454,6 +1740,9 @@ class AlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input['AlbBackendGroupStreamBackendTlsArgs']]:
+        """
+        Tls specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "tls")
 
     @tls.setter
@@ -1463,6 +1752,9 @@ class AlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter
     def weight(self) -> Optional[pulumi.Input[int]]:
+        """
+        Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+        """
         return pulumi.get(self, "weight")
 
     @weight.setter
@@ -1482,6 +1774,17 @@ class AlbBackendGroupStreamBackendHealthcheckArgs:
                  interval_jitter_percent: Optional[pulumi.Input[float]] = None,
                  stream_healthcheck: Optional[pulumi.Input['AlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs']] = None,
                  unhealthy_threshold: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] interval: Interval between health checks.
+        :param pulumi.Input[str] timeout: Time to wait for a health check response.
+        :param pulumi.Input['AlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs'] grpc_healthcheck: Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param pulumi.Input[int] healthcheck_port: Optional alternative port for health checking.
+        :param pulumi.Input[int] healthy_threshold: Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+        :param pulumi.Input['AlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs'] http_healthcheck: Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param pulumi.Input[float] interval_jitter_percent: An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * interval_jitter_percent / 100) will be added to the wait time.
+        :param pulumi.Input['AlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs'] stream_healthcheck: Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param pulumi.Input[int] unhealthy_threshold: Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+        """
         pulumi.set(__self__, "interval", interval)
         pulumi.set(__self__, "timeout", timeout)
         if grpc_healthcheck is not None:
@@ -1502,6 +1805,9 @@ class AlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter
     def interval(self) -> pulumi.Input[str]:
+        """
+        Interval between health checks.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -1511,6 +1817,9 @@ class AlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter
     def timeout(self) -> pulumi.Input[str]:
+        """
+        Time to wait for a health check response.
+        """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
@@ -1520,6 +1829,9 @@ class AlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="grpcHealthcheck")
     def grpc_healthcheck(self) -> Optional[pulumi.Input['AlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs']]:
+        """
+        Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "grpc_healthcheck")
 
     @grpc_healthcheck.setter
@@ -1529,6 +1841,9 @@ class AlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="healthcheckPort")
     def healthcheck_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Optional alternative port for health checking.
+        """
         return pulumi.get(self, "healthcheck_port")
 
     @healthcheck_port.setter
@@ -1538,6 +1853,9 @@ class AlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="healthyThreshold")
     def healthy_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+        """
         return pulumi.get(self, "healthy_threshold")
 
     @healthy_threshold.setter
@@ -1547,6 +1865,9 @@ class AlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="httpHealthcheck")
     def http_healthcheck(self) -> Optional[pulumi.Input['AlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs']]:
+        """
+        Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "http_healthcheck")
 
     @http_healthcheck.setter
@@ -1556,6 +1877,9 @@ class AlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="intervalJitterPercent")
     def interval_jitter_percent(self) -> Optional[pulumi.Input[float]]:
+        """
+        An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * interval_jitter_percent / 100) will be added to the wait time.
+        """
         return pulumi.get(self, "interval_jitter_percent")
 
     @interval_jitter_percent.setter
@@ -1565,6 +1889,9 @@ class AlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="streamHealthcheck")
     def stream_healthcheck(self) -> Optional[pulumi.Input['AlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs']]:
+        """
+        Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "stream_healthcheck")
 
     @stream_healthcheck.setter
@@ -1574,6 +1901,9 @@ class AlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="unhealthyThreshold")
     def unhealthy_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+        """
         return pulumi.get(self, "unhealthy_threshold")
 
     @unhealthy_threshold.setter
@@ -1585,12 +1915,18 @@ class AlbBackendGroupStreamBackendHealthcheckArgs:
 class AlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs:
     def __init__(__self__, *,
                  service_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] service_name: Service name for grpc.health.v1.HealthCheckRequest message.
+        """
         if service_name is not None:
             pulumi.set(__self__, "service_name", service_name)
 
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service name for grpc.health.v1.HealthCheckRequest message.
+        """
         return pulumi.get(self, "service_name")
 
     @service_name.setter
@@ -1604,6 +1940,11 @@ class AlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs:
                  path: pulumi.Input[str],
                  host: Optional[pulumi.Input[str]] = None,
                  http2: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] path: HTTP path.
+        :param pulumi.Input[str] host: "Host" HTTP header value.
+        :param pulumi.Input[bool] http2: If set, health checks will use HTTP2.
+        """
         pulumi.set(__self__, "path", path)
         if host is not None:
             pulumi.set(__self__, "host", host)
@@ -1613,6 +1954,9 @@ class AlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def path(self) -> pulumi.Input[str]:
+        """
+        HTTP path.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -1622,6 +1966,9 @@ class AlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
+        """
+        "Host" HTTP header value.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -1631,6 +1978,9 @@ class AlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def http2(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, health checks will use HTTP2.
+        """
         return pulumi.get(self, "http2")
 
     @http2.setter
@@ -1643,6 +1993,10 @@ class AlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs:
     def __init__(__self__, *,
                  receive: Optional[pulumi.Input[str]] = None,
                  send: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] receive: Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+        :param pulumi.Input[str] send: Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+        """
         if receive is not None:
             pulumi.set(__self__, "receive", receive)
         if send is not None:
@@ -1651,6 +2005,9 @@ class AlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs:
     @property
     @pulumi.getter
     def receive(self) -> Optional[pulumi.Input[str]]:
+        """
+        Data that must be contained in the messages received from targets for a successful health check. If not specified, no messages are expected from targets, and those that are received are not checked.
+        """
         return pulumi.get(self, "receive")
 
     @receive.setter
@@ -1660,6 +2017,9 @@ class AlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs:
     @property
     @pulumi.getter
     def send(self) -> Optional[pulumi.Input[str]]:
+        """
+        Message sent to targets during TCP data transfer.  If not specified, no data is sent to the target.
+        """
         return pulumi.get(self, "send")
 
     @send.setter
@@ -1674,6 +2034,12 @@ class AlbBackendGroupStreamBackendLoadBalancingConfigArgs:
                  mode: Optional[pulumi.Input[str]] = None,
                  panic_threshold: Optional[pulumi.Input[int]] = None,
                  strict_locality: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[int] locality_aware_routing_percent: Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+        :param pulumi.Input[str] mode: Load balancing mode for the backend. Possible values: "ROUND_ROBIN", "RANDOM", "LEAST_REQUEST", "MAGLEV_HASH".
+        :param pulumi.Input[int] panic_threshold: If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+        :param pulumi.Input[bool] strict_locality: If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+        """
         if locality_aware_routing_percent is not None:
             pulumi.set(__self__, "locality_aware_routing_percent", locality_aware_routing_percent)
         if mode is not None:
@@ -1686,6 +2052,9 @@ class AlbBackendGroupStreamBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="localityAwareRoutingPercent")
     def locality_aware_routing_percent(self) -> Optional[pulumi.Input[int]]:
+        """
+        Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+        """
         return pulumi.get(self, "locality_aware_routing_percent")
 
     @locality_aware_routing_percent.setter
@@ -1695,6 +2064,9 @@ class AlbBackendGroupStreamBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Load balancing mode for the backend. Possible values: "ROUND_ROBIN", "RANDOM", "LEAST_REQUEST", "MAGLEV_HASH".
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -1704,6 +2076,9 @@ class AlbBackendGroupStreamBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="panicThreshold")
     def panic_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+        """
         return pulumi.get(self, "panic_threshold")
 
     @panic_threshold.setter
@@ -1713,6 +2088,9 @@ class AlbBackendGroupStreamBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="strictLocality")
     def strict_locality(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+        """
         return pulumi.get(self, "strict_locality")
 
     @strict_locality.setter
@@ -1725,6 +2103,11 @@ class AlbBackendGroupStreamBackendTlsArgs:
     def __init__(__self__, *,
                  sni: Optional[pulumi.Input[str]] = None,
                  validation_context: Optional[pulumi.Input['AlbBackendGroupStreamBackendTlsValidationContextArgs']] = None):
+        """
+        :param pulumi.Input[str] sni: [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+               * `validation_context.0.trusted_ca_id` - (Optional) Trusted CA certificate ID in the Certificate Manager.
+               * `validation_context.0.trusted_ca_bytes` - (Optional) PEM-encoded trusted CA certificate chain.
+        """
         if sni is not None:
             pulumi.set(__self__, "sni", sni)
         if validation_context is not None:
@@ -1733,6 +2116,11 @@ class AlbBackendGroupStreamBackendTlsArgs:
     @property
     @pulumi.getter
     def sni(self) -> Optional[pulumi.Input[str]]:
+        """
+        [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+        * `validation_context.0.trusted_ca_id` - (Optional) Trusted CA certificate ID in the Certificate Manager.
+        * `validation_context.0.trusted_ca_bytes` - (Optional) PEM-encoded trusted CA certificate chain.
+        """
         return pulumi.get(self, "sni")
 
     @sni.setter
@@ -1885,6 +2273,9 @@ class AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  value: Optional[pulumi.Input['AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs']] = None):
+        """
+        :param pulumi.Input[str] name: Name of the HTTP Router. Provided by the client when the HTTP Router is created.
+        """
         pulumi.set(__self__, "name", name)
         if value is not None:
             pulumi.set(__self__, "value", value)
@@ -1892,6 +2283,9 @@ class AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the HTTP Router. Provided by the client when the HTTP Router is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -1941,11 +2335,17 @@ class AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs:
 class AlbLoadBalancerAllocationPolicyArgs:
     def __init__(__self__, *,
                  locations: pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerAllocationPolicyLocationArgs']]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerAllocationPolicyLocationArgs']]] locations: Unique set of locations. The structure is documented below.
+        """
         pulumi.set(__self__, "locations", locations)
 
     @property
     @pulumi.getter
     def locations(self) -> pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerAllocationPolicyLocationArgs']]]:
+        """
+        Unique set of locations. The structure is documented below.
+        """
         return pulumi.get(self, "locations")
 
     @locations.setter
@@ -1959,6 +2359,11 @@ class AlbLoadBalancerAllocationPolicyLocationArgs:
                  subnet_id: pulumi.Input[str],
                  zone_id: pulumi.Input[str],
                  disable_traffic: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] subnet_id: Provided by the client or computed automatically.
+        :param pulumi.Input[str] zone_id: ID of the zone that location is located at.
+        :param pulumi.Input[bool] disable_traffic: If set, will disable all L7 instances in the zone for request handling.
+        """
         pulumi.set(__self__, "subnet_id", subnet_id)
         pulumi.set(__self__, "zone_id", zone_id)
         if disable_traffic is not None:
@@ -1967,6 +2372,9 @@ class AlbLoadBalancerAllocationPolicyLocationArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> pulumi.Input[str]:
+        """
+        Provided by the client or computed automatically.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -1976,6 +2384,9 @@ class AlbLoadBalancerAllocationPolicyLocationArgs:
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> pulumi.Input[str]:
+        """
+        ID of the zone that location is located at.
+        """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
@@ -1985,6 +2396,9 @@ class AlbLoadBalancerAllocationPolicyLocationArgs:
     @property
     @pulumi.getter(name="disableTraffic")
     def disable_traffic(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, will disable all L7 instances in the zone for request handling.
+        """
         return pulumi.get(self, "disable_traffic")
 
     @disable_traffic.setter
@@ -2000,6 +2414,13 @@ class AlbLoadBalancerListenerArgs:
                  http: Optional[pulumi.Input['AlbLoadBalancerListenerHttpArgs']] = None,
                  stream: Optional[pulumi.Input['AlbLoadBalancerListenerStreamArgs']] = None,
                  tls: Optional[pulumi.Input['AlbLoadBalancerListenerTlsArgs']] = None):
+        """
+        :param pulumi.Input[str] name: name of SNI match.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerListenerEndpointArgs']]] endpoints: Network endpoints (addresses and ports) of the listener. The structure is documented below.
+        :param pulumi.Input['AlbLoadBalancerListenerHttpArgs'] http: HTTP listener resource. The structure is documented below.
+        :param pulumi.Input['AlbLoadBalancerListenerStreamArgs'] stream: Stream listener resource. The structure is documented below.
+        :param pulumi.Input['AlbLoadBalancerListenerTlsArgs'] tls: TLS listener resource. The structure is documented below.
+        """
         pulumi.set(__self__, "name", name)
         if endpoints is not None:
             pulumi.set(__self__, "endpoints", endpoints)
@@ -2013,6 +2434,9 @@ class AlbLoadBalancerListenerArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        name of SNI match.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -2022,6 +2446,9 @@ class AlbLoadBalancerListenerArgs:
     @property
     @pulumi.getter
     def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerListenerEndpointArgs']]]]:
+        """
+        Network endpoints (addresses and ports) of the listener. The structure is documented below.
+        """
         return pulumi.get(self, "endpoints")
 
     @endpoints.setter
@@ -2031,6 +2458,9 @@ class AlbLoadBalancerListenerArgs:
     @property
     @pulumi.getter
     def http(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerHttpArgs']]:
+        """
+        HTTP listener resource. The structure is documented below.
+        """
         return pulumi.get(self, "http")
 
     @http.setter
@@ -2040,6 +2470,9 @@ class AlbLoadBalancerListenerArgs:
     @property
     @pulumi.getter
     def stream(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerStreamArgs']]:
+        """
+        Stream listener resource. The structure is documented below.
+        """
         return pulumi.get(self, "stream")
 
     @stream.setter
@@ -2049,6 +2482,9 @@ class AlbLoadBalancerListenerArgs:
     @property
     @pulumi.getter
     def tls(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerTlsArgs']]:
+        """
+        TLS listener resource. The structure is documented below.
+        """
         return pulumi.get(self, "tls")
 
     @tls.setter
@@ -2061,12 +2497,19 @@ class AlbLoadBalancerListenerEndpointArgs:
     def __init__(__self__, *,
                  addresses: pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerListenerEndpointAddressArgs']]],
                  ports: pulumi.Input[Sequence[pulumi.Input[int]]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerListenerEndpointAddressArgs']]] addresses: Provided by the client or computed automatically.
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] ports: One or more ports to listen on.
+        """
         pulumi.set(__self__, "addresses", addresses)
         pulumi.set(__self__, "ports", ports)
 
     @property
     @pulumi.getter
     def addresses(self) -> pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerListenerEndpointAddressArgs']]]:
+        """
+        Provided by the client or computed automatically.
+        """
         return pulumi.get(self, "addresses")
 
     @addresses.setter
@@ -2076,6 +2519,9 @@ class AlbLoadBalancerListenerEndpointArgs:
     @property
     @pulumi.getter
     def ports(self) -> pulumi.Input[Sequence[pulumi.Input[int]]]:
+        """
+        One or more ports to listen on.
+        """
         return pulumi.get(self, "ports")
 
     @ports.setter
@@ -2089,6 +2535,11 @@ class AlbLoadBalancerListenerEndpointAddressArgs:
                  external_ipv4_address: Optional[pulumi.Input['AlbLoadBalancerListenerEndpointAddressExternalIpv4AddressArgs']] = None,
                  external_ipv6_address: Optional[pulumi.Input['AlbLoadBalancerListenerEndpointAddressExternalIpv6AddressArgs']] = None,
                  internal_ipv4_address: Optional[pulumi.Input['AlbLoadBalancerListenerEndpointAddressInternalIpv4AddressArgs']] = None):
+        """
+        :param pulumi.Input['AlbLoadBalancerListenerEndpointAddressExternalIpv4AddressArgs'] external_ipv4_address: External IPv4 address. The structure is documented below.
+        :param pulumi.Input['AlbLoadBalancerListenerEndpointAddressExternalIpv6AddressArgs'] external_ipv6_address: External IPv6 address. The structure is documented below.
+        :param pulumi.Input['AlbLoadBalancerListenerEndpointAddressInternalIpv4AddressArgs'] internal_ipv4_address: Internal IPv4 address. The structure is documented below.
+        """
         if external_ipv4_address is not None:
             pulumi.set(__self__, "external_ipv4_address", external_ipv4_address)
         if external_ipv6_address is not None:
@@ -2099,6 +2550,9 @@ class AlbLoadBalancerListenerEndpointAddressArgs:
     @property
     @pulumi.getter(name="externalIpv4Address")
     def external_ipv4_address(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerEndpointAddressExternalIpv4AddressArgs']]:
+        """
+        External IPv4 address. The structure is documented below.
+        """
         return pulumi.get(self, "external_ipv4_address")
 
     @external_ipv4_address.setter
@@ -2108,6 +2562,9 @@ class AlbLoadBalancerListenerEndpointAddressArgs:
     @property
     @pulumi.getter(name="externalIpv6Address")
     def external_ipv6_address(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerEndpointAddressExternalIpv6AddressArgs']]:
+        """
+        External IPv6 address. The structure is documented below.
+        """
         return pulumi.get(self, "external_ipv6_address")
 
     @external_ipv6_address.setter
@@ -2117,6 +2574,9 @@ class AlbLoadBalancerListenerEndpointAddressArgs:
     @property
     @pulumi.getter(name="internalIpv4Address")
     def internal_ipv4_address(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerEndpointAddressInternalIpv4AddressArgs']]:
+        """
+        Internal IPv4 address. The structure is documented below.
+        """
         return pulumi.get(self, "internal_ipv4_address")
 
     @internal_ipv4_address.setter
@@ -2128,12 +2588,18 @@ class AlbLoadBalancerListenerEndpointAddressArgs:
 class AlbLoadBalancerListenerEndpointAddressExternalIpv4AddressArgs:
     def __init__(__self__, *,
                  address: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: Provided by the client or computed automatically.
+        """
         if address is not None:
             pulumi.set(__self__, "address", address)
 
     @property
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Provided by the client or computed automatically.
+        """
         return pulumi.get(self, "address")
 
     @address.setter
@@ -2145,12 +2611,18 @@ class AlbLoadBalancerListenerEndpointAddressExternalIpv4AddressArgs:
 class AlbLoadBalancerListenerEndpointAddressExternalIpv6AddressArgs:
     def __init__(__self__, *,
                  address: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: Provided by the client or computed automatically.
+        """
         if address is not None:
             pulumi.set(__self__, "address", address)
 
     @property
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Provided by the client or computed automatically.
+        """
         return pulumi.get(self, "address")
 
     @address.setter
@@ -2163,6 +2635,10 @@ class AlbLoadBalancerListenerEndpointAddressInternalIpv4AddressArgs:
     def __init__(__self__, *,
                  address: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: Provided by the client or computed automatically.
+        :param pulumi.Input[str] subnet_id: Provided by the client or computed automatically.
+        """
         if address is not None:
             pulumi.set(__self__, "address", address)
         if subnet_id is not None:
@@ -2171,6 +2647,9 @@ class AlbLoadBalancerListenerEndpointAddressInternalIpv4AddressArgs:
     @property
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Provided by the client or computed automatically.
+        """
         return pulumi.get(self, "address")
 
     @address.setter
@@ -2180,6 +2659,9 @@ class AlbLoadBalancerListenerEndpointAddressInternalIpv4AddressArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Provided by the client or computed automatically.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -2192,6 +2674,10 @@ class AlbLoadBalancerListenerHttpArgs:
     def __init__(__self__, *,
                  handler: Optional[pulumi.Input['AlbLoadBalancerListenerHttpHandlerArgs']] = None,
                  redirects: Optional[pulumi.Input['AlbLoadBalancerListenerHttpRedirectsArgs']] = None):
+        """
+        :param pulumi.Input['AlbLoadBalancerListenerHttpHandlerArgs'] handler: HTTP handler that sets plaintext HTTP router. The structure is documented below.
+        :param pulumi.Input['AlbLoadBalancerListenerHttpRedirectsArgs'] redirects: Shortcut for adding http > https redirects. The structure is documented below.
+        """
         if handler is not None:
             pulumi.set(__self__, "handler", handler)
         if redirects is not None:
@@ -2200,6 +2686,9 @@ class AlbLoadBalancerListenerHttpArgs:
     @property
     @pulumi.getter
     def handler(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerHttpHandlerArgs']]:
+        """
+        HTTP handler that sets plaintext HTTP router. The structure is documented below.
+        """
         return pulumi.get(self, "handler")
 
     @handler.setter
@@ -2209,6 +2698,9 @@ class AlbLoadBalancerListenerHttpArgs:
     @property
     @pulumi.getter
     def redirects(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerHttpRedirectsArgs']]:
+        """
+        Shortcut for adding http > https redirects. The structure is documented below.
+        """
         return pulumi.get(self, "redirects")
 
     @redirects.setter
@@ -2222,6 +2714,11 @@ class AlbLoadBalancerListenerHttpHandlerArgs:
                  allow_http10: Optional[pulumi.Input[bool]] = None,
                  http2_options: Optional[pulumi.Input['AlbLoadBalancerListenerHttpHandlerHttp2OptionsArgs']] = None,
                  http_router_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] allow_http10: If set, will enable only HTTP1 protocol with HTTP1.0 support.
+        :param pulumi.Input['AlbLoadBalancerListenerHttpHandlerHttp2OptionsArgs'] http2_options: If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+        :param pulumi.Input[str] http_router_id: HTTP router id.
+        """
         if allow_http10 is not None:
             pulumi.set(__self__, "allow_http10", allow_http10)
         if http2_options is not None:
@@ -2232,6 +2729,9 @@ class AlbLoadBalancerListenerHttpHandlerArgs:
     @property
     @pulumi.getter(name="allowHttp10")
     def allow_http10(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, will enable only HTTP1 protocol with HTTP1.0 support.
+        """
         return pulumi.get(self, "allow_http10")
 
     @allow_http10.setter
@@ -2241,6 +2741,9 @@ class AlbLoadBalancerListenerHttpHandlerArgs:
     @property
     @pulumi.getter(name="http2Options")
     def http2_options(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerHttpHandlerHttp2OptionsArgs']]:
+        """
+        If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+        """
         return pulumi.get(self, "http2_options")
 
     @http2_options.setter
@@ -2250,6 +2753,9 @@ class AlbLoadBalancerListenerHttpHandlerArgs:
     @property
     @pulumi.getter(name="httpRouterId")
     def http_router_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        HTTP router id.
+        """
         return pulumi.get(self, "http_router_id")
 
     @http_router_id.setter
@@ -2261,12 +2767,18 @@ class AlbLoadBalancerListenerHttpHandlerArgs:
 class AlbLoadBalancerListenerHttpHandlerHttp2OptionsArgs:
     def __init__(__self__, *,
                  max_concurrent_streams: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] max_concurrent_streams: Maximum number of concurrent streams.
+        """
         if max_concurrent_streams is not None:
             pulumi.set(__self__, "max_concurrent_streams", max_concurrent_streams)
 
     @property
     @pulumi.getter(name="maxConcurrentStreams")
     def max_concurrent_streams(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of concurrent streams.
+        """
         return pulumi.get(self, "max_concurrent_streams")
 
     @max_concurrent_streams.setter
@@ -2278,12 +2790,18 @@ class AlbLoadBalancerListenerHttpHandlerHttp2OptionsArgs:
 class AlbLoadBalancerListenerHttpRedirectsArgs:
     def __init__(__self__, *,
                  http_to_https: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] http_to_https: If set redirects all unencrypted HTTP requests to the same URI with scheme changed to `https`.
+        """
         if http_to_https is not None:
             pulumi.set(__self__, "http_to_https", http_to_https)
 
     @property
     @pulumi.getter(name="httpToHttps")
     def http_to_https(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set redirects all unencrypted HTTP requests to the same URI with scheme changed to `https`.
+        """
         return pulumi.get(self, "http_to_https")
 
     @http_to_https.setter
@@ -2295,12 +2813,18 @@ class AlbLoadBalancerListenerHttpRedirectsArgs:
 class AlbLoadBalancerListenerStreamArgs:
     def __init__(__self__, *,
                  handler: Optional[pulumi.Input['AlbLoadBalancerListenerStreamHandlerArgs']] = None):
+        """
+        :param pulumi.Input['AlbLoadBalancerListenerStreamHandlerArgs'] handler: HTTP handler that sets plaintext HTTP router. The structure is documented below.
+        """
         if handler is not None:
             pulumi.set(__self__, "handler", handler)
 
     @property
     @pulumi.getter
     def handler(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerStreamHandlerArgs']]:
+        """
+        HTTP handler that sets plaintext HTTP router. The structure is documented below.
+        """
         return pulumi.get(self, "handler")
 
     @handler.setter
@@ -2312,12 +2836,18 @@ class AlbLoadBalancerListenerStreamArgs:
 class AlbLoadBalancerListenerStreamHandlerArgs:
     def __init__(__self__, *,
                  backend_group_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] backend_group_id: Backend group id.
+        """
         if backend_group_id is not None:
             pulumi.set(__self__, "backend_group_id", backend_group_id)
 
     @property
     @pulumi.getter(name="backendGroupId")
     def backend_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Backend group id.
+        """
         return pulumi.get(self, "backend_group_id")
 
     @backend_group_id.setter
@@ -2330,6 +2860,10 @@ class AlbLoadBalancerListenerTlsArgs:
     def __init__(__self__, *,
                  default_handler: pulumi.Input['AlbLoadBalancerListenerTlsDefaultHandlerArgs'],
                  sni_handlers: Optional[pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerArgs']]]] = None):
+        """
+        :param pulumi.Input['AlbLoadBalancerListenerTlsDefaultHandlerArgs'] default_handler: TLS handler resource. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerArgs']]] sni_handlers: SNI match resource. The structure is documented below.
+        """
         pulumi.set(__self__, "default_handler", default_handler)
         if sni_handlers is not None:
             pulumi.set(__self__, "sni_handlers", sni_handlers)
@@ -2337,6 +2871,9 @@ class AlbLoadBalancerListenerTlsArgs:
     @property
     @pulumi.getter(name="defaultHandler")
     def default_handler(self) -> pulumi.Input['AlbLoadBalancerListenerTlsDefaultHandlerArgs']:
+        """
+        TLS handler resource. The structure is documented below.
+        """
         return pulumi.get(self, "default_handler")
 
     @default_handler.setter
@@ -2346,6 +2883,9 @@ class AlbLoadBalancerListenerTlsArgs:
     @property
     @pulumi.getter(name="sniHandlers")
     def sni_handlers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerArgs']]]]:
+        """
+        SNI match resource. The structure is documented below.
+        """
         return pulumi.get(self, "sni_handlers")
 
     @sni_handlers.setter
@@ -2359,6 +2899,12 @@ class AlbLoadBalancerListenerTlsDefaultHandlerArgs:
                  certificate_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
                  http_handler: Optional[pulumi.Input['AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerArgs']] = None,
                  stream_handler: Optional[pulumi.Input['AlbLoadBalancerListenerTlsDefaultHandlerStreamHandlerArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: Certificate IDs in the Certificate Manager. Multiple TLS certificates can be associated
+               with the same context to allow both RSA and ECDSA certificates. Only the first certificate of each type will be used.
+        :param pulumi.Input['AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerArgs'] http_handler: HTTP handler resource. The structure is documented below.
+        :param pulumi.Input['AlbLoadBalancerListenerTlsDefaultHandlerStreamHandlerArgs'] stream_handler: Stream handler resource. The structure is documented below.
+        """
         pulumi.set(__self__, "certificate_ids", certificate_ids)
         if http_handler is not None:
             pulumi.set(__self__, "http_handler", http_handler)
@@ -2368,6 +2914,10 @@ class AlbLoadBalancerListenerTlsDefaultHandlerArgs:
     @property
     @pulumi.getter(name="certificateIds")
     def certificate_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Certificate IDs in the Certificate Manager. Multiple TLS certificates can be associated
+        with the same context to allow both RSA and ECDSA certificates. Only the first certificate of each type will be used.
+        """
         return pulumi.get(self, "certificate_ids")
 
     @certificate_ids.setter
@@ -2377,6 +2927,9 @@ class AlbLoadBalancerListenerTlsDefaultHandlerArgs:
     @property
     @pulumi.getter(name="httpHandler")
     def http_handler(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerArgs']]:
+        """
+        HTTP handler resource. The structure is documented below.
+        """
         return pulumi.get(self, "http_handler")
 
     @http_handler.setter
@@ -2386,6 +2939,9 @@ class AlbLoadBalancerListenerTlsDefaultHandlerArgs:
     @property
     @pulumi.getter(name="streamHandler")
     def stream_handler(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerTlsDefaultHandlerStreamHandlerArgs']]:
+        """
+        Stream handler resource. The structure is documented below.
+        """
         return pulumi.get(self, "stream_handler")
 
     @stream_handler.setter
@@ -2399,6 +2955,11 @@ class AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerArgs:
                  allow_http10: Optional[pulumi.Input[bool]] = None,
                  http2_options: Optional[pulumi.Input['AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2OptionsArgs']] = None,
                  http_router_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] allow_http10: If set, will enable only HTTP1 protocol with HTTP1.0 support.
+        :param pulumi.Input['AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2OptionsArgs'] http2_options: If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+        :param pulumi.Input[str] http_router_id: HTTP router id.
+        """
         if allow_http10 is not None:
             pulumi.set(__self__, "allow_http10", allow_http10)
         if http2_options is not None:
@@ -2409,6 +2970,9 @@ class AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerArgs:
     @property
     @pulumi.getter(name="allowHttp10")
     def allow_http10(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, will enable only HTTP1 protocol with HTTP1.0 support.
+        """
         return pulumi.get(self, "allow_http10")
 
     @allow_http10.setter
@@ -2418,6 +2982,9 @@ class AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerArgs:
     @property
     @pulumi.getter(name="http2Options")
     def http2_options(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2OptionsArgs']]:
+        """
+        If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+        """
         return pulumi.get(self, "http2_options")
 
     @http2_options.setter
@@ -2427,6 +2994,9 @@ class AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerArgs:
     @property
     @pulumi.getter(name="httpRouterId")
     def http_router_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        HTTP router id.
+        """
         return pulumi.get(self, "http_router_id")
 
     @http_router_id.setter
@@ -2438,12 +3008,18 @@ class AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerArgs:
 class AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2OptionsArgs:
     def __init__(__self__, *,
                  max_concurrent_streams: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] max_concurrent_streams: Maximum number of concurrent streams.
+        """
         if max_concurrent_streams is not None:
             pulumi.set(__self__, "max_concurrent_streams", max_concurrent_streams)
 
     @property
     @pulumi.getter(name="maxConcurrentStreams")
     def max_concurrent_streams(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of concurrent streams.
+        """
         return pulumi.get(self, "max_concurrent_streams")
 
     @max_concurrent_streams.setter
@@ -2455,12 +3031,18 @@ class AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2OptionsArgs:
 class AlbLoadBalancerListenerTlsDefaultHandlerStreamHandlerArgs:
     def __init__(__self__, *,
                  backend_group_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] backend_group_id: Backend group id.
+        """
         if backend_group_id is not None:
             pulumi.set(__self__, "backend_group_id", backend_group_id)
 
     @property
     @pulumi.getter(name="backendGroupId")
     def backend_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Backend group id.
+        """
         return pulumi.get(self, "backend_group_id")
 
     @backend_group_id.setter
@@ -2474,6 +3056,11 @@ class AlbLoadBalancerListenerTlsSniHandlerArgs:
                  handler: pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerHandlerArgs'],
                  name: pulumi.Input[str],
                  server_names: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerHandlerArgs'] handler: HTTP handler that sets plaintext HTTP router. The structure is documented below.
+        :param pulumi.Input[str] name: name of SNI match.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] server_names: A set of server names.
+        """
         pulumi.set(__self__, "handler", handler)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "server_names", server_names)
@@ -2481,6 +3068,9 @@ class AlbLoadBalancerListenerTlsSniHandlerArgs:
     @property
     @pulumi.getter
     def handler(self) -> pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerHandlerArgs']:
+        """
+        HTTP handler that sets plaintext HTTP router. The structure is documented below.
+        """
         return pulumi.get(self, "handler")
 
     @handler.setter
@@ -2490,6 +3080,9 @@ class AlbLoadBalancerListenerTlsSniHandlerArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        name of SNI match.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -2499,6 +3092,9 @@ class AlbLoadBalancerListenerTlsSniHandlerArgs:
     @property
     @pulumi.getter(name="serverNames")
     def server_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        A set of server names.
+        """
         return pulumi.get(self, "server_names")
 
     @server_names.setter
@@ -2512,6 +3108,12 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerArgs:
                  certificate_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
                  http_handler: Optional[pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerArgs']] = None,
                  stream_handler: Optional[pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandlerArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificate_ids: Certificate IDs in the Certificate Manager. Multiple TLS certificates can be associated
+               with the same context to allow both RSA and ECDSA certificates. Only the first certificate of each type will be used.
+        :param pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerArgs'] http_handler: HTTP handler resource. The structure is documented below.
+        :param pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandlerArgs'] stream_handler: Stream handler resource. The structure is documented below.
+        """
         pulumi.set(__self__, "certificate_ids", certificate_ids)
         if http_handler is not None:
             pulumi.set(__self__, "http_handler", http_handler)
@@ -2521,6 +3123,10 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerArgs:
     @property
     @pulumi.getter(name="certificateIds")
     def certificate_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Certificate IDs in the Certificate Manager. Multiple TLS certificates can be associated
+        with the same context to allow both RSA and ECDSA certificates. Only the first certificate of each type will be used.
+        """
         return pulumi.get(self, "certificate_ids")
 
     @certificate_ids.setter
@@ -2530,6 +3136,9 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerArgs:
     @property
     @pulumi.getter(name="httpHandler")
     def http_handler(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerArgs']]:
+        """
+        HTTP handler resource. The structure is documented below.
+        """
         return pulumi.get(self, "http_handler")
 
     @http_handler.setter
@@ -2539,6 +3148,9 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerArgs:
     @property
     @pulumi.getter(name="streamHandler")
     def stream_handler(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandlerArgs']]:
+        """
+        Stream handler resource. The structure is documented below.
+        """
         return pulumi.get(self, "stream_handler")
 
     @stream_handler.setter
@@ -2552,6 +3164,11 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerArgs:
                  allow_http10: Optional[pulumi.Input[bool]] = None,
                  http2_options: Optional[pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2OptionsArgs']] = None,
                  http_router_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] allow_http10: If set, will enable only HTTP1 protocol with HTTP1.0 support.
+        :param pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2OptionsArgs'] http2_options: If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+        :param pulumi.Input[str] http_router_id: HTTP router id.
+        """
         if allow_http10 is not None:
             pulumi.set(__self__, "allow_http10", allow_http10)
         if http2_options is not None:
@@ -2562,6 +3179,9 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerArgs:
     @property
     @pulumi.getter(name="allowHttp10")
     def allow_http10(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, will enable only HTTP1 protocol with HTTP1.0 support.
+        """
         return pulumi.get(self, "allow_http10")
 
     @allow_http10.setter
@@ -2571,6 +3191,9 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerArgs:
     @property
     @pulumi.getter(name="http2Options")
     def http2_options(self) -> Optional[pulumi.Input['AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2OptionsArgs']]:
+        """
+        If set, will enable HTTP2 protocol for the handler. The structure is documented below.
+        """
         return pulumi.get(self, "http2_options")
 
     @http2_options.setter
@@ -2580,6 +3203,9 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerArgs:
     @property
     @pulumi.getter(name="httpRouterId")
     def http_router_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        HTTP router id.
+        """
         return pulumi.get(self, "http_router_id")
 
     @http_router_id.setter
@@ -2591,12 +3217,18 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerArgs:
 class AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2OptionsArgs:
     def __init__(__self__, *,
                  max_concurrent_streams: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] max_concurrent_streams: Maximum number of concurrent streams.
+        """
         if max_concurrent_streams is not None:
             pulumi.set(__self__, "max_concurrent_streams", max_concurrent_streams)
 
     @property
     @pulumi.getter(name="maxConcurrentStreams")
     def max_concurrent_streams(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of concurrent streams.
+        """
         return pulumi.get(self, "max_concurrent_streams")
 
     @max_concurrent_streams.setter
@@ -2608,12 +3240,18 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2OptionsArgs:
 class AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandlerArgs:
     def __init__(__self__, *,
                  backend_group_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] backend_group_id: Backend group id.
+        """
         if backend_group_id is not None:
             pulumi.set(__self__, "backend_group_id", backend_group_id)
 
     @property
     @pulumi.getter(name="backendGroupId")
     def backend_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Backend group id.
+        """
         return pulumi.get(self, "backend_group_id")
 
     @backend_group_id.setter
@@ -2627,6 +3265,11 @@ class AlbTargetGroupTargetArgs:
                  ip_address: pulumi.Input[str],
                  private_ipv4_address: Optional[pulumi.Input[bool]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ip_address: IP address of the target.
+        :param pulumi.Input[str] subnet_id: ID of the subnet that targets are connected to.
+               All targets in the target group must be connected to the same subnet within a single availability zone.
+        """
         pulumi.set(__self__, "ip_address", ip_address)
         if private_ipv4_address is not None:
             pulumi.set(__self__, "private_ipv4_address", private_ipv4_address)
@@ -2636,6 +3279,9 @@ class AlbTargetGroupTargetArgs:
     @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> pulumi.Input[str]:
+        """
+        IP address of the target.
+        """
         return pulumi.get(self, "ip_address")
 
     @ip_address.setter
@@ -2654,6 +3300,10 @@ class AlbTargetGroupTargetArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the subnet that targets are connected to.
+        All targets in the target group must be connected to the same subnet within a single availability zone.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -2668,6 +3318,13 @@ class AlbVirtualHostModifyRequestHeaderArgs:
                  append: Optional[pulumi.Input[str]] = None,
                  remove: Optional[pulumi.Input[bool]] = None,
                  replace: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: name of the route.
+        :param pulumi.Input[str] append: Append string to the header value.
+        :param pulumi.Input[bool] remove: If set, remove the header.
+        :param pulumi.Input[str] replace: New value for a header. Header values support the following 
+               [formatters](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#custom-request-response-headers).
+        """
         pulumi.set(__self__, "name", name)
         if append is not None:
             pulumi.set(__self__, "append", append)
@@ -2679,6 +3336,9 @@ class AlbVirtualHostModifyRequestHeaderArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        name of the route.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -2688,6 +3348,9 @@ class AlbVirtualHostModifyRequestHeaderArgs:
     @property
     @pulumi.getter
     def append(self) -> Optional[pulumi.Input[str]]:
+        """
+        Append string to the header value.
+        """
         return pulumi.get(self, "append")
 
     @append.setter
@@ -2697,6 +3360,9 @@ class AlbVirtualHostModifyRequestHeaderArgs:
     @property
     @pulumi.getter
     def remove(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, remove the header.
+        """
         return pulumi.get(self, "remove")
 
     @remove.setter
@@ -2706,6 +3372,10 @@ class AlbVirtualHostModifyRequestHeaderArgs:
     @property
     @pulumi.getter
     def replace(self) -> Optional[pulumi.Input[str]]:
+        """
+        New value for a header. Header values support the following 
+        [formatters](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#custom-request-response-headers).
+        """
         return pulumi.get(self, "replace")
 
     @replace.setter
@@ -2720,6 +3390,13 @@ class AlbVirtualHostModifyResponseHeaderArgs:
                  append: Optional[pulumi.Input[str]] = None,
                  remove: Optional[pulumi.Input[bool]] = None,
                  replace: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: name of the route.
+        :param pulumi.Input[str] append: Append string to the header value.
+        :param pulumi.Input[bool] remove: If set, remove the header.
+        :param pulumi.Input[str] replace: New value for a header. Header values support the following 
+               [formatters](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#custom-request-response-headers).
+        """
         pulumi.set(__self__, "name", name)
         if append is not None:
             pulumi.set(__self__, "append", append)
@@ -2731,6 +3408,9 @@ class AlbVirtualHostModifyResponseHeaderArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        name of the route.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -2740,6 +3420,9 @@ class AlbVirtualHostModifyResponseHeaderArgs:
     @property
     @pulumi.getter
     def append(self) -> Optional[pulumi.Input[str]]:
+        """
+        Append string to the header value.
+        """
         return pulumi.get(self, "append")
 
     @append.setter
@@ -2749,6 +3432,9 @@ class AlbVirtualHostModifyResponseHeaderArgs:
     @property
     @pulumi.getter
     def remove(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, remove the header.
+        """
         return pulumi.get(self, "remove")
 
     @remove.setter
@@ -2758,6 +3444,10 @@ class AlbVirtualHostModifyResponseHeaderArgs:
     @property
     @pulumi.getter
     def replace(self) -> Optional[pulumi.Input[str]]:
+        """
+        New value for a header. Header values support the following 
+        [formatters](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#custom-request-response-headers).
+        """
         return pulumi.get(self, "replace")
 
     @replace.setter
@@ -2772,6 +3462,11 @@ class AlbVirtualHostRouteArgs:
                  http_route: Optional[pulumi.Input['AlbVirtualHostRouteHttpRouteArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  route_options: Optional[pulumi.Input['AlbVirtualHostRouteRouteOptionsArgs']] = None):
+        """
+        :param pulumi.Input['AlbVirtualHostRouteGrpcRouteArgs'] grpc_route: GRPC route resource. The structure is documented below.
+        :param pulumi.Input['AlbVirtualHostRouteHttpRouteArgs'] http_route: HTTP route resource. The structure is documented below.
+        :param pulumi.Input[str] name: name of the route.
+        """
         if grpc_route is not None:
             pulumi.set(__self__, "grpc_route", grpc_route)
         if http_route is not None:
@@ -2784,6 +3479,9 @@ class AlbVirtualHostRouteArgs:
     @property
     @pulumi.getter(name="grpcRoute")
     def grpc_route(self) -> Optional[pulumi.Input['AlbVirtualHostRouteGrpcRouteArgs']]:
+        """
+        GRPC route resource. The structure is documented below.
+        """
         return pulumi.get(self, "grpc_route")
 
     @grpc_route.setter
@@ -2793,6 +3491,9 @@ class AlbVirtualHostRouteArgs:
     @property
     @pulumi.getter(name="httpRoute")
     def http_route(self) -> Optional[pulumi.Input['AlbVirtualHostRouteHttpRouteArgs']]:
+        """
+        HTTP route resource. The structure is documented below.
+        """
         return pulumi.get(self, "http_route")
 
     @http_route.setter
@@ -2802,6 +3503,9 @@ class AlbVirtualHostRouteArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        name of the route.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -2824,6 +3528,11 @@ class AlbVirtualHostRouteGrpcRouteArgs:
                  grpc_matches: Optional[pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostRouteGrpcRouteGrpcMatchArgs']]]] = None,
                  grpc_route_action: Optional[pulumi.Input['AlbVirtualHostRouteGrpcRouteGrpcRouteActionArgs']] = None,
                  grpc_status_response_action: Optional[pulumi.Input['AlbVirtualHostRouteGrpcRouteGrpcStatusResponseActionArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostRouteGrpcRouteGrpcMatchArgs']]] grpc_matches: Checks "/" prefix by default. The structure is documented below.
+        :param pulumi.Input['AlbVirtualHostRouteGrpcRouteGrpcRouteActionArgs'] grpc_route_action: GRPC route action resource. The structure is documented below.
+        :param pulumi.Input['AlbVirtualHostRouteGrpcRouteGrpcStatusResponseActionArgs'] grpc_status_response_action: GRPC status response action resource. The structure is documented below.
+        """
         if grpc_matches is not None:
             pulumi.set(__self__, "grpc_matches", grpc_matches)
         if grpc_route_action is not None:
@@ -2834,6 +3543,9 @@ class AlbVirtualHostRouteGrpcRouteArgs:
     @property
     @pulumi.getter(name="grpcMatches")
     def grpc_matches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostRouteGrpcRouteGrpcMatchArgs']]]]:
+        """
+        Checks "/" prefix by default. The structure is documented below.
+        """
         return pulumi.get(self, "grpc_matches")
 
     @grpc_matches.setter
@@ -2843,6 +3555,9 @@ class AlbVirtualHostRouteGrpcRouteArgs:
     @property
     @pulumi.getter(name="grpcRouteAction")
     def grpc_route_action(self) -> Optional[pulumi.Input['AlbVirtualHostRouteGrpcRouteGrpcRouteActionArgs']]:
+        """
+        GRPC route action resource. The structure is documented below.
+        """
         return pulumi.get(self, "grpc_route_action")
 
     @grpc_route_action.setter
@@ -2852,6 +3567,9 @@ class AlbVirtualHostRouteGrpcRouteArgs:
     @property
     @pulumi.getter(name="grpcStatusResponseAction")
     def grpc_status_response_action(self) -> Optional[pulumi.Input['AlbVirtualHostRouteGrpcRouteGrpcStatusResponseActionArgs']]:
+        """
+        GRPC status response action resource. The structure is documented below.
+        """
         return pulumi.get(self, "grpc_status_response_action")
 
     @grpc_status_response_action.setter
@@ -2863,12 +3581,18 @@ class AlbVirtualHostRouteGrpcRouteArgs:
 class AlbVirtualHostRouteGrpcRouteGrpcMatchArgs:
     def __init__(__self__, *,
                  fqmn: Optional[pulumi.Input['AlbVirtualHostRouteGrpcRouteGrpcMatchFqmnArgs']] = None):
+        """
+        :param pulumi.Input['AlbVirtualHostRouteGrpcRouteGrpcMatchFqmnArgs'] fqmn: If not set, all services/methods are assumed. The structure is documented below.
+        """
         if fqmn is not None:
             pulumi.set(__self__, "fqmn", fqmn)
 
     @property
     @pulumi.getter
     def fqmn(self) -> Optional[pulumi.Input['AlbVirtualHostRouteGrpcRouteGrpcMatchFqmnArgs']]:
+        """
+        If not set, all services/methods are assumed. The structure is documented below.
+        """
         return pulumi.get(self, "fqmn")
 
     @fqmn.setter
@@ -2881,6 +3605,10 @@ class AlbVirtualHostRouteGrpcRouteGrpcMatchFqmnArgs:
     def __init__(__self__, *,
                  exact: Optional[pulumi.Input[str]] = None,
                  prefix: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] exact: Match exactly.
+        :param pulumi.Input[str] prefix: Match prefix.
+        """
         if exact is not None:
             pulumi.set(__self__, "exact", exact)
         if prefix is not None:
@@ -2889,6 +3617,9 @@ class AlbVirtualHostRouteGrpcRouteGrpcMatchFqmnArgs:
     @property
     @pulumi.getter
     def exact(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match exactly.
+        """
         return pulumi.get(self, "exact")
 
     @exact.setter
@@ -2898,6 +3629,9 @@ class AlbVirtualHostRouteGrpcRouteGrpcMatchFqmnArgs:
     @property
     @pulumi.getter
     def prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match prefix.
+        """
         return pulumi.get(self, "prefix")
 
     @prefix.setter
@@ -2913,6 +3647,17 @@ class AlbVirtualHostRouteGrpcRouteGrpcRouteActionArgs:
                  host_rewrite: Optional[pulumi.Input[str]] = None,
                  idle_timeout: Optional[pulumi.Input[str]] = None,
                  max_timeout: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] backend_group_id: Backend group to route requests.
+        :param pulumi.Input[bool] auto_host_rewrite: If set, will automatically rewrite host.
+        :param pulumi.Input[str] host_rewrite: Host rewrite specifier.
+        :param pulumi.Input[str] idle_timeout: Specifies the idle timeout (time without any data transfer for the active request) for the
+               route. It is useful for streaming scenarios - one should set idle_timeout to something meaningful and max_timeout
+               to the maximum time the stream is allowed to be alive. If not specified, there is no
+               per-route idle timeout.
+        :param pulumi.Input[str] max_timeout: Lower timeout may be specified by the client (using grpc-timeout header). If not set, default is 
+               60 seconds.
+        """
         pulumi.set(__self__, "backend_group_id", backend_group_id)
         if auto_host_rewrite is not None:
             pulumi.set(__self__, "auto_host_rewrite", auto_host_rewrite)
@@ -2926,6 +3671,9 @@ class AlbVirtualHostRouteGrpcRouteGrpcRouteActionArgs:
     @property
     @pulumi.getter(name="backendGroupId")
     def backend_group_id(self) -> pulumi.Input[str]:
+        """
+        Backend group to route requests.
+        """
         return pulumi.get(self, "backend_group_id")
 
     @backend_group_id.setter
@@ -2935,6 +3683,9 @@ class AlbVirtualHostRouteGrpcRouteGrpcRouteActionArgs:
     @property
     @pulumi.getter(name="autoHostRewrite")
     def auto_host_rewrite(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, will automatically rewrite host.
+        """
         return pulumi.get(self, "auto_host_rewrite")
 
     @auto_host_rewrite.setter
@@ -2944,6 +3695,9 @@ class AlbVirtualHostRouteGrpcRouteGrpcRouteActionArgs:
     @property
     @pulumi.getter(name="hostRewrite")
     def host_rewrite(self) -> Optional[pulumi.Input[str]]:
+        """
+        Host rewrite specifier.
+        """
         return pulumi.get(self, "host_rewrite")
 
     @host_rewrite.setter
@@ -2953,6 +3707,12 @@ class AlbVirtualHostRouteGrpcRouteGrpcRouteActionArgs:
     @property
     @pulumi.getter(name="idleTimeout")
     def idle_timeout(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the idle timeout (time without any data transfer for the active request) for the
+        route. It is useful for streaming scenarios - one should set idle_timeout to something meaningful and max_timeout
+        to the maximum time the stream is allowed to be alive. If not specified, there is no
+        per-route idle timeout.
+        """
         return pulumi.get(self, "idle_timeout")
 
     @idle_timeout.setter
@@ -2962,6 +3722,10 @@ class AlbVirtualHostRouteGrpcRouteGrpcRouteActionArgs:
     @property
     @pulumi.getter(name="maxTimeout")
     def max_timeout(self) -> Optional[pulumi.Input[str]]:
+        """
+        Lower timeout may be specified by the client (using grpc-timeout header). If not set, default is 
+        60 seconds.
+        """
         return pulumi.get(self, "max_timeout")
 
     @max_timeout.setter
@@ -2973,12 +3737,20 @@ class AlbVirtualHostRouteGrpcRouteGrpcRouteActionArgs:
 class AlbVirtualHostRouteGrpcRouteGrpcStatusResponseActionArgs:
     def __init__(__self__, *,
                  status: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] status: The status of the response. Supported values are: ok, invalid_argumet, not_found, 
+               permission_denied, unauthenticated, unimplemented, internal, unavailable.
+        """
         if status is not None:
             pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the response. Supported values are: ok, invalid_argumet, not_found, 
+        permission_denied, unauthenticated, unimplemented, internal, unavailable.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -2993,6 +3765,12 @@ class AlbVirtualHostRouteHttpRouteArgs:
                  http_matches: Optional[pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostRouteHttpRouteHttpMatchArgs']]]] = None,
                  http_route_action: Optional[pulumi.Input['AlbVirtualHostRouteHttpRouteHttpRouteActionArgs']] = None,
                  redirect_action: Optional[pulumi.Input['AlbVirtualHostRouteHttpRouteRedirectActionArgs']] = None):
+        """
+        :param pulumi.Input['AlbVirtualHostRouteHttpRouteDirectResponseActionArgs'] direct_response_action: Direct response action resource. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostRouteHttpRouteHttpMatchArgs']]] http_matches: Checks "/" prefix by default. The structure is documented below.
+        :param pulumi.Input['AlbVirtualHostRouteHttpRouteHttpRouteActionArgs'] http_route_action: HTTP route action resource. The structure is documented below.
+        :param pulumi.Input['AlbVirtualHostRouteHttpRouteRedirectActionArgs'] redirect_action: Redirect action resource. The structure is documented below.
+        """
         if direct_response_action is not None:
             pulumi.set(__self__, "direct_response_action", direct_response_action)
         if http_matches is not None:
@@ -3005,6 +3783,9 @@ class AlbVirtualHostRouteHttpRouteArgs:
     @property
     @pulumi.getter(name="directResponseAction")
     def direct_response_action(self) -> Optional[pulumi.Input['AlbVirtualHostRouteHttpRouteDirectResponseActionArgs']]:
+        """
+        Direct response action resource. The structure is documented below.
+        """
         return pulumi.get(self, "direct_response_action")
 
     @direct_response_action.setter
@@ -3014,6 +3795,9 @@ class AlbVirtualHostRouteHttpRouteArgs:
     @property
     @pulumi.getter(name="httpMatches")
     def http_matches(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostRouteHttpRouteHttpMatchArgs']]]]:
+        """
+        Checks "/" prefix by default. The structure is documented below.
+        """
         return pulumi.get(self, "http_matches")
 
     @http_matches.setter
@@ -3023,6 +3807,9 @@ class AlbVirtualHostRouteHttpRouteArgs:
     @property
     @pulumi.getter(name="httpRouteAction")
     def http_route_action(self) -> Optional[pulumi.Input['AlbVirtualHostRouteHttpRouteHttpRouteActionArgs']]:
+        """
+        HTTP route action resource. The structure is documented below.
+        """
         return pulumi.get(self, "http_route_action")
 
     @http_route_action.setter
@@ -3032,6 +3819,9 @@ class AlbVirtualHostRouteHttpRouteArgs:
     @property
     @pulumi.getter(name="redirectAction")
     def redirect_action(self) -> Optional[pulumi.Input['AlbVirtualHostRouteHttpRouteRedirectActionArgs']]:
+        """
+        Redirect action resource. The structure is documented below.
+        """
         return pulumi.get(self, "redirect_action")
 
     @redirect_action.setter
@@ -3044,6 +3834,11 @@ class AlbVirtualHostRouteHttpRouteDirectResponseActionArgs:
     def __init__(__self__, *,
                  body: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] body: Response body text.
+        :param pulumi.Input[int] status: The status of the response. Supported values are: ok, invalid_argumet, not_found, 
+               permission_denied, unauthenticated, unimplemented, internal, unavailable.
+        """
         if body is not None:
             pulumi.set(__self__, "body", body)
         if status is not None:
@@ -3052,6 +3847,9 @@ class AlbVirtualHostRouteHttpRouteDirectResponseActionArgs:
     @property
     @pulumi.getter
     def body(self) -> Optional[pulumi.Input[str]]:
+        """
+        Response body text.
+        """
         return pulumi.get(self, "body")
 
     @body.setter
@@ -3061,6 +3859,10 @@ class AlbVirtualHostRouteHttpRouteDirectResponseActionArgs:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[int]]:
+        """
+        The status of the response. Supported values are: ok, invalid_argumet, not_found, 
+        permission_denied, unauthenticated, unimplemented, internal, unavailable.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -3073,6 +3875,10 @@ class AlbVirtualHostRouteHttpRouteHttpMatchArgs:
     def __init__(__self__, *,
                  http_methods: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  path: Optional[pulumi.Input['AlbVirtualHostRouteHttpRouteHttpMatchPathArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] http_methods: List of methods(strings).
+        :param pulumi.Input['AlbVirtualHostRouteHttpRouteHttpMatchPathArgs'] path: If not set, '/' is assumed. The structure is documented below.
+        """
         if http_methods is not None:
             pulumi.set(__self__, "http_methods", http_methods)
         if path is not None:
@@ -3081,6 +3887,9 @@ class AlbVirtualHostRouteHttpRouteHttpMatchArgs:
     @property
     @pulumi.getter(name="httpMethods")
     def http_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of methods(strings).
+        """
         return pulumi.get(self, "http_methods")
 
     @http_methods.setter
@@ -3090,6 +3899,9 @@ class AlbVirtualHostRouteHttpRouteHttpMatchArgs:
     @property
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input['AlbVirtualHostRouteHttpRouteHttpMatchPathArgs']]:
+        """
+        If not set, '/' is assumed. The structure is documented below.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -3102,6 +3914,10 @@ class AlbVirtualHostRouteHttpRouteHttpMatchPathArgs:
     def __init__(__self__, *,
                  exact: Optional[pulumi.Input[str]] = None,
                  prefix: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] exact: Match exactly.
+        :param pulumi.Input[str] prefix: Match prefix.
+        """
         if exact is not None:
             pulumi.set(__self__, "exact", exact)
         if prefix is not None:
@@ -3110,6 +3926,9 @@ class AlbVirtualHostRouteHttpRouteHttpMatchPathArgs:
     @property
     @pulumi.getter
     def exact(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match exactly.
+        """
         return pulumi.get(self, "exact")
 
     @exact.setter
@@ -3119,6 +3938,9 @@ class AlbVirtualHostRouteHttpRouteHttpMatchPathArgs:
     @property
     @pulumi.getter
     def prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match prefix.
+        """
         return pulumi.get(self, "prefix")
 
     @prefix.setter
@@ -3136,6 +3958,20 @@ class AlbVirtualHostRouteHttpRouteHttpRouteActionArgs:
                  prefix_rewrite: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[str]] = None,
                  upgrade_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] backend_group_id: Backend group to route requests.
+        :param pulumi.Input[bool] auto_host_rewrite: If set, will automatically rewrite host.
+        :param pulumi.Input[str] host_rewrite: Host rewrite specifier.
+        :param pulumi.Input[str] idle_timeout: Specifies the idle timeout (time without any data transfer for the active request) for the
+               route. It is useful for streaming scenarios - one should set idle_timeout to something meaningful and max_timeout
+               to the maximum time the stream is allowed to be alive. If not specified, there is no
+               per-route idle timeout.
+        :param pulumi.Input[str] prefix_rewrite: If not empty, matched path prefix will be replaced by this value.
+        :param pulumi.Input[str] timeout: Specifies the request timeout (overall time request processing is allowed to take) for the 
+               route. If not set, default is 60 seconds.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] upgrade_types: List of upgrade types. Only specified upgrade types will be allowed. For example, 
+               "websocket".
+        """
         pulumi.set(__self__, "backend_group_id", backend_group_id)
         if auto_host_rewrite is not None:
             pulumi.set(__self__, "auto_host_rewrite", auto_host_rewrite)
@@ -3153,6 +3989,9 @@ class AlbVirtualHostRouteHttpRouteHttpRouteActionArgs:
     @property
     @pulumi.getter(name="backendGroupId")
     def backend_group_id(self) -> pulumi.Input[str]:
+        """
+        Backend group to route requests.
+        """
         return pulumi.get(self, "backend_group_id")
 
     @backend_group_id.setter
@@ -3162,6 +4001,9 @@ class AlbVirtualHostRouteHttpRouteHttpRouteActionArgs:
     @property
     @pulumi.getter(name="autoHostRewrite")
     def auto_host_rewrite(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If set, will automatically rewrite host.
+        """
         return pulumi.get(self, "auto_host_rewrite")
 
     @auto_host_rewrite.setter
@@ -3171,6 +4013,9 @@ class AlbVirtualHostRouteHttpRouteHttpRouteActionArgs:
     @property
     @pulumi.getter(name="hostRewrite")
     def host_rewrite(self) -> Optional[pulumi.Input[str]]:
+        """
+        Host rewrite specifier.
+        """
         return pulumi.get(self, "host_rewrite")
 
     @host_rewrite.setter
@@ -3180,6 +4025,12 @@ class AlbVirtualHostRouteHttpRouteHttpRouteActionArgs:
     @property
     @pulumi.getter(name="idleTimeout")
     def idle_timeout(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the idle timeout (time without any data transfer for the active request) for the
+        route. It is useful for streaming scenarios - one should set idle_timeout to something meaningful and max_timeout
+        to the maximum time the stream is allowed to be alive. If not specified, there is no
+        per-route idle timeout.
+        """
         return pulumi.get(self, "idle_timeout")
 
     @idle_timeout.setter
@@ -3189,6 +4040,9 @@ class AlbVirtualHostRouteHttpRouteHttpRouteActionArgs:
     @property
     @pulumi.getter(name="prefixRewrite")
     def prefix_rewrite(self) -> Optional[pulumi.Input[str]]:
+        """
+        If not empty, matched path prefix will be replaced by this value.
+        """
         return pulumi.get(self, "prefix_rewrite")
 
     @prefix_rewrite.setter
@@ -3198,6 +4052,10 @@ class AlbVirtualHostRouteHttpRouteHttpRouteActionArgs:
     @property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the request timeout (overall time request processing is allowed to take) for the 
+        route. If not set, default is 60 seconds.
+        """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
@@ -3207,6 +4065,10 @@ class AlbVirtualHostRouteHttpRouteHttpRouteActionArgs:
     @property
     @pulumi.getter(name="upgradeTypes")
     def upgrade_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of upgrade types. Only specified upgrade types will be allowed. For example, 
+        "websocket".
+        """
         return pulumi.get(self, "upgrade_types")
 
     @upgrade_types.setter
@@ -3224,6 +4086,17 @@ class AlbVirtualHostRouteHttpRouteRedirectActionArgs:
                  replace_prefix: Optional[pulumi.Input[str]] = None,
                  replace_scheme: Optional[pulumi.Input[str]] = None,
                  response_code: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] replace_host: Replaces hostname.
+        :param pulumi.Input[str] replace_path: Replace path.
+        :param pulumi.Input[int] replace_port: Replaces port.
+        :param pulumi.Input[str] replace_prefix: Replace only matched prefix. Example:<br/> match:{ prefix_match: "/some" } <br/> 
+               redirect: { replace_prefix: "/other" } <br/> will redirect "/something" to "/otherthing".
+        :param pulumi.Input[str] replace_scheme: Replaces scheme. If the original scheme is `http` or `https`, will also remove the 
+               80 or 443 port, if present.
+        :param pulumi.Input[str] response_code: The HTTP status code to use in the redirect response. Supported values are: 
+               moved_permanently, found, see_other, temporary_redirect, permanent_redirect.
+        """
         if remove_query is not None:
             pulumi.set(__self__, "remove_query", remove_query)
         if replace_host is not None:
@@ -3251,6 +4124,9 @@ class AlbVirtualHostRouteHttpRouteRedirectActionArgs:
     @property
     @pulumi.getter(name="replaceHost")
     def replace_host(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replaces hostname.
+        """
         return pulumi.get(self, "replace_host")
 
     @replace_host.setter
@@ -3260,6 +4136,9 @@ class AlbVirtualHostRouteHttpRouteRedirectActionArgs:
     @property
     @pulumi.getter(name="replacePath")
     def replace_path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replace path.
+        """
         return pulumi.get(self, "replace_path")
 
     @replace_path.setter
@@ -3269,6 +4148,9 @@ class AlbVirtualHostRouteHttpRouteRedirectActionArgs:
     @property
     @pulumi.getter(name="replacePort")
     def replace_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Replaces port.
+        """
         return pulumi.get(self, "replace_port")
 
     @replace_port.setter
@@ -3278,6 +4160,10 @@ class AlbVirtualHostRouteHttpRouteRedirectActionArgs:
     @property
     @pulumi.getter(name="replacePrefix")
     def replace_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replace only matched prefix. Example:<br/> match:{ prefix_match: "/some" } <br/> 
+        redirect: { replace_prefix: "/other" } <br/> will redirect "/something" to "/otherthing".
+        """
         return pulumi.get(self, "replace_prefix")
 
     @replace_prefix.setter
@@ -3287,6 +4173,10 @@ class AlbVirtualHostRouteHttpRouteRedirectActionArgs:
     @property
     @pulumi.getter(name="replaceScheme")
     def replace_scheme(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replaces scheme. If the original scheme is `http` or `https`, will also remove the 
+        80 or 443 port, if present.
+        """
         return pulumi.get(self, "replace_scheme")
 
     @replace_scheme.setter
@@ -3296,6 +4186,10 @@ class AlbVirtualHostRouteHttpRouteRedirectActionArgs:
     @property
     @pulumi.getter(name="responseCode")
     def response_code(self) -> Optional[pulumi.Input[str]]:
+        """
+        The HTTP status code to use in the redirect response. Supported values are: 
+        moved_permanently, found, see_other, temporary_redirect, permanent_redirect.
+        """
         return pulumi.get(self, "response_code")
 
     @response_code.setter
@@ -3410,6 +4304,9 @@ class AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  value: Optional[pulumi.Input['AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs']] = None):
+        """
+        :param pulumi.Input[str] name: name of the route.
+        """
         pulumi.set(__self__, "name", name)
         if value is not None:
             pulumi.set(__self__, "value", value)
@@ -3417,6 +4314,9 @@ class AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        name of the route.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -3438,6 +4338,10 @@ class AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs:
     def __init__(__self__, *,
                  exact: Optional[pulumi.Input[str]] = None,
                  prefix: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] exact: Match exactly.
+        :param pulumi.Input[str] prefix: Match prefix.
+        """
         if exact is not None:
             pulumi.set(__self__, "exact", exact)
         if prefix is not None:
@@ -3446,6 +4350,9 @@ class AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs:
     @property
     @pulumi.getter
     def exact(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match exactly.
+        """
         return pulumi.get(self, "exact")
 
     @exact.setter
@@ -3455,6 +4362,9 @@ class AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs:
     @property
     @pulumi.getter
     def prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match prefix.
+        """
         return pulumi.get(self, "prefix")
 
     @prefix.setter
@@ -3569,6 +4479,9 @@ class AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  value: Optional[pulumi.Input['AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs']] = None):
+        """
+        :param pulumi.Input[str] name: name of the route.
+        """
         pulumi.set(__self__, "name", name)
         if value is not None:
             pulumi.set(__self__, "value", value)
@@ -3576,6 +4489,9 @@ class AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        name of the route.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -3597,6 +4513,10 @@ class AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs:
     def __init__(__self__, *,
                  exact: Optional[pulumi.Input[str]] = None,
                  prefix: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] exact: Match exactly.
+        :param pulumi.Input[str] prefix: Match prefix.
+        """
         if exact is not None:
             pulumi.set(__self__, "exact", exact)
         if prefix is not None:
@@ -3605,6 +4525,9 @@ class AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs:
     @property
     @pulumi.getter
     def exact(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match exactly.
+        """
         return pulumi.get(self, "exact")
 
     @exact.setter
@@ -3614,6 +4537,9 @@ class AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs:
     @property
     @pulumi.getter
     def prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match prefix.
+        """
         return pulumi.get(self, "prefix")
 
     @prefix.setter
@@ -3698,6 +4624,29 @@ class CdnResourceOptionsArgs:
                  slice: Optional[pulumi.Input[bool]] = None,
                  static_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  static_response_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_http_methods: HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
+        :param pulumi.Input[int] browser_cache_settings: set up a cache period for the end-users browser. Content will be cached due to origin settings. If there are no cache settings on your origin, the content will not be cached. The list of HTTP response codes that can be cached in browsers: 200, 201, 204, 206, 301, 302, 303, 304, 307, 308. Other response codes will not be cached. The default value is 4 days.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cache_http_headers: list HTTP headers that must be included in responses to clients.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] cors: parameter that lets browsers get access to selected resources from a domain different to a domain from which the request is received.
+        :param pulumi.Input[str] custom_host_header: custom value for the Host header. Your server must be able to process requests with the chosen header.
+        :param pulumi.Input[str] custom_server_name: wildcard additional CNAME. If a resource has a wildcard additional CNAME, you can use your own certificate for content delivery via HTTPS. Read-only.
+        :param pulumi.Input[bool] disable_cache: setup a cache status.
+        :param pulumi.Input[bool] disable_proxy_force_ranges: disabling proxy force ranges.
+        :param pulumi.Input[int] edge_cache_settings: content will be cached according to origin cache settings. The value applies for a response with codes 200, 201, 204, 206, 301, 302, 303, 304, 307, 308 if an origin server does not have caching HTTP headers. Responses with other codes will not be cached.
+        :param pulumi.Input[bool] fetched_compressed: option helps you to reduce the bandwidth between origin and CDN servers. Also, content delivery speed becomes higher because of reducing the time for compressing files in a CDN.
+        :param pulumi.Input[bool] forward_host_header: choose the Forward Host header option if is important to send in the request to the Origin the same Host header as was sent in the request to CDN server.
+        :param pulumi.Input[bool] gzip_on: GZip compression at CDN servers reduces file size by 70% and can be as high as 90%.
+        :param pulumi.Input[bool] ignore_cookie: set for ignoring cookie.
+        :param pulumi.Input[bool] ignore_query_params: files with different query parameters are cached as objects with the same key regardless of the parameter value. selected by default.
+        :param pulumi.Input[bool] proxy_cache_methods_set: allows caching for GET, HEAD and POST requests.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] query_params_blacklists: files with the specified query parameters are cached as objects with the same key, files with other parameters are cached as objects with different keys.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] query_params_whitelists: files with the specified query parameters are cached as objects with different keys, files with other parameters are cached as objects with the same key.
+        :param pulumi.Input[bool] redirect_http_to_https: set up a redirect from HTTP to HTTPS.
+        :param pulumi.Input[bool] redirect_https_to_http: set up a redirect from HTTPS to HTTP.
+        :param pulumi.Input[bool] slice: files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] static_request_headers: set up custom headers that CDN servers send in requests to origins.
+        """
         if allowed_http_methods is not None:
             pulumi.set(__self__, "allowed_http_methods", allowed_http_methods)
         if browser_cache_settings is not None:
@@ -3746,6 +4695,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="allowedHttpMethods")
     def allowed_http_methods(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
+        """
         return pulumi.get(self, "allowed_http_methods")
 
     @allowed_http_methods.setter
@@ -3755,6 +4707,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="browserCacheSettings")
     def browser_cache_settings(self) -> Optional[pulumi.Input[int]]:
+        """
+        set up a cache period for the end-users browser. Content will be cached due to origin settings. If there are no cache settings on your origin, the content will not be cached. The list of HTTP response codes that can be cached in browsers: 200, 201, 204, 206, 301, 302, 303, 304, 307, 308. Other response codes will not be cached. The default value is 4 days.
+        """
         return pulumi.get(self, "browser_cache_settings")
 
     @browser_cache_settings.setter
@@ -3764,6 +4719,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="cacheHttpHeaders")
     def cache_http_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        list HTTP headers that must be included in responses to clients.
+        """
         return pulumi.get(self, "cache_http_headers")
 
     @cache_http_headers.setter
@@ -3773,6 +4731,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter
     def cors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        parameter that lets browsers get access to selected resources from a domain different to a domain from which the request is received.
+        """
         return pulumi.get(self, "cors")
 
     @cors.setter
@@ -3782,6 +4743,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="customHostHeader")
     def custom_host_header(self) -> Optional[pulumi.Input[str]]:
+        """
+        custom value for the Host header. Your server must be able to process requests with the chosen header.
+        """
         return pulumi.get(self, "custom_host_header")
 
     @custom_host_header.setter
@@ -3791,6 +4755,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="customServerName")
     def custom_server_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        wildcard additional CNAME. If a resource has a wildcard additional CNAME, you can use your own certificate for content delivery via HTTPS. Read-only.
+        """
         return pulumi.get(self, "custom_server_name")
 
     @custom_server_name.setter
@@ -3800,6 +4767,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="disableCache")
     def disable_cache(self) -> Optional[pulumi.Input[bool]]:
+        """
+        setup a cache status.
+        """
         return pulumi.get(self, "disable_cache")
 
     @disable_cache.setter
@@ -3809,6 +4779,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="disableProxyForceRanges")
     def disable_proxy_force_ranges(self) -> Optional[pulumi.Input[bool]]:
+        """
+        disabling proxy force ranges.
+        """
         return pulumi.get(self, "disable_proxy_force_ranges")
 
     @disable_proxy_force_ranges.setter
@@ -3818,6 +4791,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="edgeCacheSettings")
     def edge_cache_settings(self) -> Optional[pulumi.Input[int]]:
+        """
+        content will be cached according to origin cache settings. The value applies for a response with codes 200, 201, 204, 206, 301, 302, 303, 304, 307, 308 if an origin server does not have caching HTTP headers. Responses with other codes will not be cached.
+        """
         return pulumi.get(self, "edge_cache_settings")
 
     @edge_cache_settings.setter
@@ -3827,6 +4803,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="fetchedCompressed")
     def fetched_compressed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        option helps you to reduce the bandwidth between origin and CDN servers. Also, content delivery speed becomes higher because of reducing the time for compressing files in a CDN.
+        """
         return pulumi.get(self, "fetched_compressed")
 
     @fetched_compressed.setter
@@ -3836,6 +4815,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="forwardHostHeader")
     def forward_host_header(self) -> Optional[pulumi.Input[bool]]:
+        """
+        choose the Forward Host header option if is important to send in the request to the Origin the same Host header as was sent in the request to CDN server.
+        """
         return pulumi.get(self, "forward_host_header")
 
     @forward_host_header.setter
@@ -3845,6 +4827,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="gzipOn")
     def gzip_on(self) -> Optional[pulumi.Input[bool]]:
+        """
+        GZip compression at CDN servers reduces file size by 70% and can be as high as 90%.
+        """
         return pulumi.get(self, "gzip_on")
 
     @gzip_on.setter
@@ -3854,6 +4839,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="ignoreCookie")
     def ignore_cookie(self) -> Optional[pulumi.Input[bool]]:
+        """
+        set for ignoring cookie.
+        """
         return pulumi.get(self, "ignore_cookie")
 
     @ignore_cookie.setter
@@ -3863,6 +4851,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="ignoreQueryParams")
     def ignore_query_params(self) -> Optional[pulumi.Input[bool]]:
+        """
+        files with different query parameters are cached as objects with the same key regardless of the parameter value. selected by default.
+        """
         return pulumi.get(self, "ignore_query_params")
 
     @ignore_query_params.setter
@@ -3872,6 +4863,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="proxyCacheMethodsSet")
     def proxy_cache_methods_set(self) -> Optional[pulumi.Input[bool]]:
+        """
+        allows caching for GET, HEAD and POST requests.
+        """
         return pulumi.get(self, "proxy_cache_methods_set")
 
     @proxy_cache_methods_set.setter
@@ -3881,6 +4875,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="queryParamsBlacklists")
     def query_params_blacklists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        files with the specified query parameters are cached as objects with the same key, files with other parameters are cached as objects with different keys.
+        """
         return pulumi.get(self, "query_params_blacklists")
 
     @query_params_blacklists.setter
@@ -3890,6 +4887,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="queryParamsWhitelists")
     def query_params_whitelists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        files with the specified query parameters are cached as objects with different keys, files with other parameters are cached as objects with the same key.
+        """
         return pulumi.get(self, "query_params_whitelists")
 
     @query_params_whitelists.setter
@@ -3899,6 +4899,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="redirectHttpToHttps")
     def redirect_http_to_https(self) -> Optional[pulumi.Input[bool]]:
+        """
+        set up a redirect from HTTP to HTTPS.
+        """
         return pulumi.get(self, "redirect_http_to_https")
 
     @redirect_http_to_https.setter
@@ -3908,6 +4911,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="redirectHttpsToHttp")
     def redirect_https_to_http(self) -> Optional[pulumi.Input[bool]]:
+        """
+        set up a redirect from HTTPS to HTTP.
+        """
         return pulumi.get(self, "redirect_https_to_http")
 
     @redirect_https_to_http.setter
@@ -3917,6 +4923,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter
     def slice(self) -> Optional[pulumi.Input[bool]]:
+        """
+        files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
+        """
         return pulumi.get(self, "slice")
 
     @slice.setter
@@ -3926,6 +4935,9 @@ class CdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="staticRequestHeaders")
     def static_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        set up custom headers that CDN servers send in requests to origins.
+        """
         return pulumi.get(self, "static_request_headers")
 
     @static_request_headers.setter
@@ -3986,11 +4998,17 @@ class CdnResourceSslCertificateArgs:
 class ComputeDiskDiskPlacementPolicyArgs:
     def __init__(__self__, *,
                  disk_placement_group_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] disk_placement_group_id: Specifies Disk Placement Group id.
+        """
         pulumi.set(__self__, "disk_placement_group_id", disk_placement_group_id)
 
     @property
     @pulumi.getter(name="diskPlacementGroupId")
     def disk_placement_group_id(self) -> pulumi.Input[str]:
+        """
+        Specifies Disk Placement Group id.
+        """
         return pulumi.get(self, "disk_placement_group_id")
 
     @disk_placement_group_id.setter
@@ -4006,6 +5024,16 @@ class ComputeInstanceBootDiskArgs:
                  disk_id: Optional[pulumi.Input[str]] = None,
                  initialize_params: Optional[pulumi.Input['ComputeInstanceBootDiskInitializeParamsArgs']] = None,
                  mode: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] auto_delete: Whether the disk is auto-deleted when the instance
+               is deleted. The default value is false.
+        :param pulumi.Input[str] device_name: Name that can be used to access an attached disk
+               under `/dev/disk/by-id/`.
+        :param pulumi.Input[str] disk_id: ID of the disk that is attached to the instance.
+        :param pulumi.Input['ComputeInstanceBootDiskInitializeParamsArgs'] initialize_params: Parameters for a new disk that will be created
+               alongside the new instance. Either `initialize_params` or `disk_id` must be set. The structure is documented below.
+        :param pulumi.Input[str] mode: Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        """
         if auto_delete is not None:
             pulumi.set(__self__, "auto_delete", auto_delete)
         if device_name is not None:
@@ -4020,6 +5048,10 @@ class ComputeInstanceBootDiskArgs:
     @property
     @pulumi.getter(name="autoDelete")
     def auto_delete(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the disk is auto-deleted when the instance
+        is deleted. The default value is false.
+        """
         return pulumi.get(self, "auto_delete")
 
     @auto_delete.setter
@@ -4029,6 +5061,10 @@ class ComputeInstanceBootDiskArgs:
     @property
     @pulumi.getter(name="deviceName")
     def device_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name that can be used to access an attached disk
+        under `/dev/disk/by-id/`.
+        """
         return pulumi.get(self, "device_name")
 
     @device_name.setter
@@ -4038,6 +5074,9 @@ class ComputeInstanceBootDiskArgs:
     @property
     @pulumi.getter(name="diskId")
     def disk_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the disk that is attached to the instance.
+        """
         return pulumi.get(self, "disk_id")
 
     @disk_id.setter
@@ -4047,6 +5086,10 @@ class ComputeInstanceBootDiskArgs:
     @property
     @pulumi.getter(name="initializeParams")
     def initialize_params(self) -> Optional[pulumi.Input['ComputeInstanceBootDiskInitializeParamsArgs']]:
+        """
+        Parameters for a new disk that will be created
+        alongside the new instance. Either `initialize_params` or `disk_id` must be set. The structure is documented below.
+        """
         return pulumi.get(self, "initialize_params")
 
     @initialize_params.setter
@@ -4056,6 +5099,9 @@ class ComputeInstanceBootDiskArgs:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -4073,6 +5119,15 @@ class ComputeInstanceBootDiskInitializeParamsArgs:
                  size: Optional[pulumi.Input[int]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] block_size: Block size of the disk, specified in bytes.
+        :param pulumi.Input[str] description: Description of the boot disk.
+        :param pulumi.Input[str] image_id: A disk image to initialize this disk from.
+        :param pulumi.Input[str] name: Name of the boot disk.
+        :param pulumi.Input[int] size: Size of the disk in GB.
+        :param pulumi.Input[str] snapshot_id: A snapshot to initialize this disk from.
+        :param pulumi.Input[str] type: Disk type.
+        """
         if block_size is not None:
             pulumi.set(__self__, "block_size", block_size)
         if description is not None:
@@ -4091,6 +5146,9 @@ class ComputeInstanceBootDiskInitializeParamsArgs:
     @property
     @pulumi.getter(name="blockSize")
     def block_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Block size of the disk, specified in bytes.
+        """
         return pulumi.get(self, "block_size")
 
     @block_size.setter
@@ -4100,6 +5158,9 @@ class ComputeInstanceBootDiskInitializeParamsArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the boot disk.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -4109,6 +5170,9 @@ class ComputeInstanceBootDiskInitializeParamsArgs:
     @property
     @pulumi.getter(name="imageId")
     def image_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        A disk image to initialize this disk from.
+        """
         return pulumi.get(self, "image_id")
 
     @image_id.setter
@@ -4118,6 +5182,9 @@ class ComputeInstanceBootDiskInitializeParamsArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the boot disk.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -4127,6 +5194,9 @@ class ComputeInstanceBootDiskInitializeParamsArgs:
     @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Size of the disk in GB.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -4136,6 +5206,9 @@ class ComputeInstanceBootDiskInitializeParamsArgs:
     @property
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        A snapshot to initialize this disk from.
+        """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
@@ -4145,6 +5218,9 @@ class ComputeInstanceBootDiskInitializeParamsArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Disk type.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -4156,11 +5232,17 @@ class ComputeInstanceBootDiskInitializeParamsArgs:
 class ComputeInstanceGroupAllocationPolicyArgs:
     def __init__(__self__, *,
                  zones: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zones: A list of availability zones.
+        """
         pulumi.set(__self__, "zones", zones)
 
     @property
     @pulumi.getter
     def zones(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        A list of availability zones.
+        """
         return pulumi.get(self, "zones")
 
     @zones.setter
@@ -4177,6 +5259,13 @@ class ComputeInstanceGroupApplicationLoadBalancerArgs:
                  target_group_id: Optional[pulumi.Input[str]] = None,
                  target_group_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  target_group_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] max_opening_traffic_duration: Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+        :param pulumi.Input[str] status_message: The status message of the instance.
+        :param pulumi.Input[str] target_group_description: A description of the target group.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] target_group_labels: A set of key/value label pairs.
+        :param pulumi.Input[str] target_group_name: The name of the target group.
+        """
         if max_opening_traffic_duration is not None:
             pulumi.set(__self__, "max_opening_traffic_duration", max_opening_traffic_duration)
         if status_message is not None:
@@ -4193,6 +5282,9 @@ class ComputeInstanceGroupApplicationLoadBalancerArgs:
     @property
     @pulumi.getter(name="maxOpeningTrafficDuration")
     def max_opening_traffic_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+        """
         return pulumi.get(self, "max_opening_traffic_duration")
 
     @max_opening_traffic_duration.setter
@@ -4202,6 +5294,9 @@ class ComputeInstanceGroupApplicationLoadBalancerArgs:
     @property
     @pulumi.getter(name="statusMessage")
     def status_message(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status message of the instance.
+        """
         return pulumi.get(self, "status_message")
 
     @status_message.setter
@@ -4211,6 +5306,9 @@ class ComputeInstanceGroupApplicationLoadBalancerArgs:
     @property
     @pulumi.getter(name="targetGroupDescription")
     def target_group_description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the target group.
+        """
         return pulumi.get(self, "target_group_description")
 
     @target_group_description.setter
@@ -4229,6 +5327,9 @@ class ComputeInstanceGroupApplicationLoadBalancerArgs:
     @property
     @pulumi.getter(name="targetGroupLabels")
     def target_group_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs.
+        """
         return pulumi.get(self, "target_group_labels")
 
     @target_group_labels.setter
@@ -4238,6 +5339,9 @@ class ComputeInstanceGroupApplicationLoadBalancerArgs:
     @property
     @pulumi.getter(name="targetGroupName")
     def target_group_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the target group.
+        """
         return pulumi.get(self, "target_group_name")
 
     @target_group_name.setter
@@ -4254,6 +5358,20 @@ class ComputeInstanceGroupDeployPolicyArgs:
                  max_deleting: Optional[pulumi.Input[int]] = None,
                  startup_duration: Optional[pulumi.Input[int]] = None,
                  strategy: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] max_expansion: The maximum number of instances that can be temporarily allocated above the group's target size
+               during the update process.
+        :param pulumi.Input[int] max_unavailable: The maximum number of running instances that can be taken offline (stopped or deleted) at the same time
+               during the update process.
+        :param pulumi.Input[int] max_creating: The maximum number of instances that can be created at the same time.
+        :param pulumi.Input[int] max_deleting: The maximum number of instances that can be deleted at the same time.
+        :param pulumi.Input[int] startup_duration: The amount of time in seconds to allow for an instance to start.
+               Instance will be considered up and running (and start receiving traffic) only after the startup_duration
+               has elapsed and all health checks are passed.
+        :param pulumi.Input[str] strategy: Affects the lifecycle of the instance during deployment. If set to `proactive` (default), Instance Groups
+               can forcefully stop a running instance. If `opportunistic`, Instance Groups does not stop a running instance. Instead,
+               it will wait until the instance stops itself or becomes unhealthy.
+        """
         pulumi.set(__self__, "max_expansion", max_expansion)
         pulumi.set(__self__, "max_unavailable", max_unavailable)
         if max_creating is not None:
@@ -4268,6 +5386,10 @@ class ComputeInstanceGroupDeployPolicyArgs:
     @property
     @pulumi.getter(name="maxExpansion")
     def max_expansion(self) -> pulumi.Input[int]:
+        """
+        The maximum number of instances that can be temporarily allocated above the group's target size
+        during the update process.
+        """
         return pulumi.get(self, "max_expansion")
 
     @max_expansion.setter
@@ -4277,6 +5399,10 @@ class ComputeInstanceGroupDeployPolicyArgs:
     @property
     @pulumi.getter(name="maxUnavailable")
     def max_unavailable(self) -> pulumi.Input[int]:
+        """
+        The maximum number of running instances that can be taken offline (stopped or deleted) at the same time
+        during the update process.
+        """
         return pulumi.get(self, "max_unavailable")
 
     @max_unavailable.setter
@@ -4286,6 +5412,9 @@ class ComputeInstanceGroupDeployPolicyArgs:
     @property
     @pulumi.getter(name="maxCreating")
     def max_creating(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of instances that can be created at the same time.
+        """
         return pulumi.get(self, "max_creating")
 
     @max_creating.setter
@@ -4295,6 +5424,9 @@ class ComputeInstanceGroupDeployPolicyArgs:
     @property
     @pulumi.getter(name="maxDeleting")
     def max_deleting(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of instances that can be deleted at the same time.
+        """
         return pulumi.get(self, "max_deleting")
 
     @max_deleting.setter
@@ -4304,6 +5436,11 @@ class ComputeInstanceGroupDeployPolicyArgs:
     @property
     @pulumi.getter(name="startupDuration")
     def startup_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        The amount of time in seconds to allow for an instance to start.
+        Instance will be considered up and running (and start receiving traffic) only after the startup_duration
+        has elapsed and all health checks are passed.
+        """
         return pulumi.get(self, "startup_duration")
 
     @startup_duration.setter
@@ -4313,6 +5450,11 @@ class ComputeInstanceGroupDeployPolicyArgs:
     @property
     @pulumi.getter
     def strategy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Affects the lifecycle of the instance during deployment. If set to `proactive` (default), Instance Groups
+        can forcefully stop a running instance. If `opportunistic`, Instance Groups does not stop a running instance. Instead,
+        it will wait until the instance stops itself or becomes unhealthy.
+        """
         return pulumi.get(self, "strategy")
 
     @strategy.setter
@@ -4329,6 +5471,14 @@ class ComputeInstanceGroupHealthCheckArgs:
                  tcp_options: Optional[pulumi.Input['ComputeInstanceGroupHealthCheckTcpOptionsArgs']] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  unhealthy_threshold: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] healthy_threshold: The number of successful health checks before the managed instance is declared healthy.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupHealthCheckHttpOptionArgs']]] http_options: HTTP check options. The structure is documented below.
+        :param pulumi.Input[int] interval: The interval to wait between health checks in seconds.
+        :param pulumi.Input['ComputeInstanceGroupHealthCheckTcpOptionsArgs'] tcp_options: TCP check options. The structure is documented below.
+        :param pulumi.Input[int] timeout: The length of time to wait for a response before the health check times out in seconds.
+        :param pulumi.Input[int] unhealthy_threshold: The number of failed health checks before the managed instance is declared unhealthy.
+        """
         if healthy_threshold is not None:
             pulumi.set(__self__, "healthy_threshold", healthy_threshold)
         if http_options is not None:
@@ -4345,6 +5495,9 @@ class ComputeInstanceGroupHealthCheckArgs:
     @property
     @pulumi.getter(name="healthyThreshold")
     def healthy_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of successful health checks before the managed instance is declared healthy.
+        """
         return pulumi.get(self, "healthy_threshold")
 
     @healthy_threshold.setter
@@ -4354,6 +5507,9 @@ class ComputeInstanceGroupHealthCheckArgs:
     @property
     @pulumi.getter(name="httpOptions")
     def http_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupHealthCheckHttpOptionArgs']]]]:
+        """
+        HTTP check options. The structure is documented below.
+        """
         return pulumi.get(self, "http_options")
 
     @http_options.setter
@@ -4363,6 +5519,9 @@ class ComputeInstanceGroupHealthCheckArgs:
     @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        The interval to wait between health checks in seconds.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -4372,6 +5531,9 @@ class ComputeInstanceGroupHealthCheckArgs:
     @property
     @pulumi.getter(name="tcpOptions")
     def tcp_options(self) -> Optional[pulumi.Input['ComputeInstanceGroupHealthCheckTcpOptionsArgs']]:
+        """
+        TCP check options. The structure is documented below.
+        """
         return pulumi.get(self, "tcp_options")
 
     @tcp_options.setter
@@ -4381,6 +5543,9 @@ class ComputeInstanceGroupHealthCheckArgs:
     @property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        The length of time to wait for a response before the health check times out in seconds.
+        """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
@@ -4390,6 +5555,9 @@ class ComputeInstanceGroupHealthCheckArgs:
     @property
     @pulumi.getter(name="unhealthyThreshold")
     def unhealthy_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of failed health checks before the managed instance is declared unhealthy.
+        """
         return pulumi.get(self, "unhealthy_threshold")
 
     @unhealthy_threshold.setter
@@ -4402,12 +5570,19 @@ class ComputeInstanceGroupHealthCheckHttpOptionArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
                  port: pulumi.Input[int]):
+        """
+        :param pulumi.Input[str] path: The URL path used for health check requests.
+        :param pulumi.Input[int] port: The port used for TCP health checks.
+        """
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter
     def path(self) -> pulumi.Input[str]:
+        """
+        The URL path used for health check requests.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -4417,6 +5592,9 @@ class ComputeInstanceGroupHealthCheckHttpOptionArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        The port used for TCP health checks.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -4428,11 +5606,17 @@ class ComputeInstanceGroupHealthCheckHttpOptionArgs:
 class ComputeInstanceGroupHealthCheckTcpOptionsArgs:
     def __init__(__self__, *,
                  port: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] port: The port used for TCP health checks.
+        """
         pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        The port used for TCP health checks.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -4451,6 +5635,22 @@ class ComputeInstanceGroupInstanceArgs:
                  status_changed_at: Optional[pulumi.Input[str]] = None,
                  status_message: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] fqdn: DNS record fqdn (must have dot at the end).
+        :param pulumi.Input[str] instance_id: The ID of the instance.
+        :param pulumi.Input[str] name: Name template of the instance.  
+               In order to be unique it must contain at least one of instance unique placeholders:
+               {instance.short_id}
+               {instance.index}
+               combination of {instance.zone_id} and {instance.index_in_zone}
+               Example: my-instance-{instance.index}
+               If not set, default is used: {instance_group.id}-{instance.short_id}
+               It may also contain another placeholders, see metadata doc for full list.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceNetworkInterfaceArgs']]] network_interfaces: Network specifications for the instance. This can be used multiple times for adding multiple interfaces. The structure is documented below.
+        :param pulumi.Input[str] status: The status of the instance.
+        :param pulumi.Input[str] status_message: The status message of the instance.
+        :param pulumi.Input[str] zone_id: The ID of the availability zone where the instance resides.
+        """
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
         if instance_id is not None:
@@ -4471,6 +5671,9 @@ class ComputeInstanceGroupInstanceArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS record fqdn (must have dot at the end).
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -4480,6 +5683,9 @@ class ComputeInstanceGroupInstanceArgs:
     @property
     @pulumi.getter(name="instanceId")
     def instance_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the instance.
+        """
         return pulumi.get(self, "instance_id")
 
     @instance_id.setter
@@ -4489,6 +5695,16 @@ class ComputeInstanceGroupInstanceArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name template of the instance.  
+        In order to be unique it must contain at least one of instance unique placeholders:
+        {instance.short_id}
+        {instance.index}
+        combination of {instance.zone_id} and {instance.index_in_zone}
+        Example: my-instance-{instance.index}
+        If not set, default is used: {instance_group.id}-{instance.short_id}
+        It may also contain another placeholders, see metadata doc for full list.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -4498,6 +5714,9 @@ class ComputeInstanceGroupInstanceArgs:
     @property
     @pulumi.getter(name="networkInterfaces")
     def network_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceNetworkInterfaceArgs']]]]:
+        """
+        Network specifications for the instance. This can be used multiple times for adding multiple interfaces. The structure is documented below.
+        """
         return pulumi.get(self, "network_interfaces")
 
     @network_interfaces.setter
@@ -4507,6 +5726,9 @@ class ComputeInstanceGroupInstanceArgs:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the instance.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -4525,6 +5747,9 @@ class ComputeInstanceGroupInstanceArgs:
     @property
     @pulumi.getter(name="statusMessage")
     def status_message(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status message of the instance.
+        """
         return pulumi.get(self, "status_message")
 
     @status_message.setter
@@ -4534,6 +5759,9 @@ class ComputeInstanceGroupInstanceArgs:
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the availability zone where the instance resides.
+        """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
@@ -4554,6 +5782,17 @@ class ComputeInstanceGroupInstanceNetworkInterfaceArgs:
                  nat_ip_address: Optional[pulumi.Input[str]] = None,
                  nat_ip_version: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] index: The index of the network interface as generated by the server.
+        :param pulumi.Input[str] ip_address: Manual set static IP address.
+        :param pulumi.Input[bool] ipv4: True if IPv4 address allocated for the network interface.
+        :param pulumi.Input[str] ipv6_address: Manual set static IPv6 address.
+        :param pulumi.Input[str] mac_address: The MAC address assigned to the network interface.
+        :param pulumi.Input[bool] nat: Flag for using NAT.
+        :param pulumi.Input[str] nat_ip_address: A public address that can be used to access the internet over NAT. Use `variables` to set.
+        :param pulumi.Input[str] nat_ip_version: The IP version for the public address.
+        :param pulumi.Input[str] subnet_id: The ID of the subnet to attach this interface to. The subnet must reside in the same zone where this instance was created.
+        """
         if index is not None:
             pulumi.set(__self__, "index", index)
         if ip_address is not None:
@@ -4578,6 +5817,9 @@ class ComputeInstanceGroupInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def index(self) -> Optional[pulumi.Input[int]]:
+        """
+        The index of the network interface as generated by the server.
+        """
         return pulumi.get(self, "index")
 
     @index.setter
@@ -4587,6 +5829,9 @@ class ComputeInstanceGroupInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Manual set static IP address.
+        """
         return pulumi.get(self, "ip_address")
 
     @ip_address.setter
@@ -4596,6 +5841,9 @@ class ComputeInstanceGroupInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def ipv4(self) -> Optional[pulumi.Input[bool]]:
+        """
+        True if IPv4 address allocated for the network interface.
+        """
         return pulumi.get(self, "ipv4")
 
     @ipv4.setter
@@ -4614,6 +5862,9 @@ class ComputeInstanceGroupInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="ipv6Address")
     def ipv6_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Manual set static IPv6 address.
+        """
         return pulumi.get(self, "ipv6_address")
 
     @ipv6_address.setter
@@ -4623,6 +5874,9 @@ class ComputeInstanceGroupInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="macAddress")
     def mac_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The MAC address assigned to the network interface.
+        """
         return pulumi.get(self, "mac_address")
 
     @mac_address.setter
@@ -4632,6 +5886,9 @@ class ComputeInstanceGroupInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def nat(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag for using NAT.
+        """
         return pulumi.get(self, "nat")
 
     @nat.setter
@@ -4641,6 +5898,9 @@ class ComputeInstanceGroupInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="natIpAddress")
     def nat_ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        A public address that can be used to access the internet over NAT. Use `variables` to set.
+        """
         return pulumi.get(self, "nat_ip_address")
 
     @nat_ip_address.setter
@@ -4650,6 +5910,9 @@ class ComputeInstanceGroupInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="natIpVersion")
     def nat_ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        The IP version for the public address.
+        """
         return pulumi.get(self, "nat_ip_version")
 
     @nat_ip_version.setter
@@ -4659,6 +5922,9 @@ class ComputeInstanceGroupInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the subnet to attach this interface to. The subnet must reside in the same zone where this instance was created.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -4683,6 +5949,40 @@ class ComputeInstanceGroupInstanceTemplateArgs:
                  scheduling_policy: Optional[pulumi.Input['ComputeInstanceGroupInstanceTemplateSchedulingPolicyArgs']] = None,
                  secondary_disks: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceTemplateSecondaryDiskArgs']]]] = None,
                  service_account_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['ComputeInstanceGroupInstanceTemplateBootDiskArgs'] boot_disk: Boot disk specifications for the instance. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs']]] network_interfaces: Network specifications for the instance. This can be used multiple times for adding multiple interfaces. The structure is documented below.
+        :param pulumi.Input['ComputeInstanceGroupInstanceTemplateResourcesArgs'] resources: Compute resource specifications for the instance. The structure is documented below.
+        :param pulumi.Input[str] description: A description of the boot disk.
+        :param pulumi.Input[str] hostname: Hostname template for the instance.   
+               This field is used to generate the FQDN value of instance.
+               The hostname must be unique within the network and region.
+               If not specified, the hostname will be equal to id of the instance
+               and FQDN will be `<id>.auto.internal`. Otherwise FQDN will be `<hostname>.<region_id>.internal`.
+               In order to be unique it must contain at least on of instance unique placeholders:
+               {instance.short_id}
+               {instance.index}
+               combination of {instance.zone_id} and {instance.index_in_zone}
+               Example: my-instance-{instance.index}
+               If not set, `name` value will be used
+               It may also contain another placeholders, see metadata doc for full list.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A map of labels of metric.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: A set of metadata key/value pairs to make available from within the instance.
+        :param pulumi.Input[str] name: Name template of the instance.  
+               In order to be unique it must contain at least one of instance unique placeholders:
+               {instance.short_id}
+               {instance.index}
+               combination of {instance.zone_id} and {instance.index_in_zone}
+               Example: my-instance-{instance.index}
+               If not set, default is used: {instance_group.id}-{instance.short_id}
+               It may also contain another placeholders, see metadata doc for full list.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceTemplateNetworkSettingArgs']]] network_settings: Network acceleration type for instance. The structure is documented below.
+        :param pulumi.Input['ComputeInstanceGroupInstanceTemplatePlacementPolicyArgs'] placement_policy: The placement policy configuration. The structure is documented below.
+        :param pulumi.Input[str] platform_id: The ID of the hardware platform configuration for the instance. The default is 'standard-v1'.
+        :param pulumi.Input['ComputeInstanceGroupInstanceTemplateSchedulingPolicyArgs'] scheduling_policy: The scheduling policy configuration. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceTemplateSecondaryDiskArgs']]] secondary_disks: A list of disks to attach to the instance. The structure is documented below.
+        :param pulumi.Input[str] service_account_id: The ID of the service account authorized for this instance.
+        """
         pulumi.set(__self__, "boot_disk", boot_disk)
         pulumi.set(__self__, "network_interfaces", network_interfaces)
         pulumi.set(__self__, "resources", resources)
@@ -4712,6 +6012,9 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="bootDisk")
     def boot_disk(self) -> pulumi.Input['ComputeInstanceGroupInstanceTemplateBootDiskArgs']:
+        """
+        Boot disk specifications for the instance. The structure is documented below.
+        """
         return pulumi.get(self, "boot_disk")
 
     @boot_disk.setter
@@ -4721,6 +6024,9 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="networkInterfaces")
     def network_interfaces(self) -> pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs']]]:
+        """
+        Network specifications for the instance. This can be used multiple times for adding multiple interfaces. The structure is documented below.
+        """
         return pulumi.get(self, "network_interfaces")
 
     @network_interfaces.setter
@@ -4730,6 +6036,9 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Input['ComputeInstanceGroupInstanceTemplateResourcesArgs']:
+        """
+        Compute resource specifications for the instance. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -4739,6 +6048,9 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the boot disk.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -4748,6 +6060,20 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        Hostname template for the instance.   
+        This field is used to generate the FQDN value of instance.
+        The hostname must be unique within the network and region.
+        If not specified, the hostname will be equal to id of the instance
+        and FQDN will be `<id>.auto.internal`. Otherwise FQDN will be `<hostname>.<region_id>.internal`.
+        In order to be unique it must contain at least on of instance unique placeholders:
+        {instance.short_id}
+        {instance.index}
+        combination of {instance.zone_id} and {instance.index_in_zone}
+        Example: my-instance-{instance.index}
+        If not set, `name` value will be used
+        It may also contain another placeholders, see metadata doc for full list.
+        """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
@@ -4757,6 +6083,9 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map of labels of metric.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -4766,6 +6095,9 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of metadata key/value pairs to make available from within the instance.
+        """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
@@ -4775,6 +6107,16 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name template of the instance.  
+        In order to be unique it must contain at least one of instance unique placeholders:
+        {instance.short_id}
+        {instance.index}
+        combination of {instance.zone_id} and {instance.index_in_zone}
+        Example: my-instance-{instance.index}
+        If not set, default is used: {instance_group.id}-{instance.short_id}
+        It may also contain another placeholders, see metadata doc for full list.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -4784,6 +6126,9 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="networkSettings")
     def network_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceTemplateNetworkSettingArgs']]]]:
+        """
+        Network acceleration type for instance. The structure is documented below.
+        """
         return pulumi.get(self, "network_settings")
 
     @network_settings.setter
@@ -4793,6 +6138,9 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="placementPolicy")
     def placement_policy(self) -> Optional[pulumi.Input['ComputeInstanceGroupInstanceTemplatePlacementPolicyArgs']]:
+        """
+        The placement policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "placement_policy")
 
     @placement_policy.setter
@@ -4802,6 +6150,9 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="platformId")
     def platform_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the hardware platform configuration for the instance. The default is 'standard-v1'.
+        """
         return pulumi.get(self, "platform_id")
 
     @platform_id.setter
@@ -4811,6 +6162,9 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="schedulingPolicy")
     def scheduling_policy(self) -> Optional[pulumi.Input['ComputeInstanceGroupInstanceTemplateSchedulingPolicyArgs']]:
+        """
+        The scheduling policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "scheduling_policy")
 
     @scheduling_policy.setter
@@ -4820,6 +6174,9 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="secondaryDisks")
     def secondary_disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceTemplateSecondaryDiskArgs']]]]:
+        """
+        A list of disks to attach to the instance. The structure is documented below.
+        """
         return pulumi.get(self, "secondary_disks")
 
     @secondary_disks.setter
@@ -4829,6 +6186,9 @@ class ComputeInstanceGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the service account authorized for this instance.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -4843,6 +6203,12 @@ class ComputeInstanceGroupInstanceTemplateBootDiskArgs:
                  disk_id: Optional[pulumi.Input[str]] = None,
                  initialize_params: Optional[pulumi.Input['ComputeInstanceGroupInstanceTemplateBootDiskInitializeParamsArgs']] = None,
                  mode: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] device_name: This value can be used to reference the device under `/dev/disk/by-id/`.
+        :param pulumi.Input[str] disk_id: ID of the existing disk. To set use variables.
+        :param pulumi.Input['ComputeInstanceGroupInstanceTemplateBootDiskInitializeParamsArgs'] initialize_params: Parameters for creating a disk alongside the instance. The structure is documented below.
+        :param pulumi.Input[str] mode: The access mode to the disk resource. By default a disk is attached in `READ_WRITE` mode.
+        """
         if device_name is not None:
             pulumi.set(__self__, "device_name", device_name)
         if disk_id is not None:
@@ -4855,6 +6221,9 @@ class ComputeInstanceGroupInstanceTemplateBootDiskArgs:
     @property
     @pulumi.getter(name="deviceName")
     def device_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        This value can be used to reference the device under `/dev/disk/by-id/`.
+        """
         return pulumi.get(self, "device_name")
 
     @device_name.setter
@@ -4864,6 +6233,9 @@ class ComputeInstanceGroupInstanceTemplateBootDiskArgs:
     @property
     @pulumi.getter(name="diskId")
     def disk_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the existing disk. To set use variables.
+        """
         return pulumi.get(self, "disk_id")
 
     @disk_id.setter
@@ -4873,6 +6245,9 @@ class ComputeInstanceGroupInstanceTemplateBootDiskArgs:
     @property
     @pulumi.getter(name="initializeParams")
     def initialize_params(self) -> Optional[pulumi.Input['ComputeInstanceGroupInstanceTemplateBootDiskInitializeParamsArgs']]:
+        """
+        Parameters for creating a disk alongside the instance. The structure is documented below.
+        """
         return pulumi.get(self, "initialize_params")
 
     @initialize_params.setter
@@ -4882,6 +6257,9 @@ class ComputeInstanceGroupInstanceTemplateBootDiskArgs:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The access mode to the disk resource. By default a disk is attached in `READ_WRITE` mode.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -4897,6 +6275,13 @@ class ComputeInstanceGroupInstanceTemplateBootDiskInitializeParamsArgs:
                  size: Optional[pulumi.Input[int]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] description: A description of the boot disk.
+        :param pulumi.Input[str] image_id: The disk image to initialize this disk from.
+        :param pulumi.Input[int] size: The number of instances in the instance group.
+        :param pulumi.Input[str] snapshot_id: The snapshot to initialize this disk from.
+        :param pulumi.Input[str] type: Network acceleration type. By default a network is in `STANDARD` mode.
+        """
         if description is not None:
             pulumi.set(__self__, "description", description)
         if image_id is not None:
@@ -4911,6 +6296,9 @@ class ComputeInstanceGroupInstanceTemplateBootDiskInitializeParamsArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the boot disk.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -4920,6 +6308,9 @@ class ComputeInstanceGroupInstanceTemplateBootDiskInitializeParamsArgs:
     @property
     @pulumi.getter(name="imageId")
     def image_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The disk image to initialize this disk from.
+        """
         return pulumi.get(self, "image_id")
 
     @image_id.setter
@@ -4929,6 +6320,9 @@ class ComputeInstanceGroupInstanceTemplateBootDiskInitializeParamsArgs:
     @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of instances in the instance group.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -4938,6 +6332,9 @@ class ComputeInstanceGroupInstanceTemplateBootDiskInitializeParamsArgs:
     @property
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The snapshot to initialize this disk from.
+        """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
@@ -4947,6 +6344,9 @@ class ComputeInstanceGroupInstanceTemplateBootDiskInitializeParamsArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Network acceleration type. By default a network is in `STANDARD` mode.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -4969,6 +6369,19 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs:
                  network_id: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs']]] dns_records: List of dns records.  The structure is documented below.
+        :param pulumi.Input[str] ip_address: Manual set static IP address.
+        :param pulumi.Input[bool] ipv4: True if IPv4 address allocated for the network interface.
+        :param pulumi.Input[str] ipv6_address: Manual set static IPv6 address.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs']]] ipv6_dns_records: List of ipv6 dns records.  The structure is documented below.
+        :param pulumi.Input[bool] nat: Flag for using NAT.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs']]] nat_dns_records: List of nat dns records.  The structure is documented below.
+        :param pulumi.Input[str] nat_ip_address: A public address that can be used to access the internet over NAT. Use `variables` to set.
+        :param pulumi.Input[str] network_id: The ID of the network.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: Security group ids for network interface.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The ID of the subnets to attach this interface to.
+        """
         if dns_records is not None:
             pulumi.set(__self__, "dns_records", dns_records)
         if ip_address is not None:
@@ -4997,6 +6410,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="dnsRecords")
     def dns_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs']]]]:
+        """
+        List of dns records.  The structure is documented below.
+        """
         return pulumi.get(self, "dns_records")
 
     @dns_records.setter
@@ -5006,6 +6422,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Manual set static IP address.
+        """
         return pulumi.get(self, "ip_address")
 
     @ip_address.setter
@@ -5015,6 +6434,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def ipv4(self) -> Optional[pulumi.Input[bool]]:
+        """
+        True if IPv4 address allocated for the network interface.
+        """
         return pulumi.get(self, "ipv4")
 
     @ipv4.setter
@@ -5033,6 +6455,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="ipv6Address")
     def ipv6_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Manual set static IPv6 address.
+        """
         return pulumi.get(self, "ipv6_address")
 
     @ipv6_address.setter
@@ -5042,6 +6467,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="ipv6DnsRecords")
     def ipv6_dns_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs']]]]:
+        """
+        List of ipv6 dns records.  The structure is documented below.
+        """
         return pulumi.get(self, "ipv6_dns_records")
 
     @ipv6_dns_records.setter
@@ -5051,6 +6479,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def nat(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag for using NAT.
+        """
         return pulumi.get(self, "nat")
 
     @nat.setter
@@ -5060,6 +6491,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="natDnsRecords")
     def nat_dns_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs']]]]:
+        """
+        List of nat dns records.  The structure is documented below.
+        """
         return pulumi.get(self, "nat_dns_records")
 
     @nat_dns_records.setter
@@ -5069,6 +6503,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="natIpAddress")
     def nat_ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        A public address that can be used to access the internet over NAT. Use `variables` to set.
+        """
         return pulumi.get(self, "nat_ip_address")
 
     @nat_ip_address.setter
@@ -5078,6 +6515,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the network.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -5087,6 +6527,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Security group ids for network interface.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -5096,6 +6539,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="subnetIds")
     def subnet_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The ID of the subnets to attach this interface to.
+        """
         return pulumi.get(self, "subnet_ids")
 
     @subnet_ids.setter
@@ -5110,6 +6556,12 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs:
                  dns_zone_id: Optional[pulumi.Input[str]] = None,
                  ptr: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] fqdn: DNS record fqdn (must have dot at the end).
+        :param pulumi.Input[str] dns_zone_id: DNS zone id (if not set, private zone used).
+        :param pulumi.Input[bool] ptr: When set to true, also create PTR DNS record.
+        :param pulumi.Input[int] ttl: DNS record TTL.
+        """
         pulumi.set(__self__, "fqdn", fqdn)
         if dns_zone_id is not None:
             pulumi.set(__self__, "dns_zone_id", dns_zone_id)
@@ -5121,6 +6573,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> pulumi.Input[str]:
+        """
+        DNS record fqdn (must have dot at the end).
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -5130,6 +6585,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs:
     @property
     @pulumi.getter(name="dnsZoneId")
     def dns_zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS zone id (if not set, private zone used).
+        """
         return pulumi.get(self, "dns_zone_id")
 
     @dns_zone_id.setter
@@ -5139,6 +6597,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs:
     @property
     @pulumi.getter
     def ptr(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set to true, also create PTR DNS record.
+        """
         return pulumi.get(self, "ptr")
 
     @ptr.setter
@@ -5148,6 +6609,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs:
     @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        DNS record TTL.
+        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -5162,6 +6626,12 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs:
                  dns_zone_id: Optional[pulumi.Input[str]] = None,
                  ptr: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] fqdn: DNS record fqdn (must have dot at the end).
+        :param pulumi.Input[str] dns_zone_id: DNS zone id (if not set, private zone used).
+        :param pulumi.Input[bool] ptr: When set to true, also create PTR DNS record.
+        :param pulumi.Input[int] ttl: DNS record TTL.
+        """
         pulumi.set(__self__, "fqdn", fqdn)
         if dns_zone_id is not None:
             pulumi.set(__self__, "dns_zone_id", dns_zone_id)
@@ -5173,6 +6643,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> pulumi.Input[str]:
+        """
+        DNS record fqdn (must have dot at the end).
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -5182,6 +6655,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs:
     @property
     @pulumi.getter(name="dnsZoneId")
     def dns_zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS zone id (if not set, private zone used).
+        """
         return pulumi.get(self, "dns_zone_id")
 
     @dns_zone_id.setter
@@ -5191,6 +6667,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs:
     @property
     @pulumi.getter
     def ptr(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set to true, also create PTR DNS record.
+        """
         return pulumi.get(self, "ptr")
 
     @ptr.setter
@@ -5200,6 +6679,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs:
     @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        DNS record TTL.
+        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -5214,6 +6696,12 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs:
                  dns_zone_id: Optional[pulumi.Input[str]] = None,
                  ptr: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] fqdn: DNS record fqdn (must have dot at the end).
+        :param pulumi.Input[str] dns_zone_id: DNS zone id (if not set, private zone used).
+        :param pulumi.Input[bool] ptr: When set to true, also create PTR DNS record.
+        :param pulumi.Input[int] ttl: DNS record TTL.
+        """
         pulumi.set(__self__, "fqdn", fqdn)
         if dns_zone_id is not None:
             pulumi.set(__self__, "dns_zone_id", dns_zone_id)
@@ -5225,6 +6713,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> pulumi.Input[str]:
+        """
+        DNS record fqdn (must have dot at the end).
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -5234,6 +6725,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs:
     @property
     @pulumi.getter(name="dnsZoneId")
     def dns_zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS zone id (if not set, private zone used).
+        """
         return pulumi.get(self, "dns_zone_id")
 
     @dns_zone_id.setter
@@ -5243,6 +6737,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs:
     @property
     @pulumi.getter
     def ptr(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set to true, also create PTR DNS record.
+        """
         return pulumi.get(self, "ptr")
 
     @ptr.setter
@@ -5252,6 +6749,9 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs:
     @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        DNS record TTL.
+        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -5263,12 +6763,18 @@ class ComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs:
 class ComputeInstanceGroupInstanceTemplateNetworkSettingArgs:
     def __init__(__self__, *,
                  type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] type: Network acceleration type. By default a network is in `STANDARD` mode.
+        """
         if type is not None:
             pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Network acceleration type. By default a network is in `STANDARD` mode.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -5280,11 +6786,17 @@ class ComputeInstanceGroupInstanceTemplateNetworkSettingArgs:
 class ComputeInstanceGroupInstanceTemplatePlacementPolicyArgs:
     def __init__(__self__, *,
                  placement_group_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] placement_group_id: Specifies the id of the Placement Group to assign to the instances.
+        """
         pulumi.set(__self__, "placement_group_id", placement_group_id)
 
     @property
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> pulumi.Input[str]:
+        """
+        Specifies the id of the Placement Group to assign to the instances.
+        """
         return pulumi.get(self, "placement_group_id")
 
     @placement_group_id.setter
@@ -5299,6 +6811,11 @@ class ComputeInstanceGroupInstanceTemplateResourcesArgs:
                  memory: pulumi.Input[float],
                  core_fraction: Optional[pulumi.Input[int]] = None,
                  gpus: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] cores: The number of CPU cores for the instance.
+        :param pulumi.Input[float] memory: The memory size in GB.
+        :param pulumi.Input[int] core_fraction: If provided, specifies baseline core performance as a percent.
+        """
         pulumi.set(__self__, "cores", cores)
         pulumi.set(__self__, "memory", memory)
         if core_fraction is not None:
@@ -5309,6 +6826,9 @@ class ComputeInstanceGroupInstanceTemplateResourcesArgs:
     @property
     @pulumi.getter
     def cores(self) -> pulumi.Input[int]:
+        """
+        The number of CPU cores for the instance.
+        """
         return pulumi.get(self, "cores")
 
     @cores.setter
@@ -5318,6 +6838,9 @@ class ComputeInstanceGroupInstanceTemplateResourcesArgs:
     @property
     @pulumi.getter
     def memory(self) -> pulumi.Input[float]:
+        """
+        The memory size in GB.
+        """
         return pulumi.get(self, "memory")
 
     @memory.setter
@@ -5327,6 +6850,9 @@ class ComputeInstanceGroupInstanceTemplateResourcesArgs:
     @property
     @pulumi.getter(name="coreFraction")
     def core_fraction(self) -> Optional[pulumi.Input[int]]:
+        """
+        If provided, specifies baseline core performance as a percent.
+        """
         return pulumi.get(self, "core_fraction")
 
     @core_fraction.setter
@@ -5347,12 +6873,18 @@ class ComputeInstanceGroupInstanceTemplateResourcesArgs:
 class ComputeInstanceGroupInstanceTemplateSchedulingPolicyArgs:
     def __init__(__self__, *,
                  preemptible: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] preemptible: Specifies if the instance is preemptible. Defaults to false.
+        """
         if preemptible is not None:
             pulumi.set(__self__, "preemptible", preemptible)
 
     @property
     @pulumi.getter
     def preemptible(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the instance is preemptible. Defaults to false.
+        """
         return pulumi.get(self, "preemptible")
 
     @preemptible.setter
@@ -5367,6 +6899,12 @@ class ComputeInstanceGroupInstanceTemplateSecondaryDiskArgs:
                  disk_id: Optional[pulumi.Input[str]] = None,
                  initialize_params: Optional[pulumi.Input['ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamsArgs']] = None,
                  mode: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] device_name: This value can be used to reference the device under `/dev/disk/by-id/`.
+        :param pulumi.Input[str] disk_id: ID of the existing disk. To set use variables.
+        :param pulumi.Input['ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamsArgs'] initialize_params: Parameters for creating a disk alongside the instance. The structure is documented below.
+        :param pulumi.Input[str] mode: The access mode to the disk resource. By default a disk is attached in `READ_WRITE` mode.
+        """
         if device_name is not None:
             pulumi.set(__self__, "device_name", device_name)
         if disk_id is not None:
@@ -5379,6 +6917,9 @@ class ComputeInstanceGroupInstanceTemplateSecondaryDiskArgs:
     @property
     @pulumi.getter(name="deviceName")
     def device_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        This value can be used to reference the device under `/dev/disk/by-id/`.
+        """
         return pulumi.get(self, "device_name")
 
     @device_name.setter
@@ -5388,6 +6929,9 @@ class ComputeInstanceGroupInstanceTemplateSecondaryDiskArgs:
     @property
     @pulumi.getter(name="diskId")
     def disk_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the existing disk. To set use variables.
+        """
         return pulumi.get(self, "disk_id")
 
     @disk_id.setter
@@ -5397,6 +6941,9 @@ class ComputeInstanceGroupInstanceTemplateSecondaryDiskArgs:
     @property
     @pulumi.getter(name="initializeParams")
     def initialize_params(self) -> Optional[pulumi.Input['ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamsArgs']]:
+        """
+        Parameters for creating a disk alongside the instance. The structure is documented below.
+        """
         return pulumi.get(self, "initialize_params")
 
     @initialize_params.setter
@@ -5406,6 +6953,9 @@ class ComputeInstanceGroupInstanceTemplateSecondaryDiskArgs:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        The access mode to the disk resource. By default a disk is attached in `READ_WRITE` mode.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -5421,6 +6971,13 @@ class ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamsArgs:
                  size: Optional[pulumi.Input[int]] = None,
                  snapshot_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] description: A description of the boot disk.
+        :param pulumi.Input[str] image_id: The disk image to initialize this disk from.
+        :param pulumi.Input[int] size: The number of instances in the instance group.
+        :param pulumi.Input[str] snapshot_id: The snapshot to initialize this disk from.
+        :param pulumi.Input[str] type: Network acceleration type. By default a network is in `STANDARD` mode.
+        """
         if description is not None:
             pulumi.set(__self__, "description", description)
         if image_id is not None:
@@ -5435,6 +6992,9 @@ class ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamsArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the boot disk.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -5444,6 +7004,9 @@ class ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamsArgs:
     @property
     @pulumi.getter(name="imageId")
     def image_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The disk image to initialize this disk from.
+        """
         return pulumi.get(self, "image_id")
 
     @image_id.setter
@@ -5453,6 +7016,9 @@ class ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamsArgs:
     @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of instances in the instance group.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -5462,6 +7028,9 @@ class ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamsArgs:
     @property
     @pulumi.getter(name="snapshotId")
     def snapshot_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The snapshot to initialize this disk from.
+        """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
@@ -5471,6 +7040,9 @@ class ComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamsArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Network acceleration type. By default a network is in `STANDARD` mode.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -5487,6 +7059,13 @@ class ComputeInstanceGroupLoadBalancerArgs:
                  target_group_id: Optional[pulumi.Input[str]] = None,
                  target_group_labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  target_group_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] max_opening_traffic_duration: Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+        :param pulumi.Input[str] status_message: The status message of the instance.
+        :param pulumi.Input[str] target_group_description: A description of the target group.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] target_group_labels: A set of key/value label pairs.
+        :param pulumi.Input[str] target_group_name: The name of the target group.
+        """
         if max_opening_traffic_duration is not None:
             pulumi.set(__self__, "max_opening_traffic_duration", max_opening_traffic_duration)
         if status_message is not None:
@@ -5503,6 +7082,9 @@ class ComputeInstanceGroupLoadBalancerArgs:
     @property
     @pulumi.getter(name="maxOpeningTrafficDuration")
     def max_opening_traffic_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+        """
         return pulumi.get(self, "max_opening_traffic_duration")
 
     @max_opening_traffic_duration.setter
@@ -5512,6 +7094,9 @@ class ComputeInstanceGroupLoadBalancerArgs:
     @property
     @pulumi.getter(name="statusMessage")
     def status_message(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status message of the instance.
+        """
         return pulumi.get(self, "status_message")
 
     @status_message.setter
@@ -5521,6 +7106,9 @@ class ComputeInstanceGroupLoadBalancerArgs:
     @property
     @pulumi.getter(name="targetGroupDescription")
     def target_group_description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the target group.
+        """
         return pulumi.get(self, "target_group_description")
 
     @target_group_description.setter
@@ -5539,6 +7127,9 @@ class ComputeInstanceGroupLoadBalancerArgs:
     @property
     @pulumi.getter(name="targetGroupLabels")
     def target_group_labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs.
+        """
         return pulumi.get(self, "target_group_labels")
 
     @target_group_labels.setter
@@ -5548,6 +7139,9 @@ class ComputeInstanceGroupLoadBalancerArgs:
     @property
     @pulumi.getter(name="targetGroupName")
     def target_group_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the target group.
+        """
         return pulumi.get(self, "target_group_name")
 
     @target_group_name.setter
@@ -5561,6 +7155,11 @@ class ComputeInstanceGroupScalePolicyArgs:
                  auto_scale: Optional[pulumi.Input['ComputeInstanceGroupScalePolicyAutoScaleArgs']] = None,
                  fixed_scale: Optional[pulumi.Input['ComputeInstanceGroupScalePolicyFixedScaleArgs']] = None,
                  test_auto_scale: Optional[pulumi.Input['ComputeInstanceGroupScalePolicyTestAutoScaleArgs']] = None):
+        """
+        :param pulumi.Input['ComputeInstanceGroupScalePolicyAutoScaleArgs'] auto_scale: The auto scaling policy of the instance group. The structure is documented below.
+        :param pulumi.Input['ComputeInstanceGroupScalePolicyFixedScaleArgs'] fixed_scale: The fixed scaling policy of the instance group. The structure is documented below.
+        :param pulumi.Input['ComputeInstanceGroupScalePolicyTestAutoScaleArgs'] test_auto_scale: The test auto scaling policy of the instance group. Use it to test how the auto scale works. The structure is documented below.
+        """
         if auto_scale is not None:
             pulumi.set(__self__, "auto_scale", auto_scale)
         if fixed_scale is not None:
@@ -5571,6 +7170,9 @@ class ComputeInstanceGroupScalePolicyArgs:
     @property
     @pulumi.getter(name="autoScale")
     def auto_scale(self) -> Optional[pulumi.Input['ComputeInstanceGroupScalePolicyAutoScaleArgs']]:
+        """
+        The auto scaling policy of the instance group. The structure is documented below.
+        """
         return pulumi.get(self, "auto_scale")
 
     @auto_scale.setter
@@ -5580,6 +7182,9 @@ class ComputeInstanceGroupScalePolicyArgs:
     @property
     @pulumi.getter(name="fixedScale")
     def fixed_scale(self) -> Optional[pulumi.Input['ComputeInstanceGroupScalePolicyFixedScaleArgs']]:
+        """
+        The fixed scaling policy of the instance group. The structure is documented below.
+        """
         return pulumi.get(self, "fixed_scale")
 
     @fixed_scale.setter
@@ -5589,6 +7194,9 @@ class ComputeInstanceGroupScalePolicyArgs:
     @property
     @pulumi.getter(name="testAutoScale")
     def test_auto_scale(self) -> Optional[pulumi.Input['ComputeInstanceGroupScalePolicyTestAutoScaleArgs']]:
+        """
+        The test auto scaling policy of the instance group. Use it to test how the auto scale works. The structure is documented below.
+        """
         return pulumi.get(self, "test_auto_scale")
 
     @test_auto_scale.setter
@@ -5607,6 +7215,21 @@ class ComputeInstanceGroupScalePolicyAutoScaleArgs:
                  min_zone_size: Optional[pulumi.Input[int]] = None,
                  stabilization_duration: Optional[pulumi.Input[int]] = None,
                  warmup_duration: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] initial_size: The initial number of instances in the instance group.
+        :param pulumi.Input[int] measurement_duration: The amount of time, in seconds, that metrics are averaged for.
+               If the average value at the end of the interval is higher than the `cpu_utilization_target`,
+               the instance group will increase the number of virtual machines in the group.
+        :param pulumi.Input[float] cpu_utilization_target: Target CPU load level.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs']]] custom_rules: A list of custom rules. The structure is documented below.
+        :param pulumi.Input[int] max_size: The maximum number of virtual machines in the group.
+        :param pulumi.Input[int] min_zone_size: The minimum number of virtual machines in a single availability zone.
+        :param pulumi.Input[int] stabilization_duration: The minimum time interval, in seconds, to monitor the load before
+               an instance group can reduce the number of virtual machines in the group. During this time, the group
+               will not decrease even if the average load falls below the value of `cpu_utilization_target`.
+        :param pulumi.Input[int] warmup_duration: The warm-up time of the virtual machine, in seconds. During this time,
+               traffic is fed to the virtual machine, but load metrics are not taken into account.
+        """
         pulumi.set(__self__, "initial_size", initial_size)
         pulumi.set(__self__, "measurement_duration", measurement_duration)
         if cpu_utilization_target is not None:
@@ -5625,6 +7248,9 @@ class ComputeInstanceGroupScalePolicyAutoScaleArgs:
     @property
     @pulumi.getter(name="initialSize")
     def initial_size(self) -> pulumi.Input[int]:
+        """
+        The initial number of instances in the instance group.
+        """
         return pulumi.get(self, "initial_size")
 
     @initial_size.setter
@@ -5634,6 +7260,11 @@ class ComputeInstanceGroupScalePolicyAutoScaleArgs:
     @property
     @pulumi.getter(name="measurementDuration")
     def measurement_duration(self) -> pulumi.Input[int]:
+        """
+        The amount of time, in seconds, that metrics are averaged for.
+        If the average value at the end of the interval is higher than the `cpu_utilization_target`,
+        the instance group will increase the number of virtual machines in the group.
+        """
         return pulumi.get(self, "measurement_duration")
 
     @measurement_duration.setter
@@ -5643,6 +7274,9 @@ class ComputeInstanceGroupScalePolicyAutoScaleArgs:
     @property
     @pulumi.getter(name="cpuUtilizationTarget")
     def cpu_utilization_target(self) -> Optional[pulumi.Input[float]]:
+        """
+        Target CPU load level.
+        """
         return pulumi.get(self, "cpu_utilization_target")
 
     @cpu_utilization_target.setter
@@ -5652,6 +7286,9 @@ class ComputeInstanceGroupScalePolicyAutoScaleArgs:
     @property
     @pulumi.getter(name="customRules")
     def custom_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs']]]]:
+        """
+        A list of custom rules. The structure is documented below.
+        """
         return pulumi.get(self, "custom_rules")
 
     @custom_rules.setter
@@ -5661,6 +7298,9 @@ class ComputeInstanceGroupScalePolicyAutoScaleArgs:
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of virtual machines in the group.
+        """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
@@ -5670,6 +7310,9 @@ class ComputeInstanceGroupScalePolicyAutoScaleArgs:
     @property
     @pulumi.getter(name="minZoneSize")
     def min_zone_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minimum number of virtual machines in a single availability zone.
+        """
         return pulumi.get(self, "min_zone_size")
 
     @min_zone_size.setter
@@ -5679,6 +7322,11 @@ class ComputeInstanceGroupScalePolicyAutoScaleArgs:
     @property
     @pulumi.getter(name="stabilizationDuration")
     def stabilization_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minimum time interval, in seconds, to monitor the load before
+        an instance group can reduce the number of virtual machines in the group. During this time, the group
+        will not decrease even if the average load falls below the value of `cpu_utilization_target`.
+        """
         return pulumi.get(self, "stabilization_duration")
 
     @stabilization_duration.setter
@@ -5688,6 +7336,10 @@ class ComputeInstanceGroupScalePolicyAutoScaleArgs:
     @property
     @pulumi.getter(name="warmupDuration")
     def warmup_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        The warm-up time of the virtual machine, in seconds. During this time,
+        traffic is fed to the virtual machine, but load metrics are not taken into account.
+        """
         return pulumi.get(self, "warmup_duration")
 
     @warmup_duration.setter
@@ -5705,6 +7357,19 @@ class ComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs:
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  service: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] metric_name: The name of metric.
+        :param pulumi.Input[str] metric_type: Metric type, `GAUGE` or `COUNTER`.
+        :param pulumi.Input[str] rule_type: Rule type: `UTILIZATION` - This type means that the metric applies to one instance.
+               First, Instance Groups calculates the average metric value for each instance,
+               then averages the values for instances in one availability zone.
+               This type of metric must have the `instance_id` label. `WORKLOAD` - This type means that the metric applies to instances in one availability zone.
+               This type of metric must have the `zone_id` label.
+        :param pulumi.Input[float] target: Target metric value level.
+        :param pulumi.Input[str] folder_id: Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A map of labels of metric.
+        :param pulumi.Input[str] service: Service of custom metric in Yandex Monitoring that should be used for scaling.
+        """
         pulumi.set(__self__, "metric_name", metric_name)
         pulumi.set(__self__, "metric_type", metric_type)
         pulumi.set(__self__, "rule_type", rule_type)
@@ -5719,6 +7384,9 @@ class ComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> pulumi.Input[str]:
+        """
+        The name of metric.
+        """
         return pulumi.get(self, "metric_name")
 
     @metric_name.setter
@@ -5728,6 +7396,9 @@ class ComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter(name="metricType")
     def metric_type(self) -> pulumi.Input[str]:
+        """
+        Metric type, `GAUGE` or `COUNTER`.
+        """
         return pulumi.get(self, "metric_type")
 
     @metric_type.setter
@@ -5737,6 +7408,13 @@ class ComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter(name="ruleType")
     def rule_type(self) -> pulumi.Input[str]:
+        """
+        Rule type: `UTILIZATION` - This type means that the metric applies to one instance.
+        First, Instance Groups calculates the average metric value for each instance,
+        then averages the values for instances in one availability zone.
+        This type of metric must have the `instance_id` label. `WORKLOAD` - This type means that the metric applies to instances in one availability zone.
+        This type of metric must have the `zone_id` label.
+        """
         return pulumi.get(self, "rule_type")
 
     @rule_type.setter
@@ -5746,6 +7424,9 @@ class ComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter
     def target(self) -> pulumi.Input[float]:
+        """
+        Target metric value level.
+        """
         return pulumi.get(self, "target")
 
     @target.setter
@@ -5755,6 +7436,9 @@ class ComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -5764,6 +7448,9 @@ class ComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map of labels of metric.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -5773,6 +7460,9 @@ class ComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter
     def service(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service of custom metric in Yandex Monitoring that should be used for scaling.
+        """
         return pulumi.get(self, "service")
 
     @service.setter
@@ -5784,11 +7474,17 @@ class ComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs:
 class ComputeInstanceGroupScalePolicyFixedScaleArgs:
     def __init__(__self__, *,
                  size: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] size: The number of instances in the instance group.
+        """
         pulumi.set(__self__, "size", size)
 
     @property
     @pulumi.getter
     def size(self) -> pulumi.Input[int]:
+        """
+        The number of instances in the instance group.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -5807,6 +7503,21 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleArgs:
                  min_zone_size: Optional[pulumi.Input[int]] = None,
                  stabilization_duration: Optional[pulumi.Input[int]] = None,
                  warmup_duration: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] initial_size: The initial number of instances in the instance group.
+        :param pulumi.Input[int] measurement_duration: The amount of time, in seconds, that metrics are averaged for.
+               If the average value at the end of the interval is higher than the `cpu_utilization_target`,
+               the instance group will increase the number of virtual machines in the group.
+        :param pulumi.Input[float] cpu_utilization_target: Target CPU load level.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs']]] custom_rules: A list of custom rules. The structure is documented below.
+        :param pulumi.Input[int] max_size: The maximum number of virtual machines in the group.
+        :param pulumi.Input[int] min_zone_size: The minimum number of virtual machines in a single availability zone.
+        :param pulumi.Input[int] stabilization_duration: The minimum time interval, in seconds, to monitor the load before
+               an instance group can reduce the number of virtual machines in the group. During this time, the group
+               will not decrease even if the average load falls below the value of `cpu_utilization_target`.
+        :param pulumi.Input[int] warmup_duration: The warm-up time of the virtual machine, in seconds. During this time,
+               traffic is fed to the virtual machine, but load metrics are not taken into account.
+        """
         pulumi.set(__self__, "initial_size", initial_size)
         pulumi.set(__self__, "measurement_duration", measurement_duration)
         if cpu_utilization_target is not None:
@@ -5825,6 +7536,9 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleArgs:
     @property
     @pulumi.getter(name="initialSize")
     def initial_size(self) -> pulumi.Input[int]:
+        """
+        The initial number of instances in the instance group.
+        """
         return pulumi.get(self, "initial_size")
 
     @initial_size.setter
@@ -5834,6 +7548,11 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleArgs:
     @property
     @pulumi.getter(name="measurementDuration")
     def measurement_duration(self) -> pulumi.Input[int]:
+        """
+        The amount of time, in seconds, that metrics are averaged for.
+        If the average value at the end of the interval is higher than the `cpu_utilization_target`,
+        the instance group will increase the number of virtual machines in the group.
+        """
         return pulumi.get(self, "measurement_duration")
 
     @measurement_duration.setter
@@ -5843,6 +7562,9 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleArgs:
     @property
     @pulumi.getter(name="cpuUtilizationTarget")
     def cpu_utilization_target(self) -> Optional[pulumi.Input[float]]:
+        """
+        Target CPU load level.
+        """
         return pulumi.get(self, "cpu_utilization_target")
 
     @cpu_utilization_target.setter
@@ -5852,6 +7574,9 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleArgs:
     @property
     @pulumi.getter(name="customRules")
     def custom_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs']]]]:
+        """
+        A list of custom rules. The structure is documented below.
+        """
         return pulumi.get(self, "custom_rules")
 
     @custom_rules.setter
@@ -5861,6 +7586,9 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleArgs:
     @property
     @pulumi.getter(name="maxSize")
     def max_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of virtual machines in the group.
+        """
         return pulumi.get(self, "max_size")
 
     @max_size.setter
@@ -5870,6 +7598,9 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleArgs:
     @property
     @pulumi.getter(name="minZoneSize")
     def min_zone_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minimum number of virtual machines in a single availability zone.
+        """
         return pulumi.get(self, "min_zone_size")
 
     @min_zone_size.setter
@@ -5879,6 +7610,11 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleArgs:
     @property
     @pulumi.getter(name="stabilizationDuration")
     def stabilization_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minimum time interval, in seconds, to monitor the load before
+        an instance group can reduce the number of virtual machines in the group. During this time, the group
+        will not decrease even if the average load falls below the value of `cpu_utilization_target`.
+        """
         return pulumi.get(self, "stabilization_duration")
 
     @stabilization_duration.setter
@@ -5888,6 +7624,10 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleArgs:
     @property
     @pulumi.getter(name="warmupDuration")
     def warmup_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        The warm-up time of the virtual machine, in seconds. During this time,
+        traffic is fed to the virtual machine, but load metrics are not taken into account.
+        """
         return pulumi.get(self, "warmup_duration")
 
     @warmup_duration.setter
@@ -5905,6 +7645,19 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs:
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  service: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] metric_name: The name of metric.
+        :param pulumi.Input[str] metric_type: Metric type, `GAUGE` or `COUNTER`.
+        :param pulumi.Input[str] rule_type: Rule type: `UTILIZATION` - This type means that the metric applies to one instance.
+               First, Instance Groups calculates the average metric value for each instance,
+               then averages the values for instances in one availability zone.
+               This type of metric must have the `instance_id` label. `WORKLOAD` - This type means that the metric applies to instances in one availability zone.
+               This type of metric must have the `zone_id` label.
+        :param pulumi.Input[float] target: Target metric value level.
+        :param pulumi.Input[str] folder_id: Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A map of labels of metric.
+        :param pulumi.Input[str] service: Service of custom metric in Yandex Monitoring that should be used for scaling.
+        """
         pulumi.set(__self__, "metric_name", metric_name)
         pulumi.set(__self__, "metric_type", metric_type)
         pulumi.set(__self__, "rule_type", rule_type)
@@ -5919,6 +7672,9 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter(name="metricName")
     def metric_name(self) -> pulumi.Input[str]:
+        """
+        The name of metric.
+        """
         return pulumi.get(self, "metric_name")
 
     @metric_name.setter
@@ -5928,6 +7684,9 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter(name="metricType")
     def metric_type(self) -> pulumi.Input[str]:
+        """
+        Metric type, `GAUGE` or `COUNTER`.
+        """
         return pulumi.get(self, "metric_type")
 
     @metric_type.setter
@@ -5937,6 +7696,13 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter(name="ruleType")
     def rule_type(self) -> pulumi.Input[str]:
+        """
+        Rule type: `UTILIZATION` - This type means that the metric applies to one instance.
+        First, Instance Groups calculates the average metric value for each instance,
+        then averages the values for instances in one availability zone.
+        This type of metric must have the `instance_id` label. `WORKLOAD` - This type means that the metric applies to instances in one availability zone.
+        This type of metric must have the `zone_id` label.
+        """
         return pulumi.get(self, "rule_type")
 
     @rule_type.setter
@@ -5946,6 +7712,9 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter
     def target(self) -> pulumi.Input[float]:
+        """
+        Target metric value level.
+        """
         return pulumi.get(self, "target")
 
     @target.setter
@@ -5955,6 +7724,9 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -5964,6 +7736,9 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A map of labels of metric.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -5973,6 +7748,9 @@ class ComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs:
     @property
     @pulumi.getter
     def service(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service of custom metric in Yandex Monitoring that should be used for scaling.
+        """
         return pulumi.get(self, "service")
 
     @service.setter
@@ -5985,6 +7763,11 @@ class ComputeInstanceLocalDiskArgs:
     def __init__(__self__, *,
                  size_bytes: pulumi.Input[int],
                  device_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] size_bytes: Size of the disk, specified in bytes.
+        :param pulumi.Input[str] device_name: Name that can be used to access an attached disk
+               under `/dev/disk/by-id/`.
+        """
         pulumi.set(__self__, "size_bytes", size_bytes)
         if device_name is not None:
             pulumi.set(__self__, "device_name", device_name)
@@ -5992,6 +7775,9 @@ class ComputeInstanceLocalDiskArgs:
     @property
     @pulumi.getter(name="sizeBytes")
     def size_bytes(self) -> pulumi.Input[int]:
+        """
+        Size of the disk, specified in bytes.
+        """
         return pulumi.get(self, "size_bytes")
 
     @size_bytes.setter
@@ -6001,6 +7787,10 @@ class ComputeInstanceLocalDiskArgs:
     @property
     @pulumi.getter(name="deviceName")
     def device_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name that can be used to access an attached disk
+        under `/dev/disk/by-id/`.
+        """
         return pulumi.get(self, "device_name")
 
     @device_name.setter
@@ -6025,6 +7815,23 @@ class ComputeInstanceNetworkInterfaceArgs:
                  nat_ip_address: Optional[pulumi.Input[str]] = None,
                  nat_ip_version: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] subnet_id: ID of the subnet to attach this
+               interface to. The subnet must exist in the same zone where this instance will be
+               created.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceNetworkInterfaceDnsRecordArgs']]] dns_records: List of configurations for creating ipv4 DNS records. The structure is documented below.
+        :param pulumi.Input[str] ip_address: The private IP address to assign to the instance. If
+               empty, the address will be automatically assigned from the specified subnet.
+        :param pulumi.Input[bool] ipv4: Allocate an IPv4 address for the interface. The default value is `true`.
+        :param pulumi.Input[bool] ipv6: If true, allocate an IPv6 address for the interface.
+               The address will be automatically assigned from the specified subnet.
+        :param pulumi.Input[str] ipv6_address: The private IPv6 address to assign to the instance.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceNetworkInterfaceIpv6DnsRecordArgs']]] ipv6_dns_records: List of configurations for creating ipv6 DNS records. The structure is documented below.
+        :param pulumi.Input[bool] nat: Provide a public address, for instance, to access the internet over NAT.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceNetworkInterfaceNatDnsRecordArgs']]] nat_dns_records: List of configurations for creating ipv4 NAT DNS records. The structure is documented below.
+        :param pulumi.Input[str] nat_ip_address: Provide a public address, for instance, to access the internet over NAT. Address should be already reserved in web UI.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: Security group ids for network interface.
+        """
         pulumi.set(__self__, "subnet_id", subnet_id)
         if dns_records is not None:
             pulumi.set(__self__, "dns_records", dns_records)
@@ -6056,6 +7863,11 @@ class ComputeInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> pulumi.Input[str]:
+        """
+        ID of the subnet to attach this
+        interface to. The subnet must exist in the same zone where this instance will be
+        created.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -6065,6 +7877,9 @@ class ComputeInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="dnsRecords")
     def dns_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceNetworkInterfaceDnsRecordArgs']]]]:
+        """
+        List of configurations for creating ipv4 DNS records. The structure is documented below.
+        """
         return pulumi.get(self, "dns_records")
 
     @dns_records.setter
@@ -6083,6 +7898,10 @@ class ComputeInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="ipAddress")
     def ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private IP address to assign to the instance. If
+        empty, the address will be automatically assigned from the specified subnet.
+        """
         return pulumi.get(self, "ip_address")
 
     @ip_address.setter
@@ -6092,6 +7911,9 @@ class ComputeInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def ipv4(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allocate an IPv4 address for the interface. The default value is `true`.
+        """
         return pulumi.get(self, "ipv4")
 
     @ipv4.setter
@@ -6101,6 +7923,10 @@ class ComputeInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def ipv6(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, allocate an IPv6 address for the interface.
+        The address will be automatically assigned from the specified subnet.
+        """
         return pulumi.get(self, "ipv6")
 
     @ipv6.setter
@@ -6110,6 +7936,9 @@ class ComputeInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="ipv6Address")
     def ipv6_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        The private IPv6 address to assign to the instance.
+        """
         return pulumi.get(self, "ipv6_address")
 
     @ipv6_address.setter
@@ -6119,6 +7948,9 @@ class ComputeInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="ipv6DnsRecords")
     def ipv6_dns_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceNetworkInterfaceIpv6DnsRecordArgs']]]]:
+        """
+        List of configurations for creating ipv6 DNS records. The structure is documented below.
+        """
         return pulumi.get(self, "ipv6_dns_records")
 
     @ipv6_dns_records.setter
@@ -6137,6 +7969,9 @@ class ComputeInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def nat(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Provide a public address, for instance, to access the internet over NAT.
+        """
         return pulumi.get(self, "nat")
 
     @nat.setter
@@ -6146,6 +7981,9 @@ class ComputeInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="natDnsRecords")
     def nat_dns_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceNetworkInterfaceNatDnsRecordArgs']]]]:
+        """
+        List of configurations for creating ipv4 NAT DNS records. The structure is documented below.
+        """
         return pulumi.get(self, "nat_dns_records")
 
     @nat_dns_records.setter
@@ -6155,6 +7993,9 @@ class ComputeInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="natIpAddress")
     def nat_ip_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Provide a public address, for instance, to access the internet over NAT. Address should be already reserved in web UI.
+        """
         return pulumi.get(self, "nat_ip_address")
 
     @nat_ip_address.setter
@@ -6173,6 +8014,9 @@ class ComputeInstanceNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Security group ids for network interface.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -6187,6 +8031,12 @@ class ComputeInstanceNetworkInterfaceDnsRecordArgs:
                  dns_zone_id: Optional[pulumi.Input[str]] = None,
                  ptr: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] fqdn: DNS record FQDN (must have a dot at the end).
+        :param pulumi.Input[str] dns_zone_id: DNS zone ID (if not set, private zone used).
+        :param pulumi.Input[bool] ptr: When set to true, also create a PTR DNS record.
+        :param pulumi.Input[int] ttl: DNS record TTL. in seconds
+        """
         pulumi.set(__self__, "fqdn", fqdn)
         if dns_zone_id is not None:
             pulumi.set(__self__, "dns_zone_id", dns_zone_id)
@@ -6198,6 +8048,9 @@ class ComputeInstanceNetworkInterfaceDnsRecordArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> pulumi.Input[str]:
+        """
+        DNS record FQDN (must have a dot at the end).
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -6207,6 +8060,9 @@ class ComputeInstanceNetworkInterfaceDnsRecordArgs:
     @property
     @pulumi.getter(name="dnsZoneId")
     def dns_zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS zone ID (if not set, private zone used).
+        """
         return pulumi.get(self, "dns_zone_id")
 
     @dns_zone_id.setter
@@ -6216,6 +8072,9 @@ class ComputeInstanceNetworkInterfaceDnsRecordArgs:
     @property
     @pulumi.getter
     def ptr(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set to true, also create a PTR DNS record.
+        """
         return pulumi.get(self, "ptr")
 
     @ptr.setter
@@ -6225,6 +8084,9 @@ class ComputeInstanceNetworkInterfaceDnsRecordArgs:
     @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        DNS record TTL. in seconds
+        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -6239,6 +8101,12 @@ class ComputeInstanceNetworkInterfaceIpv6DnsRecordArgs:
                  dns_zone_id: Optional[pulumi.Input[str]] = None,
                  ptr: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] fqdn: DNS record FQDN (must have a dot at the end).
+        :param pulumi.Input[str] dns_zone_id: DNS zone ID (if not set, private zone used).
+        :param pulumi.Input[bool] ptr: When set to true, also create a PTR DNS record.
+        :param pulumi.Input[int] ttl: DNS record TTL. in seconds
+        """
         pulumi.set(__self__, "fqdn", fqdn)
         if dns_zone_id is not None:
             pulumi.set(__self__, "dns_zone_id", dns_zone_id)
@@ -6250,6 +8118,9 @@ class ComputeInstanceNetworkInterfaceIpv6DnsRecordArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> pulumi.Input[str]:
+        """
+        DNS record FQDN (must have a dot at the end).
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -6259,6 +8130,9 @@ class ComputeInstanceNetworkInterfaceIpv6DnsRecordArgs:
     @property
     @pulumi.getter(name="dnsZoneId")
     def dns_zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS zone ID (if not set, private zone used).
+        """
         return pulumi.get(self, "dns_zone_id")
 
     @dns_zone_id.setter
@@ -6268,6 +8142,9 @@ class ComputeInstanceNetworkInterfaceIpv6DnsRecordArgs:
     @property
     @pulumi.getter
     def ptr(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set to true, also create a PTR DNS record.
+        """
         return pulumi.get(self, "ptr")
 
     @ptr.setter
@@ -6277,6 +8154,9 @@ class ComputeInstanceNetworkInterfaceIpv6DnsRecordArgs:
     @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        DNS record TTL. in seconds
+        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -6291,6 +8171,12 @@ class ComputeInstanceNetworkInterfaceNatDnsRecordArgs:
                  dns_zone_id: Optional[pulumi.Input[str]] = None,
                  ptr: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] fqdn: DNS record FQDN (must have a dot at the end).
+        :param pulumi.Input[str] dns_zone_id: DNS zone ID (if not set, private zone used).
+        :param pulumi.Input[bool] ptr: When set to true, also create a PTR DNS record.
+        :param pulumi.Input[int] ttl: DNS record TTL. in seconds
+        """
         pulumi.set(__self__, "fqdn", fqdn)
         if dns_zone_id is not None:
             pulumi.set(__self__, "dns_zone_id", dns_zone_id)
@@ -6302,6 +8188,9 @@ class ComputeInstanceNetworkInterfaceNatDnsRecordArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> pulumi.Input[str]:
+        """
+        DNS record FQDN (must have a dot at the end).
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -6311,6 +8200,9 @@ class ComputeInstanceNetworkInterfaceNatDnsRecordArgs:
     @property
     @pulumi.getter(name="dnsZoneId")
     def dns_zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS zone ID (if not set, private zone used).
+        """
         return pulumi.get(self, "dns_zone_id")
 
     @dns_zone_id.setter
@@ -6320,6 +8212,9 @@ class ComputeInstanceNetworkInterfaceNatDnsRecordArgs:
     @property
     @pulumi.getter
     def ptr(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set to true, also create a PTR DNS record.
+        """
         return pulumi.get(self, "ptr")
 
     @ptr.setter
@@ -6329,6 +8224,9 @@ class ComputeInstanceNetworkInterfaceNatDnsRecordArgs:
     @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        DNS record TTL. in seconds
+        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -6341,6 +8239,10 @@ class ComputeInstancePlacementPolicyArgs:
     def __init__(__self__, *,
                  host_affinity_rules: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstancePlacementPolicyHostAffinityRuleArgs']]]] = None,
                  placement_group_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstancePlacementPolicyHostAffinityRuleArgs']]] host_affinity_rules: List of host affinity rules. The structure is documented below.
+        :param pulumi.Input[str] placement_group_id: Specifies the id of the Placement Group to assign to the instance.
+        """
         if host_affinity_rules is not None:
             pulumi.set(__self__, "host_affinity_rules", host_affinity_rules)
         if placement_group_id is not None:
@@ -6349,6 +8251,9 @@ class ComputeInstancePlacementPolicyArgs:
     @property
     @pulumi.getter(name="hostAffinityRules")
     def host_affinity_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstancePlacementPolicyHostAffinityRuleArgs']]]]:
+        """
+        List of host affinity rules. The structure is documented below.
+        """
         return pulumi.get(self, "host_affinity_rules")
 
     @host_affinity_rules.setter
@@ -6358,6 +8263,9 @@ class ComputeInstancePlacementPolicyArgs:
     @property
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the id of the Placement Group to assign to the instance.
+        """
         return pulumi.get(self, "placement_group_id")
 
     @placement_group_id.setter
@@ -6371,6 +8279,10 @@ class ComputeInstancePlacementPolicyHostAffinityRuleArgs:
                  key: pulumi.Input[str],
                  op: pulumi.Input[str],
                  values: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        """
+        :param pulumi.Input[str] key: Affinity label or one of reserved values - `yc.hostId`, `yc.hostGroupId`.
+        :param pulumi.Input[str] op: Affinity action. The only value supported is `IN`.
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "op", op)
         pulumi.set(__self__, "values", values)
@@ -6378,6 +8290,9 @@ class ComputeInstancePlacementPolicyHostAffinityRuleArgs:
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Affinity label or one of reserved values - `yc.hostId`, `yc.hostGroupId`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -6387,6 +8302,9 @@ class ComputeInstancePlacementPolicyHostAffinityRuleArgs:
     @property
     @pulumi.getter
     def op(self) -> pulumi.Input[str]:
+        """
+        Affinity action. The only value supported is `IN`.
+        """
         return pulumi.get(self, "op")
 
     @op.setter
@@ -6410,6 +8328,11 @@ class ComputeInstanceResourcesArgs:
                  memory: pulumi.Input[float],
                  core_fraction: Optional[pulumi.Input[int]] = None,
                  gpus: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] cores: CPU cores for the instance.
+        :param pulumi.Input[float] memory: Memory size in GB.
+        :param pulumi.Input[int] core_fraction: If provided, specifies baseline performance for a core as a percent.
+        """
         pulumi.set(__self__, "cores", cores)
         pulumi.set(__self__, "memory", memory)
         if core_fraction is not None:
@@ -6420,6 +8343,9 @@ class ComputeInstanceResourcesArgs:
     @property
     @pulumi.getter
     def cores(self) -> pulumi.Input[int]:
+        """
+        CPU cores for the instance.
+        """
         return pulumi.get(self, "cores")
 
     @cores.setter
@@ -6429,6 +8355,9 @@ class ComputeInstanceResourcesArgs:
     @property
     @pulumi.getter
     def memory(self) -> pulumi.Input[float]:
+        """
+        Memory size in GB.
+        """
         return pulumi.get(self, "memory")
 
     @memory.setter
@@ -6438,6 +8367,9 @@ class ComputeInstanceResourcesArgs:
     @property
     @pulumi.getter(name="coreFraction")
     def core_fraction(self) -> Optional[pulumi.Input[int]]:
+        """
+        If provided, specifies baseline performance for a core as a percent.
+        """
         return pulumi.get(self, "core_fraction")
 
     @core_fraction.setter
@@ -6458,12 +8390,18 @@ class ComputeInstanceResourcesArgs:
 class ComputeInstanceSchedulingPolicyArgs:
     def __init__(__self__, *,
                  preemptible: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] preemptible: Specifies if the instance is preemptible. Defaults to false.
+        """
         if preemptible is not None:
             pulumi.set(__self__, "preemptible", preemptible)
 
     @property
     @pulumi.getter
     def preemptible(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the instance is preemptible. Defaults to false.
+        """
         return pulumi.get(self, "preemptible")
 
     @preemptible.setter
@@ -6478,6 +8416,14 @@ class ComputeInstanceSecondaryDiskArgs:
                  auto_delete: Optional[pulumi.Input[bool]] = None,
                  device_name: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] disk_id: ID of the disk that is attached to the instance.
+        :param pulumi.Input[bool] auto_delete: Whether the disk is auto-deleted when the instance
+               is deleted. The default value is false.
+        :param pulumi.Input[str] device_name: Name that can be used to access an attached disk
+               under `/dev/disk/by-id/`.
+        :param pulumi.Input[str] mode: Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        """
         pulumi.set(__self__, "disk_id", disk_id)
         if auto_delete is not None:
             pulumi.set(__self__, "auto_delete", auto_delete)
@@ -6489,6 +8435,9 @@ class ComputeInstanceSecondaryDiskArgs:
     @property
     @pulumi.getter(name="diskId")
     def disk_id(self) -> pulumi.Input[str]:
+        """
+        ID of the disk that is attached to the instance.
+        """
         return pulumi.get(self, "disk_id")
 
     @disk_id.setter
@@ -6498,6 +8447,10 @@ class ComputeInstanceSecondaryDiskArgs:
     @property
     @pulumi.getter(name="autoDelete")
     def auto_delete(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether the disk is auto-deleted when the instance
+        is deleted. The default value is false.
+        """
         return pulumi.get(self, "auto_delete")
 
     @auto_delete.setter
@@ -6507,6 +8460,10 @@ class ComputeInstanceSecondaryDiskArgs:
     @property
     @pulumi.getter(name="deviceName")
     def device_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name that can be used to access an attached disk
+        under `/dev/disk/by-id/`.
+        """
         return pulumi.get(self, "device_name")
 
     @device_name.setter
@@ -6516,6 +8473,9 @@ class ComputeInstanceSecondaryDiskArgs:
     @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -6529,6 +8489,11 @@ class DataprocClusterClusterConfigArgs:
                  subcluster_specs: pulumi.Input[Sequence[pulumi.Input['DataprocClusterClusterConfigSubclusterSpecArgs']]],
                  hadoop: Optional[pulumi.Input['DataprocClusterClusterConfigHadoopArgs']] = None,
                  version_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['DataprocClusterClusterConfigSubclusterSpecArgs']]] subcluster_specs: Configuration of the Data Proc subcluster. The structure is documented below.
+        :param pulumi.Input['DataprocClusterClusterConfigHadoopArgs'] hadoop: Data Proc specific options. The structure is documented below.
+        :param pulumi.Input[str] version_id: Version of Data Proc image.
+        """
         pulumi.set(__self__, "subcluster_specs", subcluster_specs)
         if hadoop is not None:
             pulumi.set(__self__, "hadoop", hadoop)
@@ -6538,6 +8503,9 @@ class DataprocClusterClusterConfigArgs:
     @property
     @pulumi.getter(name="subclusterSpecs")
     def subcluster_specs(self) -> pulumi.Input[Sequence[pulumi.Input['DataprocClusterClusterConfigSubclusterSpecArgs']]]:
+        """
+        Configuration of the Data Proc subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "subcluster_specs")
 
     @subcluster_specs.setter
@@ -6547,6 +8515,9 @@ class DataprocClusterClusterConfigArgs:
     @property
     @pulumi.getter
     def hadoop(self) -> Optional[pulumi.Input['DataprocClusterClusterConfigHadoopArgs']]:
+        """
+        Data Proc specific options. The structure is documented below.
+        """
         return pulumi.get(self, "hadoop")
 
     @hadoop.setter
@@ -6556,6 +8527,9 @@ class DataprocClusterClusterConfigArgs:
     @property
     @pulumi.getter(name="versionId")
     def version_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of Data Proc image.
+        """
         return pulumi.get(self, "version_id")
 
     @version_id.setter
@@ -6569,6 +8543,11 @@ class DataprocClusterClusterConfigHadoopArgs:
                  properties: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ssh_public_keys: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] properties: A set of key/value pairs that are used to configure cluster services.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] services: List of services to run on Data Proc cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ssh_public_keys: List of SSH public keys to put to the hosts of the cluster. For information on how to connect to the cluster, see [the official documentation](https://cloud.yandex.com/docs/data-proc/operations/connect).
+        """
         if properties is not None:
             pulumi.set(__self__, "properties", properties)
         if services is not None:
@@ -6579,6 +8558,9 @@ class DataprocClusterClusterConfigHadoopArgs:
     @property
     @pulumi.getter
     def properties(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value pairs that are used to configure cluster services.
+        """
         return pulumi.get(self, "properties")
 
     @properties.setter
@@ -6588,6 +8570,9 @@ class DataprocClusterClusterConfigHadoopArgs:
     @property
     @pulumi.getter
     def services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of services to run on Data Proc cluster.
+        """
         return pulumi.get(self, "services")
 
     @services.setter
@@ -6597,6 +8582,9 @@ class DataprocClusterClusterConfigHadoopArgs:
     @property
     @pulumi.getter(name="sshPublicKeys")
     def ssh_public_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of SSH public keys to put to the hosts of the cluster. For information on how to connect to the cluster, see [the official documentation](https://cloud.yandex.com/docs/data-proc/operations/connect).
+        """
         return pulumi.get(self, "ssh_public_keys")
 
     @ssh_public_keys.setter
@@ -6615,6 +8603,16 @@ class DataprocClusterClusterConfigSubclusterSpecArgs:
                  assign_public_ip: Optional[pulumi.Input[bool]] = None,
                  autoscaling_config: Optional[pulumi.Input['DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs']] = None,
                  id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] hosts_count: Number of hosts within Data Proc subcluster.
+        :param pulumi.Input[str] name: Name of the Data Proc subcluster.
+        :param pulumi.Input['DataprocClusterClusterConfigSubclusterSpecResourcesArgs'] resources: Resources allocated to each host of the Data Proc subcluster. The structure is documented below.
+        :param pulumi.Input[str] role: Role of the subcluster in the Data Proc cluster.
+        :param pulumi.Input[str] subnet_id: The ID of the subnet, to which hosts of the subcluster belong. Subnets of all the subclusters must belong to the same VPC network.
+        :param pulumi.Input[bool] assign_public_ip: If true then assign public IP addresses to the hosts of the subclusters.
+        :param pulumi.Input['DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs'] autoscaling_config: Autoscaling configuration for compute subclusters.
+        :param pulumi.Input[str] id: (Computed) ID of a new Data Proc cluster.
+        """
         pulumi.set(__self__, "hosts_count", hosts_count)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "resources", resources)
@@ -6630,6 +8628,9 @@ class DataprocClusterClusterConfigSubclusterSpecArgs:
     @property
     @pulumi.getter(name="hostsCount")
     def hosts_count(self) -> pulumi.Input[int]:
+        """
+        Number of hosts within Data Proc subcluster.
+        """
         return pulumi.get(self, "hosts_count")
 
     @hosts_count.setter
@@ -6639,6 +8640,9 @@ class DataprocClusterClusterConfigSubclusterSpecArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the Data Proc subcluster.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -6648,6 +8652,9 @@ class DataprocClusterClusterConfigSubclusterSpecArgs:
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Input['DataprocClusterClusterConfigSubclusterSpecResourcesArgs']:
+        """
+        Resources allocated to each host of the Data Proc subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -6657,6 +8664,9 @@ class DataprocClusterClusterConfigSubclusterSpecArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        Role of the subcluster in the Data Proc cluster.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -6666,6 +8676,9 @@ class DataprocClusterClusterConfigSubclusterSpecArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the subnet, to which hosts of the subcluster belong. Subnets of all the subclusters must belong to the same VPC network.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -6675,6 +8688,9 @@ class DataprocClusterClusterConfigSubclusterSpecArgs:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true then assign public IP addresses to the hosts of the subclusters.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -6684,6 +8700,9 @@ class DataprocClusterClusterConfigSubclusterSpecArgs:
     @property
     @pulumi.getter(name="autoscalingConfig")
     def autoscaling_config(self) -> Optional[pulumi.Input['DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs']]:
+        """
+        Autoscaling configuration for compute subclusters.
+        """
         return pulumi.get(self, "autoscaling_config")
 
     @autoscaling_config.setter
@@ -6693,6 +8712,9 @@ class DataprocClusterClusterConfigSubclusterSpecArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) ID of a new Data Proc cluster.
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -6710,6 +8732,15 @@ class DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs:
                  preemptible: Optional[pulumi.Input[bool]] = None,
                  stabilization_duration: Optional[pulumi.Input[int]] = None,
                  warmup_duration: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] max_hosts_count: Maximum number of nodes in autoscaling subclusters.
+        :param pulumi.Input[float] cpu_utilization_target: Defines an autoscaling rule based on the average CPU utilization of the instance group. If not set default autoscaling metric will be used.
+        :param pulumi.Input[int] decommission_timeout: Timeout to gracefully decommission nodes during downscaling. In seconds.
+        :param pulumi.Input[int] measurement_duration: Time in seconds allotted for averaging metrics.
+        :param pulumi.Input[bool] preemptible: Bool flag -- whether to use preemptible compute instances. Preemptible instances are stopped at least once every 24 hours, and can be stopped at any time if their resources are needed by Compute. For more information, see [Preemptible Virtual Machines](https://cloud.yandex.com/docs/compute/concepts/preemptible-vm).
+        :param pulumi.Input[int] stabilization_duration: Minimum amount of time in seconds allotted for monitoring before Instance Groups can reduce the number of instances in the group. During this time, the group size doesn't decrease, even if the new metric values indicate that it should.
+        :param pulumi.Input[int] warmup_duration: The warmup time of the instance in seconds. During this time, traffic is sent to the instance, but instance metrics are not collected.
+        """
         pulumi.set(__self__, "max_hosts_count", max_hosts_count)
         if cpu_utilization_target is not None:
             pulumi.set(__self__, "cpu_utilization_target", cpu_utilization_target)
@@ -6727,6 +8758,9 @@ class DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs:
     @property
     @pulumi.getter(name="maxHostsCount")
     def max_hosts_count(self) -> pulumi.Input[int]:
+        """
+        Maximum number of nodes in autoscaling subclusters.
+        """
         return pulumi.get(self, "max_hosts_count")
 
     @max_hosts_count.setter
@@ -6736,6 +8770,9 @@ class DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs:
     @property
     @pulumi.getter(name="cpuUtilizationTarget")
     def cpu_utilization_target(self) -> Optional[pulumi.Input[float]]:
+        """
+        Defines an autoscaling rule based on the average CPU utilization of the instance group. If not set default autoscaling metric will be used.
+        """
         return pulumi.get(self, "cpu_utilization_target")
 
     @cpu_utilization_target.setter
@@ -6745,6 +8782,9 @@ class DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs:
     @property
     @pulumi.getter(name="decommissionTimeout")
     def decommission_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Timeout to gracefully decommission nodes during downscaling. In seconds.
+        """
         return pulumi.get(self, "decommission_timeout")
 
     @decommission_timeout.setter
@@ -6754,6 +8794,9 @@ class DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs:
     @property
     @pulumi.getter(name="measurementDuration")
     def measurement_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time in seconds allotted for averaging metrics.
+        """
         return pulumi.get(self, "measurement_duration")
 
     @measurement_duration.setter
@@ -6763,6 +8806,9 @@ class DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs:
     @property
     @pulumi.getter
     def preemptible(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Bool flag -- whether to use preemptible compute instances. Preemptible instances are stopped at least once every 24 hours, and can be stopped at any time if their resources are needed by Compute. For more information, see [Preemptible Virtual Machines](https://cloud.yandex.com/docs/compute/concepts/preemptible-vm).
+        """
         return pulumi.get(self, "preemptible")
 
     @preemptible.setter
@@ -6772,6 +8818,9 @@ class DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs:
     @property
     @pulumi.getter(name="stabilizationDuration")
     def stabilization_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimum amount of time in seconds allotted for monitoring before Instance Groups can reduce the number of instances in the group. During this time, the group size doesn't decrease, even if the new metric values indicate that it should.
+        """
         return pulumi.get(self, "stabilization_duration")
 
     @stabilization_duration.setter
@@ -6781,6 +8830,9 @@ class DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs:
     @property
     @pulumi.getter(name="warmupDuration")
     def warmup_duration(self) -> Optional[pulumi.Input[int]]:
+        """
+        The warmup time of the instance in seconds. During this time, traffic is sent to the instance, but instance metrics are not collected.
+        """
         return pulumi.get(self, "warmup_duration")
 
     @warmup_duration.setter
@@ -6794,6 +8846,11 @@ class DataprocClusterClusterConfigSubclusterSpecResourcesArgs:
                  disk_size: pulumi.Input[int],
                  resource_preset_id: pulumi.Input[str],
                  disk_type_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a host, in gigabytes.
+        :param pulumi.Input[str] resource_preset_id: The ID of the preset for computational resources available to a host. All available presets are listed in the [documentation](https://cloud.yandex.com/docs/data-proc/concepts/instance-types).
+        :param pulumi.Input[str] disk_type_id: Type of the storage of a host. One of `network-hdd` (default) or `network-ssd`.
+        """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "resource_preset_id", resource_preset_id)
         if disk_type_id is not None:
@@ -6802,6 +8859,9 @@ class DataprocClusterClusterConfigSubclusterSpecResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -6811,6 +8871,9 @@ class DataprocClusterClusterConfigSubclusterSpecResourcesArgs:
     @property
     @pulumi.getter(name="resourcePresetId")
     def resource_preset_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the preset for computational resources available to a host. All available presets are listed in the [documentation](https://cloud.yandex.com/docs/data-proc/concepts/instance-types).
+        """
         return pulumi.get(self, "resource_preset_id")
 
     @resource_preset_id.setter
@@ -6820,6 +8883,9 @@ class DataprocClusterClusterConfigSubclusterSpecResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the storage of a host. One of `network-hdd` (default) or `network-ssd`.
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -6838,6 +8904,12 @@ class DatatransferEndpointSettingsArgs:
                  mysql_target: Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetArgs']] = None,
                  postgres_source: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceArgs']] = None,
                  postgres_target: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlSourceArgs'] mysql_source: Settings specific to the MySQL source endpoint.
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlTargetArgs'] mysql_target: Settings specific to the MySQL target endpoint.
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresSourceArgs'] postgres_source: Settings specific to the PostgreSQL source endpoint.
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresTargetArgs'] postgres_target: Settings specific to the PostgreSQL target endpoint.
+        """
         if clickhouse_source is not None:
             pulumi.set(__self__, "clickhouse_source", clickhouse_source)
         if clickhouse_target is not None:
@@ -6894,6 +8966,9 @@ class DatatransferEndpointSettingsArgs:
     @property
     @pulumi.getter(name="mysqlSource")
     def mysql_source(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceArgs']]:
+        """
+        Settings specific to the MySQL source endpoint.
+        """
         return pulumi.get(self, "mysql_source")
 
     @mysql_source.setter
@@ -6903,6 +8978,9 @@ class DatatransferEndpointSettingsArgs:
     @property
     @pulumi.getter(name="mysqlTarget")
     def mysql_target(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetArgs']]:
+        """
+        Settings specific to the MySQL target endpoint.
+        """
         return pulumi.get(self, "mysql_target")
 
     @mysql_target.setter
@@ -6912,6 +8990,9 @@ class DatatransferEndpointSettingsArgs:
     @property
     @pulumi.getter(name="postgresSource")
     def postgres_source(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceArgs']]:
+        """
+        Settings specific to the PostgreSQL source endpoint.
+        """
         return pulumi.get(self, "postgres_source")
 
     @postgres_source.setter
@@ -6921,6 +9002,9 @@ class DatatransferEndpointSettingsArgs:
     @property
     @pulumi.getter(name="postgresTarget")
     def postgres_target(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetArgs']]:
+        """
+        Settings specific to the PostgreSQL target endpoint.
+        """
         return pulumi.get(self, "postgres_target")
 
     @postgres_target.setter
@@ -6936,6 +9020,13 @@ class DatatransferEndpointSettingsClickhouseSourceArgs:
                  include_tables: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionArgs'] connection: Connection settings. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] exclude_tables: List of tables which will not be transfered, formatted as `schemaname.tablename`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] include_tables: List of tables to transfer, formatted as `schemaname.tablename`. If omitted or an empty list is specified, all tables will be transferred.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param pulumi.Input[str] subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
         if connection is not None:
             pulumi.set(__self__, "connection", connection)
         if exclude_tables is not None:
@@ -6950,6 +9041,9 @@ class DatatransferEndpointSettingsClickhouseSourceArgs:
     @property
     @pulumi.getter
     def connection(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionArgs']]:
+        """
+        Connection settings. The structure is documented below.
+        """
         return pulumi.get(self, "connection")
 
     @connection.setter
@@ -6959,6 +9053,9 @@ class DatatransferEndpointSettingsClickhouseSourceArgs:
     @property
     @pulumi.getter(name="excludeTables")
     def exclude_tables(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of tables which will not be transfered, formatted as `schemaname.tablename`.
+        """
         return pulumi.get(self, "exclude_tables")
 
     @exclude_tables.setter
@@ -6968,6 +9065,9 @@ class DatatransferEndpointSettingsClickhouseSourceArgs:
     @property
     @pulumi.getter(name="includeTables")
     def include_tables(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of tables to transfer, formatted as `schemaname.tablename`. If omitted or an empty list is specified, all tables will be transferred.
+        """
         return pulumi.get(self, "include_tables")
 
     @include_tables.setter
@@ -6977,6 +9077,9 @@ class DatatransferEndpointSettingsClickhouseSourceArgs:
     @property
     @pulumi.getter(name="securityGroups")
     def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
         return pulumi.get(self, "security_groups")
 
     @security_groups.setter
@@ -6986,6 +9089,9 @@ class DatatransferEndpointSettingsClickhouseSourceArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -6997,12 +9103,18 @@ class DatatransferEndpointSettingsClickhouseSourceArgs:
 class DatatransferEndpointSettingsClickhouseSourceConnectionArgs:
     def __init__(__self__, *,
                  connection_options: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsArgs'] connection_options: Connection options. The structure is documented below.
+        """
         if connection_options is not None:
             pulumi.set(__self__, "connection_options", connection_options)
 
     @property
     @pulumi.getter(name="connectionOptions")
     def connection_options(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsArgs']]:
+        """
+        Connection options. The structure is documented below.
+        """
         return pulumi.get(self, "connection_options")
 
     @connection_options.setter
@@ -7018,6 +9130,13 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsArg
                  on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseArgs']] = None,
                  password: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsPasswordArgs']] = None,
                  user: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] database: Database name.
+        :param pulumi.Input[str] mdb_cluster_id: Identifier of the Managed ClickHouse cluster.
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseArgs'] on_premise: Connection settings of the on-premise ClickHouse server.
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsPasswordArgs'] password: Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        :param pulumi.Input[str] user: User for database access.
+        """
         if database is not None:
             pulumi.set(__self__, "database", database)
         if mdb_cluster_id is not None:
@@ -7032,6 +9151,9 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsArg
     @property
     @pulumi.getter
     def database(self) -> Optional[pulumi.Input[str]]:
+        """
+        Database name.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -7041,6 +9163,9 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsArg
     @property
     @pulumi.getter(name="mdbClusterId")
     def mdb_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Managed ClickHouse cluster.
+        """
         return pulumi.get(self, "mdb_cluster_id")
 
     @mdb_cluster_id.setter
@@ -7050,6 +9175,9 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsArg
     @property
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseArgs']]:
+        """
+        Connection settings of the on-premise ClickHouse server.
+        """
         return pulumi.get(self, "on_premise")
 
     @on_premise.setter
@@ -7059,6 +9187,9 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsArg
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsPasswordArgs']]:
+        """
+        Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -7068,6 +9199,9 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsArg
     @property
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User for database access.
+        """
         return pulumi.get(self, "user")
 
     @user.setter
@@ -7082,6 +9216,12 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnP
                  native_port: Optional[pulumi.Input[int]] = None,
                  shards: Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseShardArgs']]]] = None,
                  tls_mode: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeArgs']] = None):
+        """
+        :param pulumi.Input[int] http_port: TCP port number for the HTTP interface of the ClickHouse server.
+        :param pulumi.Input[int] native_port: TCP port number for the native interface of the ClickHouse server.
+        :param pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseShardArgs']]] shards: The list of ClickHouse shards. The structure is documented below.
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeArgs'] tls_mode: TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         if http_port is not None:
             pulumi.set(__self__, "http_port", http_port)
         if native_port is not None:
@@ -7094,6 +9234,9 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnP
     @property
     @pulumi.getter(name="httpPort")
     def http_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP port number for the HTTP interface of the ClickHouse server.
+        """
         return pulumi.get(self, "http_port")
 
     @http_port.setter
@@ -7103,6 +9246,9 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnP
     @property
     @pulumi.getter(name="nativePort")
     def native_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP port number for the native interface of the ClickHouse server.
+        """
         return pulumi.get(self, "native_port")
 
     @native_port.setter
@@ -7112,6 +9258,9 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnP
     @property
     @pulumi.getter
     def shards(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseShardArgs']]]]:
+        """
+        The list of ClickHouse shards. The structure is documented below.
+        """
         return pulumi.get(self, "shards")
 
     @shards.setter
@@ -7121,6 +9270,9 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnP
     @property
     @pulumi.getter(name="tlsMode")
     def tls_mode(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeArgs']]:
+        """
+        TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         return pulumi.get(self, "tls_mode")
 
     @tls_mode.setter
@@ -7133,6 +9285,10 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnP
     def __init__(__self__, *,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: List of ClickHouse server host names.
+        :param pulumi.Input[str] name: Arbitrary shard name. This name may be used in `sharding` block to specify custom sharding rules.
+        """
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if name is not None:
@@ -7141,6 +9297,9 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnP
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of ClickHouse server host names.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -7150,6 +9309,9 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnP
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Arbitrary shard name. This name may be used in `sharding` block to specify custom sharding rules.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -7162,6 +9324,10 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnP
     def __init__(__self__, *,
                  disabled: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeDisabledArgs']] = None,
                  enabled: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeDisabledArgs'] disabled: Empty block designating that the connection is not secured, i.e. plaintext connection.
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs'] enabled: If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         if disabled is not None:
             pulumi.set(__self__, "disabled", disabled)
         if enabled is not None:
@@ -7170,6 +9336,9 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnP
     @property
     @pulumi.getter
     def disabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeDisabledArgs']]:
+        """
+        Empty block designating that the connection is not secured, i.e. plaintext connection.
+        """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
@@ -7179,6 +9348,9 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnP
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs']]:
+        """
+        If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -7196,12 +9368,18 @@ class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnP
 class DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs:
     def __init__(__self__, *,
                  ca_certificate: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ca_certificate: X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         if ca_certificate is not None:
             pulumi.set(__self__, "ca_certificate", ca_certificate)
 
     @property
     @pulumi.getter(name="caCertificate")
     def ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         return pulumi.get(self, "ca_certificate")
 
     @ca_certificate.setter
@@ -7236,6 +9414,15 @@ class DatatransferEndpointSettingsClickhouseTargetArgs:
                  security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  sharding: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetShardingArgs']] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetAltNameArgs']]] alt_names: Table renaming rules. The structure is documented below.
+        :param pulumi.Input[str] cleanup_policy: How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+        :param pulumi.Input[str] clickhouse_cluster_name: Name of the ClickHouse cluster. For managed ClickHouse clusters defaults to managed cluster ID.
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionArgs'] connection: Connection settings. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseTargetShardingArgs'] sharding: Shard selection rules for the data being transferred. The structure is documented below.
+        :param pulumi.Input[str] subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
         if alt_names is not None:
             pulumi.set(__self__, "alt_names", alt_names)
         if cleanup_policy is not None:
@@ -7254,6 +9441,9 @@ class DatatransferEndpointSettingsClickhouseTargetArgs:
     @property
     @pulumi.getter(name="altNames")
     def alt_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetAltNameArgs']]]]:
+        """
+        Table renaming rules. The structure is documented below.
+        """
         return pulumi.get(self, "alt_names")
 
     @alt_names.setter
@@ -7263,6 +9453,9 @@ class DatatransferEndpointSettingsClickhouseTargetArgs:
     @property
     @pulumi.getter(name="cleanupPolicy")
     def cleanup_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+        """
         return pulumi.get(self, "cleanup_policy")
 
     @cleanup_policy.setter
@@ -7272,6 +9465,9 @@ class DatatransferEndpointSettingsClickhouseTargetArgs:
     @property
     @pulumi.getter(name="clickhouseClusterName")
     def clickhouse_cluster_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the ClickHouse cluster. For managed ClickHouse clusters defaults to managed cluster ID.
+        """
         return pulumi.get(self, "clickhouse_cluster_name")
 
     @clickhouse_cluster_name.setter
@@ -7281,6 +9477,9 @@ class DatatransferEndpointSettingsClickhouseTargetArgs:
     @property
     @pulumi.getter
     def connection(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionArgs']]:
+        """
+        Connection settings. The structure is documented below.
+        """
         return pulumi.get(self, "connection")
 
     @connection.setter
@@ -7290,6 +9489,9 @@ class DatatransferEndpointSettingsClickhouseTargetArgs:
     @property
     @pulumi.getter(name="securityGroups")
     def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
         return pulumi.get(self, "security_groups")
 
     @security_groups.setter
@@ -7299,6 +9501,9 @@ class DatatransferEndpointSettingsClickhouseTargetArgs:
     @property
     @pulumi.getter
     def sharding(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetShardingArgs']]:
+        """
+        Shard selection rules for the data being transferred. The structure is documented below.
+        """
         return pulumi.get(self, "sharding")
 
     @sharding.setter
@@ -7308,6 +9513,9 @@ class DatatransferEndpointSettingsClickhouseTargetArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -7348,12 +9556,18 @@ class DatatransferEndpointSettingsClickhouseTargetAltNameArgs:
 class DatatransferEndpointSettingsClickhouseTargetConnectionArgs:
     def __init__(__self__, *,
                  connection_options: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsArgs'] connection_options: Connection options. The structure is documented below.
+        """
         if connection_options is not None:
             pulumi.set(__self__, "connection_options", connection_options)
 
     @property
     @pulumi.getter(name="connectionOptions")
     def connection_options(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsArgs']]:
+        """
+        Connection options. The structure is documented below.
+        """
         return pulumi.get(self, "connection_options")
 
     @connection_options.setter
@@ -7369,6 +9583,13 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsArg
                  on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseArgs']] = None,
                  password: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsPasswordArgs']] = None,
                  user: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] database: Database name.
+        :param pulumi.Input[str] mdb_cluster_id: Identifier of the Managed ClickHouse cluster.
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseArgs'] on_premise: Connection settings of the on-premise ClickHouse server.
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsPasswordArgs'] password: Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        :param pulumi.Input[str] user: User for database access.
+        """
         if database is not None:
             pulumi.set(__self__, "database", database)
         if mdb_cluster_id is not None:
@@ -7383,6 +9604,9 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsArg
     @property
     @pulumi.getter
     def database(self) -> Optional[pulumi.Input[str]]:
+        """
+        Database name.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -7392,6 +9616,9 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsArg
     @property
     @pulumi.getter(name="mdbClusterId")
     def mdb_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Managed ClickHouse cluster.
+        """
         return pulumi.get(self, "mdb_cluster_id")
 
     @mdb_cluster_id.setter
@@ -7401,6 +9628,9 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsArg
     @property
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseArgs']]:
+        """
+        Connection settings of the on-premise ClickHouse server.
+        """
         return pulumi.get(self, "on_premise")
 
     @on_premise.setter
@@ -7410,6 +9640,9 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsArg
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsPasswordArgs']]:
+        """
+        Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -7419,6 +9652,9 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsArg
     @property
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User for database access.
+        """
         return pulumi.get(self, "user")
 
     @user.setter
@@ -7433,6 +9669,12 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnP
                  native_port: Optional[pulumi.Input[int]] = None,
                  shards: Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseShardArgs']]]] = None,
                  tls_mode: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeArgs']] = None):
+        """
+        :param pulumi.Input[int] http_port: TCP port number for the HTTP interface of the ClickHouse server.
+        :param pulumi.Input[int] native_port: TCP port number for the native interface of the ClickHouse server.
+        :param pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseShardArgs']]] shards: The list of ClickHouse shards. The structure is documented below.
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeArgs'] tls_mode: TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         if http_port is not None:
             pulumi.set(__self__, "http_port", http_port)
         if native_port is not None:
@@ -7445,6 +9687,9 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnP
     @property
     @pulumi.getter(name="httpPort")
     def http_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP port number for the HTTP interface of the ClickHouse server.
+        """
         return pulumi.get(self, "http_port")
 
     @http_port.setter
@@ -7454,6 +9699,9 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnP
     @property
     @pulumi.getter(name="nativePort")
     def native_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP port number for the native interface of the ClickHouse server.
+        """
         return pulumi.get(self, "native_port")
 
     @native_port.setter
@@ -7463,6 +9711,9 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnP
     @property
     @pulumi.getter
     def shards(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseShardArgs']]]]:
+        """
+        The list of ClickHouse shards. The structure is documented below.
+        """
         return pulumi.get(self, "shards")
 
     @shards.setter
@@ -7472,6 +9723,9 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnP
     @property
     @pulumi.getter(name="tlsMode")
     def tls_mode(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeArgs']]:
+        """
+        TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         return pulumi.get(self, "tls_mode")
 
     @tls_mode.setter
@@ -7484,6 +9738,10 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnP
     def __init__(__self__, *,
                  hosts: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: List of ClickHouse server host names.
+        :param pulumi.Input[str] name: Arbitrary shard name. This name may be used in `sharding` block to specify custom sharding rules.
+        """
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if name is not None:
@@ -7492,6 +9750,9 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnP
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of ClickHouse server host names.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -7501,6 +9762,9 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnP
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Arbitrary shard name. This name may be used in `sharding` block to specify custom sharding rules.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -7513,6 +9777,10 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnP
     def __init__(__self__, *,
                  disabled: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeDisabledArgs']] = None,
                  enabled: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeDisabledArgs'] disabled: Empty block designating that the connection is not secured, i.e. plaintext connection.
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs'] enabled: If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         if disabled is not None:
             pulumi.set(__self__, "disabled", disabled)
         if enabled is not None:
@@ -7521,6 +9789,9 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnP
     @property
     @pulumi.getter
     def disabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeDisabledArgs']]:
+        """
+        Empty block designating that the connection is not secured, i.e. plaintext connection.
+        """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
@@ -7530,6 +9801,9 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnP
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs']]:
+        """
+        If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -7547,12 +9821,18 @@ class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnP
 class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs:
     def __init__(__self__, *,
                  ca_certificate: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ca_certificate: X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         if ca_certificate is not None:
             pulumi.set(__self__, "ca_certificate", ca_certificate)
 
     @property
     @pulumi.getter(name="caCertificate")
     def ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         return pulumi.get(self, "ca_certificate")
 
     @ca_certificate.setter
@@ -7582,6 +9862,10 @@ class DatatransferEndpointSettingsClickhouseTargetShardingArgs:
     def __init__(__self__, *,
                  column_value_hash: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHashArgs']] = None,
                  transfer_id: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetShardingTransferIdArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHashArgs'] column_value_hash: Shard data by the hash value of the specified column. The structure is documented below.
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseTargetShardingTransferIdArgs'] transfer_id: Shard data by ID of the transfer.
+        """
         if column_value_hash is not None:
             pulumi.set(__self__, "column_value_hash", column_value_hash)
         if transfer_id is not None:
@@ -7590,6 +9874,9 @@ class DatatransferEndpointSettingsClickhouseTargetShardingArgs:
     @property
     @pulumi.getter(name="columnValueHash")
     def column_value_hash(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHashArgs']]:
+        """
+        Shard data by the hash value of the specified column. The structure is documented below.
+        """
         return pulumi.get(self, "column_value_hash")
 
     @column_value_hash.setter
@@ -7599,6 +9886,9 @@ class DatatransferEndpointSettingsClickhouseTargetShardingArgs:
     @property
     @pulumi.getter(name="transferId")
     def transfer_id(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetShardingTransferIdArgs']]:
+        """
+        Shard data by ID of the transfer.
+        """
         return pulumi.get(self, "transfer_id")
 
     @transfer_id.setter
@@ -7610,12 +9900,18 @@ class DatatransferEndpointSettingsClickhouseTargetShardingArgs:
 class DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHashArgs:
     def __init__(__self__, *,
                  column_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] column_name: The name of the column to calculate hash from.
+        """
         if column_name is not None:
             pulumi.set(__self__, "column_name", column_name)
 
     @property
     @pulumi.getter(name="columnName")
     def column_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the column to calculate hash from.
+        """
         return pulumi.get(self, "column_name")
 
     @column_name.setter
@@ -7638,6 +9934,14 @@ class DatatransferEndpointSettingsMongoSourceArgs:
                  secondary_preferred_mode: Optional[pulumi.Input[bool]] = None,
                  security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsMongoSourceCollectionArgs']]] collections: The list of the MongoDB collections that should be transferred. If omitted, all available collections will be transferred. The structure of the list item is documented below.
+        :param pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionArgs'] connection: Connection settings. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsMongoSourceExcludedCollectionArgs']]] excluded_collections: The list of the MongoDB collections that should not be transferred.
+        :param pulumi.Input[bool] secondary_preferred_mode: whether the secondary server should be preferred to the primary when copying data.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param pulumi.Input[str] subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
         if collections is not None:
             pulumi.set(__self__, "collections", collections)
         if connection is not None:
@@ -7654,6 +9958,9 @@ class DatatransferEndpointSettingsMongoSourceArgs:
     @property
     @pulumi.getter
     def collections(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsMongoSourceCollectionArgs']]]]:
+        """
+        The list of the MongoDB collections that should be transferred. If omitted, all available collections will be transferred. The structure of the list item is documented below.
+        """
         return pulumi.get(self, "collections")
 
     @collections.setter
@@ -7663,6 +9970,9 @@ class DatatransferEndpointSettingsMongoSourceArgs:
     @property
     @pulumi.getter
     def connection(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionArgs']]:
+        """
+        Connection settings. The structure is documented below.
+        """
         return pulumi.get(self, "connection")
 
     @connection.setter
@@ -7672,6 +9982,9 @@ class DatatransferEndpointSettingsMongoSourceArgs:
     @property
     @pulumi.getter(name="excludedCollections")
     def excluded_collections(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsMongoSourceExcludedCollectionArgs']]]]:
+        """
+        The list of the MongoDB collections that should not be transferred.
+        """
         return pulumi.get(self, "excluded_collections")
 
     @excluded_collections.setter
@@ -7681,6 +9994,9 @@ class DatatransferEndpointSettingsMongoSourceArgs:
     @property
     @pulumi.getter(name="secondaryPreferredMode")
     def secondary_preferred_mode(self) -> Optional[pulumi.Input[bool]]:
+        """
+        whether the secondary server should be preferred to the primary when copying data.
+        """
         return pulumi.get(self, "secondary_preferred_mode")
 
     @secondary_preferred_mode.setter
@@ -7690,6 +10006,9 @@ class DatatransferEndpointSettingsMongoSourceArgs:
     @property
     @pulumi.getter(name="securityGroups")
     def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
         return pulumi.get(self, "security_groups")
 
     @security_groups.setter
@@ -7699,6 +10018,9 @@ class DatatransferEndpointSettingsMongoSourceArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -7711,6 +10033,10 @@ class DatatransferEndpointSettingsMongoSourceCollectionArgs:
     def __init__(__self__, *,
                  collection_name: Optional[pulumi.Input[str]] = None,
                  database_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] collection_name: Collection name.
+        :param pulumi.Input[str] database_name: Database name.
+        """
         if collection_name is not None:
             pulumi.set(__self__, "collection_name", collection_name)
         if database_name is not None:
@@ -7719,6 +10045,9 @@ class DatatransferEndpointSettingsMongoSourceCollectionArgs:
     @property
     @pulumi.getter(name="collectionName")
     def collection_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Collection name.
+        """
         return pulumi.get(self, "collection_name")
 
     @collection_name.setter
@@ -7728,6 +10057,9 @@ class DatatransferEndpointSettingsMongoSourceCollectionArgs:
     @property
     @pulumi.getter(name="databaseName")
     def database_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Database name.
+        """
         return pulumi.get(self, "database_name")
 
     @database_name.setter
@@ -7739,12 +10071,18 @@ class DatatransferEndpointSettingsMongoSourceCollectionArgs:
 class DatatransferEndpointSettingsMongoSourceConnectionArgs:
     def __init__(__self__, *,
                  connection_options: Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsArgs'] connection_options: Connection options. The structure is documented below.
+        """
         if connection_options is not None:
             pulumi.set(__self__, "connection_options", connection_options)
 
     @property
     @pulumi.getter(name="connectionOptions")
     def connection_options(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsArgs']]:
+        """
+        Connection options. The structure is documented below.
+        """
         return pulumi.get(self, "connection_options")
 
     @connection_options.setter
@@ -7760,6 +10098,13 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsArgs:
                  on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseArgs']] = None,
                  password: Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsPasswordArgs']] = None,
                  user: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] auth_source: Name of the database associated with the credentials.
+        :param pulumi.Input[str] mdb_cluster_id: Identifier of the Managed ClickHouse cluster.
+        :param pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseArgs'] on_premise: Connection settings of the on-premise ClickHouse server.
+        :param pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsPasswordArgs'] password: Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        :param pulumi.Input[str] user: User for database access.
+        """
         if auth_source is not None:
             pulumi.set(__self__, "auth_source", auth_source)
         if mdb_cluster_id is not None:
@@ -7774,6 +10119,9 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsArgs:
     @property
     @pulumi.getter(name="authSource")
     def auth_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the database associated with the credentials.
+        """
         return pulumi.get(self, "auth_source")
 
     @auth_source.setter
@@ -7783,6 +10131,9 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsArgs:
     @property
     @pulumi.getter(name="mdbClusterId")
     def mdb_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Managed ClickHouse cluster.
+        """
         return pulumi.get(self, "mdb_cluster_id")
 
     @mdb_cluster_id.setter
@@ -7792,6 +10143,9 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsArgs:
     @property
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseArgs']]:
+        """
+        Connection settings of the on-premise ClickHouse server.
+        """
         return pulumi.get(self, "on_premise")
 
     @on_premise.setter
@@ -7801,6 +10155,9 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsPasswordArgs']]:
+        """
+        Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -7810,6 +10167,9 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsArgs:
     @property
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User for database access.
+        """
         return pulumi.get(self, "user")
 
     @user.setter
@@ -7824,6 +10184,12 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremis
                  port: Optional[pulumi.Input[int]] = None,
                  replica_set: Optional[pulumi.Input[str]] = None,
                  tls_mode: Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: Host names of the replica set.
+        :param pulumi.Input[int] port: TCP Port number.
+        :param pulumi.Input[str] replica_set: Replica set name.
+        :param pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeArgs'] tls_mode: TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if port is not None:
@@ -7836,6 +10202,9 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremis
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Host names of the replica set.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -7845,6 +10214,9 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremis
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP Port number.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -7854,6 +10226,9 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremis
     @property
     @pulumi.getter(name="replicaSet")
     def replica_set(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replica set name.
+        """
         return pulumi.get(self, "replica_set")
 
     @replica_set.setter
@@ -7863,6 +10238,9 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremis
     @property
     @pulumi.getter(name="tlsMode")
     def tls_mode(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeArgs']]:
+        """
+        TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         return pulumi.get(self, "tls_mode")
 
     @tls_mode.setter
@@ -7875,6 +10253,10 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremis
     def __init__(__self__, *,
                  disabled: Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeDisabledArgs']] = None,
                  enabled: Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeDisabledArgs'] disabled: Empty block designating that the connection is not secured, i.e. plaintext connection.
+        :param pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs'] enabled: If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         if disabled is not None:
             pulumi.set(__self__, "disabled", disabled)
         if enabled is not None:
@@ -7883,6 +10265,9 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremis
     @property
     @pulumi.getter
     def disabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeDisabledArgs']]:
+        """
+        Empty block designating that the connection is not secured, i.e. plaintext connection.
+        """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
@@ -7892,6 +10277,9 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremis
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs']]:
+        """
+        If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -7909,12 +10297,18 @@ class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremis
 class DatatransferEndpointSettingsMongoSourceConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs:
     def __init__(__self__, *,
                  ca_certificate: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ca_certificate: X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         if ca_certificate is not None:
             pulumi.set(__self__, "ca_certificate", ca_certificate)
 
     @property
     @pulumi.getter(name="caCertificate")
     def ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         return pulumi.get(self, "ca_certificate")
 
     @ca_certificate.setter
@@ -7944,6 +10338,10 @@ class DatatransferEndpointSettingsMongoSourceExcludedCollectionArgs:
     def __init__(__self__, *,
                  collection_name: Optional[pulumi.Input[str]] = None,
                  database_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] collection_name: Collection name.
+        :param pulumi.Input[str] database_name: Database name.
+        """
         if collection_name is not None:
             pulumi.set(__self__, "collection_name", collection_name)
         if database_name is not None:
@@ -7952,6 +10350,9 @@ class DatatransferEndpointSettingsMongoSourceExcludedCollectionArgs:
     @property
     @pulumi.getter(name="collectionName")
     def collection_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Collection name.
+        """
         return pulumi.get(self, "collection_name")
 
     @collection_name.setter
@@ -7961,6 +10362,9 @@ class DatatransferEndpointSettingsMongoSourceExcludedCollectionArgs:
     @property
     @pulumi.getter(name="databaseName")
     def database_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Database name.
+        """
         return pulumi.get(self, "database_name")
 
     @database_name.setter
@@ -7976,6 +10380,13 @@ class DatatransferEndpointSettingsMongoTargetArgs:
                  database: Optional[pulumi.Input[str]] = None,
                  security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] cleanup_policy: How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+        :param pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionArgs'] connection: Connection settings. The structure is documented below.
+        :param pulumi.Input[str] database: Name of the database to transfer.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param pulumi.Input[str] subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
         if cleanup_policy is not None:
             pulumi.set(__self__, "cleanup_policy", cleanup_policy)
         if connection is not None:
@@ -7990,6 +10401,9 @@ class DatatransferEndpointSettingsMongoTargetArgs:
     @property
     @pulumi.getter(name="cleanupPolicy")
     def cleanup_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+        """
         return pulumi.get(self, "cleanup_policy")
 
     @cleanup_policy.setter
@@ -7999,6 +10413,9 @@ class DatatransferEndpointSettingsMongoTargetArgs:
     @property
     @pulumi.getter
     def connection(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionArgs']]:
+        """
+        Connection settings. The structure is documented below.
+        """
         return pulumi.get(self, "connection")
 
     @connection.setter
@@ -8008,6 +10425,9 @@ class DatatransferEndpointSettingsMongoTargetArgs:
     @property
     @pulumi.getter
     def database(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the database to transfer.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -8017,6 +10437,9 @@ class DatatransferEndpointSettingsMongoTargetArgs:
     @property
     @pulumi.getter(name="securityGroups")
     def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
         return pulumi.get(self, "security_groups")
 
     @security_groups.setter
@@ -8026,6 +10449,9 @@ class DatatransferEndpointSettingsMongoTargetArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -8037,12 +10463,18 @@ class DatatransferEndpointSettingsMongoTargetArgs:
 class DatatransferEndpointSettingsMongoTargetConnectionArgs:
     def __init__(__self__, *,
                  connection_options: Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsArgs'] connection_options: Connection options. The structure is documented below.
+        """
         if connection_options is not None:
             pulumi.set(__self__, "connection_options", connection_options)
 
     @property
     @pulumi.getter(name="connectionOptions")
     def connection_options(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsArgs']]:
+        """
+        Connection options. The structure is documented below.
+        """
         return pulumi.get(self, "connection_options")
 
     @connection_options.setter
@@ -8058,6 +10490,13 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsArgs:
                  on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseArgs']] = None,
                  password: Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsPasswordArgs']] = None,
                  user: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] auth_source: Name of the database associated with the credentials.
+        :param pulumi.Input[str] mdb_cluster_id: Identifier of the Managed ClickHouse cluster.
+        :param pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseArgs'] on_premise: Connection settings of the on-premise ClickHouse server.
+        :param pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsPasswordArgs'] password: Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        :param pulumi.Input[str] user: User for database access.
+        """
         if auth_source is not None:
             pulumi.set(__self__, "auth_source", auth_source)
         if mdb_cluster_id is not None:
@@ -8072,6 +10511,9 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsArgs:
     @property
     @pulumi.getter(name="authSource")
     def auth_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the database associated with the credentials.
+        """
         return pulumi.get(self, "auth_source")
 
     @auth_source.setter
@@ -8081,6 +10523,9 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsArgs:
     @property
     @pulumi.getter(name="mdbClusterId")
     def mdb_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Managed ClickHouse cluster.
+        """
         return pulumi.get(self, "mdb_cluster_id")
 
     @mdb_cluster_id.setter
@@ -8090,6 +10535,9 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsArgs:
     @property
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseArgs']]:
+        """
+        Connection settings of the on-premise ClickHouse server.
+        """
         return pulumi.get(self, "on_premise")
 
     @on_premise.setter
@@ -8099,6 +10547,9 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsPasswordArgs']]:
+        """
+        Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -8108,6 +10559,9 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsArgs:
     @property
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User for database access.
+        """
         return pulumi.get(self, "user")
 
     @user.setter
@@ -8122,6 +10576,12 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremis
                  port: Optional[pulumi.Input[int]] = None,
                  replica_set: Optional[pulumi.Input[str]] = None,
                  tls_mode: Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: Host names of the replica set.
+        :param pulumi.Input[int] port: TCP Port number.
+        :param pulumi.Input[str] replica_set: Replica set name.
+        :param pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeArgs'] tls_mode: TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if port is not None:
@@ -8134,6 +10594,9 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremis
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Host names of the replica set.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -8143,6 +10606,9 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremis
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP Port number.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -8152,6 +10618,9 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremis
     @property
     @pulumi.getter(name="replicaSet")
     def replica_set(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replica set name.
+        """
         return pulumi.get(self, "replica_set")
 
     @replica_set.setter
@@ -8161,6 +10630,9 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremis
     @property
     @pulumi.getter(name="tlsMode")
     def tls_mode(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeArgs']]:
+        """
+        TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         return pulumi.get(self, "tls_mode")
 
     @tls_mode.setter
@@ -8173,6 +10645,10 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremis
     def __init__(__self__, *,
                  disabled: Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeDisabledArgs']] = None,
                  enabled: Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeDisabledArgs'] disabled: Empty block designating that the connection is not secured, i.e. plaintext connection.
+        :param pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs'] enabled: If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         if disabled is not None:
             pulumi.set(__self__, "disabled", disabled)
         if enabled is not None:
@@ -8181,6 +10657,9 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremis
     @property
     @pulumi.getter
     def disabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeDisabledArgs']]:
+        """
+        Empty block designating that the connection is not secured, i.e. plaintext connection.
+        """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
@@ -8190,6 +10669,9 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremis
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs']]:
+        """
+        If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -8207,12 +10689,18 @@ class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremis
 class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremiseTlsModeEnabledArgs:
     def __init__(__self__, *,
                  ca_certificate: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ca_certificate: X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         if ca_certificate is not None:
             pulumi.set(__self__, "ca_certificate", ca_certificate)
 
     @property
     @pulumi.getter(name="caCertificate")
     def ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         return pulumi.get(self, "ca_certificate")
 
     @ca_certificate.setter
@@ -8250,6 +10738,17 @@ class DatatransferEndpointSettingsMysqlSourceArgs:
                  service_database: Optional[pulumi.Input[str]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionArgs'] connection: Connection settings. The structure is documented below.
+        :param pulumi.Input[str] database: Name of the database to transfer.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] exclude_tables_regexes: Opposite of `include_table_regex`. The tables matching the specified regular expressions will not be transferred.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] include_tables_regexes: List of regular expressions of table names which should be transferred. A table name is formatted as schemaname.tablename. For example, a single regular expression may look like `^mydb.employees$`.
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlSourceObjectTransferSettingsArgs'] object_transfer_settings: Defines which database schema objects should be transferred, e.g. views, functions, etc.
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlSourcePasswordArgs'] password: Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param pulumi.Input[str] timezone: Timezone to use for parsing timestamps for saving source timezones. Accepts values from IANA timezone database. Default: local timezone.
+        :param pulumi.Input[str] user: User for the database access.
+        """
         if connection is not None:
             pulumi.set(__self__, "connection", connection)
         if database is not None:
@@ -8274,6 +10773,9 @@ class DatatransferEndpointSettingsMysqlSourceArgs:
     @property
     @pulumi.getter
     def connection(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionArgs']]:
+        """
+        Connection settings. The structure is documented below.
+        """
         return pulumi.get(self, "connection")
 
     @connection.setter
@@ -8283,6 +10785,9 @@ class DatatransferEndpointSettingsMysqlSourceArgs:
     @property
     @pulumi.getter
     def database(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the database to transfer.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -8292,6 +10797,9 @@ class DatatransferEndpointSettingsMysqlSourceArgs:
     @property
     @pulumi.getter(name="excludeTablesRegexes")
     def exclude_tables_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Opposite of `include_table_regex`. The tables matching the specified regular expressions will not be transferred.
+        """
         return pulumi.get(self, "exclude_tables_regexes")
 
     @exclude_tables_regexes.setter
@@ -8301,6 +10809,9 @@ class DatatransferEndpointSettingsMysqlSourceArgs:
     @property
     @pulumi.getter(name="includeTablesRegexes")
     def include_tables_regexes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of regular expressions of table names which should be transferred. A table name is formatted as schemaname.tablename. For example, a single regular expression may look like `^mydb.employees$`.
+        """
         return pulumi.get(self, "include_tables_regexes")
 
     @include_tables_regexes.setter
@@ -8310,6 +10821,9 @@ class DatatransferEndpointSettingsMysqlSourceArgs:
     @property
     @pulumi.getter(name="objectTransferSettings")
     def object_transfer_settings(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceObjectTransferSettingsArgs']]:
+        """
+        Defines which database schema objects should be transferred, e.g. views, functions, etc.
+        """
         return pulumi.get(self, "object_transfer_settings")
 
     @object_transfer_settings.setter
@@ -8319,6 +10833,9 @@ class DatatransferEndpointSettingsMysqlSourceArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourcePasswordArgs']]:
+        """
+        Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -8328,6 +10845,9 @@ class DatatransferEndpointSettingsMysqlSourceArgs:
     @property
     @pulumi.getter(name="securityGroups")
     def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
         return pulumi.get(self, "security_groups")
 
     @security_groups.setter
@@ -8346,6 +10866,9 @@ class DatatransferEndpointSettingsMysqlSourceArgs:
     @property
     @pulumi.getter
     def timezone(self) -> Optional[pulumi.Input[str]]:
+        """
+        Timezone to use for parsing timestamps for saving source timezones. Accepts values from IANA timezone database. Default: local timezone.
+        """
         return pulumi.get(self, "timezone")
 
     @timezone.setter
@@ -8355,6 +10878,9 @@ class DatatransferEndpointSettingsMysqlSourceArgs:
     @property
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User for the database access.
+        """
         return pulumi.get(self, "user")
 
     @user.setter
@@ -8367,6 +10893,10 @@ class DatatransferEndpointSettingsMysqlSourceConnectionArgs:
     def __init__(__self__, *,
                  mdb_cluster_id: Optional[pulumi.Input[str]] = None,
                  on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs']] = None):
+        """
+        :param pulumi.Input[str] mdb_cluster_id: Identifier of the Managed MySQL cluster.
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise MySQL server.
+        """
         if mdb_cluster_id is not None:
             pulumi.set(__self__, "mdb_cluster_id", mdb_cluster_id)
         if on_premise is not None:
@@ -8375,6 +10905,9 @@ class DatatransferEndpointSettingsMysqlSourceConnectionArgs:
     @property
     @pulumi.getter(name="mdbClusterId")
     def mdb_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Managed MySQL cluster.
+        """
         return pulumi.get(self, "mdb_cluster_id")
 
     @mdb_cluster_id.setter
@@ -8384,6 +10917,9 @@ class DatatransferEndpointSettingsMysqlSourceConnectionArgs:
     @property
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs']]:
+        """
+        Connection settings of the on-premise MySQL server.
+        """
         return pulumi.get(self, "on_premise")
 
     @on_premise.setter
@@ -8398,6 +10934,12 @@ class DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tls_mode: Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: Host names of the replica set.
+        :param pulumi.Input[int] port: TCP Port number.
+        :param pulumi.Input[str] subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeArgs'] tls_mode: TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if port is not None:
@@ -8410,6 +10952,9 @@ class DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs:
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Host names of the replica set.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -8419,6 +10964,9 @@ class DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP Port number.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -8428,6 +10976,9 @@ class DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -8437,6 +10988,9 @@ class DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs:
     @property
     @pulumi.getter(name="tlsMode")
     def tls_mode(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeArgs']]:
+        """
+        TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         return pulumi.get(self, "tls_mode")
 
     @tls_mode.setter
@@ -8449,6 +11003,10 @@ class DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeArgs:
     def __init__(__self__, *,
                  disabled: Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeDisabledArgs']] = None,
                  enabled: Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeEnabledArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeDisabledArgs'] disabled: Empty block designating that the connection is not secured, i.e. plaintext connection.
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeEnabledArgs'] enabled: If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         if disabled is not None:
             pulumi.set(__self__, "disabled", disabled)
         if enabled is not None:
@@ -8457,6 +11015,9 @@ class DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeArgs:
     @property
     @pulumi.getter
     def disabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeDisabledArgs']]:
+        """
+        Empty block designating that the connection is not secured, i.e. plaintext connection.
+        """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
@@ -8466,6 +11027,9 @@ class DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeEnabledArgs']]:
+        """
+        If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -8483,12 +11047,18 @@ class DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeDisabledA
 class DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeEnabledArgs:
     def __init__(__self__, *,
                  ca_certificate: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ca_certificate: X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         if ca_certificate is not None:
             pulumi.set(__self__, "ca_certificate", ca_certificate)
 
     @property
     @pulumi.getter(name="caCertificate")
     def ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         return pulumi.get(self, "ca_certificate")
 
     @ca_certificate.setter
@@ -8565,6 +11135,16 @@ class DatatransferEndpointSettingsMysqlTargetArgs:
                  sql_mode: Optional[pulumi.Input[str]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
                  user: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionArgs'] connection: Connection settings. The structure is documented below.
+        :param pulumi.Input[str] database: Name of the database to transfer.
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlTargetPasswordArgs'] password: Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param pulumi.Input[bool] skip_constraint_checks: When true, disables foreign key checks. See [foreign_key_checks](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_foreign_key_checks). False by default.
+        :param pulumi.Input[str] sql_mode: [sql_mode](https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html) to use when interacting with the server. Defaults to "NO_AUTO_VALUE_ON_ZERO,NO_DIR_IN_CREATE,NO_ENGINE_SUBSTITUTION".
+        :param pulumi.Input[str] timezone: Timezone to use for parsing timestamps for saving source timezones. Accepts values from IANA timezone database. Default: local timezone.
+        :param pulumi.Input[str] user: User for the database access.
+        """
         if connection is not None:
             pulumi.set(__self__, "connection", connection)
         if database is not None:
@@ -8585,6 +11165,9 @@ class DatatransferEndpointSettingsMysqlTargetArgs:
     @property
     @pulumi.getter
     def connection(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionArgs']]:
+        """
+        Connection settings. The structure is documented below.
+        """
         return pulumi.get(self, "connection")
 
     @connection.setter
@@ -8594,6 +11177,9 @@ class DatatransferEndpointSettingsMysqlTargetArgs:
     @property
     @pulumi.getter
     def database(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the database to transfer.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -8603,6 +11189,9 @@ class DatatransferEndpointSettingsMysqlTargetArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetPasswordArgs']]:
+        """
+        Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -8612,6 +11201,9 @@ class DatatransferEndpointSettingsMysqlTargetArgs:
     @property
     @pulumi.getter(name="securityGroups")
     def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
         return pulumi.get(self, "security_groups")
 
     @security_groups.setter
@@ -8621,6 +11213,9 @@ class DatatransferEndpointSettingsMysqlTargetArgs:
     @property
     @pulumi.getter(name="skipConstraintChecks")
     def skip_constraint_checks(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When true, disables foreign key checks. See [foreign_key_checks](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_foreign_key_checks). False by default.
+        """
         return pulumi.get(self, "skip_constraint_checks")
 
     @skip_constraint_checks.setter
@@ -8630,6 +11225,9 @@ class DatatransferEndpointSettingsMysqlTargetArgs:
     @property
     @pulumi.getter(name="sqlMode")
     def sql_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        [sql_mode](https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html) to use when interacting with the server. Defaults to "NO_AUTO_VALUE_ON_ZERO,NO_DIR_IN_CREATE,NO_ENGINE_SUBSTITUTION".
+        """
         return pulumi.get(self, "sql_mode")
 
     @sql_mode.setter
@@ -8639,6 +11237,9 @@ class DatatransferEndpointSettingsMysqlTargetArgs:
     @property
     @pulumi.getter
     def timezone(self) -> Optional[pulumi.Input[str]]:
+        """
+        Timezone to use for parsing timestamps for saving source timezones. Accepts values from IANA timezone database. Default: local timezone.
+        """
         return pulumi.get(self, "timezone")
 
     @timezone.setter
@@ -8648,6 +11249,9 @@ class DatatransferEndpointSettingsMysqlTargetArgs:
     @property
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User for the database access.
+        """
         return pulumi.get(self, "user")
 
     @user.setter
@@ -8660,6 +11264,10 @@ class DatatransferEndpointSettingsMysqlTargetConnectionArgs:
     def __init__(__self__, *,
                  mdb_cluster_id: Optional[pulumi.Input[str]] = None,
                  on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs']] = None):
+        """
+        :param pulumi.Input[str] mdb_cluster_id: Identifier of the Managed MySQL cluster.
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise MySQL server.
+        """
         if mdb_cluster_id is not None:
             pulumi.set(__self__, "mdb_cluster_id", mdb_cluster_id)
         if on_premise is not None:
@@ -8668,6 +11276,9 @@ class DatatransferEndpointSettingsMysqlTargetConnectionArgs:
     @property
     @pulumi.getter(name="mdbClusterId")
     def mdb_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Managed MySQL cluster.
+        """
         return pulumi.get(self, "mdb_cluster_id")
 
     @mdb_cluster_id.setter
@@ -8677,6 +11288,9 @@ class DatatransferEndpointSettingsMysqlTargetConnectionArgs:
     @property
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs']]:
+        """
+        Connection settings of the on-premise MySQL server.
+        """
         return pulumi.get(self, "on_premise")
 
     @on_premise.setter
@@ -8691,6 +11305,12 @@ class DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tls_mode: Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: Host names of the replica set.
+        :param pulumi.Input[int] port: TCP Port number.
+        :param pulumi.Input[str] subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeArgs'] tls_mode: TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if port is not None:
@@ -8703,6 +11323,9 @@ class DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs:
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Host names of the replica set.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -8712,6 +11335,9 @@ class DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP Port number.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -8721,6 +11347,9 @@ class DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -8730,6 +11359,9 @@ class DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs:
     @property
     @pulumi.getter(name="tlsMode")
     def tls_mode(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeArgs']]:
+        """
+        TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         return pulumi.get(self, "tls_mode")
 
     @tls_mode.setter
@@ -8742,6 +11374,10 @@ class DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeArgs:
     def __init__(__self__, *,
                  disabled: Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeDisabledArgs']] = None,
                  enabled: Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeEnabledArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeDisabledArgs'] disabled: Empty block designating that the connection is not secured, i.e. plaintext connection.
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeEnabledArgs'] enabled: If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         if disabled is not None:
             pulumi.set(__self__, "disabled", disabled)
         if enabled is not None:
@@ -8750,6 +11386,9 @@ class DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeArgs:
     @property
     @pulumi.getter
     def disabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeDisabledArgs']]:
+        """
+        Empty block designating that the connection is not secured, i.e. plaintext connection.
+        """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
@@ -8759,6 +11398,9 @@ class DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeEnabledArgs']]:
+        """
+        If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -8776,12 +11418,18 @@ class DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeDisabledA
 class DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseTlsModeEnabledArgs:
     def __init__(__self__, *,
                  ca_certificate: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ca_certificate: X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         if ca_certificate is not None:
             pulumi.set(__self__, "ca_certificate", ca_certificate)
 
     @property
     @pulumi.getter(name="caCertificate")
     def ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         return pulumi.get(self, "ca_certificate")
 
     @ca_certificate.setter
@@ -8819,6 +11467,18 @@ class DatatransferEndpointSettingsPostgresSourceArgs:
                  service_schema: Optional[pulumi.Input[str]] = None,
                  slot_gigabyte_lag_limit: Optional[pulumi.Input[int]] = None,
                  user: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionArgs'] connection: Connection settings. The structure is documented below.
+        :param pulumi.Input[str] database: Name of the database to transfer.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] exclude_tables: List of tables which will not be transfered, formatted as `schemaname.tablename`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] include_tables: List of tables to transfer, formatted as `schemaname.tablename`. If omitted or an empty list is specified, all tables will be transferred.
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresSourceObjectTransferSettingsArgs'] object_transfer_settings: Defines which database schema objects should be transferred, e.g. views, functions, etc.
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresSourcePasswordArgs'] password: Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param pulumi.Input[str] service_schema: Name of the database schema in which auxiliary tables needed for the transfer will be created. Empty `service_schema` implies schema "public".
+        :param pulumi.Input[int] slot_gigabyte_lag_limit: Maximum WAL size held by the replication slot, in gigabytes. Exceeding this limit will result in a replication failure and deletion of the replication slot. Unlimited by default.
+        :param pulumi.Input[str] user: User for the database access.
+        """
         if connection is not None:
             pulumi.set(__self__, "connection", connection)
         if database is not None:
@@ -8843,6 +11503,9 @@ class DatatransferEndpointSettingsPostgresSourceArgs:
     @property
     @pulumi.getter
     def connection(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionArgs']]:
+        """
+        Connection settings. The structure is documented below.
+        """
         return pulumi.get(self, "connection")
 
     @connection.setter
@@ -8852,6 +11515,9 @@ class DatatransferEndpointSettingsPostgresSourceArgs:
     @property
     @pulumi.getter
     def database(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the database to transfer.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -8861,6 +11527,9 @@ class DatatransferEndpointSettingsPostgresSourceArgs:
     @property
     @pulumi.getter(name="excludeTables")
     def exclude_tables(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of tables which will not be transfered, formatted as `schemaname.tablename`.
+        """
         return pulumi.get(self, "exclude_tables")
 
     @exclude_tables.setter
@@ -8870,6 +11539,9 @@ class DatatransferEndpointSettingsPostgresSourceArgs:
     @property
     @pulumi.getter(name="includeTables")
     def include_tables(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of tables to transfer, formatted as `schemaname.tablename`. If omitted or an empty list is specified, all tables will be transferred.
+        """
         return pulumi.get(self, "include_tables")
 
     @include_tables.setter
@@ -8879,6 +11551,9 @@ class DatatransferEndpointSettingsPostgresSourceArgs:
     @property
     @pulumi.getter(name="objectTransferSettings")
     def object_transfer_settings(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceObjectTransferSettingsArgs']]:
+        """
+        Defines which database schema objects should be transferred, e.g. views, functions, etc.
+        """
         return pulumi.get(self, "object_transfer_settings")
 
     @object_transfer_settings.setter
@@ -8888,6 +11563,9 @@ class DatatransferEndpointSettingsPostgresSourceArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourcePasswordArgs']]:
+        """
+        Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -8897,6 +11575,9 @@ class DatatransferEndpointSettingsPostgresSourceArgs:
     @property
     @pulumi.getter(name="securityGroups")
     def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
         return pulumi.get(self, "security_groups")
 
     @security_groups.setter
@@ -8906,6 +11587,9 @@ class DatatransferEndpointSettingsPostgresSourceArgs:
     @property
     @pulumi.getter(name="serviceSchema")
     def service_schema(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the database schema in which auxiliary tables needed for the transfer will be created. Empty `service_schema` implies schema "public".
+        """
         return pulumi.get(self, "service_schema")
 
     @service_schema.setter
@@ -8915,6 +11599,9 @@ class DatatransferEndpointSettingsPostgresSourceArgs:
     @property
     @pulumi.getter(name="slotGigabyteLagLimit")
     def slot_gigabyte_lag_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum WAL size held by the replication slot, in gigabytes. Exceeding this limit will result in a replication failure and deletion of the replication slot. Unlimited by default.
+        """
         return pulumi.get(self, "slot_gigabyte_lag_limit")
 
     @slot_gigabyte_lag_limit.setter
@@ -8924,6 +11611,9 @@ class DatatransferEndpointSettingsPostgresSourceArgs:
     @property
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User for the database access.
+        """
         return pulumi.get(self, "user")
 
     @user.setter
@@ -8936,6 +11626,10 @@ class DatatransferEndpointSettingsPostgresSourceConnectionArgs:
     def __init__(__self__, *,
                  mdb_cluster_id: Optional[pulumi.Input[str]] = None,
                  on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs']] = None):
+        """
+        :param pulumi.Input[str] mdb_cluster_id: Identifier of the Managed MySQL cluster.
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise MySQL server.
+        """
         if mdb_cluster_id is not None:
             pulumi.set(__self__, "mdb_cluster_id", mdb_cluster_id)
         if on_premise is not None:
@@ -8944,6 +11638,9 @@ class DatatransferEndpointSettingsPostgresSourceConnectionArgs:
     @property
     @pulumi.getter(name="mdbClusterId")
     def mdb_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Managed MySQL cluster.
+        """
         return pulumi.get(self, "mdb_cluster_id")
 
     @mdb_cluster_id.setter
@@ -8953,6 +11650,9 @@ class DatatransferEndpointSettingsPostgresSourceConnectionArgs:
     @property
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs']]:
+        """
+        Connection settings of the on-premise MySQL server.
+        """
         return pulumi.get(self, "on_premise")
 
     @on_premise.setter
@@ -8967,6 +11667,12 @@ class DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tls_mode: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: Host names of the replica set.
+        :param pulumi.Input[int] port: TCP Port number.
+        :param pulumi.Input[str] subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeArgs'] tls_mode: TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if port is not None:
@@ -8979,6 +11685,9 @@ class DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs:
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Host names of the replica set.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -8988,6 +11697,9 @@ class DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP Port number.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -8997,6 +11709,9 @@ class DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -9006,6 +11721,9 @@ class DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs:
     @property
     @pulumi.getter(name="tlsMode")
     def tls_mode(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeArgs']]:
+        """
+        TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         return pulumi.get(self, "tls_mode")
 
     @tls_mode.setter
@@ -9018,6 +11736,10 @@ class DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeArgs:
     def __init__(__self__, *,
                  disabled: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeDisabledArgs']] = None,
                  enabled: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeEnabledArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeDisabledArgs'] disabled: Empty block designating that the connection is not secured, i.e. plaintext connection.
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeEnabledArgs'] enabled: If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         if disabled is not None:
             pulumi.set(__self__, "disabled", disabled)
         if enabled is not None:
@@ -9026,6 +11748,9 @@ class DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeArgs:
     @property
     @pulumi.getter
     def disabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeDisabledArgs']]:
+        """
+        Empty block designating that the connection is not secured, i.e. plaintext connection.
+        """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
@@ -9035,6 +11760,9 @@ class DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeEnabledArgs']]:
+        """
+        If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -9052,12 +11780,18 @@ class DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeDisabl
 class DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseTlsModeEnabledArgs:
     def __init__(__self__, *,
                  ca_certificate: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ca_certificate: X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         if ca_certificate is not None:
             pulumi.set(__self__, "ca_certificate", ca_certificate)
 
     @property
     @pulumi.getter(name="caCertificate")
     def ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         return pulumi.get(self, "ca_certificate")
 
     @ca_certificate.setter
@@ -9299,6 +12033,13 @@ class DatatransferEndpointSettingsPostgresTargetArgs:
                  password: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetPasswordArgs']] = None,
                  security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  user: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionArgs'] connection: Connection settings. The structure is documented below.
+        :param pulumi.Input[str] database: Name of the database to transfer.
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresTargetPasswordArgs'] password: Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param pulumi.Input[str] user: User for the database access.
+        """
         if connection is not None:
             pulumi.set(__self__, "connection", connection)
         if database is not None:
@@ -9313,6 +12054,9 @@ class DatatransferEndpointSettingsPostgresTargetArgs:
     @property
     @pulumi.getter
     def connection(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionArgs']]:
+        """
+        Connection settings. The structure is documented below.
+        """
         return pulumi.get(self, "connection")
 
     @connection.setter
@@ -9322,6 +12066,9 @@ class DatatransferEndpointSettingsPostgresTargetArgs:
     @property
     @pulumi.getter
     def database(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the database to transfer.
+        """
         return pulumi.get(self, "database")
 
     @database.setter
@@ -9331,6 +12078,9 @@ class DatatransferEndpointSettingsPostgresTargetArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetPasswordArgs']]:
+        """
+        Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -9340,6 +12090,9 @@ class DatatransferEndpointSettingsPostgresTargetArgs:
     @property
     @pulumi.getter(name="securityGroups")
     def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
         return pulumi.get(self, "security_groups")
 
     @security_groups.setter
@@ -9349,6 +12102,9 @@ class DatatransferEndpointSettingsPostgresTargetArgs:
     @property
     @pulumi.getter
     def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User for the database access.
+        """
         return pulumi.get(self, "user")
 
     @user.setter
@@ -9361,6 +12117,10 @@ class DatatransferEndpointSettingsPostgresTargetConnectionArgs:
     def __init__(__self__, *,
                  mdb_cluster_id: Optional[pulumi.Input[str]] = None,
                  on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs']] = None):
+        """
+        :param pulumi.Input[str] mdb_cluster_id: Identifier of the Managed MySQL cluster.
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise MySQL server.
+        """
         if mdb_cluster_id is not None:
             pulumi.set(__self__, "mdb_cluster_id", mdb_cluster_id)
         if on_premise is not None:
@@ -9369,6 +12129,9 @@ class DatatransferEndpointSettingsPostgresTargetConnectionArgs:
     @property
     @pulumi.getter(name="mdbClusterId")
     def mdb_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Managed MySQL cluster.
+        """
         return pulumi.get(self, "mdb_cluster_id")
 
     @mdb_cluster_id.setter
@@ -9378,6 +12141,9 @@ class DatatransferEndpointSettingsPostgresTargetConnectionArgs:
     @property
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs']]:
+        """
+        Connection settings of the on-premise MySQL server.
+        """
         return pulumi.get(self, "on_premise")
 
     @on_premise.setter
@@ -9392,6 +12158,12 @@ class DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  tls_mode: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] hosts: Host names of the replica set.
+        :param pulumi.Input[int] port: TCP Port number.
+        :param pulumi.Input[str] subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeArgs'] tls_mode: TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         if hosts is not None:
             pulumi.set(__self__, "hosts", hosts)
         if port is not None:
@@ -9404,6 +12176,9 @@ class DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs:
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Host names of the replica set.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -9413,6 +12188,9 @@ class DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        TCP Port number.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -9422,6 +12200,9 @@ class DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -9431,6 +12212,9 @@ class DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs:
     @property
     @pulumi.getter(name="tlsMode")
     def tls_mode(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeArgs']]:
+        """
+        TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
         return pulumi.get(self, "tls_mode")
 
     @tls_mode.setter
@@ -9443,6 +12227,10 @@ class DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeArgs:
     def __init__(__self__, *,
                  disabled: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeDisabledArgs']] = None,
                  enabled: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeEnabledArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeDisabledArgs'] disabled: Empty block designating that the connection is not secured, i.e. plaintext connection.
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeEnabledArgs'] enabled: If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         if disabled is not None:
             pulumi.set(__self__, "disabled", disabled)
         if enabled is not None:
@@ -9451,6 +12239,9 @@ class DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeArgs:
     @property
     @pulumi.getter
     def disabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeDisabledArgs']]:
+        """
+        Empty block designating that the connection is not secured, i.e. plaintext connection.
+        """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
@@ -9460,6 +12251,9 @@ class DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeEnabledArgs']]:
+        """
+        If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -9477,12 +12271,18 @@ class DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeDisabl
 class DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeEnabledArgs:
     def __init__(__self__, *,
                  ca_certificate: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ca_certificate: X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         if ca_certificate is not None:
             pulumi.set(__self__, "ca_certificate", ca_certificate)
 
     @property
     @pulumi.getter(name="caCertificate")
     def ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
         return pulumi.get(self, "ca_certificate")
 
     @ca_certificate.setter
@@ -10051,12 +12851,18 @@ class FunctionTriggerTimerArgs:
 class KubernetesClusterKmsProviderArgs:
     def __init__(__self__, *,
                  key_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key_id: KMS key ID.
+        """
         if key_id is not None:
             pulumi.set(__self__, "key_id", key_id)
 
     @property
     @pulumi.getter(name="keyId")
     def key_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        KMS key ID.
+        """
         return pulumi.get(self, "key_id")
 
     @key_id.setter
@@ -10079,6 +12885,23 @@ class KubernetesClusterMasterArgs:
                  version: Optional[pulumi.Input[str]] = None,
                  version_infos: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterMasterVersionInfoArgs']]]] = None,
                  zonal: Optional[pulumi.Input['KubernetesClusterMasterZonalArgs']] = None):
+        """
+        :param pulumi.Input[str] cluster_ca_certificate: (Computed) PEM-encoded public certificate that is the root of trust for the Kubernetes cluster.
+        :param pulumi.Input[str] external_v4_address: (Computed) An IPv4 external network address that is assigned to the master.
+        :param pulumi.Input[str] external_v4_endpoint: (Computed) External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).
+        :param pulumi.Input[str] internal_v4_address: (Computed) An IPv4 internal network address that is assigned to the master.
+        :param pulumi.Input[str] internal_v4_endpoint: (Computed) Internal endpoint that can be used to connect to the master from cloud networks.
+        :param pulumi.Input['KubernetesClusterMasterMaintenancePolicyArgs'] maintenance_policy: (Optional) (Computed) Maintenance policy for Kubernetes master.
+               If policy is omitted, automatic revision upgrades of the kubernetes master are enabled and could happen at any time.
+               Revision upgrades are performed only within the same minor version, e.g. 1.13.
+               Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.
+        :param pulumi.Input[bool] public_ip: (Optional) (Computed) Boolean flag. When `true`, Kubernetes master will have visible ipv4 address.
+        :param pulumi.Input['KubernetesClusterMasterRegionalArgs'] regional: (Optional) Initialize parameters for Regional Master (highly available master). The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: (Optional) List of security group IDs to which the Kubernetes cluster belongs.
+        :param pulumi.Input[str] version: (Optional) (Computed) Version of Kubernetes that will be used for master.
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesClusterMasterVersionInfoArgs']]] version_infos: (Computed) Information about cluster version. The structure is documented below.
+        :param pulumi.Input['KubernetesClusterMasterZonalArgs'] zonal: (Optional) Initialize parameters for Zonal Master (single node master). The structure is documented below.
+        """
         if cluster_ca_certificate is not None:
             pulumi.set(__self__, "cluster_ca_certificate", cluster_ca_certificate)
         if external_v4_address is not None:
@@ -10107,6 +12930,9 @@ class KubernetesClusterMasterArgs:
     @property
     @pulumi.getter(name="clusterCaCertificate")
     def cluster_ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) PEM-encoded public certificate that is the root of trust for the Kubernetes cluster.
+        """
         return pulumi.get(self, "cluster_ca_certificate")
 
     @cluster_ca_certificate.setter
@@ -10116,6 +12942,9 @@ class KubernetesClusterMasterArgs:
     @property
     @pulumi.getter(name="externalV4Address")
     def external_v4_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) An IPv4 external network address that is assigned to the master.
+        """
         return pulumi.get(self, "external_v4_address")
 
     @external_v4_address.setter
@@ -10125,6 +12954,9 @@ class KubernetesClusterMasterArgs:
     @property
     @pulumi.getter(name="externalV4Endpoint")
     def external_v4_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).
+        """
         return pulumi.get(self, "external_v4_endpoint")
 
     @external_v4_endpoint.setter
@@ -10134,6 +12966,9 @@ class KubernetesClusterMasterArgs:
     @property
     @pulumi.getter(name="internalV4Address")
     def internal_v4_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) An IPv4 internal network address that is assigned to the master.
+        """
         return pulumi.get(self, "internal_v4_address")
 
     @internal_v4_address.setter
@@ -10143,6 +12978,9 @@ class KubernetesClusterMasterArgs:
     @property
     @pulumi.getter(name="internalV4Endpoint")
     def internal_v4_endpoint(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) Internal endpoint that can be used to connect to the master from cloud networks.
+        """
         return pulumi.get(self, "internal_v4_endpoint")
 
     @internal_v4_endpoint.setter
@@ -10152,6 +12990,12 @@ class KubernetesClusterMasterArgs:
     @property
     @pulumi.getter(name="maintenancePolicy")
     def maintenance_policy(self) -> Optional[pulumi.Input['KubernetesClusterMasterMaintenancePolicyArgs']]:
+        """
+        (Optional) (Computed) Maintenance policy for Kubernetes master.
+        If policy is omitted, automatic revision upgrades of the kubernetes master are enabled and could happen at any time.
+        Revision upgrades are performed only within the same minor version, e.g. 1.13.
+        Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_policy")
 
     @maintenance_policy.setter
@@ -10161,6 +13005,9 @@ class KubernetesClusterMasterArgs:
     @property
     @pulumi.getter(name="publicIp")
     def public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        (Optional) (Computed) Boolean flag. When `true`, Kubernetes master will have visible ipv4 address.
+        """
         return pulumi.get(self, "public_ip")
 
     @public_ip.setter
@@ -10170,6 +13017,9 @@ class KubernetesClusterMasterArgs:
     @property
     @pulumi.getter
     def regional(self) -> Optional[pulumi.Input['KubernetesClusterMasterRegionalArgs']]:
+        """
+        (Optional) Initialize parameters for Regional Master (highly available master). The structure is documented below.
+        """
         return pulumi.get(self, "regional")
 
     @regional.setter
@@ -10179,6 +13029,9 @@ class KubernetesClusterMasterArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        (Optional) List of security group IDs to which the Kubernetes cluster belongs.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -10188,6 +13041,9 @@ class KubernetesClusterMasterArgs:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) (Computed) Version of Kubernetes that will be used for master.
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -10197,6 +13053,9 @@ class KubernetesClusterMasterArgs:
     @property
     @pulumi.getter(name="versionInfos")
     def version_infos(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterMasterVersionInfoArgs']]]]:
+        """
+        (Computed) Information about cluster version. The structure is documented below.
+        """
         return pulumi.get(self, "version_infos")
 
     @version_infos.setter
@@ -10206,6 +13065,9 @@ class KubernetesClusterMasterArgs:
     @property
     @pulumi.getter
     def zonal(self) -> Optional[pulumi.Input['KubernetesClusterMasterZonalArgs']]:
+        """
+        (Optional) Initialize parameters for Zonal Master (single node master). The structure is documented below.
+        """
         return pulumi.get(self, "zonal")
 
     @zonal.setter
@@ -10218,6 +13080,12 @@ class KubernetesClusterMasterMaintenancePolicyArgs:
     def __init__(__self__, *,
                  auto_upgrade: pulumi.Input[bool],
                  maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterMasterMaintenancePolicyMaintenanceWindowArgs']]]] = None):
+        """
+        :param pulumi.Input[bool] auto_upgrade: (Required) Boolean flag that specifies if master can be upgraded automatically. When omitted, default value is TRUE.
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesClusterMasterMaintenancePolicyMaintenanceWindowArgs']]] maintenance_windows: (Optional) (Computed) This structure specifies maintenance window, when update for master is allowed. When omitted, it defaults to any time.
+               To specify time of day interval, for all days, one element should be provided, with two fields set, `start_time` and `duration`.
+               Please see `zonal_cluster_resource_name` config example.
+        """
         pulumi.set(__self__, "auto_upgrade", auto_upgrade)
         if maintenance_windows is not None:
             pulumi.set(__self__, "maintenance_windows", maintenance_windows)
@@ -10225,6 +13093,9 @@ class KubernetesClusterMasterMaintenancePolicyArgs:
     @property
     @pulumi.getter(name="autoUpgrade")
     def auto_upgrade(self) -> pulumi.Input[bool]:
+        """
+        (Required) Boolean flag that specifies if master can be upgraded automatically. When omitted, default value is TRUE.
+        """
         return pulumi.get(self, "auto_upgrade")
 
     @auto_upgrade.setter
@@ -10234,6 +13105,11 @@ class KubernetesClusterMasterMaintenancePolicyArgs:
     @property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterMasterMaintenancePolicyMaintenanceWindowArgs']]]]:
+        """
+        (Optional) (Computed) This structure specifies maintenance window, when update for master is allowed. When omitted, it defaults to any time.
+        To specify time of day interval, for all days, one element should be provided, with two fields set, `start_time` and `duration`.
+        Please see `zonal_cluster_resource_name` config example.
+        """
         return pulumi.get(self, "maintenance_windows")
 
     @maintenance_windows.setter
@@ -10285,6 +13161,10 @@ class KubernetesClusterMasterRegionalArgs:
     def __init__(__self__, *,
                  region: pulumi.Input[str],
                  locations: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterMasterRegionalLocationArgs']]]] = None):
+        """
+        :param pulumi.Input[str] region: (Required) Name of availability region (e.g. "ru-central1"), where master instances will be allocated.
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesClusterMasterRegionalLocationArgs']]] locations: Array of locations, where master instances will be allocated. The structure is documented below.
+        """
         pulumi.set(__self__, "region", region)
         if locations is not None:
             pulumi.set(__self__, "locations", locations)
@@ -10292,6 +13172,9 @@ class KubernetesClusterMasterRegionalArgs:
     @property
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
+        """
+        (Required) Name of availability region (e.g. "ru-central1"), where master instances will be allocated.
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -10301,6 +13184,9 @@ class KubernetesClusterMasterRegionalArgs:
     @property
     @pulumi.getter
     def locations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesClusterMasterRegionalLocationArgs']]]]:
+        """
+        Array of locations, where master instances will be allocated. The structure is documented below.
+        """
         return pulumi.get(self, "locations")
 
     @locations.setter
@@ -10313,6 +13199,10 @@ class KubernetesClusterMasterRegionalLocationArgs:
     def __init__(__self__, *,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] subnet_id: (Optional) ID of the subnet.
+        :param pulumi.Input[str] zone: (Optional) ID of the availability zone.
+        """
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
         if zone is not None:
@@ -10321,6 +13211,9 @@ class KubernetesClusterMasterRegionalLocationArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) ID of the subnet.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -10330,6 +13223,9 @@ class KubernetesClusterMasterRegionalLocationArgs:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) ID of the availability zone.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -10344,6 +13240,17 @@ class KubernetesClusterMasterVersionInfoArgs:
                  new_revision_available: Optional[pulumi.Input[bool]] = None,
                  new_revision_summary: Optional[pulumi.Input[str]] = None,
                  version_deprecated: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] current_version: Current Kubernetes version, major.minor (e.g. 1.15).
+        :param pulumi.Input[bool] new_revision_available: Boolean flag.
+               Newer revisions may include Kubernetes patches (e.g 1.15.1 > 1.15.2) as well
+               as some internal component updates - new features or bug fixes in yandex-specific
+               components either on the master or nodes.
+        :param pulumi.Input[str] new_revision_summary: Human readable description of the changes to be applied
+               when updating to the latest revision. Empty if new_revision_available is false.
+        :param pulumi.Input[bool] version_deprecated: Boolean flag. The current version is on the deprecation schedule,
+               component (master or node group) should be upgraded.
+        """
         if current_version is not None:
             pulumi.set(__self__, "current_version", current_version)
         if new_revision_available is not None:
@@ -10356,6 +13263,9 @@ class KubernetesClusterMasterVersionInfoArgs:
     @property
     @pulumi.getter(name="currentVersion")
     def current_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Current Kubernetes version, major.minor (e.g. 1.15).
+        """
         return pulumi.get(self, "current_version")
 
     @current_version.setter
@@ -10365,6 +13275,12 @@ class KubernetesClusterMasterVersionInfoArgs:
     @property
     @pulumi.getter(name="newRevisionAvailable")
     def new_revision_available(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Boolean flag.
+        Newer revisions may include Kubernetes patches (e.g 1.15.1 > 1.15.2) as well
+        as some internal component updates - new features or bug fixes in yandex-specific
+        components either on the master or nodes.
+        """
         return pulumi.get(self, "new_revision_available")
 
     @new_revision_available.setter
@@ -10374,6 +13290,10 @@ class KubernetesClusterMasterVersionInfoArgs:
     @property
     @pulumi.getter(name="newRevisionSummary")
     def new_revision_summary(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human readable description of the changes to be applied
+        when updating to the latest revision. Empty if new_revision_available is false.
+        """
         return pulumi.get(self, "new_revision_summary")
 
     @new_revision_summary.setter
@@ -10383,6 +13303,10 @@ class KubernetesClusterMasterVersionInfoArgs:
     @property
     @pulumi.getter(name="versionDeprecated")
     def version_deprecated(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Boolean flag. The current version is on the deprecation schedule,
+        component (master or node group) should be upgraded.
+        """
         return pulumi.get(self, "version_deprecated")
 
     @version_deprecated.setter
@@ -10395,6 +13319,10 @@ class KubernetesClusterMasterZonalArgs:
     def __init__(__self__, *,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] subnet_id: (Optional) ID of the subnet.
+        :param pulumi.Input[str] zone: (Optional) ID of the availability zone.
+        """
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
         if zone is not None:
@@ -10403,6 +13331,9 @@ class KubernetesClusterMasterZonalArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) ID of the subnet.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -10412,6 +13343,9 @@ class KubernetesClusterMasterZonalArgs:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) ID of the availability zone.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -10423,12 +13357,18 @@ class KubernetesClusterMasterZonalArgs:
 class KubernetesClusterNetworkImplementationArgs:
     def __init__(__self__, *,
                  cilium: Optional[pulumi.Input['KubernetesClusterNetworkImplementationCiliumArgs']] = None):
+        """
+        :param pulumi.Input['KubernetesClusterNetworkImplementationCiliumArgs'] cilium: (Optional) Cilium network implementation configuration. No options exist.
+        """
         if cilium is not None:
             pulumi.set(__self__, "cilium", cilium)
 
     @property
     @pulumi.getter
     def cilium(self) -> Optional[pulumi.Input['KubernetesClusterNetworkImplementationCiliumArgs']]:
+        """
+        (Optional) Cilium network implementation configuration. No options exist.
+        """
         return pulumi.get(self, "cilium")
 
     @cilium.setter
@@ -10446,12 +13386,18 @@ class KubernetesClusterNetworkImplementationCiliumArgs:
 class KubernetesNodeGroupAllocationPolicyArgs:
     def __init__(__self__, *,
                  locations: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupAllocationPolicyLocationArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupAllocationPolicyLocationArgs']]] locations: Repeated field, that specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+        """
         if locations is not None:
             pulumi.set(__self__, "locations", locations)
 
     @property
     @pulumi.getter
     def locations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupAllocationPolicyLocationArgs']]]]:
+        """
+        Repeated field, that specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+        """
         return pulumi.get(self, "locations")
 
     @locations.setter
@@ -10464,6 +13410,10 @@ class KubernetesNodeGroupAllocationPolicyLocationArgs:
     def __init__(__self__, *,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  zone: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] subnet_id: ID of the subnet, that will be used by one compute instance in node group.
+        :param pulumi.Input[str] zone: ID of the availability zone where for one compute instance in node group.
+        """
         if subnet_id is not None:
             warnings.warn("""The 'subnet_id' field has been deprecated. Please use 'subnet_ids under network_interface' instead.""", DeprecationWarning)
             pulumi.log.warn("""subnet_id is deprecated: The 'subnet_id' field has been deprecated. Please use 'subnet_ids under network_interface' instead.""")
@@ -10475,6 +13425,9 @@ class KubernetesNodeGroupAllocationPolicyLocationArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the subnet, that will be used by one compute instance in node group.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -10484,6 +13437,9 @@ class KubernetesNodeGroupAllocationPolicyLocationArgs:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the availability zone where for one compute instance in node group.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -10496,12 +13452,19 @@ class KubernetesNodeGroupDeployPolicyArgs:
     def __init__(__self__, *,
                  max_expansion: pulumi.Input[int],
                  max_unavailable: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] max_expansion: The maximum number of instances that can be temporarily allocated above the group's target size during the update.
+        :param pulumi.Input[int] max_unavailable: The maximum number of running instances that can be taken offline during update.
+        """
         pulumi.set(__self__, "max_expansion", max_expansion)
         pulumi.set(__self__, "max_unavailable", max_unavailable)
 
     @property
     @pulumi.getter(name="maxExpansion")
     def max_expansion(self) -> pulumi.Input[int]:
+        """
+        The maximum number of instances that can be temporarily allocated above the group's target size during the update.
+        """
         return pulumi.get(self, "max_expansion")
 
     @max_expansion.setter
@@ -10511,6 +13474,9 @@ class KubernetesNodeGroupDeployPolicyArgs:
     @property
     @pulumi.getter(name="maxUnavailable")
     def max_unavailable(self) -> pulumi.Input[int]:
+        """
+        The maximum number of running instances that can be taken offline during update.
+        """
         return pulumi.get(self, "max_unavailable")
 
     @max_unavailable.setter
@@ -10533,6 +13499,27 @@ class KubernetesNodeGroupInstanceTemplateArgs:
                  platform_id: Optional[pulumi.Input[str]] = None,
                  resources: Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateResourcesArgs']] = None,
                  scheduling_policy: Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs']] = None):
+        """
+        :param pulumi.Input['KubernetesNodeGroupInstanceTemplateBootDiskArgs'] boot_disk: The specifications for boot disks that will be attached to the instance. The structure is documented below.
+        :param pulumi.Input['KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs'] container_runtime: Container runtime configuration. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels that will be assigned to compute nodes (instances), created by the Node Group.
+               ---
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: The set of metadata `key:value` pairs assigned to this instance template. This includes custom metadata and predefined keys. **Note**: key "user-data" won't be provided into instances. It reserved for internal activity in `kubernetes_node_group` resource.
+        :param pulumi.Input[str] name: Name template of the instance.
+               In order to be unique it must contain at least one of instance unique placeholders:
+               {instance.short_id}
+               {instance.index}
+               combination of {instance.zone_id} and {instance.index_in_zone}
+               Example: my-instance-{instance.index}
+               If not set, default is used: {instance_group.id}-{instance.short_id}
+               It may also contain another placeholders, see [Compute Instance group metadata doc](https://cloud.yandex.com/en-ru/docs/compute/api-ref/grpc/instance_group_service) for full list.
+        :param pulumi.Input[bool] nat: A public address that can be used to access the internet over NAT.
+        :param pulumi.Input[str] network_acceleration_type: Type of network acceleration. Values: `standard`, `software_accelerated`.
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs']]] network_interfaces: An array with the network interfaces that will be attached to the instance. The structure is documented below.
+        :param pulumi.Input['KubernetesNodeGroupInstanceTemplatePlacementPolicyArgs'] placement_policy: The placement policy configuration. The structure is documented below.
+        :param pulumi.Input[str] platform_id: The ID of the hardware platform configuration for the node group compute instances.
+        :param pulumi.Input['KubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs'] scheduling_policy: The scheduling policy for the instances in node group. The structure is documented below.
+        """
         if boot_disk is not None:
             pulumi.set(__self__, "boot_disk", boot_disk)
         if container_runtime is not None:
@@ -10564,6 +13551,9 @@ class KubernetesNodeGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="bootDisk")
     def boot_disk(self) -> Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateBootDiskArgs']]:
+        """
+        The specifications for boot disks that will be attached to the instance. The structure is documented below.
+        """
         return pulumi.get(self, "boot_disk")
 
     @boot_disk.setter
@@ -10573,6 +13563,9 @@ class KubernetesNodeGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="containerRuntime")
     def container_runtime(self) -> Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs']]:
+        """
+        Container runtime configuration. The structure is documented below.
+        """
         return pulumi.get(self, "container_runtime")
 
     @container_runtime.setter
@@ -10582,6 +13575,10 @@ class KubernetesNodeGroupInstanceTemplateArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels that will be assigned to compute nodes (instances), created by the Node Group.
+        ---
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -10591,6 +13588,9 @@ class KubernetesNodeGroupInstanceTemplateArgs:
     @property
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        The set of metadata `key:value` pairs assigned to this instance template. This includes custom metadata and predefined keys. **Note**: key "user-data" won't be provided into instances. It reserved for internal activity in `kubernetes_node_group` resource.
+        """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
@@ -10600,6 +13600,16 @@ class KubernetesNodeGroupInstanceTemplateArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name template of the instance.
+        In order to be unique it must contain at least one of instance unique placeholders:
+        {instance.short_id}
+        {instance.index}
+        combination of {instance.zone_id} and {instance.index_in_zone}
+        Example: my-instance-{instance.index}
+        If not set, default is used: {instance_group.id}-{instance.short_id}
+        It may also contain another placeholders, see [Compute Instance group metadata doc](https://cloud.yandex.com/en-ru/docs/compute/api-ref/grpc/instance_group_service) for full list.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -10609,6 +13619,9 @@ class KubernetesNodeGroupInstanceTemplateArgs:
     @property
     @pulumi.getter
     def nat(self) -> Optional[pulumi.Input[bool]]:
+        """
+        A public address that can be used to access the internet over NAT.
+        """
         return pulumi.get(self, "nat")
 
     @nat.setter
@@ -10618,6 +13631,9 @@ class KubernetesNodeGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="networkAccelerationType")
     def network_acceleration_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of network acceleration. Values: `standard`, `software_accelerated`.
+        """
         return pulumi.get(self, "network_acceleration_type")
 
     @network_acceleration_type.setter
@@ -10627,6 +13643,9 @@ class KubernetesNodeGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="networkInterfaces")
     def network_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs']]]]:
+        """
+        An array with the network interfaces that will be attached to the instance. The structure is documented below.
+        """
         return pulumi.get(self, "network_interfaces")
 
     @network_interfaces.setter
@@ -10636,6 +13655,9 @@ class KubernetesNodeGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="placementPolicy")
     def placement_policy(self) -> Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplatePlacementPolicyArgs']]:
+        """
+        The placement policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "placement_policy")
 
     @placement_policy.setter
@@ -10645,6 +13667,9 @@ class KubernetesNodeGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="platformId")
     def platform_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the hardware platform configuration for the node group compute instances.
+        """
         return pulumi.get(self, "platform_id")
 
     @platform_id.setter
@@ -10663,6 +13688,9 @@ class KubernetesNodeGroupInstanceTemplateArgs:
     @property
     @pulumi.getter(name="schedulingPolicy")
     def scheduling_policy(self) -> Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs']]:
+        """
+        The scheduling policy for the instances in node group. The structure is documented below.
+        """
         return pulumi.get(self, "scheduling_policy")
 
     @scheduling_policy.setter
@@ -10675,6 +13703,10 @@ class KubernetesNodeGroupInstanceTemplateBootDiskArgs:
     def __init__(__self__, *,
                  size: Optional[pulumi.Input[int]] = None,
                  type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] size: The number of instances in the node group.
+        :param pulumi.Input[str] type: Type of container runtime. Values: `docker`, `containerd`.
+        """
         if size is not None:
             pulumi.set(__self__, "size", size)
         if type is not None:
@@ -10683,6 +13715,9 @@ class KubernetesNodeGroupInstanceTemplateBootDiskArgs:
     @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of instances in the node group.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -10692,6 +13727,9 @@ class KubernetesNodeGroupInstanceTemplateBootDiskArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of container runtime. Values: `docker`, `containerd`.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -10703,11 +13741,17 @@ class KubernetesNodeGroupInstanceTemplateBootDiskArgs:
 class KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] type: Type of container runtime. Values: `docker`, `containerd`.
+        """
         pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Type of container runtime. Values: `docker`, `containerd`.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -10725,6 +13769,15 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs:
                  ipv6_dns_records: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs']]]] = None,
                  nat: Optional[pulumi.Input[bool]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: The IDs of the subnets.
+        :param pulumi.Input[bool] ipv4: Allocate an IPv4 address for the interface. The default value is `true`.
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs']]] ipv4_dns_records: List of configurations for creating ipv4 DNS records. The structure is documented below.
+        :param pulumi.Input[bool] ipv6: If true, allocate an IPv6 address for the interface. The address will be automatically assigned from the specified subnet.
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs']]] ipv6_dns_records: List of configurations for creating ipv6 DNS records. The structure is documented below.
+        :param pulumi.Input[bool] nat: A public address that can be used to access the internet over NAT.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: Security group ids for network interface.
+        """
         pulumi.set(__self__, "subnet_ids", subnet_ids)
         if ipv4 is not None:
             pulumi.set(__self__, "ipv4", ipv4)
@@ -10742,6 +13795,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="subnetIds")
     def subnet_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The IDs of the subnets.
+        """
         return pulumi.get(self, "subnet_ids")
 
     @subnet_ids.setter
@@ -10751,6 +13807,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def ipv4(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allocate an IPv4 address for the interface. The default value is `true`.
+        """
         return pulumi.get(self, "ipv4")
 
     @ipv4.setter
@@ -10760,6 +13819,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="ipv4DnsRecords")
     def ipv4_dns_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs']]]]:
+        """
+        List of configurations for creating ipv4 DNS records. The structure is documented below.
+        """
         return pulumi.get(self, "ipv4_dns_records")
 
     @ipv4_dns_records.setter
@@ -10769,6 +13831,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def ipv6(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If true, allocate an IPv6 address for the interface. The address will be automatically assigned from the specified subnet.
+        """
         return pulumi.get(self, "ipv6")
 
     @ipv6.setter
@@ -10778,6 +13843,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="ipv6DnsRecords")
     def ipv6_dns_records(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs']]]]:
+        """
+        List of configurations for creating ipv6 DNS records. The structure is documented below.
+        """
         return pulumi.get(self, "ipv6_dns_records")
 
     @ipv6_dns_records.setter
@@ -10787,6 +13855,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter
     def nat(self) -> Optional[pulumi.Input[bool]]:
+        """
+        A public address that can be used to access the internet over NAT.
+        """
         return pulumi.get(self, "nat")
 
     @nat.setter
@@ -10796,6 +13867,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Security group ids for network interface.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -10810,6 +13884,12 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs:
                  dns_zone_id: Optional[pulumi.Input[str]] = None,
                  ptr: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] fqdn: DNS record FQDN.
+        :param pulumi.Input[str] dns_zone_id: DNS zone ID (if not set, private zone is used).
+        :param pulumi.Input[bool] ptr: When set to true, also create a PTR DNS record.
+        :param pulumi.Input[int] ttl: DNS record TTL (in seconds).
+        """
         pulumi.set(__self__, "fqdn", fqdn)
         if dns_zone_id is not None:
             pulumi.set(__self__, "dns_zone_id", dns_zone_id)
@@ -10821,6 +13901,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> pulumi.Input[str]:
+        """
+        DNS record FQDN.
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -10830,6 +13913,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs:
     @property
     @pulumi.getter(name="dnsZoneId")
     def dns_zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS zone ID (if not set, private zone is used).
+        """
         return pulumi.get(self, "dns_zone_id")
 
     @dns_zone_id.setter
@@ -10839,6 +13925,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs:
     @property
     @pulumi.getter
     def ptr(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set to true, also create a PTR DNS record.
+        """
         return pulumi.get(self, "ptr")
 
     @ptr.setter
@@ -10848,6 +13937,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs:
     @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        DNS record TTL (in seconds).
+        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -10862,6 +13954,12 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs:
                  dns_zone_id: Optional[pulumi.Input[str]] = None,
                  ptr: Optional[pulumi.Input[bool]] = None,
                  ttl: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] fqdn: DNS record FQDN.
+        :param pulumi.Input[str] dns_zone_id: DNS zone ID (if not set, private zone is used).
+        :param pulumi.Input[bool] ptr: When set to true, also create a PTR DNS record.
+        :param pulumi.Input[int] ttl: DNS record TTL (in seconds).
+        """
         pulumi.set(__self__, "fqdn", fqdn)
         if dns_zone_id is not None:
             pulumi.set(__self__, "dns_zone_id", dns_zone_id)
@@ -10873,6 +13971,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> pulumi.Input[str]:
+        """
+        DNS record FQDN.
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -10882,6 +13983,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs:
     @property
     @pulumi.getter(name="dnsZoneId")
     def dns_zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS zone ID (if not set, private zone is used).
+        """
         return pulumi.get(self, "dns_zone_id")
 
     @dns_zone_id.setter
@@ -10891,6 +13995,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs:
     @property
     @pulumi.getter
     def ptr(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When set to true, also create a PTR DNS record.
+        """
         return pulumi.get(self, "ptr")
 
     @ptr.setter
@@ -10900,6 +14007,9 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs:
     @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        DNS record TTL (in seconds).
+        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -10911,11 +14021,17 @@ class KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs:
 class KubernetesNodeGroupInstanceTemplatePlacementPolicyArgs:
     def __init__(__self__, *,
                  placement_group_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] placement_group_id: Specifies the id of the Placement Group to assign to the instances.
+        """
         pulumi.set(__self__, "placement_group_id", placement_group_id)
 
     @property
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> pulumi.Input[str]:
+        """
+        Specifies the id of the Placement Group to assign to the instances.
+        """
         return pulumi.get(self, "placement_group_id")
 
     @placement_group_id.setter
@@ -10980,12 +14096,20 @@ class KubernetesNodeGroupInstanceTemplateResourcesArgs:
 class KubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs:
     def __init__(__self__, *,
                  preemptible: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] preemptible: Specifies if the instance is preemptible. Defaults to false.
+               ---
+        """
         if preemptible is not None:
             pulumi.set(__self__, "preemptible", preemptible)
 
     @property
     @pulumi.getter
     def preemptible(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if the instance is preemptible. Defaults to false.
+        ---
+        """
         return pulumi.get(self, "preemptible")
 
     @preemptible.setter
@@ -10999,6 +14123,11 @@ class KubernetesNodeGroupMaintenancePolicyArgs:
                  auto_repair: pulumi.Input[bool],
                  auto_upgrade: pulumi.Input[bool],
                  maintenance_windows: Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs']]]] = None):
+        """
+        :param pulumi.Input[bool] auto_repair: Boolean flag that specifies if node group can be repaired automatically. When omitted, default value is TRUE.
+        :param pulumi.Input[bool] auto_upgrade: Boolean flag that specifies if node group can be upgraded automatically. When omitted, default value is TRUE.
+        :param pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs']]] maintenance_windows: (Computed) Set of day intervals, when maintenance is allowed for this node group. When omitted, it defaults to any time.
+        """
         pulumi.set(__self__, "auto_repair", auto_repair)
         pulumi.set(__self__, "auto_upgrade", auto_upgrade)
         if maintenance_windows is not None:
@@ -11007,6 +14136,9 @@ class KubernetesNodeGroupMaintenancePolicyArgs:
     @property
     @pulumi.getter(name="autoRepair")
     def auto_repair(self) -> pulumi.Input[bool]:
+        """
+        Boolean flag that specifies if node group can be repaired automatically. When omitted, default value is TRUE.
+        """
         return pulumi.get(self, "auto_repair")
 
     @auto_repair.setter
@@ -11016,6 +14148,9 @@ class KubernetesNodeGroupMaintenancePolicyArgs:
     @property
     @pulumi.getter(name="autoUpgrade")
     def auto_upgrade(self) -> pulumi.Input[bool]:
+        """
+        Boolean flag that specifies if node group can be upgraded automatically. When omitted, default value is TRUE.
+        """
         return pulumi.get(self, "auto_upgrade")
 
     @auto_upgrade.setter
@@ -11025,6 +14160,9 @@ class KubernetesNodeGroupMaintenancePolicyArgs:
     @property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs']]]]:
+        """
+        (Computed) Set of day intervals, when maintenance is allowed for this node group. When omitted, it defaults to any time.
+        """
         return pulumi.get(self, "maintenance_windows")
 
     @maintenance_windows.setter
@@ -11076,6 +14214,10 @@ class KubernetesNodeGroupScalePolicyArgs:
     def __init__(__self__, *,
                  auto_scale: Optional[pulumi.Input['KubernetesNodeGroupScalePolicyAutoScaleArgs']] = None,
                  fixed_scale: Optional[pulumi.Input['KubernetesNodeGroupScalePolicyFixedScaleArgs']] = None):
+        """
+        :param pulumi.Input['KubernetesNodeGroupScalePolicyAutoScaleArgs'] auto_scale: Scale policy for an autoscaled node group. The structure is documented below.
+        :param pulumi.Input['KubernetesNodeGroupScalePolicyFixedScaleArgs'] fixed_scale: Scale policy for a fixed scale node group. The structure is documented below.
+        """
         if auto_scale is not None:
             pulumi.set(__self__, "auto_scale", auto_scale)
         if fixed_scale is not None:
@@ -11084,6 +14226,9 @@ class KubernetesNodeGroupScalePolicyArgs:
     @property
     @pulumi.getter(name="autoScale")
     def auto_scale(self) -> Optional[pulumi.Input['KubernetesNodeGroupScalePolicyAutoScaleArgs']]:
+        """
+        Scale policy for an autoscaled node group. The structure is documented below.
+        """
         return pulumi.get(self, "auto_scale")
 
     @auto_scale.setter
@@ -11093,6 +14238,9 @@ class KubernetesNodeGroupScalePolicyArgs:
     @property
     @pulumi.getter(name="fixedScale")
     def fixed_scale(self) -> Optional[pulumi.Input['KubernetesNodeGroupScalePolicyFixedScaleArgs']]:
+        """
+        Scale policy for a fixed scale node group. The structure is documented below.
+        """
         return pulumi.get(self, "fixed_scale")
 
     @fixed_scale.setter
@@ -11106,6 +14254,11 @@ class KubernetesNodeGroupScalePolicyAutoScaleArgs:
                  initial: pulumi.Input[int],
                  max: pulumi.Input[int],
                  min: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] initial: Initial number of instances in the node group.
+        :param pulumi.Input[int] max: Maximum number of instances in the node group.
+        :param pulumi.Input[int] min: Minimum number of instances in the node group.
+        """
         pulumi.set(__self__, "initial", initial)
         pulumi.set(__self__, "max", max)
         pulumi.set(__self__, "min", min)
@@ -11113,6 +14266,9 @@ class KubernetesNodeGroupScalePolicyAutoScaleArgs:
     @property
     @pulumi.getter
     def initial(self) -> pulumi.Input[int]:
+        """
+        Initial number of instances in the node group.
+        """
         return pulumi.get(self, "initial")
 
     @initial.setter
@@ -11122,6 +14278,9 @@ class KubernetesNodeGroupScalePolicyAutoScaleArgs:
     @property
     @pulumi.getter
     def max(self) -> pulumi.Input[int]:
+        """
+        Maximum number of instances in the node group.
+        """
         return pulumi.get(self, "max")
 
     @max.setter
@@ -11131,6 +14290,9 @@ class KubernetesNodeGroupScalePolicyAutoScaleArgs:
     @property
     @pulumi.getter
     def min(self) -> pulumi.Input[int]:
+        """
+        Minimum number of instances in the node group.
+        """
         return pulumi.get(self, "min")
 
     @min.setter
@@ -11142,12 +14304,18 @@ class KubernetesNodeGroupScalePolicyAutoScaleArgs:
 class KubernetesNodeGroupScalePolicyFixedScaleArgs:
     def __init__(__self__, *,
                  size: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] size: The number of instances in the node group.
+        """
         if size is not None:
             pulumi.set(__self__, "size", size)
 
     @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of instances in the node group.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -11162,6 +14330,17 @@ class KubernetesNodeGroupVersionInfoArgs:
                  new_revision_available: Optional[pulumi.Input[bool]] = None,
                  new_revision_summary: Optional[pulumi.Input[str]] = None,
                  version_deprecated: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] current_version: Current Kubernetes version, major.minor (e.g. 1.15).
+        :param pulumi.Input[bool] new_revision_available: True/false flag.
+               Newer revisions may include Kubernetes patches (e.g 1.15.1 > 1.15.2) as well
+               as some internal component updates - new features or bug fixes in yandex-specific
+               components either on the master or nodes.
+        :param pulumi.Input[str] new_revision_summary: Human readable description of the changes to be applied
+               when updating to the latest revision. Empty if new_revision_available is false.
+        :param pulumi.Input[bool] version_deprecated: True/false flag. The current version is on the deprecation schedule,
+               component (master or node group) should be upgraded.
+        """
         if current_version is not None:
             pulumi.set(__self__, "current_version", current_version)
         if new_revision_available is not None:
@@ -11174,6 +14353,9 @@ class KubernetesNodeGroupVersionInfoArgs:
     @property
     @pulumi.getter(name="currentVersion")
     def current_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Current Kubernetes version, major.minor (e.g. 1.15).
+        """
         return pulumi.get(self, "current_version")
 
     @current_version.setter
@@ -11183,6 +14365,12 @@ class KubernetesNodeGroupVersionInfoArgs:
     @property
     @pulumi.getter(name="newRevisionAvailable")
     def new_revision_available(self) -> Optional[pulumi.Input[bool]]:
+        """
+        True/false flag.
+        Newer revisions may include Kubernetes patches (e.g 1.15.1 > 1.15.2) as well
+        as some internal component updates - new features or bug fixes in yandex-specific
+        components either on the master or nodes.
+        """
         return pulumi.get(self, "new_revision_available")
 
     @new_revision_available.setter
@@ -11192,6 +14380,10 @@ class KubernetesNodeGroupVersionInfoArgs:
     @property
     @pulumi.getter(name="newRevisionSummary")
     def new_revision_summary(self) -> Optional[pulumi.Input[str]]:
+        """
+        Human readable description of the changes to be applied
+        when updating to the latest revision. Empty if new_revision_available is false.
+        """
         return pulumi.get(self, "new_revision_summary")
 
     @new_revision_summary.setter
@@ -11201,6 +14393,10 @@ class KubernetesNodeGroupVersionInfoArgs:
     @property
     @pulumi.getter(name="versionDeprecated")
     def version_deprecated(self) -> Optional[pulumi.Input[bool]]:
+        """
+        True/false flag. The current version is on the deprecation schedule,
+        component (master or node group) should be upgraded.
+        """
         return pulumi.get(self, "version_deprecated")
 
     @version_deprecated.setter
@@ -11213,12 +14409,19 @@ class LbNetworkLoadBalancerAttachedTargetGroupArgs:
     def __init__(__self__, *,
                  healthchecks: pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs']]],
                  target_group_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs']]] healthchecks: A HealthCheck resource. The structure is documented below.
+        :param pulumi.Input[str] target_group_id: ID of the target group.
+        """
         pulumi.set(__self__, "healthchecks", healthchecks)
         pulumi.set(__self__, "target_group_id", target_group_id)
 
     @property
     @pulumi.getter
     def healthchecks(self) -> pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs']]]:
+        """
+        A HealthCheck resource. The structure is documented below.
+        """
         return pulumi.get(self, "healthchecks")
 
     @healthchecks.setter
@@ -11228,6 +14431,9 @@ class LbNetworkLoadBalancerAttachedTargetGroupArgs:
     @property
     @pulumi.getter(name="targetGroupId")
     def target_group_id(self) -> pulumi.Input[str]:
+        """
+        ID of the target group.
+        """
         return pulumi.get(self, "target_group_id")
 
     @target_group_id.setter
@@ -11245,6 +14451,15 @@ class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs:
                  tcp_options: Optional[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionsArgs']] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  unhealthy_threshold: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the listener. The name must be unique for each listener on a single load balancer.
+        :param pulumi.Input[int] healthy_threshold: Number of successful health checks required in order to set the `HEALTHY` status for the target.
+        :param pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionsArgs'] http_options: Options for HTTP health check. The structure is documented below.
+        :param pulumi.Input[int] interval: The interval between health checks. The default is 2 seconds.
+        :param pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionsArgs'] tcp_options: Options for TCP health check. The structure is documented below.
+        :param pulumi.Input[int] timeout: Timeout for a target to return a response for the health check. The default is 1 second.
+        :param pulumi.Input[int] unhealthy_threshold: Number of failed health checks before changing the status to `UNHEALTHY`. The default is 2.
+        """
         pulumi.set(__self__, "name", name)
         if healthy_threshold is not None:
             pulumi.set(__self__, "healthy_threshold", healthy_threshold)
@@ -11262,6 +14477,9 @@ class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the listener. The name must be unique for each listener on a single load balancer.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -11271,6 +14489,9 @@ class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs:
     @property
     @pulumi.getter(name="healthyThreshold")
     def healthy_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of successful health checks required in order to set the `HEALTHY` status for the target.
+        """
         return pulumi.get(self, "healthy_threshold")
 
     @healthy_threshold.setter
@@ -11280,6 +14501,9 @@ class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs:
     @property
     @pulumi.getter(name="httpOptions")
     def http_options(self) -> Optional[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionsArgs']]:
+        """
+        Options for HTTP health check. The structure is documented below.
+        """
         return pulumi.get(self, "http_options")
 
     @http_options.setter
@@ -11289,6 +14513,9 @@ class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs:
     @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        The interval between health checks. The default is 2 seconds.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -11298,6 +14525,9 @@ class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs:
     @property
     @pulumi.getter(name="tcpOptions")
     def tcp_options(self) -> Optional[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionsArgs']]:
+        """
+        Options for TCP health check. The structure is documented below.
+        """
         return pulumi.get(self, "tcp_options")
 
     @tcp_options.setter
@@ -11307,6 +14537,9 @@ class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs:
     @property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Timeout for a target to return a response for the health check. The default is 1 second.
+        """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
@@ -11316,6 +14549,9 @@ class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs:
     @property
     @pulumi.getter(name="unhealthyThreshold")
     def unhealthy_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of failed health checks before changing the status to `UNHEALTHY`. The default is 2.
+        """
         return pulumi.get(self, "unhealthy_threshold")
 
     @unhealthy_threshold.setter
@@ -11328,6 +14564,10 @@ class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionsArgs:
     def __init__(__self__, *,
                  port: pulumi.Input[int],
                  path: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] port: Port for incoming traffic.
+        :param pulumi.Input[str] path: URL path to set for health checking requests for every target in the target group. For example `/ping`. The default path is `/`.
+        """
         pulumi.set(__self__, "port", port)
         if path is not None:
             pulumi.set(__self__, "path", path)
@@ -11335,6 +14575,9 @@ class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionsArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Port for incoming traffic.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -11344,6 +14587,9 @@ class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionsArgs:
     @property
     @pulumi.getter
     def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL path to set for health checking requests for every target in the target group. For example `/ping`. The default path is `/`.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -11355,11 +14601,17 @@ class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionsArgs:
 class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionsArgs:
     def __init__(__self__, *,
                  port: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] port: Port for incoming traffic.
+        """
         pulumi.set(__self__, "port", port)
 
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Port for incoming traffic.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -11376,6 +14628,14 @@ class LbNetworkLoadBalancerListenerArgs:
                  internal_address_spec: Optional[pulumi.Input['LbNetworkLoadBalancerListenerInternalAddressSpecArgs']] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  target_port: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the listener. The name must be unique for each listener on a single load balancer.
+        :param pulumi.Input[int] port: Port for incoming traffic.
+        :param pulumi.Input['LbNetworkLoadBalancerListenerExternalAddressSpecArgs'] external_address_spec: External IP address specification. The structure is documented below.
+        :param pulumi.Input['LbNetworkLoadBalancerListenerInternalAddressSpecArgs'] internal_address_spec: Internal IP address specification. The structure is documented below.
+        :param pulumi.Input[str] protocol: Protocol for incoming traffic. TCP or UDP and the default is TCP.
+        :param pulumi.Input[int] target_port: Port of a target. The default is the same as listener's port.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "port", port)
         if external_address_spec is not None:
@@ -11390,6 +14650,9 @@ class LbNetworkLoadBalancerListenerArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Name of the listener. The name must be unique for each listener on a single load balancer.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -11399,6 +14662,9 @@ class LbNetworkLoadBalancerListenerArgs:
     @property
     @pulumi.getter
     def port(self) -> pulumi.Input[int]:
+        """
+        Port for incoming traffic.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -11408,6 +14674,9 @@ class LbNetworkLoadBalancerListenerArgs:
     @property
     @pulumi.getter(name="externalAddressSpec")
     def external_address_spec(self) -> Optional[pulumi.Input['LbNetworkLoadBalancerListenerExternalAddressSpecArgs']]:
+        """
+        External IP address specification. The structure is documented below.
+        """
         return pulumi.get(self, "external_address_spec")
 
     @external_address_spec.setter
@@ -11417,6 +14686,9 @@ class LbNetworkLoadBalancerListenerArgs:
     @property
     @pulumi.getter(name="internalAddressSpec")
     def internal_address_spec(self) -> Optional[pulumi.Input['LbNetworkLoadBalancerListenerInternalAddressSpecArgs']]:
+        """
+        Internal IP address specification. The structure is documented below.
+        """
         return pulumi.get(self, "internal_address_spec")
 
     @internal_address_spec.setter
@@ -11426,6 +14698,9 @@ class LbNetworkLoadBalancerListenerArgs:
     @property
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Protocol for incoming traffic. TCP or UDP and the default is TCP.
+        """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
@@ -11435,6 +14710,9 @@ class LbNetworkLoadBalancerListenerArgs:
     @property
     @pulumi.getter(name="targetPort")
     def target_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port of a target. The default is the same as listener's port.
+        """
         return pulumi.get(self, "target_port")
 
     @target_port.setter
@@ -11447,6 +14725,10 @@ class LbNetworkLoadBalancerListenerExternalAddressSpecArgs:
     def __init__(__self__, *,
                  address: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: Internal IP address for a listener. Must belong to the subnet that is referenced in subnet_id. IP address will be allocated if it wasn't been set.
+        :param pulumi.Input[str] ip_version: IP version of the internal addresses that the load balancer works with. Must be one of ipv4 or ipv6. The default is ipv4.
+        """
         if address is not None:
             pulumi.set(__self__, "address", address)
         if ip_version is not None:
@@ -11455,6 +14737,9 @@ class LbNetworkLoadBalancerListenerExternalAddressSpecArgs:
     @property
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Internal IP address for a listener. Must belong to the subnet that is referenced in subnet_id. IP address will be allocated if it wasn't been set.
+        """
         return pulumi.get(self, "address")
 
     @address.setter
@@ -11464,6 +14749,9 @@ class LbNetworkLoadBalancerListenerExternalAddressSpecArgs:
     @property
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        IP version of the internal addresses that the load balancer works with. Must be one of ipv4 or ipv6. The default is ipv4.
+        """
         return pulumi.get(self, "ip_version")
 
     @ip_version.setter
@@ -11477,6 +14765,11 @@ class LbNetworkLoadBalancerListenerInternalAddressSpecArgs:
                  subnet_id: pulumi.Input[str],
                  address: Optional[pulumi.Input[str]] = None,
                  ip_version: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] subnet_id: ID of the subnet to which the internal IP address belongs.
+        :param pulumi.Input[str] address: Internal IP address for a listener. Must belong to the subnet that is referenced in subnet_id. IP address will be allocated if it wasn't been set.
+        :param pulumi.Input[str] ip_version: IP version of the internal addresses that the load balancer works with. Must be one of ipv4 or ipv6. The default is ipv4.
+        """
         pulumi.set(__self__, "subnet_id", subnet_id)
         if address is not None:
             pulumi.set(__self__, "address", address)
@@ -11486,6 +14779,9 @@ class LbNetworkLoadBalancerListenerInternalAddressSpecArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> pulumi.Input[str]:
+        """
+        ID of the subnet to which the internal IP address belongs.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -11495,6 +14791,9 @@ class LbNetworkLoadBalancerListenerInternalAddressSpecArgs:
     @property
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Internal IP address for a listener. Must belong to the subnet that is referenced in subnet_id. IP address will be allocated if it wasn't been set.
+        """
         return pulumi.get(self, "address")
 
     @address.setter
@@ -11504,6 +14803,9 @@ class LbNetworkLoadBalancerListenerInternalAddressSpecArgs:
     @property
     @pulumi.getter(name="ipVersion")
     def ip_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        IP version of the internal addresses that the load balancer works with. Must be one of ipv4 or ipv6. The default is ipv4.
+        """
         return pulumi.get(self, "ip_version")
 
     @ip_version.setter
@@ -11516,12 +14818,20 @@ class LbTargetGroupTargetArgs:
     def __init__(__self__, *,
                  address: pulumi.Input[str],
                  subnet_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] address: IP address of the target.
+        :param pulumi.Input[str] subnet_id: ID of the subnet that targets are connected to. 
+               All targets in the target group must be connected to the same subnet within a single availability zone.
+        """
         pulumi.set(__self__, "address", address)
         pulumi.set(__self__, "subnet_id", subnet_id)
 
     @property
     @pulumi.getter
     def address(self) -> pulumi.Input[str]:
+        """
+        IP address of the target.
+        """
         return pulumi.get(self, "address")
 
     @address.setter
@@ -11531,6 +14841,10 @@ class LbTargetGroupTargetArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> pulumi.Input[str]:
+        """
+        ID of the subnet that targets are connected to. 
+        All targets in the target group must be connected to the same subnet within a single availability zone.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -11547,6 +14861,14 @@ class MdbClickhouseClusterAccessArgs:
                  serverless: Optional[pulumi.Input[bool]] = None,
                  web_sql: Optional[pulumi.Input[bool]] = None,
                  yandex_query: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] data_lens: Allow access for DataLens. Can be either `true` or `false`.
+        :param pulumi.Input[bool] data_transfer: Allow access for DataTransfer. Can be either `true` or `false`.
+        :param pulumi.Input[bool] metrika: Allow access for Yandex.Metrika. Can be either `true` or `false`.
+        :param pulumi.Input[bool] serverless: Allow access for Serverless. Can be either `true` or `false`.
+        :param pulumi.Input[bool] web_sql: Allow access for Web SQL. Can be either `true` or `false`.
+        :param pulumi.Input[bool] yandex_query: Allow access for YandexQuery. Can be either `true` or `false`.
+        """
         if data_lens is not None:
             pulumi.set(__self__, "data_lens", data_lens)
         if data_transfer is not None:
@@ -11563,6 +14885,9 @@ class MdbClickhouseClusterAccessArgs:
     @property
     @pulumi.getter(name="dataLens")
     def data_lens(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for DataLens. Can be either `true` or `false`.
+        """
         return pulumi.get(self, "data_lens")
 
     @data_lens.setter
@@ -11572,6 +14897,9 @@ class MdbClickhouseClusterAccessArgs:
     @property
     @pulumi.getter(name="dataTransfer")
     def data_transfer(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for DataTransfer. Can be either `true` or `false`.
+        """
         return pulumi.get(self, "data_transfer")
 
     @data_transfer.setter
@@ -11581,6 +14909,9 @@ class MdbClickhouseClusterAccessArgs:
     @property
     @pulumi.getter
     def metrika(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for Yandex.Metrika. Can be either `true` or `false`.
+        """
         return pulumi.get(self, "metrika")
 
     @metrika.setter
@@ -11590,6 +14921,9 @@ class MdbClickhouseClusterAccessArgs:
     @property
     @pulumi.getter
     def serverless(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for Serverless. Can be either `true` or `false`.
+        """
         return pulumi.get(self, "serverless")
 
     @serverless.setter
@@ -11599,6 +14933,9 @@ class MdbClickhouseClusterAccessArgs:
     @property
     @pulumi.getter(name="webSql")
     def web_sql(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for Web SQL. Can be either `true` or `false`.
+        """
         return pulumi.get(self, "web_sql")
 
     @web_sql.setter
@@ -11608,6 +14945,9 @@ class MdbClickhouseClusterAccessArgs:
     @property
     @pulumi.getter(name="yandexQuery")
     def yandex_query(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for YandexQuery. Can be either `true` or `false`.
+        """
         return pulumi.get(self, "yandex_query")
 
     @yandex_query.setter
@@ -11620,6 +14960,10 @@ class MdbClickhouseClusterBackupWindowStartArgs:
     def __init__(__self__, *,
                  hours: Optional[pulumi.Input[int]] = None,
                  minutes: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] hours: The hour at which backup will be started.
+        :param pulumi.Input[int] minutes: The minute at which backup will be started.
+        """
         if hours is not None:
             pulumi.set(__self__, "hours", hours)
         if minutes is not None:
@@ -11628,6 +14972,9 @@ class MdbClickhouseClusterBackupWindowStartArgs:
     @property
     @pulumi.getter
     def hours(self) -> Optional[pulumi.Input[int]]:
+        """
+        The hour at which backup will be started.
+        """
         return pulumi.get(self, "hours")
 
     @hours.setter
@@ -11637,6 +14984,9 @@ class MdbClickhouseClusterBackupWindowStartArgs:
     @property
     @pulumi.getter
     def minutes(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minute at which backup will be started.
+        """
         return pulumi.get(self, "minutes")
 
     @minutes.setter
@@ -11649,6 +14999,10 @@ class MdbClickhouseClusterClickhouseArgs:
     def __init__(__self__, *,
                  resources: pulumi.Input['MdbClickhouseClusterClickhouseResourcesArgs'],
                  config: Optional[pulumi.Input['MdbClickhouseClusterClickhouseConfigArgs']] = None):
+        """
+        :param pulumi.Input['MdbClickhouseClusterClickhouseResourcesArgs'] resources: Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        :param pulumi.Input['MdbClickhouseClusterClickhouseConfigArgs'] config: Main ClickHouse cluster configuration.
+        """
         pulumi.set(__self__, "resources", resources)
         if config is not None:
             pulumi.set(__self__, "config", config)
@@ -11656,6 +15010,9 @@ class MdbClickhouseClusterClickhouseArgs:
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Input['MdbClickhouseClusterClickhouseResourcesArgs']:
+        """
+        Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -11665,6 +15022,9 @@ class MdbClickhouseClusterClickhouseArgs:
     @property
     @pulumi.getter
     def config(self) -> Optional[pulumi.Input['MdbClickhouseClusterClickhouseConfigArgs']]:
+        """
+        Main ClickHouse cluster configuration.
+        """
         return pulumi.get(self, "config")
 
     @config.setter
@@ -11710,6 +15070,14 @@ class MdbClickhouseClusterClickhouseConfigArgs:
                  trace_log_retention_size: Optional[pulumi.Input[int]] = None,
                  trace_log_retention_time: Optional[pulumi.Input[int]] = None,
                  uncompressed_cache_size: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterClickhouseConfigCompressionArgs']]] compressions: Data compression configuration. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterClickhouseConfigGraphiteRollupArgs']]] graphite_rollups: Graphite rollup configuration. The structure is documented below.
+        :param pulumi.Input['MdbClickhouseClusterClickhouseConfigKafkaArgs'] kafka: Kafka connection configuration. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterClickhouseConfigKafkaTopicArgs']]] kafka_topics: Kafka topic connection configuration. The structure is documented below.
+        :param pulumi.Input['MdbClickhouseClusterClickhouseConfigMergeTreeArgs'] merge_tree: MergeTree engine configuration. The structure is documented below.
+        :param pulumi.Input['MdbClickhouseClusterClickhouseConfigRabbitmqArgs'] rabbitmq: RabbitMQ connection configuration. The structure is documented below.
+        """
         if background_pool_size is not None:
             pulumi.set(__self__, "background_pool_size", background_pool_size)
         if background_schedule_pool_size is not None:
@@ -11802,6 +15170,9 @@ class MdbClickhouseClusterClickhouseConfigArgs:
     @property
     @pulumi.getter
     def compressions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterClickhouseConfigCompressionArgs']]]]:
+        """
+        Data compression configuration. The structure is documented below.
+        """
         return pulumi.get(self, "compressions")
 
     @compressions.setter
@@ -11820,6 +15191,9 @@ class MdbClickhouseClusterClickhouseConfigArgs:
     @property
     @pulumi.getter(name="graphiteRollups")
     def graphite_rollups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterClickhouseConfigGraphiteRollupArgs']]]]:
+        """
+        Graphite rollup configuration. The structure is documented below.
+        """
         return pulumi.get(self, "graphite_rollups")
 
     @graphite_rollups.setter
@@ -11829,6 +15203,9 @@ class MdbClickhouseClusterClickhouseConfigArgs:
     @property
     @pulumi.getter
     def kafka(self) -> Optional[pulumi.Input['MdbClickhouseClusterClickhouseConfigKafkaArgs']]:
+        """
+        Kafka connection configuration. The structure is documented below.
+        """
         return pulumi.get(self, "kafka")
 
     @kafka.setter
@@ -11838,6 +15215,9 @@ class MdbClickhouseClusterClickhouseConfigArgs:
     @property
     @pulumi.getter(name="kafkaTopics")
     def kafka_topics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterClickhouseConfigKafkaTopicArgs']]]]:
+        """
+        Kafka topic connection configuration. The structure is documented below.
+        """
         return pulumi.get(self, "kafka_topics")
 
     @kafka_topics.setter
@@ -11910,6 +15290,9 @@ class MdbClickhouseClusterClickhouseConfigArgs:
     @property
     @pulumi.getter(name="mergeTree")
     def merge_tree(self) -> Optional[pulumi.Input['MdbClickhouseClusterClickhouseConfigMergeTreeArgs']]:
+        """
+        MergeTree engine configuration. The structure is documented below.
+        """
         return pulumi.get(self, "merge_tree")
 
     @merge_tree.setter
@@ -12009,6 +15392,9 @@ class MdbClickhouseClusterClickhouseConfigArgs:
     @property
     @pulumi.getter
     def rabbitmq(self) -> Optional[pulumi.Input['MdbClickhouseClusterClickhouseConfigRabbitmqArgs']]:
+        """
+        RabbitMQ connection configuration. The structure is documented below.
+        """
         return pulumi.get(self, "rabbitmq")
 
     @rabbitmq.setter
@@ -12103,6 +15489,11 @@ class MdbClickhouseClusterClickhouseConfigCompressionArgs:
                  method: pulumi.Input[str],
                  min_part_size: pulumi.Input[int],
                  min_part_size_ratio: pulumi.Input[float]):
+        """
+        :param pulumi.Input[str] method: Method: Compression method. Two methods are available: LZ4 and zstd.
+        :param pulumi.Input[int] min_part_size: Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
+        :param pulumi.Input[float] min_part_size_ratio: Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
+        """
         pulumi.set(__self__, "method", method)
         pulumi.set(__self__, "min_part_size", min_part_size)
         pulumi.set(__self__, "min_part_size_ratio", min_part_size_ratio)
@@ -12110,6 +15501,9 @@ class MdbClickhouseClusterClickhouseConfigCompressionArgs:
     @property
     @pulumi.getter
     def method(self) -> pulumi.Input[str]:
+        """
+        Method: Compression method. Two methods are available: LZ4 and zstd.
+        """
         return pulumi.get(self, "method")
 
     @method.setter
@@ -12119,6 +15513,9 @@ class MdbClickhouseClusterClickhouseConfigCompressionArgs:
     @property
     @pulumi.getter(name="minPartSize")
     def min_part_size(self) -> pulumi.Input[int]:
+        """
+        Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
+        """
         return pulumi.get(self, "min_part_size")
 
     @min_part_size.setter
@@ -12128,6 +15525,9 @@ class MdbClickhouseClusterClickhouseConfigCompressionArgs:
     @property
     @pulumi.getter(name="minPartSizeRatio")
     def min_part_size_ratio(self) -> pulumi.Input[float]:
+        """
+        Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
+        """
         return pulumi.get(self, "min_part_size_ratio")
 
     @min_part_size_ratio.setter
@@ -12140,6 +15540,10 @@ class MdbClickhouseClusterClickhouseConfigGraphiteRollupArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  patterns: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs']]]] = None):
+        """
+        :param pulumi.Input[str] name: Graphite rollup configuration name.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs']]] patterns: Set of thinning rules.
+        """
         pulumi.set(__self__, "name", name)
         if patterns is not None:
             pulumi.set(__self__, "patterns", patterns)
@@ -12147,6 +15551,9 @@ class MdbClickhouseClusterClickhouseConfigGraphiteRollupArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Graphite rollup configuration name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -12156,6 +15563,9 @@ class MdbClickhouseClusterClickhouseConfigGraphiteRollupArgs:
     @property
     @pulumi.getter
     def patterns(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs']]]]:
+        """
+        Set of thinning rules.
+        """
         return pulumi.get(self, "patterns")
 
     @patterns.setter
@@ -12169,6 +15579,11 @@ class MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs:
                  function: pulumi.Input[str],
                  regexp: Optional[pulumi.Input[str]] = None,
                  retentions: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs']]]] = None):
+        """
+        :param pulumi.Input[str] function: Aggregation function name.
+        :param pulumi.Input[str] regexp: Regular expression that the metric name must match.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs']]] retentions: Retain parameters.
+        """
         pulumi.set(__self__, "function", function)
         if regexp is not None:
             pulumi.set(__self__, "regexp", regexp)
@@ -12178,6 +15593,9 @@ class MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs:
     @property
     @pulumi.getter
     def function(self) -> pulumi.Input[str]:
+        """
+        Aggregation function name.
+        """
         return pulumi.get(self, "function")
 
     @function.setter
@@ -12187,6 +15605,9 @@ class MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs:
     @property
     @pulumi.getter
     def regexp(self) -> Optional[pulumi.Input[str]]:
+        """
+        Regular expression that the metric name must match.
+        """
         return pulumi.get(self, "regexp")
 
     @regexp.setter
@@ -12196,6 +15617,9 @@ class MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs:
     @property
     @pulumi.getter
     def retentions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs']]]]:
+        """
+        Retain parameters.
+        """
         return pulumi.get(self, "retentions")
 
     @retentions.setter
@@ -12208,12 +15632,19 @@ class MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs:
     def __init__(__self__, *,
                  age: pulumi.Input[int],
                  precision: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] age: Minimum data age in seconds.
+        :param pulumi.Input[int] precision: Accuracy of determining the age of the data in seconds.
+        """
         pulumi.set(__self__, "age", age)
         pulumi.set(__self__, "precision", precision)
 
     @property
     @pulumi.getter
     def age(self) -> pulumi.Input[int]:
+        """
+        Minimum data age in seconds.
+        """
         return pulumi.get(self, "age")
 
     @age.setter
@@ -12223,6 +15654,9 @@ class MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs:
     @property
     @pulumi.getter
     def precision(self) -> pulumi.Input[int]:
+        """
+        Accuracy of determining the age of the data in seconds.
+        """
         return pulumi.get(self, "precision")
 
     @precision.setter
@@ -12237,6 +15671,12 @@ class MdbClickhouseClusterClickhouseConfigKafkaArgs:
                  sasl_password: Optional[pulumi.Input[str]] = None,
                  sasl_username: Optional[pulumi.Input[str]] = None,
                  security_protocol: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] sasl_mechanism: SASL mechanism used in kafka authentication.
+        :param pulumi.Input[str] sasl_password: User password on kafka server.
+        :param pulumi.Input[str] sasl_username: Username on kafka server.
+        :param pulumi.Input[str] security_protocol: Security protocol used to connect to kafka server.
+        """
         if sasl_mechanism is not None:
             pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
         if sasl_password is not None:
@@ -12249,6 +15689,9 @@ class MdbClickhouseClusterClickhouseConfigKafkaArgs:
     @property
     @pulumi.getter(name="saslMechanism")
     def sasl_mechanism(self) -> Optional[pulumi.Input[str]]:
+        """
+        SASL mechanism used in kafka authentication.
+        """
         return pulumi.get(self, "sasl_mechanism")
 
     @sasl_mechanism.setter
@@ -12258,6 +15701,9 @@ class MdbClickhouseClusterClickhouseConfigKafkaArgs:
     @property
     @pulumi.getter(name="saslPassword")
     def sasl_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        User password on kafka server.
+        """
         return pulumi.get(self, "sasl_password")
 
     @sasl_password.setter
@@ -12267,6 +15713,9 @@ class MdbClickhouseClusterClickhouseConfigKafkaArgs:
     @property
     @pulumi.getter(name="saslUsername")
     def sasl_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username on kafka server.
+        """
         return pulumi.get(self, "sasl_username")
 
     @sasl_username.setter
@@ -12276,6 +15725,9 @@ class MdbClickhouseClusterClickhouseConfigKafkaArgs:
     @property
     @pulumi.getter(name="securityProtocol")
     def security_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security protocol used to connect to kafka server.
+        """
         return pulumi.get(self, "security_protocol")
 
     @security_protocol.setter
@@ -12288,6 +15740,10 @@ class MdbClickhouseClusterClickhouseConfigKafkaTopicArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
                  settings: Optional[pulumi.Input['MdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs']] = None):
+        """
+        :param pulumi.Input[str] name: Graphite rollup configuration name.
+        :param pulumi.Input['MdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs'] settings: Kafka connection settngs sanem as `kafka` block.
+        """
         pulumi.set(__self__, "name", name)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
@@ -12295,6 +15751,9 @@ class MdbClickhouseClusterClickhouseConfigKafkaTopicArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Graphite rollup configuration name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -12304,6 +15763,9 @@ class MdbClickhouseClusterClickhouseConfigKafkaTopicArgs:
     @property
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input['MdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs']]:
+        """
+        Kafka connection settngs sanem as `kafka` block.
+        """
         return pulumi.get(self, "settings")
 
     @settings.setter
@@ -12318,6 +15780,12 @@ class MdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs:
                  sasl_password: Optional[pulumi.Input[str]] = None,
                  sasl_username: Optional[pulumi.Input[str]] = None,
                  security_protocol: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] sasl_mechanism: SASL mechanism used in kafka authentication.
+        :param pulumi.Input[str] sasl_password: User password on kafka server.
+        :param pulumi.Input[str] sasl_username: Username on kafka server.
+        :param pulumi.Input[str] security_protocol: Security protocol used to connect to kafka server.
+        """
         if sasl_mechanism is not None:
             pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
         if sasl_password is not None:
@@ -12330,6 +15798,9 @@ class MdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs:
     @property
     @pulumi.getter(name="saslMechanism")
     def sasl_mechanism(self) -> Optional[pulumi.Input[str]]:
+        """
+        SASL mechanism used in kafka authentication.
+        """
         return pulumi.get(self, "sasl_mechanism")
 
     @sasl_mechanism.setter
@@ -12339,6 +15810,9 @@ class MdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs:
     @property
     @pulumi.getter(name="saslPassword")
     def sasl_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        User password on kafka server.
+        """
         return pulumi.get(self, "sasl_password")
 
     @sasl_password.setter
@@ -12348,6 +15822,9 @@ class MdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs:
     @property
     @pulumi.getter(name="saslUsername")
     def sasl_username(self) -> Optional[pulumi.Input[str]]:
+        """
+        Username on kafka server.
+        """
         return pulumi.get(self, "sasl_username")
 
     @sasl_username.setter
@@ -12357,6 +15834,9 @@ class MdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs:
     @property
     @pulumi.getter(name="securityProtocol")
     def security_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security protocol used to connect to kafka server.
+        """
         return pulumi.get(self, "security_protocol")
 
     @security_protocol.setter
@@ -12374,6 +15854,15 @@ class MdbClickhouseClusterClickhouseConfigMergeTreeArgs:
                  parts_to_throw_insert: Optional[pulumi.Input[int]] = None,
                  replicated_deduplication_window: Optional[pulumi.Input[int]] = None,
                  replicated_deduplication_window_seconds: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] max_bytes_to_merge_at_min_space_in_pool: Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
+        :param pulumi.Input[int] max_replicated_merges_in_queue: Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
+        :param pulumi.Input[int] number_of_free_entries_in_pool_to_lower_max_size_of_merge: Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
+        :param pulumi.Input[int] parts_to_delay_insert: Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
+        :param pulumi.Input[int] parts_to_throw_insert: Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
+        :param pulumi.Input[int] replicated_deduplication_window: Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
+        :param pulumi.Input[int] replicated_deduplication_window_seconds: Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
+        """
         if max_bytes_to_merge_at_min_space_in_pool is not None:
             pulumi.set(__self__, "max_bytes_to_merge_at_min_space_in_pool", max_bytes_to_merge_at_min_space_in_pool)
         if max_replicated_merges_in_queue is not None:
@@ -12392,6 +15881,9 @@ class MdbClickhouseClusterClickhouseConfigMergeTreeArgs:
     @property
     @pulumi.getter(name="maxBytesToMergeAtMinSpaceInPool")
     def max_bytes_to_merge_at_min_space_in_pool(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
+        """
         return pulumi.get(self, "max_bytes_to_merge_at_min_space_in_pool")
 
     @max_bytes_to_merge_at_min_space_in_pool.setter
@@ -12401,6 +15893,9 @@ class MdbClickhouseClusterClickhouseConfigMergeTreeArgs:
     @property
     @pulumi.getter(name="maxReplicatedMergesInQueue")
     def max_replicated_merges_in_queue(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
+        """
         return pulumi.get(self, "max_replicated_merges_in_queue")
 
     @max_replicated_merges_in_queue.setter
@@ -12410,6 +15905,9 @@ class MdbClickhouseClusterClickhouseConfigMergeTreeArgs:
     @property
     @pulumi.getter(name="numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge")
     def number_of_free_entries_in_pool_to_lower_max_size_of_merge(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
+        """
         return pulumi.get(self, "number_of_free_entries_in_pool_to_lower_max_size_of_merge")
 
     @number_of_free_entries_in_pool_to_lower_max_size_of_merge.setter
@@ -12419,6 +15917,9 @@ class MdbClickhouseClusterClickhouseConfigMergeTreeArgs:
     @property
     @pulumi.getter(name="partsToDelayInsert")
     def parts_to_delay_insert(self) -> Optional[pulumi.Input[int]]:
+        """
+        Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
+        """
         return pulumi.get(self, "parts_to_delay_insert")
 
     @parts_to_delay_insert.setter
@@ -12428,6 +15929,9 @@ class MdbClickhouseClusterClickhouseConfigMergeTreeArgs:
     @property
     @pulumi.getter(name="partsToThrowInsert")
     def parts_to_throw_insert(self) -> Optional[pulumi.Input[int]]:
+        """
+        Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
+        """
         return pulumi.get(self, "parts_to_throw_insert")
 
     @parts_to_throw_insert.setter
@@ -12437,6 +15941,9 @@ class MdbClickhouseClusterClickhouseConfigMergeTreeArgs:
     @property
     @pulumi.getter(name="replicatedDeduplicationWindow")
     def replicated_deduplication_window(self) -> Optional[pulumi.Input[int]]:
+        """
+        Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
+        """
         return pulumi.get(self, "replicated_deduplication_window")
 
     @replicated_deduplication_window.setter
@@ -12446,6 +15953,9 @@ class MdbClickhouseClusterClickhouseConfigMergeTreeArgs:
     @property
     @pulumi.getter(name="replicatedDeduplicationWindowSeconds")
     def replicated_deduplication_window_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
+        """
         return pulumi.get(self, "replicated_deduplication_window_seconds")
 
     @replicated_deduplication_window_seconds.setter
@@ -12458,6 +15968,10 @@ class MdbClickhouseClusterClickhouseConfigRabbitmqArgs:
     def __init__(__self__, *,
                  password: Optional[pulumi.Input[str]] = None,
                  username: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] password: RabbitMQ user password.
+        :param pulumi.Input[str] username: RabbitMQ username.
+        """
         if password is not None:
             pulumi.set(__self__, "password", password)
         if username is not None:
@@ -12466,6 +15980,9 @@ class MdbClickhouseClusterClickhouseConfigRabbitmqArgs:
     @property
     @pulumi.getter
     def password(self) -> Optional[pulumi.Input[str]]:
+        """
+        RabbitMQ user password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -12475,6 +15992,9 @@ class MdbClickhouseClusterClickhouseConfigRabbitmqArgs:
     @property
     @pulumi.getter
     def username(self) -> Optional[pulumi.Input[str]]:
+        """
+        RabbitMQ username.
+        """
         return pulumi.get(self, "username")
 
     @username.setter
@@ -12488,6 +16008,11 @@ class MdbClickhouseClusterClickhouseResourcesArgs:
                  disk_size: pulumi.Input[int],
                  disk_type_id: pulumi.Input[str],
                  resource_preset_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a ZooKeeper host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of ZooKeeper hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "disk_type_id", disk_type_id)
         pulumi.set(__self__, "resource_preset_id", resource_preset_id)
@@ -12495,6 +16020,9 @@ class MdbClickhouseClusterClickhouseResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a ZooKeeper host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -12504,6 +16032,10 @@ class MdbClickhouseClusterClickhouseResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> pulumi.Input[str]:
+        """
+        Type of the storage of ZooKeeper hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -12524,11 +16056,17 @@ class MdbClickhouseClusterClickhouseResourcesArgs:
 class MdbClickhouseClusterCloudStorageArgs:
     def __init__(__self__, *,
                  enabled: pulumi.Input[bool]):
+        """
+        :param pulumi.Input[bool] enabled: Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+        """
         pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter
     def enabled(self) -> pulumi.Input[bool]:
+        """
+        Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -12540,11 +16078,17 @@ class MdbClickhouseClusterCloudStorageArgs:
 class MdbClickhouseClusterDatabaseArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] name: Graphite rollup configuration name.
+        """
         pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Graphite rollup configuration name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -12558,6 +16102,11 @@ class MdbClickhouseClusterFormatSchemaArgs:
                  name: pulumi.Input[str],
                  type: pulumi.Input[str],
                  uri: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] name: Graphite rollup configuration name.
+        :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param pulumi.Input[str] uri: Model file URL. You can only use models stored in Yandex Object Storage.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "uri", uri)
@@ -12565,6 +16114,9 @@ class MdbClickhouseClusterFormatSchemaArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Graphite rollup configuration name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -12574,6 +16126,9 @@ class MdbClickhouseClusterFormatSchemaArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -12583,6 +16138,9 @@ class MdbClickhouseClusterFormatSchemaArgs:
     @property
     @pulumi.getter
     def uri(self) -> pulumi.Input[str]:
+        """
+        Model file URL. You can only use models stored in Yandex Object Storage.
+        """
         return pulumi.get(self, "uri")
 
     @uri.setter
@@ -12599,6 +16157,15 @@ class MdbClickhouseClusterHostArgs:
                  fqdn: Optional[pulumi.Input[str]] = None,
                  shard_name: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param pulumi.Input[str] zone: The availability zone where the ClickHouse host will be created.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+        :param pulumi.Input[bool] assign_public_ip: Sets whether the host should get a public IP address on creation. Can be either `true` or `false`.
+        :param pulumi.Input[str] fqdn: The fully qualified domain name of the host.
+        :param pulumi.Input[str] shard_name: The name of the shard to which the host belongs.
+        :param pulumi.Input[str] subnet_id: The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        """
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "zone", zone)
         if assign_public_ip is not None:
@@ -12613,6 +16180,9 @@ class MdbClickhouseClusterHostArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -12622,6 +16192,10 @@ class MdbClickhouseClusterHostArgs:
     @property
     @pulumi.getter
     def zone(self) -> pulumi.Input[str]:
+        """
+        The availability zone where the ClickHouse host will be created.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -12631,6 +16205,9 @@ class MdbClickhouseClusterHostArgs:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Sets whether the host should get a public IP address on creation. Can be either `true` or `false`.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -12640,6 +16217,9 @@ class MdbClickhouseClusterHostArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fully qualified domain name of the host.
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -12649,6 +16229,9 @@ class MdbClickhouseClusterHostArgs:
     @property
     @pulumi.getter(name="shardName")
     def shard_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the shard to which the host belongs.
+        """
         return pulumi.get(self, "shard_name")
 
     @shard_name.setter
@@ -12658,6 +16241,9 @@ class MdbClickhouseClusterHostArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -12671,6 +16257,11 @@ class MdbClickhouseClusterMaintenanceWindowArgs:
                  type: pulumi.Input[str],
                  day: Optional[pulumi.Input[str]] = None,
                  hour: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param pulumi.Input[str] day: Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        :param pulumi.Input[int] hour: Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+        """
         pulumi.set(__self__, "type", type)
         if day is not None:
             pulumi.set(__self__, "day", day)
@@ -12680,6 +16271,9 @@ class MdbClickhouseClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -12689,6 +16283,9 @@ class MdbClickhouseClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def day(self) -> Optional[pulumi.Input[str]]:
+        """
+        Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        """
         return pulumi.get(self, "day")
 
     @day.setter
@@ -12698,6 +16295,9 @@ class MdbClickhouseClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+        """
         return pulumi.get(self, "hour")
 
     @hour.setter
@@ -12711,6 +16311,11 @@ class MdbClickhouseClusterMlModelArgs:
                  name: pulumi.Input[str],
                  type: pulumi.Input[str],
                  uri: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] name: Graphite rollup configuration name.
+        :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param pulumi.Input[str] uri: Model file URL. You can only use models stored in Yandex Object Storage.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "uri", uri)
@@ -12718,6 +16323,9 @@ class MdbClickhouseClusterMlModelArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Graphite rollup configuration name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -12727,6 +16335,9 @@ class MdbClickhouseClusterMlModelArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -12736,6 +16347,9 @@ class MdbClickhouseClusterMlModelArgs:
     @property
     @pulumi.getter
     def uri(self) -> pulumi.Input[str]:
+        """
+        Model file URL. You can only use models stored in Yandex Object Storage.
+        """
         return pulumi.get(self, "uri")
 
     @uri.setter
@@ -12749,6 +16363,11 @@ class MdbClickhouseClusterShardGroupArgs:
                  name: pulumi.Input[str],
                  shard_names: pulumi.Input[Sequence[pulumi.Input[str]]],
                  description: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Graphite rollup configuration name.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] shard_names: List of shards names that belong to the shard group.
+        :param pulumi.Input[str] description: Description of the shard group.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "shard_names", shard_names)
         if description is not None:
@@ -12757,6 +16376,9 @@ class MdbClickhouseClusterShardGroupArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Graphite rollup configuration name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -12766,6 +16388,9 @@ class MdbClickhouseClusterShardGroupArgs:
     @property
     @pulumi.getter(name="shardNames")
     def shard_names(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        List of shards names that belong to the shard group.
+        """
         return pulumi.get(self, "shard_names")
 
     @shard_names.setter
@@ -12775,6 +16400,9 @@ class MdbClickhouseClusterShardGroupArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the shard group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -12790,6 +16418,13 @@ class MdbClickhouseClusterUserArgs:
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterUserPermissionArgs']]]] = None,
                  quotas: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterUserQuotaArgs']]]] = None,
                  settings: Optional[pulumi.Input['MdbClickhouseClusterUserSettingsArgs']] = None):
+        """
+        :param pulumi.Input[str] name: Graphite rollup configuration name.
+        :param pulumi.Input[str] password: RabbitMQ user password.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterUserPermissionArgs']]] permissions: Set of permissions granted to the user. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterUserQuotaArgs']]] quotas: Set of user quotas. The structure is documented below.
+        :param pulumi.Input['MdbClickhouseClusterUserSettingsArgs'] settings: Kafka connection settngs sanem as `kafka` block.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "password", password)
         if permissions is not None:
@@ -12802,6 +16437,9 @@ class MdbClickhouseClusterUserArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Graphite rollup configuration name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -12811,6 +16449,9 @@ class MdbClickhouseClusterUserArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        RabbitMQ user password.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -12820,6 +16461,9 @@ class MdbClickhouseClusterUserArgs:
     @property
     @pulumi.getter
     def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterUserPermissionArgs']]]]:
+        """
+        Set of permissions granted to the user. The structure is documented below.
+        """
         return pulumi.get(self, "permissions")
 
     @permissions.setter
@@ -12829,6 +16473,9 @@ class MdbClickhouseClusterUserArgs:
     @property
     @pulumi.getter
     def quotas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterUserQuotaArgs']]]]:
+        """
+        Set of user quotas. The structure is documented below.
+        """
         return pulumi.get(self, "quotas")
 
     @quotas.setter
@@ -12838,6 +16485,9 @@ class MdbClickhouseClusterUserArgs:
     @property
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input['MdbClickhouseClusterUserSettingsArgs']]:
+        """
+        Kafka connection settngs sanem as `kafka` block.
+        """
         return pulumi.get(self, "settings")
 
     @settings.setter
@@ -12849,11 +16499,17 @@ class MdbClickhouseClusterUserArgs:
 class MdbClickhouseClusterUserPermissionArgs:
     def __init__(__self__, *,
                  database_name: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] database_name: The name of the database that the permission grants access to.
+        """
         pulumi.set(__self__, "database_name", database_name)
 
     @property
     @pulumi.getter(name="databaseName")
     def database_name(self) -> pulumi.Input[str]:
+        """
+        The name of the database that the permission grants access to.
+        """
         return pulumi.get(self, "database_name")
 
     @database_name.setter
@@ -12870,6 +16526,14 @@ class MdbClickhouseClusterUserQuotaArgs:
                  queries: Optional[pulumi.Input[int]] = None,
                  read_rows: Optional[pulumi.Input[int]] = None,
                  result_rows: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] interval_duration: Duration of interval for quota in milliseconds.
+        :param pulumi.Input[int] errors: The number of queries that threw exception.
+        :param pulumi.Input[int] execution_time: The total query execution time, in milliseconds (wall time).
+        :param pulumi.Input[int] queries: The total number of queries.
+        :param pulumi.Input[int] read_rows: The total number of source rows read from tables for running the query, on all remote servers.
+        :param pulumi.Input[int] result_rows: The total number of rows given as the result.
+        """
         pulumi.set(__self__, "interval_duration", interval_duration)
         if errors is not None:
             pulumi.set(__self__, "errors", errors)
@@ -12885,6 +16549,9 @@ class MdbClickhouseClusterUserQuotaArgs:
     @property
     @pulumi.getter(name="intervalDuration")
     def interval_duration(self) -> pulumi.Input[int]:
+        """
+        Duration of interval for quota in milliseconds.
+        """
         return pulumi.get(self, "interval_duration")
 
     @interval_duration.setter
@@ -12894,6 +16561,9 @@ class MdbClickhouseClusterUserQuotaArgs:
     @property
     @pulumi.getter
     def errors(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of queries that threw exception.
+        """
         return pulumi.get(self, "errors")
 
     @errors.setter
@@ -12903,6 +16573,9 @@ class MdbClickhouseClusterUserQuotaArgs:
     @property
     @pulumi.getter(name="executionTime")
     def execution_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        The total query execution time, in milliseconds (wall time).
+        """
         return pulumi.get(self, "execution_time")
 
     @execution_time.setter
@@ -12912,6 +16585,9 @@ class MdbClickhouseClusterUserQuotaArgs:
     @property
     @pulumi.getter
     def queries(self) -> Optional[pulumi.Input[int]]:
+        """
+        The total number of queries.
+        """
         return pulumi.get(self, "queries")
 
     @queries.setter
@@ -12921,6 +16597,9 @@ class MdbClickhouseClusterUserQuotaArgs:
     @property
     @pulumi.getter(name="readRows")
     def read_rows(self) -> Optional[pulumi.Input[int]]:
+        """
+        The total number of source rows read from tables for running the query, on all remote servers.
+        """
         return pulumi.get(self, "read_rows")
 
     @read_rows.setter
@@ -12930,6 +16609,9 @@ class MdbClickhouseClusterUserQuotaArgs:
     @property
     @pulumi.getter(name="resultRows")
     def result_rows(self) -> Optional[pulumi.Input[int]]:
+        """
+        The total number of rows given as the result.
+        """
         return pulumi.get(self, "result_rows")
 
     @result_rows.setter
@@ -13033,6 +16715,101 @@ class MdbClickhouseClusterUserSettingsArgs:
                  transfer_overflow_mode: Optional[pulumi.Input[str]] = None,
                  transform_null_in: Optional[pulumi.Input[bool]] = None,
                  use_uncompressed_cache: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] add_http_cors_header: Include CORS headers in HTTP responces.
+        :param pulumi.Input[bool] allow_ddl: Allows or denies DDL queries.
+        :param pulumi.Input[bool] compile: Enable compilation of queries.
+        :param pulumi.Input[bool] compile_expressions: Turn on expression compilation.
+        :param pulumi.Input[int] connect_timeout: Connect timeout in milliseconds on the socket used for communicating with the client.
+        :param pulumi.Input[str] count_distinct_implementation: Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
+        :param pulumi.Input[str] distinct_overflow_mode: Sets behaviour on overflow when using DISTINCT. Possible values:
+        :param pulumi.Input[bool] distributed_aggregation_memory_efficient: Determine the behavior of distributed subqueries.
+        :param pulumi.Input[int] distributed_ddl_task_timeout: Timeout for DDL queries, in milliseconds.
+        :param pulumi.Input[str] distributed_product_mode: Changes the behaviour of distributed subqueries.
+        :param pulumi.Input[bool] empty_result_for_aggregation_by_empty_set: Allows to retunr empty result.
+        :param pulumi.Input[bool] enable_http_compression: Enables or disables data compression in the response to an HTTP request.
+        :param pulumi.Input[bool] fallback_to_stale_replicas_for_distributed_queries: Forces a query to an out-of-date replica if updated data is not available.
+        :param pulumi.Input[bool] force_index_by_date: Disables query execution if the index can’t be used by date.
+        :param pulumi.Input[bool] force_primary_key: Disables query execution if indexing by the primary key is not possible.
+        :param pulumi.Input[str] group_by_overflow_mode: Sets behaviour on overflow while GROUP BY operation. Possible values:
+        :param pulumi.Input[int] group_by_two_level_threshold: Sets the threshold of the number of keys, after that the two-level aggregation should be used.
+        :param pulumi.Input[int] group_by_two_level_threshold_bytes: Sets the threshold of the number of bytes, after that the two-level aggregation should be used.
+        :param pulumi.Input[int] http_connection_timeout: Timeout for HTTP connection in milliseconds.
+        :param pulumi.Input[int] http_headers_progress_interval: Sets minimal interval between notifications about request process in HTTP header X-ClickHouse-Progress.
+        :param pulumi.Input[int] http_receive_timeout: Timeout for HTTP connection in milliseconds.
+        :param pulumi.Input[int] http_send_timeout: Timeout for HTTP connection in milliseconds.
+        :param pulumi.Input[bool] input_format_defaults_for_omitted_fields: When performing INSERT queries, replace omitted input column values with default values of the respective columns.
+        :param pulumi.Input[bool] input_format_values_interpret_expressions: Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
+        :param pulumi.Input[int] insert_quorum: Enables the quorum writes.
+        :param pulumi.Input[int] insert_quorum_timeout: Write to a quorum timeout in milliseconds.
+        :param pulumi.Input[str] join_overflow_mode: Sets behaviour on overflow in JOIN. Possible values:
+        :param pulumi.Input[bool] join_use_nulls: Sets the type of JOIN behaviour. When merging tables, empty cells may appear. ClickHouse fills them differently based on this setting.
+        :param pulumi.Input[bool] joined_subquery_requires_alias: Require aliases for subselects and table functions in FROM that more than one table is present.
+        :param pulumi.Input[bool] low_cardinality_allow_in_native_format: Allows or restricts using the LowCardinality data type with the Native format.
+        :param pulumi.Input[int] max_ast_depth: Maximum abstract syntax tree depth.
+        :param pulumi.Input[int] max_ast_elements: Maximum abstract syntax tree elements.
+        :param pulumi.Input[int] max_block_size: A recommendation for what size of the block (in a count of rows) to load from tables.
+        :param pulumi.Input[int] max_bytes_before_external_group_by: Limit in bytes for using memoru for GROUP BY before using swap on disk.
+        :param pulumi.Input[int] max_bytes_before_external_sort: This setting is equivalent of the max_bytes_before_external_group_by setting, except for it is for sort operation (ORDER BY), not aggregation.
+        :param pulumi.Input[int] max_bytes_in_distinct: Limits the maximum size of a hash table in bytes (uncompressed data) when using DISTINCT.
+        :param pulumi.Input[int] max_bytes_in_join: Limit on maximum size of the hash table for JOIN, in bytes.
+        :param pulumi.Input[int] max_bytes_in_set: Limit on the number of bytes in the set resulting from the execution of the IN section.
+        :param pulumi.Input[int] max_bytes_to_read: Limits the maximum number of bytes (uncompressed data) that can be read from a table when running a query.
+        :param pulumi.Input[int] max_bytes_to_sort: Limits the maximum number of bytes (uncompressed data) that can be read from a table for sorting.
+        :param pulumi.Input[int] max_bytes_to_transfer: Limits the maximum number of bytes (uncompressed data) that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+        :param pulumi.Input[int] max_columns_to_read: Limits the maximum number of columns that can be read from a table in a single query.
+        :param pulumi.Input[int] max_execution_time: Limits the maximum query execution time in milliseconds.
+        :param pulumi.Input[int] max_expanded_ast_elements: Maximum abstract syntax tree depth after after expansion of aliases.
+        :param pulumi.Input[int] max_insert_block_size: The size of blocks (in a count of rows) to form for insertion into a table.
+        :param pulumi.Input[int] max_memory_usage: Limits the maximum memory usage (in bytes) for processing queries on a single server.
+        :param pulumi.Input[int] max_memory_usage_for_user: Limits the maximum memory usage (in bytes) for processing of user's queries on a single server.
+        :param pulumi.Input[int] max_network_bandwidth: Limits the speed of the data exchange over the network in bytes per second.
+        :param pulumi.Input[int] max_network_bandwidth_for_user: Limits the speed of the data exchange over the network in bytes per second.
+        :param pulumi.Input[int] max_query_size: The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
+        :param pulumi.Input[int] max_replica_delay_for_distributed_queries: Disables lagging replicas for distributed queries.
+        :param pulumi.Input[int] max_result_bytes: Limits the number of bytes in the result.
+        :param pulumi.Input[int] max_result_rows: Limits the number of rows in the result.
+        :param pulumi.Input[int] max_rows_in_distinct: Limits the maximum number of different rows when using DISTINCT.
+        :param pulumi.Input[int] max_rows_in_join: Limit on maximum size of the hash table for JOIN, in rows.
+        :param pulumi.Input[int] max_rows_in_set: Limit on the number of rows in the set resulting from the execution of the IN section.
+        :param pulumi.Input[int] max_rows_to_group_by: Limits the maximum number of unique keys received from aggregation function.
+        :param pulumi.Input[int] max_rows_to_read: Limits the maximum number of rows that can be read from a table when running a query.
+        :param pulumi.Input[int] max_rows_to_sort: Limits the maximum number of rows that can be read from a table for sorting.
+        :param pulumi.Input[int] max_rows_to_transfer: Limits the maximum number of rows that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+        :param pulumi.Input[int] max_temporary_columns: Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, including constant columns.
+        :param pulumi.Input[int] max_temporary_non_const_columns: Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, excluding constant columns.
+        :param pulumi.Input[int] max_threads: The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
+        :param pulumi.Input[int] merge_tree_max_bytes_to_use_cache: If ClickHouse should read more than merge_tree_max_bytes_to_use_cache bytes in one query, it doesn’t use the cache of uncompressed blocks.
+        :param pulumi.Input[int] merge_tree_max_rows_to_use_cache: If ClickHouse should read more than merge_tree_max_rows_to_use_cache rows in one query, it doesn’t use the cache of uncompressed blocks.
+        :param pulumi.Input[int] merge_tree_min_bytes_for_concurrent_read: If the number of bytes to read from one file of a MergeTree-engine table exceeds merge_tree_min_bytes_for_concurrent_read, then ClickHouse tries to concurrently read from this file in several threads.
+        :param pulumi.Input[int] merge_tree_min_rows_for_concurrent_read: If the number of rows to be read from a file of a MergeTree table exceeds merge_tree_min_rows_for_concurrent_read then ClickHouse tries to perform a concurrent reading from this file on several threads.
+        :param pulumi.Input[int] min_bytes_to_use_direct_io: The minimum data volume required for using direct I/O access to the storage disk.
+        :param pulumi.Input[int] min_count_to_compile: How many times to potentially use a compiled chunk of code before running compilation.
+        :param pulumi.Input[int] min_count_to_compile_expression: A query waits for expression compilation process to complete prior to continuing execution.
+        :param pulumi.Input[int] min_execution_speed: Minimal execution speed in rows per second.
+        :param pulumi.Input[int] min_execution_speed_bytes: Minimal execution speed in bytes per second.
+        :param pulumi.Input[int] min_insert_block_size_bytes: Sets the minimum number of bytes in the block which can be inserted into a table by an INSERT query.
+        :param pulumi.Input[int] min_insert_block_size_rows: Sets the minimum number of rows in the block which can be inserted into a table by an INSERT query.
+        :param pulumi.Input[bool] output_format_json_quote64bit_integers: If the value is true, integers appear in quotes when using JSON* Int64 and UInt64 formats (for compatibility with most JavaScript implementations); otherwise, integers are output without the quotes.
+        :param pulumi.Input[bool] output_format_json_quote_denormals: Enables +nan, -nan, +inf, -inf outputs in JSON output format.
+        :param pulumi.Input[int] priority: Query priority.
+        :param pulumi.Input[str] quota_mode: Quota accounting mode.
+        :param pulumi.Input[str] read_overflow_mode: Sets behaviour on overflow while read. Possible values:
+        :param pulumi.Input[int] readonly: Restricts permissions for reading data, write data and change settings queries.
+        :param pulumi.Input[int] receive_timeout: Receive timeout in milliseconds on the socket used for communicating with the client.
+        :param pulumi.Input[int] replication_alter_partitions_sync: For ALTER ... ATTACH|DETACH|DROP queries, you can use the replication_alter_partitions_sync setting to set up waiting.
+        :param pulumi.Input[str] result_overflow_mode: Sets behaviour on overflow in result. Possible values:
+        :param pulumi.Input[bool] select_sequential_consistency: Enables or disables sequential consistency for SELECT queries.
+        :param pulumi.Input[bool] send_progress_in_http_headers: Enables or disables X-ClickHouse-Progress HTTP response headers in clickhouse-server responses.
+        :param pulumi.Input[int] send_timeout: Send timeout in milliseconds on the socket used for communicating with the client.
+        :param pulumi.Input[str] set_overflow_mode: Sets behaviour on overflow in the set resulting. Possible values:
+        :param pulumi.Input[bool] skip_unavailable_shards: Enables or disables silently skipping of unavailable shards.
+        :param pulumi.Input[str] sort_overflow_mode: Sets behaviour on overflow while sort. Possible values:
+        :param pulumi.Input[str] timeout_overflow_mode: Sets behaviour on overflow. Possible values:
+        :param pulumi.Input[str] transfer_overflow_mode: Sets behaviour on overflow. Possible values:
+        :param pulumi.Input[bool] transform_null_in: Enables equality of NULL values for IN operator.
+        :param pulumi.Input[bool] use_uncompressed_cache: Whether to use a cache of uncompressed blocks.
+        """
         if add_http_cors_header is not None:
             pulumi.set(__self__, "add_http_cors_header", add_http_cors_header)
         if allow_ddl is not None:
@@ -13223,6 +17000,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="addHttpCorsHeader")
     def add_http_cors_header(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Include CORS headers in HTTP responces.
+        """
         return pulumi.get(self, "add_http_cors_header")
 
     @add_http_cors_header.setter
@@ -13232,6 +17012,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="allowDdl")
     def allow_ddl(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allows or denies DDL queries.
+        """
         return pulumi.get(self, "allow_ddl")
 
     @allow_ddl.setter
@@ -13241,6 +17024,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter
     def compile(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable compilation of queries.
+        """
         return pulumi.get(self, "compile")
 
     @compile.setter
@@ -13250,6 +17036,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="compileExpressions")
     def compile_expressions(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Turn on expression compilation.
+        """
         return pulumi.get(self, "compile_expressions")
 
     @compile_expressions.setter
@@ -13259,6 +17048,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="connectTimeout")
     def connect_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Connect timeout in milliseconds on the socket used for communicating with the client.
+        """
         return pulumi.get(self, "connect_timeout")
 
     @connect_timeout.setter
@@ -13268,6 +17060,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="countDistinctImplementation")
     def count_distinct_implementation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
+        """
         return pulumi.get(self, "count_distinct_implementation")
 
     @count_distinct_implementation.setter
@@ -13277,6 +17072,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="distinctOverflowMode")
     def distinct_overflow_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sets behaviour on overflow when using DISTINCT. Possible values:
+        """
         return pulumi.get(self, "distinct_overflow_mode")
 
     @distinct_overflow_mode.setter
@@ -13286,6 +17084,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="distributedAggregationMemoryEfficient")
     def distributed_aggregation_memory_efficient(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Determine the behavior of distributed subqueries.
+        """
         return pulumi.get(self, "distributed_aggregation_memory_efficient")
 
     @distributed_aggregation_memory_efficient.setter
@@ -13295,6 +17096,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="distributedDdlTaskTimeout")
     def distributed_ddl_task_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Timeout for DDL queries, in milliseconds.
+        """
         return pulumi.get(self, "distributed_ddl_task_timeout")
 
     @distributed_ddl_task_timeout.setter
@@ -13304,6 +17108,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="distributedProductMode")
     def distributed_product_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Changes the behaviour of distributed subqueries.
+        """
         return pulumi.get(self, "distributed_product_mode")
 
     @distributed_product_mode.setter
@@ -13313,6 +17120,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="emptyResultForAggregationByEmptySet")
     def empty_result_for_aggregation_by_empty_set(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allows to retunr empty result.
+        """
         return pulumi.get(self, "empty_result_for_aggregation_by_empty_set")
 
     @empty_result_for_aggregation_by_empty_set.setter
@@ -13322,6 +17132,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="enableHttpCompression")
     def enable_http_compression(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables or disables data compression in the response to an HTTP request.
+        """
         return pulumi.get(self, "enable_http_compression")
 
     @enable_http_compression.setter
@@ -13331,6 +17144,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="fallbackToStaleReplicasForDistributedQueries")
     def fallback_to_stale_replicas_for_distributed_queries(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Forces a query to an out-of-date replica if updated data is not available.
+        """
         return pulumi.get(self, "fallback_to_stale_replicas_for_distributed_queries")
 
     @fallback_to_stale_replicas_for_distributed_queries.setter
@@ -13340,6 +17156,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="forceIndexByDate")
     def force_index_by_date(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disables query execution if the index can’t be used by date.
+        """
         return pulumi.get(self, "force_index_by_date")
 
     @force_index_by_date.setter
@@ -13349,6 +17168,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="forcePrimaryKey")
     def force_primary_key(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disables query execution if indexing by the primary key is not possible.
+        """
         return pulumi.get(self, "force_primary_key")
 
     @force_primary_key.setter
@@ -13358,6 +17180,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="groupByOverflowMode")
     def group_by_overflow_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sets behaviour on overflow while GROUP BY operation. Possible values:
+        """
         return pulumi.get(self, "group_by_overflow_mode")
 
     @group_by_overflow_mode.setter
@@ -13367,6 +17192,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="groupByTwoLevelThreshold")
     def group_by_two_level_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        Sets the threshold of the number of keys, after that the two-level aggregation should be used.
+        """
         return pulumi.get(self, "group_by_two_level_threshold")
 
     @group_by_two_level_threshold.setter
@@ -13376,6 +17204,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="groupByTwoLevelThresholdBytes")
     def group_by_two_level_threshold_bytes(self) -> Optional[pulumi.Input[int]]:
+        """
+        Sets the threshold of the number of bytes, after that the two-level aggregation should be used.
+        """
         return pulumi.get(self, "group_by_two_level_threshold_bytes")
 
     @group_by_two_level_threshold_bytes.setter
@@ -13385,6 +17216,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="httpConnectionTimeout")
     def http_connection_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Timeout for HTTP connection in milliseconds.
+        """
         return pulumi.get(self, "http_connection_timeout")
 
     @http_connection_timeout.setter
@@ -13394,6 +17228,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="httpHeadersProgressInterval")
     def http_headers_progress_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Sets minimal interval between notifications about request process in HTTP header X-ClickHouse-Progress.
+        """
         return pulumi.get(self, "http_headers_progress_interval")
 
     @http_headers_progress_interval.setter
@@ -13403,6 +17240,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="httpReceiveTimeout")
     def http_receive_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Timeout for HTTP connection in milliseconds.
+        """
         return pulumi.get(self, "http_receive_timeout")
 
     @http_receive_timeout.setter
@@ -13412,6 +17252,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="httpSendTimeout")
     def http_send_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Timeout for HTTP connection in milliseconds.
+        """
         return pulumi.get(self, "http_send_timeout")
 
     @http_send_timeout.setter
@@ -13421,6 +17264,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="inputFormatDefaultsForOmittedFields")
     def input_format_defaults_for_omitted_fields(self) -> Optional[pulumi.Input[bool]]:
+        """
+        When performing INSERT queries, replace omitted input column values with default values of the respective columns.
+        """
         return pulumi.get(self, "input_format_defaults_for_omitted_fields")
 
     @input_format_defaults_for_omitted_fields.setter
@@ -13430,6 +17276,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="inputFormatValuesInterpretExpressions")
     def input_format_values_interpret_expressions(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
+        """
         return pulumi.get(self, "input_format_values_interpret_expressions")
 
     @input_format_values_interpret_expressions.setter
@@ -13439,6 +17288,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="insertQuorum")
     def insert_quorum(self) -> Optional[pulumi.Input[int]]:
+        """
+        Enables the quorum writes.
+        """
         return pulumi.get(self, "insert_quorum")
 
     @insert_quorum.setter
@@ -13448,6 +17300,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="insertQuorumTimeout")
     def insert_quorum_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Write to a quorum timeout in milliseconds.
+        """
         return pulumi.get(self, "insert_quorum_timeout")
 
     @insert_quorum_timeout.setter
@@ -13457,6 +17312,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="joinOverflowMode")
     def join_overflow_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sets behaviour on overflow in JOIN. Possible values:
+        """
         return pulumi.get(self, "join_overflow_mode")
 
     @join_overflow_mode.setter
@@ -13466,6 +17324,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="joinUseNulls")
     def join_use_nulls(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Sets the type of JOIN behaviour. When merging tables, empty cells may appear. ClickHouse fills them differently based on this setting.
+        """
         return pulumi.get(self, "join_use_nulls")
 
     @join_use_nulls.setter
@@ -13475,6 +17336,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="joinedSubqueryRequiresAlias")
     def joined_subquery_requires_alias(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Require aliases for subselects and table functions in FROM that more than one table is present.
+        """
         return pulumi.get(self, "joined_subquery_requires_alias")
 
     @joined_subquery_requires_alias.setter
@@ -13484,6 +17348,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="lowCardinalityAllowInNativeFormat")
     def low_cardinality_allow_in_native_format(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allows or restricts using the LowCardinality data type with the Native format.
+        """
         return pulumi.get(self, "low_cardinality_allow_in_native_format")
 
     @low_cardinality_allow_in_native_format.setter
@@ -13493,6 +17360,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxAstDepth")
     def max_ast_depth(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum abstract syntax tree depth.
+        """
         return pulumi.get(self, "max_ast_depth")
 
     @max_ast_depth.setter
@@ -13502,6 +17372,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxAstElements")
     def max_ast_elements(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum abstract syntax tree elements.
+        """
         return pulumi.get(self, "max_ast_elements")
 
     @max_ast_elements.setter
@@ -13511,6 +17384,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxBlockSize")
     def max_block_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        A recommendation for what size of the block (in a count of rows) to load from tables.
+        """
         return pulumi.get(self, "max_block_size")
 
     @max_block_size.setter
@@ -13520,6 +17396,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxBytesBeforeExternalGroupBy")
     def max_bytes_before_external_group_by(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limit in bytes for using memoru for GROUP BY before using swap on disk.
+        """
         return pulumi.get(self, "max_bytes_before_external_group_by")
 
     @max_bytes_before_external_group_by.setter
@@ -13529,6 +17408,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxBytesBeforeExternalSort")
     def max_bytes_before_external_sort(self) -> Optional[pulumi.Input[int]]:
+        """
+        This setting is equivalent of the max_bytes_before_external_group_by setting, except for it is for sort operation (ORDER BY), not aggregation.
+        """
         return pulumi.get(self, "max_bytes_before_external_sort")
 
     @max_bytes_before_external_sort.setter
@@ -13538,6 +17420,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxBytesInDistinct")
     def max_bytes_in_distinct(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum size of a hash table in bytes (uncompressed data) when using DISTINCT.
+        """
         return pulumi.get(self, "max_bytes_in_distinct")
 
     @max_bytes_in_distinct.setter
@@ -13547,6 +17432,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxBytesInJoin")
     def max_bytes_in_join(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limit on maximum size of the hash table for JOIN, in bytes.
+        """
         return pulumi.get(self, "max_bytes_in_join")
 
     @max_bytes_in_join.setter
@@ -13556,6 +17444,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxBytesInSet")
     def max_bytes_in_set(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limit on the number of bytes in the set resulting from the execution of the IN section.
+        """
         return pulumi.get(self, "max_bytes_in_set")
 
     @max_bytes_in_set.setter
@@ -13565,6 +17456,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxBytesToRead")
     def max_bytes_to_read(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum number of bytes (uncompressed data) that can be read from a table when running a query.
+        """
         return pulumi.get(self, "max_bytes_to_read")
 
     @max_bytes_to_read.setter
@@ -13574,6 +17468,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxBytesToSort")
     def max_bytes_to_sort(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum number of bytes (uncompressed data) that can be read from a table for sorting.
+        """
         return pulumi.get(self, "max_bytes_to_sort")
 
     @max_bytes_to_sort.setter
@@ -13583,6 +17480,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxBytesToTransfer")
     def max_bytes_to_transfer(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum number of bytes (uncompressed data) that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+        """
         return pulumi.get(self, "max_bytes_to_transfer")
 
     @max_bytes_to_transfer.setter
@@ -13592,6 +17492,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxColumnsToRead")
     def max_columns_to_read(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum number of columns that can be read from a table in a single query.
+        """
         return pulumi.get(self, "max_columns_to_read")
 
     @max_columns_to_read.setter
@@ -13601,6 +17504,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxExecutionTime")
     def max_execution_time(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum query execution time in milliseconds.
+        """
         return pulumi.get(self, "max_execution_time")
 
     @max_execution_time.setter
@@ -13610,6 +17516,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxExpandedAstElements")
     def max_expanded_ast_elements(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum abstract syntax tree depth after after expansion of aliases.
+        """
         return pulumi.get(self, "max_expanded_ast_elements")
 
     @max_expanded_ast_elements.setter
@@ -13619,6 +17528,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxInsertBlockSize")
     def max_insert_block_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The size of blocks (in a count of rows) to form for insertion into a table.
+        """
         return pulumi.get(self, "max_insert_block_size")
 
     @max_insert_block_size.setter
@@ -13628,6 +17540,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxMemoryUsage")
     def max_memory_usage(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum memory usage (in bytes) for processing queries on a single server.
+        """
         return pulumi.get(self, "max_memory_usage")
 
     @max_memory_usage.setter
@@ -13637,6 +17552,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxMemoryUsageForUser")
     def max_memory_usage_for_user(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum memory usage (in bytes) for processing of user's queries on a single server.
+        """
         return pulumi.get(self, "max_memory_usage_for_user")
 
     @max_memory_usage_for_user.setter
@@ -13646,6 +17564,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxNetworkBandwidth")
     def max_network_bandwidth(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the speed of the data exchange over the network in bytes per second.
+        """
         return pulumi.get(self, "max_network_bandwidth")
 
     @max_network_bandwidth.setter
@@ -13655,6 +17576,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxNetworkBandwidthForUser")
     def max_network_bandwidth_for_user(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the speed of the data exchange over the network in bytes per second.
+        """
         return pulumi.get(self, "max_network_bandwidth_for_user")
 
     @max_network_bandwidth_for_user.setter
@@ -13664,6 +17588,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxQuerySize")
     def max_query_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
+        """
         return pulumi.get(self, "max_query_size")
 
     @max_query_size.setter
@@ -13673,6 +17600,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxReplicaDelayForDistributedQueries")
     def max_replica_delay_for_distributed_queries(self) -> Optional[pulumi.Input[int]]:
+        """
+        Disables lagging replicas for distributed queries.
+        """
         return pulumi.get(self, "max_replica_delay_for_distributed_queries")
 
     @max_replica_delay_for_distributed_queries.setter
@@ -13682,6 +17612,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxResultBytes")
     def max_result_bytes(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the number of bytes in the result.
+        """
         return pulumi.get(self, "max_result_bytes")
 
     @max_result_bytes.setter
@@ -13691,6 +17624,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxResultRows")
     def max_result_rows(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the number of rows in the result.
+        """
         return pulumi.get(self, "max_result_rows")
 
     @max_result_rows.setter
@@ -13700,6 +17636,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxRowsInDistinct")
     def max_rows_in_distinct(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum number of different rows when using DISTINCT.
+        """
         return pulumi.get(self, "max_rows_in_distinct")
 
     @max_rows_in_distinct.setter
@@ -13709,6 +17648,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxRowsInJoin")
     def max_rows_in_join(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limit on maximum size of the hash table for JOIN, in rows.
+        """
         return pulumi.get(self, "max_rows_in_join")
 
     @max_rows_in_join.setter
@@ -13718,6 +17660,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxRowsInSet")
     def max_rows_in_set(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limit on the number of rows in the set resulting from the execution of the IN section.
+        """
         return pulumi.get(self, "max_rows_in_set")
 
     @max_rows_in_set.setter
@@ -13727,6 +17672,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxRowsToGroupBy")
     def max_rows_to_group_by(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum number of unique keys received from aggregation function.
+        """
         return pulumi.get(self, "max_rows_to_group_by")
 
     @max_rows_to_group_by.setter
@@ -13736,6 +17684,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxRowsToRead")
     def max_rows_to_read(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum number of rows that can be read from a table when running a query.
+        """
         return pulumi.get(self, "max_rows_to_read")
 
     @max_rows_to_read.setter
@@ -13745,6 +17696,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxRowsToSort")
     def max_rows_to_sort(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum number of rows that can be read from a table for sorting.
+        """
         return pulumi.get(self, "max_rows_to_sort")
 
     @max_rows_to_sort.setter
@@ -13754,6 +17708,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxRowsToTransfer")
     def max_rows_to_transfer(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum number of rows that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+        """
         return pulumi.get(self, "max_rows_to_transfer")
 
     @max_rows_to_transfer.setter
@@ -13763,6 +17720,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxTemporaryColumns")
     def max_temporary_columns(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, including constant columns.
+        """
         return pulumi.get(self, "max_temporary_columns")
 
     @max_temporary_columns.setter
@@ -13772,6 +17732,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxTemporaryNonConstColumns")
     def max_temporary_non_const_columns(self) -> Optional[pulumi.Input[int]]:
+        """
+        Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, excluding constant columns.
+        """
         return pulumi.get(self, "max_temporary_non_const_columns")
 
     @max_temporary_non_const_columns.setter
@@ -13781,6 +17744,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="maxThreads")
     def max_threads(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
+        """
         return pulumi.get(self, "max_threads")
 
     @max_threads.setter
@@ -13790,6 +17756,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="mergeTreeMaxBytesToUseCache")
     def merge_tree_max_bytes_to_use_cache(self) -> Optional[pulumi.Input[int]]:
+        """
+        If ClickHouse should read more than merge_tree_max_bytes_to_use_cache bytes in one query, it doesn’t use the cache of uncompressed blocks.
+        """
         return pulumi.get(self, "merge_tree_max_bytes_to_use_cache")
 
     @merge_tree_max_bytes_to_use_cache.setter
@@ -13799,6 +17768,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="mergeTreeMaxRowsToUseCache")
     def merge_tree_max_rows_to_use_cache(self) -> Optional[pulumi.Input[int]]:
+        """
+        If ClickHouse should read more than merge_tree_max_rows_to_use_cache rows in one query, it doesn’t use the cache of uncompressed blocks.
+        """
         return pulumi.get(self, "merge_tree_max_rows_to_use_cache")
 
     @merge_tree_max_rows_to_use_cache.setter
@@ -13808,6 +17780,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="mergeTreeMinBytesForConcurrentRead")
     def merge_tree_min_bytes_for_concurrent_read(self) -> Optional[pulumi.Input[int]]:
+        """
+        If the number of bytes to read from one file of a MergeTree-engine table exceeds merge_tree_min_bytes_for_concurrent_read, then ClickHouse tries to concurrently read from this file in several threads.
+        """
         return pulumi.get(self, "merge_tree_min_bytes_for_concurrent_read")
 
     @merge_tree_min_bytes_for_concurrent_read.setter
@@ -13817,6 +17792,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="mergeTreeMinRowsForConcurrentRead")
     def merge_tree_min_rows_for_concurrent_read(self) -> Optional[pulumi.Input[int]]:
+        """
+        If the number of rows to be read from a file of a MergeTree table exceeds merge_tree_min_rows_for_concurrent_read then ClickHouse tries to perform a concurrent reading from this file on several threads.
+        """
         return pulumi.get(self, "merge_tree_min_rows_for_concurrent_read")
 
     @merge_tree_min_rows_for_concurrent_read.setter
@@ -13826,6 +17804,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="minBytesToUseDirectIo")
     def min_bytes_to_use_direct_io(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minimum data volume required for using direct I/O access to the storage disk.
+        """
         return pulumi.get(self, "min_bytes_to_use_direct_io")
 
     @min_bytes_to_use_direct_io.setter
@@ -13835,6 +17816,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="minCountToCompile")
     def min_count_to_compile(self) -> Optional[pulumi.Input[int]]:
+        """
+        How many times to potentially use a compiled chunk of code before running compilation.
+        """
         return pulumi.get(self, "min_count_to_compile")
 
     @min_count_to_compile.setter
@@ -13844,6 +17828,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="minCountToCompileExpression")
     def min_count_to_compile_expression(self) -> Optional[pulumi.Input[int]]:
+        """
+        A query waits for expression compilation process to complete prior to continuing execution.
+        """
         return pulumi.get(self, "min_count_to_compile_expression")
 
     @min_count_to_compile_expression.setter
@@ -13853,6 +17840,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="minExecutionSpeed")
     def min_execution_speed(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimal execution speed in rows per second.
+        """
         return pulumi.get(self, "min_execution_speed")
 
     @min_execution_speed.setter
@@ -13862,6 +17852,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="minExecutionSpeedBytes")
     def min_execution_speed_bytes(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimal execution speed in bytes per second.
+        """
         return pulumi.get(self, "min_execution_speed_bytes")
 
     @min_execution_speed_bytes.setter
@@ -13871,6 +17864,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="minInsertBlockSizeBytes")
     def min_insert_block_size_bytes(self) -> Optional[pulumi.Input[int]]:
+        """
+        Sets the minimum number of bytes in the block which can be inserted into a table by an INSERT query.
+        """
         return pulumi.get(self, "min_insert_block_size_bytes")
 
     @min_insert_block_size_bytes.setter
@@ -13880,6 +17876,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="minInsertBlockSizeRows")
     def min_insert_block_size_rows(self) -> Optional[pulumi.Input[int]]:
+        """
+        Sets the minimum number of rows in the block which can be inserted into a table by an INSERT query.
+        """
         return pulumi.get(self, "min_insert_block_size_rows")
 
     @min_insert_block_size_rows.setter
@@ -13889,6 +17888,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="outputFormatJsonQuote64bitIntegers")
     def output_format_json_quote64bit_integers(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If the value is true, integers appear in quotes when using JSON* Int64 and UInt64 formats (for compatibility with most JavaScript implementations); otherwise, integers are output without the quotes.
+        """
         return pulumi.get(self, "output_format_json_quote64bit_integers")
 
     @output_format_json_quote64bit_integers.setter
@@ -13898,6 +17900,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="outputFormatJsonQuoteDenormals")
     def output_format_json_quote_denormals(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables +nan, -nan, +inf, -inf outputs in JSON output format.
+        """
         return pulumi.get(self, "output_format_json_quote_denormals")
 
     @output_format_json_quote_denormals.setter
@@ -13907,6 +17912,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        Query priority.
+        """
         return pulumi.get(self, "priority")
 
     @priority.setter
@@ -13916,6 +17924,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="quotaMode")
     def quota_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Quota accounting mode.
+        """
         return pulumi.get(self, "quota_mode")
 
     @quota_mode.setter
@@ -13925,6 +17936,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="readOverflowMode")
     def read_overflow_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sets behaviour on overflow while read. Possible values:
+        """
         return pulumi.get(self, "read_overflow_mode")
 
     @read_overflow_mode.setter
@@ -13934,6 +17948,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter
     def readonly(self) -> Optional[pulumi.Input[int]]:
+        """
+        Restricts permissions for reading data, write data and change settings queries.
+        """
         return pulumi.get(self, "readonly")
 
     @readonly.setter
@@ -13943,6 +17960,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="receiveTimeout")
     def receive_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Receive timeout in milliseconds on the socket used for communicating with the client.
+        """
         return pulumi.get(self, "receive_timeout")
 
     @receive_timeout.setter
@@ -13952,6 +17972,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="replicationAlterPartitionsSync")
     def replication_alter_partitions_sync(self) -> Optional[pulumi.Input[int]]:
+        """
+        For ALTER ... ATTACH|DETACH|DROP queries, you can use the replication_alter_partitions_sync setting to set up waiting.
+        """
         return pulumi.get(self, "replication_alter_partitions_sync")
 
     @replication_alter_partitions_sync.setter
@@ -13961,6 +17984,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="resultOverflowMode")
     def result_overflow_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sets behaviour on overflow in result. Possible values:
+        """
         return pulumi.get(self, "result_overflow_mode")
 
     @result_overflow_mode.setter
@@ -13970,6 +17996,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="selectSequentialConsistency")
     def select_sequential_consistency(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables or disables sequential consistency for SELECT queries.
+        """
         return pulumi.get(self, "select_sequential_consistency")
 
     @select_sequential_consistency.setter
@@ -13979,6 +18008,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="sendProgressInHttpHeaders")
     def send_progress_in_http_headers(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables or disables X-ClickHouse-Progress HTTP response headers in clickhouse-server responses.
+        """
         return pulumi.get(self, "send_progress_in_http_headers")
 
     @send_progress_in_http_headers.setter
@@ -13988,6 +18020,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="sendTimeout")
     def send_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Send timeout in milliseconds on the socket used for communicating with the client.
+        """
         return pulumi.get(self, "send_timeout")
 
     @send_timeout.setter
@@ -13997,6 +18032,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="setOverflowMode")
     def set_overflow_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sets behaviour on overflow in the set resulting. Possible values:
+        """
         return pulumi.get(self, "set_overflow_mode")
 
     @set_overflow_mode.setter
@@ -14006,6 +18044,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="skipUnavailableShards")
     def skip_unavailable_shards(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables or disables silently skipping of unavailable shards.
+        """
         return pulumi.get(self, "skip_unavailable_shards")
 
     @skip_unavailable_shards.setter
@@ -14015,6 +18056,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="sortOverflowMode")
     def sort_overflow_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sets behaviour on overflow while sort. Possible values:
+        """
         return pulumi.get(self, "sort_overflow_mode")
 
     @sort_overflow_mode.setter
@@ -14024,6 +18068,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="timeoutOverflowMode")
     def timeout_overflow_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sets behaviour on overflow. Possible values:
+        """
         return pulumi.get(self, "timeout_overflow_mode")
 
     @timeout_overflow_mode.setter
@@ -14033,6 +18080,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="transferOverflowMode")
     def transfer_overflow_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Sets behaviour on overflow. Possible values:
+        """
         return pulumi.get(self, "transfer_overflow_mode")
 
     @transfer_overflow_mode.setter
@@ -14042,6 +18092,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="transformNullIn")
     def transform_null_in(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables equality of NULL values for IN operator.
+        """
         return pulumi.get(self, "transform_null_in")
 
     @transform_null_in.setter
@@ -14051,6 +18104,9 @@ class MdbClickhouseClusterUserSettingsArgs:
     @property
     @pulumi.getter(name="useUncompressedCache")
     def use_uncompressed_cache(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to use a cache of uncompressed blocks.
+        """
         return pulumi.get(self, "use_uncompressed_cache")
 
     @use_uncompressed_cache.setter
@@ -14062,12 +18118,18 @@ class MdbClickhouseClusterUserSettingsArgs:
 class MdbClickhouseClusterZookeeperArgs:
     def __init__(__self__, *,
                  resources: Optional[pulumi.Input['MdbClickhouseClusterZookeeperResourcesArgs']] = None):
+        """
+        :param pulumi.Input['MdbClickhouseClusterZookeeperResourcesArgs'] resources: Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        """
         if resources is not None:
             pulumi.set(__self__, "resources", resources)
 
     @property
     @pulumi.getter
     def resources(self) -> Optional[pulumi.Input['MdbClickhouseClusterZookeeperResourcesArgs']]:
+        """
+        Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -14081,6 +18143,11 @@ class MdbClickhouseClusterZookeeperResourcesArgs:
                  disk_size: Optional[pulumi.Input[int]] = None,
                  disk_type_id: Optional[pulumi.Input[str]] = None,
                  resource_preset_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a ZooKeeper host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of ZooKeeper hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
         if disk_size is not None:
             pulumi.set(__self__, "disk_size", disk_size)
         if disk_type_id is not None:
@@ -14091,6 +18158,9 @@ class MdbClickhouseClusterZookeeperResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Volume of the storage available to a ZooKeeper host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -14100,6 +18170,10 @@ class MdbClickhouseClusterZookeeperResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the storage of ZooKeeper hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -14125,6 +18199,14 @@ class MdbElasticSearchClusterConfigArgs:
                  master_node: Optional[pulumi.Input['MdbElasticSearchClusterConfigMasterNodeArgs']] = None,
                  plugins: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  version: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] admin_password: Password for admin user of Elasticsearch.
+        :param pulumi.Input['MdbElasticSearchClusterConfigDataNodeArgs'] data_node: Configuration for Elasticsearch data nodes subcluster. The structure is documented below.
+        :param pulumi.Input[str] edition: Edition of Elasticsearch. For more information, see [the official documentation](https://cloud.yandex.com/en-ru/docs/managed-elasticsearch/concepts/es-editions).
+        :param pulumi.Input['MdbElasticSearchClusterConfigMasterNodeArgs'] master_node: Configuration for Elasticsearch master nodes subcluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] plugins: A set of Elasticsearch plugins to install.
+        :param pulumi.Input[str] version: Version of Elasticsearch.
+        """
         pulumi.set(__self__, "admin_password", admin_password)
         pulumi.set(__self__, "data_node", data_node)
         if edition is not None:
@@ -14139,6 +18221,9 @@ class MdbElasticSearchClusterConfigArgs:
     @property
     @pulumi.getter(name="adminPassword")
     def admin_password(self) -> pulumi.Input[str]:
+        """
+        Password for admin user of Elasticsearch.
+        """
         return pulumi.get(self, "admin_password")
 
     @admin_password.setter
@@ -14148,6 +18233,9 @@ class MdbElasticSearchClusterConfigArgs:
     @property
     @pulumi.getter(name="dataNode")
     def data_node(self) -> pulumi.Input['MdbElasticSearchClusterConfigDataNodeArgs']:
+        """
+        Configuration for Elasticsearch data nodes subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "data_node")
 
     @data_node.setter
@@ -14157,6 +18245,9 @@ class MdbElasticSearchClusterConfigArgs:
     @property
     @pulumi.getter
     def edition(self) -> Optional[pulumi.Input[str]]:
+        """
+        Edition of Elasticsearch. For more information, see [the official documentation](https://cloud.yandex.com/en-ru/docs/managed-elasticsearch/concepts/es-editions).
+        """
         return pulumi.get(self, "edition")
 
     @edition.setter
@@ -14166,6 +18257,9 @@ class MdbElasticSearchClusterConfigArgs:
     @property
     @pulumi.getter(name="masterNode")
     def master_node(self) -> Optional[pulumi.Input['MdbElasticSearchClusterConfigMasterNodeArgs']]:
+        """
+        Configuration for Elasticsearch master nodes subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "master_node")
 
     @master_node.setter
@@ -14175,6 +18269,9 @@ class MdbElasticSearchClusterConfigArgs:
     @property
     @pulumi.getter
     def plugins(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of Elasticsearch plugins to install.
+        """
         return pulumi.get(self, "plugins")
 
     @plugins.setter
@@ -14184,6 +18281,9 @@ class MdbElasticSearchClusterConfigArgs:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of Elasticsearch.
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -14195,11 +18295,17 @@ class MdbElasticSearchClusterConfigArgs:
 class MdbElasticSearchClusterConfigDataNodeArgs:
     def __init__(__self__, *,
                  resources: pulumi.Input['MdbElasticSearchClusterConfigDataNodeResourcesArgs']):
+        """
+        :param pulumi.Input['MdbElasticSearchClusterConfigDataNodeResourcesArgs'] resources: Resources allocated to hosts of the Elasticsearch master nodes subcluster. The structure is documented below.
+        """
         pulumi.set(__self__, "resources", resources)
 
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Input['MdbElasticSearchClusterConfigDataNodeResourcesArgs']:
+        """
+        Resources allocated to hosts of the Elasticsearch master nodes subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -14213,6 +18319,10 @@ class MdbElasticSearchClusterConfigDataNodeResourcesArgs:
                  disk_size: pulumi.Input[int],
                  disk_type_id: pulumi.Input[str],
                  resource_preset_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of Elasticsearch hosts.
+        """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "disk_type_id", disk_type_id)
         pulumi.set(__self__, "resource_preset_id", resource_preset_id)
@@ -14220,6 +18330,9 @@ class MdbElasticSearchClusterConfigDataNodeResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -14229,6 +18342,9 @@ class MdbElasticSearchClusterConfigDataNodeResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> pulumi.Input[str]:
+        """
+        Type of the storage of Elasticsearch hosts.
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -14249,11 +18365,17 @@ class MdbElasticSearchClusterConfigDataNodeResourcesArgs:
 class MdbElasticSearchClusterConfigMasterNodeArgs:
     def __init__(__self__, *,
                  resources: pulumi.Input['MdbElasticSearchClusterConfigMasterNodeResourcesArgs']):
+        """
+        :param pulumi.Input['MdbElasticSearchClusterConfigMasterNodeResourcesArgs'] resources: Resources allocated to hosts of the Elasticsearch master nodes subcluster. The structure is documented below.
+        """
         pulumi.set(__self__, "resources", resources)
 
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Input['MdbElasticSearchClusterConfigMasterNodeResourcesArgs']:
+        """
+        Resources allocated to hosts of the Elasticsearch master nodes subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -14267,6 +18389,10 @@ class MdbElasticSearchClusterConfigMasterNodeResourcesArgs:
                  disk_size: pulumi.Input[int],
                  disk_type_id: pulumi.Input[str],
                  resource_preset_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of Elasticsearch hosts.
+        """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "disk_type_id", disk_type_id)
         pulumi.set(__self__, "resource_preset_id", resource_preset_id)
@@ -14274,6 +18400,9 @@ class MdbElasticSearchClusterConfigMasterNodeResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -14283,6 +18412,9 @@ class MdbElasticSearchClusterConfigMasterNodeResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> pulumi.Input[str]:
+        """
+        Type of the storage of Elasticsearch hosts.
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -14308,6 +18440,16 @@ class MdbElasticSearchClusterHostArgs:
                  assign_public_ip: Optional[pulumi.Input[bool]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: User defined host name.
+        :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param pulumi.Input[str] zone: The availability zone where the Elasticsearch host will be created.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+        :param pulumi.Input[bool] assign_public_ip: Sets whether the host should get a public IP address on creation. Can be either `true` or `false`.
+        :param pulumi.Input[str] fqdn: The fully qualified domain name of the host.
+        :param pulumi.Input[str] subnet_id: The ID of the subnet, to which the host belongs. The subnet must
+               be a part of the network to which the cluster belongs.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "type", type)
         pulumi.set(__self__, "zone", zone)
@@ -14321,6 +18463,9 @@ class MdbElasticSearchClusterHostArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        User defined host name.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -14330,6 +18475,9 @@ class MdbElasticSearchClusterHostArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -14339,6 +18487,10 @@ class MdbElasticSearchClusterHostArgs:
     @property
     @pulumi.getter
     def zone(self) -> pulumi.Input[str]:
+        """
+        The availability zone where the Elasticsearch host will be created.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -14348,6 +18500,9 @@ class MdbElasticSearchClusterHostArgs:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Sets whether the host should get a public IP address on creation. Can be either `true` or `false`.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -14357,6 +18512,9 @@ class MdbElasticSearchClusterHostArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fully qualified domain name of the host.
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -14366,6 +18524,10 @@ class MdbElasticSearchClusterHostArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the subnet, to which the host belongs. The subnet must
+        be a part of the network to which the cluster belongs.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -14379,6 +18541,11 @@ class MdbElasticSearchClusterMaintenanceWindowArgs:
                  type: pulumi.Input[str],
                  day: Optional[pulumi.Input[str]] = None,
                  hour: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param pulumi.Input[str] day: Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        :param pulumi.Input[int] hour: Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+        """
         pulumi.set(__self__, "type", type)
         if day is not None:
             pulumi.set(__self__, "day", day)
@@ -14388,6 +18555,9 @@ class MdbElasticSearchClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -14397,6 +18567,9 @@ class MdbElasticSearchClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def day(self) -> Optional[pulumi.Input[str]]:
+        """
+        Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        """
         return pulumi.get(self, "day")
 
     @day.setter
@@ -14406,6 +18579,9 @@ class MdbElasticSearchClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+        """
         return pulumi.get(self, "hour")
 
     @hour.setter
@@ -14419,6 +18595,11 @@ class MdbGreenplumClusterAccessArgs:
                  data_lens: Optional[pulumi.Input[bool]] = None,
                  data_transfer: Optional[pulumi.Input[bool]] = None,
                  web_sql: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] data_lens: Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        :param pulumi.Input[bool] data_transfer: Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        :param pulumi.Input[bool] web_sql: Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+        """
         if data_lens is not None:
             pulumi.set(__self__, "data_lens", data_lens)
         if data_transfer is not None:
@@ -14429,6 +18610,9 @@ class MdbGreenplumClusterAccessArgs:
     @property
     @pulumi.getter(name="dataLens")
     def data_lens(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        """
         return pulumi.get(self, "data_lens")
 
     @data_lens.setter
@@ -14438,6 +18622,9 @@ class MdbGreenplumClusterAccessArgs:
     @property
     @pulumi.getter(name="dataTransfer")
     def data_transfer(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        """
         return pulumi.get(self, "data_transfer")
 
     @data_transfer.setter
@@ -14447,6 +18634,9 @@ class MdbGreenplumClusterAccessArgs:
     @property
     @pulumi.getter(name="webSql")
     def web_sql(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+        """
         return pulumi.get(self, "web_sql")
 
     @web_sql.setter
@@ -14459,6 +18649,10 @@ class MdbGreenplumClusterBackupWindowStartArgs:
     def __init__(__self__, *,
                  hours: Optional[pulumi.Input[int]] = None,
                  minutes: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] hours: The hour at which backup will be started (UTC).
+        :param pulumi.Input[int] minutes: The minute at which backup will be started (UTC).
+        """
         if hours is not None:
             pulumi.set(__self__, "hours", hours)
         if minutes is not None:
@@ -14467,6 +18661,9 @@ class MdbGreenplumClusterBackupWindowStartArgs:
     @property
     @pulumi.getter
     def hours(self) -> Optional[pulumi.Input[int]]:
+        """
+        The hour at which backup will be started (UTC).
+        """
         return pulumi.get(self, "hours")
 
     @hours.setter
@@ -14476,6 +18673,9 @@ class MdbGreenplumClusterBackupWindowStartArgs:
     @property
     @pulumi.getter
     def minutes(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minute at which backup will be started (UTC).
+        """
         return pulumi.get(self, "minutes")
 
     @minutes.setter
@@ -14489,6 +18689,11 @@ class MdbGreenplumClusterMaintenanceWindowArgs:
                  type: pulumi.Input[str],
                  day: Optional[pulumi.Input[str]] = None,
                  hour: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param pulumi.Input[str] day: Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+        :param pulumi.Input[int] hour: Hour of the day in UTC (in `HH` format). Allowed value is between 0 and 23.
+        """
         pulumi.set(__self__, "type", type)
         if day is not None:
             pulumi.set(__self__, "day", day)
@@ -14498,6 +18703,9 @@ class MdbGreenplumClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -14507,6 +18715,9 @@ class MdbGreenplumClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def day(self) -> Optional[pulumi.Input[str]]:
+        """
+        Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+        """
         return pulumi.get(self, "day")
 
     @day.setter
@@ -14516,6 +18727,9 @@ class MdbGreenplumClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Hour of the day in UTC (in `HH` format). Allowed value is between 0 and 23.
+        """
         return pulumi.get(self, "hour")
 
     @hour.setter
@@ -14528,6 +18742,10 @@ class MdbGreenplumClusterMasterHostArgs:
     def __init__(__self__, *,
                  assign_public_ip: Optional[pulumi.Input[bool]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] assign_public_ip: Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+        :param pulumi.Input[str] fqdn: (Computed) The fully qualified domain name of the host.
+        """
         if assign_public_ip is not None:
             pulumi.set(__self__, "assign_public_ip", assign_public_ip)
         if fqdn is not None:
@@ -14536,6 +18754,9 @@ class MdbGreenplumClusterMasterHostArgs:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Sets whether the master hosts should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -14545,6 +18766,9 @@ class MdbGreenplumClusterMasterHostArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) The fully qualified domain name of the host.
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -14556,11 +18780,17 @@ class MdbGreenplumClusterMasterHostArgs:
 class MdbGreenplumClusterMasterSubclusterArgs:
     def __init__(__self__, *,
                  resources: pulumi.Input['MdbGreenplumClusterMasterSubclusterResourcesArgs']):
+        """
+        :param pulumi.Input['MdbGreenplumClusterMasterSubclusterResourcesArgs'] resources: Resources allocated to hosts for segment subcluster of the Greenplum cluster. The structure is documented below.
+        """
         pulumi.set(__self__, "resources", resources)
 
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Input['MdbGreenplumClusterMasterSubclusterResourcesArgs']:
+        """
+        Resources allocated to hosts for segment subcluster of the Greenplum cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -14612,6 +18842,11 @@ class MdbGreenplumClusterPoolerConfigArgs:
                  pool_client_idle_timeout: Optional[pulumi.Input[int]] = None,
                  pool_size: Optional[pulumi.Input[int]] = None,
                  pooling_mode: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] pool_client_idle_timeout: Value for `pool_client_idle_timeout` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_ttl-integer).
+        :param pulumi.Input[int] pool_size: Value for `pool_size` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_size-integer).
+        :param pulumi.Input[str] pooling_mode: Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
+        """
         if pool_client_idle_timeout is not None:
             pulumi.set(__self__, "pool_client_idle_timeout", pool_client_idle_timeout)
         if pool_size is not None:
@@ -14622,6 +18857,9 @@ class MdbGreenplumClusterPoolerConfigArgs:
     @property
     @pulumi.getter(name="poolClientIdleTimeout")
     def pool_client_idle_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Value for `pool_client_idle_timeout` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_ttl-integer).
+        """
         return pulumi.get(self, "pool_client_idle_timeout")
 
     @pool_client_idle_timeout.setter
@@ -14631,6 +18869,9 @@ class MdbGreenplumClusterPoolerConfigArgs:
     @property
     @pulumi.getter(name="poolSize")
     def pool_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Value for `pool_size` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_size-integer).
+        """
         return pulumi.get(self, "pool_size")
 
     @pool_size.setter
@@ -14640,6 +18881,9 @@ class MdbGreenplumClusterPoolerConfigArgs:
     @property
     @pulumi.getter(name="poolingMode")
     def pooling_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
+        """
         return pulumi.get(self, "pooling_mode")
 
     @pooling_mode.setter
@@ -14651,12 +18895,18 @@ class MdbGreenplumClusterPoolerConfigArgs:
 class MdbGreenplumClusterSegmentHostArgs:
     def __init__(__self__, *,
                  fqdn: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] fqdn: (Computed) The fully qualified domain name of the host.
+        """
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
 
     @property
     @pulumi.getter
     def fqdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) The fully qualified domain name of the host.
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -14668,11 +18918,17 @@ class MdbGreenplumClusterSegmentHostArgs:
 class MdbGreenplumClusterSegmentSubclusterArgs:
     def __init__(__self__, *,
                  resources: pulumi.Input['MdbGreenplumClusterSegmentSubclusterResourcesArgs']):
+        """
+        :param pulumi.Input['MdbGreenplumClusterSegmentSubclusterResourcesArgs'] resources: Resources allocated to hosts for segment subcluster of the Greenplum cluster. The structure is documented below.
+        """
         pulumi.set(__self__, "resources", resources)
 
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Input['MdbGreenplumClusterSegmentSubclusterResourcesArgs']:
+        """
+        Resources allocated to hosts for segment subcluster of the Greenplum cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -14730,6 +18986,17 @@ class MdbKafkaClusterConfigArgs:
                  schema_registry: Optional[pulumi.Input[bool]] = None,
                  unmanaged_topics: Optional[pulumi.Input[bool]] = None,
                  zookeeper: Optional[pulumi.Input['MdbKafkaClusterConfigZookeeperArgs']] = None):
+        """
+        :param pulumi.Input['MdbKafkaClusterConfigKafkaArgs'] kafka: Configuration of the Kafka subcluster. The structure is documented below.
+        :param pulumi.Input[str] version: Version of the Kafka server software.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] zones: List of availability zones.
+        :param pulumi.Input['MdbKafkaClusterConfigAccessArgs'] access: Access policy to the Kafka cluster. The structure is documented below.
+        :param pulumi.Input[bool] assign_public_ip: Determines whether each broker will be assigned a public IP address. The default is `false`.
+        :param pulumi.Input[int] brokers_count: Count of brokers per availability zone. The default is `1`.
+        :param pulumi.Input[bool] schema_registry: Enables managed schema registry on cluster. The default is `false`.
+        :param pulumi.Input[bool] unmanaged_topics: Allows to use Kafka AdminAPI to manage topics. The default is `false`.
+        :param pulumi.Input['MdbKafkaClusterConfigZookeeperArgs'] zookeeper: Configuration of the ZooKeeper subcluster. The structure is documented below.
+        """
         pulumi.set(__self__, "kafka", kafka)
         pulumi.set(__self__, "version", version)
         pulumi.set(__self__, "zones", zones)
@@ -14749,6 +19016,9 @@ class MdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter
     def kafka(self) -> pulumi.Input['MdbKafkaClusterConfigKafkaArgs']:
+        """
+        Configuration of the Kafka subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "kafka")
 
     @kafka.setter
@@ -14758,6 +19028,9 @@ class MdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
+        """
+        Version of the Kafka server software.
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -14767,6 +19040,9 @@ class MdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter
     def zones(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        List of availability zones.
+        """
         return pulumi.get(self, "zones")
 
     @zones.setter
@@ -14776,6 +19052,9 @@ class MdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter
     def access(self) -> Optional[pulumi.Input['MdbKafkaClusterConfigAccessArgs']]:
+        """
+        Access policy to the Kafka cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @access.setter
@@ -14785,6 +19064,9 @@ class MdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Determines whether each broker will be assigned a public IP address. The default is `false`.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -14794,6 +19076,9 @@ class MdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter(name="brokersCount")
     def brokers_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        Count of brokers per availability zone. The default is `1`.
+        """
         return pulumi.get(self, "brokers_count")
 
     @brokers_count.setter
@@ -14803,6 +19088,9 @@ class MdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter(name="schemaRegistry")
     def schema_registry(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables managed schema registry on cluster. The default is `false`.
+        """
         return pulumi.get(self, "schema_registry")
 
     @schema_registry.setter
@@ -14812,6 +19100,9 @@ class MdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter(name="unmanagedTopics")
     def unmanaged_topics(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allows to use Kafka AdminAPI to manage topics. The default is `false`.
+        """
         return pulumi.get(self, "unmanaged_topics")
 
     @unmanaged_topics.setter
@@ -14821,6 +19112,9 @@ class MdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter
     def zookeeper(self) -> Optional[pulumi.Input['MdbKafkaClusterConfigZookeeperArgs']]:
+        """
+        Configuration of the ZooKeeper subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "zookeeper")
 
     @zookeeper.setter
@@ -14832,12 +19126,18 @@ class MdbKafkaClusterConfigArgs:
 class MdbKafkaClusterConfigAccessArgs:
     def __init__(__self__, *,
                  data_transfer: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] data_transfer: Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        """
         if data_transfer is not None:
             pulumi.set(__self__, "data_transfer", data_transfer)
 
     @property
     @pulumi.getter(name="dataTransfer")
     def data_transfer(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        """
         return pulumi.get(self, "data_transfer")
 
     @data_transfer.setter
@@ -14850,6 +19150,10 @@ class MdbKafkaClusterConfigKafkaArgs:
     def __init__(__self__, *,
                  resources: pulumi.Input['MdbKafkaClusterConfigKafkaResourcesArgs'],
                  kafka_config: Optional[pulumi.Input['MdbKafkaClusterConfigKafkaKafkaConfigArgs']] = None):
+        """
+        :param pulumi.Input['MdbKafkaClusterConfigKafkaResourcesArgs'] resources: Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        :param pulumi.Input['MdbKafkaClusterConfigKafkaKafkaConfigArgs'] kafka_config: User-defined settings for the Kafka cluster. The structure is documented below.
+        """
         pulumi.set(__self__, "resources", resources)
         if kafka_config is not None:
             pulumi.set(__self__, "kafka_config", kafka_config)
@@ -14857,6 +19161,9 @@ class MdbKafkaClusterConfigKafkaArgs:
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Input['MdbKafkaClusterConfigKafkaResourcesArgs']:
+        """
+        Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -14866,6 +19173,9 @@ class MdbKafkaClusterConfigKafkaArgs:
     @property
     @pulumi.getter(name="kafkaConfig")
     def kafka_config(self) -> Optional[pulumi.Input['MdbKafkaClusterConfigKafkaKafkaConfigArgs']]:
+        """
+        User-defined settings for the Kafka cluster. The structure is documented below.
+        """
         return pulumi.get(self, "kafka_config")
 
     @kafka_config.setter
@@ -15112,6 +19422,11 @@ class MdbKafkaClusterConfigKafkaResourcesArgs:
                  disk_size: pulumi.Input[int],
                  disk_type_id: pulumi.Input[str],
                  resource_preset_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a ZooKeeper host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of ZooKeeper hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+        """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "disk_type_id", disk_type_id)
         pulumi.set(__self__, "resource_preset_id", resource_preset_id)
@@ -15119,6 +19434,9 @@ class MdbKafkaClusterConfigKafkaResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a ZooKeeper host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -15128,6 +19446,10 @@ class MdbKafkaClusterConfigKafkaResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> pulumi.Input[str]:
+        """
+        Type of the storage of ZooKeeper hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -15148,12 +19470,18 @@ class MdbKafkaClusterConfigKafkaResourcesArgs:
 class MdbKafkaClusterConfigZookeeperArgs:
     def __init__(__self__, *,
                  resources: Optional[pulumi.Input['MdbKafkaClusterConfigZookeeperResourcesArgs']] = None):
+        """
+        :param pulumi.Input['MdbKafkaClusterConfigZookeeperResourcesArgs'] resources: Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        """
         if resources is not None:
             pulumi.set(__self__, "resources", resources)
 
     @property
     @pulumi.getter
     def resources(self) -> Optional[pulumi.Input['MdbKafkaClusterConfigZookeeperResourcesArgs']]:
+        """
+        Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -15167,6 +19495,11 @@ class MdbKafkaClusterConfigZookeeperResourcesArgs:
                  disk_size: Optional[pulumi.Input[int]] = None,
                  disk_type_id: Optional[pulumi.Input[str]] = None,
                  resource_preset_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a ZooKeeper host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of ZooKeeper hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+        """
         if disk_size is not None:
             pulumi.set(__self__, "disk_size", disk_size)
         if disk_type_id is not None:
@@ -15177,6 +19510,9 @@ class MdbKafkaClusterConfigZookeeperResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Volume of the storage available to a ZooKeeper host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -15186,6 +19522,10 @@ class MdbKafkaClusterConfigZookeeperResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the storage of ZooKeeper hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -15211,6 +19551,14 @@ class MdbKafkaClusterHostArgs:
                  role: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] assign_public_ip: Determines whether each broker will be assigned a public IP address. The default is `false`.
+        :param pulumi.Input[str] health: Health of the host.
+        :param pulumi.Input[str] name: The name of the topic.
+        :param pulumi.Input[str] role: The role type to grant to the topic.
+        :param pulumi.Input[str] subnet_id: The ID of the subnet, to which the host belongs.
+        :param pulumi.Input[str] zone_id: The availability zone where the Kafka host was created.
+        """
         if assign_public_ip is not None:
             pulumi.set(__self__, "assign_public_ip", assign_public_ip)
         if health is not None:
@@ -15227,6 +19575,9 @@ class MdbKafkaClusterHostArgs:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Determines whether each broker will be assigned a public IP address. The default is `false`.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -15236,6 +19587,9 @@ class MdbKafkaClusterHostArgs:
     @property
     @pulumi.getter
     def health(self) -> Optional[pulumi.Input[str]]:
+        """
+        Health of the host.
+        """
         return pulumi.get(self, "health")
 
     @health.setter
@@ -15245,6 +19599,9 @@ class MdbKafkaClusterHostArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the topic.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -15254,6 +19611,9 @@ class MdbKafkaClusterHostArgs:
     @property
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role type to grant to the topic.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -15263,6 +19623,9 @@ class MdbKafkaClusterHostArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the subnet, to which the host belongs.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -15272,6 +19635,9 @@ class MdbKafkaClusterHostArgs:
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The availability zone where the Kafka host was created.
+        """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
@@ -15285,6 +19651,11 @@ class MdbKafkaClusterMaintenanceWindowArgs:
                  type: pulumi.Input[str],
                  day: Optional[pulumi.Input[str]] = None,
                  hour: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param pulumi.Input[str] day: Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+        :param pulumi.Input[int] hour: Hour of the day in UTC (in `HH` format). Allowed value is between 1 and 24.
+        """
         pulumi.set(__self__, "type", type)
         if day is not None:
             pulumi.set(__self__, "day", day)
@@ -15294,6 +19665,9 @@ class MdbKafkaClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -15303,6 +19677,9 @@ class MdbKafkaClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def day(self) -> Optional[pulumi.Input[str]]:
+        """
+        Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+        """
         return pulumi.get(self, "day")
 
     @day.setter
@@ -15312,6 +19689,9 @@ class MdbKafkaClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Hour of the day in UTC (in `HH` format). Allowed value is between 1 and 24.
+        """
         return pulumi.get(self, "hour")
 
     @hour.setter
@@ -15326,6 +19706,12 @@ class MdbKafkaClusterTopicArgs:
                  partitions: pulumi.Input[int],
                  replication_factor: pulumi.Input[int],
                  topic_config: Optional[pulumi.Input['MdbKafkaClusterTopicTopicConfigArgs']] = None):
+        """
+        :param pulumi.Input[str] name: The name of the topic.
+        :param pulumi.Input[int] partitions: The number of the topic's partitions.
+        :param pulumi.Input[int] replication_factor: Amount of data copies (replicas) for the topic in the cluster.
+        :param pulumi.Input['MdbKafkaClusterTopicTopicConfigArgs'] topic_config: User-defined settings for the topic. The structure is documented below.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "partitions", partitions)
         pulumi.set(__self__, "replication_factor", replication_factor)
@@ -15335,6 +19721,9 @@ class MdbKafkaClusterTopicArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        The name of the topic.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -15344,6 +19733,9 @@ class MdbKafkaClusterTopicArgs:
     @property
     @pulumi.getter
     def partitions(self) -> pulumi.Input[int]:
+        """
+        The number of the topic's partitions.
+        """
         return pulumi.get(self, "partitions")
 
     @partitions.setter
@@ -15353,6 +19745,9 @@ class MdbKafkaClusterTopicArgs:
     @property
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> pulumi.Input[int]:
+        """
+        Amount of data copies (replicas) for the topic in the cluster.
+        """
         return pulumi.get(self, "replication_factor")
 
     @replication_factor.setter
@@ -15362,6 +19757,9 @@ class MdbKafkaClusterTopicArgs:
     @property
     @pulumi.getter(name="topicConfig")
     def topic_config(self) -> Optional[pulumi.Input['MdbKafkaClusterTopicTopicConfigArgs']]:
+        """
+        User-defined settings for the topic. The structure is documented below.
+        """
         return pulumi.get(self, "topic_config")
 
     @topic_config.setter
@@ -15536,6 +19934,11 @@ class MdbKafkaClusterUserArgs:
                  name: pulumi.Input[str],
                  password: pulumi.Input[str],
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaClusterUserPermissionArgs']]]] = None):
+        """
+        :param pulumi.Input[str] name: The name of the topic.
+        :param pulumi.Input[str] password: The password of the user.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbKafkaClusterUserPermissionArgs']]] permissions: Set of permissions granted to the user. The structure is documented below.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "password", password)
         if permissions is not None:
@@ -15544,6 +19947,9 @@ class MdbKafkaClusterUserArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        The name of the topic.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -15553,6 +19959,9 @@ class MdbKafkaClusterUserArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        The password of the user.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -15562,6 +19971,9 @@ class MdbKafkaClusterUserArgs:
     @property
     @pulumi.getter
     def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaClusterUserPermissionArgs']]]]:
+        """
+        Set of permissions granted to the user. The structure is documented below.
+        """
         return pulumi.get(self, "permissions")
 
     @permissions.setter
@@ -15574,12 +19986,19 @@ class MdbKafkaClusterUserPermissionArgs:
     def __init__(__self__, *,
                  role: pulumi.Input[str],
                  topic_name: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] role: The role type to grant to the topic.
+        :param pulumi.Input[str] topic_name: The name of the topic that the permission grants access to.
+        """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "topic_name", topic_name)
 
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        The role type to grant to the topic.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -15589,6 +20008,9 @@ class MdbKafkaClusterUserPermissionArgs:
     @property
     @pulumi.getter(name="topicName")
     def topic_name(self) -> pulumi.Input[str]:
+        """
+        The name of the topic that the permission grants access to.
+        """
         return pulumi.get(self, "topic_name")
 
     @topic_name.setter
@@ -15765,6 +20187,13 @@ class MdbMongodbClusterClusterConfigArgs:
                  backup_window_start: Optional[pulumi.Input['MdbMongodbClusterClusterConfigBackupWindowStartArgs']] = None,
                  feature_compatibility_version: Optional[pulumi.Input[str]] = None,
                  mongod: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodArgs']] = None):
+        """
+        :param pulumi.Input[str] version: Version of MongoDB (either 5.0, 4.4, 4.2 or 4.0).
+        :param pulumi.Input['MdbMongodbClusterClusterConfigAccessArgs'] access: Access policy to the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigBackupWindowStartArgs'] backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        :param pulumi.Input[str] feature_compatibility_version: Feature compatibility version of MongoDB. If not provided version is taken. Can be either `5.0`, `4.4`, `4.2` and `4.0`.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongodArgs'] mongod: Configuration of the mongod service. The structure is documented below.
+        """
         pulumi.set(__self__, "version", version)
         if access is not None:
             pulumi.set(__self__, "access", access)
@@ -15778,6 +20207,9 @@ class MdbMongodbClusterClusterConfigArgs:
     @property
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
+        """
+        Version of MongoDB (either 5.0, 4.4, 4.2 or 4.0).
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -15787,6 +20219,9 @@ class MdbMongodbClusterClusterConfigArgs:
     @property
     @pulumi.getter
     def access(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigAccessArgs']]:
+        """
+        Access policy to the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @access.setter
@@ -15796,6 +20231,9 @@ class MdbMongodbClusterClusterConfigArgs:
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigBackupWindowStartArgs']]:
+        """
+        Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @backup_window_start.setter
@@ -15805,6 +20243,9 @@ class MdbMongodbClusterClusterConfigArgs:
     @property
     @pulumi.getter(name="featureCompatibilityVersion")
     def feature_compatibility_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Feature compatibility version of MongoDB. If not provided version is taken. Can be either `5.0`, `4.4`, `4.2` and `4.0`.
+        """
         return pulumi.get(self, "feature_compatibility_version")
 
     @feature_compatibility_version.setter
@@ -15814,6 +20255,9 @@ class MdbMongodbClusterClusterConfigArgs:
     @property
     @pulumi.getter
     def mongod(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodArgs']]:
+        """
+        Configuration of the mongod service. The structure is documented below.
+        """
         return pulumi.get(self, "mongod")
 
     @mongod.setter
@@ -15826,6 +20270,10 @@ class MdbMongodbClusterClusterConfigAccessArgs:
     def __init__(__self__, *,
                  data_lens: Optional[pulumi.Input[bool]] = None,
                  data_transfer: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] data_lens: Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        :param pulumi.Input[bool] data_transfer: Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        """
         if data_lens is not None:
             pulumi.set(__self__, "data_lens", data_lens)
         if data_transfer is not None:
@@ -15834,6 +20282,9 @@ class MdbMongodbClusterClusterConfigAccessArgs:
     @property
     @pulumi.getter(name="dataLens")
     def data_lens(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        """
         return pulumi.get(self, "data_lens")
 
     @data_lens.setter
@@ -15843,6 +20294,9 @@ class MdbMongodbClusterClusterConfigAccessArgs:
     @property
     @pulumi.getter(name="dataTransfer")
     def data_transfer(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        """
         return pulumi.get(self, "data_transfer")
 
     @data_transfer.setter
@@ -15855,6 +20309,10 @@ class MdbMongodbClusterClusterConfigBackupWindowStartArgs:
     def __init__(__self__, *,
                  hours: Optional[pulumi.Input[int]] = None,
                  minutes: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] hours: The hour at which backup will be started.
+        :param pulumi.Input[int] minutes: The minute at which backup will be started.
+        """
         if hours is not None:
             pulumi.set(__self__, "hours", hours)
         if minutes is not None:
@@ -15863,6 +20321,9 @@ class MdbMongodbClusterClusterConfigBackupWindowStartArgs:
     @property
     @pulumi.getter
     def hours(self) -> Optional[pulumi.Input[int]]:
+        """
+        The hour at which backup will be started.
+        """
         return pulumi.get(self, "hours")
 
     @hours.setter
@@ -15872,6 +20333,9 @@ class MdbMongodbClusterClusterConfigBackupWindowStartArgs:
     @property
     @pulumi.getter
     def minutes(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minute at which backup will be started.
+        """
         return pulumi.get(self, "minutes")
 
     @minutes.setter
@@ -15885,6 +20349,17 @@ class MdbMongodbClusterClusterConfigMongodArgs:
                  audit_log: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodAuditLogArgs']] = None,
                  security: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodSecurityArgs']] = None,
                  set_parameter: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodSetParameterArgs']] = None):
+        """
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongodAuditLogArgs'] audit_log: A set of audit log settings 
+               (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
+               The structure is documented below. Available only in enterprise edition.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongodSecurityArgs'] security: A set of MongoDB Security settings
+               (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
+               The structure is documented below. Available only in enterprise edition.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongodSetParameterArgs'] set_parameter: A set of MongoDB Server Parameters 
+               (see the [setParameter](https://www.mongodb.com/docs/manual/reference/configuration-options/#setparameter-option) option).
+               The structure is documented below.
+        """
         if audit_log is not None:
             pulumi.set(__self__, "audit_log", audit_log)
         if security is not None:
@@ -15895,6 +20370,11 @@ class MdbMongodbClusterClusterConfigMongodArgs:
     @property
     @pulumi.getter(name="auditLog")
     def audit_log(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodAuditLogArgs']]:
+        """
+        A set of audit log settings 
+        (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
+        The structure is documented below. Available only in enterprise edition.
+        """
         return pulumi.get(self, "audit_log")
 
     @audit_log.setter
@@ -15904,6 +20384,11 @@ class MdbMongodbClusterClusterConfigMongodArgs:
     @property
     @pulumi.getter
     def security(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodSecurityArgs']]:
+        """
+        A set of MongoDB Security settings
+        (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
+        The structure is documented below. Available only in enterprise edition.
+        """
         return pulumi.get(self, "security")
 
     @security.setter
@@ -15913,6 +20398,11 @@ class MdbMongodbClusterClusterConfigMongodArgs:
     @property
     @pulumi.getter(name="setParameter")
     def set_parameter(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodSetParameterArgs']]:
+        """
+        A set of MongoDB Server Parameters 
+        (see the [setParameter](https://www.mongodb.com/docs/manual/reference/configuration-options/#setparameter-option) option).
+        The structure is documented below.
+        """
         return pulumi.get(self, "set_parameter")
 
     @set_parameter.setter
@@ -15925,6 +20415,11 @@ class MdbMongodbClusterClusterConfigMongodAuditLogArgs:
     def __init__(__self__, *,
                  filter: Optional[pulumi.Input[str]] = None,
                  runtime_configuration: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] filter: Configuration of the audit log filter in JSON format.
+               For more information see [auditLog.filter](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.filter)
+               description in the official documentation. Available only in enterprise edition.
+        """
         if filter is not None:
             pulumi.set(__self__, "filter", filter)
         if runtime_configuration is not None:
@@ -15933,6 +20428,11 @@ class MdbMongodbClusterClusterConfigMongodAuditLogArgs:
     @property
     @pulumi.getter
     def filter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configuration of the audit log filter in JSON format.
+        For more information see [auditLog.filter](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.filter)
+        description in the official documentation. Available only in enterprise edition.
+        """
         return pulumi.get(self, "filter")
 
     @filter.setter
@@ -15954,6 +20454,14 @@ class MdbMongodbClusterClusterConfigMongodSecurityArgs:
     def __init__(__self__, *,
                  enable_encryption: Optional[pulumi.Input[bool]] = None,
                  kmip: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodSecurityKmipArgs']] = None):
+        """
+        :param pulumi.Input[bool] enable_encryption: Enables the encryption for the WiredTiger storage engine. Can be either true or false.
+               For more information see [security.enableEncryption](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.enableEncryption)
+               description in the official documentation. Available only in enterprise edition.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongodSecurityKmipArgs'] kmip: Configuration of the third party key management appliance via the Key Management Interoperability Protocol (KMIP)
+               (see [Encryption tutorial](https://www.mongodb.com/docs/rapid/tutorial/configure-encryption) ). Requires `enable_encryption` to be true.
+               The structure is documented below. Available only in enterprise edition.
+        """
         if enable_encryption is not None:
             pulumi.set(__self__, "enable_encryption", enable_encryption)
         if kmip is not None:
@@ -15962,6 +20470,11 @@ class MdbMongodbClusterClusterConfigMongodSecurityArgs:
     @property
     @pulumi.getter(name="enableEncryption")
     def enable_encryption(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables the encryption for the WiredTiger storage engine. Can be either true or false.
+        For more information see [security.enableEncryption](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.enableEncryption)
+        description in the official documentation. Available only in enterprise edition.
+        """
         return pulumi.get(self, "enable_encryption")
 
     @enable_encryption.setter
@@ -15971,6 +20484,11 @@ class MdbMongodbClusterClusterConfigMongodSecurityArgs:
     @property
     @pulumi.getter
     def kmip(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodSecurityKmipArgs']]:
+        """
+        Configuration of the third party key management appliance via the Key Management Interoperability Protocol (KMIP)
+        (see [Encryption tutorial](https://www.mongodb.com/docs/rapid/tutorial/configure-encryption) ). Requires `enable_encryption` to be true.
+        The structure is documented below. Available only in enterprise edition.
+        """
         return pulumi.get(self, "kmip")
 
     @kmip.setter
@@ -15986,6 +20504,23 @@ class MdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
                  port: Optional[pulumi.Input[int]] = None,
                  server_ca: Optional[pulumi.Input[str]] = None,
                  server_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] client_certificate: String containing the client certificate used for authenticating MongoDB to the KMIP server.
+               For more information see [security.kmip.clientCertificateFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.clientCertificateFile)
+               description in the official documentation.
+        :param pulumi.Input[str] key_identifier: Unique KMIP identifier for an existing key within the KMIP server.
+               For more information see [security.kmip.keyIdentifier](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.keyIdentifier)
+               description in the official documentation.
+        :param pulumi.Input[int] port: Port number to use to communicate with the KMIP server. Default: 5696
+               For more information see [security.kmip.port](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.port)
+               description in the official documentation.
+        :param pulumi.Input[str] server_ca: Path to CA File. Used for validating secure client connection to KMIP server.
+               For more information see [security.kmip.serverCAFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverCAFile)
+               description in the official documentation.
+        :param pulumi.Input[str] server_name: Hostname or IP address of the KMIP server to connect to.
+               For more information see [security.kmip.serverName](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverName)
+               description in the official documentation.
+        """
         if client_certificate is not None:
             pulumi.set(__self__, "client_certificate", client_certificate)
         if key_identifier is not None:
@@ -16000,6 +20535,11 @@ class MdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
     @property
     @pulumi.getter(name="clientCertificate")
     def client_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        String containing the client certificate used for authenticating MongoDB to the KMIP server.
+        For more information see [security.kmip.clientCertificateFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.clientCertificateFile)
+        description in the official documentation.
+        """
         return pulumi.get(self, "client_certificate")
 
     @client_certificate.setter
@@ -16009,6 +20549,11 @@ class MdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
     @property
     @pulumi.getter(name="keyIdentifier")
     def key_identifier(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique KMIP identifier for an existing key within the KMIP server.
+        For more information see [security.kmip.keyIdentifier](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.keyIdentifier)
+        description in the official documentation.
+        """
         return pulumi.get(self, "key_identifier")
 
     @key_identifier.setter
@@ -16018,6 +20563,11 @@ class MdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Port number to use to communicate with the KMIP server. Default: 5696
+        For more information see [security.kmip.port](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.port)
+        description in the official documentation.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -16027,6 +20577,11 @@ class MdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
     @property
     @pulumi.getter(name="serverCa")
     def server_ca(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to CA File. Used for validating secure client connection to KMIP server.
+        For more information see [security.kmip.serverCAFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverCAFile)
+        description in the official documentation.
+        """
         return pulumi.get(self, "server_ca")
 
     @server_ca.setter
@@ -16036,6 +20591,11 @@ class MdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
     @property
     @pulumi.getter(name="serverName")
     def server_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Hostname or IP address of the KMIP server to connect to.
+        For more information see [security.kmip.serverName](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverName)
+        description in the official documentation.
+        """
         return pulumi.get(self, "server_name")
 
     @server_name.setter
@@ -16047,12 +20607,22 @@ class MdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
 class MdbMongodbClusterClusterConfigMongodSetParameterArgs:
     def __init__(__self__, *,
                  audit_authorization_success: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] audit_authorization_success: Enables the auditing of authorization successes. Can be either true or false.
+               For more information, see the [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.auditAuthorizationSuccess)
+               description in the official documentation. Available only in enterprise edition.
+        """
         if audit_authorization_success is not None:
             pulumi.set(__self__, "audit_authorization_success", audit_authorization_success)
 
     @property
     @pulumi.getter(name="auditAuthorizationSuccess")
     def audit_authorization_success(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables the auditing of authorization successes. Can be either true or false.
+        For more information, see the [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.auditAuthorizationSuccess)
+        description in the official documentation. Available only in enterprise edition.
+        """
         return pulumi.get(self, "audit_authorization_success")
 
     @audit_authorization_success.setter
@@ -16064,11 +20634,17 @@ class MdbMongodbClusterClusterConfigMongodSetParameterArgs:
 class MdbMongodbClusterDatabaseArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
+        """
         pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        The fully qualified domain name of the host. Computed on server side.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -16087,6 +20663,18 @@ class MdbMongodbClusterHostArgs:
                  role: Optional[pulumi.Input[str]] = None,
                  shard_name: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] subnet_id: The ID of the subnet, to which the host belongs. The subnet must
+               be a part of the network to which the cluster belongs.
+        :param pulumi.Input[str] zone_id: The availability zone where the MongoDB host will be created.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+        :param pulumi.Input[bool] assign_public_ip: -(Optional)  Should this host have assigned public IP assigned. Can be either `true` or `false`.
+        :param pulumi.Input[str] health: The health of the host.
+        :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
+        :param pulumi.Input[str] role: The role of the cluster (either PRIMARY or SECONDARY).
+        :param pulumi.Input[str] shard_name: The name of the shard to which the host belongs.
+        :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         pulumi.set(__self__, "subnet_id", subnet_id)
         pulumi.set(__self__, "zone_id", zone_id)
         if assign_public_ip is not None:
@@ -16105,6 +20693,10 @@ class MdbMongodbClusterHostArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the subnet, to which the host belongs. The subnet must
+        be a part of the network to which the cluster belongs.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -16114,6 +20706,10 @@ class MdbMongodbClusterHostArgs:
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> pulumi.Input[str]:
+        """
+        The availability zone where the MongoDB host will be created.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+        """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
@@ -16123,6 +20719,9 @@ class MdbMongodbClusterHostArgs:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        -(Optional)  Should this host have assigned public IP assigned. Can be either `true` or `false`.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -16132,6 +20731,9 @@ class MdbMongodbClusterHostArgs:
     @property
     @pulumi.getter
     def health(self) -> Optional[pulumi.Input[str]]:
+        """
+        The health of the host.
+        """
         return pulumi.get(self, "health")
 
     @health.setter
@@ -16141,6 +20743,9 @@ class MdbMongodbClusterHostArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fully qualified domain name of the host. Computed on server side.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -16150,6 +20755,9 @@ class MdbMongodbClusterHostArgs:
     @property
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role of the cluster (either PRIMARY or SECONDARY).
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -16159,6 +20767,9 @@ class MdbMongodbClusterHostArgs:
     @property
     @pulumi.getter(name="shardName")
     def shard_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the shard to which the host belongs.
+        """
         return pulumi.get(self, "shard_name")
 
     @shard_name.setter
@@ -16168,6 +20779,9 @@ class MdbMongodbClusterHostArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -16181,6 +20795,11 @@ class MdbMongodbClusterMaintenanceWindowArgs:
                  type: pulumi.Input[str],
                  day: Optional[pulumi.Input[str]] = None,
                  hour: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param pulumi.Input[str] day: Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        :param pulumi.Input[int] hour: Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+        """
         pulumi.set(__self__, "type", type)
         if day is not None:
             pulumi.set(__self__, "day", day)
@@ -16190,6 +20809,9 @@ class MdbMongodbClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -16199,6 +20821,9 @@ class MdbMongodbClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def day(self) -> Optional[pulumi.Input[str]]:
+        """
+        Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        """
         return pulumi.get(self, "day")
 
     @day.setter
@@ -16208,6 +20833,9 @@ class MdbMongodbClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+        """
         return pulumi.get(self, "hour")
 
     @hour.setter
@@ -16221,6 +20849,11 @@ class MdbMongodbClusterResourcesArgs:
                  disk_size: pulumi.Input[int],
                  disk_type_id: pulumi.Input[str],
                  resource_preset_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a MongoDB host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of MongoDB hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "disk_type_id", disk_type_id)
         pulumi.set(__self__, "resource_preset_id", resource_preset_id)
@@ -16228,6 +20861,9 @@ class MdbMongodbClusterResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a MongoDB host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -16237,6 +20873,10 @@ class MdbMongodbClusterResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> pulumi.Input[str]:
+        """
+        Type of the storage of MongoDB hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -16259,6 +20899,11 @@ class MdbMongodbClusterUserArgs:
                  name: pulumi.Input[str],
                  password: pulumi.Input[str],
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterUserPermissionArgs']]]] = None):
+        """
+        :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
+        :param pulumi.Input[str] password: The password of the user.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterUserPermissionArgs']]] permissions: Set of permissions granted to the user. The structure is documented below.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "password", password)
         if permissions is not None:
@@ -16267,6 +20912,9 @@ class MdbMongodbClusterUserArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        The fully qualified domain name of the host. Computed on server side.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -16276,6 +20924,9 @@ class MdbMongodbClusterUserArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        The password of the user.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -16285,6 +20936,9 @@ class MdbMongodbClusterUserArgs:
     @property
     @pulumi.getter
     def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterUserPermissionArgs']]]]:
+        """
+        Set of permissions granted to the user. The structure is documented below.
+        """
         return pulumi.get(self, "permissions")
 
     @permissions.setter
@@ -16297,6 +20951,10 @@ class MdbMongodbClusterUserPermissionArgs:
     def __init__(__self__, *,
                  database_name: pulumi.Input[str],
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] database_name: The name of the database that the permission grants access to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: The roles of the user in this database. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/users-and-roles).
+        """
         pulumi.set(__self__, "database_name", database_name)
         if roles is not None:
             pulumi.set(__self__, "roles", roles)
@@ -16304,6 +20962,9 @@ class MdbMongodbClusterUserPermissionArgs:
     @property
     @pulumi.getter(name="databaseName")
     def database_name(self) -> pulumi.Input[str]:
+        """
+        The name of the database that the permission grants access to.
+        """
         return pulumi.get(self, "database_name")
 
     @database_name.setter
@@ -16313,6 +20974,9 @@ class MdbMongodbClusterUserPermissionArgs:
     @property
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The roles of the user in this database. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/users-and-roles).
+        """
         return pulumi.get(self, "roles")
 
     @roles.setter
@@ -16326,6 +20990,11 @@ class MdbMysqlClusterAccessArgs:
                  data_lens: Optional[pulumi.Input[bool]] = None,
                  data_transfer: Optional[pulumi.Input[bool]] = None,
                  web_sql: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] data_lens: Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        :param pulumi.Input[bool] data_transfer: Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        :param pulumi.Input[bool] web_sql: Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+        """
         if data_lens is not None:
             pulumi.set(__self__, "data_lens", data_lens)
         if data_transfer is not None:
@@ -16336,6 +21005,9 @@ class MdbMysqlClusterAccessArgs:
     @property
     @pulumi.getter(name="dataLens")
     def data_lens(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        """
         return pulumi.get(self, "data_lens")
 
     @data_lens.setter
@@ -16345,6 +21017,9 @@ class MdbMysqlClusterAccessArgs:
     @property
     @pulumi.getter(name="dataTransfer")
     def data_transfer(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        """
         return pulumi.get(self, "data_transfer")
 
     @data_transfer.setter
@@ -16354,6 +21029,9 @@ class MdbMysqlClusterAccessArgs:
     @property
     @pulumi.getter(name="webSql")
     def web_sql(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+        """
         return pulumi.get(self, "web_sql")
 
     @web_sql.setter
@@ -16366,6 +21044,10 @@ class MdbMysqlClusterBackupWindowStartArgs:
     def __init__(__self__, *,
                  hours: Optional[pulumi.Input[int]] = None,
                  minutes: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] hours: The hour at which backup will be started.
+        :param pulumi.Input[int] minutes: The minute at which backup will be started.
+        """
         if hours is not None:
             pulumi.set(__self__, "hours", hours)
         if minutes is not None:
@@ -16374,6 +21056,9 @@ class MdbMysqlClusterBackupWindowStartArgs:
     @property
     @pulumi.getter
     def hours(self) -> Optional[pulumi.Input[int]]:
+        """
+        The hour at which backup will be started.
+        """
         return pulumi.get(self, "hours")
 
     @hours.setter
@@ -16383,6 +21068,9 @@ class MdbMysqlClusterBackupWindowStartArgs:
     @property
     @pulumi.getter
     def minutes(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minute at which backup will be started.
+        """
         return pulumi.get(self, "minutes")
 
     @minutes.setter
@@ -16394,11 +21082,17 @@ class MdbMysqlClusterBackupWindowStartArgs:
 class MdbMysqlClusterDatabaseArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        """
         pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -16418,6 +21112,17 @@ class MdbMysqlClusterHostArgs:
                  replication_source: Optional[pulumi.Input[str]] = None,
                  replication_source_name: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] zone: The availability zone where the MySQL host will be created.
+        :param pulumi.Input[bool] assign_public_ip: Sets whether the host should get a public IP address. It can be changed on the fly only when `name` is set.
+        :param pulumi.Input[int] backup_priority: Host backup priority. Value is between 0 and 100, default is 0.
+        :param pulumi.Input[str] fqdn: The fully qualified domain name of the host.
+        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        :param pulumi.Input[int] priority: Host master promotion priority. Value is between 0 and 100, default is 0.
+        :param pulumi.Input[str] replication_source: Host replication source (fqdn), when replication_source is empty then host is in HA group.
+        :param pulumi.Input[str] replication_source_name: Host replication source name points to host's `name` from which this host should replicate. When not set then host in HA group. It works only when `name` is set.
+        :param pulumi.Input[str] subnet_id: The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        """
         pulumi.set(__self__, "zone", zone)
         if assign_public_ip is not None:
             pulumi.set(__self__, "assign_public_ip", assign_public_ip)
@@ -16439,6 +21144,9 @@ class MdbMysqlClusterHostArgs:
     @property
     @pulumi.getter
     def zone(self) -> pulumi.Input[str]:
+        """
+        The availability zone where the MySQL host will be created.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -16448,6 +21156,9 @@ class MdbMysqlClusterHostArgs:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Sets whether the host should get a public IP address. It can be changed on the fly only when `name` is set.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -16457,6 +21168,9 @@ class MdbMysqlClusterHostArgs:
     @property
     @pulumi.getter(name="backupPriority")
     def backup_priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        Host backup priority. Value is between 0 and 100, default is 0.
+        """
         return pulumi.get(self, "backup_priority")
 
     @backup_priority.setter
@@ -16466,6 +21180,9 @@ class MdbMysqlClusterHostArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fully qualified domain name of the host.
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -16475,6 +21192,9 @@ class MdbMysqlClusterHostArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -16484,6 +21204,9 @@ class MdbMysqlClusterHostArgs:
     @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        Host master promotion priority. Value is between 0 and 100, default is 0.
+        """
         return pulumi.get(self, "priority")
 
     @priority.setter
@@ -16493,6 +21216,9 @@ class MdbMysqlClusterHostArgs:
     @property
     @pulumi.getter(name="replicationSource")
     def replication_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Host replication source (fqdn), when replication_source is empty then host is in HA group.
+        """
         return pulumi.get(self, "replication_source")
 
     @replication_source.setter
@@ -16502,6 +21228,9 @@ class MdbMysqlClusterHostArgs:
     @property
     @pulumi.getter(name="replicationSourceName")
     def replication_source_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Host replication source name points to host's `name` from which this host should replicate. When not set then host in HA group. It works only when `name` is set.
+        """
         return pulumi.get(self, "replication_source_name")
 
     @replication_source_name.setter
@@ -16511,6 +21240,9 @@ class MdbMysqlClusterHostArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -16524,6 +21256,11 @@ class MdbMysqlClusterMaintenanceWindowArgs:
                  type: pulumi.Input[str],
                  day: Optional[pulumi.Input[str]] = None,
                  hour: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param pulumi.Input[str] day: Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+        :param pulumi.Input[int] hour: Hour of the day in UTC (in `HH` format). Allowed value is between 0 and 23.
+        """
         pulumi.set(__self__, "type", type)
         if day is not None:
             pulumi.set(__self__, "day", day)
@@ -16533,6 +21270,9 @@ class MdbMysqlClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -16542,6 +21282,9 @@ class MdbMysqlClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def day(self) -> Optional[pulumi.Input[str]]:
+        """
+        Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+        """
         return pulumi.get(self, "day")
 
     @day.setter
@@ -16551,6 +21294,9 @@ class MdbMysqlClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Hour of the day in UTC (in `HH` format). Allowed value is between 0 and 23.
+        """
         return pulumi.get(self, "hour")
 
     @hour.setter
@@ -16564,6 +21310,11 @@ class MdbMysqlClusterPerformanceDiagnosticsArgs:
                  sessions_sampling_interval: pulumi.Input[int],
                  statements_sampling_interval: pulumi.Input[int],
                  enabled: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[int] sessions_sampling_interval: Interval (in seconds) for my_stat_activity sampling Acceptable values are 1 to 86400, inclusive.
+        :param pulumi.Input[int] statements_sampling_interval: Interval (in seconds) for my_stat_statements sampling Acceptable values are 1 to 86400, inclusive.
+        :param pulumi.Input[bool] enabled: Enable performance diagnostics
+        """
         pulumi.set(__self__, "sessions_sampling_interval", sessions_sampling_interval)
         pulumi.set(__self__, "statements_sampling_interval", statements_sampling_interval)
         if enabled is not None:
@@ -16572,6 +21323,9 @@ class MdbMysqlClusterPerformanceDiagnosticsArgs:
     @property
     @pulumi.getter(name="sessionsSamplingInterval")
     def sessions_sampling_interval(self) -> pulumi.Input[int]:
+        """
+        Interval (in seconds) for my_stat_activity sampling Acceptable values are 1 to 86400, inclusive.
+        """
         return pulumi.get(self, "sessions_sampling_interval")
 
     @sessions_sampling_interval.setter
@@ -16581,6 +21335,9 @@ class MdbMysqlClusterPerformanceDiagnosticsArgs:
     @property
     @pulumi.getter(name="statementsSamplingInterval")
     def statements_sampling_interval(self) -> pulumi.Input[int]:
+        """
+        Interval (in seconds) for my_stat_statements sampling Acceptable values are 1 to 86400, inclusive.
+        """
         return pulumi.get(self, "statements_sampling_interval")
 
     @statements_sampling_interval.setter
@@ -16590,6 +21347,9 @@ class MdbMysqlClusterPerformanceDiagnosticsArgs:
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable performance diagnostics
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -16603,6 +21363,10 @@ class MdbMysqlClusterResourcesArgs:
                  disk_size: pulumi.Input[int],
                  disk_type_id: pulumi.Input[str],
                  resource_preset_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a MySQL host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of MySQL hosts.
+        """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "disk_type_id", disk_type_id)
         pulumi.set(__self__, "resource_preset_id", resource_preset_id)
@@ -16610,6 +21374,9 @@ class MdbMysqlClusterResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a MySQL host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -16619,6 +21386,9 @@ class MdbMysqlClusterResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> pulumi.Input[str]:
+        """
+        Type of the storage of MySQL hosts.
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -16640,6 +21410,10 @@ class MdbMysqlClusterRestoreArgs:
     def __init__(__self__, *,
                  backup_id: pulumi.Input[str],
                  time: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] backup_id: Backup ID. The cluster will be created from the specified backup. [How to get a list of MySQL backups](https://cloud.yandex.com/docs/managed-mysql/operations/cluster-backups).
+        :param pulumi.Input[str] time: Timestamp of the moment to which the MySQL cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
+        """
         pulumi.set(__self__, "backup_id", backup_id)
         if time is not None:
             pulumi.set(__self__, "time", time)
@@ -16647,6 +21421,9 @@ class MdbMysqlClusterRestoreArgs:
     @property
     @pulumi.getter(name="backupId")
     def backup_id(self) -> pulumi.Input[str]:
+        """
+        Backup ID. The cluster will be created from the specified backup. [How to get a list of MySQL backups](https://cloud.yandex.com/docs/managed-mysql/operations/cluster-backups).
+        """
         return pulumi.get(self, "backup_id")
 
     @backup_id.setter
@@ -16656,6 +21433,9 @@ class MdbMysqlClusterRestoreArgs:
     @property
     @pulumi.getter
     def time(self) -> Optional[pulumi.Input[str]]:
+        """
+        Timestamp of the moment to which the MySQL cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
+        """
         return pulumi.get(self, "time")
 
     @time.setter
@@ -16672,6 +21452,17 @@ class MdbMysqlClusterUserArgs:
                  connection_limits: Optional[pulumi.Input['MdbMysqlClusterUserConnectionLimitsArgs']] = None,
                  global_permissions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserPermissionArgs']]]] = None):
+        """
+        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        :param pulumi.Input[str] password: The password of the user.
+        :param pulumi.Input[str] authentication_plugin: Authentication plugin. Allowed values: `MYSQL_NATIVE_PASSWORD`, `CACHING_SHA2_PASSWORD`, `SHA256_PASSWORD` (for version 5.7 `MYSQL_NATIVE_PASSWORD`, `SHA256_PASSWORD`)
+        :param pulumi.Input['MdbMysqlClusterUserConnectionLimitsArgs'] connection_limits: User's connection limits. The structure is documented below.
+               If the attribute is not specified there will be no changes.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] global_permissions: List user's global permissions     
+               Allowed permissions:  `REPLICATION_CLIENT`, `REPLICATION_SLAVE`, `PROCESS` for clear list use empty list.
+               If the attribute is not specified there will be no changes.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserPermissionArgs']]] permissions: Set of permissions granted to the user. The structure is documented below.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "password", password)
         if authentication_plugin is not None:
@@ -16686,6 +21477,9 @@ class MdbMysqlClusterUserArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -16695,6 +21489,9 @@ class MdbMysqlClusterUserArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        The password of the user.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -16704,6 +21501,9 @@ class MdbMysqlClusterUserArgs:
     @property
     @pulumi.getter(name="authenticationPlugin")
     def authentication_plugin(self) -> Optional[pulumi.Input[str]]:
+        """
+        Authentication plugin. Allowed values: `MYSQL_NATIVE_PASSWORD`, `CACHING_SHA2_PASSWORD`, `SHA256_PASSWORD` (for version 5.7 `MYSQL_NATIVE_PASSWORD`, `SHA256_PASSWORD`)
+        """
         return pulumi.get(self, "authentication_plugin")
 
     @authentication_plugin.setter
@@ -16713,6 +21513,10 @@ class MdbMysqlClusterUserArgs:
     @property
     @pulumi.getter(name="connectionLimits")
     def connection_limits(self) -> Optional[pulumi.Input['MdbMysqlClusterUserConnectionLimitsArgs']]:
+        """
+        User's connection limits. The structure is documented below.
+        If the attribute is not specified there will be no changes.
+        """
         return pulumi.get(self, "connection_limits")
 
     @connection_limits.setter
@@ -16722,6 +21526,11 @@ class MdbMysqlClusterUserArgs:
     @property
     @pulumi.getter(name="globalPermissions")
     def global_permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List user's global permissions     
+        Allowed permissions:  `REPLICATION_CLIENT`, `REPLICATION_SLAVE`, `PROCESS` for clear list use empty list.
+        If the attribute is not specified there will be no changes.
+        """
         return pulumi.get(self, "global_permissions")
 
     @global_permissions.setter
@@ -16731,6 +21540,9 @@ class MdbMysqlClusterUserArgs:
     @property
     @pulumi.getter
     def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserPermissionArgs']]]]:
+        """
+        Set of permissions granted to the user. The structure is documented below.
+        """
         return pulumi.get(self, "permissions")
 
     @permissions.setter
@@ -16745,6 +21557,12 @@ class MdbMysqlClusterUserConnectionLimitsArgs:
                  max_questions_per_hour: Optional[pulumi.Input[int]] = None,
                  max_updates_per_hour: Optional[pulumi.Input[int]] = None,
                  max_user_connections: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] max_connections_per_hour: Max connections per hour.
+        :param pulumi.Input[int] max_questions_per_hour: Max questions per hour.
+        :param pulumi.Input[int] max_updates_per_hour: Max updates per hour.
+        :param pulumi.Input[int] max_user_connections: Max user connections.
+        """
         if max_connections_per_hour is not None:
             pulumi.set(__self__, "max_connections_per_hour", max_connections_per_hour)
         if max_questions_per_hour is not None:
@@ -16757,6 +21575,9 @@ class MdbMysqlClusterUserConnectionLimitsArgs:
     @property
     @pulumi.getter(name="maxConnectionsPerHour")
     def max_connections_per_hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max connections per hour.
+        """
         return pulumi.get(self, "max_connections_per_hour")
 
     @max_connections_per_hour.setter
@@ -16766,6 +21587,9 @@ class MdbMysqlClusterUserConnectionLimitsArgs:
     @property
     @pulumi.getter(name="maxQuestionsPerHour")
     def max_questions_per_hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max questions per hour.
+        """
         return pulumi.get(self, "max_questions_per_hour")
 
     @max_questions_per_hour.setter
@@ -16775,6 +21599,9 @@ class MdbMysqlClusterUserConnectionLimitsArgs:
     @property
     @pulumi.getter(name="maxUpdatesPerHour")
     def max_updates_per_hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max updates per hour.
+        """
         return pulumi.get(self, "max_updates_per_hour")
 
     @max_updates_per_hour.setter
@@ -16784,6 +21611,9 @@ class MdbMysqlClusterUserConnectionLimitsArgs:
     @property
     @pulumi.getter(name="maxUserConnections")
     def max_user_connections(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max user connections.
+        """
         return pulumi.get(self, "max_user_connections")
 
     @max_user_connections.setter
@@ -16796,6 +21626,12 @@ class MdbMysqlClusterUserPermissionArgs:
     def __init__(__self__, *,
                  database_name: pulumi.Input[str],
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] database_name: The name of the database that the permission grants access to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List user's roles in the database.
+               Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+               `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+        """
         pulumi.set(__self__, "database_name", database_name)
         if roles is not None:
             pulumi.set(__self__, "roles", roles)
@@ -16803,6 +21639,9 @@ class MdbMysqlClusterUserPermissionArgs:
     @property
     @pulumi.getter(name="databaseName")
     def database_name(self) -> pulumi.Input[str]:
+        """
+        The name of the database that the permission grants access to.
+        """
         return pulumi.get(self, "database_name")
 
     @database_name.setter
@@ -16812,6 +21651,11 @@ class MdbMysqlClusterUserPermissionArgs:
     @property
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List user's roles in the database.
+        Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+        `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+        """
         return pulumi.get(self, "roles")
 
     @roles.setter
@@ -16832,6 +21676,21 @@ class MdbRedisClusterConfigArgs:
                  slowlog_log_slower_than: Optional[pulumi.Input[int]] = None,
                  slowlog_max_len: Optional[pulumi.Input[int]] = None,
                  timeout: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] password: Password for the Redis cluster.
+        :param pulumi.Input[str] version: Version of Redis (6.2).
+        :param pulumi.Input[str] client_output_buffer_limit_normal: Normal clients output buffer limits.
+               See [redis config file](https://github.com/redis/redis/blob/6.2/redis.conf#L1841).
+        :param pulumi.Input[str] client_output_buffer_limit_pubsub: Pubsub clients output buffer limits.
+               See [redis config file](https://github.com/redis/redis/blob/6.2/redis.conf#L1843).
+        :param pulumi.Input[int] databases: Number of databases (changing requires redis-server restart).
+        :param pulumi.Input[str] maxmemory_policy: Redis key eviction policy for a dataset that reaches maximum memory.
+               Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/).
+        :param pulumi.Input[str] notify_keyspace_events: Select the events that Redis will notify among a set of classes.
+        :param pulumi.Input[int] slowlog_log_slower_than: Log slow queries below this number in microseconds.
+        :param pulumi.Input[int] slowlog_max_len: Slow queries log length.
+        :param pulumi.Input[int] timeout: Close the connection after a client is idle for N seconds.
+        """
         pulumi.set(__self__, "password", password)
         pulumi.set(__self__, "version", version)
         if client_output_buffer_limit_normal is not None:
@@ -16854,6 +21713,9 @@ class MdbRedisClusterConfigArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        Password for the Redis cluster.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -16863,6 +21725,9 @@ class MdbRedisClusterConfigArgs:
     @property
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
+        """
+        Version of Redis (6.2).
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -16872,6 +21737,10 @@ class MdbRedisClusterConfigArgs:
     @property
     @pulumi.getter(name="clientOutputBufferLimitNormal")
     def client_output_buffer_limit_normal(self) -> Optional[pulumi.Input[str]]:
+        """
+        Normal clients output buffer limits.
+        See [redis config file](https://github.com/redis/redis/blob/6.2/redis.conf#L1841).
+        """
         return pulumi.get(self, "client_output_buffer_limit_normal")
 
     @client_output_buffer_limit_normal.setter
@@ -16881,6 +21750,10 @@ class MdbRedisClusterConfigArgs:
     @property
     @pulumi.getter(name="clientOutputBufferLimitPubsub")
     def client_output_buffer_limit_pubsub(self) -> Optional[pulumi.Input[str]]:
+        """
+        Pubsub clients output buffer limits.
+        See [redis config file](https://github.com/redis/redis/blob/6.2/redis.conf#L1843).
+        """
         return pulumi.get(self, "client_output_buffer_limit_pubsub")
 
     @client_output_buffer_limit_pubsub.setter
@@ -16890,6 +21763,9 @@ class MdbRedisClusterConfigArgs:
     @property
     @pulumi.getter
     def databases(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of databases (changing requires redis-server restart).
+        """
         return pulumi.get(self, "databases")
 
     @databases.setter
@@ -16899,6 +21775,10 @@ class MdbRedisClusterConfigArgs:
     @property
     @pulumi.getter(name="maxmemoryPolicy")
     def maxmemory_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Redis key eviction policy for a dataset that reaches maximum memory.
+        Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/).
+        """
         return pulumi.get(self, "maxmemory_policy")
 
     @maxmemory_policy.setter
@@ -16908,6 +21788,9 @@ class MdbRedisClusterConfigArgs:
     @property
     @pulumi.getter(name="notifyKeyspaceEvents")
     def notify_keyspace_events(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select the events that Redis will notify among a set of classes.
+        """
         return pulumi.get(self, "notify_keyspace_events")
 
     @notify_keyspace_events.setter
@@ -16917,6 +21800,9 @@ class MdbRedisClusterConfigArgs:
     @property
     @pulumi.getter(name="slowlogLogSlowerThan")
     def slowlog_log_slower_than(self) -> Optional[pulumi.Input[int]]:
+        """
+        Log slow queries below this number in microseconds.
+        """
         return pulumi.get(self, "slowlog_log_slower_than")
 
     @slowlog_log_slower_than.setter
@@ -16926,6 +21812,9 @@ class MdbRedisClusterConfigArgs:
     @property
     @pulumi.getter(name="slowlogMaxLen")
     def slowlog_max_len(self) -> Optional[pulumi.Input[int]]:
+        """
+        Slow queries log length.
+        """
         return pulumi.get(self, "slowlog_max_len")
 
     @slowlog_max_len.setter
@@ -16935,6 +21824,9 @@ class MdbRedisClusterConfigArgs:
     @property
     @pulumi.getter
     def timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Close the connection after a client is idle for N seconds.
+        """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
@@ -16951,6 +21843,16 @@ class MdbRedisClusterHostArgs:
                  replica_priority: Optional[pulumi.Input[int]] = None,
                  shard_name: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] zone: The availability zone where the Redis host will be created.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+        :param pulumi.Input[bool] assign_public_ip: Sets whether the host should get a public IP address or not.
+        :param pulumi.Input[str] fqdn: The fully qualified domain name of the host.
+        :param pulumi.Input[int] replica_priority: Replica priority of a current replica (usable for non-sharded only).
+        :param pulumi.Input[str] shard_name: The name of the shard to which the host belongs.
+        :param pulumi.Input[str] subnet_id: The ID of the subnet, to which the host belongs. The subnet must
+               be a part of the network to which the cluster belongs.
+        """
         pulumi.set(__self__, "zone", zone)
         if assign_public_ip is not None:
             pulumi.set(__self__, "assign_public_ip", assign_public_ip)
@@ -16966,6 +21868,10 @@ class MdbRedisClusterHostArgs:
     @property
     @pulumi.getter
     def zone(self) -> pulumi.Input[str]:
+        """
+        The availability zone where the Redis host will be created.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -16975,6 +21881,9 @@ class MdbRedisClusterHostArgs:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Sets whether the host should get a public IP address or not.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -16984,6 +21893,9 @@ class MdbRedisClusterHostArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fully qualified domain name of the host.
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -16993,6 +21905,9 @@ class MdbRedisClusterHostArgs:
     @property
     @pulumi.getter(name="replicaPriority")
     def replica_priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        Replica priority of a current replica (usable for non-sharded only).
+        """
         return pulumi.get(self, "replica_priority")
 
     @replica_priority.setter
@@ -17002,6 +21917,9 @@ class MdbRedisClusterHostArgs:
     @property
     @pulumi.getter(name="shardName")
     def shard_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the shard to which the host belongs.
+        """
         return pulumi.get(self, "shard_name")
 
     @shard_name.setter
@@ -17011,6 +21929,10 @@ class MdbRedisClusterHostArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the subnet, to which the host belongs. The subnet must
+        be a part of the network to which the cluster belongs.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -17024,6 +21946,11 @@ class MdbRedisClusterMaintenanceWindowArgs:
                  type: pulumi.Input[str],
                  day: Optional[pulumi.Input[str]] = None,
                  hour: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param pulumi.Input[str] day: Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        :param pulumi.Input[int] hour: Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+        """
         pulumi.set(__self__, "type", type)
         if day is not None:
             pulumi.set(__self__, "day", day)
@@ -17033,6 +21960,9 @@ class MdbRedisClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -17042,6 +21972,9 @@ class MdbRedisClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def day(self) -> Optional[pulumi.Input[str]]:
+        """
+        Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        """
         return pulumi.get(self, "day")
 
     @day.setter
@@ -17051,6 +21984,9 @@ class MdbRedisClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+        """
         return pulumi.get(self, "hour")
 
     @hour.setter
@@ -17064,6 +22000,10 @@ class MdbRedisClusterResourcesArgs:
                  disk_size: pulumi.Input[int],
                  resource_preset_id: pulumi.Input[str],
                  disk_type_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of Redis hosts - environment default is used if missing.
+        """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "resource_preset_id", resource_preset_id)
         if disk_type_id is not None:
@@ -17072,6 +22012,9 @@ class MdbRedisClusterResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -17090,6 +22033,9 @@ class MdbRedisClusterResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the storage of Redis hosts - environment default is used if missing.
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -17102,6 +22048,10 @@ class MdbSqlServerClusterBackupWindowStartArgs:
     def __init__(__self__, *,
                  hours: Optional[pulumi.Input[int]] = None,
                  minutes: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] hours: The hour at which backup will be started.
+        :param pulumi.Input[int] minutes: The minute at which backup will be started.
+        """
         if hours is not None:
             pulumi.set(__self__, "hours", hours)
         if minutes is not None:
@@ -17110,6 +22060,9 @@ class MdbSqlServerClusterBackupWindowStartArgs:
     @property
     @pulumi.getter
     def hours(self) -> Optional[pulumi.Input[int]]:
+        """
+        The hour at which backup will be started.
+        """
         return pulumi.get(self, "hours")
 
     @hours.setter
@@ -17119,6 +22072,9 @@ class MdbSqlServerClusterBackupWindowStartArgs:
     @property
     @pulumi.getter
     def minutes(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minute at which backup will be started.
+        """
         return pulumi.get(self, "minutes")
 
     @minutes.setter
@@ -17130,11 +22086,17 @@ class MdbSqlServerClusterBackupWindowStartArgs:
 class MdbSqlServerClusterDatabaseArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] name: The name of the database.
+        """
         pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        The name of the database.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -17149,6 +22111,12 @@ class MdbSqlServerClusterHostArgs:
                  assign_public_ip: Optional[pulumi.Input[bool]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] zone: The availability zone where the SQLServer host will be created.
+        :param pulumi.Input[bool] assign_public_ip: Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment
+        :param pulumi.Input[str] fqdn: The fully qualified domain name of the host.
+        :param pulumi.Input[str] subnet_id: The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        """
         pulumi.set(__self__, "zone", zone)
         if assign_public_ip is not None:
             pulumi.set(__self__, "assign_public_ip", assign_public_ip)
@@ -17160,6 +22128,9 @@ class MdbSqlServerClusterHostArgs:
     @property
     @pulumi.getter
     def zone(self) -> pulumi.Input[str]:
+        """
+        The availability zone where the SQLServer host will be created.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -17169,6 +22140,9 @@ class MdbSqlServerClusterHostArgs:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -17178,6 +22152,9 @@ class MdbSqlServerClusterHostArgs:
     @property
     @pulumi.getter
     def fqdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fully qualified domain name of the host.
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -17187,6 +22164,9 @@ class MdbSqlServerClusterHostArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -17200,6 +22180,10 @@ class MdbSqlServerClusterResourcesArgs:
                  disk_size: pulumi.Input[int],
                  disk_type_id: pulumi.Input[str],
                  resource_preset_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a SQLServer host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of SQLServer hosts.
+        """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "disk_type_id", disk_type_id)
         pulumi.set(__self__, "resource_preset_id", resource_preset_id)
@@ -17207,6 +22191,9 @@ class MdbSqlServerClusterResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a SQLServer host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -17216,6 +22203,9 @@ class MdbSqlServerClusterResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> pulumi.Input[str]:
+        """
+        Type of the storage of SQLServer hosts.
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -17238,6 +22228,11 @@ class MdbSqlServerClusterUserArgs:
                  name: pulumi.Input[str],
                  password: pulumi.Input[str],
                  permissions: Optional[pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterUserPermissionArgs']]]] = None):
+        """
+        :param pulumi.Input[str] name: The name of the database.
+        :param pulumi.Input[str] password: The password of the user.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterUserPermissionArgs']]] permissions: Set of permissions granted to the user. The structure is documented below.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "password", password)
         if permissions is not None:
@@ -17246,6 +22241,9 @@ class MdbSqlServerClusterUserArgs:
     @property
     @pulumi.getter
     def name(self) -> pulumi.Input[str]:
+        """
+        The name of the database.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -17255,6 +22253,9 @@ class MdbSqlServerClusterUserArgs:
     @property
     @pulumi.getter
     def password(self) -> pulumi.Input[str]:
+        """
+        The password of the user.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -17264,6 +22265,9 @@ class MdbSqlServerClusterUserArgs:
     @property
     @pulumi.getter
     def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbSqlServerClusterUserPermissionArgs']]]]:
+        """
+        Set of permissions granted to the user. The structure is documented below.
+        """
         return pulumi.get(self, "permissions")
 
     @permissions.setter
@@ -17276,6 +22280,11 @@ class MdbSqlServerClusterUserPermissionArgs:
     def __init__(__self__, *,
                  database_name: pulumi.Input[str],
                  roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] database_name: The name of the database that the permission grants access to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List user's roles in the database.
+               Allowed roles: `OWNER`, `SECURITYADMIN`, `ACCESSADMIN`, `BACKUPOPERATOR`, `DDLADMIN`, `DATAWRITER`, `DATAREADER`, `DENYDATAWRITER`, `DENYDATAREADER`.
+        """
         pulumi.set(__self__, "database_name", database_name)
         if roles is not None:
             pulumi.set(__self__, "roles", roles)
@@ -17283,6 +22292,9 @@ class MdbSqlServerClusterUserPermissionArgs:
     @property
     @pulumi.getter(name="databaseName")
     def database_name(self) -> pulumi.Input[str]:
+        """
+        The name of the database that the permission grants access to.
+        """
         return pulumi.get(self, "database_name")
 
     @database_name.setter
@@ -17292,6 +22304,10 @@ class MdbSqlServerClusterUserPermissionArgs:
     @property
     @pulumi.getter
     def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List user's roles in the database.
+        Allowed roles: `OWNER`, `SECURITYADMIN`, `ACCESSADMIN`, `BACKUPOPERATOR`, `DDLADMIN`, `DATAWRITER`, `DATAREADER`, `DENYDATAWRITER`, `DENYDATAREADER`.
+        """
         return pulumi.get(self, "roles")
 
     @roles.setter
@@ -17303,11 +22319,17 @@ class MdbSqlServerClusterUserPermissionArgs:
 class OrganizationmanagerSamlFederationSecuritySettingsArgs:
     def __init__(__self__, *,
                  encrypted_assertions: pulumi.Input[bool]):
+        """
+        :param pulumi.Input[bool] encrypted_assertions: Enable encrypted assertions.
+        """
         pulumi.set(__self__, "encrypted_assertions", encrypted_assertions)
 
     @property
     @pulumi.getter(name="encryptedAssertions")
     def encrypted_assertions(self) -> pulumi.Input[bool]:
+        """
+        Enable encrypted assertions.
+        """
         return pulumi.get(self, "encrypted_assertions")
 
     @encrypted_assertions.setter
@@ -17324,6 +22346,9 @@ class ServerlessContainerImageArgs:
                  digest: Optional[pulumi.Input[str]] = None,
                  environment: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  work_dir: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] url: Invoke URL for the Yandex Cloud Serverless Container
+        """
         pulumi.set(__self__, "url", url)
         if args is not None:
             pulumi.set(__self__, "args", args)
@@ -17339,6 +22364,9 @@ class ServerlessContainerImageArgs:
     @property
     @pulumi.getter
     def url(self) -> pulumi.Input[str]:
+        """
+        Invoke URL for the Yandex Cloud Serverless Container
+        """
         return pulumi.get(self, "url")
 
     @url.setter
@@ -17445,6 +22473,10 @@ class StorageBucketAnonymousAccessFlagsArgs:
     def __init__(__self__, *,
                  list: Optional[pulumi.Input[bool]] = None,
                  read: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] list: Allows to list object in bucket anonymously.
+        :param pulumi.Input[bool] read: Allows to read objects in bucket anonymously.
+        """
         if list is not None:
             pulumi.set(__self__, "list", list)
         if read is not None:
@@ -17453,6 +22485,9 @@ class StorageBucketAnonymousAccessFlagsArgs:
     @property
     @pulumi.getter
     def list(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allows to list object in bucket anonymously.
+        """
         return pulumi.get(self, "list")
 
     @list.setter
@@ -17462,6 +22497,9 @@ class StorageBucketAnonymousAccessFlagsArgs:
     @property
     @pulumi.getter
     def read(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allows to read objects in bucket anonymously.
+        """
         return pulumi.get(self, "read")
 
     @read.setter
@@ -17477,6 +22515,13 @@ class StorageBucketCorsRuleArgs:
                  allowed_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  expose_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  max_age_seconds: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_methods: Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_origins: Specifies which origins are allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_headers: Specifies which headers are allowed.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] expose_headers: Specifies expose header in the response.
+        :param pulumi.Input[int] max_age_seconds: Specifies time in seconds that browser can cache the response for a preflight request.
+        """
         pulumi.set(__self__, "allowed_methods", allowed_methods)
         pulumi.set(__self__, "allowed_origins", allowed_origins)
         if allowed_headers is not None:
@@ -17489,6 +22534,9 @@ class StorageBucketCorsRuleArgs:
     @property
     @pulumi.getter(name="allowedMethods")
     def allowed_methods(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Specifies which methods are allowed. Can be `GET`, `PUT`, `POST`, `DELETE` or `HEAD`.
+        """
         return pulumi.get(self, "allowed_methods")
 
     @allowed_methods.setter
@@ -17498,6 +22546,9 @@ class StorageBucketCorsRuleArgs:
     @property
     @pulumi.getter(name="allowedOrigins")
     def allowed_origins(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Specifies which origins are allowed.
+        """
         return pulumi.get(self, "allowed_origins")
 
     @allowed_origins.setter
@@ -17507,6 +22558,9 @@ class StorageBucketCorsRuleArgs:
     @property
     @pulumi.getter(name="allowedHeaders")
     def allowed_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies which headers are allowed.
+        """
         return pulumi.get(self, "allowed_headers")
 
     @allowed_headers.setter
@@ -17516,6 +22570,9 @@ class StorageBucketCorsRuleArgs:
     @property
     @pulumi.getter(name="exposeHeaders")
     def expose_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Specifies expose header in the response.
+        """
         return pulumi.get(self, "expose_headers")
 
     @expose_headers.setter
@@ -17525,6 +22582,9 @@ class StorageBucketCorsRuleArgs:
     @property
     @pulumi.getter(name="maxAgeSeconds")
     def max_age_seconds(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies time in seconds that browser can cache the response for a preflight request.
+        """
         return pulumi.get(self, "max_age_seconds")
 
     @max_age_seconds.setter
@@ -17539,6 +22599,9 @@ class StorageBucketGrantArgs:
                  type: pulumi.Input[str],
                  id: Optional[pulumi.Input[str]] = None,
                  uri: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] id: Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        """
         pulumi.set(__self__, "permissions", permissions)
         pulumi.set(__self__, "type", type)
         if id is not None:
@@ -17567,6 +22630,9 @@ class StorageBucketGrantArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -17587,11 +22653,17 @@ class StorageBucketGrantArgs:
 class StorageBucketHttpsArgs:
     def __init__(__self__, *,
                  certificate_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] certificate_id: — Id of the certificate in Certificate Manager, that will be used for bucket.
+        """
         pulumi.set(__self__, "certificate_id", certificate_id)
 
     @property
     @pulumi.getter(name="certificateId")
     def certificate_id(self) -> pulumi.Input[str]:
+        """
+        — Id of the certificate in Certificate Manager, that will be used for bucket.
+        """
         return pulumi.get(self, "certificate_id")
 
     @certificate_id.setter
@@ -17610,6 +22682,16 @@ class StorageBucketLifecycleRuleArgs:
                  noncurrent_version_transitions: Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs']]]] = None,
                  prefix: Optional[pulumi.Input[str]] = None,
                  transitions: Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleTransitionArgs']]]] = None):
+        """
+        :param pulumi.Input[bool] enabled: Specifies lifecycle rule status.
+        :param pulumi.Input[int] abort_incomplete_multipart_upload_days: Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        :param pulumi.Input['StorageBucketLifecycleRuleExpirationArgs'] expiration: Specifies a period in the object's expire (documented below).
+        :param pulumi.Input[str] id: Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        :param pulumi.Input['StorageBucketLifecycleRuleNoncurrentVersionExpirationArgs'] noncurrent_version_expiration: Specifies when noncurrent object versions expire (documented below).
+        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs']]] noncurrent_version_transitions: Specifies when noncurrent object versions transitions (documented below).
+        :param pulumi.Input[str] prefix: Object key prefix identifying one or more objects to which the rule applies.
+        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleTransitionArgs']]] transitions: Specifies a period in the object's transitions (documented below).
+        """
         pulumi.set(__self__, "enabled", enabled)
         if abort_incomplete_multipart_upload_days is not None:
             pulumi.set(__self__, "abort_incomplete_multipart_upload_days", abort_incomplete_multipart_upload_days)
@@ -17629,6 +22711,9 @@ class StorageBucketLifecycleRuleArgs:
     @property
     @pulumi.getter
     def enabled(self) -> pulumi.Input[bool]:
+        """
+        Specifies lifecycle rule status.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -17638,6 +22723,9 @@ class StorageBucketLifecycleRuleArgs:
     @property
     @pulumi.getter(name="abortIncompleteMultipartUploadDays")
     def abort_incomplete_multipart_upload_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the number of days after initiating a multipart upload when the multipart upload must be completed.
+        """
         return pulumi.get(self, "abort_incomplete_multipart_upload_days")
 
     @abort_incomplete_multipart_upload_days.setter
@@ -17647,6 +22735,9 @@ class StorageBucketLifecycleRuleArgs:
     @property
     @pulumi.getter
     def expiration(self) -> Optional[pulumi.Input['StorageBucketLifecycleRuleExpirationArgs']]:
+        """
+        Specifies a period in the object's expire (documented below).
+        """
         return pulumi.get(self, "expiration")
 
     @expiration.setter
@@ -17656,6 +22747,9 @@ class StorageBucketLifecycleRuleArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -17665,6 +22759,9 @@ class StorageBucketLifecycleRuleArgs:
     @property
     @pulumi.getter(name="noncurrentVersionExpiration")
     def noncurrent_version_expiration(self) -> Optional[pulumi.Input['StorageBucketLifecycleRuleNoncurrentVersionExpirationArgs']]:
+        """
+        Specifies when noncurrent object versions expire (documented below).
+        """
         return pulumi.get(self, "noncurrent_version_expiration")
 
     @noncurrent_version_expiration.setter
@@ -17674,6 +22771,9 @@ class StorageBucketLifecycleRuleArgs:
     @property
     @pulumi.getter(name="noncurrentVersionTransitions")
     def noncurrent_version_transitions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs']]]]:
+        """
+        Specifies when noncurrent object versions transitions (documented below).
+        """
         return pulumi.get(self, "noncurrent_version_transitions")
 
     @noncurrent_version_transitions.setter
@@ -17683,6 +22783,9 @@ class StorageBucketLifecycleRuleArgs:
     @property
     @pulumi.getter
     def prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Object key prefix identifying one or more objects to which the rule applies.
+        """
         return pulumi.get(self, "prefix")
 
     @prefix.setter
@@ -17692,6 +22795,9 @@ class StorageBucketLifecycleRuleArgs:
     @property
     @pulumi.getter
     def transitions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleTransitionArgs']]]]:
+        """
+        Specifies a period in the object's transitions (documented below).
+        """
         return pulumi.get(self, "transitions")
 
     @transitions.setter
@@ -17705,6 +22811,11 @@ class StorageBucketLifecycleRuleExpirationArgs:
                  date: Optional[pulumi.Input[str]] = None,
                  days: Optional[pulumi.Input[int]] = None,
                  expired_object_delete_marker: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] date: Specifies the date after which you want the corresponding action to take effect.
+        :param pulumi.Input[int] days: Specifies the number of days after object creation when the specific rule action takes effect.
+        :param pulumi.Input[bool] expired_object_delete_marker: On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Object Storage to delete expired object delete markers.
+        """
         if date is not None:
             pulumi.set(__self__, "date", date)
         if days is not None:
@@ -17715,6 +22826,9 @@ class StorageBucketLifecycleRuleExpirationArgs:
     @property
     @pulumi.getter
     def date(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the date after which you want the corresponding action to take effect.
+        """
         return pulumi.get(self, "date")
 
     @date.setter
@@ -17724,6 +22838,9 @@ class StorageBucketLifecycleRuleExpirationArgs:
     @property
     @pulumi.getter
     def days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the number of days after object creation when the specific rule action takes effect.
+        """
         return pulumi.get(self, "days")
 
     @days.setter
@@ -17733,6 +22850,9 @@ class StorageBucketLifecycleRuleExpirationArgs:
     @property
     @pulumi.getter(name="expiredObjectDeleteMarker")
     def expired_object_delete_marker(self) -> Optional[pulumi.Input[bool]]:
+        """
+        On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Object Storage to delete expired object delete markers.
+        """
         return pulumi.get(self, "expired_object_delete_marker")
 
     @expired_object_delete_marker.setter
@@ -17744,12 +22864,18 @@ class StorageBucketLifecycleRuleExpirationArgs:
 class StorageBucketLifecycleRuleNoncurrentVersionExpirationArgs:
     def __init__(__self__, *,
                  days: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] days: Specifies the number of days noncurrent object versions expire.
+        """
         if days is not None:
             pulumi.set(__self__, "days", days)
 
     @property
     @pulumi.getter
     def days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the number of days noncurrent object versions expire.
+        """
         return pulumi.get(self, "days")
 
     @days.setter
@@ -17762,6 +22888,10 @@ class StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs:
     def __init__(__self__, *,
                  storage_class: pulumi.Input[str],
                  days: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] storage_class: Specifies the storage class to which you want the noncurrent object versions to transition. Can only be `COLD` or `STANDARD_IA`.
+        :param pulumi.Input[int] days: Specifies the number of days noncurrent object versions transition.
+        """
         pulumi.set(__self__, "storage_class", storage_class)
         if days is not None:
             pulumi.set(__self__, "days", days)
@@ -17769,6 +22899,9 @@ class StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs:
     @property
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> pulumi.Input[str]:
+        """
+        Specifies the storage class to which you want the noncurrent object versions to transition. Can only be `COLD` or `STANDARD_IA`.
+        """
         return pulumi.get(self, "storage_class")
 
     @storage_class.setter
@@ -17778,6 +22911,9 @@ class StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs:
     @property
     @pulumi.getter
     def days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the number of days noncurrent object versions transition.
+        """
         return pulumi.get(self, "days")
 
     @days.setter
@@ -17791,6 +22927,11 @@ class StorageBucketLifecycleRuleTransitionArgs:
                  storage_class: pulumi.Input[str],
                  date: Optional[pulumi.Input[str]] = None,
                  days: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] storage_class: Specifies the storage class to which you want the object to transition. Can only be `COLD` or `STANDARD_IA`.
+        :param pulumi.Input[str] date: Specifies the date after which you want the corresponding action to take effect.
+        :param pulumi.Input[int] days: Specifies the number of days after object creation when the specific rule action takes effect.
+        """
         pulumi.set(__self__, "storage_class", storage_class)
         if date is not None:
             pulumi.set(__self__, "date", date)
@@ -17800,6 +22941,9 @@ class StorageBucketLifecycleRuleTransitionArgs:
     @property
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> pulumi.Input[str]:
+        """
+        Specifies the storage class to which you want the object to transition. Can only be `COLD` or `STANDARD_IA`.
+        """
         return pulumi.get(self, "storage_class")
 
     @storage_class.setter
@@ -17809,6 +22953,9 @@ class StorageBucketLifecycleRuleTransitionArgs:
     @property
     @pulumi.getter
     def date(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the date after which you want the corresponding action to take effect.
+        """
         return pulumi.get(self, "date")
 
     @date.setter
@@ -17818,6 +22965,9 @@ class StorageBucketLifecycleRuleTransitionArgs:
     @property
     @pulumi.getter
     def days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies the number of days after object creation when the specific rule action takes effect.
+        """
         return pulumi.get(self, "days")
 
     @days.setter
@@ -17830,6 +22980,10 @@ class StorageBucketLoggingArgs:
     def __init__(__self__, *,
                  target_bucket: pulumi.Input[str],
                  target_prefix: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] target_bucket: The name of the bucket that will receive the log objects.
+        :param pulumi.Input[str] target_prefix: To specify a key prefix for log objects.
+        """
         pulumi.set(__self__, "target_bucket", target_bucket)
         if target_prefix is not None:
             pulumi.set(__self__, "target_prefix", target_prefix)
@@ -17837,6 +22991,9 @@ class StorageBucketLoggingArgs:
     @property
     @pulumi.getter(name="targetBucket")
     def target_bucket(self) -> pulumi.Input[str]:
+        """
+        The name of the bucket that will receive the log objects.
+        """
         return pulumi.get(self, "target_bucket")
 
     @target_bucket.setter
@@ -17846,6 +23003,9 @@ class StorageBucketLoggingArgs:
     @property
     @pulumi.getter(name="targetPrefix")
     def target_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        To specify a key prefix for log objects.
+        """
         return pulumi.get(self, "target_prefix")
 
     @target_prefix.setter
@@ -17857,11 +23017,17 @@ class StorageBucketLoggingArgs:
 class StorageBucketServerSideEncryptionConfigurationArgs:
     def __init__(__self__, *,
                  rule: pulumi.Input['StorageBucketServerSideEncryptionConfigurationRuleArgs']):
+        """
+        :param pulumi.Input['StorageBucketServerSideEncryptionConfigurationRuleArgs'] rule: A single object for server-side encryption by default configuration. (documented below)
+        """
         pulumi.set(__self__, "rule", rule)
 
     @property
     @pulumi.getter
     def rule(self) -> pulumi.Input['StorageBucketServerSideEncryptionConfigurationRuleArgs']:
+        """
+        A single object for server-side encryption by default configuration. (documented below)
+        """
         return pulumi.get(self, "rule")
 
     @rule.setter
@@ -17873,11 +23039,17 @@ class StorageBucketServerSideEncryptionConfigurationArgs:
 class StorageBucketServerSideEncryptionConfigurationRuleArgs:
     def __init__(__self__, *,
                  apply_server_side_encryption_by_default: pulumi.Input['StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']):
+        """
+        :param pulumi.Input['StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs'] apply_server_side_encryption_by_default: A single object for setting server-side encryption by default. (documented below)
+        """
         pulumi.set(__self__, "apply_server_side_encryption_by_default", apply_server_side_encryption_by_default)
 
     @property
     @pulumi.getter(name="applyServerSideEncryptionByDefault")
     def apply_server_side_encryption_by_default(self) -> pulumi.Input['StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs']:
+        """
+        A single object for setting server-side encryption by default. (documented below)
+        """
         return pulumi.get(self, "apply_server_side_encryption_by_default")
 
     @apply_server_side_encryption_by_default.setter
@@ -17890,12 +23062,19 @@ class StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptio
     def __init__(__self__, *,
                  kms_master_key_id: pulumi.Input[str],
                  sse_algorithm: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] kms_master_key_id: The KMS master key ID used for the SSE-KMS encryption.
+        :param pulumi.Input[str] sse_algorithm: The server-side encryption algorithm to use. Single valid value is `aws:kms`
+        """
         pulumi.set(__self__, "kms_master_key_id", kms_master_key_id)
         pulumi.set(__self__, "sse_algorithm", sse_algorithm)
 
     @property
     @pulumi.getter(name="kmsMasterKeyId")
     def kms_master_key_id(self) -> pulumi.Input[str]:
+        """
+        The KMS master key ID used for the SSE-KMS encryption.
+        """
         return pulumi.get(self, "kms_master_key_id")
 
     @kms_master_key_id.setter
@@ -17905,6 +23084,9 @@ class StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptio
     @property
     @pulumi.getter(name="sseAlgorithm")
     def sse_algorithm(self) -> pulumi.Input[str]:
+        """
+        The server-side encryption algorithm to use. Single valid value is `aws:kms`
+        """
         return pulumi.get(self, "sse_algorithm")
 
     @sse_algorithm.setter
@@ -17916,12 +23098,18 @@ class StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptio
 class StorageBucketVersioningArgs:
     def __init__(__self__, *,
                  enabled: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] enabled: Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+        """
         if enabled is not None:
             pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter
     def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable versioning. Once you version-enable a bucket, it can never return to an unversioned state. You can, however, suspend versioning on that bucket.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -17936,6 +23124,12 @@ class StorageBucketWebsiteArgs:
                  index_document: Optional[pulumi.Input[str]] = None,
                  redirect_all_requests_to: Optional[pulumi.Input[str]] = None,
                  routing_rules: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] error_document: An absolute path to the document to return in case of a 4XX error.
+        :param pulumi.Input[str] index_document: Storage returns this index document when requests are made to the root domain or any of the subfolders.
+        :param pulumi.Input[str] redirect_all_requests_to: A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (`http://` or `https://`) to use when redirecting requests. The default is the protocol that is used in the original request.
+        :param pulumi.Input[str] routing_rules: A json array containing [routing rules](https://cloud.yandex.com/docs/storage/s3/api-ref/hosting/upload#request-scheme) describing redirect behavior and when redirects are applied.
+        """
         if error_document is not None:
             pulumi.set(__self__, "error_document", error_document)
         if index_document is not None:
@@ -17948,6 +23142,9 @@ class StorageBucketWebsiteArgs:
     @property
     @pulumi.getter(name="errorDocument")
     def error_document(self) -> Optional[pulumi.Input[str]]:
+        """
+        An absolute path to the document to return in case of a 4XX error.
+        """
         return pulumi.get(self, "error_document")
 
     @error_document.setter
@@ -17957,6 +23154,9 @@ class StorageBucketWebsiteArgs:
     @property
     @pulumi.getter(name="indexDocument")
     def index_document(self) -> Optional[pulumi.Input[str]]:
+        """
+        Storage returns this index document when requests are made to the root domain or any of the subfolders.
+        """
         return pulumi.get(self, "index_document")
 
     @index_document.setter
@@ -17966,6 +23166,9 @@ class StorageBucketWebsiteArgs:
     @property
     @pulumi.getter(name="redirectAllRequestsTo")
     def redirect_all_requests_to(self) -> Optional[pulumi.Input[str]]:
+        """
+        A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (`http://` or `https://`) to use when redirecting requests. The default is the protocol that is used in the original request.
+        """
         return pulumi.get(self, "redirect_all_requests_to")
 
     @redirect_all_requests_to.setter
@@ -17975,6 +23178,9 @@ class StorageBucketWebsiteArgs:
     @property
     @pulumi.getter(name="routingRules")
     def routing_rules(self) -> Optional[pulumi.Input[str]]:
+        """
+        A json array containing [routing rules](https://cloud.yandex.com/docs/storage/s3/api-ref/hosting/upload#request-scheme) describing redirect behavior and when redirects are applied.
+        """
         return pulumi.get(self, "routing_rules")
 
     @routing_rules.setter
@@ -17989,6 +23195,12 @@ class VpcAddressExternalIpv4AddressArgs:
                  ddos_protection_provider: Optional[pulumi.Input[str]] = None,
                  outgoing_smtp_capability: Optional[pulumi.Input[str]] = None,
                  zone_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] address: Allocated IP address.
+        :param pulumi.Input[str] ddos_protection_provider: Enable DDOS protection. Possible values are: "qrator"
+        :param pulumi.Input[str] outgoing_smtp_capability: Wanted outgoing smtp capability.
+        :param pulumi.Input[str] zone_id: Zone for allocating address.
+        """
         if address is not None:
             pulumi.set(__self__, "address", address)
         if ddos_protection_provider is not None:
@@ -18001,6 +23213,9 @@ class VpcAddressExternalIpv4AddressArgs:
     @property
     @pulumi.getter
     def address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Allocated IP address.
+        """
         return pulumi.get(self, "address")
 
     @address.setter
@@ -18010,6 +23225,9 @@ class VpcAddressExternalIpv4AddressArgs:
     @property
     @pulumi.getter(name="ddosProtectionProvider")
     def ddos_protection_provider(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable DDOS protection. Possible values are: "qrator"
+        """
         return pulumi.get(self, "ddos_protection_provider")
 
     @ddos_protection_provider.setter
@@ -18019,6 +23237,9 @@ class VpcAddressExternalIpv4AddressArgs:
     @property
     @pulumi.getter(name="outgoingSmtpCapability")
     def outgoing_smtp_capability(self) -> Optional[pulumi.Input[str]]:
+        """
+        Wanted outgoing smtp capability.
+        """
         return pulumi.get(self, "outgoing_smtp_capability")
 
     @outgoing_smtp_capability.setter
@@ -18028,6 +23249,9 @@ class VpcAddressExternalIpv4AddressArgs:
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Zone for allocating address.
+        """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
@@ -18049,6 +23273,11 @@ class VpcDefaultSecurityGroupEgressArgs:
                  to_port: Optional[pulumi.Input[int]] = None,
                  v4_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  v6_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] description: Description of the security group.
+        :param pulumi.Input[str] id: Id of the security group.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this security group.
+        """
         pulumi.set(__self__, "protocol", protocol)
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -18083,6 +23312,9 @@ class VpcDefaultSecurityGroupEgressArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the security group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -18101,6 +23333,9 @@ class VpcDefaultSecurityGroupEgressArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Id of the security group.
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -18110,6 +23345,9 @@ class VpcDefaultSecurityGroupEgressArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this security group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -18185,6 +23423,11 @@ class VpcDefaultSecurityGroupIngressArgs:
                  to_port: Optional[pulumi.Input[int]] = None,
                  v4_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  v6_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] description: Description of the security group.
+        :param pulumi.Input[str] id: Id of the security group.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this security group.
+        """
         pulumi.set(__self__, "protocol", protocol)
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -18219,6 +23462,9 @@ class VpcDefaultSecurityGroupIngressArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the security group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -18237,6 +23483,9 @@ class VpcDefaultSecurityGroupIngressArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Id of the security group.
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -18246,6 +23495,9 @@ class VpcDefaultSecurityGroupIngressArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this security group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -18313,6 +23565,11 @@ class VpcRouteTableStaticRouteArgs:
                  destination_prefix: Optional[pulumi.Input[str]] = None,
                  gateway_id: Optional[pulumi.Input[str]] = None,
                  next_hop_address: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] destination_prefix: Route prefix in CIDR notation.
+        :param pulumi.Input[str] gateway_id: ID of the gateway used ad next hop.
+        :param pulumi.Input[str] next_hop_address: Address of the next hop.
+        """
         if destination_prefix is not None:
             pulumi.set(__self__, "destination_prefix", destination_prefix)
         if gateway_id is not None:
@@ -18323,6 +23580,9 @@ class VpcRouteTableStaticRouteArgs:
     @property
     @pulumi.getter(name="destinationPrefix")
     def destination_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Route prefix in CIDR notation.
+        """
         return pulumi.get(self, "destination_prefix")
 
     @destination_prefix.setter
@@ -18332,6 +23592,9 @@ class VpcRouteTableStaticRouteArgs:
     @property
     @pulumi.getter(name="gatewayId")
     def gateway_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the gateway used ad next hop.
+        """
         return pulumi.get(self, "gateway_id")
 
     @gateway_id.setter
@@ -18341,6 +23604,9 @@ class VpcRouteTableStaticRouteArgs:
     @property
     @pulumi.getter(name="nextHopAddress")
     def next_hop_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Address of the next hop.
+        """
         return pulumi.get(self, "next_hop_address")
 
     @next_hop_address.setter
@@ -18362,6 +23628,11 @@ class VpcSecurityGroupEgressArgs:
                  to_port: Optional[pulumi.Input[int]] = None,
                  v4_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  v6_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] description: Description of the security group.
+        :param pulumi.Input[str] id: Id of the rule.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this security group.
+        """
         pulumi.set(__self__, "protocol", protocol)
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -18396,6 +23667,9 @@ class VpcSecurityGroupEgressArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the security group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -18414,6 +23688,9 @@ class VpcSecurityGroupEgressArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Id of the rule.
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -18423,6 +23700,9 @@ class VpcSecurityGroupEgressArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this security group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -18498,6 +23778,11 @@ class VpcSecurityGroupIngressArgs:
                  to_port: Optional[pulumi.Input[int]] = None,
                  v4_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  v6_cidr_blocks: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] description: Description of the security group.
+        :param pulumi.Input[str] id: Id of the rule.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this security group.
+        """
         pulumi.set(__self__, "protocol", protocol)
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -18532,6 +23817,9 @@ class VpcSecurityGroupIngressArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the security group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -18550,6 +23838,9 @@ class VpcSecurityGroupIngressArgs:
     @property
     @pulumi.getter
     def id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Id of the rule.
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -18559,6 +23850,9 @@ class VpcSecurityGroupIngressArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this security group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -18626,6 +23920,11 @@ class VpcSubnetDhcpOptionsArgs:
                  domain_name: Optional[pulumi.Input[str]] = None,
                  domain_name_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  ntp_servers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] domain_name: Domain name.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] domain_name_servers: Domain name server IP addresses.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] ntp_servers: NTP server IP addresses.
+        """
         if domain_name is not None:
             pulumi.set(__self__, "domain_name", domain_name)
         if domain_name_servers is not None:
@@ -18636,6 +23935,9 @@ class VpcSubnetDhcpOptionsArgs:
     @property
     @pulumi.getter(name="domainName")
     def domain_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Domain name.
+        """
         return pulumi.get(self, "domain_name")
 
     @domain_name.setter
@@ -18645,6 +23947,9 @@ class VpcSubnetDhcpOptionsArgs:
     @property
     @pulumi.getter(name="domainNameServers")
     def domain_name_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Domain name server IP addresses.
+        """
         return pulumi.get(self, "domain_name_servers")
 
     @domain_name_servers.setter
@@ -18654,6 +23959,9 @@ class VpcSubnetDhcpOptionsArgs:
     @property
     @pulumi.getter(name="ntpServers")
     def ntp_servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        NTP server IP addresses.
+        """
         return pulumi.get(self, "ntp_servers")
 
     @ntp_servers.setter
@@ -18665,12 +23973,20 @@ class VpcSubnetDhcpOptionsArgs:
 class YdbDatabaseDedicatedLocationArgs:
     def __init__(__self__, *,
                  region: Optional[pulumi.Input['YdbDatabaseDedicatedLocationRegionArgs']] = None):
+        """
+        :param pulumi.Input['YdbDatabaseDedicatedLocationRegionArgs'] region: Region for the Yandex Database cluster.
+               The structure is documented below.
+        """
         if region is not None:
             pulumi.set(__self__, "region", region)
 
     @property
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input['YdbDatabaseDedicatedLocationRegionArgs']]:
+        """
+        Region for the Yandex Database cluster.
+        The structure is documented below.
+        """
         return pulumi.get(self, "region")
 
     @region.setter
@@ -18682,11 +23998,17 @@ class YdbDatabaseDedicatedLocationArgs:
 class YdbDatabaseDedicatedLocationRegionArgs:
     def __init__(__self__, *,
                  id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] id: Region ID for the Yandex Database cluster.
+        """
         pulumi.set(__self__, "id", id)
 
     @property
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
+        """
+        Region ID for the Yandex Database cluster.
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -18698,11 +24020,19 @@ class YdbDatabaseDedicatedLocationRegionArgs:
 class YdbDatabaseDedicatedScalePolicyArgs:
     def __init__(__self__, *,
                  fixed_scale: pulumi.Input['YdbDatabaseDedicatedScalePolicyFixedScaleArgs']):
+        """
+        :param pulumi.Input['YdbDatabaseDedicatedScalePolicyFixedScaleArgs'] fixed_scale: Fixed scaling policy for the Yandex Database cluster.
+               The structure is documented below.
+        """
         pulumi.set(__self__, "fixed_scale", fixed_scale)
 
     @property
     @pulumi.getter(name="fixedScale")
     def fixed_scale(self) -> pulumi.Input['YdbDatabaseDedicatedScalePolicyFixedScaleArgs']:
+        """
+        Fixed scaling policy for the Yandex Database cluster.
+        The structure is documented below.
+        """
         return pulumi.get(self, "fixed_scale")
 
     @fixed_scale.setter
@@ -18714,11 +24044,17 @@ class YdbDatabaseDedicatedScalePolicyArgs:
 class YdbDatabaseDedicatedScalePolicyFixedScaleArgs:
     def __init__(__self__, *,
                  size: pulumi.Input[int]):
+        """
+        :param pulumi.Input[int] size: Number of instances for the Yandex Database cluster.
+        """
         pulumi.set(__self__, "size", size)
 
     @property
     @pulumi.getter
     def size(self) -> pulumi.Input[int]:
+        """
+        Number of instances for the Yandex Database cluster.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -18731,12 +24067,20 @@ class YdbDatabaseDedicatedStorageConfigArgs:
     def __init__(__self__, *,
                  group_count: pulumi.Input[int],
                  storage_type_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] group_count: Amount of storage groups of selected type for the Yandex Database cluster.
+        :param pulumi.Input[str] storage_type_id: Storage type ID for the Yandex Database cluster.
+               Available presets can be obtained via `yc ydb storage-type list` command.
+        """
         pulumi.set(__self__, "group_count", group_count)
         pulumi.set(__self__, "storage_type_id", storage_type_id)
 
     @property
     @pulumi.getter(name="groupCount")
     def group_count(self) -> pulumi.Input[int]:
+        """
+        Amount of storage groups of selected type for the Yandex Database cluster.
+        """
         return pulumi.get(self, "group_count")
 
     @group_count.setter
@@ -18746,6 +24090,10 @@ class YdbDatabaseDedicatedStorageConfigArgs:
     @property
     @pulumi.getter(name="storageTypeId")
     def storage_type_id(self) -> pulumi.Input[str]:
+        """
+        Storage type ID for the Yandex Database cluster.
+        Available presets can be obtained via `yc ydb storage-type list` command.
+        """
         return pulumi.get(self, "storage_type_id")
 
     @storage_type_id.setter
@@ -18763,6 +24111,15 @@ class GetAlbBackendGroupGrpcBackendArgs:
                  target_group_ids: Sequence[str],
                  tls: 'GetAlbBackendGroupGrpcBackendTlsArgs',
                  weight: int):
+        """
+        :param 'GetAlbBackendGroupGrpcBackendHealthcheckArgs' healthcheck: Healthcheck specification that will be used by this backend. Structure is documented below.
+        :param 'GetAlbBackendGroupGrpcBackendLoadBalancingConfigArgs' load_balancing_config: Load Balancing Config specification that will be used by this backend. Structure is documented below.
+        :param str name: - Name of the Backend Group.
+        :param int port: Port for incoming traffic.
+        :param Sequence[str] target_group_ids: References target groups for the backend.
+        :param 'GetAlbBackendGroupGrpcBackendTlsArgs' tls: Tls specification that will be used by this backend. Structure is documented below.
+        :param int weight: Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+        """
         pulumi.set(__self__, "healthcheck", healthcheck)
         pulumi.set(__self__, "load_balancing_config", load_balancing_config)
         pulumi.set(__self__, "name", name)
@@ -18774,6 +24131,9 @@ class GetAlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter
     def healthcheck(self) -> 'GetAlbBackendGroupGrpcBackendHealthcheckArgs':
+        """
+        Healthcheck specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "healthcheck")
 
     @healthcheck.setter
@@ -18783,6 +24143,9 @@ class GetAlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter(name="loadBalancingConfig")
     def load_balancing_config(self) -> 'GetAlbBackendGroupGrpcBackendLoadBalancingConfigArgs':
+        """
+        Load Balancing Config specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "load_balancing_config")
 
     @load_balancing_config.setter
@@ -18792,6 +24155,9 @@ class GetAlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        - Name of the Backend Group.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -18801,6 +24167,9 @@ class GetAlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter
     def port(self) -> int:
+        """
+        Port for incoming traffic.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -18810,6 +24179,9 @@ class GetAlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter(name="targetGroupIds")
     def target_group_ids(self) -> Sequence[str]:
+        """
+        References target groups for the backend.
+        """
         return pulumi.get(self, "target_group_ids")
 
     @target_group_ids.setter
@@ -18819,6 +24191,9 @@ class GetAlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter
     def tls(self) -> 'GetAlbBackendGroupGrpcBackendTlsArgs':
+        """
+        Tls specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "tls")
 
     @tls.setter
@@ -18828,6 +24203,9 @@ class GetAlbBackendGroupGrpcBackendArgs:
     @property
     @pulumi.getter
     def weight(self) -> int:
+        """
+        Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+        """
         return pulumi.get(self, "weight")
 
     @weight.setter
@@ -18847,6 +24225,17 @@ class GetAlbBackendGroupGrpcBackendHealthcheckArgs:
                  stream_healthcheck: 'GetAlbBackendGroupGrpcBackendHealthcheckStreamHealthcheckArgs',
                  timeout: str,
                  unhealthy_threshold: int):
+        """
+        :param 'GetAlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheckArgs' grpc_healthcheck: Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param int healthcheck_port: Optional alternative port for health checking.
+        :param int healthy_threshold: Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+        :param 'GetAlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs' http_healthcheck: Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param str interval: Interval between health checks.
+        :param float interval_jitter_percent: An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * interval_jitter_percent / 100) will be added to the wait time.
+        :param 'GetAlbBackendGroupGrpcBackendHealthcheckStreamHealthcheckArgs' stream_healthcheck: Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param str timeout: Time to wait for a health check response.
+        :param int unhealthy_threshold: Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+        """
         pulumi.set(__self__, "grpc_healthcheck", grpc_healthcheck)
         pulumi.set(__self__, "healthcheck_port", healthcheck_port)
         pulumi.set(__self__, "healthy_threshold", healthy_threshold)
@@ -18860,6 +24249,9 @@ class GetAlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="grpcHealthcheck")
     def grpc_healthcheck(self) -> 'GetAlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheckArgs':
+        """
+        Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "grpc_healthcheck")
 
     @grpc_healthcheck.setter
@@ -18869,6 +24261,9 @@ class GetAlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="healthcheckPort")
     def healthcheck_port(self) -> int:
+        """
+        Optional alternative port for health checking.
+        """
         return pulumi.get(self, "healthcheck_port")
 
     @healthcheck_port.setter
@@ -18878,6 +24273,9 @@ class GetAlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="healthyThreshold")
     def healthy_threshold(self) -> int:
+        """
+        Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+        """
         return pulumi.get(self, "healthy_threshold")
 
     @healthy_threshold.setter
@@ -18887,6 +24285,9 @@ class GetAlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="httpHealthcheck")
     def http_healthcheck(self) -> 'GetAlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs':
+        """
+        Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "http_healthcheck")
 
     @http_healthcheck.setter
@@ -18896,6 +24297,9 @@ class GetAlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter
     def interval(self) -> str:
+        """
+        Interval between health checks.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -18905,6 +24309,9 @@ class GetAlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="intervalJitterPercent")
     def interval_jitter_percent(self) -> float:
+        """
+        An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * interval_jitter_percent / 100) will be added to the wait time.
+        """
         return pulumi.get(self, "interval_jitter_percent")
 
     @interval_jitter_percent.setter
@@ -18914,6 +24321,9 @@ class GetAlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="streamHealthcheck")
     def stream_healthcheck(self) -> 'GetAlbBackendGroupGrpcBackendHealthcheckStreamHealthcheckArgs':
+        """
+        Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "stream_healthcheck")
 
     @stream_healthcheck.setter
@@ -18923,6 +24333,9 @@ class GetAlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter
     def timeout(self) -> str:
+        """
+        Time to wait for a health check response.
+        """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
@@ -18932,6 +24345,9 @@ class GetAlbBackendGroupGrpcBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="unhealthyThreshold")
     def unhealthy_threshold(self) -> int:
+        """
+        Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+        """
         return pulumi.get(self, "unhealthy_threshold")
 
     @unhealthy_threshold.setter
@@ -18943,11 +24359,17 @@ class GetAlbBackendGroupGrpcBackendHealthcheckArgs:
 class GetAlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheckArgs:
     def __init__(__self__, *,
                  service_name: str):
+        """
+        :param str service_name: Optional service name for grpc.health.v1.HealthCheckRequest message.
+        """
         pulumi.set(__self__, "service_name", service_name)
 
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> str:
+        """
+        Optional service name for grpc.health.v1.HealthCheckRequest message.
+        """
         return pulumi.get(self, "service_name")
 
     @service_name.setter
@@ -18961,6 +24383,11 @@ class GetAlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs:
                  host: str,
                  http2: bool,
                  path: str):
+        """
+        :param str host: Optional "Host" HTTP header value.
+        :param bool http2: If set, health checks will use HTTP2.
+        :param str path: HTTP path.
+        """
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "http2", http2)
         pulumi.set(__self__, "path", path)
@@ -18968,6 +24395,9 @@ class GetAlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def host(self) -> str:
+        """
+        Optional "Host" HTTP header value.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -18977,6 +24407,9 @@ class GetAlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def http2(self) -> bool:
+        """
+        If set, health checks will use HTTP2.
+        """
         return pulumi.get(self, "http2")
 
     @http2.setter
@@ -18986,6 +24419,9 @@ class GetAlbBackendGroupGrpcBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def path(self) -> str:
+        """
+        HTTP path.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -18998,12 +24434,19 @@ class GetAlbBackendGroupGrpcBackendHealthcheckStreamHealthcheckArgs:
     def __init__(__self__, *,
                  receive: str,
                  send: str):
+        """
+        :param str receive: Optional text that must be contained in the messages received from targets for a successful health check.
+        :param str send: Optional message text sent to targets during TCP data transfer.
+        """
         pulumi.set(__self__, "receive", receive)
         pulumi.set(__self__, "send", send)
 
     @property
     @pulumi.getter
     def receive(self) -> str:
+        """
+        Optional text that must be contained in the messages received from targets for a successful health check.
+        """
         return pulumi.get(self, "receive")
 
     @receive.setter
@@ -19013,6 +24456,9 @@ class GetAlbBackendGroupGrpcBackendHealthcheckStreamHealthcheckArgs:
     @property
     @pulumi.getter
     def send(self) -> str:
+        """
+        Optional message text sent to targets during TCP data transfer.
+        """
         return pulumi.get(self, "send")
 
     @send.setter
@@ -19027,6 +24473,12 @@ class GetAlbBackendGroupGrpcBackendLoadBalancingConfigArgs:
                  mode: str,
                  panic_threshold: int,
                  strict_locality: bool):
+        """
+        :param int locality_aware_routing_percent: Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+        :param str mode: Load balancing mode for the backend.
+        :param int panic_threshold: If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+        :param bool strict_locality: If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+        """
         pulumi.set(__self__, "locality_aware_routing_percent", locality_aware_routing_percent)
         pulumi.set(__self__, "mode", mode)
         pulumi.set(__self__, "panic_threshold", panic_threshold)
@@ -19035,6 +24487,9 @@ class GetAlbBackendGroupGrpcBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="localityAwareRoutingPercent")
     def locality_aware_routing_percent(self) -> int:
+        """
+        Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+        """
         return pulumi.get(self, "locality_aware_routing_percent")
 
     @locality_aware_routing_percent.setter
@@ -19044,6 +24499,9 @@ class GetAlbBackendGroupGrpcBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter
     def mode(self) -> str:
+        """
+        Load balancing mode for the backend.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -19053,6 +24511,9 @@ class GetAlbBackendGroupGrpcBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="panicThreshold")
     def panic_threshold(self) -> int:
+        """
+        If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+        """
         return pulumi.get(self, "panic_threshold")
 
     @panic_threshold.setter
@@ -19062,6 +24523,9 @@ class GetAlbBackendGroupGrpcBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="strictLocality")
     def strict_locality(self) -> bool:
+        """
+        If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+        """
         return pulumi.get(self, "strict_locality")
 
     @strict_locality.setter
@@ -19074,12 +24538,22 @@ class GetAlbBackendGroupGrpcBackendTlsArgs:
     def __init__(__self__, *,
                  sni: str,
                  validation_context: 'GetAlbBackendGroupGrpcBackendTlsValidationContextArgs'):
+        """
+        :param str sni: [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+               * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+               * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+        """
         pulumi.set(__self__, "sni", sni)
         pulumi.set(__self__, "validation_context", validation_context)
 
     @property
     @pulumi.getter
     def sni(self) -> str:
+        """
+        [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+        * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+        * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+        """
         return pulumi.get(self, "sni")
 
     @sni.setter
@@ -19135,6 +24609,16 @@ class GetAlbBackendGroupHttpBackendArgs:
                  target_group_ids: Sequence[str],
                  tls: 'GetAlbBackendGroupHttpBackendTlsArgs',
                  weight: int):
+        """
+        :param 'GetAlbBackendGroupHttpBackendHealthcheckArgs' healthcheck: Healthcheck specification that will be used by this backend. Structure is documented below.
+        :param bool http2: If set, health checks will use HTTP2.
+        :param 'GetAlbBackendGroupHttpBackendLoadBalancingConfigArgs' load_balancing_config: Load Balancing Config specification that will be used by this backend. Structure is documented below.
+        :param str name: - Name of the Backend Group.
+        :param int port: Port for incoming traffic.
+        :param Sequence[str] target_group_ids: References target groups for the backend.
+        :param 'GetAlbBackendGroupHttpBackendTlsArgs' tls: Tls specification that will be used by this backend. Structure is documented below.
+        :param int weight: Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+        """
         pulumi.set(__self__, "healthcheck", healthcheck)
         pulumi.set(__self__, "http2", http2)
         pulumi.set(__self__, "load_balancing_config", load_balancing_config)
@@ -19148,6 +24632,9 @@ class GetAlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter
     def healthcheck(self) -> 'GetAlbBackendGroupHttpBackendHealthcheckArgs':
+        """
+        Healthcheck specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "healthcheck")
 
     @healthcheck.setter
@@ -19157,6 +24644,9 @@ class GetAlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter
     def http2(self) -> bool:
+        """
+        If set, health checks will use HTTP2.
+        """
         return pulumi.get(self, "http2")
 
     @http2.setter
@@ -19166,6 +24656,9 @@ class GetAlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter(name="loadBalancingConfig")
     def load_balancing_config(self) -> 'GetAlbBackendGroupHttpBackendLoadBalancingConfigArgs':
+        """
+        Load Balancing Config specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "load_balancing_config")
 
     @load_balancing_config.setter
@@ -19175,6 +24668,9 @@ class GetAlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        - Name of the Backend Group.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -19184,6 +24680,9 @@ class GetAlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter
     def port(self) -> int:
+        """
+        Port for incoming traffic.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -19202,6 +24701,9 @@ class GetAlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter(name="targetGroupIds")
     def target_group_ids(self) -> Sequence[str]:
+        """
+        References target groups for the backend.
+        """
         return pulumi.get(self, "target_group_ids")
 
     @target_group_ids.setter
@@ -19211,6 +24713,9 @@ class GetAlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter
     def tls(self) -> 'GetAlbBackendGroupHttpBackendTlsArgs':
+        """
+        Tls specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "tls")
 
     @tls.setter
@@ -19220,6 +24725,9 @@ class GetAlbBackendGroupHttpBackendArgs:
     @property
     @pulumi.getter
     def weight(self) -> int:
+        """
+        Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+        """
         return pulumi.get(self, "weight")
 
     @weight.setter
@@ -19239,6 +24747,17 @@ class GetAlbBackendGroupHttpBackendHealthcheckArgs:
                  stream_healthcheck: 'GetAlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs',
                  timeout: str,
                  unhealthy_threshold: int):
+        """
+        :param 'GetAlbBackendGroupHttpBackendHealthcheckGrpcHealthcheckArgs' grpc_healthcheck: Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param int healthcheck_port: Optional alternative port for health checking.
+        :param int healthy_threshold: Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+        :param 'GetAlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs' http_healthcheck: Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param str interval: Interval between health checks.
+        :param float interval_jitter_percent: An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * interval_jitter_percent / 100) will be added to the wait time.
+        :param 'GetAlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs' stream_healthcheck: Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param str timeout: Time to wait for a health check response.
+        :param int unhealthy_threshold: Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+        """
         pulumi.set(__self__, "grpc_healthcheck", grpc_healthcheck)
         pulumi.set(__self__, "healthcheck_port", healthcheck_port)
         pulumi.set(__self__, "healthy_threshold", healthy_threshold)
@@ -19252,6 +24771,9 @@ class GetAlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="grpcHealthcheck")
     def grpc_healthcheck(self) -> 'GetAlbBackendGroupHttpBackendHealthcheckGrpcHealthcheckArgs':
+        """
+        Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "grpc_healthcheck")
 
     @grpc_healthcheck.setter
@@ -19261,6 +24783,9 @@ class GetAlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="healthcheckPort")
     def healthcheck_port(self) -> int:
+        """
+        Optional alternative port for health checking.
+        """
         return pulumi.get(self, "healthcheck_port")
 
     @healthcheck_port.setter
@@ -19270,6 +24795,9 @@ class GetAlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="healthyThreshold")
     def healthy_threshold(self) -> int:
+        """
+        Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+        """
         return pulumi.get(self, "healthy_threshold")
 
     @healthy_threshold.setter
@@ -19279,6 +24807,9 @@ class GetAlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="httpHealthcheck")
     def http_healthcheck(self) -> 'GetAlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs':
+        """
+        Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "http_healthcheck")
 
     @http_healthcheck.setter
@@ -19288,6 +24819,9 @@ class GetAlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter
     def interval(self) -> str:
+        """
+        Interval between health checks.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -19297,6 +24831,9 @@ class GetAlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="intervalJitterPercent")
     def interval_jitter_percent(self) -> float:
+        """
+        An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * interval_jitter_percent / 100) will be added to the wait time.
+        """
         return pulumi.get(self, "interval_jitter_percent")
 
     @interval_jitter_percent.setter
@@ -19306,6 +24843,9 @@ class GetAlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="streamHealthcheck")
     def stream_healthcheck(self) -> 'GetAlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs':
+        """
+        Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "stream_healthcheck")
 
     @stream_healthcheck.setter
@@ -19315,6 +24855,9 @@ class GetAlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter
     def timeout(self) -> str:
+        """
+        Time to wait for a health check response.
+        """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
@@ -19324,6 +24867,9 @@ class GetAlbBackendGroupHttpBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="unhealthyThreshold")
     def unhealthy_threshold(self) -> int:
+        """
+        Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+        """
         return pulumi.get(self, "unhealthy_threshold")
 
     @unhealthy_threshold.setter
@@ -19335,11 +24881,17 @@ class GetAlbBackendGroupHttpBackendHealthcheckArgs:
 class GetAlbBackendGroupHttpBackendHealthcheckGrpcHealthcheckArgs:
     def __init__(__self__, *,
                  service_name: str):
+        """
+        :param str service_name: Optional service name for grpc.health.v1.HealthCheckRequest message.
+        """
         pulumi.set(__self__, "service_name", service_name)
 
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> str:
+        """
+        Optional service name for grpc.health.v1.HealthCheckRequest message.
+        """
         return pulumi.get(self, "service_name")
 
     @service_name.setter
@@ -19353,6 +24905,11 @@ class GetAlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs:
                  host: str,
                  http2: bool,
                  path: str):
+        """
+        :param str host: Optional "Host" HTTP header value.
+        :param bool http2: If set, health checks will use HTTP2.
+        :param str path: HTTP path.
+        """
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "http2", http2)
         pulumi.set(__self__, "path", path)
@@ -19360,6 +24917,9 @@ class GetAlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def host(self) -> str:
+        """
+        Optional "Host" HTTP header value.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -19369,6 +24929,9 @@ class GetAlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def http2(self) -> bool:
+        """
+        If set, health checks will use HTTP2.
+        """
         return pulumi.get(self, "http2")
 
     @http2.setter
@@ -19378,6 +24941,9 @@ class GetAlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def path(self) -> str:
+        """
+        HTTP path.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -19390,12 +24956,19 @@ class GetAlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs:
     def __init__(__self__, *,
                  receive: str,
                  send: str):
+        """
+        :param str receive: Optional text that must be contained in the messages received from targets for a successful health check.
+        :param str send: Optional message text sent to targets during TCP data transfer.
+        """
         pulumi.set(__self__, "receive", receive)
         pulumi.set(__self__, "send", send)
 
     @property
     @pulumi.getter
     def receive(self) -> str:
+        """
+        Optional text that must be contained in the messages received from targets for a successful health check.
+        """
         return pulumi.get(self, "receive")
 
     @receive.setter
@@ -19405,6 +24978,9 @@ class GetAlbBackendGroupHttpBackendHealthcheckStreamHealthcheckArgs:
     @property
     @pulumi.getter
     def send(self) -> str:
+        """
+        Optional message text sent to targets during TCP data transfer.
+        """
         return pulumi.get(self, "send")
 
     @send.setter
@@ -19419,6 +24995,12 @@ class GetAlbBackendGroupHttpBackendLoadBalancingConfigArgs:
                  mode: str,
                  panic_threshold: int,
                  strict_locality: bool):
+        """
+        :param int locality_aware_routing_percent: Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+        :param str mode: Load balancing mode for the backend.
+        :param int panic_threshold: If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+        :param bool strict_locality: If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+        """
         pulumi.set(__self__, "locality_aware_routing_percent", locality_aware_routing_percent)
         pulumi.set(__self__, "mode", mode)
         pulumi.set(__self__, "panic_threshold", panic_threshold)
@@ -19427,6 +25009,9 @@ class GetAlbBackendGroupHttpBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="localityAwareRoutingPercent")
     def locality_aware_routing_percent(self) -> int:
+        """
+        Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+        """
         return pulumi.get(self, "locality_aware_routing_percent")
 
     @locality_aware_routing_percent.setter
@@ -19436,6 +25021,9 @@ class GetAlbBackendGroupHttpBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter
     def mode(self) -> str:
+        """
+        Load balancing mode for the backend.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -19445,6 +25033,9 @@ class GetAlbBackendGroupHttpBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="panicThreshold")
     def panic_threshold(self) -> int:
+        """
+        If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+        """
         return pulumi.get(self, "panic_threshold")
 
     @panic_threshold.setter
@@ -19454,6 +25045,9 @@ class GetAlbBackendGroupHttpBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="strictLocality")
     def strict_locality(self) -> bool:
+        """
+        If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+        """
         return pulumi.get(self, "strict_locality")
 
     @strict_locality.setter
@@ -19466,12 +25060,22 @@ class GetAlbBackendGroupHttpBackendTlsArgs:
     def __init__(__self__, *,
                  sni: str,
                  validation_context: 'GetAlbBackendGroupHttpBackendTlsValidationContextArgs'):
+        """
+        :param str sni: [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+               * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+               * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+        """
         pulumi.set(__self__, "sni", sni)
         pulumi.set(__self__, "validation_context", validation_context)
 
     @property
     @pulumi.getter
     def sni(self) -> str:
+        """
+        [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+        * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+        * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+        """
         return pulumi.get(self, "sni")
 
     @sni.setter
@@ -19574,12 +25178,18 @@ class GetAlbBackendGroupSessionAffinityCookieArgs:
     def __init__(__self__, *,
                  name: str,
                  ttl: str):
+        """
+        :param str name: - Name of the Backend Group.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "ttl", ttl)
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        - Name of the Backend Group.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -19623,6 +25233,15 @@ class GetAlbBackendGroupStreamBackendArgs:
                  target_group_ids: Sequence[str],
                  tls: 'GetAlbBackendGroupStreamBackendTlsArgs',
                  weight: int):
+        """
+        :param 'GetAlbBackendGroupStreamBackendHealthcheckArgs' healthcheck: Healthcheck specification that will be used by this backend. Structure is documented below.
+        :param 'GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs' load_balancing_config: Load Balancing Config specification that will be used by this backend. Structure is documented below.
+        :param str name: - Name of the Backend Group.
+        :param int port: Port for incoming traffic.
+        :param Sequence[str] target_group_ids: References target groups for the backend.
+        :param 'GetAlbBackendGroupStreamBackendTlsArgs' tls: Tls specification that will be used by this backend. Structure is documented below.
+        :param int weight: Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+        """
         pulumi.set(__self__, "enable_proxy_protocol", enable_proxy_protocol)
         pulumi.set(__self__, "healthcheck", healthcheck)
         pulumi.set(__self__, "load_balancing_config", load_balancing_config)
@@ -19644,6 +25263,9 @@ class GetAlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter
     def healthcheck(self) -> 'GetAlbBackendGroupStreamBackendHealthcheckArgs':
+        """
+        Healthcheck specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "healthcheck")
 
     @healthcheck.setter
@@ -19653,6 +25275,9 @@ class GetAlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter(name="loadBalancingConfig")
     def load_balancing_config(self) -> 'GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs':
+        """
+        Load Balancing Config specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "load_balancing_config")
 
     @load_balancing_config.setter
@@ -19662,6 +25287,9 @@ class GetAlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        - Name of the Backend Group.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -19671,6 +25299,9 @@ class GetAlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter
     def port(self) -> int:
+        """
+        Port for incoming traffic.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -19680,6 +25311,9 @@ class GetAlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter(name="targetGroupIds")
     def target_group_ids(self) -> Sequence[str]:
+        """
+        References target groups for the backend.
+        """
         return pulumi.get(self, "target_group_ids")
 
     @target_group_ids.setter
@@ -19689,6 +25323,9 @@ class GetAlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter
     def tls(self) -> 'GetAlbBackendGroupStreamBackendTlsArgs':
+        """
+        Tls specification that will be used by this backend. Structure is documented below.
+        """
         return pulumi.get(self, "tls")
 
     @tls.setter
@@ -19698,6 +25335,9 @@ class GetAlbBackendGroupStreamBackendArgs:
     @property
     @pulumi.getter
     def weight(self) -> int:
+        """
+        Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+        """
         return pulumi.get(self, "weight")
 
     @weight.setter
@@ -19717,6 +25357,17 @@ class GetAlbBackendGroupStreamBackendHealthcheckArgs:
                  stream_healthcheck: 'GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs',
                  timeout: str,
                  unhealthy_threshold: int):
+        """
+        :param 'GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs' grpc_healthcheck: Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param int healthcheck_port: Optional alternative port for health checking.
+        :param int healthy_threshold: Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+        :param 'GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs' http_healthcheck: Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param str interval: Interval between health checks.
+        :param float interval_jitter_percent: An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * interval_jitter_percent / 100) will be added to the wait time.
+        :param 'GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs' stream_healthcheck: Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        :param str timeout: Time to wait for a health check response.
+        :param int unhealthy_threshold: Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+        """
         pulumi.set(__self__, "grpc_healthcheck", grpc_healthcheck)
         pulumi.set(__self__, "healthcheck_port", healthcheck_port)
         pulumi.set(__self__, "healthy_threshold", healthy_threshold)
@@ -19730,6 +25381,9 @@ class GetAlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="grpcHealthcheck")
     def grpc_healthcheck(self) -> 'GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs':
+        """
+        Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "grpc_healthcheck")
 
     @grpc_healthcheck.setter
@@ -19739,6 +25393,9 @@ class GetAlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="healthcheckPort")
     def healthcheck_port(self) -> int:
+        """
+        Optional alternative port for health checking.
+        """
         return pulumi.get(self, "healthcheck_port")
 
     @healthcheck_port.setter
@@ -19748,6 +25405,9 @@ class GetAlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="healthyThreshold")
     def healthy_threshold(self) -> int:
+        """
+        Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+        """
         return pulumi.get(self, "healthy_threshold")
 
     @healthy_threshold.setter
@@ -19757,6 +25417,9 @@ class GetAlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="httpHealthcheck")
     def http_healthcheck(self) -> 'GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs':
+        """
+        Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "http_healthcheck")
 
     @http_healthcheck.setter
@@ -19766,6 +25429,9 @@ class GetAlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter
     def interval(self) -> str:
+        """
+        Interval between health checks.
+        """
         return pulumi.get(self, "interval")
 
     @interval.setter
@@ -19775,6 +25441,9 @@ class GetAlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="intervalJitterPercent")
     def interval_jitter_percent(self) -> float:
+        """
+        An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * interval_jitter_percent / 100) will be added to the wait time.
+        """
         return pulumi.get(self, "interval_jitter_percent")
 
     @interval_jitter_percent.setter
@@ -19784,6 +25453,9 @@ class GetAlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="streamHealthcheck")
     def stream_healthcheck(self) -> 'GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs':
+        """
+        Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+        """
         return pulumi.get(self, "stream_healthcheck")
 
     @stream_healthcheck.setter
@@ -19793,6 +25465,9 @@ class GetAlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter
     def timeout(self) -> str:
+        """
+        Time to wait for a health check response.
+        """
         return pulumi.get(self, "timeout")
 
     @timeout.setter
@@ -19802,6 +25477,9 @@ class GetAlbBackendGroupStreamBackendHealthcheckArgs:
     @property
     @pulumi.getter(name="unhealthyThreshold")
     def unhealthy_threshold(self) -> int:
+        """
+        Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+        """
         return pulumi.get(self, "unhealthy_threshold")
 
     @unhealthy_threshold.setter
@@ -19813,11 +25491,17 @@ class GetAlbBackendGroupStreamBackendHealthcheckArgs:
 class GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs:
     def __init__(__self__, *,
                  service_name: str):
+        """
+        :param str service_name: Optional service name for grpc.health.v1.HealthCheckRequest message.
+        """
         pulumi.set(__self__, "service_name", service_name)
 
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> str:
+        """
+        Optional service name for grpc.health.v1.HealthCheckRequest message.
+        """
         return pulumi.get(self, "service_name")
 
     @service_name.setter
@@ -19831,6 +25515,11 @@ class GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs:
                  host: str,
                  http2: bool,
                  path: str):
+        """
+        :param str host: Optional "Host" HTTP header value.
+        :param bool http2: If set, health checks will use HTTP2.
+        :param str path: HTTP path.
+        """
         pulumi.set(__self__, "host", host)
         pulumi.set(__self__, "http2", http2)
         pulumi.set(__self__, "path", path)
@@ -19838,6 +25527,9 @@ class GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def host(self) -> str:
+        """
+        Optional "Host" HTTP header value.
+        """
         return pulumi.get(self, "host")
 
     @host.setter
@@ -19847,6 +25539,9 @@ class GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def http2(self) -> bool:
+        """
+        If set, health checks will use HTTP2.
+        """
         return pulumi.get(self, "http2")
 
     @http2.setter
@@ -19856,6 +25551,9 @@ class GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs:
     @property
     @pulumi.getter
     def path(self) -> str:
+        """
+        HTTP path.
+        """
         return pulumi.get(self, "path")
 
     @path.setter
@@ -19868,12 +25566,19 @@ class GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs:
     def __init__(__self__, *,
                  receive: str,
                  send: str):
+        """
+        :param str receive: Optional text that must be contained in the messages received from targets for a successful health check.
+        :param str send: Optional message text sent to targets during TCP data transfer.
+        """
         pulumi.set(__self__, "receive", receive)
         pulumi.set(__self__, "send", send)
 
     @property
     @pulumi.getter
     def receive(self) -> str:
+        """
+        Optional text that must be contained in the messages received from targets for a successful health check.
+        """
         return pulumi.get(self, "receive")
 
     @receive.setter
@@ -19883,6 +25588,9 @@ class GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs:
     @property
     @pulumi.getter
     def send(self) -> str:
+        """
+        Optional message text sent to targets during TCP data transfer.
+        """
         return pulumi.get(self, "send")
 
     @send.setter
@@ -19897,6 +25605,12 @@ class GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs:
                  mode: str,
                  panic_threshold: int,
                  strict_locality: bool):
+        """
+        :param int locality_aware_routing_percent: Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+        :param str mode: Load balancing mode for the backend.
+        :param int panic_threshold: If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+        :param bool strict_locality: If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+        """
         pulumi.set(__self__, "locality_aware_routing_percent", locality_aware_routing_percent)
         pulumi.set(__self__, "mode", mode)
         pulumi.set(__self__, "panic_threshold", panic_threshold)
@@ -19905,6 +25619,9 @@ class GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="localityAwareRoutingPercent")
     def locality_aware_routing_percent(self) -> int:
+        """
+        Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+        """
         return pulumi.get(self, "locality_aware_routing_percent")
 
     @locality_aware_routing_percent.setter
@@ -19914,6 +25631,9 @@ class GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter
     def mode(self) -> str:
+        """
+        Load balancing mode for the backend.
+        """
         return pulumi.get(self, "mode")
 
     @mode.setter
@@ -19923,6 +25643,9 @@ class GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="panicThreshold")
     def panic_threshold(self) -> int:
+        """
+        If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+        """
         return pulumi.get(self, "panic_threshold")
 
     @panic_threshold.setter
@@ -19932,6 +25655,9 @@ class GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs:
     @property
     @pulumi.getter(name="strictLocality")
     def strict_locality(self) -> bool:
+        """
+        If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+        """
         return pulumi.get(self, "strict_locality")
 
     @strict_locality.setter
@@ -19944,12 +25670,22 @@ class GetAlbBackendGroupStreamBackendTlsArgs:
     def __init__(__self__, *,
                  sni: str,
                  validation_context: 'GetAlbBackendGroupStreamBackendTlsValidationContextArgs'):
+        """
+        :param str sni: [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+               * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+               * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+        """
         pulumi.set(__self__, "sni", sni)
         pulumi.set(__self__, "validation_context", validation_context)
 
     @property
     @pulumi.getter
     def sni(self) -> str:
+        """
+        [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+        * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+        * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+        """
         return pulumi.get(self, "sni")
 
     @sni.setter
@@ -20018,6 +25754,29 @@ class GetCdnResourceOptionsArgs:
                  slice: bool,
                  static_request_headers: Sequence[str],
                  static_response_headers: Mapping[str, str]):
+        """
+        :param Sequence[str] allowed_http_methods: HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
+        :param int browser_cache_settings: set up a cache period for the end-users browser. Content will be cached due to origin settings. If there are no cache settings on your origin, the content will not be cached. The list of HTTP response codes that can be cached in browsers: 200, 201, 204, 206, 301, 302, 303, 304, 307, 308. Other response codes will not be cached. The default value is 4 days.
+        :param Sequence[str] cache_http_headers: list HTTP headers that must be included in responses to clients.
+        :param Sequence[str] cors: parameter that lets browsers get access to selected resources from a domain different to a domain from which the request is received.
+        :param str custom_host_header: custom value for the Host header. Your server must be able to process requests with the chosen header.
+        :param str custom_server_name: wildcard additional CNAME. If a resource has a wildcard additional CNAME, you can use your own certificate for content delivery via HTTPS. Read-only.
+        :param bool disable_cache: setup a cache status.
+        :param bool disable_proxy_force_ranges: disabling proxy force ranges.
+        :param int edge_cache_settings: content will be cached according to origin cache settings. The value applies for a response with codes 200, 201, 204, 206, 301, 302, 303, 304, 307, 308 if an origin server does not have caching HTTP headers. Responses with other codes will not be cached.
+        :param bool fetched_compressed: option helps you to reduce the bandwidth between origin and CDN servers. Also, content delivery speed becomes higher because of reducing the time for compressing files in a CDN.
+        :param bool forward_host_header: choose the Forward Host header option if is important to send in the request to the Origin the same Host header as was sent in the request to CDN server.
+        :param bool gzip_on: GZip compression at CDN servers reduces file size by 70% and can be as high as 90%.
+        :param bool ignore_cookie: set for ignoring cookie.
+        :param bool ignore_query_params: files with different query parameters are cached as objects with the same key regardless of the parameter value. selected by default.
+        :param bool proxy_cache_methods_set: allows caching for GET, HEAD and POST requests.
+        :param Sequence[str] query_params_blacklists: files with the specified query parameters are cached as objects with the same key, files with other parameters are cached as objects with different keys.
+        :param Sequence[str] query_params_whitelists: files with the specified query parameters are cached as objects with different keys, files with other parameters are cached as objects with the same key.
+        :param bool redirect_http_to_https: set up a redirect from HTTPS to HTTP.
+        :param bool redirect_https_to_http: set up a redirect from HTTP to HTTPS.
+        :param bool slice: files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
+        :param Sequence[str] static_request_headers: set up custom headers that CDN servers send in requests to origins.
+        """
         pulumi.set(__self__, "allowed_http_methods", allowed_http_methods)
         pulumi.set(__self__, "browser_cache_settings", browser_cache_settings)
         pulumi.set(__self__, "cache_http_headers", cache_http_headers)
@@ -20044,6 +25803,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="allowedHttpMethods")
     def allowed_http_methods(self) -> Sequence[str]:
+        """
+        HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
+        """
         return pulumi.get(self, "allowed_http_methods")
 
     @allowed_http_methods.setter
@@ -20053,6 +25815,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="browserCacheSettings")
     def browser_cache_settings(self) -> int:
+        """
+        set up a cache period for the end-users browser. Content will be cached due to origin settings. If there are no cache settings on your origin, the content will not be cached. The list of HTTP response codes that can be cached in browsers: 200, 201, 204, 206, 301, 302, 303, 304, 307, 308. Other response codes will not be cached. The default value is 4 days.
+        """
         return pulumi.get(self, "browser_cache_settings")
 
     @browser_cache_settings.setter
@@ -20062,6 +25827,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="cacheHttpHeaders")
     def cache_http_headers(self) -> Sequence[str]:
+        """
+        list HTTP headers that must be included in responses to clients.
+        """
         return pulumi.get(self, "cache_http_headers")
 
     @cache_http_headers.setter
@@ -20071,6 +25839,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter
     def cors(self) -> Sequence[str]:
+        """
+        parameter that lets browsers get access to selected resources from a domain different to a domain from which the request is received.
+        """
         return pulumi.get(self, "cors")
 
     @cors.setter
@@ -20080,6 +25851,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="customHostHeader")
     def custom_host_header(self) -> str:
+        """
+        custom value for the Host header. Your server must be able to process requests with the chosen header.
+        """
         return pulumi.get(self, "custom_host_header")
 
     @custom_host_header.setter
@@ -20089,6 +25863,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="customServerName")
     def custom_server_name(self) -> str:
+        """
+        wildcard additional CNAME. If a resource has a wildcard additional CNAME, you can use your own certificate for content delivery via HTTPS. Read-only.
+        """
         return pulumi.get(self, "custom_server_name")
 
     @custom_server_name.setter
@@ -20098,6 +25875,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="disableCache")
     def disable_cache(self) -> bool:
+        """
+        setup a cache status.
+        """
         return pulumi.get(self, "disable_cache")
 
     @disable_cache.setter
@@ -20107,6 +25887,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="disableProxyForceRanges")
     def disable_proxy_force_ranges(self) -> bool:
+        """
+        disabling proxy force ranges.
+        """
         return pulumi.get(self, "disable_proxy_force_ranges")
 
     @disable_proxy_force_ranges.setter
@@ -20116,6 +25899,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="edgeCacheSettings")
     def edge_cache_settings(self) -> int:
+        """
+        content will be cached according to origin cache settings. The value applies for a response with codes 200, 201, 204, 206, 301, 302, 303, 304, 307, 308 if an origin server does not have caching HTTP headers. Responses with other codes will not be cached.
+        """
         return pulumi.get(self, "edge_cache_settings")
 
     @edge_cache_settings.setter
@@ -20125,6 +25911,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="fetchedCompressed")
     def fetched_compressed(self) -> bool:
+        """
+        option helps you to reduce the bandwidth between origin and CDN servers. Also, content delivery speed becomes higher because of reducing the time for compressing files in a CDN.
+        """
         return pulumi.get(self, "fetched_compressed")
 
     @fetched_compressed.setter
@@ -20134,6 +25923,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="forwardHostHeader")
     def forward_host_header(self) -> bool:
+        """
+        choose the Forward Host header option if is important to send in the request to the Origin the same Host header as was sent in the request to CDN server.
+        """
         return pulumi.get(self, "forward_host_header")
 
     @forward_host_header.setter
@@ -20143,6 +25935,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="gzipOn")
     def gzip_on(self) -> bool:
+        """
+        GZip compression at CDN servers reduces file size by 70% and can be as high as 90%.
+        """
         return pulumi.get(self, "gzip_on")
 
     @gzip_on.setter
@@ -20152,6 +25947,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="ignoreCookie")
     def ignore_cookie(self) -> bool:
+        """
+        set for ignoring cookie.
+        """
         return pulumi.get(self, "ignore_cookie")
 
     @ignore_cookie.setter
@@ -20161,6 +25959,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="ignoreQueryParams")
     def ignore_query_params(self) -> bool:
+        """
+        files with different query parameters are cached as objects with the same key regardless of the parameter value. selected by default.
+        """
         return pulumi.get(self, "ignore_query_params")
 
     @ignore_query_params.setter
@@ -20170,6 +25971,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="proxyCacheMethodsSet")
     def proxy_cache_methods_set(self) -> bool:
+        """
+        allows caching for GET, HEAD and POST requests.
+        """
         return pulumi.get(self, "proxy_cache_methods_set")
 
     @proxy_cache_methods_set.setter
@@ -20179,6 +25983,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="queryParamsBlacklists")
     def query_params_blacklists(self) -> Sequence[str]:
+        """
+        files with the specified query parameters are cached as objects with the same key, files with other parameters are cached as objects with different keys.
+        """
         return pulumi.get(self, "query_params_blacklists")
 
     @query_params_blacklists.setter
@@ -20188,6 +25995,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="queryParamsWhitelists")
     def query_params_whitelists(self) -> Sequence[str]:
+        """
+        files with the specified query parameters are cached as objects with different keys, files with other parameters are cached as objects with the same key.
+        """
         return pulumi.get(self, "query_params_whitelists")
 
     @query_params_whitelists.setter
@@ -20197,6 +26007,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="redirectHttpToHttps")
     def redirect_http_to_https(self) -> bool:
+        """
+        set up a redirect from HTTPS to HTTP.
+        """
         return pulumi.get(self, "redirect_http_to_https")
 
     @redirect_http_to_https.setter
@@ -20206,6 +26019,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="redirectHttpsToHttp")
     def redirect_https_to_http(self) -> bool:
+        """
+        set up a redirect from HTTP to HTTPS.
+        """
         return pulumi.get(self, "redirect_https_to_http")
 
     @redirect_https_to_http.setter
@@ -20215,6 +26031,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter
     def slice(self) -> bool:
+        """
+        files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
+        """
         return pulumi.get(self, "slice")
 
     @slice.setter
@@ -20224,6 +26043,9 @@ class GetCdnResourceOptionsArgs:
     @property
     @pulumi.getter(name="staticRequestHeaders")
     def static_request_headers(self) -> Sequence[str]:
+        """
+        set up custom headers that CDN servers send in requests to origins.
+        """
         return pulumi.get(self, "static_request_headers")
 
     @static_request_headers.setter
@@ -20300,12 +26122,19 @@ class GetComputeInstanceLocalDiskArgs:
     def __init__(__self__, *,
                  device_name: str,
                  size_bytes: int):
+        """
+        :param str device_name: Name of the device.
+        :param int size_bytes: Size of the disk, specified in bytes.
+        """
         pulumi.set(__self__, "device_name", device_name)
         pulumi.set(__self__, "size_bytes", size_bytes)
 
     @property
     @pulumi.getter(name="deviceName")
     def device_name(self) -> str:
+        """
+        Name of the device.
+        """
         return pulumi.get(self, "device_name")
 
     @device_name.setter
@@ -20315,6 +26144,9 @@ class GetComputeInstanceLocalDiskArgs:
     @property
     @pulumi.getter(name="sizeBytes")
     def size_bytes(self) -> int:
+        """
+        Size of the disk, specified in bytes.
+        """
         return pulumi.get(self, "size_bytes")
 
     @size_bytes.setter
@@ -20327,6 +26159,10 @@ class GetComputeInstancePlacementPolicyArgs:
     def __init__(__self__, *,
                  host_affinity_rules: Sequence['GetComputeInstancePlacementPolicyHostAffinityRuleArgs'],
                  placement_group_id: Optional[str] = None):
+        """
+        :param Sequence['GetComputeInstancePlacementPolicyHostAffinityRuleArgs'] host_affinity_rules: List of host affinity rules. The structure is documented below.
+        :param str placement_group_id: Specifies the id of the Placement Group to assign to the instance.
+        """
         pulumi.set(__self__, "host_affinity_rules", host_affinity_rules)
         if placement_group_id is not None:
             pulumi.set(__self__, "placement_group_id", placement_group_id)
@@ -20334,6 +26170,9 @@ class GetComputeInstancePlacementPolicyArgs:
     @property
     @pulumi.getter(name="hostAffinityRules")
     def host_affinity_rules(self) -> Sequence['GetComputeInstancePlacementPolicyHostAffinityRuleArgs']:
+        """
+        List of host affinity rules. The structure is documented below.
+        """
         return pulumi.get(self, "host_affinity_rules")
 
     @host_affinity_rules.setter
@@ -20343,6 +26182,9 @@ class GetComputeInstancePlacementPolicyArgs:
     @property
     @pulumi.getter(name="placementGroupId")
     def placement_group_id(self) -> Optional[str]:
+        """
+        Specifies the id of the Placement Group to assign to the instance.
+        """
         return pulumi.get(self, "placement_group_id")
 
     @placement_group_id.setter
@@ -20356,6 +26198,10 @@ class GetComputeInstancePlacementPolicyHostAffinityRuleArgs:
                  key: str,
                  op: str,
                  values: Sequence[str]):
+        """
+        :param str key: Affinity label or one of reserved values - `yc.hostId`, `yc.hostGroupId`.
+        :param str op: Affinity action. The only value supported is `IN`.
+        """
         pulumi.set(__self__, "key", key)
         pulumi.set(__self__, "op", op)
         pulumi.set(__self__, "values", values)
@@ -20363,6 +26209,9 @@ class GetComputeInstancePlacementPolicyHostAffinityRuleArgs:
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Affinity label or one of reserved values - `yc.hostId`, `yc.hostGroupId`.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -20372,6 +26221,9 @@ class GetComputeInstancePlacementPolicyHostAffinityRuleArgs:
     @property
     @pulumi.getter
     def op(self) -> str:
+        """
+        Affinity action. The only value supported is `IN`.
+        """
         return pulumi.get(self, "op")
 
     @op.setter
@@ -20482,12 +26334,26 @@ class GetIamPolicyBindingArgs:
     def __init__(__self__, *,
                  members: Sequence[str],
                  role: str):
+        """
+        :param Sequence[str] members: An array of identities that will be granted the privilege in the `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+        :param str role: The role/permission that will be granted to the members.
+               See the [IAM Roles] documentation for a complete list of roles.
+        """
         pulumi.set(__self__, "members", members)
         pulumi.set(__self__, "role", role)
 
     @property
     @pulumi.getter
     def members(self) -> Sequence[str]:
+        """
+        An array of identities that will be granted the privilege in the `role`.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        """
         return pulumi.get(self, "members")
 
     @members.setter
@@ -20497,6 +26363,10 @@ class GetIamPolicyBindingArgs:
     @property
     @pulumi.getter
     def role(self) -> str:
+        """
+        The role/permission that will be granted to the members.
+        See the [IAM Roles] documentation for a complete list of roles.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -20508,11 +26378,17 @@ class GetIamPolicyBindingArgs:
 class GetMdbClickhouseClusterCloudStorageArgs:
     def __init__(__self__, *,
                  enabled: bool):
+        """
+        :param bool enabled: (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+        """
         pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter
     def enabled(self) -> bool:
+        """
+        (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+        """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
@@ -20573,6 +26449,17 @@ class GetMdbKafkaClusterConfigArgs:
                  brokers_count: Optional[int] = None,
                  schema_registry: Optional[bool] = None,
                  unmanaged_topics: Optional[bool] = None):
+        """
+        :param 'GetMdbKafkaClusterConfigAccessArgs' access: (Optional) Access policy to the Kafka cluster. The structure is documented below.
+        :param 'GetMdbKafkaClusterConfigKafkaArgs' kafka: (Optional) Configuration of the Kafka subcluster. The structure is documented below.
+        :param str version: (Required) Version of the Kafka server software.
+        :param Sequence[str] zones: (Optional) List of availability zones.
+        :param 'GetMdbKafkaClusterConfigZookeeperArgs' zookeeper: (Optional) Configuration of the ZooKeeper subcluster. The structure is documented below.
+        :param bool assign_public_ip: The flag that defines whether a public IP address is assigned to the node.
+        :param int brokers_count: (Optional) Count of brokers per availability zone.
+        :param bool schema_registry: (Optional) Enables managed schema registry on cluster. Can be either `true` or `false`.
+        :param bool unmanaged_topics: (Optional) Allows to use Kafka AdminAPI to manage topics. Can be either `true` or `false`.
+        """
         pulumi.set(__self__, "access", access)
         pulumi.set(__self__, "kafka", kafka)
         pulumi.set(__self__, "version", version)
@@ -20590,6 +26477,9 @@ class GetMdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter
     def access(self) -> 'GetMdbKafkaClusterConfigAccessArgs':
+        """
+        (Optional) Access policy to the Kafka cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @access.setter
@@ -20599,6 +26489,9 @@ class GetMdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter
     def kafka(self) -> 'GetMdbKafkaClusterConfigKafkaArgs':
+        """
+        (Optional) Configuration of the Kafka subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "kafka")
 
     @kafka.setter
@@ -20608,6 +26501,9 @@ class GetMdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter
     def version(self) -> str:
+        """
+        (Required) Version of the Kafka server software.
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -20617,6 +26513,9 @@ class GetMdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter
     def zones(self) -> Sequence[str]:
+        """
+        (Optional) List of availability zones.
+        """
         return pulumi.get(self, "zones")
 
     @zones.setter
@@ -20626,6 +26525,9 @@ class GetMdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter
     def zookeeper(self) -> 'GetMdbKafkaClusterConfigZookeeperArgs':
+        """
+        (Optional) Configuration of the ZooKeeper subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "zookeeper")
 
     @zookeeper.setter
@@ -20635,6 +26537,9 @@ class GetMdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> Optional[bool]:
+        """
+        The flag that defines whether a public IP address is assigned to the node.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -20644,6 +26549,9 @@ class GetMdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter(name="brokersCount")
     def brokers_count(self) -> Optional[int]:
+        """
+        (Optional) Count of brokers per availability zone.
+        """
         return pulumi.get(self, "brokers_count")
 
     @brokers_count.setter
@@ -20653,6 +26561,9 @@ class GetMdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter(name="schemaRegistry")
     def schema_registry(self) -> Optional[bool]:
+        """
+        (Optional) Enables managed schema registry on cluster. Can be either `true` or `false`.
+        """
         return pulumi.get(self, "schema_registry")
 
     @schema_registry.setter
@@ -20662,6 +26573,9 @@ class GetMdbKafkaClusterConfigArgs:
     @property
     @pulumi.getter(name="unmanagedTopics")
     def unmanaged_topics(self) -> Optional[bool]:
+        """
+        (Optional) Allows to use Kafka AdminAPI to manage topics. Can be either `true` or `false`.
+        """
         return pulumi.get(self, "unmanaged_topics")
 
     @unmanaged_topics.setter
@@ -20673,12 +26587,18 @@ class GetMdbKafkaClusterConfigArgs:
 class GetMdbKafkaClusterConfigAccessArgs:
     def __init__(__self__, *,
                  data_transfer: Optional[bool] = None):
+        """
+        :param bool data_transfer: Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        """
         if data_transfer is not None:
             pulumi.set(__self__, "data_transfer", data_transfer)
 
     @property
     @pulumi.getter(name="dataTransfer")
     def data_transfer(self) -> Optional[bool]:
+        """
+        Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        """
         return pulumi.get(self, "data_transfer")
 
     @data_transfer.setter
@@ -20691,6 +26611,10 @@ class GetMdbKafkaClusterConfigKafkaArgs:
     def __init__(__self__, *,
                  resources: 'GetMdbKafkaClusterConfigKafkaResourcesArgs',
                  kafka_config: Optional['GetMdbKafkaClusterConfigKafkaKafkaConfigArgs'] = None):
+        """
+        :param 'GetMdbKafkaClusterConfigKafkaResourcesArgs' resources: (Optional) Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        :param 'GetMdbKafkaClusterConfigKafkaKafkaConfigArgs' kafka_config: (Optional) User-defined settings for the Kafka cluster. The structure is documented below.
+        """
         pulumi.set(__self__, "resources", resources)
         if kafka_config is not None:
             pulumi.set(__self__, "kafka_config", kafka_config)
@@ -20698,6 +26622,9 @@ class GetMdbKafkaClusterConfigKafkaArgs:
     @property
     @pulumi.getter
     def resources(self) -> 'GetMdbKafkaClusterConfigKafkaResourcesArgs':
+        """
+        (Optional) Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -20707,6 +26634,9 @@ class GetMdbKafkaClusterConfigKafkaArgs:
     @property
     @pulumi.getter(name="kafkaConfig")
     def kafka_config(self) -> Optional['GetMdbKafkaClusterConfigKafkaKafkaConfigArgs']:
+        """
+        (Optional) User-defined settings for the Kafka cluster. The structure is documented below.
+        """
         return pulumi.get(self, "kafka_config")
 
     @kafka_config.setter
@@ -20952,6 +26882,11 @@ class GetMdbKafkaClusterConfigKafkaResourcesArgs:
                  disk_size: int,
                  disk_type_id: str,
                  resource_preset_id: str):
+        """
+        :param int disk_size: (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
+        :param str disk_type_id: (Optional) Type of the storage of ZooKeeper hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+        """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "disk_type_id", disk_type_id)
         pulumi.set(__self__, "resource_preset_id", resource_preset_id)
@@ -20959,6 +26894,9 @@ class GetMdbKafkaClusterConfigKafkaResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> int:
+        """
+        (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -20968,6 +26906,10 @@ class GetMdbKafkaClusterConfigKafkaResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> str:
+        """
+        (Optional) Type of the storage of ZooKeeper hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -20988,11 +26930,17 @@ class GetMdbKafkaClusterConfigKafkaResourcesArgs:
 class GetMdbKafkaClusterConfigZookeeperArgs:
     def __init__(__self__, *,
                  resources: 'GetMdbKafkaClusterConfigZookeeperResourcesArgs'):
+        """
+        :param 'GetMdbKafkaClusterConfigZookeeperResourcesArgs' resources: (Optional) Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        """
         pulumi.set(__self__, "resources", resources)
 
     @property
     @pulumi.getter
     def resources(self) -> 'GetMdbKafkaClusterConfigZookeeperResourcesArgs':
+        """
+        (Optional) Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -21006,6 +26954,11 @@ class GetMdbKafkaClusterConfigZookeeperResourcesArgs:
                  disk_size: int,
                  disk_type_id: str,
                  resource_preset_id: str):
+        """
+        :param int disk_size: (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
+        :param str disk_type_id: (Optional) Type of the storage of ZooKeeper hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+        """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "disk_type_id", disk_type_id)
         pulumi.set(__self__, "resource_preset_id", resource_preset_id)
@@ -21013,6 +26966,9 @@ class GetMdbKafkaClusterConfigZookeeperResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> int:
+        """
+        (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -21022,6 +26978,10 @@ class GetMdbKafkaClusterConfigZookeeperResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> str:
+        """
+        (Optional) Type of the storage of ZooKeeper hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -21046,6 +27006,13 @@ class GetMdbKafkaClusterTopicArgs:
                  partitions: int,
                  replication_factor: int,
                  topic_config: Optional['GetMdbKafkaClusterTopicTopicConfigArgs'] = None):
+        """
+        :param str cluster_id: The ID of the Kafka cluster.
+        :param str name: The name of the Kafka cluster.
+        :param int partitions: (Required) The number of the topic's partitions.
+        :param int replication_factor: (Required) Amount of data copies (replicas) for the topic in the cluster.
+        :param 'GetMdbKafkaClusterTopicTopicConfigArgs' topic_config: (Required) User-defined settings for the topic. The structure is documented below.
+        """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "partitions", partitions)
@@ -21056,6 +27023,9 @@ class GetMdbKafkaClusterTopicArgs:
     @property
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> str:
+        """
+        The ID of the Kafka cluster.
+        """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
@@ -21065,6 +27035,9 @@ class GetMdbKafkaClusterTopicArgs:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the Kafka cluster.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -21074,6 +27047,9 @@ class GetMdbKafkaClusterTopicArgs:
     @property
     @pulumi.getter
     def partitions(self) -> int:
+        """
+        (Required) The number of the topic's partitions.
+        """
         return pulumi.get(self, "partitions")
 
     @partitions.setter
@@ -21083,6 +27059,9 @@ class GetMdbKafkaClusterTopicArgs:
     @property
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> int:
+        """
+        (Required) Amount of data copies (replicas) for the topic in the cluster.
+        """
         return pulumi.get(self, "replication_factor")
 
     @replication_factor.setter
@@ -21092,6 +27071,9 @@ class GetMdbKafkaClusterTopicArgs:
     @property
     @pulumi.getter(name="topicConfig")
     def topic_config(self) -> Optional['GetMdbKafkaClusterTopicTopicConfigArgs']:
+        """
+        (Required) User-defined settings for the topic. The structure is documented below.
+        """
         return pulumi.get(self, "topic_config")
 
     @topic_config.setter
@@ -21266,6 +27248,11 @@ class GetMdbKafkaClusterUserArgs:
                  name: str,
                  password: str,
                  permissions: Optional[Sequence['GetMdbKafkaClusterUserPermissionArgs']] = None):
+        """
+        :param str name: The name of the Kafka cluster.
+        :param str password: (Required) The password of the user.
+        :param Sequence['GetMdbKafkaClusterUserPermissionArgs'] permissions: (Optional) Set of permissions granted to the user. The structure is documented below.
+        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "password", password)
         if permissions is not None:
@@ -21274,6 +27261,9 @@ class GetMdbKafkaClusterUserArgs:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the Kafka cluster.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -21283,6 +27273,9 @@ class GetMdbKafkaClusterUserArgs:
     @property
     @pulumi.getter
     def password(self) -> str:
+        """
+        (Required) The password of the user.
+        """
         return pulumi.get(self, "password")
 
     @password.setter
@@ -21292,6 +27285,9 @@ class GetMdbKafkaClusterUserArgs:
     @property
     @pulumi.getter
     def permissions(self) -> Optional[Sequence['GetMdbKafkaClusterUserPermissionArgs']]:
+        """
+        (Optional) Set of permissions granted to the user. The structure is documented below.
+        """
         return pulumi.get(self, "permissions")
 
     @permissions.setter
@@ -21304,12 +27300,19 @@ class GetMdbKafkaClusterUserPermissionArgs:
     def __init__(__self__, *,
                  role: str,
                  topic_name: str):
+        """
+        :param str role: Role of the host in the cluster.
+        :param str topic_name: (Required) The name of the topic that the permission grants access to.
+        """
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "topic_name", topic_name)
 
     @property
     @pulumi.getter
     def role(self) -> str:
+        """
+        Role of the host in the cluster.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -21319,6 +27322,9 @@ class GetMdbKafkaClusterUserPermissionArgs:
     @property
     @pulumi.getter(name="topicName")
     def topic_name(self) -> str:
+        """
+        (Required) The name of the topic that the permission grants access to.
+        """
         return pulumi.get(self, "topic_name")
 
     @topic_name.setter
@@ -21334,6 +27340,13 @@ class GetMdbMongodbClusterClusterConfigArgs:
                  feature_compatibility_version: str,
                  mongod: 'GetMdbMongodbClusterClusterConfigMongodArgs',
                  version: Optional[str] = None):
+        """
+        :param 'GetMdbMongodbClusterClusterConfigAccessArgs' access: Access policy to MongoDB cluster. The structure is documented below.
+        :param 'GetMdbMongodbClusterClusterConfigBackupWindowStartArgs' backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        :param str feature_compatibility_version: Feature compatibility version of MongoDB.
+        :param 'GetMdbMongodbClusterClusterConfigMongodArgs' mongod: (Optional) Configuration of the mongod service. The structure is documented below.
+        :param str version: Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+        """
         pulumi.set(__self__, "access", access)
         pulumi.set(__self__, "backup_window_start", backup_window_start)
         pulumi.set(__self__, "feature_compatibility_version", feature_compatibility_version)
@@ -21344,6 +27357,9 @@ class GetMdbMongodbClusterClusterConfigArgs:
     @property
     @pulumi.getter
     def access(self) -> 'GetMdbMongodbClusterClusterConfigAccessArgs':
+        """
+        Access policy to MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @access.setter
@@ -21353,6 +27369,9 @@ class GetMdbMongodbClusterClusterConfigArgs:
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> 'GetMdbMongodbClusterClusterConfigBackupWindowStartArgs':
+        """
+        Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @backup_window_start.setter
@@ -21362,6 +27381,9 @@ class GetMdbMongodbClusterClusterConfigArgs:
     @property
     @pulumi.getter(name="featureCompatibilityVersion")
     def feature_compatibility_version(self) -> str:
+        """
+        Feature compatibility version of MongoDB.
+        """
         return pulumi.get(self, "feature_compatibility_version")
 
     @feature_compatibility_version.setter
@@ -21371,6 +27393,9 @@ class GetMdbMongodbClusterClusterConfigArgs:
     @property
     @pulumi.getter
     def mongod(self) -> 'GetMdbMongodbClusterClusterConfigMongodArgs':
+        """
+        (Optional) Configuration of the mongod service. The structure is documented below.
+        """
         return pulumi.get(self, "mongod")
 
     @mongod.setter
@@ -21380,6 +27405,9 @@ class GetMdbMongodbClusterClusterConfigArgs:
     @property
     @pulumi.getter
     def version(self) -> Optional[str]:
+        """
+        Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -21392,6 +27420,10 @@ class GetMdbMongodbClusterClusterConfigAccessArgs:
     def __init__(__self__, *,
                  data_lens: Optional[bool] = None,
                  data_transfer: Optional[bool] = None):
+        """
+        :param bool data_lens: Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        :param bool data_transfer: (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        """
         if data_lens is not None:
             pulumi.set(__self__, "data_lens", data_lens)
         if data_transfer is not None:
@@ -21400,6 +27432,9 @@ class GetMdbMongodbClusterClusterConfigAccessArgs:
     @property
     @pulumi.getter(name="dataLens")
     def data_lens(self) -> Optional[bool]:
+        """
+        Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        """
         return pulumi.get(self, "data_lens")
 
     @data_lens.setter
@@ -21409,6 +27444,9 @@ class GetMdbMongodbClusterClusterConfigAccessArgs:
     @property
     @pulumi.getter(name="dataTransfer")
     def data_transfer(self) -> Optional[bool]:
+        """
+        (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        """
         return pulumi.get(self, "data_transfer")
 
     @data_transfer.setter
@@ -21421,6 +27459,10 @@ class GetMdbMongodbClusterClusterConfigBackupWindowStartArgs:
     def __init__(__self__, *,
                  hours: Optional[int] = None,
                  minutes: Optional[int] = None):
+        """
+        :param int hours: The hour at which backup will be started.
+        :param int minutes: The minute at which backup will be started.
+        """
         if hours is not None:
             pulumi.set(__self__, "hours", hours)
         if minutes is not None:
@@ -21429,6 +27471,9 @@ class GetMdbMongodbClusterClusterConfigBackupWindowStartArgs:
     @property
     @pulumi.getter
     def hours(self) -> Optional[int]:
+        """
+        The hour at which backup will be started.
+        """
         return pulumi.get(self, "hours")
 
     @hours.setter
@@ -21438,6 +27483,9 @@ class GetMdbMongodbClusterClusterConfigBackupWindowStartArgs:
     @property
     @pulumi.getter
     def minutes(self) -> Optional[int]:
+        """
+        The minute at which backup will be started.
+        """
         return pulumi.get(self, "minutes")
 
     @minutes.setter
@@ -21451,6 +27499,17 @@ class GetMdbMongodbClusterClusterConfigMongodArgs:
                  audit_log: 'GetMdbMongodbClusterClusterConfigMongodAuditLogArgs',
                  security: 'GetMdbMongodbClusterClusterConfigMongodSecurityArgs',
                  set_parameter: 'GetMdbMongodbClusterClusterConfigMongodSetParameterArgs'):
+        """
+        :param 'GetMdbMongodbClusterClusterConfigMongodAuditLogArgs' audit_log: (Optional) A set of audit log settings
+               (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
+               The structure is documented below. Available only in enterprise edition.
+        :param 'GetMdbMongodbClusterClusterConfigMongodSecurityArgs' security: (Optional) A set of MongoDB Security settings
+               (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
+               The structure is documented below. Available only in enterprise edition.
+        :param 'GetMdbMongodbClusterClusterConfigMongodSetParameterArgs' set_parameter: (Optional) A set of MongoDB Server Parameters
+               (see the [setParameter](https://www.mongodb.com/docs/manual/reference/configuration-options/#setparameter-option) option).
+               The structure is documented below.
+        """
         pulumi.set(__self__, "audit_log", audit_log)
         pulumi.set(__self__, "security", security)
         pulumi.set(__self__, "set_parameter", set_parameter)
@@ -21458,6 +27517,11 @@ class GetMdbMongodbClusterClusterConfigMongodArgs:
     @property
     @pulumi.getter(name="auditLog")
     def audit_log(self) -> 'GetMdbMongodbClusterClusterConfigMongodAuditLogArgs':
+        """
+        (Optional) A set of audit log settings
+        (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
+        The structure is documented below. Available only in enterprise edition.
+        """
         return pulumi.get(self, "audit_log")
 
     @audit_log.setter
@@ -21467,6 +27531,11 @@ class GetMdbMongodbClusterClusterConfigMongodArgs:
     @property
     @pulumi.getter
     def security(self) -> 'GetMdbMongodbClusterClusterConfigMongodSecurityArgs':
+        """
+        (Optional) A set of MongoDB Security settings
+        (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
+        The structure is documented below. Available only in enterprise edition.
+        """
         return pulumi.get(self, "security")
 
     @security.setter
@@ -21476,6 +27545,11 @@ class GetMdbMongodbClusterClusterConfigMongodArgs:
     @property
     @pulumi.getter(name="setParameter")
     def set_parameter(self) -> 'GetMdbMongodbClusterClusterConfigMongodSetParameterArgs':
+        """
+        (Optional) A set of MongoDB Server Parameters
+        (see the [setParameter](https://www.mongodb.com/docs/manual/reference/configuration-options/#setparameter-option) option).
+        The structure is documented below.
+        """
         return pulumi.get(self, "set_parameter")
 
     @set_parameter.setter
@@ -21488,6 +27562,11 @@ class GetMdbMongodbClusterClusterConfigMongodAuditLogArgs:
     def __init__(__self__, *,
                  filter: Optional[str] = None,
                  runtime_configuration: Optional[bool] = None):
+        """
+        :param str filter: (Optional) Configuration of the audit log filter in JSON format.
+               For more information see [auditLog.filter](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.filter)
+               description in the official documentation. Available only in enterprise edition.
+        """
         if filter is not None:
             pulumi.set(__self__, "filter", filter)
         if runtime_configuration is not None:
@@ -21496,6 +27575,11 @@ class GetMdbMongodbClusterClusterConfigMongodAuditLogArgs:
     @property
     @pulumi.getter
     def filter(self) -> Optional[str]:
+        """
+        (Optional) Configuration of the audit log filter in JSON format.
+        For more information see [auditLog.filter](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.filter)
+        description in the official documentation. Available only in enterprise edition.
+        """
         return pulumi.get(self, "filter")
 
     @filter.setter
@@ -21517,6 +27601,14 @@ class GetMdbMongodbClusterClusterConfigMongodSecurityArgs:
     def __init__(__self__, *,
                  kmip: 'GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs',
                  enable_encryption: Optional[bool] = None):
+        """
+        :param 'GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs' kmip: (Optional) Configuration of the third party key management appliance via the Key Management Interoperability Protocol (KMIP)
+               (see [Encryption tutorial](https://www.mongodb.com/docs/rapid/tutorial/configure-encryption) ). Requires `enable_encryption` to be true.
+               The structure is documented below. Available only in enterprise edition.
+        :param bool enable_encryption: (Optional) Enables the encryption for the WiredTiger storage engine. Can be either true or false.
+               For more information see [security.enableEncryption](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.enableEncryption)
+               description in the official documentation. Available only in enterprise edition.
+        """
         pulumi.set(__self__, "kmip", kmip)
         if enable_encryption is not None:
             pulumi.set(__self__, "enable_encryption", enable_encryption)
@@ -21524,6 +27616,11 @@ class GetMdbMongodbClusterClusterConfigMongodSecurityArgs:
     @property
     @pulumi.getter
     def kmip(self) -> 'GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs':
+        """
+        (Optional) Configuration of the third party key management appliance via the Key Management Interoperability Protocol (KMIP)
+        (see [Encryption tutorial](https://www.mongodb.com/docs/rapid/tutorial/configure-encryption) ). Requires `enable_encryption` to be true.
+        The structure is documented below. Available only in enterprise edition.
+        """
         return pulumi.get(self, "kmip")
 
     @kmip.setter
@@ -21533,6 +27630,11 @@ class GetMdbMongodbClusterClusterConfigMongodSecurityArgs:
     @property
     @pulumi.getter(name="enableEncryption")
     def enable_encryption(self) -> Optional[bool]:
+        """
+        (Optional) Enables the encryption for the WiredTiger storage engine. Can be either true or false.
+        For more information see [security.enableEncryption](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.enableEncryption)
+        description in the official documentation. Available only in enterprise edition.
+        """
         return pulumi.get(self, "enable_encryption")
 
     @enable_encryption.setter
@@ -21548,6 +27650,23 @@ class GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
                  port: Optional[int] = None,
                  server_ca: Optional[str] = None,
                  server_name: Optional[str] = None):
+        """
+        :param str client_certificate: (Required) String containing the client certificate used for authenticating MongoDB to the KMIP server.
+               For more information see [security.kmip.clientCertificateFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.clientCertificateFile)
+               description in the official documentation.
+        :param str key_identifier: (Optional) Unique KMIP identifier for an existing key within the KMIP server.
+               For more information see [security.kmip.keyIdentifier](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.keyIdentifier)
+               description in the official documentation.
+        :param int port: (Optional) Port number to use to communicate with the KMIP server. Default: 5696
+               For more information see [security.kmip.port](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.port)
+               description in the official documentation.
+        :param str server_ca: (Required) Path to CA File. Used for validating secure client connection to KMIP server.
+               For more information see [security.kmip.serverCAFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverCAFile)
+               description in the official documentation.
+        :param str server_name: (Required) Hostname or IP address of the KMIP server to connect to.
+               For more information see [security.kmip.serverName](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverName)
+               description in the official documentation.
+        """
         if client_certificate is not None:
             pulumi.set(__self__, "client_certificate", client_certificate)
         if key_identifier is not None:
@@ -21562,6 +27681,11 @@ class GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
     @property
     @pulumi.getter(name="clientCertificate")
     def client_certificate(self) -> Optional[str]:
+        """
+        (Required) String containing the client certificate used for authenticating MongoDB to the KMIP server.
+        For more information see [security.kmip.clientCertificateFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.clientCertificateFile)
+        description in the official documentation.
+        """
         return pulumi.get(self, "client_certificate")
 
     @client_certificate.setter
@@ -21571,6 +27695,11 @@ class GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
     @property
     @pulumi.getter(name="keyIdentifier")
     def key_identifier(self) -> Optional[str]:
+        """
+        (Optional) Unique KMIP identifier for an existing key within the KMIP server.
+        For more information see [security.kmip.keyIdentifier](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.keyIdentifier)
+        description in the official documentation.
+        """
         return pulumi.get(self, "key_identifier")
 
     @key_identifier.setter
@@ -21580,6 +27709,11 @@ class GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
     @property
     @pulumi.getter
     def port(self) -> Optional[int]:
+        """
+        (Optional) Port number to use to communicate with the KMIP server. Default: 5696
+        For more information see [security.kmip.port](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.port)
+        description in the official documentation.
+        """
         return pulumi.get(self, "port")
 
     @port.setter
@@ -21589,6 +27723,11 @@ class GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
     @property
     @pulumi.getter(name="serverCa")
     def server_ca(self) -> Optional[str]:
+        """
+        (Required) Path to CA File. Used for validating secure client connection to KMIP server.
+        For more information see [security.kmip.serverCAFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverCAFile)
+        description in the official documentation.
+        """
         return pulumi.get(self, "server_ca")
 
     @server_ca.setter
@@ -21598,6 +27737,11 @@ class GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
     @property
     @pulumi.getter(name="serverName")
     def server_name(self) -> Optional[str]:
+        """
+        (Required) Hostname or IP address of the KMIP server to connect to.
+        For more information see [security.kmip.serverName](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverName)
+        description in the official documentation.
+        """
         return pulumi.get(self, "server_name")
 
     @server_name.setter
@@ -21609,12 +27753,22 @@ class GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs:
 class GetMdbMongodbClusterClusterConfigMongodSetParameterArgs:
     def __init__(__self__, *,
                  audit_authorization_success: Optional[bool] = None):
+        """
+        :param bool audit_authorization_success: (Optional) Enables the auditing of authorization successes. Can be either true or false.
+               For more information, see the [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.auditAuthorizationSuccess)
+               description in the official documentation. Available only in enterprise edition.
+        """
         if audit_authorization_success is not None:
             pulumi.set(__self__, "audit_authorization_success", audit_authorization_success)
 
     @property
     @pulumi.getter(name="auditAuthorizationSuccess")
     def audit_authorization_success(self) -> Optional[bool]:
+        """
+        (Optional) Enables the auditing of authorization successes. Can be either true or false.
+        For more information, see the [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.auditAuthorizationSuccess)
+        description in the official documentation. Available only in enterprise edition.
+        """
         return pulumi.get(self, "audit_authorization_success")
 
     @audit_authorization_success.setter
@@ -21626,12 +27780,18 @@ class GetMdbMongodbClusterClusterConfigMongodSetParameterArgs:
 class GetMdbMongodbClusterDatabaseArgs:
     def __init__(__self__, *,
                  name: Optional[str] = None):
+        """
+        :param str name: The name of the MongoDB cluster.
+        """
         if name is not None:
             pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the MongoDB cluster.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -21650,6 +27810,17 @@ class GetMdbMongodbClusterHostArgs:
                  type: str,
                  subnet_id: Optional[str] = None,
                  zone_id: Optional[str] = None):
+        """
+        :param bool assign_public_ip: Has assigned public IP.
+        :param str health: The health of the host.
+        :param str name: The name of the MongoDB cluster.
+        :param str role: The role of the cluster (either PRIMARY or SECONDARY).
+        :param str shard_name: The name of the shard to which the host belongs.
+        :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param str subnet_id: The ID of the subnet, to which the host belongs. The subnet must
+               be a part of the network to which the cluster belongs.
+        :param str zone_id: The availability zone where the MongoDB host will be created.
+        """
         pulumi.set(__self__, "assign_public_ip", assign_public_ip)
         pulumi.set(__self__, "health", health)
         pulumi.set(__self__, "name", name)
@@ -21664,6 +27835,9 @@ class GetMdbMongodbClusterHostArgs:
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> bool:
+        """
+        Has assigned public IP.
+        """
         return pulumi.get(self, "assign_public_ip")
 
     @assign_public_ip.setter
@@ -21673,6 +27847,9 @@ class GetMdbMongodbClusterHostArgs:
     @property
     @pulumi.getter
     def health(self) -> str:
+        """
+        The health of the host.
+        """
         return pulumi.get(self, "health")
 
     @health.setter
@@ -21682,6 +27859,9 @@ class GetMdbMongodbClusterHostArgs:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the MongoDB cluster.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -21691,6 +27871,9 @@ class GetMdbMongodbClusterHostArgs:
     @property
     @pulumi.getter
     def role(self) -> str:
+        """
+        The role of the cluster (either PRIMARY or SECONDARY).
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -21700,6 +27883,9 @@ class GetMdbMongodbClusterHostArgs:
     @property
     @pulumi.getter(name="shardName")
     def shard_name(self) -> str:
+        """
+        The name of the shard to which the host belongs.
+        """
         return pulumi.get(self, "shard_name")
 
     @shard_name.setter
@@ -21709,6 +27895,9 @@ class GetMdbMongodbClusterHostArgs:
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -21718,6 +27907,10 @@ class GetMdbMongodbClusterHostArgs:
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[str]:
+        """
+        The ID of the subnet, to which the host belongs. The subnet must
+        be a part of the network to which the cluster belongs.
+        """
         return pulumi.get(self, "subnet_id")
 
     @subnet_id.setter
@@ -21727,6 +27920,9 @@ class GetMdbMongodbClusterHostArgs:
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> Optional[str]:
+        """
+        The availability zone where the MongoDB host will be created.
+        """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
@@ -21740,6 +27936,11 @@ class GetMdbMongodbClusterMaintenanceWindowArgs:
                  day: Optional[str] = None,
                  hour: Optional[int] = None,
                  type: Optional[str] = None):
+        """
+        :param str day: Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        :param int hour: Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+        :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         if day is not None:
             pulumi.set(__self__, "day", day)
         if hour is not None:
@@ -21750,6 +27951,9 @@ class GetMdbMongodbClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def day(self) -> Optional[str]:
+        """
+        Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        """
         return pulumi.get(self, "day")
 
     @day.setter
@@ -21759,6 +27963,9 @@ class GetMdbMongodbClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def hour(self) -> Optional[int]:
+        """
+        Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+        """
         return pulumi.get(self, "hour")
 
     @hour.setter
@@ -21768,6 +27975,9 @@ class GetMdbMongodbClusterMaintenanceWindowArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -21781,6 +27991,10 @@ class GetMdbMongodbClusterResourcesArgs:
                  disk_size: Optional[int] = None,
                  disk_type_id: Optional[str] = None,
                  resource_preset_id: Optional[str] = None):
+        """
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
         if disk_size is not None:
             pulumi.set(__self__, "disk_size", disk_size)
         if disk_type_id is not None:
@@ -21791,6 +28005,9 @@ class GetMdbMongodbClusterResourcesArgs:
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> Optional[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
         return pulumi.get(self, "disk_size")
 
     @disk_size.setter
@@ -21800,6 +28017,9 @@ class GetMdbMongodbClusterResourcesArgs:
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> Optional[str]:
+        """
+        The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
         return pulumi.get(self, "disk_type_id")
 
     @disk_type_id.setter
@@ -21822,6 +28042,10 @@ class GetMdbMongodbClusterUserArgs:
                  permissions: Sequence['GetMdbMongodbClusterUserPermissionArgs'],
                  name: Optional[str] = None,
                  password: Optional[str] = None):
+        """
+        :param Sequence['GetMdbMongodbClusterUserPermissionArgs'] permissions: Set of permissions granted to the user. The structure is documented below.
+        :param str name: The name of the MongoDB cluster.
+        """
         pulumi.set(__self__, "permissions", permissions)
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -21831,6 +28055,9 @@ class GetMdbMongodbClusterUserArgs:
     @property
     @pulumi.getter
     def permissions(self) -> Sequence['GetMdbMongodbClusterUserPermissionArgs']:
+        """
+        Set of permissions granted to the user. The structure is documented below.
+        """
         return pulumi.get(self, "permissions")
 
     @permissions.setter
@@ -21840,6 +28067,9 @@ class GetMdbMongodbClusterUserArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
+        """
+        The name of the MongoDB cluster.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -21861,6 +28091,10 @@ class GetMdbMongodbClusterUserPermissionArgs:
     def __init__(__self__, *,
                  database_name: Optional[str] = None,
                  roles: Optional[Sequence[str]] = None):
+        """
+        :param str database_name: The name of the database that the permission grants access to.
+        :param Sequence[str] roles: (Optional) List of strings. The roles of the user in this database. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/users-and-roles).
+        """
         if database_name is not None:
             pulumi.set(__self__, "database_name", database_name)
         if roles is not None:
@@ -21869,6 +28103,9 @@ class GetMdbMongodbClusterUserPermissionArgs:
     @property
     @pulumi.getter(name="databaseName")
     def database_name(self) -> Optional[str]:
+        """
+        The name of the database that the permission grants access to.
+        """
         return pulumi.get(self, "database_name")
 
     @database_name.setter
@@ -21878,6 +28115,9 @@ class GetMdbMongodbClusterUserPermissionArgs:
     @property
     @pulumi.getter
     def roles(self) -> Optional[Sequence[str]]:
+        """
+        (Optional) List of strings. The roles of the user in this database. For more information see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/users-and-roles).
+        """
         return pulumi.get(self, "roles")
 
     @roles.setter
@@ -21891,6 +28131,11 @@ class GetMdbMysqlClusterAccessArgs:
                  data_lens: bool,
                  data_transfer: bool,
                  web_sql: bool):
+        """
+        :param bool data_lens: Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        :param bool data_transfer: (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        :param bool web_sql: Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+        """
         pulumi.set(__self__, "data_lens", data_lens)
         pulumi.set(__self__, "data_transfer", data_transfer)
         pulumi.set(__self__, "web_sql", web_sql)
@@ -21898,6 +28143,9 @@ class GetMdbMysqlClusterAccessArgs:
     @property
     @pulumi.getter(name="dataLens")
     def data_lens(self) -> bool:
+        """
+        Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        """
         return pulumi.get(self, "data_lens")
 
     @data_lens.setter
@@ -21907,6 +28155,9 @@ class GetMdbMysqlClusterAccessArgs:
     @property
     @pulumi.getter(name="dataTransfer")
     def data_transfer(self) -> bool:
+        """
+        (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        """
         return pulumi.get(self, "data_transfer")
 
     @data_transfer.setter
@@ -21916,6 +28167,9 @@ class GetMdbMysqlClusterAccessArgs:
     @property
     @pulumi.getter(name="webSql")
     def web_sql(self) -> bool:
+        """
+        Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+        """
         return pulumi.get(self, "web_sql")
 
     @web_sql.setter

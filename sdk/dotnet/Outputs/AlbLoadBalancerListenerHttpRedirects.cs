@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerListenerHttpRedirects
     {
+        /// <summary>
+        /// If set redirects all unencrypted HTTP requests to the same URI with scheme changed to `https`.
+        /// </summary>
         public readonly bool? HttpToHttps;
 
         [OutputConstructor]

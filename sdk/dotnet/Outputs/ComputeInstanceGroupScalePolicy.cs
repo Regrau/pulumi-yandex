@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstanceGroupScalePolicy
     {
+        /// <summary>
+        /// The auto scaling policy of the instance group. The structure is documented below.
+        /// </summary>
         public readonly Outputs.ComputeInstanceGroupScalePolicyAutoScale? AutoScale;
+        /// <summary>
+        /// The fixed scaling policy of the instance group. The structure is documented below.
+        /// </summary>
         public readonly Outputs.ComputeInstanceGroupScalePolicyFixedScale? FixedScale;
+        /// <summary>
+        /// The test auto scaling policy of the instance group. Use it to test how the auto scale works. The structure is documented below.
+        /// </summary>
         public readonly Outputs.ComputeInstanceGroupScalePolicyTestAutoScale? TestAutoScale;
 
         [OutputConstructor]

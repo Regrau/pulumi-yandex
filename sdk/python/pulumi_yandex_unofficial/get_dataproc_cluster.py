@@ -72,11 +72,17 @@ class GetDataprocClusterResult:
     @property
     @pulumi.getter
     def bucket(self) -> str:
+        """
+        Name of the Object Storage bucket used for Data Proc jobs.
+        """
         return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter(name="clusterConfigs")
     def cluster_configs(self) -> Sequence['outputs.GetDataprocClusterClusterConfigResult']:
+        """
+        Configuration and resources of the cluster. The structure is documented below.
+        """
         return pulumi.get(self, "cluster_configs")
 
     @property
@@ -87,6 +93,9 @@ class GetDataprocClusterResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The Data Proc cluster creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
@@ -97,6 +106,9 @@ class GetDataprocClusterResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the Data Proc cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -107,6 +119,9 @@ class GetDataprocClusterResult:
     @property
     @pulumi.getter(name="hostGroupIds")
     def host_group_ids(self) -> Sequence[str]:
+        """
+        A list of IDs of the host groups hosting VMs of the cluster.
+        """
         return pulumi.get(self, "host_group_ids")
 
     @property
@@ -120,11 +135,17 @@ class GetDataprocClusterResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs assigned to the Data Proc cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of the Data Proc subcluster.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -135,16 +156,25 @@ class GetDataprocClusterResult:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> str:
+        """
+        Service account used by the Data Proc agent to access resources of Yandex.Cloud.
+        """
         return pulumi.get(self, "service_account_id")
 
     @property
     @pulumi.getter(name="uiProxy")
     def ui_proxy(self) -> bool:
+        """
+        Whether UI proxy feature is enabled.
+        """
         return pulumi.get(self, "ui_proxy")
 
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> str:
+        """
+        ID of the availability zone where the cluster resides.
+        """
         return pulumi.get(self, "zone_id")
 
 
@@ -175,7 +205,21 @@ def get_dataproc_cluster(cluster_id: Optional[str] = None,
                          name: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetDataprocClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Data Proc cluster. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-proc/).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_dataproc_cluster(name="test")
+    pulumi.export("serviceAccountId", foo.service_account_id)
+    ```
+
+
+    :param str cluster_id: The ID of the Data Proc cluster.
+    :param str name: The name of the Data Proc cluster.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -206,6 +250,20 @@ def get_dataproc_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]]
                                 name: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetDataprocClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Data Proc cluster. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-proc/).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_dataproc_cluster(name="test")
+    pulumi.export("serviceAccountId", foo.service_account_id)
+    ```
+
+
+    :param str cluster_id: The ID of the Data Proc cluster.
+    :param str name: The name of the Data Proc cluster.
     """
     ...

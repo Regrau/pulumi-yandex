@@ -13,17 +13,56 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class KubernetesClusterMaster
     {
+        /// <summary>
+        /// (Computed) PEM-encoded public certificate that is the root of trust for the Kubernetes cluster.
+        /// </summary>
         public readonly string? ClusterCaCertificate;
+        /// <summary>
+        /// (Computed) An IPv4 external network address that is assigned to the master.
+        /// </summary>
         public readonly string? ExternalV4Address;
+        /// <summary>
+        /// (Computed) External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).
+        /// </summary>
         public readonly string? ExternalV4Endpoint;
+        /// <summary>
+        /// (Computed) An IPv4 internal network address that is assigned to the master.
+        /// </summary>
         public readonly string? InternalV4Address;
+        /// <summary>
+        /// (Computed) Internal endpoint that can be used to connect to the master from cloud networks.
+        /// </summary>
         public readonly string? InternalV4Endpoint;
+        /// <summary>
+        /// (Optional) (Computed) Maintenance policy for Kubernetes master.
+        /// If policy is omitted, automatic revision upgrades of the kubernetes master are enabled and could happen at any time.
+        /// Revision upgrades are performed only within the same minor version, e.g. 1.13.
+        /// Minor version upgrades (e.g. 1.13-&gt;1.14) should be performed manually. The structure is documented below.
+        /// </summary>
         public readonly Outputs.KubernetesClusterMasterMaintenancePolicy? MaintenancePolicy;
+        /// <summary>
+        /// (Optional) (Computed) Boolean flag. When `true`, Kubernetes master will have visible ipv4 address.
+        /// </summary>
         public readonly bool? PublicIp;
+        /// <summary>
+        /// (Optional) Initialize parameters for Regional Master (highly available master). The structure is documented below.
+        /// </summary>
         public readonly Outputs.KubernetesClusterMasterRegional? Regional;
+        /// <summary>
+        /// (Optional) List of security group IDs to which the Kubernetes cluster belongs.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// (Optional) (Computed) Version of Kubernetes that will be used for master.
+        /// </summary>
         public readonly string? Version;
+        /// <summary>
+        /// (Computed) Information about cluster version. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.KubernetesClusterMasterVersionInfo> VersionInfos;
+        /// <summary>
+        /// (Optional) Initialize parameters for Zonal Master (single node master). The structure is documented below.
+        /// </summary>
         public readonly Outputs.KubernetesClusterMasterZonal? Zonal;
 
         [OutputConstructor]

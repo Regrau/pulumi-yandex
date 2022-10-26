@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class StorageBucketGrantArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Unique identifier for the rule. Must be less than or equal to 255 characters in length.
+        /// </summary>
         [Input("id")]
         public Input<string>? Id { get; set; }
 

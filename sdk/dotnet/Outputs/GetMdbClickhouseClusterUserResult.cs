@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbClickhouseClusterUserResult
     {
+        /// <summary>
+        /// The name of the ClickHouse cluster.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Set of permissions granted to the user. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterUserPermissionResult> Permissions;
+        /// <summary>
+        /// Set of user quotas. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterUserQuotaResult> Quotas;
+        /// <summary>
+        /// Kafka connection settngs sanem as `kafka` block.
+        /// </summary>
         public readonly Outputs.GetMdbClickhouseClusterUserSettingsResult Settings;
 
         [OutputConstructor]

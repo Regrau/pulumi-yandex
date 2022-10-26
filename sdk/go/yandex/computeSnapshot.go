@@ -11,17 +11,67 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates a new snapshot of a disk. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/snapshot).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewComputeSnapshot(ctx, "default", &yandex.ComputeSnapshotArgs{
+//				Labels: pulumi.StringMap{
+//					"my-label": pulumi.String("my-label-value"),
+//				},
+//				SourceDiskId: pulumi.String("test_disk_id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A snapshot can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/computeSnapshot:ComputeSnapshot disk-snapshot shapshot_id
+//
+// ```
 type ComputeSnapshot struct {
 	pulumi.CustomResourceState
 
-	CreatedAt    pulumi.StringOutput    `pulumi:"createdAt"`
-	Description  pulumi.StringPtrOutput `pulumi:"description"`
-	DiskSize     pulumi.IntOutput       `pulumi:"diskSize"`
-	FolderId     pulumi.StringOutput    `pulumi:"folderId"`
-	Labels       pulumi.StringMapOutput `pulumi:"labels"`
-	Name         pulumi.StringOutput    `pulumi:"name"`
-	SourceDiskId pulumi.StringOutput    `pulumi:"sourceDiskId"`
-	StorageSize  pulumi.IntOutput       `pulumi:"storageSize"`
+	// Creation timestamp of the snapshot.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Description of the resource.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Size of the disk when the snapshot was created, specified in GB.
+	DiskSize pulumi.IntOutput `pulumi:"diskSize"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the snapshot.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// A name for the resource.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the disk to create a snapshot from.
+	SourceDiskId pulumi.StringOutput `pulumi:"sourceDiskId"`
+	// Size of the snapshot, specified in GB.
+	StorageSize pulumi.IntOutput `pulumi:"storageSize"`
 }
 
 // NewComputeSnapshot registers a new resource with the given unique name, arguments, and options.
@@ -57,25 +107,43 @@ func GetComputeSnapshot(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ComputeSnapshot resources.
 type computeSnapshotState struct {
-	CreatedAt    *string           `pulumi:"createdAt"`
-	Description  *string           `pulumi:"description"`
-	DiskSize     *int              `pulumi:"diskSize"`
-	FolderId     *string           `pulumi:"folderId"`
-	Labels       map[string]string `pulumi:"labels"`
-	Name         *string           `pulumi:"name"`
-	SourceDiskId *string           `pulumi:"sourceDiskId"`
-	StorageSize  *int              `pulumi:"storageSize"`
+	// Creation timestamp of the snapshot.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Description of the resource.
+	Description *string `pulumi:"description"`
+	// Size of the disk when the snapshot was created, specified in GB.
+	DiskSize *int `pulumi:"diskSize"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the snapshot.
+	Labels map[string]string `pulumi:"labels"`
+	// A name for the resource.
+	Name *string `pulumi:"name"`
+	// ID of the disk to create a snapshot from.
+	SourceDiskId *string `pulumi:"sourceDiskId"`
+	// Size of the snapshot, specified in GB.
+	StorageSize *int `pulumi:"storageSize"`
 }
 
 type ComputeSnapshotState struct {
-	CreatedAt    pulumi.StringPtrInput
-	Description  pulumi.StringPtrInput
-	DiskSize     pulumi.IntPtrInput
-	FolderId     pulumi.StringPtrInput
-	Labels       pulumi.StringMapInput
-	Name         pulumi.StringPtrInput
+	// Creation timestamp of the snapshot.
+	CreatedAt pulumi.StringPtrInput
+	// Description of the resource.
+	Description pulumi.StringPtrInput
+	// Size of the disk when the snapshot was created, specified in GB.
+	DiskSize pulumi.IntPtrInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the snapshot.
+	Labels pulumi.StringMapInput
+	// A name for the resource.
+	Name pulumi.StringPtrInput
+	// ID of the disk to create a snapshot from.
 	SourceDiskId pulumi.StringPtrInput
-	StorageSize  pulumi.IntPtrInput
+	// Size of the snapshot, specified in GB.
+	StorageSize pulumi.IntPtrInput
 }
 
 func (ComputeSnapshotState) ElementType() reflect.Type {
@@ -83,19 +151,31 @@ func (ComputeSnapshotState) ElementType() reflect.Type {
 }
 
 type computeSnapshotArgs struct {
-	Description  *string           `pulumi:"description"`
-	FolderId     *string           `pulumi:"folderId"`
-	Labels       map[string]string `pulumi:"labels"`
-	Name         *string           `pulumi:"name"`
-	SourceDiskId string            `pulumi:"sourceDiskId"`
+	// Description of the resource.
+	Description *string `pulumi:"description"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the snapshot.
+	Labels map[string]string `pulumi:"labels"`
+	// A name for the resource.
+	Name *string `pulumi:"name"`
+	// ID of the disk to create a snapshot from.
+	SourceDiskId string `pulumi:"sourceDiskId"`
 }
 
 // The set of arguments for constructing a ComputeSnapshot resource.
 type ComputeSnapshotArgs struct {
-	Description  pulumi.StringPtrInput
-	FolderId     pulumi.StringPtrInput
-	Labels       pulumi.StringMapInput
-	Name         pulumi.StringPtrInput
+	// Description of the resource.
+	Description pulumi.StringPtrInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the snapshot.
+	Labels pulumi.StringMapInput
+	// A name for the resource.
+	Name pulumi.StringPtrInput
+	// ID of the disk to create a snapshot from.
 	SourceDiskId pulumi.StringInput
 }
 
@@ -186,34 +266,43 @@ func (o ComputeSnapshotOutput) ToComputeSnapshotOutputWithContext(ctx context.Co
 	return o
 }
 
+// Creation timestamp of the snapshot.
 func (o ComputeSnapshotOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeSnapshot) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the resource.
 func (o ComputeSnapshotOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputeSnapshot) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Size of the disk when the snapshot was created, specified in GB.
 func (o ComputeSnapshotOutput) DiskSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *ComputeSnapshot) pulumi.IntOutput { return v.DiskSize }).(pulumi.IntOutput)
 }
 
+// The ID of the folder that the resource belongs to. If it
+// is not provided, the default provider folder is used.
 func (o ComputeSnapshotOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeSnapshot) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the snapshot.
 func (o ComputeSnapshotOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ComputeSnapshot) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// A name for the resource.
 func (o ComputeSnapshotOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeSnapshot) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the disk to create a snapshot from.
 func (o ComputeSnapshotOutput) SourceDiskId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeSnapshot) pulumi.StringOutput { return v.SourceDiskId }).(pulumi.StringOutput)
 }
 
+// Size of the snapshot, specified in GB.
 func (o ComputeSnapshotOutput) StorageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *ComputeSnapshot) pulumi.IntOutput { return v.StorageSize }).(pulumi.IntOutput)
 }

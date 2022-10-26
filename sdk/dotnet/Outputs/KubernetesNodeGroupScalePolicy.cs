@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class KubernetesNodeGroupScalePolicy
     {
+        /// <summary>
+        /// Scale policy for an autoscaled node group. The structure is documented below.
+        /// </summary>
         public readonly Outputs.KubernetesNodeGroupScalePolicyAutoScale? AutoScale;
+        /// <summary>
+        /// Scale policy for a fixed scale node group. The structure is documented below.
+        /// </summary>
         public readonly Outputs.KubernetesNodeGroupScalePolicyFixedScale? FixedScale;
 
         [OutputConstructor]

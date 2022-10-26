@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbLoadBalancerAllocationPolicyLocationGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If set, will disable all L7 instances in the zone for request handling.
+        /// </summary>
         [Input("disableTraffic")]
         public Input<bool>? DisableTraffic { get; set; }
 
+        /// <summary>
+        /// Provided by the client or computed automatically.
+        /// </summary>
         [Input("subnetId", required: true)]
         public Input<string> SubnetId { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the zone that location is located at.
+        /// </summary>
         [Input("zoneId", required: true)]
         public Input<string> ZoneId { get; set; } = null!;
 

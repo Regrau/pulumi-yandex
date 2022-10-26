@@ -13,7 +13,14 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetKubernetesClusterMasterMaintenancePolicyResult
     {
+        /// <summary>
+        /// Boolean flag that specifies if master can be upgraded automatically.
+        /// </summary>
         public readonly bool AutoUpgrade;
+        /// <summary>
+        /// Set of day intervals, when maintenance is allowed, when update for master is allowed.
+        /// When omitted, it defaults to any time.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowResult> MaintenanceWindows;
 
         [OutputConstructor]

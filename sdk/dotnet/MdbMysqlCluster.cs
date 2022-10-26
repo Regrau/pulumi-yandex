@@ -9,81 +9,944 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Manages a MySQL cluster within the Yandex.Cloud. For more information, see
+    /// [the official documentation](https://cloud.yandex.com/docs/managed-mysql/).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// Example of creating a Single Node MySQL.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var fooVpcNetwork = new Yandex.VpcNetwork("fooVpcNetwork");
+    /// 
+    ///     var fooVpcSubnet = new Yandex.VpcSubnet("fooVpcSubnet", new()
+    ///     {
+    ///         Zone = "ru-central1-a",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.5.0.0/24",
+    ///         },
+    ///     });
+    /// 
+    ///     var fooMdbMysqlCluster = new Yandex.MdbMysqlCluster("fooMdbMysqlCluster", new()
+    ///     {
+    ///         Environment = "PRESTABLE",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         Version = "8.0",
+    ///         Resources = new Yandex.Inputs.MdbMysqlClusterResourcesArgs
+    ///         {
+    ///             ResourcePresetId = "s2.micro",
+    ///             DiskTypeId = "network-ssd",
+    ///             DiskSize = 16,
+    ///         },
+    ///         MysqlConfig = 
+    ///         {
+    ///             { "sql_mode", "ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION" },
+    ///             { "max_connections", "100" },
+    ///             { "default_authentication_plugin", "MYSQL_NATIVE_PASSWORD" },
+    ///             { "innodb_print_all_deadlocks", "true" },
+    ///         },
+    ///         Hosts = new[]
+    ///         {
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-a",
+    ///                 SubnetId = fooVpcSubnet.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Example of creating a High-Availability(HA) MySQL Cluster.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var fooVpcNetwork = new Yandex.VpcNetwork("fooVpcNetwork");
+    /// 
+    ///     var fooVpcSubnet = new Yandex.VpcSubnet("fooVpcSubnet", new()
+    ///     {
+    ///         Zone = "ru-central1-a",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.1.0.0/24",
+    ///         },
+    ///     });
+    /// 
+    ///     var bar = new Yandex.VpcSubnet("bar", new()
+    ///     {
+    ///         Zone = "ru-central1-b",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.2.0.0/24",
+    ///         },
+    ///     });
+    /// 
+    ///     var fooMdbMysqlCluster = new Yandex.MdbMysqlCluster("fooMdbMysqlCluster", new()
+    ///     {
+    ///         Environment = "PRESTABLE",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         Version = "8.0",
+    ///         Resources = new Yandex.Inputs.MdbMysqlClusterResourcesArgs
+    ///         {
+    ///             ResourcePresetId = "s2.micro",
+    ///             DiskTypeId = "network-ssd",
+    ///             DiskSize = 16,
+    ///         },
+    ///         MaintenanceWindow = new Yandex.Inputs.MdbMysqlClusterMaintenanceWindowArgs
+    ///         {
+    ///             Type = "WEEKLY",
+    ///             Day = "SAT",
+    ///             Hour = 12,
+    ///         },
+    ///         Hosts = new[]
+    ///         {
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-a",
+    ///                 SubnetId = fooVpcSubnet.Id,
+    ///             },
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-b",
+    ///                 SubnetId = bar.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Example of creating a MySQL Cluster with cascade replicas: HA-group consist of 'na-1' and 'na-2', cascade replicas form a chain 'na-1' &gt; 'nb-1' &gt; 'nb-2'
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var fooVpcNetwork = new Yandex.VpcNetwork("fooVpcNetwork");
+    /// 
+    ///     var fooVpcSubnet = new Yandex.VpcSubnet("fooVpcSubnet", new()
+    ///     {
+    ///         Zone = "ru-central1-a",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.1.0.0/24",
+    ///         },
+    ///     });
+    /// 
+    ///     var bar = new Yandex.VpcSubnet("bar", new()
+    ///     {
+    ///         Zone = "ru-central1-b",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.2.0.0/24",
+    ///         },
+    ///     });
+    /// 
+    ///     var fooMdbMysqlCluster = new Yandex.MdbMysqlCluster("fooMdbMysqlCluster", new()
+    ///     {
+    ///         Environment = "PRESTABLE",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         Version = "8.0",
+    ///         Resources = new Yandex.Inputs.MdbMysqlClusterResourcesArgs
+    ///         {
+    ///             ResourcePresetId = "s2.micro",
+    ///             DiskTypeId = "network-ssd",
+    ///             DiskSize = 16,
+    ///         },
+    ///         MaintenanceWindow = new Yandex.Inputs.MdbMysqlClusterMaintenanceWindowArgs
+    ///         {
+    ///             Type = "WEEKLY",
+    ///             Day = "SAT",
+    ///             Hour = 12,
+    ///         },
+    ///         Hosts = new[]
+    ///         {
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-a",
+    ///                 Name = "na-1",
+    ///                 SubnetId = fooVpcSubnet.Id,
+    ///             },
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-a",
+    ///                 Name = "na-2",
+    ///                 SubnetId = fooVpcSubnet.Id,
+    ///             },
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-b",
+    ///                 Name = "nb-1",
+    ///                 ReplicationSourceName = "na-1",
+    ///                 SubnetId = bar.Id,
+    ///             },
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-b",
+    ///                 Name = "nb-2",
+    ///                 ReplicationSourceName = "nb-1",
+    ///                 SubnetId = bar.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Example of creating a MySQL Cluster with different backup priorities. Backup will be created from nb-2, if it's not master. na-2 will be used as a backup source as a last resort.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var fooVpcNetwork = new Yandex.VpcNetwork("fooVpcNetwork");
+    /// 
+    ///     var fooVpcSubnet = new Yandex.VpcSubnet("fooVpcSubnet", new()
+    ///     {
+    ///         Zone = "ru-central1-a",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.1.0.0/24",
+    ///         },
+    ///     });
+    /// 
+    ///     var bar = new Yandex.VpcSubnet("bar", new()
+    ///     {
+    ///         Zone = "ru-central1-b",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.2.0.0/24",
+    ///         },
+    ///     });
+    /// 
+    ///     var fooMdbMysqlCluster = new Yandex.MdbMysqlCluster("fooMdbMysqlCluster", new()
+    ///     {
+    ///         Environment = "PRESTABLE",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         Version = "8.0",
+    ///         Resources = new Yandex.Inputs.MdbMysqlClusterResourcesArgs
+    ///         {
+    ///             ResourcePresetId = "s2.micro",
+    ///             DiskTypeId = "network-ssd",
+    ///             DiskSize = 16,
+    ///         },
+    ///         MaintenanceWindow = new Yandex.Inputs.MdbMysqlClusterMaintenanceWindowArgs
+    ///         {
+    ///             Type = "WEEKLY",
+    ///             Day = "SAT",
+    ///             Hour = 12,
+    ///         },
+    ///         Hosts = new[]
+    ///         {
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-a",
+    ///                 Name = "na-1",
+    ///                 SubnetId = fooVpcSubnet.Id,
+    ///             },
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-b",
+    ///                 Name = "nb-1",
+    ///                 BackupPriority = 5,
+    ///                 SubnetId = bar.Id,
+    ///             },
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-b",
+    ///                 Name = "nb-2",
+    ///                 BackupPriority = 10,
+    ///                 SubnetId = bar.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Example of creating a MySQL Cluster with different host priorities. During failover master will be set to nb-2
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var fooVpcNetwork = new Yandex.VpcNetwork("fooVpcNetwork");
+    /// 
+    ///     var fooVpcSubnet = new Yandex.VpcSubnet("fooVpcSubnet", new()
+    ///     {
+    ///         Zone = "ru-central1-a",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.1.0.0/24",
+    ///         },
+    ///     });
+    /// 
+    ///     var bar = new Yandex.VpcSubnet("bar", new()
+    ///     {
+    ///         Zone = "ru-central1-b",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.2.0.0/24",
+    ///         },
+    ///     });
+    /// 
+    ///     var fooMdbMysqlCluster = new Yandex.MdbMysqlCluster("fooMdbMysqlCluster", new()
+    ///     {
+    ///         Environment = "PRESTABLE",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         Version = "8.0",
+    ///         Resources = new Yandex.Inputs.MdbMysqlClusterResourcesArgs
+    ///         {
+    ///             ResourcePresetId = "s2.micro",
+    ///             DiskTypeId = "network-ssd",
+    ///             DiskSize = 16,
+    ///         },
+    ///         MaintenanceWindow = new Yandex.Inputs.MdbMysqlClusterMaintenanceWindowArgs
+    ///         {
+    ///             Type = "WEEKLY",
+    ///             Day = "SAT",
+    ///             Hour = 12,
+    ///         },
+    ///         Hosts = new[]
+    ///         {
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-a",
+    ///                 Name = "na-1",
+    ///                 SubnetId = fooVpcSubnet.Id,
+    ///             },
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-b",
+    ///                 Name = "nb-1",
+    ///                 Priority = 5,
+    ///                 SubnetId = bar.Id,
+    ///             },
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-b",
+    ///                 Name = "nb-2",
+    ///                 Priority = 10,
+    ///                 SubnetId = bar.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Example of creating a Single Node MySQL with user params.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var fooVpcNetwork = new Yandex.VpcNetwork("fooVpcNetwork");
+    /// 
+    ///     var fooVpcSubnet = new Yandex.VpcSubnet("fooVpcSubnet", new()
+    ///     {
+    ///         Zone = "ru-central1-a",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.5.0.0/24",
+    ///         },
+    ///     });
+    /// 
+    ///     var fooMdbMysqlCluster = new Yandex.MdbMysqlCluster("fooMdbMysqlCluster", new()
+    ///     {
+    ///         Environment = "PRESTABLE",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         Version = "8.0",
+    ///         Resources = new Yandex.Inputs.MdbMysqlClusterResourcesArgs
+    ///         {
+    ///             ResourcePresetId = "s2.micro",
+    ///             DiskTypeId = "network-ssd",
+    ///             DiskSize = 16,
+    ///         },
+    ///         MaintenanceWindow = new Yandex.Inputs.MdbMysqlClusterMaintenanceWindowArgs
+    ///         {
+    ///             Type = "ANYTIME",
+    ///         },
+    ///         Hosts = new[]
+    ///         {
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-a",
+    ///                 SubnetId = fooVpcSubnet.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Example of restoring MySQL cluster.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var fooVpcNetwork = new Yandex.VpcNetwork("fooVpcNetwork");
+    /// 
+    ///     var fooVpcSubnet = new Yandex.VpcSubnet("fooVpcSubnet", new()
+    ///     {
+    ///         Zone = "ru-central1-a",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.5.0.0/24",
+    ///         },
+    ///     });
+    /// 
+    ///     var fooMdbMysqlCluster = new Yandex.MdbMysqlCluster("fooMdbMysqlCluster", new()
+    ///     {
+    ///         Environment = "PRESTABLE",
+    ///         NetworkId = fooVpcNetwork.Id,
+    ///         Version = "8.0",
+    ///         Restore = new Yandex.Inputs.MdbMysqlClusterRestoreArgs
+    ///         {
+    ///             BackupId = "c9qj2tns23432471d9qha:stream_20210122T141717Z",
+    ///             Time = "2021-01-23T15:04:05",
+    ///         },
+    ///         Resources = new Yandex.Inputs.MdbMysqlClusterResourcesArgs
+    ///         {
+    ///             ResourcePresetId = "s2.micro",
+    ///             DiskTypeId = "network-ssd",
+    ///             DiskSize = 16,
+    ///         },
+    ///         Hosts = new[]
+    ///         {
+    ///             new Yandex.Inputs.MdbMysqlClusterHostArgs
+    ///             {
+    ///                 Zone = "ru-central1-a",
+    ///                 SubnetId = fooVpcSubnet.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ## MySQL config
+    /// 
+    /// If not specified `mysql_config` then does not make any changes.
+    /// 
+    /// * `sql_mode` default value: `ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION`
+    /// 
+    /// some of:\
+    /// 	-	1: "ALLOW_INVALID_DATES"
+    /// 	-	2: "ANSI_QUOTES"
+    /// 	-	3: "ERROR_FOR_DIVISION_BY_ZERO"
+    /// 	-	4: "HIGH_NOT_PRECEDENCE"
+    /// 	-	5: "IGNORE_SPACE"
+    /// 	-	6: "NO_AUTO_VALUE_ON_ZERO"
+    /// 	-	7: "NO_BACKSLASH_ESCAPES"
+    /// 	-	8: "NO_ENGINE_SUBSTITUTION"
+    /// 	-	9: "NO_UNSIGNED_SUBTRACTION"
+    /// 	-	10: "NO_ZERO_DATE"
+    /// 	-	11: "NO_ZERO_IN_DATE"
+    /// 	-	15: "ONLY_FULL_GROUP_BY"
+    /// 	-	16: "PAD_CHAR_TO_FULL_LENGTH"
+    /// 	-	17: "PIPES_AS_CONCAT"
+    /// 	-	18: "REAL_AS_FLOAT"
+    /// 	-	19: "STRICT_ALL_TABLES"
+    /// 	-	20: "STRICT_TRANS_TABLES"
+    /// 	-	21: "TIME_TRUNCATE_FRACTIONAL"
+    /// 	-	22: "ANSI"
+    /// 	-	23: "TRADITIONAL"
+    /// 	-	24: "NO_DIR_IN_CREATE"
+    /// or:
+    ///   - 0: "SQLMODE_UNSPECIFIED"
+    /// 
+    /// ### MysqlConfig 8.0
+    /// * `audit_log` boolean
+    /// 
+    /// * `auto_increment_increment` integer
+    /// 
+    /// * `auto_increment_offset` integer
+    /// 
+    /// * `binlog_cache_size` integer
+    /// 
+    /// * `binlog_group_commit_sync_delay` integer
+    /// 
+    /// * `binlog_row_image` one of:
+    ///   - 0: "BINLOG_ROW_IMAGE_UNSPECIFIED"
+    ///   - 1: "FULL"
+    ///   - 2: "MINIMAL"
+    ///   - 3: "NOBLOB"
+    /// 
+    /// * `binlog_rows_query_log_events` boolean
+    /// 
+    /// * `character_set_server` text
+    /// 
+    /// * `collation_server` text
+    /// 
+    /// * `default_authentication_plugin` one of:
+    ///   - 0: "AUTH_PLUGIN_UNSPECIFIED"
+    ///   - 1: "MYSQL_NATIVE_PASSWORD"
+    ///   - 2: "CACHING_SHA2_PASSWORD"
+    ///   - 3: "SHA256_PASSWORD"
+    /// 
+    /// * `default_time_zone` text
+    /// 
+    /// * `explicit_defaults_for_timestamp` boolean
+    /// 
+    /// * `general_log` boolean
+    /// 
+    /// * `group_concat_max_len` integer
+    /// 
+    /// * `innodb_adaptive_hash_index` boolean
+    /// 
+    /// * `innodb_buffer_pool_size` integer
+    /// 
+    /// * `innodb_flush_log_at_trx_commit` integer
+    /// 
+    /// * `innodb_ft_max_token_size` integer
+    /// 
+    /// * `innodb_ft_min_token_size` integer
+    /// 
+    /// * `innodb_io_capacity` integer
+    /// 
+    /// * `innodb_io_capacity_max` integer
+    /// 
+    /// * `innodb_lock_wait_timeout` integer
+    /// 
+    /// * `innodb_log_buffer_size` integer
+    /// 
+    /// * `innodb_log_file_size` integer
+    /// 
+    /// * `innodb_numa_interleave` boolean
+    /// 
+    /// * `innodb_online_alter_log_max_size` integer
+    /// 
+    /// * `innodb_page_size` integer (create-only option)
+    /// 
+    /// * `innodb_print_all_deadlocks` boolean
+    /// 
+    /// * `innodb_purge_threads` integer
+    /// 
+    /// * `innodb_read_io_threads` integer
+    /// 
+    /// * `innodb_temp_data_file_max_size` integer
+    /// 
+    /// * `innodb_thread_concurrency` integer
+    /// 
+    /// * `innodb_write_io_threads` integer
+    /// 
+    /// * `interactive_timeout` integer
+    /// 
+    /// * `join_buffer_size` integer
+    /// 
+    /// * `log_slow_rate_limit` intger
+    /// 
+    /// * `log_slow_rate_type` one of:
+    ///    - 0: "SESSION"
+    ///    - 1: "QUERY"
+    /// 
+    /// * `log_slow_sp_statements` boolean
+    /// 
+    /// * `long_query_time` float
+    /// 
+    /// * `lower_case_table_names` boolean (create-only option)
+    /// 
+    /// * `max_allowed_packet` integer
+    /// 
+    /// * `max_connections` integer
+    /// 
+    /// * `max_heap_table_size` integer
+    /// 
+    /// * `mdb_offline_mode_disable_lag` integer
+    /// 
+    /// * `mdb_offline_mode_enable_lag` integer
+    /// 
+    /// * `mdb_preserve_binlog_bytes` integer
+    /// 
+    /// * `mdb_priority_choice_max_lag` integer
+    /// 
+    /// * `net_read_timeout` integer
+    /// 
+    /// * `net_write_timeout` integer
+    /// 
+    /// * `range_optimizer_max_mem_size` integer
+    /// 
+    /// * `regexp_time_limit` integer
+    /// 
+    /// * `rpl_semi_sync_master_wait_for_slave_count` integer
+    /// 
+    /// * `slave_parallel_type` one of:
+    ///   - 0: "SLAVE_PARALLEL_TYPE_UNSPECIFIED"
+    ///   - 1: "DATABASE"
+    ///   - 2: "LOGICAL_CLOCK"
+    /// 
+    /// * `slow_query_log` boolean
+    /// 
+    /// * `slow_query_log_always_write_time` float
+    /// 
+    /// * `slave_parallel_workers` integer
+    /// 
+    /// * `sort_buffer_size` integer
+    /// 
+    /// * `sync_binlog` integer
+    /// 
+    /// * `table_definition_cache` integer
+    /// 
+    /// * `table_open_cache` integer
+    /// 
+    /// * `table_open_cache_instances` integer
+    /// 
+    /// * `thread_cache_size` integer
+    /// 
+    /// * `thread_stack` integer
+    /// 
+    /// * `tmp_table_size` integer
+    /// 
+    /// * `transaction_isolation` one of:
+    ///   - 0: "TRANSACTION_ISOLATION_UNSPECIFIED"
+    ///   - 1: "READ_COMMITTED"
+    ///   - 2: "REPEATABLE_READ"
+    ///   - 3: "SERIALIZABLE"
+    /// 
+    /// * `wait_timeout` integer
+    /// 
+    /// ### MysqlConfig 5.7
+    /// * `audit_log` boolean
+    /// 
+    /// * `auto_increment_increment` integer
+    /// 
+    /// * `auto_increment_offset` integer
+    /// 
+    /// * `binlog_cache_size` integer
+    /// 
+    /// * `binlog_group_commit_sync_delay` integer
+    /// 
+    /// * `binlog_row_image` one of:
+    ///   - 0: "BINLOG_ROW_IMAGE_UNSPECIFIED"
+    ///   - 1: "FULL"
+    ///   - 2: "MINIMAL"
+    ///   - 3: "NOBLOB"
+    /// 
+    /// * `binlog_rows_query_log_events` boolean
+    /// 
+    /// * `character_set_server` text
+    /// 
+    /// * `collation_server` text
+    /// 
+    /// * `default_authentication_plugin` one of:
+    ///   - 0: "AUTH_PLUGIN_UNSPECIFIED"
+    ///   - 1: "MYSQL_NATIVE_PASSWORD"
+    ///   - 2: "CACHING_SHA2_PASSWORD"
+    ///   - 3: "SHA256_PASSWORD"
+    /// 
+    /// * `default_time_zone` text
+    /// 
+    /// * `explicit_defaults_for_timestamp` boolean
+    /// 
+    /// * `general_log` boolean
+    /// 
+    /// * `group_concat_max_len` integer
+    /// 
+    /// * `innodb_adaptive_hash_index` boolean
+    /// 
+    /// * `innodb_buffer_pool_size` integer
+    /// 
+    /// * `innodb_flush_log_at_trx_commit` integer
+    /// 
+    /// * `innodb_ft_max_token_size` integer
+    /// 
+    /// * `innodb_ft_min_token_size` integer
+    /// 
+    /// * `innodb_io_capacity` integer
+    /// 
+    /// * `innodb_io_capacity_max` integer
+    /// 
+    /// * `innodb_lock_wait_timeout` integer
+    /// 
+    /// * `innodb_log_buffer_size` integer
+    /// 
+    /// * `innodb_log_file_size` integer
+    /// 
+    /// * `innodb_numa_interleave` boolean
+    /// 
+    /// * `innodb_online_alter_log_max_size` integer
+    /// 
+    /// * `innodb_page_size` integer (create-only option)
+    /// 
+    /// * `innodb_print_all_deadlocks` boolean
+    /// 
+    /// * `innodb_purge_threads` integer
+    /// 
+    /// * `innodb_read_io_threads` integer
+    /// 
+    /// * `innodb_temp_data_file_max_size` integer
+    /// 
+    /// * `innodb_thread_concurrency` integer
+    /// 
+    /// * `innodb_write_io_threads` integer
+    /// 
+    /// * `interactive_timeout` integer
+    /// 
+    /// * `join_buffer_size` integer
+    /// 
+    /// * `log_slow_rate_limit` integer
+    /// 
+    /// * `log_slow_rate_type` one of:
+    ///    - 0: "SESSION"
+    ///    - 1: "QUERY"
+    /// 
+    /// * `log_slow_sp_statements` boolean
+    /// 
+    /// * `long_query_time` float
+    /// 
+    /// * `lower_case_table_names` boolean (create-only option)
+    /// 
+    /// * `max_allowed_packet` integer
+    /// 
+    /// * `max_connections` integer
+    /// 
+    /// * `max_heap_table_size` integer
+    /// 
+    /// * `mdb_offline_mode_disable_lag` integer
+    /// 
+    /// * `mdb_offline_mode_enable_lag` integer
+    /// 
+    /// * `mdb_preserve_binlog_bytes` integer
+    /// 
+    /// * `mdb_priority_choice_max_lag` integer
+    /// 
+    /// * `net_read_timeout` integer
+    /// 
+    /// * `net_write_timeout` integer
+    /// 
+    /// * `range_optimizer_max_mem_size` integer
+    /// 
+    /// * `rpl_semi_sync_master_wait_for_slave_count` integer
+    /// 
+    /// * `show_compatibility_56` boolean
+    /// 
+    /// * `slave_parallel_type` one of:
+    ///   - 0: "SLAVE_PARALLEL_TYPE_UNSPECIFIED"
+    ///   - 1: "DATABASE"
+    ///   - 2: "LOGICAL_CLOCK"
+    /// 
+    /// * `slow_query_log` boolean
+    /// 
+    /// * `slow_query_log_always_write_time` float
+    /// 
+    /// * `slave_parallel_workers` integer
+    /// 
+    /// * `sort_buffer_size` integer
+    /// 
+    /// * `sync_binlog` integer
+    /// 
+    /// * `table_definition_cache` integer
+    /// 
+    /// * `table_open_cache` integer
+    /// 
+    /// * `table_open_cache_instances` integer
+    /// 
+    /// * `thread_cache_size` integer
+    /// 
+    /// * `thread_stack` integer
+    /// 
+    /// * `tmp_table_size` integer
+    /// 
+    /// * `transaction_isolation` one of:
+    ///   - 0: "TRANSACTION_ISOLATION_UNSPECIFIED"
+    ///   - 1: "READ_COMMITTED"
+    ///   - 2: "REPEATABLE_READ"
+    ///   - 3: "SERIALIZABLE"
+    /// 
+    /// ## Import
+    /// 
+    /// A cluster can be imported using the `id` of the resource, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/mdbMysqlCluster:MdbMysqlCluster foo cluster_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/mdbMysqlCluster:MdbMysqlCluster")]
     public partial class MdbMysqlCluster : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Access policy to the MySQL cluster. The structure is documented below.
+        /// </summary>
         [Output("access")]
         public Output<Outputs.MdbMysqlClusterAccess> Access { get; private set; } = null!;
 
         [Output("allowRegenerationHost")]
         public Output<bool?> AllowRegenerationHost { get; private set; } = null!;
 
+        /// <summary>
+        /// The period in days during which backups are stored.
+        /// </summary>
         [Output("backupRetainPeriodDays")]
         public Output<int> BackupRetainPeriodDays { get; private set; } = null!;
 
+        /// <summary>
+        /// Time to start the daily backup, in the UTC. The structure is documented below.
+        /// </summary>
         [Output("backupWindowStart")]
         public Output<Outputs.MdbMysqlClusterBackupWindowStart> BackupWindowStart { get; private set; } = null!;
 
+        /// <summary>
+        /// Creation timestamp of the cluster.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// To manage databases, please switch to using a separate resource type `yandex_mdb_mysql_databases`.
+        /// </summary>
         [Output("databases")]
         public Output<ImmutableArray<Outputs.MdbMysqlClusterDatabase>> Databases { get; private set; } = null!;
 
+        /// <summary>
+        /// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        /// </summary>
         [Output("deletionProtection")]
         public Output<bool> DeletionProtection { get; private set; } = null!;
 
+        /// <summary>
+        /// Description of the MySQL cluster.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Deployment environment of the MySQL cluster.
+        /// </summary>
         [Output("environment")]
         public Output<string> Environment { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// Aggregated health of the cluster.
+        /// </summary>
         [Output("health")]
         public Output<string> Health { get; private set; } = null!;
 
         [Output("hostGroupIds")]
         public Output<ImmutableArray<string>> HostGroupIds { get; private set; } = null!;
 
+        /// <summary>
+        /// A host of the MySQL cluster. The structure is documented below.
+        /// </summary>
         [Output("hosts")]
         public Output<ImmutableArray<Outputs.MdbMysqlClusterHost>> Hosts { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of key/value label pairs to assign to the MySQL cluster.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Maintenance policy of the MySQL cluster. The structure is documented below.
+        /// </summary>
         [Output("maintenanceWindow")]
         public Output<Outputs.MdbMysqlClusterMaintenanceWindow> MaintenanceWindow { get; private set; } = null!;
 
+        /// <summary>
+        /// MySQL cluster config. Detail info in "MySQL config" section (documented below).
+        /// </summary>
         [Output("mysqlConfig")]
         public Output<ImmutableDictionary<string, string>> MysqlConfig { get; private set; } = null!;
 
+        /// <summary>
+        /// Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the network, to which the MySQL cluster uses.
+        /// </summary>
         [Output("networkId")]
         public Output<string> NetworkId { get; private set; } = null!;
 
+        /// <summary>
+        /// Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        /// </summary>
         [Output("performanceDiagnostics")]
         public Output<Outputs.MdbMysqlClusterPerformanceDiagnostics> PerformanceDiagnostics { get; private set; } = null!;
 
+        /// <summary>
+        /// Resources allocated to hosts of the MySQL cluster. The structure is documented below.
+        /// </summary>
         [Output("resources")]
         public Output<Outputs.MdbMysqlClusterResources> Resources { get; private set; } = null!;
 
+        /// <summary>
+        /// The cluster will be created from the specified backup. The structure is documented below.
+        /// </summary>
         [Output("restore")]
         public Output<Outputs.MdbMysqlClusterRestore?> Restore { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of ids of security groups assigned to hosts of the cluster.
+        /// </summary>
         [Output("securityGroupIds")]
         public Output<ImmutableArray<string>> SecurityGroupIds { get; private set; } = null!;
 
+        /// <summary>
+        /// Status of the cluster.
+        /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
+        /// <summary>
+        /// To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        /// </summary>
         [Output("users")]
         public Output<ImmutableArray<Outputs.MdbMysqlClusterUser>> Users { get; private set; } = null!;
 
+        /// <summary>
+        /// Version of the MySQL cluster. (allowed versions are: 5.7, 8.0)
+        /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
 
@@ -110,7 +973,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -134,20 +997,33 @@ namespace Pulumi.Yandex
 
     public sealed class MdbMysqlClusterArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Access policy to the MySQL cluster. The structure is documented below.
+        /// </summary>
         [Input("access")]
         public Input<Inputs.MdbMysqlClusterAccessArgs>? Access { get; set; }
 
         [Input("allowRegenerationHost")]
         public Input<bool>? AllowRegenerationHost { get; set; }
 
+        /// <summary>
+        /// The period in days during which backups are stored.
+        /// </summary>
         [Input("backupRetainPeriodDays")]
         public Input<int>? BackupRetainPeriodDays { get; set; }
 
+        /// <summary>
+        /// Time to start the daily backup, in the UTC. The structure is documented below.
+        /// </summary>
         [Input("backupWindowStart")]
         public Input<Inputs.MdbMysqlClusterBackupWindowStartArgs>? BackupWindowStart { get; set; }
 
         [Input("databases")]
         private InputList<Inputs.MdbMysqlClusterDatabaseArgs>? _databases;
+
+        /// <summary>
+        /// To manage databases, please switch to using a separate resource type `yandex_mdb_mysql_databases`.
+        /// </summary>
         [Obsolete(@"to manage databases, please switch to using a separate resource type yandex_mdb_mysql_database")]
         public InputList<Inputs.MdbMysqlClusterDatabaseArgs> Databases
         {
@@ -155,15 +1031,28 @@ namespace Pulumi.Yandex
             set => _databases = value;
         }
 
+        /// <summary>
+        /// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        /// </summary>
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// Description of the MySQL cluster.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Deployment environment of the MySQL cluster.
+        /// </summary>
         [Input("environment", required: true)]
         public Input<string> Environment { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
@@ -177,6 +1066,10 @@ namespace Pulumi.Yandex
 
         [Input("hosts", required: true)]
         private InputList<Inputs.MdbMysqlClusterHostArgs>? _hosts;
+
+        /// <summary>
+        /// A host of the MySQL cluster. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.MdbMysqlClusterHostArgs> Hosts
         {
             get => _hosts ?? (_hosts = new InputList<Inputs.MdbMysqlClusterHostArgs>());
@@ -185,40 +1078,70 @@ namespace Pulumi.Yandex
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the MySQL cluster.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Maintenance policy of the MySQL cluster. The structure is documented below.
+        /// </summary>
         [Input("maintenanceWindow")]
         public Input<Inputs.MdbMysqlClusterMaintenanceWindowArgs>? MaintenanceWindow { get; set; }
 
         [Input("mysqlConfig")]
         private InputMap<string>? _mysqlConfig;
+
+        /// <summary>
+        /// MySQL cluster config. Detail info in "MySQL config" section (documented below).
+        /// </summary>
         public InputMap<string> MysqlConfig
         {
             get => _mysqlConfig ?? (_mysqlConfig = new InputMap<string>());
             set => _mysqlConfig = value;
         }
 
+        /// <summary>
+        /// Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the network, to which the MySQL cluster uses.
+        /// </summary>
         [Input("networkId", required: true)]
         public Input<string> NetworkId { get; set; } = null!;
 
+        /// <summary>
+        /// Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        /// </summary>
         [Input("performanceDiagnostics")]
         public Input<Inputs.MdbMysqlClusterPerformanceDiagnosticsArgs>? PerformanceDiagnostics { get; set; }
 
+        /// <summary>
+        /// Resources allocated to hosts of the MySQL cluster. The structure is documented below.
+        /// </summary>
         [Input("resources", required: true)]
         public Input<Inputs.MdbMysqlClusterResourcesArgs> Resources { get; set; } = null!;
 
+        /// <summary>
+        /// The cluster will be created from the specified backup. The structure is documented below.
+        /// </summary>
         [Input("restore")]
         public Input<Inputs.MdbMysqlClusterRestoreArgs>? Restore { get; set; }
 
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
+
+        /// <summary>
+        /// A set of ids of security groups assigned to hosts of the cluster.
+        /// </summary>
         public InputList<string> SecurityGroupIds
         {
             get => _securityGroupIds ?? (_securityGroupIds = new InputList<string>());
@@ -227,6 +1150,10 @@ namespace Pulumi.Yandex
 
         [Input("users")]
         private InputList<Inputs.MdbMysqlClusterUserArgs>? _users;
+
+        /// <summary>
+        /// To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        /// </summary>
         [Obsolete(@"to manage users, please switch to using a separate resource type yandex_mdb_mysql_user")]
         public InputList<Inputs.MdbMysqlClusterUserArgs> Users
         {
@@ -234,6 +1161,9 @@ namespace Pulumi.Yandex
             set => _users = value;
         }
 
+        /// <summary>
+        /// Version of the MySQL cluster. (allowed versions are: 5.7, 8.0)
+        /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;
 
@@ -245,23 +1175,39 @@ namespace Pulumi.Yandex
 
     public sealed class MdbMysqlClusterState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Access policy to the MySQL cluster. The structure is documented below.
+        /// </summary>
         [Input("access")]
         public Input<Inputs.MdbMysqlClusterAccessGetArgs>? Access { get; set; }
 
         [Input("allowRegenerationHost")]
         public Input<bool>? AllowRegenerationHost { get; set; }
 
+        /// <summary>
+        /// The period in days during which backups are stored.
+        /// </summary>
         [Input("backupRetainPeriodDays")]
         public Input<int>? BackupRetainPeriodDays { get; set; }
 
+        /// <summary>
+        /// Time to start the daily backup, in the UTC. The structure is documented below.
+        /// </summary>
         [Input("backupWindowStart")]
         public Input<Inputs.MdbMysqlClusterBackupWindowStartGetArgs>? BackupWindowStart { get; set; }
 
+        /// <summary>
+        /// Creation timestamp of the cluster.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         [Input("databases")]
         private InputList<Inputs.MdbMysqlClusterDatabaseGetArgs>? _databases;
+
+        /// <summary>
+        /// To manage databases, please switch to using a separate resource type `yandex_mdb_mysql_databases`.
+        /// </summary>
         [Obsolete(@"to manage databases, please switch to using a separate resource type yandex_mdb_mysql_database")]
         public InputList<Inputs.MdbMysqlClusterDatabaseGetArgs> Databases
         {
@@ -269,18 +1215,34 @@ namespace Pulumi.Yandex
             set => _databases = value;
         }
 
+        /// <summary>
+        /// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        /// </summary>
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// Description of the MySQL cluster.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Deployment environment of the MySQL cluster.
+        /// </summary>
         [Input("environment")]
         public Input<string>? Environment { get; set; }
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// Aggregated health of the cluster.
+        /// </summary>
         [Input("health")]
         public Input<string>? Health { get; set; }
 
@@ -294,6 +1256,10 @@ namespace Pulumi.Yandex
 
         [Input("hosts")]
         private InputList<Inputs.MdbMysqlClusterHostGetArgs>? _hosts;
+
+        /// <summary>
+        /// A host of the MySQL cluster. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.MdbMysqlClusterHostGetArgs> Hosts
         {
             get => _hosts ?? (_hosts = new InputList<Inputs.MdbMysqlClusterHostGetArgs>());
@@ -302,51 +1268,88 @@ namespace Pulumi.Yandex
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the MySQL cluster.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Maintenance policy of the MySQL cluster. The structure is documented below.
+        /// </summary>
         [Input("maintenanceWindow")]
         public Input<Inputs.MdbMysqlClusterMaintenanceWindowGetArgs>? MaintenanceWindow { get; set; }
 
         [Input("mysqlConfig")]
         private InputMap<string>? _mysqlConfig;
+
+        /// <summary>
+        /// MySQL cluster config. Detail info in "MySQL config" section (documented below).
+        /// </summary>
         public InputMap<string> MysqlConfig
         {
             get => _mysqlConfig ?? (_mysqlConfig = new InputMap<string>());
             set => _mysqlConfig = value;
         }
 
+        /// <summary>
+        /// Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the network, to which the MySQL cluster uses.
+        /// </summary>
         [Input("networkId")]
         public Input<string>? NetworkId { get; set; }
 
+        /// <summary>
+        /// Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        /// </summary>
         [Input("performanceDiagnostics")]
         public Input<Inputs.MdbMysqlClusterPerformanceDiagnosticsGetArgs>? PerformanceDiagnostics { get; set; }
 
+        /// <summary>
+        /// Resources allocated to hosts of the MySQL cluster. The structure is documented below.
+        /// </summary>
         [Input("resources")]
         public Input<Inputs.MdbMysqlClusterResourcesGetArgs>? Resources { get; set; }
 
+        /// <summary>
+        /// The cluster will be created from the specified backup. The structure is documented below.
+        /// </summary>
         [Input("restore")]
         public Input<Inputs.MdbMysqlClusterRestoreGetArgs>? Restore { get; set; }
 
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
+
+        /// <summary>
+        /// A set of ids of security groups assigned to hosts of the cluster.
+        /// </summary>
         public InputList<string> SecurityGroupIds
         {
             get => _securityGroupIds ?? (_securityGroupIds = new InputList<string>());
             set => _securityGroupIds = value;
         }
 
+        /// <summary>
+        /// Status of the cluster.
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         [Input("users")]
         private InputList<Inputs.MdbMysqlClusterUserGetArgs>? _users;
+
+        /// <summary>
+        /// To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        /// </summary>
         [Obsolete(@"to manage users, please switch to using a separate resource type yandex_mdb_mysql_user")]
         public InputList<Inputs.MdbMysqlClusterUserGetArgs> Users
         {
@@ -354,6 +1357,9 @@ namespace Pulumi.Yandex
             set => _users = value;
         }
 
+        /// <summary>
+        /// Version of the MySQL cluster. (allowed versions are: 5.7, 8.0)
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 

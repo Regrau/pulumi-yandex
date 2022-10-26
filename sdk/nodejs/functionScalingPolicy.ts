@@ -5,6 +5,32 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Allows management of [Yandex Cloud Function Scaling Policies](https://cloud.yandex.com/docs/functions/)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const myScalingPolicy = new yandex.FunctionScalingPolicy("my_scaling_policy", {
+ *     functionId: "are1samplefunction11",
+ *     policies: [
+ *         {
+ *             tag: "$latest",
+ *             zoneInstancesLimit: 3,
+ *             zoneRequestsLimit: 100,
+ *         },
+ *         {
+ *             tag: "my_tag",
+ *             zoneInstancesLimit: 4,
+ *             zoneRequestsLimit: 150,
+ *         },
+ *     ],
+ * });
+ * ```
+ */
 export class FunctionScalingPolicy extends pulumi.CustomResource {
     /**
      * Get an existing FunctionScalingPolicy resource's state with the given name, ID, and optional extra
@@ -33,7 +59,17 @@ export class FunctionScalingPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === FunctionScalingPolicy.__pulumiType;
     }
 
+    /**
+     * Yandex Cloud Function id used to define function
+     */
     public readonly functionId!: pulumi.Output<string>;
+    /**
+     * list definition for Yandex Cloud Function scaling policies
+     * * `policy.#` - number of Yandex Cloud Function scaling policies
+     * * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+     * * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+     * * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+     */
     public readonly policies!: pulumi.Output<outputs.FunctionScalingPolicyPolicy[] | undefined>;
 
     /**
@@ -68,7 +104,17 @@ export class FunctionScalingPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FunctionScalingPolicy resources.
  */
 export interface FunctionScalingPolicyState {
+    /**
+     * Yandex Cloud Function id used to define function
+     */
     functionId?: pulumi.Input<string>;
+    /**
+     * list definition for Yandex Cloud Function scaling policies
+     * * `policy.#` - number of Yandex Cloud Function scaling policies
+     * * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+     * * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+     * * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+     */
     policies?: pulumi.Input<pulumi.Input<inputs.FunctionScalingPolicyPolicy>[]>;
 }
 
@@ -76,6 +122,16 @@ export interface FunctionScalingPolicyState {
  * The set of arguments for constructing a FunctionScalingPolicy resource.
  */
 export interface FunctionScalingPolicyArgs {
+    /**
+     * Yandex Cloud Function id used to define function
+     */
     functionId: pulumi.Input<string>;
+    /**
+     * list definition for Yandex Cloud Function scaling policies
+     * * `policy.#` - number of Yandex Cloud Function scaling policies
+     * * `policy.{num}.tag` - Yandex.Cloud Function version tag for Yandex Cloud Function scaling policy
+     * * `policy.{num}.zone_instances_limit` - max number of instances in one zone for Yandex.Cloud Function with tag
+     * * `policy.{num}.zone_requests_limit` - max number of requests in one zone for Yandex.Cloud Function with tag
+     */
     policies?: pulumi.Input<pulumi.Input<inputs.FunctionScalingPolicyPolicy>[]>;
 }

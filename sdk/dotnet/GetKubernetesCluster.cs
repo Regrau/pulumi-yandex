@@ -11,9 +11,65 @@ namespace Pulumi.Yandex
 {
     public static class GetKubernetesCluster
     {
+        /// <summary>
+        /// Get information about a Yandex Kubernetes Cluster.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myCluster = Yandex.GetKubernetesCluster.Invoke(new()
+        ///     {
+        ///         ClusterId = "some_k8s_cluster_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["clusterExternalV4Endpoint"] = myCluster.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.Masters[0]?.ExternalV4Endpoint),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetKubernetesClusterResult> InvokeAsync(GetKubernetesClusterArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetKubernetesClusterResult>("yandex:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Kubernetes Cluster.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myCluster = Yandex.GetKubernetesCluster.Invoke(new()
+        ///     {
+        ///         ClusterId = "some_k8s_cluster_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["clusterExternalV4Endpoint"] = myCluster.Apply(getKubernetesClusterResult =&gt; getKubernetesClusterResult.Masters[0]?.ExternalV4Endpoint),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetKubernetesClusterResult> Invoke(GetKubernetesClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetKubernetesClusterResult>("yandex:index/getKubernetesCluster:getKubernetesCluster", args ?? new GetKubernetesClusterInvokeArgs(), options.WithDefaults());
     }
@@ -21,12 +77,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetKubernetesClusterArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of a specific Kubernetes cluster.
+        /// </summary>
         [Input("clusterId")]
         public string? ClusterId { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// Name of a specific Kubernetes cluster.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -38,12 +103,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetKubernetesClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of a specific Kubernetes cluster.
+        /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// Name of a specific Kubernetes cluster.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -58,30 +132,90 @@ namespace Pulumi.Yandex
     public sealed class GetKubernetesClusterResult
     {
         public readonly string ClusterId;
+        /// <summary>
+        /// IP range for allocating pod addresses.
+        /// </summary>
         public readonly string ClusterIpv4Range;
+        /// <summary>
+        /// Identical to cluster_ipv4_range but for the IPv6 protocol.
+        /// </summary>
         public readonly string ClusterIpv6Range;
+        /// <summary>
+        /// The Kubernetes cluster creation timestamp.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// A description of the Kubernetes cluster.
+        /// </summary>
         public readonly string Description;
         public readonly string FolderId;
+        /// <summary>
+        /// Health of the Kubernetes cluster.
+        /// </summary>
         public readonly string Health;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// cluster KMS provider parameters.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterKmsProviderResult> KmsProviders;
+        /// <summary>
+        /// A set of key/value label pairs to assign to the Kubernetes cluster.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        /// </summary>
         public readonly string LogGroupId;
+        /// <summary>
+        /// Kubernetes master configuration options. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterMasterResult> Masters;
         public readonly string Name;
+        /// <summary>
+        /// The ID of the cluster network.
+        /// </summary>
         public readonly string NetworkId;
+        /// <summary>
+        /// (Optional) Network Implementation options. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterNetworkImplementationResult> NetworkImplementations;
+        /// <summary>
+        /// Network policy provider for the cluster, if present. Possible values: `CALICO`.
+        /// </summary>
         public readonly string NetworkPolicyProvider;
+        /// <summary>
+        /// Size of the masks that are assigned to each node in the cluster.
+        /// </summary>
         public readonly int NodeIpv4CidrMaskSize;
+        /// <summary>
+        /// Service account to be used by the worker nodes of the Kubernetes cluster
+        /// to access Container Registry or to push node logs and metrics.
+        /// </summary>
         public readonly string NodeServiceAccountId;
+        /// <summary>
+        /// Cluster release channel.
+        /// </summary>
         public readonly string ReleaseChannel;
+        /// <summary>
+        /// Service account to be used for provisioning Compute Cloud and VPC resources
+        /// for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+        /// cluster will be located and on the folder where selected network resides.
+        /// </summary>
         public readonly string ServiceAccountId;
+        /// <summary>
+        /// IP range Kubernetes services Kubernetes cluster IP addresses will be allocated from.
+        /// </summary>
         public readonly string ServiceIpv4Range;
+        /// <summary>
+        /// Identical to service_ipv4_range but for the IPv6 protocol.
+        /// </summary>
         public readonly string ServiceIpv6Range;
+        /// <summary>
+        /// Status of the Kubernetes cluster.
+        /// </summary>
         public readonly string Status;
 
         [OutputConstructor]

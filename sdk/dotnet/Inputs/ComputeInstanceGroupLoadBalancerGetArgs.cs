@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class ComputeInstanceGroupLoadBalancerGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+        /// </summary>
         [Input("maxOpeningTrafficDuration")]
         public Input<int>? MaxOpeningTrafficDuration { get; set; }
 
+        /// <summary>
+        /// The status message of the instance.
+        /// </summary>
         [Input("statusMessage")]
         public Input<string>? StatusMessage { get; set; }
 
+        /// <summary>
+        /// A description of the target group.
+        /// </summary>
         [Input("targetGroupDescription")]
         public Input<string>? TargetGroupDescription { get; set; }
 
@@ -26,12 +35,19 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("targetGroupLabels")]
         private InputMap<string>? _targetGroupLabels;
+
+        /// <summary>
+        /// A set of key/value label pairs.
+        /// </summary>
         public InputMap<string> TargetGroupLabels
         {
             get => _targetGroupLabels ?? (_targetGroupLabels = new InputMap<string>());
             set => _targetGroupLabels = value;
         }
 
+        /// <summary>
+        /// The name of the target group.
+        /// </summary>
         [Input("targetGroupName")]
         public Input<string>? TargetGroupName { get; set; }
 

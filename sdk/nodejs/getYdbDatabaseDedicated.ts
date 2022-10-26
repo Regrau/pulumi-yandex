@@ -5,6 +5,23 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Database (dedicated) cluster.
+ * For more information, see [the official documentation](https://cloud.yandex.com/en/docs/ydb/concepts/serverless_and_dedicated).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const myDatabase = pulumi.output(yandex.getYdbDatabaseDedicated({
+ *     databaseId: "some_ydb_dedicated_database_id",
+ * }));
+ *
+ * export const ydbApiEndpoint = myDatabase.ydbApiEndpoint;
+ * ```
+ */
 export function getYdbDatabaseDedicated(args?: GetYdbDatabaseDedicatedArgs, opts?: pulumi.InvokeOptions): Promise<GetYdbDatabaseDedicatedResult> {
     args = args || {};
     if (!opts) {
@@ -24,9 +41,22 @@ export function getYdbDatabaseDedicated(args?: GetYdbDatabaseDedicatedArgs, opts
  * A collection of arguments for invoking getYdbDatabaseDedicated.
  */
 export interface GetYdbDatabaseDedicatedArgs {
+    /**
+     * ID of the Yandex Database cluster.
+     */
     databaseId?: string;
+    /**
+     * Inhibits deletion of the database. Can be either `true` or `false`
+     */
     deletionProtection?: boolean;
+    /**
+     * ID of the folder that the Yandex Database cluster belongs to.
+     * It will be deduced from provider configuration if not set explicitly.
+     */
     folderId?: string;
+    /**
+     * Name of the Yandex Database cluster.
+     */
     name?: string;
 }
 
@@ -34,29 +64,86 @@ export interface GetYdbDatabaseDedicatedArgs {
  * A collection of values returned by getYdbDatabaseDedicated.
  */
 export interface GetYdbDatabaseDedicatedResult {
+    /**
+     * Whether public IP addresses are assigned to the Yandex Database cluster.
+     */
     readonly assignPublicIps: boolean;
+    /**
+     * The Yandex Database cluster creation timestamp.
+     */
     readonly createdAt: string;
     readonly databaseId?: string;
+    /**
+     * Full database path of the Yandex Database cluster.
+     * Useful for SDK configuration.
+     */
     readonly databasePath: string;
+    /**
+     * Inhibits deletion of the database. Can be either `true` or `false`
+     */
     readonly deletionProtection: boolean;
+    /**
+     * A description of the Yandex Database cluster.
+     */
     readonly description: string;
     readonly folderId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A set of key/value label pairs assigned to the Yandex Database cluster.
+     */
     readonly labels: {[key: string]: string};
+    /**
+     * Location ID of the Yandex Database cluster.
+     */
     readonly locationId: string;
+    /**
+     * Location of the Yandex Database cluster.
+     * The structure is documented below.
+     */
     readonly locations: outputs.GetYdbDatabaseDedicatedLocation[];
     readonly name?: string;
+    /**
+     * ID of the network the Yandex Database cluster is attached to.
+     */
     readonly networkId: string;
+    /**
+     * The Yandex Database cluster preset.
+     */
     readonly resourcePresetId: string;
+    /**
+     * Scaling policy of the Yandex Database cluster.
+     * The structure is documented below.
+     */
     readonly scalePolicies: outputs.GetYdbDatabaseDedicatedScalePolicy[];
+    /**
+     * Status of the Yandex Database cluster.
+     */
     readonly status: string;
+    /**
+     * A list of storage configuration options of the Yandex Database cluster.
+     * The structure is documented below.
+     */
     readonly storageConfigs: outputs.GetYdbDatabaseDedicatedStorageConfig[];
+    /**
+     * List of subnet IDs the Yandex Database cluster is attached to.
+     */
     readonly subnetIds: string[];
+    /**
+     * Whether TLS is enabled for the Yandex Database cluster.
+     * Useful for SDK configuration.
+     */
     readonly tlsEnabled: boolean;
+    /**
+     * API endpoint of the Yandex Database cluster.
+     * Useful for SDK configuration.
+     */
     readonly ydbApiEndpoint: string;
+    /**
+     * Full endpoint of the Yandex Database cluster.
+     */
     readonly ydbFullEndpoint: string;
 }
 
@@ -68,8 +155,21 @@ export function getYdbDatabaseDedicatedOutput(args?: GetYdbDatabaseDedicatedOutp
  * A collection of arguments for invoking getYdbDatabaseDedicated.
  */
 export interface GetYdbDatabaseDedicatedOutputArgs {
+    /**
+     * ID of the Yandex Database cluster.
+     */
     databaseId?: pulumi.Input<string>;
+    /**
+     * Inhibits deletion of the database. Can be either `true` or `false`
+     */
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * ID of the folder that the Yandex Database cluster belongs to.
+     * It will be deduced from provider configuration if not set explicitly.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Name of the Yandex Database cluster.
+     */
     name?: pulumi.Input<string>;
 }

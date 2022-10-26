@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsMongoTargetConnection
     {
+        /// <summary>
+        /// Connection options. The structure is documented below.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptions? ConnectionOptions;
 
         [OutputConstructor]

@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbClickhouseClusterClickhouse
     {
+        /// <summary>
+        /// Main ClickHouse cluster configuration.
+        /// </summary>
         public readonly Outputs.MdbClickhouseClusterClickhouseConfig? Config;
+        /// <summary>
+        /// Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        /// </summary>
         public readonly Outputs.MdbClickhouseClusterClickhouseResources Resources;
 
         [OutputConstructor]

@@ -4,6 +4,62 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a Data Transfer transfer. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-transfer/).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const pgSource = new yandex.DatatransferEndpoint("pgSource", {settings: {
+ *     postgresSource: {
+ *         connection: {
+ *             onPremise: {
+ *                 hosts: ["example.org"],
+ *                 port: 5432,
+ *             },
+ *         },
+ *         slotGigabyteLagLimit: 100,
+ *         database: "db1",
+ *         user: "user1",
+ *         password: {
+ *             raw: "123",
+ *         },
+ *     },
+ * }});
+ * const pgTarget = new yandex.DatatransferEndpoint("pgTarget", {
+ *     folderId: "some_folder_id",
+ *     settings: {
+ *         postgresTarget: {
+ *             connection: {
+ *                 mdbClusterId: "some_cluster_id",
+ *             },
+ *             database: "db2",
+ *             user: "user2",
+ *             password: {
+ *                 raw: "321",
+ *             },
+ *         },
+ *     },
+ * });
+ * const pgpgTransfer = new yandex.DatatransferTransfer("pgpgTransfer", {
+ *     folderId: "some_folder_id",
+ *     sourceId: pgSource.id,
+ *     targetId: pgTarget.id,
+ *     type: "SNAPSHOT_AND_INCREMENT",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A transfer can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/datatransferTransfer:DatatransferTransfer foo transfer_id
+ * ```
+ */
 export class DatatransferTransfer extends pulumi.CustomResource {
     /**
      * Get an existing DatatransferTransfer resource's state with the given name, ID, and optional extra
@@ -32,13 +88,37 @@ export class DatatransferTransfer extends pulumi.CustomResource {
         return obj['__pulumiType'] === DatatransferTransfer.__pulumiType;
     }
 
+    /**
+     * Arbitrary description text for the transfer.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * A set of key/value label pairs to assign to the Data Transfer transfer.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Name of the transfer.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * ID of the source endpoint for the transfer.
+     */
     public readonly sourceId!: pulumi.Output<string | undefined>;
+    /**
+     * ID of the target endpoint for the transfer.
+     */
     public readonly targetId!: pulumi.Output<string | undefined>;
+    /**
+     * Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
+     */
     public readonly type!: pulumi.Output<string | undefined>;
+    /**
+     * (Computed) Error description if transfer has any errors.
+     */
     public /*out*/ readonly warning!: pulumi.Output<string>;
 
     /**
@@ -82,13 +162,37 @@ export class DatatransferTransfer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DatatransferTransfer resources.
  */
 export interface DatatransferTransferState {
+    /**
+     * Arbitrary description text for the transfer.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the Data Transfer transfer.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the transfer.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the source endpoint for the transfer.
+     */
     sourceId?: pulumi.Input<string>;
+    /**
+     * ID of the target endpoint for the transfer.
+     */
     targetId?: pulumi.Input<string>;
+    /**
+     * Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
+     */
     type?: pulumi.Input<string>;
+    /**
+     * (Computed) Error description if transfer has any errors.
+     */
     warning?: pulumi.Input<string>;
 }
 
@@ -96,11 +200,32 @@ export interface DatatransferTransferState {
  * The set of arguments for constructing a DatatransferTransfer resource.
  */
 export interface DatatransferTransferArgs {
+    /**
+     * Arbitrary description text for the transfer.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the Data Transfer transfer.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the transfer.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the source endpoint for the transfer.
+     */
     sourceId?: pulumi.Input<string>;
+    /**
+     * ID of the target endpoint for the transfer.
+     */
     targetId?: pulumi.Input<string>;
+    /**
+     * Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
+     */
     type?: pulumi.Input<string>;
 }

@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Yandex Cloud Logging group resource. For more information, see
+ * [the official documentation](https://cloud.yandex.com/en/docs/logging/concepts/log-group).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const group1 = new yandex.LoggingGroup("group1", {
+ *     folderId: yandex_resourcemanager_folder_test_folder.id,
+ * });
+ * ```
+ */
 export class LoggingGroup extends pulumi.CustomResource {
     /**
      * Get an existing LoggingGroup resource's state with the given name, ID, and optional extra
@@ -32,13 +47,38 @@ export class LoggingGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === LoggingGroup.__pulumiType;
     }
 
+    /**
+     * ID of the cloud that the Yandex Cloud Logging group belong to.
+     */
     public /*out*/ readonly cloudId!: pulumi.Output<string>;
+    /**
+     * The Yandex Cloud Logging group creation timestamp.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * A description for the Yandex Cloud Logging group.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * ID of the folder that the Yandex Cloud Logging group belongs to.
+     * It will be deduced from provider configuration if not set explicitly.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Name for the Yandex Cloud Logging group.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Log entries retention period for the Yandex Cloud Logging group.
+     */
     public readonly retentionPeriod!: pulumi.Output<string>;
+    /**
+     * The Yandex Cloud Logging group status.
+     */
     public /*out*/ readonly status!: pulumi.Output<string>;
 
     /**
@@ -82,13 +122,38 @@ export class LoggingGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LoggingGroup resources.
  */
 export interface LoggingGroupState {
+    /**
+     * ID of the cloud that the Yandex Cloud Logging group belong to.
+     */
     cloudId?: pulumi.Input<string>;
+    /**
+     * The Yandex Cloud Logging group creation timestamp.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * A description for the Yandex Cloud Logging group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * ID of the folder that the Yandex Cloud Logging group belongs to.
+     * It will be deduced from provider configuration if not set explicitly.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name for the Yandex Cloud Logging group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Log entries retention period for the Yandex Cloud Logging group.
+     */
     retentionPeriod?: pulumi.Input<string>;
+    /**
+     * The Yandex Cloud Logging group status.
+     */
     status?: pulumi.Input<string>;
 }
 
@@ -96,9 +161,25 @@ export interface LoggingGroupState {
  * The set of arguments for constructing a LoggingGroup resource.
  */
 export interface LoggingGroupArgs {
+    /**
+     * A description for the Yandex Cloud Logging group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * ID of the folder that the Yandex Cloud Logging group belongs to.
+     * It will be deduced from provider configuration if not set explicitly.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the Yandex Cloud Logging group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name for the Yandex Cloud Logging group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Log entries retention period for the Yandex Cloud Logging group.
+     */
     retentionPeriod?: pulumi.Input<string>;
 }

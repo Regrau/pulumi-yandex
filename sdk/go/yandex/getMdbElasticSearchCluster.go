@@ -10,6 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex Managed Elasticsearch cluster. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/concepts).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			foo, err := yandex.LookupMdbElasticSearchCluster(ctx, &GetMdbElasticSearchClusterArgs{
+//				Name: pulumi.StringRef("test"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("networkId", foo.NetworkId)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupMdbElasticSearchCluster(ctx *pulumi.Context, args *LookupMdbElasticSearchClusterArgs, opts ...pulumi.InvokeOption) (*LookupMdbElasticSearchClusterResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupMdbElasticSearchClusterResult
@@ -22,36 +51,54 @@ func LookupMdbElasticSearchCluster(ctx *pulumi.Context, args *LookupMdbElasticSe
 
 // A collection of arguments for invoking getMdbElasticSearchCluster.
 type LookupMdbElasticSearchClusterArgs struct {
-	ClusterId          *string           `pulumi:"clusterId"`
-	DeletionProtection *bool             `pulumi:"deletionProtection"`
-	Description        *string           `pulumi:"description"`
-	FolderId           *string           `pulumi:"folderId"`
-	Labels             map[string]string `pulumi:"labels"`
-	Name               *string           `pulumi:"name"`
-	SecurityGroupIds   []string          `pulumi:"securityGroupIds"`
-	ServiceAccountId   *string           `pulumi:"serviceAccountId"`
+	// The ID of the Elasticsearch cluster.
+	ClusterId          *string `pulumi:"clusterId"`
+	DeletionProtection *bool   `pulumi:"deletionProtection"`
+	// Description of the Elasticsearch cluster.
+	Description *string `pulumi:"description"`
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Elasticsearch cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the Elasticsearch cluster.
+	Name *string `pulumi:"name"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// ID of the service account authorized for this cluster.
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
 }
 
 // A collection of values returned by getMdbElasticSearchCluster.
 type LookupMdbElasticSearchClusterResult struct {
-	ClusterId          string                             `pulumi:"clusterId"`
-	Configs            []GetMdbElasticSearchClusterConfig `pulumi:"configs"`
-	CreatedAt          string                             `pulumi:"createdAt"`
-	DeletionProtection bool                               `pulumi:"deletionProtection"`
-	Description        string                             `pulumi:"description"`
-	Environment        string                             `pulumi:"environment"`
-	FolderId           string                             `pulumi:"folderId"`
-	Health             string                             `pulumi:"health"`
-	Hosts              []GetMdbElasticSearchClusterHost   `pulumi:"hosts"`
+	ClusterId string `pulumi:"clusterId"`
+	// Configuration of the Elasticsearch cluster. The structure is documented below.
+	Configs []GetMdbElasticSearchClusterConfig `pulumi:"configs"`
+	// Creation timestamp of the key.
+	CreatedAt          string `pulumi:"createdAt"`
+	DeletionProtection bool   `pulumi:"deletionProtection"`
+	// Description of the Elasticsearch cluster.
+	Description string `pulumi:"description"`
+	// Deployment environment of the Elasticsearch cluster.
+	Environment string `pulumi:"environment"`
+	FolderId    string `pulumi:"folderId"`
+	// Aggregated health of the cluster.
+	Health string `pulumi:"health"`
+	// A host of the Elasticsearch cluster. The structure is documented below.
+	Hosts []GetMdbElasticSearchClusterHost `pulumi:"hosts"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                 string                                        `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// A set of key/value label pairs to assign to the Elasticsearch cluster.
 	Labels             map[string]string                             `pulumi:"labels"`
 	MaintenanceWindows []GetMdbElasticSearchClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
 	Name               string                                        `pulumi:"name"`
-	NetworkId          string                                        `pulumi:"networkId"`
-	SecurityGroupIds   []string                                      `pulumi:"securityGroupIds"`
-	ServiceAccountId   string                                        `pulumi:"serviceAccountId"`
-	Status             string                                        `pulumi:"status"`
+	// ID of the network, to which the Elasticsearch cluster belongs.
+	NetworkId string `pulumi:"networkId"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// ID of the service account authorized for this cluster.
+	ServiceAccountId string `pulumi:"serviceAccountId"`
+	// Status of the cluster.
+	Status string `pulumi:"status"`
 }
 
 func LookupMdbElasticSearchClusterOutput(ctx *pulumi.Context, args LookupMdbElasticSearchClusterOutputArgs, opts ...pulumi.InvokeOption) LookupMdbElasticSearchClusterResultOutput {
@@ -69,14 +116,21 @@ func LookupMdbElasticSearchClusterOutput(ctx *pulumi.Context, args LookupMdbElas
 
 // A collection of arguments for invoking getMdbElasticSearchCluster.
 type LookupMdbElasticSearchClusterOutputArgs struct {
-	ClusterId          pulumi.StringPtrInput   `pulumi:"clusterId"`
-	DeletionProtection pulumi.BoolPtrInput     `pulumi:"deletionProtection"`
-	Description        pulumi.StringPtrInput   `pulumi:"description"`
-	FolderId           pulumi.StringPtrInput   `pulumi:"folderId"`
-	Labels             pulumi.StringMapInput   `pulumi:"labels"`
-	Name               pulumi.StringPtrInput   `pulumi:"name"`
-	SecurityGroupIds   pulumi.StringArrayInput `pulumi:"securityGroupIds"`
-	ServiceAccountId   pulumi.StringPtrInput   `pulumi:"serviceAccountId"`
+	// The ID of the Elasticsearch cluster.
+	ClusterId          pulumi.StringPtrInput `pulumi:"clusterId"`
+	DeletionProtection pulumi.BoolPtrInput   `pulumi:"deletionProtection"`
+	// Description of the Elasticsearch cluster.
+	Description pulumi.StringPtrInput `pulumi:"description"`
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Elasticsearch cluster.
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// The name of the Elasticsearch cluster.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
+	// ID of the service account authorized for this cluster.
+	ServiceAccountId pulumi.StringPtrInput `pulumi:"serviceAccountId"`
 }
 
 func (LookupMdbElasticSearchClusterOutputArgs) ElementType() reflect.Type {
@@ -102,10 +156,12 @@ func (o LookupMdbElasticSearchClusterResultOutput) ClusterId() pulumi.StringOutp
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
+// Configuration of the Elasticsearch cluster. The structure is documented below.
 func (o LookupMdbElasticSearchClusterResultOutput) Configs() GetMdbElasticSearchClusterConfigArrayOutput {
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) []GetMdbElasticSearchClusterConfig { return v.Configs }).(GetMdbElasticSearchClusterConfigArrayOutput)
 }
 
+// Creation timestamp of the key.
 func (o LookupMdbElasticSearchClusterResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -114,10 +170,12 @@ func (o LookupMdbElasticSearchClusterResultOutput) DeletionProtection() pulumi.B
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) bool { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
+// Description of the Elasticsearch cluster.
 func (o LookupMdbElasticSearchClusterResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Deployment environment of the Elasticsearch cluster.
 func (o LookupMdbElasticSearchClusterResultOutput) Environment() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) string { return v.Environment }).(pulumi.StringOutput)
 }
@@ -126,10 +184,12 @@ func (o LookupMdbElasticSearchClusterResultOutput) FolderId() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) string { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Aggregated health of the cluster.
 func (o LookupMdbElasticSearchClusterResultOutput) Health() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) string { return v.Health }).(pulumi.StringOutput)
 }
 
+// A host of the Elasticsearch cluster. The structure is documented below.
 func (o LookupMdbElasticSearchClusterResultOutput) Hosts() GetMdbElasticSearchClusterHostArrayOutput {
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) []GetMdbElasticSearchClusterHost { return v.Hosts }).(GetMdbElasticSearchClusterHostArrayOutput)
 }
@@ -139,6 +199,7 @@ func (o LookupMdbElasticSearchClusterResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the Elasticsearch cluster.
 func (o LookupMdbElasticSearchClusterResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -153,18 +214,22 @@ func (o LookupMdbElasticSearchClusterResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network, to which the Elasticsearch cluster belongs.
 func (o LookupMdbElasticSearchClusterResultOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) string { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// A set of ids of security groups assigned to hosts of the cluster.
 func (o LookupMdbElasticSearchClusterResultOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) []string { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// ID of the service account authorized for this cluster.
 func (o LookupMdbElasticSearchClusterResultOutput) ServiceAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) string { return v.ServiceAccountId }).(pulumi.StringOutput)
 }
 
+// Status of the cluster.
 func (o LookupMdbElasticSearchClusterResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbElasticSearchClusterResult) string { return v.Status }).(pulumi.StringOutput)
 }

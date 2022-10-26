@@ -4,6 +4,22 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * A Disk Placement Group resource. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/compute/concepts/disk#nr-disks).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const group1 = new yandex.ComputeDiskPlacementGroup("group1", {
+ *     description: "my description",
+ *     folderId: "abc*********123",
+ * });
+ * ```
+ */
 export class ComputeDiskPlacementGroup extends pulumi.CustomResource {
     /**
      * Get an existing ComputeDiskPlacementGroup resource's state with the given name, ID, and optional extra
@@ -33,11 +49,29 @@ export class ComputeDiskPlacementGroup extends pulumi.CustomResource {
     }
 
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * A description of the Disk Placement Group.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * A set of key/value label pairs to assign to the Disk Placement Group.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * The name of the Disk Placement Group.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Status of the Disk Placement Group.
+     */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * ID of the zone where the Disk Placement Group resides.
+     */
     public readonly zone!: pulumi.Output<string | undefined>;
 
     /**
@@ -80,11 +114,29 @@ export class ComputeDiskPlacementGroup extends pulumi.CustomResource {
  */
 export interface ComputeDiskPlacementGroupState {
     createdAt?: pulumi.Input<string>;
+    /**
+     * A description of the Disk Placement Group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the Disk Placement Group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the Disk Placement Group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Status of the Disk Placement Group.
+     */
     status?: pulumi.Input<string>;
+    /**
+     * ID of the zone where the Disk Placement Group resides.
+     */
     zone?: pulumi.Input<string>;
 }
 
@@ -92,9 +144,24 @@ export interface ComputeDiskPlacementGroupState {
  * The set of arguments for constructing a ComputeDiskPlacementGroup resource.
  */
 export interface ComputeDiskPlacementGroupArgs {
+    /**
+     * A description of the Disk Placement Group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the Disk Placement Group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the Disk Placement Group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the zone where the Disk Placement Group resides.
+     */
     zone?: pulumi.Input<string>;
 }

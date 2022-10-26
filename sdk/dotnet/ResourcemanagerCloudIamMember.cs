@@ -9,15 +9,69 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows creation and management of a single member for a single binding within
+    /// the IAM policy for an existing Yandex Resource Manager cloud.
+    /// 
+    /// &gt; **Note:** Roles controlled by `yandex.ResourcemanagerCloudIamBinding`
+    ///    should not be assigned using `yandex.ResourcemanagerCloudIamMember`.
+    /// 
+    /// &gt; **Note:** When you delete `yandex.ResourcemanagerCloudIamBinding` resource,
+    ///    the roles can be deleted from other users within the cloud as well. Be careful!
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var department1 = Yandex.GetResourcemanagerCloud.Invoke(new()
+    ///     {
+    ///         Name = "Department 1",
+    ///     });
+    /// 
+    ///     var admin = new Yandex.ResourcemanagerCloudIamMember("admin", new()
+    ///     {
+    ///         CloudId = department1.Apply(getResourcemanagerCloudResult =&gt; getResourcemanagerCloudResult.Id),
+    ///         Member = "userAccount:user_id",
+    ///         Role = "editor",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the `cloud id`, role, and account, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/resourcemanagerCloudIamMember:ResourcemanagerCloudIamMember my_project "cloud_id viewer foo@example.com"
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/resourcemanagerCloudIamMember:ResourcemanagerCloudIamMember")]
     public partial class ResourcemanagerCloudIamMember : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// ID of the cloud to attach a policy to.
+        /// </summary>
         [Output("cloudId")]
         public Output<string> CloudId { get; private set; } = null!;
 
+        /// <summary>
+        /// The identity that will be granted the privilege that is specified in the `role` field.
+        /// This field can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// </summary>
         [Output("member")]
         public Output<string> Member { get; private set; } = null!;
 
+        /// <summary>
+        /// The role that should be assigned.
+        /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
 
@@ -47,7 +101,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -71,12 +125,24 @@ namespace Pulumi.Yandex
 
     public sealed class ResourcemanagerCloudIamMemberArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the cloud to attach a policy to.
+        /// </summary>
         [Input("cloudId", required: true)]
         public Input<string> CloudId { get; set; } = null!;
 
+        /// <summary>
+        /// The identity that will be granted the privilege that is specified in the `role` field.
+        /// This field can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// </summary>
         [Input("member", required: true)]
         public Input<string> Member { get; set; } = null!;
 
+        /// <summary>
+        /// The role that should be assigned.
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
@@ -91,12 +157,24 @@ namespace Pulumi.Yandex
 
     public sealed class ResourcemanagerCloudIamMemberState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the cloud to attach a policy to.
+        /// </summary>
         [Input("cloudId")]
         public Input<string>? CloudId { get; set; }
 
+        /// <summary>
+        /// The identity that will be granted the privilege that is specified in the `role` field.
+        /// This field can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// </summary>
         [Input("member")]
         public Input<string>? Member { get; set; }
 
+        /// <summary>
+        /// The role that should be assigned.
+        /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 

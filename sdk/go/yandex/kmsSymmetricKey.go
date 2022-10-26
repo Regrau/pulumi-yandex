@@ -10,18 +10,66 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewKmsSymmetricKey(ctx, "key-a", &yandex.KmsSymmetricKeyArgs{
+//				DefaultAlgorithm: pulumi.String("AES_128"),
+//				Description:      pulumi.String("description for key"),
+//				RotationPeriod:   pulumi.String("8760h"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A KMS symmetric key can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/kmsSymmetricKey:KmsSymmetricKey top-secret kms_key_id
+//
+// ```
 type KmsSymmetricKey struct {
 	pulumi.CustomResourceState
 
-	CreatedAt        pulumi.StringOutput    `pulumi:"createdAt"`
+	// Creation timestamp of the key.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Encryption algorithm to be used with a new key version,
+	// generated with the next rotation. The default value is `AES_128`.
 	DefaultAlgorithm pulumi.StringPtrOutput `pulumi:"defaultAlgorithm"`
-	Description      pulumi.StringPtrOutput `pulumi:"description"`
-	FolderId         pulumi.StringOutput    `pulumi:"folderId"`
-	Labels           pulumi.StringMapOutput `pulumi:"labels"`
-	Name             pulumi.StringOutput    `pulumi:"name"`
-	RotatedAt        pulumi.StringOutput    `pulumi:"rotatedAt"`
-	RotationPeriod   pulumi.StringPtrOutput `pulumi:"rotationPeriod"`
-	Status           pulumi.StringOutput    `pulumi:"status"`
+	// An optional description of the key.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the key.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the key.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Last rotation timestamp of the key.
+	RotatedAt pulumi.StringOutput `pulumi:"rotatedAt"`
+	// Interval between automatic rotations. To disable automatic rotation, omit this parameter.
+	RotationPeriod pulumi.StringPtrOutput `pulumi:"rotationPeriod"`
+	// The status of the key.
+	Status pulumi.StringOutput `pulumi:"status"`
 }
 
 // NewKmsSymmetricKey registers a new resource with the given unique name, arguments, and options.
@@ -54,27 +102,49 @@ func GetKmsSymmetricKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KmsSymmetricKey resources.
 type kmsSymmetricKeyState struct {
-	CreatedAt        *string           `pulumi:"createdAt"`
-	DefaultAlgorithm *string           `pulumi:"defaultAlgorithm"`
-	Description      *string           `pulumi:"description"`
-	FolderId         *string           `pulumi:"folderId"`
-	Labels           map[string]string `pulumi:"labels"`
-	Name             *string           `pulumi:"name"`
-	RotatedAt        *string           `pulumi:"rotatedAt"`
-	RotationPeriod   *string           `pulumi:"rotationPeriod"`
-	Status           *string           `pulumi:"status"`
+	// Creation timestamp of the key.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Encryption algorithm to be used with a new key version,
+	// generated with the next rotation. The default value is `AES_128`.
+	DefaultAlgorithm *string `pulumi:"defaultAlgorithm"`
+	// An optional description of the key.
+	Description *string `pulumi:"description"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the key.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the key.
+	Name *string `pulumi:"name"`
+	// Last rotation timestamp of the key.
+	RotatedAt *string `pulumi:"rotatedAt"`
+	// Interval between automatic rotations. To disable automatic rotation, omit this parameter.
+	RotationPeriod *string `pulumi:"rotationPeriod"`
+	// The status of the key.
+	Status *string `pulumi:"status"`
 }
 
 type KmsSymmetricKeyState struct {
-	CreatedAt        pulumi.StringPtrInput
+	// Creation timestamp of the key.
+	CreatedAt pulumi.StringPtrInput
+	// Encryption algorithm to be used with a new key version,
+	// generated with the next rotation. The default value is `AES_128`.
 	DefaultAlgorithm pulumi.StringPtrInput
-	Description      pulumi.StringPtrInput
-	FolderId         pulumi.StringPtrInput
-	Labels           pulumi.StringMapInput
-	Name             pulumi.StringPtrInput
-	RotatedAt        pulumi.StringPtrInput
-	RotationPeriod   pulumi.StringPtrInput
-	Status           pulumi.StringPtrInput
+	// An optional description of the key.
+	Description pulumi.StringPtrInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the key.
+	Labels pulumi.StringMapInput
+	// Name of the key.
+	Name pulumi.StringPtrInput
+	// Last rotation timestamp of the key.
+	RotatedAt pulumi.StringPtrInput
+	// Interval between automatic rotations. To disable automatic rotation, omit this parameter.
+	RotationPeriod pulumi.StringPtrInput
+	// The status of the key.
+	Status pulumi.StringPtrInput
 }
 
 func (KmsSymmetricKeyState) ElementType() reflect.Type {
@@ -82,22 +152,38 @@ func (KmsSymmetricKeyState) ElementType() reflect.Type {
 }
 
 type kmsSymmetricKeyArgs struct {
-	DefaultAlgorithm *string           `pulumi:"defaultAlgorithm"`
-	Description      *string           `pulumi:"description"`
-	FolderId         *string           `pulumi:"folderId"`
-	Labels           map[string]string `pulumi:"labels"`
-	Name             *string           `pulumi:"name"`
-	RotationPeriod   *string           `pulumi:"rotationPeriod"`
+	// Encryption algorithm to be used with a new key version,
+	// generated with the next rotation. The default value is `AES_128`.
+	DefaultAlgorithm *string `pulumi:"defaultAlgorithm"`
+	// An optional description of the key.
+	Description *string `pulumi:"description"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the key.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the key.
+	Name *string `pulumi:"name"`
+	// Interval between automatic rotations. To disable automatic rotation, omit this parameter.
+	RotationPeriod *string `pulumi:"rotationPeriod"`
 }
 
 // The set of arguments for constructing a KmsSymmetricKey resource.
 type KmsSymmetricKeyArgs struct {
+	// Encryption algorithm to be used with a new key version,
+	// generated with the next rotation. The default value is `AES_128`.
 	DefaultAlgorithm pulumi.StringPtrInput
-	Description      pulumi.StringPtrInput
-	FolderId         pulumi.StringPtrInput
-	Labels           pulumi.StringMapInput
-	Name             pulumi.StringPtrInput
-	RotationPeriod   pulumi.StringPtrInput
+	// An optional description of the key.
+	Description pulumi.StringPtrInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the key.
+	Labels pulumi.StringMapInput
+	// Name of the key.
+	Name pulumi.StringPtrInput
+	// Interval between automatic rotations. To disable automatic rotation, omit this parameter.
+	RotationPeriod pulumi.StringPtrInput
 }
 
 func (KmsSymmetricKeyArgs) ElementType() reflect.Type {
@@ -187,38 +273,49 @@ func (o KmsSymmetricKeyOutput) ToKmsSymmetricKeyOutputWithContext(ctx context.Co
 	return o
 }
 
+// Creation timestamp of the key.
 func (o KmsSymmetricKeyOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *KmsSymmetricKey) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Encryption algorithm to be used with a new key version,
+// generated with the next rotation. The default value is `AES_128`.
 func (o KmsSymmetricKeyOutput) DefaultAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KmsSymmetricKey) pulumi.StringPtrOutput { return v.DefaultAlgorithm }).(pulumi.StringPtrOutput)
 }
 
+// An optional description of the key.
 func (o KmsSymmetricKeyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KmsSymmetricKey) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the folder that the resource belongs to. If it
+// is not provided, the default provider folder is used.
 func (o KmsSymmetricKeyOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KmsSymmetricKey) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the key.
 func (o KmsSymmetricKeyOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *KmsSymmetricKey) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the key.
 func (o KmsSymmetricKeyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *KmsSymmetricKey) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Last rotation timestamp of the key.
 func (o KmsSymmetricKeyOutput) RotatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *KmsSymmetricKey) pulumi.StringOutput { return v.RotatedAt }).(pulumi.StringOutput)
 }
 
+// Interval between automatic rotations. To disable automatic rotation, omit this parameter.
 func (o KmsSymmetricKeyOutput) RotationPeriod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KmsSymmetricKey) pulumi.StringPtrOutput { return v.RotationPeriod }).(pulumi.StringPtrOutput)
 }
 
+// The status of the key.
 func (o KmsSymmetricKeyOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *KmsSymmetricKey) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

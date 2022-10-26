@@ -10,6 +10,49 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Generates an [IAM] policy document that may be referenced by and applied to
+// other Yandex.Cloud Platform resources, such as the `ResourcemanagerFolder` resource.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.GetIamPolicy(ctx, &GetIamPolicyArgs{
+//				Bindings: []GetIamPolicyBinding{
+//					GetIamPolicyBinding{
+//						Members: []string{
+//							"userAccount:user_id_1",
+//						},
+//						Role: "admin",
+//					},
+//					GetIamPolicyBinding{
+//						Members: []string{
+//							"userAccount:user_id_2",
+//						},
+//						Role: "viewer",
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// This data source is used to define [IAM] policies to apply to other resources.
+// Currently, defining a policy through a data source and referencing that policy
+// from another resource is the only way to apply an IAM policy to a resource.
 func GetIamPolicy(ctx *pulumi.Context, args *GetIamPolicyArgs, opts ...pulumi.InvokeOption) (*GetIamPolicyResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetIamPolicyResult
@@ -22,6 +65,9 @@ func GetIamPolicy(ctx *pulumi.Context, args *GetIamPolicyArgs, opts ...pulumi.In
 
 // A collection of arguments for invoking getIamPolicy.
 type GetIamPolicyArgs struct {
+	// A nested configuration block (described below)
+	// that defines a binding to be included in the policy document. Multiple
+	// `binding` arguments are supported.
 	Bindings []GetIamPolicyBinding `pulumi:"bindings"`
 }
 
@@ -29,7 +75,9 @@ type GetIamPolicyArgs struct {
 type GetIamPolicyResult struct {
 	Bindings []GetIamPolicyBinding `pulumi:"bindings"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// The above bindings serialized in a format suitable for
+	// referencing from a resource that supports IAM.
 	PolicyData string `pulumi:"policyData"`
 }
 
@@ -48,6 +96,9 @@ func GetIamPolicyOutput(ctx *pulumi.Context, args GetIamPolicyOutputArgs, opts .
 
 // A collection of arguments for invoking getIamPolicy.
 type GetIamPolicyOutputArgs struct {
+	// A nested configuration block (described below)
+	// that defines a binding to be included in the policy document. Multiple
+	// `binding` arguments are supported.
 	Bindings GetIamPolicyBindingArrayInput `pulumi:"bindings"`
 }
 
@@ -79,6 +130,8 @@ func (o GetIamPolicyResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIamPolicyResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// The above bindings serialized in a format suitable for
+// referencing from a resource that supports IAM.
 func (o GetIamPolicyResultOutput) PolicyData() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIamPolicyResult) string { return v.PolicyData }).(pulumi.StringOutput)
 }

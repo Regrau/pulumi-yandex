@@ -4,6 +4,24 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Container Repository. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/repository)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const repo_1 = pulumi.output(yandex.getContainerRepository({
+ *     name: "some_repository_name",
+ * }));
+ * const repo_2 = pulumi.output(yandex.getContainerRepository({
+ *     repositoryId: "some_repository_id",
+ * }));
+ * ```
+ */
 export function getContainerRepository(args?: GetContainerRepositoryArgs, opts?: pulumi.InvokeOptions): Promise<GetContainerRepositoryResult> {
     args = args || {};
     if (!opts) {
@@ -21,7 +39,13 @@ export function getContainerRepository(args?: GetContainerRepositoryArgs, opts?:
  * A collection of arguments for invoking getContainerRepository.
  */
 export interface GetContainerRepositoryArgs {
+    /**
+     * Name of the repository. The name of the repository should start with id of a container registry and match the name of the images in the repository.
+     */
     name?: string;
+    /**
+     * The ID of a specific repository.
+     */
     repositoryId?: string;
 }
 
@@ -45,6 +69,12 @@ export function getContainerRepositoryOutput(args?: GetContainerRepositoryOutput
  * A collection of arguments for invoking getContainerRepository.
  */
 export interface GetContainerRepositoryOutputArgs {
+    /**
+     * Name of the repository. The name of the repository should start with id of a container registry and match the name of the images in the repository.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of a specific repository.
+     */
     repositoryId?: pulumi.Input<string>;
 }

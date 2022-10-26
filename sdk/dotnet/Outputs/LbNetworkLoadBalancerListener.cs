@@ -13,11 +13,29 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class LbNetworkLoadBalancerListener
     {
+        /// <summary>
+        /// External IP address specification. The structure is documented below.
+        /// </summary>
         public readonly Outputs.LbNetworkLoadBalancerListenerExternalAddressSpec? ExternalAddressSpec;
+        /// <summary>
+        /// Internal IP address specification. The structure is documented below.
+        /// </summary>
         public readonly Outputs.LbNetworkLoadBalancerListenerInternalAddressSpec? InternalAddressSpec;
+        /// <summary>
+        /// Name of the listener. The name must be unique for each listener on a single load balancer.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Port for incoming traffic.
+        /// </summary>
         public readonly int Port;
+        /// <summary>
+        /// Protocol for incoming traffic. TCP or UDP and the default is TCP.
+        /// </summary>
         public readonly string? Protocol;
+        /// <summary>
+        /// Port of a target. The default is the same as listener's port.
+        /// </summary>
         public readonly int? TargetPort;
 
         [OutputConstructor]

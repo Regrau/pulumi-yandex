@@ -14,6 +14,10 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("dnsRecords")]
         private InputList<Inputs.ComputeInstanceNetworkInterfaceDnsRecordArgs>? _dnsRecords;
+
+        /// <summary>
+        /// List of configurations for creating ipv4 DNS records. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.ComputeInstanceNetworkInterfaceDnsRecordArgs> DnsRecords
         {
             get => _dnsRecords ?? (_dnsRecords = new InputList<Inputs.ComputeInstanceNetworkInterfaceDnsRecordArgs>());
@@ -23,20 +27,38 @@ namespace Pulumi.Yandex.Inputs
         [Input("index")]
         public Input<int>? Index { get; set; }
 
+        /// <summary>
+        /// The private IP address to assign to the instance. If
+        /// empty, the address will be automatically assigned from the specified subnet.
+        /// </summary>
         [Input("ipAddress")]
         public Input<string>? IpAddress { get; set; }
 
+        /// <summary>
+        /// Allocate an IPv4 address for the interface. The default value is `true`.
+        /// </summary>
         [Input("ipv4")]
         public Input<bool>? Ipv4 { get; set; }
 
+        /// <summary>
+        /// If true, allocate an IPv6 address for the interface.
+        /// The address will be automatically assigned from the specified subnet.
+        /// </summary>
         [Input("ipv6")]
         public Input<bool>? Ipv6 { get; set; }
 
+        /// <summary>
+        /// The private IPv6 address to assign to the instance.
+        /// </summary>
         [Input("ipv6Address")]
         public Input<string>? Ipv6Address { get; set; }
 
         [Input("ipv6DnsRecords")]
         private InputList<Inputs.ComputeInstanceNetworkInterfaceIpv6DnsRecordArgs>? _ipv6DnsRecords;
+
+        /// <summary>
+        /// List of configurations for creating ipv6 DNS records. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.ComputeInstanceNetworkInterfaceIpv6DnsRecordArgs> Ipv6DnsRecords
         {
             get => _ipv6DnsRecords ?? (_ipv6DnsRecords = new InputList<Inputs.ComputeInstanceNetworkInterfaceIpv6DnsRecordArgs>());
@@ -46,17 +68,27 @@ namespace Pulumi.Yandex.Inputs
         [Input("macAddress")]
         public Input<string>? MacAddress { get; set; }
 
+        /// <summary>
+        /// Provide a public address, for instance, to access the internet over NAT.
+        /// </summary>
         [Input("nat")]
         public Input<bool>? Nat { get; set; }
 
         [Input("natDnsRecords")]
         private InputList<Inputs.ComputeInstanceNetworkInterfaceNatDnsRecordArgs>? _natDnsRecords;
+
+        /// <summary>
+        /// List of configurations for creating ipv4 NAT DNS records. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.ComputeInstanceNetworkInterfaceNatDnsRecordArgs> NatDnsRecords
         {
             get => _natDnsRecords ?? (_natDnsRecords = new InputList<Inputs.ComputeInstanceNetworkInterfaceNatDnsRecordArgs>());
             set => _natDnsRecords = value;
         }
 
+        /// <summary>
+        /// Provide a public address, for instance, to access the internet over NAT. Address should be already reserved in web UI.
+        /// </summary>
         [Input("natIpAddress")]
         public Input<string>? NatIpAddress { get; set; }
 
@@ -65,12 +97,21 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
+
+        /// <summary>
+        /// Security group ids for network interface.
+        /// </summary>
         public InputList<string> SecurityGroupIds
         {
             get => _securityGroupIds ?? (_securityGroupIds = new InputList<string>());
             set => _securityGroupIds = value;
         }
 
+        /// <summary>
+        /// ID of the subnet to attach this
+        /// interface to. The subnet must exist in the same zone where this instance will be
+        /// created.
+        /// </summary>
         [Input("subnetId", required: true)]
         public Input<string> SubnetId { get; set; } = null!;
 

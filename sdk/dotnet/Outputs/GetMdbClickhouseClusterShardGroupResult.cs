@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbClickhouseClusterShardGroupResult
     {
+        /// <summary>
+        /// Description of the shard group.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// The name of the ClickHouse cluster.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// List of shards names that belong to the shard group.
+        /// </summary>
         public readonly ImmutableArray<string> ShardNames;
 
         [OutputConstructor]

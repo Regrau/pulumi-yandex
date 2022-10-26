@@ -12,9 +12,16 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbKafkaClusterConfigKafkaResourcesArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
+        /// </summary>
         [Input("diskSize", required: true)]
         public int DiskSize { get; set; }
 
+        /// <summary>
+        /// (Optional) Type of the storage of ZooKeeper hosts.
+        /// For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+        /// </summary>
         [Input("diskTypeId", required: true)]
         public string DiskTypeId { get; set; } = null!;
 

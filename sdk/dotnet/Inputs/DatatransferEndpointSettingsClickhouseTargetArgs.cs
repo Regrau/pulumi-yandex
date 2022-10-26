@@ -14,32 +14,55 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("altNames")]
         private InputList<Inputs.DatatransferEndpointSettingsClickhouseTargetAltNameArgs>? _altNames;
+
+        /// <summary>
+        /// Table renaming rules. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.DatatransferEndpointSettingsClickhouseTargetAltNameArgs> AltNames
         {
             get => _altNames ?? (_altNames = new InputList<Inputs.DatatransferEndpointSettingsClickhouseTargetAltNameArgs>());
             set => _altNames = value;
         }
 
+        /// <summary>
+        /// How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+        /// </summary>
         [Input("cleanupPolicy")]
         public Input<string>? CleanupPolicy { get; set; }
 
+        /// <summary>
+        /// Name of the ClickHouse cluster. For managed ClickHouse clusters defaults to managed cluster ID.
+        /// </summary>
         [Input("clickhouseClusterName")]
         public Input<string>? ClickhouseClusterName { get; set; }
 
+        /// <summary>
+        /// Connection settings. The structure is documented below.
+        /// </summary>
         [Input("connection")]
         public Input<Inputs.DatatransferEndpointSettingsClickhouseTargetConnectionArgs>? Connection { get; set; }
 
         [Input("securityGroups")]
         private InputList<string>? _securityGroups;
+
+        /// <summary>
+        /// List of security groups that the transfer associated with this endpoint should use.
+        /// </summary>
         public InputList<string> SecurityGroups
         {
             get => _securityGroups ?? (_securityGroups = new InputList<string>());
             set => _securityGroups = value;
         }
 
+        /// <summary>
+        /// Shard selection rules for the data being transferred. The structure is documented below.
+        /// </summary>
         [Input("sharding")]
         public Input<Inputs.DatatransferEndpointSettingsClickhouseTargetShardingArgs>? Sharding { get; set; }
 
+        /// <summary>
+        /// Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
 

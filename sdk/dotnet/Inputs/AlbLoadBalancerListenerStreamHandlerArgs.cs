@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbLoadBalancerListenerStreamHandlerArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Backend group id.
+        /// </summary>
         [Input("backendGroupId")]
         public Input<string>? BackendGroupId { get; set; }
 

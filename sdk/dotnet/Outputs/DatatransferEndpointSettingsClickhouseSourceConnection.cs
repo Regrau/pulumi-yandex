@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsClickhouseSourceConnection
     {
+        /// <summary>
+        /// Connection options. The structure is documented below.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsClickhouseSourceConnectionConnectionOptions? ConnectionOptions;
 
         [OutputConstructor]

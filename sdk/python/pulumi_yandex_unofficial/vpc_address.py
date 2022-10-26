@@ -23,6 +23,14 @@ class VpcAddressArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcAddress resource.
+        :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
+               you create the resource.
+        :param pulumi.Input['VpcAddressExternalIpv4AddressArgs'] external_ipv4_address: spec of IP v4 address
+               ---
+        :param pulumi.Input[str] folder_id: ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this resource. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the address. Provided by the client when the address is created.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -38,6 +46,10 @@ class VpcAddressArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of this resource. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -47,6 +59,10 @@ class VpcAddressArgs:
     @property
     @pulumi.getter(name="externalIpv4Address")
     def external_ipv4_address(self) -> Optional[pulumi.Input['VpcAddressExternalIpv4AddressArgs']]:
+        """
+        spec of IP v4 address
+        ---
+        """
         return pulumi.get(self, "external_ipv4_address")
 
     @external_ipv4_address.setter
@@ -56,6 +72,10 @@ class VpcAddressArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -65,6 +85,9 @@ class VpcAddressArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to apply to this resource. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -74,6 +97,9 @@ class VpcAddressArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the address. Provided by the client when the address is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -94,6 +120,17 @@ class _VpcAddressState:
                  used: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering VpcAddress resources.
+        :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
+               you create the resource.
+        :param pulumi.Input['VpcAddressExternalIpv4AddressArgs'] external_ipv4_address: spec of IP v4 address
+               ---
+        :param pulumi.Input[str] folder_id: ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this resource. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the address. Provided by the client when the address is created.
+        :param pulumi.Input[bool] reserved: `false` means that address is ephemeral.
+        :param pulumi.Input[bool] used: `true` if address is used.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -115,6 +152,9 @@ class _VpcAddressState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -124,6 +164,10 @@ class _VpcAddressState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of this resource. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -133,6 +177,10 @@ class _VpcAddressState:
     @property
     @pulumi.getter(name="externalIpv4Address")
     def external_ipv4_address(self) -> Optional[pulumi.Input['VpcAddressExternalIpv4AddressArgs']]:
+        """
+        spec of IP v4 address
+        ---
+        """
         return pulumi.get(self, "external_ipv4_address")
 
     @external_ipv4_address.setter
@@ -142,6 +190,10 @@ class _VpcAddressState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -151,6 +203,9 @@ class _VpcAddressState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to apply to this resource. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -160,6 +215,9 @@ class _VpcAddressState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the address. Provided by the client when the address is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -169,6 +227,9 @@ class _VpcAddressState:
     @property
     @pulumi.getter
     def reserved(self) -> Optional[pulumi.Input[bool]]:
+        """
+        `false` means that address is ephemeral.
+        """
         return pulumi.get(self, "reserved")
 
     @reserved.setter
@@ -178,6 +239,9 @@ class _VpcAddressState:
     @property
     @pulumi.getter
     def used(self) -> Optional[pulumi.Input[bool]]:
+        """
+        `true` if address is used.
+        """
         return pulumi.get(self, "used")
 
     @used.setter
@@ -197,9 +261,53 @@ class VpcAddress(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a VpcAddress resource with the given unique name, props, and options.
+        Manages a address within the Yandex.Cloud. You can only create a reserved (static) address via this resource. An ephemeral address could be obtained via implicit creation at a compute instance creation only. For more information, see [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/address).
+
+        * How-to Guides
+            * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+            * [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+
+        ## Example Usage
+        ### External ipv4 address
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        addr = yandex.VpcAddress("addr", external_ipv4_address=yandex.VpcAddressExternalIpv4AddressArgs(
+            zone_id="ru-central1-a",
+        ))
+        ```
+        ### Address with DDoS protection
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        vpnaddr = yandex.VpcAddress("vpnaddr", external_ipv4_address=yandex.VpcAddressExternalIpv4AddressArgs(
+            ddos_protection_provider="qrator",
+            zone_id="ru-central1-a",
+        ))
+        ```
+
+        ## Import
+
+        A address can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/vpcAddress:VpcAddress addr address_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
+               you create the resource.
+        :param pulumi.Input[pulumi.InputType['VpcAddressExternalIpv4AddressArgs']] external_ipv4_address: spec of IP v4 address
+               ---
+        :param pulumi.Input[str] folder_id: ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this resource. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the address. Provided by the client when the address is created.
         """
         ...
     @overload
@@ -208,7 +316,43 @@ class VpcAddress(pulumi.CustomResource):
                  args: Optional[VpcAddressArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a VpcAddress resource with the given unique name, props, and options.
+        Manages a address within the Yandex.Cloud. You can only create a reserved (static) address via this resource. An ephemeral address could be obtained via implicit creation at a compute instance creation only. For more information, see [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/address).
+
+        * How-to Guides
+            * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+            * [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+
+        ## Example Usage
+        ### External ipv4 address
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        addr = yandex.VpcAddress("addr", external_ipv4_address=yandex.VpcAddressExternalIpv4AddressArgs(
+            zone_id="ru-central1-a",
+        ))
+        ```
+        ### Address with DDoS protection
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        vpnaddr = yandex.VpcAddress("vpnaddr", external_ipv4_address=yandex.VpcAddressExternalIpv4AddressArgs(
+            ddos_protection_provider="qrator",
+            zone_id="ru-central1-a",
+        ))
+        ```
+
+        ## Import
+
+        A address can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/vpcAddress:VpcAddress addr address_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param VpcAddressArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -271,6 +415,17 @@ class VpcAddress(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
+               you create the resource.
+        :param pulumi.Input[pulumi.InputType['VpcAddressExternalIpv4AddressArgs']] external_ipv4_address: spec of IP v4 address
+               ---
+        :param pulumi.Input[str] folder_id: ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this resource. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the address. Provided by the client when the address is created.
+        :param pulumi.Input[bool] reserved: `false` means that address is ephemeral.
+        :param pulumi.Input[bool] used: `true` if address is used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -289,40 +444,67 @@ class VpcAddress(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        An optional description of this resource. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="externalIpv4Address")
     def external_ipv4_address(self) -> pulumi.Output[Optional['outputs.VpcAddressExternalIpv4Address']]:
+        """
+        spec of IP v4 address
+        ---
+        """
         return pulumi.get(self, "external_ipv4_address")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        Labels to apply to this resource. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the address. Provided by the client when the address is created.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def reserved(self) -> pulumi.Output[bool]:
+        """
+        `false` means that address is ephemeral.
+        """
         return pulumi.get(self, "reserved")
 
     @property
     @pulumi.getter
     def used(self) -> pulumi.Output[bool]:
+        """
+        `true` if address is used.
+        """
         return pulumi.get(self, "used")
 

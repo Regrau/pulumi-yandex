@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsClickhouseTargetConnectionConnectionOptionsOnPremiseTlsModeEnabledGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        /// </summary>
         [Input("caCertificate")]
         public Input<string>? CaCertificate { get; set; }
 

@@ -10,24 +10,137 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Persistent disks are used for data storage and function similarly to physical hard and solid state drives.
+//
+// A disk can be attached or detached from the virtual machine and can be located locally. A disk can be moved between virtual machines within the same availability zone. Each disk can be attached to only one virtual machine at a time.
+//
+// For more information about disks in Yandex.Cloud, see:
+//
+// * [Documentation](https://cloud.yandex.com/docs/compute/concepts/disk)
+// * How-to Guides
+//   - [Attach and detach a disk](https://cloud.yandex.com/docs/compute/concepts/disk#attach-detach)
+//   - [Backup operation](https://cloud.yandex.com/docs/compute/concepts/disk#backup)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewComputeDisk(ctx, "default", &yandex.ComputeDiskArgs{
+//				ImageId: pulumi.String("ubuntu-16.04-v20180727"),
+//				Labels: pulumi.StringMap{
+//					"environment": pulumi.String("test"),
+//				},
+//				Type: pulumi.String("network-ssd"),
+//				Zone: pulumi.String("ru-central1-a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Non-Replicated Disk
+//
+// **Note**: Non-replicated disks are at the [Preview](https://cloud.yandex.com/docs/overview/concepts/launch-stages)
+//
+//	stage.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			this, err := yandex.NewComputeDiskPlacementGroup(ctx, "this", &yandex.ComputeDiskPlacementGroupArgs{
+//				Zone: pulumi.String("ru-central1-b"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewComputeDisk(ctx, "nr", &yandex.ComputeDiskArgs{
+//				Size: pulumi.Int(93),
+//				Type: pulumi.String("network-ssd-nonreplicated"),
+//				Zone: pulumi.String("ru-central1-b"),
+//				DiskPlacementPolicy: &ComputeDiskDiskPlacementPolicyArgs{
+//					DiskPlacementGroupId: this.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// # A disk can be imported using any of these accepted formats
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/computeDisk:ComputeDisk default disk_id
+//
+// ```
 type ComputeDisk struct {
 	pulumi.CustomResourceState
 
-	AllowRecreate       pulumi.BoolPtrOutput                 `pulumi:"allowRecreate"`
-	BlockSize           pulumi.IntPtrOutput                  `pulumi:"blockSize"`
-	CreatedAt           pulumi.StringOutput                  `pulumi:"createdAt"`
-	Description         pulumi.StringPtrOutput               `pulumi:"description"`
+	AllowRecreate pulumi.BoolPtrOutput `pulumi:"allowRecreate"`
+	// Block size of the disk, specified in bytes.
+	BlockSize pulumi.IntPtrOutput `pulumi:"blockSize"`
+	// Creation timestamp of the disk.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// -
+	// (Optional) Description of the disk. Provide this property when
+	// you create a resource.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Disk placement policy configuration. The structure is documented below.
 	DiskPlacementPolicy ComputeDiskDiskPlacementPolicyOutput `pulumi:"diskPlacementPolicy"`
-	FolderId            pulumi.StringOutput                  `pulumi:"folderId"`
-	ImageId             pulumi.StringPtrOutput               `pulumi:"imageId"`
-	Labels              pulumi.StringMapOutput               `pulumi:"labels"`
-	Name                pulumi.StringOutput                  `pulumi:"name"`
-	ProductIds          pulumi.StringArrayOutput             `pulumi:"productIds"`
-	Size                pulumi.IntPtrOutput                  `pulumi:"size"`
-	SnapshotId          pulumi.StringPtrOutput               `pulumi:"snapshotId"`
-	Status              pulumi.StringOutput                  `pulumi:"status"`
-	Type                pulumi.StringPtrOutput               `pulumi:"type"`
-	Zone                pulumi.StringOutput                  `pulumi:"zone"`
+	// (Optional) The ID of the folder that the disk belongs to.
+	// If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// The source image to use for disk creation.
+	ImageId pulumi.StringPtrOutput `pulumi:"imageId"`
+	// Labels to assign to this disk. A list of key/value pairs.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the disk. Provide this property when
+	// you create a resource.
+	Name       pulumi.StringOutput      `pulumi:"name"`
+	ProductIds pulumi.StringArrayOutput `pulumi:"productIds"`
+	// Size of the persistent disk, specified in GB. You can specify this
+	// field when creating a persistent disk using the `imageId` or `snapshotId`
+	// parameter, or specify it alone to create an empty persistent disk.
+	// If you specify this field along with `imageId` or `snapshotId`,
+	// the size value must not be less than the size of the source image
+	// or the size of the snapshot.
+	Size pulumi.IntPtrOutput `pulumi:"size"`
+	// The source snapshot to use for disk creation.
+	SnapshotId pulumi.StringPtrOutput `pulumi:"snapshotId"`
+	// The status of the disk.
+	Status pulumi.StringOutput `pulumi:"status"`
+	// Type of disk to create. Provide this when creating a disk.
+	Type pulumi.StringPtrOutput `pulumi:"type"`
+	// Availability zone where the disk will reside.
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewComputeDisk registers a new resource with the given unique name, arguments, and options.
@@ -60,39 +173,83 @@ func GetComputeDisk(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ComputeDisk resources.
 type computeDiskState struct {
-	AllowRecreate       *bool                           `pulumi:"allowRecreate"`
-	BlockSize           *int                            `pulumi:"blockSize"`
-	CreatedAt           *string                         `pulumi:"createdAt"`
-	Description         *string                         `pulumi:"description"`
+	AllowRecreate *bool `pulumi:"allowRecreate"`
+	// Block size of the disk, specified in bytes.
+	BlockSize *int `pulumi:"blockSize"`
+	// Creation timestamp of the disk.
+	CreatedAt *string `pulumi:"createdAt"`
+	// -
+	// (Optional) Description of the disk. Provide this property when
+	// you create a resource.
+	Description *string `pulumi:"description"`
+	// Disk placement policy configuration. The structure is documented below.
 	DiskPlacementPolicy *ComputeDiskDiskPlacementPolicy `pulumi:"diskPlacementPolicy"`
-	FolderId            *string                         `pulumi:"folderId"`
-	ImageId             *string                         `pulumi:"imageId"`
-	Labels              map[string]string               `pulumi:"labels"`
-	Name                *string                         `pulumi:"name"`
-	ProductIds          []string                        `pulumi:"productIds"`
-	Size                *int                            `pulumi:"size"`
-	SnapshotId          *string                         `pulumi:"snapshotId"`
-	Status              *string                         `pulumi:"status"`
-	Type                *string                         `pulumi:"type"`
-	Zone                *string                         `pulumi:"zone"`
+	// (Optional) The ID of the folder that the disk belongs to.
+	// If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// The source image to use for disk creation.
+	ImageId *string `pulumi:"imageId"`
+	// Labels to assign to this disk. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the disk. Provide this property when
+	// you create a resource.
+	Name       *string  `pulumi:"name"`
+	ProductIds []string `pulumi:"productIds"`
+	// Size of the persistent disk, specified in GB. You can specify this
+	// field when creating a persistent disk using the `imageId` or `snapshotId`
+	// parameter, or specify it alone to create an empty persistent disk.
+	// If you specify this field along with `imageId` or `snapshotId`,
+	// the size value must not be less than the size of the source image
+	// or the size of the snapshot.
+	Size *int `pulumi:"size"`
+	// The source snapshot to use for disk creation.
+	SnapshotId *string `pulumi:"snapshotId"`
+	// The status of the disk.
+	Status *string `pulumi:"status"`
+	// Type of disk to create. Provide this when creating a disk.
+	Type *string `pulumi:"type"`
+	// Availability zone where the disk will reside.
+	Zone *string `pulumi:"zone"`
 }
 
 type ComputeDiskState struct {
-	AllowRecreate       pulumi.BoolPtrInput
-	BlockSize           pulumi.IntPtrInput
-	CreatedAt           pulumi.StringPtrInput
-	Description         pulumi.StringPtrInput
+	AllowRecreate pulumi.BoolPtrInput
+	// Block size of the disk, specified in bytes.
+	BlockSize pulumi.IntPtrInput
+	// Creation timestamp of the disk.
+	CreatedAt pulumi.StringPtrInput
+	// -
+	// (Optional) Description of the disk. Provide this property when
+	// you create a resource.
+	Description pulumi.StringPtrInput
+	// Disk placement policy configuration. The structure is documented below.
 	DiskPlacementPolicy ComputeDiskDiskPlacementPolicyPtrInput
-	FolderId            pulumi.StringPtrInput
-	ImageId             pulumi.StringPtrInput
-	Labels              pulumi.StringMapInput
-	Name                pulumi.StringPtrInput
-	ProductIds          pulumi.StringArrayInput
-	Size                pulumi.IntPtrInput
-	SnapshotId          pulumi.StringPtrInput
-	Status              pulumi.StringPtrInput
-	Type                pulumi.StringPtrInput
-	Zone                pulumi.StringPtrInput
+	// (Optional) The ID of the folder that the disk belongs to.
+	// If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// The source image to use for disk creation.
+	ImageId pulumi.StringPtrInput
+	// Labels to assign to this disk. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the disk. Provide this property when
+	// you create a resource.
+	Name       pulumi.StringPtrInput
+	ProductIds pulumi.StringArrayInput
+	// Size of the persistent disk, specified in GB. You can specify this
+	// field when creating a persistent disk using the `imageId` or `snapshotId`
+	// parameter, or specify it alone to create an empty persistent disk.
+	// If you specify this field along with `imageId` or `snapshotId`,
+	// the size value must not be less than the size of the source image
+	// or the size of the snapshot.
+	Size pulumi.IntPtrInput
+	// The source snapshot to use for disk creation.
+	SnapshotId pulumi.StringPtrInput
+	// The status of the disk.
+	Status pulumi.StringPtrInput
+	// Type of disk to create. Provide this when creating a disk.
+	Type pulumi.StringPtrInput
+	// Availability zone where the disk will reside.
+	Zone pulumi.StringPtrInput
 }
 
 func (ComputeDiskState) ElementType() reflect.Type {
@@ -100,34 +257,74 @@ func (ComputeDiskState) ElementType() reflect.Type {
 }
 
 type computeDiskArgs struct {
-	AllowRecreate       *bool                           `pulumi:"allowRecreate"`
-	BlockSize           *int                            `pulumi:"blockSize"`
-	Description         *string                         `pulumi:"description"`
+	AllowRecreate *bool `pulumi:"allowRecreate"`
+	// Block size of the disk, specified in bytes.
+	BlockSize *int `pulumi:"blockSize"`
+	// -
+	// (Optional) Description of the disk. Provide this property when
+	// you create a resource.
+	Description *string `pulumi:"description"`
+	// Disk placement policy configuration. The structure is documented below.
 	DiskPlacementPolicy *ComputeDiskDiskPlacementPolicy `pulumi:"diskPlacementPolicy"`
-	FolderId            *string                         `pulumi:"folderId"`
-	ImageId             *string                         `pulumi:"imageId"`
-	Labels              map[string]string               `pulumi:"labels"`
-	Name                *string                         `pulumi:"name"`
-	Size                *int                            `pulumi:"size"`
-	SnapshotId          *string                         `pulumi:"snapshotId"`
-	Type                *string                         `pulumi:"type"`
-	Zone                *string                         `pulumi:"zone"`
+	// (Optional) The ID of the folder that the disk belongs to.
+	// If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// The source image to use for disk creation.
+	ImageId *string `pulumi:"imageId"`
+	// Labels to assign to this disk. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the disk. Provide this property when
+	// you create a resource.
+	Name *string `pulumi:"name"`
+	// Size of the persistent disk, specified in GB. You can specify this
+	// field when creating a persistent disk using the `imageId` or `snapshotId`
+	// parameter, or specify it alone to create an empty persistent disk.
+	// If you specify this field along with `imageId` or `snapshotId`,
+	// the size value must not be less than the size of the source image
+	// or the size of the snapshot.
+	Size *int `pulumi:"size"`
+	// The source snapshot to use for disk creation.
+	SnapshotId *string `pulumi:"snapshotId"`
+	// Type of disk to create. Provide this when creating a disk.
+	Type *string `pulumi:"type"`
+	// Availability zone where the disk will reside.
+	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a ComputeDisk resource.
 type ComputeDiskArgs struct {
-	AllowRecreate       pulumi.BoolPtrInput
-	BlockSize           pulumi.IntPtrInput
-	Description         pulumi.StringPtrInput
+	AllowRecreate pulumi.BoolPtrInput
+	// Block size of the disk, specified in bytes.
+	BlockSize pulumi.IntPtrInput
+	// -
+	// (Optional) Description of the disk. Provide this property when
+	// you create a resource.
+	Description pulumi.StringPtrInput
+	// Disk placement policy configuration. The structure is documented below.
 	DiskPlacementPolicy ComputeDiskDiskPlacementPolicyPtrInput
-	FolderId            pulumi.StringPtrInput
-	ImageId             pulumi.StringPtrInput
-	Labels              pulumi.StringMapInput
-	Name                pulumi.StringPtrInput
-	Size                pulumi.IntPtrInput
-	SnapshotId          pulumi.StringPtrInput
-	Type                pulumi.StringPtrInput
-	Zone                pulumi.StringPtrInput
+	// (Optional) The ID of the folder that the disk belongs to.
+	// If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// The source image to use for disk creation.
+	ImageId pulumi.StringPtrInput
+	// Labels to assign to this disk. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the disk. Provide this property when
+	// you create a resource.
+	Name pulumi.StringPtrInput
+	// Size of the persistent disk, specified in GB. You can specify this
+	// field when creating a persistent disk using the `imageId` or `snapshotId`
+	// parameter, or specify it alone to create an empty persistent disk.
+	// If you specify this field along with `imageId` or `snapshotId`,
+	// the size value must not be less than the size of the source image
+	// or the size of the snapshot.
+	Size pulumi.IntPtrInput
+	// The source snapshot to use for disk creation.
+	SnapshotId pulumi.StringPtrInput
+	// Type of disk to create. Provide this when creating a disk.
+	Type pulumi.StringPtrInput
+	// Availability zone where the disk will reside.
+	Zone pulumi.StringPtrInput
 }
 
 func (ComputeDiskArgs) ElementType() reflect.Type {
@@ -221,34 +418,46 @@ func (o ComputeDiskOutput) AllowRecreate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.BoolPtrOutput { return v.AllowRecreate }).(pulumi.BoolPtrOutput)
 }
 
+// Block size of the disk, specified in bytes.
 func (o ComputeDiskOutput) BlockSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.IntPtrOutput { return v.BlockSize }).(pulumi.IntPtrOutput)
 }
 
+// Creation timestamp of the disk.
 func (o ComputeDiskOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// -
+// (Optional) Description of the disk. Provide this property when
+// you create a resource.
 func (o ComputeDiskOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Disk placement policy configuration. The structure is documented below.
 func (o ComputeDiskOutput) DiskPlacementPolicy() ComputeDiskDiskPlacementPolicyOutput {
 	return o.ApplyT(func(v *ComputeDisk) ComputeDiskDiskPlacementPolicyOutput { return v.DiskPlacementPolicy }).(ComputeDiskDiskPlacementPolicyOutput)
 }
 
+// (Optional) The ID of the folder that the disk belongs to.
+// If it is not provided, the default provider folder is used.
 func (o ComputeDiskOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// The source image to use for disk creation.
 func (o ComputeDiskOutput) ImageId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.StringPtrOutput { return v.ImageId }).(pulumi.StringPtrOutput)
 }
 
+// Labels to assign to this disk. A list of key/value pairs.
 func (o ComputeDiskOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the disk. Provide this property when
+// you create a resource.
 func (o ComputeDiskOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -257,22 +466,32 @@ func (o ComputeDiskOutput) ProductIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.StringArrayOutput { return v.ProductIds }).(pulumi.StringArrayOutput)
 }
 
+// Size of the persistent disk, specified in GB. You can specify this
+// field when creating a persistent disk using the `imageId` or `snapshotId`
+// parameter, or specify it alone to create an empty persistent disk.
+// If you specify this field along with `imageId` or `snapshotId`,
+// the size value must not be less than the size of the source image
+// or the size of the snapshot.
 func (o ComputeDiskOutput) Size() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.IntPtrOutput { return v.Size }).(pulumi.IntPtrOutput)
 }
 
+// The source snapshot to use for disk creation.
 func (o ComputeDiskOutput) SnapshotId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.StringPtrOutput { return v.SnapshotId }).(pulumi.StringPtrOutput)
 }
 
+// The status of the disk.
 func (o ComputeDiskOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
+// Type of disk to create. Provide this when creating a disk.
 func (o ComputeDiskOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
+// Availability zone where the disk will reside.
 func (o ComputeDiskOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeDisk) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

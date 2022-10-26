@@ -22,6 +22,12 @@ class IotCoreDeviceArgs:
                  passwords: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a IotCoreDevice resource.
+        :param pulumi.Input[str] registry_id: IoT Core Registry ID for the IoT Core Device
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] aliases: A set of key/value aliases pairs to assign to the IoT Core Device
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificates: A set of certificate's fingerprints for the IoT Core Device
+        :param pulumi.Input[str] description: Description of the IoT Core Device
+        :param pulumi.Input[str] name: IoT Core Device name used to define device
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passwords: A set of passwords's id for the IoT Core Device
         """
         pulumi.set(__self__, "registry_id", registry_id)
         if aliases is not None:
@@ -38,6 +44,9 @@ class IotCoreDeviceArgs:
     @property
     @pulumi.getter(name="registryId")
     def registry_id(self) -> pulumi.Input[str]:
+        """
+        IoT Core Registry ID for the IoT Core Device
+        """
         return pulumi.get(self, "registry_id")
 
     @registry_id.setter
@@ -47,6 +56,9 @@ class IotCoreDeviceArgs:
     @property
     @pulumi.getter
     def aliases(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value aliases pairs to assign to the IoT Core Device
+        """
         return pulumi.get(self, "aliases")
 
     @aliases.setter
@@ -56,6 +68,9 @@ class IotCoreDeviceArgs:
     @property
     @pulumi.getter
     def certificates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of certificate's fingerprints for the IoT Core Device
+        """
         return pulumi.get(self, "certificates")
 
     @certificates.setter
@@ -65,6 +80,9 @@ class IotCoreDeviceArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the IoT Core Device
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -74,6 +92,9 @@ class IotCoreDeviceArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        IoT Core Device name used to define device
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -83,6 +104,9 @@ class IotCoreDeviceArgs:
     @property
     @pulumi.getter
     def passwords(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of passwords's id for the IoT Core Device
+        """
         return pulumi.get(self, "passwords")
 
     @passwords.setter
@@ -102,6 +126,13 @@ class _IotCoreDeviceState:
                  registry_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IotCoreDevice resources.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] aliases: A set of key/value aliases pairs to assign to the IoT Core Device
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificates: A set of certificate's fingerprints for the IoT Core Device
+        :param pulumi.Input[str] created_at: Creation timestamp of the IoT Core Device
+        :param pulumi.Input[str] description: Description of the IoT Core Device
+        :param pulumi.Input[str] name: IoT Core Device name used to define device
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passwords: A set of passwords's id for the IoT Core Device
+        :param pulumi.Input[str] registry_id: IoT Core Registry ID for the IoT Core Device
         """
         if aliases is not None:
             pulumi.set(__self__, "aliases", aliases)
@@ -121,6 +152,9 @@ class _IotCoreDeviceState:
     @property
     @pulumi.getter
     def aliases(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value aliases pairs to assign to the IoT Core Device
+        """
         return pulumi.get(self, "aliases")
 
     @aliases.setter
@@ -130,6 +164,9 @@ class _IotCoreDeviceState:
     @property
     @pulumi.getter
     def certificates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of certificate's fingerprints for the IoT Core Device
+        """
         return pulumi.get(self, "certificates")
 
     @certificates.setter
@@ -139,6 +176,9 @@ class _IotCoreDeviceState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the IoT Core Device
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -148,6 +188,9 @@ class _IotCoreDeviceState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the IoT Core Device
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -157,6 +200,9 @@ class _IotCoreDeviceState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        IoT Core Device name used to define device
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -166,6 +212,9 @@ class _IotCoreDeviceState:
     @property
     @pulumi.getter
     def passwords(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of passwords's id for the IoT Core Device
+        """
         return pulumi.get(self, "passwords")
 
     @passwords.setter
@@ -175,6 +224,9 @@ class _IotCoreDeviceState:
     @property
     @pulumi.getter(name="registryId")
     def registry_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        IoT Core Registry ID for the IoT Core Device
+        """
         return pulumi.get(self, "registry_id")
 
     @registry_id.setter
@@ -195,9 +247,39 @@ class IotCoreDevice(pulumi.CustomResource):
                  registry_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a IotCoreDevice resource with the given unique name, props, and options.
+        Allows management of [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_device = yandex.IotCoreDevice("myDevice",
+            aliases={
+                "some_alias1/subtopic": "$devices/{id}/events/somesubtopic",
+                "some_alias2/subtopic": "$devices/{id}/events/aaa/bbb",
+            },
+            certificates=[
+                "public part of certificate1",
+                "public part of certificate2",
+            ],
+            description="any description",
+            passwords=[
+                "my-password1",
+                "my-password2",
+            ],
+            registry_id="are1sampleregistryid11")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] aliases: A set of key/value aliases pairs to assign to the IoT Core Device
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificates: A set of certificate's fingerprints for the IoT Core Device
+        :param pulumi.Input[str] description: Description of the IoT Core Device
+        :param pulumi.Input[str] name: IoT Core Device name used to define device
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passwords: A set of passwords's id for the IoT Core Device
+        :param pulumi.Input[str] registry_id: IoT Core Registry ID for the IoT Core Device
         """
         ...
     @overload
@@ -206,7 +288,31 @@ class IotCoreDevice(pulumi.CustomResource):
                  args: IotCoreDeviceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a IotCoreDevice resource with the given unique name, props, and options.
+        Allows management of [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_device = yandex.IotCoreDevice("myDevice",
+            aliases={
+                "some_alias1/subtopic": "$devices/{id}/events/somesubtopic",
+                "some_alias2/subtopic": "$devices/{id}/events/aaa/bbb",
+            },
+            certificates=[
+                "public part of certificate1",
+                "public part of certificate2",
+            ],
+            description="any description",
+            passwords=[
+                "my-password1",
+                "my-password2",
+            ],
+            registry_id="are1sampleregistryid11")
+        ```
+
         :param str resource_name: The name of the resource.
         :param IotCoreDeviceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -270,6 +376,13 @@ class IotCoreDevice(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] aliases: A set of key/value aliases pairs to assign to the IoT Core Device
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] certificates: A set of certificate's fingerprints for the IoT Core Device
+        :param pulumi.Input[str] created_at: Creation timestamp of the IoT Core Device
+        :param pulumi.Input[str] description: Description of the IoT Core Device
+        :param pulumi.Input[str] name: IoT Core Device name used to define device
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] passwords: A set of passwords's id for the IoT Core Device
+        :param pulumi.Input[str] registry_id: IoT Core Registry ID for the IoT Core Device
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -287,35 +400,56 @@ class IotCoreDevice(pulumi.CustomResource):
     @property
     @pulumi.getter
     def aliases(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value aliases pairs to assign to the IoT Core Device
+        """
         return pulumi.get(self, "aliases")
 
     @property
     @pulumi.getter
     def certificates(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A set of certificate's fingerprints for the IoT Core Device
+        """
         return pulumi.get(self, "certificates")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the IoT Core Device
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the IoT Core Device
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        IoT Core Device name used to define device
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def passwords(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A set of passwords's id for the IoT Core Device
+        """
         return pulumi.get(self, "passwords")
 
     @property
     @pulumi.getter(name="registryId")
     def registry_id(self) -> pulumi.Output[str]:
+        """
+        IoT Core Registry ID for the IoT Core Device
+        """
         return pulumi.get(self, "registry_id")
 

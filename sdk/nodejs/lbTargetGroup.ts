@@ -5,6 +5,39 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Creates a target group in the specified folder and adds the specified targets to it.
+ * For more information, see [the official documentation](https://cloud.yandex.com/docs/load-balancer/concepts/target-resources).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const foo = new yandex.LbTargetGroup("foo", {
+ *     regionId: "ru-central1",
+ *     targets: [
+ *         {
+ *             address: yandex_compute_instance_my_instance_1.networkInterface.0.ipAddress,
+ *             subnetId: yandex_vpc_subnet_my_subnet.id,
+ *         },
+ *         {
+ *             address: yandex_compute_instance_my_instance_2.networkInterface.0.ipAddress,
+ *             subnetId: yandex_vpc_subnet_my_subnet.id,
+ *         },
+ *     ],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A target group can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/lbTargetGroup:LbTargetGroup default target_group_id
+ * ```
+ */
 export class LbTargetGroup extends pulumi.CustomResource {
     /**
      * Get an existing LbTargetGroup resource's state with the given name, ID, and optional extra
@@ -33,12 +66,36 @@ export class LbTargetGroup extends pulumi.CustomResource {
         return obj['__pulumiType'] === LbTargetGroup.__pulumiType;
     }
 
+    /**
+     * The target group creation timestamp.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * An optional description of the target group. Provide this property when
+     * you create the resource.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * The ID of the folder to which the resource belongs.
+     * If omitted, the provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * Labels to assign to this target group. A list of key/value pairs.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Name of the target group. Provided by the client when the target group is created.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * ID of the availability zone where the target group resides. 
+     * The default is 'ru-central1'.
+     */
     public readonly regionId!: pulumi.Output<string | undefined>;
+    /**
+     * A Target resource. The structure is documented below.
+     */
     public readonly targets!: pulumi.Output<outputs.LbTargetGroupTarget[] | undefined>;
 
     /**
@@ -80,12 +137,36 @@ export class LbTargetGroup extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LbTargetGroup resources.
  */
 export interface LbTargetGroupState {
+    /**
+     * The target group creation timestamp.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * An optional description of the target group. Provide this property when
+     * you create the resource.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the folder to which the resource belongs.
+     * If omitted, the provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Labels to assign to this target group. A list of key/value pairs.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the target group. Provided by the client when the target group is created.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the availability zone where the target group resides. 
+     * The default is 'ru-central1'.
+     */
     regionId?: pulumi.Input<string>;
+    /**
+     * A Target resource. The structure is documented below.
+     */
     targets?: pulumi.Input<pulumi.Input<inputs.LbTargetGroupTarget>[]>;
 }
 
@@ -93,10 +174,31 @@ export interface LbTargetGroupState {
  * The set of arguments for constructing a LbTargetGroup resource.
  */
 export interface LbTargetGroupArgs {
+    /**
+     * An optional description of the target group. Provide this property when
+     * you create the resource.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the folder to which the resource belongs.
+     * If omitted, the provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Labels to assign to this target group. A list of key/value pairs.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the target group. Provided by the client when the target group is created.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the availability zone where the target group resides. 
+     * The default is 'ru-central1'.
+     */
     regionId?: pulumi.Input<string>;
+    /**
+     * A Target resource. The structure is documented below.
+     */
     targets?: pulumi.Input<pulumi.Input<inputs.LbTargetGroupTarget>[]>;
 }

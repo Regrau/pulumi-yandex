@@ -14,6 +14,10 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("zones", required: true)]
         private InputList<string>? _zones;
+
+        /// <summary>
+        /// A list of availability zones.
+        /// </summary>
         public InputList<string> Zones
         {
             get => _zones ?? (_zones = new InputList<string>());

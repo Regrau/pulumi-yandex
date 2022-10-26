@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetComputeInstanceSchedulingPolicyResult
     {
+        /// <summary>
+        /// (Optional) Specifies if the instance is preemptible. Defaults to false.
+        /// </summary>
         public readonly bool? Preemptible;
 
         [OutputConstructor]

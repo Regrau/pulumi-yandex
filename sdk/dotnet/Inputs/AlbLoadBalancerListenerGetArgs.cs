@@ -14,21 +14,37 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("endpoints")]
         private InputList<Inputs.AlbLoadBalancerListenerEndpointGetArgs>? _endpoints;
+
+        /// <summary>
+        /// Network endpoints (addresses and ports) of the listener. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbLoadBalancerListenerEndpointGetArgs> Endpoints
         {
             get => _endpoints ?? (_endpoints = new InputList<Inputs.AlbLoadBalancerListenerEndpointGetArgs>());
             set => _endpoints = value;
         }
 
+        /// <summary>
+        /// HTTP listener resource. The structure is documented below.
+        /// </summary>
         [Input("http")]
         public Input<Inputs.AlbLoadBalancerListenerHttpGetArgs>? Http { get; set; }
 
+        /// <summary>
+        /// name of SNI match.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Stream listener resource. The structure is documented below.
+        /// </summary>
         [Input("stream")]
         public Input<Inputs.AlbLoadBalancerListenerStreamGetArgs>? Stream { get; set; }
 
+        /// <summary>
+        /// TLS listener resource. The structure is documented below.
+        /// </summary>
         [Input("tls")]
         public Input<Inputs.AlbLoadBalancerListenerTlsGetArgs>? Tls { get; set; }
 

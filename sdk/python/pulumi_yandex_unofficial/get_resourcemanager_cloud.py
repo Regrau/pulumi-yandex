@@ -46,11 +46,17 @@ class GetResourcemanagerCloudResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Cloud creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> Optional[str]:
+        """
+        Description of the cloud.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -64,6 +70,9 @@ class GetResourcemanagerCloudResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of the cloud.
+        """
         return pulumi.get(self, "name")
 
 
@@ -85,7 +94,23 @@ def get_resourcemanager_cloud(cloud_id: Optional[str] = None,
                               name: Optional[str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetResourcemanagerCloudResult:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to get cloud details.
+    For more information, see [Cloud](https://cloud.yandex.com/docs/resource-manager/concepts/resources-hierarchy#cloud).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_resourcemanager_cloud(name="foo-cloud")
+    pulumi.export("cloudCreateTimestamp", foo.created_at)
+    ```
+
+
+    :param str cloud_id: ID of the cloud.
+    :param str description: Description of the cloud.
+    :param str name: Name of the cloud.
     """
     __args__ = dict()
     __args__['cloudId'] = cloud_id
@@ -108,6 +133,22 @@ def get_resourcemanager_cloud_output(cloud_id: Optional[pulumi.Input[Optional[st
                                      name: Optional[pulumi.Input[Optional[str]]] = None,
                                      opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetResourcemanagerCloudResult]:
     """
-    Use this data source to access information about an existing resource.
+    Use this data source to get cloud details.
+    For more information, see [Cloud](https://cloud.yandex.com/docs/resource-manager/concepts/resources-hierarchy#cloud).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_resourcemanager_cloud(name="foo-cloud")
+    pulumi.export("cloudCreateTimestamp", foo.created_at)
+    ```
+
+
+    :param str cloud_id: ID of the cloud.
+    :param str description: Description of the cloud.
+    :param str name: Name of the cloud.
     """
     ...

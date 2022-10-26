@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class VpcRouteTableStaticRouteGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Route prefix in CIDR notation.
+        /// </summary>
         [Input("destinationPrefix")]
         public Input<string>? DestinationPrefix { get; set; }
 
+        /// <summary>
+        /// ID of the gateway used ad next hop.
+        /// </summary>
         [Input("gatewayId")]
         public Input<string>? GatewayId { get; set; }
 
+        /// <summary>
+        /// Address of the next hop.
+        /// </summary>
         [Input("nextHopAddress")]
         public Input<string>? NextHopAddress { get; set; }
 

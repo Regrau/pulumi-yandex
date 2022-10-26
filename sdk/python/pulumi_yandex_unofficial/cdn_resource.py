@@ -28,6 +28,12 @@ class CdnResourceArgs:
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a CdnResource resource.
+        :param pulumi.Input[bool] active: Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+        :param pulumi.Input[str] cname: CDN endpoint CNAME, must be unique among resources.
+        :param pulumi.Input['CdnResourceOptionsArgs'] options: CDN Resource settings and options to tune CDN edge behavior.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] secondary_hostnames: list of secondary hostname strings.
+        :param pulumi.Input['CdnResourceSslCertificateArgs'] ssl_certificate: SSL certificate of CDN resource.
+               ---
         """
         if active is not None:
             pulumi.set(__self__, "active", active)
@@ -53,6 +59,9 @@ class CdnResourceArgs:
     @property
     @pulumi.getter
     def active(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+        """
         return pulumi.get(self, "active")
 
     @active.setter
@@ -62,6 +71,9 @@ class CdnResourceArgs:
     @property
     @pulumi.getter
     def cname(self) -> Optional[pulumi.Input[str]]:
+        """
+        CDN endpoint CNAME, must be unique among resources.
+        """
         return pulumi.get(self, "cname")
 
     @cname.setter
@@ -80,6 +92,9 @@ class CdnResourceArgs:
     @property
     @pulumi.getter
     def options(self) -> Optional[pulumi.Input['CdnResourceOptionsArgs']]:
+        """
+        CDN Resource settings and options to tune CDN edge behavior.
+        """
         return pulumi.get(self, "options")
 
     @options.setter
@@ -116,6 +131,9 @@ class CdnResourceArgs:
     @property
     @pulumi.getter(name="secondaryHostnames")
     def secondary_hostnames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        list of secondary hostname strings.
+        """
         return pulumi.get(self, "secondary_hostnames")
 
     @secondary_hostnames.setter
@@ -125,6 +143,10 @@ class CdnResourceArgs:
     @property
     @pulumi.getter(name="sslCertificate")
     def ssl_certificate(self) -> Optional[pulumi.Input['CdnResourceSslCertificateArgs']]:
+        """
+        SSL certificate of CDN resource.
+        ---
+        """
         return pulumi.get(self, "ssl_certificate")
 
     @ssl_certificate.setter
@@ -157,6 +179,13 @@ class _CdnResourceState:
                  updated_at: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering CdnResource resources.
+        :param pulumi.Input[bool] active: Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+        :param pulumi.Input[str] cname: CDN endpoint CNAME, must be unique among resources.
+        :param pulumi.Input[str] created_at: Creation timestamp of the IoT Core Device
+        :param pulumi.Input['CdnResourceOptionsArgs'] options: CDN Resource settings and options to tune CDN edge behavior.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] secondary_hostnames: list of secondary hostname strings.
+        :param pulumi.Input['CdnResourceSslCertificateArgs'] ssl_certificate: SSL certificate of CDN resource.
+               ---
         """
         if active is not None:
             pulumi.set(__self__, "active", active)
@@ -184,6 +213,9 @@ class _CdnResourceState:
     @property
     @pulumi.getter
     def active(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+        """
         return pulumi.get(self, "active")
 
     @active.setter
@@ -193,6 +225,9 @@ class _CdnResourceState:
     @property
     @pulumi.getter
     def cname(self) -> Optional[pulumi.Input[str]]:
+        """
+        CDN endpoint CNAME, must be unique among resources.
+        """
         return pulumi.get(self, "cname")
 
     @cname.setter
@@ -202,6 +237,9 @@ class _CdnResourceState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the IoT Core Device
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -220,6 +258,9 @@ class _CdnResourceState:
     @property
     @pulumi.getter
     def options(self) -> Optional[pulumi.Input['CdnResourceOptionsArgs']]:
+        """
+        CDN Resource settings and options to tune CDN edge behavior.
+        """
         return pulumi.get(self, "options")
 
     @options.setter
@@ -256,6 +297,9 @@ class _CdnResourceState:
     @property
     @pulumi.getter(name="secondaryHostnames")
     def secondary_hostnames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        list of secondary hostname strings.
+        """
         return pulumi.get(self, "secondary_hostnames")
 
     @secondary_hostnames.setter
@@ -265,6 +309,10 @@ class _CdnResourceState:
     @property
     @pulumi.getter(name="sslCertificate")
     def ssl_certificate(self) -> Optional[pulumi.Input['CdnResourceSslCertificateArgs']]:
+        """
+        SSL certificate of CDN resource.
+        ---
+        """
         return pulumi.get(self, "ssl_certificate")
 
     @ssl_certificate.setter
@@ -298,9 +346,26 @@ class CdnResource(pulumi.CustomResource):
                  updated_at: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a CdnResource resource with the given unique name, props, and options.
+        Allows management of [Yandex.Cloud CDN Resource](https://cloud.yandex.ru/docs/cdn/concepts/resource).
+
+        > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+
+        ## Import
+
+        A origin group can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import yandex:index/cdnResource:CdnResource default origin_group_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] active: Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+        :param pulumi.Input[str] cname: CDN endpoint CNAME, must be unique among resources.
+        :param pulumi.Input[pulumi.InputType['CdnResourceOptionsArgs']] options: CDN Resource settings and options to tune CDN edge behavior.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] secondary_hostnames: list of secondary hostname strings.
+        :param pulumi.Input[pulumi.InputType['CdnResourceSslCertificateArgs']] ssl_certificate: SSL certificate of CDN resource.
+               ---
         """
         ...
     @overload
@@ -309,7 +374,18 @@ class CdnResource(pulumi.CustomResource):
                  args: Optional[CdnResourceArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a CdnResource resource with the given unique name, props, and options.
+        Allows management of [Yandex.Cloud CDN Resource](https://cloud.yandex.ru/docs/cdn/concepts/resource).
+
+        > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+
+        ## Import
+
+        A origin group can be imported using any of these accepted formats
+
+        ```sh
+         $ pulumi import yandex:index/cdnResource:CdnResource default origin_group_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param CdnResourceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -383,6 +459,13 @@ class CdnResource(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] active: Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+        :param pulumi.Input[str] cname: CDN endpoint CNAME, must be unique among resources.
+        :param pulumi.Input[str] created_at: Creation timestamp of the IoT Core Device
+        :param pulumi.Input[pulumi.InputType['CdnResourceOptionsArgs']] options: CDN Resource settings and options to tune CDN edge behavior.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] secondary_hostnames: list of secondary hostname strings.
+        :param pulumi.Input[pulumi.InputType['CdnResourceSslCertificateArgs']] ssl_certificate: SSL certificate of CDN resource.
+               ---
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -404,16 +487,25 @@ class CdnResource(pulumi.CustomResource):
     @property
     @pulumi.getter
     def active(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Flag to create Resource either in active or disabled state. True - the content from CDN is available to clients.
+        """
         return pulumi.get(self, "active")
 
     @property
     @pulumi.getter
     def cname(self) -> pulumi.Output[str]:
+        """
+        CDN endpoint CNAME, must be unique among resources.
+        """
         return pulumi.get(self, "cname")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the IoT Core Device
+        """
         return pulumi.get(self, "created_at")
 
     @property
@@ -424,6 +516,9 @@ class CdnResource(pulumi.CustomResource):
     @property
     @pulumi.getter
     def options(self) -> pulumi.Output['outputs.CdnResourceOptions']:
+        """
+        CDN Resource settings and options to tune CDN edge behavior.
+        """
         return pulumi.get(self, "options")
 
     @property
@@ -444,11 +539,18 @@ class CdnResource(pulumi.CustomResource):
     @property
     @pulumi.getter(name="secondaryHostnames")
     def secondary_hostnames(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        list of secondary hostname strings.
+        """
         return pulumi.get(self, "secondary_hostnames")
 
     @property
     @pulumi.getter(name="sslCertificate")
     def ssl_certificate(self) -> pulumi.Output['outputs.CdnResourceSslCertificate']:
+        """
+        SSL certificate of CDN resource.
+        ---
+        """
         return pulumi.get(self, "ssl_certificate")
 
     @property

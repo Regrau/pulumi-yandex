@@ -10,6 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex Message Queue. For more information about Yandex Message Queue, see
+// [Yandex.Cloud Message Queue](https://cloud.yandex.com/docs/message-queue).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.LookupMessageQueue(ctx, &GetMessageQueueArgs{
+//				Name: "ymq_terraform_example",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupMessageQueue(ctx *pulumi.Context, args *LookupMessageQueueArgs, opts ...pulumi.InvokeOption) (*LookupMessageQueueResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupMessageQueueResult
@@ -23,7 +51,9 @@ func LookupMessageQueue(ctx *pulumi.Context, args *LookupMessageQueueArgs, opts 
 // A collection of arguments for invoking getMessageQueue.
 type LookupMessageQueueArgs struct {
 	AccessKey *string `pulumi:"accessKey"`
-	Name      string  `pulumi:"name"`
+	// Queue name.
+	Name string `pulumi:"name"`
+	// The region ID where the message queue is located.
 	RegionId  *string `pulumi:"regionId"`
 	SecretKey *string `pulumi:"secretKey"`
 }
@@ -31,13 +61,15 @@ type LookupMessageQueueArgs struct {
 // A collection of values returned by getMessageQueue.
 type LookupMessageQueueResult struct {
 	AccessKey *string `pulumi:"accessKey"`
-	Arn       string  `pulumi:"arn"`
+	// ARN of the queue. It is used for setting up a [redrive policy](https://cloud.yandex.com/docs/message-queue/concepts/dlq). See [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/SetQueueAttributes).
+	Arn string `pulumi:"arn"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Name      string  `pulumi:"name"`
 	RegionId  *string `pulumi:"regionId"`
 	SecretKey *string `pulumi:"secretKey"`
-	Url       string  `pulumi:"url"`
+	// URL of the queue.
+	Url string `pulumi:"url"`
 }
 
 func LookupMessageQueueOutput(ctx *pulumi.Context, args LookupMessageQueueOutputArgs, opts ...pulumi.InvokeOption) LookupMessageQueueResultOutput {
@@ -56,7 +88,9 @@ func LookupMessageQueueOutput(ctx *pulumi.Context, args LookupMessageQueueOutput
 // A collection of arguments for invoking getMessageQueue.
 type LookupMessageQueueOutputArgs struct {
 	AccessKey pulumi.StringPtrInput `pulumi:"accessKey"`
-	Name      pulumi.StringInput    `pulumi:"name"`
+	// Queue name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The region ID where the message queue is located.
 	RegionId  pulumi.StringPtrInput `pulumi:"regionId"`
 	SecretKey pulumi.StringPtrInput `pulumi:"secretKey"`
 }
@@ -84,6 +118,7 @@ func (o LookupMessageQueueResultOutput) AccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupMessageQueueResult) *string { return v.AccessKey }).(pulumi.StringPtrOutput)
 }
 
+// ARN of the queue. It is used for setting up a [redrive policy](https://cloud.yandex.com/docs/message-queue/concepts/dlq). See [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/SetQueueAttributes).
 func (o LookupMessageQueueResultOutput) Arn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMessageQueueResult) string { return v.Arn }).(pulumi.StringOutput)
 }
@@ -105,6 +140,7 @@ func (o LookupMessageQueueResultOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupMessageQueueResult) *string { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
 
+// URL of the queue.
 func (o LookupMessageQueueResultOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMessageQueueResult) string { return v.Url }).(pulumi.StringOutput)
 }

@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterClickhouseConfigKafkaTopicArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Graphite rollup configuration name.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// Kafka connection settngs sanem as `kafka` block.
+        /// </summary>
         [Input("settings")]
         public Input<Inputs.MdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs>? Settings { get; set; }
 

@@ -15,21 +15,42 @@ namespace Pulumi.Yandex.Inputs
         [Input("removeQuery")]
         public Input<bool>? RemoveQuery { get; set; }
 
+        /// <summary>
+        /// Replaces hostname.
+        /// </summary>
         [Input("replaceHost")]
         public Input<string>? ReplaceHost { get; set; }
 
+        /// <summary>
+        /// Replace path.
+        /// </summary>
         [Input("replacePath")]
         public Input<string>? ReplacePath { get; set; }
 
+        /// <summary>
+        /// Replaces port.
+        /// </summary>
         [Input("replacePort")]
         public Input<int>? ReplacePort { get; set; }
 
+        /// <summary>
+        /// Replace only matched prefix. Example:&lt;br/&gt; match:{ prefix_match: "/some" } &lt;br/&gt; 
+        /// redirect: { replace_prefix: "/other" } &lt;br/&gt; will redirect "/something" to "/otherthing".
+        /// </summary>
         [Input("replacePrefix")]
         public Input<string>? ReplacePrefix { get; set; }
 
+        /// <summary>
+        /// Replaces scheme. If the original scheme is `http` or `https`, will also remove the 
+        /// 80 or 443 port, if present.
+        /// </summary>
         [Input("replaceScheme")]
         public Input<string>? ReplaceScheme { get; set; }
 
+        /// <summary>
+        /// The HTTP status code to use in the redirect response. Supported values are: 
+        /// moved_permanently, found, see_other, temporary_redirect, permanent_redirect.
+        /// </summary>
         [Input("responseCode")]
         public Input<string>? ResponseCode { get; set; }
 

@@ -4,6 +4,34 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows creation and management of a single binding within IAM policy for
+ * an existing Yandex Resource Manager cloud.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const project1 = pulumi.output(yandex.getResourcemanagerCloud({
+ *     name: "Project 1",
+ * }));
+ * const admin = new yandex.ResourcemanagerCloudIamBinding("admin", {
+ *     cloudId: project1.id,
+ *     members: ["userAccount:some_user_id"],
+ *     role: "editor",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `cloud_id` and role, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/resourcemanagerCloudIamBinding:ResourcemanagerCloudIamBinding viewer "cloud_id viewer"
+ * ```
+ */
 export class ResourcemanagerCloudIamBinding extends pulumi.CustomResource {
     /**
      * Get an existing ResourcemanagerCloudIamBinding resource's state with the given name, ID, and optional extra
@@ -32,8 +60,22 @@ export class ResourcemanagerCloudIamBinding extends pulumi.CustomResource {
         return obj['__pulumiType'] === ResourcemanagerCloudIamBinding.__pulumiType;
     }
 
+    /**
+     * ID of the cloud to attach the policy to.
+     */
     public readonly cloudId!: pulumi.Output<string>;
+    /**
+     * An array of identities that will be granted the privilege in the `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **federatedUser:{federated_user_id}**: A unique federated user ID.
+     */
     public readonly members!: pulumi.Output<string[]>;
+    /**
+     * The role that should be assigned. Only one
+     * `yandex.ResourcemanagerCloudIamBinding` can be used per role.
+     */
     public readonly role!: pulumi.Output<string>;
     public readonly sleepAfter!: pulumi.Output<number | undefined>;
 
@@ -79,8 +121,22 @@ export class ResourcemanagerCloudIamBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ResourcemanagerCloudIamBinding resources.
  */
 export interface ResourcemanagerCloudIamBindingState {
+    /**
+     * ID of the cloud to attach the policy to.
+     */
     cloudId?: pulumi.Input<string>;
+    /**
+     * An array of identities that will be granted the privilege in the `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **federatedUser:{federated_user_id}**: A unique federated user ID.
+     */
     members?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The role that should be assigned. Only one
+     * `yandex.ResourcemanagerCloudIamBinding` can be used per role.
+     */
     role?: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }
@@ -89,8 +145,22 @@ export interface ResourcemanagerCloudIamBindingState {
  * The set of arguments for constructing a ResourcemanagerCloudIamBinding resource.
  */
 export interface ResourcemanagerCloudIamBindingArgs {
+    /**
+     * ID of the cloud to attach the policy to.
+     */
     cloudId: pulumi.Input<string>;
+    /**
+     * An array of identities that will be granted the privilege in the `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **federatedUser:{federated_user_id}**: A unique federated user ID.
+     */
     members: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The role that should be assigned. Only one
+     * `yandex.ResourcemanagerCloudIamBinding` can be used per role.
+     */
     role: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }

@@ -5,6 +5,48 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a address within the Yandex.Cloud. You can only create a reserved (static) address via this resource. An ephemeral address could be obtained via implicit creation at a compute instance creation only. For more information, see [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/address).
+ *
+ * * How-to Guides
+ *     * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+ *     * [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+ *
+ * ## Example Usage
+ * ### External ipv4 address
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const addr = new yandex.VpcAddress("addr", {
+ *     externalIpv4Address: {
+ *         zoneId: "ru-central1-a",
+ *     },
+ * });
+ * ```
+ * ### Address with DDoS protection
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const vpnaddr = new yandex.VpcAddress("vpnaddr", {
+ *     externalIpv4Address: {
+ *         ddosProtectionProvider: "qrator",
+ *         zoneId: "ru-central1-a",
+ *     },
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A address can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/vpcAddress:VpcAddress addr address_id
+ * ```
+ */
 export class VpcAddress extends pulumi.CustomResource {
     /**
      * Get an existing VpcAddress resource's state with the given name, ID, and optional extra
@@ -33,13 +75,40 @@ export class VpcAddress extends pulumi.CustomResource {
         return obj['__pulumiType'] === VpcAddress.__pulumiType;
     }
 
+    /**
+     * Creation timestamp of the key.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * An optional description of this resource. Provide this property when
+     * you create the resource.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * spec of IP v4 address
+     * ---
+     */
     public readonly externalIpv4Address!: pulumi.Output<outputs.VpcAddressExternalIpv4Address | undefined>;
+    /**
+     * ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * Labels to apply to this resource. A list of key/value pairs.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * Name of the address. Provided by the client when the address is created.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * `false` means that address is ephemeral.
+     */
     public /*out*/ readonly reserved!: pulumi.Output<boolean>;
+    /**
+     * `true` if address is used.
+     */
     public /*out*/ readonly used!: pulumi.Output<boolean>;
 
     /**
@@ -83,13 +152,40 @@ export class VpcAddress extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpcAddress resources.
  */
 export interface VpcAddressState {
+    /**
+     * Creation timestamp of the key.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * An optional description of this resource. Provide this property when
+     * you create the resource.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * spec of IP v4 address
+     * ---
+     */
     externalIpv4Address?: pulumi.Input<inputs.VpcAddressExternalIpv4Address>;
+    /**
+     * ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Labels to apply to this resource. A list of key/value pairs.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the address. Provided by the client when the address is created.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * `false` means that address is ephemeral.
+     */
     reserved?: pulumi.Input<boolean>;
+    /**
+     * `true` if address is used.
+     */
     used?: pulumi.Input<boolean>;
 }
 
@@ -97,9 +193,27 @@ export interface VpcAddressState {
  * The set of arguments for constructing a VpcAddress resource.
  */
 export interface VpcAddressArgs {
+    /**
+     * An optional description of this resource. Provide this property when
+     * you create the resource.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * spec of IP v4 address
+     * ---
+     */
     externalIpv4Address?: pulumi.Input<inputs.VpcAddressExternalIpv4Address>;
+    /**
+     * ID of the folder that the resource belongs to. If it
+     * is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Labels to apply to this resource. A list of key/value pairs.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the address. Provided by the client when the address is created.
+     */
     name?: pulumi.Input<string>;
 }

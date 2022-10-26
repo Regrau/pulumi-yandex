@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbMongodbClusterResourcesArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Volume of the storage available to a host, in gigabytes.
+        /// </summary>
         [Input("diskSize")]
         public int? DiskSize { get; set; }
 
+        /// <summary>
+        /// The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        /// </summary>
         [Input("diskTypeId")]
         public string? DiskTypeId { get; set; }
 

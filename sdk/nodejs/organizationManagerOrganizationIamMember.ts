@@ -4,6 +4,37 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows creation and management of a single member for a single binding within
+ * the IAM policy for an existing Yandex Organization Manager organization.
+ *
+ * > **Note:** Roles controlled by `yandex.OrganizationManagerOrganizationIamBinding`
+ *    should not be assigned using `yandex.OrganizationManagerOrganizationIamMember`.
+ *
+ * > **Note:** When you delete `yandex.OrganizationManagerOrganizationIamBinding` resource,
+ *    the roles can be deleted from other users within the organization as well. Be careful!
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const editor = new yandex.OrganizationManagerOrganizationIamMember("editor", {
+ *     member: "userAccount:user_id",
+ *     organizationId: "some_organization_id",
+ *     role: "editor",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the `organization id`, role, and account, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/organizationManagerOrganizationIamMember:OrganizationManagerOrganizationIamMember my_project "organization_id viewer foo@example.com"
+ * ```
+ */
 export class OrganizationManagerOrganizationIamMember extends pulumi.CustomResource {
     /**
      * Get an existing OrganizationManagerOrganizationIamMember resource's state with the given name, ID, and optional extra
@@ -32,8 +63,21 @@ export class OrganizationManagerOrganizationIamMember extends pulumi.CustomResou
         return obj['__pulumiType'] === OrganizationManagerOrganizationIamMember.__pulumiType;
     }
 
+    /**
+     * The identity that will be granted the privilege that is specified in the `role` field.
+     * This field can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **federatedUser:{federated_user_id}**: A unique federated user ID.
+     */
     public readonly member!: pulumi.Output<string>;
+    /**
+     * ID of the organization to attach a policy to.
+     */
     public readonly organizationId!: pulumi.Output<string>;
+    /**
+     * The role that should be assigned.
+     */
     public readonly role!: pulumi.Output<string>;
     public readonly sleepAfter!: pulumi.Output<number | undefined>;
 
@@ -79,8 +123,21 @@ export class OrganizationManagerOrganizationIamMember extends pulumi.CustomResou
  * Input properties used for looking up and filtering OrganizationManagerOrganizationIamMember resources.
  */
 export interface OrganizationManagerOrganizationIamMemberState {
+    /**
+     * The identity that will be granted the privilege that is specified in the `role` field.
+     * This field can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **federatedUser:{federated_user_id}**: A unique federated user ID.
+     */
     member?: pulumi.Input<string>;
+    /**
+     * ID of the organization to attach a policy to.
+     */
     organizationId?: pulumi.Input<string>;
+    /**
+     * The role that should be assigned.
+     */
     role?: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }
@@ -89,8 +146,21 @@ export interface OrganizationManagerOrganizationIamMemberState {
  * The set of arguments for constructing a OrganizationManagerOrganizationIamMember resource.
  */
 export interface OrganizationManagerOrganizationIamMemberArgs {
+    /**
+     * The identity that will be granted the privilege that is specified in the `role` field.
+     * This field can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **federatedUser:{federated_user_id}**: A unique federated user ID.
+     */
     member: pulumi.Input<string>;
+    /**
+     * ID of the organization to attach a policy to.
+     */
     organizationId: pulumi.Input<string>;
+    /**
+     * The role that should be assigned.
+     */
     role: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }

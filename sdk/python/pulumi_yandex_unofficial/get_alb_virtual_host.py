@@ -54,6 +54,10 @@ class GetAlbVirtualHostResult:
     @property
     @pulumi.getter
     def authorities(self) -> Sequence[str]:
+        """
+        A list of domains (host/authority header) that will be matched to this virtual host. Wildcard hosts are
+        supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+        """
         return pulumi.get(self, "authorities")
 
     @property
@@ -72,16 +76,27 @@ class GetAlbVirtualHostResult:
     @property
     @pulumi.getter(name="modifyRequestHeaders")
     def modify_request_headers(self) -> Sequence['outputs.GetAlbVirtualHostModifyRequestHeaderResult']:
+        """
+        Apply the following modifications to the request headers. The structure is documented
+        below.
+        """
         return pulumi.get(self, "modify_request_headers")
 
     @property
     @pulumi.getter(name="modifyResponseHeaders")
     def modify_response_headers(self) -> Sequence['outputs.GetAlbVirtualHostModifyResponseHeaderResult']:
+        """
+        Apply the following modifications to the response headers. The structure is documented
+        below.
+        """
         return pulumi.get(self, "modify_response_headers")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        name of the route.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -92,6 +107,10 @@ class GetAlbVirtualHostResult:
     @property
     @pulumi.getter
     def routes(self) -> Sequence['outputs.GetAlbVirtualHostRouteResult']:
+        """
+        A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance,
+        having http '/' match first makes all other routes unused. The structure is documented below.
+        """
         return pulumi.get(self, "routes")
 
     @property
@@ -122,7 +141,26 @@ def get_alb_virtual_host(http_router_id: Optional[str] = None,
                          virtual_host_id: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlbVirtualHostResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex ALB Virtual Host. For more information, see
+    [Yandex.Cloud Application Load Balancer](https://cloud.yandex.com/en/docs/application-load-balancer/quickstart).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_vh_data = yandex.get_alb_virtual_host(name=yandex_alb_virtual_host["my-vh"]["name"],
+        http_router_id=yandex_alb_virtual_host["my-router"]["id"])
+    ```
+
+    This data source is used to define [Application Load Balancer Virtual Host] that can be used by other resources.
+
+
+    :param str http_router_id: HTTP Router that the resource belongs to.
+    :param str name: Name of the Virtual Host.
+    :param str virtual_host_id: The ID of a specific Virtual Host. Virtual Host ID is concatenation of HTTP Router ID
+           and Virtual Host name with `/` symbol between them. For Example, "http_router_id/vhost_name".
     """
     __args__ = dict()
     __args__['httpRouterId'] = http_router_id
@@ -149,6 +187,25 @@ def get_alb_virtual_host_output(http_router_id: Optional[pulumi.Input[Optional[s
                                 virtual_host_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetAlbVirtualHostResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex ALB Virtual Host. For more information, see
+    [Yandex.Cloud Application Load Balancer](https://cloud.yandex.com/en/docs/application-load-balancer/quickstart).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_vh_data = yandex.get_alb_virtual_host(name=yandex_alb_virtual_host["my-vh"]["name"],
+        http_router_id=yandex_alb_virtual_host["my-router"]["id"])
+    ```
+
+    This data source is used to define [Application Load Balancer Virtual Host] that can be used by other resources.
+
+
+    :param str http_router_id: HTTP Router that the resource belongs to.
+    :param str name: Name of the Virtual Host.
+    :param str virtual_host_id: The ID of a specific Virtual Host. Virtual Host ID is concatenation of HTTP Router ID
+           and Virtual Host name with `/` symbol between them. For Example, "http_router_id/vhost_name".
     """
     ...

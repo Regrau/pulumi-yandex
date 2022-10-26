@@ -12,9 +12,19 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbMongodbClusterClusterConfigMongodSecurityArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// (Optional) Enables the encryption for the WiredTiger storage engine. Can be either true or false.
+        /// For more information see [security.enableEncryption](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.enableEncryption)
+        /// description in the official documentation. Available only in enterprise edition.
+        /// </summary>
         [Input("enableEncryption")]
         public bool? EnableEncryption { get; set; }
 
+        /// <summary>
+        /// (Optional) Configuration of the third party key management appliance via the Key Management Interoperability Protocol (KMIP)
+        /// (see [Encryption tutorial](https://www.mongodb.com/docs/rapid/tutorial/configure-encryption) ). Requires `enable_encryption` to be true.
+        /// The structure is documented below. Available only in enterprise edition.
+        /// </summary>
         [Input("kmip", required: true)]
         public Inputs.GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs Kmip { get; set; } = null!;
 

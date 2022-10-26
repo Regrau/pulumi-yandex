@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbGreenplumClusterSegmentSubcluster
     {
+        /// <summary>
+        /// Resources allocated to hosts for segment subcluster of the Greenplum cluster. The structure is documented below.
+        /// </summary>
         public readonly Outputs.MdbGreenplumClusterSegmentSubclusterResources Resources;
 
         [OutputConstructor]

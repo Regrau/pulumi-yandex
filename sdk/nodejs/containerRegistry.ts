@@ -4,6 +4,32 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Creates a new container registry. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/registry)
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const defaultContainerRegistry = new yandex.ContainerRegistry("default", {
+ *     folderId: "test_folder_id",
+ *     labels: {
+ *         "my-label": "my-label-value",
+ *     },
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A registry can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/containerRegistry:ContainerRegistry default registry_id
+ * ```
+ */
 export class ContainerRegistry extends pulumi.CustomResource {
     /**
      * Get an existing ContainerRegistry resource's state with the given name, ID, and optional extra
@@ -32,10 +58,25 @@ export class ContainerRegistry extends pulumi.CustomResource {
         return obj['__pulumiType'] === ContainerRegistry.__pulumiType;
     }
 
+    /**
+     * Creation timestamp of the registry.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * A set of key/value label pairs to assign to the registry.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * A name of the registry.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Status of the registry.
+     */
     public /*out*/ readonly status!: pulumi.Output<string>;
 
     /**
@@ -73,10 +114,25 @@ export class ContainerRegistry extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ContainerRegistry resources.
  */
 export interface ContainerRegistryState {
+    /**
+     * Creation timestamp of the registry.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the registry.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * A name of the registry.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Status of the registry.
+     */
     status?: pulumi.Input<string>;
 }
 
@@ -84,7 +140,16 @@ export interface ContainerRegistryState {
  * The set of arguments for constructing a ContainerRegistry resource.
  */
 export interface ContainerRegistryArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the registry.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * A name of the registry.
+     */
     name?: pulumi.Input<string>;
 }

@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex IoT Core Registry. For more information IoT Core, see
+ * [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const myRegistry = pulumi.output(yandex.getIotCoreRegistry({
+ *     registryId: "are1sampleregistry11",
+ * }));
+ * ```
+ *
+ * This data source is used to define [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
+ */
 export function getIotCoreRegistry(args?: GetIotCoreRegistryArgs, opts?: pulumi.InvokeOptions): Promise<GetIotCoreRegistryResult> {
     args = args || {};
     if (!opts) {
@@ -22,8 +37,17 @@ export function getIotCoreRegistry(args?: GetIotCoreRegistryArgs, opts?: pulumi.
  * A collection of arguments for invoking getIotCoreRegistry.
  */
 export interface GetIotCoreRegistryArgs {
+    /**
+     * Folder ID for the IoT Core Registry
+     */
     folderId?: string;
+    /**
+     * IoT Core Registry name used to define registry
+     */
     name?: string;
+    /**
+     * IoT Core Registry id used to define registry
+     */
     registryId?: string;
 }
 
@@ -31,16 +55,31 @@ export interface GetIotCoreRegistryArgs {
  * A collection of values returned by getIotCoreRegistry.
  */
 export interface GetIotCoreRegistryResult {
+    /**
+     * A set of certificate's fingerprints for the IoT Core Registry
+     */
     readonly certificates: string[];
+    /**
+     * Creation timestamp of the IoT Core Registry
+     */
     readonly createdAt: string;
+    /**
+     * Description of the IoT Core Registry
+     */
     readonly description: string;
     readonly folderId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A set of key/value label pairs to assign to the IoT Core Registry.
+     */
     readonly labels: {[key: string]: string};
     readonly name?: string;
+    /**
+     * A set of passwords's id for the IoT Core Registry
+     */
     readonly passwords: string[];
     readonly registryId?: string;
 }
@@ -53,7 +92,16 @@ export function getIotCoreRegistryOutput(args?: GetIotCoreRegistryOutputArgs, op
  * A collection of arguments for invoking getIotCoreRegistry.
  */
 export interface GetIotCoreRegistryOutputArgs {
+    /**
+     * Folder ID for the IoT Core Registry
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * IoT Core Registry name used to define registry
+     */
     name?: pulumi.Input<string>;
+    /**
+     * IoT Core Registry id used to define registry
+     */
     registryId?: pulumi.Input<string>;
 }

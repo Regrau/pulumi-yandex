@@ -4,6 +4,43 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * When managing IAM roles, you can treat a service account either as a resource or as an identity.
+ * This resource is used to add IAM policy bindings to a service account resource to configure permissions
+ * that define who can edit the service account.
+ *
+ * There are three different resources that help you manage your IAM policy for a service account.
+ * Each of these resources is used for a different use case:
+ *
+ * * yandex_iam_service_account_iam_policy: Authoritative. Sets the IAM policy for the service account and replaces any existing policy already attached.
+ * * yandex_iam_service_account_iam_binding: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the service account are preserved.
+ * * yandex_iam_service_account_iam_member: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role of the service account are preserved.
+ *
+ * > **Note:** `yandex.IamServiceAccountIamPolicy` **cannot** be used in conjunction with `yandex.IamServiceAccountIamBinding` and `yandex.IamServiceAccountIamMember` or they will conflict over what your policy should be.
+ *
+ * > **Note:** `yandex.IamServiceAccountIamBinding` resources **can be** used in conjunction with `yandex.IamServiceAccountIamMember` resources **only if** they do not grant privileges to the same role.
+ *
+ * ## yandex\_service\_account\_iam\_member
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const admin_account_iam = new yandex.IamServiceAccountIamMember("admin-account-iam", {
+ *     member: "userAccount:bar_user_id",
+ *     role: "admin",
+ *     serviceAccountId: "your-service-account-id",
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * Service account IAM member resources can be imported using the service account ID, role and member.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/iamServiceAccountIamMember:IamServiceAccountIamMember admin-account-iam "service_account_id roles/editor foo@example.com"
+ * ```
+ */
 export class IamServiceAccountIamMember extends pulumi.CustomResource {
     /**
      * Get an existing IamServiceAccountIamMember resource's state with the given name, ID, and optional extra
@@ -32,8 +69,21 @@ export class IamServiceAccountIamMember extends pulumi.CustomResource {
         return obj['__pulumiType'] === IamServiceAccountIamMember.__pulumiType;
     }
 
+    /**
+     * Identity that will be granted the privilege in `role`.
+     * Entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     */
     public readonly member!: pulumi.Output<string>;
+    /**
+     * The role that should be applied. Only one
+     * `yandex.IamServiceAccountIamBinding` can be used per role.
+     */
     public readonly role!: pulumi.Output<string>;
+    /**
+     * The service account ID to apply a policy to.
+     */
     public readonly serviceAccountId!: pulumi.Output<string>;
     public readonly sleepAfter!: pulumi.Output<number | undefined>;
 
@@ -79,8 +129,21 @@ export class IamServiceAccountIamMember extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IamServiceAccountIamMember resources.
  */
 export interface IamServiceAccountIamMemberState {
+    /**
+     * Identity that will be granted the privilege in `role`.
+     * Entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     */
     member?: pulumi.Input<string>;
+    /**
+     * The role that should be applied. Only one
+     * `yandex.IamServiceAccountIamBinding` can be used per role.
+     */
     role?: pulumi.Input<string>;
+    /**
+     * The service account ID to apply a policy to.
+     */
     serviceAccountId?: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }
@@ -89,8 +152,21 @@ export interface IamServiceAccountIamMemberState {
  * The set of arguments for constructing a IamServiceAccountIamMember resource.
  */
 export interface IamServiceAccountIamMemberArgs {
+    /**
+     * Identity that will be granted the privilege in `role`.
+     * Entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     */
     member: pulumi.Input<string>;
+    /**
+     * The role that should be applied. Only one
+     * `yandex.IamServiceAccountIamBinding` can be used per role.
+     */
     role: pulumi.Input<string>;
+    /**
+     * The service account ID to apply a policy to.
+     */
     serviceAccountId: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }

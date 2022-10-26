@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class StorageBucketHttpsGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// — Id of the certificate in Certificate Manager, that will be used for bucket.
+        /// </summary>
         [Input("certificateId", required: true)]
         public Input<string> CertificateId { get; set; } = null!;
 

@@ -13,15 +13,45 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsPostgresSource
     {
+        /// <summary>
+        /// Connection settings. The structure is documented below.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsPostgresSourceConnection? Connection;
+        /// <summary>
+        /// Name of the database to transfer.
+        /// </summary>
         public readonly string? Database;
+        /// <summary>
+        /// List of tables which will not be transfered, formatted as `schemaname.tablename`.
+        /// </summary>
         public readonly ImmutableArray<string> ExcludeTables;
+        /// <summary>
+        /// List of tables to transfer, formatted as `schemaname.tablename`. If omitted or an empty list is specified, all tables will be transferred.
+        /// </summary>
         public readonly ImmutableArray<string> IncludeTables;
+        /// <summary>
+        /// Defines which database schema objects should be transferred, e.g. views, functions, etc.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsPostgresSourceObjectTransferSettings? ObjectTransferSettings;
+        /// <summary>
+        /// Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsPostgresSourcePassword? Password;
+        /// <summary>
+        /// List of security groups that the transfer associated with this endpoint should use.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroups;
+        /// <summary>
+        /// Name of the database schema in which auxiliary tables needed for the transfer will be created. Empty `service_schema` implies schema "public".
+        /// </summary>
         public readonly string? ServiceSchema;
+        /// <summary>
+        /// Maximum WAL size held by the replication slot, in gigabytes. Exceeding this limit will result in a replication failure and deletion of the replication slot. Unlimited by default.
+        /// </summary>
         public readonly int? SlotGigabyteLagLimit;
+        /// <summary>
+        /// User for the database access.
+        /// </summary>
         public readonly string? User;
 
         [OutputConstructor]

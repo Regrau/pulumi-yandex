@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbKafkaClusterUserResult
     {
+        /// <summary>
+        /// The name of the Kafka cluster.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// (Required) The password of the user.
+        /// </summary>
         public readonly string Password;
+        /// <summary>
+        /// (Optional) Set of permissions granted to the user. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbKafkaClusterUserPermissionResult> Permissions;
 
         [OutputConstructor]

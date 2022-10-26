@@ -11,9 +11,29 @@ namespace Pulumi.Yandex
 {
     public static class GetIamRole
     {
+        /// <summary>
+        /// Generates an [IAM] role document that may be referenced by and applied to
+        /// other Yandex.Cloud Platform resources, such as the `yandex.ResourcemanagerFolder` resource. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/iam/concepts/access-control/roles).
+        /// 
+        /// 
+        /// This data source is used to define [IAM] roles in order to apply them to other resources.
+        /// Currently, defining a role through a data source and referencing that role
+        /// from another resource is the only way to apply an IAM role to a resource.
+        /// </summary>
         public static Task<GetIamRoleResult> InvokeAsync(GetIamRoleArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetIamRoleResult>("yandex:index/getIamRole:getIamRole", args ?? new GetIamRoleArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Generates an [IAM] role document that may be referenced by and applied to
+        /// other Yandex.Cloud Platform resources, such as the `yandex.ResourcemanagerFolder` resource. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/iam/concepts/access-control/roles).
+        /// 
+        /// 
+        /// This data source is used to define [IAM] roles in order to apply them to other resources.
+        /// Currently, defining a role through a data source and referencing that role
+        /// from another resource is the only way to apply an IAM role to a resource.
+        /// </summary>
         public static Output<GetIamRoleResult> Invoke(GetIamRoleInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetIamRoleResult>("yandex:index/getIamRole:getIamRole", args ?? new GetIamRoleInvokeArgs(), options.WithDefaults());
     }

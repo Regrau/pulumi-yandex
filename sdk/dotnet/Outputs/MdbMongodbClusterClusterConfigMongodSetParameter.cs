@@ -13,6 +13,11 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbMongodbClusterClusterConfigMongodSetParameter
     {
+        /// <summary>
+        /// Enables the auditing of authorization successes. Can be either true or false.
+        /// For more information, see the [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#mongodb-parameter-param.auditAuthorizationSuccess)
+        /// description in the official documentation. Available only in enterprise edition.
+        /// </summary>
         public readonly bool? AuditAuthorizationSuccess;
 
         [OutputConstructor]

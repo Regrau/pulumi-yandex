@@ -13,9 +13,18 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class VpcDefaultSecurityGroupEgress
     {
+        /// <summary>
+        /// Description of the security group.
+        /// </summary>
         public readonly string? Description;
         public readonly int? FromPort;
+        /// <summary>
+        /// Id of the security group.
+        /// </summary>
         public readonly string? Id;
+        /// <summary>
+        /// Labels to assign to this security group.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
         public readonly int? Port;
         public readonly string? PredefinedTarget;

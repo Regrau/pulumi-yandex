@@ -12,11 +12,18 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsClickhouseSourceGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Connection settings. The structure is documented below.
+        /// </summary>
         [Input("connection")]
         public Input<Inputs.DatatransferEndpointSettingsClickhouseSourceConnectionGetArgs>? Connection { get; set; }
 
         [Input("excludeTables")]
         private InputList<string>? _excludeTables;
+
+        /// <summary>
+        /// List of tables which will not be transfered, formatted as `schemaname.tablename`.
+        /// </summary>
         public InputList<string> ExcludeTables
         {
             get => _excludeTables ?? (_excludeTables = new InputList<string>());
@@ -25,6 +32,10 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("includeTables")]
         private InputList<string>? _includeTables;
+
+        /// <summary>
+        /// List of tables to transfer, formatted as `schemaname.tablename`. If omitted or an empty list is specified, all tables will be transferred.
+        /// </summary>
         public InputList<string> IncludeTables
         {
             get => _includeTables ?? (_includeTables = new InputList<string>());
@@ -33,12 +44,19 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("securityGroups")]
         private InputList<string>? _securityGroups;
+
+        /// <summary>
+        /// List of security groups that the transfer associated with this endpoint should use.
+        /// </summary>
         public InputList<string> SecurityGroups
         {
             get => _securityGroups ?? (_securityGroups = new InputList<string>());
             set => _securityGroups = value;
         }
 
+        /// <summary>
+        /// Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
 

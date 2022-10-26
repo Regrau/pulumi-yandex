@@ -12,15 +12,27 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class VpcAddressExternalIpv4AddressGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allocated IP address.
+        /// </summary>
         [Input("address")]
         public Input<string>? Address { get; set; }
 
+        /// <summary>
+        /// Enable DDOS protection. Possible values are: "qrator"
+        /// </summary>
         [Input("ddosProtectionProvider")]
         public Input<string>? DdosProtectionProvider { get; set; }
 
+        /// <summary>
+        /// Wanted outgoing smtp capability.
+        /// </summary>
         [Input("outgoingSmtpCapability")]
         public Input<string>? OutgoingSmtpCapability { get; set; }
 
+        /// <summary>
+        /// Zone for allocating address.
+        /// </summary>
         [Input("zoneId")]
         public Input<string>? ZoneId { get; set; }
 

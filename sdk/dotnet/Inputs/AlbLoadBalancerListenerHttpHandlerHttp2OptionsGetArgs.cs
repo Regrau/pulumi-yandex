@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbLoadBalancerListenerHttpHandlerHttp2OptionsGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Maximum number of concurrent streams.
+        /// </summary>
         [Input("maxConcurrentStreams")]
         public Input<int>? MaxConcurrentStreams { get; set; }
 

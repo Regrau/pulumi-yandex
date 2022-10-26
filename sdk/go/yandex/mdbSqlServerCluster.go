@@ -11,29 +11,237 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a SQLServer cluster within the Yandex.Cloud. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/managed-sqlserver/).
+//
+// Please read [Pricing for Managed Service for SQL Server](https://cloud.yandex.com/docs/managed-sqlserver/pricing#prices) before using SQLServer cluster.
+//
+// ## Example Usage
+//
+// Example of creating a Single Node SQLServer.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+//				Zone:      pulumi.String("ru-central1-a"),
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.5.0.0/24"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewVpcSecurityGroup(ctx, "test-sg-x", &yandex.VpcSecurityGroupArgs{
+//				NetworkId: fooVpcNetwork.ID(),
+//				Ingresses: VpcSecurityGroupIngressArray{
+//					&VpcSecurityGroupIngressArgs{
+//						Protocol:    pulumi.String("ANY"),
+//						Description: pulumi.String("Allow incoming traffic from members of the same security group"),
+//						FromPort:    pulumi.Int(0),
+//						ToPort:      pulumi.Int(65535),
+//						V4CidrBlocks: pulumi.StringArray{
+//							pulumi.String("0.0.0.0/0"),
+//						},
+//					},
+//				},
+//				Egresses: VpcSecurityGroupEgressArray{
+//					&VpcSecurityGroupEgressArgs{
+//						Protocol:    pulumi.String("ANY"),
+//						Description: pulumi.String("Allow outgoing traffic to members of the same security group"),
+//						FromPort:    pulumi.Int(0),
+//						ToPort:      pulumi.Int(65535),
+//						V4CidrBlocks: pulumi.StringArray{
+//							pulumi.String("0.0.0.0/0"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewMdbSqlServerCluster(ctx, "fooMdbSqlServerCluster", &yandex.MdbSqlServerClusterArgs{
+//				Environment: pulumi.String("PRESTABLE"),
+//				NetworkId:   fooVpcNetwork.ID(),
+//				Version:     pulumi.String("2016sp2std"),
+//				Resources: &MdbSqlServerClusterResourcesArgs{
+//					ResourcePresetId: pulumi.String("s2.small"),
+//					DiskTypeId:       pulumi.String("network-ssd"),
+//					DiskSize:         pulumi.Int(20),
+//				},
+//				Labels: pulumi.StringMap{
+//					"test_key": pulumi.String("test_value"),
+//				},
+//				BackupWindowStart: &MdbSqlServerClusterBackupWindowStartArgs{
+//					Hours:   pulumi.Int(20),
+//					Minutes: pulumi.Int(30),
+//				},
+//				SqlserverConfig: pulumi.StringMap{
+//					"fill_factor_percent":           pulumi.String("49"),
+//					"optimize_for_ad_hoc_workloads": pulumi.String("true"),
+//				},
+//				Databases: MdbSqlServerClusterDatabaseArray{
+//					&MdbSqlServerClusterDatabaseArgs{
+//						Name: pulumi.String("db_name_a"),
+//					},
+//					&MdbSqlServerClusterDatabaseArgs{
+//						Name: pulumi.String("db_name"),
+//					},
+//					&MdbSqlServerClusterDatabaseArgs{
+//						Name: pulumi.String("db_name_b"),
+//					},
+//				},
+//				Users: MdbSqlServerClusterUserArray{
+//					&MdbSqlServerClusterUserArgs{
+//						Name:     pulumi.String("bob"),
+//						Password: pulumi.String("mysecurepassword"),
+//					},
+//					&MdbSqlServerClusterUserArgs{
+//						Name:     pulumi.String("alice"),
+//						Password: pulumi.String("mysecurepassword"),
+//						Permissions: MdbSqlServerClusterUserPermissionArray{
+//							&MdbSqlServerClusterUserPermissionArgs{
+//								DatabaseName: pulumi.String("db_name"),
+//								Roles: pulumi.StringArray{
+//									pulumi.String("DDLADMIN"),
+//								},
+//							},
+//						},
+//					},
+//					&MdbSqlServerClusterUserArgs{
+//						Name:     pulumi.String("chuck"),
+//						Password: pulumi.String("mysecurepassword"),
+//						Permissions: MdbSqlServerClusterUserPermissionArray{
+//							&MdbSqlServerClusterUserPermissionArgs{
+//								DatabaseName: pulumi.String("db_name_a"),
+//								Roles: pulumi.StringArray{
+//									pulumi.String("OWNER"),
+//								},
+//							},
+//							&MdbSqlServerClusterUserPermissionArgs{
+//								DatabaseName: pulumi.String("db_name"),
+//								Roles: pulumi.StringArray{
+//									pulumi.String("OWNER"),
+//									pulumi.String("DDLADMIN"),
+//								},
+//							},
+//							&MdbSqlServerClusterUserPermissionArgs{
+//								DatabaseName: pulumi.String("db_name_b"),
+//								Roles: pulumi.StringArray{
+//									pulumi.String("OWNER"),
+//									pulumi.String("DDLADMIN"),
+//								},
+//							},
+//						},
+//					},
+//				},
+//				Hosts: MdbSqlServerClusterHostArray{
+//					&MdbSqlServerClusterHostArgs{
+//						Zone:     pulumi.String("ru-central1-a"),
+//						SubnetId: fooVpcSubnet.ID(),
+//					},
+//				},
+//				SecurityGroupIds: pulumi.StringArray{
+//					test_sg_x.ID(),
+//				},
+//				HostGroupIds: pulumi.StringArray{
+//					pulumi.String("host_group_1"),
+//					pulumi.String("host_group_2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ## SQLServer config
+//
+// If not specified `sqlserverConfig` then does not make any changes.
+//
+// * maxDegreeOfParallelism - Limits the number of processors to use in parallel plan execution per task. See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-max-degree-of-parallelism-server-configuration-option?view=sql-server-2016).
+//
+// * costThresholdForParallelism - Specifies the threshold at which SQL Server creates and runs parallel plans for queries. SQL Server creates and runs a parallel plan for a query only when the estimated cost to run a serial plan for the same query is higher than the value of the option. See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-cost-threshold-for-parallelism-server-configuration-option?view=sql-server-2016).
+//
+// * auditLevel - Describes how to configure login auditing to monitor SQL Server Database Engine login activity. Possible values:
+//   - 0 — do not log login attempts,˚√
+//   - 1 — log only failed login attempts,
+//   - 2 — log only successful login attempts (not recommended),
+//   - 3 — log all login attempts (not recommended).
+//     See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/ssms/configure-login-auditing-sql-server-management-studio?view=sql-server-2016).
+//
+// * fillFactorPercent - Manages the fill factor server configuration option. When an index is created or rebuilt the fill factor determines the percentage of space on each index leaf-level page to be filled with data, reserving the rest as free space for future growth. Values 0 and 100 mean full page usage (no space reserved). See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-fill-factor-server-configuration-option?view=sql-server-2016).
+// * optimizeForAdHocWorkloads - Determines whether plans should be cached only after second execution. Allows to avoid SQL cache bloat because of single-use plans. See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/optimize-for-ad-hoc-workloads-server-configuration-option?view=sql-server-2016).
+//
+// ## Import
+//
+// A cluster can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/mdbSqlServerCluster:MdbSqlServerCluster foo cluster_id
+//
+// ```
 type MdbSqlServerCluster struct {
 	pulumi.CustomResourceState
 
-	BackupWindowStart  MdbSqlServerClusterBackupWindowStartOutput `pulumi:"backupWindowStart"`
-	CreatedAt          pulumi.StringOutput                        `pulumi:"createdAt"`
-	Databases          MdbSqlServerClusterDatabaseArrayOutput     `pulumi:"databases"`
-	DeletionProtection pulumi.BoolOutput                          `pulumi:"deletionProtection"`
-	Description        pulumi.StringPtrOutput                     `pulumi:"description"`
-	Environment        pulumi.StringOutput                        `pulumi:"environment"`
-	FolderId           pulumi.StringOutput                        `pulumi:"folderId"`
-	Health             pulumi.StringOutput                        `pulumi:"health"`
-	HostGroupIds       pulumi.StringArrayOutput                   `pulumi:"hostGroupIds"`
-	Hosts              MdbSqlServerClusterHostArrayOutput         `pulumi:"hosts"`
-	Labels             pulumi.StringMapOutput                     `pulumi:"labels"`
-	Name               pulumi.StringOutput                        `pulumi:"name"`
-	NetworkId          pulumi.StringOutput                        `pulumi:"networkId"`
-	Resources          MdbSqlServerClusterResourcesOutput         `pulumi:"resources"`
-	SecurityGroupIds   pulumi.StringArrayOutput                   `pulumi:"securityGroupIds"`
-	Sqlcollation       pulumi.StringOutput                        `pulumi:"sqlcollation"`
-	SqlserverConfig    pulumi.StringMapOutput                     `pulumi:"sqlserverConfig"`
-	Status             pulumi.StringOutput                        `pulumi:"status"`
-	Users              MdbSqlServerClusterUserArrayOutput         `pulumi:"users"`
-	Version            pulumi.StringOutput                        `pulumi:"version"`
+	// Time to start the daily backup, in the UTC. The structure is documented below.
+	BackupWindowStart MdbSqlServerClusterBackupWindowStartOutput `pulumi:"backupWindowStart"`
+	// Creation timestamp of the cluster.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// A database of the SQLServer cluster. The structure is documented below.
+	Databases MdbSqlServerClusterDatabaseArrayOutput `pulumi:"databases"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection pulumi.BoolOutput `pulumi:"deletionProtection"`
+	// Description of the SQLServer cluster.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+	Environment pulumi.StringOutput `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Aggregated health of the cluster.
+	Health pulumi.StringOutput `pulumi:"health"`
+	// A list of IDs of the host groups hosting VMs of the cluster.
+	HostGroupIds pulumi.StringArrayOutput `pulumi:"hostGroupIds"`
+	// A host of the SQLServer cluster. The structure is documented below.
+	Hosts MdbSqlServerClusterHostArrayOutput `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the SQLServer cluster.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// The name of the database.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the network, to which the SQLServer cluster uses.
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
+	// Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+	Resources MdbSqlServerClusterResourcesOutput `pulumi:"resources"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
+	// SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+	Sqlcollation pulumi.StringOutput `pulumi:"sqlcollation"`
+	// SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+	SqlserverConfig pulumi.StringMapOutput `pulumi:"sqlserverConfig"`
+	// Status of the cluster.
+	Status pulumi.StringOutput `pulumi:"status"`
+	// A user of the SQLServer cluster. The structure is documented below.
+	Users MdbSqlServerClusterUserArrayOutput `pulumi:"users"`
+	// Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
+	Version pulumi.StringOutput `pulumi:"version"`
 }
 
 // NewMdbSqlServerCluster registers a new resource with the given unique name, arguments, and options.
@@ -87,49 +295,91 @@ func GetMdbSqlServerCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MdbSqlServerCluster resources.
 type mdbSqlServerClusterState struct {
-	BackupWindowStart  *MdbSqlServerClusterBackupWindowStart `pulumi:"backupWindowStart"`
-	CreatedAt          *string                               `pulumi:"createdAt"`
-	Databases          []MdbSqlServerClusterDatabase         `pulumi:"databases"`
-	DeletionProtection *bool                                 `pulumi:"deletionProtection"`
-	Description        *string                               `pulumi:"description"`
-	Environment        *string                               `pulumi:"environment"`
-	FolderId           *string                               `pulumi:"folderId"`
-	Health             *string                               `pulumi:"health"`
-	HostGroupIds       []string                              `pulumi:"hostGroupIds"`
-	Hosts              []MdbSqlServerClusterHost             `pulumi:"hosts"`
-	Labels             map[string]string                     `pulumi:"labels"`
-	Name               *string                               `pulumi:"name"`
-	NetworkId          *string                               `pulumi:"networkId"`
-	Resources          *MdbSqlServerClusterResources         `pulumi:"resources"`
-	SecurityGroupIds   []string                              `pulumi:"securityGroupIds"`
-	Sqlcollation       *string                               `pulumi:"sqlcollation"`
-	SqlserverConfig    map[string]string                     `pulumi:"sqlserverConfig"`
-	Status             *string                               `pulumi:"status"`
-	Users              []MdbSqlServerClusterUser             `pulumi:"users"`
-	Version            *string                               `pulumi:"version"`
+	// Time to start the daily backup, in the UTC. The structure is documented below.
+	BackupWindowStart *MdbSqlServerClusterBackupWindowStart `pulumi:"backupWindowStart"`
+	// Creation timestamp of the cluster.
+	CreatedAt *string `pulumi:"createdAt"`
+	// A database of the SQLServer cluster. The structure is documented below.
+	Databases []MdbSqlServerClusterDatabase `pulumi:"databases"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// Description of the SQLServer cluster.
+	Description *string `pulumi:"description"`
+	// Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+	Environment *string `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Aggregated health of the cluster.
+	Health *string `pulumi:"health"`
+	// A list of IDs of the host groups hosting VMs of the cluster.
+	HostGroupIds []string `pulumi:"hostGroupIds"`
+	// A host of the SQLServer cluster. The structure is documented below.
+	Hosts []MdbSqlServerClusterHost `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the SQLServer cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the database.
+	Name *string `pulumi:"name"`
+	// ID of the network, to which the SQLServer cluster uses.
+	NetworkId *string `pulumi:"networkId"`
+	// Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+	Resources *MdbSqlServerClusterResources `pulumi:"resources"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+	Sqlcollation *string `pulumi:"sqlcollation"`
+	// SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+	SqlserverConfig map[string]string `pulumi:"sqlserverConfig"`
+	// Status of the cluster.
+	Status *string `pulumi:"status"`
+	// A user of the SQLServer cluster. The structure is documented below.
+	Users []MdbSqlServerClusterUser `pulumi:"users"`
+	// Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
+	Version *string `pulumi:"version"`
 }
 
 type MdbSqlServerClusterState struct {
-	BackupWindowStart  MdbSqlServerClusterBackupWindowStartPtrInput
-	CreatedAt          pulumi.StringPtrInput
-	Databases          MdbSqlServerClusterDatabaseArrayInput
+	// Time to start the daily backup, in the UTC. The structure is documented below.
+	BackupWindowStart MdbSqlServerClusterBackupWindowStartPtrInput
+	// Creation timestamp of the cluster.
+	CreatedAt pulumi.StringPtrInput
+	// A database of the SQLServer cluster. The structure is documented below.
+	Databases MdbSqlServerClusterDatabaseArrayInput
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
 	DeletionProtection pulumi.BoolPtrInput
-	Description        pulumi.StringPtrInput
-	Environment        pulumi.StringPtrInput
-	FolderId           pulumi.StringPtrInput
-	Health             pulumi.StringPtrInput
-	HostGroupIds       pulumi.StringArrayInput
-	Hosts              MdbSqlServerClusterHostArrayInput
-	Labels             pulumi.StringMapInput
-	Name               pulumi.StringPtrInput
-	NetworkId          pulumi.StringPtrInput
-	Resources          MdbSqlServerClusterResourcesPtrInput
-	SecurityGroupIds   pulumi.StringArrayInput
-	Sqlcollation       pulumi.StringPtrInput
-	SqlserverConfig    pulumi.StringMapInput
-	Status             pulumi.StringPtrInput
-	Users              MdbSqlServerClusterUserArrayInput
-	Version            pulumi.StringPtrInput
+	// Description of the SQLServer cluster.
+	Description pulumi.StringPtrInput
+	// Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+	Environment pulumi.StringPtrInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Aggregated health of the cluster.
+	Health pulumi.StringPtrInput
+	// A list of IDs of the host groups hosting VMs of the cluster.
+	HostGroupIds pulumi.StringArrayInput
+	// A host of the SQLServer cluster. The structure is documented below.
+	Hosts MdbSqlServerClusterHostArrayInput
+	// A set of key/value label pairs to assign to the SQLServer cluster.
+	Labels pulumi.StringMapInput
+	// The name of the database.
+	Name pulumi.StringPtrInput
+	// ID of the network, to which the SQLServer cluster uses.
+	NetworkId pulumi.StringPtrInput
+	// Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+	Resources MdbSqlServerClusterResourcesPtrInput
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayInput
+	// SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+	Sqlcollation pulumi.StringPtrInput
+	// SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+	SqlserverConfig pulumi.StringMapInput
+	// Status of the cluster.
+	Status pulumi.StringPtrInput
+	// A user of the SQLServer cluster. The structure is documented below.
+	Users MdbSqlServerClusterUserArrayInput
+	// Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
+	Version pulumi.StringPtrInput
 }
 
 func (MdbSqlServerClusterState) ElementType() reflect.Type {
@@ -137,44 +387,80 @@ func (MdbSqlServerClusterState) ElementType() reflect.Type {
 }
 
 type mdbSqlServerClusterArgs struct {
-	BackupWindowStart  *MdbSqlServerClusterBackupWindowStart `pulumi:"backupWindowStart"`
-	Databases          []MdbSqlServerClusterDatabase         `pulumi:"databases"`
-	DeletionProtection *bool                                 `pulumi:"deletionProtection"`
-	Description        *string                               `pulumi:"description"`
-	Environment        string                                `pulumi:"environment"`
-	FolderId           *string                               `pulumi:"folderId"`
-	HostGroupIds       []string                              `pulumi:"hostGroupIds"`
-	Hosts              []MdbSqlServerClusterHost             `pulumi:"hosts"`
-	Labels             map[string]string                     `pulumi:"labels"`
-	Name               *string                               `pulumi:"name"`
-	NetworkId          string                                `pulumi:"networkId"`
-	Resources          MdbSqlServerClusterResources          `pulumi:"resources"`
-	SecurityGroupIds   []string                              `pulumi:"securityGroupIds"`
-	Sqlcollation       *string                               `pulumi:"sqlcollation"`
-	SqlserverConfig    map[string]string                     `pulumi:"sqlserverConfig"`
-	Users              []MdbSqlServerClusterUser             `pulumi:"users"`
-	Version            string                                `pulumi:"version"`
+	// Time to start the daily backup, in the UTC. The structure is documented below.
+	BackupWindowStart *MdbSqlServerClusterBackupWindowStart `pulumi:"backupWindowStart"`
+	// A database of the SQLServer cluster. The structure is documented below.
+	Databases []MdbSqlServerClusterDatabase `pulumi:"databases"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// Description of the SQLServer cluster.
+	Description *string `pulumi:"description"`
+	// Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+	Environment string `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A list of IDs of the host groups hosting VMs of the cluster.
+	HostGroupIds []string `pulumi:"hostGroupIds"`
+	// A host of the SQLServer cluster. The structure is documented below.
+	Hosts []MdbSqlServerClusterHost `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the SQLServer cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the database.
+	Name *string `pulumi:"name"`
+	// ID of the network, to which the SQLServer cluster uses.
+	NetworkId string `pulumi:"networkId"`
+	// Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+	Resources MdbSqlServerClusterResources `pulumi:"resources"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+	Sqlcollation *string `pulumi:"sqlcollation"`
+	// SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+	SqlserverConfig map[string]string `pulumi:"sqlserverConfig"`
+	// A user of the SQLServer cluster. The structure is documented below.
+	Users []MdbSqlServerClusterUser `pulumi:"users"`
+	// Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
+	Version string `pulumi:"version"`
 }
 
 // The set of arguments for constructing a MdbSqlServerCluster resource.
 type MdbSqlServerClusterArgs struct {
-	BackupWindowStart  MdbSqlServerClusterBackupWindowStartPtrInput
-	Databases          MdbSqlServerClusterDatabaseArrayInput
+	// Time to start the daily backup, in the UTC. The structure is documented below.
+	BackupWindowStart MdbSqlServerClusterBackupWindowStartPtrInput
+	// A database of the SQLServer cluster. The structure is documented below.
+	Databases MdbSqlServerClusterDatabaseArrayInput
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
 	DeletionProtection pulumi.BoolPtrInput
-	Description        pulumi.StringPtrInput
-	Environment        pulumi.StringInput
-	FolderId           pulumi.StringPtrInput
-	HostGroupIds       pulumi.StringArrayInput
-	Hosts              MdbSqlServerClusterHostArrayInput
-	Labels             pulumi.StringMapInput
-	Name               pulumi.StringPtrInput
-	NetworkId          pulumi.StringInput
-	Resources          MdbSqlServerClusterResourcesInput
-	SecurityGroupIds   pulumi.StringArrayInput
-	Sqlcollation       pulumi.StringPtrInput
-	SqlserverConfig    pulumi.StringMapInput
-	Users              MdbSqlServerClusterUserArrayInput
-	Version            pulumi.StringInput
+	// Description of the SQLServer cluster.
+	Description pulumi.StringPtrInput
+	// Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
+	Environment pulumi.StringInput
+	// The ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A list of IDs of the host groups hosting VMs of the cluster.
+	HostGroupIds pulumi.StringArrayInput
+	// A host of the SQLServer cluster. The structure is documented below.
+	Hosts MdbSqlServerClusterHostArrayInput
+	// A set of key/value label pairs to assign to the SQLServer cluster.
+	Labels pulumi.StringMapInput
+	// The name of the database.
+	Name pulumi.StringPtrInput
+	// ID of the network, to which the SQLServer cluster uses.
+	NetworkId pulumi.StringInput
+	// Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+	Resources MdbSqlServerClusterResourcesInput
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayInput
+	// SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+	Sqlcollation pulumi.StringPtrInput
+	// SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
+	SqlserverConfig pulumi.StringMapInput
+	// A user of the SQLServer cluster. The structure is documented below.
+	Users MdbSqlServerClusterUserArrayInput
+	// Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
+	Version pulumi.StringInput
 }
 
 func (MdbSqlServerClusterArgs) ElementType() reflect.Type {
@@ -264,82 +550,103 @@ func (o MdbSqlServerClusterOutput) ToMdbSqlServerClusterOutputWithContext(ctx co
 	return o
 }
 
+// Time to start the daily backup, in the UTC. The structure is documented below.
 func (o MdbSqlServerClusterOutput) BackupWindowStart() MdbSqlServerClusterBackupWindowStartOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) MdbSqlServerClusterBackupWindowStartOutput { return v.BackupWindowStart }).(MdbSqlServerClusterBackupWindowStartOutput)
 }
 
+// Creation timestamp of the cluster.
 func (o MdbSqlServerClusterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// A database of the SQLServer cluster. The structure is documented below.
 func (o MdbSqlServerClusterOutput) Databases() MdbSqlServerClusterDatabaseArrayOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) MdbSqlServerClusterDatabaseArrayOutput { return v.Databases }).(MdbSqlServerClusterDatabaseArrayOutput)
 }
 
+// Inhibits deletion of the cluster.  Can be either `true` or `false`.
 func (o MdbSqlServerClusterOutput) DeletionProtection() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.BoolOutput { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
+// Description of the SQLServer cluster.
 func (o MdbSqlServerClusterOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Deployment environment of the SQLServer cluster. (PRODUCTION, PRESTABLE)
 func (o MdbSqlServerClusterOutput) Environment() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringOutput { return v.Environment }).(pulumi.StringOutput)
 }
 
+// The ID of the folder that the resource belongs to. If it
+// is not provided, the default provider folder is used.
 func (o MdbSqlServerClusterOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Aggregated health of the cluster.
 func (o MdbSqlServerClusterOutput) Health() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringOutput { return v.Health }).(pulumi.StringOutput)
 }
 
+// A list of IDs of the host groups hosting VMs of the cluster.
 func (o MdbSqlServerClusterOutput) HostGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringArrayOutput { return v.HostGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// A host of the SQLServer cluster. The structure is documented below.
 func (o MdbSqlServerClusterOutput) Hosts() MdbSqlServerClusterHostArrayOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) MdbSqlServerClusterHostArrayOutput { return v.Hosts }).(MdbSqlServerClusterHostArrayOutput)
 }
 
+// A set of key/value label pairs to assign to the SQLServer cluster.
 func (o MdbSqlServerClusterOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// The name of the database.
 func (o MdbSqlServerClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network, to which the SQLServer cluster uses.
 func (o MdbSqlServerClusterOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
 func (o MdbSqlServerClusterOutput) Resources() MdbSqlServerClusterResourcesOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) MdbSqlServerClusterResourcesOutput { return v.Resources }).(MdbSqlServerClusterResourcesOutput)
 }
 
+// A set of ids of security groups assigned to hosts of the cluster.
 func (o MdbSqlServerClusterOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringArrayOutput { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
 func (o MdbSqlServerClusterOutput) Sqlcollation() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringOutput { return v.Sqlcollation }).(pulumi.StringOutput)
 }
 
+// SQLServer cluster config. Detail info in "SQLServer config" section (documented below).
 func (o MdbSqlServerClusterOutput) SqlserverConfig() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringMapOutput { return v.SqlserverConfig }).(pulumi.StringMapOutput)
 }
 
+// Status of the cluster.
 func (o MdbSqlServerClusterOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
+// A user of the SQLServer cluster. The structure is documented below.
 func (o MdbSqlServerClusterOutput) Users() MdbSqlServerClusterUserArrayOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) MdbSqlServerClusterUserArrayOutput { return v.Users }).(MdbSqlServerClusterUserArrayOutput)
 }
 
+// Version of the SQLServer cluster. (2016sp2std, 2016sp2ent)
 func (o MdbSqlServerClusterOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbSqlServerCluster) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

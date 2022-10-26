@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbGreenplumClusterSegmentSubclusterArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Resources allocated to hosts for segment subcluster of the Greenplum cluster. The structure is documented below.
+        /// </summary>
         [Input("resources", required: true)]
         public Input<Inputs.MdbGreenplumClusterSegmentSubclusterResourcesArgs> Resources { get; set; } = null!;
 

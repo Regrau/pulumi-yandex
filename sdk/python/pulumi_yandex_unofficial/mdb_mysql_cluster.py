@@ -40,6 +40,27 @@ class MdbMysqlClusterArgs:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserArgs']]]] = None):
         """
         The set of arguments for constructing a MdbMysqlCluster resource.
+        :param pulumi.Input[str] environment: Deployment environment of the MySQL cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterHostArgs']]] hosts: A host of the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[str] network_id: ID of the network, to which the MySQL cluster uses.
+        :param pulumi.Input['MdbMysqlClusterResourcesArgs'] resources: Resources allocated to hosts of the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[str] version: Version of the MySQL cluster. (allowed versions are: 5.7, 8.0)
+        :param pulumi.Input['MdbMysqlClusterAccessArgs'] access: Access policy to the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[int] backup_retain_period_days: The period in days during which backups are stored.
+        :param pulumi.Input['MdbMysqlClusterBackupWindowStartArgs'] backup_window_start: Time to start the daily backup, in the UTC. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterDatabaseArgs']]] databases: To manage databases, please switch to using a separate resource type `yandex_mdb_mysql_databases`.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the MySQL cluster.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the MySQL cluster.
+        :param pulumi.Input['MdbMysqlClusterMaintenanceWindowArgs'] maintenance_window: Maintenance policy of the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] mysql_config: MySQL cluster config. Detail info in "MySQL config" section (documented below).
+        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        :param pulumi.Input['MdbMysqlClusterPerformanceDiagnosticsArgs'] performance_diagnostics: Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        :param pulumi.Input['MdbMysqlClusterRestoreArgs'] restore: The cluster will be created from the specified backup. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
         """
         pulumi.set(__self__, "environment", environment)
         pulumi.set(__self__, "hosts", hosts)
@@ -93,6 +114,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Input[str]:
+        """
+        Deployment environment of the MySQL cluster.
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -102,6 +126,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter
     def hosts(self) -> pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterHostArgs']]]:
+        """
+        A host of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -111,6 +138,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Input[str]:
+        """
+        ID of the network, to which the MySQL cluster uses.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -120,6 +150,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Input['MdbMysqlClusterResourcesArgs']:
+        """
+        Resources allocated to hosts of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -129,6 +162,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
+        """
+        Version of the MySQL cluster. (allowed versions are: 5.7, 8.0)
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -138,6 +174,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter
     def access(self) -> Optional[pulumi.Input['MdbMysqlClusterAccessArgs']]:
+        """
+        Access policy to the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @access.setter
@@ -156,6 +195,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter(name="backupRetainPeriodDays")
     def backup_retain_period_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        The period in days during which backups are stored.
+        """
         return pulumi.get(self, "backup_retain_period_days")
 
     @backup_retain_period_days.setter
@@ -165,6 +207,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> Optional[pulumi.Input['MdbMysqlClusterBackupWindowStartArgs']]:
+        """
+        Time to start the daily backup, in the UTC. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @backup_window_start.setter
@@ -174,6 +219,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter
     def databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterDatabaseArgs']]]]:
+        """
+        To manage databases, please switch to using a separate resource type `yandex_mdb_mysql_databases`.
+        """
         return pulumi.get(self, "databases")
 
     @databases.setter
@@ -183,6 +231,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -192,6 +243,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the MySQL cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -201,6 +255,10 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -219,6 +277,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the MySQL cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -228,6 +289,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MdbMysqlClusterMaintenanceWindowArgs']]:
+        """
+        Maintenance policy of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
@@ -237,6 +301,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter(name="mysqlConfig")
     def mysql_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        MySQL cluster config. Detail info in "MySQL config" section (documented below).
+        """
         return pulumi.get(self, "mysql_config")
 
     @mysql_config.setter
@@ -246,6 +313,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -255,6 +325,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter(name="performanceDiagnostics")
     def performance_diagnostics(self) -> Optional[pulumi.Input['MdbMysqlClusterPerformanceDiagnosticsArgs']]:
+        """
+        Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        """
         return pulumi.get(self, "performance_diagnostics")
 
     @performance_diagnostics.setter
@@ -264,6 +337,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter
     def restore(self) -> Optional[pulumi.Input['MdbMysqlClusterRestoreArgs']]:
+        """
+        The cluster will be created from the specified backup. The structure is documented below.
+        """
         return pulumi.get(self, "restore")
 
     @restore.setter
@@ -273,6 +349,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -282,6 +361,9 @@ class MdbMysqlClusterArgs:
     @property
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserArgs']]]]:
+        """
+        To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        """
         return pulumi.get(self, "users")
 
     @users.setter
@@ -319,6 +401,30 @@ class _MdbMysqlClusterState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MdbMysqlCluster resources.
+        :param pulumi.Input['MdbMysqlClusterAccessArgs'] access: Access policy to the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[int] backup_retain_period_days: The period in days during which backups are stored.
+        :param pulumi.Input['MdbMysqlClusterBackupWindowStartArgs'] backup_window_start: Time to start the daily backup, in the UTC. The structure is documented below.
+        :param pulumi.Input[str] created_at: Creation timestamp of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterDatabaseArgs']]] databases: To manage databases, please switch to using a separate resource type `yandex_mdb_mysql_databases`.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the MySQL cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the MySQL cluster.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[str] health: Aggregated health of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterHostArgs']]] hosts: A host of the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the MySQL cluster.
+        :param pulumi.Input['MdbMysqlClusterMaintenanceWindowArgs'] maintenance_window: Maintenance policy of the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] mysql_config: MySQL cluster config. Detail info in "MySQL config" section (documented below).
+        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        :param pulumi.Input[str] network_id: ID of the network, to which the MySQL cluster uses.
+        :param pulumi.Input['MdbMysqlClusterPerformanceDiagnosticsArgs'] performance_diagnostics: Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        :param pulumi.Input['MdbMysqlClusterResourcesArgs'] resources: Resources allocated to hosts of the MySQL cluster. The structure is documented below.
+        :param pulumi.Input['MdbMysqlClusterRestoreArgs'] restore: The cluster will be created from the specified backup. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] status: Status of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        :param pulumi.Input[str] version: Version of the MySQL cluster. (allowed versions are: 5.7, 8.0)
         """
         if access is not None:
             pulumi.set(__self__, "access", access)
@@ -383,6 +489,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter
     def access(self) -> Optional[pulumi.Input['MdbMysqlClusterAccessArgs']]:
+        """
+        Access policy to the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @access.setter
@@ -401,6 +510,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter(name="backupRetainPeriodDays")
     def backup_retain_period_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        The period in days during which backups are stored.
+        """
         return pulumi.get(self, "backup_retain_period_days")
 
     @backup_retain_period_days.setter
@@ -410,6 +522,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> Optional[pulumi.Input['MdbMysqlClusterBackupWindowStartArgs']]:
+        """
+        Time to start the daily backup, in the UTC. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @backup_window_start.setter
@@ -419,6 +534,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the cluster.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -428,6 +546,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter
     def databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterDatabaseArgs']]]]:
+        """
+        To manage databases, please switch to using a separate resource type `yandex_mdb_mysql_databases`.
+        """
         return pulumi.get(self, "databases")
 
     @databases.setter
@@ -437,6 +558,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -446,6 +570,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the MySQL cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -455,6 +582,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter
     def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deployment environment of the MySQL cluster.
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -464,6 +594,10 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -473,6 +607,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter
     def health(self) -> Optional[pulumi.Input[str]]:
+        """
+        Aggregated health of the cluster.
+        """
         return pulumi.get(self, "health")
 
     @health.setter
@@ -491,6 +628,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterHostArgs']]]]:
+        """
+        A host of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -500,6 +640,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the MySQL cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -509,6 +652,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MdbMysqlClusterMaintenanceWindowArgs']]:
+        """
+        Maintenance policy of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
@@ -518,6 +664,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter(name="mysqlConfig")
     def mysql_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        MySQL cluster config. Detail info in "MySQL config" section (documented below).
+        """
         return pulumi.get(self, "mysql_config")
 
     @mysql_config.setter
@@ -527,6 +676,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -536,6 +688,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the network, to which the MySQL cluster uses.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -545,6 +700,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter(name="performanceDiagnostics")
     def performance_diagnostics(self) -> Optional[pulumi.Input['MdbMysqlClusterPerformanceDiagnosticsArgs']]:
+        """
+        Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        """
         return pulumi.get(self, "performance_diagnostics")
 
     @performance_diagnostics.setter
@@ -554,6 +712,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter
     def resources(self) -> Optional[pulumi.Input['MdbMysqlClusterResourcesArgs']]:
+        """
+        Resources allocated to hosts of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -563,6 +724,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter
     def restore(self) -> Optional[pulumi.Input['MdbMysqlClusterRestoreArgs']]:
+        """
+        The cluster will be created from the specified backup. The structure is documented below.
+        """
         return pulumi.get(self, "restore")
 
     @restore.setter
@@ -572,6 +736,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -581,6 +748,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the cluster.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -590,6 +760,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserArgs']]]]:
+        """
+        To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        """
         return pulumi.get(self, "users")
 
     @users.setter
@@ -599,6 +772,9 @@ class _MdbMysqlClusterState:
     @property
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of the MySQL cluster. (allowed versions are: 5.7, 8.0)
+        """
         return pulumi.get(self, "version")
 
     @version.setter
@@ -635,9 +811,657 @@ class MdbMysqlCluster(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a MdbMysqlCluster resource with the given unique name, props, and options.
+        Manages a MySQL cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-mysql/).
+
+        ## Example Usage
+
+        Example of creating a Single Node MySQL.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.5.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            mysql_config={
+                "sql_mode": "ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+                "max_connections": "100",
+                "default_authentication_plugin": "MYSQL_NATIVE_PASSWORD",
+                "innodb_print_all_deadlocks": "true",
+            },
+            hosts=[yandex.MdbMysqlClusterHostArgs(
+                zone="ru-central1-a",
+                subnet_id=foo_vpc_subnet.id,
+            )])
+        ```
+
+        Example of creating a High-Availability(HA) MySQL Cluster.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"])
+        bar = yandex.VpcSubnet("bar",
+            zone="ru-central1-b",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.2.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            maintenance_window=yandex.MdbMysqlClusterMaintenanceWindowArgs(
+                type="WEEKLY",
+                day="SAT",
+                hour=12,
+            ),
+            hosts=[
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-a",
+                    subnet_id=foo_vpc_subnet.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    subnet_id=bar.id,
+                ),
+            ])
+        ```
+
+        Example of creating a MySQL Cluster with cascade replicas: HA-group consist of 'na-1' and 'na-2', cascade replicas form a chain 'na-1' > 'nb-1' > 'nb-2'
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"])
+        bar = yandex.VpcSubnet("bar",
+            zone="ru-central1-b",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.2.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            maintenance_window=yandex.MdbMysqlClusterMaintenanceWindowArgs(
+                type="WEEKLY",
+                day="SAT",
+                hour=12,
+            ),
+            hosts=[
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-a",
+                    name="na-1",
+                    subnet_id=foo_vpc_subnet.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-a",
+                    name="na-2",
+                    subnet_id=foo_vpc_subnet.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    name="nb-1",
+                    replication_source_name="na-1",
+                    subnet_id=bar.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    name="nb-2",
+                    replication_source_name="nb-1",
+                    subnet_id=bar.id,
+                ),
+            ])
+        ```
+
+        Example of creating a MySQL Cluster with different backup priorities. Backup will be created from nb-2, if it's not master. na-2 will be used as a backup source as a last resort.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"])
+        bar = yandex.VpcSubnet("bar",
+            zone="ru-central1-b",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.2.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            maintenance_window=yandex.MdbMysqlClusterMaintenanceWindowArgs(
+                type="WEEKLY",
+                day="SAT",
+                hour=12,
+            ),
+            hosts=[
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-a",
+                    name="na-1",
+                    subnet_id=foo_vpc_subnet.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    name="nb-1",
+                    backup_priority=5,
+                    subnet_id=bar.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    name="nb-2",
+                    backup_priority=10,
+                    subnet_id=bar.id,
+                ),
+            ])
+        ```
+
+        Example of creating a MySQL Cluster with different host priorities. During failover master will be set to nb-2
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"])
+        bar = yandex.VpcSubnet("bar",
+            zone="ru-central1-b",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.2.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            maintenance_window=yandex.MdbMysqlClusterMaintenanceWindowArgs(
+                type="WEEKLY",
+                day="SAT",
+                hour=12,
+            ),
+            hosts=[
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-a",
+                    name="na-1",
+                    subnet_id=foo_vpc_subnet.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    name="nb-1",
+                    priority=5,
+                    subnet_id=bar.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    name="nb-2",
+                    priority=10,
+                    subnet_id=bar.id,
+                ),
+            ])
+        ```
+
+        Example of creating a Single Node MySQL with user params.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.5.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            maintenance_window=yandex.MdbMysqlClusterMaintenanceWindowArgs(
+                type="ANYTIME",
+            ),
+            hosts=[yandex.MdbMysqlClusterHostArgs(
+                zone="ru-central1-a",
+                subnet_id=foo_vpc_subnet.id,
+            )])
+        ```
+
+        Example of restoring MySQL cluster.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.5.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            restore=yandex.MdbMysqlClusterRestoreArgs(
+                backup_id="c9qj2tns23432471d9qha:stream_20210122T141717Z",
+                time="2021-01-23T15:04:05",
+            ),
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            hosts=[yandex.MdbMysqlClusterHostArgs(
+                zone="ru-central1-a",
+                subnet_id=foo_vpc_subnet.id,
+            )])
+        ```
+        ## MySQL config
+
+        If not specified `mysql_config` then does not make any changes.
+
+        * `sql_mode` default value: `ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION`
+
+        some of:\\
+        	-	1: "ALLOW_INVALID_DATES"
+        	-	2: "ANSI_QUOTES"
+        	-	3: "ERROR_FOR_DIVISION_BY_ZERO"
+        	-	4: "HIGH_NOT_PRECEDENCE"
+        	-	5: "IGNORE_SPACE"
+        	-	6: "NO_AUTO_VALUE_ON_ZERO"
+        	-	7: "NO_BACKSLASH_ESCAPES"
+        	-	8: "NO_ENGINE_SUBSTITUTION"
+        	-	9: "NO_UNSIGNED_SUBTRACTION"
+        	-	10: "NO_ZERO_DATE"
+        	-	11: "NO_ZERO_IN_DATE"
+        	-	15: "ONLY_FULL_GROUP_BY"
+        	-	16: "PAD_CHAR_TO_FULL_LENGTH"
+        	-	17: "PIPES_AS_CONCAT"
+        	-	18: "REAL_AS_FLOAT"
+        	-	19: "STRICT_ALL_TABLES"
+        	-	20: "STRICT_TRANS_TABLES"
+        	-	21: "TIME_TRUNCATE_FRACTIONAL"
+        	-	22: "ANSI"
+        	-	23: "TRADITIONAL"
+        	-	24: "NO_DIR_IN_CREATE"
+        or:
+          - 0: "SQLMODE_UNSPECIFIED"
+
+        ### MysqlConfig 8.0
+        * `audit_log` boolean
+
+        * `auto_increment_increment` integer
+
+        * `auto_increment_offset` integer
+
+        * `binlog_cache_size` integer
+
+        * `binlog_group_commit_sync_delay` integer
+
+        * `binlog_row_image` one of:
+          - 0: "BINLOG_ROW_IMAGE_UNSPECIFIED"
+          - 1: "FULL"
+          - 2: "MINIMAL"
+          - 3: "NOBLOB"
+
+        * `binlog_rows_query_log_events` boolean
+
+        * `character_set_server` text
+
+        * `collation_server` text
+
+        * `default_authentication_plugin` one of:
+          - 0: "AUTH_PLUGIN_UNSPECIFIED"
+          - 1: "MYSQL_NATIVE_PASSWORD"
+          - 2: "CACHING_SHA2_PASSWORD"
+          - 3: "SHA256_PASSWORD"
+
+        * `default_time_zone` text
+
+        * `explicit_defaults_for_timestamp` boolean
+
+        * `general_log` boolean
+
+        * `group_concat_max_len` integer
+
+        * `innodb_adaptive_hash_index` boolean
+
+        * `innodb_buffer_pool_size` integer
+
+        * `innodb_flush_log_at_trx_commit` integer
+
+        * `innodb_ft_max_token_size` integer
+
+        * `innodb_ft_min_token_size` integer
+
+        * `innodb_io_capacity` integer
+
+        * `innodb_io_capacity_max` integer
+
+        * `innodb_lock_wait_timeout` integer
+
+        * `innodb_log_buffer_size` integer
+
+        * `innodb_log_file_size` integer
+
+        * `innodb_numa_interleave` boolean
+
+        * `innodb_online_alter_log_max_size` integer
+
+        * `innodb_page_size` integer (create-only option)
+
+        * `innodb_print_all_deadlocks` boolean
+
+        * `innodb_purge_threads` integer
+
+        * `innodb_read_io_threads` integer
+
+        * `innodb_temp_data_file_max_size` integer
+
+        * `innodb_thread_concurrency` integer
+
+        * `innodb_write_io_threads` integer
+
+        * `interactive_timeout` integer
+
+        * `join_buffer_size` integer
+
+        * `log_slow_rate_limit` intger
+
+        * `log_slow_rate_type` one of:
+           - 0: "SESSION"
+           - 1: "QUERY"
+
+        * `log_slow_sp_statements` boolean
+
+        * `long_query_time` float
+
+        * `lower_case_table_names` boolean (create-only option)
+
+        * `max_allowed_packet` integer
+
+        * `max_connections` integer
+
+        * `max_heap_table_size` integer
+
+        * `mdb_offline_mode_disable_lag` integer
+
+        * `mdb_offline_mode_enable_lag` integer
+
+        * `mdb_preserve_binlog_bytes` integer
+
+        * `mdb_priority_choice_max_lag` integer
+
+        * `net_read_timeout` integer
+
+        * `net_write_timeout` integer
+
+        * `range_optimizer_max_mem_size` integer
+
+        * `regexp_time_limit` integer
+
+        * `rpl_semi_sync_master_wait_for_slave_count` integer
+
+        * `slave_parallel_type` one of:
+          - 0: "SLAVE_PARALLEL_TYPE_UNSPECIFIED"
+          - 1: "DATABASE"
+          - 2: "LOGICAL_CLOCK"
+
+        * `slow_query_log` boolean
+
+        * `slow_query_log_always_write_time` float
+
+        * `slave_parallel_workers` integer
+
+        * `sort_buffer_size` integer
+
+        * `sync_binlog` integer
+
+        * `table_definition_cache` integer
+
+        * `table_open_cache` integer
+
+        * `table_open_cache_instances` integer
+
+        * `thread_cache_size` integer
+
+        * `thread_stack` integer
+
+        * `tmp_table_size` integer
+
+        * `transaction_isolation` one of:
+          - 0: "TRANSACTION_ISOLATION_UNSPECIFIED"
+          - 1: "READ_COMMITTED"
+          - 2: "REPEATABLE_READ"
+          - 3: "SERIALIZABLE"
+
+        * `wait_timeout` integer
+
+        ### MysqlConfig 5.7
+        * `audit_log` boolean
+
+        * `auto_increment_increment` integer
+
+        * `auto_increment_offset` integer
+
+        * `binlog_cache_size` integer
+
+        * `binlog_group_commit_sync_delay` integer
+
+        * `binlog_row_image` one of:
+          - 0: "BINLOG_ROW_IMAGE_UNSPECIFIED"
+          - 1: "FULL"
+          - 2: "MINIMAL"
+          - 3: "NOBLOB"
+
+        * `binlog_rows_query_log_events` boolean
+
+        * `character_set_server` text
+
+        * `collation_server` text
+
+        * `default_authentication_plugin` one of:
+          - 0: "AUTH_PLUGIN_UNSPECIFIED"
+          - 1: "MYSQL_NATIVE_PASSWORD"
+          - 2: "CACHING_SHA2_PASSWORD"
+          - 3: "SHA256_PASSWORD"
+
+        * `default_time_zone` text
+
+        * `explicit_defaults_for_timestamp` boolean
+
+        * `general_log` boolean
+
+        * `group_concat_max_len` integer
+
+        * `innodb_adaptive_hash_index` boolean
+
+        * `innodb_buffer_pool_size` integer
+
+        * `innodb_flush_log_at_trx_commit` integer
+
+        * `innodb_ft_max_token_size` integer
+
+        * `innodb_ft_min_token_size` integer
+
+        * `innodb_io_capacity` integer
+
+        * `innodb_io_capacity_max` integer
+
+        * `innodb_lock_wait_timeout` integer
+
+        * `innodb_log_buffer_size` integer
+
+        * `innodb_log_file_size` integer
+
+        * `innodb_numa_interleave` boolean
+
+        * `innodb_online_alter_log_max_size` integer
+
+        * `innodb_page_size` integer (create-only option)
+
+        * `innodb_print_all_deadlocks` boolean
+
+        * `innodb_purge_threads` integer
+
+        * `innodb_read_io_threads` integer
+
+        * `innodb_temp_data_file_max_size` integer
+
+        * `innodb_thread_concurrency` integer
+
+        * `innodb_write_io_threads` integer
+
+        * `interactive_timeout` integer
+
+        * `join_buffer_size` integer
+
+        * `log_slow_rate_limit` integer
+
+        * `log_slow_rate_type` one of:
+           - 0: "SESSION"
+           - 1: "QUERY"
+
+        * `log_slow_sp_statements` boolean
+
+        * `long_query_time` float
+
+        * `lower_case_table_names` boolean (create-only option)
+
+        * `max_allowed_packet` integer
+
+        * `max_connections` integer
+
+        * `max_heap_table_size` integer
+
+        * `mdb_offline_mode_disable_lag` integer
+
+        * `mdb_offline_mode_enable_lag` integer
+
+        * `mdb_preserve_binlog_bytes` integer
+
+        * `mdb_priority_choice_max_lag` integer
+
+        * `net_read_timeout` integer
+
+        * `net_write_timeout` integer
+
+        * `range_optimizer_max_mem_size` integer
+
+        * `rpl_semi_sync_master_wait_for_slave_count` integer
+
+        * `show_compatibility_56` boolean
+
+        * `slave_parallel_type` one of:
+          - 0: "SLAVE_PARALLEL_TYPE_UNSPECIFIED"
+          - 1: "DATABASE"
+          - 2: "LOGICAL_CLOCK"
+
+        * `slow_query_log` boolean
+
+        * `slow_query_log_always_write_time` float
+
+        * `slave_parallel_workers` integer
+
+        * `sort_buffer_size` integer
+
+        * `sync_binlog` integer
+
+        * `table_definition_cache` integer
+
+        * `table_open_cache` integer
+
+        * `table_open_cache_instances` integer
+
+        * `thread_cache_size` integer
+
+        * `thread_stack` integer
+
+        * `tmp_table_size` integer
+
+        * `transaction_isolation` one of:
+          - 0: "TRANSACTION_ISOLATION_UNSPECIFIED"
+          - 1: "READ_COMMITTED"
+          - 2: "REPEATABLE_READ"
+          - 3: "SERIALIZABLE"
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbMysqlCluster:MdbMysqlCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbMysqlClusterAccessArgs']] access: Access policy to the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[int] backup_retain_period_days: The period in days during which backups are stored.
+        :param pulumi.Input[pulumi.InputType['MdbMysqlClusterBackupWindowStartArgs']] backup_window_start: Time to start the daily backup, in the UTC. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMysqlClusterDatabaseArgs']]]] databases: To manage databases, please switch to using a separate resource type `yandex_mdb_mysql_databases`.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the MySQL cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the MySQL cluster.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMysqlClusterHostArgs']]]] hosts: A host of the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the MySQL cluster.
+        :param pulumi.Input[pulumi.InputType['MdbMysqlClusterMaintenanceWindowArgs']] maintenance_window: Maintenance policy of the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] mysql_config: MySQL cluster config. Detail info in "MySQL config" section (documented below).
+        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        :param pulumi.Input[str] network_id: ID of the network, to which the MySQL cluster uses.
+        :param pulumi.Input[pulumi.InputType['MdbMysqlClusterPerformanceDiagnosticsArgs']] performance_diagnostics: Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        :param pulumi.Input[pulumi.InputType['MdbMysqlClusterResourcesArgs']] resources: Resources allocated to hosts of the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbMysqlClusterRestoreArgs']] restore: The cluster will be created from the specified backup. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMysqlClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        :param pulumi.Input[str] version: Version of the MySQL cluster. (allowed versions are: 5.7, 8.0)
         """
         ...
     @overload
@@ -646,7 +1470,634 @@ class MdbMysqlCluster(pulumi.CustomResource):
                  args: MdbMysqlClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MdbMysqlCluster resource with the given unique name, props, and options.
+        Manages a MySQL cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-mysql/).
+
+        ## Example Usage
+
+        Example of creating a Single Node MySQL.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.5.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            mysql_config={
+                "sql_mode": "ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION",
+                "max_connections": "100",
+                "default_authentication_plugin": "MYSQL_NATIVE_PASSWORD",
+                "innodb_print_all_deadlocks": "true",
+            },
+            hosts=[yandex.MdbMysqlClusterHostArgs(
+                zone="ru-central1-a",
+                subnet_id=foo_vpc_subnet.id,
+            )])
+        ```
+
+        Example of creating a High-Availability(HA) MySQL Cluster.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"])
+        bar = yandex.VpcSubnet("bar",
+            zone="ru-central1-b",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.2.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            maintenance_window=yandex.MdbMysqlClusterMaintenanceWindowArgs(
+                type="WEEKLY",
+                day="SAT",
+                hour=12,
+            ),
+            hosts=[
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-a",
+                    subnet_id=foo_vpc_subnet.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    subnet_id=bar.id,
+                ),
+            ])
+        ```
+
+        Example of creating a MySQL Cluster with cascade replicas: HA-group consist of 'na-1' and 'na-2', cascade replicas form a chain 'na-1' > 'nb-1' > 'nb-2'
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"])
+        bar = yandex.VpcSubnet("bar",
+            zone="ru-central1-b",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.2.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            maintenance_window=yandex.MdbMysqlClusterMaintenanceWindowArgs(
+                type="WEEKLY",
+                day="SAT",
+                hour=12,
+            ),
+            hosts=[
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-a",
+                    name="na-1",
+                    subnet_id=foo_vpc_subnet.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-a",
+                    name="na-2",
+                    subnet_id=foo_vpc_subnet.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    name="nb-1",
+                    replication_source_name="na-1",
+                    subnet_id=bar.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    name="nb-2",
+                    replication_source_name="nb-1",
+                    subnet_id=bar.id,
+                ),
+            ])
+        ```
+
+        Example of creating a MySQL Cluster with different backup priorities. Backup will be created from nb-2, if it's not master. na-2 will be used as a backup source as a last resort.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"])
+        bar = yandex.VpcSubnet("bar",
+            zone="ru-central1-b",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.2.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            maintenance_window=yandex.MdbMysqlClusterMaintenanceWindowArgs(
+                type="WEEKLY",
+                day="SAT",
+                hour=12,
+            ),
+            hosts=[
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-a",
+                    name="na-1",
+                    subnet_id=foo_vpc_subnet.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    name="nb-1",
+                    backup_priority=5,
+                    subnet_id=bar.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    name="nb-2",
+                    backup_priority=10,
+                    subnet_id=bar.id,
+                ),
+            ])
+        ```
+
+        Example of creating a MySQL Cluster with different host priorities. During failover master will be set to nb-2
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"])
+        bar = yandex.VpcSubnet("bar",
+            zone="ru-central1-b",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.2.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            maintenance_window=yandex.MdbMysqlClusterMaintenanceWindowArgs(
+                type="WEEKLY",
+                day="SAT",
+                hour=12,
+            ),
+            hosts=[
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-a",
+                    name="na-1",
+                    subnet_id=foo_vpc_subnet.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    name="nb-1",
+                    priority=5,
+                    subnet_id=bar.id,
+                ),
+                yandex.MdbMysqlClusterHostArgs(
+                    zone="ru-central1-b",
+                    name="nb-2",
+                    priority=10,
+                    subnet_id=bar.id,
+                ),
+            ])
+        ```
+
+        Example of creating a Single Node MySQL with user params.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.5.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            maintenance_window=yandex.MdbMysqlClusterMaintenanceWindowArgs(
+                type="ANYTIME",
+            ),
+            hosts=[yandex.MdbMysqlClusterHostArgs(
+                zone="ru-central1-a",
+                subnet_id=foo_vpc_subnet.id,
+            )])
+        ```
+
+        Example of restoring MySQL cluster.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-a",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.5.0.0/24"])
+        foo_mdb_mysql_cluster = yandex.MdbMysqlCluster("fooMdbMysqlCluster",
+            environment="PRESTABLE",
+            network_id=foo_vpc_network.id,
+            version="8.0",
+            restore=yandex.MdbMysqlClusterRestoreArgs(
+                backup_id="c9qj2tns23432471d9qha:stream_20210122T141717Z",
+                time="2021-01-23T15:04:05",
+            ),
+            resources=yandex.MdbMysqlClusterResourcesArgs(
+                resource_preset_id="s2.micro",
+                disk_type_id="network-ssd",
+                disk_size=16,
+            ),
+            hosts=[yandex.MdbMysqlClusterHostArgs(
+                zone="ru-central1-a",
+                subnet_id=foo_vpc_subnet.id,
+            )])
+        ```
+        ## MySQL config
+
+        If not specified `mysql_config` then does not make any changes.
+
+        * `sql_mode` default value: `ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION`
+
+        some of:\\
+        	-	1: "ALLOW_INVALID_DATES"
+        	-	2: "ANSI_QUOTES"
+        	-	3: "ERROR_FOR_DIVISION_BY_ZERO"
+        	-	4: "HIGH_NOT_PRECEDENCE"
+        	-	5: "IGNORE_SPACE"
+        	-	6: "NO_AUTO_VALUE_ON_ZERO"
+        	-	7: "NO_BACKSLASH_ESCAPES"
+        	-	8: "NO_ENGINE_SUBSTITUTION"
+        	-	9: "NO_UNSIGNED_SUBTRACTION"
+        	-	10: "NO_ZERO_DATE"
+        	-	11: "NO_ZERO_IN_DATE"
+        	-	15: "ONLY_FULL_GROUP_BY"
+        	-	16: "PAD_CHAR_TO_FULL_LENGTH"
+        	-	17: "PIPES_AS_CONCAT"
+        	-	18: "REAL_AS_FLOAT"
+        	-	19: "STRICT_ALL_TABLES"
+        	-	20: "STRICT_TRANS_TABLES"
+        	-	21: "TIME_TRUNCATE_FRACTIONAL"
+        	-	22: "ANSI"
+        	-	23: "TRADITIONAL"
+        	-	24: "NO_DIR_IN_CREATE"
+        or:
+          - 0: "SQLMODE_UNSPECIFIED"
+
+        ### MysqlConfig 8.0
+        * `audit_log` boolean
+
+        * `auto_increment_increment` integer
+
+        * `auto_increment_offset` integer
+
+        * `binlog_cache_size` integer
+
+        * `binlog_group_commit_sync_delay` integer
+
+        * `binlog_row_image` one of:
+          - 0: "BINLOG_ROW_IMAGE_UNSPECIFIED"
+          - 1: "FULL"
+          - 2: "MINIMAL"
+          - 3: "NOBLOB"
+
+        * `binlog_rows_query_log_events` boolean
+
+        * `character_set_server` text
+
+        * `collation_server` text
+
+        * `default_authentication_plugin` one of:
+          - 0: "AUTH_PLUGIN_UNSPECIFIED"
+          - 1: "MYSQL_NATIVE_PASSWORD"
+          - 2: "CACHING_SHA2_PASSWORD"
+          - 3: "SHA256_PASSWORD"
+
+        * `default_time_zone` text
+
+        * `explicit_defaults_for_timestamp` boolean
+
+        * `general_log` boolean
+
+        * `group_concat_max_len` integer
+
+        * `innodb_adaptive_hash_index` boolean
+
+        * `innodb_buffer_pool_size` integer
+
+        * `innodb_flush_log_at_trx_commit` integer
+
+        * `innodb_ft_max_token_size` integer
+
+        * `innodb_ft_min_token_size` integer
+
+        * `innodb_io_capacity` integer
+
+        * `innodb_io_capacity_max` integer
+
+        * `innodb_lock_wait_timeout` integer
+
+        * `innodb_log_buffer_size` integer
+
+        * `innodb_log_file_size` integer
+
+        * `innodb_numa_interleave` boolean
+
+        * `innodb_online_alter_log_max_size` integer
+
+        * `innodb_page_size` integer (create-only option)
+
+        * `innodb_print_all_deadlocks` boolean
+
+        * `innodb_purge_threads` integer
+
+        * `innodb_read_io_threads` integer
+
+        * `innodb_temp_data_file_max_size` integer
+
+        * `innodb_thread_concurrency` integer
+
+        * `innodb_write_io_threads` integer
+
+        * `interactive_timeout` integer
+
+        * `join_buffer_size` integer
+
+        * `log_slow_rate_limit` intger
+
+        * `log_slow_rate_type` one of:
+           - 0: "SESSION"
+           - 1: "QUERY"
+
+        * `log_slow_sp_statements` boolean
+
+        * `long_query_time` float
+
+        * `lower_case_table_names` boolean (create-only option)
+
+        * `max_allowed_packet` integer
+
+        * `max_connections` integer
+
+        * `max_heap_table_size` integer
+
+        * `mdb_offline_mode_disable_lag` integer
+
+        * `mdb_offline_mode_enable_lag` integer
+
+        * `mdb_preserve_binlog_bytes` integer
+
+        * `mdb_priority_choice_max_lag` integer
+
+        * `net_read_timeout` integer
+
+        * `net_write_timeout` integer
+
+        * `range_optimizer_max_mem_size` integer
+
+        * `regexp_time_limit` integer
+
+        * `rpl_semi_sync_master_wait_for_slave_count` integer
+
+        * `slave_parallel_type` one of:
+          - 0: "SLAVE_PARALLEL_TYPE_UNSPECIFIED"
+          - 1: "DATABASE"
+          - 2: "LOGICAL_CLOCK"
+
+        * `slow_query_log` boolean
+
+        * `slow_query_log_always_write_time` float
+
+        * `slave_parallel_workers` integer
+
+        * `sort_buffer_size` integer
+
+        * `sync_binlog` integer
+
+        * `table_definition_cache` integer
+
+        * `table_open_cache` integer
+
+        * `table_open_cache_instances` integer
+
+        * `thread_cache_size` integer
+
+        * `thread_stack` integer
+
+        * `tmp_table_size` integer
+
+        * `transaction_isolation` one of:
+          - 0: "TRANSACTION_ISOLATION_UNSPECIFIED"
+          - 1: "READ_COMMITTED"
+          - 2: "REPEATABLE_READ"
+          - 3: "SERIALIZABLE"
+
+        * `wait_timeout` integer
+
+        ### MysqlConfig 5.7
+        * `audit_log` boolean
+
+        * `auto_increment_increment` integer
+
+        * `auto_increment_offset` integer
+
+        * `binlog_cache_size` integer
+
+        * `binlog_group_commit_sync_delay` integer
+
+        * `binlog_row_image` one of:
+          - 0: "BINLOG_ROW_IMAGE_UNSPECIFIED"
+          - 1: "FULL"
+          - 2: "MINIMAL"
+          - 3: "NOBLOB"
+
+        * `binlog_rows_query_log_events` boolean
+
+        * `character_set_server` text
+
+        * `collation_server` text
+
+        * `default_authentication_plugin` one of:
+          - 0: "AUTH_PLUGIN_UNSPECIFIED"
+          - 1: "MYSQL_NATIVE_PASSWORD"
+          - 2: "CACHING_SHA2_PASSWORD"
+          - 3: "SHA256_PASSWORD"
+
+        * `default_time_zone` text
+
+        * `explicit_defaults_for_timestamp` boolean
+
+        * `general_log` boolean
+
+        * `group_concat_max_len` integer
+
+        * `innodb_adaptive_hash_index` boolean
+
+        * `innodb_buffer_pool_size` integer
+
+        * `innodb_flush_log_at_trx_commit` integer
+
+        * `innodb_ft_max_token_size` integer
+
+        * `innodb_ft_min_token_size` integer
+
+        * `innodb_io_capacity` integer
+
+        * `innodb_io_capacity_max` integer
+
+        * `innodb_lock_wait_timeout` integer
+
+        * `innodb_log_buffer_size` integer
+
+        * `innodb_log_file_size` integer
+
+        * `innodb_numa_interleave` boolean
+
+        * `innodb_online_alter_log_max_size` integer
+
+        * `innodb_page_size` integer (create-only option)
+
+        * `innodb_print_all_deadlocks` boolean
+
+        * `innodb_purge_threads` integer
+
+        * `innodb_read_io_threads` integer
+
+        * `innodb_temp_data_file_max_size` integer
+
+        * `innodb_thread_concurrency` integer
+
+        * `innodb_write_io_threads` integer
+
+        * `interactive_timeout` integer
+
+        * `join_buffer_size` integer
+
+        * `log_slow_rate_limit` integer
+
+        * `log_slow_rate_type` one of:
+           - 0: "SESSION"
+           - 1: "QUERY"
+
+        * `log_slow_sp_statements` boolean
+
+        * `long_query_time` float
+
+        * `lower_case_table_names` boolean (create-only option)
+
+        * `max_allowed_packet` integer
+
+        * `max_connections` integer
+
+        * `max_heap_table_size` integer
+
+        * `mdb_offline_mode_disable_lag` integer
+
+        * `mdb_offline_mode_enable_lag` integer
+
+        * `mdb_preserve_binlog_bytes` integer
+
+        * `mdb_priority_choice_max_lag` integer
+
+        * `net_read_timeout` integer
+
+        * `net_write_timeout` integer
+
+        * `range_optimizer_max_mem_size` integer
+
+        * `rpl_semi_sync_master_wait_for_slave_count` integer
+
+        * `show_compatibility_56` boolean
+
+        * `slave_parallel_type` one of:
+          - 0: "SLAVE_PARALLEL_TYPE_UNSPECIFIED"
+          - 1: "DATABASE"
+          - 2: "LOGICAL_CLOCK"
+
+        * `slow_query_log` boolean
+
+        * `slow_query_log_always_write_time` float
+
+        * `slave_parallel_workers` integer
+
+        * `sort_buffer_size` integer
+
+        * `sync_binlog` integer
+
+        * `table_definition_cache` integer
+
+        * `table_open_cache` integer
+
+        * `table_open_cache_instances` integer
+
+        * `thread_cache_size` integer
+
+        * `thread_stack` integer
+
+        * `tmp_table_size` integer
+
+        * `transaction_isolation` one of:
+          - 0: "TRANSACTION_ISOLATION_UNSPECIFIED"
+          - 1: "READ_COMMITTED"
+          - 2: "REPEATABLE_READ"
+          - 3: "SERIALIZABLE"
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbMysqlCluster:MdbMysqlCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param MdbMysqlClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -779,6 +2230,30 @@ class MdbMysqlCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbMysqlClusterAccessArgs']] access: Access policy to the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[int] backup_retain_period_days: The period in days during which backups are stored.
+        :param pulumi.Input[pulumi.InputType['MdbMysqlClusterBackupWindowStartArgs']] backup_window_start: Time to start the daily backup, in the UTC. The structure is documented below.
+        :param pulumi.Input[str] created_at: Creation timestamp of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMysqlClusterDatabaseArgs']]]] databases: To manage databases, please switch to using a separate resource type `yandex_mdb_mysql_databases`.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the MySQL cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the MySQL cluster.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[str] health: Aggregated health of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMysqlClusterHostArgs']]]] hosts: A host of the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the MySQL cluster.
+        :param pulumi.Input[pulumi.InputType['MdbMysqlClusterMaintenanceWindowArgs']] maintenance_window: Maintenance policy of the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] mysql_config: MySQL cluster config. Detail info in "MySQL config" section (documented below).
+        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        :param pulumi.Input[str] network_id: ID of the network, to which the MySQL cluster uses.
+        :param pulumi.Input[pulumi.InputType['MdbMysqlClusterPerformanceDiagnosticsArgs']] performance_diagnostics: Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        :param pulumi.Input[pulumi.InputType['MdbMysqlClusterResourcesArgs']] resources: Resources allocated to hosts of the MySQL cluster. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbMysqlClusterRestoreArgs']] restore: The cluster will be created from the specified backup. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[str] status: Status of the cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMysqlClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        :param pulumi.Input[str] version: Version of the MySQL cluster. (allowed versions are: 5.7, 8.0)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -814,6 +2289,9 @@ class MdbMysqlCluster(pulumi.CustomResource):
     @property
     @pulumi.getter
     def access(self) -> pulumi.Output['outputs.MdbMysqlClusterAccess']:
+        """
+        Access policy to the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "access")
 
     @property
@@ -824,46 +2302,74 @@ class MdbMysqlCluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="backupRetainPeriodDays")
     def backup_retain_period_days(self) -> pulumi.Output[int]:
+        """
+        The period in days during which backups are stored.
+        """
         return pulumi.get(self, "backup_retain_period_days")
 
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> pulumi.Output['outputs.MdbMysqlClusterBackupWindowStart']:
+        """
+        Time to start the daily backup, in the UTC. The structure is documented below.
+        """
         return pulumi.get(self, "backup_window_start")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the cluster.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def databases(self) -> pulumi.Output[Optional[Sequence['outputs.MdbMysqlClusterDatabase']]]:
+        """
+        To manage databases, please switch to using a separate resource type `yandex_mdb_mysql_databases`.
+        """
         return pulumi.get(self, "databases")
 
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> pulumi.Output[bool]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the MySQL cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Output[str]:
+        """
+        Deployment environment of the MySQL cluster.
+        """
         return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def health(self) -> pulumi.Output[str]:
+        """
+        Aggregated health of the cluster.
+        """
         return pulumi.get(self, "health")
 
     @property
@@ -874,65 +2380,104 @@ class MdbMysqlCluster(pulumi.CustomResource):
     @property
     @pulumi.getter
     def hosts(self) -> pulumi.Output[Sequence['outputs.MdbMysqlClusterHost']]:
+        """
+        A host of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the MySQL cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> pulumi.Output['outputs.MdbMysqlClusterMaintenanceWindow']:
+        """
+        Maintenance policy of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_window")
 
     @property
     @pulumi.getter(name="mysqlConfig")
     def mysql_config(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        MySQL cluster config. Detail info in "MySQL config" section (documented below).
+        """
         return pulumi.get(self, "mysql_config")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[str]:
+        """
+        ID of the network, to which the MySQL cluster uses.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="performanceDiagnostics")
     def performance_diagnostics(self) -> pulumi.Output['outputs.MdbMysqlClusterPerformanceDiagnostics']:
+        """
+        Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        """
         return pulumi.get(self, "performance_diagnostics")
 
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Output['outputs.MdbMysqlClusterResources']:
+        """
+        Resources allocated to hosts of the MySQL cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter
     def restore(self) -> pulumi.Output[Optional['outputs.MdbMysqlClusterRestore']]:
+        """
+        The cluster will be created from the specified backup. The structure is documented below.
+        """
         return pulumi.get(self, "restore")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        Status of the cluster.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def users(self) -> pulumi.Output[Optional[Sequence['outputs.MdbMysqlClusterUser']]]:
+        """
+        To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        """
         return pulumi.get(self, "users")
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
+        """
+        Version of the MySQL cluster. (allowed versions are: 5.7, 8.0)
+        """
         return pulumi.get(self, "version")
 

@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetDataprocClusterClusterConfigHadoopResult
     {
+        /// <summary>
+        /// A set of key/value pairs used to configure cluster services.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Properties;
+        /// <summary>
+        /// List of services launched on Data Proc cluster.
+        /// </summary>
         public readonly ImmutableArray<string> Services;
+        /// <summary>
+        /// List of SSH public keys distributed to the hosts of the cluster.
+        /// </summary>
         public readonly ImmutableArray<string> SshPublicKeys;
 
         [OutputConstructor]

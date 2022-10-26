@@ -7,6 +7,37 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get attributes used by provider to configure client connection.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.GetClientConfig(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.LookupKubernetesCluster(ctx, &GetKubernetesClusterArgs{
+//				Name: pulumi.StringRef("kubernetes"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetClientConfig(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetClientConfigResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetClientConfigResult
@@ -19,10 +50,14 @@ func GetClientConfig(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetClie
 
 // A collection of values returned by getClientConfig.
 type GetClientConfigResult struct {
-	CloudId  string `pulumi:"cloudId"`
+	// The ID of the cloud that the provider is connecting to.
+	CloudId string `pulumi:"cloudId"`
+	// The ID of the folder in which we operate.
 	FolderId string `pulumi:"folderId"`
+	// A short-lived token that can be used for authentication in a Kubernetes cluster.
 	IamToken string `pulumi:"iamToken"`
 	// The provider-assigned unique ID for this managed resource.
-	Id   string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// The default availability zone.
 	Zone string `pulumi:"zone"`
 }

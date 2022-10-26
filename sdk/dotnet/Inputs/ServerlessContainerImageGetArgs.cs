@@ -39,6 +39,9 @@ namespace Pulumi.Yandex.Inputs
             set => _environment = value;
         }
 
+        /// <summary>
+        /// Invoke URL for the Yandex Cloud Serverless Container
+        /// </summary>
         [Input("url", required: true)]
         public Input<string> Url { get; set; } = null!;
 

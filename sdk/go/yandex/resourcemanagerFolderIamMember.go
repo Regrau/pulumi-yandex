@@ -11,11 +11,68 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows creation and management of a single member for a single binding within
+// the IAM policy for an existing Yandex Resource Manager folder.
+//
+// > **Note:** This resource _must not_ be used in conjunction with
+//
+//	`ResourcemanagerFolderIamPolicy` or they will conflict over what your policy should be. Similarly, roles controlled by `ResourcemanagerFolderIamBinding`
+//	should not be assigned using `ResourcemanagerFolderIamMember`.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
+//				FolderId: pulumi.StringRef("some_folder_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewResourcemanagerFolderIamMember(ctx, "admin", &yandex.ResourcemanagerFolderIamMemberArgs{
+//				FolderId: pulumi.Any(data.Yandex_resourcemanager.Department1.Name),
+//				Member:   pulumi.String("userAccount:user_id"),
+//				Role:     pulumi.String("editor"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the `folder id`, role, and account, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/resourcemanagerFolderIamMember:ResourcemanagerFolderIamMember my_project "folder_id viewer foo@example.com"
+//
+// ```
 type ResourcemanagerFolderIamMember struct {
 	pulumi.CustomResourceState
 
-	FolderId   pulumi.StringOutput `pulumi:"folderId"`
-	Member     pulumi.StringOutput `pulumi:"member"`
+	// ID of the folder to attach a policy to.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// The identity that will be granted the privilege that is specified in the `role` field.
+	// This field can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	Member pulumi.StringOutput `pulumi:"member"`
+	// The role that should be assigned.
 	Role       pulumi.StringOutput `pulumi:"role"`
 	SleepAfter pulumi.IntPtrOutput `pulumi:"sleepAfter"`
 }
@@ -59,15 +116,27 @@ func GetResourcemanagerFolderIamMember(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ResourcemanagerFolderIamMember resources.
 type resourcemanagerFolderIamMemberState struct {
-	FolderId   *string `pulumi:"folderId"`
-	Member     *string `pulumi:"member"`
+	// ID of the folder to attach a policy to.
+	FolderId *string `pulumi:"folderId"`
+	// The identity that will be granted the privilege that is specified in the `role` field.
+	// This field can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	Member *string `pulumi:"member"`
+	// The role that should be assigned.
 	Role       *string `pulumi:"role"`
 	SleepAfter *int    `pulumi:"sleepAfter"`
 }
 
 type ResourcemanagerFolderIamMemberState struct {
-	FolderId   pulumi.StringPtrInput
-	Member     pulumi.StringPtrInput
+	// ID of the folder to attach a policy to.
+	FolderId pulumi.StringPtrInput
+	// The identity that will be granted the privilege that is specified in the `role` field.
+	// This field can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	Member pulumi.StringPtrInput
+	// The role that should be assigned.
 	Role       pulumi.StringPtrInput
 	SleepAfter pulumi.IntPtrInput
 }
@@ -77,16 +146,28 @@ func (ResourcemanagerFolderIamMemberState) ElementType() reflect.Type {
 }
 
 type resourcemanagerFolderIamMemberArgs struct {
-	FolderId   string `pulumi:"folderId"`
-	Member     string `pulumi:"member"`
+	// ID of the folder to attach a policy to.
+	FolderId string `pulumi:"folderId"`
+	// The identity that will be granted the privilege that is specified in the `role` field.
+	// This field can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	Member string `pulumi:"member"`
+	// The role that should be assigned.
 	Role       string `pulumi:"role"`
 	SleepAfter *int   `pulumi:"sleepAfter"`
 }
 
 // The set of arguments for constructing a ResourcemanagerFolderIamMember resource.
 type ResourcemanagerFolderIamMemberArgs struct {
-	FolderId   pulumi.StringInput
-	Member     pulumi.StringInput
+	// ID of the folder to attach a policy to.
+	FolderId pulumi.StringInput
+	// The identity that will be granted the privilege that is specified in the `role` field.
+	// This field can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	Member pulumi.StringInput
+	// The role that should be assigned.
 	Role       pulumi.StringInput
 	SleepAfter pulumi.IntPtrInput
 }
@@ -178,14 +259,20 @@ func (o ResourcemanagerFolderIamMemberOutput) ToResourcemanagerFolderIamMemberOu
 	return o
 }
 
+// ID of the folder to attach a policy to.
 func (o ResourcemanagerFolderIamMemberOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResourcemanagerFolderIamMember) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// The identity that will be granted the privilege that is specified in the `role` field.
+// This field can have one of the following values:
+// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+// * **serviceAccount:{service_account_id}**: A unique service account ID.
 func (o ResourcemanagerFolderIamMemberOutput) Member() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResourcemanagerFolderIamMember) pulumi.StringOutput { return v.Member }).(pulumi.StringOutput)
 }
 
+// The role that should be assigned.
 func (o ResourcemanagerFolderIamMemberOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResourcemanagerFolderIamMember) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
 }

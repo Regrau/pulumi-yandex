@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex IoT Core device. For more information about IoT Core, see
+ * [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const myDevice = pulumi.output(yandex.getIotCoreDevice({
+ *     deviceId: "are1sampleregistry11",
+ * }));
+ * ```
+ *
+ * This data source is used to define [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
+ */
 export function getIotCoreDevice(args?: GetIotCoreDeviceArgs, opts?: pulumi.InvokeOptions): Promise<GetIotCoreDeviceResult> {
     args = args || {};
     if (!opts) {
@@ -21,7 +36,13 @@ export function getIotCoreDevice(args?: GetIotCoreDeviceArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getIotCoreDevice.
  */
 export interface GetIotCoreDeviceArgs {
+    /**
+     * IoT Core Device id used to define device
+     */
     deviceId?: string;
+    /**
+     * IoT Core Device name used to define device
+     */
     name?: string;
 }
 
@@ -29,9 +50,21 @@ export interface GetIotCoreDeviceArgs {
  * A collection of values returned by getIotCoreDevice.
  */
 export interface GetIotCoreDeviceResult {
+    /**
+     * A set of key/value aliases pairs to assign to the IoT Core Device
+     */
     readonly aliases: {[key: string]: string};
+    /**
+     * A set of certificate's fingerprints for the IoT Core Device
+     */
     readonly certificates: string[];
+    /**
+     * Creation timestamp of the IoT Core Device
+     */
     readonly createdAt: string;
+    /**
+     * Description of the IoT Core Device
+     */
     readonly description: string;
     readonly deviceId?: string;
     /**
@@ -39,7 +72,13 @@ export interface GetIotCoreDeviceResult {
      */
     readonly id: string;
     readonly name?: string;
+    /**
+     * A set of passwords's id for the IoT Core Device
+     */
     readonly passwords: string[];
+    /**
+     * IoT Core Registry ID for the IoT Core Device
+     */
     readonly registryId: string;
 }
 
@@ -51,6 +90,12 @@ export function getIotCoreDeviceOutput(args?: GetIotCoreDeviceOutputArgs, opts?:
  * A collection of arguments for invoking getIotCoreDevice.
  */
 export interface GetIotCoreDeviceOutputArgs {
+    /**
+     * IoT Core Device id used to define device
+     */
     deviceId?: pulumi.Input<string>;
+    /**
+     * IoT Core Device name used to define device
+     */
     name?: pulumi.Input<string>;
 }

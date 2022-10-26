@@ -20,6 +20,13 @@ class FunctionIamBindingArgs:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a FunctionIamBinding resource.
+        :param pulumi.Input[str] function_id: The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: Identities that will be granted the privilege in `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        :param pulumi.Input[str] role: The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)
         """
         pulumi.set(__self__, "function_id", function_id)
         pulumi.set(__self__, "members", members)
@@ -30,6 +37,9 @@ class FunctionIamBindingArgs:
     @property
     @pulumi.getter(name="functionId")
     def function_id(self) -> pulumi.Input[str]:
+        """
+        The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.
+        """
         return pulumi.get(self, "function_id")
 
     @function_id.setter
@@ -39,6 +49,13 @@ class FunctionIamBindingArgs:
     @property
     @pulumi.getter
     def members(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        Identities that will be granted the privilege in `role`.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        """
         return pulumi.get(self, "members")
 
     @members.setter
@@ -48,6 +65,9 @@ class FunctionIamBindingArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -73,6 +93,13 @@ class _FunctionIamBindingState:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering FunctionIamBinding resources.
+        :param pulumi.Input[str] function_id: The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: Identities that will be granted the privilege in `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        :param pulumi.Input[str] role: The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)
         """
         if function_id is not None:
             pulumi.set(__self__, "function_id", function_id)
@@ -86,6 +113,9 @@ class _FunctionIamBindingState:
     @property
     @pulumi.getter(name="functionId")
     def function_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.
+        """
         return pulumi.get(self, "function_id")
 
     @function_id.setter
@@ -95,6 +125,13 @@ class _FunctionIamBindingState:
     @property
     @pulumi.getter
     def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Identities that will be granted the privilege in `role`.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        """
         return pulumi.get(self, "members")
 
     @members.setter
@@ -104,6 +141,9 @@ class _FunctionIamBindingState:
     @property
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -131,9 +171,27 @@ class FunctionIamBinding(pulumi.CustomResource):
                  sleep_after: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a FunctionIamBinding resource with the given unique name, props, and options.
+        ## yandex\\_function\\_iam\\_binding
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        function_iam = yandex.FunctionIamBinding("function-iam",
+            function_id="your-function-id",
+            members=["system:allUsers"],
+            role="serverless.functions.invoker")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] function_id: The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: Identities that will be granted the privilege in `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        :param pulumi.Input[str] role: The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)
         """
         ...
     @overload
@@ -142,7 +200,18 @@ class FunctionIamBinding(pulumi.CustomResource):
                  args: FunctionIamBindingArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a FunctionIamBinding resource with the given unique name, props, and options.
+        ## yandex\\_function\\_iam\\_binding
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        function_iam = yandex.FunctionIamBinding("function-iam",
+            function_id="your-function-id",
+            members=["system:allUsers"],
+            role="serverless.functions.invoker")
+        ```
+
         :param str resource_name: The name of the resource.
         :param FunctionIamBindingArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,6 +271,13 @@ class FunctionIamBinding(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] function_id: The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: Identities that will be granted the privilege in `role`.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        :param pulumi.Input[str] role: The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -216,16 +292,29 @@ class FunctionIamBinding(pulumi.CustomResource):
     @property
     @pulumi.getter(name="functionId")
     def function_id(self) -> pulumi.Output[str]:
+        """
+        The [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/) ID to apply a binding to.
+        """
         return pulumi.get(self, "function_id")
 
     @property
     @pulumi.getter
     def members(self) -> pulumi.Output[Sequence[str]]:
+        """
+        Identities that will be granted the privilege in `role`.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        """
         return pulumi.get(self, "members")
 
     @property
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
+        """
+        The role that should be applied. See [roles](https://cloud.yandex.com/docs/functions/security/)
+        """
         return pulumi.get(self, "role")
 
     @property

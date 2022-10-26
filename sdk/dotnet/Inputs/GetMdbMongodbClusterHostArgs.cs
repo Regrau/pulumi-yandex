@@ -12,27 +12,52 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbMongodbClusterHostInputArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Has assigned public IP.
+        /// </summary>
         [Input("assignPublicIp", required: true)]
         public Input<bool> AssignPublicIp { get; set; } = null!;
 
+        /// <summary>
+        /// The health of the host.
+        /// </summary>
         [Input("health", required: true)]
         public Input<string> Health { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the MongoDB cluster.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The role of the cluster (either PRIMARY or SECONDARY).
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the shard to which the host belongs.
+        /// </summary>
         [Input("shardName", required: true)]
         public Input<string> ShardName { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of the subnet, to which the host belongs. The subnet must
+        /// be a part of the network to which the cluster belongs.
+        /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
 
+        /// <summary>
+        /// Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 
+        /// <summary>
+        /// The availability zone where the MongoDB host will be created.
+        /// </summary>
         [Input("zoneId")]
         public Input<string>? ZoneId { get; set; }
 

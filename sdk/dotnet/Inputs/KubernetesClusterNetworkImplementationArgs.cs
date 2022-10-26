@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesClusterNetworkImplementationArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// (Optional) Cilium network implementation configuration. No options exist.
+        /// </summary>
         [Input("cilium")]
         public Input<Inputs.KubernetesClusterNetworkImplementationCiliumArgs>? Cilium { get; set; }
 

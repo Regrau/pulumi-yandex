@@ -10,9 +10,50 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates a new container repository. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/repository)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewContainerRegistry(ctx, "my-registry", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewContainerRepository(ctx, "my-repository", nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A repository can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/containerRepository:ContainerRepository my-repository repository_id
+//
+// ```
 type ContainerRepository struct {
 	pulumi.CustomResourceState
 
+	// A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
 	Name pulumi.StringOutput `pulumi:"name"`
 }
 
@@ -46,10 +87,12 @@ func GetContainerRepository(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ContainerRepository resources.
 type containerRepositoryState struct {
+	// A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
 	Name *string `pulumi:"name"`
 }
 
 type ContainerRepositoryState struct {
+	// A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
 	Name pulumi.StringPtrInput
 }
 
@@ -58,11 +101,13 @@ func (ContainerRepositoryState) ElementType() reflect.Type {
 }
 
 type containerRepositoryArgs struct {
+	// A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
 	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a ContainerRepository resource.
 type ContainerRepositoryArgs struct {
+	// A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
 	Name pulumi.StringPtrInput
 }
 
@@ -153,6 +198,7 @@ func (o ContainerRepositoryOutput) ToContainerRepositoryOutputWithContext(ctx co
 	return o
 }
 
+// A name of the repository. The name of the repository should start with id of a container registry and match the name of the images that will be pushed in the repository.
 func (o ContainerRepositoryOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ContainerRepository) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

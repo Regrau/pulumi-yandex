@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbKafkaClusterConfigAccessArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        /// </summary>
         [Input("dataTransfer")]
         public Input<bool>? DataTransfer { get; set; }
 

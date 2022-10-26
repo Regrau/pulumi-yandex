@@ -10,6 +10,13 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Generates an [IAM] role document that may be referenced by and applied to
+// other Yandex.Cloud Platform resources, such as the `ResourcemanagerFolder` resource. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/iam/concepts/access-control/roles).
+//
+// This data source is used to define [IAM] roles in order to apply them to other resources.
+// Currently, defining a role through a data source and referencing that role
+// from another resource is the only way to apply an IAM role to a resource.
 func GetIamRole(ctx *pulumi.Context, args *GetIamRoleArgs, opts ...pulumi.InvokeOption) (*GetIamRoleResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetIamRoleResult

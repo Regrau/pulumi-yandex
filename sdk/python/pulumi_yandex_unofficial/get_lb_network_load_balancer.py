@@ -60,16 +60,25 @@ class GetLbNetworkLoadBalancerResult:
     @property
     @pulumi.getter(name="attachedTargetGroups")
     def attached_target_groups(self) -> Sequence['outputs.GetLbNetworkLoadBalancerAttachedTargetGroupResult']:
+        """
+        An attached target group is a group of targets that is attached to a load balancer. Structure is documented below.
+        """
         return pulumi.get(self, "attached_target_groups")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of this network load balancer.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the network load balancer.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -88,16 +97,25 @@ class GetLbNetworkLoadBalancerResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        Labels to assign to this network load balancer.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def listeners(self) -> Sequence['outputs.GetLbNetworkLoadBalancerListenerResult']:
+        """
+        Listener specification that will be used by a network load balancer. Structure is documented below.
+        """
         return pulumi.get(self, "listeners")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of the listener.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -108,11 +126,17 @@ class GetLbNetworkLoadBalancerResult:
     @property
     @pulumi.getter(name="regionId")
     def region_id(self) -> str:
+        """
+        ID of the region where the network load balancer resides.
+        """
         return pulumi.get(self, "region_id")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        Type of the network load balancer.
+        """
         return pulumi.get(self, "type")
 
 
@@ -140,7 +164,22 @@ def get_lb_network_load_balancer(folder_id: Optional[str] = None,
                                  network_load_balancer_id: Optional[str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLbNetworkLoadBalancerResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Load Balancer network load balancer. For more information, see
+    [Yandex.Cloud Network Load Balancer](https://cloud.yandex.com/docs/load-balancer/concepts/).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_lb_network_load_balancer(network_load_balancer_id="my-network-load-balancer")
+    ```
+
+    This data source is used to define [Load Balancer Network Load Balancers] that can be used by other resources.
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: - Name of the network load balancer.
+    :param str network_load_balancer_id: Network load balancer ID.
     """
     __args__ = dict()
     __args__['folderId'] = folder_id
@@ -169,6 +208,21 @@ def get_lb_network_load_balancer_output(folder_id: Optional[pulumi.Input[Optiona
                                         network_load_balancer_id: Optional[pulumi.Input[Optional[str]]] = None,
                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbNetworkLoadBalancerResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Load Balancer network load balancer. For more information, see
+    [Yandex.Cloud Network Load Balancer](https://cloud.yandex.com/docs/load-balancer/concepts/).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_lb_network_load_balancer(network_load_balancer_id="my-network-load-balancer")
+    ```
+
+    This data source is used to define [Load Balancer Network Load Balancers] that can be used by other resources.
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: - Name of the network load balancer.
+    :param str network_load_balancer_id: Network load balancer ID.
     """
     ...

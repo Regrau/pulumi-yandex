@@ -10,6 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex Database serverless cluster.
+// For more information, see [the official documentation](https://cloud.yandex.com/en/docs/ydb/concepts/serverless_and_dedicated).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myDatabase, err := yandex.LookupYdbDatabaseServerless(ctx, &GetYdbDatabaseServerlessArgs{
+//				DatabaseId: pulumi.StringRef("some_ydb_serverless_database_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("ydbApiEndpoint", myDatabase.YdbApiEndpoint)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupYdbDatabaseServerless(ctx *pulumi.Context, args *LookupYdbDatabaseServerlessArgs, opts ...pulumi.InvokeOption) (*LookupYdbDatabaseServerlessResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupYdbDatabaseServerlessResult
@@ -22,30 +51,49 @@ func LookupYdbDatabaseServerless(ctx *pulumi.Context, args *LookupYdbDatabaseSer
 
 // A collection of arguments for invoking getYdbDatabaseServerless.
 type LookupYdbDatabaseServerlessArgs struct {
-	DatabaseId         *string `pulumi:"databaseId"`
-	DeletionProtection *bool   `pulumi:"deletionProtection"`
-	FolderId           *string `pulumi:"folderId"`
-	Name               *string `pulumi:"name"`
+	// ID of the Yandex Database serverless cluster.
+	DatabaseId *string `pulumi:"databaseId"`
+	// Inhibits deletion of the database. Can be either `true` or `false`
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// ID of the folder that the Yandex Database serverless cluster belongs to.
+	// It will be deduced from provider configuration if not set explicitly.
+	FolderId *string `pulumi:"folderId"`
+	// Name of the Yandex Database serverless cluster.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getYdbDatabaseServerless.
 type LookupYdbDatabaseServerlessResult struct {
-	CreatedAt           string  `pulumi:"createdAt"`
-	DatabaseId          *string `pulumi:"databaseId"`
-	DatabasePath        string  `pulumi:"databasePath"`
-	DeletionProtection  bool    `pulumi:"deletionProtection"`
-	Description         string  `pulumi:"description"`
+	// The Yandex Database serverless cluster creation timestamp.
+	CreatedAt  string  `pulumi:"createdAt"`
+	DatabaseId *string `pulumi:"databaseId"`
+	// Full database path of the Yandex Database serverless cluster.
+	// Useful for SDK configuration.
+	DatabasePath string `pulumi:"databasePath"`
+	// Inhibits deletion of the database. Can be either `true` or `false`
+	DeletionProtection bool `pulumi:"deletionProtection"`
+	// A description of the Yandex Database serverless cluster.
+	Description string `pulumi:"description"`
+	// Document API endpoint of the Yandex Database serverless cluster.
 	DocumentApiEndpoint string  `pulumi:"documentApiEndpoint"`
 	FolderId            *string `pulumi:"folderId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id              string            `pulumi:"id"`
-	Labels          map[string]string `pulumi:"labels"`
-	LocationId      string            `pulumi:"locationId"`
-	Name            *string           `pulumi:"name"`
-	Status          string            `pulumi:"status"`
-	TlsEnabled      bool              `pulumi:"tlsEnabled"`
-	YdbApiEndpoint  string            `pulumi:"ydbApiEndpoint"`
-	YdbFullEndpoint string            `pulumi:"ydbFullEndpoint"`
+	Id string `pulumi:"id"`
+	// A set of key/value label pairs assigned to the Yandex Database serverless cluster.
+	Labels map[string]string `pulumi:"labels"`
+	// Location ID of the Yandex Database serverless cluster.
+	LocationId string  `pulumi:"locationId"`
+	Name       *string `pulumi:"name"`
+	// Status of the Yandex Database serverless cluster.
+	Status string `pulumi:"status"`
+	// Whether TLS is enabled for the Yandex Database serverless cluster.
+	// Useful for SDK configuration.
+	TlsEnabled bool `pulumi:"tlsEnabled"`
+	// API endpoint of the Yandex Database serverless cluster.
+	// Useful for SDK configuration.
+	YdbApiEndpoint string `pulumi:"ydbApiEndpoint"`
+	// Full endpoint of the Yandex Database serverless cluster.
+	YdbFullEndpoint string `pulumi:"ydbFullEndpoint"`
 }
 
 func LookupYdbDatabaseServerlessOutput(ctx *pulumi.Context, args LookupYdbDatabaseServerlessOutputArgs, opts ...pulumi.InvokeOption) LookupYdbDatabaseServerlessResultOutput {
@@ -63,10 +111,15 @@ func LookupYdbDatabaseServerlessOutput(ctx *pulumi.Context, args LookupYdbDataba
 
 // A collection of arguments for invoking getYdbDatabaseServerless.
 type LookupYdbDatabaseServerlessOutputArgs struct {
-	DatabaseId         pulumi.StringPtrInput `pulumi:"databaseId"`
-	DeletionProtection pulumi.BoolPtrInput   `pulumi:"deletionProtection"`
-	FolderId           pulumi.StringPtrInput `pulumi:"folderId"`
-	Name               pulumi.StringPtrInput `pulumi:"name"`
+	// ID of the Yandex Database serverless cluster.
+	DatabaseId pulumi.StringPtrInput `pulumi:"databaseId"`
+	// Inhibits deletion of the database. Can be either `true` or `false`
+	DeletionProtection pulumi.BoolPtrInput `pulumi:"deletionProtection"`
+	// ID of the folder that the Yandex Database serverless cluster belongs to.
+	// It will be deduced from provider configuration if not set explicitly.
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// Name of the Yandex Database serverless cluster.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupYdbDatabaseServerlessOutputArgs) ElementType() reflect.Type {
@@ -88,6 +141,7 @@ func (o LookupYdbDatabaseServerlessResultOutput) ToLookupYdbDatabaseServerlessRe
 	return o
 }
 
+// The Yandex Database serverless cluster creation timestamp.
 func (o LookupYdbDatabaseServerlessResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -96,18 +150,23 @@ func (o LookupYdbDatabaseServerlessResultOutput) DatabaseId() pulumi.StringPtrOu
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) *string { return v.DatabaseId }).(pulumi.StringPtrOutput)
 }
 
+// Full database path of the Yandex Database serverless cluster.
+// Useful for SDK configuration.
 func (o LookupYdbDatabaseServerlessResultOutput) DatabasePath() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) string { return v.DatabasePath }).(pulumi.StringOutput)
 }
 
+// Inhibits deletion of the database. Can be either `true` or `false`
 func (o LookupYdbDatabaseServerlessResultOutput) DeletionProtection() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) bool { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
+// A description of the Yandex Database serverless cluster.
 func (o LookupYdbDatabaseServerlessResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// Document API endpoint of the Yandex Database serverless cluster.
 func (o LookupYdbDatabaseServerlessResultOutput) DocumentApiEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) string { return v.DocumentApiEndpoint }).(pulumi.StringOutput)
 }
@@ -121,10 +180,12 @@ func (o LookupYdbDatabaseServerlessResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs assigned to the Yandex Database serverless cluster.
 func (o LookupYdbDatabaseServerlessResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Location ID of the Yandex Database serverless cluster.
 func (o LookupYdbDatabaseServerlessResultOutput) LocationId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) string { return v.LocationId }).(pulumi.StringOutput)
 }
@@ -133,18 +194,24 @@ func (o LookupYdbDatabaseServerlessResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// Status of the Yandex Database serverless cluster.
 func (o LookupYdbDatabaseServerlessResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Whether TLS is enabled for the Yandex Database serverless cluster.
+// Useful for SDK configuration.
 func (o LookupYdbDatabaseServerlessResultOutput) TlsEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) bool { return v.TlsEnabled }).(pulumi.BoolOutput)
 }
 
+// API endpoint of the Yandex Database serverless cluster.
+// Useful for SDK configuration.
 func (o LookupYdbDatabaseServerlessResultOutput) YdbApiEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) string { return v.YdbApiEndpoint }).(pulumi.StringOutput)
 }
 
+// Full endpoint of the Yandex Database serverless cluster.
 func (o LookupYdbDatabaseServerlessResultOutput) YdbFullEndpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) string { return v.YdbFullEndpoint }).(pulumi.StringOutput)
 }

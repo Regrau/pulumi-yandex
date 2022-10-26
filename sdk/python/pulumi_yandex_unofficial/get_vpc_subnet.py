@@ -66,16 +66,25 @@ class GetVpcSubnetResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of this subnet.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the subnet.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="dhcpOptions")
     def dhcp_options(self) -> Sequence['outputs.GetVpcSubnetDhcpOptionResult']:
+        """
+        Options for DHCP client. The structure is documented below.
+        """
         return pulumi.get(self, "dhcp_options")
 
     @property
@@ -94,6 +103,9 @@ class GetVpcSubnetResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        Labels to assign to this subnet.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -104,11 +116,17 @@ class GetVpcSubnetResult:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
+        """
+        ID of the network this subnet belongs to.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="routeTableId")
     def route_table_id(self) -> str:
+        """
+        ID of the route table to assign to this subnet.
+        """
         return pulumi.get(self, "route_table_id")
 
     @property
@@ -119,16 +137,25 @@ class GetVpcSubnetResult:
     @property
     @pulumi.getter(name="v4CidrBlocks")
     def v4_cidr_blocks(self) -> Sequence[str]:
+        """
+        The blocks of internal IPv4 addresses owned by this subnet.
+        """
         return pulumi.get(self, "v4_cidr_blocks")
 
     @property
     @pulumi.getter(name="v6CidrBlocks")
     def v6_cidr_blocks(self) -> Sequence[str]:
+        """
+        The blocks of internal IPv6 addresses owned by this subnet.
+        """
         return pulumi.get(self, "v6_cidr_blocks")
 
     @property
     @pulumi.getter
     def zone(self) -> str:
+        """
+        Name of the availability zone for this subnet.
+        """
         return pulumi.get(self, "zone")
 
 
@@ -158,7 +185,22 @@ def get_vpc_subnet(folder_id: Optional[str] = None,
                    subnet_id: Optional[str] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcSubnetResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex VPC subnet. For more information, see
+    [Yandex.Cloud VPC](https://cloud.yandex.com/docs/vpc/concepts/index).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    admin = yandex.get_vpc_subnet(subnet_id="my-subnet-id")
+    ```
+
+    This data source is used to define [VPC Subnets] that can be used by other resources.
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: - Name of the subnet.
+    :param str subnet_id: Subnet ID.
     """
     __args__ = dict()
     __args__['folderId'] = folder_id
@@ -189,6 +231,21 @@ def get_vpc_subnet_output(folder_id: Optional[pulumi.Input[Optional[str]]] = Non
                           subnet_id: Optional[pulumi.Input[Optional[str]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcSubnetResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex VPC subnet. For more information, see
+    [Yandex.Cloud VPC](https://cloud.yandex.com/docs/vpc/concepts/index).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    admin = yandex.get_vpc_subnet(subnet_id="my-subnet-id")
+    ```
+
+    This data source is used to define [VPC Subnets] that can be used by other resources.
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: - Name of the subnet.
+    :param str subnet_id: Subnet ID.
     """
     ...

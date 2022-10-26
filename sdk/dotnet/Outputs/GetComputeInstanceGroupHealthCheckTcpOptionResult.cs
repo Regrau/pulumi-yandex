@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetComputeInstanceGroupHealthCheckTcpOptionResult
     {
+        /// <summary>
+        /// The port to use for TCP health checks.
+        /// </summary>
         public readonly int Port;
 
         [OutputConstructor]

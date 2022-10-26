@@ -11,9 +11,67 @@ namespace Pulumi.Yandex
 {
     public static class GetMdbMongodbCluster
     {
+        /// <summary>
+        /// Get information about a Yandex Managed MongoDB cluster. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetMdbMongodbCluster.Invoke(new()
+        ///     {
+        ///         Name = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["networkId"] = foo.Apply(getMdbMongodbClusterResult =&gt; getMdbMongodbClusterResult.NetworkId),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetMdbMongodbClusterResult> InvokeAsync(GetMdbMongodbClusterArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetMdbMongodbClusterResult>("yandex:index/getMdbMongodbCluster:getMdbMongodbCluster", args ?? new GetMdbMongodbClusterArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Managed MongoDB cluster. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetMdbMongodbCluster.Invoke(new()
+        ///     {
+        ///         Name = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["networkId"] = foo.Apply(getMdbMongodbClusterResult =&gt; getMdbMongodbClusterResult.NetworkId),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetMdbMongodbClusterResult> Invoke(GetMdbMongodbClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetMdbMongodbClusterResult>("yandex:index/getMdbMongodbCluster:getMdbMongodbCluster", args ?? new GetMdbMongodbClusterInvokeArgs(), options.WithDefaults());
     }
@@ -21,17 +79,30 @@ namespace Pulumi.Yandex
 
     public sealed class GetMdbMongodbClusterArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Configuration of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         [Input("clusterConfig")]
         public Inputs.GetMdbMongodbClusterClusterConfigArgs? ClusterConfig { get; set; }
 
+        /// <summary>
+        /// The ID of the MongoDB cluster.
+        /// </summary>
         [Input("clusterId")]
         public string? ClusterId { get; set; }
 
+        /// <summary>
+        /// Creation timestamp of the key.
+        /// </summary>
         [Input("createdAt")]
         public string? CreatedAt { get; set; }
 
         [Input("databases")]
         private List<Inputs.GetMdbMongodbClusterDatabaseArgs>? _databases;
+
+        /// <summary>
+        /// A database of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         public List<Inputs.GetMdbMongodbClusterDatabaseArgs> Databases
         {
             get => _databases ?? (_databases = new List<Inputs.GetMdbMongodbClusterDatabaseArgs>());
@@ -41,20 +112,36 @@ namespace Pulumi.Yandex
         [Input("deletionProtection")]
         public bool? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// Description of the MongoDB cluster.
+        /// </summary>
         [Input("description")]
         public string? Description { get; set; }
 
+        /// <summary>
+        /// Deployment environment of the MongoDB cluster.
+        /// </summary>
         [Input("environment")]
         public string? Environment { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// The health of the host.
+        /// </summary>
         [Input("health")]
         public string? Health { get; set; }
 
         [Input("hosts")]
         private List<Inputs.GetMdbMongodbClusterHostArgs>? _hosts;
+
+        /// <summary>
+        /// A host of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         public List<Inputs.GetMdbMongodbClusterHostArgs> Hosts
         {
             get => _hosts ?? (_hosts = new List<Inputs.GetMdbMongodbClusterHostArgs>());
@@ -63,6 +150,10 @@ namespace Pulumi.Yandex
 
         [Input("labels")]
         private Dictionary<string, string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the MongoDB cluster.
+        /// </summary>
         public Dictionary<string, string> Labels
         {
             get => _labels ?? (_labels = new Dictionary<string, string>());
@@ -72,31 +163,54 @@ namespace Pulumi.Yandex
         [Input("maintenanceWindow")]
         public Inputs.GetMdbMongodbClusterMaintenanceWindowArgs? MaintenanceWindow { get; set; }
 
+        /// <summary>
+        /// The name of the MongoDB cluster.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// ID of the network, to which the MongoDB cluster belongs.
+        /// </summary>
         [Input("networkId")]
         public string? NetworkId { get; set; }
 
+        /// <summary>
+        /// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         [Input("resources")]
         public Inputs.GetMdbMongodbClusterResourcesArgs? Resources { get; set; }
 
         [Input("securityGroupIds")]
         private List<string>? _securityGroupIds;
+
+        /// <summary>
+        /// A set of ids of security groups assigned to hosts of the cluster.
+        /// </summary>
         public List<string> SecurityGroupIds
         {
             get => _securityGroupIds ?? (_securityGroupIds = new List<string>());
             set => _securityGroupIds = value;
         }
 
+        /// <summary>
+        /// MongoDB Cluster mode enabled/disabled.
+        /// </summary>
         [Input("sharded")]
         public bool? Sharded { get; set; }
 
+        /// <summary>
+        /// Status of the cluster.
+        /// </summary>
         [Input("status")]
         public string? Status { get; set; }
 
         [Input("users")]
         private List<Inputs.GetMdbMongodbClusterUserArgs>? _users;
+
+        /// <summary>
+        /// A user of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         public List<Inputs.GetMdbMongodbClusterUserArgs> Users
         {
             get => _users ?? (_users = new List<Inputs.GetMdbMongodbClusterUserArgs>());
@@ -111,17 +225,30 @@ namespace Pulumi.Yandex
 
     public sealed class GetMdbMongodbClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Configuration of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         [Input("clusterConfig")]
         public Input<Inputs.GetMdbMongodbClusterClusterConfigInputArgs>? ClusterConfig { get; set; }
 
+        /// <summary>
+        /// The ID of the MongoDB cluster.
+        /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
+        /// <summary>
+        /// Creation timestamp of the key.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         [Input("databases")]
         private InputList<Inputs.GetMdbMongodbClusterDatabaseInputArgs>? _databases;
+
+        /// <summary>
+        /// A database of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.GetMdbMongodbClusterDatabaseInputArgs> Databases
         {
             get => _databases ?? (_databases = new InputList<Inputs.GetMdbMongodbClusterDatabaseInputArgs>());
@@ -131,20 +258,36 @@ namespace Pulumi.Yandex
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// Description of the MongoDB cluster.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Deployment environment of the MongoDB cluster.
+        /// </summary>
         [Input("environment")]
         public Input<string>? Environment { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// The health of the host.
+        /// </summary>
         [Input("health")]
         public Input<string>? Health { get; set; }
 
         [Input("hosts")]
         private InputList<Inputs.GetMdbMongodbClusterHostInputArgs>? _hosts;
+
+        /// <summary>
+        /// A host of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.GetMdbMongodbClusterHostInputArgs> Hosts
         {
             get => _hosts ?? (_hosts = new InputList<Inputs.GetMdbMongodbClusterHostInputArgs>());
@@ -153,6 +296,10 @@ namespace Pulumi.Yandex
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the MongoDB cluster.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
@@ -162,31 +309,54 @@ namespace Pulumi.Yandex
         [Input("maintenanceWindow")]
         public Input<Inputs.GetMdbMongodbClusterMaintenanceWindowInputArgs>? MaintenanceWindow { get; set; }
 
+        /// <summary>
+        /// The name of the MongoDB cluster.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the network, to which the MongoDB cluster belongs.
+        /// </summary>
         [Input("networkId")]
         public Input<string>? NetworkId { get; set; }
 
+        /// <summary>
+        /// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         [Input("resources")]
         public Input<Inputs.GetMdbMongodbClusterResourcesInputArgs>? Resources { get; set; }
 
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
+
+        /// <summary>
+        /// A set of ids of security groups assigned to hosts of the cluster.
+        /// </summary>
         public InputList<string> SecurityGroupIds
         {
             get => _securityGroupIds ?? (_securityGroupIds = new InputList<string>());
             set => _securityGroupIds = value;
         }
 
+        /// <summary>
+        /// MongoDB Cluster mode enabled/disabled.
+        /// </summary>
         [Input("sharded")]
         public Input<bool>? Sharded { get; set; }
 
+        /// <summary>
+        /// Status of the cluster.
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         [Input("users")]
         private InputList<Inputs.GetMdbMongodbClusterUserInputArgs>? _users;
+
+        /// <summary>
+        /// A user of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.GetMdbMongodbClusterUserInputArgs> Users
         {
             get => _users ?? (_users = new InputList<Inputs.GetMdbMongodbClusterUserInputArgs>());
@@ -203,28 +373,73 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetMdbMongodbClusterResult
     {
+        /// <summary>
+        /// Configuration of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         public readonly Outputs.GetMdbMongodbClusterClusterConfigResult? ClusterConfig;
         public readonly string ClusterId;
+        /// <summary>
+        /// Creation timestamp of the key.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// A database of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbMongodbClusterDatabaseResult> Databases;
         public readonly bool DeletionProtection;
+        /// <summary>
+        /// Description of the MongoDB cluster.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Deployment environment of the MongoDB cluster.
+        /// </summary>
         public readonly string? Environment;
         public readonly string FolderId;
+        /// <summary>
+        /// The health of the host.
+        /// </summary>
         public readonly string Health;
+        /// <summary>
+        /// A host of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbMongodbClusterHostResult> Hosts;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A set of key/value label pairs to assign to the MongoDB cluster.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
         public readonly Outputs.GetMdbMongodbClusterMaintenanceWindowResult MaintenanceWindow;
+        /// <summary>
+        /// The name of the database.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// ID of the network, to which the MongoDB cluster belongs.
+        /// </summary>
         public readonly string? NetworkId;
+        /// <summary>
+        /// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         public readonly Outputs.GetMdbMongodbClusterResourcesResult? Resources;
+        /// <summary>
+        /// A set of ids of security groups assigned to hosts of the cluster.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// MongoDB Cluster mode enabled/disabled.
+        /// </summary>
         public readonly bool Sharded;
+        /// <summary>
+        /// Status of the cluster.
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// A user of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbMongodbClusterUserResult> Users;
 
         [OutputConstructor]

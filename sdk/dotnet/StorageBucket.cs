@@ -9,72 +9,780 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows management of [Yandex.Cloud Storage Bucket](https://cloud.yandex.com/docs/storage/concepts/bucket).
+    /// 
+    /// &gt; **Note:** Your need to provide [static access key](https://cloud.yandex.com/docs/iam/concepts/authorization/access-key) (Access and Secret) to create storage client to work with Storage Service. To create them you need Service Account and proper permissions.
+    /// 
+    /// &gt; **Note:** For extended API usage, such as setting `max_size`, `folder_id`, `anonymous_access_flags`,
+    /// `default_storage_class` and `https` parameters for bucket, will be used default authorization method, i.e.
+    /// `IAM` / `OAuth` token from `provider` block will be used.
+    /// This might be a little bit confusing in cases when separate service account is used for managing buckets because
+    /// in this case buckets will be accessed by two different accounts that might have different permissions for buckets.
+    /// 
+    /// ## Example Usage
+    /// ### Simple Private Bucket
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var folderId = "&lt;folder-id&gt;";
+    /// 
+    ///     // Create SA
+    ///     var sa = new Yandex.IamServiceAccount("sa", new()
+    ///     {
+    ///         FolderId = folderId,
+    ///     });
+    /// 
+    ///     // Grant permissions
+    ///     var sa_editor = new Yandex.ResourcemanagerFolderIamMember("sa-editor", new()
+    ///     {
+    ///         FolderId = folderId,
+    ///         Role = "storage.editor",
+    ///         Member = sa.Id.Apply(id =&gt; $"serviceAccount:{id}"),
+    ///     });
+    /// 
+    ///     // Create Static Access Keys
+    ///     var sa_static_key = new Yandex.IamServiceAccountStaticAccessKey("sa-static-key", new()
+    ///     {
+    ///         ServiceAccountId = sa.Id,
+    ///         Description = "static access key for object storage",
+    ///     });
+    /// 
+    ///     // Use keys to create bucket
+    ///     var test = new Yandex.StorageBucket("test", new()
+    ///     {
+    ///         AccessKey = sa_static_key.AccessKey,
+    ///         SecretKey = sa_static_key.SecretKey,
+    ///         Bucket = "tf-test-bucket",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Static Website Hosting
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Yandex.StorageBucket("test", new()
+    ///     {
+    ///         Acl = "public-read",
+    ///         Bucket = "storage-website-test.hashicorp.com",
+    ///         Website = new Yandex.Inputs.StorageBucketWebsiteArgs
+    ///         {
+    ///             ErrorDocument = "error.html",
+    ///             IndexDocument = "index.html",
+    ///             RoutingRules = @"[{
+    ///     ""Condition"": {
+    ///         ""KeyPrefixEquals"": ""docs/""
+    ///     },
+    ///     ""Redirect"": {
+    ///         ""ReplaceKeyPrefixWith"": ""documents/""
+    ///     }
+    /// }]
+    /// 
+    /// ",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Using ACL policy grants
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Yandex.StorageBucket("test", new()
+    ///     {
+    ///         Bucket = "mybucket",
+    ///         Grants = new[]
+    ///         {
+    ///             new Yandex.Inputs.StorageBucketGrantArgs
+    ///             {
+    ///                 Id = "myuser",
+    ///                 Permissions = new[]
+    ///                 {
+    ///                     "FULL_CONTROL",
+    ///                 },
+    ///                 Type = "CanonicalUser",
+    ///             },
+    ///             new Yandex.Inputs.StorageBucketGrantArgs
+    ///             {
+    ///                 Permissions = new[]
+    ///                 {
+    ///                     "READ",
+    ///                     "WRITE",
+    ///                 },
+    ///                 Type = "Group",
+    ///                 Uri = "http://acs.amazonaws.com/groups/global/AllUsers",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Using CORS
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var storageBucket = new Yandex.StorageBucket("storageBucket", new()
+    ///     {
+    ///         Acl = "public-read",
+    ///         Bucket = "s3-website-test.hashicorp.com",
+    ///         CorsRules = new[]
+    ///         {
+    ///             new Yandex.Inputs.StorageBucketCorsRuleArgs
+    ///             {
+    ///                 AllowedHeaders = new[]
+    ///                 {
+    ///                     "*",
+    ///                 },
+    ///                 AllowedMethods = new[]
+    ///                 {
+    ///                     "PUT",
+    ///                     "POST",
+    ///                 },
+    ///                 AllowedOrigins = new[]
+    ///                 {
+    ///                     "https://s3-website-test.hashicorp.com",
+    ///                 },
+    ///                 ExposeHeaders = new[]
+    ///                 {
+    ///                     "ETag",
+    ///                 },
+    ///                 MaxAgeSeconds = 3000,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Using versioning
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var storageBucket = new Yandex.StorageBucket("storageBucket", new()
+    ///     {
+    ///         Acl = "private",
+    ///         Bucket = "my-tf-test-bucket",
+    ///         Versioning = new Yandex.Inputs.StorageBucketVersioningArgs
+    ///         {
+    ///             Enabled = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Enable Logging
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var logBucket = new Yandex.StorageBucket("logBucket", new()
+    ///     {
+    ///         Bucket = "my-tf-log-bucket",
+    ///     });
+    /// 
+    ///     var storageBucket = new Yandex.StorageBucket("storageBucket", new()
+    ///     {
+    ///         Bucket = "my-tf-test-bucket",
+    ///         Acl = "private",
+    ///         Loggings = new[]
+    ///         {
+    ///             new Yandex.Inputs.StorageBucketLoggingArgs
+    ///             {
+    ///                 TargetBucket = logBucket.Id,
+    ///                 TargetPrefix = "log/",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Using object lifecycle
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var bucket = new Yandex.StorageBucket("bucket", new()
+    ///     {
+    ///         Acl = "private",
+    ///         Bucket = "my-bucket",
+    ///         LifecycleRules = new[]
+    ///         {
+    ///             new Yandex.Inputs.StorageBucketLifecycleRuleArgs
+    ///             {
+    ///                 Enabled = true,
+    ///                 Expiration = new Yandex.Inputs.StorageBucketLifecycleRuleExpirationArgs
+    ///                 {
+    ///                     Days = 90,
+    ///                 },
+    ///                 Id = "log",
+    ///                 Prefix = "log/",
+    ///                 Transitions = new[]
+    ///                 {
+    ///                     new Yandex.Inputs.StorageBucketLifecycleRuleTransitionArgs
+    ///                     {
+    ///                         Days = 30,
+    ///                         StorageClass = "COLD",
+    ///                     },
+    ///                 },
+    ///             },
+    ///             new Yandex.Inputs.StorageBucketLifecycleRuleArgs
+    ///             {
+    ///                 Enabled = true,
+    ///                 Expiration = new Yandex.Inputs.StorageBucketLifecycleRuleExpirationArgs
+    ///                 {
+    ///                     Date = "2020-12-21",
+    ///                 },
+    ///                 Id = "tmp",
+    ///                 Prefix = "tmp/",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var versioningBucket = new Yandex.StorageBucket("versioningBucket", new()
+    ///     {
+    ///         Acl = "private",
+    ///         Bucket = "my-versioning-bucket",
+    ///         LifecycleRules = new[]
+    ///         {
+    ///             new Yandex.Inputs.StorageBucketLifecycleRuleArgs
+    ///             {
+    ///                 Enabled = true,
+    ///                 NoncurrentVersionExpiration = new Yandex.Inputs.StorageBucketLifecycleRuleNoncurrentVersionExpirationArgs
+    ///                 {
+    ///                     Days = 90,
+    ///                 },
+    ///                 NoncurrentVersionTransitions = new[]
+    ///                 {
+    ///                     new Yandex.Inputs.StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs
+    ///                     {
+    ///                         Days = 30,
+    ///                         StorageClass = "COLD",
+    ///                     },
+    ///                 },
+    ///                 Prefix = "config/",
+    ///             },
+    ///         },
+    ///         Versioning = new Yandex.Inputs.StorageBucketVersioningArgs
+    ///         {
+    ///             Enabled = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Using SSE
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var key_a = new Yandex.KmsSymmetricKey("key-a", new()
+    ///     {
+    ///         Description = "description for key",
+    ///         DefaultAlgorithm = "AES_128",
+    ///         RotationPeriod = "8760h",
+    ///     });
+    /// 
+    ///     // equal to 1 year
+    ///     var test = new Yandex.StorageBucket("test", new()
+    ///     {
+    ///         Bucket = "mybucket",
+    ///         ServerSideEncryptionConfiguration = new Yandex.Inputs.StorageBucketServerSideEncryptionConfigurationArgs
+    ///         {
+    ///             Rule = new Yandex.Inputs.StorageBucketServerSideEncryptionConfigurationRuleArgs
+    ///             {
+    ///                 ApplyServerSideEncryptionByDefault = new Yandex.Inputs.StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs
+    ///                 {
+    ///                     KmsMasterKeyId = key_a.Id,
+    ///                     SseAlgorithm = "aws:kms",
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Bucket Policy
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var storageBucket = new Yandex.StorageBucket("storageBucket", new()
+    ///     {
+    ///         Bucket = "my-policy-bucket",
+    ///         Policy = @"{
+    ///   ""Version"": ""2012-10-17"",
+    ///   ""Statement"": [
+    ///     {
+    ///       ""Effect"": ""Allow"",
+    ///       ""Principal"": ""*"",
+    ///       ""Action"": ""s3:*"",
+    ///       ""Resource"": [
+    ///         ""arn:aws:s3:::my-policy-bucket/*"",
+    ///         ""arn:aws:s3:::my-policy-bucket""
+    ///       ]
+    ///     },
+    ///     {
+    ///       ""Effect"": ""Deny"",
+    ///       ""Principal"": ""*"",
+    ///       ""Action"": ""s3:PutObject"",
+    ///       ""Resource"": [
+    ///         ""arn:aws:s3:::my-policy-bucket/*"",
+    ///         ""arn:aws:s3:::my-policy-bucket""
+    ///       ]
+    ///     }
+    ///   ]
+    /// }
+    /// 
+    /// ",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Bucket Max Size
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var storageBucket = new Yandex.StorageBucket("storageBucket", new()
+    ///     {
+    ///         Bucket = "my-policy-bucket",
+    ///         MaxSize = 1048576,
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Bucket Folder Id
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var storageBucket = new Yandex.StorageBucket("storageBucket", new()
+    ///     {
+    ///         Bucket = "my-policy-bucket",
+    ///         FolderId = "&lt;folder_id&gt;",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Bucket Anonymous Access Flags
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var storageBucket = new Yandex.StorageBucket("storageBucket", new()
+    ///     {
+    ///         AnonymousAccessFlags = new Yandex.Inputs.StorageBucketAnonymousAccessFlagsArgs
+    ///         {
+    ///             List = false,
+    ///             Read = true,
+    ///         },
+    ///         Bucket = "my-policy-bucket",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Bucket HTTPS Certificate
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var storageBucket = new Yandex.StorageBucket("storageBucket", new()
+    ///     {
+    ///         Bucket = "my-policy-bucket",
+    ///         Https = new Yandex.Inputs.StorageBucketHttpsArgs
+    ///         {
+    ///             CertificateId = "&lt;certificate_id_from_certificate_manager&gt;",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### Bucket Default Storage Class
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var storageBucket = new Yandex.StorageBucket("storageBucket", new()
+    ///     {
+    ///         Bucket = "my-policy-bucket",
+    ///         DefaultStorageClass = "COLD",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// ### All settings example
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var logBucket = new Yandex.StorageBucket("logBucket", new()
+    ///     {
+    ///         Bucket = "my-tf-log-bucket",
+    ///         LifecycleRules = new[]
+    ///         {
+    ///             new Yandex.Inputs.StorageBucketLifecycleRuleArgs
+    ///             {
+    ///                 Id = "cleanupoldlogs",
+    ///                 Enabled = true,
+    ///                 Expiration = new Yandex.Inputs.StorageBucketLifecycleRuleExpirationArgs
+    ///                 {
+    ///                     Days = 365,
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var key_a = new Yandex.KmsSymmetricKey("key-a", new()
+    ///     {
+    ///         Description = "description for key",
+    ///         DefaultAlgorithm = "AES_128",
+    ///         RotationPeriod = "8760h",
+    ///     });
+    /// 
+    ///     // equal to 1 year
+    ///     var allSettings = new Yandex.StorageBucket("allSettings", new()
+    ///     {
+    ///         Bucket = "example-tf-settings-bucket",
+    ///         Website = new Yandex.Inputs.StorageBucketWebsiteArgs
+    ///         {
+    ///             IndexDocument = "index.html",
+    ///             ErrorDocument = "error.html",
+    ///         },
+    ///         LifecycleRules = new[]
+    ///         {
+    ///             new Yandex.Inputs.StorageBucketLifecycleRuleArgs
+    ///             {
+    ///                 Id = "test",
+    ///                 Enabled = true,
+    ///                 Prefix = "prefix/",
+    ///                 Expiration = new Yandex.Inputs.StorageBucketLifecycleRuleExpirationArgs
+    ///                 {
+    ///                     Days = 30,
+    ///                 },
+    ///             },
+    ///             new Yandex.Inputs.StorageBucketLifecycleRuleArgs
+    ///             {
+    ///                 Id = "log",
+    ///                 Enabled = true,
+    ///                 Prefix = "log/",
+    ///                 Transitions = new[]
+    ///                 {
+    ///                     new Yandex.Inputs.StorageBucketLifecycleRuleTransitionArgs
+    ///                     {
+    ///                         Days = 30,
+    ///                         StorageClass = "COLD",
+    ///                     },
+    ///                 },
+    ///                 Expiration = new Yandex.Inputs.StorageBucketLifecycleRuleExpirationArgs
+    ///                 {
+    ///                     Days = 90,
+    ///                 },
+    ///             },
+    ///             new Yandex.Inputs.StorageBucketLifecycleRuleArgs
+    ///             {
+    ///                 Id = "everything180",
+    ///                 Prefix = "",
+    ///                 Enabled = true,
+    ///                 Expiration = new Yandex.Inputs.StorageBucketLifecycleRuleExpirationArgs
+    ///                 {
+    ///                     Days = 180,
+    ///                 },
+    ///             },
+    ///             new Yandex.Inputs.StorageBucketLifecycleRuleArgs
+    ///             {
+    ///                 Id = "cleanupoldversions",
+    ///                 Prefix = "config/",
+    ///                 Enabled = true,
+    ///                 NoncurrentVersionTransitions = new[]
+    ///                 {
+    ///                     new Yandex.Inputs.StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs
+    ///                     {
+    ///                         Days = 30,
+    ///                         StorageClass = "COLD",
+    ///                     },
+    ///                 },
+    ///                 NoncurrentVersionExpiration = new Yandex.Inputs.StorageBucketLifecycleRuleNoncurrentVersionExpirationArgs
+    ///                 {
+    ///                     Days = 90,
+    ///                 },
+    ///             },
+    ///             new Yandex.Inputs.StorageBucketLifecycleRuleArgs
+    ///             {
+    ///                 Id = "abortmultiparts",
+    ///                 Prefix = "",
+    ///                 Enabled = true,
+    ///                 AbortIncompleteMultipartUploadDays = 7,
+    ///             },
+    ///         },
+    ///         CorsRules = new[]
+    ///         {
+    ///             new Yandex.Inputs.StorageBucketCorsRuleArgs
+    ///             {
+    ///                 AllowedHeaders = new[]
+    ///                 {
+    ///                     "*",
+    ///                 },
+    ///                 AllowedMethods = new[]
+    ///                 {
+    ///                     "GET",
+    ///                     "PUT",
+    ///                 },
+    ///                 AllowedOrigins = new[]
+    ///                 {
+    ///                     "https://storage-cloud.example.com",
+    ///                 },
+    ///                 ExposeHeaders = new[]
+    ///                 {
+    ///                     "ETag",
+    ///                 },
+    ///                 MaxAgeSeconds = 3000,
+    ///             },
+    ///         },
+    ///         Versioning = new Yandex.Inputs.StorageBucketVersioningArgs
+    ///         {
+    ///             Enabled = true,
+    ///         },
+    ///         ServerSideEncryptionConfiguration = new Yandex.Inputs.StorageBucketServerSideEncryptionConfigurationArgs
+    ///         {
+    ///             Rule = new Yandex.Inputs.StorageBucketServerSideEncryptionConfigurationRuleArgs
+    ///             {
+    ///                 ApplyServerSideEncryptionByDefault = new Yandex.Inputs.StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs
+    ///                 {
+    ///                     KmsMasterKeyId = key_a.Id,
+    ///                     SseAlgorithm = "aws:kms",
+    ///                 },
+    ///             },
+    ///         },
+    ///         Loggings = new[]
+    ///         {
+    ///             new Yandex.Inputs.StorageBucketLoggingArgs
+    ///             {
+    ///                 TargetBucket = logBucket.Id,
+    ///                 TargetPrefix = "tf-logs/",
+    ///             },
+    ///         },
+    ///         MaxSize = 1024,
+    ///         FolderId = "&lt;folder_id&gt;",
+    ///         DefaultStorageClass = "COLD",
+    ///         AnonymousAccessFlags = new Yandex.Inputs.StorageBucketAnonymousAccessFlagsArgs
+    ///         {
+    ///             Read = true,
+    ///             List = true,
+    ///         },
+    ///         Https = new Yandex.Inputs.StorageBucketHttpsArgs
+    ///         {
+    ///             CertificateId = "&lt;certificate_id&gt;",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Storage bucket can be imported using the `bucket`, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/storageBucket:StorageBucket bucket bucket-name
+    /// ```
+    /// 
+    ///  `false` in state. If you've set it to `true` in config, run `terraform apply` to update the value set in state. If you delete this resource before updating the value, objects in the bucket will not be destroyed.
+    /// </summary>
     [YandexResourceType("yandex:index/storageBucket:StorageBucket")]
     public partial class StorageBucket : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        /// </summary>
         [Output("accessKey")]
         public Output<string?> AccessKey { get; private set; } = null!;
 
+        /// <summary>
+        /// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        /// </summary>
         [Output("acl")]
         public Output<string?> Acl { get; private set; } = null!;
 
+        /// <summary>
+        /// Provides various access to objects.
+        /// See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
+        /// for more infomation.
+        /// </summary>
         [Output("anonymousAccessFlags")]
         public Output<Outputs.StorageBucketAnonymousAccessFlags> AnonymousAccessFlags { get; private set; } = null!;
 
         [Output("bucket")]
         public Output<string> Bucket { get; private set; } = null!;
 
+        /// <summary>
+        /// The bucket domain name.
+        /// </summary>
         [Output("bucketDomainName")]
         public Output<string> BucketDomainName { get; private set; } = null!;
 
+        /// <summary>
+        /// Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        /// </summary>
         [Output("bucketPrefix")]
         public Output<string?> BucketPrefix { get; private set; } = null!;
 
+        /// <summary>
+        /// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        /// </summary>
         [Output("corsRules")]
         public Output<ImmutableArray<Outputs.StorageBucketCorsRule>> CorsRules { get; private set; } = null!;
 
+        /// <summary>
+        /// Storage class which is used for storing objects by default.
+        /// Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+        /// See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
+        /// </summary>
         [Output("defaultStorageClass")]
         public Output<string> DefaultStorageClass { get; private set; } = null!;
 
+        /// <summary>
+        /// Allow to create bucket in different folder.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
+        /// </summary>
         [Output("forceDestroy")]
         public Output<bool?> ForceDestroy { get; private set; } = null!;
 
+        /// <summary>
+        /// An [ACL policy grant](https://cloud.yandex.com/docs/storage/concepts/acl#permissions-types). Conflicts with `acl`.
+        /// </summary>
         [Output("grants")]
         public Output<ImmutableArray<Outputs.StorageBucketGrant>> Grants { get; private set; } = null!;
 
+        /// <summary>
+        /// Manages https certificates for bucket. See [https](https://cloud.yandex.com/en-ru/docs/storage/operations/hosting/certificate) for more infomation.
+        /// </summary>
         [Output("https")]
         public Output<Outputs.StorageBucketHttps?> Https { get; private set; } = null!;
 
+        /// <summary>
+        /// A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
+        /// </summary>
         [Output("lifecycleRules")]
         public Output<ImmutableArray<Outputs.StorageBucketLifecycleRule>> LifecycleRules { get; private set; } = null!;
 
+        /// <summary>
+        /// A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
+        /// </summary>
         [Output("loggings")]
         public Output<ImmutableArray<Outputs.StorageBucketLogging>> Loggings { get; private set; } = null!;
 
+        /// <summary>
+        /// The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        /// </summary>
         [Output("maxSize")]
         public Output<int?> MaxSize { get; private set; } = null!;
 
         [Output("policy")]
         public Output<string?> Policy { get; private set; } = null!;
 
+        /// <summary>
+        /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        /// </summary>
         [Output("secretKey")]
         public Output<string?> SecretKey { get; private set; } = null!;
 
+        /// <summary>
+        /// A configuration of server-side encryption for the bucket (documented below)
+        /// </summary>
         [Output("serverSideEncryptionConfiguration")]
         public Output<Outputs.StorageBucketServerSideEncryptionConfiguration?> ServerSideEncryptionConfiguration { get; private set; } = null!;
 
+        /// <summary>
+        /// A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
+        /// </summary>
         [Output("versioning")]
         public Output<Outputs.StorageBucketVersioning> Versioning { get; private set; } = null!;
 
+        /// <summary>
+        /// A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
+        /// </summary>
         [Output("website")]
         public Output<Outputs.StorageBucketWebsite?> Website { get; private set; } = null!;
 
+        /// <summary>
+        /// The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        /// </summary>
         [Output("websiteDomain")]
         public Output<string> WebsiteDomain { get; private set; } = null!;
 
+        /// <summary>
+        /// The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        /// </summary>
         [Output("websiteEndpoint")]
         public Output<string> WebsiteEndpoint { get; private set; } = null!;
 
@@ -101,7 +809,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -125,51 +833,91 @@ namespace Pulumi.Yandex
 
     public sealed class StorageBucketArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
+        /// <summary>
+        /// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
 
+        /// <summary>
+        /// Provides various access to objects.
+        /// See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
+        /// for more infomation.
+        /// </summary>
         [Input("anonymousAccessFlags")]
         public Input<Inputs.StorageBucketAnonymousAccessFlagsArgs>? AnonymousAccessFlags { get; set; }
 
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }
 
+        /// <summary>
+        /// Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        /// </summary>
         [Input("bucketPrefix")]
         public Input<string>? BucketPrefix { get; set; }
 
         [Input("corsRules")]
         private InputList<Inputs.StorageBucketCorsRuleArgs>? _corsRules;
+
+        /// <summary>
+        /// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        /// </summary>
         public InputList<Inputs.StorageBucketCorsRuleArgs> CorsRules
         {
             get => _corsRules ?? (_corsRules = new InputList<Inputs.StorageBucketCorsRuleArgs>());
             set => _corsRules = value;
         }
 
+        /// <summary>
+        /// Storage class which is used for storing objects by default.
+        /// Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+        /// See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
+        /// </summary>
         [Input("defaultStorageClass")]
         public Input<string>? DefaultStorageClass { get; set; }
 
+        /// <summary>
+        /// Allow to create bucket in different folder.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
+        /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
 
         [Input("grants")]
         private InputList<Inputs.StorageBucketGrantArgs>? _grants;
+
+        /// <summary>
+        /// An [ACL policy grant](https://cloud.yandex.com/docs/storage/concepts/acl#permissions-types). Conflicts with `acl`.
+        /// </summary>
         public InputList<Inputs.StorageBucketGrantArgs> Grants
         {
             get => _grants ?? (_grants = new InputList<Inputs.StorageBucketGrantArgs>());
             set => _grants = value;
         }
 
+        /// <summary>
+        /// Manages https certificates for bucket. See [https](https://cloud.yandex.com/en-ru/docs/storage/operations/hosting/certificate) for more infomation.
+        /// </summary>
         [Input("https")]
         public Input<Inputs.StorageBucketHttpsArgs>? Https { get; set; }
 
         [Input("lifecycleRules")]
         private InputList<Inputs.StorageBucketLifecycleRuleArgs>? _lifecycleRules;
+
+        /// <summary>
+        /// A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
+        /// </summary>
         public InputList<Inputs.StorageBucketLifecycleRuleArgs> LifecycleRules
         {
             get => _lifecycleRules ?? (_lifecycleRules = new InputList<Inputs.StorageBucketLifecycleRuleArgs>());
@@ -178,33 +926,58 @@ namespace Pulumi.Yandex
 
         [Input("loggings")]
         private InputList<Inputs.StorageBucketLoggingArgs>? _loggings;
+
+        /// <summary>
+        /// A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
+        /// </summary>
         public InputList<Inputs.StorageBucketLoggingArgs> Loggings
         {
             get => _loggings ?? (_loggings = new InputList<Inputs.StorageBucketLoggingArgs>());
             set => _loggings = value;
         }
 
+        /// <summary>
+        /// The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        /// </summary>
         [Input("maxSize")]
         public Input<int>? MaxSize { get; set; }
 
         [Input("policy")]
         public Input<string>? Policy { get; set; }
 
+        /// <summary>
+        /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
+        /// <summary>
+        /// A configuration of server-side encryption for the bucket (documented below)
+        /// </summary>
         [Input("serverSideEncryptionConfiguration")]
         public Input<Inputs.StorageBucketServerSideEncryptionConfigurationArgs>? ServerSideEncryptionConfiguration { get; set; }
 
+        /// <summary>
+        /// A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
+        /// </summary>
         [Input("versioning")]
         public Input<Inputs.StorageBucketVersioningArgs>? Versioning { get; set; }
 
+        /// <summary>
+        /// A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
+        /// </summary>
         [Input("website")]
         public Input<Inputs.StorageBucketWebsiteArgs>? Website { get; set; }
 
+        /// <summary>
+        /// The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        /// </summary>
         [Input("websiteDomain")]
         public Input<string>? WebsiteDomain { get; set; }
 
+        /// <summary>
+        /// The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        /// </summary>
         [Input("websiteEndpoint")]
         public Input<string>? WebsiteEndpoint { get; set; }
 
@@ -216,54 +989,97 @@ namespace Pulumi.Yandex
 
     public sealed class StorageBucketState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
+        /// <summary>
+        /// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
 
+        /// <summary>
+        /// Provides various access to objects.
+        /// See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
+        /// for more infomation.
+        /// </summary>
         [Input("anonymousAccessFlags")]
         public Input<Inputs.StorageBucketAnonymousAccessFlagsGetArgs>? AnonymousAccessFlags { get; set; }
 
         [Input("bucket")]
         public Input<string>? Bucket { get; set; }
 
+        /// <summary>
+        /// The bucket domain name.
+        /// </summary>
         [Input("bucketDomainName")]
         public Input<string>? BucketDomainName { get; set; }
 
+        /// <summary>
+        /// Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        /// </summary>
         [Input("bucketPrefix")]
         public Input<string>? BucketPrefix { get; set; }
 
         [Input("corsRules")]
         private InputList<Inputs.StorageBucketCorsRuleGetArgs>? _corsRules;
+
+        /// <summary>
+        /// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        /// </summary>
         public InputList<Inputs.StorageBucketCorsRuleGetArgs> CorsRules
         {
             get => _corsRules ?? (_corsRules = new InputList<Inputs.StorageBucketCorsRuleGetArgs>());
             set => _corsRules = value;
         }
 
+        /// <summary>
+        /// Storage class which is used for storing objects by default.
+        /// Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+        /// See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
+        /// </summary>
         [Input("defaultStorageClass")]
         public Input<string>? DefaultStorageClass { get; set; }
 
+        /// <summary>
+        /// Allow to create bucket in different folder.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
+        /// </summary>
         [Input("forceDestroy")]
         public Input<bool>? ForceDestroy { get; set; }
 
         [Input("grants")]
         private InputList<Inputs.StorageBucketGrantGetArgs>? _grants;
+
+        /// <summary>
+        /// An [ACL policy grant](https://cloud.yandex.com/docs/storage/concepts/acl#permissions-types). Conflicts with `acl`.
+        /// </summary>
         public InputList<Inputs.StorageBucketGrantGetArgs> Grants
         {
             get => _grants ?? (_grants = new InputList<Inputs.StorageBucketGrantGetArgs>());
             set => _grants = value;
         }
 
+        /// <summary>
+        /// Manages https certificates for bucket. See [https](https://cloud.yandex.com/en-ru/docs/storage/operations/hosting/certificate) for more infomation.
+        /// </summary>
         [Input("https")]
         public Input<Inputs.StorageBucketHttpsGetArgs>? Https { get; set; }
 
         [Input("lifecycleRules")]
         private InputList<Inputs.StorageBucketLifecycleRuleGetArgs>? _lifecycleRules;
+
+        /// <summary>
+        /// A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
+        /// </summary>
         public InputList<Inputs.StorageBucketLifecycleRuleGetArgs> LifecycleRules
         {
             get => _lifecycleRules ?? (_lifecycleRules = new InputList<Inputs.StorageBucketLifecycleRuleGetArgs>());
@@ -272,33 +1088,58 @@ namespace Pulumi.Yandex
 
         [Input("loggings")]
         private InputList<Inputs.StorageBucketLoggingGetArgs>? _loggings;
+
+        /// <summary>
+        /// A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
+        /// </summary>
         public InputList<Inputs.StorageBucketLoggingGetArgs> Loggings
         {
             get => _loggings ?? (_loggings = new InputList<Inputs.StorageBucketLoggingGetArgs>());
             set => _loggings = value;
         }
 
+        /// <summary>
+        /// The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        /// </summary>
         [Input("maxSize")]
         public Input<int>? MaxSize { get; set; }
 
         [Input("policy")]
         public Input<string>? Policy { get; set; }
 
+        /// <summary>
+        /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
+        /// <summary>
+        /// A configuration of server-side encryption for the bucket (documented below)
+        /// </summary>
         [Input("serverSideEncryptionConfiguration")]
         public Input<Inputs.StorageBucketServerSideEncryptionConfigurationGetArgs>? ServerSideEncryptionConfiguration { get; set; }
 
+        /// <summary>
+        /// A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
+        /// </summary>
         [Input("versioning")]
         public Input<Inputs.StorageBucketVersioningGetArgs>? Versioning { get; set; }
 
+        /// <summary>
+        /// A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
+        /// </summary>
         [Input("website")]
         public Input<Inputs.StorageBucketWebsiteGetArgs>? Website { get; set; }
 
+        /// <summary>
+        /// The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        /// </summary>
         [Input("websiteDomain")]
         public Input<string>? WebsiteDomain { get; set; }
 
+        /// <summary>
+        /// The website endpoint, if the bucket is configured with a website. If not, this will be an empty string.
+        /// </summary>
         [Input("websiteEndpoint")]
         public Input<string>? WebsiteEndpoint { get; set; }
 

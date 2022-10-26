@@ -5,6 +5,109 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Creates a Yandex Kubernetes Cluster.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const zonalClusterResourceName = new yandex.KubernetesCluster("zonal_cluster_resource_name", {
+ *     description: "description",
+ *     kmsProvider: {
+ *         keyId: yandex_kms_symmetric_key_kms_key_resource_name.id,
+ *     },
+ *     labels: {
+ *         my_key: "my_value",
+ *         my_other_key: "my_other_value",
+ *     },
+ *     master: {
+ *         maintenancePolicy: {
+ *             autoUpgrade: true,
+ *             maintenanceWindows: [{
+ *                 duration: "3h",
+ *                 startTime: "15:00",
+ *             }],
+ *         },
+ *         publicIp: true,
+ *         securityGroupIds: [yandex_vpc_security_group_security_group_name.id],
+ *         version: "1.17",
+ *         zonal: {
+ *             subnetId: yandex_vpc_subnet_subnet_resource_name.id,
+ *             zone: yandex_vpc_subnet_subnet_resource_name.zone,
+ *         },
+ *     },
+ *     networkId: yandex_vpc_network_network_resource_name.id,
+ *     networkPolicyProvider: "CALICO",
+ *     nodeServiceAccountId: yandex_iam_service_account_node_service_account_resource_name.id,
+ *     releaseChannel: "RAPID",
+ *     serviceAccountId: yandex_iam_service_account_service_account_resource_name.id,
+ * });
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const regionalClusterResourceName = new yandex.KubernetesCluster("regional_cluster_resource_name", {
+ *     description: "description",
+ *     labels: {
+ *         my_key: "my_value",
+ *         my_other_key: "my_other_value",
+ *     },
+ *     master: {
+ *         maintenancePolicy: {
+ *             autoUpgrade: true,
+ *             maintenanceWindows: [
+ *                 {
+ *                     day: "monday",
+ *                     duration: "3h",
+ *                     startTime: "15:00",
+ *                 },
+ *                 {
+ *                     day: "friday",
+ *                     duration: "4h30m",
+ *                     startTime: "10:00",
+ *                 },
+ *             ],
+ *         },
+ *         publicIp: true,
+ *         regional: {
+ *             locations: [
+ *                 {
+ *                     subnetId: yandex_vpc_subnet_subnet_a_resource_name.id,
+ *                     zone: yandex_vpc_subnet_subnet_a_resource_name.zone,
+ *                 },
+ *                 {
+ *                     subnetId: yandex_vpc_subnet_subnet_b_resource_name.id,
+ *                     zone: yandex_vpc_subnet_subnet_b_resource_name.zone,
+ *                 },
+ *                 {
+ *                     subnetId: yandex_vpc_subnet_subnet_c_resource_name.id,
+ *                     zone: yandex_vpc_subnet_subnet_c_resource_name.zone,
+ *                 },
+ *             ],
+ *             region: "ru-central1",
+ *         },
+ *         version: "1.14",
+ *     },
+ *     networkId: yandex_vpc_network_network_resource_name.id,
+ *     nodeServiceAccountId: yandex_iam_service_account_node_service_account_resource_name.id,
+ *     releaseChannel: "STABLE",
+ *     serviceAccountId: yandex_iam_service_account_service_account_resource_name.id,
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A Managed Kubernetes cluster can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/kubernetesCluster:KubernetesCluster default cluster_id
+ * ```
+ */
 export class KubernetesCluster extends pulumi.CustomResource {
     /**
      * Get an existing KubernetesCluster resource's state with the given name, ID, and optional extra
@@ -33,26 +136,97 @@ export class KubernetesCluster extends pulumi.CustomResource {
         return obj['__pulumiType'] === KubernetesCluster.__pulumiType;
     }
 
+    /**
+     * CIDR block. IP range for allocating pod addresses.
+     * It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+     * set up for this CIDR blocks in node subnets.
+     */
     public readonly clusterIpv4Range!: pulumi.Output<string>;
+    /**
+     * Identical to clusterIpv4Range but for IPv6 protocol.
+     */
     public readonly clusterIpv6Range!: pulumi.Output<string>;
+    /**
+     * (Computed) The Kubernetes cluster creation timestamp.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * A description of the Kubernetes cluster.
+     */
     public readonly description!: pulumi.Output<string>;
+    /**
+     * The ID of the folder that the Kubernetes cluster belongs to.
+     * If it is not provided, the default provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * (Computed) Health of the Kubernetes cluster.
+     */
     public /*out*/ readonly health!: pulumi.Output<string>;
+    /**
+     * cluster KMS provider parameters.
+     */
     public readonly kmsProvider!: pulumi.Output<outputs.KubernetesClusterKmsProvider | undefined>;
+    /**
+     * A set of key/value label pairs to assign to the Kubernetes cluster.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+     */
     public /*out*/ readonly logGroupId!: pulumi.Output<string>;
+    /**
+     * Kubernetes master configuration options. The structure is documented below.
+     */
     public readonly master!: pulumi.Output<outputs.KubernetesClusterMaster>;
+    /**
+     * Name of a specific Kubernetes cluster.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * The ID of the cluster network.
+     */
     public readonly networkId!: pulumi.Output<string>;
+    /**
+     * (Optional) Network Implementation options. The structure is documented below.
+     */
     public readonly networkImplementation!: pulumi.Output<outputs.KubernetesClusterNetworkImplementation | undefined>;
+    /**
+     * Network policy provider for the cluster. Possible values: `CALICO`.
+     */
     public readonly networkPolicyProvider!: pulumi.Output<string | undefined>;
+    /**
+     * Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+     */
     public readonly nodeIpv4CidrMaskSize!: pulumi.Output<number | undefined>;
+    /**
+     * Service account to be used by the worker nodes of the Kubernetes cluster
+     * to access Container Registry or to push node logs and metrics.
+     */
     public readonly nodeServiceAccountId!: pulumi.Output<string>;
+    /**
+     * Cluster release channel.
+     */
     public readonly releaseChannel!: pulumi.Output<string>;
+    /**
+     * Service account to be used for provisioning Compute Cloud and VPC resources
+     * for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+     * cluster will be located and on the folder where selected network resides.
+     */
     public readonly serviceAccountId!: pulumi.Output<string>;
+    /**
+     * CIDR block. IP range Kubernetes service Kubernetes cluster
+     * IP addresses will be allocated from. It should not overlap with any subnet in the network
+     * the Kubernetes cluster located in.
+     */
     public readonly serviceIpv4Range!: pulumi.Output<string>;
+    /**
+     * Identical to serviceIpv4Range but for IPv6 protocol.
+     */
     public readonly serviceIpv6Range!: pulumi.Output<string>;
+    /**
+     * (Computed)Status of the Kubernetes cluster.
+     */
     public /*out*/ readonly status!: pulumi.Output<string>;
 
     /**
@@ -134,26 +308,97 @@ export class KubernetesCluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering KubernetesCluster resources.
  */
 export interface KubernetesClusterState {
+    /**
+     * CIDR block. IP range for allocating pod addresses.
+     * It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+     * set up for this CIDR blocks in node subnets.
+     */
     clusterIpv4Range?: pulumi.Input<string>;
+    /**
+     * Identical to clusterIpv4Range but for IPv6 protocol.
+     */
     clusterIpv6Range?: pulumi.Input<string>;
+    /**
+     * (Computed) The Kubernetes cluster creation timestamp.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * A description of the Kubernetes cluster.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the folder that the Kubernetes cluster belongs to.
+     * If it is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * (Computed) Health of the Kubernetes cluster.
+     */
     health?: pulumi.Input<string>;
+    /**
+     * cluster KMS provider parameters.
+     */
     kmsProvider?: pulumi.Input<inputs.KubernetesClusterKmsProvider>;
+    /**
+     * A set of key/value label pairs to assign to the Kubernetes cluster.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+     */
     logGroupId?: pulumi.Input<string>;
+    /**
+     * Kubernetes master configuration options. The structure is documented below.
+     */
     master?: pulumi.Input<inputs.KubernetesClusterMaster>;
+    /**
+     * Name of a specific Kubernetes cluster.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the cluster network.
+     */
     networkId?: pulumi.Input<string>;
+    /**
+     * (Optional) Network Implementation options. The structure is documented below.
+     */
     networkImplementation?: pulumi.Input<inputs.KubernetesClusterNetworkImplementation>;
+    /**
+     * Network policy provider for the cluster. Possible values: `CALICO`.
+     */
     networkPolicyProvider?: pulumi.Input<string>;
+    /**
+     * Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+     */
     nodeIpv4CidrMaskSize?: pulumi.Input<number>;
+    /**
+     * Service account to be used by the worker nodes of the Kubernetes cluster
+     * to access Container Registry or to push node logs and metrics.
+     */
     nodeServiceAccountId?: pulumi.Input<string>;
+    /**
+     * Cluster release channel.
+     */
     releaseChannel?: pulumi.Input<string>;
+    /**
+     * Service account to be used for provisioning Compute Cloud and VPC resources
+     * for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+     * cluster will be located and on the folder where selected network resides.
+     */
     serviceAccountId?: pulumi.Input<string>;
+    /**
+     * CIDR block. IP range Kubernetes service Kubernetes cluster
+     * IP addresses will be allocated from. It should not overlap with any subnet in the network
+     * the Kubernetes cluster located in.
+     */
     serviceIpv4Range?: pulumi.Input<string>;
+    /**
+     * Identical to serviceIpv4Range but for IPv6 protocol.
+     */
     serviceIpv6Range?: pulumi.Input<string>;
+    /**
+     * (Computed)Status of the Kubernetes cluster.
+     */
     status?: pulumi.Input<string>;
 }
 
@@ -161,21 +406,80 @@ export interface KubernetesClusterState {
  * The set of arguments for constructing a KubernetesCluster resource.
  */
 export interface KubernetesClusterArgs {
+    /**
+     * CIDR block. IP range for allocating pod addresses.
+     * It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+     * set up for this CIDR blocks in node subnets.
+     */
     clusterIpv4Range?: pulumi.Input<string>;
+    /**
+     * Identical to clusterIpv4Range but for IPv6 protocol.
+     */
     clusterIpv6Range?: pulumi.Input<string>;
+    /**
+     * A description of the Kubernetes cluster.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the folder that the Kubernetes cluster belongs to.
+     * If it is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * cluster KMS provider parameters.
+     */
     kmsProvider?: pulumi.Input<inputs.KubernetesClusterKmsProvider>;
+    /**
+     * A set of key/value label pairs to assign to the Kubernetes cluster.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Kubernetes master configuration options. The structure is documented below.
+     */
     master: pulumi.Input<inputs.KubernetesClusterMaster>;
+    /**
+     * Name of a specific Kubernetes cluster.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * The ID of the cluster network.
+     */
     networkId: pulumi.Input<string>;
+    /**
+     * (Optional) Network Implementation options. The structure is documented below.
+     */
     networkImplementation?: pulumi.Input<inputs.KubernetesClusterNetworkImplementation>;
+    /**
+     * Network policy provider for the cluster. Possible values: `CALICO`.
+     */
     networkPolicyProvider?: pulumi.Input<string>;
+    /**
+     * Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+     */
     nodeIpv4CidrMaskSize?: pulumi.Input<number>;
+    /**
+     * Service account to be used by the worker nodes of the Kubernetes cluster
+     * to access Container Registry or to push node logs and metrics.
+     */
     nodeServiceAccountId: pulumi.Input<string>;
+    /**
+     * Cluster release channel.
+     */
     releaseChannel?: pulumi.Input<string>;
+    /**
+     * Service account to be used for provisioning Compute Cloud and VPC resources
+     * for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+     * cluster will be located and on the folder where selected network resides.
+     */
     serviceAccountId: pulumi.Input<string>;
+    /**
+     * CIDR block. IP range Kubernetes service Kubernetes cluster
+     * IP addresses will be allocated from. It should not overlap with any subnet in the network
+     * the Kubernetes cluster located in.
+     */
     serviceIpv4Range?: pulumi.Input<string>;
+    /**
+     * Identical to serviceIpv4Range but for IPv6 protocol.
+     */
     serviceIpv6Range?: pulumi.Input<string>;
 }

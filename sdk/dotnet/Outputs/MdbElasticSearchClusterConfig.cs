@@ -13,11 +13,29 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbElasticSearchClusterConfig
     {
+        /// <summary>
+        /// Password for admin user of Elasticsearch.
+        /// </summary>
         public readonly string AdminPassword;
+        /// <summary>
+        /// Configuration for Elasticsearch data nodes subcluster. The structure is documented below.
+        /// </summary>
         public readonly Outputs.MdbElasticSearchClusterConfigDataNode DataNode;
+        /// <summary>
+        /// Edition of Elasticsearch. For more information, see [the official documentation](https://cloud.yandex.com/en-ru/docs/managed-elasticsearch/concepts/es-editions).
+        /// </summary>
         public readonly string? Edition;
+        /// <summary>
+        /// Configuration for Elasticsearch master nodes subcluster. The structure is documented below.
+        /// </summary>
         public readonly Outputs.MdbElasticSearchClusterConfigMasterNode? MasterNode;
+        /// <summary>
+        /// A set of Elasticsearch plugins to install.
+        /// </summary>
         public readonly ImmutableArray<string> Plugins;
+        /// <summary>
+        /// Version of Elasticsearch.
+        /// </summary>
         public readonly string? Version;
 
         [OutputConstructor]

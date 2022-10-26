@@ -10,14 +10,47 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// A Placement group resource. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/placement-groups).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewComputePlacementGroup(ctx, "group1", &yandex.ComputePlacementGroupArgs{
+//				Description: pulumi.String("my description"),
+//				FolderId:    pulumi.String("abc*********123"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type ComputePlacementGroup struct {
 	pulumi.CustomResourceState
 
-	CreatedAt   pulumi.StringOutput    `pulumi:"createdAt"`
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// A description of the Placement Group.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	FolderId    pulumi.StringOutput    `pulumi:"folderId"`
-	Labels      pulumi.StringMapOutput `pulumi:"labels"`
-	Name        pulumi.StringOutput    `pulumi:"name"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Placement Group.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// The name of the Placement Group.
+	Name pulumi.StringOutput `pulumi:"name"`
 }
 
 // NewComputePlacementGroup registers a new resource with the given unique name, arguments, and options.
@@ -50,19 +83,27 @@ func GetComputePlacementGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ComputePlacementGroup resources.
 type computePlacementGroupState struct {
-	CreatedAt   *string           `pulumi:"createdAt"`
-	Description *string           `pulumi:"description"`
-	FolderId    *string           `pulumi:"folderId"`
-	Labels      map[string]string `pulumi:"labels"`
-	Name        *string           `pulumi:"name"`
+	CreatedAt *string `pulumi:"createdAt"`
+	// A description of the Placement Group.
+	Description *string `pulumi:"description"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Placement Group.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the Placement Group.
+	Name *string `pulumi:"name"`
 }
 
 type ComputePlacementGroupState struct {
-	CreatedAt   pulumi.StringPtrInput
+	CreatedAt pulumi.StringPtrInput
+	// A description of the Placement Group.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Placement Group.
+	Labels pulumi.StringMapInput
+	// The name of the Placement Group.
+	Name pulumi.StringPtrInput
 }
 
 func (ComputePlacementGroupState) ElementType() reflect.Type {
@@ -70,18 +111,26 @@ func (ComputePlacementGroupState) ElementType() reflect.Type {
 }
 
 type computePlacementGroupArgs struct {
-	Description *string           `pulumi:"description"`
-	FolderId    *string           `pulumi:"folderId"`
-	Labels      map[string]string `pulumi:"labels"`
-	Name        *string           `pulumi:"name"`
+	// A description of the Placement Group.
+	Description *string `pulumi:"description"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Placement Group.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the Placement Group.
+	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a ComputePlacementGroup resource.
 type ComputePlacementGroupArgs struct {
+	// A description of the Placement Group.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Placement Group.
+	Labels pulumi.StringMapInput
+	// The name of the Placement Group.
+	Name pulumi.StringPtrInput
 }
 
 func (ComputePlacementGroupArgs) ElementType() reflect.Type {
@@ -175,18 +224,22 @@ func (o ComputePlacementGroupOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputePlacementGroup) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// A description of the Placement Group.
 func (o ComputePlacementGroupOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputePlacementGroup) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
 func (o ComputePlacementGroupOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputePlacementGroup) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the Placement Group.
 func (o ComputePlacementGroupOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ComputePlacementGroup) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// The name of the Placement Group.
 func (o ComputePlacementGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputePlacementGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

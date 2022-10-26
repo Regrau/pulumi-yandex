@@ -30,6 +30,18 @@ class DataprocClusterArgs:
                  zone_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DataprocCluster resource.
+        :param pulumi.Input['DataprocClusterClusterConfigArgs'] cluster_config: Configuration and resources for hosts that should be created with the cluster. The structure is documented below.
+        :param pulumi.Input[str] service_account_id: Service account to be used by the Data Proc agent to access resources of Yandex.Cloud. Selected service account should have `mdb.dataproc.agent` role on the folder where the Data Proc cluster will be located.
+        :param pulumi.Input[str] bucket: Name of the Object Storage bucket to use for Data Proc jobs. Data Proc Agent saves output of job driver's process to specified bucket. In order for this to work service account (specified by the `service_account_id` argument) should be given permission to create objects within this bucket.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Data Proc cluster.
+        :param pulumi.Input[str] folder_id: ID of the folder to create a cluster in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] host_group_ids: A list of host group IDs to place VMs of the cluster on.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Proc cluster.
+        :param pulumi.Input[str] name: Name of the Data Proc subcluster.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A list of security group IDs that the cluster belongs to.
+        :param pulumi.Input[bool] ui_proxy: Whether to enable UI Proxy feature.
+        :param pulumi.Input[str] zone_id: ID of the availability zone to create cluster in. If it is not provided, the default provider zone is used.
         """
         pulumi.set(__self__, "cluster_config", cluster_config)
         pulumi.set(__self__, "service_account_id", service_account_id)
@@ -57,6 +69,9 @@ class DataprocClusterArgs:
     @property
     @pulumi.getter(name="clusterConfig")
     def cluster_config(self) -> pulumi.Input['DataprocClusterClusterConfigArgs']:
+        """
+        Configuration and resources for hosts that should be created with the cluster. The structure is documented below.
+        """
         return pulumi.get(self, "cluster_config")
 
     @cluster_config.setter
@@ -66,6 +81,9 @@ class DataprocClusterArgs:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Input[str]:
+        """
+        Service account to be used by the Data Proc agent to access resources of Yandex.Cloud. Selected service account should have `mdb.dataproc.agent` role on the folder where the Data Proc cluster will be located.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -75,6 +93,9 @@ class DataprocClusterArgs:
     @property
     @pulumi.getter
     def bucket(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Object Storage bucket to use for Data Proc jobs. Data Proc Agent saves output of job driver's process to specified bucket. In order for this to work service account (specified by the `service_account_id` argument) should be given permission to create objects within this bucket.
+        """
         return pulumi.get(self, "bucket")
 
     @bucket.setter
@@ -84,6 +105,9 @@ class DataprocClusterArgs:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -93,6 +117,9 @@ class DataprocClusterArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the Data Proc cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -102,6 +129,9 @@ class DataprocClusterArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder to create a cluster in. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -111,6 +141,9 @@ class DataprocClusterArgs:
     @property
     @pulumi.getter(name="hostGroupIds")
     def host_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of host group IDs to place VMs of the cluster on.
+        """
         return pulumi.get(self, "host_group_ids")
 
     @host_group_ids.setter
@@ -120,6 +153,9 @@ class DataprocClusterArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Data Proc cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -129,6 +165,9 @@ class DataprocClusterArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Data Proc subcluster.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -138,6 +177,9 @@ class DataprocClusterArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of security group IDs that the cluster belongs to.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -147,6 +189,9 @@ class DataprocClusterArgs:
     @property
     @pulumi.getter(name="uiProxy")
     def ui_proxy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable UI Proxy feature.
+        """
         return pulumi.get(self, "ui_proxy")
 
     @ui_proxy.setter
@@ -156,6 +201,9 @@ class DataprocClusterArgs:
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the availability zone to create cluster in. If it is not provided, the default provider zone is used.
+        """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
@@ -181,6 +229,20 @@ class _DataprocClusterState:
                  zone_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DataprocCluster resources.
+        :param pulumi.Input[str] bucket: Name of the Object Storage bucket to use for Data Proc jobs. Data Proc Agent saves output of job driver's process to specified bucket. In order for this to work service account (specified by the `service_account_id` argument) should be given permission to create objects within this bucket.
+        :param pulumi.Input['DataprocClusterClusterConfigArgs'] cluster_config: Configuration and resources for hosts that should be created with the cluster. The structure is documented below.
+        :param pulumi.Input[str] created_at: (Computed) The Data Proc cluster creation timestamp.
+               * `cluster_config.0.subcluster_spec.X.id` - (Computed) ID of the subcluster.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Data Proc cluster.
+        :param pulumi.Input[str] folder_id: ID of the folder to create a cluster in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] host_group_ids: A list of host group IDs to place VMs of the cluster on.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Proc cluster.
+        :param pulumi.Input[str] name: Name of the Data Proc subcluster.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A list of security group IDs that the cluster belongs to.
+        :param pulumi.Input[str] service_account_id: Service account to be used by the Data Proc agent to access resources of Yandex.Cloud. Selected service account should have `mdb.dataproc.agent` role on the folder where the Data Proc cluster will be located.
+        :param pulumi.Input[bool] ui_proxy: Whether to enable UI Proxy feature.
+        :param pulumi.Input[str] zone_id: ID of the availability zone to create cluster in. If it is not provided, the default provider zone is used.
         """
         if bucket is not None:
             pulumi.set(__self__, "bucket", bucket)
@@ -212,6 +274,9 @@ class _DataprocClusterState:
     @property
     @pulumi.getter
     def bucket(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Object Storage bucket to use for Data Proc jobs. Data Proc Agent saves output of job driver's process to specified bucket. In order for this to work service account (specified by the `service_account_id` argument) should be given permission to create objects within this bucket.
+        """
         return pulumi.get(self, "bucket")
 
     @bucket.setter
@@ -221,6 +286,9 @@ class _DataprocClusterState:
     @property
     @pulumi.getter(name="clusterConfig")
     def cluster_config(self) -> Optional[pulumi.Input['DataprocClusterClusterConfigArgs']]:
+        """
+        Configuration and resources for hosts that should be created with the cluster. The structure is documented below.
+        """
         return pulumi.get(self, "cluster_config")
 
     @cluster_config.setter
@@ -230,6 +298,10 @@ class _DataprocClusterState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) The Data Proc cluster creation timestamp.
+        * `cluster_config.0.subcluster_spec.X.id` - (Computed) ID of the subcluster.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -239,6 +311,9 @@ class _DataprocClusterState:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -248,6 +323,9 @@ class _DataprocClusterState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the Data Proc cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -257,6 +335,9 @@ class _DataprocClusterState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder to create a cluster in. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -266,6 +347,9 @@ class _DataprocClusterState:
     @property
     @pulumi.getter(name="hostGroupIds")
     def host_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of host group IDs to place VMs of the cluster on.
+        """
         return pulumi.get(self, "host_group_ids")
 
     @host_group_ids.setter
@@ -275,6 +359,9 @@ class _DataprocClusterState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Data Proc cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -284,6 +371,9 @@ class _DataprocClusterState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Data Proc subcluster.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -293,6 +383,9 @@ class _DataprocClusterState:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of security group IDs that the cluster belongs to.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -302,6 +395,9 @@ class _DataprocClusterState:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service account to be used by the Data Proc agent to access resources of Yandex.Cloud. Selected service account should have `mdb.dataproc.agent` role on the folder where the Data Proc cluster will be located.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -311,6 +407,9 @@ class _DataprocClusterState:
     @property
     @pulumi.getter(name="uiProxy")
     def ui_proxy(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Whether to enable UI Proxy feature.
+        """
         return pulumi.get(self, "ui_proxy")
 
     @ui_proxy.setter
@@ -320,6 +419,9 @@ class _DataprocClusterState:
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the availability zone to create cluster in. If it is not provided, the default provider zone is used.
+        """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
@@ -346,9 +448,140 @@ class DataprocCluster(pulumi.CustomResource):
                  zone_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DataprocCluster resource with the given unique name, props, and options.
+        Manages a Data Proc cluster. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-proc/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex as yandex
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-b",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"])
+        dataproc_iam_service_account = yandex.IamServiceAccount("dataprocIamServiceAccount", description="service account to manage Dataproc Cluster")
+        foo_resourcemanager_folder = yandex.get_resourcemanager_folder(folder_id="some_folder_id")
+        dataproc_resourcemanager_folder_iam_binding = yandex.ResourcemanagerFolderIamBinding("dataprocResourcemanagerFolderIamBinding",
+            folder_id=foo_resourcemanager_folder.id,
+            role="mdb.dataproc.agent",
+            members=[dataproc_iam_service_account.id.apply(lambda id: f"serviceAccount:{id}")])
+        # required in order to create bucket
+        bucket_creator = yandex.ResourcemanagerFolderIamBinding("bucket-creator",
+            folder_id=foo_resourcemanager_folder.id,
+            role="editor",
+            members=[dataproc_iam_service_account.id.apply(lambda id: f"serviceAccount:{id}")])
+        foo_iam_service_account_static_access_key = yandex.IamServiceAccountStaticAccessKey("fooIamServiceAccountStaticAccessKey", service_account_id=dataproc_iam_service_account.id)
+        foo_storage_bucket = yandex.StorageBucket("fooStorageBucket",
+            bucket="foo",
+            access_key=foo_iam_service_account_static_access_key.access_key,
+            secret_key=foo_iam_service_account_static_access_key.secret_key,
+            opts=pulumi.ResourceOptions(depends_on=[bucket_creator]))
+        foo_dataproc_cluster = yandex.DataprocCluster("fooDataprocCluster",
+            bucket=foo_storage_bucket.bucket,
+            description="Dataproc Cluster created by Terraform",
+            labels={
+                "created_by": "terraform",
+            },
+            service_account_id=dataproc_iam_service_account.id,
+            zone_id="ru-central1-b",
+            cluster_config=yandex.DataprocClusterClusterConfigArgs(
+                hadoop=yandex.DataprocClusterClusterConfigHadoopArgs(
+                    services=[
+                        "HDFS",
+                        "YARN",
+                        "SPARK",
+                        "TEZ",
+                        "MAPREDUCE",
+                        "HIVE",
+                    ],
+                    properties={
+                        "yarn:yarn.resourcemanager.am.max-attempts": "5",
+                    },
+                    ssh_public_keys=[(lambda path: open(path).read())("~/.ssh/id_rsa.pub")],
+                ),
+                subcluster_specs=[
+                    yandex.DataprocClusterClusterConfigSubclusterSpecArgs(
+                        name="main",
+                        role="MASTERNODE",
+                        resources=yandex.DataprocClusterClusterConfigSubclusterSpecResourcesArgs(
+                            resource_preset_id="s2.small",
+                            disk_type_id="network-hdd",
+                            disk_size=20,
+                        ),
+                        subnet_id=foo_vpc_subnet.id,
+                        hosts_count=1,
+                    ),
+                    yandex.DataprocClusterClusterConfigSubclusterSpecArgs(
+                        name="data",
+                        role="DATANODE",
+                        resources=yandex.DataprocClusterClusterConfigSubclusterSpecResourcesArgs(
+                            resource_preset_id="s2.small",
+                            disk_type_id="network-hdd",
+                            disk_size=20,
+                        ),
+                        subnet_id=foo_vpc_subnet.id,
+                        hosts_count=2,
+                    ),
+                    yandex.DataprocClusterClusterConfigSubclusterSpecArgs(
+                        name="compute",
+                        role="COMPUTENODE",
+                        resources=yandex.DataprocClusterClusterConfigSubclusterSpecResourcesArgs(
+                            resource_preset_id="s2.small",
+                            disk_type_id="network-hdd",
+                            disk_size=20,
+                        ),
+                        subnet_id=foo_vpc_subnet.id,
+                        hosts_count=2,
+                    ),
+                    yandex.DataprocClusterClusterConfigSubclusterSpecArgs(
+                        name="compute_autoscaling",
+                        role="COMPUTENODE",
+                        resources=yandex.DataprocClusterClusterConfigSubclusterSpecResourcesArgs(
+                            resource_preset_id="s2.small",
+                            disk_type_id="network-hdd",
+                            disk_size=20,
+                        ),
+                        subnet_id=foo_vpc_subnet.id,
+                        hosts_count=2,
+                        autoscaling_config=yandex.DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs(
+                            max_hosts_count=10,
+                            measurement_duration=60,
+                            warmup_duration=60,
+                            stabilization_duration=120,
+                            preemptible=False,
+                            decommission_timeout=60,
+                        ),
+                    ),
+                ],
+            ),
+            opts=pulumi.ResourceOptions(depends_on=[dataproc_resourcemanager_folder_iam_binding]))
+        ```
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/dataprocCluster:DataprocCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] bucket: Name of the Object Storage bucket to use for Data Proc jobs. Data Proc Agent saves output of job driver's process to specified bucket. In order for this to work service account (specified by the `service_account_id` argument) should be given permission to create objects within this bucket.
+        :param pulumi.Input[pulumi.InputType['DataprocClusterClusterConfigArgs']] cluster_config: Configuration and resources for hosts that should be created with the cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Data Proc cluster.
+        :param pulumi.Input[str] folder_id: ID of the folder to create a cluster in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] host_group_ids: A list of host group IDs to place VMs of the cluster on.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Proc cluster.
+        :param pulumi.Input[str] name: Name of the Data Proc subcluster.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A list of security group IDs that the cluster belongs to.
+        :param pulumi.Input[str] service_account_id: Service account to be used by the Data Proc agent to access resources of Yandex.Cloud. Selected service account should have `mdb.dataproc.agent` role on the folder where the Data Proc cluster will be located.
+        :param pulumi.Input[bool] ui_proxy: Whether to enable UI Proxy feature.
+        :param pulumi.Input[str] zone_id: ID of the availability zone to create cluster in. If it is not provided, the default provider zone is used.
         """
         ...
     @overload
@@ -357,7 +590,126 @@ class DataprocCluster(pulumi.CustomResource):
                  args: DataprocClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DataprocCluster resource with the given unique name, props, and options.
+        Manages a Data Proc cluster. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-proc/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex as yandex
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            zone="ru-central1-b",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"])
+        dataproc_iam_service_account = yandex.IamServiceAccount("dataprocIamServiceAccount", description="service account to manage Dataproc Cluster")
+        foo_resourcemanager_folder = yandex.get_resourcemanager_folder(folder_id="some_folder_id")
+        dataproc_resourcemanager_folder_iam_binding = yandex.ResourcemanagerFolderIamBinding("dataprocResourcemanagerFolderIamBinding",
+            folder_id=foo_resourcemanager_folder.id,
+            role="mdb.dataproc.agent",
+            members=[dataproc_iam_service_account.id.apply(lambda id: f"serviceAccount:{id}")])
+        # required in order to create bucket
+        bucket_creator = yandex.ResourcemanagerFolderIamBinding("bucket-creator",
+            folder_id=foo_resourcemanager_folder.id,
+            role="editor",
+            members=[dataproc_iam_service_account.id.apply(lambda id: f"serviceAccount:{id}")])
+        foo_iam_service_account_static_access_key = yandex.IamServiceAccountStaticAccessKey("fooIamServiceAccountStaticAccessKey", service_account_id=dataproc_iam_service_account.id)
+        foo_storage_bucket = yandex.StorageBucket("fooStorageBucket",
+            bucket="foo",
+            access_key=foo_iam_service_account_static_access_key.access_key,
+            secret_key=foo_iam_service_account_static_access_key.secret_key,
+            opts=pulumi.ResourceOptions(depends_on=[bucket_creator]))
+        foo_dataproc_cluster = yandex.DataprocCluster("fooDataprocCluster",
+            bucket=foo_storage_bucket.bucket,
+            description="Dataproc Cluster created by Terraform",
+            labels={
+                "created_by": "terraform",
+            },
+            service_account_id=dataproc_iam_service_account.id,
+            zone_id="ru-central1-b",
+            cluster_config=yandex.DataprocClusterClusterConfigArgs(
+                hadoop=yandex.DataprocClusterClusterConfigHadoopArgs(
+                    services=[
+                        "HDFS",
+                        "YARN",
+                        "SPARK",
+                        "TEZ",
+                        "MAPREDUCE",
+                        "HIVE",
+                    ],
+                    properties={
+                        "yarn:yarn.resourcemanager.am.max-attempts": "5",
+                    },
+                    ssh_public_keys=[(lambda path: open(path).read())("~/.ssh/id_rsa.pub")],
+                ),
+                subcluster_specs=[
+                    yandex.DataprocClusterClusterConfigSubclusterSpecArgs(
+                        name="main",
+                        role="MASTERNODE",
+                        resources=yandex.DataprocClusterClusterConfigSubclusterSpecResourcesArgs(
+                            resource_preset_id="s2.small",
+                            disk_type_id="network-hdd",
+                            disk_size=20,
+                        ),
+                        subnet_id=foo_vpc_subnet.id,
+                        hosts_count=1,
+                    ),
+                    yandex.DataprocClusterClusterConfigSubclusterSpecArgs(
+                        name="data",
+                        role="DATANODE",
+                        resources=yandex.DataprocClusterClusterConfigSubclusterSpecResourcesArgs(
+                            resource_preset_id="s2.small",
+                            disk_type_id="network-hdd",
+                            disk_size=20,
+                        ),
+                        subnet_id=foo_vpc_subnet.id,
+                        hosts_count=2,
+                    ),
+                    yandex.DataprocClusterClusterConfigSubclusterSpecArgs(
+                        name="compute",
+                        role="COMPUTENODE",
+                        resources=yandex.DataprocClusterClusterConfigSubclusterSpecResourcesArgs(
+                            resource_preset_id="s2.small",
+                            disk_type_id="network-hdd",
+                            disk_size=20,
+                        ),
+                        subnet_id=foo_vpc_subnet.id,
+                        hosts_count=2,
+                    ),
+                    yandex.DataprocClusterClusterConfigSubclusterSpecArgs(
+                        name="compute_autoscaling",
+                        role="COMPUTENODE",
+                        resources=yandex.DataprocClusterClusterConfigSubclusterSpecResourcesArgs(
+                            resource_preset_id="s2.small",
+                            disk_type_id="network-hdd",
+                            disk_size=20,
+                        ),
+                        subnet_id=foo_vpc_subnet.id,
+                        hosts_count=2,
+                        autoscaling_config=yandex.DataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs(
+                            max_hosts_count=10,
+                            measurement_duration=60,
+                            warmup_duration=60,
+                            stabilization_duration=120,
+                            preemptible=False,
+                            decommission_timeout=60,
+                        ),
+                    ),
+                ],
+            ),
+            opts=pulumi.ResourceOptions(depends_on=[dataproc_resourcemanager_folder_iam_binding]))
+        ```
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/dataprocCluster:DataprocCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param DataprocClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -441,6 +793,20 @@ class DataprocCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] bucket: Name of the Object Storage bucket to use for Data Proc jobs. Data Proc Agent saves output of job driver's process to specified bucket. In order for this to work service account (specified by the `service_account_id` argument) should be given permission to create objects within this bucket.
+        :param pulumi.Input[pulumi.InputType['DataprocClusterClusterConfigArgs']] cluster_config: Configuration and resources for hosts that should be created with the cluster. The structure is documented below.
+        :param pulumi.Input[str] created_at: (Computed) The Data Proc cluster creation timestamp.
+               * `cluster_config.0.subcluster_spec.X.id` - (Computed) ID of the subcluster.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Data Proc cluster.
+        :param pulumi.Input[str] folder_id: ID of the folder to create a cluster in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] host_group_ids: A list of host group IDs to place VMs of the cluster on.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Proc cluster.
+        :param pulumi.Input[str] name: Name of the Data Proc subcluster.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A list of security group IDs that the cluster belongs to.
+        :param pulumi.Input[str] service_account_id: Service account to be used by the Data Proc agent to access resources of Yandex.Cloud. Selected service account should have `mdb.dataproc.agent` role on the folder where the Data Proc cluster will be located.
+        :param pulumi.Input[bool] ui_proxy: Whether to enable UI Proxy feature.
+        :param pulumi.Input[str] zone_id: ID of the availability zone to create cluster in. If it is not provided, the default provider zone is used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -464,65 +830,105 @@ class DataprocCluster(pulumi.CustomResource):
     @property
     @pulumi.getter
     def bucket(self) -> pulumi.Output[Optional[str]]:
+        """
+        Name of the Object Storage bucket to use for Data Proc jobs. Data Proc Agent saves output of job driver's process to specified bucket. In order for this to work service account (specified by the `service_account_id` argument) should be given permission to create objects within this bucket.
+        """
         return pulumi.get(self, "bucket")
 
     @property
     @pulumi.getter(name="clusterConfig")
     def cluster_config(self) -> pulumi.Output['outputs.DataprocClusterClusterConfig']:
+        """
+        Configuration and resources for hosts that should be created with the cluster. The structure is documented below.
+        """
         return pulumi.get(self, "cluster_config")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        (Computed) The Data Proc cluster creation timestamp.
+        * `cluster_config.0.subcluster_spec.X.id` - (Computed) ID of the subcluster.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> pulumi.Output[bool]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the Data Proc cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        ID of the folder to create a cluster in. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter(name="hostGroupIds")
     def host_group_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A list of host group IDs to place VMs of the cluster on.
+        """
         return pulumi.get(self, "host_group_ids")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the Data Proc cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the Data Proc subcluster.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A list of security group IDs that the cluster belongs to.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Output[str]:
+        """
+        Service account to be used by the Data Proc agent to access resources of Yandex.Cloud. Selected service account should have `mdb.dataproc.agent` role on the folder where the Data Proc cluster will be located.
+        """
         return pulumi.get(self, "service_account_id")
 
     @property
     @pulumi.getter(name="uiProxy")
     def ui_proxy(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Whether to enable UI Proxy feature.
+        """
         return pulumi.get(self, "ui_proxy")
 
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> pulumi.Output[str]:
+        """
+        ID of the availability zone to create cluster in. If it is not provided, the default provider zone is used.
+        """
         return pulumi.get(self, "zone_id")
 

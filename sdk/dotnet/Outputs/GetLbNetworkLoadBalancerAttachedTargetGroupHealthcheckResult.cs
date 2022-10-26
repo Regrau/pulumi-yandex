@@ -16,6 +16,9 @@ namespace Pulumi.Yandex.Outputs
         public readonly int HealthyThreshold;
         public readonly ImmutableArray<Outputs.GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionResult> HttpOptions;
         public readonly int Interval;
+        /// <summary>
+        /// - Name of the network load balancer.
+        /// </summary>
         public readonly string Name;
         public readonly ImmutableArray<Outputs.GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionResult> TcpOptions;
         public readonly int Timeout;

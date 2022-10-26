@@ -14,6 +14,10 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("locations")]
         private InputList<Inputs.KubernetesNodeGroupAllocationPolicyLocationArgs>? _locations;
+
+        /// <summary>
+        /// Repeated field, that specify subnets (zones), that will be used by node group compute instances. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.KubernetesNodeGroupAllocationPolicyLocationArgs> Locations
         {
             get => _locations ?? (_locations = new InputList<Inputs.KubernetesNodeGroupAllocationPolicyLocationArgs>());

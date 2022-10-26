@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbBackendGroupHttpBackendHealthcheckHttpHealthcheckArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// "Host" HTTP header value.
+        /// </summary>
         [Input("host")]
         public Input<string>? Host { get; set; }
 
+        /// <summary>
+        /// If set, health checks will use HTTP2.
+        /// </summary>
         [Input("http2")]
         public Input<bool>? Http2 { get; set; }
 
+        /// <summary>
+        /// HTTP path.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 

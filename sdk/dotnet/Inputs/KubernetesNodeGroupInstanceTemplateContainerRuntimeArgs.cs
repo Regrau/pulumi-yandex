@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Type of container runtime. Values: `docker`, `containerd`.
+        /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
 

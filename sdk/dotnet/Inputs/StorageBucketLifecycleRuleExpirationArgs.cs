@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class StorageBucketLifecycleRuleExpirationArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Specifies the date after which you want the corresponding action to take effect.
+        /// </summary>
         [Input("date")]
         public Input<string>? Date { get; set; }
 
+        /// <summary>
+        /// Specifies the number of days after object creation when the specific rule action takes effect.
+        /// </summary>
         [Input("days")]
         public Input<int>? Days { get; set; }
 
+        /// <summary>
+        /// On a versioned bucket (versioning-enabled or versioning-suspended bucket), you can add this element in the lifecycle configuration to direct Object Storage to delete expired object delete markers.
+        /// </summary>
         [Input("expiredObjectDeleteMarker")]
         public Input<bool>? ExpiredObjectDeleteMarker { get; set; }
 

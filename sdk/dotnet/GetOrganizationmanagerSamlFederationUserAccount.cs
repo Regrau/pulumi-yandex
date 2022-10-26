@@ -11,9 +11,69 @@ namespace Pulumi.Yandex
 {
     public static class GetOrganizationmanagerSamlFederationUserAccount
     {
+        /// <summary>
+        /// Get information about a user of Yandex SAML Federation. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/organization/operations/federations/integration-common).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var account = Yandex.GetOrganizationmanagerSamlFederationUserAccount.Invoke(new()
+        ///     {
+        ///         FederationId = "some_federation_id",
+        ///         NameId = "example@example.org",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["myFederation.id"] = account.Apply(getOrganizationmanagerSamlFederationUserAccountResult =&gt; getOrganizationmanagerSamlFederationUserAccountResult.Id),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetOrganizationmanagerSamlFederationUserAccountResult> InvokeAsync(GetOrganizationmanagerSamlFederationUserAccountArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationmanagerSamlFederationUserAccountResult>("yandex:index/getOrganizationmanagerSamlFederationUserAccount:getOrganizationmanagerSamlFederationUserAccount", args ?? new GetOrganizationmanagerSamlFederationUserAccountArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a user of Yandex SAML Federation. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/organization/operations/federations/integration-common).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var account = Yandex.GetOrganizationmanagerSamlFederationUserAccount.Invoke(new()
+        ///     {
+        ///         FederationId = "some_federation_id",
+        ///         NameId = "example@example.org",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["myFederation.id"] = account.Apply(getOrganizationmanagerSamlFederationUserAccountResult =&gt; getOrganizationmanagerSamlFederationUserAccountResult.Id),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetOrganizationmanagerSamlFederationUserAccountResult> Invoke(GetOrganizationmanagerSamlFederationUserAccountInvokeArgs args, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetOrganizationmanagerSamlFederationUserAccountResult>("yandex:index/getOrganizationmanagerSamlFederationUserAccount:getOrganizationmanagerSamlFederationUserAccount", args ?? new GetOrganizationmanagerSamlFederationUserAccountInvokeArgs(), options.WithDefaults());
     }
@@ -21,9 +81,15 @@ namespace Pulumi.Yandex
 
     public sealed class GetOrganizationmanagerSamlFederationUserAccountArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of a SAML Federation.
+        /// </summary>
         [Input("federationId", required: true)]
         public string FederationId { get; set; } = null!;
 
+        /// <summary>
+        /// Name Id of the SAML federated user.
+        /// </summary>
         [Input("nameId", required: true)]
         public string NameId { get; set; } = null!;
 
@@ -35,9 +101,15 @@ namespace Pulumi.Yandex
 
     public sealed class GetOrganizationmanagerSamlFederationUserAccountInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of a SAML Federation.
+        /// </summary>
         [Input("federationId", required: true)]
         public Input<string> FederationId { get; set; } = null!;
 
+        /// <summary>
+        /// Name Id of the SAML federated user.
+        /// </summary>
         [Input("nameId", required: true)]
         public Input<string> NameId { get; set; } = null!;
 

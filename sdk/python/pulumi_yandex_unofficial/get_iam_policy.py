@@ -50,6 +50,10 @@ class GetIamPolicyResult:
     @property
     @pulumi.getter(name="policyData")
     def policy_data(self) -> str:
+        """
+        The above bindings serialized in a format suitable for
+        referencing from a resource that supports IAM.
+        """
         return pulumi.get(self, "policy_data")
 
 
@@ -67,7 +71,33 @@ class AwaitableGetIamPolicyResult(GetIamPolicyResult):
 def get_iam_policy(bindings: Optional[Sequence[pulumi.InputType['GetIamPolicyBindingArgs']]] = None,
                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIamPolicyResult:
     """
-    Use this data source to access information about an existing resource.
+    Generates an [IAM] policy document that may be referenced by and applied to
+    other Yandex.Cloud Platform resources, such as the `ResourcemanagerFolder` resource.
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    admin = yandex.get_iam_policy(bindings=[
+        yandex.GetIamPolicyBindingArgs(
+            members=["userAccount:user_id_1"],
+            role="admin",
+        ),
+        yandex.GetIamPolicyBindingArgs(
+            members=["userAccount:user_id_2"],
+            role="viewer",
+        ),
+    ])
+    ```
+
+    This data source is used to define [IAM] policies to apply to other resources.
+    Currently, defining a policy through a data source and referencing that policy
+    from another resource is the only way to apply an IAM policy to a resource.
+
+
+    :param Sequence[pulumi.InputType['GetIamPolicyBindingArgs']] bindings: A nested configuration block (described below)
+           that defines a binding to be included in the policy document. Multiple
+           `binding` arguments are supported.
     """
     __args__ = dict()
     __args__['bindings'] = bindings
@@ -84,6 +114,32 @@ def get_iam_policy(bindings: Optional[Sequence[pulumi.InputType['GetIamPolicyBin
 def get_iam_policy_output(bindings: Optional[pulumi.Input[Sequence[pulumi.InputType['GetIamPolicyBindingArgs']]]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamPolicyResult]:
     """
-    Use this data source to access information about an existing resource.
+    Generates an [IAM] policy document that may be referenced by and applied to
+    other Yandex.Cloud Platform resources, such as the `ResourcemanagerFolder` resource.
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    admin = yandex.get_iam_policy(bindings=[
+        yandex.GetIamPolicyBindingArgs(
+            members=["userAccount:user_id_1"],
+            role="admin",
+        ),
+        yandex.GetIamPolicyBindingArgs(
+            members=["userAccount:user_id_2"],
+            role="viewer",
+        ),
+    ])
+    ```
+
+    This data source is used to define [IAM] policies to apply to other resources.
+    Currently, defining a policy through a data source and referencing that policy
+    from another resource is the only way to apply an IAM policy to a resource.
+
+
+    :param Sequence[pulumi.InputType['GetIamPolicyBindingArgs']] bindings: A nested configuration block (described below)
+           that defines a binding to be included in the policy document. Multiple
+           `binding` arguments are supported.
     """
     ...

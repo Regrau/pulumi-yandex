@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbVirtualHostRouteGrpcRouteGrpcMatchGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If not set, all services/methods are assumed. The structure is documented below.
+        /// </summary>
         [Input("fqmn")]
         public Input<Inputs.AlbVirtualHostRouteGrpcRouteGrpcMatchFqmnGetArgs>? Fqmn { get; set; }
 

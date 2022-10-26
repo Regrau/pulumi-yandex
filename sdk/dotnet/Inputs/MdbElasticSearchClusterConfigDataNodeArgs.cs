@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbElasticSearchClusterConfigDataNodeArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Resources allocated to hosts of the Elasticsearch master nodes subcluster. The structure is documented below.
+        /// </summary>
         [Input("resources", required: true)]
         public Input<Inputs.MdbElasticSearchClusterConfigDataNodeResourcesArgs> Resources { get; set; } = null!;
 

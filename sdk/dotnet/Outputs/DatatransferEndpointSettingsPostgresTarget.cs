@@ -13,10 +13,25 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsPostgresTarget
     {
+        /// <summary>
+        /// Connection settings. The structure is documented below.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsPostgresTargetConnection? Connection;
+        /// <summary>
+        /// Name of the database to transfer.
+        /// </summary>
         public readonly string? Database;
+        /// <summary>
+        /// Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsPostgresTargetPassword? Password;
+        /// <summary>
+        /// List of security groups that the transfer associated with this endpoint should use.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroups;
+        /// <summary>
+        /// User for the database access.
+        /// </summary>
         public readonly string? User;
 
         [OutputConstructor]

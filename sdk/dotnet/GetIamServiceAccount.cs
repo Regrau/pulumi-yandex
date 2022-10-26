@@ -11,9 +11,57 @@ namespace Pulumi.Yandex
 {
     public static class GetIamServiceAccount
     {
+        /// <summary>
+        /// Get information about a Yandex IAM service account. For more information about accounts, see 
+        /// [Yandex.Cloud IAM accounts](https://cloud.yandex.com/docs/iam/concepts/#accounts).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var builder = Yandex.GetIamServiceAccount.Invoke(new()
+        ///     {
+        ///         ServiceAccountId = "sa_id",
+        ///     });
+        /// 
+        ///     var deployer = Yandex.GetIamServiceAccount.Invoke(new()
+        ///     {
+        ///         Name = "sa_name",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Task<GetIamServiceAccountResult> InvokeAsync(GetIamServiceAccountArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetIamServiceAccountResult>("yandex:index/getIamServiceAccount:getIamServiceAccount", args ?? new GetIamServiceAccountArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex IAM service account. For more information about accounts, see 
+        /// [Yandex.Cloud IAM accounts](https://cloud.yandex.com/docs/iam/concepts/#accounts).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var builder = Yandex.GetIamServiceAccount.Invoke(new()
+        ///     {
+        ///         ServiceAccountId = "sa_id",
+        ///     });
+        /// 
+        ///     var deployer = Yandex.GetIamServiceAccount.Invoke(new()
+        ///     {
+        ///         Name = "sa_name",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// </summary>
         public static Output<GetIamServiceAccountResult> Invoke(GetIamServiceAccountInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetIamServiceAccountResult>("yandex:index/getIamServiceAccount:getIamServiceAccount", args ?? new GetIamServiceAccountInvokeArgs(), options.WithDefaults());
     }
@@ -21,12 +69,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetIamServiceAccountArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// Name of a specific service account.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// ID of a specific service account.
+        /// </summary>
         [Input("serviceAccountId")]
         public string? ServiceAccountId { get; set; }
 
@@ -38,12 +95,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetIamServiceAccountInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// Name of a specific service account.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of a specific service account.
+        /// </summary>
         [Input("serviceAccountId")]
         public Input<string>? ServiceAccountId { get; set; }
 
@@ -58,6 +124,9 @@ namespace Pulumi.Yandex
     public sealed class GetIamServiceAccountResult
     {
         public readonly string CreatedAt;
+        /// <summary>
+        /// Description of the service account.
+        /// </summary>
         public readonly string Description;
         public readonly string FolderId;
         /// <summary>

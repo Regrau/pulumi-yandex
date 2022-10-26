@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class StorageBucketLoggingArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the bucket that will receive the log objects.
+        /// </summary>
         [Input("targetBucket", required: true)]
         public Input<string> TargetBucket { get; set; } = null!;
 
+        /// <summary>
+        /// To specify a key prefix for log objects.
+        /// </summary>
         [Input("targetPrefix")]
         public Input<string>? TargetPrefix { get; set; }
 

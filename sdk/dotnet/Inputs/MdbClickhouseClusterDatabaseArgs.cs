@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterDatabaseArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Graphite rollup configuration name.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 

@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbClickhouseClusterDatabase
     {
+        /// <summary>
+        /// Graphite rollup configuration name.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

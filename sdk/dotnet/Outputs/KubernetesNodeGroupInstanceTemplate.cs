@@ -13,17 +13,58 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class KubernetesNodeGroupInstanceTemplate
     {
+        /// <summary>
+        /// The specifications for boot disks that will be attached to the instance. The structure is documented below.
+        /// </summary>
         public readonly Outputs.KubernetesNodeGroupInstanceTemplateBootDisk? BootDisk;
+        /// <summary>
+        /// Container runtime configuration. The structure is documented below.
+        /// </summary>
         public readonly Outputs.KubernetesNodeGroupInstanceTemplateContainerRuntime? ContainerRuntime;
+        /// <summary>
+        /// Labels that will be assigned to compute nodes (instances), created by the Node Group.
+        /// ---
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
+        /// <summary>
+        /// The set of metadata `key:value` pairs assigned to this instance template. This includes custom metadata and predefined keys. **Note**: key "user-data" won't be provided into instances. It reserved for internal activity in `kubernetes_node_group` resource.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Metadata;
+        /// <summary>
+        /// Name template of the instance.
+        /// In order to be unique it must contain at least one of instance unique placeholders:
+        /// {instance.short_id}
+        /// {instance.index}
+        /// combination of {instance.zone_id} and {instance.index_in_zone}
+        /// Example: my-instance-{instance.index}
+        /// If not set, default is used: {instance_group.id}-{instance.short_id}
+        /// It may also contain another placeholders, see [Compute Instance group metadata doc](https://cloud.yandex.com/en-ru/docs/compute/api-ref/grpc/instance_group_service) for full list.
+        /// </summary>
         public readonly string? Name;
+        /// <summary>
+        /// A public address that can be used to access the internet over NAT.
+        /// </summary>
         public readonly bool? Nat;
+        /// <summary>
+        /// Type of network acceleration. Values: `standard`, `software_accelerated`.
+        /// </summary>
         public readonly string? NetworkAccelerationType;
+        /// <summary>
+        /// An array with the network interfaces that will be attached to the instance. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.KubernetesNodeGroupInstanceTemplateNetworkInterface> NetworkInterfaces;
+        /// <summary>
+        /// The placement policy configuration. The structure is documented below.
+        /// </summary>
         public readonly Outputs.KubernetesNodeGroupInstanceTemplatePlacementPolicy? PlacementPolicy;
+        /// <summary>
+        /// The ID of the hardware platform configuration for the node group compute instances.
+        /// </summary>
         public readonly string? PlatformId;
         public readonly Outputs.KubernetesNodeGroupInstanceTemplateResources? Resources;
+        /// <summary>
+        /// The scheduling policy for the instances in node group. The structure is documented below.
+        /// </summary>
         public readonly Outputs.KubernetesNodeGroupInstanceTemplateSchedulingPolicy? SchedulingPolicy;
 
         [OutputConstructor]

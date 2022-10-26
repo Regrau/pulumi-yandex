@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstanceGroupScalePolicyFixedScale
     {
+        /// <summary>
+        /// The number of instances in the instance group.
+        /// </summary>
         public readonly int Size;
 
         [OutputConstructor]

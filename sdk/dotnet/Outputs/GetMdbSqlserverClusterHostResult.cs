@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbSqlserverClusterHostResult
     {
+        /// <summary>
+        /// Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment
+        /// </summary>
         public readonly bool AssignPublicIp;
+        /// <summary>
+        /// The fully qualified domain name of the host.
+        /// </summary>
         public readonly string Fqdn;
+        /// <summary>
+        /// The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        /// </summary>
         public readonly string SubnetId;
+        /// <summary>
+        /// The availability zone where the SQLServer host will be created.
+        /// </summary>
         public readonly string Zone;
 
         [OutputConstructor]

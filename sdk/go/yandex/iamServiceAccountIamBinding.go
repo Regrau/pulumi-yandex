@@ -11,13 +11,74 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// When managing IAM roles, you can treat a service account either as a resource or as an identity.
+// This resource is used to add IAM policy bindings to a service account resource to configure permissions
+// that define who can edit the service account.
+//
+// There are three different resources that help you manage your IAM policy for a service account.
+// Each of these resources is used for a different use case:
+//
+// * yandex_iam_service_account_iam_policy: Authoritative. Sets the IAM policy for the service account and replaces any existing policy already attached.
+// * yandex_iam_service_account_iam_binding: Authoritative for a given role. Updates the IAM policy to grant a role to a list of members. Other roles within the IAM policy for the service account are preserved.
+// * yandex_iam_service_account_iam_member: Non-authoritative. Updates the IAM policy to grant a role to a new member. Other members for the role of the service account are preserved.
+//
+// > **Note:** `IamServiceAccountIamPolicy` **cannot** be used in conjunction with `IamServiceAccountIamBinding` and `IamServiceAccountIamMember` or they will conflict over what your policy should be.
+//
+// > **Note:** `IamServiceAccountIamBinding` resources **can be** used in conjunction with `IamServiceAccountIamMember` resources **only if** they do not grant privileges to the same role.
+//
+// ## yandex\_service\_account\_iam\_binding
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewIamServiceAccountIamBinding(ctx, "admin-account-iam", &yandex.IamServiceAccountIamBindingArgs{
+//				Members: pulumi.StringArray{
+//					pulumi.String("userAccount:foo_user_id"),
+//				},
+//				Role:             pulumi.String("admin"),
+//				ServiceAccountId: pulumi.String("your-service-account-id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// Service account IAM binding resources can be imported using the service account ID and role.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/iamServiceAccountIamBinding:IamServiceAccountIamBinding admin-account-iam "service_account_id roles/editor"
+//
+// ```
 type IamServiceAccountIamBinding struct {
 	pulumi.CustomResourceState
 
-	Members          pulumi.StringArrayOutput `pulumi:"members"`
-	Role             pulumi.StringOutput      `pulumi:"role"`
-	ServiceAccountId pulumi.StringOutput      `pulumi:"serviceAccountId"`
-	SleepAfter       pulumi.IntPtrOutput      `pulumi:"sleepAfter"`
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	Members pulumi.StringArrayOutput `pulumi:"members"`
+	// The role that should be applied. Only one
+	// `IamServiceAccountIamBinding` can be used per role.
+	Role pulumi.StringOutput `pulumi:"role"`
+	// The service account ID to apply a binding to.
+	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
+	SleepAfter       pulumi.IntPtrOutput `pulumi:"sleepAfter"`
 }
 
 // NewIamServiceAccountIamBinding registers a new resource with the given unique name, arguments, and options.
@@ -59,15 +120,29 @@ func GetIamServiceAccountIamBinding(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IamServiceAccountIamBinding resources.
 type iamServiceAccountIamBindingState struct {
-	Members          []string `pulumi:"members"`
-	Role             *string  `pulumi:"role"`
-	ServiceAccountId *string  `pulumi:"serviceAccountId"`
-	SleepAfter       *int     `pulumi:"sleepAfter"`
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	Members []string `pulumi:"members"`
+	// The role that should be applied. Only one
+	// `IamServiceAccountIamBinding` can be used per role.
+	Role *string `pulumi:"role"`
+	// The service account ID to apply a binding to.
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
+	SleepAfter       *int    `pulumi:"sleepAfter"`
 }
 
 type IamServiceAccountIamBindingState struct {
-	Members          pulumi.StringArrayInput
-	Role             pulumi.StringPtrInput
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	Members pulumi.StringArrayInput
+	// The role that should be applied. Only one
+	// `IamServiceAccountIamBinding` can be used per role.
+	Role pulumi.StringPtrInput
+	// The service account ID to apply a binding to.
 	ServiceAccountId pulumi.StringPtrInput
 	SleepAfter       pulumi.IntPtrInput
 }
@@ -77,16 +152,30 @@ func (IamServiceAccountIamBindingState) ElementType() reflect.Type {
 }
 
 type iamServiceAccountIamBindingArgs struct {
-	Members          []string `pulumi:"members"`
-	Role             string   `pulumi:"role"`
-	ServiceAccountId string   `pulumi:"serviceAccountId"`
-	SleepAfter       *int     `pulumi:"sleepAfter"`
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	Members []string `pulumi:"members"`
+	// The role that should be applied. Only one
+	// `IamServiceAccountIamBinding` can be used per role.
+	Role string `pulumi:"role"`
+	// The service account ID to apply a binding to.
+	ServiceAccountId string `pulumi:"serviceAccountId"`
+	SleepAfter       *int   `pulumi:"sleepAfter"`
 }
 
 // The set of arguments for constructing a IamServiceAccountIamBinding resource.
 type IamServiceAccountIamBindingArgs struct {
-	Members          pulumi.StringArrayInput
-	Role             pulumi.StringInput
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	Members pulumi.StringArrayInput
+	// The role that should be applied. Only one
+	// `IamServiceAccountIamBinding` can be used per role.
+	Role pulumi.StringInput
+	// The service account ID to apply a binding to.
 	ServiceAccountId pulumi.StringInput
 	SleepAfter       pulumi.IntPtrInput
 }
@@ -178,14 +267,21 @@ func (o IamServiceAccountIamBindingOutput) ToIamServiceAccountIamBindingOutputWi
 	return o
 }
 
+// Identities that will be granted the privilege in `role`.
+// Each entry can have one of the following values:
+// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+// * **serviceAccount:{service_account_id}**: A unique service account ID.
 func (o IamServiceAccountIamBindingOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IamServiceAccountIamBinding) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
 }
 
+// The role that should be applied. Only one
+// `IamServiceAccountIamBinding` can be used per role.
 func (o IamServiceAccountIamBindingOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountIamBinding) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
 }
 
+// The service account ID to apply a binding to.
 func (o IamServiceAccountIamBindingOutput) ServiceAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountIamBinding) pulumi.StringOutput { return v.ServiceAccountId }).(pulumi.StringOutput)
 }

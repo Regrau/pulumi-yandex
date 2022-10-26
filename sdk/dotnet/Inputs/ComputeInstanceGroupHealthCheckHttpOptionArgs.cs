@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class ComputeInstanceGroupHealthCheckHttpOptionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The URL path used for health check requests.
+        /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
 
+        /// <summary>
+        /// The port used for TCP health checks.
+        /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 

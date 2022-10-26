@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbMysqlClusterRestoreGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Backup ID. The cluster will be created from the specified backup. [How to get a list of MySQL backups](https://cloud.yandex.com/docs/managed-mysql/operations/cluster-backups).
+        /// </summary>
         [Input("backupId", required: true)]
         public Input<string> BackupId { get; set; } = null!;
 
+        /// <summary>
+        /// Timestamp of the moment to which the MySQL cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
+        /// </summary>
         [Input("time")]
         public Input<string>? Time { get; set; }
 

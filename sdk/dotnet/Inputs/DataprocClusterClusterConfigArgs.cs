@@ -12,17 +12,27 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DataprocClusterClusterConfigArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Data Proc specific options. The structure is documented below.
+        /// </summary>
         [Input("hadoop")]
         public Input<Inputs.DataprocClusterClusterConfigHadoopArgs>? Hadoop { get; set; }
 
         [Input("subclusterSpecs", required: true)]
         private InputList<Inputs.DataprocClusterClusterConfigSubclusterSpecArgs>? _subclusterSpecs;
+
+        /// <summary>
+        /// Configuration of the Data Proc subcluster. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.DataprocClusterClusterConfigSubclusterSpecArgs> SubclusterSpecs
         {
             get => _subclusterSpecs ?? (_subclusterSpecs = new InputList<Inputs.DataprocClusterClusterConfigSubclusterSpecArgs>());
             set => _subclusterSpecs = value;
         }
 
+        /// <summary>
+        /// Version of Data Proc image.
+        /// </summary>
         [Input("versionId")]
         public Input<string>? VersionId { get; set; }
 

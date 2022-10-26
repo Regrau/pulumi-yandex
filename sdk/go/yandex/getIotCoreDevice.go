@@ -10,6 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex IoT Core device. For more information about IoT Core, see
+// [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart).
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.LookupIotCoreDevice(ctx, &GetIotCoreDeviceArgs{
+//				DeviceId: pulumi.StringRef("are1sampleregistry11"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// This data source is used to define [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
 func LookupIotCoreDevice(ctx *pulumi.Context, args *LookupIotCoreDeviceArgs, opts ...pulumi.InvokeOption) (*LookupIotCoreDeviceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupIotCoreDeviceResult
@@ -22,22 +50,30 @@ func LookupIotCoreDevice(ctx *pulumi.Context, args *LookupIotCoreDeviceArgs, opt
 
 // A collection of arguments for invoking getIotCoreDevice.
 type LookupIotCoreDeviceArgs struct {
+	// IoT Core Device id used to define device
 	DeviceId *string `pulumi:"deviceId"`
-	Name     *string `pulumi:"name"`
+	// IoT Core Device name used to define device
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getIotCoreDevice.
 type LookupIotCoreDeviceResult struct {
-	Aliases      map[string]string `pulumi:"aliases"`
-	Certificates []string          `pulumi:"certificates"`
-	CreatedAt    string            `pulumi:"createdAt"`
-	Description  string            `pulumi:"description"`
-	DeviceId     *string           `pulumi:"deviceId"`
+	// A set of key/value aliases pairs to assign to the IoT Core Device
+	Aliases map[string]string `pulumi:"aliases"`
+	// A set of certificate's fingerprints for the IoT Core Device
+	Certificates []string `pulumi:"certificates"`
+	// Creation timestamp of the IoT Core Device
+	CreatedAt string `pulumi:"createdAt"`
+	// Description of the IoT Core Device
+	Description string  `pulumi:"description"`
+	DeviceId    *string `pulumi:"deviceId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string   `pulumi:"id"`
-	Name       *string  `pulumi:"name"`
-	Passwords  []string `pulumi:"passwords"`
-	RegistryId string   `pulumi:"registryId"`
+	Id   string  `pulumi:"id"`
+	Name *string `pulumi:"name"`
+	// A set of passwords's id for the IoT Core Device
+	Passwords []string `pulumi:"passwords"`
+	// IoT Core Registry ID for the IoT Core Device
+	RegistryId string `pulumi:"registryId"`
 }
 
 func LookupIotCoreDeviceOutput(ctx *pulumi.Context, args LookupIotCoreDeviceOutputArgs, opts ...pulumi.InvokeOption) LookupIotCoreDeviceResultOutput {
@@ -55,8 +91,10 @@ func LookupIotCoreDeviceOutput(ctx *pulumi.Context, args LookupIotCoreDeviceOutp
 
 // A collection of arguments for invoking getIotCoreDevice.
 type LookupIotCoreDeviceOutputArgs struct {
+	// IoT Core Device id used to define device
 	DeviceId pulumi.StringPtrInput `pulumi:"deviceId"`
-	Name     pulumi.StringPtrInput `pulumi:"name"`
+	// IoT Core Device name used to define device
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupIotCoreDeviceOutputArgs) ElementType() reflect.Type {
@@ -78,18 +116,22 @@ func (o LookupIotCoreDeviceResultOutput) ToLookupIotCoreDeviceResultOutputWithCo
 	return o
 }
 
+// A set of key/value aliases pairs to assign to the IoT Core Device
 func (o LookupIotCoreDeviceResultOutput) Aliases() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupIotCoreDeviceResult) map[string]string { return v.Aliases }).(pulumi.StringMapOutput)
 }
 
+// A set of certificate's fingerprints for the IoT Core Device
 func (o LookupIotCoreDeviceResultOutput) Certificates() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupIotCoreDeviceResult) []string { return v.Certificates }).(pulumi.StringArrayOutput)
 }
 
+// Creation timestamp of the IoT Core Device
 func (o LookupIotCoreDeviceResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIotCoreDeviceResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the IoT Core Device
 func (o LookupIotCoreDeviceResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIotCoreDeviceResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -107,10 +149,12 @@ func (o LookupIotCoreDeviceResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIotCoreDeviceResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// A set of passwords's id for the IoT Core Device
 func (o LookupIotCoreDeviceResultOutput) Passwords() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupIotCoreDeviceResult) []string { return v.Passwords }).(pulumi.StringArrayOutput)
 }
 
+// IoT Core Registry ID for the IoT Core Device
 func (o LookupIotCoreDeviceResultOutput) RegistryId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIotCoreDeviceResult) string { return v.RegistryId }).(pulumi.StringOutput)
 }

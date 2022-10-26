@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsMode
     {
+        /// <summary>
+        /// Empty block designating that the connection is not secured, i.e. plaintext connection.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeDisabled? Disabled;
+        /// <summary>
+        /// If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeEnabled? Enabled;
 
         [OutputConstructor]

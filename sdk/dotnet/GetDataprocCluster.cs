@@ -11,9 +11,65 @@ namespace Pulumi.Yandex
 {
     public static class GetDataprocCluster
     {
+        /// <summary>
+        /// Get information about a Yandex Data Proc cluster. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-proc/).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetDataprocCluster.Invoke(new()
+        ///     {
+        ///         Name = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["serviceAccountId"] = foo.Apply(getDataprocClusterResult =&gt; getDataprocClusterResult.ServiceAccountId),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetDataprocClusterResult> InvokeAsync(GetDataprocClusterArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetDataprocClusterResult>("yandex:index/getDataprocCluster:getDataprocCluster", args ?? new GetDataprocClusterArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Data Proc cluster. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-proc/).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetDataprocCluster.Invoke(new()
+        ///     {
+        ///         Name = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["serviceAccountId"] = foo.Apply(getDataprocClusterResult =&gt; getDataprocClusterResult.ServiceAccountId),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetDataprocClusterResult> Invoke(GetDataprocClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetDataprocClusterResult>("yandex:index/getDataprocCluster:getDataprocCluster", args ?? new GetDataprocClusterInvokeArgs(), options.WithDefaults());
     }
@@ -21,9 +77,15 @@ namespace Pulumi.Yandex
 
     public sealed class GetDataprocClusterArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the Data Proc cluster.
+        /// </summary>
         [Input("clusterId")]
         public string? ClusterId { get; set; }
 
+        /// <summary>
+        /// The name of the Data Proc cluster.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -35,9 +97,15 @@ namespace Pulumi.Yandex
 
     public sealed class GetDataprocClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the Data Proc cluster.
+        /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
+        /// <summary>
+        /// The name of the Data Proc cluster.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -51,23 +119,53 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetDataprocClusterResult
     {
+        /// <summary>
+        /// Name of the Object Storage bucket used for Data Proc jobs.
+        /// </summary>
         public readonly string Bucket;
+        /// <summary>
+        /// Configuration and resources of the cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetDataprocClusterClusterConfigResult> ClusterConfigs;
         public readonly string ClusterId;
+        /// <summary>
+        /// The Data Proc cluster creation timestamp.
+        /// </summary>
         public readonly string CreatedAt;
         public readonly bool DeletionProtection;
+        /// <summary>
+        /// Description of the Data Proc cluster.
+        /// </summary>
         public readonly string Description;
         public readonly string FolderId;
+        /// <summary>
+        /// A list of IDs of the host groups hosting VMs of the cluster.
+        /// </summary>
         public readonly ImmutableArray<string> HostGroupIds;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A set of key/value label pairs assigned to the Data Proc cluster.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// Name of the Data Proc subcluster.
+        /// </summary>
         public readonly string Name;
         public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// Service account used by the Data Proc agent to access resources of Yandex.Cloud.
+        /// </summary>
         public readonly string ServiceAccountId;
+        /// <summary>
+        /// Whether UI proxy feature is enabled.
+        /// </summary>
         public readonly bool UiProxy;
+        /// <summary>
+        /// ID of the availability zone where the cluster resides.
+        /// </summary>
         public readonly string ZoneId;
 
         [OutputConstructor]

@@ -9,24 +9,74 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Manages a network within the Yandex.Cloud. For more information, see
+    /// [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/network#network).
+    /// 
+    /// * How-to Guides
+    ///     * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+    ///     * [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var @default = new Yandex.VpcNetwork("default");
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// A network can be imported using the `id` of the resource, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/vpcNetwork:VpcNetwork default network_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/vpcNetwork:VpcNetwork")]
     public partial class VpcNetwork : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Creation timestamp of the key.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of default Security Group of this network.
+        /// </summary>
         [Output("defaultSecurityGroupId")]
         public Output<string> DefaultSecurityGroupId { get; private set; } = null!;
 
+        /// <summary>
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// Labels to apply to this network. A list of key/value pairs.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the network. Provided by the client when the network is created.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
@@ -56,7 +106,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -80,20 +130,35 @@ namespace Pulumi.Yandex
 
     public sealed class VpcNetworkArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to apply to this network. A list of key/value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the network. Provided by the client when the network is created.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -105,26 +170,47 @@ namespace Pulumi.Yandex
 
     public sealed class VpcNetworkState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Creation timestamp of the key.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// ID of default Security Group of this network.
+        /// </summary>
         [Input("defaultSecurityGroupId")]
         public Input<string>? DefaultSecurityGroupId { get; set; }
 
+        /// <summary>
+        /// An optional description of this resource. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// ID of the folder that the resource belongs to. If it
+        /// is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to apply to this network. A list of key/value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the network. Provided by the client when the network is created.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

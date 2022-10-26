@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerListenerEndpoint
     {
+        /// <summary>
+        /// Provided by the client or computed automatically.
+        /// </summary>
         public readonly ImmutableArray<Outputs.AlbLoadBalancerListenerEndpointAddress> Addresses;
+        /// <summary>
+        /// One or more ports to listen on.
+        /// </summary>
         public readonly ImmutableArray<int> Ports;
 
         [OutputConstructor]

@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbKafkaClusterTopic
     {
+        /// <summary>
+        /// The name of the topic.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The number of the topic's partitions.
+        /// </summary>
         public readonly int Partitions;
+        /// <summary>
+        /// Amount of data copies (replicas) for the topic in the cluster.
+        /// </summary>
         public readonly int ReplicationFactor;
+        /// <summary>
+        /// User-defined settings for the topic. The structure is documented below.
+        /// </summary>
         public readonly Outputs.MdbKafkaClusterTopicTopicConfig? TopicConfig;
 
         [OutputConstructor]

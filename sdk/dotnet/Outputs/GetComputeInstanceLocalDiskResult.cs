@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetComputeInstanceLocalDiskResult
     {
+        /// <summary>
+        /// Name of the device.
+        /// </summary>
         public readonly string DeviceName;
+        /// <summary>
+        /// Size of the disk, specified in bytes.
+        /// </summary>
         public readonly int SizeBytes;
 
         [OutputConstructor]

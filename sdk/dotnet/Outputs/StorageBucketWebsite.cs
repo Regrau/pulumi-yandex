@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class StorageBucketWebsite
     {
+        /// <summary>
+        /// An absolute path to the document to return in case of a 4XX error.
+        /// </summary>
         public readonly string? ErrorDocument;
+        /// <summary>
+        /// Storage returns this index document when requests are made to the root domain or any of the subfolders.
+        /// </summary>
         public readonly string? IndexDocument;
+        /// <summary>
+        /// A hostname to redirect all website requests for this bucket to. Hostname can optionally be prefixed with a protocol (`http://` or `https://`) to use when redirecting requests. The default is the protocol that is used in the original request.
+        /// </summary>
         public readonly string? RedirectAllRequestsTo;
+        /// <summary>
+        /// A json array containing [routing rules](https://cloud.yandex.com/docs/storage/s3/api-ref/hosting/upload#request-scheme) describing redirect behavior and when redirects are applied.
+        /// </summary>
         public readonly string? RoutingRules;
 
         [OutputConstructor]

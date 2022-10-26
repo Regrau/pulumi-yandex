@@ -10,16 +10,38 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates a target group in the specified folder and adds the specified targets to it.
+// For more information, see [the official documentation](https://cloud.yandex.com/docs/load-balancer/concepts/target-resources).
+//
+// ## Import
+//
+// A target group can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/lbTargetGroup:LbTargetGroup default target_group_id
+//
+// ```
 type LbTargetGroup struct {
 	pulumi.CustomResourceState
 
-	CreatedAt   pulumi.StringOutput            `pulumi:"createdAt"`
-	Description pulumi.StringPtrOutput         `pulumi:"description"`
-	FolderId    pulumi.StringOutput            `pulumi:"folderId"`
-	Labels      pulumi.StringMapOutput         `pulumi:"labels"`
-	Name        pulumi.StringOutput            `pulumi:"name"`
-	RegionId    pulumi.StringPtrOutput         `pulumi:"regionId"`
-	Targets     LbTargetGroupTargetArrayOutput `pulumi:"targets"`
+	// The target group creation timestamp.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// An optional description of the target group. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Labels to assign to this target group. A list of key/value pairs.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the target group. Provided by the client when the target group is created.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the availability zone where the target group resides.
+	// The default is 'ru-central1'.
+	RegionId pulumi.StringPtrOutput `pulumi:"regionId"`
+	// A Target resource. The structure is documented below.
+	Targets LbTargetGroupTargetArrayOutput `pulumi:"targets"`
 }
 
 // NewLbTargetGroup registers a new resource with the given unique name, arguments, and options.
@@ -52,23 +74,43 @@ func GetLbTargetGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LbTargetGroup resources.
 type lbTargetGroupState struct {
-	CreatedAt   *string               `pulumi:"createdAt"`
-	Description *string               `pulumi:"description"`
-	FolderId    *string               `pulumi:"folderId"`
-	Labels      map[string]string     `pulumi:"labels"`
-	Name        *string               `pulumi:"name"`
-	RegionId    *string               `pulumi:"regionId"`
-	Targets     []LbTargetGroupTarget `pulumi:"targets"`
+	// The target group creation timestamp.
+	CreatedAt *string `pulumi:"createdAt"`
+	// An optional description of the target group. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this target group. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the target group. Provided by the client when the target group is created.
+	Name *string `pulumi:"name"`
+	// ID of the availability zone where the target group resides.
+	// The default is 'ru-central1'.
+	RegionId *string `pulumi:"regionId"`
+	// A Target resource. The structure is documented below.
+	Targets []LbTargetGroupTarget `pulumi:"targets"`
 }
 
 type LbTargetGroupState struct {
-	CreatedAt   pulumi.StringPtrInput
+	// The target group creation timestamp.
+	CreatedAt pulumi.StringPtrInput
+	// An optional description of the target group. Provide this property when
+	// you create the resource.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
-	RegionId    pulumi.StringPtrInput
-	Targets     LbTargetGroupTargetArrayInput
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this target group. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the target group. Provided by the client when the target group is created.
+	Name pulumi.StringPtrInput
+	// ID of the availability zone where the target group resides.
+	// The default is 'ru-central1'.
+	RegionId pulumi.StringPtrInput
+	// A Target resource. The structure is documented below.
+	Targets LbTargetGroupTargetArrayInput
 }
 
 func (LbTargetGroupState) ElementType() reflect.Type {
@@ -76,22 +118,40 @@ func (LbTargetGroupState) ElementType() reflect.Type {
 }
 
 type lbTargetGroupArgs struct {
-	Description *string               `pulumi:"description"`
-	FolderId    *string               `pulumi:"folderId"`
-	Labels      map[string]string     `pulumi:"labels"`
-	Name        *string               `pulumi:"name"`
-	RegionId    *string               `pulumi:"regionId"`
-	Targets     []LbTargetGroupTarget `pulumi:"targets"`
+	// An optional description of the target group. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this target group. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the target group. Provided by the client when the target group is created.
+	Name *string `pulumi:"name"`
+	// ID of the availability zone where the target group resides.
+	// The default is 'ru-central1'.
+	RegionId *string `pulumi:"regionId"`
+	// A Target resource. The structure is documented below.
+	Targets []LbTargetGroupTarget `pulumi:"targets"`
 }
 
 // The set of arguments for constructing a LbTargetGroup resource.
 type LbTargetGroupArgs struct {
+	// An optional description of the target group. Provide this property when
+	// you create the resource.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
-	RegionId    pulumi.StringPtrInput
-	Targets     LbTargetGroupTargetArrayInput
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this target group. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the target group. Provided by the client when the target group is created.
+	Name pulumi.StringPtrInput
+	// ID of the availability zone where the target group resides.
+	// The default is 'ru-central1'.
+	RegionId pulumi.StringPtrInput
+	// A Target resource. The structure is documented below.
+	Targets LbTargetGroupTargetArrayInput
 }
 
 func (LbTargetGroupArgs) ElementType() reflect.Type {
@@ -181,30 +241,40 @@ func (o LbTargetGroupOutput) ToLbTargetGroupOutputWithContext(ctx context.Contex
 	return o
 }
 
+// The target group creation timestamp.
 func (o LbTargetGroupOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbTargetGroup) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// An optional description of the target group. Provide this property when
+// you create the resource.
 func (o LbTargetGroupOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbTargetGroup) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the folder to which the resource belongs.
+// If omitted, the provider folder is used.
 func (o LbTargetGroupOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbTargetGroup) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Labels to assign to this target group. A list of key/value pairs.
 func (o LbTargetGroupOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *LbTargetGroup) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the target group. Provided by the client when the target group is created.
 func (o LbTargetGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbTargetGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the availability zone where the target group resides.
+// The default is 'ru-central1'.
 func (o LbTargetGroupOutput) RegionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *LbTargetGroup) pulumi.StringPtrOutput { return v.RegionId }).(pulumi.StringPtrOutput)
 }
 
+// A Target resource. The structure is documented below.
 func (o LbTargetGroupOutput) Targets() LbTargetGroupTargetArrayOutput {
 	return o.ApplyT(func(v *LbTargetGroup) LbTargetGroupTargetArrayOutput { return v.Targets }).(LbTargetGroupTargetArrayOutput)
 }

@@ -9,60 +9,214 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// An Instance group resource. For more information, see
+    /// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/instance-groups/).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.IO;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var group1 = new Yandex.ComputeInstanceGroup("group1", new()
+    ///     {
+    ///         AllocationPolicy = new Yandex.Inputs.ComputeInstanceGroupAllocationPolicyArgs
+    ///         {
+    ///             Zones = new[]
+    ///             {
+    ///                 "ru-central1-a",
+    ///             },
+    ///         },
+    ///         DeletionProtection = true,
+    ///         DeployPolicy = new Yandex.Inputs.ComputeInstanceGroupDeployPolicyArgs
+    ///         {
+    ///             MaxCreating = 2,
+    ///             MaxDeleting = 2,
+    ///             MaxExpansion = 2,
+    ///             MaxUnavailable = 2,
+    ///         },
+    ///         FolderId = data.Yandex_resourcemanager_folder.Test_folder.Id,
+    ///         InstanceTemplate = new Yandex.Inputs.ComputeInstanceGroupInstanceTemplateArgs
+    ///         {
+    ///             BootDisk = new Yandex.Inputs.ComputeInstanceGroupInstanceTemplateBootDiskArgs
+    ///             {
+    ///                 InitializeParams = new Yandex.Inputs.ComputeInstanceGroupInstanceTemplateBootDiskInitializeParamsArgs
+    ///                 {
+    ///                     ImageId = data.Yandex_compute_image.Ubuntu.Id,
+    ///                     Size = 4,
+    ///                 },
+    ///                 Mode = "READ_WRITE",
+    ///             },
+    ///             Labels = 
+    ///             {
+    ///                 { "label1", "label1-value" },
+    ///                 { "label2", "label2-value" },
+    ///             },
+    ///             Metadata = 
+    ///             {
+    ///                 { "foo", "bar" },
+    ///                 { "ssh-keys", $"ubuntu:{File.ReadAllText("~/.ssh/id_rsa.pub")}" },
+    ///             },
+    ///             NetworkInterfaces = new[]
+    ///             {
+    ///                 new Yandex.Inputs.ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs
+    ///                 {
+    ///                     NetworkId = yandex_vpc_network.My_inst_group_network.Id,
+    ///                     SubnetIds = new[]
+    ///                     {
+    ///                         yandex_vpc_subnet.My_inst_group_subnet.Id,
+    ///                     },
+    ///                 },
+    ///             },
+    ///             NetworkSettings = new[]
+    ///             {
+    ///                 new Yandex.Inputs.ComputeInstanceGroupInstanceTemplateNetworkSettingArgs
+    ///                 {
+    ///                     Type = "STANDARD",
+    ///                 },
+    ///             },
+    ///             PlatformId = "standard-v1",
+    ///             Resources = new Yandex.Inputs.ComputeInstanceGroupInstanceTemplateResourcesArgs
+    ///             {
+    ///                 Cores = 2,
+    ///                 Memory = 2,
+    ///             },
+    ///         },
+    ///         ScalePolicy = new Yandex.Inputs.ComputeInstanceGroupScalePolicyArgs
+    ///         {
+    ///             FixedScale = new Yandex.Inputs.ComputeInstanceGroupScalePolicyFixedScaleArgs
+    ///             {
+    ///                 Size = 3,
+    ///             },
+    ///         },
+    ///         ServiceAccountId = yandex_iam_service_account.Test_account.Id,
+    ///         Variables = 
+    ///         {
+    ///             { "test_key1", "test_value1" },
+    ///             { "test_key2", "test_value2" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/computeInstanceGroup:ComputeInstanceGroup")]
     public partial class ComputeInstanceGroup : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The allocation policy of the instance group by zone and region. The structure is documented below.
+        /// </summary>
         [Output("allocationPolicy")]
         public Output<Outputs.ComputeInstanceGroupAllocationPolicy> AllocationPolicy { get; private set; } = null!;
 
+        /// <summary>
+        /// Application Load balancing (L7) specifications. The structure is documented below.
+        /// </summary>
         [Output("applicationLoadBalancer")]
         public Output<Outputs.ComputeInstanceGroupApplicationLoadBalancer?> ApplicationLoadBalancer { get; private set; } = null!;
 
+        /// <summary>
+        /// The instance group creation timestamp.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// Flag that protects the instance group from accidental deletion.
+        /// </summary>
         [Output("deletionProtection")]
         public Output<bool?> DeletionProtection { get; private set; } = null!;
 
+        /// <summary>
+        /// The deployment policy of the instance group. The structure is documented below.
+        /// </summary>
         [Output("deployPolicy")]
         public Output<Outputs.ComputeInstanceGroupDeployPolicy> DeployPolicy { get; private set; } = null!;
 
+        /// <summary>
+        /// A description of the boot disk.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// Health check specifications. The structure is documented below.
+        /// </summary>
         [Output("healthChecks")]
         public Output<ImmutableArray<Outputs.ComputeInstanceGroupHealthCheck>> HealthChecks { get; private set; } = null!;
 
+        /// <summary>
+        /// The template for creating new instances. The structure is documented below.
+        /// </summary>
         [Output("instanceTemplate")]
         public Output<Outputs.ComputeInstanceGroupInstanceTemplate> InstanceTemplate { get; private set; } = null!;
 
         [Output("instances")]
         public Output<ImmutableArray<Outputs.ComputeInstanceGroupInstance>> Instances { get; private set; } = null!;
 
+        /// <summary>
+        /// A map of labels of metric.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Load balancing specifications. The structure is documented below.
+        /// </summary>
         [Output("loadBalancer")]
         public Output<Outputs.ComputeInstanceGroupLoadBalancer?> LoadBalancer { get; private set; } = null!;
 
+        /// <summary>
+        /// Timeout for waiting for the VM to become healthy. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+        /// </summary>
         [Output("maxCheckingHealthDuration")]
         public Output<int?> MaxCheckingHealthDuration { get; private set; } = null!;
 
+        /// <summary>
+        /// Name template of the instance.  
+        /// In order to be unique it must contain at least one of instance unique placeholders:
+        /// {instance.short_id}
+        /// {instance.index}
+        /// combination of {instance.zone_id} and {instance.index_in_zone}
+        /// Example: my-instance-{instance.index}
+        /// If not set, default is used: {instance_group.id}-{instance.short_id}
+        /// It may also contain another placeholders, see metadata doc for full list.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// The scaling policy of the instance group. The structure is documented below.
+        /// </summary>
         [Output("scalePolicy")]
         public Output<Outputs.ComputeInstanceGroupScalePolicy> ScalePolicy { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of the service account authorized for this instance.
+        /// </summary>
         [Output("serviceAccountId")]
         public Output<string> ServiceAccountId { get; private set; } = null!;
 
+        /// <summary>
+        /// The status of the instance.
+        /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of key/value  variables pairs to assign to the instance group.
+        /// </summary>
         [Output("variables")]
         public Output<ImmutableDictionary<string, string>?> Variables { get; private set; } = null!;
 
@@ -89,7 +243,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -113,60 +267,115 @@ namespace Pulumi.Yandex
 
     public sealed class ComputeInstanceGroupArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The allocation policy of the instance group by zone and region. The structure is documented below.
+        /// </summary>
         [Input("allocationPolicy", required: true)]
         public Input<Inputs.ComputeInstanceGroupAllocationPolicyArgs> AllocationPolicy { get; set; } = null!;
 
+        /// <summary>
+        /// Application Load balancing (L7) specifications. The structure is documented below.
+        /// </summary>
         [Input("applicationLoadBalancer")]
         public Input<Inputs.ComputeInstanceGroupApplicationLoadBalancerArgs>? ApplicationLoadBalancer { get; set; }
 
+        /// <summary>
+        /// Flag that protects the instance group from accidental deletion.
+        /// </summary>
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// The deployment policy of the instance group. The structure is documented below.
+        /// </summary>
         [Input("deployPolicy", required: true)]
         public Input<Inputs.ComputeInstanceGroupDeployPolicyArgs> DeployPolicy { get; set; } = null!;
 
+        /// <summary>
+        /// A description of the boot disk.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("healthChecks")]
         private InputList<Inputs.ComputeInstanceGroupHealthCheckArgs>? _healthChecks;
+
+        /// <summary>
+        /// Health check specifications. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.ComputeInstanceGroupHealthCheckArgs> HealthChecks
         {
             get => _healthChecks ?? (_healthChecks = new InputList<Inputs.ComputeInstanceGroupHealthCheckArgs>());
             set => _healthChecks = value;
         }
 
+        /// <summary>
+        /// The template for creating new instances. The structure is documented below.
+        /// </summary>
         [Input("instanceTemplate", required: true)]
         public Input<Inputs.ComputeInstanceGroupInstanceTemplateArgs> InstanceTemplate { get; set; } = null!;
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A map of labels of metric.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Load balancing specifications. The structure is documented below.
+        /// </summary>
         [Input("loadBalancer")]
         public Input<Inputs.ComputeInstanceGroupLoadBalancerArgs>? LoadBalancer { get; set; }
 
+        /// <summary>
+        /// Timeout for waiting for the VM to become healthy. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+        /// </summary>
         [Input("maxCheckingHealthDuration")]
         public Input<int>? MaxCheckingHealthDuration { get; set; }
 
+        /// <summary>
+        /// Name template of the instance.  
+        /// In order to be unique it must contain at least one of instance unique placeholders:
+        /// {instance.short_id}
+        /// {instance.index}
+        /// combination of {instance.zone_id} and {instance.index_in_zone}
+        /// Example: my-instance-{instance.index}
+        /// If not set, default is used: {instance_group.id}-{instance.short_id}
+        /// It may also contain another placeholders, see metadata doc for full list.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The scaling policy of the instance group. The structure is documented below.
+        /// </summary>
         [Input("scalePolicy", required: true)]
         public Input<Inputs.ComputeInstanceGroupScalePolicyArgs> ScalePolicy { get; set; } = null!;
 
+        /// <summary>
+        /// The ID of the service account authorized for this instance.
+        /// </summary>
         [Input("serviceAccountId", required: true)]
         public Input<string> ServiceAccountId { get; set; } = null!;
 
         [Input("variables")]
         private InputMap<string>? _variables;
+
+        /// <summary>
+        /// A set of key/value  variables pairs to assign to the instance group.
+        /// </summary>
         public InputMap<string> Variables
         {
             get => _variables ?? (_variables = new InputMap<string>());
@@ -181,35 +390,63 @@ namespace Pulumi.Yandex
 
     public sealed class ComputeInstanceGroupState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The allocation policy of the instance group by zone and region. The structure is documented below.
+        /// </summary>
         [Input("allocationPolicy")]
         public Input<Inputs.ComputeInstanceGroupAllocationPolicyGetArgs>? AllocationPolicy { get; set; }
 
+        /// <summary>
+        /// Application Load balancing (L7) specifications. The structure is documented below.
+        /// </summary>
         [Input("applicationLoadBalancer")]
         public Input<Inputs.ComputeInstanceGroupApplicationLoadBalancerGetArgs>? ApplicationLoadBalancer { get; set; }
 
+        /// <summary>
+        /// The instance group creation timestamp.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// Flag that protects the instance group from accidental deletion.
+        /// </summary>
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// The deployment policy of the instance group. The structure is documented below.
+        /// </summary>
         [Input("deployPolicy")]
         public Input<Inputs.ComputeInstanceGroupDeployPolicyGetArgs>? DeployPolicy { get; set; }
 
+        /// <summary>
+        /// A description of the boot disk.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("healthChecks")]
         private InputList<Inputs.ComputeInstanceGroupHealthCheckGetArgs>? _healthChecks;
+
+        /// <summary>
+        /// Health check specifications. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.ComputeInstanceGroupHealthCheckGetArgs> HealthChecks
         {
             get => _healthChecks ?? (_healthChecks = new InputList<Inputs.ComputeInstanceGroupHealthCheckGetArgs>());
             set => _healthChecks = value;
         }
 
+        /// <summary>
+        /// The template for creating new instances. The structure is documented below.
+        /// </summary>
         [Input("instanceTemplate")]
         public Input<Inputs.ComputeInstanceGroupInstanceTemplateGetArgs>? InstanceTemplate { get; set; }
 
@@ -223,32 +460,65 @@ namespace Pulumi.Yandex
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A map of labels of metric.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Load balancing specifications. The structure is documented below.
+        /// </summary>
         [Input("loadBalancer")]
         public Input<Inputs.ComputeInstanceGroupLoadBalancerGetArgs>? LoadBalancer { get; set; }
 
+        /// <summary>
+        /// Timeout for waiting for the VM to become healthy. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+        /// </summary>
         [Input("maxCheckingHealthDuration")]
         public Input<int>? MaxCheckingHealthDuration { get; set; }
 
+        /// <summary>
+        /// Name template of the instance.  
+        /// In order to be unique it must contain at least one of instance unique placeholders:
+        /// {instance.short_id}
+        /// {instance.index}
+        /// combination of {instance.zone_id} and {instance.index_in_zone}
+        /// Example: my-instance-{instance.index}
+        /// If not set, default is used: {instance_group.id}-{instance.short_id}
+        /// It may also contain another placeholders, see metadata doc for full list.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// The scaling policy of the instance group. The structure is documented below.
+        /// </summary>
         [Input("scalePolicy")]
         public Input<Inputs.ComputeInstanceGroupScalePolicyGetArgs>? ScalePolicy { get; set; }
 
+        /// <summary>
+        /// The ID of the service account authorized for this instance.
+        /// </summary>
         [Input("serviceAccountId")]
         public Input<string>? ServiceAccountId { get; set; }
 
+        /// <summary>
+        /// The status of the instance.
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         [Input("variables")]
         private InputMap<string>? _variables;
+
+        /// <summary>
+        /// A set of key/value  variables pairs to assign to the instance group.
+        /// </summary>
         public InputMap<string> Variables
         {
             get => _variables ?? (_variables = new InputMap<string>());

@@ -13,9 +13,18 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstanceGroupInstanceTemplateResources
     {
+        /// <summary>
+        /// If provided, specifies baseline core performance as a percent.
+        /// </summary>
         public readonly int? CoreFraction;
+        /// <summary>
+        /// The number of CPU cores for the instance.
+        /// </summary>
         public readonly int Cores;
         public readonly int? Gpus;
+        /// <summary>
+        /// The memory size in GB.
+        /// </summary>
         public readonly double Memory;
 
         [OutputConstructor]

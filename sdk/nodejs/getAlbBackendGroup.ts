@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Application Load Balancer Backend Group. For more information, see
+ * [Yandex.Cloud Application Load Balancer](https://cloud.yandex.com/en/docs/application-load-balancer/quickstart).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const foo = pulumi.output(yandex.getAlbBackendGroup({
+ *     backendGroupId: "my-backend-group-id",
+ * }));
+ * ```
+ *
+ * This data source is used to define [Application Load Balancer Backend Groups] that can be used by other resources.
+ */
 export function getAlbBackendGroup(args?: GetAlbBackendGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetAlbBackendGroupResult> {
     args = args || {};
     if (!opts) {
@@ -29,14 +44,38 @@ export function getAlbBackendGroup(args?: GetAlbBackendGroupArgs, opts?: pulumi.
  * A collection of arguments for invoking getAlbBackendGroup.
  */
 export interface GetAlbBackendGroupArgs {
+    /**
+     * Backend Group ID.
+     */
     backendGroupId?: string;
+    /**
+     * Description of the backend group.
+     */
     description?: string;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+     */
     grpcBackends?: inputs.GetAlbBackendGroupGrpcBackend[];
+    /**
+     * Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+     */
     httpBackends?: inputs.GetAlbBackendGroupHttpBackend[];
+    /**
+     * Labels to assign to this backend group.
+     */
     labels?: {[key: string]: string};
+    /**
+     * - Name of the Backend Group.
+     */
     name?: string;
     sessionAffinity?: inputs.GetAlbBackendGroupSessionAffinity;
+    /**
+     * Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+     */
     streamBackends?: inputs.GetAlbBackendGroupStreamBackend[];
 }
 
@@ -45,18 +84,39 @@ export interface GetAlbBackendGroupArgs {
  */
 export interface GetAlbBackendGroupResult {
     readonly backendGroupId: string;
+    /**
+     * Creation timestamp of this backend group.
+     */
     readonly createdAt: string;
+    /**
+     * Description of the backend group.
+     */
     readonly description: string;
     readonly folderId: string;
+    /**
+     * Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+     */
     readonly grpcBackends: outputs.GetAlbBackendGroupGrpcBackend[];
+    /**
+     * Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+     */
     readonly httpBackends: outputs.GetAlbBackendGroupHttpBackend[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Labels to assign to this backend group.
+     */
     readonly labels: {[key: string]: string};
+    /**
+     * Name of the backend.
+     */
     readonly name: string;
     readonly sessionAffinity: outputs.GetAlbBackendGroupSessionAffinity;
+    /**
+     * Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+     */
     readonly streamBackends: outputs.GetAlbBackendGroupStreamBackend[];
 }
 
@@ -68,13 +128,37 @@ export function getAlbBackendGroupOutput(args?: GetAlbBackendGroupOutputArgs, op
  * A collection of arguments for invoking getAlbBackendGroup.
  */
 export interface GetAlbBackendGroupOutputArgs {
+    /**
+     * Backend Group ID.
+     */
     backendGroupId?: pulumi.Input<string>;
+    /**
+     * Description of the backend group.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Grpc backend specification that will be used by the ALB Backend Group. Structure is documented below.
+     */
     grpcBackends?: pulumi.Input<pulumi.Input<inputs.GetAlbBackendGroupGrpcBackendArgs>[]>;
+    /**
+     * Http backend specification that will be used by the ALB Backend Group. Structure is documented below.
+     */
     httpBackends?: pulumi.Input<pulumi.Input<inputs.GetAlbBackendGroupHttpBackendArgs>[]>;
+    /**
+     * Labels to assign to this backend group.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * - Name of the Backend Group.
+     */
     name?: pulumi.Input<string>;
     sessionAffinity?: pulumi.Input<inputs.GetAlbBackendGroupSessionAffinityArgs>;
+    /**
+     * Stream backend specification that will be used by the ALB Backend Group. Structure is documented below.
+     */
     streamBackends?: pulumi.Input<pulumi.Input<inputs.GetAlbBackendGroupStreamBackendArgs>[]>;
 }

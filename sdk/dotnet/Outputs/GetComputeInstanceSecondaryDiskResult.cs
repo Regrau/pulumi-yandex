@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetComputeInstanceSecondaryDiskResult
     {
+        /// <summary>
+        /// Specifies whether the disk is auto-deleted when the instance is deleted.
+        /// </summary>
         public readonly bool AutoDelete;
+        /// <summary>
+        /// Name of the device.
+        /// </summary>
         public readonly string DeviceName;
+        /// <summary>
+        /// ID of the disk that is attached to the instance.
+        /// </summary>
         public readonly string DiskId;
+        /// <summary>
+        /// Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        /// </summary>
         public readonly string Mode;
 
         [OutputConstructor]

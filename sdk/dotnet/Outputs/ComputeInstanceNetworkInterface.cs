@@ -13,19 +13,56 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstanceNetworkInterface
     {
+        /// <summary>
+        /// List of configurations for creating ipv4 DNS records. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ComputeInstanceNetworkInterfaceDnsRecord> DnsRecords;
         public readonly int? Index;
+        /// <summary>
+        /// The private IP address to assign to the instance. If
+        /// empty, the address will be automatically assigned from the specified subnet.
+        /// </summary>
         public readonly string? IpAddress;
+        /// <summary>
+        /// Allocate an IPv4 address for the interface. The default value is `true`.
+        /// </summary>
         public readonly bool? Ipv4;
+        /// <summary>
+        /// If true, allocate an IPv6 address for the interface.
+        /// The address will be automatically assigned from the specified subnet.
+        /// </summary>
         public readonly bool? Ipv6;
+        /// <summary>
+        /// The private IPv6 address to assign to the instance.
+        /// </summary>
         public readonly string? Ipv6Address;
+        /// <summary>
+        /// List of configurations for creating ipv6 DNS records. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ComputeInstanceNetworkInterfaceIpv6DnsRecord> Ipv6DnsRecords;
         public readonly string? MacAddress;
+        /// <summary>
+        /// Provide a public address, for instance, to access the internet over NAT.
+        /// </summary>
         public readonly bool? Nat;
+        /// <summary>
+        /// List of configurations for creating ipv4 NAT DNS records. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ComputeInstanceNetworkInterfaceNatDnsRecord> NatDnsRecords;
+        /// <summary>
+        /// Provide a public address, for instance, to access the internet over NAT. Address should be already reserved in web UI.
+        /// </summary>
         public readonly string? NatIpAddress;
         public readonly string? NatIpVersion;
+        /// <summary>
+        /// Security group ids for network interface.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// ID of the subnet to attach this
+        /// interface to. The subnet must exist in the same zone where this instance will be
+        /// created.
+        /// </summary>
         public readonly string SubnetId;
 
         [OutputConstructor]

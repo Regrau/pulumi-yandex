@@ -14,12 +14,19 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("hosts")]
         private InputList<string>? _hosts;
+
+        /// <summary>
+        /// List of ClickHouse server host names.
+        /// </summary>
         public InputList<string> Hosts
         {
             get => _hosts ?? (_hosts = new InputList<string>());
             set => _hosts = value;
         }
 
+        /// <summary>
+        /// Arbitrary shard name. This name may be used in `sharding` block to specify custom sharding rules.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 

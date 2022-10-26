@@ -20,6 +20,10 @@ class ComputePlacementGroupArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ComputePlacementGroup resource.
+        :param pulumi.Input[str] description: A description of the Placement Group.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Placement Group.
+        :param pulumi.Input[str] name: The name of the Placement Group.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -33,6 +37,9 @@ class ComputePlacementGroupArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the Placement Group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -42,6 +49,9 @@ class ComputePlacementGroupArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -51,6 +61,9 @@ class ComputePlacementGroupArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Placement Group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -60,6 +73,9 @@ class ComputePlacementGroupArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Placement Group.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -77,6 +93,10 @@ class _ComputePlacementGroupState:
                  name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ComputePlacementGroup resources.
+        :param pulumi.Input[str] description: A description of the Placement Group.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Placement Group.
+        :param pulumi.Input[str] name: The name of the Placement Group.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -101,6 +121,9 @@ class _ComputePlacementGroupState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the Placement Group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -110,6 +133,9 @@ class _ComputePlacementGroupState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -119,6 +145,9 @@ class _ComputePlacementGroupState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Placement Group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -128,6 +157,9 @@ class _ComputePlacementGroupState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Placement Group.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -146,9 +178,26 @@ class ComputePlacementGroup(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ComputePlacementGroup resource with the given unique name, props, and options.
+        A Placement group resource. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/compute/concepts/placement-groups).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        group1 = yandex.ComputePlacementGroup("group1",
+            description="my description",
+            folder_id="abc*********123")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: A description of the Placement Group.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Placement Group.
+        :param pulumi.Input[str] name: The name of the Placement Group.
         """
         ...
     @overload
@@ -157,7 +206,20 @@ class ComputePlacementGroup(pulumi.CustomResource):
                  args: Optional[ComputePlacementGroupArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ComputePlacementGroup resource with the given unique name, props, and options.
+        A Placement group resource. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/compute/concepts/placement-groups).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        group1 = yandex.ComputePlacementGroup("group1",
+            description="my description",
+            folder_id="abc*********123")
+        ```
+
         :param str resource_name: The name of the resource.
         :param ComputePlacementGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -213,6 +275,10 @@ class ComputePlacementGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: A description of the Placement Group.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Placement Group.
+        :param pulumi.Input[str] name: The name of the Placement Group.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -233,20 +299,32 @@ class ComputePlacementGroup(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        A description of the Placement Group.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the Placement Group.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The name of the Placement Group.
+        """
         return pulumi.get(self, "name")
 

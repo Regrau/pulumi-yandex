@@ -4,6 +4,23 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Use this data source to get cloud details.
+ * For more information, see [Cloud](https://cloud.yandex.com/docs/resource-manager/concepts/resources-hierarchy#cloud).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const foo = pulumi.output(yandex.getResourcemanagerCloud({
+ *     name: "foo-cloud",
+ * }));
+ *
+ * export const cloudCreateTimestamp = foo.createdAt;
+ * ```
+ */
 export function getResourcemanagerCloud(args?: GetResourcemanagerCloudArgs, opts?: pulumi.InvokeOptions): Promise<GetResourcemanagerCloudResult> {
     args = args || {};
     if (!opts) {
@@ -22,8 +39,17 @@ export function getResourcemanagerCloud(args?: GetResourcemanagerCloudArgs, opts
  * A collection of arguments for invoking getResourcemanagerCloud.
  */
 export interface GetResourcemanagerCloudArgs {
+    /**
+     * ID of the cloud.
+     */
     cloudId?: string;
+    /**
+     * Description of the cloud.
+     */
     description?: string;
+    /**
+     * Name of the cloud.
+     */
     name?: string;
 }
 
@@ -32,12 +58,21 @@ export interface GetResourcemanagerCloudArgs {
  */
 export interface GetResourcemanagerCloudResult {
     readonly cloudId: string;
+    /**
+     * Cloud creation timestamp.
+     */
     readonly createdAt: string;
+    /**
+     * Description of the cloud.
+     */
     readonly description?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Name of the cloud.
+     */
     readonly name: string;
 }
 
@@ -49,7 +84,16 @@ export function getResourcemanagerCloudOutput(args?: GetResourcemanagerCloudOutp
  * A collection of arguments for invoking getResourcemanagerCloud.
  */
 export interface GetResourcemanagerCloudOutputArgs {
+    /**
+     * ID of the cloud.
+     */
     cloudId?: pulumi.Input<string>;
+    /**
+     * Description of the cloud.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Name of the cloud.
+     */
     name?: pulumi.Input<string>;
 }

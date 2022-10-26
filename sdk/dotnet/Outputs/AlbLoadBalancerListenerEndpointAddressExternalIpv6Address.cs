@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerListenerEndpointAddressExternalIpv6Address
     {
+        /// <summary>
+        /// Provided by the client or computed automatically.
+        /// </summary>
         public readonly string? Address;
 
         [OutputConstructor]

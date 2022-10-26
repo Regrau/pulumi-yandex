@@ -10,15 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates a target group in the specified folder and adds the specified targets to it.
+// For more information, see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/target-group).
+//
+// ## Import
+//
+// A target group can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/albTargetGroup:AlbTargetGroup default target_group_id
+//
+// ```
 type AlbTargetGroup struct {
 	pulumi.CustomResourceState
 
-	CreatedAt   pulumi.StringOutput             `pulumi:"createdAt"`
-	Description pulumi.StringPtrOutput          `pulumi:"description"`
-	FolderId    pulumi.StringOutput             `pulumi:"folderId"`
-	Labels      pulumi.StringMapOutput          `pulumi:"labels"`
-	Name        pulumi.StringOutput             `pulumi:"name"`
-	Targets     AlbTargetGroupTargetArrayOutput `pulumi:"targets"`
+	// The target group creation timestamp.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// An optional description of the target group. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Labels to assign to this target group. A list of key/value pairs.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the target group. Provided by the client when the target group is created.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// A Target resource. The structure is documented below.
+	Targets AlbTargetGroupTargetArrayOutput `pulumi:"targets"`
 }
 
 // NewAlbTargetGroup registers a new resource with the given unique name, arguments, and options.
@@ -51,21 +71,37 @@ func GetAlbTargetGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AlbTargetGroup resources.
 type albTargetGroupState struct {
-	CreatedAt   *string                `pulumi:"createdAt"`
-	Description *string                `pulumi:"description"`
-	FolderId    *string                `pulumi:"folderId"`
-	Labels      map[string]string      `pulumi:"labels"`
-	Name        *string                `pulumi:"name"`
-	Targets     []AlbTargetGroupTarget `pulumi:"targets"`
+	// The target group creation timestamp.
+	CreatedAt *string `pulumi:"createdAt"`
+	// An optional description of the target group. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this target group. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the target group. Provided by the client when the target group is created.
+	Name *string `pulumi:"name"`
+	// A Target resource. The structure is documented below.
+	Targets []AlbTargetGroupTarget `pulumi:"targets"`
 }
 
 type AlbTargetGroupState struct {
-	CreatedAt   pulumi.StringPtrInput
+	// The target group creation timestamp.
+	CreatedAt pulumi.StringPtrInput
+	// An optional description of the target group. Provide this property when
+	// you create the resource.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
-	Targets     AlbTargetGroupTargetArrayInput
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this target group. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the target group. Provided by the client when the target group is created.
+	Name pulumi.StringPtrInput
+	// A Target resource. The structure is documented below.
+	Targets AlbTargetGroupTargetArrayInput
 }
 
 func (AlbTargetGroupState) ElementType() reflect.Type {
@@ -73,20 +109,34 @@ func (AlbTargetGroupState) ElementType() reflect.Type {
 }
 
 type albTargetGroupArgs struct {
-	Description *string                `pulumi:"description"`
-	FolderId    *string                `pulumi:"folderId"`
-	Labels      map[string]string      `pulumi:"labels"`
-	Name        *string                `pulumi:"name"`
-	Targets     []AlbTargetGroupTarget `pulumi:"targets"`
+	// An optional description of the target group. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this target group. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the target group. Provided by the client when the target group is created.
+	Name *string `pulumi:"name"`
+	// A Target resource. The structure is documented below.
+	Targets []AlbTargetGroupTarget `pulumi:"targets"`
 }
 
 // The set of arguments for constructing a AlbTargetGroup resource.
 type AlbTargetGroupArgs struct {
+	// An optional description of the target group. Provide this property when
+	// you create the resource.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
-	Targets     AlbTargetGroupTargetArrayInput
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this target group. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the target group. Provided by the client when the target group is created.
+	Name pulumi.StringPtrInput
+	// A Target resource. The structure is documented below.
+	Targets AlbTargetGroupTargetArrayInput
 }
 
 func (AlbTargetGroupArgs) ElementType() reflect.Type {
@@ -176,26 +226,34 @@ func (o AlbTargetGroupOutput) ToAlbTargetGroupOutputWithContext(ctx context.Cont
 	return o
 }
 
+// The target group creation timestamp.
 func (o AlbTargetGroupOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbTargetGroup) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// An optional description of the target group. Provide this property when
+// you create the resource.
 func (o AlbTargetGroupOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlbTargetGroup) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the folder to which the resource belongs.
+// If omitted, the provider folder is used.
 func (o AlbTargetGroupOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbTargetGroup) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Labels to assign to this target group. A list of key/value pairs.
 func (o AlbTargetGroupOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *AlbTargetGroup) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the target group. Provided by the client when the target group is created.
 func (o AlbTargetGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbTargetGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// A Target resource. The structure is documented below.
 func (o AlbTargetGroupOutput) Targets() AlbTargetGroupTargetArrayOutput {
 	return o.ApplyT(func(v *AlbTargetGroup) AlbTargetGroupTargetArrayOutput { return v.Targets }).(AlbTargetGroupTargetArrayOutput)
 }

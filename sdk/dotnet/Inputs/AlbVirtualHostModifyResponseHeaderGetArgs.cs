@@ -12,15 +12,28 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbVirtualHostModifyResponseHeaderGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Append string to the header value.
+        /// </summary>
         [Input("append")]
         public Input<string>? Append { get; set; }
 
+        /// <summary>
+        /// name of the route.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// If set, remove the header.
+        /// </summary>
         [Input("remove")]
         public Input<bool>? Remove { get; set; }
 
+        /// <summary>
+        /// New value for a header. Header values support the following 
+        /// [formatters](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_conn_man/headers#custom-request-response-headers).
+        /// </summary>
         [Input("replace")]
         public Input<string>? Replace { get; set; }
 

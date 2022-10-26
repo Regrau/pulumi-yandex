@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbLoadBalancerListenerEndpointAddressGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// External IPv4 address. The structure is documented below.
+        /// </summary>
         [Input("externalIpv4Address")]
         public Input<Inputs.AlbLoadBalancerListenerEndpointAddressExternalIpv4AddressGetArgs>? ExternalIpv4Address { get; set; }
 
+        /// <summary>
+        /// External IPv6 address. The structure is documented below.
+        /// </summary>
         [Input("externalIpv6Address")]
         public Input<Inputs.AlbLoadBalancerListenerEndpointAddressExternalIpv6AddressGetArgs>? ExternalIpv6Address { get; set; }
 
+        /// <summary>
+        /// Internal IPv4 address. The structure is documented below.
+        /// </summary>
         [Input("internalIpv4Address")]
         public Input<Inputs.AlbLoadBalancerListenerEndpointAddressInternalIpv4AddressGetArgs>? InternalIpv4Address { get; set; }
 

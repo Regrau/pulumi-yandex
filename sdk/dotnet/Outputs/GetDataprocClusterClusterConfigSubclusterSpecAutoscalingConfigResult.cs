@@ -13,12 +13,33 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigResult
     {
+        /// <summary>
+        /// Defines an autoscaling rule based on the average CPU utilization of the instance group. If not set default autoscaling metric will be used.
+        /// </summary>
         public readonly double CpuUtilizationTarget;
+        /// <summary>
+        /// Timeout to gracefully decommission nodes during downscaling. In seconds.
+        /// </summary>
         public readonly int DecommissionTimeout;
+        /// <summary>
+        /// Maximum number of nodes in autoscaling subclusters.
+        /// </summary>
         public readonly int MaxHostsCount;
+        /// <summary>
+        /// Time in seconds allotted for averaging metrics.
+        /// </summary>
         public readonly int MeasurementDuration;
+        /// <summary>
+        /// Bool flag -- whether to use preemptible compute instances. Preemptible instances are stopped at least once every 24 hours, and can be stopped at any time if their resources are needed by Compute. For more information, see [Preemptible Virtual Machines](https://cloud.yandex.com/docs/compute/concepts/preemptible-vm).
+        /// </summary>
         public readonly bool Preemptible;
+        /// <summary>
+        /// Minimum amount of time in seconds allotted for monitoring before Instance Groups can reduce the number of instances in the group. During this time, the group size doesn't decrease, even if the new metric values indicate that it should.
+        /// </summary>
         public readonly int StabilizationDuration;
+        /// <summary>
+        /// The warmup time of the instance in seconds. During this time, traffic is sent to the instance, but instance metrics are not collected.
+        /// </summary>
         public readonly int WarmupDuration;
 
         [OutputConstructor]

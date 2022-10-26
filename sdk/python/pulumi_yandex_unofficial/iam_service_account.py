@@ -19,6 +19,11 @@ class IamServiceAccountArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IamServiceAccount resource.
+        :param pulumi.Input[str] description: Description of the service account.
+        :param pulumi.Input[str] folder_id: ID of the folder that the service account will be created in.
+               Defaults to the provider folder configuration.
+        :param pulumi.Input[str] name: Name of the service account.
+               Can be updated without creating a new resource.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -30,6 +35,9 @@ class IamServiceAccountArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the service account.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -39,6 +47,10 @@ class IamServiceAccountArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder that the service account will be created in.
+        Defaults to the provider folder configuration.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -48,6 +60,10 @@ class IamServiceAccountArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the service account.
+        Can be updated without creating a new resource.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -64,6 +80,11 @@ class _IamServiceAccountState:
                  name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IamServiceAccount resources.
+        :param pulumi.Input[str] description: Description of the service account.
+        :param pulumi.Input[str] folder_id: ID of the folder that the service account will be created in.
+               Defaults to the provider folder configuration.
+        :param pulumi.Input[str] name: Name of the service account.
+               Can be updated without creating a new resource.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -86,6 +107,9 @@ class _IamServiceAccountState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the service account.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -95,6 +119,10 @@ class _IamServiceAccountState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder that the service account will be created in.
+        Defaults to the provider folder configuration.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -104,6 +132,10 @@ class _IamServiceAccountState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the service account.
+        Can be updated without creating a new resource.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -121,9 +153,37 @@ class IamServiceAccount(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a IamServiceAccount resource with the given unique name, props, and options.
+        Allows management of a Yandex.Cloud IAM [service account](https://cloud.yandex.com/docs/iam/concepts/users/service-accounts).
+        To assign roles and permissions, use the yandex_iam_service_account_iam_binding,
+        IamServiceAccountIamMember and
+        IamServiceAccountIamPolicy resources.
+
+        ## Example Usage
+
+        This snippet creates a service account.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        sa = yandex.IamServiceAccount("sa", description="service account to manage VMs")
+        ```
+
+        ## Import
+
+        A service account can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/iamServiceAccount:IamServiceAccount sa account_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Description of the service account.
+        :param pulumi.Input[str] folder_id: ID of the folder that the service account will be created in.
+               Defaults to the provider folder configuration.
+        :param pulumi.Input[str] name: Name of the service account.
+               Can be updated without creating a new resource.
         """
         ...
     @overload
@@ -132,7 +192,30 @@ class IamServiceAccount(pulumi.CustomResource):
                  args: Optional[IamServiceAccountArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a IamServiceAccount resource with the given unique name, props, and options.
+        Allows management of a Yandex.Cloud IAM [service account](https://cloud.yandex.com/docs/iam/concepts/users/service-accounts).
+        To assign roles and permissions, use the yandex_iam_service_account_iam_binding,
+        IamServiceAccountIamMember and
+        IamServiceAccountIamPolicy resources.
+
+        ## Example Usage
+
+        This snippet creates a service account.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        sa = yandex.IamServiceAccount("sa", description="service account to manage VMs")
+        ```
+
+        ## Import
+
+        A service account can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/iamServiceAccount:IamServiceAccount sa account_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param IamServiceAccountArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -185,6 +268,11 @@ class IamServiceAccount(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Description of the service account.
+        :param pulumi.Input[str] folder_id: ID of the folder that the service account will be created in.
+               Defaults to the provider folder configuration.
+        :param pulumi.Input[str] name: Name of the service account.
+               Can be updated without creating a new resource.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -204,15 +292,26 @@ class IamServiceAccount(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the service account.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        ID of the folder that the service account will be created in.
+        Defaults to the provider folder configuration.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the service account.
+        Can be updated without creating a new resource.
+        """
         return pulumi.get(self, "name")
 

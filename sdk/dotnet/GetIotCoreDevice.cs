@@ -11,9 +11,51 @@ namespace Pulumi.Yandex
 {
     public static class GetIotCoreDevice
     {
+        /// <summary>
+        /// Get information about a Yandex IoT Core device. For more information about IoT Core, see 
+        /// [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myDevice = Yandex.GetIotCoreDevice.Invoke(new()
+        ///     {
+        ///         DeviceId = "are1sampleregistry11",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
+        /// </summary>
         public static Task<GetIotCoreDeviceResult> InvokeAsync(GetIotCoreDeviceArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetIotCoreDeviceResult>("yandex:index/getIotCoreDevice:getIotCoreDevice", args ?? new GetIotCoreDeviceArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex IoT Core device. For more information about IoT Core, see 
+        /// [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myDevice = Yandex.GetIotCoreDevice.Invoke(new()
+        ///     {
+        ///         DeviceId = "are1sampleregistry11",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
+        /// </summary>
         public static Output<GetIotCoreDeviceResult> Invoke(GetIotCoreDeviceInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetIotCoreDeviceResult>("yandex:index/getIotCoreDevice:getIotCoreDevice", args ?? new GetIotCoreDeviceInvokeArgs(), options.WithDefaults());
     }
@@ -21,9 +63,15 @@ namespace Pulumi.Yandex
 
     public sealed class GetIotCoreDeviceArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// IoT Core Device id used to define device
+        /// </summary>
         [Input("deviceId")]
         public string? DeviceId { get; set; }
 
+        /// <summary>
+        /// IoT Core Device name used to define device
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -35,9 +83,15 @@ namespace Pulumi.Yandex
 
     public sealed class GetIotCoreDeviceInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// IoT Core Device id used to define device
+        /// </summary>
         [Input("deviceId")]
         public Input<string>? DeviceId { get; set; }
 
+        /// <summary>
+        /// IoT Core Device name used to define device
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -51,9 +105,21 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetIotCoreDeviceResult
     {
+        /// <summary>
+        /// A set of key/value aliases pairs to assign to the IoT Core Device
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Aliases;
+        /// <summary>
+        /// A set of certificate's fingerprints for the IoT Core Device
+        /// </summary>
         public readonly ImmutableArray<string> Certificates;
+        /// <summary>
+        /// Creation timestamp of the IoT Core Device
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Description of the IoT Core Device
+        /// </summary>
         public readonly string Description;
         public readonly string? DeviceId;
         /// <summary>
@@ -61,7 +127,13 @@ namespace Pulumi.Yandex
         /// </summary>
         public readonly string Id;
         public readonly string? Name;
+        /// <summary>
+        /// A set of passwords's id for the IoT Core Device
+        /// </summary>
         public readonly ImmutableArray<string> Passwords;
+        /// <summary>
+        /// IoT Core Registry ID for the IoT Core Device
+        /// </summary>
         public readonly string RegistryId;
 
         [OutputConstructor]

@@ -13,13 +13,35 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetComputeInstanceGroupInstanceResult
     {
+        /// <summary>
+        /// The Fully Qualified Domain Name.
+        /// </summary>
         public readonly string Fqdn;
+        /// <summary>
+        /// The ID of the instance.
+        /// </summary>
         public readonly string InstanceId;
+        /// <summary>
+        /// The name of the managed instance.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// An array with the network interfaces attached to the managed instance. The structure is documented below.
+        /// * `status_changed_at` -The timestamp when the status of the managed instance was last changed.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetComputeInstanceGroupInstanceNetworkInterfaceResult> NetworkInterfaces;
+        /// <summary>
+        /// The status of the instance.
+        /// </summary>
         public readonly string Status;
         public readonly string StatusChangedAt;
+        /// <summary>
+        /// The status message of the target group.
+        /// </summary>
         public readonly string StatusMessage;
+        /// <summary>
+        /// The ID of the availability zone where the instance resides.
+        /// </summary>
         public readonly string ZoneId;
 
         [OutputConstructor]

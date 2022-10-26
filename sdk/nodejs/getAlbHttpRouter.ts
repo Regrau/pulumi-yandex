@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Application Load Balancer HTTP Router. For more information, see
+ * [Yandex.Cloud Application Load Balancer](https://cloud.yandex.com/en/docs/application-load-balancer/quickstart).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const tf_router = pulumi.output(yandex.getAlbHttpRouter({
+ *     httpRouterId: "my-http-router-id",
+ * }));
+ * ```
+ *
+ * This data source is used to define [Application Load Balancer HTTP Router] that can be used by other resources.
+ */
 export function getAlbHttpRouter(args?: GetAlbHttpRouterArgs, opts?: pulumi.InvokeOptions): Promise<GetAlbHttpRouterResult> {
     args = args || {};
     if (!opts) {
@@ -24,9 +39,21 @@ export function getAlbHttpRouter(args?: GetAlbHttpRouterArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getAlbHttpRouter.
  */
 export interface GetAlbHttpRouterArgs {
+    /**
+     * Description of the HTTP Router.
+     */
     description?: string;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * HTTP Router ID.
+     */
     httpRouterId?: string;
+    /**
+     * - Name of the HTTP Router.
+     */
     name?: string;
 }
 
@@ -34,7 +61,13 @@ export interface GetAlbHttpRouterArgs {
  * A collection of values returned by getAlbHttpRouter.
  */
 export interface GetAlbHttpRouterResult {
+    /**
+     * Creation timestamp of this HTTP Router.
+     */
     readonly createdAt: string;
+    /**
+     * Description of the HTTP Router.
+     */
     readonly description: string;
     readonly folderId: string;
     readonly httpRouterId: string;
@@ -42,6 +75,9 @@ export interface GetAlbHttpRouterResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Labels to assign to this HTTP Router.
+     */
     readonly labels: {[key: string]: string};
     readonly name: string;
     readonly routeOptions: outputs.GetAlbHttpRouterRouteOption[];
@@ -55,8 +91,20 @@ export function getAlbHttpRouterOutput(args?: GetAlbHttpRouterOutputArgs, opts?:
  * A collection of arguments for invoking getAlbHttpRouter.
  */
 export interface GetAlbHttpRouterOutputArgs {
+    /**
+     * Description of the HTTP Router.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * HTTP Router ID.
+     */
     httpRouterId?: pulumi.Input<string>;
+    /**
+     * - Name of the HTTP Router.
+     */
     name?: pulumi.Input<string>;
 }

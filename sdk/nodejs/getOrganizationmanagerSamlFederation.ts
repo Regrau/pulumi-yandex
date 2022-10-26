@@ -5,6 +5,24 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex SAML Federation. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/organization/add-federation).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const federation = pulumi.output(yandex.getOrganizationmanagerSamlFederation({
+ *     federationId: "some_federation_id",
+ *     organizationId: "some_organization_id",
+ * }));
+ *
+ * export const my_federation_name = federation.name!;
+ * ```
+ */
 export function getOrganizationmanagerSamlFederation(args?: GetOrganizationmanagerSamlFederationArgs, opts?: pulumi.InvokeOptions): Promise<GetOrganizationmanagerSamlFederationResult> {
     args = args || {};
     if (!opts) {
@@ -24,9 +42,21 @@ export function getOrganizationmanagerSamlFederation(args?: GetOrganizationmanag
  * A collection of arguments for invoking getOrganizationmanagerSamlFederation.
  */
 export interface GetOrganizationmanagerSamlFederationArgs {
+    /**
+     * ID of a SAML Federation.
+     */
     federationId?: string;
+    /**
+     * A set of key/value label pairs assigned to the SAML Federation.
+     */
     labels?: {[key: string]: string};
+    /**
+     * Name of a SAML Federation.
+     */
     name?: string;
+    /**
+     * Organization that the federation belongs to. If value is omitted, the default provider organization is used.
+     */
     organizationId?: string;
 }
 
@@ -34,22 +64,52 @@ export interface GetOrganizationmanagerSamlFederationArgs {
  * A collection of values returned by getOrganizationmanagerSamlFederation.
  */
 export interface GetOrganizationmanagerSamlFederationResult {
+    /**
+     * Indicates whether new users get added automatically on successful authentication.
+     */
     readonly autoCreateAccountOnLogin: boolean;
+    /**
+     * Indicates whether case-insensitive name ids are in use.
+     */
     readonly caseInsensitiveNameIds: boolean;
+    /**
+     * The lifetime of a Browser cookie in seconds.
+     */
     readonly cookieMaxAge: string;
+    /**
+     * The SAML Federation creation timestamp.
+     */
     readonly createdAt: string;
+    /**
+     * The description of the SAML Federation.
+     */
     readonly description: string;
     readonly federationId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * The ID of the IdP server used for authentication.
+     */
     readonly issuer: string;
+    /**
+     * A set of key/value label pairs assigned to the SAML Federation.
+     */
     readonly labels?: {[key: string]: string};
     readonly name: string;
     readonly organizationId?: string;
+    /**
+     * Federation security settings, structure is documented below.
+     */
     readonly securitySettings: outputs.GetOrganizationmanagerSamlFederationSecuritySetting[];
+    /**
+     * Single sign-on endpoint binding type.
+     */
     readonly ssoBinding: string;
+    /**
+     * Single sign-on endpoint URL.
+     */
     readonly ssoUrl: string;
 }
 
@@ -61,8 +121,20 @@ export function getOrganizationmanagerSamlFederationOutput(args?: GetOrganizatio
  * A collection of arguments for invoking getOrganizationmanagerSamlFederation.
  */
 export interface GetOrganizationmanagerSamlFederationOutputArgs {
+    /**
+     * ID of a SAML Federation.
+     */
     federationId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs assigned to the SAML Federation.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of a SAML Federation.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Organization that the federation belongs to. If value is omitted, the default provider organization is used.
+     */
     organizationId?: pulumi.Input<string>;
 }

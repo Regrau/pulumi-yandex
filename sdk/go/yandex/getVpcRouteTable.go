@@ -10,6 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex VPC route table. For more information, see
+// [Yandex.Cloud VPC](https://cloud.yandex.com/docs/vpc/concepts/index).
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.LookupVpcRouteTable(ctx, &GetVpcRouteTableArgs{
+//				RouteTableId: pulumi.StringRef("my-rt-id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// This data source is used to define [VPC Route Table] that can be used by other resources.
 func LookupVpcRouteTable(ctx *pulumi.Context, args *LookupVpcRouteTableArgs, opts ...pulumi.InvokeOption) (*LookupVpcRouteTableResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcRouteTableResult
@@ -22,22 +50,30 @@ func LookupVpcRouteTable(ctx *pulumi.Context, args *LookupVpcRouteTableArgs, opt
 
 // A collection of arguments for invoking getVpcRouteTable.
 type LookupVpcRouteTableArgs struct {
-	FolderId     *string `pulumi:"folderId"`
-	Name         *string `pulumi:"name"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// - Name of the route table.
+	Name *string `pulumi:"name"`
+	// Route table ID.
 	RouteTableId *string `pulumi:"routeTableId"`
 }
 
 // A collection of values returned by getVpcRouteTable.
 type LookupVpcRouteTableResult struct {
-	CreatedAt   string `pulumi:"createdAt"`
+	// Creation timestamp of this route table.
+	CreatedAt string `pulumi:"createdAt"`
+	// Description of the route table.
 	Description string `pulumi:"description"`
 	FolderId    string `pulumi:"folderId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id           string                        `pulumi:"id"`
-	Labels       map[string]string             `pulumi:"labels"`
-	Name         string                        `pulumi:"name"`
-	NetworkId    string                        `pulumi:"networkId"`
-	RouteTableId string                        `pulumi:"routeTableId"`
+	Id string `pulumi:"id"`
+	// Labels to assign to this route table.
+	Labels map[string]string `pulumi:"labels"`
+	Name   string            `pulumi:"name"`
+	// ID of the network this route table belongs to.
+	NetworkId    string `pulumi:"networkId"`
+	RouteTableId string `pulumi:"routeTableId"`
+	// List of static route records of the route table. Structure is documented below.
 	StaticRoutes []GetVpcRouteTableStaticRoute `pulumi:"staticRoutes"`
 }
 
@@ -56,8 +92,11 @@ func LookupVpcRouteTableOutput(ctx *pulumi.Context, args LookupVpcRouteTableOutp
 
 // A collection of arguments for invoking getVpcRouteTable.
 type LookupVpcRouteTableOutputArgs struct {
-	FolderId     pulumi.StringPtrInput `pulumi:"folderId"`
-	Name         pulumi.StringPtrInput `pulumi:"name"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// - Name of the route table.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Route table ID.
 	RouteTableId pulumi.StringPtrInput `pulumi:"routeTableId"`
 }
 
@@ -80,10 +119,12 @@ func (o LookupVpcRouteTableResultOutput) ToLookupVpcRouteTableResultOutputWithCo
 	return o
 }
 
+// Creation timestamp of this route table.
 func (o LookupVpcRouteTableResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcRouteTableResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the route table.
 func (o LookupVpcRouteTableResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcRouteTableResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -97,6 +138,7 @@ func (o LookupVpcRouteTableResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcRouteTableResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Labels to assign to this route table.
 func (o LookupVpcRouteTableResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupVpcRouteTableResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -105,6 +147,7 @@ func (o LookupVpcRouteTableResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcRouteTableResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network this route table belongs to.
 func (o LookupVpcRouteTableResultOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcRouteTableResult) string { return v.NetworkId }).(pulumi.StringOutput)
 }
@@ -113,6 +156,7 @@ func (o LookupVpcRouteTableResultOutput) RouteTableId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcRouteTableResult) string { return v.RouteTableId }).(pulumi.StringOutput)
 }
 
+// List of static route records of the route table. Structure is documented below.
 func (o LookupVpcRouteTableResultOutput) StaticRoutes() GetVpcRouteTableStaticRouteArrayOutput {
 	return o.ApplyT(func(v LookupVpcRouteTableResult) []GetVpcRouteTableStaticRoute { return v.StaticRoutes }).(GetVpcRouteTableStaticRouteArrayOutput)
 }

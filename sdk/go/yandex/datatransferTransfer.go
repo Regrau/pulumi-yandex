@@ -10,17 +10,106 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a Data Transfer transfer. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-transfer/).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			pgSource, err := yandex.NewDatatransferEndpoint(ctx, "pgSource", &yandex.DatatransferEndpointArgs{
+//				Settings: &DatatransferEndpointSettingsArgs{
+//					PostgresSource: &DatatransferEndpointSettingsPostgresSourceArgs{
+//						Connection: &DatatransferEndpointSettingsPostgresSourceConnectionArgs{
+//							OnPremise: &DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs{
+//								Hosts: pulumi.StringArray{
+//									pulumi.String("example.org"),
+//								},
+//								Port: pulumi.Int(5432),
+//							},
+//						},
+//						SlotGigabyteLagLimit: pulumi.Int(100),
+//						Database:             pulumi.String("db1"),
+//						User:                 pulumi.String("user1"),
+//						Password: &DatatransferEndpointSettingsPostgresSourcePasswordArgs{
+//							Raw: pulumi.String("123"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			pgTarget, err := yandex.NewDatatransferEndpoint(ctx, "pgTarget", &yandex.DatatransferEndpointArgs{
+//				FolderId: pulumi.String("some_folder_id"),
+//				Settings: &DatatransferEndpointSettingsArgs{
+//					PostgresTarget: &DatatransferEndpointSettingsPostgresTargetArgs{
+//						Connection: &DatatransferEndpointSettingsPostgresTargetConnectionArgs{
+//							MdbClusterId: pulumi.String("some_cluster_id"),
+//						},
+//						Database: pulumi.String("db2"),
+//						User:     pulumi.String("user2"),
+//						Password: &DatatransferEndpointSettingsPostgresTargetPasswordArgs{
+//							Raw: pulumi.String("321"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewDatatransferTransfer(ctx, "pgpgTransfer", &yandex.DatatransferTransferArgs{
+//				FolderId: pulumi.String("some_folder_id"),
+//				SourceId: pgSource.ID(),
+//				TargetId: pgTarget.ID(),
+//				Type:     pulumi.String("SNAPSHOT_AND_INCREMENT"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A transfer can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/datatransferTransfer:DatatransferTransfer foo transfer_id
+//
+// ```
 type DatatransferTransfer struct {
 	pulumi.CustomResourceState
 
+	// Arbitrary description text for the transfer.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
-	FolderId    pulumi.StringOutput    `pulumi:"folderId"`
-	Labels      pulumi.StringMapOutput `pulumi:"labels"`
-	Name        pulumi.StringOutput    `pulumi:"name"`
-	SourceId    pulumi.StringPtrOutput `pulumi:"sourceId"`
-	TargetId    pulumi.StringPtrOutput `pulumi:"targetId"`
-	Type        pulumi.StringPtrOutput `pulumi:"type"`
-	Warning     pulumi.StringOutput    `pulumi:"warning"`
+	// ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Data Transfer transfer.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the transfer.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the source endpoint for the transfer.
+	SourceId pulumi.StringPtrOutput `pulumi:"sourceId"`
+	// ID of the target endpoint for the transfer.
+	TargetId pulumi.StringPtrOutput `pulumi:"targetId"`
+	// Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
+	Type pulumi.StringPtrOutput `pulumi:"type"`
+	// (Computed) Error description if transfer has any errors.
+	Warning pulumi.StringOutput `pulumi:"warning"`
 }
 
 // NewDatatransferTransfer registers a new resource with the given unique name, arguments, and options.
@@ -53,25 +142,41 @@ func GetDatatransferTransfer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DatatransferTransfer resources.
 type datatransferTransferState struct {
-	Description *string           `pulumi:"description"`
-	FolderId    *string           `pulumi:"folderId"`
-	Labels      map[string]string `pulumi:"labels"`
-	Name        *string           `pulumi:"name"`
-	SourceId    *string           `pulumi:"sourceId"`
-	TargetId    *string           `pulumi:"targetId"`
-	Type        *string           `pulumi:"type"`
-	Warning     *string           `pulumi:"warning"`
+	// Arbitrary description text for the transfer.
+	Description *string `pulumi:"description"`
+	// ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Data Transfer transfer.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the transfer.
+	Name *string `pulumi:"name"`
+	// ID of the source endpoint for the transfer.
+	SourceId *string `pulumi:"sourceId"`
+	// ID of the target endpoint for the transfer.
+	TargetId *string `pulumi:"targetId"`
+	// Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
+	Type *string `pulumi:"type"`
+	// (Computed) Error description if transfer has any errors.
+	Warning *string `pulumi:"warning"`
 }
 
 type DatatransferTransferState struct {
+	// Arbitrary description text for the transfer.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
-	SourceId    pulumi.StringPtrInput
-	TargetId    pulumi.StringPtrInput
-	Type        pulumi.StringPtrInput
-	Warning     pulumi.StringPtrInput
+	// ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Data Transfer transfer.
+	Labels pulumi.StringMapInput
+	// Name of the transfer.
+	Name pulumi.StringPtrInput
+	// ID of the source endpoint for the transfer.
+	SourceId pulumi.StringPtrInput
+	// ID of the target endpoint for the transfer.
+	TargetId pulumi.StringPtrInput
+	// Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
+	Type pulumi.StringPtrInput
+	// (Computed) Error description if transfer has any errors.
+	Warning pulumi.StringPtrInput
 }
 
 func (DatatransferTransferState) ElementType() reflect.Type {
@@ -79,24 +184,38 @@ func (DatatransferTransferState) ElementType() reflect.Type {
 }
 
 type datatransferTransferArgs struct {
-	Description *string           `pulumi:"description"`
-	FolderId    *string           `pulumi:"folderId"`
-	Labels      map[string]string `pulumi:"labels"`
-	Name        *string           `pulumi:"name"`
-	SourceId    *string           `pulumi:"sourceId"`
-	TargetId    *string           `pulumi:"targetId"`
-	Type        *string           `pulumi:"type"`
+	// Arbitrary description text for the transfer.
+	Description *string `pulumi:"description"`
+	// ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Data Transfer transfer.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the transfer.
+	Name *string `pulumi:"name"`
+	// ID of the source endpoint for the transfer.
+	SourceId *string `pulumi:"sourceId"`
+	// ID of the target endpoint for the transfer.
+	TargetId *string `pulumi:"targetId"`
+	// Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
+	Type *string `pulumi:"type"`
 }
 
 // The set of arguments for constructing a DatatransferTransfer resource.
 type DatatransferTransferArgs struct {
+	// Arbitrary description text for the transfer.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
-	SourceId    pulumi.StringPtrInput
-	TargetId    pulumi.StringPtrInput
-	Type        pulumi.StringPtrInput
+	// ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Data Transfer transfer.
+	Labels pulumi.StringMapInput
+	// Name of the transfer.
+	Name pulumi.StringPtrInput
+	// ID of the source endpoint for the transfer.
+	SourceId pulumi.StringPtrInput
+	// ID of the target endpoint for the transfer.
+	TargetId pulumi.StringPtrInput
+	// Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
+	Type pulumi.StringPtrInput
 }
 
 func (DatatransferTransferArgs) ElementType() reflect.Type {
@@ -186,34 +305,42 @@ func (o DatatransferTransferOutput) ToDatatransferTransferOutputWithContext(ctx 
 	return o
 }
 
+// Arbitrary description text for the transfer.
 func (o DatatransferTransferOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatatransferTransfer) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
 func (o DatatransferTransferOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatatransferTransfer) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the Data Transfer transfer.
 func (o DatatransferTransferOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *DatatransferTransfer) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the transfer.
 func (o DatatransferTransferOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatatransferTransfer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the source endpoint for the transfer.
 func (o DatatransferTransferOutput) SourceId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatatransferTransfer) pulumi.StringPtrOutput { return v.SourceId }).(pulumi.StringPtrOutput)
 }
 
+// ID of the target endpoint for the transfer.
 func (o DatatransferTransferOutput) TargetId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatatransferTransfer) pulumi.StringPtrOutput { return v.TargetId }).(pulumi.StringPtrOutput)
 }
 
+// Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
 func (o DatatransferTransferOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatatransferTransfer) pulumi.StringPtrOutput { return v.Type }).(pulumi.StringPtrOutput)
 }
 
+// (Computed) Error description if transfer has any errors.
 func (o DatatransferTransferOutput) Warning() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatatransferTransfer) pulumi.StringOutput { return v.Warning }).(pulumi.StringOutput)
 }

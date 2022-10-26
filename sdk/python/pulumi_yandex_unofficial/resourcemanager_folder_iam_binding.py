@@ -20,6 +20,13 @@ class ResourcemanagerFolderIamBindingArgs:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a ResourcemanagerFolderIamBinding resource.
+        :param pulumi.Input[str] folder_id: ID of the folder to attach a policy to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: An array of identities that will be granted the privilege that is specified in the `role` field.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+        :param pulumi.Input[str] role: The role that should be assigned. Only one
+               `ResourcemanagerFolderIamBinding` can be used per role.
         """
         pulumi.set(__self__, "folder_id", folder_id)
         pulumi.set(__self__, "members", members)
@@ -30,6 +37,9 @@ class ResourcemanagerFolderIamBindingArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Input[str]:
+        """
+        ID of the folder to attach a policy to.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -39,6 +49,12 @@ class ResourcemanagerFolderIamBindingArgs:
     @property
     @pulumi.getter
     def members(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        An array of identities that will be granted the privilege that is specified in the `role` field.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        """
         return pulumi.get(self, "members")
 
     @members.setter
@@ -48,6 +64,10 @@ class ResourcemanagerFolderIamBindingArgs:
     @property
     @pulumi.getter
     def role(self) -> pulumi.Input[str]:
+        """
+        The role that should be assigned. Only one
+        `ResourcemanagerFolderIamBinding` can be used per role.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -73,6 +93,13 @@ class _ResourcemanagerFolderIamBindingState:
                  sleep_after: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering ResourcemanagerFolderIamBinding resources.
+        :param pulumi.Input[str] folder_id: ID of the folder to attach a policy to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: An array of identities that will be granted the privilege that is specified in the `role` field.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+        :param pulumi.Input[str] role: The role that should be assigned. Only one
+               `ResourcemanagerFolderIamBinding` can be used per role.
         """
         if folder_id is not None:
             pulumi.set(__self__, "folder_id", folder_id)
@@ -86,6 +113,9 @@ class _ResourcemanagerFolderIamBindingState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder to attach a policy to.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -95,6 +125,12 @@ class _ResourcemanagerFolderIamBindingState:
     @property
     @pulumi.getter
     def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        An array of identities that will be granted the privilege that is specified in the `role` field.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        """
         return pulumi.get(self, "members")
 
     @members.setter
@@ -104,6 +140,10 @@ class _ResourcemanagerFolderIamBindingState:
     @property
     @pulumi.getter
     def role(self) -> Optional[pulumi.Input[str]]:
+        """
+        The role that should be assigned. Only one
+        `ResourcemanagerFolderIamBinding` can be used per role.
+        """
         return pulumi.get(self, "role")
 
     @role.setter
@@ -131,9 +171,47 @@ class ResourcemanagerFolderIamBinding(pulumi.CustomResource):
                  sleep_after: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Create a ResourcemanagerFolderIamBinding resource with the given unique name, props, and options.
+        Allows creation and management of a single binding within IAM policy for
+        an existing Yandex Resource Manager folder.
+
+        > **Note:** This resource _must not_ be used in conjunction with
+           `ResourcemanagerFolderIamPolicy` or they will conflict over what your policy
+           should be.
+
+        > **Note:** When you delete `ResourcemanagerFolderIamBinding` resource,
+           the roles can be deleted from other users within the folder as well. Be careful!
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex as yandex
+        import pulumi_yandex_unofficial as yandex
+
+        project1 = yandex.get_resourcemanager_folder(folder_id="some_folder_id")
+        admin = yandex.ResourcemanagerFolderIamBinding("admin",
+            folder_id=project1.id,
+            members=["userAccount:some_user_id"],
+            role="editor")
+        ```
+
+        ## Import
+
+        IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `folder_id` and role, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/resourcemanagerFolderIamBinding:ResourcemanagerFolderIamBinding viewer "folder_id viewer"
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] folder_id: ID of the folder to attach a policy to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: An array of identities that will be granted the privilege that is specified in the `role` field.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+        :param pulumi.Input[str] role: The role that should be assigned. Only one
+               `ResourcemanagerFolderIamBinding` can be used per role.
         """
         ...
     @overload
@@ -142,7 +220,38 @@ class ResourcemanagerFolderIamBinding(pulumi.CustomResource):
                  args: ResourcemanagerFolderIamBindingArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ResourcemanagerFolderIamBinding resource with the given unique name, props, and options.
+        Allows creation and management of a single binding within IAM policy for
+        an existing Yandex Resource Manager folder.
+
+        > **Note:** This resource _must not_ be used in conjunction with
+           `ResourcemanagerFolderIamPolicy` or they will conflict over what your policy
+           should be.
+
+        > **Note:** When you delete `ResourcemanagerFolderIamBinding` resource,
+           the roles can be deleted from other users within the folder as well. Be careful!
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex as yandex
+        import pulumi_yandex_unofficial as yandex
+
+        project1 = yandex.get_resourcemanager_folder(folder_id="some_folder_id")
+        admin = yandex.ResourcemanagerFolderIamBinding("admin",
+            folder_id=project1.id,
+            members=["userAccount:some_user_id"],
+            role="editor")
+        ```
+
+        ## Import
+
+        IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `folder_id` and role, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/resourcemanagerFolderIamBinding:ResourcemanagerFolderIamBinding viewer "folder_id viewer"
+        ```
+
         :param str resource_name: The name of the resource.
         :param ResourcemanagerFolderIamBindingArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -202,6 +311,13 @@ class ResourcemanagerFolderIamBinding(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] folder_id: ID of the folder to attach a policy to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] members: An array of identities that will be granted the privilege that is specified in the `role` field.
+               Each entry can have one of the following values:
+               * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
+               * **serviceAccount:{service_account_id}**: A unique service account ID.
+        :param pulumi.Input[str] role: The role that should be assigned. Only one
+               `ResourcemanagerFolderIamBinding` can be used per role.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -216,16 +332,29 @@ class ResourcemanagerFolderIamBinding(pulumi.CustomResource):
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        ID of the folder to attach a policy to.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def members(self) -> pulumi.Output[Sequence[str]]:
+        """
+        An array of identities that will be granted the privilege that is specified in the `role` field.
+        Each entry can have one of the following values:
+        * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
+        * **serviceAccount:{service_account_id}**: A unique service account ID.
+        """
         return pulumi.get(self, "members")
 
     @property
     @pulumi.getter
     def role(self) -> pulumi.Output[str]:
+        """
+        The role that should be assigned. Only one
+        `ResourcemanagerFolderIamBinding` can be used per role.
+        """
         return pulumi.get(self, "role")
 
     @property

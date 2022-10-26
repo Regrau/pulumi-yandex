@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbMongodbClusterUserInputArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the MongoDB cluster.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -20,6 +23,10 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("permissions", required: true)]
         private InputList<Inputs.GetMdbMongodbClusterUserPermissionInputArgs>? _permissions;
+
+        /// <summary>
+        /// Set of permissions granted to the user. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.GetMdbMongodbClusterUserPermissionInputArgs> Permissions
         {
             get => _permissions ?? (_permissions = new InputList<Inputs.GetMdbMongodbClusterUserPermissionInputArgs>());

@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows creation and management of Cloud Folders for an existing Yandex Cloud. See [the official documentation](https://cloud.yandex.com/docs/resource-manager/concepts/resources-hierarchy) for additional info.
+ * Note: deletion of folders may take up to 30 minutes as it requires a lot of communication between cloud services.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const folder1 = new yandex.ResourcemanagerFolder("folder1", {
+ *     cloudId: "my_cloud_id",
+ * });
+ * ```
+ */
 export class ResourcemanagerFolder extends pulumi.CustomResource {
     /**
      * Get an existing ResourcemanagerFolder resource's state with the given name, ID, and optional extra
@@ -32,10 +47,22 @@ export class ResourcemanagerFolder extends pulumi.CustomResource {
         return obj['__pulumiType'] === ResourcemanagerFolder.__pulumiType;
     }
 
+    /**
+     * Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+     */
     public readonly cloudId!: pulumi.Output<string>;
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * A description of the Folder.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * A set of key/value label pairs to assign to the Folder.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * The name of the Folder.
+     */
     public readonly name!: pulumi.Output<string>;
 
     /**
@@ -73,10 +100,22 @@ export class ResourcemanagerFolder extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ResourcemanagerFolder resources.
  */
 export interface ResourcemanagerFolderState {
+    /**
+     * Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+     */
     cloudId?: pulumi.Input<string>;
     createdAt?: pulumi.Input<string>;
+    /**
+     * A description of the Folder.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the Folder.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the Folder.
+     */
     name?: pulumi.Input<string>;
 }
 
@@ -84,8 +123,20 @@ export interface ResourcemanagerFolderState {
  * The set of arguments for constructing a ResourcemanagerFolder resource.
  */
 export interface ResourcemanagerFolderArgs {
+    /**
+     * Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+     */
     cloudId?: pulumi.Input<string>;
+    /**
+     * A description of the Folder.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the Folder.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the Folder.
+     */
     name?: pulumi.Input<string>;
 }

@@ -14,6 +14,10 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("addresses", required: true)]
         private InputList<Inputs.AlbLoadBalancerListenerEndpointAddressGetArgs>? _addresses;
+
+        /// <summary>
+        /// Provided by the client or computed automatically.
+        /// </summary>
         public InputList<Inputs.AlbLoadBalancerListenerEndpointAddressGetArgs> Addresses
         {
             get => _addresses ?? (_addresses = new InputList<Inputs.AlbLoadBalancerListenerEndpointAddressGetArgs>());
@@ -22,6 +26,10 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("ports", required: true)]
         private InputList<int>? _ports;
+
+        /// <summary>
+        /// One or more ports to listen on.
+        /// </summary>
         public InputList<int> Ports
         {
             get => _ports ?? (_ports = new InputList<int>());

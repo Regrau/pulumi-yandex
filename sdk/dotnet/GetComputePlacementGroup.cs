@@ -11,9 +11,67 @@ namespace Pulumi.Yandex
 {
     public static class GetComputePlacementGroup
     {
+        /// <summary>
+        /// Get information about a Yandex Compute Placement group. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/placement-groups).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myGroup = Yandex.GetComputePlacementGroup.Invoke(new()
+        ///     {
+        ///         GroupId = "some_group_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["placementGroupName"] = myGroup.Apply(getComputePlacementGroupResult =&gt; getComputePlacementGroupResult.Name),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetComputePlacementGroupResult> InvokeAsync(GetComputePlacementGroupArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetComputePlacementGroupResult>("yandex:index/getComputePlacementGroup:getComputePlacementGroup", args ?? new GetComputePlacementGroupArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Compute Placement group. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/placement-groups).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myGroup = Yandex.GetComputePlacementGroup.Invoke(new()
+        ///     {
+        ///         GroupId = "some_group_id",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["placementGroupName"] = myGroup.Apply(getComputePlacementGroupResult =&gt; getComputePlacementGroupResult.Name),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetComputePlacementGroupResult> Invoke(GetComputePlacementGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetComputePlacementGroupResult>("yandex:index/getComputePlacementGroup:getComputePlacementGroup", args ?? new GetComputePlacementGroupInvokeArgs(), options.WithDefaults());
     }
@@ -21,23 +79,39 @@ namespace Pulumi.Yandex
 
     public sealed class GetComputePlacementGroupArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Description of the group.
+        /// </summary>
         [Input("description")]
         public string? Description { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// The ID of a specific group.
+        /// </summary>
         [Input("groupId")]
         public string? GroupId { get; set; }
 
         [Input("labels")]
         private Dictionary<string, string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs assigned to the group.
+        /// </summary>
         public Dictionary<string, string> Labels
         {
             get => _labels ?? (_labels = new Dictionary<string, string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the group.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -49,23 +123,39 @@ namespace Pulumi.Yandex
 
     public sealed class GetComputePlacementGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Description of the group.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// The ID of a specific group.
+        /// </summary>
         [Input("groupId")]
         public Input<string>? GroupId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs assigned to the group.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the group.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -79,7 +169,13 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetComputePlacementGroupResult
     {
+        /// <summary>
+        /// Placement group creation timestamp.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Description of the group.
+        /// </summary>
         public readonly string? Description;
         public readonly string FolderId;
         public readonly string GroupId;
@@ -87,6 +183,9 @@ namespace Pulumi.Yandex
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A set of key/value label pairs assigned to the group.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
         public readonly string? Name;
 

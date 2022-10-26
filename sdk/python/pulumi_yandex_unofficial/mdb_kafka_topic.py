@@ -23,6 +23,10 @@ class MdbKafkaTopicArgs:
                  topic_config: Optional[pulumi.Input['MdbKafkaTopicTopicConfigArgs']] = None):
         """
         The set of arguments for constructing a MdbKafkaTopic resource.
+        :param pulumi.Input[int] partitions: The number of the topic's partitions.
+        :param pulumi.Input[int] replication_factor: Amount of data copies (replicas) for the topic in the cluster.
+        :param pulumi.Input[str] name: The name of the topic.
+        :param pulumi.Input['MdbKafkaTopicTopicConfigArgs'] topic_config: User-defined settings for the topic. The structure is documented below.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "partitions", partitions)
@@ -44,6 +48,9 @@ class MdbKafkaTopicArgs:
     @property
     @pulumi.getter
     def partitions(self) -> pulumi.Input[int]:
+        """
+        The number of the topic's partitions.
+        """
         return pulumi.get(self, "partitions")
 
     @partitions.setter
@@ -53,6 +60,9 @@ class MdbKafkaTopicArgs:
     @property
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> pulumi.Input[int]:
+        """
+        Amount of data copies (replicas) for the topic in the cluster.
+        """
         return pulumi.get(self, "replication_factor")
 
     @replication_factor.setter
@@ -62,6 +72,9 @@ class MdbKafkaTopicArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the topic.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -71,6 +84,9 @@ class MdbKafkaTopicArgs:
     @property
     @pulumi.getter(name="topicConfig")
     def topic_config(self) -> Optional[pulumi.Input['MdbKafkaTopicTopicConfigArgs']]:
+        """
+        User-defined settings for the topic. The structure is documented below.
+        """
         return pulumi.get(self, "topic_config")
 
     @topic_config.setter
@@ -88,6 +104,10 @@ class _MdbKafkaTopicState:
                  topic_config: Optional[pulumi.Input['MdbKafkaTopicTopicConfigArgs']] = None):
         """
         Input properties used for looking up and filtering MdbKafkaTopic resources.
+        :param pulumi.Input[str] name: The name of the topic.
+        :param pulumi.Input[int] partitions: The number of the topic's partitions.
+        :param pulumi.Input[int] replication_factor: Amount of data copies (replicas) for the topic in the cluster.
+        :param pulumi.Input['MdbKafkaTopicTopicConfigArgs'] topic_config: User-defined settings for the topic. The structure is documented below.
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
@@ -112,6 +132,9 @@ class _MdbKafkaTopicState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the topic.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -121,6 +144,9 @@ class _MdbKafkaTopicState:
     @property
     @pulumi.getter
     def partitions(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of the topic's partitions.
+        """
         return pulumi.get(self, "partitions")
 
     @partitions.setter
@@ -130,6 +156,9 @@ class _MdbKafkaTopicState:
     @property
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> Optional[pulumi.Input[int]]:
+        """
+        Amount of data copies (replicas) for the topic in the cluster.
+        """
         return pulumi.get(self, "replication_factor")
 
     @replication_factor.setter
@@ -139,6 +168,9 @@ class _MdbKafkaTopicState:
     @property
     @pulumi.getter(name="topicConfig")
     def topic_config(self) -> Optional[pulumi.Input['MdbKafkaTopicTopicConfigArgs']]:
+        """
+        User-defined settings for the topic. The structure is documented below.
+        """
         return pulumi.get(self, "topic_config")
 
     @topic_config.setter
@@ -158,9 +190,64 @@ class MdbKafkaTopic(pulumi.CustomResource):
                  topic_config: Optional[pulumi.Input[pulumi.InputType['MdbKafkaTopicTopicConfigArgs']]] = None,
                  __props__=None):
         """
-        Create a MdbKafkaTopic resource with the given unique name, props, and options.
+        Manages a topic of a Kafka cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo = yandex.MdbKafkaCluster("foo",
+            network_id="c64vs98keiqc7f24pvkd",
+            config=yandex.MdbKafkaClusterConfigArgs(
+                version="2.8",
+                zones=["ru-central1-a"],
+                unmanaged_topics=True,
+                kafka=yandex.MdbKafkaClusterConfigKafkaArgs(
+                    resources=yandex.MdbKafkaClusterConfigKafkaResourcesArgs(
+                        resource_preset_id="s2.micro",
+                        disk_type_id="network-hdd",
+                        disk_size=16,
+                    ),
+                ),
+            ))
+        events = yandex.MdbKafkaTopic("events",
+            cluster_id=foo.id,
+            partitions=4,
+            replication_factor=1,
+            topic_config=yandex.MdbKafkaTopicTopicConfigArgs(
+                cleanup_policy="CLEANUP_POLICY_COMPACT",
+                compression_type="COMPRESSION_TYPE_LZ4",
+                delete_retention_ms="86400000",
+                file_delete_delay_ms="60000",
+                flush_messages="128",
+                flush_ms="1000",
+                min_compaction_lag_ms="0",
+                retention_bytes="10737418240",
+                retention_ms="604800000",
+                max_message_bytes="1048588",
+                min_insync_replicas="1",
+                segment_bytes="268435456",
+                preallocate=True,
+            ))
+        ```
+
+        ## Import
+
+        Kafka topic can be imported using following format
+
+        ```sh
+         $ pulumi import yandex:index/mdbKafkaTopic:MdbKafkaTopic foo {{cluster_id}}:{{topic_name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] name: The name of the topic.
+        :param pulumi.Input[int] partitions: The number of the topic's partitions.
+        :param pulumi.Input[int] replication_factor: Amount of data copies (replicas) for the topic in the cluster.
+        :param pulumi.Input[pulumi.InputType['MdbKafkaTopicTopicConfigArgs']] topic_config: User-defined settings for the topic. The structure is documented below.
         """
         ...
     @overload
@@ -169,7 +256,58 @@ class MdbKafkaTopic(pulumi.CustomResource):
                  args: MdbKafkaTopicArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MdbKafkaTopic resource with the given unique name, props, and options.
+        Manages a topic of a Kafka cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo = yandex.MdbKafkaCluster("foo",
+            network_id="c64vs98keiqc7f24pvkd",
+            config=yandex.MdbKafkaClusterConfigArgs(
+                version="2.8",
+                zones=["ru-central1-a"],
+                unmanaged_topics=True,
+                kafka=yandex.MdbKafkaClusterConfigKafkaArgs(
+                    resources=yandex.MdbKafkaClusterConfigKafkaResourcesArgs(
+                        resource_preset_id="s2.micro",
+                        disk_type_id="network-hdd",
+                        disk_size=16,
+                    ),
+                ),
+            ))
+        events = yandex.MdbKafkaTopic("events",
+            cluster_id=foo.id,
+            partitions=4,
+            replication_factor=1,
+            topic_config=yandex.MdbKafkaTopicTopicConfigArgs(
+                cleanup_policy="CLEANUP_POLICY_COMPACT",
+                compression_type="COMPRESSION_TYPE_LZ4",
+                delete_retention_ms="86400000",
+                file_delete_delay_ms="60000",
+                flush_messages="128",
+                flush_ms="1000",
+                min_compaction_lag_ms="0",
+                retention_bytes="10737418240",
+                retention_ms="604800000",
+                max_message_bytes="1048588",
+                min_insync_replicas="1",
+                segment_bytes="268435456",
+                preallocate=True,
+            ))
+        ```
+
+        ## Import
+
+        Kafka topic can be imported using following format
+
+        ```sh
+         $ pulumi import yandex:index/mdbKafkaTopic:MdbKafkaTopic foo {{cluster_id}}:{{topic_name}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param MdbKafkaTopicArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -232,6 +370,10 @@ class MdbKafkaTopic(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] name: The name of the topic.
+        :param pulumi.Input[int] partitions: The number of the topic's partitions.
+        :param pulumi.Input[int] replication_factor: Amount of data copies (replicas) for the topic in the cluster.
+        :param pulumi.Input[pulumi.InputType['MdbKafkaTopicTopicConfigArgs']] topic_config: User-defined settings for the topic. The structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -252,20 +394,32 @@ class MdbKafkaTopic(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The name of the topic.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def partitions(self) -> pulumi.Output[int]:
+        """
+        The number of the topic's partitions.
+        """
         return pulumi.get(self, "partitions")
 
     @property
     @pulumi.getter(name="replicationFactor")
     def replication_factor(self) -> pulumi.Output[int]:
+        """
+        Amount of data copies (replicas) for the topic in the cluster.
+        """
         return pulumi.get(self, "replication_factor")
 
     @property
     @pulumi.getter(name="topicConfig")
     def topic_config(self) -> pulumi.Output[Optional['outputs.MdbKafkaTopicTopicConfig']]:
+        """
+        User-defined settings for the topic. The structure is documented below.
+        """
         return pulumi.get(self, "topic_config")
 

@@ -33,6 +33,21 @@ class MdbRedisClusterArgs:
                  tls_enabled: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a MdbRedisCluster resource.
+        :param pulumi.Input['MdbRedisClusterConfigArgs'] config: Configuration of the Redis cluster. The structure is documented below.
+        :param pulumi.Input[str] environment: Deployment environment of the Redis cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbRedisClusterHostArgs']]] hosts: A host of the Redis cluster. The structure is documented below.
+        :param pulumi.Input[str] network_id: ID of the network, to which the Redis cluster belongs.
+        :param pulumi.Input['MdbRedisClusterResourcesArgs'] resources: Resources allocated to hosts of the Redis cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Redis cluster.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Redis cluster.
+        :param pulumi.Input[str] name: Name of the Redis cluster. Provided by the client when the cluster is created.
+        :param pulumi.Input[str] persistence_mode: Persistence mode.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[bool] sharded: Redis Cluster mode enabled/disabled.
+        :param pulumi.Input[bool] tls_enabled: TLS support mode enabled/disabled.
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "environment", environment)
@@ -63,6 +78,9 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter
     def config(self) -> pulumi.Input['MdbRedisClusterConfigArgs']:
+        """
+        Configuration of the Redis cluster. The structure is documented below.
+        """
         return pulumi.get(self, "config")
 
     @config.setter
@@ -72,6 +90,9 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Input[str]:
+        """
+        Deployment environment of the Redis cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -81,6 +102,9 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter
     def hosts(self) -> pulumi.Input[Sequence[pulumi.Input['MdbRedisClusterHostArgs']]]:
+        """
+        A host of the Redis cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -90,6 +114,9 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Input[str]:
+        """
+        ID of the network, to which the Redis cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -99,6 +126,9 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Input['MdbRedisClusterResourcesArgs']:
+        """
+        Resources allocated to hosts of the Redis cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -108,6 +138,9 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -117,6 +150,9 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the Redis cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -126,6 +162,10 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -135,6 +175,9 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Redis cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -153,6 +196,9 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Redis cluster. Provided by the client when the cluster is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -162,6 +208,9 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter(name="persistenceMode")
     def persistence_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Persistence mode.
+        """
         return pulumi.get(self, "persistence_mode")
 
     @persistence_mode.setter
@@ -171,6 +220,9 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -180,6 +232,9 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter
     def sharded(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Redis Cluster mode enabled/disabled.
+        """
         return pulumi.get(self, "sharded")
 
     @sharded.setter
@@ -189,6 +244,9 @@ class MdbRedisClusterArgs:
     @property
     @pulumi.getter(name="tlsEnabled")
     def tls_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        TLS support mode enabled/disabled.
+        """
         return pulumi.get(self, "tls_enabled")
 
     @tls_enabled.setter
@@ -219,6 +277,26 @@ class _MdbRedisClusterState:
                  tls_enabled: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering MdbRedisCluster resources.
+        :param pulumi.Input['MdbRedisClusterConfigArgs'] config: Configuration of the Redis cluster. The structure is documented below.
+        :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Redis cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the Redis cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[str] health: Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+               For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).
+        :param pulumi.Input[Sequence[pulumi.Input['MdbRedisClusterHostArgs']]] hosts: A host of the Redis cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Redis cluster.
+        :param pulumi.Input[str] name: Name of the Redis cluster. Provided by the client when the cluster is created.
+        :param pulumi.Input[str] network_id: ID of the network, to which the Redis cluster belongs.
+        :param pulumi.Input[str] persistence_mode: Persistence mode.
+        :param pulumi.Input['MdbRedisClusterResourcesArgs'] resources: Resources allocated to hosts of the Redis cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[bool] sharded: Redis Cluster mode enabled/disabled.
+        :param pulumi.Input[str] status: Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+               For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).
+        :param pulumi.Input[bool] tls_enabled: TLS support mode enabled/disabled.
         """
         if config is not None:
             pulumi.set(__self__, "config", config)
@@ -260,6 +338,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter
     def config(self) -> Optional[pulumi.Input['MdbRedisClusterConfigArgs']]:
+        """
+        Configuration of the Redis cluster. The structure is documented below.
+        """
         return pulumi.get(self, "config")
 
     @config.setter
@@ -269,6 +350,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -278,6 +362,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -287,6 +374,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the Redis cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -296,6 +386,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter
     def environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Deployment environment of the Redis cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -305,6 +398,10 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -314,6 +411,10 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter
     def health(self) -> Optional[pulumi.Input[str]]:
+        """
+        Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+        For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).
+        """
         return pulumi.get(self, "health")
 
     @health.setter
@@ -323,6 +424,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbRedisClusterHostArgs']]]]:
+        """
+        A host of the Redis cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -332,6 +436,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Redis cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -350,6 +457,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Redis cluster. Provided by the client when the cluster is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -359,6 +469,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the network, to which the Redis cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -368,6 +481,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter(name="persistenceMode")
     def persistence_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Persistence mode.
+        """
         return pulumi.get(self, "persistence_mode")
 
     @persistence_mode.setter
@@ -377,6 +493,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter
     def resources(self) -> Optional[pulumi.Input['MdbRedisClusterResourcesArgs']]:
+        """
+        Resources allocated to hosts of the Redis cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -386,6 +505,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -395,6 +517,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter
     def sharded(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Redis Cluster mode enabled/disabled.
+        """
         return pulumi.get(self, "sharded")
 
     @sharded.setter
@@ -404,6 +529,10 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+        For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -413,6 +542,9 @@ class _MdbRedisClusterState:
     @property
     @pulumi.getter(name="tlsEnabled")
     def tls_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        TLS support mode enabled/disabled.
+        """
         return pulumi.get(self, "tls_enabled")
 
     @tls_enabled.setter
@@ -442,9 +574,117 @@ class MdbRedisCluster(pulumi.CustomResource):
                  tls_enabled: Optional[pulumi.Input[bool]] = None,
                  __props__=None):
         """
-        Create a MdbRedisCluster resource with the given unique name, props, and options.
+        Manages a Redis cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-redis/concepts).
+
+        ## Example Usage
+
+        Example of creating a Standalone Redis.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.5.0.0/24"],
+            zone="ru-central1-a")
+        foo_mdb_redis_cluster = yandex.MdbRedisCluster("fooMdbRedisCluster",
+            config=yandex.MdbRedisClusterConfigArgs(
+                password="your_password",
+                version="6.2",
+            ),
+            environment="PRESTABLE",
+            hosts=[yandex.MdbRedisClusterHostArgs(
+                subnet_id=foo_vpc_subnet.id,
+                zone="ru-central1-a",
+            )],
+            maintenance_window=yandex.MdbRedisClusterMaintenanceWindowArgs(
+                type="ANYTIME",
+            ),
+            network_id=foo_vpc_network.id,
+            resources=yandex.MdbRedisClusterResourcesArgs(
+                disk_size=16,
+                resource_preset_id="hm1.nano",
+            ))
+        ```
+
+        Example of creating a sharded Redis Cluster.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"],
+            zone="ru-central1-a")
+        bar = yandex.VpcSubnet("bar",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.2.0.0/24"],
+            zone="ru-central1-b")
+        baz = yandex.VpcSubnet("baz",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.3.0.0/24"],
+            zone="ru-central1-c")
+        foo_mdb_redis_cluster = yandex.MdbRedisCluster("fooMdbRedisCluster",
+            config=yandex.MdbRedisClusterConfigArgs(
+                password="your_password",
+                version="6.2",
+            ),
+            environment="PRESTABLE",
+            hosts=[
+                yandex.MdbRedisClusterHostArgs(
+                    shard_name="first",
+                    subnet_id=foo_vpc_subnet.id,
+                    zone="ru-central1-a",
+                ),
+                yandex.MdbRedisClusterHostArgs(
+                    shard_name="second",
+                    subnet_id=bar.id,
+                    zone="ru-central1-b",
+                ),
+                yandex.MdbRedisClusterHostArgs(
+                    shard_name="third",
+                    subnet_id=baz.id,
+                    zone="ru-central1-c",
+                ),
+            ],
+            network_id=foo_vpc_network.id,
+            resources=yandex.MdbRedisClusterResourcesArgs(
+                disk_size=16,
+                resource_preset_id="hm1.nano",
+            ),
+            sharded=True)
+        ```
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbRedisCluster:MdbRedisCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbRedisClusterConfigArgs']] config: Configuration of the Redis cluster. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Redis cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the Redis cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbRedisClusterHostArgs']]]] hosts: A host of the Redis cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Redis cluster.
+        :param pulumi.Input[str] name: Name of the Redis cluster. Provided by the client when the cluster is created.
+        :param pulumi.Input[str] network_id: ID of the network, to which the Redis cluster belongs.
+        :param pulumi.Input[str] persistence_mode: Persistence mode.
+        :param pulumi.Input[pulumi.InputType['MdbRedisClusterResourcesArgs']] resources: Resources allocated to hosts of the Redis cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[bool] sharded: Redis Cluster mode enabled/disabled.
+        :param pulumi.Input[bool] tls_enabled: TLS support mode enabled/disabled.
         """
         ...
     @overload
@@ -453,7 +693,100 @@ class MdbRedisCluster(pulumi.CustomResource):
                  args: MdbRedisClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a MdbRedisCluster resource with the given unique name, props, and options.
+        Manages a Redis cluster within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/managed-redis/concepts).
+
+        ## Example Usage
+
+        Example of creating a Standalone Redis.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.5.0.0/24"],
+            zone="ru-central1-a")
+        foo_mdb_redis_cluster = yandex.MdbRedisCluster("fooMdbRedisCluster",
+            config=yandex.MdbRedisClusterConfigArgs(
+                password="your_password",
+                version="6.2",
+            ),
+            environment="PRESTABLE",
+            hosts=[yandex.MdbRedisClusterHostArgs(
+                subnet_id=foo_vpc_subnet.id,
+                zone="ru-central1-a",
+            )],
+            maintenance_window=yandex.MdbRedisClusterMaintenanceWindowArgs(
+                type="ANYTIME",
+            ),
+            network_id=foo_vpc_network.id,
+            resources=yandex.MdbRedisClusterResourcesArgs(
+                disk_size=16,
+                resource_preset_id="hm1.nano",
+            ))
+        ```
+
+        Example of creating a sharded Redis Cluster.
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.1.0.0/24"],
+            zone="ru-central1-a")
+        bar = yandex.VpcSubnet("bar",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.2.0.0/24"],
+            zone="ru-central1-b")
+        baz = yandex.VpcSubnet("baz",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.3.0.0/24"],
+            zone="ru-central1-c")
+        foo_mdb_redis_cluster = yandex.MdbRedisCluster("fooMdbRedisCluster",
+            config=yandex.MdbRedisClusterConfigArgs(
+                password="your_password",
+                version="6.2",
+            ),
+            environment="PRESTABLE",
+            hosts=[
+                yandex.MdbRedisClusterHostArgs(
+                    shard_name="first",
+                    subnet_id=foo_vpc_subnet.id,
+                    zone="ru-central1-a",
+                ),
+                yandex.MdbRedisClusterHostArgs(
+                    shard_name="second",
+                    subnet_id=bar.id,
+                    zone="ru-central1-b",
+                ),
+                yandex.MdbRedisClusterHostArgs(
+                    shard_name="third",
+                    subnet_id=baz.id,
+                    zone="ru-central1-c",
+                ),
+            ],
+            network_id=foo_vpc_network.id,
+            resources=yandex.MdbRedisClusterResourcesArgs(
+                disk_size=16,
+                resource_preset_id="hm1.nano",
+            ),
+            sharded=True)
+        ```
+
+        ## Import
+
+        A cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/mdbRedisCluster:MdbRedisCluster foo cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param MdbRedisClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -556,6 +889,26 @@ class MdbRedisCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['MdbRedisClusterConfigArgs']] config: Configuration of the Redis cluster. The structure is documented below.
+        :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        :param pulumi.Input[str] description: Description of the Redis cluster.
+        :param pulumi.Input[str] environment: Deployment environment of the Redis cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[str] health: Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+               For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbRedisClusterHostArgs']]]] hosts: A host of the Redis cluster. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Redis cluster.
+        :param pulumi.Input[str] name: Name of the Redis cluster. Provided by the client when the cluster is created.
+        :param pulumi.Input[str] network_id: ID of the network, to which the Redis cluster belongs.
+        :param pulumi.Input[str] persistence_mode: Persistence mode.
+        :param pulumi.Input[pulumi.InputType['MdbRedisClusterResourcesArgs']] resources: Resources allocated to hosts of the Redis cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
+        :param pulumi.Input[bool] sharded: Redis Cluster mode enabled/disabled.
+        :param pulumi.Input[str] status: Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+               For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).
+        :param pulumi.Input[bool] tls_enabled: TLS support mode enabled/disabled.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -584,46 +937,75 @@ class MdbRedisCluster(pulumi.CustomResource):
     @property
     @pulumi.getter
     def config(self) -> pulumi.Output['outputs.MdbRedisClusterConfig']:
+        """
+        Configuration of the Redis cluster. The structure is documented below.
+        """
         return pulumi.get(self, "config")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> pulumi.Output[bool]:
+        """
+        Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the Redis cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Output[str]:
+        """
+        Deployment environment of the Redis cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+        """
         return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def health(self) -> pulumi.Output[str]:
+        """
+        Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+        For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).
+        """
         return pulumi.get(self, "health")
 
     @property
     @pulumi.getter
     def hosts(self) -> pulumi.Output[Sequence['outputs.MdbRedisClusterHost']]:
+        """
+        A host of the Redis cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the Redis cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -634,40 +1016,65 @@ class MdbRedisCluster(pulumi.CustomResource):
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the Redis cluster. Provided by the client when the cluster is created.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[str]:
+        """
+        ID of the network, to which the Redis cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="persistenceMode")
     def persistence_mode(self) -> pulumi.Output[str]:
+        """
+        Persistence mode.
+        """
         return pulumi.get(self, "persistence_mode")
 
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Output['outputs.MdbRedisClusterResources']:
+        """
+        Resources allocated to hosts of the Redis cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter
     def sharded(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Redis Cluster mode enabled/disabled.
+        """
         return pulumi.get(self, "sharded")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+        For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="tlsEnabled")
     def tls_enabled(self) -> pulumi.Output[bool]:
+        """
+        TLS support mode enabled/disabled.
+        """
         return pulumi.get(self, "tls_enabled")
 

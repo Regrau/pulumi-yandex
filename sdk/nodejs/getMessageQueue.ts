@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Message Queue. For more information about Yandex Message Queue, see
+ * [Yandex.Cloud Message Queue](https://cloud.yandex.com/docs/message-queue).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const exampleQueue = pulumi.output(yandex.getMessageQueue({
+ *     name: "ymq_terraform_example",
+ * }));
+ * ```
+ */
 export function getMessageQueue(args: GetMessageQueueArgs, opts?: pulumi.InvokeOptions): Promise<GetMessageQueueResult> {
     if (!opts) {
         opts = {}
@@ -23,7 +38,13 @@ export function getMessageQueue(args: GetMessageQueueArgs, opts?: pulumi.InvokeO
  */
 export interface GetMessageQueueArgs {
     accessKey?: string;
+    /**
+     * Queue name.
+     */
     name: string;
+    /**
+     * The region ID where the message queue is located.
+     */
     regionId?: string;
     secretKey?: string;
 }
@@ -33,6 +54,9 @@ export interface GetMessageQueueArgs {
  */
 export interface GetMessageQueueResult {
     readonly accessKey?: string;
+    /**
+     * ARN of the queue. It is used for setting up a [redrive policy](https://cloud.yandex.com/docs/message-queue/concepts/dlq). See [documentation](https://cloud.yandex.com/docs/message-queue/api-ref/queue/SetQueueAttributes).
+     */
     readonly arn: string;
     /**
      * The provider-assigned unique ID for this managed resource.
@@ -41,6 +65,9 @@ export interface GetMessageQueueResult {
     readonly name: string;
     readonly regionId?: string;
     readonly secretKey?: string;
+    /**
+     * URL of the queue.
+     */
     readonly url: string;
 }
 
@@ -53,7 +80,13 @@ export function getMessageQueueOutput(args: GetMessageQueueOutputArgs, opts?: pu
  */
 export interface GetMessageQueueOutputArgs {
     accessKey?: pulumi.Input<string>;
+    /**
+     * Queue name.
+     */
     name: pulumi.Input<string>;
+    /**
+     * The region ID where the message queue is located.
+     */
     regionId?: pulumi.Input<string>;
     secretKey?: pulumi.Input<string>;
 }

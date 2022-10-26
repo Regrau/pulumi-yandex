@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbClickhouseClusterBackupWindowStartResult
     {
+        /// <summary>
+        /// The hour at which backup will be started.
+        /// </summary>
         public readonly int Hours;
+        /// <summary>
+        /// The minute at which backup will be started.
+        /// </summary>
         public readonly int Minutes;
 
         [OutputConstructor]

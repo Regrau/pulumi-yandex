@@ -1,5 +1,5 @@
 {
   "resource": true,
   "name": "yandex",
-  "server": "https://github/regrau/pulumi-yandex/releases"
+  "server": "https://github.com/regrau/pulumi-yandex/releases"
 }

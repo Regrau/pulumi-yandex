@@ -10,6 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex Container Registry. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/registry)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.LookupContainerRegistry(ctx, &GetContainerRegistryArgs{
+//				RegistryId: pulumi.StringRef("some_registry_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupContainerRegistry(ctx *pulumi.Context, args *LookupContainerRegistryArgs, opts ...pulumi.InvokeOption) (*LookupContainerRegistryResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupContainerRegistryResult
@@ -22,22 +50,29 @@ func LookupContainerRegistry(ctx *pulumi.Context, args *LookupContainerRegistryA
 
 // A collection of arguments for invoking getContainerRegistry.
 type LookupContainerRegistryArgs struct {
-	FolderId   *string           `pulumi:"folderId"`
-	Labels     map[string]string `pulumi:"labels"`
-	Name       *string           `pulumi:"name"`
-	RegistryId *string           `pulumi:"registryId"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this registry.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the registry.
+	Name *string `pulumi:"name"`
+	// The ID of a specific registry.
+	RegistryId *string `pulumi:"registryId"`
 }
 
 // A collection of values returned by getContainerRegistry.
 type LookupContainerRegistryResult struct {
+	// Creation timestamp of this registry.
 	CreatedAt string `pulumi:"createdAt"`
 	FolderId  string `pulumi:"folderId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string            `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Labels to assign to this registry.
 	Labels     map[string]string `pulumi:"labels"`
 	Name       string            `pulumi:"name"`
 	RegistryId string            `pulumi:"registryId"`
-	Status     string            `pulumi:"status"`
+	// Status of the registry.
+	Status string `pulumi:"status"`
 }
 
 func LookupContainerRegistryOutput(ctx *pulumi.Context, args LookupContainerRegistryOutputArgs, opts ...pulumi.InvokeOption) LookupContainerRegistryResultOutput {
@@ -55,9 +90,13 @@ func LookupContainerRegistryOutput(ctx *pulumi.Context, args LookupContainerRegi
 
 // A collection of arguments for invoking getContainerRegistry.
 type LookupContainerRegistryOutputArgs struct {
-	FolderId   pulumi.StringPtrInput `pulumi:"folderId"`
-	Labels     pulumi.StringMapInput `pulumi:"labels"`
-	Name       pulumi.StringPtrInput `pulumi:"name"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// Labels to assign to this registry.
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// Name of the registry.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of a specific registry.
 	RegistryId pulumi.StringPtrInput `pulumi:"registryId"`
 }
 
@@ -80,6 +119,7 @@ func (o LookupContainerRegistryResultOutput) ToLookupContainerRegistryResultOutp
 	return o
 }
 
+// Creation timestamp of this registry.
 func (o LookupContainerRegistryResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerRegistryResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
@@ -93,6 +133,7 @@ func (o LookupContainerRegistryResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerRegistryResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Labels to assign to this registry.
 func (o LookupContainerRegistryResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupContainerRegistryResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -105,6 +146,7 @@ func (o LookupContainerRegistryResultOutput) RegistryId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerRegistryResult) string { return v.RegistryId }).(pulumi.StringOutput)
 }
 
+// Status of the registry.
 func (o LookupContainerRegistryResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupContainerRegistryResult) string { return v.Status }).(pulumi.StringOutput)
 }

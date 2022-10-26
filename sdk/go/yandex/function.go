@@ -11,28 +11,90 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewFunction(ctx, "test-function", &yandex.FunctionArgs{
+//				Content: &FunctionContentArgs{
+//					ZipFilename: pulumi.String("function.zip"),
+//				},
+//				Description:      pulumi.String("any description"),
+//				Entrypoint:       pulumi.String("main"),
+//				ExecutionTimeout: pulumi.String("10"),
+//				Memory:           pulumi.Int(128),
+//				Runtime:          pulumi.String("python37"),
+//				ServiceAccountId: pulumi.String("are1service2account3id"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("my_tag"),
+//				},
+//				UserHash: pulumi.String("any_user_defined_string"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type Function struct {
 	pulumi.CustomResourceState
 
-	Content          FunctionContentPtrOutput  `pulumi:"content"`
-	CreatedAt        pulumi.StringOutput       `pulumi:"createdAt"`
-	Description      pulumi.StringPtrOutput    `pulumi:"description"`
-	Entrypoint       pulumi.StringOutput       `pulumi:"entrypoint"`
-	Environment      pulumi.StringMapOutput    `pulumi:"environment"`
-	ExecutionTimeout pulumi.StringPtrOutput    `pulumi:"executionTimeout"`
-	FolderId         pulumi.StringOutput       `pulumi:"folderId"`
-	ImageSize        pulumi.IntOutput          `pulumi:"imageSize"`
-	Labels           pulumi.StringMapOutput    `pulumi:"labels"`
-	LoggroupId       pulumi.StringOutput       `pulumi:"loggroupId"`
-	Memory           pulumi.IntOutput          `pulumi:"memory"`
-	Name             pulumi.StringOutput       `pulumi:"name"`
-	Package          FunctionPackagePtrOutput  `pulumi:"package"`
-	Runtime          pulumi.StringOutput       `pulumi:"runtime"`
-	Secrets          FunctionSecretArrayOutput `pulumi:"secrets"`
-	ServiceAccountId pulumi.StringPtrOutput    `pulumi:"serviceAccountId"`
-	Tags             pulumi.StringArrayOutput  `pulumi:"tags"`
-	UserHash         pulumi.StringOutput       `pulumi:"userHash"`
-	Version          pulumi.StringOutput       `pulumi:"version"`
+	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// * `content.0.zip_filename` - Filename to zip archive for the version.
+	Content FunctionContentPtrOutput `pulumi:"content"`
+	// Creation timestamp of the Yandex Cloud Function.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Description of the Yandex Cloud Function
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Entrypoint for Yandex Cloud Function
+	Entrypoint pulumi.StringOutput `pulumi:"entrypoint"`
+	// A set of key/value environment variables for Yandex Cloud Function
+	Environment pulumi.StringMapOutput `pulumi:"environment"`
+	// Execution timeout in seconds for Yandex Cloud Function
+	ExecutionTimeout pulumi.StringPtrOutput `pulumi:"executionTimeout"`
+	// Folder ID for the Yandex Cloud Function
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Image size for Yandex Cloud Function.
+	ImageSize pulumi.IntOutput `pulumi:"imageSize"`
+	// A set of key/value label pairs to assign to the Yandex Cloud Function
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Loggroup ID size for Yandex Cloud Function.
+	LoggroupId pulumi.StringOutput `pulumi:"loggroupId"`
+	// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+	Memory pulumi.IntOutput `pulumi:"memory"`
+	// Yandex Cloud Function name used to define trigger
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// * `package.0.sha_256` - SHA256 hash of the version deployment package.
+	// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+	// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+	Package FunctionPackagePtrOutput `pulumi:"package"`
+	// Runtime for Yandex Cloud Function
+	Runtime pulumi.StringOutput `pulumi:"runtime"`
+	// Secrets for Yandex Cloud Function.
+	Secrets FunctionSecretArrayOutput `pulumi:"secrets"`
+	// Service account ID for Yandex Cloud Function
+	ServiceAccountId pulumi.StringPtrOutput `pulumi:"serviceAccountId"`
+	// Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+	Tags pulumi.StringArrayOutput `pulumi:"tags"`
+	// User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+	UserHash pulumi.StringOutput `pulumi:"userHash"`
+	// Version for Yandex Cloud Function.
+	Version pulumi.StringOutput `pulumi:"version"`
 }
 
 // NewFunction registers a new resource with the given unique name, arguments, and options.
@@ -77,47 +139,93 @@ func GetFunction(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Function resources.
 type functionState struct {
-	Content          *FunctionContent  `pulumi:"content"`
-	CreatedAt        *string           `pulumi:"createdAt"`
-	Description      *string           `pulumi:"description"`
-	Entrypoint       *string           `pulumi:"entrypoint"`
-	Environment      map[string]string `pulumi:"environment"`
-	ExecutionTimeout *string           `pulumi:"executionTimeout"`
-	FolderId         *string           `pulumi:"folderId"`
-	ImageSize        *int              `pulumi:"imageSize"`
-	Labels           map[string]string `pulumi:"labels"`
-	LoggroupId       *string           `pulumi:"loggroupId"`
-	Memory           *int              `pulumi:"memory"`
-	Name             *string           `pulumi:"name"`
-	Package          *FunctionPackage  `pulumi:"package"`
-	Runtime          *string           `pulumi:"runtime"`
-	Secrets          []FunctionSecret  `pulumi:"secrets"`
-	ServiceAccountId *string           `pulumi:"serviceAccountId"`
-	Tags             []string          `pulumi:"tags"`
-	UserHash         *string           `pulumi:"userHash"`
-	Version          *string           `pulumi:"version"`
+	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// * `content.0.zip_filename` - Filename to zip archive for the version.
+	Content *FunctionContent `pulumi:"content"`
+	// Creation timestamp of the Yandex Cloud Function.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Description of the Yandex Cloud Function
+	Description *string `pulumi:"description"`
+	// Entrypoint for Yandex Cloud Function
+	Entrypoint *string `pulumi:"entrypoint"`
+	// A set of key/value environment variables for Yandex Cloud Function
+	Environment map[string]string `pulumi:"environment"`
+	// Execution timeout in seconds for Yandex Cloud Function
+	ExecutionTimeout *string `pulumi:"executionTimeout"`
+	// Folder ID for the Yandex Cloud Function
+	FolderId *string `pulumi:"folderId"`
+	// Image size for Yandex Cloud Function.
+	ImageSize *int `pulumi:"imageSize"`
+	// A set of key/value label pairs to assign to the Yandex Cloud Function
+	Labels map[string]string `pulumi:"labels"`
+	// Loggroup ID size for Yandex Cloud Function.
+	LoggroupId *string `pulumi:"loggroupId"`
+	// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+	Memory *int `pulumi:"memory"`
+	// Yandex Cloud Function name used to define trigger
+	Name *string `pulumi:"name"`
+	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// * `package.0.sha_256` - SHA256 hash of the version deployment package.
+	// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+	// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+	Package *FunctionPackage `pulumi:"package"`
+	// Runtime for Yandex Cloud Function
+	Runtime *string `pulumi:"runtime"`
+	// Secrets for Yandex Cloud Function.
+	Secrets []FunctionSecret `pulumi:"secrets"`
+	// Service account ID for Yandex Cloud Function
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
+	// Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+	Tags []string `pulumi:"tags"`
+	// User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+	UserHash *string `pulumi:"userHash"`
+	// Version for Yandex Cloud Function.
+	Version *string `pulumi:"version"`
 }
 
 type FunctionState struct {
-	Content          FunctionContentPtrInput
-	CreatedAt        pulumi.StringPtrInput
-	Description      pulumi.StringPtrInput
-	Entrypoint       pulumi.StringPtrInput
-	Environment      pulumi.StringMapInput
+	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// * `content.0.zip_filename` - Filename to zip archive for the version.
+	Content FunctionContentPtrInput
+	// Creation timestamp of the Yandex Cloud Function.
+	CreatedAt pulumi.StringPtrInput
+	// Description of the Yandex Cloud Function
+	Description pulumi.StringPtrInput
+	// Entrypoint for Yandex Cloud Function
+	Entrypoint pulumi.StringPtrInput
+	// A set of key/value environment variables for Yandex Cloud Function
+	Environment pulumi.StringMapInput
+	// Execution timeout in seconds for Yandex Cloud Function
 	ExecutionTimeout pulumi.StringPtrInput
-	FolderId         pulumi.StringPtrInput
-	ImageSize        pulumi.IntPtrInput
-	Labels           pulumi.StringMapInput
-	LoggroupId       pulumi.StringPtrInput
-	Memory           pulumi.IntPtrInput
-	Name             pulumi.StringPtrInput
-	Package          FunctionPackagePtrInput
-	Runtime          pulumi.StringPtrInput
-	Secrets          FunctionSecretArrayInput
+	// Folder ID for the Yandex Cloud Function
+	FolderId pulumi.StringPtrInput
+	// Image size for Yandex Cloud Function.
+	ImageSize pulumi.IntPtrInput
+	// A set of key/value label pairs to assign to the Yandex Cloud Function
+	Labels pulumi.StringMapInput
+	// Loggroup ID size for Yandex Cloud Function.
+	LoggroupId pulumi.StringPtrInput
+	// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+	Memory pulumi.IntPtrInput
+	// Yandex Cloud Function name used to define trigger
+	Name pulumi.StringPtrInput
+	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// * `package.0.sha_256` - SHA256 hash of the version deployment package.
+	// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+	// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+	Package FunctionPackagePtrInput
+	// Runtime for Yandex Cloud Function
+	Runtime pulumi.StringPtrInput
+	// Secrets for Yandex Cloud Function.
+	Secrets FunctionSecretArrayInput
+	// Service account ID for Yandex Cloud Function
 	ServiceAccountId pulumi.StringPtrInput
-	Tags             pulumi.StringArrayInput
-	UserHash         pulumi.StringPtrInput
-	Version          pulumi.StringPtrInput
+	// Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+	Tags pulumi.StringArrayInput
+	// User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+	UserHash pulumi.StringPtrInput
+	// Version for Yandex Cloud Function.
+	Version pulumi.StringPtrInput
 }
 
 func (FunctionState) ElementType() reflect.Type {
@@ -125,40 +233,78 @@ func (FunctionState) ElementType() reflect.Type {
 }
 
 type functionArgs struct {
-	Content          *FunctionContent  `pulumi:"content"`
-	Description      *string           `pulumi:"description"`
-	Entrypoint       string            `pulumi:"entrypoint"`
-	Environment      map[string]string `pulumi:"environment"`
-	ExecutionTimeout *string           `pulumi:"executionTimeout"`
-	FolderId         *string           `pulumi:"folderId"`
-	Labels           map[string]string `pulumi:"labels"`
-	Memory           int               `pulumi:"memory"`
-	Name             *string           `pulumi:"name"`
-	Package          *FunctionPackage  `pulumi:"package"`
-	Runtime          string            `pulumi:"runtime"`
-	Secrets          []FunctionSecret  `pulumi:"secrets"`
-	ServiceAccountId *string           `pulumi:"serviceAccountId"`
-	Tags             []string          `pulumi:"tags"`
-	UserHash         string            `pulumi:"userHash"`
+	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// * `content.0.zip_filename` - Filename to zip archive for the version.
+	Content *FunctionContent `pulumi:"content"`
+	// Description of the Yandex Cloud Function
+	Description *string `pulumi:"description"`
+	// Entrypoint for Yandex Cloud Function
+	Entrypoint string `pulumi:"entrypoint"`
+	// A set of key/value environment variables for Yandex Cloud Function
+	Environment map[string]string `pulumi:"environment"`
+	// Execution timeout in seconds for Yandex Cloud Function
+	ExecutionTimeout *string `pulumi:"executionTimeout"`
+	// Folder ID for the Yandex Cloud Function
+	FolderId *string `pulumi:"folderId"`
+	// A set of key/value label pairs to assign to the Yandex Cloud Function
+	Labels map[string]string `pulumi:"labels"`
+	// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+	Memory int `pulumi:"memory"`
+	// Yandex Cloud Function name used to define trigger
+	Name *string `pulumi:"name"`
+	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// * `package.0.sha_256` - SHA256 hash of the version deployment package.
+	// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+	// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+	Package *FunctionPackage `pulumi:"package"`
+	// Runtime for Yandex Cloud Function
+	Runtime string `pulumi:"runtime"`
+	// Secrets for Yandex Cloud Function.
+	Secrets []FunctionSecret `pulumi:"secrets"`
+	// Service account ID for Yandex Cloud Function
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
+	// Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+	Tags []string `pulumi:"tags"`
+	// User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+	UserHash string `pulumi:"userHash"`
 }
 
 // The set of arguments for constructing a Function resource.
 type FunctionArgs struct {
-	Content          FunctionContentPtrInput
-	Description      pulumi.StringPtrInput
-	Entrypoint       pulumi.StringInput
-	Environment      pulumi.StringMapInput
+	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// * `content.0.zip_filename` - Filename to zip archive for the version.
+	Content FunctionContentPtrInput
+	// Description of the Yandex Cloud Function
+	Description pulumi.StringPtrInput
+	// Entrypoint for Yandex Cloud Function
+	Entrypoint pulumi.StringInput
+	// A set of key/value environment variables for Yandex Cloud Function
+	Environment pulumi.StringMapInput
+	// Execution timeout in seconds for Yandex Cloud Function
 	ExecutionTimeout pulumi.StringPtrInput
-	FolderId         pulumi.StringPtrInput
-	Labels           pulumi.StringMapInput
-	Memory           pulumi.IntInput
-	Name             pulumi.StringPtrInput
-	Package          FunctionPackagePtrInput
-	Runtime          pulumi.StringInput
-	Secrets          FunctionSecretArrayInput
+	// Folder ID for the Yandex Cloud Function
+	FolderId pulumi.StringPtrInput
+	// A set of key/value label pairs to assign to the Yandex Cloud Function
+	Labels pulumi.StringMapInput
+	// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+	Memory pulumi.IntInput
+	// Yandex Cloud Function name used to define trigger
+	Name pulumi.StringPtrInput
+	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// * `package.0.sha_256` - SHA256 hash of the version deployment package.
+	// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+	// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
+	Package FunctionPackagePtrInput
+	// Runtime for Yandex Cloud Function
+	Runtime pulumi.StringInput
+	// Secrets for Yandex Cloud Function.
+	Secrets FunctionSecretArrayInput
+	// Service account ID for Yandex Cloud Function
 	ServiceAccountId pulumi.StringPtrInput
-	Tags             pulumi.StringArrayInput
-	UserHash         pulumi.StringInput
+	// Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+	Tags pulumi.StringArrayInput
+	// User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+	UserHash pulumi.StringInput
 }
 
 func (FunctionArgs) ElementType() reflect.Type {
@@ -248,78 +394,101 @@ func (o FunctionOutput) ToFunctionOutputWithContext(ctx context.Context) Functio
 	return o
 }
 
+// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+// * `content.0.zip_filename` - Filename to zip archive for the version.
 func (o FunctionOutput) Content() FunctionContentPtrOutput {
 	return o.ApplyT(func(v *Function) FunctionContentPtrOutput { return v.Content }).(FunctionContentPtrOutput)
 }
 
+// Creation timestamp of the Yandex Cloud Function.
 func (o FunctionOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the Yandex Cloud Function
 func (o FunctionOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Entrypoint for Yandex Cloud Function
 func (o FunctionOutput) Entrypoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Entrypoint }).(pulumi.StringOutput)
 }
 
+// A set of key/value environment variables for Yandex Cloud Function
 func (o FunctionOutput) Environment() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringMapOutput { return v.Environment }).(pulumi.StringMapOutput)
 }
 
+// Execution timeout in seconds for Yandex Cloud Function
 func (o FunctionOutput) ExecutionTimeout() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringPtrOutput { return v.ExecutionTimeout }).(pulumi.StringPtrOutput)
 }
 
+// Folder ID for the Yandex Cloud Function
 func (o FunctionOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Image size for Yandex Cloud Function.
 func (o FunctionOutput) ImageSize() pulumi.IntOutput {
 	return o.ApplyT(func(v *Function) pulumi.IntOutput { return v.ImageSize }).(pulumi.IntOutput)
 }
 
+// A set of key/value label pairs to assign to the Yandex Cloud Function
 func (o FunctionOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Loggroup ID size for Yandex Cloud Function.
 func (o FunctionOutput) LoggroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.LoggroupId }).(pulumi.StringOutput)
 }
 
+// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
 func (o FunctionOutput) Memory() pulumi.IntOutput {
 	return o.ApplyT(func(v *Function) pulumi.IntOutput { return v.Memory }).(pulumi.IntOutput)
 }
 
+// Yandex Cloud Function name used to define trigger
 func (o FunctionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+// * `package.0.sha_256` - SHA256 hash of the version deployment package.
+// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
+// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
 func (o FunctionOutput) Package() FunctionPackagePtrOutput {
 	return o.ApplyT(func(v *Function) FunctionPackagePtrOutput { return v.Package }).(FunctionPackagePtrOutput)
 }
 
+// Runtime for Yandex Cloud Function
 func (o FunctionOutput) Runtime() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Runtime }).(pulumi.StringOutput)
 }
 
+// Secrets for Yandex Cloud Function.
 func (o FunctionOutput) Secrets() FunctionSecretArrayOutput {
 	return o.ApplyT(func(v *Function) FunctionSecretArrayOutput { return v.Secrets }).(FunctionSecretArrayOutput)
 }
 
+// Service account ID for Yandex Cloud Function
 func (o FunctionOutput) ServiceAccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringPtrOutput { return v.ServiceAccountId }).(pulumi.StringPtrOutput)
 }
 
+// Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
 func (o FunctionOutput) Tags() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringArrayOutput { return v.Tags }).(pulumi.StringArrayOutput)
 }
 
+// User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
 func (o FunctionOutput) UserHash() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.UserHash }).(pulumi.StringOutput)
 }
 
+// Version for Yandex Cloud Function.
 func (o FunctionOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeader
     {
+        /// <summary>
+        /// Name of the HTTP Router. Provided by the client when the HTTP Router is created.
+        /// </summary>
         public readonly string Name;
         public readonly Outputs.AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderValue? Value;
 

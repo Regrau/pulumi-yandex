@@ -5,6 +5,21 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Cloud Function. For more information about Yandex Cloud Functions, see
+ * [Yandex Cloud Functions](https://cloud.yandex.com/docs/functions/).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const myFunction = pulumi.output(yandex.getFunction({
+ *     functionId: "are1samplefunction11",
+ * }));
+ * ```
+ *
+ * This data source is used to define [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) that can be used by other resources.
+ */
 export function getFunction(args?: GetFunctionArgs, opts?: pulumi.InvokeOptions): Promise<GetFunctionResult> {
     args = args || {};
     if (!opts) {
@@ -24,9 +39,21 @@ export function getFunction(args?: GetFunctionArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking getFunction.
  */
 export interface GetFunctionArgs {
+    /**
+     * Folder ID for the Yandex Cloud Function
+     */
     folderId?: string;
+    /**
+     * Yandex Cloud Function id used to define function
+     */
     functionId?: string;
+    /**
+     * Yandex Cloud Function name used to define function
+     */
     name?: string;
+    /**
+     * Secrets for Yandex Cloud Function.
+     */
     secrets?: inputs.GetFunctionSecret[];
 }
 
@@ -34,10 +61,25 @@ export interface GetFunctionArgs {
  * A collection of values returned by getFunction.
  */
 export interface GetFunctionResult {
+    /**
+     * Creation timestamp of the Yandex Cloud Function
+     */
     readonly createdAt: string;
+    /**
+     * Description of the Yandex Cloud Function
+     */
     readonly description: string;
+    /**
+     * Entrypoint for Yandex Cloud Function
+     */
     readonly entrypoint: string;
+    /**
+     * A set of key/value environment variables for Yandex Cloud Function
+     */
     readonly environment: {[key: string]: string};
+    /**
+     * Execution timeout in seconds for Yandex Cloud Function
+     */
     readonly executionTimeout: string;
     readonly folderId?: string;
     readonly functionId?: string;
@@ -45,15 +87,42 @@ export interface GetFunctionResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Image size for Yandex Cloud Function.
+     */
     readonly imageSize: number;
+    /**
+     * A set of key/value label pairs to assign to the Yandex Cloud Function
+     */
     readonly labels: {[key: string]: string};
+    /**
+     * Log group ID size for Yandex Cloud Function.
+     */
     readonly loggroupId: string;
+    /**
+     * Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+     */
     readonly memory: number;
     readonly name?: string;
+    /**
+     * Runtime for Yandex Cloud Function
+     */
     readonly runtime: string;
+    /**
+     * Secrets for Yandex Cloud Function.
+     */
     readonly secrets: outputs.GetFunctionSecret[];
+    /**
+     * Service account ID for Yandex Cloud Function
+     */
     readonly serviceAccountId: string;
+    /**
+     * Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+     */
     readonly tags: string[];
+    /**
+     * Version for Yandex Cloud Function.
+     */
     readonly version: string;
 }
 
@@ -65,8 +134,20 @@ export function getFunctionOutput(args?: GetFunctionOutputArgs, opts?: pulumi.In
  * A collection of arguments for invoking getFunction.
  */
 export interface GetFunctionOutputArgs {
+    /**
+     * Folder ID for the Yandex Cloud Function
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Yandex Cloud Function id used to define function
+     */
     functionId?: pulumi.Input<string>;
+    /**
+     * Yandex Cloud Function name used to define function
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Secrets for Yandex Cloud Function.
+     */
     secrets?: pulumi.Input<pulumi.Input<inputs.GetFunctionSecretArgs>[]>;
 }

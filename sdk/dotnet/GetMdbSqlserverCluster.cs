@@ -11,9 +11,67 @@ namespace Pulumi.Yandex
 {
     public static class GetMdbSqlserverCluster
     {
+        /// <summary>
+        /// Get information about a Yandex Managed SQLServer cluster. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/managed-sqlserver/).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetMdbSqlserverCluster.Invoke(new()
+        ///     {
+        ///         Name = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["networkId"] = foo.Apply(getMdbSqlserverClusterResult =&gt; getMdbSqlserverClusterResult.NetworkId),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetMdbSqlserverClusterResult> InvokeAsync(GetMdbSqlserverClusterArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetMdbSqlserverClusterResult>("yandex:index/getMdbSqlserverCluster:getMdbSqlserverCluster", args ?? new GetMdbSqlserverClusterArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Managed SQLServer cluster. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/managed-sqlserver/).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetMdbSqlserverCluster.Invoke(new()
+        ///     {
+        ///         Name = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["networkId"] = foo.Apply(getMdbSqlserverClusterResult =&gt; getMdbSqlserverClusterResult.NetworkId),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetMdbSqlserverClusterResult> Invoke(GetMdbSqlserverClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetMdbSqlserverClusterResult>("yandex:index/getMdbSqlserverCluster:getMdbSqlserverCluster", args ?? new GetMdbSqlserverClusterInvokeArgs(), options.WithDefaults());
     }
@@ -21,23 +79,42 @@ namespace Pulumi.Yandex
 
     public sealed class GetMdbSqlserverClusterArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the SQLServer cluster.
+        /// </summary>
         [Input("clusterId")]
         public string? ClusterId { get; set; }
 
+        /// <summary>
+        /// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        /// </summary>
         [Input("deletionProtection")]
         public bool? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// The name of the SQLServer cluster.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+        /// </summary>
         [Input("sqlcollation")]
         public string? Sqlcollation { get; set; }
 
         [Input("sqlserverConfig")]
         private Dictionary<string, string>? _sqlserverConfig;
+
+        /// <summary>
+        /// SQLServer cluster config.
+        /// </summary>
         public Dictionary<string, string> SqlserverConfig
         {
             get => _sqlserverConfig ?? (_sqlserverConfig = new Dictionary<string, string>());
@@ -52,23 +129,42 @@ namespace Pulumi.Yandex
 
     public sealed class GetMdbSqlserverClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the SQLServer cluster.
+        /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
+        /// <summary>
+        /// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        /// </summary>
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// The name of the SQLServer cluster.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+        /// </summary>
         [Input("sqlcollation")]
         public Input<string>? Sqlcollation { get; set; }
 
         [Input("sqlserverConfig")]
         private InputMap<string>? _sqlserverConfig;
+
+        /// <summary>
+        /// SQLServer cluster config.
+        /// </summary>
         public InputMap<string> SqlserverConfig
         {
             get => _sqlserverConfig ?? (_sqlserverConfig = new InputMap<string>());
@@ -87,28 +183,82 @@ namespace Pulumi.Yandex
     {
         public readonly ImmutableArray<Outputs.GetMdbSqlserverClusterBackupWindowStartResult> BackupWindowStarts;
         public readonly string ClusterId;
+        /// <summary>
+        /// Creation timestamp of the key.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// A database of the SQLServer cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbSqlserverClusterDatabaseResult> Databases;
+        /// <summary>
+        /// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+        /// </summary>
         public readonly bool DeletionProtection;
+        /// <summary>
+        /// Description of the SQLServer cluster.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Deployment environment of the SQLServer cluster.
+        /// </summary>
         public readonly string Environment;
         public readonly string FolderId;
+        /// <summary>
+        /// Aggregated health of the cluster.
+        /// </summary>
         public readonly string Health;
+        /// <summary>
+        /// A list of IDs of the host groups hosting VMs of the cluster.
+        /// </summary>
         public readonly ImmutableArray<string> HostGroupIds;
+        /// <summary>
+        /// A host of the SQLServer cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbSqlserverClusterHostResult> Hosts;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A set of key/value label pairs to assign to the SQLServer cluster.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// The name of the database.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// ID of the network, to which the SQLServer cluster belongs.
+        /// </summary>
         public readonly string NetworkId;
+        /// <summary>
+        /// Resources allocated to hosts of the SQLServer cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbSqlserverClusterResourceResult> Resources;
+        /// <summary>
+        /// A set of ids of security groups assigned to hosts of the cluster.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// SQL Collation cluster will be created with. This attribute cannot be changed when cluster is created!
+        /// </summary>
         public readonly string Sqlcollation;
+        /// <summary>
+        /// SQLServer cluster config.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> SqlserverConfig;
+        /// <summary>
+        /// Status of the cluster.
+        /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// A user of the SQLServer cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbSqlserverClusterUserResult> Users;
+        /// <summary>
+        /// Version of the SQLServer cluster.
+        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

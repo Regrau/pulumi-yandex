@@ -11,9 +11,51 @@ namespace Pulumi.Yandex
 {
     public static class GetFunction
     {
+        /// <summary>
+        /// Get information about a Yandex Cloud Function. For more information about Yandex Cloud Functions, see 
+        /// [Yandex Cloud Functions](https://cloud.yandex.com/docs/functions/).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myFunction = Yandex.GetFunction.Invoke(new()
+        ///     {
+        ///         FunctionId = "are1samplefunction11",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) that can be used by other resources.
+        /// </summary>
         public static Task<GetFunctionResult> InvokeAsync(GetFunctionArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetFunctionResult>("yandex:index/getFunction:getFunction", args ?? new GetFunctionArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Cloud Function. For more information about Yandex Cloud Functions, see 
+        /// [Yandex Cloud Functions](https://cloud.yandex.com/docs/functions/).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var myFunction = Yandex.GetFunction.Invoke(new()
+        ///     {
+        ///         FunctionId = "are1samplefunction11",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) that can be used by other resources.
+        /// </summary>
         public static Output<GetFunctionResult> Invoke(GetFunctionInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetFunctionResult>("yandex:index/getFunction:getFunction", args ?? new GetFunctionInvokeArgs(), options.WithDefaults());
     }
@@ -21,17 +63,30 @@ namespace Pulumi.Yandex
 
     public sealed class GetFunctionArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder ID for the Yandex Cloud Function
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// Yandex Cloud Function id used to define function
+        /// </summary>
         [Input("functionId")]
         public string? FunctionId { get; set; }
 
+        /// <summary>
+        /// Yandex Cloud Function name used to define function
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
         [Input("secrets")]
         private List<Inputs.GetFunctionSecretArgs>? _secrets;
+
+        /// <summary>
+        /// Secrets for Yandex Cloud Function.
+        /// </summary>
         public List<Inputs.GetFunctionSecretArgs> Secrets
         {
             get => _secrets ?? (_secrets = new List<Inputs.GetFunctionSecretArgs>());
@@ -46,17 +101,30 @@ namespace Pulumi.Yandex
 
     public sealed class GetFunctionInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder ID for the Yandex Cloud Function
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// Yandex Cloud Function id used to define function
+        /// </summary>
         [Input("functionId")]
         public Input<string>? FunctionId { get; set; }
 
+        /// <summary>
+        /// Yandex Cloud Function name used to define function
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("secrets")]
         private InputList<Inputs.GetFunctionSecretInputArgs>? _secrets;
+
+        /// <summary>
+        /// Secrets for Yandex Cloud Function.
+        /// </summary>
         public InputList<Inputs.GetFunctionSecretInputArgs> Secrets
         {
             get => _secrets ?? (_secrets = new InputList<Inputs.GetFunctionSecretInputArgs>());
@@ -73,10 +141,25 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetFunctionResult
     {
+        /// <summary>
+        /// Creation timestamp of the Yandex Cloud Function
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Description of the Yandex Cloud Function
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Entrypoint for Yandex Cloud Function
+        /// </summary>
         public readonly string Entrypoint;
+        /// <summary>
+        /// A set of key/value environment variables for Yandex Cloud Function
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Environment;
+        /// <summary>
+        /// Execution timeout in seconds for Yandex Cloud Function
+        /// </summary>
         public readonly string ExecutionTimeout;
         public readonly string? FolderId;
         public readonly string? FunctionId;
@@ -84,15 +167,42 @@ namespace Pulumi.Yandex
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Image size for Yandex Cloud Function.
+        /// </summary>
         public readonly int ImageSize;
+        /// <summary>
+        /// A set of key/value label pairs to assign to the Yandex Cloud Function
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// Log group ID size for Yandex Cloud Function.
+        /// </summary>
         public readonly string LoggroupId;
+        /// <summary>
+        /// Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
+        /// </summary>
         public readonly int Memory;
         public readonly string? Name;
+        /// <summary>
+        /// Runtime for Yandex Cloud Function
+        /// </summary>
         public readonly string Runtime;
+        /// <summary>
+        /// Secrets for Yandex Cloud Function.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetFunctionSecretResult> Secrets;
+        /// <summary>
+        /// Service account ID for Yandex Cloud Function
+        /// </summary>
         public readonly string ServiceAccountId;
+        /// <summary>
+        /// Tags for Yandex Cloud Function. Tag "$latest" isn't returned.
+        /// </summary>
         public readonly ImmutableArray<string> Tags;
+        /// <summary>
+        /// Version for Yandex Cloud Function.
+        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

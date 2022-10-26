@@ -12,12 +12,27 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbMongodbClusterClusterConfigMongodArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// (Optional) A set of audit log settings
+        /// (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
+        /// The structure is documented below. Available only in enterprise edition.
+        /// </summary>
         [Input("auditLog", required: true)]
         public Inputs.GetMdbMongodbClusterClusterConfigMongodAuditLogArgs AuditLog { get; set; } = null!;
 
+        /// <summary>
+        /// (Optional) A set of MongoDB Security settings
+        /// (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
+        /// The structure is documented below. Available only in enterprise edition.
+        /// </summary>
         [Input("security", required: true)]
         public Inputs.GetMdbMongodbClusterClusterConfigMongodSecurityArgs Security { get; set; } = null!;
 
+        /// <summary>
+        /// (Optional) A set of MongoDB Server Parameters
+        /// (see the [setParameter](https://www.mongodb.com/docs/manual/reference/configuration-options/#setparameter-option) option).
+        /// The structure is documented below.
+        /// </summary>
         [Input("setParameter", required: true)]
         public Inputs.GetMdbMongodbClusterClusterConfigMongodSetParameterArgs SetParameter { get; set; } = null!;
 

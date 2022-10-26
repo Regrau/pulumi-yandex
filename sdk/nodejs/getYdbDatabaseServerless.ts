@@ -4,6 +4,23 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Database serverless cluster.
+ * For more information, see [the official documentation](https://cloud.yandex.com/en/docs/ydb/concepts/serverless_and_dedicated).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const myDatabase = pulumi.output(yandex.getYdbDatabaseServerless({
+ *     databaseId: "some_ydb_serverless_database_id",
+ * }));
+ *
+ * export const ydbApiEndpoint = myDatabase.ydbApiEndpoint;
+ * ```
+ */
 export function getYdbDatabaseServerless(args?: GetYdbDatabaseServerlessArgs, opts?: pulumi.InvokeOptions): Promise<GetYdbDatabaseServerlessResult> {
     args = args || {};
     if (!opts) {
@@ -23,9 +40,22 @@ export function getYdbDatabaseServerless(args?: GetYdbDatabaseServerlessArgs, op
  * A collection of arguments for invoking getYdbDatabaseServerless.
  */
 export interface GetYdbDatabaseServerlessArgs {
+    /**
+     * ID of the Yandex Database serverless cluster.
+     */
     databaseId?: string;
+    /**
+     * Inhibits deletion of the database. Can be either `true` or `false`
+     */
     deletionProtection?: boolean;
+    /**
+     * ID of the folder that the Yandex Database serverless cluster belongs to.
+     * It will be deduced from provider configuration if not set explicitly.
+     */
     folderId?: string;
+    /**
+     * Name of the Yandex Database serverless cluster.
+     */
     name?: string;
 }
 
@@ -33,23 +63,59 @@ export interface GetYdbDatabaseServerlessArgs {
  * A collection of values returned by getYdbDatabaseServerless.
  */
 export interface GetYdbDatabaseServerlessResult {
+    /**
+     * The Yandex Database serverless cluster creation timestamp.
+     */
     readonly createdAt: string;
     readonly databaseId?: string;
+    /**
+     * Full database path of the Yandex Database serverless cluster.
+     * Useful for SDK configuration.
+     */
     readonly databasePath: string;
+    /**
+     * Inhibits deletion of the database. Can be either `true` or `false`
+     */
     readonly deletionProtection: boolean;
+    /**
+     * A description of the Yandex Database serverless cluster.
+     */
     readonly description: string;
+    /**
+     * Document API endpoint of the Yandex Database serverless cluster.
+     */
     readonly documentApiEndpoint: string;
     readonly folderId?: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A set of key/value label pairs assigned to the Yandex Database serverless cluster.
+     */
     readonly labels: {[key: string]: string};
+    /**
+     * Location ID of the Yandex Database serverless cluster.
+     */
     readonly locationId: string;
     readonly name?: string;
+    /**
+     * Status of the Yandex Database serverless cluster.
+     */
     readonly status: string;
+    /**
+     * Whether TLS is enabled for the Yandex Database serverless cluster.
+     * Useful for SDK configuration.
+     */
     readonly tlsEnabled: boolean;
+    /**
+     * API endpoint of the Yandex Database serverless cluster.
+     * Useful for SDK configuration.
+     */
     readonly ydbApiEndpoint: string;
+    /**
+     * Full endpoint of the Yandex Database serverless cluster.
+     */
     readonly ydbFullEndpoint: string;
 }
 
@@ -61,8 +127,21 @@ export function getYdbDatabaseServerlessOutput(args?: GetYdbDatabaseServerlessOu
  * A collection of arguments for invoking getYdbDatabaseServerless.
  */
 export interface GetYdbDatabaseServerlessOutputArgs {
+    /**
+     * ID of the Yandex Database serverless cluster.
+     */
     databaseId?: pulumi.Input<string>;
+    /**
+     * Inhibits deletion of the database. Can be either `true` or `false`
+     */
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * ID of the folder that the Yandex Database serverless cluster belongs to.
+     * It will be deduced from provider configuration if not set explicitly.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Name of the Yandex Database serverless cluster.
+     */
     name?: pulumi.Input<string>;
 }

@@ -12,6 +12,10 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbVirtualHostRouteGrpcRouteGrpcStatusResponseActionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The status of the response. Supported values are: ok, invalid_argumet, not_found, 
+        /// permission_denied, unauthenticated, unimplemented, internal, unavailable.
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 

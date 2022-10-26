@@ -13,16 +13,49 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetVpcSecurityGroupIngressResult
     {
+        /// <summary>
+        /// Description of the rule.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Minimum port number.
+        /// </summary>
         public readonly int FromPort;
+        /// <summary>
+        /// Id of the rule.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Labels to assign to this rule.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// Port number (if applied to a single port).
+        /// </summary>
         public readonly int Port;
+        /// <summary>
+        /// Special-purpose targets. `self_security_group` refers to this particular security group. `loadbalancer_healthchecks` represents [loadbalancer health check nodes](https://cloud.yandex.com/docs/network-load-balancer/concepts/health-check).
+        /// </summary>
         public readonly string PredefinedTarget;
+        /// <summary>
+        /// One of `ANY`, `TCP`, `UDP`, `ICMP`, `IPV6_ICMP`.
+        /// </summary>
         public readonly string Protocol;
+        /// <summary>
+        /// Security Group ID.
+        /// </summary>
         public readonly string SecurityGroupId;
+        /// <summary>
+        /// Maximum port number.
+        /// </summary>
         public readonly int ToPort;
+        /// <summary>
+        /// The blocks of  IPv4 addresses for this rule.
+        /// </summary>
         public readonly ImmutableArray<string> V4CidrBlocks;
+        /// <summary>
+        /// The blocks of  IPv6 addresses for this rule.
+        /// </summary>
         public readonly ImmutableArray<string> V6CidrBlocks;
 
         [OutputConstructor]

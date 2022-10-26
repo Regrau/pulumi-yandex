@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbGreenplumClusterSegmentHost
     {
+        /// <summary>
+        /// (Computed) The fully qualified domain name of the host.
+        /// </summary>
         public readonly string? Fqdn;
 
         [OutputConstructor]

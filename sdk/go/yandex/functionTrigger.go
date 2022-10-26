@@ -11,22 +11,95 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of [Yandex Cloud Functions Trigger](https://cloud.yandex.com/docs/functions/)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewFunctionTrigger(ctx, "myTrigger", &yandex.FunctionTriggerArgs{
+//				Description: pulumi.String("any description"),
+//				Function: &FunctionTriggerFunctionArgs{
+//					Id: pulumi.String("tf-test"),
+//				},
+//				Timer: &FunctionTriggerTimerArgs{
+//					CronExpression: pulumi.String("* * * * ? *"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type FunctionTrigger struct {
 	pulumi.CustomResourceState
 
-	CreatedAt     pulumi.StringOutput                   `pulumi:"createdAt"`
-	Description   pulumi.StringPtrOutput                `pulumi:"description"`
-	Dlq           FunctionTriggerDlqPtrOutput           `pulumi:"dlq"`
-	FolderId      pulumi.StringOutput                   `pulumi:"folderId"`
-	Function      FunctionTriggerFunctionOutput         `pulumi:"function"`
-	Iot           FunctionTriggerIotPtrOutput           `pulumi:"iot"`
-	Labels        pulumi.StringMapOutput                `pulumi:"labels"`
-	LogGroup      FunctionTriggerLogGroupPtrOutput      `pulumi:"logGroup"`
-	Logging       FunctionTriggerLoggingPtrOutput       `pulumi:"logging"`
-	MessageQueue  FunctionTriggerMessageQueuePtrOutput  `pulumi:"messageQueue"`
-	Name          pulumi.StringOutput                   `pulumi:"name"`
+	// Creation timestamp of the Yandex Cloud Functions Trigger
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Description of the Yandex Cloud Functions Trigger
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Dead Letter Queue settings definition for Yandex Cloud Functions Trigger
+	// * `dlq.0.queue_id` - ID of Dead Letter Queue for Trigger (Queue ARN)
+	// * `dlq.0.service_account_id` - Service Account ID for Dead Letter Queue for Yandex Cloud Functions Trigger
+	Dlq FunctionTriggerDlqPtrOutput `pulumi:"dlq"`
+	// Folder ID for the Yandex Cloud Functions Trigger
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// [Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger
+	// * `function.0.id` - Yandex.Cloud Function ID for Yandex Cloud Functions Trigger
+	// * `function.0.service_account_id` - Service account ID for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	Function FunctionTriggerFunctionOutput `pulumi:"function"`
+	// [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `messageQueue` or `objectStorage` or `timer` can be defined.
+	// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
+	// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
+	// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+	Iot FunctionTriggerIotPtrOutput `pulumi:"iot"`
+	// A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger
+	Labels   pulumi.StringMapOutput           `pulumi:"labels"`
+	LogGroup FunctionTriggerLogGroupPtrOutput `pulumi:"logGroup"`
+	// [Logging](https://cloud.yandex.com/docs/functions/concepts/trigger/logging) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `logging.0.group_id` - Logging group ID for Yandex Cloud Functions Trigger
+	// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
+	Logging FunctionTriggerLoggingPtrOutput `pulumi:"logging"`
+	// [Message Queue](https://cloud.yandex.com/docs/functions/concepts/trigger/ymq-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `message_queue.0.queue_id` - Message Queue ID for Yandex Cloud Functions Trigger
+	// * `message_queue.0.service_account_id` - Message Queue Service Account ID for Yandex Cloud Functions Trigger
+	// * `message_queue.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `message_queue.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
+	// * `message_queue.0.visibility_timeout` - Visibility timeout for Yandex Cloud Functions Trigger
+	MessageQueue FunctionTriggerMessageQueuePtrOutput `pulumi:"messageQueue"`
+	// Yandex Cloud Functions Trigger name used to define trigger
+	Name pulumi.StringOutput `pulumi:"name"`
+	// [Object Storage](https://cloud.yandex.com/docs/functions/concepts/trigger/os-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `object_storage.0.bucket_id` - Object Storage Bucket ID for Yandex Cloud Functions Trigger
+	// * `object_storage.0.prefix` - Prefix for Object Storage for Yandex Cloud Functions Trigger
+	// * `object_storage.0.suffix` - Suffix for Object Storage for Yandex Cloud Functions Trigger
+	// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
 	ObjectStorage FunctionTriggerObjectStoragePtrOutput `pulumi:"objectStorage"`
-	Timer         FunctionTriggerTimerPtrOutput         `pulumi:"timer"`
+	// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+	Timer FunctionTriggerTimerPtrOutput `pulumi:"timer"`
 }
 
 // NewFunctionTrigger registers a new resource with the given unique name, arguments, and options.
@@ -62,35 +135,115 @@ func GetFunctionTrigger(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FunctionTrigger resources.
 type functionTriggerState struct {
-	CreatedAt     *string                       `pulumi:"createdAt"`
-	Description   *string                       `pulumi:"description"`
-	Dlq           *FunctionTriggerDlq           `pulumi:"dlq"`
-	FolderId      *string                       `pulumi:"folderId"`
-	Function      *FunctionTriggerFunction      `pulumi:"function"`
-	Iot           *FunctionTriggerIot           `pulumi:"iot"`
-	Labels        map[string]string             `pulumi:"labels"`
-	LogGroup      *FunctionTriggerLogGroup      `pulumi:"logGroup"`
-	Logging       *FunctionTriggerLogging       `pulumi:"logging"`
-	MessageQueue  *FunctionTriggerMessageQueue  `pulumi:"messageQueue"`
-	Name          *string                       `pulumi:"name"`
+	// Creation timestamp of the Yandex Cloud Functions Trigger
+	CreatedAt *string `pulumi:"createdAt"`
+	// Description of the Yandex Cloud Functions Trigger
+	Description *string `pulumi:"description"`
+	// Dead Letter Queue settings definition for Yandex Cloud Functions Trigger
+	// * `dlq.0.queue_id` - ID of Dead Letter Queue for Trigger (Queue ARN)
+	// * `dlq.0.service_account_id` - Service Account ID for Dead Letter Queue for Yandex Cloud Functions Trigger
+	Dlq *FunctionTriggerDlq `pulumi:"dlq"`
+	// Folder ID for the Yandex Cloud Functions Trigger
+	FolderId *string `pulumi:"folderId"`
+	// [Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger
+	// * `function.0.id` - Yandex.Cloud Function ID for Yandex Cloud Functions Trigger
+	// * `function.0.service_account_id` - Service account ID for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	Function *FunctionTriggerFunction `pulumi:"function"`
+	// [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `messageQueue` or `objectStorage` or `timer` can be defined.
+	// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
+	// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
+	// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+	Iot *FunctionTriggerIot `pulumi:"iot"`
+	// A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger
+	Labels   map[string]string        `pulumi:"labels"`
+	LogGroup *FunctionTriggerLogGroup `pulumi:"logGroup"`
+	// [Logging](https://cloud.yandex.com/docs/functions/concepts/trigger/logging) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `logging.0.group_id` - Logging group ID for Yandex Cloud Functions Trigger
+	// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
+	Logging *FunctionTriggerLogging `pulumi:"logging"`
+	// [Message Queue](https://cloud.yandex.com/docs/functions/concepts/trigger/ymq-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `message_queue.0.queue_id` - Message Queue ID for Yandex Cloud Functions Trigger
+	// * `message_queue.0.service_account_id` - Message Queue Service Account ID for Yandex Cloud Functions Trigger
+	// * `message_queue.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `message_queue.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
+	// * `message_queue.0.visibility_timeout` - Visibility timeout for Yandex Cloud Functions Trigger
+	MessageQueue *FunctionTriggerMessageQueue `pulumi:"messageQueue"`
+	// Yandex Cloud Functions Trigger name used to define trigger
+	Name *string `pulumi:"name"`
+	// [Object Storage](https://cloud.yandex.com/docs/functions/concepts/trigger/os-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `object_storage.0.bucket_id` - Object Storage Bucket ID for Yandex Cloud Functions Trigger
+	// * `object_storage.0.prefix` - Prefix for Object Storage for Yandex Cloud Functions Trigger
+	// * `object_storage.0.suffix` - Suffix for Object Storage for Yandex Cloud Functions Trigger
+	// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
 	ObjectStorage *FunctionTriggerObjectStorage `pulumi:"objectStorage"`
-	Timer         *FunctionTriggerTimer         `pulumi:"timer"`
+	// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+	Timer *FunctionTriggerTimer `pulumi:"timer"`
 }
 
 type FunctionTriggerState struct {
-	CreatedAt     pulumi.StringPtrInput
-	Description   pulumi.StringPtrInput
-	Dlq           FunctionTriggerDlqPtrInput
-	FolderId      pulumi.StringPtrInput
-	Function      FunctionTriggerFunctionPtrInput
-	Iot           FunctionTriggerIotPtrInput
-	Labels        pulumi.StringMapInput
-	LogGroup      FunctionTriggerLogGroupPtrInput
-	Logging       FunctionTriggerLoggingPtrInput
-	MessageQueue  FunctionTriggerMessageQueuePtrInput
-	Name          pulumi.StringPtrInput
+	// Creation timestamp of the Yandex Cloud Functions Trigger
+	CreatedAt pulumi.StringPtrInput
+	// Description of the Yandex Cloud Functions Trigger
+	Description pulumi.StringPtrInput
+	// Dead Letter Queue settings definition for Yandex Cloud Functions Trigger
+	// * `dlq.0.queue_id` - ID of Dead Letter Queue for Trigger (Queue ARN)
+	// * `dlq.0.service_account_id` - Service Account ID for Dead Letter Queue for Yandex Cloud Functions Trigger
+	Dlq FunctionTriggerDlqPtrInput
+	// Folder ID for the Yandex Cloud Functions Trigger
+	FolderId pulumi.StringPtrInput
+	// [Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger
+	// * `function.0.id` - Yandex.Cloud Function ID for Yandex Cloud Functions Trigger
+	// * `function.0.service_account_id` - Service account ID for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	Function FunctionTriggerFunctionPtrInput
+	// [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `messageQueue` or `objectStorage` or `timer` can be defined.
+	// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
+	// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
+	// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+	Iot FunctionTriggerIotPtrInput
+	// A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger
+	Labels   pulumi.StringMapInput
+	LogGroup FunctionTriggerLogGroupPtrInput
+	// [Logging](https://cloud.yandex.com/docs/functions/concepts/trigger/logging) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `logging.0.group_id` - Logging group ID for Yandex Cloud Functions Trigger
+	// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
+	Logging FunctionTriggerLoggingPtrInput
+	// [Message Queue](https://cloud.yandex.com/docs/functions/concepts/trigger/ymq-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `message_queue.0.queue_id` - Message Queue ID for Yandex Cloud Functions Trigger
+	// * `message_queue.0.service_account_id` - Message Queue Service Account ID for Yandex Cloud Functions Trigger
+	// * `message_queue.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `message_queue.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
+	// * `message_queue.0.visibility_timeout` - Visibility timeout for Yandex Cloud Functions Trigger
+	MessageQueue FunctionTriggerMessageQueuePtrInput
+	// Yandex Cloud Functions Trigger name used to define trigger
+	Name pulumi.StringPtrInput
+	// [Object Storage](https://cloud.yandex.com/docs/functions/concepts/trigger/os-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `object_storage.0.bucket_id` - Object Storage Bucket ID for Yandex Cloud Functions Trigger
+	// * `object_storage.0.prefix` - Prefix for Object Storage for Yandex Cloud Functions Trigger
+	// * `object_storage.0.suffix` - Suffix for Object Storage for Yandex Cloud Functions Trigger
+	// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
 	ObjectStorage FunctionTriggerObjectStoragePtrInput
-	Timer         FunctionTriggerTimerPtrInput
+	// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+	Timer FunctionTriggerTimerPtrInput
 }
 
 func (FunctionTriggerState) ElementType() reflect.Type {
@@ -98,34 +251,112 @@ func (FunctionTriggerState) ElementType() reflect.Type {
 }
 
 type functionTriggerArgs struct {
-	Description   *string                       `pulumi:"description"`
-	Dlq           *FunctionTriggerDlq           `pulumi:"dlq"`
-	FolderId      *string                       `pulumi:"folderId"`
-	Function      FunctionTriggerFunction       `pulumi:"function"`
-	Iot           *FunctionTriggerIot           `pulumi:"iot"`
-	Labels        map[string]string             `pulumi:"labels"`
-	LogGroup      *FunctionTriggerLogGroup      `pulumi:"logGroup"`
-	Logging       *FunctionTriggerLogging       `pulumi:"logging"`
-	MessageQueue  *FunctionTriggerMessageQueue  `pulumi:"messageQueue"`
-	Name          *string                       `pulumi:"name"`
+	// Description of the Yandex Cloud Functions Trigger
+	Description *string `pulumi:"description"`
+	// Dead Letter Queue settings definition for Yandex Cloud Functions Trigger
+	// * `dlq.0.queue_id` - ID of Dead Letter Queue for Trigger (Queue ARN)
+	// * `dlq.0.service_account_id` - Service Account ID for Dead Letter Queue for Yandex Cloud Functions Trigger
+	Dlq *FunctionTriggerDlq `pulumi:"dlq"`
+	// Folder ID for the Yandex Cloud Functions Trigger
+	FolderId *string `pulumi:"folderId"`
+	// [Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger
+	// * `function.0.id` - Yandex.Cloud Function ID for Yandex Cloud Functions Trigger
+	// * `function.0.service_account_id` - Service account ID for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	Function FunctionTriggerFunction `pulumi:"function"`
+	// [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `messageQueue` or `objectStorage` or `timer` can be defined.
+	// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
+	// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
+	// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+	Iot *FunctionTriggerIot `pulumi:"iot"`
+	// A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger
+	Labels   map[string]string        `pulumi:"labels"`
+	LogGroup *FunctionTriggerLogGroup `pulumi:"logGroup"`
+	// [Logging](https://cloud.yandex.com/docs/functions/concepts/trigger/logging) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `logging.0.group_id` - Logging group ID for Yandex Cloud Functions Trigger
+	// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
+	Logging *FunctionTriggerLogging `pulumi:"logging"`
+	// [Message Queue](https://cloud.yandex.com/docs/functions/concepts/trigger/ymq-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `message_queue.0.queue_id` - Message Queue ID for Yandex Cloud Functions Trigger
+	// * `message_queue.0.service_account_id` - Message Queue Service Account ID for Yandex Cloud Functions Trigger
+	// * `message_queue.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `message_queue.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
+	// * `message_queue.0.visibility_timeout` - Visibility timeout for Yandex Cloud Functions Trigger
+	MessageQueue *FunctionTriggerMessageQueue `pulumi:"messageQueue"`
+	// Yandex Cloud Functions Trigger name used to define trigger
+	Name *string `pulumi:"name"`
+	// [Object Storage](https://cloud.yandex.com/docs/functions/concepts/trigger/os-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `object_storage.0.bucket_id` - Object Storage Bucket ID for Yandex Cloud Functions Trigger
+	// * `object_storage.0.prefix` - Prefix for Object Storage for Yandex Cloud Functions Trigger
+	// * `object_storage.0.suffix` - Suffix for Object Storage for Yandex Cloud Functions Trigger
+	// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
 	ObjectStorage *FunctionTriggerObjectStorage `pulumi:"objectStorage"`
-	Timer         *FunctionTriggerTimer         `pulumi:"timer"`
+	// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+	Timer *FunctionTriggerTimer `pulumi:"timer"`
 }
 
 // The set of arguments for constructing a FunctionTrigger resource.
 type FunctionTriggerArgs struct {
-	Description   pulumi.StringPtrInput
-	Dlq           FunctionTriggerDlqPtrInput
-	FolderId      pulumi.StringPtrInput
-	Function      FunctionTriggerFunctionInput
-	Iot           FunctionTriggerIotPtrInput
-	Labels        pulumi.StringMapInput
-	LogGroup      FunctionTriggerLogGroupPtrInput
-	Logging       FunctionTriggerLoggingPtrInput
-	MessageQueue  FunctionTriggerMessageQueuePtrInput
-	Name          pulumi.StringPtrInput
+	// Description of the Yandex Cloud Functions Trigger
+	Description pulumi.StringPtrInput
+	// Dead Letter Queue settings definition for Yandex Cloud Functions Trigger
+	// * `dlq.0.queue_id` - ID of Dead Letter Queue for Trigger (Queue ARN)
+	// * `dlq.0.service_account_id` - Service Account ID for Dead Letter Queue for Yandex Cloud Functions Trigger
+	Dlq FunctionTriggerDlqPtrInput
+	// Folder ID for the Yandex Cloud Functions Trigger
+	FolderId pulumi.StringPtrInput
+	// [Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger
+	// * `function.0.id` - Yandex.Cloud Function ID for Yandex Cloud Functions Trigger
+	// * `function.0.service_account_id` - Service account ID for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	// * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+	Function FunctionTriggerFunctionInput
+	// [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `messageQueue` or `objectStorage` or `timer` can be defined.
+	// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
+	// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
+	// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+	Iot FunctionTriggerIotPtrInput
+	// A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger
+	Labels   pulumi.StringMapInput
+	LogGroup FunctionTriggerLogGroupPtrInput
+	// [Logging](https://cloud.yandex.com/docs/functions/concepts/trigger/logging) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `logging.0.group_id` - Logging group ID for Yandex Cloud Functions Trigger
+	// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
+	Logging FunctionTriggerLoggingPtrInput
+	// [Message Queue](https://cloud.yandex.com/docs/functions/concepts/trigger/ymq-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `message_queue.0.queue_id` - Message Queue ID for Yandex Cloud Functions Trigger
+	// * `message_queue.0.service_account_id` - Message Queue Service Account ID for Yandex Cloud Functions Trigger
+	// * `message_queue.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `message_queue.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
+	// * `message_queue.0.visibility_timeout` - Visibility timeout for Yandex Cloud Functions Trigger
+	MessageQueue FunctionTriggerMessageQueuePtrInput
+	// Yandex Cloud Functions Trigger name used to define trigger
+	Name pulumi.StringPtrInput
+	// [Object Storage](https://cloud.yandex.com/docs/functions/concepts/trigger/os-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `object_storage.0.bucket_id` - Object Storage Bucket ID for Yandex Cloud Functions Trigger
+	// * `object_storage.0.prefix` - Prefix for Object Storage for Yandex Cloud Functions Trigger
+	// * `object_storage.0.suffix` - Suffix for Object Storage for Yandex Cloud Functions Trigger
+	// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
 	ObjectStorage FunctionTriggerObjectStoragePtrInput
-	Timer         FunctionTriggerTimerPtrInput
+	// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
+	// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+	Timer FunctionTriggerTimerPtrInput
 }
 
 func (FunctionTriggerArgs) ElementType() reflect.Type {
@@ -215,30 +446,47 @@ func (o FunctionTriggerOutput) ToFunctionTriggerOutputWithContext(ctx context.Co
 	return o
 }
 
+// Creation timestamp of the Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionTrigger) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Dead Letter Queue settings definition for Yandex Cloud Functions Trigger
+// * `dlq.0.queue_id` - ID of Dead Letter Queue for Trigger (Queue ARN)
+// * `dlq.0.service_account_id` - Service Account ID for Dead Letter Queue for Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) Dlq() FunctionTriggerDlqPtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerDlqPtrOutput { return v.Dlq }).(FunctionTriggerDlqPtrOutput)
 }
 
+// Folder ID for the Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionTrigger) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// [Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger
+// * `function.0.id` - Yandex.Cloud Function ID for Yandex Cloud Functions Trigger
+// * `function.0.service_account_id` - Service account ID for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+// * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+// * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+// * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) Function() FunctionTriggerFunctionOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerFunctionOutput { return v.Function }).(FunctionTriggerFunctionOutput)
 }
 
+// [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `messageQueue` or `objectStorage` or `timer` can be defined.
+// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
+// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
+// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) Iot() FunctionTriggerIotPtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerIotPtrOutput { return v.Iot }).(FunctionTriggerIotPtrOutput)
 }
 
+// A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *FunctionTrigger) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -247,22 +495,45 @@ func (o FunctionTriggerOutput) LogGroup() FunctionTriggerLogGroupPtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerLogGroupPtrOutput { return v.LogGroup }).(FunctionTriggerLogGroupPtrOutput)
 }
 
+// [Logging](https://cloud.yandex.com/docs/functions/concepts/trigger/logging) settings definition for Yandex Cloud Functions Trigger, if present
+// * `logging.0.group_id` - Logging group ID for Yandex Cloud Functions Trigger
+// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
+// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
+// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) Logging() FunctionTriggerLoggingPtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerLoggingPtrOutput { return v.Logging }).(FunctionTriggerLoggingPtrOutput)
 }
 
+// [Message Queue](https://cloud.yandex.com/docs/functions/concepts/trigger/ymq-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+// * `message_queue.0.queue_id` - Message Queue ID for Yandex Cloud Functions Trigger
+// * `message_queue.0.service_account_id` - Message Queue Service Account ID for Yandex Cloud Functions Trigger
+// * `message_queue.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+// * `message_queue.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
+// * `message_queue.0.visibility_timeout` - Visibility timeout for Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) MessageQueue() FunctionTriggerMessageQueuePtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerMessageQueuePtrOutput { return v.MessageQueue }).(FunctionTriggerMessageQueuePtrOutput)
 }
 
+// Yandex Cloud Functions Trigger name used to define trigger
 func (o FunctionTriggerOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionTrigger) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// [Object Storage](https://cloud.yandex.com/docs/functions/concepts/trigger/os-trigger) settings definition for Yandex Cloud Functions Trigger, if present
+// * `object_storage.0.bucket_id` - Object Storage Bucket ID for Yandex Cloud Functions Trigger
+// * `object_storage.0.prefix` - Prefix for Object Storage for Yandex Cloud Functions Trigger
+// * `object_storage.0.suffix` - Suffix for Object Storage for Yandex Cloud Functions Trigger
+// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
+// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
+// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) ObjectStorage() FunctionTriggerObjectStoragePtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerObjectStoragePtrOutput { return v.ObjectStorage }).(FunctionTriggerObjectStoragePtrOutput)
 }
 
+// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
+// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) Timer() FunctionTriggerTimerPtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerTimerPtrOutput { return v.Timer }).(FunctionTriggerTimerPtrOutput)
 }

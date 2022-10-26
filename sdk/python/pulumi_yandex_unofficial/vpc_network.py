@@ -20,6 +20,12 @@ class VpcNetworkArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcNetwork resource.
+        :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this network. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the network. Provided by the client when the network is created.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -33,6 +39,10 @@ class VpcNetworkArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of this resource. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -42,6 +52,10 @@ class VpcNetworkArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -51,6 +65,9 @@ class VpcNetworkArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to apply to this network. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -60,6 +77,9 @@ class VpcNetworkArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the network. Provided by the client when the network is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -79,6 +99,14 @@ class _VpcNetworkState:
                  subnet_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering VpcNetwork resources.
+        :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[str] default_security_group_id: ID of default Security Group of this network.
+        :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this network. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the network. Provided by the client when the network is created.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -98,6 +126,9 @@ class _VpcNetworkState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -107,6 +138,9 @@ class _VpcNetworkState:
     @property
     @pulumi.getter(name="defaultSecurityGroupId")
     def default_security_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of default Security Group of this network.
+        """
         return pulumi.get(self, "default_security_group_id")
 
     @default_security_group_id.setter
@@ -116,6 +150,10 @@ class _VpcNetworkState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of this resource. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -125,6 +163,10 @@ class _VpcNetworkState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -134,6 +176,9 @@ class _VpcNetworkState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to apply to this network. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -143,6 +188,9 @@ class _VpcNetworkState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the network. Provided by the client when the network is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -170,9 +218,38 @@ class VpcNetwork(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a VpcNetwork resource with the given unique name, props, and options.
+        Manages a network within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/network#network).
+
+        * How-to Guides
+            * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+            * [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        default = yandex.VpcNetwork("default")
+        ```
+
+        ## Import
+
+        A network can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/vpcNetwork:VpcNetwork default network_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this network. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the network. Provided by the client when the network is created.
         """
         ...
     @overload
@@ -181,7 +258,30 @@ class VpcNetwork(pulumi.CustomResource):
                  args: Optional[VpcNetworkArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a VpcNetwork resource with the given unique name, props, and options.
+        Manages a network within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/network#network).
+
+        * How-to Guides
+            * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+            * [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        default = yandex.VpcNetwork("default")
+        ```
+
+        ## Import
+
+        A network can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/vpcNetwork:VpcNetwork default network_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param VpcNetworkArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -241,6 +341,14 @@ class VpcNetwork(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[str] default_security_group_id: ID of default Security Group of this network.
+        :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this network. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the network. Provided by the client when the network is created.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -258,31 +366,51 @@ class VpcNetwork(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="defaultSecurityGroupId")
     def default_security_group_id(self) -> pulumi.Output[str]:
+        """
+        ID of default Security Group of this network.
+        """
         return pulumi.get(self, "default_security_group_id")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        An optional description of this resource. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        Labels to apply to this network. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the network. Provided by the client when the network is created.
+        """
         return pulumi.get(self, "name")
 
     @property

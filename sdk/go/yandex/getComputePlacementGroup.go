@@ -10,6 +10,35 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex Compute Placement group. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/placement-groups).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myGroup, err := yandex.LookupComputePlacementGroup(ctx, &GetComputePlacementGroupArgs{
+//				GroupId: pulumi.StringRef("some_group_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("placementGroupName", myGroup.Name)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupComputePlacementGroup(ctx *pulumi.Context, args *LookupComputePlacementGroupArgs, opts ...pulumi.InvokeOption) (*LookupComputePlacementGroupResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupComputePlacementGroupResult
@@ -22,21 +51,29 @@ func LookupComputePlacementGroup(ctx *pulumi.Context, args *LookupComputePlaceme
 
 // A collection of arguments for invoking getComputePlacementGroup.
 type LookupComputePlacementGroupArgs struct {
-	Description *string           `pulumi:"description"`
-	FolderId    *string           `pulumi:"folderId"`
-	GroupId     *string           `pulumi:"groupId"`
-	Labels      map[string]string `pulumi:"labels"`
-	Name        *string           `pulumi:"name"`
+	// Description of the group.
+	Description *string `pulumi:"description"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// The ID of a specific group.
+	GroupId *string `pulumi:"groupId"`
+	// A set of key/value label pairs assigned to the group.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the group.
+	Name *string `pulumi:"name"`
 }
 
 // A collection of values returned by getComputePlacementGroup.
 type LookupComputePlacementGroupResult struct {
-	CreatedAt   string  `pulumi:"createdAt"`
+	// Placement group creation timestamp.
+	CreatedAt string `pulumi:"createdAt"`
+	// Description of the group.
 	Description *string `pulumi:"description"`
 	FolderId    string  `pulumi:"folderId"`
 	GroupId     string  `pulumi:"groupId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id     string            `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// A set of key/value label pairs assigned to the group.
 	Labels map[string]string `pulumi:"labels"`
 	Name   *string           `pulumi:"name"`
 }
@@ -56,11 +93,16 @@ func LookupComputePlacementGroupOutput(ctx *pulumi.Context, args LookupComputePl
 
 // A collection of arguments for invoking getComputePlacementGroup.
 type LookupComputePlacementGroupOutputArgs struct {
+	// Description of the group.
 	Description pulumi.StringPtrInput `pulumi:"description"`
-	FolderId    pulumi.StringPtrInput `pulumi:"folderId"`
-	GroupId     pulumi.StringPtrInput `pulumi:"groupId"`
-	Labels      pulumi.StringMapInput `pulumi:"labels"`
-	Name        pulumi.StringPtrInput `pulumi:"name"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// The ID of a specific group.
+	GroupId pulumi.StringPtrInput `pulumi:"groupId"`
+	// A set of key/value label pairs assigned to the group.
+	Labels pulumi.StringMapInput `pulumi:"labels"`
+	// Name of the group.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
 func (LookupComputePlacementGroupOutputArgs) ElementType() reflect.Type {
@@ -82,10 +124,12 @@ func (o LookupComputePlacementGroupResultOutput) ToLookupComputePlacementGroupRe
 	return o
 }
 
+// Placement group creation timestamp.
 func (o LookupComputePlacementGroupResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupComputePlacementGroupResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the group.
 func (o LookupComputePlacementGroupResultOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupComputePlacementGroupResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
@@ -103,6 +147,7 @@ func (o LookupComputePlacementGroupResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupComputePlacementGroupResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs assigned to the group.
 func (o LookupComputePlacementGroupResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupComputePlacementGroupResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }

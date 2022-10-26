@@ -38,6 +38,9 @@ class GetIamUserResult:
     @property
     @pulumi.getter(name="defaultEmail")
     def default_email(self) -> str:
+        """
+        Email address of user account.
+        """
         return pulumi.get(self, "default_email")
 
     @property
@@ -51,11 +54,17 @@ class GetIamUserResult:
     @property
     @pulumi.getter
     def login(self) -> str:
+        """
+        Login name of IAM user account.
+        """
         return pulumi.get(self, "login")
 
     @property
     @pulumi.getter(name="userId")
     def user_id(self) -> str:
+        """
+        ID of IAM user account.
+        """
         return pulumi.get(self, "user_id")
 
 
@@ -75,7 +84,21 @@ def get_iam_user(login: Optional[str] = None,
                  user_id: Optional[str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIamUserResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex IAM user account. For more information about accounts, see
+    [Yandex.Cloud IAM accounts](https://cloud.yandex.com/docs/iam/concepts/#accounts).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    admin = yandex.get_iam_user(login="my-yandex-login")
+    ```
+
+    This data source is used to define [IAM User] that can be used by other resources.
+
+
+    :param str login: Login name used to sign in to Yandex Passport.
+    :param str user_id: User ID used to manage IAM access bindings.
     """
     __args__ = dict()
     __args__['login'] = login
@@ -95,6 +118,20 @@ def get_iam_user_output(login: Optional[pulumi.Input[Optional[str]]] = None,
                         user_id: Optional[pulumi.Input[Optional[str]]] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIamUserResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex IAM user account. For more information about accounts, see
+    [Yandex.Cloud IAM accounts](https://cloud.yandex.com/docs/iam/concepts/#accounts).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    admin = yandex.get_iam_user(login="my-yandex-login")
+    ```
+
+    This data source is used to define [IAM User] that can be used by other resources.
+
+
+    :param str login: Login name used to sign in to Yandex Passport.
+    :param str user_id: User ID used to manage IAM access bindings.
     """
     ...

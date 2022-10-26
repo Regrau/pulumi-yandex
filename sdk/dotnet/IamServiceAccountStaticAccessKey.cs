@@ -9,30 +9,81 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows management of [Yandex.Cloud IAM service account static access keys](https://cloud.yandex.com/docs/iam/operations/sa/create-access-key).
+    /// Generated pair of keys is used to access [Yandex Object Storage](https://cloud.yandex.com/docs/storage) on behalf of service account.
+    /// 
+    /// Before using keys do not forget to [assign a proper role](https://cloud.yandex.com/docs/iam/operations/sa/assign-role-for-sa) to the service account.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// This snippet creates a service account static access key.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var sa_static_key = new Yandex.IamServiceAccountStaticAccessKey("sa-static-key", new()
+    ///     {
+    ///         Description = "static access key for object storage",
+    ///         PgpKey = "keybase:keybaseusername",
+    ///         ServiceAccountId = "some_sa_id",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/iamServiceAccountStaticAccessKey:IamServiceAccountStaticAccessKey")]
     public partial class IamServiceAccountStaticAccessKey : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// ID of the static access key.
+        /// </summary>
         [Output("accessKey")]
         public Output<string> AccessKey { get; private set; } = null!;
 
+        /// <summary>
+        /// Creation timestamp of the static access key.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// The description of the service account static key.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// The encrypted secret, base64 encoded. This is only populated when `pgp_key` is supplied.
+        /// </summary>
         [Output("encryptedSecretKey")]
         public Output<string> EncryptedSecretKey { get; private set; } = null!;
 
+        /// <summary>
+        /// The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgp_key` is supplied.
+        /// </summary>
         [Output("keyFingerprint")]
         public Output<string> KeyFingerprint { get; private set; } = null!;
 
+        /// <summary>
+        /// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        /// </summary>
         [Output("pgpKey")]
         public Output<string?> PgpKey { get; private set; } = null!;
 
+        /// <summary>
+        /// Private part of generated static access key. This is only populated when no `pgp_key` is provided.
+        /// </summary>
         [Output("secretKey")]
         public Output<string> SecretKey { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the service account which is used to get a static key.
+        /// </summary>
         [Output("serviceAccountId")]
         public Output<string> ServiceAccountId { get; private set; } = null!;
 
@@ -59,7 +110,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -83,12 +134,21 @@ namespace Pulumi.Yandex
 
     public sealed class IamServiceAccountStaticAccessKeyArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The description of the service account static key.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        /// </summary>
         [Input("pgpKey")]
         public Input<string>? PgpKey { get; set; }
 
+        /// <summary>
+        /// ID of the service account which is used to get a static key.
+        /// </summary>
         [Input("serviceAccountId", required: true)]
         public Input<string> ServiceAccountId { get; set; } = null!;
 
@@ -100,27 +160,51 @@ namespace Pulumi.Yandex
 
     public sealed class IamServiceAccountStaticAccessKeyState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the static access key.
+        /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
+        /// <summary>
+        /// Creation timestamp of the static access key.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// The description of the service account static key.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The encrypted secret, base64 encoded. This is only populated when `pgp_key` is supplied.
+        /// </summary>
         [Input("encryptedSecretKey")]
         public Input<string>? EncryptedSecretKey { get; set; }
 
+        /// <summary>
+        /// The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgp_key` is supplied.
+        /// </summary>
         [Input("keyFingerprint")]
         public Input<string>? KeyFingerprint { get; set; }
 
+        /// <summary>
+        /// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+        /// </summary>
         [Input("pgpKey")]
         public Input<string>? PgpKey { get; set; }
 
+        /// <summary>
+        /// Private part of generated static access key. This is only populated when no `pgp_key` is provided.
+        /// </summary>
         [Input("secretKey")]
         public Input<string>? SecretKey { get; set; }
 
+        /// <summary>
+        /// ID of the service account which is used to get a static key.
+        /// </summary>
         [Input("serviceAccountId")]
         public Input<string>? ServiceAccountId { get; set; }
 

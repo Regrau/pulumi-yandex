@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefault
     {
+        /// <summary>
+        /// The KMS master key ID used for the SSE-KMS encryption.
+        /// </summary>
         public readonly string KmsMasterKeyId;
+        /// <summary>
+        /// The server-side encryption algorithm to use. Single valid value is `aws:kms`
+        /// </summary>
         public readonly string SseAlgorithm;
 
         [OutputConstructor]

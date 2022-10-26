@@ -11,9 +11,51 @@ namespace Pulumi.Yandex
 {
     public static class GetIamUser
     {
+        /// <summary>
+        /// Get information about a Yandex IAM user account. For more information about accounts, see 
+        /// [Yandex.Cloud IAM accounts](https://cloud.yandex.com/docs/iam/concepts/#accounts).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var admin = Yandex.GetIamUser.Invoke(new()
+        ///     {
+        ///         Login = "my-yandex-login",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [IAM User] that can be used by other resources.
+        /// </summary>
         public static Task<GetIamUserResult> InvokeAsync(GetIamUserArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetIamUserResult>("yandex:index/getIamUser:getIamUser", args ?? new GetIamUserArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex IAM user account. For more information about accounts, see 
+        /// [Yandex.Cloud IAM accounts](https://cloud.yandex.com/docs/iam/concepts/#accounts).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var admin = Yandex.GetIamUser.Invoke(new()
+        ///     {
+        ///         Login = "my-yandex-login",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [IAM User] that can be used by other resources.
+        /// </summary>
         public static Output<GetIamUserResult> Invoke(GetIamUserInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetIamUserResult>("yandex:index/getIamUser:getIamUser", args ?? new GetIamUserInvokeArgs(), options.WithDefaults());
     }
@@ -21,9 +63,15 @@ namespace Pulumi.Yandex
 
     public sealed class GetIamUserArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Login name used to sign in to Yandex Passport.
+        /// </summary>
         [Input("login")]
         public string? Login { get; set; }
 
+        /// <summary>
+        /// User ID used to manage IAM access bindings.
+        /// </summary>
         [Input("userId")]
         public string? UserId { get; set; }
 
@@ -35,9 +83,15 @@ namespace Pulumi.Yandex
 
     public sealed class GetIamUserInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Login name used to sign in to Yandex Passport.
+        /// </summary>
         [Input("login")]
         public Input<string>? Login { get; set; }
 
+        /// <summary>
+        /// User ID used to manage IAM access bindings.
+        /// </summary>
         [Input("userId")]
         public Input<string>? UserId { get; set; }
 
@@ -51,12 +105,21 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetIamUserResult
     {
+        /// <summary>
+        /// Email address of user account.
+        /// </summary>
         public readonly string DefaultEmail;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Login name of IAM user account.
+        /// </summary>
         public readonly string Login;
+        /// <summary>
+        /// ID of IAM user account.
+        /// </summary>
         public readonly string UserId;
 
         [OutputConstructor]

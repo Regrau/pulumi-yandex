@@ -51,11 +51,17 @@ class GetLbTargetGroupResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of this target group.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the target group.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -74,6 +80,11 @@ class GetLbTargetGroupResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        Labels to assign to this target group.
+        * `target.0.address` - IP address of the target.
+        * `target.0.subnet_id` - ID of the subnet that targets are connected to.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -113,7 +124,22 @@ def get_lb_target_group(folder_id: Optional[str] = None,
                         target_group_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLbTargetGroupResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Load Balancer target group. For more information, see
+    [Yandex.Cloud Load Balancer](https://cloud.yandex.com/docs/load-balancer/quickstart).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_lb_target_group(target_group_id="my-target-group-id")
+    ```
+
+    This data source is used to define [Load Balancer Target Groups] that can be used by other resources.
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: - Name of the Target Group.
+    :param str target_group_id: Target Group ID.
     """
     __args__ = dict()
     __args__['folderId'] = folder_id
@@ -139,6 +165,21 @@ def get_lb_target_group_output(folder_id: Optional[pulumi.Input[Optional[str]]] 
                                target_group_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLbTargetGroupResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Load Balancer target group. For more information, see
+    [Yandex.Cloud Load Balancer](https://cloud.yandex.com/docs/load-balancer/quickstart).
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_lb_target_group(target_group_id="my-target-group-id")
+    ```
+
+    This data source is used to define [Load Balancer Target Groups] that can be used by other resources.
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: - Name of the Target Group.
+    :param str target_group_id: Target Group ID.
     """
     ...

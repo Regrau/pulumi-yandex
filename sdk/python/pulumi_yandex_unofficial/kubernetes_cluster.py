@@ -35,6 +35,31 @@ class KubernetesClusterArgs:
                  service_ipv6_range: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a KubernetesCluster resource.
+        :param pulumi.Input['KubernetesClusterMasterArgs'] master: Kubernetes master configuration options. The structure is documented below.
+        :param pulumi.Input[str] network_id: The ID of the cluster network.
+        :param pulumi.Input[str] node_service_account_id: Service account to be used by the worker nodes of the Kubernetes cluster
+               to access Container Registry or to push node logs and metrics.
+        :param pulumi.Input[str] service_account_id: Service account to be used for provisioning Compute Cloud and VPC resources
+               for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+               cluster will be located and on the folder where selected network resides.
+        :param pulumi.Input[str] cluster_ipv4_range: CIDR block. IP range for allocating pod addresses.
+               It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+               set up for this CIDR blocks in node subnets.
+        :param pulumi.Input[str] cluster_ipv6_range: Identical to cluster_ipv4_range but for IPv6 protocol.
+        :param pulumi.Input[str] description: A description of the Kubernetes cluster.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the Kubernetes cluster belongs to.
+               If it is not provided, the default provider folder is used.
+        :param pulumi.Input['KubernetesClusterKmsProviderArgs'] kms_provider: cluster KMS provider parameters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Kubernetes cluster.
+        :param pulumi.Input[str] name: Name of a specific Kubernetes cluster.
+        :param pulumi.Input['KubernetesClusterNetworkImplementationArgs'] network_implementation: (Optional) Network Implementation options. The structure is documented below.
+        :param pulumi.Input[str] network_policy_provider: Network policy provider for the cluster. Possible values: `CALICO`.
+        :param pulumi.Input[int] node_ipv4_cidr_mask_size: Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+        :param pulumi.Input[str] release_channel: Cluster release channel.
+        :param pulumi.Input[str] service_ipv4_range: CIDR block. IP range Kubernetes service Kubernetes cluster
+               IP addresses will be allocated from. It should not overlap with any subnet in the network
+               the Kubernetes cluster located in.
+        :param pulumi.Input[str] service_ipv6_range: Identical to service_ipv4_range but for IPv6 protocol.
         """
         pulumi.set(__self__, "master", master)
         pulumi.set(__self__, "network_id", network_id)
@@ -70,6 +95,9 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter
     def master(self) -> pulumi.Input['KubernetesClusterMasterArgs']:
+        """
+        Kubernetes master configuration options. The structure is documented below.
+        """
         return pulumi.get(self, "master")
 
     @master.setter
@@ -79,6 +107,9 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Input[str]:
+        """
+        The ID of the cluster network.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -88,6 +119,10 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter(name="nodeServiceAccountId")
     def node_service_account_id(self) -> pulumi.Input[str]:
+        """
+        Service account to be used by the worker nodes of the Kubernetes cluster
+        to access Container Registry or to push node logs and metrics.
+        """
         return pulumi.get(self, "node_service_account_id")
 
     @node_service_account_id.setter
@@ -97,6 +132,11 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Input[str]:
+        """
+        Service account to be used for provisioning Compute Cloud and VPC resources
+        for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+        cluster will be located and on the folder where selected network resides.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -106,6 +146,11 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter(name="clusterIpv4Range")
     def cluster_ipv4_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        CIDR block. IP range for allocating pod addresses.
+        It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+        set up for this CIDR blocks in node subnets.
+        """
         return pulumi.get(self, "cluster_ipv4_range")
 
     @cluster_ipv4_range.setter
@@ -115,6 +160,9 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter(name="clusterIpv6Range")
     def cluster_ipv6_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identical to cluster_ipv4_range but for IPv6 protocol.
+        """
         return pulumi.get(self, "cluster_ipv6_range")
 
     @cluster_ipv6_range.setter
@@ -124,6 +172,9 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the Kubernetes cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -133,6 +184,10 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the Kubernetes cluster belongs to.
+        If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -142,6 +197,9 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter(name="kmsProvider")
     def kms_provider(self) -> Optional[pulumi.Input['KubernetesClusterKmsProviderArgs']]:
+        """
+        cluster KMS provider parameters.
+        """
         return pulumi.get(self, "kms_provider")
 
     @kms_provider.setter
@@ -151,6 +209,9 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Kubernetes cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -160,6 +221,9 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of a specific Kubernetes cluster.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -169,6 +233,9 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter(name="networkImplementation")
     def network_implementation(self) -> Optional[pulumi.Input['KubernetesClusterNetworkImplementationArgs']]:
+        """
+        (Optional) Network Implementation options. The structure is documented below.
+        """
         return pulumi.get(self, "network_implementation")
 
     @network_implementation.setter
@@ -178,6 +245,9 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter(name="networkPolicyProvider")
     def network_policy_provider(self) -> Optional[pulumi.Input[str]]:
+        """
+        Network policy provider for the cluster. Possible values: `CALICO`.
+        """
         return pulumi.get(self, "network_policy_provider")
 
     @network_policy_provider.setter
@@ -187,6 +257,9 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter(name="nodeIpv4CidrMaskSize")
     def node_ipv4_cidr_mask_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+        """
         return pulumi.get(self, "node_ipv4_cidr_mask_size")
 
     @node_ipv4_cidr_mask_size.setter
@@ -196,6 +269,9 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter(name="releaseChannel")
     def release_channel(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cluster release channel.
+        """
         return pulumi.get(self, "release_channel")
 
     @release_channel.setter
@@ -205,6 +281,11 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter(name="serviceIpv4Range")
     def service_ipv4_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        CIDR block. IP range Kubernetes service Kubernetes cluster
+        IP addresses will be allocated from. It should not overlap with any subnet in the network
+        the Kubernetes cluster located in.
+        """
         return pulumi.get(self, "service_ipv4_range")
 
     @service_ipv4_range.setter
@@ -214,6 +295,9 @@ class KubernetesClusterArgs:
     @property
     @pulumi.getter(name="serviceIpv6Range")
     def service_ipv6_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identical to service_ipv4_range but for IPv6 protocol.
+        """
         return pulumi.get(self, "service_ipv6_range")
 
     @service_ipv6_range.setter
@@ -247,6 +331,35 @@ class _KubernetesClusterState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering KubernetesCluster resources.
+        :param pulumi.Input[str] cluster_ipv4_range: CIDR block. IP range for allocating pod addresses.
+               It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+               set up for this CIDR blocks in node subnets.
+        :param pulumi.Input[str] cluster_ipv6_range: Identical to cluster_ipv4_range but for IPv6 protocol.
+        :param pulumi.Input[str] created_at: (Computed) The Kubernetes cluster creation timestamp.
+        :param pulumi.Input[str] description: A description of the Kubernetes cluster.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the Kubernetes cluster belongs to.
+               If it is not provided, the default provider folder is used.
+        :param pulumi.Input[str] health: (Computed) Health of the Kubernetes cluster.
+        :param pulumi.Input['KubernetesClusterKmsProviderArgs'] kms_provider: cluster KMS provider parameters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Kubernetes cluster.
+        :param pulumi.Input[str] log_group_id: Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        :param pulumi.Input['KubernetesClusterMasterArgs'] master: Kubernetes master configuration options. The structure is documented below.
+        :param pulumi.Input[str] name: Name of a specific Kubernetes cluster.
+        :param pulumi.Input[str] network_id: The ID of the cluster network.
+        :param pulumi.Input['KubernetesClusterNetworkImplementationArgs'] network_implementation: (Optional) Network Implementation options. The structure is documented below.
+        :param pulumi.Input[str] network_policy_provider: Network policy provider for the cluster. Possible values: `CALICO`.
+        :param pulumi.Input[int] node_ipv4_cidr_mask_size: Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+        :param pulumi.Input[str] node_service_account_id: Service account to be used by the worker nodes of the Kubernetes cluster
+               to access Container Registry or to push node logs and metrics.
+        :param pulumi.Input[str] release_channel: Cluster release channel.
+        :param pulumi.Input[str] service_account_id: Service account to be used for provisioning Compute Cloud and VPC resources
+               for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+               cluster will be located and on the folder where selected network resides.
+        :param pulumi.Input[str] service_ipv4_range: CIDR block. IP range Kubernetes service Kubernetes cluster
+               IP addresses will be allocated from. It should not overlap with any subnet in the network
+               the Kubernetes cluster located in.
+        :param pulumi.Input[str] service_ipv6_range: Identical to service_ipv4_range but for IPv6 protocol.
+        :param pulumi.Input[str] status: (Computed)Status of the Kubernetes cluster.
         """
         if cluster_ipv4_range is not None:
             pulumi.set(__self__, "cluster_ipv4_range", cluster_ipv4_range)
@@ -294,6 +407,11 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="clusterIpv4Range")
     def cluster_ipv4_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        CIDR block. IP range for allocating pod addresses.
+        It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+        set up for this CIDR blocks in node subnets.
+        """
         return pulumi.get(self, "cluster_ipv4_range")
 
     @cluster_ipv4_range.setter
@@ -303,6 +421,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="clusterIpv6Range")
     def cluster_ipv6_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identical to cluster_ipv4_range but for IPv6 protocol.
+        """
         return pulumi.get(self, "cluster_ipv6_range")
 
     @cluster_ipv6_range.setter
@@ -312,6 +433,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) The Kubernetes cluster creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -321,6 +445,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the Kubernetes cluster.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -330,6 +457,10 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the Kubernetes cluster belongs to.
+        If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -339,6 +470,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter
     def health(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) Health of the Kubernetes cluster.
+        """
         return pulumi.get(self, "health")
 
     @health.setter
@@ -348,6 +482,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="kmsProvider")
     def kms_provider(self) -> Optional[pulumi.Input['KubernetesClusterKmsProviderArgs']]:
+        """
+        cluster KMS provider parameters.
+        """
         return pulumi.get(self, "kms_provider")
 
     @kms_provider.setter
@@ -357,6 +494,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Kubernetes cluster.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -366,6 +506,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="logGroupId")
     def log_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        """
         return pulumi.get(self, "log_group_id")
 
     @log_group_id.setter
@@ -375,6 +518,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter
     def master(self) -> Optional[pulumi.Input['KubernetesClusterMasterArgs']]:
+        """
+        Kubernetes master configuration options. The structure is documented below.
+        """
         return pulumi.get(self, "master")
 
     @master.setter
@@ -384,6 +530,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of a specific Kubernetes cluster.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -393,6 +542,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the cluster network.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -402,6 +554,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="networkImplementation")
     def network_implementation(self) -> Optional[pulumi.Input['KubernetesClusterNetworkImplementationArgs']]:
+        """
+        (Optional) Network Implementation options. The structure is documented below.
+        """
         return pulumi.get(self, "network_implementation")
 
     @network_implementation.setter
@@ -411,6 +566,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="networkPolicyProvider")
     def network_policy_provider(self) -> Optional[pulumi.Input[str]]:
+        """
+        Network policy provider for the cluster. Possible values: `CALICO`.
+        """
         return pulumi.get(self, "network_policy_provider")
 
     @network_policy_provider.setter
@@ -420,6 +578,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="nodeIpv4CidrMaskSize")
     def node_ipv4_cidr_mask_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+        """
         return pulumi.get(self, "node_ipv4_cidr_mask_size")
 
     @node_ipv4_cidr_mask_size.setter
@@ -429,6 +590,10 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="nodeServiceAccountId")
     def node_service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service account to be used by the worker nodes of the Kubernetes cluster
+        to access Container Registry or to push node logs and metrics.
+        """
         return pulumi.get(self, "node_service_account_id")
 
     @node_service_account_id.setter
@@ -438,6 +603,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="releaseChannel")
     def release_channel(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cluster release channel.
+        """
         return pulumi.get(self, "release_channel")
 
     @release_channel.setter
@@ -447,6 +615,11 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service account to be used for provisioning Compute Cloud and VPC resources
+        for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+        cluster will be located and on the folder where selected network resides.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -456,6 +629,11 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="serviceIpv4Range")
     def service_ipv4_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        CIDR block. IP range Kubernetes service Kubernetes cluster
+        IP addresses will be allocated from. It should not overlap with any subnet in the network
+        the Kubernetes cluster located in.
+        """
         return pulumi.get(self, "service_ipv4_range")
 
     @service_ipv4_range.setter
@@ -465,6 +643,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter(name="serviceIpv6Range")
     def service_ipv6_range(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identical to service_ipv4_range but for IPv6 protocol.
+        """
         return pulumi.get(self, "service_ipv6_range")
 
     @service_ipv6_range.setter
@@ -474,6 +655,9 @@ class _KubernetesClusterState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed)Status of the Kubernetes cluster.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -505,9 +689,43 @@ class KubernetesCluster(pulumi.CustomResource):
                  service_ipv6_range: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a KubernetesCluster resource with the given unique name, props, and options.
+        Creates a Yandex Kubernetes Cluster.
+
+        ## Import
+
+        A Managed Kubernetes cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/kubernetesCluster:KubernetesCluster default cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cluster_ipv4_range: CIDR block. IP range for allocating pod addresses.
+               It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+               set up for this CIDR blocks in node subnets.
+        :param pulumi.Input[str] cluster_ipv6_range: Identical to cluster_ipv4_range but for IPv6 protocol.
+        :param pulumi.Input[str] description: A description of the Kubernetes cluster.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the Kubernetes cluster belongs to.
+               If it is not provided, the default provider folder is used.
+        :param pulumi.Input[pulumi.InputType['KubernetesClusterKmsProviderArgs']] kms_provider: cluster KMS provider parameters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Kubernetes cluster.
+        :param pulumi.Input[pulumi.InputType['KubernetesClusterMasterArgs']] master: Kubernetes master configuration options. The structure is documented below.
+        :param pulumi.Input[str] name: Name of a specific Kubernetes cluster.
+        :param pulumi.Input[str] network_id: The ID of the cluster network.
+        :param pulumi.Input[pulumi.InputType['KubernetesClusterNetworkImplementationArgs']] network_implementation: (Optional) Network Implementation options. The structure is documented below.
+        :param pulumi.Input[str] network_policy_provider: Network policy provider for the cluster. Possible values: `CALICO`.
+        :param pulumi.Input[int] node_ipv4_cidr_mask_size: Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+        :param pulumi.Input[str] node_service_account_id: Service account to be used by the worker nodes of the Kubernetes cluster
+               to access Container Registry or to push node logs and metrics.
+        :param pulumi.Input[str] release_channel: Cluster release channel.
+        :param pulumi.Input[str] service_account_id: Service account to be used for provisioning Compute Cloud and VPC resources
+               for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+               cluster will be located and on the folder where selected network resides.
+        :param pulumi.Input[str] service_ipv4_range: CIDR block. IP range Kubernetes service Kubernetes cluster
+               IP addresses will be allocated from. It should not overlap with any subnet in the network
+               the Kubernetes cluster located in.
+        :param pulumi.Input[str] service_ipv6_range: Identical to service_ipv4_range but for IPv6 protocol.
         """
         ...
     @overload
@@ -516,7 +734,16 @@ class KubernetesCluster(pulumi.CustomResource):
                  args: KubernetesClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a KubernetesCluster resource with the given unique name, props, and options.
+        Creates a Yandex Kubernetes Cluster.
+
+        ## Import
+
+        A Managed Kubernetes cluster can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/kubernetesCluster:KubernetesCluster default cluster_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param KubernetesClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -625,6 +852,35 @@ class KubernetesCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cluster_ipv4_range: CIDR block. IP range for allocating pod addresses.
+               It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+               set up for this CIDR blocks in node subnets.
+        :param pulumi.Input[str] cluster_ipv6_range: Identical to cluster_ipv4_range but for IPv6 protocol.
+        :param pulumi.Input[str] created_at: (Computed) The Kubernetes cluster creation timestamp.
+        :param pulumi.Input[str] description: A description of the Kubernetes cluster.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the Kubernetes cluster belongs to.
+               If it is not provided, the default provider folder is used.
+        :param pulumi.Input[str] health: (Computed) Health of the Kubernetes cluster.
+        :param pulumi.Input[pulumi.InputType['KubernetesClusterKmsProviderArgs']] kms_provider: cluster KMS provider parameters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Kubernetes cluster.
+        :param pulumi.Input[str] log_group_id: Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        :param pulumi.Input[pulumi.InputType['KubernetesClusterMasterArgs']] master: Kubernetes master configuration options. The structure is documented below.
+        :param pulumi.Input[str] name: Name of a specific Kubernetes cluster.
+        :param pulumi.Input[str] network_id: The ID of the cluster network.
+        :param pulumi.Input[pulumi.InputType['KubernetesClusterNetworkImplementationArgs']] network_implementation: (Optional) Network Implementation options. The structure is documented below.
+        :param pulumi.Input[str] network_policy_provider: Network policy provider for the cluster. Possible values: `CALICO`.
+        :param pulumi.Input[int] node_ipv4_cidr_mask_size: Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+        :param pulumi.Input[str] node_service_account_id: Service account to be used by the worker nodes of the Kubernetes cluster
+               to access Container Registry or to push node logs and metrics.
+        :param pulumi.Input[str] release_channel: Cluster release channel.
+        :param pulumi.Input[str] service_account_id: Service account to be used for provisioning Compute Cloud and VPC resources
+               for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+               cluster will be located and on the folder where selected network resides.
+        :param pulumi.Input[str] service_ipv4_range: CIDR block. IP range Kubernetes service Kubernetes cluster
+               IP addresses will be allocated from. It should not overlap with any subnet in the network
+               the Kubernetes cluster located in.
+        :param pulumi.Input[str] service_ipv6_range: Identical to service_ipv4_range but for IPv6 protocol.
+        :param pulumi.Input[str] status: (Computed)Status of the Kubernetes cluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -656,105 +912,176 @@ class KubernetesCluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="clusterIpv4Range")
     def cluster_ipv4_range(self) -> pulumi.Output[str]:
+        """
+        CIDR block. IP range for allocating pod addresses.
+        It should not overlap with any subnet in the network the Kubernetes cluster located in. Static routes will be
+        set up for this CIDR blocks in node subnets.
+        """
         return pulumi.get(self, "cluster_ipv4_range")
 
     @property
     @pulumi.getter(name="clusterIpv6Range")
     def cluster_ipv6_range(self) -> pulumi.Output[str]:
+        """
+        Identical to cluster_ipv4_range but for IPv6 protocol.
+        """
         return pulumi.get(self, "cluster_ipv6_range")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        (Computed) The Kubernetes cluster creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[str]:
+        """
+        A description of the Kubernetes cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder that the Kubernetes cluster belongs to.
+        If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def health(self) -> pulumi.Output[str]:
+        """
+        (Computed) Health of the Kubernetes cluster.
+        """
         return pulumi.get(self, "health")
 
     @property
     @pulumi.getter(name="kmsProvider")
     def kms_provider(self) -> pulumi.Output[Optional['outputs.KubernetesClusterKmsProvider']]:
+        """
+        cluster KMS provider parameters.
+        """
         return pulumi.get(self, "kms_provider")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        A set of key/value label pairs to assign to the Kubernetes cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="logGroupId")
     def log_group_id(self) -> pulumi.Output[str]:
+        """
+        Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        """
         return pulumi.get(self, "log_group_id")
 
     @property
     @pulumi.getter
     def master(self) -> pulumi.Output['outputs.KubernetesClusterMaster']:
+        """
+        Kubernetes master configuration options. The structure is documented below.
+        """
         return pulumi.get(self, "master")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of a specific Kubernetes cluster.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the cluster network.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="networkImplementation")
     def network_implementation(self) -> pulumi.Output[Optional['outputs.KubernetesClusterNetworkImplementation']]:
+        """
+        (Optional) Network Implementation options. The structure is documented below.
+        """
         return pulumi.get(self, "network_implementation")
 
     @property
     @pulumi.getter(name="networkPolicyProvider")
     def network_policy_provider(self) -> pulumi.Output[Optional[str]]:
+        """
+        Network policy provider for the cluster. Possible values: `CALICO`.
+        """
         return pulumi.get(self, "network_policy_provider")
 
     @property
     @pulumi.getter(name="nodeIpv4CidrMaskSize")
     def node_ipv4_cidr_mask_size(self) -> pulumi.Output[Optional[int]]:
+        """
+        Size of the masks that are assigned to each node in the cluster. Effectively limits maximum number of pods for each node.
+        """
         return pulumi.get(self, "node_ipv4_cidr_mask_size")
 
     @property
     @pulumi.getter(name="nodeServiceAccountId")
     def node_service_account_id(self) -> pulumi.Output[str]:
+        """
+        Service account to be used by the worker nodes of the Kubernetes cluster
+        to access Container Registry or to push node logs and metrics.
+        """
         return pulumi.get(self, "node_service_account_id")
 
     @property
     @pulumi.getter(name="releaseChannel")
     def release_channel(self) -> pulumi.Output[str]:
+        """
+        Cluster release channel.
+        """
         return pulumi.get(self, "release_channel")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Output[str]:
+        """
+        Service account to be used for provisioning Compute Cloud and VPC resources
+        for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+        cluster will be located and on the folder where selected network resides.
+        """
         return pulumi.get(self, "service_account_id")
 
     @property
     @pulumi.getter(name="serviceIpv4Range")
     def service_ipv4_range(self) -> pulumi.Output[str]:
+        """
+        CIDR block. IP range Kubernetes service Kubernetes cluster
+        IP addresses will be allocated from. It should not overlap with any subnet in the network
+        the Kubernetes cluster located in.
+        """
         return pulumi.get(self, "service_ipv4_range")
 
     @property
     @pulumi.getter(name="serviceIpv6Range")
     def service_ipv6_range(self) -> pulumi.Output[str]:
+        """
+        Identical to service_ipv4_range but for IPv6 protocol.
+        """
         return pulumi.get(self, "service_ipv6_range")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        (Computed)Status of the Kubernetes cluster.
+        """
         return pulumi.get(self, "status")
 

@@ -11,13 +11,59 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Encrypts given plaintext with the specified Yandex KMS key and provides access to the ciphertext.
+//
+// > **Note:** Using this resource will allow you to conceal secret data within your
+// resource definitions, but it does not take care of protecting that data in the
+// logging output, plan output, or state output.  Please take care to secure your secret
+// data outside of resource definitions.
+//
+// For more information, see [the official documentation](https://cloud.yandex.com/docs/kms/concepts/).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := yandex.NewKmsSymmetricKey(ctx, "example", &yandex.KmsSymmetricKeyArgs{
+//				Description: pulumi.String("description for key"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewKmsSecretCiphertext(ctx, "password", &yandex.KmsSecretCiphertextArgs{
+//				AadContext: pulumi.String("additional authenticated data"),
+//				KeyId:      example.ID(),
+//				Plaintext:  pulumi.String("strong password"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type KmsSecretCiphertext struct {
 	pulumi.CustomResourceState
 
+	// Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
 	AadContext pulumi.StringPtrOutput `pulumi:"aadContext"`
-	Ciphertext pulumi.StringOutput    `pulumi:"ciphertext"`
-	KeyId      pulumi.StringOutput    `pulumi:"keyId"`
-	Plaintext  pulumi.StringOutput    `pulumi:"plaintext"`
+	// Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4
+	Ciphertext pulumi.StringOutput `pulumi:"ciphertext"`
+	// ID of the symmetric KMS key to use for encryption.
+	KeyId pulumi.StringOutput `pulumi:"keyId"`
+	// Plaintext to be encrypted.
+	Plaintext pulumi.StringOutput `pulumi:"plaintext"`
 }
 
 // NewKmsSecretCiphertext registers a new resource with the given unique name, arguments, and options.
@@ -56,17 +102,25 @@ func GetKmsSecretCiphertext(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KmsSecretCiphertext resources.
 type kmsSecretCiphertextState struct {
+	// Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
 	AadContext *string `pulumi:"aadContext"`
+	// Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4
 	Ciphertext *string `pulumi:"ciphertext"`
-	KeyId      *string `pulumi:"keyId"`
-	Plaintext  *string `pulumi:"plaintext"`
+	// ID of the symmetric KMS key to use for encryption.
+	KeyId *string `pulumi:"keyId"`
+	// Plaintext to be encrypted.
+	Plaintext *string `pulumi:"plaintext"`
 }
 
 type KmsSecretCiphertextState struct {
+	// Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
 	AadContext pulumi.StringPtrInput
+	// Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4
 	Ciphertext pulumi.StringPtrInput
-	KeyId      pulumi.StringPtrInput
-	Plaintext  pulumi.StringPtrInput
+	// ID of the symmetric KMS key to use for encryption.
+	KeyId pulumi.StringPtrInput
+	// Plaintext to be encrypted.
+	Plaintext pulumi.StringPtrInput
 }
 
 func (KmsSecretCiphertextState) ElementType() reflect.Type {
@@ -74,16 +128,22 @@ func (KmsSecretCiphertextState) ElementType() reflect.Type {
 }
 
 type kmsSecretCiphertextArgs struct {
+	// Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
 	AadContext *string `pulumi:"aadContext"`
-	KeyId      string  `pulumi:"keyId"`
-	Plaintext  string  `pulumi:"plaintext"`
+	// ID of the symmetric KMS key to use for encryption.
+	KeyId string `pulumi:"keyId"`
+	// Plaintext to be encrypted.
+	Plaintext string `pulumi:"plaintext"`
 }
 
 // The set of arguments for constructing a KmsSecretCiphertext resource.
 type KmsSecretCiphertextArgs struct {
+	// Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
 	AadContext pulumi.StringPtrInput
-	KeyId      pulumi.StringInput
-	Plaintext  pulumi.StringInput
+	// ID of the symmetric KMS key to use for encryption.
+	KeyId pulumi.StringInput
+	// Plaintext to be encrypted.
+	Plaintext pulumi.StringInput
 }
 
 func (KmsSecretCiphertextArgs) ElementType() reflect.Type {
@@ -173,18 +233,22 @@ func (o KmsSecretCiphertextOutput) ToKmsSecretCiphertextOutputWithContext(ctx co
 	return o
 }
 
+// Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
 func (o KmsSecretCiphertextOutput) AadContext() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KmsSecretCiphertext) pulumi.StringPtrOutput { return v.AadContext }).(pulumi.StringPtrOutput)
 }
 
+// Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4
 func (o KmsSecretCiphertextOutput) Ciphertext() pulumi.StringOutput {
 	return o.ApplyT(func(v *KmsSecretCiphertext) pulumi.StringOutput { return v.Ciphertext }).(pulumi.StringOutput)
 }
 
+// ID of the symmetric KMS key to use for encryption.
 func (o KmsSecretCiphertextOutput) KeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KmsSecretCiphertext) pulumi.StringOutput { return v.KeyId }).(pulumi.StringOutput)
 }
 
+// Plaintext to be encrypted.
 func (o KmsSecretCiphertextOutput) Plaintext() pulumi.StringOutput {
 	return o.ApplyT(func(v *KmsSecretCiphertext) pulumi.StringOutput { return v.Plaintext }).(pulumi.StringOutput)
 }

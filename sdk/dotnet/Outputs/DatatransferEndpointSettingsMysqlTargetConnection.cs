@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsMysqlTargetConnection
     {
+        /// <summary>
+        /// Identifier of the Managed MySQL cluster.
+        /// </summary>
         public readonly string? MdbClusterId;
+        /// <summary>
+        /// Connection settings of the on-premise MySQL server.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremise? OnPremise;
 
         [OutputConstructor]

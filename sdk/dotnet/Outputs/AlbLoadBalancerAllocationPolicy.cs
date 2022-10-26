@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerAllocationPolicy
     {
+        /// <summary>
+        /// Unique set of locations. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.AlbLoadBalancerAllocationPolicyLocation> Locations;
 
         [OutputConstructor]

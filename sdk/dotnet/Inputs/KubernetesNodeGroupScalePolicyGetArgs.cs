@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesNodeGroupScalePolicyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Scale policy for an autoscaled node group. The structure is documented below.
+        /// </summary>
         [Input("autoScale")]
         public Input<Inputs.KubernetesNodeGroupScalePolicyAutoScaleGetArgs>? AutoScale { get; set; }
 
+        /// <summary>
+        /// Scale policy for a fixed scale node group. The structure is documented below.
+        /// </summary>
         [Input("fixedScale")]
         public Input<Inputs.KubernetesNodeGroupScalePolicyFixedScaleGetArgs>? FixedScale { get; set; }
 

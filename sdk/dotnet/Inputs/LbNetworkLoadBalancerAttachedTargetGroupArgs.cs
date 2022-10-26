@@ -14,12 +14,19 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("healthchecks", required: true)]
         private InputList<Inputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs>? _healthchecks;
+
+        /// <summary>
+        /// A HealthCheck resource. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs> Healthchecks
         {
             get => _healthchecks ?? (_healthchecks = new InputList<Inputs.LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs>());
             set => _healthchecks = value;
         }
 
+        /// <summary>
+        /// ID of the target group.
+        /// </summary>
         [Input("targetGroupId", required: true)]
         public Input<string> TargetGroupId { get; set; } = null!;
 

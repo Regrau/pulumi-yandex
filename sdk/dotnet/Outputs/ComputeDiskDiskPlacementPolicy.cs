@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeDiskDiskPlacementPolicy
     {
+        /// <summary>
+        /// Specifies Disk Placement Group id.
+        /// </summary>
         public readonly string DiskPlacementGroupId;
 
         [OutputConstructor]

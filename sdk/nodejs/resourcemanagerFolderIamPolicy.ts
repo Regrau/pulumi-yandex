@@ -4,6 +4,31 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows creation and management of the IAM policy for an existing Yandex Resource
+ * Manager folder.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const project1 = pulumi.output(yandex.getResourcemanagerFolder({
+ *     folderId: "my_folder_id",
+ * }));
+ * const admin = pulumi.output(yandex.getIamPolicy({
+ *     bindings: [{
+ *         members: ["userAccount:some_user_id"],
+ *         role: "editor",
+ *     }],
+ * }));
+ * const folderAdminPolicy = new yandex.ResourcemanagerFolderIamPolicy("folder_admin_policy", {
+ *     folderId: yandex_folder_project1.id,
+ *     policyData: admin.policyData,
+ * });
+ * ```
+ */
 export class ResourcemanagerFolderIamPolicy extends pulumi.CustomResource {
     /**
      * Get an existing ResourcemanagerFolderIamPolicy resource's state with the given name, ID, and optional extra
@@ -32,7 +57,14 @@ export class ResourcemanagerFolderIamPolicy extends pulumi.CustomResource {
         return obj['__pulumiType'] === ResourcemanagerFolderIamPolicy.__pulumiType;
     }
 
+    /**
+     * ID of the folder that the policy is attached to.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * The `yandex.getIamPolicy` data source that represents
+     * the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
+     */
     public readonly policyData!: pulumi.Output<string>;
 
     /**
@@ -70,7 +102,14 @@ export class ResourcemanagerFolderIamPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ResourcemanagerFolderIamPolicy resources.
  */
 export interface ResourcemanagerFolderIamPolicyState {
+    /**
+     * ID of the folder that the policy is attached to.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * The `yandex.getIamPolicy` data source that represents
+     * the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
+     */
     policyData?: pulumi.Input<string>;
 }
 
@@ -78,6 +117,13 @@ export interface ResourcemanagerFolderIamPolicyState {
  * The set of arguments for constructing a ResourcemanagerFolderIamPolicy resource.
  */
 export interface ResourcemanagerFolderIamPolicyArgs {
+    /**
+     * ID of the folder that the policy is attached to.
+     */
     folderId: pulumi.Input<string>;
+    /**
+     * The `yandex.getIamPolicy` data source that represents
+     * the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
+     */
     policyData: pulumi.Input<string>;
 }

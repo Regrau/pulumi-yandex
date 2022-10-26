@@ -9,27 +9,84 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Allows management of [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var myDevice = new Yandex.IotCoreDevice("myDevice", new()
+    ///     {
+    ///         Aliases = 
+    ///         {
+    ///             { "some_alias1/subtopic", "$devices/{id}/events/somesubtopic" },
+    ///             { "some_alias2/subtopic", "$devices/{id}/events/aaa/bbb" },
+    ///         },
+    ///         Certificates = new[]
+    ///         {
+    ///             "public part of certificate1",
+    ///             "public part of certificate2",
+    ///         },
+    ///         Description = "any description",
+    ///         Passwords = new[]
+    ///         {
+    ///             "my-password1",
+    ///             "my-password2",
+    ///         },
+    ///         RegistryId = "are1sampleregistryid11",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/iotCoreDevice:IotCoreDevice")]
     public partial class IotCoreDevice : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// A set of key/value aliases pairs to assign to the IoT Core Device
+        /// </summary>
         [Output("aliases")]
         public Output<ImmutableDictionary<string, string>?> Aliases { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of certificate's fingerprints for the IoT Core Device
+        /// </summary>
         [Output("certificates")]
         public Output<ImmutableArray<string>> Certificates { get; private set; } = null!;
 
+        /// <summary>
+        /// Creation timestamp of the IoT Core Device
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// Description of the IoT Core Device
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// IoT Core Device name used to define device
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of passwords's id for the IoT Core Device
+        /// </summary>
         [Output("passwords")]
         public Output<ImmutableArray<string>> Passwords { get; private set; } = null!;
 
+        /// <summary>
+        /// IoT Core Registry ID for the IoT Core Device
+        /// </summary>
         [Output("registryId")]
         public Output<string> RegistryId { get; private set; } = null!;
 
@@ -56,7 +113,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -82,6 +139,10 @@ namespace Pulumi.Yandex
     {
         [Input("aliases")]
         private InputMap<string>? _aliases;
+
+        /// <summary>
+        /// A set of key/value aliases pairs to assign to the IoT Core Device
+        /// </summary>
         public InputMap<string> Aliases
         {
             get => _aliases ?? (_aliases = new InputMap<string>());
@@ -90,26 +151,43 @@ namespace Pulumi.Yandex
 
         [Input("certificates")]
         private InputList<string>? _certificates;
+
+        /// <summary>
+        /// A set of certificate's fingerprints for the IoT Core Device
+        /// </summary>
         public InputList<string> Certificates
         {
             get => _certificates ?? (_certificates = new InputList<string>());
             set => _certificates = value;
         }
 
+        /// <summary>
+        /// Description of the IoT Core Device
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// IoT Core Device name used to define device
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("passwords")]
         private InputList<string>? _passwords;
+
+        /// <summary>
+        /// A set of passwords's id for the IoT Core Device
+        /// </summary>
         public InputList<string> Passwords
         {
             get => _passwords ?? (_passwords = new InputList<string>());
             set => _passwords = value;
         }
 
+        /// <summary>
+        /// IoT Core Registry ID for the IoT Core Device
+        /// </summary>
         [Input("registryId", required: true)]
         public Input<string> RegistryId { get; set; } = null!;
 
@@ -123,6 +201,10 @@ namespace Pulumi.Yandex
     {
         [Input("aliases")]
         private InputMap<string>? _aliases;
+
+        /// <summary>
+        /// A set of key/value aliases pairs to assign to the IoT Core Device
+        /// </summary>
         public InputMap<string> Aliases
         {
             get => _aliases ?? (_aliases = new InputMap<string>());
@@ -131,29 +213,49 @@ namespace Pulumi.Yandex
 
         [Input("certificates")]
         private InputList<string>? _certificates;
+
+        /// <summary>
+        /// A set of certificate's fingerprints for the IoT Core Device
+        /// </summary>
         public InputList<string> Certificates
         {
             get => _certificates ?? (_certificates = new InputList<string>());
             set => _certificates = value;
         }
 
+        /// <summary>
+        /// Creation timestamp of the IoT Core Device
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// Description of the IoT Core Device
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// IoT Core Device name used to define device
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("passwords")]
         private InputList<string>? _passwords;
+
+        /// <summary>
+        /// A set of passwords's id for the IoT Core Device
+        /// </summary>
         public InputList<string> Passwords
         {
             get => _passwords ?? (_passwords = new InputList<string>());
             set => _passwords = value;
         }
 
+        /// <summary>
+        /// IoT Core Registry ID for the IoT Core Device
+        /// </summary>
         [Input("registryId")]
         public Input<string>? RegistryId { get; set; }
 

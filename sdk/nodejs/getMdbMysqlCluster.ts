@@ -5,6 +5,23 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Managed MySQL cluster. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/managed-mysql/).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const foo = pulumi.output(yandex.getMdbMysqlCluster({
+ *     name: "test",
+ * }));
+ *
+ * export const networkId = foo.networkId;
+ * ```
+ */
 export function getMdbMysqlCluster(args?: GetMdbMysqlClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetMdbMysqlClusterResult> {
     args = args || {};
     if (!opts) {
@@ -28,13 +45,34 @@ export function getMdbMysqlCluster(args?: GetMdbMysqlClusterArgs, opts?: pulumi.
  * A collection of arguments for invoking getMdbMysqlCluster.
  */
 export interface GetMdbMysqlClusterArgs {
+    /**
+     * Access policy to the MySQL cluster. The structure is documented below.
+     */
     access?: inputs.GetMdbMysqlClusterAccess;
+    /**
+     * The ID of the MySQL cluster.
+     */
     clusterId?: string;
     deletionProtection?: boolean;
+    /**
+     * Description of the MySQL cluster.
+     */
     description?: string;
+    /**
+     * The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * A set of key/value label pairs to assign to the MySQL cluster.
+     */
     labels?: {[key: string]: string};
+    /**
+     * MySQL cluster config.
+     */
     mysqlConfig?: {[key: string]: string};
+    /**
+     * The name of the MySQL cluster.
+     */
     name?: string;
 }
 
@@ -42,33 +80,90 @@ export interface GetMdbMysqlClusterArgs {
  * A collection of values returned by getMdbMysqlCluster.
  */
 export interface GetMdbMysqlClusterResult {
+    /**
+     * Access policy to the MySQL cluster. The structure is documented below.
+     */
     readonly access: outputs.GetMdbMysqlClusterAccess;
+    /**
+     * The period in days during which backups are stored.
+     */
     readonly backupRetainPeriodDays: number;
     readonly backupWindowStarts: outputs.GetMdbMysqlClusterBackupWindowStart[];
     readonly clusterId: string;
+    /**
+     * Creation timestamp of the key.
+     */
     readonly createdAt: string;
+    /**
+     * A database of the MySQL cluster. The structure is documented below.
+     */
     readonly databases: outputs.GetMdbMysqlClusterDatabase[];
     readonly deletionProtection: boolean;
+    /**
+     * Description of the MySQL cluster.
+     */
     readonly description?: string;
+    /**
+     * Deployment environment of the MySQL cluster.
+     */
     readonly environment: string;
     readonly folderId: string;
+    /**
+     * Aggregated health of the cluster.
+     */
     readonly health: string;
     readonly hostGroupIds: string[];
+    /**
+     * A host of the MySQL cluster. The structure is documented below.
+     */
     readonly hosts: outputs.GetMdbMysqlClusterHost[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A set of key/value label pairs to assign to the MySQL cluster.
+     */
     readonly labels?: {[key: string]: string};
+    /**
+     * Maintenance window settings of the MySQL cluster. The structure is documented below.
+     */
     readonly maintenanceWindows: outputs.GetMdbMysqlClusterMaintenanceWindow[];
+    /**
+     * MySQL cluster config.
+     */
     readonly mysqlConfig: {[key: string]: string};
+    /**
+     * The name of the database.
+     */
     readonly name: string;
+    /**
+     * ID of the network, to which the MySQL cluster belongs.
+     */
     readonly networkId: string;
+    /**
+     * Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+     */
     readonly performanceDiagnostics: outputs.GetMdbMysqlClusterPerformanceDiagnostic[];
+    /**
+     * Resources allocated to hosts of the MySQL cluster. The structure is documented below.
+     */
     readonly resources: outputs.GetMdbMysqlClusterResource[];
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     readonly securityGroupIds: string[];
+    /**
+     * Status of the cluster.
+     */
     readonly status: string;
+    /**
+     * A user of the MySQL cluster. The structure is documented below.
+     */
     readonly users: outputs.GetMdbMysqlClusterUser[];
+    /**
+     * Version of the MySQL cluster.
+     */
     readonly version: string;
 }
 
@@ -80,12 +175,33 @@ export function getMdbMysqlClusterOutput(args?: GetMdbMysqlClusterOutputArgs, op
  * A collection of arguments for invoking getMdbMysqlCluster.
  */
 export interface GetMdbMysqlClusterOutputArgs {
+    /**
+     * Access policy to the MySQL cluster. The structure is documented below.
+     */
     access?: pulumi.Input<inputs.GetMdbMysqlClusterAccessArgs>;
+    /**
+     * The ID of the MySQL cluster.
+     */
     clusterId?: pulumi.Input<string>;
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * Description of the MySQL cluster.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the MySQL cluster.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * MySQL cluster config.
+     */
     mysqlConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The name of the MySQL cluster.
+     */
     name?: pulumi.Input<string>;
 }

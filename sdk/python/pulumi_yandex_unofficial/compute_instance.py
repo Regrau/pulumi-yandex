@@ -37,6 +37,31 @@ class ComputeInstanceArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ComputeInstance resource.
+        :param pulumi.Input['ComputeInstanceBootDiskArgs'] boot_disk: The boot disk for the instance. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceNetworkInterfaceArgs']]] network_interfaces: Networks to attach to the instance. This can
+               be specified multiple times. The structure is documented below.
+        :param pulumi.Input['ComputeInstanceResourcesArgs'] resources: Compute resources that are allocated for the instance. The structure is documented below.
+        :param pulumi.Input[str] description: Description of the boot disk.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[str] hostname: Host name for the instance. This field is used to generate the instance `fqdn` value. 
+               The host name must be unique within the network and region. If not specified, the host name will be equal
+               to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
+               Otherwise FQDN will be `<hostname>.<region_id>.internal`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the instance.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceLocalDiskArgs']]] local_disks: List of local disks that are attached to the instance. Structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata key/value pairs to make available from
+               within the instance.
+        :param pulumi.Input[str] name: Name of the boot disk.
+        :param pulumi.Input[str] network_acceleration_type: Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
+        :param pulumi.Input['ComputeInstancePlacementPolicyArgs'] placement_policy: The placement policy configuration. The structure is documented below.
+        :param pulumi.Input[str] platform_id: The type of virtual machine to create. The default is 'standard-v1'.
+        :param pulumi.Input['ComputeInstanceSchedulingPolicyArgs'] scheduling_policy: Scheduling policy configuration. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceSecondaryDiskArgs']]] secondary_disks: A list of disks to attach to the instance. The structure is documented below.
+               **Note**: The `allow_stopping_for_update` property must be set to true in order to update this structure.
+        :param pulumi.Input[str] service_account_id: ID of the service account authorized for this instance.
+        :param pulumi.Input[str] zone: The availability zone where the virtual machine will be created. If it is not provided,
+               the default provider folder is used.
         """
         pulumi.set(__self__, "boot_disk", boot_disk)
         pulumi.set(__self__, "network_interfaces", network_interfaces)
@@ -77,6 +102,9 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter(name="bootDisk")
     def boot_disk(self) -> pulumi.Input['ComputeInstanceBootDiskArgs']:
+        """
+        The boot disk for the instance. The structure is documented below.
+        """
         return pulumi.get(self, "boot_disk")
 
     @boot_disk.setter
@@ -86,6 +114,10 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter(name="networkInterfaces")
     def network_interfaces(self) -> pulumi.Input[Sequence[pulumi.Input['ComputeInstanceNetworkInterfaceArgs']]]:
+        """
+        Networks to attach to the instance. This can
+        be specified multiple times. The structure is documented below.
+        """
         return pulumi.get(self, "network_interfaces")
 
     @network_interfaces.setter
@@ -95,6 +127,9 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Input['ComputeInstanceResourcesArgs']:
+        """
+        Compute resources that are allocated for the instance. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -122,6 +157,9 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the boot disk.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -131,6 +169,10 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -140,6 +182,12 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        Host name for the instance. This field is used to generate the instance `fqdn` value. 
+        The host name must be unique within the network and region. If not specified, the host name will be equal
+        to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
+        Otherwise FQDN will be `<hostname>.<region_id>.internal`.
+        """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
@@ -149,6 +197,9 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the instance.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -158,6 +209,9 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter(name="localDisks")
     def local_disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceLocalDiskArgs']]]]:
+        """
+        List of local disks that are attached to the instance. Structure is documented below.
+        """
         return pulumi.get(self, "local_disks")
 
     @local_disks.setter
@@ -167,6 +221,10 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Metadata key/value pairs to make available from
+        within the instance.
+        """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
@@ -176,6 +234,9 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the boot disk.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -185,6 +246,9 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter(name="networkAccelerationType")
     def network_acceleration_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
+        """
         return pulumi.get(self, "network_acceleration_type")
 
     @network_acceleration_type.setter
@@ -194,6 +258,9 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter(name="placementPolicy")
     def placement_policy(self) -> Optional[pulumi.Input['ComputeInstancePlacementPolicyArgs']]:
+        """
+        The placement policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "placement_policy")
 
     @placement_policy.setter
@@ -203,6 +270,9 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter(name="platformId")
     def platform_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of virtual machine to create. The default is 'standard-v1'.
+        """
         return pulumi.get(self, "platform_id")
 
     @platform_id.setter
@@ -212,6 +282,9 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter(name="schedulingPolicy")
     def scheduling_policy(self) -> Optional[pulumi.Input['ComputeInstanceSchedulingPolicyArgs']]:
+        """
+        Scheduling policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "scheduling_policy")
 
     @scheduling_policy.setter
@@ -221,6 +294,10 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter(name="secondaryDisks")
     def secondary_disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceSecondaryDiskArgs']]]]:
+        """
+        A list of disks to attach to the instance. The structure is documented below.
+        **Note**: The `allow_stopping_for_update` property must be set to true in order to update this structure.
+        """
         return pulumi.get(self, "secondary_disks")
 
     @secondary_disks.setter
@@ -230,6 +307,9 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the service account authorized for this instance.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -239,6 +319,10 @@ class ComputeInstanceArgs:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        The availability zone where the virtual machine will be created. If it is not provided,
+        the default provider folder is used.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -273,6 +357,34 @@ class _ComputeInstanceState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ComputeInstance resources.
+        :param pulumi.Input['ComputeInstanceBootDiskArgs'] boot_disk: The boot disk for the instance. The structure is documented below.
+        :param pulumi.Input[str] created_at: Creation timestamp of the instance.
+        :param pulumi.Input[str] description: Description of the boot disk.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[str] fqdn: DNS record FQDN (must have a dot at the end).
+        :param pulumi.Input[str] hostname: Host name for the instance. This field is used to generate the instance `fqdn` value. 
+               The host name must be unique within the network and region. If not specified, the host name will be equal
+               to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
+               Otherwise FQDN will be `<hostname>.<region_id>.internal`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the instance.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceLocalDiskArgs']]] local_disks: List of local disks that are attached to the instance. Structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata key/value pairs to make available from
+               within the instance.
+        :param pulumi.Input[str] name: Name of the boot disk.
+        :param pulumi.Input[str] network_acceleration_type: Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceNetworkInterfaceArgs']]] network_interfaces: Networks to attach to the instance. This can
+               be specified multiple times. The structure is documented below.
+        :param pulumi.Input['ComputeInstancePlacementPolicyArgs'] placement_policy: The placement policy configuration. The structure is documented below.
+        :param pulumi.Input[str] platform_id: The type of virtual machine to create. The default is 'standard-v1'.
+        :param pulumi.Input['ComputeInstanceResourcesArgs'] resources: Compute resources that are allocated for the instance. The structure is documented below.
+        :param pulumi.Input['ComputeInstanceSchedulingPolicyArgs'] scheduling_policy: Scheduling policy configuration. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceSecondaryDiskArgs']]] secondary_disks: A list of disks to attach to the instance. The structure is documented below.
+               **Note**: The `allow_stopping_for_update` property must be set to true in order to update this structure.
+        :param pulumi.Input[str] service_account_id: ID of the service account authorized for this instance.
+        :param pulumi.Input[str] status: The status of this instance.
+        :param pulumi.Input[str] zone: The availability zone where the virtual machine will be created. If it is not provided,
+               the default provider folder is used.
         """
         if allow_recreate is not None:
             pulumi.set(__self__, "allow_recreate", allow_recreate)
@@ -340,6 +452,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter(name="bootDisk")
     def boot_disk(self) -> Optional[pulumi.Input['ComputeInstanceBootDiskArgs']]:
+        """
+        The boot disk for the instance. The structure is documented below.
+        """
         return pulumi.get(self, "boot_disk")
 
     @boot_disk.setter
@@ -349,6 +464,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the instance.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -358,6 +476,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the boot disk.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -367,6 +488,10 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -376,6 +501,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter
     def fqdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS record FQDN (must have a dot at the end).
+        """
         return pulumi.get(self, "fqdn")
 
     @fqdn.setter
@@ -385,6 +513,12 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter
     def hostname(self) -> Optional[pulumi.Input[str]]:
+        """
+        Host name for the instance. This field is used to generate the instance `fqdn` value. 
+        The host name must be unique within the network and region. If not specified, the host name will be equal
+        to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
+        Otherwise FQDN will be `<hostname>.<region_id>.internal`.
+        """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
@@ -394,6 +528,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the instance.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -403,6 +540,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter(name="localDisks")
     def local_disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceLocalDiskArgs']]]]:
+        """
+        List of local disks that are attached to the instance. Structure is documented below.
+        """
         return pulumi.get(self, "local_disks")
 
     @local_disks.setter
@@ -412,6 +552,10 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter
     def metadata(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Metadata key/value pairs to make available from
+        within the instance.
+        """
         return pulumi.get(self, "metadata")
 
     @metadata.setter
@@ -421,6 +565,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the boot disk.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -430,6 +577,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter(name="networkAccelerationType")
     def network_acceleration_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
+        """
         return pulumi.get(self, "network_acceleration_type")
 
     @network_acceleration_type.setter
@@ -439,6 +589,10 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter(name="networkInterfaces")
     def network_interfaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceNetworkInterfaceArgs']]]]:
+        """
+        Networks to attach to the instance. This can
+        be specified multiple times. The structure is documented below.
+        """
         return pulumi.get(self, "network_interfaces")
 
     @network_interfaces.setter
@@ -448,6 +602,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter(name="placementPolicy")
     def placement_policy(self) -> Optional[pulumi.Input['ComputeInstancePlacementPolicyArgs']]:
+        """
+        The placement policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "placement_policy")
 
     @placement_policy.setter
@@ -457,6 +614,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter(name="platformId")
     def platform_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The type of virtual machine to create. The default is 'standard-v1'.
+        """
         return pulumi.get(self, "platform_id")
 
     @platform_id.setter
@@ -466,6 +626,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter
     def resources(self) -> Optional[pulumi.Input['ComputeInstanceResourcesArgs']]:
+        """
+        Compute resources that are allocated for the instance. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @resources.setter
@@ -475,6 +638,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter(name="schedulingPolicy")
     def scheduling_policy(self) -> Optional[pulumi.Input['ComputeInstanceSchedulingPolicyArgs']]:
+        """
+        Scheduling policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "scheduling_policy")
 
     @scheduling_policy.setter
@@ -484,6 +650,10 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter(name="secondaryDisks")
     def secondary_disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceSecondaryDiskArgs']]]]:
+        """
+        A list of disks to attach to the instance. The structure is documented below.
+        **Note**: The `allow_stopping_for_update` property must be set to true in order to update this structure.
+        """
         return pulumi.get(self, "secondary_disks")
 
     @secondary_disks.setter
@@ -493,6 +663,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the service account authorized for this instance.
+        """
         return pulumi.get(self, "service_account_id")
 
     @service_account_id.setter
@@ -502,6 +675,9 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of this instance.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -511,6 +687,10 @@ class _ComputeInstanceState:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        The availability zone where the virtual machine will be created. If it is not provided,
+        the default provider folder is used.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -544,9 +724,75 @@ class ComputeInstance(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ComputeInstance resource with the given unique name, props, and options.
+        A VM instance resource. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/compute/concepts/vm).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            network_id=foo_vpc_network.id,
+            zone="ru-central1-a")
+        default = yandex.ComputeInstance("default",
+            boot_disk=yandex.ComputeInstanceBootDiskArgs(
+                initialize_params=yandex.ComputeInstanceBootDiskInitializeParamsArgs(
+                    image_id="image_id",
+                ),
+            ),
+            metadata={
+                "foo": "bar",
+                "ssh-keys": f"ubuntu:{(lambda path: open(path).read())('~/.ssh/id_rsa.pub')}",
+            },
+            network_interfaces=[yandex.ComputeInstanceNetworkInterfaceArgs(
+                subnet_id=foo_vpc_subnet.id,
+            )],
+            platform_id="standard-v1",
+            resources=yandex.ComputeInstanceResourcesArgs(
+                cores=2,
+                memory=4,
+            ),
+            zone="ru-central1-a")
+        ```
+
+        ## Import
+
+        Instances can be imported using the `ID` of an instance, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/computeInstance:ComputeInstance default instance_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ComputeInstanceBootDiskArgs']] boot_disk: The boot disk for the instance. The structure is documented below.
+        :param pulumi.Input[str] description: Description of the boot disk.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[str] hostname: Host name for the instance. This field is used to generate the instance `fqdn` value. 
+               The host name must be unique within the network and region. If not specified, the host name will be equal
+               to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
+               Otherwise FQDN will be `<hostname>.<region_id>.internal`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the instance.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceLocalDiskArgs']]]] local_disks: List of local disks that are attached to the instance. Structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata key/value pairs to make available from
+               within the instance.
+        :param pulumi.Input[str] name: Name of the boot disk.
+        :param pulumi.Input[str] network_acceleration_type: Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceNetworkInterfaceArgs']]]] network_interfaces: Networks to attach to the instance. This can
+               be specified multiple times. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['ComputeInstancePlacementPolicyArgs']] placement_policy: The placement policy configuration. The structure is documented below.
+        :param pulumi.Input[str] platform_id: The type of virtual machine to create. The default is 'standard-v1'.
+        :param pulumi.Input[pulumi.InputType['ComputeInstanceResourcesArgs']] resources: Compute resources that are allocated for the instance. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['ComputeInstanceSchedulingPolicyArgs']] scheduling_policy: Scheduling policy configuration. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceSecondaryDiskArgs']]]] secondary_disks: A list of disks to attach to the instance. The structure is documented below.
+               **Note**: The `allow_stopping_for_update` property must be set to true in order to update this structure.
+        :param pulumi.Input[str] service_account_id: ID of the service account authorized for this instance.
+        :param pulumi.Input[str] zone: The availability zone where the virtual machine will be created. If it is not provided,
+               the default provider folder is used.
         """
         ...
     @overload
@@ -555,7 +801,48 @@ class ComputeInstance(pulumi.CustomResource):
                  args: ComputeInstanceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ComputeInstance resource with the given unique name, props, and options.
+        A VM instance resource. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/compute/concepts/vm).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
+        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
+            network_id=foo_vpc_network.id,
+            zone="ru-central1-a")
+        default = yandex.ComputeInstance("default",
+            boot_disk=yandex.ComputeInstanceBootDiskArgs(
+                initialize_params=yandex.ComputeInstanceBootDiskInitializeParamsArgs(
+                    image_id="image_id",
+                ),
+            ),
+            metadata={
+                "foo": "bar",
+                "ssh-keys": f"ubuntu:{(lambda path: open(path).read())('~/.ssh/id_rsa.pub')}",
+            },
+            network_interfaces=[yandex.ComputeInstanceNetworkInterfaceArgs(
+                subnet_id=foo_vpc_subnet.id,
+            )],
+            platform_id="standard-v1",
+            resources=yandex.ComputeInstanceResourcesArgs(
+                cores=2,
+                memory=4,
+            ),
+            zone="ru-central1-a")
+        ```
+
+        ## Import
+
+        Instances can be imported using the `ID` of an instance, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/computeInstance:ComputeInstance default instance_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param ComputeInstanceArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -666,6 +953,34 @@ class ComputeInstance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ComputeInstanceBootDiskArgs']] boot_disk: The boot disk for the instance. The structure is documented below.
+        :param pulumi.Input[str] created_at: Creation timestamp of the instance.
+        :param pulumi.Input[str] description: Description of the boot disk.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[str] fqdn: DNS record FQDN (must have a dot at the end).
+        :param pulumi.Input[str] hostname: Host name for the instance. This field is used to generate the instance `fqdn` value. 
+               The host name must be unique within the network and region. If not specified, the host name will be equal
+               to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
+               Otherwise FQDN will be `<hostname>.<region_id>.internal`.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the instance.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceLocalDiskArgs']]]] local_disks: List of local disks that are attached to the instance. Structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata key/value pairs to make available from
+               within the instance.
+        :param pulumi.Input[str] name: Name of the boot disk.
+        :param pulumi.Input[str] network_acceleration_type: Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceNetworkInterfaceArgs']]]] network_interfaces: Networks to attach to the instance. This can
+               be specified multiple times. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['ComputeInstancePlacementPolicyArgs']] placement_policy: The placement policy configuration. The structure is documented below.
+        :param pulumi.Input[str] platform_id: The type of virtual machine to create. The default is 'standard-v1'.
+        :param pulumi.Input[pulumi.InputType['ComputeInstanceResourcesArgs']] resources: Compute resources that are allocated for the instance. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['ComputeInstanceSchedulingPolicyArgs']] scheduling_policy: Scheduling policy configuration. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceSecondaryDiskArgs']]]] secondary_disks: A list of disks to attach to the instance. The structure is documented below.
+               **Note**: The `allow_stopping_for_update` property must be set to true in order to update this structure.
+        :param pulumi.Input[str] service_account_id: ID of the service account authorized for this instance.
+        :param pulumi.Input[str] status: The status of this instance.
+        :param pulumi.Input[str] zone: The availability zone where the virtual machine will be created. If it is not provided,
+               the default provider folder is used.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -708,100 +1023,168 @@ class ComputeInstance(pulumi.CustomResource):
     @property
     @pulumi.getter(name="bootDisk")
     def boot_disk(self) -> pulumi.Output['outputs.ComputeInstanceBootDisk']:
+        """
+        The boot disk for the instance. The structure is documented below.
+        """
         return pulumi.get(self, "boot_disk")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the instance.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description of the boot disk.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def fqdn(self) -> pulumi.Output[str]:
+        """
+        DNS record FQDN (must have a dot at the end).
+        """
         return pulumi.get(self, "fqdn")
 
     @property
     @pulumi.getter
     def hostname(self) -> pulumi.Output[str]:
+        """
+        Host name for the instance. This field is used to generate the instance `fqdn` value. 
+        The host name must be unique within the network and region. If not specified, the host name will be equal
+        to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
+        Otherwise FQDN will be `<hostname>.<region_id>.internal`.
+        """
         return pulumi.get(self, "hostname")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the instance.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="localDisks")
     def local_disks(self) -> pulumi.Output[Optional[Sequence['outputs.ComputeInstanceLocalDisk']]]:
+        """
+        List of local disks that are attached to the instance. Structure is documented below.
+        """
         return pulumi.get(self, "local_disks")
 
     @property
     @pulumi.getter
     def metadata(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Metadata key/value pairs to make available from
+        within the instance.
+        """
         return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the boot disk.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkAccelerationType")
     def network_acceleration_type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
+        """
         return pulumi.get(self, "network_acceleration_type")
 
     @property
     @pulumi.getter(name="networkInterfaces")
     def network_interfaces(self) -> pulumi.Output[Sequence['outputs.ComputeInstanceNetworkInterface']]:
+        """
+        Networks to attach to the instance. This can
+        be specified multiple times. The structure is documented below.
+        """
         return pulumi.get(self, "network_interfaces")
 
     @property
     @pulumi.getter(name="placementPolicy")
     def placement_policy(self) -> pulumi.Output['outputs.ComputeInstancePlacementPolicy']:
+        """
+        The placement policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "placement_policy")
 
     @property
     @pulumi.getter(name="platformId")
     def platform_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The type of virtual machine to create. The default is 'standard-v1'.
+        """
         return pulumi.get(self, "platform_id")
 
     @property
     @pulumi.getter
     def resources(self) -> pulumi.Output['outputs.ComputeInstanceResources']:
+        """
+        Compute resources that are allocated for the instance. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter(name="schedulingPolicy")
     def scheduling_policy(self) -> pulumi.Output['outputs.ComputeInstanceSchedulingPolicy']:
+        """
+        Scheduling policy configuration. The structure is documented below.
+        """
         return pulumi.get(self, "scheduling_policy")
 
     @property
     @pulumi.getter(name="secondaryDisks")
     def secondary_disks(self) -> pulumi.Output[Optional[Sequence['outputs.ComputeInstanceSecondaryDisk']]]:
+        """
+        A list of disks to attach to the instance. The structure is documented below.
+        **Note**: The `allow_stopping_for_update` property must be set to true in order to update this structure.
+        """
         return pulumi.get(self, "secondary_disks")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> pulumi.Output[str]:
+        """
+        ID of the service account authorized for this instance.
+        """
         return pulumi.get(self, "service_account_id")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        The status of this instance.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
+        """
+        The availability zone where the virtual machine will be created. If it is not provided,
+        the default provider folder is used.
+        """
         return pulumi.get(self, "zone")
 

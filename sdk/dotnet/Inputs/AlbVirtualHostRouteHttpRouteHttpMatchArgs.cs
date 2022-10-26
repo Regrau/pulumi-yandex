@@ -14,12 +14,19 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("httpMethods")]
         private InputList<string>? _httpMethods;
+
+        /// <summary>
+        /// List of methods(strings).
+        /// </summary>
         public InputList<string> HttpMethods
         {
             get => _httpMethods ?? (_httpMethods = new InputList<string>());
             set => _httpMethods = value;
         }
 
+        /// <summary>
+        /// If not set, '/' is assumed. The structure is documented below.
+        /// </summary>
         [Input("path")]
         public Input<Inputs.AlbVirtualHostRouteHttpRouteHttpMatchPathArgs>? Path { get; set; }
 

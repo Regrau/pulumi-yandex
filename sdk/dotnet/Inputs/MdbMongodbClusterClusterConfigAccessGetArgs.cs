@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbMongodbClusterClusterConfigAccessGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        /// </summary>
         [Input("dataLens")]
         public Input<bool>? DataLens { get; set; }
 
+        /// <summary>
+        /// Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        /// </summary>
         [Input("dataTransfer")]
         public Input<bool>? DataTransfer { get; set; }
 

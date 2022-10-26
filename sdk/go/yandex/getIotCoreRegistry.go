@@ -10,6 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex IoT Core Registry. For more information IoT Core, see
+// [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart).
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.LookupIotCoreRegistry(ctx, &GetIotCoreRegistryArgs{
+//				RegistryId: pulumi.StringRef("are1sampleregistry11"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// This data source is used to define [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
 func LookupIotCoreRegistry(ctx *pulumi.Context, args *LookupIotCoreRegistryArgs, opts ...pulumi.InvokeOption) (*LookupIotCoreRegistryResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupIotCoreRegistryResult
@@ -22,23 +50,31 @@ func LookupIotCoreRegistry(ctx *pulumi.Context, args *LookupIotCoreRegistryArgs,
 
 // A collection of arguments for invoking getIotCoreRegistry.
 type LookupIotCoreRegistryArgs struct {
-	FolderId   *string `pulumi:"folderId"`
-	Name       *string `pulumi:"name"`
+	// Folder ID for the IoT Core Registry
+	FolderId *string `pulumi:"folderId"`
+	// IoT Core Registry name used to define registry
+	Name *string `pulumi:"name"`
+	// IoT Core Registry id used to define registry
 	RegistryId *string `pulumi:"registryId"`
 }
 
 // A collection of values returned by getIotCoreRegistry.
 type LookupIotCoreRegistryResult struct {
+	// A set of certificate's fingerprints for the IoT Core Registry
 	Certificates []string `pulumi:"certificates"`
-	CreatedAt    string   `pulumi:"createdAt"`
-	Description  string   `pulumi:"description"`
-	FolderId     *string  `pulumi:"folderId"`
+	// Creation timestamp of the IoT Core Registry
+	CreatedAt string `pulumi:"createdAt"`
+	// Description of the IoT Core Registry
+	Description string  `pulumi:"description"`
+	FolderId    *string `pulumi:"folderId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id         string            `pulumi:"id"`
-	Labels     map[string]string `pulumi:"labels"`
-	Name       *string           `pulumi:"name"`
-	Passwords  []string          `pulumi:"passwords"`
-	RegistryId *string           `pulumi:"registryId"`
+	Id string `pulumi:"id"`
+	// A set of key/value label pairs to assign to the IoT Core Registry.
+	Labels map[string]string `pulumi:"labels"`
+	Name   *string           `pulumi:"name"`
+	// A set of passwords's id for the IoT Core Registry
+	Passwords  []string `pulumi:"passwords"`
+	RegistryId *string  `pulumi:"registryId"`
 }
 
 func LookupIotCoreRegistryOutput(ctx *pulumi.Context, args LookupIotCoreRegistryOutputArgs, opts ...pulumi.InvokeOption) LookupIotCoreRegistryResultOutput {
@@ -56,8 +92,11 @@ func LookupIotCoreRegistryOutput(ctx *pulumi.Context, args LookupIotCoreRegistry
 
 // A collection of arguments for invoking getIotCoreRegistry.
 type LookupIotCoreRegistryOutputArgs struct {
-	FolderId   pulumi.StringPtrInput `pulumi:"folderId"`
-	Name       pulumi.StringPtrInput `pulumi:"name"`
+	// Folder ID for the IoT Core Registry
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// IoT Core Registry name used to define registry
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// IoT Core Registry id used to define registry
 	RegistryId pulumi.StringPtrInput `pulumi:"registryId"`
 }
 
@@ -80,14 +119,17 @@ func (o LookupIotCoreRegistryResultOutput) ToLookupIotCoreRegistryResultOutputWi
 	return o
 }
 
+// A set of certificate's fingerprints for the IoT Core Registry
 func (o LookupIotCoreRegistryResultOutput) Certificates() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupIotCoreRegistryResult) []string { return v.Certificates }).(pulumi.StringArrayOutput)
 }
 
+// Creation timestamp of the IoT Core Registry
 func (o LookupIotCoreRegistryResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIotCoreRegistryResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the IoT Core Registry
 func (o LookupIotCoreRegistryResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIotCoreRegistryResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -101,6 +143,7 @@ func (o LookupIotCoreRegistryResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIotCoreRegistryResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs to assign to the IoT Core Registry.
 func (o LookupIotCoreRegistryResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupIotCoreRegistryResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -109,6 +152,7 @@ func (o LookupIotCoreRegistryResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupIotCoreRegistryResult) *string { return v.Name }).(pulumi.StringPtrOutput)
 }
 
+// A set of passwords's id for the IoT Core Registry
 func (o LookupIotCoreRegistryResultOutput) Passwords() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupIotCoreRegistryResult) []string { return v.Passwords }).(pulumi.StringArrayOutput)
 }

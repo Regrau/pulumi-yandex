@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class KubernetesNodeGroupMaintenancePolicy
     {
+        /// <summary>
+        /// Boolean flag that specifies if node group can be repaired automatically. When omitted, default value is TRUE.
+        /// </summary>
         public readonly bool AutoRepair;
+        /// <summary>
+        /// Boolean flag that specifies if node group can be upgraded automatically. When omitted, default value is TRUE.
+        /// </summary>
         public readonly bool AutoUpgrade;
+        /// <summary>
+        /// (Computed) Set of day intervals, when maintenance is allowed for this node group. When omitted, it defaults to any time.
+        /// </summary>
         public readonly ImmutableArray<Outputs.KubernetesNodeGroupMaintenancePolicyMaintenanceWindow> MaintenanceWindows;
 
         [OutputConstructor]

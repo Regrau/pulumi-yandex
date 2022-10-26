@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbLoadBalancerListenerHttpArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// HTTP handler that sets plaintext HTTP router. The structure is documented below.
+        /// </summary>
         [Input("handler")]
         public Input<Inputs.AlbLoadBalancerListenerHttpHandlerArgs>? Handler { get; set; }
 
+        /// <summary>
+        /// Shortcut for adding http &gt; https redirects. The structure is documented below.
+        /// </summary>
         [Input("redirects")]
         public Input<Inputs.AlbLoadBalancerListenerHttpRedirectsArgs>? Redirects { get; set; }
 

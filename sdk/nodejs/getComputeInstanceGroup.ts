@@ -5,6 +5,22 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Compute instance group.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const myGroup = pulumi.output(yandex.getComputeInstanceGroup({
+ *     instanceGroupId: "some_instance_group_id",
+ * }));
+ *
+ * export const instanceExternalIp = myGroup.instances[*].networkInterface.0.natIpAddress;
+ * ```
+ */
 export function getComputeInstanceGroup(args: GetComputeInstanceGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetComputeInstanceGroupResult> {
     if (!opts) {
         opts = {}
@@ -20,6 +36,9 @@ export function getComputeInstanceGroup(args: GetComputeInstanceGroupArgs, opts?
  * A collection of arguments for invoking getComputeInstanceGroup.
  */
 export interface GetComputeInstanceGroupArgs {
+    /**
+     * The ID of a specific instance group.
+     */
     instanceGroupId: string;
 }
 
@@ -27,30 +46,91 @@ export interface GetComputeInstanceGroupArgs {
  * A collection of values returned by getComputeInstanceGroup.
  */
 export interface GetComputeInstanceGroupResult {
+    /**
+     * The allocation policy of the instance group by zone and region. The structure is documented below.
+     */
     readonly allocationPolicies: outputs.GetComputeInstanceGroupAllocationPolicy[];
     readonly applicationBalancerStates: outputs.GetComputeInstanceGroupApplicationBalancerState[];
+    /**
+     * Application Load balancing (L7) specifications. The structure is documented below.
+     */
     readonly applicationLoadBalancers: outputs.GetComputeInstanceGroupApplicationLoadBalancer[];
+    /**
+     * The instance group creation timestamp.
+     */
     readonly createdAt: string;
+    /**
+     * Flag that protects the instance group from accidental deletion.
+     */
     readonly deletionProtection: boolean;
+    /**
+     * The deployment policy of the instance group. The structure is documented below.
+     */
     readonly deployPolicies: outputs.GetComputeInstanceGroupDeployPolicy[];
+    /**
+     * A description of the boot disk.
+     */
     readonly description: string;
+    /**
+     * Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+     */
     readonly folderId: string;
+    /**
+     * Health check specification. The structure is documented below.
+     */
     readonly healthChecks: outputs.GetComputeInstanceGroupHealthCheck[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     readonly instanceGroupId: string;
+    /**
+     * The instance template that the instance group belongs to. The structure is documented below.
+     */
     readonly instanceTemplates: outputs.GetComputeInstanceGroupInstanceTemplate[];
+    /**
+     * A list of instances in the specified instance group. The structure is documented below.
+     */
     readonly instances: outputs.GetComputeInstanceGroupInstance[];
+    /**
+     * A map of labels applied to this instance.
+     * * `resources.0.memory` - The memory size allocated to the instance.
+     * * `resources.0.cores` - Number of CPU cores allocated to the instance.
+     * * `resources.0.core_fraction` - Baseline core performance as a percent.
+     * * `resources.0.gpus` - Number of GPU cores allocated to the instance.
+     */
     readonly labels: {[key: string]: string};
+    /**
+     * Information about which entities can be attached to this load balancer. The structure is documented below.
+     */
     readonly loadBalancerStates: outputs.GetComputeInstanceGroupLoadBalancerState[];
+    /**
+     * Load balancing specification. The structure is documented below.
+     */
     readonly loadBalancers: outputs.GetComputeInstanceGroupLoadBalancer[];
+    /**
+     * Timeout for waiting for the VM to become healthy. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+     */
     readonly maxCheckingHealthDuration: number;
+    /**
+     * The name of the managed instance.
+     */
     readonly name: string;
+    /**
+     * The scaling policy of the instance group. The structure is documented below.
+     */
     readonly scalePolicies: outputs.GetComputeInstanceGroupScalePolicy[];
+    /**
+     * The service account ID for the instance.
+     */
     readonly serviceAccountId: string;
+    /**
+     * The status of the instance.
+     */
     readonly status: string;
+    /**
+     * A set of key/value  variables pairs to assign to the instance group.
+     */
     readonly variables: {[key: string]: string};
 }
 
@@ -62,5 +142,8 @@ export function getComputeInstanceGroupOutput(args: GetComputeInstanceGroupOutpu
  * A collection of arguments for invoking getComputeInstanceGroup.
  */
 export interface GetComputeInstanceGroupOutputArgs {
+    /**
+     * The ID of a specific instance group.
+     */
     instanceGroupId: pulumi.Input<string>;
 }

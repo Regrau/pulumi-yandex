@@ -10,6 +10,40 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex Container Repository. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/repository)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.LookupContainerRepository(ctx, &GetContainerRepositoryArgs{
+//				Name: pulumi.StringRef("some_repository_name"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.LookupContainerRepository(ctx, &GetContainerRepositoryArgs{
+//				RepositoryId: pulumi.StringRef("some_repository_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupContainerRepository(ctx *pulumi.Context, args *LookupContainerRepositoryArgs, opts ...pulumi.InvokeOption) (*LookupContainerRepositoryResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupContainerRepositoryResult
@@ -22,7 +56,9 @@ func LookupContainerRepository(ctx *pulumi.Context, args *LookupContainerReposit
 
 // A collection of arguments for invoking getContainerRepository.
 type LookupContainerRepositoryArgs struct {
-	Name         *string `pulumi:"name"`
+	// Name of the repository. The name of the repository should start with id of a container registry and match the name of the images in the repository.
+	Name *string `pulumi:"name"`
+	// The ID of a specific repository.
 	RepositoryId *string `pulumi:"repositoryId"`
 }
 
@@ -49,7 +85,9 @@ func LookupContainerRepositoryOutput(ctx *pulumi.Context, args LookupContainerRe
 
 // A collection of arguments for invoking getContainerRepository.
 type LookupContainerRepositoryOutputArgs struct {
-	Name         pulumi.StringPtrInput `pulumi:"name"`
+	// Name of the repository. The name of the repository should start with id of a container registry and match the name of the images in the repository.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The ID of a specific repository.
 	RepositoryId pulumi.StringPtrInput `pulumi:"repositoryId"`
 }
 

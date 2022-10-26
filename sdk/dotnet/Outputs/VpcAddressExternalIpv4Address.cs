@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class VpcAddressExternalIpv4Address
     {
+        /// <summary>
+        /// Allocated IP address.
+        /// </summary>
         public readonly string? Address;
+        /// <summary>
+        /// Enable DDOS protection. Possible values are: "qrator"
+        /// </summary>
         public readonly string? DdosProtectionProvider;
+        /// <summary>
+        /// Wanted outgoing smtp capability.
+        /// </summary>
         public readonly string? OutgoingSmtpCapability;
+        /// <summary>
+        /// Zone for allocating address.
+        /// </summary>
         public readonly string? ZoneId;
 
         [OutputConstructor]

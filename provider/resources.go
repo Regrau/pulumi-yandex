@@ -95,7 +95,7 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "https://github/regrau/pulumi-yandex/releases",
+		PluginDownloadURL: "https://github.com/regrau/pulumi-yandex/releases",
 		Description:       "A Pulumi package for creating and managing yandex cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
@@ -106,7 +106,7 @@ func Provider() tfbridge.ProviderInfo {
 		Repository: "https://github.com/regrau/pulumi-yandex",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
-		GitHubOrg: "",
+		GitHubOrg: "yandex-cloud",
 		Config:    map[string]*tfbridge.SchemaInfo{},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"yandex_alb_target_group":                      {Tok: makeResource(mainMod, "AlbTargetGroup")},

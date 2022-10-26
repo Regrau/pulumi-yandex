@@ -95,7 +95,25 @@ def get_cdn_origin_group(folder_id: Optional[str] = None,
                          origin_group_id: Optional[int] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCdnOriginGroupResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex CDN Origin Group. For more information, see
+    [the official documentation](https://cloud.yandex.ru/docs/cdn/concepts/origins).
+
+    > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_group = yandex.get_cdn_origin_group(origin_group_id="some_instance_id")
+    pulumi.export("originGroupName", my_group.name)
+    ```
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: Name of the origin group.
+    :param int origin_group_id: The ID of a specific origin group.
     """
     __args__ = dict()
     __args__['folderId'] = folder_id
@@ -119,6 +137,24 @@ def get_cdn_origin_group_output(folder_id: Optional[pulumi.Input[Optional[str]]]
                                 origin_group_id: Optional[pulumi.Input[Optional[int]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCdnOriginGroupResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex CDN Origin Group. For more information, see
+    [the official documentation](https://cloud.yandex.ru/docs/cdn/concepts/origins).
+
+    > **_NOTE:_**  CDN provider must be activated prior usage of CDN resources, either via UI console or via yc cli command: ```yc cdn provider activate --folder-id <folder-id> --type gcore```
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_group = yandex.get_cdn_origin_group(origin_group_id="some_instance_id")
+    pulumi.export("originGroupName", my_group.name)
+    ```
+
+
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: Name of the origin group.
+    :param int origin_group_id: The ID of a specific origin group.
     """
     ...

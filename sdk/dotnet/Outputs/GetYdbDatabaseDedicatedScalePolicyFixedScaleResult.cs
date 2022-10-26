@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetYdbDatabaseDedicatedScalePolicyFixedScaleResult
     {
+        /// <summary>
+        /// Number of instances in the Yandex Database cluster.
+        /// </summary>
         public readonly int Size;
 
         [OutputConstructor]

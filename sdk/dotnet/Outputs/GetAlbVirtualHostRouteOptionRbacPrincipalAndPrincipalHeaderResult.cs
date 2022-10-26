@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetAlbVirtualHostRouteOptionRbacPrincipalAndPrincipalHeaderResult
     {
+        /// <summary>
+        /// Name of the Virtual Host.
+        /// </summary>
         public readonly string Name;
         public readonly ImmutableArray<Outputs.GetAlbVirtualHostRouteOptionRbacPrincipalAndPrincipalHeaderValueResult> Values;
 

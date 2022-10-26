@@ -10,6 +10,34 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex VPC network. For more information, see
+// [Yandex.Cloud VPC](https://cloud.yandex.com/docs/vpc/concepts/index).
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.LookupVpcNetwork(ctx, &GetVpcNetworkArgs{
+//				NetworkId: pulumi.StringRef("my-network-id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// This data source is used to define [VPC Networks] that can be used by other resources.
 func LookupVpcNetwork(ctx *pulumi.Context, args *LookupVpcNetworkArgs, opts ...pulumi.InvokeOption) (*LookupVpcNetworkResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcNetworkResult
@@ -22,23 +50,31 @@ func LookupVpcNetwork(ctx *pulumi.Context, args *LookupVpcNetworkArgs, opts ...p
 
 // A collection of arguments for invoking getVpcNetwork.
 type LookupVpcNetworkArgs struct {
-	FolderId  *string `pulumi:"folderId"`
-	Name      *string `pulumi:"name"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Name of the network.
+	Name *string `pulumi:"name"`
+	// ID of the network.
 	NetworkId *string `pulumi:"networkId"`
 }
 
 // A collection of values returned by getVpcNetwork.
 type LookupVpcNetworkResult struct {
-	CreatedAt              string `pulumi:"createdAt"`
+	// Creation timestamp of this network.
+	CreatedAt string `pulumi:"createdAt"`
+	// ID of default Security Group of this network.
 	DefaultSecurityGroupId string `pulumi:"defaultSecurityGroupId"`
-	Description            string `pulumi:"description"`
-	FolderId               string `pulumi:"folderId"`
+	// Description of the network.
+	Description string `pulumi:"description"`
+	FolderId    string `pulumi:"folderId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id        string            `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Labels assigned to this network.
 	Labels    map[string]string `pulumi:"labels"`
 	Name      string            `pulumi:"name"`
 	NetworkId string            `pulumi:"networkId"`
-	SubnetIds []string          `pulumi:"subnetIds"`
+	// List of subnet ids.
+	SubnetIds []string `pulumi:"subnetIds"`
 }
 
 func LookupVpcNetworkOutput(ctx *pulumi.Context, args LookupVpcNetworkOutputArgs, opts ...pulumi.InvokeOption) LookupVpcNetworkResultOutput {
@@ -56,8 +92,11 @@ func LookupVpcNetworkOutput(ctx *pulumi.Context, args LookupVpcNetworkOutputArgs
 
 // A collection of arguments for invoking getVpcNetwork.
 type LookupVpcNetworkOutputArgs struct {
-	FolderId  pulumi.StringPtrInput `pulumi:"folderId"`
-	Name      pulumi.StringPtrInput `pulumi:"name"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// Name of the network.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// ID of the network.
 	NetworkId pulumi.StringPtrInput `pulumi:"networkId"`
 }
 
@@ -80,14 +119,17 @@ func (o LookupVpcNetworkResultOutput) ToLookupVpcNetworkResultOutputWithContext(
 	return o
 }
 
+// Creation timestamp of this network.
 func (o LookupVpcNetworkResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcNetworkResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// ID of default Security Group of this network.
 func (o LookupVpcNetworkResultOutput) DefaultSecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcNetworkResult) string { return v.DefaultSecurityGroupId }).(pulumi.StringOutput)
 }
 
+// Description of the network.
 func (o LookupVpcNetworkResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcNetworkResult) string { return v.Description }).(pulumi.StringOutput)
 }
@@ -101,6 +143,7 @@ func (o LookupVpcNetworkResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcNetworkResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Labels assigned to this network.
 func (o LookupVpcNetworkResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupVpcNetworkResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -113,6 +156,7 @@ func (o LookupVpcNetworkResultOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcNetworkResult) string { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// List of subnet ids.
 func (o LookupVpcNetworkResultOutput) SubnetIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupVpcNetworkResult) []string { return v.SubnetIds }).(pulumi.StringArrayOutput)
 }

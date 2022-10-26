@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsResult
     {
+        /// <summary>
+        /// SASL mechanism used in kafka authentication.
+        /// </summary>
         public readonly string? SaslMechanism;
+        /// <summary>
+        /// User password on kafka server.
+        /// </summary>
         public readonly string? SaslPassword;
+        /// <summary>
+        /// Username on kafka server.
+        /// </summary>
         public readonly string? SaslUsername;
+        /// <summary>
+        /// Security protocol used to connect to kafka server.
+        /// </summary>
         public readonly string? SecurityProtocol;
 
         [OutputConstructor]

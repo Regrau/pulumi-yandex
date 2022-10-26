@@ -11,9 +11,51 @@ namespace Pulumi.Yandex
 {
     public static class GetVpcAddress
     {
+        /// <summary>
+        /// Get information about a Yandex VPC address. For more information, see
+        /// Yandex.Cloud VPC.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var addr = Yandex.GetVpcAddress.Invoke(new()
+        ///     {
+        ///         AddressId = "my-address-id",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [VPC Address] that can be used by other resources.
+        /// </summary>
         public static Task<GetVpcAddressResult> InvokeAsync(GetVpcAddressArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVpcAddressResult>("yandex:index/getVpcAddress:getVpcAddress", args ?? new GetVpcAddressArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex VPC address. For more information, see
+        /// Yandex.Cloud VPC.
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var addr = Yandex.GetVpcAddress.Invoke(new()
+        ///     {
+        ///         AddressId = "my-address-id",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [VPC Address] that can be used by other resources.
+        /// </summary>
         public static Output<GetVpcAddressResult> Invoke(GetVpcAddressInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetVpcAddressResult>("yandex:index/getVpcAddress:getVpcAddress", args ?? new GetVpcAddressInvokeArgs(), options.WithDefaults());
     }
@@ -21,12 +63,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetVpcAddressArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the address.
+        /// </summary>
         [Input("addressId")]
         public string? AddressId { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// Name of the address.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -38,12 +89,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetVpcAddressInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// ID of the address.
+        /// </summary>
         [Input("addressId")]
         public Input<string>? AddressId { get; set; }
 
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// Name of the address.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -58,17 +118,35 @@ namespace Pulumi.Yandex
     public sealed class GetVpcAddressResult
     {
         public readonly string AddressId;
+        /// <summary>
+        /// Creation timestamp of this address.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Description of the address.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// spec of IP v4 address.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetVpcAddressExternalIpv4AddressResult> ExternalIpv4Addresses;
         public readonly string FolderId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Labels assigned to this address.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
         public readonly string Name;
+        /// <summary>
+        /// `false` means that address is ephemeral.
+        /// </summary>
         public readonly bool Reserved;
+        /// <summary>
+        /// `true` if address is used.
+        /// </summary>
         public readonly bool Used;
 
         [OutputConstructor]

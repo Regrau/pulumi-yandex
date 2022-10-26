@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsPostgresTargetConnectionOnPremise
     {
+        /// <summary>
+        /// Host names of the replica set.
+        /// </summary>
         public readonly ImmutableArray<string> Hosts;
+        /// <summary>
+        /// TCP Port number.
+        /// </summary>
         public readonly int? Port;
+        /// <summary>
+        /// Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        /// </summary>
         public readonly string? SubnetId;
+        /// <summary>
+        /// TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsMode? TlsMode;
 
         [OutputConstructor]

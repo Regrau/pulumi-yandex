@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbClickhouseClusterClickhouseConfigGraphiteRollupResult
     {
+        /// <summary>
+        /// The name of the ClickHouse cluster.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Set of thinning rules.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternResult> Patterns;
 
         [OutputConstructor]

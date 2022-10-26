@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetKubernetesClusterNetworkImplementationResult
     {
+        /// <summary>
+        /// Cilium network implementation configuration. No options exist.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterNetworkImplementationCiliaResult> Cilias;
 
         [OutputConstructor]

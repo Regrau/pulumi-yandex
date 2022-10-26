@@ -13,14 +13,41 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbPostgresqlClusterConfigResult
     {
+        /// <summary>
+        /// Access policy to the PostgreSQL cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbPostgresqlClusterConfigAccessResult> Accesses;
+        /// <summary>
+        /// Configuration setting which enables/disables autofailover in cluster.
+        /// </summary>
         public readonly bool Autofailover;
+        /// <summary>
+        /// The period in days during which backups are stored.
+        /// </summary>
         public readonly int BackupRetainPeriodDays;
+        /// <summary>
+        /// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbPostgresqlClusterConfigBackupWindowStartResult> BackupWindowStarts;
+        /// <summary>
+        /// Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/docs/managed-postgresql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbPostgresqlClusterConfigPerformanceDiagnosticResult> PerformanceDiagnostics;
+        /// <summary>
+        /// Configuration of the connection pooler. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbPostgresqlClusterConfigPoolerConfigResult> PoolerConfigs;
+        /// <summary>
+        /// PostgreSQL cluster config.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> PostgresqlConfig;
+        /// <summary>
+        /// Resources allocated to hosts of the PostgreSQL cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbPostgresqlClusterConfigResourceResult> Resources;
+        /// <summary>
+        /// Version of the PostgreSQL cluster.
+        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

@@ -4,6 +4,22 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex IAM service account. For more information about accounts, see
+ * [Yandex.Cloud IAM accounts](https://cloud.yandex.com/docs/iam/concepts/#accounts).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const builder = pulumi.output(yandex.getIamServiceAccount({
+ *     serviceAccountId: "sa_id",
+ * }));
+ * const deployer = pulumi.output(yandex.getIamServiceAccount({
+ *     name: "sa_name",
+ * }));
+ * ```
+ */
 export function getIamServiceAccount(args?: GetIamServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetIamServiceAccountResult> {
     args = args || {};
     if (!opts) {
@@ -22,8 +38,17 @@ export function getIamServiceAccount(args?: GetIamServiceAccountArgs, opts?: pul
  * A collection of arguments for invoking getIamServiceAccount.
  */
 export interface GetIamServiceAccountArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * Name of a specific service account.
+     */
     name?: string;
+    /**
+     * ID of a specific service account.
+     */
     serviceAccountId?: string;
 }
 
@@ -32,6 +57,9 @@ export interface GetIamServiceAccountArgs {
  */
 export interface GetIamServiceAccountResult {
     readonly createdAt: string;
+    /**
+     * Description of the service account.
+     */
     readonly description: string;
     readonly folderId: string;
     /**
@@ -50,7 +78,16 @@ export function getIamServiceAccountOutput(args?: GetIamServiceAccountOutputArgs
  * A collection of arguments for invoking getIamServiceAccount.
  */
 export interface GetIamServiceAccountOutputArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Name of a specific service account.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * ID of a specific service account.
+     */
     serviceAccountId?: pulumi.Input<string>;
 }

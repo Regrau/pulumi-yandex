@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesNodeGroupAllocationPolicyLocationGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// ID of the subnet, that will be used by one compute instance in node group.
+        /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
 
+        /// <summary>
+        /// ID of the availability zone where for one compute instance in node group.
+        /// </summary>
         [Input("zone")]
         public Input<string>? Zone { get; set; }
 

@@ -18,6 +18,9 @@ class ResourcemanagerFolderIamPolicyArgs:
                  policy_data: pulumi.Input[str]):
         """
         The set of arguments for constructing a ResourcemanagerFolderIamPolicy resource.
+        :param pulumi.Input[str] folder_id: ID of the folder that the policy is attached to.
+        :param pulumi.Input[str] policy_data: The `get_iam_policy` data source that represents
+               the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
         """
         pulumi.set(__self__, "folder_id", folder_id)
         pulumi.set(__self__, "policy_data", policy_data)
@@ -25,6 +28,9 @@ class ResourcemanagerFolderIamPolicyArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Input[str]:
+        """
+        ID of the folder that the policy is attached to.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -34,6 +40,10 @@ class ResourcemanagerFolderIamPolicyArgs:
     @property
     @pulumi.getter(name="policyData")
     def policy_data(self) -> pulumi.Input[str]:
+        """
+        The `get_iam_policy` data source that represents
+        the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
+        """
         return pulumi.get(self, "policy_data")
 
     @policy_data.setter
@@ -48,6 +58,9 @@ class _ResourcemanagerFolderIamPolicyState:
                  policy_data: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ResourcemanagerFolderIamPolicy resources.
+        :param pulumi.Input[str] folder_id: ID of the folder that the policy is attached to.
+        :param pulumi.Input[str] policy_data: The `get_iam_policy` data source that represents
+               the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
         """
         if folder_id is not None:
             pulumi.set(__self__, "folder_id", folder_id)
@@ -57,6 +70,9 @@ class _ResourcemanagerFolderIamPolicyState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder that the policy is attached to.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -66,6 +82,10 @@ class _ResourcemanagerFolderIamPolicyState:
     @property
     @pulumi.getter(name="policyData")
     def policy_data(self) -> Optional[pulumi.Input[str]]:
+        """
+        The `get_iam_policy` data source that represents
+        the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
+        """
         return pulumi.get(self, "policy_data")
 
     @policy_data.setter
@@ -82,9 +102,31 @@ class ResourcemanagerFolderIamPolicy(pulumi.CustomResource):
                  policy_data: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ResourcemanagerFolderIamPolicy resource with the given unique name, props, and options.
+        Allows creation and management of the IAM policy for an existing Yandex Resource
+        Manager folder.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex as yandex
+        import pulumi_yandex_unofficial as yandex
+
+        project1 = yandex.get_resourcemanager_folder(folder_id="my_folder_id")
+        admin = yandex.get_iam_policy(bindings=[yandex.GetIamPolicyBindingArgs(
+            members=["userAccount:some_user_id"],
+            role="editor",
+        )])
+        folder_admin_policy = yandex.ResourcemanagerFolderIamPolicy("folderAdminPolicy",
+            folder_id=data["yandex_folder"]["project1"]["id"],
+            policy_data=admin.policy_data)
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] folder_id: ID of the folder that the policy is attached to.
+        :param pulumi.Input[str] policy_data: The `get_iam_policy` data source that represents
+               the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
         """
         ...
     @overload
@@ -93,7 +135,26 @@ class ResourcemanagerFolderIamPolicy(pulumi.CustomResource):
                  args: ResourcemanagerFolderIamPolicyArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ResourcemanagerFolderIamPolicy resource with the given unique name, props, and options.
+        Allows creation and management of the IAM policy for an existing Yandex Resource
+        Manager folder.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex as yandex
+        import pulumi_yandex_unofficial as yandex
+
+        project1 = yandex.get_resourcemanager_folder(folder_id="my_folder_id")
+        admin = yandex.get_iam_policy(bindings=[yandex.GetIamPolicyBindingArgs(
+            members=["userAccount:some_user_id"],
+            role="editor",
+        )])
+        folder_admin_policy = yandex.ResourcemanagerFolderIamPolicy("folderAdminPolicy",
+            folder_id=data["yandex_folder"]["project1"]["id"],
+            policy_data=admin.policy_data)
+        ```
+
         :param str resource_name: The name of the resource.
         :param ResourcemanagerFolderIamPolicyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -145,6 +206,9 @@ class ResourcemanagerFolderIamPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] folder_id: ID of the folder that the policy is attached to.
+        :param pulumi.Input[str] policy_data: The `get_iam_policy` data source that represents
+               the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -157,10 +221,17 @@ class ResourcemanagerFolderIamPolicy(pulumi.CustomResource):
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        ID of the folder that the policy is attached to.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter(name="policyData")
     def policy_data(self) -> pulumi.Output[str]:
+        """
+        The `get_iam_policy` data source that represents
+        the IAM policy that will be applied to the folder. This policy overrides any existing policy applied to the folder.
+        """
         return pulumi.get(self, "policy_data")
 

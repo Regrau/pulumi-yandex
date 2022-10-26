@@ -11,9 +11,81 @@ namespace Pulumi.Yandex
 {
     public static class GetVpcSecurityGroup
     {
+        /// <summary>
+        /// Get information about a Yandex VPC Security Group. For more information, see
+        /// [Yandex.Cloud VPC](https://cloud.yandex.com/docs/vpc/concepts/security-groups).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var group1 = Yandex.GetVpcSecurityGroup.Invoke(new()
+        ///     {
+        ///         SecurityGroupId = "my-id",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var group1 = Yandex.GetVpcSecurityGroup.Invoke(new()
+        ///     {
+        ///         Name = "my-group1",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define Security Group that can be used by other resources.
+        /// </summary>
         public static Task<GetVpcSecurityGroupResult> InvokeAsync(GetVpcSecurityGroupArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetVpcSecurityGroupResult>("yandex:index/getVpcSecurityGroup:getVpcSecurityGroup", args ?? new GetVpcSecurityGroupArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex VPC Security Group. For more information, see
+        /// [Yandex.Cloud VPC](https://cloud.yandex.com/docs/vpc/concepts/security-groups).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var group1 = Yandex.GetVpcSecurityGroup.Invoke(new()
+        ///     {
+        ///         SecurityGroupId = "my-id",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var group1 = Yandex.GetVpcSecurityGroup.Invoke(new()
+        ///     {
+        ///         Name = "my-group1",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define Security Group that can be used by other resources.
+        /// </summary>
         public static Output<GetVpcSecurityGroupResult> Invoke(GetVpcSecurityGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetVpcSecurityGroupResult>("yandex:index/getVpcSecurityGroup:getVpcSecurityGroup", args ?? new GetVpcSecurityGroupInvokeArgs(), options.WithDefaults());
     }
@@ -21,12 +93,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetVpcSecurityGroupArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// - Name of the security group.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Security Group ID.
+        /// </summary>
         [Input("securityGroupId")]
         public string? SecurityGroupId { get; set; }
 
@@ -38,12 +119,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetVpcSecurityGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// - Name of the security group.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Security Group ID.
+        /// </summary>
         [Input("securityGroupId")]
         public Input<string>? SecurityGroupId { get; set; }
 
@@ -57,19 +147,49 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetVpcSecurityGroupResult
     {
+        /// <summary>
+        /// Creation timestamp of this security group.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Description of the rule.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// A list of egress rules. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetVpcSecurityGroupEgressResult> Egresses;
+        /// <summary>
+        /// ID of the folder this security group belongs to.
+        /// </summary>
         public readonly string FolderId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A list of ingress rules. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetVpcSecurityGroupIngressResult> Ingresses;
+        /// <summary>
+        /// Labels to assign to this rule.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// Name of the security group.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// ID of the network this security group belongs to.
+        /// </summary>
         public readonly string NetworkId;
+        /// <summary>
+        /// Target security group ID for this rule.
+        /// </summary>
         public readonly string SecurityGroupId;
+        /// <summary>
+        /// Status of this security group.
+        /// </summary>
         public readonly string Status;
 
         [OutputConstructor]

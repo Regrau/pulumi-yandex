@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbBackendGroupHttpBackendHealthcheckGrpcHealthcheckArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Service name for grpc.health.v1.HealthCheckRequest message.
+        /// </summary>
         [Input("serviceName")]
         public Input<string>? ServiceName { get; set; }
 

@@ -4,6 +4,31 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows management of [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const myRegistry = new yandex.IotCoreRegistry("my_registry", {
+ *     certificates: [
+ *         "public part of certificate1",
+ *         "public part of certificate2",
+ *     ],
+ *     description: "any description",
+ *     labels: {
+ *         "my-label": "my-label-value",
+ *     },
+ *     passwords: [
+ *         "my-password1",
+ *         "my-password2",
+ *     ],
+ * });
+ * ```
+ */
 export class IotCoreRegistry extends pulumi.CustomResource {
     /**
      * Get an existing IotCoreRegistry resource's state with the given name, ID, and optional extra
@@ -32,12 +57,33 @@ export class IotCoreRegistry extends pulumi.CustomResource {
         return obj['__pulumiType'] === IotCoreRegistry.__pulumiType;
     }
 
+    /**
+     * A set of certificate's fingerprints for the IoT Core Registry
+     */
     public readonly certificates!: pulumi.Output<string[] | undefined>;
+    /**
+     * Creation timestamp of the IoT Core Registry
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * Description of the IoT Core Registry
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Folder ID for the IoT Core Registry
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * A set of key/value label pairs to assign to the IoT Core Registry.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * IoT Core Device name used to define registry
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * A set of passwords's id for the IoT Core Registry
+     */
     public readonly passwords!: pulumi.Output<string[] | undefined>;
 
     /**
@@ -79,12 +125,33 @@ export class IotCoreRegistry extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IotCoreRegistry resources.
  */
 export interface IotCoreRegistryState {
+    /**
+     * A set of certificate's fingerprints for the IoT Core Registry
+     */
     certificates?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Creation timestamp of the IoT Core Registry
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Description of the IoT Core Registry
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Folder ID for the IoT Core Registry
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the IoT Core Registry.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * IoT Core Device name used to define registry
+     */
     name?: pulumi.Input<string>;
+    /**
+     * A set of passwords's id for the IoT Core Registry
+     */
     passwords?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
@@ -92,10 +159,28 @@ export interface IotCoreRegistryState {
  * The set of arguments for constructing a IotCoreRegistry resource.
  */
 export interface IotCoreRegistryArgs {
+    /**
+     * A set of certificate's fingerprints for the IoT Core Registry
+     */
     certificates?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Description of the IoT Core Registry
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Folder ID for the IoT Core Registry
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the IoT Core Registry.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * IoT Core Device name used to define registry
+     */
     name?: pulumi.Input<string>;
+    /**
+     * A set of passwords's id for the IoT Core Registry
+     */
     passwords?: pulumi.Input<pulumi.Input<string>[]>;
 }

@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbMysqlClusterMaintenanceWindowResult
     {
+        /// <summary>
+        /// Day of the week (in `DDD` format). Value is one of: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+        /// </summary>
         public readonly string Day;
+        /// <summary>
+        /// Hour of the day in UTC (in `HH` format). Value is between 1 and 24.
+        /// </summary>
         public readonly int Hour;
+        /// <summary>
+        /// Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

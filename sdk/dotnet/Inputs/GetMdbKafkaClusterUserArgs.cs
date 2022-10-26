@@ -12,14 +12,24 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbKafkaClusterUserInputArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the Kafka cluster.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// (Required) The password of the user.
+        /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
         [Input("permissions")]
         private InputList<Inputs.GetMdbKafkaClusterUserPermissionInputArgs>? _permissions;
+
+        /// <summary>
+        /// (Optional) Set of permissions granted to the user. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.GetMdbKafkaClusterUserPermissionInputArgs> Permissions
         {
             get => _permissions ?? (_permissions = new InputList<Inputs.GetMdbKafkaClusterUserPermissionInputArgs>());

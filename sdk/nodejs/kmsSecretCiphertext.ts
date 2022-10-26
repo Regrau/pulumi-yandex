@@ -4,6 +4,32 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Encrypts given plaintext with the specified Yandex KMS key and provides access to the ciphertext.
+ *
+ * > **Note:** Using this resource will allow you to conceal secret data within your
+ * resource definitions, but it does not take care of protecting that data in the
+ * logging output, plan output, or state output.  Please take care to secure your secret
+ * data outside of resource definitions.
+ *
+ * For more information, see [the official documentation](https://cloud.yandex.com/docs/kms/concepts/).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const example = new yandex.KmsSymmetricKey("example", {
+ *     description: "description for key",
+ * });
+ * const password = new yandex.KmsSecretCiphertext("password", {
+ *     aadContext: "additional authenticated data",
+ *     keyId: example.id,
+ *     plaintext: "strong password",
+ * });
+ * ```
+ */
 export class KmsSecretCiphertext extends pulumi.CustomResource {
     /**
      * Get an existing KmsSecretCiphertext resource's state with the given name, ID, and optional extra
@@ -32,9 +58,21 @@ export class KmsSecretCiphertext extends pulumi.CustomResource {
         return obj['__pulumiType'] === KmsSecretCiphertext.__pulumiType;
     }
 
+    /**
+     * Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
+     */
     public readonly aadContext!: pulumi.Output<string | undefined>;
+    /**
+     * Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4
+     */
     public /*out*/ readonly ciphertext!: pulumi.Output<string>;
+    /**
+     * ID of the symmetric KMS key to use for encryption.
+     */
     public readonly keyId!: pulumi.Output<string>;
+    /**
+     * Plaintext to be encrypted.
+     */
     public readonly plaintext!: pulumi.Output<string>;
 
     /**
@@ -76,9 +114,21 @@ export class KmsSecretCiphertext extends pulumi.CustomResource {
  * Input properties used for looking up and filtering KmsSecretCiphertext resources.
  */
 export interface KmsSecretCiphertextState {
+    /**
+     * Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
+     */
     aadContext?: pulumi.Input<string>;
+    /**
+     * Resulting ciphertext, encoded with "standard" base64 alphabet as defined in RFC 4648 section 4
+     */
     ciphertext?: pulumi.Input<string>;
+    /**
+     * ID of the symmetric KMS key to use for encryption.
+     */
     keyId?: pulumi.Input<string>;
+    /**
+     * Plaintext to be encrypted.
+     */
     plaintext?: pulumi.Input<string>;
 }
 
@@ -86,7 +136,16 @@ export interface KmsSecretCiphertextState {
  * The set of arguments for constructing a KmsSecretCiphertext resource.
  */
 export interface KmsSecretCiphertextArgs {
+    /**
+     * Additional authenticated data (AAD context), optional. If specified, this data will be required for decryption with the `SymmetricDecryptRequest`
+     */
     aadContext?: pulumi.Input<string>;
+    /**
+     * ID of the symmetric KMS key to use for encryption.
+     */
     keyId: pulumi.Input<string>;
+    /**
+     * Plaintext to be encrypted.
+     */
     plaintext: pulumi.Input<string>;
 }

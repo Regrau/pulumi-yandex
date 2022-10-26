@@ -11,9 +11,67 @@ namespace Pulumi.Yandex
 {
     public static class GetMdbKafkaCluster
     {
+        /// <summary>
+        /// Get information about a Yandex Managed Kafka cluster. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetMdbKafkaCluster.Invoke(new()
+        ///     {
+        ///         Name = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["networkId"] = foo.Apply(getMdbKafkaClusterResult =&gt; getMdbKafkaClusterResult.NetworkId),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Task<GetMdbKafkaClusterResult> InvokeAsync(GetMdbKafkaClusterArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetMdbKafkaClusterResult>("yandex:index/getMdbKafkaCluster:getMdbKafkaCluster", args ?? new GetMdbKafkaClusterArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Managed Kafka cluster. For more information, see
+        /// [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts).
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetMdbKafkaCluster.Invoke(new()
+        ///     {
+        ///         Name = "test",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["networkId"] = foo.Apply(getMdbKafkaClusterResult =&gt; getMdbKafkaClusterResult.NetworkId),
+        ///     };
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
+        /// </summary>
         public static Output<GetMdbKafkaClusterResult> Invoke(GetMdbKafkaClusterInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetMdbKafkaClusterResult>("yandex:index/getMdbKafkaCluster:getMdbKafkaCluster", args ?? new GetMdbKafkaClusterInvokeArgs(), options.WithDefaults());
     }
@@ -21,18 +79,30 @@ namespace Pulumi.Yandex
 
     public sealed class GetMdbKafkaClusterArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the Kafka cluster.
+        /// </summary>
         [Input("clusterId")]
         public string? ClusterId { get; set; }
 
+        /// <summary>
+        /// Configuration of the Kafka cluster. The structure is documented below.
+        /// </summary>
         [Input("config")]
         public Inputs.GetMdbKafkaClusterConfigArgs? Config { get; set; }
 
         [Input("deletionProtection")]
         public bool? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// The name of the Kafka cluster.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
@@ -46,6 +116,10 @@ namespace Pulumi.Yandex
 
         [Input("topics")]
         private List<Inputs.GetMdbKafkaClusterTopicArgs>? _topics;
+
+        /// <summary>
+        /// A topic of the Kafka cluster. The structure is documented below.
+        /// </summary>
         public List<Inputs.GetMdbKafkaClusterTopicArgs> Topics
         {
             get => _topics ?? (_topics = new List<Inputs.GetMdbKafkaClusterTopicArgs>());
@@ -54,6 +128,10 @@ namespace Pulumi.Yandex
 
         [Input("users")]
         private List<Inputs.GetMdbKafkaClusterUserArgs>? _users;
+
+        /// <summary>
+        /// A user of the Kafka cluster. The structure is documented below.
+        /// </summary>
         public List<Inputs.GetMdbKafkaClusterUserArgs> Users
         {
             get => _users ?? (_users = new List<Inputs.GetMdbKafkaClusterUserArgs>());
@@ -68,18 +146,30 @@ namespace Pulumi.Yandex
 
     public sealed class GetMdbKafkaClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the Kafka cluster.
+        /// </summary>
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
+        /// <summary>
+        /// Configuration of the Kafka cluster. The structure is documented below.
+        /// </summary>
         [Input("config")]
         public Input<Inputs.GetMdbKafkaClusterConfigInputArgs>? Config { get; set; }
 
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
+        /// <summary>
+        /// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// The name of the Kafka cluster.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
@@ -93,6 +183,10 @@ namespace Pulumi.Yandex
 
         [Input("topics")]
         private InputList<Inputs.GetMdbKafkaClusterTopicInputArgs>? _topics;
+
+        /// <summary>
+        /// A topic of the Kafka cluster. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.GetMdbKafkaClusterTopicInputArgs> Topics
         {
             get => _topics ?? (_topics = new InputList<Inputs.GetMdbKafkaClusterTopicInputArgs>());
@@ -101,6 +195,10 @@ namespace Pulumi.Yandex
 
         [Input("users")]
         private InputList<Inputs.GetMdbKafkaClusterUserInputArgs>? _users;
+
+        /// <summary>
+        /// A user of the Kafka cluster. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.GetMdbKafkaClusterUserInputArgs> Users
         {
             get => _users ?? (_users = new InputList<Inputs.GetMdbKafkaClusterUserInputArgs>());
@@ -117,29 +215,77 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetMdbKafkaClusterResult
     {
+        /// <summary>
+        /// (Optional) Access policy to the Kafka cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbKafkaClusterAccessResult> Accesses;
         public readonly string ClusterId;
+        /// <summary>
+        /// Configuration of the Kafka cluster. The structure is documented below.
+        /// </summary>
         public readonly Outputs.GetMdbKafkaClusterConfigResult? Config;
+        /// <summary>
+        /// Creation timestamp of the key.
+        /// </summary>
         public readonly string CreatedAt;
         public readonly bool DeletionProtection;
+        /// <summary>
+        /// Description of the Kafka cluster.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// Deployment environment of the Kafka cluster.
+        /// </summary>
         public readonly string Environment;
         public readonly string FolderId;
+        /// <summary>
+        /// Health of the host.
+        /// </summary>
         public readonly string Health;
+        /// <summary>
+        /// A list of IDs of the host groups hosting VMs of the cluster.
+        /// </summary>
         public readonly ImmutableArray<string> HostGroupIds;
+        /// <summary>
+        /// A host of the Kafka cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbKafkaClusterHostResult> Hosts;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// A set of key/value label pairs to assign to the Kafka cluster.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
+        /// <summary>
+        /// Maintenance window settings of the Kafka cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbKafkaClusterMaintenanceWindowResult> MaintenanceWindows;
+        /// <summary>
+        /// The fully qualified domain name of the host.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// ID of the network, to which the Kafka cluster belongs.
+        /// </summary>
         public readonly string NetworkId;
+        /// <summary>
+        /// A list of security groups IDs of the Kafka cluster.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroupIds;
+        /// <summary>
+        /// Status of the cluster.
+        /// </summary>
         public readonly string Status;
         public readonly ImmutableArray<string> SubnetIds;
+        /// <summary>
+        /// A topic of the Kafka cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbKafkaClusterTopicResult> Topics;
+        /// <summary>
+        /// A user of the Kafka cluster. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbKafkaClusterUserResult> Users;
 
         [OutputConstructor]

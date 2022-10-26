@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerListenerTls
     {
+        /// <summary>
+        /// TLS handler resource. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbLoadBalancerListenerTlsDefaultHandler DefaultHandler;
+        /// <summary>
+        /// SNI match resource. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.AlbLoadBalancerListenerTlsSniHandler> SniHandlers;
 
         [OutputConstructor]

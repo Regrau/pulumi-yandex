@@ -92,11 +92,17 @@ class GetMdbRedisClusterResult:
     @property
     @pulumi.getter
     def configs(self) -> Sequence['outputs.GetMdbRedisClusterConfigResult']:
+        """
+        Configuration of the Redis cluster. The structure is documented below.
+        """
         return pulumi.get(self, "configs")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
@@ -107,11 +113,17 @@ class GetMdbRedisClusterResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the Redis cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def environment(self) -> str:
+        """
+        Deployment environment of the Redis cluster.
+        """
         return pulumi.get(self, "environment")
 
     @property
@@ -122,11 +134,17 @@ class GetMdbRedisClusterResult:
     @property
     @pulumi.getter
     def health(self) -> str:
+        """
+        Aggregated health of the cluster.
+        """
         return pulumi.get(self, "health")
 
     @property
     @pulumi.getter
     def hosts(self) -> Sequence['outputs.GetMdbRedisClusterHostResult']:
+        """
+        A host of the Redis cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @property
@@ -140,6 +158,9 @@ class GetMdbRedisClusterResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs to assign to the Redis cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -155,36 +176,57 @@ class GetMdbRedisClusterResult:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
+        """
+        ID of the network, to which the Redis cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="persistenceMode")
     def persistence_mode(self) -> str:
+        """
+        Persistence mode.
+        """
         return pulumi.get(self, "persistence_mode")
 
     @property
     @pulumi.getter
     def resources(self) -> Sequence['outputs.GetMdbRedisClusterResourceResult']:
+        """
+        Resources allocated to hosts of the Redis cluster. The structure is documented below.
+        """
         return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Sequence[str]:
+        """
+        A set of ids of security groups assigned to hosts of the cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter
     def sharded(self) -> bool:
+        """
+        Redis Cluster mode enabled/disabled.
+        """
         return pulumi.get(self, "sharded")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the cluster.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="tlsEnabled")
     def tls_enabled(self) -> bool:
+        """
+        TLS support mode enabled/disabled.
+        """
         return pulumi.get(self, "tls_enabled")
 
 
@@ -222,7 +264,23 @@ def get_mdb_redis_cluster(cluster_id: Optional[str] = None,
                           name: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMdbRedisClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed Redis cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-redis/concepts).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_redis_cluster(name="test")
+    pulumi.export("networkId", foo.network_id)
+    ```
+
+
+    :param str cluster_id: The ID of the Redis cluster.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: The name of the Redis cluster.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -262,6 +320,22 @@ def get_mdb_redis_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMdbRedisClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed Redis cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-redis/concepts).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_redis_cluster(name="test")
+    pulumi.export("networkId", foo.network_id)
+    ```
+
+
+    :param str cluster_id: The ID of the Redis cluster.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: The name of the Redis cluster.
     """
     ...

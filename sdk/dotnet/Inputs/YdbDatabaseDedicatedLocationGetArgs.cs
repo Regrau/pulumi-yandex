@@ -12,6 +12,10 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class YdbDatabaseDedicatedLocationGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Region for the Yandex Database cluster.
+        /// The structure is documented below.
+        /// </summary>
         [Input("region")]
         public Input<Inputs.YdbDatabaseDedicatedLocationRegionGetArgs>? Region { get; set; }
 

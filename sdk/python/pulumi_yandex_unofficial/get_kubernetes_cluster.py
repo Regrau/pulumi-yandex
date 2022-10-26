@@ -101,21 +101,33 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter(name="clusterIpv4Range")
     def cluster_ipv4_range(self) -> str:
+        """
+        IP range for allocating pod addresses.
+        """
         return pulumi.get(self, "cluster_ipv4_range")
 
     @property
     @pulumi.getter(name="clusterIpv6Range")
     def cluster_ipv6_range(self) -> str:
+        """
+        Identical to cluster_ipv4_range but for the IPv6 protocol.
+        """
         return pulumi.get(self, "cluster_ipv6_range")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The Kubernetes cluster creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        A description of the Kubernetes cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
@@ -126,6 +138,9 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter
     def health(self) -> str:
+        """
+        Health of the Kubernetes cluster.
+        """
         return pulumi.get(self, "health")
 
     @property
@@ -139,21 +154,33 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter(name="kmsProviders")
     def kms_providers(self) -> Sequence['outputs.GetKubernetesClusterKmsProviderResult']:
+        """
+        cluster KMS provider parameters.
+        """
         return pulumi.get(self, "kms_providers")
 
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs to assign to the Kubernetes cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="logGroupId")
     def log_group_id(self) -> str:
+        """
+        Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        """
         return pulumi.get(self, "log_group_id")
 
     @property
     @pulumi.getter
     def masters(self) -> Sequence['outputs.GetKubernetesClusterMasterResult']:
+        """
+        Kubernetes master configuration options. The structure is documented below.
+        """
         return pulumi.get(self, "masters")
 
     @property
@@ -164,51 +191,84 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
+        """
+        The ID of the cluster network.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="networkImplementations")
     def network_implementations(self) -> Sequence['outputs.GetKubernetesClusterNetworkImplementationResult']:
+        """
+        (Optional) Network Implementation options. The structure is documented below.
+        """
         return pulumi.get(self, "network_implementations")
 
     @property
     @pulumi.getter(name="networkPolicyProvider")
     def network_policy_provider(self) -> str:
+        """
+        Network policy provider for the cluster, if present. Possible values: `CALICO`.
+        """
         return pulumi.get(self, "network_policy_provider")
 
     @property
     @pulumi.getter(name="nodeIpv4CidrMaskSize")
     def node_ipv4_cidr_mask_size(self) -> int:
+        """
+        Size of the masks that are assigned to each node in the cluster.
+        """
         return pulumi.get(self, "node_ipv4_cidr_mask_size")
 
     @property
     @pulumi.getter(name="nodeServiceAccountId")
     def node_service_account_id(self) -> str:
+        """
+        Service account to be used by the worker nodes of the Kubernetes cluster
+        to access Container Registry or to push node logs and metrics.
+        """
         return pulumi.get(self, "node_service_account_id")
 
     @property
     @pulumi.getter(name="releaseChannel")
     def release_channel(self) -> str:
+        """
+        Cluster release channel.
+        """
         return pulumi.get(self, "release_channel")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> str:
+        """
+        Service account to be used for provisioning Compute Cloud and VPC resources
+        for Kubernetes cluster. Selected service account should have `edit` role on the folder where the Kubernetes
+        cluster will be located and on the folder where selected network resides.
+        """
         return pulumi.get(self, "service_account_id")
 
     @property
     @pulumi.getter(name="serviceIpv4Range")
     def service_ipv4_range(self) -> str:
+        """
+        IP range Kubernetes services Kubernetes cluster IP addresses will be allocated from.
+        """
         return pulumi.get(self, "service_ipv4_range")
 
     @property
     @pulumi.getter(name="serviceIpv6Range")
     def service_ipv6_range(self) -> str:
+        """
+        Identical to service_ipv4_range but for the IPv6 protocol.
+        """
         return pulumi.get(self, "service_ipv6_range")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the Kubernetes cluster.
+        """
         return pulumi.get(self, "status")
 
 
@@ -248,7 +308,22 @@ def get_kubernetes_cluster(cluster_id: Optional[str] = None,
                            name: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubernetesClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Kubernetes Cluster.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_cluster = yandex.get_kubernetes_cluster(cluster_id="some_k8s_cluster_id")
+    pulumi.export("clusterExternalV4Endpoint", my_cluster.masters[0].external_v4_endpoint)
+    ```
+
+
+    :param str cluster_id: ID of a specific Kubernetes cluster.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: Name of a specific Kubernetes cluster.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -289,6 +364,21 @@ def get_kubernetes_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str
                                   name: Optional[pulumi.Input[Optional[str]]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubernetesClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Kubernetes Cluster.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    my_cluster = yandex.get_kubernetes_cluster(cluster_id="some_k8s_cluster_id")
+    pulumi.export("clusterExternalV4Endpoint", my_cluster.masters[0].external_v4_endpoint)
+    ```
+
+
+    :param str cluster_id: ID of a specific Kubernetes cluster.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: Name of a specific Kubernetes cluster.
     """
     ...

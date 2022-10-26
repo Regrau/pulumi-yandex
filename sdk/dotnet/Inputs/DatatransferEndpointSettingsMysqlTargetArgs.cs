@@ -12,32 +12,57 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsMysqlTargetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Connection settings. The structure is documented below.
+        /// </summary>
         [Input("connection")]
         public Input<Inputs.DatatransferEndpointSettingsMysqlTargetConnectionArgs>? Connection { get; set; }
 
+        /// <summary>
+        /// Name of the database to transfer.
+        /// </summary>
         [Input("database")]
         public Input<string>? Database { get; set; }
 
+        /// <summary>
+        /// Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        /// </summary>
         [Input("password")]
         public Input<Inputs.DatatransferEndpointSettingsMysqlTargetPasswordArgs>? Password { get; set; }
 
         [Input("securityGroups")]
         private InputList<string>? _securityGroups;
+
+        /// <summary>
+        /// List of security groups that the transfer associated with this endpoint should use.
+        /// </summary>
         public InputList<string> SecurityGroups
         {
             get => _securityGroups ?? (_securityGroups = new InputList<string>());
             set => _securityGroups = value;
         }
 
+        /// <summary>
+        /// When true, disables foreign key checks. See [foreign_key_checks](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_foreign_key_checks). False by default.
+        /// </summary>
         [Input("skipConstraintChecks")]
         public Input<bool>? SkipConstraintChecks { get; set; }
 
+        /// <summary>
+        /// [sql_mode](https://dev.mysql.com/doc/refman/5.7/en/sql-mode.html) to use when interacting with the server. Defaults to "NO_AUTO_VALUE_ON_ZERO,NO_DIR_IN_CREATE,NO_ENGINE_SUBSTITUTION".
+        /// </summary>
         [Input("sqlMode")]
         public Input<string>? SqlMode { get; set; }
 
+        /// <summary>
+        /// Timezone to use for parsing timestamps for saving source timezones. Accepts values from IANA timezone database. Default: local timezone.
+        /// </summary>
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }
 
+        /// <summary>
+        /// User for the database access.
+        /// </summary>
         [Input("user")]
         public Input<string>? User { get; set; }
 

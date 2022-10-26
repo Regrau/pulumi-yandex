@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesNodeGroupInstanceTemplateBootDiskArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The number of instances in the node group.
+        /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
 
+        /// <summary>
+        /// Type of container runtime. Values: `docker`, `containerd`.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 

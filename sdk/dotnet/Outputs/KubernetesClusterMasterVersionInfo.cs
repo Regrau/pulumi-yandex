@@ -13,9 +13,26 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class KubernetesClusterMasterVersionInfo
     {
+        /// <summary>
+        /// Current Kubernetes version, major.minor (e.g. 1.15).
+        /// </summary>
         public readonly string? CurrentVersion;
+        /// <summary>
+        /// Boolean flag.
+        /// Newer revisions may include Kubernetes patches (e.g 1.15.1 &gt; 1.15.2) as well
+        /// as some internal component updates - new features or bug fixes in yandex-specific
+        /// components either on the master or nodes.
+        /// </summary>
         public readonly bool? NewRevisionAvailable;
+        /// <summary>
+        /// Human readable description of the changes to be applied
+        /// when updating to the latest revision. Empty if new_revision_available is false.
+        /// </summary>
         public readonly string? NewRevisionSummary;
+        /// <summary>
+        /// Boolean flag. The current version is on the deprecation schedule,
+        /// component (master or node group) should be upgraded.
+        /// </summary>
         public readonly bool? VersionDeprecated;
 
         [OutputConstructor]

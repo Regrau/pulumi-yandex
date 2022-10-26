@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetKubernetesNodeGroupInstanceTemplateBootDiskResult
     {
+        /// <summary>
+        /// The number of instances in the node group.
+        /// </summary>
         public readonly int Size;
+        /// <summary>
+        /// Type of container runtime. Values: `docker`, `containerd`.
+        /// </summary>
         public readonly string Type;
 
         [OutputConstructor]

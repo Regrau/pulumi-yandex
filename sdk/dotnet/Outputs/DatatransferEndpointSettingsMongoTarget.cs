@@ -13,10 +13,25 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsMongoTarget
     {
+        /// <summary>
+        /// How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+        /// </summary>
         public readonly string? CleanupPolicy;
+        /// <summary>
+        /// Connection settings. The structure is documented below.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsMongoTargetConnection? Connection;
+        /// <summary>
+        /// Name of the database to transfer.
+        /// </summary>
         public readonly string? Database;
+        /// <summary>
+        /// List of security groups that the transfer associated with this endpoint should use.
+        /// </summary>
         public readonly ImmutableArray<string> SecurityGroups;
+        /// <summary>
+        /// Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        /// </summary>
         public readonly string? SubnetId;
 
         [OutputConstructor]

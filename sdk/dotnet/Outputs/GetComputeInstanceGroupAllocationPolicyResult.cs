@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetComputeInstanceGroupAllocationPolicyResult
     {
+        /// <summary>
+        /// A list of availability zones.
+        /// </summary>
         public readonly ImmutableArray<string> Zones;
 
         [OutputConstructor]

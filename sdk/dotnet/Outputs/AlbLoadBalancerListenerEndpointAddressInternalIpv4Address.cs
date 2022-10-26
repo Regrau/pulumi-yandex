@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerListenerEndpointAddressInternalIpv4Address
     {
+        /// <summary>
+        /// Provided by the client or computed automatically.
+        /// </summary>
         public readonly string? Address;
+        /// <summary>
+        /// Provided by the client or computed automatically.
+        /// </summary>
         public readonly string? SubnetId;
 
         [OutputConstructor]

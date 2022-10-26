@@ -12,15 +12,27 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbSqlServerClusterHostArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment
+        /// </summary>
         [Input("assignPublicIp")]
         public Input<bool>? AssignPublicIp { get; set; }
 
+        /// <summary>
+        /// The fully qualified domain name of the host.
+        /// </summary>
         [Input("fqdn")]
         public Input<string>? Fqdn { get; set; }
 
+        /// <summary>
+        /// The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        /// </summary>
         [Input("subnetId")]
         public Input<string>? SubnetId { get; set; }
 
+        /// <summary>
+        /// The availability zone where the SQLServer host will be created.
+        /// </summary>
         [Input("zone", required: true)]
         public Input<string> Zone { get; set; } = null!;
 

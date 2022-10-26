@@ -5,6 +5,40 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Allows management of Yandex Cloud Serverless Containers
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const test_container = new yandex.ServerlessContainer("test-container", {
+ *     coreFraction: 100,
+ *     cores: 1,
+ *     description: "any description",
+ *     executionTimeout: "15s",
+ *     image: {
+ *         url: "cr.yandex/yc/test-image:v1",
+ *     },
+ *     memory: 256,
+ *     serviceAccountId: "are1service2account3id",
+ * });
+ * ```
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const test_container_with_digest = new yandex.ServerlessContainer("test-container-with-digest", {
+ *     image: {
+ *         digest: "sha256:e1d772fa8795adac847a2420c87d0d2e3d38fb02f168cab8c0b5fe2fb95c47f4",
+ *         url: "cr.yandex/yc/test-image:v1",
+ *     },
+ *     memory: 128,
+ * });
+ * ```
+ */
 export class ServerlessContainer extends pulumi.CustomResource {
     /**
      * Get an existing ServerlessContainer resource's state with the given name, ID, and optional extra
@@ -33,23 +67,71 @@ export class ServerlessContainer extends pulumi.CustomResource {
         return obj['__pulumiType'] === ServerlessContainer.__pulumiType;
     }
 
+    /**
+     * Concurrency of Yandex Cloud Serverless Container
+     */
     public readonly concurrency!: pulumi.Output<number | undefined>;
+    /**
+     * Core fraction (**0...100**) of the Yandex Cloud Serverless Container
+     */
     public readonly coreFraction!: pulumi.Output<number>;
     public readonly cores!: pulumi.Output<number | undefined>;
+    /**
+     * Creation timestamp of the Yandex Cloud Serverless Container
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * Description of the Yandex Cloud Serverless Container
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * Execution timeout in seconds (**duration format**) for Yandex Cloud Serverless Container
+     */
     public readonly executionTimeout!: pulumi.Output<string>;
+    /**
+     * Folder ID for the Yandex Cloud Serverless Container
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * Revision deployment image for Yandex Cloud Serverless Container
+     * * `image.0.url` (Required) - URL of image that will be deployed as Yandex Cloud Serverless Container
+     * * `image.0.work_dir` - Working directory for Yandex Cloud Serverless Container
+     * * `image.0.digest` - Digest of image that will be deployed as Yandex Cloud Serverless Container.
+     * If presented, should be equal to digest that will be resolved at server side by URL.
+     * Container will be updated on digest change even if `image.0.url` stays the same.
+     * If field not specified then its value will be computed.
+     * * `image.0.command` - List of commands for Yandex Cloud Serverless Container
+     * * `image.0.args` - List of arguments for Yandex Cloud Serverless Container
+     * * `image.0.environment` -  A set of key/value environment variable pairs for Yandex Cloud Serverless Container
+     */
     public readonly image!: pulumi.Output<outputs.ServerlessContainerImage>;
+    /**
+     * A set of key/value label pairs to assign to the Yandex Cloud Serverless Container
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
-     * Container memory in megabytes, should be aligned to 128
+     * Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Serverless Container
      */
     public readonly memory!: pulumi.Output<number>;
+    /**
+     * Yandex Cloud Serverless Container name
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Last revision ID of the Yandex Cloud Serverless Container
+     */
     public /*out*/ readonly revisionId!: pulumi.Output<string>;
+    /**
+     * Secrets for Yandex Cloud Serverless Container
+     */
     public readonly secrets!: pulumi.Output<outputs.ServerlessContainerSecret[]>;
+    /**
+     * Service account ID for Yandex Cloud Serverless Container
+     */
     public readonly serviceAccountId!: pulumi.Output<string | undefined>;
+    /**
+     * Invoke URL for the Yandex Cloud Serverless Container
+     */
     public /*out*/ readonly url!: pulumi.Output<string>;
 
     /**
@@ -113,23 +195,71 @@ export class ServerlessContainer extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ServerlessContainer resources.
  */
 export interface ServerlessContainerState {
+    /**
+     * Concurrency of Yandex Cloud Serverless Container
+     */
     concurrency?: pulumi.Input<number>;
+    /**
+     * Core fraction (**0...100**) of the Yandex Cloud Serverless Container
+     */
     coreFraction?: pulumi.Input<number>;
     cores?: pulumi.Input<number>;
+    /**
+     * Creation timestamp of the Yandex Cloud Serverless Container
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Description of the Yandex Cloud Serverless Container
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Execution timeout in seconds (**duration format**) for Yandex Cloud Serverless Container
+     */
     executionTimeout?: pulumi.Input<string>;
+    /**
+     * Folder ID for the Yandex Cloud Serverless Container
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Revision deployment image for Yandex Cloud Serverless Container
+     * * `image.0.url` (Required) - URL of image that will be deployed as Yandex Cloud Serverless Container
+     * * `image.0.work_dir` - Working directory for Yandex Cloud Serverless Container
+     * * `image.0.digest` - Digest of image that will be deployed as Yandex Cloud Serverless Container.
+     * If presented, should be equal to digest that will be resolved at server side by URL.
+     * Container will be updated on digest change even if `image.0.url` stays the same.
+     * If field not specified then its value will be computed.
+     * * `image.0.command` - List of commands for Yandex Cloud Serverless Container
+     * * `image.0.args` - List of arguments for Yandex Cloud Serverless Container
+     * * `image.0.environment` -  A set of key/value environment variable pairs for Yandex Cloud Serverless Container
+     */
     image?: pulumi.Input<inputs.ServerlessContainerImage>;
+    /**
+     * A set of key/value label pairs to assign to the Yandex Cloud Serverless Container
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Container memory in megabytes, should be aligned to 128
+     * Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Serverless Container
      */
     memory?: pulumi.Input<number>;
+    /**
+     * Yandex Cloud Serverless Container name
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Last revision ID of the Yandex Cloud Serverless Container
+     */
     revisionId?: pulumi.Input<string>;
+    /**
+     * Secrets for Yandex Cloud Serverless Container
+     */
     secrets?: pulumi.Input<pulumi.Input<inputs.ServerlessContainerSecret>[]>;
+    /**
+     * Service account ID for Yandex Cloud Serverless Container
+     */
     serviceAccountId?: pulumi.Input<string>;
+    /**
+     * Invoke URL for the Yandex Cloud Serverless Container
+     */
     url?: pulumi.Input<string>;
 }
 
@@ -137,19 +267,58 @@ export interface ServerlessContainerState {
  * The set of arguments for constructing a ServerlessContainer resource.
  */
 export interface ServerlessContainerArgs {
+    /**
+     * Concurrency of Yandex Cloud Serverless Container
+     */
     concurrency?: pulumi.Input<number>;
+    /**
+     * Core fraction (**0...100**) of the Yandex Cloud Serverless Container
+     */
     coreFraction?: pulumi.Input<number>;
     cores?: pulumi.Input<number>;
+    /**
+     * Description of the Yandex Cloud Serverless Container
+     */
     description?: pulumi.Input<string>;
+    /**
+     * Execution timeout in seconds (**duration format**) for Yandex Cloud Serverless Container
+     */
     executionTimeout?: pulumi.Input<string>;
+    /**
+     * Folder ID for the Yandex Cloud Serverless Container
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Revision deployment image for Yandex Cloud Serverless Container
+     * * `image.0.url` (Required) - URL of image that will be deployed as Yandex Cloud Serverless Container
+     * * `image.0.work_dir` - Working directory for Yandex Cloud Serverless Container
+     * * `image.0.digest` - Digest of image that will be deployed as Yandex Cloud Serverless Container.
+     * If presented, should be equal to digest that will be resolved at server side by URL.
+     * Container will be updated on digest change even if `image.0.url` stays the same.
+     * If field not specified then its value will be computed.
+     * * `image.0.command` - List of commands for Yandex Cloud Serverless Container
+     * * `image.0.args` - List of arguments for Yandex Cloud Serverless Container
+     * * `image.0.environment` -  A set of key/value environment variable pairs for Yandex Cloud Serverless Container
+     */
     image: pulumi.Input<inputs.ServerlessContainerImage>;
+    /**
+     * A set of key/value label pairs to assign to the Yandex Cloud Serverless Container
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Container memory in megabytes, should be aligned to 128
+     * Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Serverless Container
      */
     memory: pulumi.Input<number>;
+    /**
+     * Yandex Cloud Serverless Container name
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Secrets for Yandex Cloud Serverless Container
+     */
     secrets?: pulumi.Input<pulumi.Input<inputs.ServerlessContainerSecret>[]>;
+    /**
+     * Service account ID for Yandex Cloud Serverless Container
+     */
     serviceAccountId?: pulumi.Input<string>;
 }

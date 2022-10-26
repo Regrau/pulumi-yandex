@@ -10,16 +10,64 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a network within the Yandex.Cloud. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/network#network).
+//
+// * How-to Guides
+//   - [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+//   - [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewVpcNetwork(ctx, "default", nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A network can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/vpcNetwork:VpcNetwork default network_id
+//
+// ```
 type VpcNetwork struct {
 	pulumi.CustomResourceState
 
-	CreatedAt              pulumi.StringOutput      `pulumi:"createdAt"`
-	DefaultSecurityGroupId pulumi.StringOutput      `pulumi:"defaultSecurityGroupId"`
-	Description            pulumi.StringPtrOutput   `pulumi:"description"`
-	FolderId               pulumi.StringOutput      `pulumi:"folderId"`
-	Labels                 pulumi.StringMapOutput   `pulumi:"labels"`
-	Name                   pulumi.StringOutput      `pulumi:"name"`
-	SubnetIds              pulumi.StringArrayOutput `pulumi:"subnetIds"`
+	// Creation timestamp of the key.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// ID of default Security Group of this network.
+	DefaultSecurityGroupId pulumi.StringOutput `pulumi:"defaultSecurityGroupId"`
+	// An optional description of this resource. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Labels to apply to this network. A list of key/value pairs.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the network. Provided by the client when the network is created.
+	Name      pulumi.StringOutput      `pulumi:"name"`
+	SubnetIds pulumi.StringArrayOutput `pulumi:"subnetIds"`
 }
 
 // NewVpcNetwork registers a new resource with the given unique name, arguments, and options.
@@ -52,23 +100,39 @@ func GetVpcNetwork(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcNetwork resources.
 type vpcNetworkState struct {
-	CreatedAt              *string           `pulumi:"createdAt"`
-	DefaultSecurityGroupId *string           `pulumi:"defaultSecurityGroupId"`
-	Description            *string           `pulumi:"description"`
-	FolderId               *string           `pulumi:"folderId"`
-	Labels                 map[string]string `pulumi:"labels"`
-	Name                   *string           `pulumi:"name"`
-	SubnetIds              []string          `pulumi:"subnetIds"`
+	// Creation timestamp of the key.
+	CreatedAt *string `pulumi:"createdAt"`
+	// ID of default Security Group of this network.
+	DefaultSecurityGroupId *string `pulumi:"defaultSecurityGroupId"`
+	// An optional description of this resource. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to apply to this network. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the network. Provided by the client when the network is created.
+	Name      *string  `pulumi:"name"`
+	SubnetIds []string `pulumi:"subnetIds"`
 }
 
 type VpcNetworkState struct {
-	CreatedAt              pulumi.StringPtrInput
+	// Creation timestamp of the key.
+	CreatedAt pulumi.StringPtrInput
+	// ID of default Security Group of this network.
 	DefaultSecurityGroupId pulumi.StringPtrInput
-	Description            pulumi.StringPtrInput
-	FolderId               pulumi.StringPtrInput
-	Labels                 pulumi.StringMapInput
-	Name                   pulumi.StringPtrInput
-	SubnetIds              pulumi.StringArrayInput
+	// An optional description of this resource. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrInput
+	// ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to apply to this network. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the network. Provided by the client when the network is created.
+	Name      pulumi.StringPtrInput
+	SubnetIds pulumi.StringArrayInput
 }
 
 func (VpcNetworkState) ElementType() reflect.Type {
@@ -76,18 +140,30 @@ func (VpcNetworkState) ElementType() reflect.Type {
 }
 
 type vpcNetworkArgs struct {
-	Description *string           `pulumi:"description"`
-	FolderId    *string           `pulumi:"folderId"`
-	Labels      map[string]string `pulumi:"labels"`
-	Name        *string           `pulumi:"name"`
+	// An optional description of this resource. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to apply to this network. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the network. Provided by the client when the network is created.
+	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a VpcNetwork resource.
 type VpcNetworkArgs struct {
+	// An optional description of this resource. Provide this property when
+	// you create the resource.
 	Description pulumi.StringPtrInput
-	FolderId    pulumi.StringPtrInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
+	// ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to apply to this network. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the network. Provided by the client when the network is created.
+	Name pulumi.StringPtrInput
 }
 
 func (VpcNetworkArgs) ElementType() reflect.Type {
@@ -177,26 +253,34 @@ func (o VpcNetworkOutput) ToVpcNetworkOutputWithContext(ctx context.Context) Vpc
 	return o
 }
 
+// Creation timestamp of the key.
 func (o VpcNetworkOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcNetwork) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// ID of default Security Group of this network.
 func (o VpcNetworkOutput) DefaultSecurityGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcNetwork) pulumi.StringOutput { return v.DefaultSecurityGroupId }).(pulumi.StringOutput)
 }
 
+// An optional description of this resource. Provide this property when
+// you create the resource.
 func (o VpcNetworkOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcNetwork) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// ID of the folder that the resource belongs to. If it
+// is not provided, the default provider folder is used.
 func (o VpcNetworkOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcNetwork) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Labels to apply to this network. A list of key/value pairs.
 func (o VpcNetworkOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *VpcNetwork) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the network. Provided by the client when the network is created.
 func (o VpcNetworkOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcNetwork) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

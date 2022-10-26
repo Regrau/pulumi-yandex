@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterClickhouseConfigRabbitmqGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// RabbitMQ user password.
+        /// </summary>
         [Input("password")]
         public Input<string>? Password { get; set; }
 
+        /// <summary>
+        /// RabbitMQ username.
+        /// </summary>
         [Input("username")]
         public Input<string>? Username { get; set; }
 

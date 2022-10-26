@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbKafkaClusterConfigZookeeperArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// (Optional) Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        /// </summary>
         [Input("resources", required: true)]
         public Inputs.GetMdbKafkaClusterConfigZookeeperResourcesArgs Resources { get; set; } = null!;
 

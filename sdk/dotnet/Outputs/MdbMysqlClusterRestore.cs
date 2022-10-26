@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbMysqlClusterRestore
     {
+        /// <summary>
+        /// Backup ID. The cluster will be created from the specified backup. [How to get a list of MySQL backups](https://cloud.yandex.com/docs/managed-mysql/operations/cluster-backups).
+        /// </summary>
         public readonly string BackupId;
+        /// <summary>
+        /// Timestamp of the moment to which the MySQL cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
+        /// </summary>
         public readonly string? Time;
 
         [OutputConstructor]

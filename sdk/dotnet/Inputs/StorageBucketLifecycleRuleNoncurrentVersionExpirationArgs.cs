@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class StorageBucketLifecycleRuleNoncurrentVersionExpirationArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Specifies the number of days noncurrent object versions expire.
+        /// </summary>
         [Input("days")]
         public Input<int>? Days { get; set; }
 

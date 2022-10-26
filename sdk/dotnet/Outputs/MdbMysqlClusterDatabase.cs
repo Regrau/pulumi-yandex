@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbMysqlClusterDatabase
     {
+        /// <summary>
+        /// Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please refer to `replication_source_name` parameter.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

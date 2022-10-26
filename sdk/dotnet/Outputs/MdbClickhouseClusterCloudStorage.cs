@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbClickhouseClusterCloudStorage
     {
+        /// <summary>
+        /// Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+        /// </summary>
         public readonly bool Enabled;
 
         [OutputConstructor]

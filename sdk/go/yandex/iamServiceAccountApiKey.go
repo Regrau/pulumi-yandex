@@ -11,16 +11,57 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of a [Yandex.Cloud IAM service account API key](https://cloud.yandex.com/docs/iam/concepts/authorization/api-key).
+// The API key is a private key used for simplified authorization in the Yandex.Cloud API. API keys are only used for [service accounts](https://cloud.yandex.com/docs/iam/concepts/users/service-accounts).
+//
+// API keys do not expire. This means that this authentication method is simpler, but less secure. Use it if you can't automatically request an [IAM token](https://cloud.yandex.com/docs/iam/concepts/authorization/iam-token).
+//
+// ## Example Usage
+//
+// This snippet creates an API key.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewIamServiceAccountApiKey(ctx, "sa-api-key", &yandex.IamServiceAccountApiKeyArgs{
+//				Description:      pulumi.String("api key for authorization"),
+//				PgpKey:           pulumi.String("keybase:keybaseusername"),
+//				ServiceAccountId: pulumi.String("some_sa_id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type IamServiceAccountApiKey struct {
 	pulumi.CustomResourceState
 
-	CreatedAt          pulumi.StringOutput    `pulumi:"createdAt"`
-	Description        pulumi.StringPtrOutput `pulumi:"description"`
-	EncryptedSecretKey pulumi.StringOutput    `pulumi:"encryptedSecretKey"`
-	KeyFingerprint     pulumi.StringOutput    `pulumi:"keyFingerprint"`
-	PgpKey             pulumi.StringPtrOutput `pulumi:"pgpKey"`
-	SecretKey          pulumi.StringOutput    `pulumi:"secretKey"`
-	ServiceAccountId   pulumi.StringOutput    `pulumi:"serviceAccountId"`
+	// Creation timestamp of the static access key.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// The description of the key.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The encrypted secret key, base64 encoded. This is only populated when `pgpKey` is supplied.
+	EncryptedSecretKey pulumi.StringOutput `pulumi:"encryptedSecretKey"`
+	// The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgpKey` is supplied.
+	KeyFingerprint pulumi.StringOutput `pulumi:"keyFingerprint"`
+	// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey pulumi.StringPtrOutput `pulumi:"pgpKey"`
+	// The secret key. This is only populated when no `pgpKey` is provided.
+	SecretKey pulumi.StringOutput `pulumi:"secretKey"`
+	// ID of the service account to an API key for.
+	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
 }
 
 // NewIamServiceAccountApiKey registers a new resource with the given unique name, arguments, and options.
@@ -56,23 +97,37 @@ func GetIamServiceAccountApiKey(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IamServiceAccountApiKey resources.
 type iamServiceAccountApiKeyState struct {
-	CreatedAt          *string `pulumi:"createdAt"`
-	Description        *string `pulumi:"description"`
+	// Creation timestamp of the static access key.
+	CreatedAt *string `pulumi:"createdAt"`
+	// The description of the key.
+	Description *string `pulumi:"description"`
+	// The encrypted secret key, base64 encoded. This is only populated when `pgpKey` is supplied.
 	EncryptedSecretKey *string `pulumi:"encryptedSecretKey"`
-	KeyFingerprint     *string `pulumi:"keyFingerprint"`
-	PgpKey             *string `pulumi:"pgpKey"`
-	SecretKey          *string `pulumi:"secretKey"`
-	ServiceAccountId   *string `pulumi:"serviceAccountId"`
+	// The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgpKey` is supplied.
+	KeyFingerprint *string `pulumi:"keyFingerprint"`
+	// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey *string `pulumi:"pgpKey"`
+	// The secret key. This is only populated when no `pgpKey` is provided.
+	SecretKey *string `pulumi:"secretKey"`
+	// ID of the service account to an API key for.
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
 }
 
 type IamServiceAccountApiKeyState struct {
-	CreatedAt          pulumi.StringPtrInput
-	Description        pulumi.StringPtrInput
+	// Creation timestamp of the static access key.
+	CreatedAt pulumi.StringPtrInput
+	// The description of the key.
+	Description pulumi.StringPtrInput
+	// The encrypted secret key, base64 encoded. This is only populated when `pgpKey` is supplied.
 	EncryptedSecretKey pulumi.StringPtrInput
-	KeyFingerprint     pulumi.StringPtrInput
-	PgpKey             pulumi.StringPtrInput
-	SecretKey          pulumi.StringPtrInput
-	ServiceAccountId   pulumi.StringPtrInput
+	// The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgpKey` is supplied.
+	KeyFingerprint pulumi.StringPtrInput
+	// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey pulumi.StringPtrInput
+	// The secret key. This is only populated when no `pgpKey` is provided.
+	SecretKey pulumi.StringPtrInput
+	// ID of the service account to an API key for.
+	ServiceAccountId pulumi.StringPtrInput
 }
 
 func (IamServiceAccountApiKeyState) ElementType() reflect.Type {
@@ -80,15 +135,21 @@ func (IamServiceAccountApiKeyState) ElementType() reflect.Type {
 }
 
 type iamServiceAccountApiKeyArgs struct {
-	Description      *string `pulumi:"description"`
-	PgpKey           *string `pulumi:"pgpKey"`
-	ServiceAccountId string  `pulumi:"serviceAccountId"`
+	// The description of the key.
+	Description *string `pulumi:"description"`
+	// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey *string `pulumi:"pgpKey"`
+	// ID of the service account to an API key for.
+	ServiceAccountId string `pulumi:"serviceAccountId"`
 }
 
 // The set of arguments for constructing a IamServiceAccountApiKey resource.
 type IamServiceAccountApiKeyArgs struct {
-	Description      pulumi.StringPtrInput
-	PgpKey           pulumi.StringPtrInput
+	// The description of the key.
+	Description pulumi.StringPtrInput
+	// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+	PgpKey pulumi.StringPtrInput
+	// ID of the service account to an API key for.
 	ServiceAccountId pulumi.StringInput
 }
 
@@ -179,30 +240,37 @@ func (o IamServiceAccountApiKeyOutput) ToIamServiceAccountApiKeyOutputWithContex
 	return o
 }
 
+// Creation timestamp of the static access key.
 func (o IamServiceAccountApiKeyOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountApiKey) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The description of the key.
 func (o IamServiceAccountApiKeyOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamServiceAccountApiKey) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The encrypted secret key, base64 encoded. This is only populated when `pgpKey` is supplied.
 func (o IamServiceAccountApiKeyOutput) EncryptedSecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountApiKey) pulumi.StringOutput { return v.EncryptedSecretKey }).(pulumi.StringOutput)
 }
 
+// The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgpKey` is supplied.
 func (o IamServiceAccountApiKeyOutput) KeyFingerprint() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountApiKey) pulumi.StringOutput { return v.KeyFingerprint }).(pulumi.StringOutput)
 }
 
+// An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
 func (o IamServiceAccountApiKeyOutput) PgpKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *IamServiceAccountApiKey) pulumi.StringPtrOutput { return v.PgpKey }).(pulumi.StringPtrOutput)
 }
 
+// The secret key. This is only populated when no `pgpKey` is provided.
 func (o IamServiceAccountApiKeyOutput) SecretKey() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountApiKey) pulumi.StringOutput { return v.SecretKey }).(pulumi.StringOutput)
 }
 
+// ID of the service account to an API key for.
 func (o IamServiceAccountApiKeyOutput) ServiceAccountId() pulumi.StringOutput {
 	return o.ApplyT(func(v *IamServiceAccountApiKey) pulumi.StringOutput { return v.ServiceAccountId }).(pulumi.StringOutput)
 }

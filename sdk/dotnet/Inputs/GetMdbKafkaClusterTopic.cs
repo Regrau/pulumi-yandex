@@ -12,18 +12,33 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbKafkaClusterTopicArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// The ID of the Kafka cluster.
+        /// </summary>
         [Input("clusterId", required: true)]
         public string ClusterId { get; set; } = null!;
 
+        /// <summary>
+        /// The name of the Kafka cluster.
+        /// </summary>
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
+        /// <summary>
+        /// (Required) The number of the topic's partitions.
+        /// </summary>
         [Input("partitions", required: true)]
         public int Partitions { get; set; }
 
+        /// <summary>
+        /// (Required) Amount of data copies (replicas) for the topic in the cluster.
+        /// </summary>
         [Input("replicationFactor", required: true)]
         public int ReplicationFactor { get; set; }
 
+        /// <summary>
+        /// (Required) User-defined settings for the topic. The structure is documented below.
+        /// </summary>
         [Input("topicConfig")]
         public Inputs.GetMdbKafkaClusterTopicTopicConfigArgs? TopicConfig { get; set; }
 

@@ -9,18 +9,72 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// ## yandex\_kms\_symmetric\_key\_iam\_binding
+    /// 
+    /// Allows creation and management of a single binding within IAM policy for
+    /// an existing Yandex KMS Symmetric Key.
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var your_key = new Yandex.KmsSymmetricKey("your-key", new()
+    ///     {
+    ///         FolderId = "your-folder-id",
+    ///     });
+    /// 
+    ///     var viewer = new Yandex.KmsSymmetricKeyIamBinding("viewer", new()
+    ///     {
+    ///         SymmetricKeyId = your_key.Id,
+    ///         Role = "viewer",
+    ///         Members = new[]
+    ///         {
+    ///             "userAccount:foo_user_id",
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `symmetric_key_id` and role, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/kmsSymmetricKeyIamBinding:KmsSymmetricKeyIamBinding viewer "symmetric_key_id viewer"
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/kmsSymmetricKeyIamBinding:KmsSymmetricKeyIamBinding")]
     public partial class KmsSymmetricKeyIamBinding : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Identities that will be granted the privilege in `role`.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        /// </summary>
         [Output("members")]
         public Output<ImmutableArray<string>> Members { get; private set; } = null!;
 
+        /// <summary>
+        /// The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+        /// </summary>
         [Output("role")]
         public Output<string> Role { get; private set; } = null!;
 
         [Output("sleepAfter")]
         public Output<int?> SleepAfter { get; private set; } = null!;
 
+        /// <summary>
+        /// The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
+        /// </summary>
         [Output("symmetricKeyId")]
         public Output<string> SymmetricKeyId { get; private set; } = null!;
 
@@ -47,7 +101,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -73,18 +127,32 @@ namespace Pulumi.Yandex
     {
         [Input("members", required: true)]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// Identities that will be granted the privilege in `role`.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+        /// </summary>
         [Input("role", required: true)]
         public Input<string> Role { get; set; } = null!;
 
         [Input("sleepAfter")]
         public Input<int>? SleepAfter { get; set; }
 
+        /// <summary>
+        /// The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
+        /// </summary>
         [Input("symmetricKeyId", required: true)]
         public Input<string> SymmetricKeyId { get; set; } = null!;
 
@@ -98,18 +166,32 @@ namespace Pulumi.Yandex
     {
         [Input("members")]
         private InputList<string>? _members;
+
+        /// <summary>
+        /// Identities that will be granted the privilege in `role`.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+        /// </summary>
         public InputList<string> Members
         {
             get => _members ?? (_members = new InputList<string>());
             set => _members = value;
         }
 
+        /// <summary>
+        /// The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+        /// </summary>
         [Input("role")]
         public Input<string>? Role { get; set; }
 
         [Input("sleepAfter")]
         public Input<int>? SleepAfter { get; set; }
 
+        /// <summary>
+        /// The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
+        /// </summary>
         [Input("symmetricKeyId")]
         public Input<string>? SymmetricKeyId { get; set; }
 

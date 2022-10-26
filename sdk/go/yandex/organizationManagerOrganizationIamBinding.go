@@ -11,13 +11,63 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows creation and management of a single binding within IAM policy for
+// an existing Yandex.Cloud Organization Manager organization.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewOrganizationManagerOrganizationIamBinding(ctx, "editor", &yandex.OrganizationManagerOrganizationIamBindingArgs{
+//				Members: pulumi.StringArray{
+//					pulumi.String("userAccount:some_user_id"),
+//				},
+//				OrganizationId: pulumi.String("some_organization_id"),
+//				Role:           pulumi.String("editor"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `organization_id` and role, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/organizationManagerOrganizationIamBinding:OrganizationManagerOrganizationIamBinding viewer "organization_id viewer"
+//
+// ```
 type OrganizationManagerOrganizationIamBinding struct {
 	pulumi.CustomResourceState
 
-	Members        pulumi.StringArrayOutput `pulumi:"members"`
-	OrganizationId pulumi.StringOutput      `pulumi:"organizationId"`
-	Role           pulumi.StringOutput      `pulumi:"role"`
-	SleepAfter     pulumi.IntPtrOutput      `pulumi:"sleepAfter"`
+	// An array of identities that will be granted the privilege in the `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}**: A unique federated user ID.
+	Members pulumi.StringArrayOutput `pulumi:"members"`
+	// ID of the organization to attach the policy to.
+	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// The role that should be assigned. Only one
+	// `OrganizationManagerOrganizationIamBinding` can be used per role.
+	Role       pulumi.StringOutput `pulumi:"role"`
+	SleepAfter pulumi.IntPtrOutput `pulumi:"sleepAfter"`
 }
 
 // NewOrganizationManagerOrganizationIamBinding registers a new resource with the given unique name, arguments, and options.
@@ -59,17 +109,33 @@ func GetOrganizationManagerOrganizationIamBinding(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OrganizationManagerOrganizationIamBinding resources.
 type organizationManagerOrganizationIamBindingState struct {
-	Members        []string `pulumi:"members"`
-	OrganizationId *string  `pulumi:"organizationId"`
-	Role           *string  `pulumi:"role"`
-	SleepAfter     *int     `pulumi:"sleepAfter"`
+	// An array of identities that will be granted the privilege in the `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}**: A unique federated user ID.
+	Members []string `pulumi:"members"`
+	// ID of the organization to attach the policy to.
+	OrganizationId *string `pulumi:"organizationId"`
+	// The role that should be assigned. Only one
+	// `OrganizationManagerOrganizationIamBinding` can be used per role.
+	Role       *string `pulumi:"role"`
+	SleepAfter *int    `pulumi:"sleepAfter"`
 }
 
 type OrganizationManagerOrganizationIamBindingState struct {
-	Members        pulumi.StringArrayInput
+	// An array of identities that will be granted the privilege in the `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}**: A unique federated user ID.
+	Members pulumi.StringArrayInput
+	// ID of the organization to attach the policy to.
 	OrganizationId pulumi.StringPtrInput
-	Role           pulumi.StringPtrInput
-	SleepAfter     pulumi.IntPtrInput
+	// The role that should be assigned. Only one
+	// `OrganizationManagerOrganizationIamBinding` can be used per role.
+	Role       pulumi.StringPtrInput
+	SleepAfter pulumi.IntPtrInput
 }
 
 func (OrganizationManagerOrganizationIamBindingState) ElementType() reflect.Type {
@@ -77,18 +143,34 @@ func (OrganizationManagerOrganizationIamBindingState) ElementType() reflect.Type
 }
 
 type organizationManagerOrganizationIamBindingArgs struct {
-	Members        []string `pulumi:"members"`
-	OrganizationId string   `pulumi:"organizationId"`
-	Role           string   `pulumi:"role"`
-	SleepAfter     *int     `pulumi:"sleepAfter"`
+	// An array of identities that will be granted the privilege in the `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}**: A unique federated user ID.
+	Members []string `pulumi:"members"`
+	// ID of the organization to attach the policy to.
+	OrganizationId string `pulumi:"organizationId"`
+	// The role that should be assigned. Only one
+	// `OrganizationManagerOrganizationIamBinding` can be used per role.
+	Role       string `pulumi:"role"`
+	SleepAfter *int   `pulumi:"sleepAfter"`
 }
 
 // The set of arguments for constructing a OrganizationManagerOrganizationIamBinding resource.
 type OrganizationManagerOrganizationIamBindingArgs struct {
-	Members        pulumi.StringArrayInput
+	// An array of identities that will be granted the privilege in the `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}**: A unique federated user ID.
+	Members pulumi.StringArrayInput
+	// ID of the organization to attach the policy to.
 	OrganizationId pulumi.StringInput
-	Role           pulumi.StringInput
-	SleepAfter     pulumi.IntPtrInput
+	// The role that should be assigned. Only one
+	// `OrganizationManagerOrganizationIamBinding` can be used per role.
+	Role       pulumi.StringInput
+	SleepAfter pulumi.IntPtrInput
 }
 
 func (OrganizationManagerOrganizationIamBindingArgs) ElementType() reflect.Type {
@@ -178,14 +260,22 @@ func (o OrganizationManagerOrganizationIamBindingOutput) ToOrganizationManagerOr
 	return o
 }
 
+// An array of identities that will be granted the privilege in the `role`.
+// Each entry can have one of the following values:
+// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+// * **serviceAccount:{service_account_id}**: A unique service account ID.
+// * **federatedUser:{federated_user_id}**: A unique federated user ID.
 func (o OrganizationManagerOrganizationIamBindingOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *OrganizationManagerOrganizationIamBinding) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
 }
 
+// ID of the organization to attach the policy to.
 func (o OrganizationManagerOrganizationIamBindingOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *OrganizationManagerOrganizationIamBinding) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// The role that should be assigned. Only one
+// `OrganizationManagerOrganizationIamBinding` can be used per role.
 func (o OrganizationManagerOrganizationIamBindingOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v *OrganizationManagerOrganizationIamBinding) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
 }

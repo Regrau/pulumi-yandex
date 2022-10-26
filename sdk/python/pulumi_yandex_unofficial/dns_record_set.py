@@ -21,6 +21,11 @@ class DnsRecordSetArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DnsRecordSet resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] datas: The string data for the records in this record set.
+        :param pulumi.Input[int] ttl: The time-to-live of this record set (seconds).
+        :param pulumi.Input[str] type: The DNS record set type.
+        :param pulumi.Input[str] zone_id: The id of the zone in which this record set will reside.
+        :param pulumi.Input[str] name: The DNS name this record set will apply to.
         """
         pulumi.set(__self__, "datas", datas)
         pulumi.set(__self__, "ttl", ttl)
@@ -32,6 +37,9 @@ class DnsRecordSetArgs:
     @property
     @pulumi.getter
     def datas(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        The string data for the records in this record set.
+        """
         return pulumi.get(self, "datas")
 
     @datas.setter
@@ -41,6 +49,9 @@ class DnsRecordSetArgs:
     @property
     @pulumi.getter
     def ttl(self) -> pulumi.Input[int]:
+        """
+        The time-to-live of this record set (seconds).
+        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -50,6 +61,9 @@ class DnsRecordSetArgs:
     @property
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
+        """
+        The DNS record set type.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -59,6 +73,9 @@ class DnsRecordSetArgs:
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> pulumi.Input[str]:
+        """
+        The id of the zone in which this record set will reside.
+        """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
@@ -68,6 +85,9 @@ class DnsRecordSetArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The DNS name this record set will apply to.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -85,6 +105,11 @@ class _DnsRecordSetState:
                  zone_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DnsRecordSet resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] datas: The string data for the records in this record set.
+        :param pulumi.Input[str] name: The DNS name this record set will apply to.
+        :param pulumi.Input[int] ttl: The time-to-live of this record set (seconds).
+        :param pulumi.Input[str] type: The DNS record set type.
+        :param pulumi.Input[str] zone_id: The id of the zone in which this record set will reside.
         """
         if datas is not None:
             pulumi.set(__self__, "datas", datas)
@@ -100,6 +125,9 @@ class _DnsRecordSetState:
     @property
     @pulumi.getter
     def datas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        The string data for the records in this record set.
+        """
         return pulumi.get(self, "datas")
 
     @datas.setter
@@ -109,6 +137,9 @@ class _DnsRecordSetState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The DNS name this record set will apply to.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -118,6 +149,9 @@ class _DnsRecordSetState:
     @property
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
+        """
+        The time-to-live of this record set (seconds).
+        """
         return pulumi.get(self, "ttl")
 
     @ttl.setter
@@ -127,6 +161,9 @@ class _DnsRecordSetState:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        The DNS record set type.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -136,6 +173,9 @@ class _DnsRecordSetState:
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The id of the zone in which this record set will reside.
+        """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
@@ -155,9 +195,50 @@ class DnsRecordSet(pulumi.CustomResource):
                  zone_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DnsRecordSet resource with the given unique name, props, and options.
+        Manages a DNS Recordset.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo = yandex.VpcNetwork("foo")
+        zone1 = yandex.DnsZone("zone1",
+            description="desc",
+            labels={
+                "label1": "label-1-value",
+            },
+            zone="example.com.",
+            public=False,
+            private_networks=[foo.id])
+        rs1 = yandex.DnsRecordSet("rs1",
+            zone_id=zone1.id,
+            type="A",
+            ttl=200,
+            datas=["10.1.0.1"])
+        rs2 = yandex.DnsRecordSet("rs2",
+            zone_id=zone1.id,
+            type="A",
+            ttl=200,
+            datas=["10.1.0.2"])
+        ```
+
+        ## Import
+
+        DNS recordset can be imported using this format
+
+        ```sh
+         $ pulumi import yandex:index/dnsRecordSet:DnsRecordSet rs1 {{zone_id}}/{{name}}/{{type}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] datas: The string data for the records in this record set.
+        :param pulumi.Input[str] name: The DNS name this record set will apply to.
+        :param pulumi.Input[int] ttl: The time-to-live of this record set (seconds).
+        :param pulumi.Input[str] type: The DNS record set type.
+        :param pulumi.Input[str] zone_id: The id of the zone in which this record set will reside.
         """
         ...
     @overload
@@ -166,7 +247,43 @@ class DnsRecordSet(pulumi.CustomResource):
                  args: DnsRecordSetArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DnsRecordSet resource with the given unique name, props, and options.
+        Manages a DNS Recordset.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo = yandex.VpcNetwork("foo")
+        zone1 = yandex.DnsZone("zone1",
+            description="desc",
+            labels={
+                "label1": "label-1-value",
+            },
+            zone="example.com.",
+            public=False,
+            private_networks=[foo.id])
+        rs1 = yandex.DnsRecordSet("rs1",
+            zone_id=zone1.id,
+            type="A",
+            ttl=200,
+            datas=["10.1.0.1"])
+        rs2 = yandex.DnsRecordSet("rs2",
+            zone_id=zone1.id,
+            type="A",
+            ttl=200,
+            datas=["10.1.0.2"])
+        ```
+
+        ## Import
+
+        DNS recordset can be imported using this format
+
+        ```sh
+         $ pulumi import yandex:index/dnsRecordSet:DnsRecordSet rs1 {{zone_id}}/{{name}}/{{type}}
+        ```
+
         :param str resource_name: The name of the resource.
         :param DnsRecordSetArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -231,6 +348,11 @@ class DnsRecordSet(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] datas: The string data for the records in this record set.
+        :param pulumi.Input[str] name: The DNS name this record set will apply to.
+        :param pulumi.Input[int] ttl: The time-to-live of this record set (seconds).
+        :param pulumi.Input[str] type: The DNS record set type.
+        :param pulumi.Input[str] zone_id: The id of the zone in which this record set will reside.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -246,25 +368,40 @@ class DnsRecordSet(pulumi.CustomResource):
     @property
     @pulumi.getter
     def datas(self) -> pulumi.Output[Sequence[str]]:
+        """
+        The string data for the records in this record set.
+        """
         return pulumi.get(self, "datas")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The DNS name this record set will apply to.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def ttl(self) -> pulumi.Output[int]:
+        """
+        The time-to-live of this record set (seconds).
+        """
         return pulumi.get(self, "ttl")
 
     @property
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
+        """
+        The DNS record set type.
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="zoneId")
     def zone_id(self) -> pulumi.Output[str]:
+        """
+        The id of the zone in which this record set will reside.
+        """
         return pulumi.get(self, "zone_id")
 

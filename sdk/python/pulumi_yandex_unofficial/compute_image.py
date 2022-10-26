@@ -30,6 +30,29 @@ class ComputeImageArgs:
                  source_url: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ComputeImage resource.
+        :param pulumi.Input[str] description: An optional description of the image. Provide this property when
+               you create a resource.
+        :param pulumi.Input[str] family: The name of the image family to which this image belongs.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the image.
+        :param pulumi.Input[int] min_disk_size: Minimum size in GB of the disk that will be created from this image.
+        :param pulumi.Input[str] name: Name of the disk.
+        :param pulumi.Input[str] os_type: Operating system type that is contained in the image. Possible values: "LINUX", "WINDOWS".
+        :param pulumi.Input[bool] pooled: Optimize the image to create a disk.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] product_ids: License IDs that indicate which licenses are
+               attached to this image.
+        :param pulumi.Input[str] source_disk: The ID of a disk to use as the source of the
+               image. Changing this ID forces a new resource to be created.
+        :param pulumi.Input[str] source_family: The name of the family to use as the source of the new image.
+               The ID of the latest image is taken from the "standard-images" folder. Changing the family forces
+               a new resource to be created.
+        :param pulumi.Input[str] source_image: The ID of an existing image to use as the source of the
+               image. Changing this ID forces a new resource to be created.
+        :param pulumi.Input[str] source_snapshot: The ID of a snapshot to use as the source of the
+               image. Changing this ID forces a new resource to be created.
+        :param pulumi.Input[str] source_url: The URL to use as the source of the
+               image. Changing this URL forces a new resource to be created.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -63,6 +86,10 @@ class ComputeImageArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of the image. Provide this property when
+        you create a resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -72,6 +99,9 @@ class ComputeImageArgs:
     @property
     @pulumi.getter
     def family(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the image family to which this image belongs.
+        """
         return pulumi.get(self, "family")
 
     @family.setter
@@ -81,6 +111,10 @@ class ComputeImageArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -90,6 +124,9 @@ class ComputeImageArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the image.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -99,6 +136,9 @@ class ComputeImageArgs:
     @property
     @pulumi.getter(name="minDiskSize")
     def min_disk_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimum size in GB of the disk that will be created from this image.
+        """
         return pulumi.get(self, "min_disk_size")
 
     @min_disk_size.setter
@@ -108,6 +148,9 @@ class ComputeImageArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the disk.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -117,6 +160,9 @@ class ComputeImageArgs:
     @property
     @pulumi.getter(name="osType")
     def os_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Operating system type that is contained in the image. Possible values: "LINUX", "WINDOWS".
+        """
         return pulumi.get(self, "os_type")
 
     @os_type.setter
@@ -126,6 +172,9 @@ class ComputeImageArgs:
     @property
     @pulumi.getter
     def pooled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Optimize the image to create a disk.
+        """
         return pulumi.get(self, "pooled")
 
     @pooled.setter
@@ -135,6 +184,10 @@ class ComputeImageArgs:
     @property
     @pulumi.getter(name="productIds")
     def product_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        License IDs that indicate which licenses are
+        attached to this image.
+        """
         return pulumi.get(self, "product_ids")
 
     @product_ids.setter
@@ -144,6 +197,10 @@ class ComputeImageArgs:
     @property
     @pulumi.getter(name="sourceDisk")
     def source_disk(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of a disk to use as the source of the
+        image. Changing this ID forces a new resource to be created.
+        """
         return pulumi.get(self, "source_disk")
 
     @source_disk.setter
@@ -153,6 +210,11 @@ class ComputeImageArgs:
     @property
     @pulumi.getter(name="sourceFamily")
     def source_family(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the family to use as the source of the new image.
+        The ID of the latest image is taken from the "standard-images" folder. Changing the family forces
+        a new resource to be created.
+        """
         return pulumi.get(self, "source_family")
 
     @source_family.setter
@@ -162,6 +224,10 @@ class ComputeImageArgs:
     @property
     @pulumi.getter(name="sourceImage")
     def source_image(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of an existing image to use as the source of the
+        image. Changing this ID forces a new resource to be created.
+        """
         return pulumi.get(self, "source_image")
 
     @source_image.setter
@@ -171,6 +237,10 @@ class ComputeImageArgs:
     @property
     @pulumi.getter(name="sourceSnapshot")
     def source_snapshot(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of a snapshot to use as the source of the
+        image. Changing this ID forces a new resource to be created.
+        """
         return pulumi.get(self, "source_snapshot")
 
     @source_snapshot.setter
@@ -180,6 +250,10 @@ class ComputeImageArgs:
     @property
     @pulumi.getter(name="sourceUrl")
     def source_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URL to use as the source of the
+        image. Changing this URL forces a new resource to be created.
+        """
         return pulumi.get(self, "source_url")
 
     @source_url.setter
@@ -209,6 +283,32 @@ class _ComputeImageState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ComputeImage resources.
+        :param pulumi.Input[str] created_at: Creation timestamp of the image.
+        :param pulumi.Input[str] description: An optional description of the image. Provide this property when
+               you create a resource.
+        :param pulumi.Input[str] family: The name of the image family to which this image belongs.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the image.
+        :param pulumi.Input[int] min_disk_size: Minimum size in GB of the disk that will be created from this image.
+        :param pulumi.Input[str] name: Name of the disk.
+        :param pulumi.Input[str] os_type: Operating system type that is contained in the image. Possible values: "LINUX", "WINDOWS".
+        :param pulumi.Input[bool] pooled: Optimize the image to create a disk.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] product_ids: License IDs that indicate which licenses are
+               attached to this image.
+        :param pulumi.Input[int] size: The size of the image, specified in GB.
+        :param pulumi.Input[str] source_disk: The ID of a disk to use as the source of the
+               image. Changing this ID forces a new resource to be created.
+        :param pulumi.Input[str] source_family: The name of the family to use as the source of the new image.
+               The ID of the latest image is taken from the "standard-images" folder. Changing the family forces
+               a new resource to be created.
+        :param pulumi.Input[str] source_image: The ID of an existing image to use as the source of the
+               image. Changing this ID forces a new resource to be created.
+        :param pulumi.Input[str] source_snapshot: The ID of a snapshot to use as the source of the
+               image. Changing this ID forces a new resource to be created.
+        :param pulumi.Input[str] source_url: The URL to use as the source of the
+               image. Changing this URL forces a new resource to be created.
+        :param pulumi.Input[str] status: The status of the image.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -248,6 +348,9 @@ class _ComputeImageState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the image.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -257,6 +360,10 @@ class _ComputeImageState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of the image. Provide this property when
+        you create a resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -266,6 +373,9 @@ class _ComputeImageState:
     @property
     @pulumi.getter
     def family(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the image family to which this image belongs.
+        """
         return pulumi.get(self, "family")
 
     @family.setter
@@ -275,6 +385,10 @@ class _ComputeImageState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -284,6 +398,9 @@ class _ComputeImageState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the image.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -293,6 +410,9 @@ class _ComputeImageState:
     @property
     @pulumi.getter(name="minDiskSize")
     def min_disk_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimum size in GB of the disk that will be created from this image.
+        """
         return pulumi.get(self, "min_disk_size")
 
     @min_disk_size.setter
@@ -302,6 +422,9 @@ class _ComputeImageState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the disk.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -311,6 +434,9 @@ class _ComputeImageState:
     @property
     @pulumi.getter(name="osType")
     def os_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Operating system type that is contained in the image. Possible values: "LINUX", "WINDOWS".
+        """
         return pulumi.get(self, "os_type")
 
     @os_type.setter
@@ -320,6 +446,9 @@ class _ComputeImageState:
     @property
     @pulumi.getter
     def pooled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Optimize the image to create a disk.
+        """
         return pulumi.get(self, "pooled")
 
     @pooled.setter
@@ -329,6 +458,10 @@ class _ComputeImageState:
     @property
     @pulumi.getter(name="productIds")
     def product_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        License IDs that indicate which licenses are
+        attached to this image.
+        """
         return pulumi.get(self, "product_ids")
 
     @product_ids.setter
@@ -338,6 +471,9 @@ class _ComputeImageState:
     @property
     @pulumi.getter
     def size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The size of the image, specified in GB.
+        """
         return pulumi.get(self, "size")
 
     @size.setter
@@ -347,6 +483,10 @@ class _ComputeImageState:
     @property
     @pulumi.getter(name="sourceDisk")
     def source_disk(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of a disk to use as the source of the
+        image. Changing this ID forces a new resource to be created.
+        """
         return pulumi.get(self, "source_disk")
 
     @source_disk.setter
@@ -356,6 +496,11 @@ class _ComputeImageState:
     @property
     @pulumi.getter(name="sourceFamily")
     def source_family(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the family to use as the source of the new image.
+        The ID of the latest image is taken from the "standard-images" folder. Changing the family forces
+        a new resource to be created.
+        """
         return pulumi.get(self, "source_family")
 
     @source_family.setter
@@ -365,6 +510,10 @@ class _ComputeImageState:
     @property
     @pulumi.getter(name="sourceImage")
     def source_image(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of an existing image to use as the source of the
+        image. Changing this ID forces a new resource to be created.
+        """
         return pulumi.get(self, "source_image")
 
     @source_image.setter
@@ -374,6 +523,10 @@ class _ComputeImageState:
     @property
     @pulumi.getter(name="sourceSnapshot")
     def source_snapshot(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of a snapshot to use as the source of the
+        image. Changing this ID forces a new resource to be created.
+        """
         return pulumi.get(self, "source_snapshot")
 
     @source_snapshot.setter
@@ -383,6 +536,10 @@ class _ComputeImageState:
     @property
     @pulumi.getter(name="sourceUrl")
     def source_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URL to use as the source of the
+        image. Changing this URL forces a new resource to be created.
+        """
         return pulumi.get(self, "source_url")
 
     @source_url.setter
@@ -392,6 +549,9 @@ class _ComputeImageState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the image.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -420,9 +580,56 @@ class ComputeImage(pulumi.CustomResource):
                  source_url: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ComputeImage resource with the given unique name, props, and options.
+        Creates a virtual machine image resource for the Yandex Compute Cloud service from an existing
+        tarball. For more information, see [the official documentation](https://cloud.yandex.com/docs/compute/concepts/image).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_image = yandex.ComputeImage("foo-image", source_url="https://storage.yandexcloud.net/lucky-images/kube-it.img")
+        vm = yandex.ComputeInstance("vm", boot_disk=yandex.ComputeInstanceBootDiskArgs(
+            initialize_params=yandex.ComputeInstanceBootDiskInitializeParamsArgs(
+                image_id=foo_image.id,
+            ),
+        ))
+        ```
+
+        ## Import
+
+        A VM image can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/computeImage:ComputeImage web-image image_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: An optional description of the image. Provide this property when
+               you create a resource.
+        :param pulumi.Input[str] family: The name of the image family to which this image belongs.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the image.
+        :param pulumi.Input[int] min_disk_size: Minimum size in GB of the disk that will be created from this image.
+        :param pulumi.Input[str] name: Name of the disk.
+        :param pulumi.Input[str] os_type: Operating system type that is contained in the image. Possible values: "LINUX", "WINDOWS".
+        :param pulumi.Input[bool] pooled: Optimize the image to create a disk.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] product_ids: License IDs that indicate which licenses are
+               attached to this image.
+        :param pulumi.Input[str] source_disk: The ID of a disk to use as the source of the
+               image. Changing this ID forces a new resource to be created.
+        :param pulumi.Input[str] source_family: The name of the family to use as the source of the new image.
+               The ID of the latest image is taken from the "standard-images" folder. Changing the family forces
+               a new resource to be created.
+        :param pulumi.Input[str] source_image: The ID of an existing image to use as the source of the
+               image. Changing this ID forces a new resource to be created.
+        :param pulumi.Input[str] source_snapshot: The ID of a snapshot to use as the source of the
+               image. Changing this ID forces a new resource to be created.
+        :param pulumi.Input[str] source_url: The URL to use as the source of the
+               image. Changing this URL forces a new resource to be created.
         """
         ...
     @overload
@@ -431,7 +638,31 @@ class ComputeImage(pulumi.CustomResource):
                  args: Optional[ComputeImageArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ComputeImage resource with the given unique name, props, and options.
+        Creates a virtual machine image resource for the Yandex Compute Cloud service from an existing
+        tarball. For more information, see [the official documentation](https://cloud.yandex.com/docs/compute/concepts/image).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        foo_image = yandex.ComputeImage("foo-image", source_url="https://storage.yandexcloud.net/lucky-images/kube-it.img")
+        vm = yandex.ComputeInstance("vm", boot_disk=yandex.ComputeInstanceBootDiskArgs(
+            initialize_params=yandex.ComputeInstanceBootDiskInitializeParamsArgs(
+                image_id=foo_image.id,
+            ),
+        ))
+        ```
+
+        ## Import
+
+        A VM image can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/computeImage:ComputeImage web-image image_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param ComputeImageArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -521,6 +752,32 @@ class ComputeImage(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: Creation timestamp of the image.
+        :param pulumi.Input[str] description: An optional description of the image. Provide this property when
+               you create a resource.
+        :param pulumi.Input[str] family: The name of the image family to which this image belongs.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the image.
+        :param pulumi.Input[int] min_disk_size: Minimum size in GB of the disk that will be created from this image.
+        :param pulumi.Input[str] name: Name of the disk.
+        :param pulumi.Input[str] os_type: Operating system type that is contained in the image. Possible values: "LINUX", "WINDOWS".
+        :param pulumi.Input[bool] pooled: Optimize the image to create a disk.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] product_ids: License IDs that indicate which licenses are
+               attached to this image.
+        :param pulumi.Input[int] size: The size of the image, specified in GB.
+        :param pulumi.Input[str] source_disk: The ID of a disk to use as the source of the
+               image. Changing this ID forces a new resource to be created.
+        :param pulumi.Input[str] source_family: The name of the family to use as the source of the new image.
+               The ID of the latest image is taken from the "standard-images" folder. Changing the family forces
+               a new resource to be created.
+        :param pulumi.Input[str] source_image: The ID of an existing image to use as the source of the
+               image. Changing this ID forces a new resource to be created.
+        :param pulumi.Input[str] source_snapshot: The ID of a snapshot to use as the source of the
+               image. Changing this ID forces a new resource to be created.
+        :param pulumi.Input[str] source_url: The URL to use as the source of the
+               image. Changing this URL forces a new resource to be created.
+        :param pulumi.Input[str] status: The status of the image.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -548,85 +805,145 @@ class ComputeImage(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the image.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        An optional description of the image. Provide this property when
+        you create a resource.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def family(self) -> pulumi.Output[Optional[str]]:
+        """
+        The name of the image family to which this image belongs.
+        """
         return pulumi.get(self, "family")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the image.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="minDiskSize")
     def min_disk_size(self) -> pulumi.Output[int]:
+        """
+        Minimum size in GB of the disk that will be created from this image.
+        """
         return pulumi.get(self, "min_disk_size")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the disk.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="osType")
     def os_type(self) -> pulumi.Output[str]:
+        """
+        Operating system type that is contained in the image. Possible values: "LINUX", "WINDOWS".
+        """
         return pulumi.get(self, "os_type")
 
     @property
     @pulumi.getter
     def pooled(self) -> pulumi.Output[bool]:
+        """
+        Optimize the image to create a disk.
+        """
         return pulumi.get(self, "pooled")
 
     @property
     @pulumi.getter(name="productIds")
     def product_ids(self) -> pulumi.Output[Sequence[str]]:
+        """
+        License IDs that indicate which licenses are
+        attached to this image.
+        """
         return pulumi.get(self, "product_ids")
 
     @property
     @pulumi.getter
     def size(self) -> pulumi.Output[int]:
+        """
+        The size of the image, specified in GB.
+        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter(name="sourceDisk")
     def source_disk(self) -> pulumi.Output[str]:
+        """
+        The ID of a disk to use as the source of the
+        image. Changing this ID forces a new resource to be created.
+        """
         return pulumi.get(self, "source_disk")
 
     @property
     @pulumi.getter(name="sourceFamily")
     def source_family(self) -> pulumi.Output[str]:
+        """
+        The name of the family to use as the source of the new image.
+        The ID of the latest image is taken from the "standard-images" folder. Changing the family forces
+        a new resource to be created.
+        """
         return pulumi.get(self, "source_family")
 
     @property
     @pulumi.getter(name="sourceImage")
     def source_image(self) -> pulumi.Output[str]:
+        """
+        The ID of an existing image to use as the source of the
+        image. Changing this ID forces a new resource to be created.
+        """
         return pulumi.get(self, "source_image")
 
     @property
     @pulumi.getter(name="sourceSnapshot")
     def source_snapshot(self) -> pulumi.Output[str]:
+        """
+        The ID of a snapshot to use as the source of the
+        image. Changing this ID forces a new resource to be created.
+        """
         return pulumi.get(self, "source_snapshot")
 
     @property
     @pulumi.getter(name="sourceUrl")
     def source_url(self) -> pulumi.Output[str]:
+        """
+        The URL to use as the source of the
+        image. Changing this URL forces a new resource to be created.
+        """
         return pulumi.get(self, "source_url")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        The status of the image.
+        """
         return pulumi.get(self, "status")
 

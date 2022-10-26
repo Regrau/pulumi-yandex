@@ -10,6 +10,38 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Get information about a Yandex IAM service account. For more information about accounts, see
+// [Yandex.Cloud IAM accounts](https://cloud.yandex.com/docs/iam/concepts/#accounts).
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.LookupIamServiceAccount(ctx, &GetIamServiceAccountArgs{
+//				ServiceAccountId: pulumi.StringRef("sa_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.LookupIamServiceAccount(ctx, &GetIamServiceAccountArgs{
+//				Name: pulumi.StringRef("sa_name"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupIamServiceAccount(ctx *pulumi.Context, args *LookupIamServiceAccountArgs, opts ...pulumi.InvokeOption) (*LookupIamServiceAccountResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupIamServiceAccountResult
@@ -22,14 +54,18 @@ func LookupIamServiceAccount(ctx *pulumi.Context, args *LookupIamServiceAccountA
 
 // A collection of arguments for invoking getIamServiceAccount.
 type LookupIamServiceAccountArgs struct {
-	FolderId         *string `pulumi:"folderId"`
-	Name             *string `pulumi:"name"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Name of a specific service account.
+	Name *string `pulumi:"name"`
+	// ID of a specific service account.
 	ServiceAccountId *string `pulumi:"serviceAccountId"`
 }
 
 // A collection of values returned by getIamServiceAccount.
 type LookupIamServiceAccountResult struct {
-	CreatedAt   string `pulumi:"createdAt"`
+	CreatedAt string `pulumi:"createdAt"`
+	// Description of the service account.
 	Description string `pulumi:"description"`
 	FolderId    string `pulumi:"folderId"`
 	// The provider-assigned unique ID for this managed resource.
@@ -53,8 +89,11 @@ func LookupIamServiceAccountOutput(ctx *pulumi.Context, args LookupIamServiceAcc
 
 // A collection of arguments for invoking getIamServiceAccount.
 type LookupIamServiceAccountOutputArgs struct {
-	FolderId         pulumi.StringPtrInput `pulumi:"folderId"`
-	Name             pulumi.StringPtrInput `pulumi:"name"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// Name of a specific service account.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// ID of a specific service account.
 	ServiceAccountId pulumi.StringPtrInput `pulumi:"serviceAccountId"`
 }
 
@@ -81,6 +120,7 @@ func (o LookupIamServiceAccountResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIamServiceAccountResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the service account.
 func (o LookupIamServiceAccountResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIamServiceAccountResult) string { return v.Description }).(pulumi.StringOutput)
 }

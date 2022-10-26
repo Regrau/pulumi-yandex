@@ -62,16 +62,25 @@ class GetVpcAddressResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of this address.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the address.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="externalIpv4Addresses")
     def external_ipv4_addresses(self) -> Sequence['outputs.GetVpcAddressExternalIpv4AddressResult']:
+        """
+        spec of IP v4 address.
+        """
         return pulumi.get(self, "external_ipv4_addresses")
 
     @property
@@ -90,6 +99,9 @@ class GetVpcAddressResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        Labels assigned to this address.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -100,11 +112,17 @@ class GetVpcAddressResult:
     @property
     @pulumi.getter
     def reserved(self) -> bool:
+        """
+        `false` means that address is ephemeral.
+        """
         return pulumi.get(self, "reserved")
 
     @property
     @pulumi.getter
     def used(self) -> bool:
+        """
+        `true` if address is used.
+        """
         return pulumi.get(self, "used")
 
 
@@ -131,7 +149,22 @@ def get_vpc_address(address_id: Optional[str] = None,
                     name: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpcAddressResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex VPC address. For more information, see
+    Yandex.Cloud VPC.
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    addr = yandex.get_vpc_address(address_id="my-address-id")
+    ```
+
+    This data source is used to define [VPC Address] that can be used by other resources.
+
+
+    :param str address_id: ID of the address.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: Name of the address.
     """
     __args__ = dict()
     __args__['addressId'] = address_id
@@ -159,6 +192,21 @@ def get_vpc_address_output(address_id: Optional[pulumi.Input[Optional[str]]] = N
                            name: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetVpcAddressResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex VPC address. For more information, see
+    Yandex.Cloud VPC.
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    addr = yandex.get_vpc_address(address_id="my-address-id")
+    ```
+
+    This data source is used to define [VPC Address] that can be used by other resources.
+
+
+    :param str address_id: ID of the address.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str name: Name of the address.
     """
     ...

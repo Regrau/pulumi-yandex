@@ -11,20 +11,87 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a subnet within the Yandex.Cloud. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/network#subnet).
+//
+// * How-to Guides
+//   - [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+//   - [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewVpcNetwork(ctx, "lab-net", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewVpcSubnet(ctx, "lab-subnet-a", &yandex.VpcSubnetArgs{
+//				NetworkId: lab_net.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.2.0.0/16"),
+//				},
+//				Zone: pulumi.String("ru-central1-a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A subnet can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/vpcSubnet:VpcSubnet default subnet_id
+//
+// ```
 type VpcSubnet struct {
 	pulumi.CustomResourceState
 
-	CreatedAt    pulumi.StringOutput           `pulumi:"createdAt"`
-	Description  pulumi.StringPtrOutput        `pulumi:"description"`
-	DhcpOptions  VpcSubnetDhcpOptionsPtrOutput `pulumi:"dhcpOptions"`
-	FolderId     pulumi.StringOutput           `pulumi:"folderId"`
-	Labels       pulumi.StringMapOutput        `pulumi:"labels"`
-	Name         pulumi.StringOutput           `pulumi:"name"`
-	NetworkId    pulumi.StringOutput           `pulumi:"networkId"`
-	RouteTableId pulumi.StringPtrOutput        `pulumi:"routeTableId"`
-	V4CidrBlocks pulumi.StringArrayOutput      `pulumi:"v4CidrBlocks"`
-	V6CidrBlocks pulumi.StringArrayOutput      `pulumi:"v6CidrBlocks"`
-	Zone         pulumi.StringOutput           `pulumi:"zone"`
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// An optional description of the subnet. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Options for DHCP client. The structure is documented below.
+	DhcpOptions VpcSubnetDhcpOptionsPtrOutput `pulumi:"dhcpOptions"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Labels to assign to this subnet. A list of key/value pairs.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the subnet. Provided by the client when the subnet is created.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the network this subnet belongs to.
+	// Only networks that are in the distributed mode can have subnets.
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
+	// The ID of the route table to assign to this subnet. Assigned route table should
+	// belong to the same network as this subnet.
+	RouteTableId pulumi.StringPtrOutput `pulumi:"routeTableId"`
+	// A list of blocks of internal IPv4 addresses that are owned by this subnet.
+	// Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+	// Blocks of addresses must be unique and non-overlapping within a network.
+	// Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
+	V4CidrBlocks pulumi.StringArrayOutput `pulumi:"v4CidrBlocks"`
+	// An optional list of blocks of IPv6 addresses that are owned by this subnet.
+	V6CidrBlocks pulumi.StringArrayOutput `pulumi:"v6CidrBlocks"`
+	// Name of the Yandex.Cloud zone for this subnet.
+	Zone pulumi.StringOutput `pulumi:"zone"`
 }
 
 // NewVpcSubnet registers a new resource with the given unique name, arguments, and options.
@@ -63,31 +130,65 @@ func GetVpcSubnet(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcSubnet resources.
 type vpcSubnetState struct {
-	CreatedAt    *string               `pulumi:"createdAt"`
-	Description  *string               `pulumi:"description"`
-	DhcpOptions  *VpcSubnetDhcpOptions `pulumi:"dhcpOptions"`
-	FolderId     *string               `pulumi:"folderId"`
-	Labels       map[string]string     `pulumi:"labels"`
-	Name         *string               `pulumi:"name"`
-	NetworkId    *string               `pulumi:"networkId"`
-	RouteTableId *string               `pulumi:"routeTableId"`
-	V4CidrBlocks []string              `pulumi:"v4CidrBlocks"`
-	V6CidrBlocks []string              `pulumi:"v6CidrBlocks"`
-	Zone         *string               `pulumi:"zone"`
+	CreatedAt *string `pulumi:"createdAt"`
+	// An optional description of the subnet. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// Options for DHCP client. The structure is documented below.
+	DhcpOptions *VpcSubnetDhcpOptions `pulumi:"dhcpOptions"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this subnet. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the subnet. Provided by the client when the subnet is created.
+	Name *string `pulumi:"name"`
+	// ID of the network this subnet belongs to.
+	// Only networks that are in the distributed mode can have subnets.
+	NetworkId *string `pulumi:"networkId"`
+	// The ID of the route table to assign to this subnet. Assigned route table should
+	// belong to the same network as this subnet.
+	RouteTableId *string `pulumi:"routeTableId"`
+	// A list of blocks of internal IPv4 addresses that are owned by this subnet.
+	// Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+	// Blocks of addresses must be unique and non-overlapping within a network.
+	// Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
+	V4CidrBlocks []string `pulumi:"v4CidrBlocks"`
+	// An optional list of blocks of IPv6 addresses that are owned by this subnet.
+	V6CidrBlocks []string `pulumi:"v6CidrBlocks"`
+	// Name of the Yandex.Cloud zone for this subnet.
+	Zone *string `pulumi:"zone"`
 }
 
 type VpcSubnetState struct {
-	CreatedAt    pulumi.StringPtrInput
-	Description  pulumi.StringPtrInput
-	DhcpOptions  VpcSubnetDhcpOptionsPtrInput
-	FolderId     pulumi.StringPtrInput
-	Labels       pulumi.StringMapInput
-	Name         pulumi.StringPtrInput
-	NetworkId    pulumi.StringPtrInput
+	CreatedAt pulumi.StringPtrInput
+	// An optional description of the subnet. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrInput
+	// Options for DHCP client. The structure is documented below.
+	DhcpOptions VpcSubnetDhcpOptionsPtrInput
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this subnet. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the subnet. Provided by the client when the subnet is created.
+	Name pulumi.StringPtrInput
+	// ID of the network this subnet belongs to.
+	// Only networks that are in the distributed mode can have subnets.
+	NetworkId pulumi.StringPtrInput
+	// The ID of the route table to assign to this subnet. Assigned route table should
+	// belong to the same network as this subnet.
 	RouteTableId pulumi.StringPtrInput
+	// A list of blocks of internal IPv4 addresses that are owned by this subnet.
+	// Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+	// Blocks of addresses must be unique and non-overlapping within a network.
+	// Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
 	V4CidrBlocks pulumi.StringArrayInput
+	// An optional list of blocks of IPv6 addresses that are owned by this subnet.
 	V6CidrBlocks pulumi.StringArrayInput
-	Zone         pulumi.StringPtrInput
+	// Name of the Yandex.Cloud zone for this subnet.
+	Zone pulumi.StringPtrInput
 }
 
 func (VpcSubnetState) ElementType() reflect.Type {
@@ -95,28 +196,60 @@ func (VpcSubnetState) ElementType() reflect.Type {
 }
 
 type vpcSubnetArgs struct {
-	Description  *string               `pulumi:"description"`
-	DhcpOptions  *VpcSubnetDhcpOptions `pulumi:"dhcpOptions"`
-	FolderId     *string               `pulumi:"folderId"`
-	Labels       map[string]string     `pulumi:"labels"`
-	Name         *string               `pulumi:"name"`
-	NetworkId    string                `pulumi:"networkId"`
-	RouteTableId *string               `pulumi:"routeTableId"`
-	V4CidrBlocks []string              `pulumi:"v4CidrBlocks"`
-	Zone         *string               `pulumi:"zone"`
+	// An optional description of the subnet. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// Options for DHCP client. The structure is documented below.
+	DhcpOptions *VpcSubnetDhcpOptions `pulumi:"dhcpOptions"`
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to assign to this subnet. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the subnet. Provided by the client when the subnet is created.
+	Name *string `pulumi:"name"`
+	// ID of the network this subnet belongs to.
+	// Only networks that are in the distributed mode can have subnets.
+	NetworkId string `pulumi:"networkId"`
+	// The ID of the route table to assign to this subnet. Assigned route table should
+	// belong to the same network as this subnet.
+	RouteTableId *string `pulumi:"routeTableId"`
+	// A list of blocks of internal IPv4 addresses that are owned by this subnet.
+	// Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+	// Blocks of addresses must be unique and non-overlapping within a network.
+	// Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
+	V4CidrBlocks []string `pulumi:"v4CidrBlocks"`
+	// Name of the Yandex.Cloud zone for this subnet.
+	Zone *string `pulumi:"zone"`
 }
 
 // The set of arguments for constructing a VpcSubnet resource.
 type VpcSubnetArgs struct {
-	Description  pulumi.StringPtrInput
-	DhcpOptions  VpcSubnetDhcpOptionsPtrInput
-	FolderId     pulumi.StringPtrInput
-	Labels       pulumi.StringMapInput
-	Name         pulumi.StringPtrInput
-	NetworkId    pulumi.StringInput
+	// An optional description of the subnet. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrInput
+	// Options for DHCP client. The structure is documented below.
+	DhcpOptions VpcSubnetDhcpOptionsPtrInput
+	// The ID of the folder to which the resource belongs.
+	// If omitted, the provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to assign to this subnet. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the subnet. Provided by the client when the subnet is created.
+	Name pulumi.StringPtrInput
+	// ID of the network this subnet belongs to.
+	// Only networks that are in the distributed mode can have subnets.
+	NetworkId pulumi.StringInput
+	// The ID of the route table to assign to this subnet. Assigned route table should
+	// belong to the same network as this subnet.
 	RouteTableId pulumi.StringPtrInput
+	// A list of blocks of internal IPv4 addresses that are owned by this subnet.
+	// Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+	// Blocks of addresses must be unique and non-overlapping within a network.
+	// Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
 	V4CidrBlocks pulumi.StringArrayInput
-	Zone         pulumi.StringPtrInput
+	// Name of the Yandex.Cloud zone for this subnet.
+	Zone pulumi.StringPtrInput
 }
 
 func (VpcSubnetArgs) ElementType() reflect.Type {
@@ -210,42 +343,59 @@ func (o VpcSubnetOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcSubnet) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// An optional description of the subnet. Provide this property when
+// you create the resource.
 func (o VpcSubnetOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcSubnet) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Options for DHCP client. The structure is documented below.
 func (o VpcSubnetOutput) DhcpOptions() VpcSubnetDhcpOptionsPtrOutput {
 	return o.ApplyT(func(v *VpcSubnet) VpcSubnetDhcpOptionsPtrOutput { return v.DhcpOptions }).(VpcSubnetDhcpOptionsPtrOutput)
 }
 
+// The ID of the folder to which the resource belongs.
+// If omitted, the provider folder is used.
 func (o VpcSubnetOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcSubnet) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Labels to assign to this subnet. A list of key/value pairs.
 func (o VpcSubnetOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *VpcSubnet) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the subnet. Provided by the client when the subnet is created.
 func (o VpcSubnetOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcSubnet) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network this subnet belongs to.
+// Only networks that are in the distributed mode can have subnets.
 func (o VpcSubnetOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcSubnet) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// The ID of the route table to assign to this subnet. Assigned route table should
+// belong to the same network as this subnet.
 func (o VpcSubnetOutput) RouteTableId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcSubnet) pulumi.StringPtrOutput { return v.RouteTableId }).(pulumi.StringPtrOutput)
 }
 
+// A list of blocks of internal IPv4 addresses that are owned by this subnet.
+// Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+// Blocks of addresses must be unique and non-overlapping within a network.
+// Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
 func (o VpcSubnetOutput) V4CidrBlocks() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VpcSubnet) pulumi.StringArrayOutput { return v.V4CidrBlocks }).(pulumi.StringArrayOutput)
 }
 
+// An optional list of blocks of IPv6 addresses that are owned by this subnet.
 func (o VpcSubnetOutput) V6CidrBlocks() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *VpcSubnet) pulumi.StringArrayOutput { return v.V6CidrBlocks }).(pulumi.StringArrayOutput)
 }
 
+// Name of the Yandex.Cloud zone for this subnet.
 func (o VpcSubnetOutput) Zone() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcSubnet) pulumi.StringOutput { return v.Zone }).(pulumi.StringOutput)
 }

@@ -11,21 +11,74 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Allows management of a single SAML Federation within an existing Yandex.Cloud Organization.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewOrganizationmanagerSamlFederation(ctx, "federation", &yandex.OrganizationmanagerSamlFederationArgs{
+//				Description:    pulumi.String("My new SAML federation"),
+//				Issuer:         pulumi.String("my-issuer"),
+//				OrganizationId: pulumi.String("sdf4*********3fr"),
+//				SsoBinding:     pulumi.String("POST"),
+//				SsoUrl:         pulumi.String("https://my-sso.url"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A Yandex SAML Federation can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/organizationmanagerSamlFederation:OrganizationmanagerSamlFederation federation "federation_id"
+//
+// ```
 type OrganizationmanagerSamlFederation struct {
 	pulumi.CustomResourceState
 
-	AutoCreateAccountOnLogin pulumi.BoolOutput                                       `pulumi:"autoCreateAccountOnLogin"`
-	CaseInsensitiveNameIds   pulumi.BoolOutput                                       `pulumi:"caseInsensitiveNameIds"`
-	CookieMaxAge             pulumi.StringOutput                                     `pulumi:"cookieMaxAge"`
-	CreatedAt                pulumi.StringOutput                                     `pulumi:"createdAt"`
-	Description              pulumi.StringPtrOutput                                  `pulumi:"description"`
-	Issuer                   pulumi.StringOutput                                     `pulumi:"issuer"`
-	Labels                   pulumi.StringMapOutput                                  `pulumi:"labels"`
-	Name                     pulumi.StringOutput                                     `pulumi:"name"`
-	OrganizationId           pulumi.StringOutput                                     `pulumi:"organizationId"`
-	SecuritySettings         OrganizationmanagerSamlFederationSecuritySettingsOutput `pulumi:"securitySettings"`
-	SsoBinding               pulumi.StringOutput                                     `pulumi:"ssoBinding"`
-	SsoUrl                   pulumi.StringOutput                                     `pulumi:"ssoUrl"`
+	// Add new users automatically on successful authentication. The user will get the `resource-manager.clouds.member` role automatically, but you need to grant other roles to them. If the value is `false`, users who aren't added to the cloud can't log in, even if they have authenticated on your server.
+	AutoCreateAccountOnLogin pulumi.BoolOutput `pulumi:"autoCreateAccountOnLogin"`
+	// Use case-insensitive name ids.
+	CaseInsensitiveNameIds pulumi.BoolOutput `pulumi:"caseInsensitiveNameIds"`
+	// The lifetime of a Browser cookie in seconds. If the cookie is still valid, the management console authenticates the user immediately and redirects them to the home page. The default value is `8h`.
+	CookieMaxAge pulumi.StringOutput `pulumi:"cookieMaxAge"`
+	// (Computed) The SAML Federation creation timestamp.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// The description of the SAML Federation.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The ID of the IdP server to be used for authentication. The IdP server also responds to IAM with this ID after the user authenticates.
+	Issuer pulumi.StringOutput `pulumi:"issuer"`
+	// A set of key/value label pairs assigned to the SAML Federation.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// The name of the SAML Federation.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// The organization to attach this SAML Federation to.
+	OrganizationId pulumi.StringOutput `pulumi:"organizationId"`
+	// Federation security settings, structure is documented below.
+	SecuritySettings OrganizationmanagerSamlFederationSecuritySettingsOutput `pulumi:"securitySettings"`
+	// Single sign-on endpoint binding type. Most Identity Providers support the `POST` binding type. SAML Binding is a mapping of a SAML protocol message onto standard messaging formats and/or communications protocols.
+	SsoBinding pulumi.StringOutput `pulumi:"ssoBinding"`
+	// Single sign-on endpoint URL. Specify the link to the IdP login page here.
+	SsoUrl pulumi.StringOutput `pulumi:"ssoUrl"`
 }
 
 // NewOrganizationmanagerSamlFederation registers a new resource with the given unique name, arguments, and options.
@@ -70,33 +123,57 @@ func GetOrganizationmanagerSamlFederation(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering OrganizationmanagerSamlFederation resources.
 type organizationmanagerSamlFederationState struct {
-	AutoCreateAccountOnLogin *bool                                              `pulumi:"autoCreateAccountOnLogin"`
-	CaseInsensitiveNameIds   *bool                                              `pulumi:"caseInsensitiveNameIds"`
-	CookieMaxAge             *string                                            `pulumi:"cookieMaxAge"`
-	CreatedAt                *string                                            `pulumi:"createdAt"`
-	Description              *string                                            `pulumi:"description"`
-	Issuer                   *string                                            `pulumi:"issuer"`
-	Labels                   map[string]string                                  `pulumi:"labels"`
-	Name                     *string                                            `pulumi:"name"`
-	OrganizationId           *string                                            `pulumi:"organizationId"`
-	SecuritySettings         *OrganizationmanagerSamlFederationSecuritySettings `pulumi:"securitySettings"`
-	SsoBinding               *string                                            `pulumi:"ssoBinding"`
-	SsoUrl                   *string                                            `pulumi:"ssoUrl"`
+	// Add new users automatically on successful authentication. The user will get the `resource-manager.clouds.member` role automatically, but you need to grant other roles to them. If the value is `false`, users who aren't added to the cloud can't log in, even if they have authenticated on your server.
+	AutoCreateAccountOnLogin *bool `pulumi:"autoCreateAccountOnLogin"`
+	// Use case-insensitive name ids.
+	CaseInsensitiveNameIds *bool `pulumi:"caseInsensitiveNameIds"`
+	// The lifetime of a Browser cookie in seconds. If the cookie is still valid, the management console authenticates the user immediately and redirects them to the home page. The default value is `8h`.
+	CookieMaxAge *string `pulumi:"cookieMaxAge"`
+	// (Computed) The SAML Federation creation timestamp.
+	CreatedAt *string `pulumi:"createdAt"`
+	// The description of the SAML Federation.
+	Description *string `pulumi:"description"`
+	// The ID of the IdP server to be used for authentication. The IdP server also responds to IAM with this ID after the user authenticates.
+	Issuer *string `pulumi:"issuer"`
+	// A set of key/value label pairs assigned to the SAML Federation.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the SAML Federation.
+	Name *string `pulumi:"name"`
+	// The organization to attach this SAML Federation to.
+	OrganizationId *string `pulumi:"organizationId"`
+	// Federation security settings, structure is documented below.
+	SecuritySettings *OrganizationmanagerSamlFederationSecuritySettings `pulumi:"securitySettings"`
+	// Single sign-on endpoint binding type. Most Identity Providers support the `POST` binding type. SAML Binding is a mapping of a SAML protocol message onto standard messaging formats and/or communications protocols.
+	SsoBinding *string `pulumi:"ssoBinding"`
+	// Single sign-on endpoint URL. Specify the link to the IdP login page here.
+	SsoUrl *string `pulumi:"ssoUrl"`
 }
 
 type OrganizationmanagerSamlFederationState struct {
+	// Add new users automatically on successful authentication. The user will get the `resource-manager.clouds.member` role automatically, but you need to grant other roles to them. If the value is `false`, users who aren't added to the cloud can't log in, even if they have authenticated on your server.
 	AutoCreateAccountOnLogin pulumi.BoolPtrInput
-	CaseInsensitiveNameIds   pulumi.BoolPtrInput
-	CookieMaxAge             pulumi.StringPtrInput
-	CreatedAt                pulumi.StringPtrInput
-	Description              pulumi.StringPtrInput
-	Issuer                   pulumi.StringPtrInput
-	Labels                   pulumi.StringMapInput
-	Name                     pulumi.StringPtrInput
-	OrganizationId           pulumi.StringPtrInput
-	SecuritySettings         OrganizationmanagerSamlFederationSecuritySettingsPtrInput
-	SsoBinding               pulumi.StringPtrInput
-	SsoUrl                   pulumi.StringPtrInput
+	// Use case-insensitive name ids.
+	CaseInsensitiveNameIds pulumi.BoolPtrInput
+	// The lifetime of a Browser cookie in seconds. If the cookie is still valid, the management console authenticates the user immediately and redirects them to the home page. The default value is `8h`.
+	CookieMaxAge pulumi.StringPtrInput
+	// (Computed) The SAML Federation creation timestamp.
+	CreatedAt pulumi.StringPtrInput
+	// The description of the SAML Federation.
+	Description pulumi.StringPtrInput
+	// The ID of the IdP server to be used for authentication. The IdP server also responds to IAM with this ID after the user authenticates.
+	Issuer pulumi.StringPtrInput
+	// A set of key/value label pairs assigned to the SAML Federation.
+	Labels pulumi.StringMapInput
+	// The name of the SAML Federation.
+	Name pulumi.StringPtrInput
+	// The organization to attach this SAML Federation to.
+	OrganizationId pulumi.StringPtrInput
+	// Federation security settings, structure is documented below.
+	SecuritySettings OrganizationmanagerSamlFederationSecuritySettingsPtrInput
+	// Single sign-on endpoint binding type. Most Identity Providers support the `POST` binding type. SAML Binding is a mapping of a SAML protocol message onto standard messaging formats and/or communications protocols.
+	SsoBinding pulumi.StringPtrInput
+	// Single sign-on endpoint URL. Specify the link to the IdP login page here.
+	SsoUrl pulumi.StringPtrInput
 }
 
 func (OrganizationmanagerSamlFederationState) ElementType() reflect.Type {
@@ -104,32 +181,54 @@ func (OrganizationmanagerSamlFederationState) ElementType() reflect.Type {
 }
 
 type organizationmanagerSamlFederationArgs struct {
-	AutoCreateAccountOnLogin *bool                                              `pulumi:"autoCreateAccountOnLogin"`
-	CaseInsensitiveNameIds   *bool                                              `pulumi:"caseInsensitiveNameIds"`
-	CookieMaxAge             *string                                            `pulumi:"cookieMaxAge"`
-	Description              *string                                            `pulumi:"description"`
-	Issuer                   string                                             `pulumi:"issuer"`
-	Labels                   map[string]string                                  `pulumi:"labels"`
-	Name                     *string                                            `pulumi:"name"`
-	OrganizationId           string                                             `pulumi:"organizationId"`
-	SecuritySettings         *OrganizationmanagerSamlFederationSecuritySettings `pulumi:"securitySettings"`
-	SsoBinding               string                                             `pulumi:"ssoBinding"`
-	SsoUrl                   string                                             `pulumi:"ssoUrl"`
+	// Add new users automatically on successful authentication. The user will get the `resource-manager.clouds.member` role automatically, but you need to grant other roles to them. If the value is `false`, users who aren't added to the cloud can't log in, even if they have authenticated on your server.
+	AutoCreateAccountOnLogin *bool `pulumi:"autoCreateAccountOnLogin"`
+	// Use case-insensitive name ids.
+	CaseInsensitiveNameIds *bool `pulumi:"caseInsensitiveNameIds"`
+	// The lifetime of a Browser cookie in seconds. If the cookie is still valid, the management console authenticates the user immediately and redirects them to the home page. The default value is `8h`.
+	CookieMaxAge *string `pulumi:"cookieMaxAge"`
+	// The description of the SAML Federation.
+	Description *string `pulumi:"description"`
+	// The ID of the IdP server to be used for authentication. The IdP server also responds to IAM with this ID after the user authenticates.
+	Issuer string `pulumi:"issuer"`
+	// A set of key/value label pairs assigned to the SAML Federation.
+	Labels map[string]string `pulumi:"labels"`
+	// The name of the SAML Federation.
+	Name *string `pulumi:"name"`
+	// The organization to attach this SAML Federation to.
+	OrganizationId string `pulumi:"organizationId"`
+	// Federation security settings, structure is documented below.
+	SecuritySettings *OrganizationmanagerSamlFederationSecuritySettings `pulumi:"securitySettings"`
+	// Single sign-on endpoint binding type. Most Identity Providers support the `POST` binding type. SAML Binding is a mapping of a SAML protocol message onto standard messaging formats and/or communications protocols.
+	SsoBinding string `pulumi:"ssoBinding"`
+	// Single sign-on endpoint URL. Specify the link to the IdP login page here.
+	SsoUrl string `pulumi:"ssoUrl"`
 }
 
 // The set of arguments for constructing a OrganizationmanagerSamlFederation resource.
 type OrganizationmanagerSamlFederationArgs struct {
+	// Add new users automatically on successful authentication. The user will get the `resource-manager.clouds.member` role automatically, but you need to grant other roles to them. If the value is `false`, users who aren't added to the cloud can't log in, even if they have authenticated on your server.
 	AutoCreateAccountOnLogin pulumi.BoolPtrInput
-	CaseInsensitiveNameIds   pulumi.BoolPtrInput
-	CookieMaxAge             pulumi.StringPtrInput
-	Description              pulumi.StringPtrInput
-	Issuer                   pulumi.StringInput
-	Labels                   pulumi.StringMapInput
-	Name                     pulumi.StringPtrInput
-	OrganizationId           pulumi.StringInput
-	SecuritySettings         OrganizationmanagerSamlFederationSecuritySettingsPtrInput
-	SsoBinding               pulumi.StringInput
-	SsoUrl                   pulumi.StringInput
+	// Use case-insensitive name ids.
+	CaseInsensitiveNameIds pulumi.BoolPtrInput
+	// The lifetime of a Browser cookie in seconds. If the cookie is still valid, the management console authenticates the user immediately and redirects them to the home page. The default value is `8h`.
+	CookieMaxAge pulumi.StringPtrInput
+	// The description of the SAML Federation.
+	Description pulumi.StringPtrInput
+	// The ID of the IdP server to be used for authentication. The IdP server also responds to IAM with this ID after the user authenticates.
+	Issuer pulumi.StringInput
+	// A set of key/value label pairs assigned to the SAML Federation.
+	Labels pulumi.StringMapInput
+	// The name of the SAML Federation.
+	Name pulumi.StringPtrInput
+	// The organization to attach this SAML Federation to.
+	OrganizationId pulumi.StringInput
+	// Federation security settings, structure is documented below.
+	SecuritySettings OrganizationmanagerSamlFederationSecuritySettingsPtrInput
+	// Single sign-on endpoint binding type. Most Identity Providers support the `POST` binding type. SAML Binding is a mapping of a SAML protocol message onto standard messaging formats and/or communications protocols.
+	SsoBinding pulumi.StringInput
+	// Single sign-on endpoint URL. Specify the link to the IdP login page here.
+	SsoUrl pulumi.StringInput
 }
 
 func (OrganizationmanagerSamlFederationArgs) ElementType() reflect.Type {
@@ -219,52 +318,64 @@ func (o OrganizationmanagerSamlFederationOutput) ToOrganizationmanagerSamlFedera
 	return o
 }
 
+// Add new users automatically on successful authentication. The user will get the `resource-manager.clouds.member` role automatically, but you need to grant other roles to them. If the value is `false`, users who aren't added to the cloud can't log in, even if they have authenticated on your server.
 func (o OrganizationmanagerSamlFederationOutput) AutoCreateAccountOnLogin() pulumi.BoolOutput {
 	return o.ApplyT(func(v *OrganizationmanagerSamlFederation) pulumi.BoolOutput { return v.AutoCreateAccountOnLogin }).(pulumi.BoolOutput)
 }
 
+// Use case-insensitive name ids.
 func (o OrganizationmanagerSamlFederationOutput) CaseInsensitiveNameIds() pulumi.BoolOutput {
 	return o.ApplyT(func(v *OrganizationmanagerSamlFederation) pulumi.BoolOutput { return v.CaseInsensitiveNameIds }).(pulumi.BoolOutput)
 }
 
+// The lifetime of a Browser cookie in seconds. If the cookie is still valid, the management console authenticates the user immediately and redirects them to the home page. The default value is `8h`.
 func (o OrganizationmanagerSamlFederationOutput) CookieMaxAge() pulumi.StringOutput {
 	return o.ApplyT(func(v *OrganizationmanagerSamlFederation) pulumi.StringOutput { return v.CookieMaxAge }).(pulumi.StringOutput)
 }
 
+// (Computed) The SAML Federation creation timestamp.
 func (o OrganizationmanagerSamlFederationOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *OrganizationmanagerSamlFederation) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// The description of the SAML Federation.
 func (o OrganizationmanagerSamlFederationOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OrganizationmanagerSamlFederation) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// The ID of the IdP server to be used for authentication. The IdP server also responds to IAM with this ID after the user authenticates.
 func (o OrganizationmanagerSamlFederationOutput) Issuer() pulumi.StringOutput {
 	return o.ApplyT(func(v *OrganizationmanagerSamlFederation) pulumi.StringOutput { return v.Issuer }).(pulumi.StringOutput)
 }
 
+// A set of key/value label pairs assigned to the SAML Federation.
 func (o OrganizationmanagerSamlFederationOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *OrganizationmanagerSamlFederation) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// The name of the SAML Federation.
 func (o OrganizationmanagerSamlFederationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *OrganizationmanagerSamlFederation) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// The organization to attach this SAML Federation to.
 func (o OrganizationmanagerSamlFederationOutput) OrganizationId() pulumi.StringOutput {
 	return o.ApplyT(func(v *OrganizationmanagerSamlFederation) pulumi.StringOutput { return v.OrganizationId }).(pulumi.StringOutput)
 }
 
+// Federation security settings, structure is documented below.
 func (o OrganizationmanagerSamlFederationOutput) SecuritySettings() OrganizationmanagerSamlFederationSecuritySettingsOutput {
 	return o.ApplyT(func(v *OrganizationmanagerSamlFederation) OrganizationmanagerSamlFederationSecuritySettingsOutput {
 		return v.SecuritySettings
 	}).(OrganizationmanagerSamlFederationSecuritySettingsOutput)
 }
 
+// Single sign-on endpoint binding type. Most Identity Providers support the `POST` binding type. SAML Binding is a mapping of a SAML protocol message onto standard messaging formats and/or communications protocols.
 func (o OrganizationmanagerSamlFederationOutput) SsoBinding() pulumi.StringOutput {
 	return o.ApplyT(func(v *OrganizationmanagerSamlFederation) pulumi.StringOutput { return v.SsoBinding }).(pulumi.StringOutput)
 }
 
+// Single sign-on endpoint URL. Specify the link to the IdP login page here.
 func (o OrganizationmanagerSamlFederationOutput) SsoUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *OrganizationmanagerSamlFederation) pulumi.StringOutput { return v.SsoUrl }).(pulumi.StringOutput)
 }

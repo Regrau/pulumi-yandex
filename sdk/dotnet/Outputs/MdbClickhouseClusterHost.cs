@@ -13,11 +13,30 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbClickhouseClusterHost
     {
+        /// <summary>
+        /// Sets whether the host should get a public IP address on creation. Can be either `true` or `false`.
+        /// </summary>
         public readonly bool? AssignPublicIp;
+        /// <summary>
+        /// The fully qualified domain name of the host.
+        /// </summary>
         public readonly string? Fqdn;
+        /// <summary>
+        /// The name of the shard to which the host belongs.
+        /// </summary>
         public readonly string? ShardName;
+        /// <summary>
+        /// The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        /// </summary>
         public readonly string? SubnetId;
+        /// <summary>
+        /// Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// The availability zone where the ClickHouse host will be created.
+        /// For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
+        /// </summary>
         public readonly string Zone;
 
         [OutputConstructor]

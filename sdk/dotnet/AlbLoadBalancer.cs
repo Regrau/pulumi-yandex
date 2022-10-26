@@ -9,42 +9,150 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Creates an Application Load Balancer in the specified folder. For more information, see
+    /// [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/application-load-balancer)
+    /// .
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test_balancer = new Yandex.AlbLoadBalancer("test-balancer", new()
+    ///     {
+    ///         NetworkId = yandex_vpc_network.Test_network.Id,
+    ///         AllocationPolicy = new Yandex.Inputs.AlbLoadBalancerAllocationPolicyArgs
+    ///         {
+    ///             Locations = new[]
+    ///             {
+    ///                 new Yandex.Inputs.AlbLoadBalancerAllocationPolicyLocationArgs
+    ///                 {
+    ///                     ZoneId = "ru-central1-a",
+    ///                     SubnetId = yandex_vpc_subnet.Test_subnet.Id,
+    ///                 },
+    ///             },
+    ///         },
+    ///         Listeners = new[]
+    ///         {
+    ///             new Yandex.Inputs.AlbLoadBalancerListenerArgs
+    ///             {
+    ///                 Name = "my-listener",
+    ///                 Endpoints = new[]
+    ///                 {
+    ///                     new Yandex.Inputs.AlbLoadBalancerListenerEndpointArgs
+    ///                     {
+    ///                         Addresses = new[]
+    ///                         {
+    ///                             new Yandex.Inputs.AlbLoadBalancerListenerEndpointAddressArgs
+    ///                             {
+    ///                                 ExternalIpv4Address = ,
+    ///                             },
+    ///                         },
+    ///                         Ports = new[]
+    ///                         {
+    ///                             8080,
+    ///                         },
+    ///                     },
+    ///                 },
+    ///                 Http = new Yandex.Inputs.AlbLoadBalancerListenerHttpArgs
+    ///                 {
+    ///                     Handler = new Yandex.Inputs.AlbLoadBalancerListenerHttpHandlerArgs
+    ///                     {
+    ///                         HttpRouterId = yandex_alb_http_router.Test_router.Id,
+    ///                     },
+    ///                 },
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// An Application Load Balancer can be imported using the `id` of the resource, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/albLoadBalancer:AlbLoadBalancer default load_balancer_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/albLoadBalancer:AlbLoadBalancer")]
     public partial class AlbLoadBalancer : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Allocation zones for the Load Balancer instance. The structure is documented below.
+        /// </summary>
         [Output("allocationPolicy")]
         public Output<Outputs.AlbLoadBalancerAllocationPolicy> AllocationPolicy { get; private set; } = null!;
 
+        /// <summary>
+        /// The Load Balancer creation timestamp.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// An optional description of the Load Balancer.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of the folder to which the resource belongs. If omitted, the provider folder is used.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// Labels to assign to this Load Balancer. A list of key/value pairs.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// List of listeners for the Load Balancer. The structure is documented below.
+        /// </summary>
         [Output("listeners")]
         public Output<ImmutableArray<Outputs.AlbLoadBalancerListener>> Listeners { get; private set; } = null!;
 
+        /// <summary>
+        /// Cloud log group used by the Load Balancer to store access logs.
+        /// </summary>
         [Output("logGroupId")]
         public Output<string> LogGroupId { get; private set; } = null!;
 
+        /// <summary>
+        /// name of SNI match.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the network that the Load Balancer is located at.
+        /// </summary>
         [Output("networkId")]
         public Output<string> NetworkId { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the region that the Load Balancer is located at.
+        /// </summary>
         [Output("regionId")]
         public Output<string?> RegionId { get; private set; } = null!;
 
+        /// <summary>
+        /// A list of ID's of security groups attached to the Load Balancer.
+        /// </summary>
         [Output("securityGroupIds")]
         public Output<ImmutableArray<string>> SecurityGroupIds { get; private set; } = null!;
 
+        /// <summary>
+        /// Status of the Load Balancer.
+        /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
@@ -71,7 +179,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -95,17 +203,30 @@ namespace Pulumi.Yandex
 
     public sealed class AlbLoadBalancerArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allocation zones for the Load Balancer instance. The structure is documented below.
+        /// </summary>
         [Input("allocationPolicy", required: true)]
         public Input<Inputs.AlbLoadBalancerAllocationPolicyArgs> AllocationPolicy { get; set; } = null!;
 
+        /// <summary>
+        /// An optional description of the Load Balancer.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The ID of the folder to which the resource belongs. If omitted, the provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this Load Balancer. A list of key/value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
@@ -114,23 +235,40 @@ namespace Pulumi.Yandex
 
         [Input("listeners")]
         private InputList<Inputs.AlbLoadBalancerListenerArgs>? _listeners;
+
+        /// <summary>
+        /// List of listeners for the Load Balancer. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbLoadBalancerListenerArgs> Listeners
         {
             get => _listeners ?? (_listeners = new InputList<Inputs.AlbLoadBalancerListenerArgs>());
             set => _listeners = value;
         }
 
+        /// <summary>
+        /// name of SNI match.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the network that the Load Balancer is located at.
+        /// </summary>
         [Input("networkId", required: true)]
         public Input<string> NetworkId { get; set; } = null!;
 
+        /// <summary>
+        /// ID of the region that the Load Balancer is located at.
+        /// </summary>
         [Input("regionId")]
         public Input<string>? RegionId { get; set; }
 
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
+
+        /// <summary>
+        /// A list of ID's of security groups attached to the Load Balancer.
+        /// </summary>
         public InputList<string> SecurityGroupIds
         {
             get => _securityGroupIds ?? (_securityGroupIds = new InputList<string>());
@@ -145,20 +283,36 @@ namespace Pulumi.Yandex
 
     public sealed class AlbLoadBalancerState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Allocation zones for the Load Balancer instance. The structure is documented below.
+        /// </summary>
         [Input("allocationPolicy")]
         public Input<Inputs.AlbLoadBalancerAllocationPolicyGetArgs>? AllocationPolicy { get; set; }
 
+        /// <summary>
+        /// The Load Balancer creation timestamp.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// An optional description of the Load Balancer.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The ID of the folder to which the resource belongs. If omitted, the provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this Load Balancer. A list of key/value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
@@ -167,32 +321,55 @@ namespace Pulumi.Yandex
 
         [Input("listeners")]
         private InputList<Inputs.AlbLoadBalancerListenerGetArgs>? _listeners;
+
+        /// <summary>
+        /// List of listeners for the Load Balancer. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbLoadBalancerListenerGetArgs> Listeners
         {
             get => _listeners ?? (_listeners = new InputList<Inputs.AlbLoadBalancerListenerGetArgs>());
             set => _listeners = value;
         }
 
+        /// <summary>
+        /// Cloud log group used by the Load Balancer to store access logs.
+        /// </summary>
         [Input("logGroupId")]
         public Input<string>? LogGroupId { get; set; }
 
+        /// <summary>
+        /// name of SNI match.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the network that the Load Balancer is located at.
+        /// </summary>
         [Input("networkId")]
         public Input<string>? NetworkId { get; set; }
 
+        /// <summary>
+        /// ID of the region that the Load Balancer is located at.
+        /// </summary>
         [Input("regionId")]
         public Input<string>? RegionId { get; set; }
 
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
+
+        /// <summary>
+        /// A list of ID's of security groups attached to the Load Balancer.
+        /// </summary>
         public InputList<string> SecurityGroupIds
         {
             get => _securityGroupIds ?? (_securityGroupIds = new InputList<string>());
             set => _securityGroupIds = value;
         }
 
+        /// <summary>
+        /// Status of the Load Balancer.
+        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 

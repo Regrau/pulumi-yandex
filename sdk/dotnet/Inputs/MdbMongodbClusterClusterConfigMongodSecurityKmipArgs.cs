@@ -12,18 +12,43 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbMongodbClusterClusterConfigMongodSecurityKmipArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// String containing the client certificate used for authenticating MongoDB to the KMIP server.
+        /// For more information see [security.kmip.clientCertificateFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.clientCertificateFile)
+        /// description in the official documentation.
+        /// </summary>
         [Input("clientCertificate")]
         public Input<string>? ClientCertificate { get; set; }
 
+        /// <summary>
+        /// Unique KMIP identifier for an existing key within the KMIP server.
+        /// For more information see [security.kmip.keyIdentifier](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.keyIdentifier)
+        /// description in the official documentation.
+        /// </summary>
         [Input("keyIdentifier")]
         public Input<string>? KeyIdentifier { get; set; }
 
+        /// <summary>
+        /// Port number to use to communicate with the KMIP server. Default: 5696
+        /// For more information see [security.kmip.port](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.port)
+        /// description in the official documentation.
+        /// </summary>
         [Input("port")]
         public Input<int>? Port { get; set; }
 
+        /// <summary>
+        /// Path to CA File. Used for validating secure client connection to KMIP server.
+        /// For more information see [security.kmip.serverCAFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverCAFile)
+        /// description in the official documentation.
+        /// </summary>
         [Input("serverCa")]
         public Input<string>? ServerCa { get; set; }
 
+        /// <summary>
+        /// Hostname or IP address of the KMIP server to connect to.
+        /// For more information see [security.kmip.serverName](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverName)
+        /// description in the official documentation.
+        /// </summary>
         [Input("serverName")]
         public Input<string>? ServerName { get; set; }
 

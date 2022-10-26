@@ -23,6 +23,13 @@ class DatatransferTransferArgs:
                  type: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DatatransferTransfer resource.
+        :param pulumi.Input[str] description: Arbitrary description text for the transfer.
+        :param pulumi.Input[str] folder_id: ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Transfer transfer.
+        :param pulumi.Input[str] name: Name of the transfer.
+        :param pulumi.Input[str] source_id: ID of the source endpoint for the transfer.
+        :param pulumi.Input[str] target_id: ID of the target endpoint for the transfer.
+        :param pulumi.Input[str] type: Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -42,6 +49,9 @@ class DatatransferTransferArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Arbitrary description text for the transfer.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -51,6 +61,9 @@ class DatatransferTransferArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -60,6 +73,9 @@ class DatatransferTransferArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Data Transfer transfer.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -69,6 +85,9 @@ class DatatransferTransferArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the transfer.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -78,6 +97,9 @@ class DatatransferTransferArgs:
     @property
     @pulumi.getter(name="sourceId")
     def source_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the source endpoint for the transfer.
+        """
         return pulumi.get(self, "source_id")
 
     @source_id.setter
@@ -87,6 +109,9 @@ class DatatransferTransferArgs:
     @property
     @pulumi.getter(name="targetId")
     def target_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the target endpoint for the transfer.
+        """
         return pulumi.get(self, "target_id")
 
     @target_id.setter
@@ -96,6 +121,9 @@ class DatatransferTransferArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -116,6 +144,14 @@ class _DatatransferTransferState:
                  warning: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DatatransferTransfer resources.
+        :param pulumi.Input[str] description: Arbitrary description text for the transfer.
+        :param pulumi.Input[str] folder_id: ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Transfer transfer.
+        :param pulumi.Input[str] name: Name of the transfer.
+        :param pulumi.Input[str] source_id: ID of the source endpoint for the transfer.
+        :param pulumi.Input[str] target_id: ID of the target endpoint for the transfer.
+        :param pulumi.Input[str] type: Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
+        :param pulumi.Input[str] warning: (Computed) Error description if transfer has any errors.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -137,6 +173,9 @@ class _DatatransferTransferState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Arbitrary description text for the transfer.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -146,6 +185,9 @@ class _DatatransferTransferState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -155,6 +197,9 @@ class _DatatransferTransferState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Data Transfer transfer.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -164,6 +209,9 @@ class _DatatransferTransferState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the transfer.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -173,6 +221,9 @@ class _DatatransferTransferState:
     @property
     @pulumi.getter(name="sourceId")
     def source_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the source endpoint for the transfer.
+        """
         return pulumi.get(self, "source_id")
 
     @source_id.setter
@@ -182,6 +233,9 @@ class _DatatransferTransferState:
     @property
     @pulumi.getter(name="targetId")
     def target_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the target endpoint for the transfer.
+        """
         return pulumi.get(self, "target_id")
 
     @target_id.setter
@@ -191,6 +245,9 @@ class _DatatransferTransferState:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -200,6 +257,9 @@ class _DatatransferTransferState:
     @property
     @pulumi.getter
     def warning(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Computed) Error description if transfer has any errors.
+        """
         return pulumi.get(self, "warning")
 
     @warning.setter
@@ -221,9 +281,68 @@ class DatatransferTransfer(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a DatatransferTransfer resource with the given unique name, props, and options.
+        Manages a Data Transfer transfer. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-transfer/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        pg_source = yandex.DatatransferEndpoint("pgSource", settings=yandex.DatatransferEndpointSettingsArgs(
+            postgres_source=yandex.DatatransferEndpointSettingsPostgresSourceArgs(
+                connection=yandex.DatatransferEndpointSettingsPostgresSourceConnectionArgs(
+                    on_premise=yandex.DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs(
+                        hosts=["example.org"],
+                        port=5432,
+                    ),
+                ),
+                slot_gigabyte_lag_limit=100,
+                database="db1",
+                user="user1",
+                password=yandex.DatatransferEndpointSettingsPostgresSourcePasswordArgs(
+                    raw="123",
+                ),
+            ),
+        ))
+        pg_target = yandex.DatatransferEndpoint("pgTarget",
+            folder_id="some_folder_id",
+            settings=yandex.DatatransferEndpointSettingsArgs(
+                postgres_target=yandex.DatatransferEndpointSettingsPostgresTargetArgs(
+                    connection=yandex.DatatransferEndpointSettingsPostgresTargetConnectionArgs(
+                        mdb_cluster_id="some_cluster_id",
+                    ),
+                    database="db2",
+                    user="user2",
+                    password=yandex.DatatransferEndpointSettingsPostgresTargetPasswordArgs(
+                        raw="321",
+                    ),
+                ),
+            ))
+        pgpg_transfer = yandex.DatatransferTransfer("pgpgTransfer",
+            folder_id="some_folder_id",
+            source_id=pg_source.id,
+            target_id=pg_target.id,
+            type="SNAPSHOT_AND_INCREMENT")
+        ```
+
+        ## Import
+
+        A transfer can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/datatransferTransfer:DatatransferTransfer foo transfer_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Arbitrary description text for the transfer.
+        :param pulumi.Input[str] folder_id: ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Transfer transfer.
+        :param pulumi.Input[str] name: Name of the transfer.
+        :param pulumi.Input[str] source_id: ID of the source endpoint for the transfer.
+        :param pulumi.Input[str] target_id: ID of the target endpoint for the transfer.
+        :param pulumi.Input[str] type: Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
         """
         ...
     @overload
@@ -232,7 +351,59 @@ class DatatransferTransfer(pulumi.CustomResource):
                  args: Optional[DatatransferTransferArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DatatransferTransfer resource with the given unique name, props, and options.
+        Manages a Data Transfer transfer. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-transfer/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        pg_source = yandex.DatatransferEndpoint("pgSource", settings=yandex.DatatransferEndpointSettingsArgs(
+            postgres_source=yandex.DatatransferEndpointSettingsPostgresSourceArgs(
+                connection=yandex.DatatransferEndpointSettingsPostgresSourceConnectionArgs(
+                    on_premise=yandex.DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs(
+                        hosts=["example.org"],
+                        port=5432,
+                    ),
+                ),
+                slot_gigabyte_lag_limit=100,
+                database="db1",
+                user="user1",
+                password=yandex.DatatransferEndpointSettingsPostgresSourcePasswordArgs(
+                    raw="123",
+                ),
+            ),
+        ))
+        pg_target = yandex.DatatransferEndpoint("pgTarget",
+            folder_id="some_folder_id",
+            settings=yandex.DatatransferEndpointSettingsArgs(
+                postgres_target=yandex.DatatransferEndpointSettingsPostgresTargetArgs(
+                    connection=yandex.DatatransferEndpointSettingsPostgresTargetConnectionArgs(
+                        mdb_cluster_id="some_cluster_id",
+                    ),
+                    database="db2",
+                    user="user2",
+                    password=yandex.DatatransferEndpointSettingsPostgresTargetPasswordArgs(
+                        raw="321",
+                    ),
+                ),
+            ))
+        pgpg_transfer = yandex.DatatransferTransfer("pgpgTransfer",
+            folder_id="some_folder_id",
+            source_id=pg_source.id,
+            target_id=pg_target.id,
+            type="SNAPSHOT_AND_INCREMENT")
+        ```
+
+        ## Import
+
+        A transfer can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/datatransferTransfer:DatatransferTransfer foo transfer_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param DatatransferTransferArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -297,6 +468,14 @@ class DatatransferTransfer(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Arbitrary description text for the transfer.
+        :param pulumi.Input[str] folder_id: ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Transfer transfer.
+        :param pulumi.Input[str] name: Name of the transfer.
+        :param pulumi.Input[str] source_id: ID of the source endpoint for the transfer.
+        :param pulumi.Input[str] target_id: ID of the target endpoint for the transfer.
+        :param pulumi.Input[str] type: Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
+        :param pulumi.Input[str] warning: (Computed) Error description if transfer has any errors.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -315,40 +494,64 @@ class DatatransferTransfer(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Arbitrary description text for the transfer.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the Data Transfer transfer.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the transfer.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="sourceId")
     def source_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the source endpoint for the transfer.
+        """
         return pulumi.get(self, "source_id")
 
     @property
     @pulumi.getter(name="targetId")
     def target_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the target endpoint for the transfer.
+        """
         return pulumi.get(self, "target_id")
 
     @property
     @pulumi.getter
     def type(self) -> pulumi.Output[Optional[str]]:
+        """
+        Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def warning(self) -> pulumi.Output[str]:
+        """
+        (Computed) Error description if transfer has any errors.
+        """
         return pulumi.get(self, "warning")
 

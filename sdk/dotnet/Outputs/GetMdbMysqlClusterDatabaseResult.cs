@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbMysqlClusterDatabaseResult
     {
+        /// <summary>
+        /// The name of the MySQL cluster.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

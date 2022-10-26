@@ -11,13 +11,70 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// ## yandex\_kms\_symmetric\_key\_iam\_binding
+//
+// Allows creation and management of a single binding within IAM policy for
+// an existing Yandex KMS Symmetric Key.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewKmsSymmetricKey(ctx, "your-key", &yandex.KmsSymmetricKeyArgs{
+//				FolderId: pulumi.String("your-folder-id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewKmsSymmetricKeyIamBinding(ctx, "viewer", &yandex.KmsSymmetricKeyIamBindingArgs{
+//				SymmetricKeyId: your_key.ID(),
+//				Role:           pulumi.String("viewer"),
+//				Members: pulumi.StringArray{
+//					pulumi.String("userAccount:foo_user_id"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `symmetric_key_id` and role, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/kmsSymmetricKeyIamBinding:KmsSymmetricKeyIamBinding viewer "symmetric_key_id viewer"
+//
+// ```
 type KmsSymmetricKeyIamBinding struct {
 	pulumi.CustomResourceState
 
-	Members        pulumi.StringArrayOutput `pulumi:"members"`
-	Role           pulumi.StringOutput      `pulumi:"role"`
-	SleepAfter     pulumi.IntPtrOutput      `pulumi:"sleepAfter"`
-	SymmetricKeyId pulumi.StringOutput      `pulumi:"symmetricKeyId"`
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+	Members pulumi.StringArrayOutput `pulumi:"members"`
+	// The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+	Role       pulumi.StringOutput `pulumi:"role"`
+	SleepAfter pulumi.IntPtrOutput `pulumi:"sleepAfter"`
+	// The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
+	SymmetricKeyId pulumi.StringOutput `pulumi:"symmetricKeyId"`
 }
 
 // NewKmsSymmetricKeyIamBinding registers a new resource with the given unique name, arguments, and options.
@@ -59,16 +116,30 @@ func GetKmsSymmetricKeyIamBinding(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering KmsSymmetricKeyIamBinding resources.
 type kmsSymmetricKeyIamBindingState struct {
-	Members        []string `pulumi:"members"`
-	Role           *string  `pulumi:"role"`
-	SleepAfter     *int     `pulumi:"sleepAfter"`
-	SymmetricKeyId *string  `pulumi:"symmetricKeyId"`
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+	Members []string `pulumi:"members"`
+	// The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+	Role       *string `pulumi:"role"`
+	SleepAfter *int    `pulumi:"sleepAfter"`
+	// The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
+	SymmetricKeyId *string `pulumi:"symmetricKeyId"`
 }
 
 type KmsSymmetricKeyIamBindingState struct {
-	Members        pulumi.StringArrayInput
-	Role           pulumi.StringPtrInput
-	SleepAfter     pulumi.IntPtrInput
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+	Members pulumi.StringArrayInput
+	// The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+	Role       pulumi.StringPtrInput
+	SleepAfter pulumi.IntPtrInput
+	// The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
 	SymmetricKeyId pulumi.StringPtrInput
 }
 
@@ -77,17 +148,31 @@ func (KmsSymmetricKeyIamBindingState) ElementType() reflect.Type {
 }
 
 type kmsSymmetricKeyIamBindingArgs struct {
-	Members        []string `pulumi:"members"`
-	Role           string   `pulumi:"role"`
-	SleepAfter     *int     `pulumi:"sleepAfter"`
-	SymmetricKeyId string   `pulumi:"symmetricKeyId"`
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+	Members []string `pulumi:"members"`
+	// The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+	Role       string `pulumi:"role"`
+	SleepAfter *int   `pulumi:"sleepAfter"`
+	// The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
+	SymmetricKeyId string `pulumi:"symmetricKeyId"`
 }
 
 // The set of arguments for constructing a KmsSymmetricKeyIamBinding resource.
 type KmsSymmetricKeyIamBindingArgs struct {
-	Members        pulumi.StringArrayInput
-	Role           pulumi.StringInput
-	SleepAfter     pulumi.IntPtrInput
+	// Identities that will be granted the privilege in `role`.
+	// Each entry can have one of the following values:
+	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+	Members pulumi.StringArrayInput
+	// The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
+	Role       pulumi.StringInput
+	SleepAfter pulumi.IntPtrInput
+	// The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
 	SymmetricKeyId pulumi.StringInput
 }
 
@@ -178,10 +263,16 @@ func (o KmsSymmetricKeyIamBindingOutput) ToKmsSymmetricKeyIamBindingOutputWithCo
 	return o
 }
 
+// Identities that will be granted the privilege in `role`.
+// Each entry can have one of the following values:
+// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+// * **serviceAccount:{service_account_id}**: A unique service account ID.
+// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 func (o KmsSymmetricKeyIamBindingOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *KmsSymmetricKeyIamBinding) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
 }
 
+// The role that should be applied. See [roles](https://cloud.yandex.com/docs/kms/security/).
 func (o KmsSymmetricKeyIamBindingOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v *KmsSymmetricKeyIamBinding) pulumi.StringOutput { return v.Role }).(pulumi.StringOutput)
 }
@@ -190,6 +281,7 @@ func (o KmsSymmetricKeyIamBindingOutput) SleepAfter() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *KmsSymmetricKeyIamBinding) pulumi.IntPtrOutput { return v.SleepAfter }).(pulumi.IntPtrOutput)
 }
 
+// The [Yandex Key Management Service](https://cloud.yandex.com/docs/kms/) Symmetric Key ID to apply a binding to.
 func (o KmsSymmetricKeyIamBindingOutput) SymmetricKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KmsSymmetricKeyIamBinding) pulumi.StringOutput { return v.SymmetricKeyId }).(pulumi.StringOutput)
 }

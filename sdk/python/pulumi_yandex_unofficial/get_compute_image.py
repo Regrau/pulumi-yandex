@@ -68,16 +68,25 @@ class GetComputeImageResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Image creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        An optional description of this image.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def family(self) -> str:
+        """
+        The OS family name of the image.
+        """
         return pulumi.get(self, "family")
 
     @property
@@ -101,11 +110,17 @@ class GetComputeImageResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A map of labels applied to this image.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="minDiskSize")
     def min_disk_size(self) -> int:
+        """
+        Minimum size of the disk which is created from this image.
+        """
         return pulumi.get(self, "min_disk_size")
 
     @property
@@ -116,26 +131,41 @@ class GetComputeImageResult:
     @property
     @pulumi.getter(name="osType")
     def os_type(self) -> str:
+        """
+        Operating system type that the image contains.
+        """
         return pulumi.get(self, "os_type")
 
     @property
     @pulumi.getter
     def pooled(self) -> bool:
+        """
+        Optimize the image to create a disk.
+        """
         return pulumi.get(self, "pooled")
 
     @property
     @pulumi.getter(name="productIds")
     def product_ids(self) -> Sequence[str]:
+        """
+        License IDs that indicate which licenses are attached to this image.
+        """
         return pulumi.get(self, "product_ids")
 
     @property
     @pulumi.getter
     def size(self) -> int:
+        """
+        The size of the image, specified in Gb.
+        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        The status of the image.
+        """
         return pulumi.get(self, "status")
 
 
@@ -168,6 +198,11 @@ def get_compute_image(family: Optional[str] = None,
                       opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetComputeImageResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param str family: The family name of an image. Used to search the latest image in a family.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str image_id: The ID of a specific image.
+    :param str name: The name of the image.
     """
     __args__ = dict()
     __args__['family'] = family
@@ -202,5 +237,10 @@ def get_compute_image_output(family: Optional[pulumi.Input[Optional[str]]] = Non
                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetComputeImageResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param str family: The family name of an image. Used to search the latest image in a family.
+    :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str image_id: The ID of a specific image.
+    :param str name: The name of the image.
     """
     ...

@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbVirtualHostRouteHttpRouteHttpMatch
     {
+        /// <summary>
+        /// List of methods(strings).
+        /// </summary>
         public readonly ImmutableArray<string> HttpMethods;
+        /// <summary>
+        /// If not set, '/' is assumed. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbVirtualHostRouteHttpRouteHttpMatchPath? Path;
 
         [OutputConstructor]

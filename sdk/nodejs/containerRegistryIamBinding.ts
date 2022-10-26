@@ -4,6 +4,34 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * ## yandex\_container\_registry\_iam\_binding
+ *
+ * Allows creation and management of a single binding within IAM policy for
+ * an existing Yandex Container Registry.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const your_registry = new yandex.ContainerRegistry("your-registry", {folderId: "your-folder-id"});
+ * const puller = new yandex.ContainerRegistryIamBinding("puller", {
+ *     registryId: your_registry.id,
+ *     role: "container-registry.images.puller",
+ *     members: ["system:allUsers"],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `registry_id` and role, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/containerRegistryIamBinding:ContainerRegistryIamBinding puller "registry_id container-registry.images.puller"
+ * ```
+ */
 export class ContainerRegistryIamBinding extends pulumi.CustomResource {
     /**
      * Get an existing ContainerRegistryIamBinding resource's state with the given name, ID, and optional extra
@@ -32,8 +60,21 @@ export class ContainerRegistryIamBinding extends pulumi.CustomResource {
         return obj['__pulumiType'] === ContainerRegistryIamBinding.__pulumiType;
     }
 
+    /**
+     * Identities that will be granted the privilege in `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+     */
     public readonly members!: pulumi.Output<string[]>;
+    /**
+     * The [Yandex Container Registry](https://cloud.yandex.com/docs/container-registry/) ID to apply a binding to.
+     */
     public readonly registryId!: pulumi.Output<string>;
+    /**
+     * The role that should be applied. See [roles](https://cloud.yandex.com/docs/container-registry/security/).
+     */
     public readonly role!: pulumi.Output<string>;
     public readonly sleepAfter!: pulumi.Output<number | undefined>;
 
@@ -79,8 +120,21 @@ export class ContainerRegistryIamBinding extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ContainerRegistryIamBinding resources.
  */
 export interface ContainerRegistryIamBindingState {
+    /**
+     * Identities that will be granted the privilege in `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+     */
     members?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The [Yandex Container Registry](https://cloud.yandex.com/docs/container-registry/) ID to apply a binding to.
+     */
     registryId?: pulumi.Input<string>;
+    /**
+     * The role that should be applied. See [roles](https://cloud.yandex.com/docs/container-registry/security/).
+     */
     role?: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }
@@ -89,8 +143,21 @@ export interface ContainerRegistryIamBindingState {
  * The set of arguments for constructing a ContainerRegistryIamBinding resource.
  */
 export interface ContainerRegistryIamBindingArgs {
+    /**
+     * Identities that will be granted the privilege in `role`.
+     * Each entry can have one of the following values:
+     * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+     * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
+     */
     members: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * The [Yandex Container Registry](https://cloud.yandex.com/docs/container-registry/) ID to apply a binding to.
+     */
     registryId: pulumi.Input<string>;
+    /**
+     * The role that should be applied. See [roles](https://cloud.yandex.com/docs/container-registry/security/).
+     */
     role: pulumi.Input<string>;
     sleepAfter?: pulumi.Input<number>;
 }

@@ -12,15 +12,27 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// DNS zone ID (if not set, private zone is used).
+        /// </summary>
         [Input("dnsZoneId")]
         public Input<string>? DnsZoneId { get; set; }
 
+        /// <summary>
+        /// DNS record FQDN.
+        /// </summary>
         [Input("fqdn", required: true)]
         public Input<string> Fqdn { get; set; } = null!;
 
+        /// <summary>
+        /// When set to true, also create a PTR DNS record.
+        /// </summary>
         [Input("ptr")]
         public Input<bool>? Ptr { get; set; }
 
+        /// <summary>
+        /// DNS record TTL (in seconds).
+        /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
 

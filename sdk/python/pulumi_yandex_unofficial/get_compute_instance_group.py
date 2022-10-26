@@ -93,6 +93,9 @@ class GetComputeInstanceGroupResult:
     @property
     @pulumi.getter(name="allocationPolicies")
     def allocation_policies(self) -> Sequence['outputs.GetComputeInstanceGroupAllocationPolicyResult']:
+        """
+        The allocation policy of the instance group by zone and region. The structure is documented below.
+        """
         return pulumi.get(self, "allocation_policies")
 
     @property
@@ -103,36 +106,57 @@ class GetComputeInstanceGroupResult:
     @property
     @pulumi.getter(name="applicationLoadBalancers")
     def application_load_balancers(self) -> Sequence['outputs.GetComputeInstanceGroupApplicationLoadBalancerResult']:
+        """
+        Application Load balancing (L7) specifications. The structure is documented below.
+        """
         return pulumi.get(self, "application_load_balancers")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        The instance group creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> bool:
+        """
+        Flag that protects the instance group from accidental deletion.
+        """
         return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter(name="deployPolicies")
     def deploy_policies(self) -> Sequence['outputs.GetComputeInstanceGroupDeployPolicyResult']:
+        """
+        The deployment policy of the instance group. The structure is documented below.
+        """
         return pulumi.get(self, "deploy_policies")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        A description of the boot disk.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> str:
+        """
+        Folder ID of custom metric in Yandex Monitoring that should be used for scaling.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter(name="healthChecks")
     def health_checks(self) -> Sequence['outputs.GetComputeInstanceGroupHealthCheckResult']:
+        """
+        Health check specification. The structure is documented below.
+        """
         return pulumi.get(self, "health_checks")
 
     @property
@@ -151,56 +175,93 @@ class GetComputeInstanceGroupResult:
     @property
     @pulumi.getter(name="instanceTemplates")
     def instance_templates(self) -> Sequence['outputs.GetComputeInstanceGroupInstanceTemplateResult']:
+        """
+        The instance template that the instance group belongs to. The structure is documented below.
+        """
         return pulumi.get(self, "instance_templates")
 
     @property
     @pulumi.getter
     def instances(self) -> Sequence['outputs.GetComputeInstanceGroupInstanceResult']:
+        """
+        A list of instances in the specified instance group. The structure is documented below.
+        """
         return pulumi.get(self, "instances")
 
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A map of labels applied to this instance.
+        * `resources.0.memory` - The memory size allocated to the instance.
+        * `resources.0.cores` - Number of CPU cores allocated to the instance.
+        * `resources.0.core_fraction` - Baseline core performance as a percent.
+        * `resources.0.gpus` - Number of GPU cores allocated to the instance.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="loadBalancerStates")
     def load_balancer_states(self) -> Sequence['outputs.GetComputeInstanceGroupLoadBalancerStateResult']:
+        """
+        Information about which entities can be attached to this load balancer. The structure is documented below.
+        """
         return pulumi.get(self, "load_balancer_states")
 
     @property
     @pulumi.getter(name="loadBalancers")
     def load_balancers(self) -> Sequence['outputs.GetComputeInstanceGroupLoadBalancerResult']:
+        """
+        Load balancing specification. The structure is documented below.
+        """
         return pulumi.get(self, "load_balancers")
 
     @property
     @pulumi.getter(name="maxCheckingHealthDuration")
     def max_checking_health_duration(self) -> int:
+        """
+        Timeout for waiting for the VM to become healthy. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+        """
         return pulumi.get(self, "max_checking_health_duration")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The name of the managed instance.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="scalePolicies")
     def scale_policies(self) -> Sequence['outputs.GetComputeInstanceGroupScalePolicyResult']:
+        """
+        The scaling policy of the instance group. The structure is documented below.
+        """
         return pulumi.get(self, "scale_policies")
 
     @property
     @pulumi.getter(name="serviceAccountId")
     def service_account_id(self) -> str:
+        """
+        The service account ID for the instance.
+        """
         return pulumi.get(self, "service_account_id")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        The status of the instance.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def variables(self) -> Mapping[str, str]:
+        """
+        A set of key/value  variables pairs to assign to the instance group.
+        """
         return pulumi.get(self, "variables")
 
 
@@ -237,7 +298,10 @@ class AwaitableGetComputeInstanceGroupResult(GetComputeInstanceGroupResult):
 def get_compute_instance_group(instance_group_id: Optional[str] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetComputeInstanceGroupResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Compute instance group.
+
+
+    :param str instance_group_id: The ID of a specific instance group.
     """
     __args__ = dict()
     __args__['instanceGroupId'] = instance_group_id
@@ -273,6 +337,9 @@ def get_compute_instance_group(instance_group_id: Optional[str] = None,
 def get_compute_instance_group_output(instance_group_id: Optional[pulumi.Input[str]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetComputeInstanceGroupResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Compute instance group.
+
+
+    :param str instance_group_id: The ID of a specific instance group.
     """
     ...

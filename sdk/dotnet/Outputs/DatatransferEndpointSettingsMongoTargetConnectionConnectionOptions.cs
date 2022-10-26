@@ -13,10 +13,25 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptions
     {
+        /// <summary>
+        /// Name of the database associated with the credentials.
+        /// </summary>
         public readonly string? AuthSource;
+        /// <summary>
+        /// Identifier of the Managed ClickHouse cluster.
+        /// </summary>
         public readonly string? MdbClusterId;
+        /// <summary>
+        /// Connection settings of the on-premise ClickHouse server.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsOnPremise? OnPremise;
+        /// <summary>
+        /// Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsPassword? Password;
+        /// <summary>
+        /// User for database access.
+        /// </summary>
         public readonly string? User;
 
         [OutputConstructor]

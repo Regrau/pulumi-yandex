@@ -11,16 +11,74 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Creates a virtual host that belongs to specified HTTP router and adds the specified routes to it. For more information,
+// see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/http-router).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewAlbVirtualHost(ctx, "my-virtual-host", &yandex.AlbVirtualHostArgs{
+//				HttpRouterId: pulumi.Any(yandex_alb_http_router.My - router.Id),
+//				Routes: AlbVirtualHostRouteArray{
+//					&AlbVirtualHostRouteArgs{
+//						Name: pulumi.String("my-route"),
+//						HttpRoute: &AlbVirtualHostRouteHttpRouteArgs{
+//							HttpRouteAction: &AlbVirtualHostRouteHttpRouteHttpRouteActionArgs{
+//								BackendGroupId: pulumi.Any(yandex_alb_backend_group.My - bg.Id),
+//								Timeout:        pulumi.String("3s"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A virtual host can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/albVirtualHost:AlbVirtualHost default virtual_host_id
+//
+// ```
 type AlbVirtualHost struct {
 	pulumi.CustomResourceState
 
-	Authorities           pulumi.StringArrayOutput                      `pulumi:"authorities"`
-	HttpRouterId          pulumi.StringOutput                           `pulumi:"httpRouterId"`
-	ModifyRequestHeaders  AlbVirtualHostModifyRequestHeaderArrayOutput  `pulumi:"modifyRequestHeaders"`
+	// A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+	// hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+	Authorities  pulumi.StringArrayOutput `pulumi:"authorities"`
+	HttpRouterId pulumi.StringOutput      `pulumi:"httpRouterId"`
+	// Apply the following modifications to the request
+	// headers. The structure is documented below.
+	ModifyRequestHeaders AlbVirtualHostModifyRequestHeaderArrayOutput `pulumi:"modifyRequestHeaders"`
+	// Apply the following modifications to the response
+	// headers. The structure is documented below.
 	ModifyResponseHeaders AlbVirtualHostModifyResponseHeaderArrayOutput `pulumi:"modifyResponseHeaders"`
-	Name                  pulumi.StringOutput                           `pulumi:"name"`
-	RouteOptions          AlbVirtualHostRouteOptionsPtrOutput           `pulumi:"routeOptions"`
-	Routes                AlbVirtualHostRouteArrayOutput                `pulumi:"routes"`
+	// name of the route.
+	Name         pulumi.StringOutput                 `pulumi:"name"`
+	RouteOptions AlbVirtualHostRouteOptionsPtrOutput `pulumi:"routeOptions"`
+	// A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+	// http '/' match first makes all other routes unused. The structure is documented below.
+	Routes AlbVirtualHostRouteArrayOutput `pulumi:"routes"`
 }
 
 // NewAlbVirtualHost registers a new resource with the given unique name, arguments, and options.
@@ -56,23 +114,41 @@ func GetAlbVirtualHost(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AlbVirtualHost resources.
 type albVirtualHostState struct {
-	Authorities           []string                             `pulumi:"authorities"`
-	HttpRouterId          *string                              `pulumi:"httpRouterId"`
-	ModifyRequestHeaders  []AlbVirtualHostModifyRequestHeader  `pulumi:"modifyRequestHeaders"`
+	// A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+	// hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+	Authorities  []string `pulumi:"authorities"`
+	HttpRouterId *string  `pulumi:"httpRouterId"`
+	// Apply the following modifications to the request
+	// headers. The structure is documented below.
+	ModifyRequestHeaders []AlbVirtualHostModifyRequestHeader `pulumi:"modifyRequestHeaders"`
+	// Apply the following modifications to the response
+	// headers. The structure is documented below.
 	ModifyResponseHeaders []AlbVirtualHostModifyResponseHeader `pulumi:"modifyResponseHeaders"`
-	Name                  *string                              `pulumi:"name"`
-	RouteOptions          *AlbVirtualHostRouteOptions          `pulumi:"routeOptions"`
-	Routes                []AlbVirtualHostRoute                `pulumi:"routes"`
+	// name of the route.
+	Name         *string                     `pulumi:"name"`
+	RouteOptions *AlbVirtualHostRouteOptions `pulumi:"routeOptions"`
+	// A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+	// http '/' match first makes all other routes unused. The structure is documented below.
+	Routes []AlbVirtualHostRoute `pulumi:"routes"`
 }
 
 type AlbVirtualHostState struct {
-	Authorities           pulumi.StringArrayInput
-	HttpRouterId          pulumi.StringPtrInput
-	ModifyRequestHeaders  AlbVirtualHostModifyRequestHeaderArrayInput
+	// A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+	// hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+	Authorities  pulumi.StringArrayInput
+	HttpRouterId pulumi.StringPtrInput
+	// Apply the following modifications to the request
+	// headers. The structure is documented below.
+	ModifyRequestHeaders AlbVirtualHostModifyRequestHeaderArrayInput
+	// Apply the following modifications to the response
+	// headers. The structure is documented below.
 	ModifyResponseHeaders AlbVirtualHostModifyResponseHeaderArrayInput
-	Name                  pulumi.StringPtrInput
-	RouteOptions          AlbVirtualHostRouteOptionsPtrInput
-	Routes                AlbVirtualHostRouteArrayInput
+	// name of the route.
+	Name         pulumi.StringPtrInput
+	RouteOptions AlbVirtualHostRouteOptionsPtrInput
+	// A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+	// http '/' match first makes all other routes unused. The structure is documented below.
+	Routes AlbVirtualHostRouteArrayInput
 }
 
 func (AlbVirtualHostState) ElementType() reflect.Type {
@@ -80,24 +156,42 @@ func (AlbVirtualHostState) ElementType() reflect.Type {
 }
 
 type albVirtualHostArgs struct {
-	Authorities           []string                             `pulumi:"authorities"`
-	HttpRouterId          string                               `pulumi:"httpRouterId"`
-	ModifyRequestHeaders  []AlbVirtualHostModifyRequestHeader  `pulumi:"modifyRequestHeaders"`
+	// A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+	// hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+	Authorities  []string `pulumi:"authorities"`
+	HttpRouterId string   `pulumi:"httpRouterId"`
+	// Apply the following modifications to the request
+	// headers. The structure is documented below.
+	ModifyRequestHeaders []AlbVirtualHostModifyRequestHeader `pulumi:"modifyRequestHeaders"`
+	// Apply the following modifications to the response
+	// headers. The structure is documented below.
 	ModifyResponseHeaders []AlbVirtualHostModifyResponseHeader `pulumi:"modifyResponseHeaders"`
-	Name                  *string                              `pulumi:"name"`
-	RouteOptions          *AlbVirtualHostRouteOptions          `pulumi:"routeOptions"`
-	Routes                []AlbVirtualHostRoute                `pulumi:"routes"`
+	// name of the route.
+	Name         *string                     `pulumi:"name"`
+	RouteOptions *AlbVirtualHostRouteOptions `pulumi:"routeOptions"`
+	// A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+	// http '/' match first makes all other routes unused. The structure is documented below.
+	Routes []AlbVirtualHostRoute `pulumi:"routes"`
 }
 
 // The set of arguments for constructing a AlbVirtualHost resource.
 type AlbVirtualHostArgs struct {
-	Authorities           pulumi.StringArrayInput
-	HttpRouterId          pulumi.StringInput
-	ModifyRequestHeaders  AlbVirtualHostModifyRequestHeaderArrayInput
+	// A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+	// hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+	Authorities  pulumi.StringArrayInput
+	HttpRouterId pulumi.StringInput
+	// Apply the following modifications to the request
+	// headers. The structure is documented below.
+	ModifyRequestHeaders AlbVirtualHostModifyRequestHeaderArrayInput
+	// Apply the following modifications to the response
+	// headers. The structure is documented below.
 	ModifyResponseHeaders AlbVirtualHostModifyResponseHeaderArrayInput
-	Name                  pulumi.StringPtrInput
-	RouteOptions          AlbVirtualHostRouteOptionsPtrInput
-	Routes                AlbVirtualHostRouteArrayInput
+	// name of the route.
+	Name         pulumi.StringPtrInput
+	RouteOptions AlbVirtualHostRouteOptionsPtrInput
+	// A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+	// http '/' match first makes all other routes unused. The structure is documented below.
+	Routes AlbVirtualHostRouteArrayInput
 }
 
 func (AlbVirtualHostArgs) ElementType() reflect.Type {
@@ -187,6 +281,8 @@ func (o AlbVirtualHostOutput) ToAlbVirtualHostOutputWithContext(ctx context.Cont
 	return o
 }
 
+// A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+// hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
 func (o AlbVirtualHostOutput) Authorities() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *AlbVirtualHost) pulumi.StringArrayOutput { return v.Authorities }).(pulumi.StringArrayOutput)
 }
@@ -195,14 +291,19 @@ func (o AlbVirtualHostOutput) HttpRouterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbVirtualHost) pulumi.StringOutput { return v.HttpRouterId }).(pulumi.StringOutput)
 }
 
+// Apply the following modifications to the request
+// headers. The structure is documented below.
 func (o AlbVirtualHostOutput) ModifyRequestHeaders() AlbVirtualHostModifyRequestHeaderArrayOutput {
 	return o.ApplyT(func(v *AlbVirtualHost) AlbVirtualHostModifyRequestHeaderArrayOutput { return v.ModifyRequestHeaders }).(AlbVirtualHostModifyRequestHeaderArrayOutput)
 }
 
+// Apply the following modifications to the response
+// headers. The structure is documented below.
 func (o AlbVirtualHostOutput) ModifyResponseHeaders() AlbVirtualHostModifyResponseHeaderArrayOutput {
 	return o.ApplyT(func(v *AlbVirtualHost) AlbVirtualHostModifyResponseHeaderArrayOutput { return v.ModifyResponseHeaders }).(AlbVirtualHostModifyResponseHeaderArrayOutput)
 }
 
+// name of the route.
 func (o AlbVirtualHostOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbVirtualHost) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
@@ -211,6 +312,8 @@ func (o AlbVirtualHostOutput) RouteOptions() AlbVirtualHostRouteOptionsPtrOutput
 	return o.ApplyT(func(v *AlbVirtualHost) AlbVirtualHostRouteOptionsPtrOutput { return v.RouteOptions }).(AlbVirtualHostRouteOptionsPtrOutput)
 }
 
+// A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+// http '/' match first makes all other routes unused. The structure is documented below.
 func (o AlbVirtualHostOutput) Routes() AlbVirtualHostRouteArrayOutput {
 	return o.ApplyT(func(v *AlbVirtualHost) AlbVirtualHostRouteArrayOutput { return v.Routes }).(AlbVirtualHostRouteArrayOutput)
 }

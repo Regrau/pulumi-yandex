@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsMysqlTargetConnectionArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Identifier of the Managed MySQL cluster.
+        /// </summary>
         [Input("mdbClusterId")]
         public Input<string>? MdbClusterId { get; set; }
 
+        /// <summary>
+        /// Connection settings of the on-premise MySQL server.
+        /// </summary>
         [Input("onPremise")]
         public Input<Inputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs>? OnPremise { get; set; }
 

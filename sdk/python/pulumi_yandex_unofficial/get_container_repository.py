@@ -66,7 +66,22 @@ def get_container_repository(name: Optional[str] = None,
                              repository_id: Optional[str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetContainerRepositoryResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Container Repository. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/repository)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    repo_1 = yandex.get_container_repository(name="some_repository_name")
+    repo_2 = yandex.get_container_repository(repository_id="some_repository_id")
+    ```
+
+
+    :param str name: Name of the repository. The name of the repository should start with id of a container registry and match the name of the images in the repository.
+    :param str repository_id: The ID of a specific repository.
     """
     __args__ = dict()
     __args__['name'] = name
@@ -85,6 +100,21 @@ def get_container_repository_output(name: Optional[pulumi.Input[Optional[str]]] 
                                     repository_id: Optional[pulumi.Input[Optional[str]]] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetContainerRepositoryResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Container Repository. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/repository)
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    repo_1 = yandex.get_container_repository(name="some_repository_name")
+    repo_2 = yandex.get_container_repository(repository_id="some_repository_id")
+    ```
+
+
+    :param str name: Name of the repository. The name of the repository should start with id of a container registry and match the name of the images in the repository.
+    :param str repository_id: The ID of a specific repository.
     """
     ...

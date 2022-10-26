@@ -5,6 +5,58 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Manages a Data Transfer endpoint. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-transfer/).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const pgSource = new yandex.DatatransferEndpoint("pg_source", {
+ *     settings: {
+ *         postgresSource: {
+ *             connection: {
+ *                 onPremise: {
+ *                     hosts: ["example.org"],
+ *                     port: 5432,
+ *                 },
+ *             },
+ *             database: "db1",
+ *             password: {
+ *                 raw: "123",
+ *             },
+ *             slotGigabyteLagLimit: 100,
+ *             user: "user1",
+ *         },
+ *     },
+ * });
+ * const pgTarget = new yandex.DatatransferEndpoint("pg_target", {
+ *     folderId: "some_folder_id",
+ *     settings: {
+ *         postgresTarget: {
+ *             connection: {
+ *                 mdbClusterId: "some_cluster_id",
+ *             },
+ *             database: "db2",
+ *             password: {
+ *                 raw: "321",
+ *             },
+ *             user: "user2",
+ *         },
+ *     },
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * An endpoint can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/datatransferEndpoint:DatatransferEndpoint foo endpoint_id
+ * ```
+ */
 export class DatatransferEndpoint extends pulumi.CustomResource {
     /**
      * Get an existing DatatransferEndpoint resource's state with the given name, ID, and optional extra
@@ -33,10 +85,25 @@ export class DatatransferEndpoint extends pulumi.CustomResource {
         return obj['__pulumiType'] === DatatransferEndpoint.__pulumiType;
     }
 
+    /**
+     * Arbitrary description text for the endpoint.
+     */
     public readonly description!: pulumi.Output<string>;
+    /**
+     * ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+     */
     public readonly folderId!: pulumi.Output<string>;
+    /**
+     * A set of key/value label pairs to assign to the Data Transfer endpoint.
+     */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * Name of the endpoint.
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Settings for the endpoint. The structure is documented below.
+     */
     public readonly settings!: pulumi.Output<outputs.DatatransferEndpointSettings>;
 
     /**
@@ -74,10 +141,25 @@ export class DatatransferEndpoint extends pulumi.CustomResource {
  * Input properties used for looking up and filtering DatatransferEndpoint resources.
  */
 export interface DatatransferEndpointState {
+    /**
+     * Arbitrary description text for the endpoint.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the Data Transfer endpoint.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the endpoint.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Settings for the endpoint. The structure is documented below.
+     */
     settings?: pulumi.Input<inputs.DatatransferEndpointSettings>;
 }
 
@@ -85,9 +167,24 @@ export interface DatatransferEndpointState {
  * The set of arguments for constructing a DatatransferEndpoint resource.
  */
 export interface DatatransferEndpointArgs {
+    /**
+     * Arbitrary description text for the endpoint.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the Data Transfer endpoint.
+     */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Name of the endpoint.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Settings for the endpoint. The structure is documented below.
+     */
     settings?: pulumi.Input<inputs.DatatransferEndpointSettings>;
 }

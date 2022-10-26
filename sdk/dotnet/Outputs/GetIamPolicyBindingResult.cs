@@ -13,7 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetIamPolicyBindingResult
     {
+        /// <summary>
+        /// An array of identities that will be granted the privilege in the `role`.
+        /// Each entry can have one of the following values:
+        /// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
+        /// * **serviceAccount:{service_account_id}**: A unique service account ID.
+        /// </summary>
         public readonly ImmutableArray<string> Members;
+        /// <summary>
+        /// The role/permission that will be granted to the members.
+        /// See the [IAM Roles] documentation for a complete list of roles.
+        /// </summary>
         public readonly string Role;
 
         [OutputConstructor]

@@ -12,11 +12,18 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class AlbLoadBalancerListenerTlsGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// TLS handler resource. The structure is documented below.
+        /// </summary>
         [Input("defaultHandler", required: true)]
         public Input<Inputs.AlbLoadBalancerListenerTlsDefaultHandlerGetArgs> DefaultHandler { get; set; } = null!;
 
         [Input("sniHandlers")]
         private InputList<Inputs.AlbLoadBalancerListenerTlsSniHandlerGetArgs>? _sniHandlers;
+
+        /// <summary>
+        /// SNI match resource. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbLoadBalancerListenerTlsSniHandlerGetArgs> SniHandlers
         {
             get => _sniHandlers ?? (_sniHandlers = new InputList<Inputs.AlbLoadBalancerListenerTlsSniHandlerGetArgs>());

@@ -5,6 +5,38 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Creates a virtual host that belongs to specified HTTP router and adds the specified routes to it. For more information,
+ * see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/http-router).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const my_virtual_host = new yandex.AlbVirtualHost("my-virtual-host", {
+ *     httpRouterId: yandex_alb_http_router["my-router"].id,
+ *     routes: [{
+ *         name: "my-route",
+ *         httpRoute: {
+ *             httpRouteAction: {
+ *                 backendGroupId: yandex_alb_backend_group["my-bg"].id,
+ *                 timeout: "3s",
+ *             },
+ *         },
+ *     }],
+ * });
+ * ```
+ *
+ * ## Import
+ *
+ * A virtual host can be imported using the `id` of the resource, e.g.
+ *
+ * ```sh
+ *  $ pulumi import yandex:index/albVirtualHost:AlbVirtualHost default virtual_host_id
+ * ```
+ */
 export class AlbVirtualHost extends pulumi.CustomResource {
     /**
      * Get an existing AlbVirtualHost resource's state with the given name, ID, and optional extra
@@ -33,12 +65,31 @@ export class AlbVirtualHost extends pulumi.CustomResource {
         return obj['__pulumiType'] === AlbVirtualHost.__pulumiType;
     }
 
+    /**
+     * A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+     * hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+     */
     public readonly authorities!: pulumi.Output<string[] | undefined>;
     public readonly httpRouterId!: pulumi.Output<string>;
+    /**
+     * Apply the following modifications to the request
+     * headers. The structure is documented below.
+     */
     public readonly modifyRequestHeaders!: pulumi.Output<outputs.AlbVirtualHostModifyRequestHeader[] | undefined>;
+    /**
+     * Apply the following modifications to the response
+     * headers. The structure is documented below.
+     */
     public readonly modifyResponseHeaders!: pulumi.Output<outputs.AlbVirtualHostModifyResponseHeader[] | undefined>;
+    /**
+     * name of the route.
+     */
     public readonly name!: pulumi.Output<string>;
     public readonly routeOptions!: pulumi.Output<outputs.AlbVirtualHostRouteOptions | undefined>;
+    /**
+     * A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+     * http '/' match first makes all other routes unused. The structure is documented below.
+     */
     public readonly routes!: pulumi.Output<outputs.AlbVirtualHostRoute[] | undefined>;
 
     /**
@@ -83,12 +134,31 @@ export class AlbVirtualHost extends pulumi.CustomResource {
  * Input properties used for looking up and filtering AlbVirtualHost resources.
  */
 export interface AlbVirtualHostState {
+    /**
+     * A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+     * hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+     */
     authorities?: pulumi.Input<pulumi.Input<string>[]>;
     httpRouterId?: pulumi.Input<string>;
+    /**
+     * Apply the following modifications to the request
+     * headers. The structure is documented below.
+     */
     modifyRequestHeaders?: pulumi.Input<pulumi.Input<inputs.AlbVirtualHostModifyRequestHeader>[]>;
+    /**
+     * Apply the following modifications to the response
+     * headers. The structure is documented below.
+     */
     modifyResponseHeaders?: pulumi.Input<pulumi.Input<inputs.AlbVirtualHostModifyResponseHeader>[]>;
+    /**
+     * name of the route.
+     */
     name?: pulumi.Input<string>;
     routeOptions?: pulumi.Input<inputs.AlbVirtualHostRouteOptions>;
+    /**
+     * A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+     * http '/' match first makes all other routes unused. The structure is documented below.
+     */
     routes?: pulumi.Input<pulumi.Input<inputs.AlbVirtualHostRoute>[]>;
 }
 
@@ -96,11 +166,30 @@ export interface AlbVirtualHostState {
  * The set of arguments for constructing a AlbVirtualHost resource.
  */
 export interface AlbVirtualHostArgs {
+    /**
+     * A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+     * hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+     */
     authorities?: pulumi.Input<pulumi.Input<string>[]>;
     httpRouterId: pulumi.Input<string>;
+    /**
+     * Apply the following modifications to the request
+     * headers. The structure is documented below.
+     */
     modifyRequestHeaders?: pulumi.Input<pulumi.Input<inputs.AlbVirtualHostModifyRequestHeader>[]>;
+    /**
+     * Apply the following modifications to the response
+     * headers. The structure is documented below.
+     */
     modifyResponseHeaders?: pulumi.Input<pulumi.Input<inputs.AlbVirtualHostModifyResponseHeader>[]>;
+    /**
+     * name of the route.
+     */
     name?: pulumi.Input<string>;
     routeOptions?: pulumi.Input<inputs.AlbVirtualHostRouteOptions>;
+    /**
+     * A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+     * http '/' match first makes all other routes unused. The structure is documented below.
+     */
     routes?: pulumi.Input<pulumi.Input<inputs.AlbVirtualHostRoute>[]>;
 }

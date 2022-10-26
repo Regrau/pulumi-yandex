@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class KubernetesClusterMasterRegional
     {
+        /// <summary>
+        /// Array of locations, where master instances will be allocated. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.KubernetesClusterMasterRegionalLocation> Locations;
+        /// <summary>
+        /// (Required) Name of availability region (e.g. "ru-central1"), where master instances will be allocated.
+        /// </summary>
         public readonly string Region;
 
         [OutputConstructor]

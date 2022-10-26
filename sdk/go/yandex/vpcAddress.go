@@ -10,17 +10,100 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a address within the Yandex.Cloud. You can only create a reserved (static) address via this resource. An ephemeral address could be obtained via implicit creation at a compute instance creation only. For more information, see [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/address).
+//
+// * How-to Guides
+//   - [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+//   - [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+//
+// ## Example Usage
+// ### External ipv4 address
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewVpcAddress(ctx, "addr", &yandex.VpcAddressArgs{
+//				ExternalIpv4Address: &VpcAddressExternalIpv4AddressArgs{
+//					ZoneId: pulumi.String("ru-central1-a"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Address with DDoS protection
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewVpcAddress(ctx, "vpnaddr", &yandex.VpcAddressArgs{
+//				ExternalIpv4Address: &VpcAddressExternalIpv4AddressArgs{
+//					DdosProtectionProvider: pulumi.String("qrator"),
+//					ZoneId:                 pulumi.String("ru-central1-a"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Import
+//
+// A address can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/vpcAddress:VpcAddress addr address_id
+//
+// ```
 type VpcAddress struct {
 	pulumi.CustomResourceState
 
-	CreatedAt           pulumi.StringOutput                    `pulumi:"createdAt"`
-	Description         pulumi.StringPtrOutput                 `pulumi:"description"`
+	// Creation timestamp of the key.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// An optional description of this resource. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// spec of IP v4 address
+	// ---
 	ExternalIpv4Address VpcAddressExternalIpv4AddressPtrOutput `pulumi:"externalIpv4Address"`
-	FolderId            pulumi.StringOutput                    `pulumi:"folderId"`
-	Labels              pulumi.StringMapOutput                 `pulumi:"labels"`
-	Name                pulumi.StringOutput                    `pulumi:"name"`
-	Reserved            pulumi.BoolOutput                      `pulumi:"reserved"`
-	Used                pulumi.BoolOutput                      `pulumi:"used"`
+	// ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Labels to apply to this resource. A list of key/value pairs.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the address. Provided by the client when the address is created.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// `false` means that address is ephemeral.
+	Reserved pulumi.BoolOutput `pulumi:"reserved"`
+	// `true` if address is used.
+	Used pulumi.BoolOutput `pulumi:"used"`
 }
 
 // NewVpcAddress registers a new resource with the given unique name, arguments, and options.
@@ -53,25 +136,47 @@ func GetVpcAddress(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcAddress resources.
 type vpcAddressState struct {
-	CreatedAt           *string                        `pulumi:"createdAt"`
-	Description         *string                        `pulumi:"description"`
+	// Creation timestamp of the key.
+	CreatedAt *string `pulumi:"createdAt"`
+	// An optional description of this resource. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// spec of IP v4 address
+	// ---
 	ExternalIpv4Address *VpcAddressExternalIpv4Address `pulumi:"externalIpv4Address"`
-	FolderId            *string                        `pulumi:"folderId"`
-	Labels              map[string]string              `pulumi:"labels"`
-	Name                *string                        `pulumi:"name"`
-	Reserved            *bool                          `pulumi:"reserved"`
-	Used                *bool                          `pulumi:"used"`
+	// ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to apply to this resource. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the address. Provided by the client when the address is created.
+	Name *string `pulumi:"name"`
+	// `false` means that address is ephemeral.
+	Reserved *bool `pulumi:"reserved"`
+	// `true` if address is used.
+	Used *bool `pulumi:"used"`
 }
 
 type VpcAddressState struct {
-	CreatedAt           pulumi.StringPtrInput
-	Description         pulumi.StringPtrInput
+	// Creation timestamp of the key.
+	CreatedAt pulumi.StringPtrInput
+	// An optional description of this resource. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrInput
+	// spec of IP v4 address
+	// ---
 	ExternalIpv4Address VpcAddressExternalIpv4AddressPtrInput
-	FolderId            pulumi.StringPtrInput
-	Labels              pulumi.StringMapInput
-	Name                pulumi.StringPtrInput
-	Reserved            pulumi.BoolPtrInput
-	Used                pulumi.BoolPtrInput
+	// ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to apply to this resource. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the address. Provided by the client when the address is created.
+	Name pulumi.StringPtrInput
+	// `false` means that address is ephemeral.
+	Reserved pulumi.BoolPtrInput
+	// `true` if address is used.
+	Used pulumi.BoolPtrInput
 }
 
 func (VpcAddressState) ElementType() reflect.Type {
@@ -79,20 +184,36 @@ func (VpcAddressState) ElementType() reflect.Type {
 }
 
 type vpcAddressArgs struct {
-	Description         *string                        `pulumi:"description"`
+	// An optional description of this resource. Provide this property when
+	// you create the resource.
+	Description *string `pulumi:"description"`
+	// spec of IP v4 address
+	// ---
 	ExternalIpv4Address *VpcAddressExternalIpv4Address `pulumi:"externalIpv4Address"`
-	FolderId            *string                        `pulumi:"folderId"`
-	Labels              map[string]string              `pulumi:"labels"`
-	Name                *string                        `pulumi:"name"`
+	// ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Labels to apply to this resource. A list of key/value pairs.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the address. Provided by the client when the address is created.
+	Name *string `pulumi:"name"`
 }
 
 // The set of arguments for constructing a VpcAddress resource.
 type VpcAddressArgs struct {
-	Description         pulumi.StringPtrInput
+	// An optional description of this resource. Provide this property when
+	// you create the resource.
+	Description pulumi.StringPtrInput
+	// spec of IP v4 address
+	// ---
 	ExternalIpv4Address VpcAddressExternalIpv4AddressPtrInput
-	FolderId            pulumi.StringPtrInput
-	Labels              pulumi.StringMapInput
-	Name                pulumi.StringPtrInput
+	// ID of the folder that the resource belongs to. If it
+	// is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Labels to apply to this resource. A list of key/value pairs.
+	Labels pulumi.StringMapInput
+	// Name of the address. Provided by the client when the address is created.
+	Name pulumi.StringPtrInput
 }
 
 func (VpcAddressArgs) ElementType() reflect.Type {
@@ -182,34 +303,45 @@ func (o VpcAddressOutput) ToVpcAddressOutputWithContext(ctx context.Context) Vpc
 	return o
 }
 
+// Creation timestamp of the key.
 func (o VpcAddressOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcAddress) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// An optional description of this resource. Provide this property when
+// you create the resource.
 func (o VpcAddressOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcAddress) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// spec of IP v4 address
+// ---
 func (o VpcAddressOutput) ExternalIpv4Address() VpcAddressExternalIpv4AddressPtrOutput {
 	return o.ApplyT(func(v *VpcAddress) VpcAddressExternalIpv4AddressPtrOutput { return v.ExternalIpv4Address }).(VpcAddressExternalIpv4AddressPtrOutput)
 }
 
+// ID of the folder that the resource belongs to. If it
+// is not provided, the default provider folder is used.
 func (o VpcAddressOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcAddress) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Labels to apply to this resource. A list of key/value pairs.
 func (o VpcAddressOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *VpcAddress) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the address. Provided by the client when the address is created.
 func (o VpcAddressOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcAddress) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// `false` means that address is ephemeral.
 func (o VpcAddressOutput) Reserved() pulumi.BoolOutput {
 	return o.ApplyT(func(v *VpcAddress) pulumi.BoolOutput { return v.Reserved }).(pulumi.BoolOutput)
 }
 
+// `true` if address is used.
 func (o VpcAddressOutput) Used() pulumi.BoolOutput {
 	return o.ApplyT(func(v *VpcAddress) pulumi.BoolOutput { return v.Used }).(pulumi.BoolOutput)
 }

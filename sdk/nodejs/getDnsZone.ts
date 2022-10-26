@@ -4,6 +4,21 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a DNS Zone.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const foo = yandex.getDnsZone({
+ *     dnsZoneId: yandex_dns_zone.zone1.id,
+ * });
+ * export const zone = foo.then(foo => foo.zone);
+ * ```
+ */
 export function getDnsZone(args?: GetDnsZoneArgs, opts?: pulumi.InvokeOptions): Promise<GetDnsZoneResult> {
     args = args || {};
     if (!opts) {
@@ -22,8 +37,17 @@ export function getDnsZone(args?: GetDnsZoneArgs, opts?: pulumi.InvokeOptions): 
  * A collection of arguments for invoking getDnsZone.
  */
 export interface GetDnsZoneArgs {
+    /**
+     * The ID of the DNS Zone.
+     */
     dnsZoneId?: string;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * - Name of the DNS Zone.
+     */
     name?: string;
 }
 
@@ -31,18 +55,42 @@ export interface GetDnsZoneArgs {
  * A collection of values returned by getDnsZone.
  */
 export interface GetDnsZoneResult {
+    /**
+     * (Computed) The DNS zone creation timestamp.
+     */
     readonly createdAt: string;
+    /**
+     * (Computed) Description of the DNS zone.
+     */
     readonly description: string;
     readonly dnsZoneId: string;
+    /**
+     * (Computed) The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+     */
     readonly folderId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * (Computed) A set of key/value label pairs to assign to the DNS zone.
+     */
     readonly labels: {[key: string]: string};
+    /**
+     * (Computed) User assigned name of a specific resource. Must be unique within the folder.
+     */
     readonly name: string;
+    /**
+     * (Computed) For privately visible zones, the set of Virtual Private Cloud resources that the zone is visible from.
+     */
     readonly privateNetworks: string[];
+    /**
+     * (Computed) The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+     */
     readonly public: boolean;
+    /**
+     * (Computed) The DNS name of this zone, e.g. "example.com.". Must ends with dot.
+     */
     readonly zone: string;
 }
 
@@ -54,7 +102,16 @@ export function getDnsZoneOutput(args?: GetDnsZoneOutputArgs, opts?: pulumi.Invo
  * A collection of arguments for invoking getDnsZone.
  */
 export interface GetDnsZoneOutputArgs {
+    /**
+     * The ID of the DNS Zone.
+     */
     dnsZoneId?: pulumi.Input<string>;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * - Name of the DNS Zone.
+     */
     name?: pulumi.Input<string>;
 }

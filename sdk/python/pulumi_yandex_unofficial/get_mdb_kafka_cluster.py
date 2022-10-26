@@ -91,6 +91,9 @@ class GetMdbKafkaClusterResult:
     @property
     @pulumi.getter
     def accesses(self) -> Sequence['outputs.GetMdbKafkaClusterAccessResult']:
+        """
+        (Optional) Access policy to the Kafka cluster. The structure is documented below.
+        """
         return pulumi.get(self, "accesses")
 
     @property
@@ -101,11 +104,17 @@ class GetMdbKafkaClusterResult:
     @property
     @pulumi.getter
     def config(self) -> Optional['outputs.GetMdbKafkaClusterConfigResult']:
+        """
+        Configuration of the Kafka cluster. The structure is documented below.
+        """
         return pulumi.get(self, "config")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
@@ -116,11 +125,17 @@ class GetMdbKafkaClusterResult:
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        Description of the Kafka cluster.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def environment(self) -> str:
+        """
+        Deployment environment of the Kafka cluster.
+        """
         return pulumi.get(self, "environment")
 
     @property
@@ -131,16 +146,25 @@ class GetMdbKafkaClusterResult:
     @property
     @pulumi.getter
     def health(self) -> str:
+        """
+        Health of the host.
+        """
         return pulumi.get(self, "health")
 
     @property
     @pulumi.getter(name="hostGroupIds")
     def host_group_ids(self) -> Sequence[str]:
+        """
+        A list of IDs of the host groups hosting VMs of the cluster.
+        """
         return pulumi.get(self, "host_group_ids")
 
     @property
     @pulumi.getter
     def hosts(self) -> Sequence['outputs.GetMdbKafkaClusterHostResult']:
+        """
+        A host of the Kafka cluster. The structure is documented below.
+        """
         return pulumi.get(self, "hosts")
 
     @property
@@ -154,31 +178,49 @@ class GetMdbKafkaClusterResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A set of key/value label pairs to assign to the Kafka cluster.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="maintenanceWindows")
     def maintenance_windows(self) -> Sequence['outputs.GetMdbKafkaClusterMaintenanceWindowResult']:
+        """
+        Maintenance window settings of the Kafka cluster. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_windows")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        The fully qualified domain name of the host.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> str:
+        """
+        ID of the network, to which the Kafka cluster belongs.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Sequence[str]:
+        """
+        A list of security groups IDs of the Kafka cluster.
+        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        Status of the cluster.
+        """
         return pulumi.get(self, "status")
 
     @property
@@ -189,11 +231,17 @@ class GetMdbKafkaClusterResult:
     @property
     @pulumi.getter
     def topics(self) -> Optional[Sequence['outputs.GetMdbKafkaClusterTopicResult']]:
+        """
+        A topic of the Kafka cluster. The structure is documented below.
+        """
         return pulumi.get(self, "topics")
 
     @property
     @pulumi.getter
     def users(self) -> Optional[Sequence['outputs.GetMdbKafkaClusterUserResult']]:
+        """
+        A user of the Kafka cluster. The structure is documented below.
+        """
         return pulumi.get(self, "users")
 
 
@@ -236,7 +284,26 @@ def get_mdb_kafka_cluster(cluster_id: Optional[str] = None,
                           users: Optional[Sequence[pulumi.InputType['GetMdbKafkaClusterUserArgs']]] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMdbKafkaClusterResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed Kafka cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_kafka_cluster(name="test")
+    pulumi.export("networkId", foo.network_id)
+    ```
+
+
+    :param str cluster_id: The ID of the Kafka cluster.
+    :param pulumi.InputType['GetMdbKafkaClusterConfigArgs'] config: Configuration of the Kafka cluster. The structure is documented below.
+    :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+    :param str name: The name of the Kafka cluster.
+    :param Sequence[pulumi.InputType['GetMdbKafkaClusterTopicArgs']] topics: A topic of the Kafka cluster. The structure is documented below.
+    :param Sequence[pulumi.InputType['GetMdbKafkaClusterUserArgs']] users: A user of the Kafka cluster. The structure is documented below.
     """
     __args__ = dict()
     __args__['clusterId'] = cluster_id
@@ -285,6 +352,25 @@ def get_mdb_kafka_cluster_output(cluster_id: Optional[pulumi.Input[Optional[str]
                                  users: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetMdbKafkaClusterUserArgs']]]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMdbKafkaClusterResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Managed Kafka cluster. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts).
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_yandex as yandex
+
+    foo = yandex.get_mdb_kafka_cluster(name="test")
+    pulumi.export("networkId", foo.network_id)
+    ```
+
+
+    :param str cluster_id: The ID of the Kafka cluster.
+    :param pulumi.InputType['GetMdbKafkaClusterConfigArgs'] config: Configuration of the Kafka cluster. The structure is documented below.
+    :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+    :param str name: The name of the Kafka cluster.
+    :param Sequence[pulumi.InputType['GetMdbKafkaClusterTopicArgs']] topics: A topic of the Kafka cluster. The structure is documented below.
+    :param Sequence[pulumi.InputType['GetMdbKafkaClusterUserArgs']] users: A user of the Kafka cluster. The structure is documented below.
     """
     ...

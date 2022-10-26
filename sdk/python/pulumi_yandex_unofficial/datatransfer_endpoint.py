@@ -23,6 +23,11 @@ class DatatransferEndpointArgs:
                  settings: Optional[pulumi.Input['DatatransferEndpointSettingsArgs']] = None):
         """
         The set of arguments for constructing a DatatransferEndpoint resource.
+        :param pulumi.Input[str] description: Arbitrary description text for the endpoint.
+        :param pulumi.Input[str] folder_id: ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Transfer endpoint.
+        :param pulumi.Input[str] name: Name of the endpoint.
+        :param pulumi.Input['DatatransferEndpointSettingsArgs'] settings: Settings for the endpoint. The structure is documented below.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -38,6 +43,9 @@ class DatatransferEndpointArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Arbitrary description text for the endpoint.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -47,6 +55,9 @@ class DatatransferEndpointArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -56,6 +67,9 @@ class DatatransferEndpointArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Data Transfer endpoint.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -65,6 +79,9 @@ class DatatransferEndpointArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the endpoint.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -74,6 +91,9 @@ class DatatransferEndpointArgs:
     @property
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsArgs']]:
+        """
+        Settings for the endpoint. The structure is documented below.
+        """
         return pulumi.get(self, "settings")
 
     @settings.setter
@@ -91,6 +111,11 @@ class _DatatransferEndpointState:
                  settings: Optional[pulumi.Input['DatatransferEndpointSettingsArgs']] = None):
         """
         Input properties used for looking up and filtering DatatransferEndpoint resources.
+        :param pulumi.Input[str] description: Arbitrary description text for the endpoint.
+        :param pulumi.Input[str] folder_id: ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Transfer endpoint.
+        :param pulumi.Input[str] name: Name of the endpoint.
+        :param pulumi.Input['DatatransferEndpointSettingsArgs'] settings: Settings for the endpoint. The structure is documented below.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -106,6 +131,9 @@ class _DatatransferEndpointState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Arbitrary description text for the endpoint.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -115,6 +143,9 @@ class _DatatransferEndpointState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -124,6 +155,9 @@ class _DatatransferEndpointState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Data Transfer endpoint.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -133,6 +167,9 @@ class _DatatransferEndpointState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the endpoint.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -142,6 +179,9 @@ class _DatatransferEndpointState:
     @property
     @pulumi.getter
     def settings(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsArgs']]:
+        """
+        Settings for the endpoint. The structure is documented below.
+        """
         return pulumi.get(self, "settings")
 
     @settings.setter
@@ -161,9 +201,61 @@ class DatatransferEndpoint(pulumi.CustomResource):
                  settings: Optional[pulumi.Input[pulumi.InputType['DatatransferEndpointSettingsArgs']]] = None,
                  __props__=None):
         """
-        Create a DatatransferEndpoint resource with the given unique name, props, and options.
+        Manages a Data Transfer endpoint. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-transfer/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        pg_source = yandex.DatatransferEndpoint("pgSource", settings=yandex.DatatransferEndpointSettingsArgs(
+            postgres_source=yandex.DatatransferEndpointSettingsPostgresSourceArgs(
+                connection=yandex.DatatransferEndpointSettingsPostgresSourceConnectionArgs(
+                    on_premise=yandex.DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs(
+                        hosts=["example.org"],
+                        port=5432,
+                    ),
+                ),
+                database="db1",
+                password=yandex.DatatransferEndpointSettingsPostgresSourcePasswordArgs(
+                    raw="123",
+                ),
+                slot_gigabyte_lag_limit=100,
+                user="user1",
+            ),
+        ))
+        pg_target = yandex.DatatransferEndpoint("pgTarget",
+            folder_id="some_folder_id",
+            settings=yandex.DatatransferEndpointSettingsArgs(
+                postgres_target=yandex.DatatransferEndpointSettingsPostgresTargetArgs(
+                    connection=yandex.DatatransferEndpointSettingsPostgresTargetConnectionArgs(
+                        mdb_cluster_id="some_cluster_id",
+                    ),
+                    database="db2",
+                    password=yandex.DatatransferEndpointSettingsPostgresTargetPasswordArgs(
+                        raw="321",
+                    ),
+                    user="user2",
+                ),
+            ))
+        ```
+
+        ## Import
+
+        An endpoint can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/datatransferEndpoint:DatatransferEndpoint foo endpoint_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Arbitrary description text for the endpoint.
+        :param pulumi.Input[str] folder_id: ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Transfer endpoint.
+        :param pulumi.Input[str] name: Name of the endpoint.
+        :param pulumi.Input[pulumi.InputType['DatatransferEndpointSettingsArgs']] settings: Settings for the endpoint. The structure is documented below.
         """
         ...
     @overload
@@ -172,7 +264,54 @@ class DatatransferEndpoint(pulumi.CustomResource):
                  args: Optional[DatatransferEndpointArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a DatatransferEndpoint resource with the given unique name, props, and options.
+        Manages a Data Transfer endpoint. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-transfer/).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        pg_source = yandex.DatatransferEndpoint("pgSource", settings=yandex.DatatransferEndpointSettingsArgs(
+            postgres_source=yandex.DatatransferEndpointSettingsPostgresSourceArgs(
+                connection=yandex.DatatransferEndpointSettingsPostgresSourceConnectionArgs(
+                    on_premise=yandex.DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs(
+                        hosts=["example.org"],
+                        port=5432,
+                    ),
+                ),
+                database="db1",
+                password=yandex.DatatransferEndpointSettingsPostgresSourcePasswordArgs(
+                    raw="123",
+                ),
+                slot_gigabyte_lag_limit=100,
+                user="user1",
+            ),
+        ))
+        pg_target = yandex.DatatransferEndpoint("pgTarget",
+            folder_id="some_folder_id",
+            settings=yandex.DatatransferEndpointSettingsArgs(
+                postgres_target=yandex.DatatransferEndpointSettingsPostgresTargetArgs(
+                    connection=yandex.DatatransferEndpointSettingsPostgresTargetConnectionArgs(
+                        mdb_cluster_id="some_cluster_id",
+                    ),
+                    database="db2",
+                    password=yandex.DatatransferEndpointSettingsPostgresTargetPasswordArgs(
+                        raw="321",
+                    ),
+                    user="user2",
+                ),
+            ))
+        ```
+
+        ## Import
+
+        An endpoint can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/datatransferEndpoint:DatatransferEndpoint foo endpoint_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param DatatransferEndpointArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -229,6 +368,11 @@ class DatatransferEndpoint(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Arbitrary description text for the endpoint.
+        :param pulumi.Input[str] folder_id: ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Transfer endpoint.
+        :param pulumi.Input[str] name: Name of the endpoint.
+        :param pulumi.Input[pulumi.InputType['DatatransferEndpointSettingsArgs']] settings: Settings for the endpoint. The structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -244,25 +388,40 @@ class DatatransferEndpoint(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[str]:
+        """
+        Arbitrary description text for the endpoint.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        A set of key/value label pairs to assign to the Data Transfer endpoint.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the endpoint.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def settings(self) -> pulumi.Output['outputs.DatatransferEndpointSettings']:
+        """
+        Settings for the endpoint. The structure is documented below.
+        """
         return pulumi.get(self, "settings")
 

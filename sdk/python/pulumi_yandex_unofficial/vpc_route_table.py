@@ -24,6 +24,14 @@ class VpcRouteTableArgs:
                  static_routes: Optional[pulumi.Input[Sequence[pulumi.Input['VpcRouteTableStaticRouteArgs']]]] = None):
         """
         The set of arguments for constructing a VpcRouteTable resource.
+        :param pulumi.Input[str] network_id: ID of the network this route table belongs to.
+        :param pulumi.Input[str] description: An optional description of the route table. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this route table. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the route table. Provided by the client when the route table is created.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcRouteTableStaticRouteArgs']]] static_routes: A list of static route records for the route table. The structure is documented below.
         """
         pulumi.set(__self__, "network_id", network_id)
         if description is not None:
@@ -40,6 +48,9 @@ class VpcRouteTableArgs:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Input[str]:
+        """
+        ID of the network this route table belongs to.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -49,6 +60,10 @@ class VpcRouteTableArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of the route table. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -58,6 +73,10 @@ class VpcRouteTableArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder to which the resource belongs.
+        If omitted, the provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -67,6 +86,9 @@ class VpcRouteTableArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this route table. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -76,6 +98,9 @@ class VpcRouteTableArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the route table. Provided by the client when the route table is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -85,6 +110,9 @@ class VpcRouteTableArgs:
     @property
     @pulumi.getter(name="staticRoutes")
     def static_routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcRouteTableStaticRouteArgs']]]]:
+        """
+        A list of static route records for the route table. The structure is documented below.
+        """
         return pulumi.get(self, "static_routes")
 
     @static_routes.setter
@@ -104,6 +132,15 @@ class _VpcRouteTableState:
                  static_routes: Optional[pulumi.Input[Sequence[pulumi.Input['VpcRouteTableStaticRouteArgs']]]] = None):
         """
         Input properties used for looking up and filtering VpcRouteTable resources.
+        :param pulumi.Input[str] created_at: Creation timestamp of the route table.
+        :param pulumi.Input[str] description: An optional description of the route table. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this route table. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the route table. Provided by the client when the route table is created.
+        :param pulumi.Input[str] network_id: ID of the network this route table belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input['VpcRouteTableStaticRouteArgs']]] static_routes: A list of static route records for the route table. The structure is documented below.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -123,6 +160,9 @@ class _VpcRouteTableState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the route table.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -132,6 +172,10 @@ class _VpcRouteTableState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of the route table. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -141,6 +185,10 @@ class _VpcRouteTableState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder to which the resource belongs.
+        If omitted, the provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -150,6 +198,9 @@ class _VpcRouteTableState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this route table. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -159,6 +210,9 @@ class _VpcRouteTableState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the route table. Provided by the client when the route table is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -168,6 +222,9 @@ class _VpcRouteTableState:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the network this route table belongs to.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -177,6 +234,9 @@ class _VpcRouteTableState:
     @property
     @pulumi.getter(name="staticRoutes")
     def static_routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VpcRouteTableStaticRouteArgs']]]]:
+        """
+        A list of static route records for the route table. The structure is documented below.
+        """
         return pulumi.get(self, "static_routes")
 
     @static_routes.setter
@@ -197,9 +257,30 @@ class VpcRouteTable(pulumi.CustomResource):
                  static_routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcRouteTableStaticRouteArgs']]]]] = None,
                  __props__=None):
         """
-        Create a VpcRouteTable resource with the given unique name, props, and options.
+        Manages a route table within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/vpc/concepts).
+
+        * How-to Guides
+            * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+
+        ## Import
+
+        A route table can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/vpcRouteTable:VpcRouteTable default route_table_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: An optional description of the route table. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this route table. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the route table. Provided by the client when the route table is created.
+        :param pulumi.Input[str] network_id: ID of the network this route table belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcRouteTableStaticRouteArgs']]]] static_routes: A list of static route records for the route table. The structure is documented below.
         """
         ...
     @overload
@@ -208,7 +289,20 @@ class VpcRouteTable(pulumi.CustomResource):
                  args: VpcRouteTableArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a VpcRouteTable resource with the given unique name, props, and options.
+        Manages a route table within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/vpc/concepts).
+
+        * How-to Guides
+            * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+
+        ## Import
+
+        A route table can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/vpcRouteTable:VpcRouteTable default route_table_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param VpcRouteTableArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -272,6 +366,15 @@ class VpcRouteTable(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: Creation timestamp of the route table.
+        :param pulumi.Input[str] description: An optional description of the route table. Provide this property when
+               you create the resource.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this route table. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the route table. Provided by the client when the route table is created.
+        :param pulumi.Input[str] network_id: ID of the network this route table belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpcRouteTableStaticRouteArgs']]]] static_routes: A list of static route records for the route table. The structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -289,35 +392,58 @@ class VpcRouteTable(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the route table.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        An optional description of the route table. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder to which the resource belongs.
+        If omitted, the provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        Labels to assign to this route table. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the route table. Provided by the client when the route table is created.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[str]:
+        """
+        ID of the network this route table belongs to.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="staticRoutes")
     def static_routes(self) -> pulumi.Output[Optional[Sequence['outputs.VpcRouteTableStaticRoute']]]:
+        """
+        A list of static route records for the route table. The structure is documented below.
+        """
         return pulumi.get(self, "static_routes")
 

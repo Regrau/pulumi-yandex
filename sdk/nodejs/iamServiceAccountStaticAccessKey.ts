@@ -4,6 +4,27 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows management of [Yandex.Cloud IAM service account static access keys](https://cloud.yandex.com/docs/iam/operations/sa/create-access-key).
+ * Generated pair of keys is used to access [Yandex Object Storage](https://cloud.yandex.com/docs/storage) on behalf of service account.
+ *
+ * Before using keys do not forget to [assign a proper role](https://cloud.yandex.com/docs/iam/operations/sa/assign-role-for-sa) to the service account.
+ *
+ * ## Example Usage
+ *
+ * This snippet creates a service account static access key.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const sa_static_key = new yandex.IamServiceAccountStaticAccessKey("sa-static-key", {
+ *     description: "static access key for object storage",
+ *     pgpKey: "keybase:keybaseusername",
+ *     serviceAccountId: "some_sa_id",
+ * });
+ * ```
+ */
 export class IamServiceAccountStaticAccessKey extends pulumi.CustomResource {
     /**
      * Get an existing IamServiceAccountStaticAccessKey resource's state with the given name, ID, and optional extra
@@ -32,13 +53,37 @@ export class IamServiceAccountStaticAccessKey extends pulumi.CustomResource {
         return obj['__pulumiType'] === IamServiceAccountStaticAccessKey.__pulumiType;
     }
 
+    /**
+     * ID of the static access key.
+     */
     public /*out*/ readonly accessKey!: pulumi.Output<string>;
+    /**
+     * Creation timestamp of the static access key.
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * The description of the service account static key.
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * The encrypted secret, base64 encoded. This is only populated when `pgpKey` is supplied.
+     */
     public /*out*/ readonly encryptedSecretKey!: pulumi.Output<string>;
+    /**
+     * The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgpKey` is supplied.
+     */
     public /*out*/ readonly keyFingerprint!: pulumi.Output<string>;
+    /**
+     * An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+     */
     public readonly pgpKey!: pulumi.Output<string | undefined>;
+    /**
+     * Private part of generated static access key. This is only populated when no `pgpKey` is provided.
+     */
     public /*out*/ readonly secretKey!: pulumi.Output<string>;
+    /**
+     * ID of the service account which is used to get a static key.
+     */
     public readonly serviceAccountId!: pulumi.Output<string>;
 
     /**
@@ -85,13 +130,37 @@ export class IamServiceAccountStaticAccessKey extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IamServiceAccountStaticAccessKey resources.
  */
 export interface IamServiceAccountStaticAccessKeyState {
+    /**
+     * ID of the static access key.
+     */
     accessKey?: pulumi.Input<string>;
+    /**
+     * Creation timestamp of the static access key.
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * The description of the service account static key.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The encrypted secret, base64 encoded. This is only populated when `pgpKey` is supplied.
+     */
     encryptedSecretKey?: pulumi.Input<string>;
+    /**
+     * The fingerprint of the PGP key used to encrypt the secret key. This is only populated when `pgpKey` is supplied.
+     */
     keyFingerprint?: pulumi.Input<string>;
+    /**
+     * An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+     */
     pgpKey?: pulumi.Input<string>;
+    /**
+     * Private part of generated static access key. This is only populated when no `pgpKey` is provided.
+     */
     secretKey?: pulumi.Input<string>;
+    /**
+     * ID of the service account which is used to get a static key.
+     */
     serviceAccountId?: pulumi.Input<string>;
 }
 
@@ -99,7 +168,16 @@ export interface IamServiceAccountStaticAccessKeyState {
  * The set of arguments for constructing a IamServiceAccountStaticAccessKey resource.
  */
 export interface IamServiceAccountStaticAccessKeyArgs {
+    /**
+     * The description of the service account static key.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * An optional PGP key to encrypt the resulting secret key material. May either be a base64-encoded public key or a keybase username in the form `keybase:keybaseusername`.
+     */
     pgpKey?: pulumi.Input<string>;
+    /**
+     * ID of the service account which is used to get a static key.
+     */
     serviceAccountId: pulumi.Input<string>;
 }

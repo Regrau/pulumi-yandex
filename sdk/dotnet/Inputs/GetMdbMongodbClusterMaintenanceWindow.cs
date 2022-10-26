@@ -12,12 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbMongodbClusterMaintenanceWindowArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        /// </summary>
         [Input("day")]
         public string? Day { get; set; }
 
+        /// <summary>
+        /// Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+        /// </summary>
         [Input("hour")]
         public int? Hour { get; set; }
 
+        /// <summary>
+        /// Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        /// </summary>
         [Input("type")]
         public string? Type { get; set; }
 

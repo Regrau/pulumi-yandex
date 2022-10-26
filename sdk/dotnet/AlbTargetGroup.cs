@@ -9,24 +9,85 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Creates a target group in the specified folder and adds the specified targets to it.
+    /// For more information, see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/target-group).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var foo = new Yandex.AlbTargetGroup("foo", new()
+    ///     {
+    ///         Targets = new[]
+    ///         {
+    ///             new Yandex.Inputs.AlbTargetGroupTargetArgs
+    ///             {
+    ///                 IpAddress = yandex_compute_instance.My_instance_1.Network_interface[0].Ip_address,
+    ///                 SubnetId = yandex_vpc_subnet.My_subnet.Id,
+    ///             },
+    ///             new Yandex.Inputs.AlbTargetGroupTargetArgs
+    ///             {
+    ///                 IpAddress = yandex_compute_instance.My_instance_2.Network_interface[0].Ip_address,
+    ///                 SubnetId = yandex_vpc_subnet.My_subnet.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// A target group can be imported using the `id` of the resource, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/albTargetGroup:AlbTargetGroup default target_group_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/albTargetGroup:AlbTargetGroup")]
     public partial class AlbTargetGroup : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// The target group creation timestamp.
+        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        /// <summary>
+        /// An optional description of the target group. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// The ID of the folder to which the resource belongs.
+        /// If omitted, the provider folder is used.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// Labels to assign to this target group. A list of key/value pairs.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the target group. Provided by the client when the target group is created.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// A Target resource. The structure is documented below.
+        /// </summary>
         [Output("targets")]
         public Output<ImmutableArray<Outputs.AlbTargetGroupTarget>> Targets { get; private set; } = null!;
 
@@ -53,7 +114,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -77,25 +138,44 @@ namespace Pulumi.Yandex
 
     public sealed class AlbTargetGroupArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// An optional description of the target group. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The ID of the folder to which the resource belongs.
+        /// If omitted, the provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this target group. A list of key/value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the target group. Provided by the client when the target group is created.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("targets")]
         private InputList<Inputs.AlbTargetGroupTargetArgs>? _targets;
+
+        /// <summary>
+        /// A Target resource. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbTargetGroupTargetArgs> Targets
         {
             get => _targets ?? (_targets = new InputList<Inputs.AlbTargetGroupTargetArgs>());
@@ -110,28 +190,50 @@ namespace Pulumi.Yandex
 
     public sealed class AlbTargetGroupState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The target group creation timestamp.
+        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
+        /// <summary>
+        /// An optional description of the target group. Provide this property when
+        /// you create the resource.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// The ID of the folder to which the resource belongs.
+        /// If omitted, the provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to assign to this target group. A list of key/value pairs.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the target group. Provided by the client when the target group is created.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         [Input("targets")]
         private InputList<Inputs.AlbTargetGroupTargetGetArgs>? _targets;
+
+        /// <summary>
+        /// A Target resource. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.AlbTargetGroupTargetGetArgs> Targets
         {
             get => _targets ?? (_targets = new InputList<Inputs.AlbTargetGroupTargetGetArgs>());

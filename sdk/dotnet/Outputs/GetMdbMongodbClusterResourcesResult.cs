@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbMongodbClusterResourcesResult
     {
+        /// <summary>
+        /// Volume of the storage available to a host, in gigabytes.
+        /// </summary>
         public readonly int? DiskSize;
+        /// <summary>
+        /// The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        /// </summary>
         public readonly string? DiskTypeId;
         public readonly string? ResourcePresetId;
 

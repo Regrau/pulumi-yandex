@@ -12,14 +12,24 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class KubernetesNodeGroupMaintenancePolicyGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Boolean flag that specifies if node group can be repaired automatically. When omitted, default value is TRUE.
+        /// </summary>
         [Input("autoRepair", required: true)]
         public Input<bool> AutoRepair { get; set; } = null!;
 
+        /// <summary>
+        /// Boolean flag that specifies if node group can be upgraded automatically. When omitted, default value is TRUE.
+        /// </summary>
         [Input("autoUpgrade", required: true)]
         public Input<bool> AutoUpgrade { get; set; } = null!;
 
         [Input("maintenanceWindows")]
         private InputList<Inputs.KubernetesNodeGroupMaintenancePolicyMaintenanceWindowGetArgs>? _maintenanceWindows;
+
+        /// <summary>
+        /// (Computed) Set of day intervals, when maintenance is allowed for this node group. When omitted, it defaults to any time.
+        /// </summary>
         public InputList<Inputs.KubernetesNodeGroupMaintenancePolicyMaintenanceWindowGetArgs> MaintenanceWindows
         {
             get => _maintenanceWindows ?? (_maintenanceWindows = new InputList<Inputs.KubernetesNodeGroupMaintenancePolicyMaintenanceWindowGetArgs>());

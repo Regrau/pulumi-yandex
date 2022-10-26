@@ -11,9 +11,51 @@ namespace Pulumi.Yandex
 {
     public static class GetLbTargetGroup
     {
+        /// <summary>
+        /// Get information about a Yandex Load Balancer target group. For more information, see
+        /// [Yandex.Cloud Load Balancer](https://cloud.yandex.com/docs/load-balancer/quickstart).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetLbTargetGroup.Invoke(new()
+        ///     {
+        ///         TargetGroupId = "my-target-group-id",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [Load Balancer Target Groups] that can be used by other resources.
+        /// </summary>
         public static Task<GetLbTargetGroupResult> InvokeAsync(GetLbTargetGroupArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.InvokeAsync<GetLbTargetGroupResult>("yandex:index/getLbTargetGroup:getLbTargetGroup", args ?? new GetLbTargetGroupArgs(), options.WithDefaults());
 
+        /// <summary>
+        /// Get information about a Yandex Load Balancer target group. For more information, see
+        /// [Yandex.Cloud Load Balancer](https://cloud.yandex.com/docs/load-balancer/quickstart).
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Yandex = Pulumi.Yandex;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var foo = Yandex.GetLbTargetGroup.Invoke(new()
+        ///     {
+        ///         TargetGroupId = "my-target-group-id",
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// 
+        /// This data source is used to define [Load Balancer Target Groups] that can be used by other resources.
+        /// </summary>
         public static Output<GetLbTargetGroupResult> Invoke(GetLbTargetGroupInvokeArgs? args = null, InvokeOptions? options = null)
             => Pulumi.Deployment.Instance.Invoke<GetLbTargetGroupResult>("yandex:index/getLbTargetGroup:getLbTargetGroup", args ?? new GetLbTargetGroupInvokeArgs(), options.WithDefaults());
     }
@@ -21,12 +63,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetLbTargetGroupArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        /// <summary>
+        /// - Name of the Target Group.
+        /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// Target Group ID.
+        /// </summary>
         [Input("targetGroupId")]
         public string? TargetGroupId { get; set; }
 
@@ -38,12 +89,21 @@ namespace Pulumi.Yandex
 
     public sealed class GetLbTargetGroupInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        /// <summary>
+        /// - Name of the Target Group.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Target Group ID.
+        /// </summary>
         [Input("targetGroupId")]
         public Input<string>? TargetGroupId { get; set; }
 
@@ -57,13 +117,24 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetLbTargetGroupResult
     {
+        /// <summary>
+        /// Creation timestamp of this target group.
+        /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// Description of the target group.
+        /// </summary>
         public readonly string Description;
         public readonly string FolderId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Labels to assign to this target group.
+        /// * `target.0.address` - IP address of the target.
+        /// * `target.0.subnet_id` - ID of the subnet that targets are connected to.
+        /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
         public readonly string Name;
         public readonly string TargetGroupId;

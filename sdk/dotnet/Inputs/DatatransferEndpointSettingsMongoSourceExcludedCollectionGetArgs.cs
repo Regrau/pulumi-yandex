@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsMongoSourceExcludedCollectionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Collection name.
+        /// </summary>
         [Input("collectionName")]
         public Input<string>? CollectionName { get; set; }
 
+        /// <summary>
+        /// Database name.
+        /// </summary>
         [Input("databaseName")]
         public Input<string>? DatabaseName { get; set; }
 

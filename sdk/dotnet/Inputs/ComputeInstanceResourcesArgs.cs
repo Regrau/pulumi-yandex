@@ -12,15 +12,24 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class ComputeInstanceResourcesArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If provided, specifies baseline performance for a core as a percent.
+        /// </summary>
         [Input("coreFraction")]
         public Input<int>? CoreFraction { get; set; }
 
+        /// <summary>
+        /// CPU cores for the instance.
+        /// </summary>
         [Input("cores", required: true)]
         public Input<int> Cores { get; set; } = null!;
 
         [Input("gpus")]
         public Input<int>? Gpus { get; set; }
 
+        /// <summary>
+        /// Memory size in GB.
+        /// </summary>
         [Input("memory", required: true)]
         public Input<double> Memory { get; set; } = null!;
 

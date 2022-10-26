@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeInstancePlacementPolicy
     {
+        /// <summary>
+        /// List of host affinity rules. The structure is documented below.
+        /// </summary>
         public readonly ImmutableArray<Outputs.ComputeInstancePlacementPolicyHostAffinityRule> HostAffinityRules;
+        /// <summary>
+        /// Specifies the id of the Placement Group to assign to the instance.
+        /// </summary>
         public readonly string? PlacementGroupId;
 
         [OutputConstructor]

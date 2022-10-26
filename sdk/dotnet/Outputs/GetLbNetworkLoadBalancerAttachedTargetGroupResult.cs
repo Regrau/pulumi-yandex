@@ -14,6 +14,17 @@ namespace Pulumi.Yandex.Outputs
     public sealed class GetLbNetworkLoadBalancerAttachedTargetGroupResult
     {
         public readonly ImmutableArray<Outputs.GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckResult> Healthchecks;
+        /// <summary>
+        /// ID of the target group that attached to the network load balancer.
+        /// * `healthcheck.0.name` - Name of the health check.
+        /// * `healthcheck.0.interval` - The interval between health checks.
+        /// * `healthcheck.0.timeout` - Timeout for a target to return a response for the health check.
+        /// * `healthcheck.0.unhealthy_threshold` - Number of failed health checks before changing the status to `UNHEALTHY`.
+        /// * `healthcheck.0.healthy_threshold` - Number of successful health checks required in order to set the `HEALTHY` status for the target.
+        /// * `healthcheck.0.tcp_options.0.port` - Port to use for TCP health checks.
+        /// * `healthcheck.0.http_options.0.port` - Port to use for HTTP health checks.
+        /// * `healthcheck.0.http_options.0.path` - URL path to use for HTTP health checks.
+        /// </summary>
         public readonly string TargetGroupId;
 
         [OutputConstructor]

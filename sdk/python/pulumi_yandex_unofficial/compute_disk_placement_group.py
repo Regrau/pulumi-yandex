@@ -21,6 +21,11 @@ class ComputeDiskPlacementGroupArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ComputeDiskPlacementGroup resource.
+        :param pulumi.Input[str] description: A description of the Disk Placement Group.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Disk Placement Group.
+        :param pulumi.Input[str] name: The name of the Disk Placement Group.
+        :param pulumi.Input[str] zone: ID of the zone where the Disk Placement Group resides.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -36,6 +41,9 @@ class ComputeDiskPlacementGroupArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the Disk Placement Group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -45,6 +53,9 @@ class ComputeDiskPlacementGroupArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -54,6 +65,9 @@ class ComputeDiskPlacementGroupArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Disk Placement Group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -63,6 +77,9 @@ class ComputeDiskPlacementGroupArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Disk Placement Group.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -72,6 +89,9 @@ class ComputeDiskPlacementGroupArgs:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the zone where the Disk Placement Group resides.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -91,6 +111,12 @@ class _ComputeDiskPlacementGroupState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ComputeDiskPlacementGroup resources.
+        :param pulumi.Input[str] description: A description of the Disk Placement Group.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Disk Placement Group.
+        :param pulumi.Input[str] name: The name of the Disk Placement Group.
+        :param pulumi.Input[str] status: Status of the Disk Placement Group.
+        :param pulumi.Input[str] zone: ID of the zone where the Disk Placement Group resides.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -119,6 +145,9 @@ class _ComputeDiskPlacementGroupState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the Disk Placement Group.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -128,6 +157,9 @@ class _ComputeDiskPlacementGroupState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -137,6 +169,9 @@ class _ComputeDiskPlacementGroupState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Disk Placement Group.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -146,6 +181,9 @@ class _ComputeDiskPlacementGroupState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Disk Placement Group.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -155,6 +193,9 @@ class _ComputeDiskPlacementGroupState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Status of the Disk Placement Group.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -164,6 +205,9 @@ class _ComputeDiskPlacementGroupState:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the zone where the Disk Placement Group resides.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -183,9 +227,27 @@ class ComputeDiskPlacementGroup(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ComputeDiskPlacementGroup resource with the given unique name, props, and options.
+        A Disk Placement Group resource. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/compute/concepts/disk#nr-disks).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        group1 = yandex.ComputeDiskPlacementGroup("group1",
+            description="my description",
+            folder_id="abc*********123")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: A description of the Disk Placement Group.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Disk Placement Group.
+        :param pulumi.Input[str] name: The name of the Disk Placement Group.
+        :param pulumi.Input[str] zone: ID of the zone where the Disk Placement Group resides.
         """
         ...
     @overload
@@ -194,7 +256,20 @@ class ComputeDiskPlacementGroup(pulumi.CustomResource):
                  args: Optional[ComputeDiskPlacementGroupArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ComputeDiskPlacementGroup resource with the given unique name, props, and options.
+        A Disk Placement Group resource. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/compute/concepts/disk#nr-disks).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        group1 = yandex.ComputeDiskPlacementGroup("group1",
+            description="my description",
+            folder_id="abc*********123")
+        ```
+
         :param str resource_name: The name of the resource.
         :param ComputeDiskPlacementGroupArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -255,6 +330,12 @@ class ComputeDiskPlacementGroup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: A description of the Disk Placement Group.
+        :param pulumi.Input[str] folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Disk Placement Group.
+        :param pulumi.Input[str] name: The name of the Disk Placement Group.
+        :param pulumi.Input[str] status: Status of the Disk Placement Group.
+        :param pulumi.Input[str] zone: ID of the zone where the Disk Placement Group resides.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -277,30 +358,48 @@ class ComputeDiskPlacementGroup(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        A description of the Disk Placement Group.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the Disk Placement Group.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The name of the Disk Placement Group.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        Status of the Disk Placement Group.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def zone(self) -> pulumi.Output[Optional[str]]:
+        """
+        ID of the zone where the Disk Placement Group resides.
+        """
         return pulumi.get(self, "zone")
 

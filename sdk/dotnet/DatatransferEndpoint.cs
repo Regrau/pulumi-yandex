@@ -9,21 +9,108 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
+    /// <summary>
+    /// Manages a Data Transfer endpoint. For more information, see [the official documentation](https://cloud.yandex.com/docs/data-transfer/).
+    /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var pgSource = new Yandex.DatatransferEndpoint("pgSource", new()
+    ///     {
+    ///         Settings = new Yandex.Inputs.DatatransferEndpointSettingsArgs
+    ///         {
+    ///             PostgresSource = new Yandex.Inputs.DatatransferEndpointSettingsPostgresSourceArgs
+    ///             {
+    ///                 Connection = new Yandex.Inputs.DatatransferEndpointSettingsPostgresSourceConnectionArgs
+    ///                 {
+    ///                     OnPremise = new Yandex.Inputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs
+    ///                     {
+    ///                         Hosts = new[]
+    ///                         {
+    ///                             "example.org",
+    ///                         },
+    ///                         Port = 5432,
+    ///                     },
+    ///                 },
+    ///                 Database = "db1",
+    ///                 Password = new Yandex.Inputs.DatatransferEndpointSettingsPostgresSourcePasswordArgs
+    ///                 {
+    ///                     Raw = "123",
+    ///                 },
+    ///                 SlotGigabyteLagLimit = 100,
+    ///                 User = "user1",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    ///     var pgTarget = new Yandex.DatatransferEndpoint("pgTarget", new()
+    ///     {
+    ///         FolderId = "some_folder_id",
+    ///         Settings = new Yandex.Inputs.DatatransferEndpointSettingsArgs
+    ///         {
+    ///             PostgresTarget = new Yandex.Inputs.DatatransferEndpointSettingsPostgresTargetArgs
+    ///             {
+    ///                 Connection = new Yandex.Inputs.DatatransferEndpointSettingsPostgresTargetConnectionArgs
+    ///                 {
+    ///                     MdbClusterId = "some_cluster_id",
+    ///                 },
+    ///                 Database = "db2",
+    ///                 Password = new Yandex.Inputs.DatatransferEndpointSettingsPostgresTargetPasswordArgs
+    ///                 {
+    ///                     Raw = "321",
+    ///                 },
+    ///                 User = "user2",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// An endpoint can be imported using the `id` of the resource, e.g.
+    /// 
+    /// ```sh
+    ///  $ pulumi import yandex:index/datatransferEndpoint:DatatransferEndpoint foo endpoint_id
+    /// ```
+    /// </summary>
     [YandexResourceType("yandex:index/datatransferEndpoint:DatatransferEndpoint")]
     public partial class DatatransferEndpoint : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Arbitrary description text for the endpoint.
+        /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
 
+        /// <summary>
+        /// ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of key/value label pairs to assign to the Data Transfer endpoint.
+        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Name of the endpoint.
+        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Settings for the endpoint. The structure is documented below.
+        /// </summary>
         [Output("settings")]
         public Output<Outputs.DatatransferEndpointSettings> Settings { get; private set; } = null!;
 
@@ -50,7 +137,7 @@ namespace Pulumi.Yandex
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "https://github/regrau/pulumi-yandex/releases",
+                PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -74,23 +161,39 @@ namespace Pulumi.Yandex
 
     public sealed class DatatransferEndpointArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Arbitrary description text for the endpoint.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the Data Transfer endpoint.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the endpoint.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Settings for the endpoint. The structure is documented below.
+        /// </summary>
         [Input("settings")]
         public Input<Inputs.DatatransferEndpointSettingsArgs>? Settings { get; set; }
 
@@ -102,23 +205,39 @@ namespace Pulumi.Yandex
 
     public sealed class DatatransferEndpointState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Arbitrary description text for the endpoint.
+        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        /// <summary>
+        /// ID of the folder to create the endpoint in. If it is not provided, the default provider folder is used.
+        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the Data Transfer endpoint.
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Name of the endpoint.
+        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// Settings for the endpoint. The structure is documented below.
+        /// </summary>
         [Input("settings")]
         public Input<Inputs.DatatransferEndpointSettingsGetArgs>? Settings { get; set; }
 

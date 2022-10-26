@@ -62,21 +62,33 @@ class GetComputeSnapshotResult:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
+        """
+        Snapshot creation timestamp.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        An optional description of this snapshot.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> int:
+        """
+        Minimum required size of the disk which is created from this snapshot.
+        """
         return pulumi.get(self, "disk_size")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> str:
+        """
+        ID of the folder that the snapshot belongs to.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
@@ -90,6 +102,9 @@ class GetComputeSnapshotResult:
     @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
+        """
+        A map of labels applied to this snapshot.
+        """
         return pulumi.get(self, "labels")
 
     @property
@@ -100,6 +115,9 @@ class GetComputeSnapshotResult:
     @property
     @pulumi.getter(name="productIds")
     def product_ids(self) -> Sequence[str]:
+        """
+        License IDs that indicate which licenses are attached to this snapshot.
+        """
         return pulumi.get(self, "product_ids")
 
     @property
@@ -110,16 +128,25 @@ class GetComputeSnapshotResult:
     @property
     @pulumi.getter(name="sourceDiskId")
     def source_disk_id(self) -> str:
+        """
+        ID of the source disk.
+        """
         return pulumi.get(self, "source_disk_id")
 
     @property
     @pulumi.getter
     def status(self) -> str:
+        """
+        The status of the snapshot.
+        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter(name="storageSize")
     def storage_size(self) -> int:
+        """
+        The size of the snapshot, specified in Gb.
+        """
         return pulumi.get(self, "storage_size")
 
 
@@ -148,7 +175,13 @@ def get_compute_snapshot(folder_id: Optional[str] = None,
                          snapshot_id: Optional[str] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetComputeSnapshotResult:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Compute snapshot. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/compute/concepts/snapshot).
+
+
+    :param str folder_id: ID of the folder that the snapshot belongs to.
+    :param str name: The name of the snapshot.
+    :param str snapshot_id: The ID of a specific snapshot.
     """
     __args__ = dict()
     __args__['folderId'] = folder_id
@@ -178,6 +211,12 @@ def get_compute_snapshot_output(folder_id: Optional[pulumi.Input[Optional[str]]]
                                 snapshot_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetComputeSnapshotResult]:
     """
-    Use this data source to access information about an existing resource.
+    Get information about a Yandex Compute snapshot. For more information, see
+    [the official documentation](https://cloud.yandex.com/docs/compute/concepts/snapshot).
+
+
+    :param str folder_id: ID of the folder that the snapshot belongs to.
+    :param str name: The name of the snapshot.
+    :param str snapshot_id: The ID of a specific snapshot.
     """
     ...

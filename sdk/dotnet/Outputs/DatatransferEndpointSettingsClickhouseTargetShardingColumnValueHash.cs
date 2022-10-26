@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHash
     {
+        /// <summary>
+        /// The name of the column to calculate hash from.
+        /// </summary>
         public readonly string? ColumnName;
 
         [OutputConstructor]

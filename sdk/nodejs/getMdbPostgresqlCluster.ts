@@ -5,6 +5,24 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Managed PostgreSQL cluster. For more information, see
+ * [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/).
+ * [How to connect to the DB](https://cloud.yandex.com/en-ru/docs/managed-postgresql/quickstart#connect). To connect, use port 6432. The port number is not configurable.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const foo = pulumi.output(yandex.getMdbPostgresqlCluster({
+ *     name: "test",
+ * }));
+ *
+ * export const fqdn = foo.hosts[0].fqdn;
+ * ```
+ */
 export function getMdbPostgresqlCluster(args?: GetMdbPostgresqlClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetMdbPostgresqlClusterResult> {
     args = args || {};
     if (!opts) {
@@ -25,10 +43,22 @@ export function getMdbPostgresqlCluster(args?: GetMdbPostgresqlClusterArgs, opts
  * A collection of arguments for invoking getMdbPostgresqlCluster.
  */
 export interface GetMdbPostgresqlClusterArgs {
+    /**
+     * The ID of the PostgreSQL cluster.
+     */
     clusterId?: string;
     deletionProtection?: boolean;
+    /**
+     * Description of the PostgreSQL cluster.
+     */
     description?: string;
+    /**
+     * The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * The name of the PostgreSQL cluster.
+     */
     name?: string;
 }
 
@@ -37,24 +67,57 @@ export interface GetMdbPostgresqlClusterArgs {
  */
 export interface GetMdbPostgresqlClusterResult {
     readonly clusterId: string;
+    /**
+     * Configuration of the PostgreSQL cluster. The structure is documented below.
+     */
     readonly configs: outputs.GetMdbPostgresqlClusterConfig[];
+    /**
+     * Timestamp of cluster creation.
+     */
     readonly createdAt: string;
     readonly deletionProtection: boolean;
+    /**
+     * Description of the PostgreSQL cluster.
+     */
     readonly description?: string;
+    /**
+     * Deployment environment of the PostgreSQL cluster.
+     */
     readonly environment: string;
     readonly folderId: string;
+    /**
+     * Aggregated health of the cluster.
+     */
     readonly health: string;
     readonly hostGroupIds: string[];
+    /**
+     * A host of the PostgreSQL cluster. The structure is documented below.
+     */
     readonly hosts: outputs.GetMdbPostgresqlClusterHost[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A set of key/value label pairs to assign to the PostgreSQL cluster.
+     */
     readonly labels: {[key: string]: string};
+    /**
+     * Maintenance window settings of the PostgreSQL cluster. The structure is documented below.
+     */
     readonly maintenanceWindows: outputs.GetMdbPostgresqlClusterMaintenanceWindow[];
     readonly name: string;
+    /**
+     * ID of the network, to which the PostgreSQL cluster belongs.
+     */
     readonly networkId: string;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
     readonly securityGroupIds: string[];
+    /**
+     * Status of the cluster.
+     */
     readonly status: string;
 }
 
@@ -66,9 +129,21 @@ export function getMdbPostgresqlClusterOutput(args?: GetMdbPostgresqlClusterOutp
  * A collection of arguments for invoking getMdbPostgresqlCluster.
  */
 export interface GetMdbPostgresqlClusterOutputArgs {
+    /**
+     * The ID of the PostgreSQL cluster.
+     */
     clusterId?: pulumi.Input<string>;
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * Description of the PostgreSQL cluster.
+     */
     description?: pulumi.Input<string>;
+    /**
+     * The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * The name of the PostgreSQL cluster.
+     */
     name?: pulumi.Input<string>;
 }

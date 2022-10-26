@@ -14,12 +14,19 @@ namespace Pulumi.Yandex.Inputs
     {
         [Input("hostAffinityRules", required: true)]
         private InputList<Inputs.GetComputeInstancePlacementPolicyHostAffinityRuleInputArgs>? _hostAffinityRules;
+
+        /// <summary>
+        /// List of host affinity rules. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.GetComputeInstancePlacementPolicyHostAffinityRuleInputArgs> HostAffinityRules
         {
             get => _hostAffinityRules ?? (_hostAffinityRules = new InputList<Inputs.GetComputeInstancePlacementPolicyHostAffinityRuleInputArgs>());
             set => _hostAffinityRules = value;
         }
 
+        /// <summary>
+        /// Specifies the id of the Placement Group to assign to the instance.
+        /// </summary>
         [Input("placementGroupId")]
         public Input<string>? PlacementGroupId { get; set; }
 

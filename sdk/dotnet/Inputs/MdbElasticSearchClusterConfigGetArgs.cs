@@ -12,26 +12,45 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbElasticSearchClusterConfigGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Password for admin user of Elasticsearch.
+        /// </summary>
         [Input("adminPassword", required: true)]
         public Input<string> AdminPassword { get; set; } = null!;
 
+        /// <summary>
+        /// Configuration for Elasticsearch data nodes subcluster. The structure is documented below.
+        /// </summary>
         [Input("dataNode", required: true)]
         public Input<Inputs.MdbElasticSearchClusterConfigDataNodeGetArgs> DataNode { get; set; } = null!;
 
+        /// <summary>
+        /// Edition of Elasticsearch. For more information, see [the official documentation](https://cloud.yandex.com/en-ru/docs/managed-elasticsearch/concepts/es-editions).
+        /// </summary>
         [Input("edition")]
         public Input<string>? Edition { get; set; }
 
+        /// <summary>
+        /// Configuration for Elasticsearch master nodes subcluster. The structure is documented below.
+        /// </summary>
         [Input("masterNode")]
         public Input<Inputs.MdbElasticSearchClusterConfigMasterNodeGetArgs>? MasterNode { get; set; }
 
         [Input("plugins")]
         private InputList<string>? _plugins;
+
+        /// <summary>
+        /// A set of Elasticsearch plugins to install.
+        /// </summary>
         public InputList<string> Plugins
         {
             get => _plugins ?? (_plugins = new InputList<string>());
             set => _plugins = value;
         }
 
+        /// <summary>
+        /// Version of Elasticsearch.
+        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 

@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Minimum data age in seconds.
+        /// </summary>
         [Input("age", required: true)]
         public Input<int> Age { get; set; } = null!;
 
+        /// <summary>
+        /// Accuracy of determining the age of the data in seconds.
+        /// </summary>
         [Input("precision", required: true)]
         public Input<int> Precision { get; set; } = null!;
 

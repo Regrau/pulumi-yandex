@@ -25,6 +25,15 @@ class AlbVirtualHostArgs:
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostRouteArgs']]]] = None):
         """
         The set of arguments for constructing a AlbVirtualHost resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] authorities: A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+               hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostModifyRequestHeaderArgs']]] modify_request_headers: Apply the following modifications to the request
+               headers. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostModifyResponseHeaderArgs']]] modify_response_headers: Apply the following modifications to the response
+               headers. The structure is documented below.
+        :param pulumi.Input[str] name: name of the route.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostRouteArgs']]] routes: A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+               http '/' match first makes all other routes unused. The structure is documented below.
         """
         pulumi.set(__self__, "http_router_id", http_router_id)
         if authorities is not None:
@@ -52,6 +61,10 @@ class AlbVirtualHostArgs:
     @property
     @pulumi.getter
     def authorities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+        hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+        """
         return pulumi.get(self, "authorities")
 
     @authorities.setter
@@ -61,6 +74,10 @@ class AlbVirtualHostArgs:
     @property
     @pulumi.getter(name="modifyRequestHeaders")
     def modify_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostModifyRequestHeaderArgs']]]]:
+        """
+        Apply the following modifications to the request
+        headers. The structure is documented below.
+        """
         return pulumi.get(self, "modify_request_headers")
 
     @modify_request_headers.setter
@@ -70,6 +87,10 @@ class AlbVirtualHostArgs:
     @property
     @pulumi.getter(name="modifyResponseHeaders")
     def modify_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostModifyResponseHeaderArgs']]]]:
+        """
+        Apply the following modifications to the response
+        headers. The structure is documented below.
+        """
         return pulumi.get(self, "modify_response_headers")
 
     @modify_response_headers.setter
@@ -79,6 +100,9 @@ class AlbVirtualHostArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        name of the route.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -97,6 +121,10 @@ class AlbVirtualHostArgs:
     @property
     @pulumi.getter
     def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostRouteArgs']]]]:
+        """
+        A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+        http '/' match first makes all other routes unused. The structure is documented below.
+        """
         return pulumi.get(self, "routes")
 
     @routes.setter
@@ -116,6 +144,15 @@ class _AlbVirtualHostState:
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostRouteArgs']]]] = None):
         """
         Input properties used for looking up and filtering AlbVirtualHost resources.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] authorities: A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+               hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostModifyRequestHeaderArgs']]] modify_request_headers: Apply the following modifications to the request
+               headers. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostModifyResponseHeaderArgs']]] modify_response_headers: Apply the following modifications to the response
+               headers. The structure is documented below.
+        :param pulumi.Input[str] name: name of the route.
+        :param pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostRouteArgs']]] routes: A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+               http '/' match first makes all other routes unused. The structure is documented below.
         """
         if authorities is not None:
             pulumi.set(__self__, "authorities", authorities)
@@ -135,6 +172,10 @@ class _AlbVirtualHostState:
     @property
     @pulumi.getter
     def authorities(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+        hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+        """
         return pulumi.get(self, "authorities")
 
     @authorities.setter
@@ -153,6 +194,10 @@ class _AlbVirtualHostState:
     @property
     @pulumi.getter(name="modifyRequestHeaders")
     def modify_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostModifyRequestHeaderArgs']]]]:
+        """
+        Apply the following modifications to the request
+        headers. The structure is documented below.
+        """
         return pulumi.get(self, "modify_request_headers")
 
     @modify_request_headers.setter
@@ -162,6 +207,10 @@ class _AlbVirtualHostState:
     @property
     @pulumi.getter(name="modifyResponseHeaders")
     def modify_response_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostModifyResponseHeaderArgs']]]]:
+        """
+        Apply the following modifications to the response
+        headers. The structure is documented below.
+        """
         return pulumi.get(self, "modify_response_headers")
 
     @modify_response_headers.setter
@@ -171,6 +220,9 @@ class _AlbVirtualHostState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        name of the route.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -189,6 +241,10 @@ class _AlbVirtualHostState:
     @property
     @pulumi.getter
     def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbVirtualHostRouteArgs']]]]:
+        """
+        A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+        http '/' match first makes all other routes unused. The structure is documented below.
+        """
         return pulumi.get(self, "routes")
 
     @routes.setter
@@ -210,9 +266,47 @@ class AlbVirtualHost(pulumi.CustomResource):
                  routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbVirtualHostRouteArgs']]]]] = None,
                  __props__=None):
         """
-        Create a AlbVirtualHost resource with the given unique name, props, and options.
+        Creates a virtual host that belongs to specified HTTP router and adds the specified routes to it. For more information,
+        see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/http-router).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_virtual_host = yandex.AlbVirtualHost("my-virtual-host",
+            http_router_id=yandex_alb_http_router["my-router"]["id"],
+            routes=[yandex.AlbVirtualHostRouteArgs(
+                name="my-route",
+                http_route=yandex.AlbVirtualHostRouteHttpRouteArgs(
+                    http_route_action=yandex.AlbVirtualHostRouteHttpRouteHttpRouteActionArgs(
+                        backend_group_id=yandex_alb_backend_group["my-bg"]["id"],
+                        timeout="3s",
+                    ),
+                ),
+            )])
+        ```
+
+        ## Import
+
+        A virtual host can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/albVirtualHost:AlbVirtualHost default virtual_host_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] authorities: A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+               hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbVirtualHostModifyRequestHeaderArgs']]]] modify_request_headers: Apply the following modifications to the request
+               headers. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbVirtualHostModifyResponseHeaderArgs']]]] modify_response_headers: Apply the following modifications to the response
+               headers. The structure is documented below.
+        :param pulumi.Input[str] name: name of the route.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbVirtualHostRouteArgs']]]] routes: A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+               http '/' match first makes all other routes unused. The structure is documented below.
         """
         ...
     @overload
@@ -221,7 +315,36 @@ class AlbVirtualHost(pulumi.CustomResource):
                  args: AlbVirtualHostArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a AlbVirtualHost resource with the given unique name, props, and options.
+        Creates a virtual host that belongs to specified HTTP router and adds the specified routes to it. For more information,
+        see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/http-router).
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        my_virtual_host = yandex.AlbVirtualHost("my-virtual-host",
+            http_router_id=yandex_alb_http_router["my-router"]["id"],
+            routes=[yandex.AlbVirtualHostRouteArgs(
+                name="my-route",
+                http_route=yandex.AlbVirtualHostRouteHttpRouteArgs(
+                    http_route_action=yandex.AlbVirtualHostRouteHttpRouteHttpRouteActionArgs(
+                        backend_group_id=yandex_alb_backend_group["my-bg"]["id"],
+                        timeout="3s",
+                    ),
+                ),
+            )])
+        ```
+
+        ## Import
+
+        A virtual host can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/albVirtualHost:AlbVirtualHost default virtual_host_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param AlbVirtualHostArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -286,6 +409,15 @@ class AlbVirtualHost(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] authorities: A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+               hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbVirtualHostModifyRequestHeaderArgs']]]] modify_request_headers: Apply the following modifications to the request
+               headers. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbVirtualHostModifyResponseHeaderArgs']]]] modify_response_headers: Apply the following modifications to the response
+               headers. The structure is documented below.
+        :param pulumi.Input[str] name: name of the route.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbVirtualHostRouteArgs']]]] routes: A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+               http '/' match first makes all other routes unused. The structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -303,6 +435,10 @@ class AlbVirtualHost(pulumi.CustomResource):
     @property
     @pulumi.getter
     def authorities(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        A list of domains (host/authority header) that will be matched to this virtual host. Wildcard
+        hosts are supported in the form of '*.foo.com' or '*-bar.foo.com'. If not specified, all domains will be matched.
+        """
         return pulumi.get(self, "authorities")
 
     @property
@@ -313,16 +449,27 @@ class AlbVirtualHost(pulumi.CustomResource):
     @property
     @pulumi.getter(name="modifyRequestHeaders")
     def modify_request_headers(self) -> pulumi.Output[Optional[Sequence['outputs.AlbVirtualHostModifyRequestHeader']]]:
+        """
+        Apply the following modifications to the request
+        headers. The structure is documented below.
+        """
         return pulumi.get(self, "modify_request_headers")
 
     @property
     @pulumi.getter(name="modifyResponseHeaders")
     def modify_response_headers(self) -> pulumi.Output[Optional[Sequence['outputs.AlbVirtualHostModifyResponseHeader']]]:
+        """
+        Apply the following modifications to the response
+        headers. The structure is documented below.
+        """
         return pulumi.get(self, "modify_response_headers")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        name of the route.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -333,5 +480,9 @@ class AlbVirtualHost(pulumi.CustomResource):
     @property
     @pulumi.getter
     def routes(self) -> pulumi.Output[Optional[Sequence['outputs.AlbVirtualHostRoute']]]:
+        """
+        A Route resource. Routes are matched *in-order*. Be careful when adding them to the end. For instance, having
+        http '/' match first makes all other routes unused. The structure is documented below.
+        """
         return pulumi.get(self, "routes")
 

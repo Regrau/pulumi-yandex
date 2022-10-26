@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbPostgresqlClusterConfigResourceResult
     {
+        /// <summary>
+        /// Volume of the storage available to a PostgreSQL host, in gigabytes.
+        /// </summary>
         public readonly int DiskSize;
+        /// <summary>
+        /// Type of the storage for PostgreSQL hosts.
+        /// </summary>
         public readonly string DiskTypeId;
         public readonly string ResourcePresetId;
 

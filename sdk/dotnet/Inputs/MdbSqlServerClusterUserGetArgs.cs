@@ -12,14 +12,24 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbSqlServerClusterUserGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The name of the database.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
+        /// <summary>
+        /// The password of the user.
+        /// </summary>
         [Input("password", required: true)]
         public Input<string> Password { get; set; } = null!;
 
         [Input("permissions")]
         private InputList<Inputs.MdbSqlServerClusterUserPermissionGetArgs>? _permissions;
+
+        /// <summary>
+        /// Set of permissions granted to the user. The structure is documented below.
+        /// </summary>
         public InputList<Inputs.MdbSqlServerClusterUserPermissionGetArgs> Permissions
         {
             get => _permissions ?? (_permissions = new InputList<Inputs.MdbSqlServerClusterUserPermissionGetArgs>());

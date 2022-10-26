@@ -27,6 +27,22 @@ class VpcSubnetArgs:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcSubnet resource.
+        :param pulumi.Input[str] network_id: ID of the network this subnet belongs to.
+               Only networks that are in the distributed mode can have subnets.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v4_cidr_blocks: A list of blocks of internal IPv4 addresses that are owned by this subnet.
+               Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+               Blocks of addresses must be unique and non-overlapping within a network.
+               Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
+        :param pulumi.Input[str] description: An optional description of the subnet. Provide this property when
+               you create the resource.
+        :param pulumi.Input['VpcSubnetDhcpOptionsArgs'] dhcp_options: Options for DHCP client. The structure is documented below.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this subnet. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the subnet. Provided by the client when the subnet is created.
+        :param pulumi.Input[str] route_table_id: The ID of the route table to assign to this subnet. Assigned route table should
+               belong to the same network as this subnet.
+        :param pulumi.Input[str] zone: Name of the Yandex.Cloud zone for this subnet.
         """
         pulumi.set(__self__, "network_id", network_id)
         pulumi.set(__self__, "v4_cidr_blocks", v4_cidr_blocks)
@@ -48,6 +64,10 @@ class VpcSubnetArgs:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Input[str]:
+        """
+        ID of the network this subnet belongs to.
+        Only networks that are in the distributed mode can have subnets.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -57,6 +77,12 @@ class VpcSubnetArgs:
     @property
     @pulumi.getter(name="v4CidrBlocks")
     def v4_cidr_blocks(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        A list of blocks of internal IPv4 addresses that are owned by this subnet.
+        Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+        Blocks of addresses must be unique and non-overlapping within a network.
+        Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
+        """
         return pulumi.get(self, "v4_cidr_blocks")
 
     @v4_cidr_blocks.setter
@@ -66,6 +92,10 @@ class VpcSubnetArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of the subnet. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -75,6 +105,9 @@ class VpcSubnetArgs:
     @property
     @pulumi.getter(name="dhcpOptions")
     def dhcp_options(self) -> Optional[pulumi.Input['VpcSubnetDhcpOptionsArgs']]:
+        """
+        Options for DHCP client. The structure is documented below.
+        """
         return pulumi.get(self, "dhcp_options")
 
     @dhcp_options.setter
@@ -84,6 +117,10 @@ class VpcSubnetArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder to which the resource belongs.
+        If omitted, the provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -93,6 +130,9 @@ class VpcSubnetArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this subnet. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -102,6 +142,9 @@ class VpcSubnetArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the subnet. Provided by the client when the subnet is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -111,6 +154,10 @@ class VpcSubnetArgs:
     @property
     @pulumi.getter(name="routeTableId")
     def route_table_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the route table to assign to this subnet. Assigned route table should
+        belong to the same network as this subnet.
+        """
         return pulumi.get(self, "route_table_id")
 
     @route_table_id.setter
@@ -120,6 +167,9 @@ class VpcSubnetArgs:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Yandex.Cloud zone for this subnet.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -143,6 +193,23 @@ class _VpcSubnetState:
                  zone: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpcSubnet resources.
+        :param pulumi.Input[str] description: An optional description of the subnet. Provide this property when
+               you create the resource.
+        :param pulumi.Input['VpcSubnetDhcpOptionsArgs'] dhcp_options: Options for DHCP client. The structure is documented below.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this subnet. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the subnet. Provided by the client when the subnet is created.
+        :param pulumi.Input[str] network_id: ID of the network this subnet belongs to.
+               Only networks that are in the distributed mode can have subnets.
+        :param pulumi.Input[str] route_table_id: The ID of the route table to assign to this subnet. Assigned route table should
+               belong to the same network as this subnet.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v4_cidr_blocks: A list of blocks of internal IPv4 addresses that are owned by this subnet.
+               Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+               Blocks of addresses must be unique and non-overlapping within a network.
+               Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v6_cidr_blocks: An optional list of blocks of IPv6 addresses that are owned by this subnet.
+        :param pulumi.Input[str] zone: Name of the Yandex.Cloud zone for this subnet.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -179,6 +246,10 @@ class _VpcSubnetState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of the subnet. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -188,6 +259,9 @@ class _VpcSubnetState:
     @property
     @pulumi.getter(name="dhcpOptions")
     def dhcp_options(self) -> Optional[pulumi.Input['VpcSubnetDhcpOptionsArgs']]:
+        """
+        Options for DHCP client. The structure is documented below.
+        """
         return pulumi.get(self, "dhcp_options")
 
     @dhcp_options.setter
@@ -197,6 +271,10 @@ class _VpcSubnetState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder to which the resource belongs.
+        If omitted, the provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -206,6 +284,9 @@ class _VpcSubnetState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Labels to assign to this subnet. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -215,6 +296,9 @@ class _VpcSubnetState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the subnet. Provided by the client when the subnet is created.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -224,6 +308,10 @@ class _VpcSubnetState:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the network this subnet belongs to.
+        Only networks that are in the distributed mode can have subnets.
+        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -233,6 +321,10 @@ class _VpcSubnetState:
     @property
     @pulumi.getter(name="routeTableId")
     def route_table_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the route table to assign to this subnet. Assigned route table should
+        belong to the same network as this subnet.
+        """
         return pulumi.get(self, "route_table_id")
 
     @route_table_id.setter
@@ -242,6 +334,12 @@ class _VpcSubnetState:
     @property
     @pulumi.getter(name="v4CidrBlocks")
     def v4_cidr_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        A list of blocks of internal IPv4 addresses that are owned by this subnet.
+        Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+        Blocks of addresses must be unique and non-overlapping within a network.
+        Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
+        """
         return pulumi.get(self, "v4_cidr_blocks")
 
     @v4_cidr_blocks.setter
@@ -251,6 +349,9 @@ class _VpcSubnetState:
     @property
     @pulumi.getter(name="v6CidrBlocks")
     def v6_cidr_blocks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        An optional list of blocks of IPv6 addresses that are owned by this subnet.
+        """
         return pulumi.get(self, "v6_cidr_blocks")
 
     @v6_cidr_blocks.setter
@@ -260,6 +361,9 @@ class _VpcSubnetState:
     @property
     @pulumi.getter
     def zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the Yandex.Cloud zone for this subnet.
+        """
         return pulumi.get(self, "zone")
 
     @zone.setter
@@ -283,9 +387,52 @@ class VpcSubnet(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a VpcSubnet resource with the given unique name, props, and options.
+        Manages a subnet within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/network#subnet).
+
+        * How-to Guides
+            * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+            * [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        lab_net = yandex.VpcNetwork("lab-net")
+        lab_subnet_a = yandex.VpcSubnet("lab-subnet-a",
+            network_id=lab_net.id,
+            v4_cidr_blocks=["10.2.0.0/16"],
+            zone="ru-central1-a")
+        ```
+
+        ## Import
+
+        A subnet can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/vpcSubnet:VpcSubnet default subnet_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: An optional description of the subnet. Provide this property when
+               you create the resource.
+        :param pulumi.Input[pulumi.InputType['VpcSubnetDhcpOptionsArgs']] dhcp_options: Options for DHCP client. The structure is documented below.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this subnet. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the subnet. Provided by the client when the subnet is created.
+        :param pulumi.Input[str] network_id: ID of the network this subnet belongs to.
+               Only networks that are in the distributed mode can have subnets.
+        :param pulumi.Input[str] route_table_id: The ID of the route table to assign to this subnet. Assigned route table should
+               belong to the same network as this subnet.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v4_cidr_blocks: A list of blocks of internal IPv4 addresses that are owned by this subnet.
+               Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+               Blocks of addresses must be unique and non-overlapping within a network.
+               Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
+        :param pulumi.Input[str] zone: Name of the Yandex.Cloud zone for this subnet.
         """
         ...
     @overload
@@ -294,7 +441,34 @@ class VpcSubnet(pulumi.CustomResource):
                  args: VpcSubnetArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a VpcSubnet resource with the given unique name, props, and options.
+        Manages a subnet within the Yandex.Cloud. For more information, see
+        [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/network#subnet).
+
+        * How-to Guides
+            * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+            * [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        lab_net = yandex.VpcNetwork("lab-net")
+        lab_subnet_a = yandex.VpcSubnet("lab-subnet-a",
+            network_id=lab_net.id,
+            v4_cidr_blocks=["10.2.0.0/16"],
+            zone="ru-central1-a")
+        ```
+
+        ## Import
+
+        A subnet can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/vpcSubnet:VpcSubnet default subnet_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param VpcSubnetArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -371,6 +545,23 @@ class VpcSubnet(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: An optional description of the subnet. Provide this property when
+               you create the resource.
+        :param pulumi.Input[pulumi.InputType['VpcSubnetDhcpOptionsArgs']] dhcp_options: Options for DHCP client. The structure is documented below.
+        :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
+               If omitted, the provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this subnet. A list of key/value pairs.
+        :param pulumi.Input[str] name: Name of the subnet. Provided by the client when the subnet is created.
+        :param pulumi.Input[str] network_id: ID of the network this subnet belongs to.
+               Only networks that are in the distributed mode can have subnets.
+        :param pulumi.Input[str] route_table_id: The ID of the route table to assign to this subnet. Assigned route table should
+               belong to the same network as this subnet.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v4_cidr_blocks: A list of blocks of internal IPv4 addresses that are owned by this subnet.
+               Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+               Blocks of addresses must be unique and non-overlapping within a network.
+               Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] v6_cidr_blocks: An optional list of blocks of IPv6 addresses that are owned by this subnet.
+        :param pulumi.Input[str] zone: Name of the Yandex.Cloud zone for this subnet.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -397,50 +588,87 @@ class VpcSubnet(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        An optional description of the subnet. Provide this property when
+        you create the resource.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="dhcpOptions")
     def dhcp_options(self) -> pulumi.Output[Optional['outputs.VpcSubnetDhcpOptions']]:
+        """
+        Options for DHCP client. The structure is documented below.
+        """
         return pulumi.get(self, "dhcp_options")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder to which the resource belongs.
+        If omitted, the provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        Labels to assign to this subnet. A list of key/value pairs.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the subnet. Provided by the client when the subnet is created.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[str]:
+        """
+        ID of the network this subnet belongs to.
+        Only networks that are in the distributed mode can have subnets.
+        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter(name="routeTableId")
     def route_table_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The ID of the route table to assign to this subnet. Assigned route table should
+        belong to the same network as this subnet.
+        """
         return pulumi.get(self, "route_table_id")
 
     @property
     @pulumi.getter(name="v4CidrBlocks")
     def v4_cidr_blocks(self) -> pulumi.Output[Sequence[str]]:
+        """
+        A list of blocks of internal IPv4 addresses that are owned by this subnet.
+        Provide this property when you create the subnet. For example, 10.0.0.0/22 or 192.168.0.0/16.
+        Blocks of addresses must be unique and non-overlapping within a network.
+        Minimum subnet size is /28, and maximum subnet size is /16. Only IPv4 is supported.
+        """
         return pulumi.get(self, "v4_cidr_blocks")
 
     @property
     @pulumi.getter(name="v6CidrBlocks")
     def v6_cidr_blocks(self) -> pulumi.Output[Sequence[str]]:
+        """
+        An optional list of blocks of IPv6 addresses that are owned by this subnet.
+        """
         return pulumi.get(self, "v6_cidr_blocks")
 
     @property
     @pulumi.getter
     def zone(self) -> pulumi.Output[str]:
+        """
+        Name of the Yandex.Cloud zone for this subnet.
+        """
         return pulumi.get(self, "zone")
 

@@ -11,18 +11,95 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a Security Group within the Yandex.Cloud. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/security-groups).
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewVpcNetwork(ctx, "lab-net", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewVpcSecurityGroup(ctx, "group1", &yandex.VpcSecurityGroupArgs{
+//				Description: pulumi.String("description for my security group"),
+//				Egresses: VpcSecurityGroupEgressArray{
+//					&VpcSecurityGroupEgressArgs{
+//						Description: pulumi.String("rule2 description"),
+//						FromPort:    pulumi.Int(8090),
+//						Protocol:    pulumi.String("ANY"),
+//						ToPort:      pulumi.Int(8099),
+//						V4CidrBlocks: pulumi.StringArray{
+//							pulumi.String("10.0.1.0/24"),
+//							pulumi.String("10.0.2.0/24"),
+//						},
+//					},
+//					&VpcSecurityGroupEgressArgs{
+//						Description: pulumi.String("rule3 description"),
+//						FromPort:    pulumi.Int(8090),
+//						Protocol:    pulumi.String("UDP"),
+//						ToPort:      pulumi.Int(8099),
+//						V4CidrBlocks: pulumi.StringArray{
+//							pulumi.String("10.0.1.0/24"),
+//						},
+//					},
+//				},
+//				Ingresses: VpcSecurityGroupIngressArray{
+//					&VpcSecurityGroupIngressArgs{
+//						Description: pulumi.String("rule1 description"),
+//						Port:        pulumi.Int(8080),
+//						Protocol:    pulumi.String("TCP"),
+//						V4CidrBlocks: pulumi.StringArray{
+//							pulumi.String("10.0.1.0/24"),
+//							pulumi.String("10.0.2.0/24"),
+//						},
+//					},
+//				},
+//				Labels: pulumi.StringMap{
+//					"my-label": pulumi.String("my-label-value"),
+//				},
+//				NetworkId: lab_net.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type VpcSecurityGroup struct {
 	pulumi.CustomResourceState
 
-	CreatedAt   pulumi.StringOutput                `pulumi:"createdAt"`
-	Description pulumi.StringPtrOutput             `pulumi:"description"`
-	Egresses    VpcSecurityGroupEgressArrayOutput  `pulumi:"egresses"`
-	FolderId    pulumi.StringOutput                `pulumi:"folderId"`
-	Ingresses   VpcSecurityGroupIngressArrayOutput `pulumi:"ingresses"`
-	Labels      pulumi.StringMapOutput             `pulumi:"labels"`
-	Name        pulumi.StringOutput                `pulumi:"name"`
-	NetworkId   pulumi.StringOutput                `pulumi:"networkId"`
-	Status      pulumi.StringOutput                `pulumi:"status"`
+	// Creation timestamp of this security group.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Description of the security group.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// A list of egress rules. The structure is documented below.
+	Egresses VpcSecurityGroupEgressArrayOutput `pulumi:"egresses"`
+	// ID of the folder this security group belongs to.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// A list of ingress rules.
+	Ingresses VpcSecurityGroupIngressArrayOutput `pulumi:"ingresses"`
+	// Labels to assign to this security group.
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Name of the security group.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the network this security group belongs to.
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
+	// Status of this security group.
+	Status pulumi.StringOutput `pulumi:"status"`
 }
 
 // NewVpcSecurityGroup registers a new resource with the given unique name, arguments, and options.
@@ -58,27 +135,45 @@ func GetVpcSecurityGroup(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpcSecurityGroup resources.
 type vpcSecurityGroupState struct {
-	CreatedAt   *string                   `pulumi:"createdAt"`
-	Description *string                   `pulumi:"description"`
-	Egresses    []VpcSecurityGroupEgress  `pulumi:"egresses"`
-	FolderId    *string                   `pulumi:"folderId"`
-	Ingresses   []VpcSecurityGroupIngress `pulumi:"ingresses"`
-	Labels      map[string]string         `pulumi:"labels"`
-	Name        *string                   `pulumi:"name"`
-	NetworkId   *string                   `pulumi:"networkId"`
-	Status      *string                   `pulumi:"status"`
+	// Creation timestamp of this security group.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Description of the security group.
+	Description *string `pulumi:"description"`
+	// A list of egress rules. The structure is documented below.
+	Egresses []VpcSecurityGroupEgress `pulumi:"egresses"`
+	// ID of the folder this security group belongs to.
+	FolderId *string `pulumi:"folderId"`
+	// A list of ingress rules.
+	Ingresses []VpcSecurityGroupIngress `pulumi:"ingresses"`
+	// Labels to assign to this security group.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the security group.
+	Name *string `pulumi:"name"`
+	// ID of the network this security group belongs to.
+	NetworkId *string `pulumi:"networkId"`
+	// Status of this security group.
+	Status *string `pulumi:"status"`
 }
 
 type VpcSecurityGroupState struct {
-	CreatedAt   pulumi.StringPtrInput
+	// Creation timestamp of this security group.
+	CreatedAt pulumi.StringPtrInput
+	// Description of the security group.
 	Description pulumi.StringPtrInput
-	Egresses    VpcSecurityGroupEgressArrayInput
-	FolderId    pulumi.StringPtrInput
-	Ingresses   VpcSecurityGroupIngressArrayInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
-	NetworkId   pulumi.StringPtrInput
-	Status      pulumi.StringPtrInput
+	// A list of egress rules. The structure is documented below.
+	Egresses VpcSecurityGroupEgressArrayInput
+	// ID of the folder this security group belongs to.
+	FolderId pulumi.StringPtrInput
+	// A list of ingress rules.
+	Ingresses VpcSecurityGroupIngressArrayInput
+	// Labels to assign to this security group.
+	Labels pulumi.StringMapInput
+	// Name of the security group.
+	Name pulumi.StringPtrInput
+	// ID of the network this security group belongs to.
+	NetworkId pulumi.StringPtrInput
+	// Status of this security group.
+	Status pulumi.StringPtrInput
 }
 
 func (VpcSecurityGroupState) ElementType() reflect.Type {
@@ -86,24 +181,38 @@ func (VpcSecurityGroupState) ElementType() reflect.Type {
 }
 
 type vpcSecurityGroupArgs struct {
-	Description *string                   `pulumi:"description"`
-	Egresses    []VpcSecurityGroupEgress  `pulumi:"egresses"`
-	FolderId    *string                   `pulumi:"folderId"`
-	Ingresses   []VpcSecurityGroupIngress `pulumi:"ingresses"`
-	Labels      map[string]string         `pulumi:"labels"`
-	Name        *string                   `pulumi:"name"`
-	NetworkId   string                    `pulumi:"networkId"`
+	// Description of the security group.
+	Description *string `pulumi:"description"`
+	// A list of egress rules. The structure is documented below.
+	Egresses []VpcSecurityGroupEgress `pulumi:"egresses"`
+	// ID of the folder this security group belongs to.
+	FolderId *string `pulumi:"folderId"`
+	// A list of ingress rules.
+	Ingresses []VpcSecurityGroupIngress `pulumi:"ingresses"`
+	// Labels to assign to this security group.
+	Labels map[string]string `pulumi:"labels"`
+	// Name of the security group.
+	Name *string `pulumi:"name"`
+	// ID of the network this security group belongs to.
+	NetworkId string `pulumi:"networkId"`
 }
 
 // The set of arguments for constructing a VpcSecurityGroup resource.
 type VpcSecurityGroupArgs struct {
+	// Description of the security group.
 	Description pulumi.StringPtrInput
-	Egresses    VpcSecurityGroupEgressArrayInput
-	FolderId    pulumi.StringPtrInput
-	Ingresses   VpcSecurityGroupIngressArrayInput
-	Labels      pulumi.StringMapInput
-	Name        pulumi.StringPtrInput
-	NetworkId   pulumi.StringInput
+	// A list of egress rules. The structure is documented below.
+	Egresses VpcSecurityGroupEgressArrayInput
+	// ID of the folder this security group belongs to.
+	FolderId pulumi.StringPtrInput
+	// A list of ingress rules.
+	Ingresses VpcSecurityGroupIngressArrayInput
+	// Labels to assign to this security group.
+	Labels pulumi.StringMapInput
+	// Name of the security group.
+	Name pulumi.StringPtrInput
+	// ID of the network this security group belongs to.
+	NetworkId pulumi.StringInput
 }
 
 func (VpcSecurityGroupArgs) ElementType() reflect.Type {
@@ -193,38 +302,47 @@ func (o VpcSecurityGroupOutput) ToVpcSecurityGroupOutputWithContext(ctx context.
 	return o
 }
 
+// Creation timestamp of this security group.
 func (o VpcSecurityGroupOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcSecurityGroup) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Description of the security group.
 func (o VpcSecurityGroupOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *VpcSecurityGroup) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// A list of egress rules. The structure is documented below.
 func (o VpcSecurityGroupOutput) Egresses() VpcSecurityGroupEgressArrayOutput {
 	return o.ApplyT(func(v *VpcSecurityGroup) VpcSecurityGroupEgressArrayOutput { return v.Egresses }).(VpcSecurityGroupEgressArrayOutput)
 }
 
+// ID of the folder this security group belongs to.
 func (o VpcSecurityGroupOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcSecurityGroup) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// A list of ingress rules.
 func (o VpcSecurityGroupOutput) Ingresses() VpcSecurityGroupIngressArrayOutput {
 	return o.ApplyT(func(v *VpcSecurityGroup) VpcSecurityGroupIngressArrayOutput { return v.Ingresses }).(VpcSecurityGroupIngressArrayOutput)
 }
 
+// Labels to assign to this security group.
 func (o VpcSecurityGroupOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *VpcSecurityGroup) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Name of the security group.
 func (o VpcSecurityGroupOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcSecurityGroup) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network this security group belongs to.
 func (o VpcSecurityGroupOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcSecurityGroup) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// Status of this security group.
 func (o VpcSecurityGroupOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcSecurityGroup) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

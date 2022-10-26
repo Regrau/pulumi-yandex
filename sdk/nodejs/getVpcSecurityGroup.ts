@@ -5,6 +5,30 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex VPC Security Group. For more information, see
+ * [Yandex.Cloud VPC](https://cloud.yandex.com/docs/vpc/concepts/security-groups).
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const group1 = pulumi.output(yandex.getVpcSecurityGroup({
+ *     securityGroupId: "my-id",
+ * }));
+ * ```
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const group1 = pulumi.output(yandex.getVpcSecurityGroup({
+ *     name: "my-group1",
+ * }));
+ * ```
+ *
+ * This data source is used to define Security Group that can be used by other resources.
+ */
 export function getVpcSecurityGroup(args?: GetVpcSecurityGroupArgs, opts?: pulumi.InvokeOptions): Promise<GetVpcSecurityGroupResult> {
     args = args || {};
     if (!opts) {
@@ -23,8 +47,17 @@ export function getVpcSecurityGroup(args?: GetVpcSecurityGroupArgs, opts?: pulum
  * A collection of arguments for invoking getVpcSecurityGroup.
  */
 export interface GetVpcSecurityGroupArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: string;
+    /**
+     * - Name of the security group.
+     */
     name?: string;
+    /**
+     * Security Group ID.
+     */
     securityGroupId?: string;
 }
 
@@ -32,19 +65,49 @@ export interface GetVpcSecurityGroupArgs {
  * A collection of values returned by getVpcSecurityGroup.
  */
 export interface GetVpcSecurityGroupResult {
+    /**
+     * Creation timestamp of this security group.
+     */
     readonly createdAt: string;
+    /**
+     * Description of the rule.
+     */
     readonly description: string;
+    /**
+     * A list of egress rules. The structure is documented below.
+     */
     readonly egresses: outputs.GetVpcSecurityGroupEgress[];
+    /**
+     * ID of the folder this security group belongs to.
+     */
     readonly folderId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * A list of ingress rules. The structure is documented below.
+     */
     readonly ingresses: outputs.GetVpcSecurityGroupIngress[];
+    /**
+     * Labels to assign to this rule.
+     */
     readonly labels: {[key: string]: string};
+    /**
+     * Name of the security group.
+     */
     readonly name: string;
+    /**
+     * ID of the network this security group belongs to.
+     */
     readonly networkId: string;
+    /**
+     * Target security group ID for this rule.
+     */
     readonly securityGroupId: string;
+    /**
+     * Status of this security group.
+     */
     readonly status: string;
 }
 
@@ -56,7 +119,16 @@ export function getVpcSecurityGroupOutput(args?: GetVpcSecurityGroupOutputArgs, 
  * A collection of arguments for invoking getVpcSecurityGroup.
  */
 export interface GetVpcSecurityGroupOutputArgs {
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * - Name of the security group.
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Security Group ID.
+     */
     securityGroupId?: pulumi.Input<string>;
 }

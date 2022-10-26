@@ -22,6 +22,14 @@ class KmsSymmetricKeyArgs:
                  rotation_period: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a KmsSymmetricKey resource.
+        :param pulumi.Input[str] default_algorithm: Encryption algorithm to be used with a new key version, 
+               generated with the next rotation. The default value is `AES_128`.
+        :param pulumi.Input[str] description: An optional description of the key.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the key.
+        :param pulumi.Input[str] name: Name of the key.
+        :param pulumi.Input[str] rotation_period: Interval between automatic rotations. To disable automatic rotation, omit this parameter.
         """
         if default_algorithm is not None:
             pulumi.set(__self__, "default_algorithm", default_algorithm)
@@ -39,6 +47,10 @@ class KmsSymmetricKeyArgs:
     @property
     @pulumi.getter(name="defaultAlgorithm")
     def default_algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        Encryption algorithm to be used with a new key version, 
+        generated with the next rotation. The default value is `AES_128`.
+        """
         return pulumi.get(self, "default_algorithm")
 
     @default_algorithm.setter
@@ -48,6 +60,9 @@ class KmsSymmetricKeyArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of the key.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -57,6 +72,10 @@ class KmsSymmetricKeyArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -66,6 +85,9 @@ class KmsSymmetricKeyArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the key.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -75,6 +97,9 @@ class KmsSymmetricKeyArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the key.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -84,6 +109,9 @@ class KmsSymmetricKeyArgs:
     @property
     @pulumi.getter(name="rotationPeriod")
     def rotation_period(self) -> Optional[pulumi.Input[str]]:
+        """
+        Interval between automatic rotations. To disable automatic rotation, omit this parameter.
+        """
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
@@ -105,6 +133,17 @@ class _KmsSymmetricKeyState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering KmsSymmetricKey resources.
+        :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[str] default_algorithm: Encryption algorithm to be used with a new key version, 
+               generated with the next rotation. The default value is `AES_128`.
+        :param pulumi.Input[str] description: An optional description of the key.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the key.
+        :param pulumi.Input[str] name: Name of the key.
+        :param pulumi.Input[str] rotated_at: Last rotation timestamp of the key.
+        :param pulumi.Input[str] rotation_period: Interval between automatic rotations. To disable automatic rotation, omit this parameter.
+        :param pulumi.Input[str] status: The status of the key.
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
@@ -128,6 +167,9 @@ class _KmsSymmetricKeyState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -137,6 +179,10 @@ class _KmsSymmetricKeyState:
     @property
     @pulumi.getter(name="defaultAlgorithm")
     def default_algorithm(self) -> Optional[pulumi.Input[str]]:
+        """
+        Encryption algorithm to be used with a new key version, 
+        generated with the next rotation. The default value is `AES_128`.
+        """
         return pulumi.get(self, "default_algorithm")
 
     @default_algorithm.setter
@@ -146,6 +192,9 @@ class _KmsSymmetricKeyState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        An optional description of the key.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -155,6 +204,10 @@ class _KmsSymmetricKeyState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -164,6 +217,9 @@ class _KmsSymmetricKeyState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the key.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -173,6 +229,9 @@ class _KmsSymmetricKeyState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the key.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -182,6 +241,9 @@ class _KmsSymmetricKeyState:
     @property
     @pulumi.getter(name="rotatedAt")
     def rotated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Last rotation timestamp of the key.
+        """
         return pulumi.get(self, "rotated_at")
 
     @rotated_at.setter
@@ -191,6 +253,9 @@ class _KmsSymmetricKeyState:
     @property
     @pulumi.getter(name="rotationPeriod")
     def rotation_period(self) -> Optional[pulumi.Input[str]]:
+        """
+        Interval between automatic rotations. To disable automatic rotation, omit this parameter.
+        """
         return pulumi.get(self, "rotation_period")
 
     @rotation_period.setter
@@ -200,6 +265,9 @@ class _KmsSymmetricKeyState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        The status of the key.
+        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -220,9 +288,37 @@ class KmsSymmetricKey(pulumi.CustomResource):
                  rotation_period: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a KmsSymmetricKey resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        key_a = yandex.KmsSymmetricKey("key-a",
+            default_algorithm="AES_128",
+            description="description for key",
+            rotation_period="8760h")
+        # equal to 1 year
+        ```
+
+        ## Import
+
+        A KMS symmetric key can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/kmsSymmetricKey:KmsSymmetricKey top-secret kms_key_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] default_algorithm: Encryption algorithm to be used with a new key version, 
+               generated with the next rotation. The default value is `AES_128`.
+        :param pulumi.Input[str] description: An optional description of the key.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the key.
+        :param pulumi.Input[str] name: Name of the key.
+        :param pulumi.Input[str] rotation_period: Interval between automatic rotations. To disable automatic rotation, omit this parameter.
         """
         ...
     @overload
@@ -231,7 +327,27 @@ class KmsSymmetricKey(pulumi.CustomResource):
                  args: Optional[KmsSymmetricKeyArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a KmsSymmetricKey resource with the given unique name, props, and options.
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        key_a = yandex.KmsSymmetricKey("key-a",
+            default_algorithm="AES_128",
+            description="description for key",
+            rotation_period="8760h")
+        # equal to 1 year
+        ```
+
+        ## Import
+
+        A KMS symmetric key can be imported using the `id` of the resource, e.g.
+
+        ```sh
+         $ pulumi import yandex:index/kmsSymmetricKey:KmsSymmetricKey top-secret kms_key_id
+        ```
+
         :param str resource_name: The name of the resource.
         :param KmsSymmetricKeyArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -297,6 +413,17 @@ class KmsSymmetricKey(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[str] default_algorithm: Encryption algorithm to be used with a new key version, 
+               generated with the next rotation. The default value is `AES_128`.
+        :param pulumi.Input[str] description: An optional description of the key.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
+               is not provided, the default provider folder is used.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the key.
+        :param pulumi.Input[str] name: Name of the key.
+        :param pulumi.Input[str] rotated_at: Last rotation timestamp of the key.
+        :param pulumi.Input[str] rotation_period: Interval between automatic rotations. To disable automatic rotation, omit this parameter.
+        :param pulumi.Input[str] status: The status of the key.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -316,45 +443,74 @@ class KmsSymmetricKey(pulumi.CustomResource):
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
+        """
+        Creation timestamp of the key.
+        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter(name="defaultAlgorithm")
     def default_algorithm(self) -> pulumi.Output[Optional[str]]:
+        """
+        Encryption algorithm to be used with a new key version, 
+        generated with the next rotation. The default value is `AES_128`.
+        """
         return pulumi.get(self, "default_algorithm")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        An optional description of the key.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
+        """
+        The ID of the folder that the resource belongs to. If it
+        is not provided, the default provider folder is used.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the key.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        Name of the key.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="rotatedAt")
     def rotated_at(self) -> pulumi.Output[str]:
+        """
+        Last rotation timestamp of the key.
+        """
         return pulumi.get(self, "rotated_at")
 
     @property
     @pulumi.getter(name="rotationPeriod")
     def rotation_period(self) -> pulumi.Output[Optional[str]]:
+        """
+        Interval between automatic rotations. To disable automatic rotation, omit this parameter.
+        """
         return pulumi.get(self, "rotation_period")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
+        """
+        The status of the key.
+        """
         return pulumi.get(self, "status")
 

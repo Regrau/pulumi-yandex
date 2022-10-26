@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbClickhouseClusterDatabaseResult
     {
+        /// <summary>
+        /// The name of the ClickHouse cluster.
+        /// </summary>
         public readonly string Name;
 
         [OutputConstructor]

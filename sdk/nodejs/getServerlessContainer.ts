@@ -5,6 +5,20 @@ import * as pulumi from "@pulumi/pulumi";
 import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
+/**
+ * Get information about a Yandex Cloud Serverless Container.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const my_container = pulumi.output(yandex.getServerlessContainer({
+ *     containerId: "are1samplecontainer11",
+ * }));
+ * ```
+ *
+ * This data source is used to define Yandex Cloud Container that can be used by other resources.
+ */
 export function getServerlessContainer(args?: GetServerlessContainerArgs, opts?: pulumi.InvokeOptions): Promise<GetServerlessContainerResult> {
     args = args || {};
     if (!opts) {
@@ -24,9 +38,27 @@ export function getServerlessContainer(args?: GetServerlessContainerArgs, opts?:
  * A collection of arguments for invoking getServerlessContainer.
  */
 export interface GetServerlessContainerArgs {
+    /**
+     * Yandex Cloud Serverless Container id used to define container
+     */
     containerId?: string;
+    /**
+     * Folder ID for the Yandex Cloud Serverless Container
+     */
     folderId?: string;
+    /**
+     * Yandex Cloud Serverless Container name used to define container
+     */
     name?: string;
+    /**
+     * Secrets for Yandex Cloud Serverless Container
+     * * `image.0.url` - URL of image that deployed as Yandex Cloud Serverless Container
+     * * `image.0.work_dir` - Working directory of Yandex Cloud Serverless Container
+     * * `image.0.digest` - Digest of image that deployed as Yandex Cloud Serverless Container
+     * * `image.0.command` - List of commands of the Yandex Cloud Serverless Container
+     * * `image.0.args` - List of arguments of the Yandex Cloud Serverless Container
+     * * `image.0.environment` -  A set of key/value environment variable pairs of Yandex Cloud Serverless Container
+     */
     secrets?: inputs.GetServerlessContainerSecret[];
 }
 
@@ -34,12 +66,27 @@ export interface GetServerlessContainerArgs {
  * A collection of values returned by getServerlessContainer.
  */
 export interface GetServerlessContainerResult {
+    /**
+     * Concurrency of Yandex Cloud Serverless Container
+     */
     readonly concurrency: number;
     readonly containerId?: string;
+    /**
+     * Core fraction (**0...100**) of the Yandex Cloud Serverless Container
+     */
     readonly coreFraction: number;
     readonly cores: number;
+    /**
+     * Creation timestamp of the Yandex Cloud Serverless Container
+     */
     readonly createdAt: string;
+    /**
+     * Description of the Yandex Cloud Serverless Container
+     */
     readonly description: string;
+    /**
+     * Execution timeout (duration format) of Yandex Cloud Serverless Container
+     */
     readonly executionTimeout: string;
     readonly folderId?: string;
     /**
@@ -47,12 +94,36 @@ export interface GetServerlessContainerResult {
      */
     readonly id: string;
     readonly images: outputs.GetServerlessContainerImage[];
+    /**
+     * A set of key/value label pairs assigned to the Yandex Cloud Serverless Container
+     */
     readonly labels: {[key: string]: string};
+    /**
+     * Memory in megabytes of Yandex Cloud Serverless Container
+     */
     readonly memory: number;
     readonly name?: string;
+    /**
+     * Last revision ID of the Yandex Cloud Serverless Container
+     */
     readonly revisionId: string;
+    /**
+     * Secrets for Yandex Cloud Serverless Container
+     * * `image.0.url` - URL of image that deployed as Yandex Cloud Serverless Container
+     * * `image.0.work_dir` - Working directory of Yandex Cloud Serverless Container
+     * * `image.0.digest` - Digest of image that deployed as Yandex Cloud Serverless Container
+     * * `image.0.command` - List of commands of the Yandex Cloud Serverless Container
+     * * `image.0.args` - List of arguments of the Yandex Cloud Serverless Container
+     * * `image.0.environment` -  A set of key/value environment variable pairs of Yandex Cloud Serverless Container
+     */
     readonly secrets: outputs.GetServerlessContainerSecret[];
+    /**
+     * Service account ID of Yandex Cloud Serverless Container
+     */
     readonly serviceAccountId: string;
+    /**
+     * Invoke URL of the Yandex Cloud Serverless Container
+     */
     readonly url: string;
 }
 
@@ -64,8 +135,26 @@ export function getServerlessContainerOutput(args?: GetServerlessContainerOutput
  * A collection of arguments for invoking getServerlessContainer.
  */
 export interface GetServerlessContainerOutputArgs {
+    /**
+     * Yandex Cloud Serverless Container id used to define container
+     */
     containerId?: pulumi.Input<string>;
+    /**
+     * Folder ID for the Yandex Cloud Serverless Container
+     */
     folderId?: pulumi.Input<string>;
+    /**
+     * Yandex Cloud Serverless Container name used to define container
+     */
     name?: pulumi.Input<string>;
+    /**
+     * Secrets for Yandex Cloud Serverless Container
+     * * `image.0.url` - URL of image that deployed as Yandex Cloud Serverless Container
+     * * `image.0.work_dir` - Working directory of Yandex Cloud Serverless Container
+     * * `image.0.digest` - Digest of image that deployed as Yandex Cloud Serverless Container
+     * * `image.0.command` - List of commands of the Yandex Cloud Serverless Container
+     * * `image.0.args` - List of arguments of the Yandex Cloud Serverless Container
+     * * `image.0.environment` -  A set of key/value environment variable pairs of Yandex Cloud Serverless Container
+     */
     secrets?: pulumi.Input<pulumi.Input<inputs.GetServerlessContainerSecretArgs>[]>;
 }

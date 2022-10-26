@@ -13,8 +13,17 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class AlbLoadBalancerListenerTlsSniHandler
     {
+        /// <summary>
+        /// HTTP handler that sets plaintext HTTP router. The structure is documented below.
+        /// </summary>
         public readonly Outputs.AlbLoadBalancerListenerTlsSniHandlerHandler Handler;
+        /// <summary>
+        /// name of SNI match.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// A set of server names.
+        /// </summary>
         public readonly ImmutableArray<string> ServerNames;
 
         [OutputConstructor]

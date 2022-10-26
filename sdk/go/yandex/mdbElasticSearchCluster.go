@@ -11,24 +11,52 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+// Manages a Elasticsearch cluster within the Yandex.Cloud. For more information, see
+// [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/concepts).
+//
+// ## Import
+//
+// A cluster can be imported using the `id` of the resource, e.g.
+//
+// ```sh
+//
+//	$ pulumi import yandex:index/mdbElasticSearchCluster:MdbElasticSearchCluster foo cluster_id
+//
+// ```
 type MdbElasticSearchCluster struct {
 	pulumi.CustomResourceState
 
-	Config             MdbElasticSearchClusterConfigOutput            `pulumi:"config"`
-	CreatedAt          pulumi.StringOutput                            `pulumi:"createdAt"`
-	DeletionProtection pulumi.BoolOutput                              `pulumi:"deletionProtection"`
-	Description        pulumi.StringPtrOutput                         `pulumi:"description"`
-	Environment        pulumi.StringOutput                            `pulumi:"environment"`
-	FolderId           pulumi.StringOutput                            `pulumi:"folderId"`
-	Health             pulumi.StringOutput                            `pulumi:"health"`
-	Hosts              MdbElasticSearchClusterHostArrayOutput         `pulumi:"hosts"`
-	Labels             pulumi.StringMapOutput                         `pulumi:"labels"`
-	MaintenanceWindow  MdbElasticSearchClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
-	Name               pulumi.StringOutput                            `pulumi:"name"`
-	NetworkId          pulumi.StringOutput                            `pulumi:"networkId"`
-	SecurityGroupIds   pulumi.StringArrayOutput                       `pulumi:"securityGroupIds"`
-	ServiceAccountId   pulumi.StringPtrOutput                         `pulumi:"serviceAccountId"`
-	Status             pulumi.StringOutput                            `pulumi:"status"`
+	// Configuration of the Elasticsearch cluster. The structure is documented below.
+	Config MdbElasticSearchClusterConfigOutput `pulumi:"config"`
+	// Creation timestamp of the key.
+	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection pulumi.BoolOutput `pulumi:"deletionProtection"`
+	// Description of the Elasticsearch cluster.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// Deployment environment of the Elasticsearch cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment pulumi.StringOutput `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringOutput `pulumi:"folderId"`
+	// Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+	// For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
+	Health pulumi.StringOutput `pulumi:"health"`
+	// A host of the Elasticsearch cluster. The structure is documented below.
+	Hosts MdbElasticSearchClusterHostArrayOutput `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the Elasticsearch cluster.
+	Labels            pulumi.StringMapOutput                         `pulumi:"labels"`
+	MaintenanceWindow MdbElasticSearchClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
+	// User defined host name.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// ID of the network, to which the Elasticsearch cluster belongs.
+	NetworkId pulumi.StringOutput `pulumi:"networkId"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
+	// ID of the service account authorized for this cluster.
+	ServiceAccountId pulumi.StringPtrOutput `pulumi:"serviceAccountId"`
+	// Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+	// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
+	Status pulumi.StringOutput `pulumi:"status"`
 }
 
 // NewMdbElasticSearchCluster registers a new resource with the given unique name, arguments, and options.
@@ -70,39 +98,71 @@ func GetMdbElasticSearchCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MdbElasticSearchCluster resources.
 type mdbElasticSearchClusterState struct {
-	Config             *MdbElasticSearchClusterConfig            `pulumi:"config"`
-	CreatedAt          *string                                   `pulumi:"createdAt"`
-	DeletionProtection *bool                                     `pulumi:"deletionProtection"`
-	Description        *string                                   `pulumi:"description"`
-	Environment        *string                                   `pulumi:"environment"`
-	FolderId           *string                                   `pulumi:"folderId"`
-	Health             *string                                   `pulumi:"health"`
-	Hosts              []MdbElasticSearchClusterHost             `pulumi:"hosts"`
-	Labels             map[string]string                         `pulumi:"labels"`
-	MaintenanceWindow  *MdbElasticSearchClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	Name               *string                                   `pulumi:"name"`
-	NetworkId          *string                                   `pulumi:"networkId"`
-	SecurityGroupIds   []string                                  `pulumi:"securityGroupIds"`
-	ServiceAccountId   *string                                   `pulumi:"serviceAccountId"`
-	Status             *string                                   `pulumi:"status"`
+	// Configuration of the Elasticsearch cluster. The structure is documented below.
+	Config *MdbElasticSearchClusterConfig `pulumi:"config"`
+	// Creation timestamp of the key.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// Description of the Elasticsearch cluster.
+	Description *string `pulumi:"description"`
+	// Deployment environment of the Elasticsearch cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment *string `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+	// For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
+	Health *string `pulumi:"health"`
+	// A host of the Elasticsearch cluster. The structure is documented below.
+	Hosts []MdbElasticSearchClusterHost `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the Elasticsearch cluster.
+	Labels            map[string]string                         `pulumi:"labels"`
+	MaintenanceWindow *MdbElasticSearchClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// User defined host name.
+	Name *string `pulumi:"name"`
+	// ID of the network, to which the Elasticsearch cluster belongs.
+	NetworkId *string `pulumi:"networkId"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// ID of the service account authorized for this cluster.
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
+	// Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+	// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
+	Status *string `pulumi:"status"`
 }
 
 type MdbElasticSearchClusterState struct {
-	Config             MdbElasticSearchClusterConfigPtrInput
-	CreatedAt          pulumi.StringPtrInput
+	// Configuration of the Elasticsearch cluster. The structure is documented below.
+	Config MdbElasticSearchClusterConfigPtrInput
+	// Creation timestamp of the key.
+	CreatedAt pulumi.StringPtrInput
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
 	DeletionProtection pulumi.BoolPtrInput
-	Description        pulumi.StringPtrInput
-	Environment        pulumi.StringPtrInput
-	FolderId           pulumi.StringPtrInput
-	Health             pulumi.StringPtrInput
-	Hosts              MdbElasticSearchClusterHostArrayInput
-	Labels             pulumi.StringMapInput
-	MaintenanceWindow  MdbElasticSearchClusterMaintenanceWindowPtrInput
-	Name               pulumi.StringPtrInput
-	NetworkId          pulumi.StringPtrInput
-	SecurityGroupIds   pulumi.StringArrayInput
-	ServiceAccountId   pulumi.StringPtrInput
-	Status             pulumi.StringPtrInput
+	// Description of the Elasticsearch cluster.
+	Description pulumi.StringPtrInput
+	// Deployment environment of the Elasticsearch cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment pulumi.StringPtrInput
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+	// For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
+	Health pulumi.StringPtrInput
+	// A host of the Elasticsearch cluster. The structure is documented below.
+	Hosts MdbElasticSearchClusterHostArrayInput
+	// A set of key/value label pairs to assign to the Elasticsearch cluster.
+	Labels            pulumi.StringMapInput
+	MaintenanceWindow MdbElasticSearchClusterMaintenanceWindowPtrInput
+	// User defined host name.
+	Name pulumi.StringPtrInput
+	// ID of the network, to which the Elasticsearch cluster belongs.
+	NetworkId pulumi.StringPtrInput
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayInput
+	// ID of the service account authorized for this cluster.
+	ServiceAccountId pulumi.StringPtrInput
+	// Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+	// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
+	Status pulumi.StringPtrInput
 }
 
 func (MdbElasticSearchClusterState) ElementType() reflect.Type {
@@ -110,34 +170,56 @@ func (MdbElasticSearchClusterState) ElementType() reflect.Type {
 }
 
 type mdbElasticSearchClusterArgs struct {
-	Config             MdbElasticSearchClusterConfig             `pulumi:"config"`
-	DeletionProtection *bool                                     `pulumi:"deletionProtection"`
-	Description        *string                                   `pulumi:"description"`
-	Environment        string                                    `pulumi:"environment"`
-	FolderId           *string                                   `pulumi:"folderId"`
-	Hosts              []MdbElasticSearchClusterHost             `pulumi:"hosts"`
-	Labels             map[string]string                         `pulumi:"labels"`
-	MaintenanceWindow  *MdbElasticSearchClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
-	Name               *string                                   `pulumi:"name"`
-	NetworkId          string                                    `pulumi:"networkId"`
-	SecurityGroupIds   []string                                  `pulumi:"securityGroupIds"`
-	ServiceAccountId   *string                                   `pulumi:"serviceAccountId"`
+	// Configuration of the Elasticsearch cluster. The structure is documented below.
+	Config MdbElasticSearchClusterConfig `pulumi:"config"`
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
+	// Description of the Elasticsearch cluster.
+	Description *string `pulumi:"description"`
+	// Deployment environment of the Elasticsearch cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment string `pulumi:"environment"`
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// A host of the Elasticsearch cluster. The structure is documented below.
+	Hosts []MdbElasticSearchClusterHost `pulumi:"hosts"`
+	// A set of key/value label pairs to assign to the Elasticsearch cluster.
+	Labels            map[string]string                         `pulumi:"labels"`
+	MaintenanceWindow *MdbElasticSearchClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
+	// User defined host name.
+	Name *string `pulumi:"name"`
+	// ID of the network, to which the Elasticsearch cluster belongs.
+	NetworkId string `pulumi:"networkId"`
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds []string `pulumi:"securityGroupIds"`
+	// ID of the service account authorized for this cluster.
+	ServiceAccountId *string `pulumi:"serviceAccountId"`
 }
 
 // The set of arguments for constructing a MdbElasticSearchCluster resource.
 type MdbElasticSearchClusterArgs struct {
-	Config             MdbElasticSearchClusterConfigInput
+	// Configuration of the Elasticsearch cluster. The structure is documented below.
+	Config MdbElasticSearchClusterConfigInput
+	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
 	DeletionProtection pulumi.BoolPtrInput
-	Description        pulumi.StringPtrInput
-	Environment        pulumi.StringInput
-	FolderId           pulumi.StringPtrInput
-	Hosts              MdbElasticSearchClusterHostArrayInput
-	Labels             pulumi.StringMapInput
-	MaintenanceWindow  MdbElasticSearchClusterMaintenanceWindowPtrInput
-	Name               pulumi.StringPtrInput
-	NetworkId          pulumi.StringInput
-	SecurityGroupIds   pulumi.StringArrayInput
-	ServiceAccountId   pulumi.StringPtrInput
+	// Description of the Elasticsearch cluster.
+	Description pulumi.StringPtrInput
+	// Deployment environment of the Elasticsearch cluster. Can be either `PRESTABLE` or `PRODUCTION`.
+	Environment pulumi.StringInput
+	// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
+	FolderId pulumi.StringPtrInput
+	// A host of the Elasticsearch cluster. The structure is documented below.
+	Hosts MdbElasticSearchClusterHostArrayInput
+	// A set of key/value label pairs to assign to the Elasticsearch cluster.
+	Labels            pulumi.StringMapInput
+	MaintenanceWindow MdbElasticSearchClusterMaintenanceWindowPtrInput
+	// User defined host name.
+	Name pulumi.StringPtrInput
+	// ID of the network, to which the Elasticsearch cluster belongs.
+	NetworkId pulumi.StringInput
+	// A set of ids of security groups assigned to hosts of the cluster.
+	SecurityGroupIds pulumi.StringArrayInput
+	// ID of the service account authorized for this cluster.
+	ServiceAccountId pulumi.StringPtrInput
 }
 
 func (MdbElasticSearchClusterArgs) ElementType() reflect.Type {
@@ -227,38 +309,48 @@ func (o MdbElasticSearchClusterOutput) ToMdbElasticSearchClusterOutputWithContex
 	return o
 }
 
+// Configuration of the Elasticsearch cluster. The structure is documented below.
 func (o MdbElasticSearchClusterOutput) Config() MdbElasticSearchClusterConfigOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) MdbElasticSearchClusterConfigOutput { return v.Config }).(MdbElasticSearchClusterConfigOutput)
 }
 
+// Creation timestamp of the key.
 func (o MdbElasticSearchClusterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Inhibits deletion of the cluster.  Can be either `true` or `false`.
 func (o MdbElasticSearchClusterOutput) DeletionProtection() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) pulumi.BoolOutput { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
+// Description of the Elasticsearch cluster.
 func (o MdbElasticSearchClusterOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// Deployment environment of the Elasticsearch cluster. Can be either `PRESTABLE` or `PRODUCTION`.
 func (o MdbElasticSearchClusterOutput) Environment() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) pulumi.StringOutput { return v.Environment }).(pulumi.StringOutput)
 }
 
+// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
 func (o MdbElasticSearchClusterOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
+// Aggregated health of the cluster. Can be either `ALIVE`, `DEGRADED`, `DEAD` or `HEALTH_UNKNOWN`.
+// For more information see `health` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
 func (o MdbElasticSearchClusterOutput) Health() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) pulumi.StringOutput { return v.Health }).(pulumi.StringOutput)
 }
 
+// A host of the Elasticsearch cluster. The structure is documented below.
 func (o MdbElasticSearchClusterOutput) Hosts() MdbElasticSearchClusterHostArrayOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) MdbElasticSearchClusterHostArrayOutput { return v.Hosts }).(MdbElasticSearchClusterHostArrayOutput)
 }
 
+// A set of key/value label pairs to assign to the Elasticsearch cluster.
 func (o MdbElasticSearchClusterOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -269,22 +361,28 @@ func (o MdbElasticSearchClusterOutput) MaintenanceWindow() MdbElasticSearchClust
 	}).(MdbElasticSearchClusterMaintenanceWindowOutput)
 }
 
+// User defined host name.
 func (o MdbElasticSearchClusterOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
+// ID of the network, to which the Elasticsearch cluster belongs.
 func (o MdbElasticSearchClusterOutput) NetworkId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) pulumi.StringOutput { return v.NetworkId }).(pulumi.StringOutput)
 }
 
+// A set of ids of security groups assigned to hosts of the cluster.
 func (o MdbElasticSearchClusterOutput) SecurityGroupIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) pulumi.StringArrayOutput { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }
 
+// ID of the service account authorized for this cluster.
 func (o MdbElasticSearchClusterOutput) ServiceAccountId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) pulumi.StringPtrOutput { return v.ServiceAccountId }).(pulumi.StringPtrOutput)
 }
 
+// Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
+// For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-elasticsearch/api-ref/Cluster/).
 func (o MdbElasticSearchClusterOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbElasticSearchCluster) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }

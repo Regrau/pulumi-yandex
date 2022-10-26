@@ -13,6 +13,9 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbMongodbClusterDatabaseResult
     {
+        /// <summary>
+        /// The name of the MongoDB cluster.
+        /// </summary>
         public readonly string? Name;
 
         [OutputConstructor]

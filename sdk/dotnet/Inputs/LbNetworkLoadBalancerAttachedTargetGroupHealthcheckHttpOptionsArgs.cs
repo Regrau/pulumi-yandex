@@ -12,9 +12,15 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// URL path to set for health checking requests for every target in the target group. For example `/ping`. The default path is `/`.
+        /// </summary>
         [Input("path")]
         public Input<string>? Path { get; set; }
 
+        /// <summary>
+        /// Port for incoming traffic.
+        /// </summary>
         [Input("port", required: true)]
         public Input<int> Port { get; set; } = null!;
 

@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbMongodbClusterDatabaseArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// The fully qualified domain name of the host. Computed on server side.
+        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 

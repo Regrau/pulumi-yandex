@@ -20,6 +20,10 @@ class ResourcemanagerFolderArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a ResourcemanagerFolder resource.
+        :param pulumi.Input[str] cloud_id: Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+        :param pulumi.Input[str] description: A description of the Folder.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Folder.
+        :param pulumi.Input[str] name: The name of the Folder.
         """
         if cloud_id is not None:
             pulumi.set(__self__, "cloud_id", cloud_id)
@@ -33,6 +37,9 @@ class ResourcemanagerFolderArgs:
     @property
     @pulumi.getter(name="cloudId")
     def cloud_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+        """
         return pulumi.get(self, "cloud_id")
 
     @cloud_id.setter
@@ -42,6 +49,9 @@ class ResourcemanagerFolderArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the Folder.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -51,6 +61,9 @@ class ResourcemanagerFolderArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Folder.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -60,6 +73,9 @@ class ResourcemanagerFolderArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Folder.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -77,6 +93,10 @@ class _ResourcemanagerFolderState:
                  name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering ResourcemanagerFolder resources.
+        :param pulumi.Input[str] cloud_id: Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+        :param pulumi.Input[str] description: A description of the Folder.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Folder.
+        :param pulumi.Input[str] name: The name of the Folder.
         """
         if cloud_id is not None:
             pulumi.set(__self__, "cloud_id", cloud_id)
@@ -92,6 +112,9 @@ class _ResourcemanagerFolderState:
     @property
     @pulumi.getter(name="cloudId")
     def cloud_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+        """
         return pulumi.get(self, "cloud_id")
 
     @cloud_id.setter
@@ -110,6 +133,9 @@ class _ResourcemanagerFolderState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        A description of the Folder.
+        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -119,6 +145,9 @@ class _ResourcemanagerFolderState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of key/value label pairs to assign to the Folder.
+        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -128,6 +157,9 @@ class _ResourcemanagerFolderState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        The name of the Folder.
+        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -146,9 +178,24 @@ class ResourcemanagerFolder(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Create a ResourcemanagerFolder resource with the given unique name, props, and options.
+        Allows creation and management of Cloud Folders for an existing Yandex Cloud. See [the official documentation](https://cloud.yandex.com/docs/resource-manager/concepts/resources-hierarchy) for additional info.
+        Note: deletion of folders may take up to 30 minutes as it requires a lot of communication between cloud services.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        folder1 = yandex.ResourcemanagerFolder("folder1", cloud_id="my_cloud_id")
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cloud_id: Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+        :param pulumi.Input[str] description: A description of the Folder.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Folder.
+        :param pulumi.Input[str] name: The name of the Folder.
         """
         ...
     @overload
@@ -157,7 +204,18 @@ class ResourcemanagerFolder(pulumi.CustomResource):
                  args: Optional[ResourcemanagerFolderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Create a ResourcemanagerFolder resource with the given unique name, props, and options.
+        Allows creation and management of Cloud Folders for an existing Yandex Cloud. See [the official documentation](https://cloud.yandex.com/docs/resource-manager/concepts/resources-hierarchy) for additional info.
+        Note: deletion of folders may take up to 30 minutes as it requires a lot of communication between cloud services.
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        folder1 = yandex.ResourcemanagerFolder("folder1", cloud_id="my_cloud_id")
+        ```
+
         :param str resource_name: The name of the resource.
         :param ResourcemanagerFolderArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -213,6 +271,10 @@ class ResourcemanagerFolder(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cloud_id: Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+        :param pulumi.Input[str] description: A description of the Folder.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Folder.
+        :param pulumi.Input[str] name: The name of the Folder.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -228,6 +290,9 @@ class ResourcemanagerFolder(pulumi.CustomResource):
     @property
     @pulumi.getter(name="cloudId")
     def cloud_id(self) -> pulumi.Output[str]:
+        """
+        Cloud that the resource belongs to. If value is omitted, the default provider Cloud ID is used.
+        """
         return pulumi.get(self, "cloud_id")
 
     @property
@@ -238,15 +303,24 @@ class ResourcemanagerFolder(pulumi.CustomResource):
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        A description of the Folder.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of key/value label pairs to assign to the Folder.
+        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
+        """
+        The name of the Folder.
+        """
         return pulumi.get(self, "name")
 

@@ -4,6 +4,33 @@
 import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
+/**
+ * Allows management of [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart).
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const myDevice = new yandex.IotCoreDevice("my_device", {
+ *     aliases: {
+ *         "some_alias1/subtopic": "$devices/{id}/events/somesubtopic",
+ *         "some_alias2/subtopic": "$devices/{id}/events/aaa/bbb",
+ *     },
+ *     certificates: [
+ *         "public part of certificate1",
+ *         "public part of certificate2",
+ *     ],
+ *     description: "any description",
+ *     passwords: [
+ *         "my-password1",
+ *         "my-password2",
+ *     ],
+ *     registryId: "are1sampleregistryid11",
+ * });
+ * ```
+ */
 export class IotCoreDevice extends pulumi.CustomResource {
     /**
      * Get an existing IotCoreDevice resource's state with the given name, ID, and optional extra
@@ -32,12 +59,33 @@ export class IotCoreDevice extends pulumi.CustomResource {
         return obj['__pulumiType'] === IotCoreDevice.__pulumiType;
     }
 
+    /**
+     * A set of key/value aliases pairs to assign to the IoT Core Device
+     */
     public readonly aliases!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * A set of certificate's fingerprints for the IoT Core Device
+     */
     public readonly certificates!: pulumi.Output<string[] | undefined>;
+    /**
+     * Creation timestamp of the IoT Core Device
+     */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * Description of the IoT Core Device
+     */
     public readonly description!: pulumi.Output<string | undefined>;
+    /**
+     * IoT Core Device name used to define device
+     */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * A set of passwords's id for the IoT Core Device
+     */
     public readonly passwords!: pulumi.Output<string[] | undefined>;
+    /**
+     * IoT Core Registry ID for the IoT Core Device
+     */
     public readonly registryId!: pulumi.Output<string>;
 
     /**
@@ -82,12 +130,33 @@ export class IotCoreDevice extends pulumi.CustomResource {
  * Input properties used for looking up and filtering IotCoreDevice resources.
  */
 export interface IotCoreDeviceState {
+    /**
+     * A set of key/value aliases pairs to assign to the IoT Core Device
+     */
     aliases?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * A set of certificate's fingerprints for the IoT Core Device
+     */
     certificates?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Creation timestamp of the IoT Core Device
+     */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Description of the IoT Core Device
+     */
     description?: pulumi.Input<string>;
+    /**
+     * IoT Core Device name used to define device
+     */
     name?: pulumi.Input<string>;
+    /**
+     * A set of passwords's id for the IoT Core Device
+     */
     passwords?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * IoT Core Registry ID for the IoT Core Device
+     */
     registryId?: pulumi.Input<string>;
 }
 
@@ -95,10 +164,28 @@ export interface IotCoreDeviceState {
  * The set of arguments for constructing a IotCoreDevice resource.
  */
 export interface IotCoreDeviceArgs {
+    /**
+     * A set of key/value aliases pairs to assign to the IoT Core Device
+     */
     aliases?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * A set of certificate's fingerprints for the IoT Core Device
+     */
     certificates?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Description of the IoT Core Device
+     */
     description?: pulumi.Input<string>;
+    /**
+     * IoT Core Device name used to define device
+     */
     name?: pulumi.Input<string>;
+    /**
+     * A set of passwords's id for the IoT Core Device
+     */
     passwords?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * IoT Core Registry ID for the IoT Core Device
+     */
     registryId: pulumi.Input<string>;
 }
