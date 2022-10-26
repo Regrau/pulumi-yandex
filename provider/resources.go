@@ -106,9 +106,8 @@ func Provider() tfbridge.ProviderInfo {
 		Repository: "https://github.com/regrau/pulumi-yandex",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
-		GitHubOrg:            "",
-		Config:               map[string]*tfbridge.SchemaInfo{},
-		PreConfigureCallback: preConfigureCallback,
+		GitHubOrg: "",
+		Config:    map[string]*tfbridge.SchemaInfo{},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"yandex_alb_target_group":                      {Tok: makeResource(mainMod, "AlbTargetGroup")},
 			"yandex_alb_backend_group":                     {Tok: makeResource(mainMod, "AlbBackendGroup")},
