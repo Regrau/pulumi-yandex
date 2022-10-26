@@ -63,6 +63,7 @@ func NewMdbMongodbCluster(ctx *pulumi.Context,
 	if args.Users == nil {
 		return nil, errors.New("invalid value for required argument 'Users'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource MdbMongodbCluster
 	err := ctx.RegisterResource("yandex:index/mdbMongodbCluster:MdbMongodbCluster", name, args, &resource, opts...)
 	if err != nil {

@@ -33,6 +33,7 @@ func NewIamServiceAccountApiKey(ctx *pulumi.Context,
 	if args.ServiceAccountId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceAccountId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IamServiceAccountApiKey
 	err := ctx.RegisterResource("yandex:index/iamServiceAccountApiKey:IamServiceAccountApiKey", name, args, &resource, opts...)
 	if err != nil {

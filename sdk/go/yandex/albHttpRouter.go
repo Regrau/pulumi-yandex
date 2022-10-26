@@ -28,6 +28,7 @@ func NewAlbHttpRouter(ctx *pulumi.Context,
 		args = &AlbHttpRouterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AlbHttpRouter
 	err := ctx.RegisterResource("yandex:index/albHttpRouter:AlbHttpRouter", name, args, &resource, opts...)
 	if err != nil {

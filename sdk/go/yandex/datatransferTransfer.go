@@ -30,6 +30,7 @@ func NewDatatransferTransfer(ctx *pulumi.Context,
 		args = &DatatransferTransferArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DatatransferTransfer
 	err := ctx.RegisterResource("yandex:index/datatransferTransfer:DatatransferTransfer", name, args, &resource, opts...)
 	if err != nil {

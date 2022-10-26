@@ -11,6 +11,7 @@ import (
 )
 
 func LookupMdbKafkaCluster(ctx *pulumi.Context, args *LookupMdbKafkaClusterArgs, opts ...pulumi.InvokeOption) (*LookupMdbKafkaClusterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupMdbKafkaClusterResult
 	err := ctx.Invoke("yandex:index/getMdbKafkaCluster:getMdbKafkaCluster", args, &rv, opts...)
 	if err != nil {

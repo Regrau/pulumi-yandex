@@ -11,6 +11,7 @@ import (
 )
 
 func LookupVpcAddress(ctx *pulumi.Context, args *LookupVpcAddressArgs, opts ...pulumi.InvokeOption) (*LookupVpcAddressResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcAddressResult
 	err := ctx.Invoke("yandex:index/getVpcAddress:getVpcAddress", args, &rv, opts...)
 	if err != nil {

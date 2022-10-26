@@ -33,6 +33,7 @@ func NewIotCoreDevice(ctx *pulumi.Context,
 	if args.RegistryId == nil {
 		return nil, errors.New("invalid value for required argument 'RegistryId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IotCoreDevice
 	err := ctx.RegisterResource("yandex:index/iotCoreDevice:IotCoreDevice", name, args, &resource, opts...)
 	if err != nil {

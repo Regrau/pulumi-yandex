@@ -11,6 +11,7 @@ import (
 )
 
 func LookupIamServiceAccount(ctx *pulumi.Context, args *LookupIamServiceAccountArgs, opts ...pulumi.InvokeOption) (*LookupIamServiceAccountResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupIamServiceAccountResult
 	err := ctx.Invoke("yandex:index/getIamServiceAccount:getIamServiceAccount", args, &rv, opts...)
 	if err != nil {

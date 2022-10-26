@@ -11,6 +11,7 @@ import (
 )
 
 func LookupLbTargetGroup(ctx *pulumi.Context, args *LookupLbTargetGroupArgs, opts ...pulumi.InvokeOption) (*LookupLbTargetGroupResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupLbTargetGroupResult
 	err := ctx.Invoke("yandex:index/getLbTargetGroup:getLbTargetGroup", args, &rv, opts...)
 	if err != nil {

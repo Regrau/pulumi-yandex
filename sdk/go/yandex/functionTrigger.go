@@ -39,6 +39,7 @@ func NewFunctionTrigger(ctx *pulumi.Context,
 	if args.Function == nil {
 		return nil, errors.New("invalid value for required argument 'Function'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FunctionTrigger
 	err := ctx.RegisterResource("yandex:index/functionTrigger:FunctionTrigger", name, args, &resource, opts...)
 	if err != nil {

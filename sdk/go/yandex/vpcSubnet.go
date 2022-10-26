@@ -40,6 +40,7 @@ func NewVpcSubnet(ctx *pulumi.Context,
 	if args.V4CidrBlocks == nil {
 		return nil, errors.New("invalid value for required argument 'V4CidrBlocks'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcSubnet
 	err := ctx.RegisterResource("yandex:index/vpcSubnet:VpcSubnet", name, args, &resource, opts...)
 	if err != nil {

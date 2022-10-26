@@ -11,6 +11,7 @@ import (
 )
 
 func LookupLoggingGroup(ctx *pulumi.Context, args *LookupLoggingGroupArgs, opts ...pulumi.InvokeOption) (*LookupLoggingGroupResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupLoggingGroupResult
 	err := ctx.Invoke("yandex:index/getLoggingGroup:getLoggingGroup", args, &rv, opts...)
 	if err != nil {

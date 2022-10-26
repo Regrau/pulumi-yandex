@@ -31,6 +31,7 @@ func NewLbNetworkLoadBalancer(ctx *pulumi.Context,
 		args = &LbNetworkLoadBalancerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LbNetworkLoadBalancer
 	err := ctx.RegisterResource("yandex:index/lbNetworkLoadBalancer:LbNetworkLoadBalancer", name, args, &resource, opts...)
 	if err != nil {

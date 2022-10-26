@@ -11,6 +11,7 @@ import (
 )
 
 func LookupFunction(ctx *pulumi.Context, args *LookupFunctionArgs, opts ...pulumi.InvokeOption) (*LookupFunctionResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFunctionResult
 	err := ctx.Invoke("yandex:index/getFunction:getFunction", args, &rv, opts...)
 	if err != nil {

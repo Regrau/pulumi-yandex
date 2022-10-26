@@ -11,6 +11,7 @@ import (
 )
 
 func LookupAlbHttpRouter(ctx *pulumi.Context, args *LookupAlbHttpRouterArgs, opts ...pulumi.InvokeOption) (*LookupAlbHttpRouterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupAlbHttpRouterResult
 	err := ctx.Invoke("yandex:index/getAlbHttpRouter:getAlbHttpRouter", args, &rv, opts...)
 	if err != nil {

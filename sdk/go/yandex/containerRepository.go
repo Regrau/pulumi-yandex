@@ -23,6 +23,7 @@ func NewContainerRepository(ctx *pulumi.Context,
 		args = &ContainerRepositoryArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ContainerRepository
 	err := ctx.RegisterResource("yandex:index/containerRepository:ContainerRepository", name, args, &resource, opts...)
 	if err != nil {

@@ -47,6 +47,7 @@ func NewOrganizationmanagerSamlFederation(ctx *pulumi.Context,
 	if args.SsoUrl == nil {
 		return nil, errors.New("invalid value for required argument 'SsoUrl'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource OrganizationmanagerSamlFederation
 	err := ctx.RegisterResource("yandex:index/organizationmanagerSamlFederation:OrganizationmanagerSamlFederation", name, args, &resource, opts...)
 	if err != nil {

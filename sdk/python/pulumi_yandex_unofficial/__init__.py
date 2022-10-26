@@ -145,10 +145,10 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
-    import pulumi_yandex.config as __config
+    import pulumi_yandex_unofficial.config as __config
     config = __config
 else:
-    config = _utilities.lazy_import('pulumi_yandex.config')
+    config = _utilities.lazy_import('pulumi_yandex_unofficial.config')
 
 _utilities.register(
     resource_modules="""
@@ -156,7 +156,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/albBackendGroup",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/albBackendGroup:AlbBackendGroup": "AlbBackendGroup"
   }
@@ -164,7 +164,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/albHttpRouter",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/albHttpRouter:AlbHttpRouter": "AlbHttpRouter"
   }
@@ -172,7 +172,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/albLoadBalancer",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/albLoadBalancer:AlbLoadBalancer": "AlbLoadBalancer"
   }
@@ -180,7 +180,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/albTargetGroup",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/albTargetGroup:AlbTargetGroup": "AlbTargetGroup"
   }
@@ -188,7 +188,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/albVirtualHost",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/albVirtualHost:AlbVirtualHost": "AlbVirtualHost"
   }
@@ -196,7 +196,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/apiGateway",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/apiGateway:ApiGateway": "ApiGateway"
   }
@@ -204,7 +204,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/cdnOriginGroup",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/cdnOriginGroup:CdnOriginGroup": "CdnOriginGroup"
   }
@@ -212,7 +212,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/cdnResource",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/cdnResource:CdnResource": "CdnResource"
   }
@@ -220,7 +220,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/computeDisk",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/computeDisk:ComputeDisk": "ComputeDisk"
   }
@@ -228,7 +228,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/computeDiskPlacementGroup",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/computeDiskPlacementGroup:ComputeDiskPlacementGroup": "ComputeDiskPlacementGroup"
   }
@@ -236,7 +236,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/computeImage",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/computeImage:ComputeImage": "ComputeImage"
   }
@@ -244,7 +244,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/computeInstance",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/computeInstance:ComputeInstance": "ComputeInstance"
   }
@@ -252,7 +252,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/computeInstanceGroup",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/computeInstanceGroup:ComputeInstanceGroup": "ComputeInstanceGroup"
   }
@@ -260,7 +260,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/computePlacementGroup",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/computePlacementGroup:ComputePlacementGroup": "ComputePlacementGroup"
   }
@@ -268,7 +268,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/computeSnapshot",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/computeSnapshot:ComputeSnapshot": "ComputeSnapshot"
   }
@@ -276,7 +276,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/containerRegistry",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/containerRegistry:ContainerRegistry": "ContainerRegistry"
   }
@@ -284,7 +284,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/containerRegistryIamBinding",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/containerRegistryIamBinding:ContainerRegistryIamBinding": "ContainerRegistryIamBinding"
   }
@@ -292,7 +292,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/containerRepository",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/containerRepository:ContainerRepository": "ContainerRepository"
   }
@@ -300,7 +300,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/containerRepositoryIamBinding",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/containerRepositoryIamBinding:ContainerRepositoryIamBinding": "ContainerRepositoryIamBinding"
   }
@@ -308,7 +308,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/dataprocCluster",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/dataprocCluster:DataprocCluster": "DataprocCluster"
   }
@@ -316,7 +316,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/datatransferEndpoint",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/datatransferEndpoint:DatatransferEndpoint": "DatatransferEndpoint"
   }
@@ -324,7 +324,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/datatransferTransfer",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/datatransferTransfer:DatatransferTransfer": "DatatransferTransfer"
   }
@@ -332,7 +332,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/dnsRecordSet",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/dnsRecordSet:DnsRecordSet": "DnsRecordSet"
   }
@@ -340,7 +340,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/dnsZone",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/dnsZone:DnsZone": "DnsZone"
   }
@@ -348,7 +348,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/function",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/function:Function": "Function"
   }
@@ -356,7 +356,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/functionIamBinding",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/functionIamBinding:FunctionIamBinding": "FunctionIamBinding"
   }
@@ -364,7 +364,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/functionScalingPolicy",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/functionScalingPolicy:FunctionScalingPolicy": "FunctionScalingPolicy"
   }
@@ -372,7 +372,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/functionTrigger",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/functionTrigger:FunctionTrigger": "FunctionTrigger"
   }
@@ -380,7 +380,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/iamServiceAccount",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/iamServiceAccount:IamServiceAccount": "IamServiceAccount"
   }
@@ -388,7 +388,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/iamServiceAccountApiKey",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/iamServiceAccountApiKey:IamServiceAccountApiKey": "IamServiceAccountApiKey"
   }
@@ -396,7 +396,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/iamServiceAccountIamBinding",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/iamServiceAccountIamBinding:IamServiceAccountIamBinding": "IamServiceAccountIamBinding"
   }
@@ -404,7 +404,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/iamServiceAccountIamMember",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/iamServiceAccountIamMember:IamServiceAccountIamMember": "IamServiceAccountIamMember"
   }
@@ -412,7 +412,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/iamServiceAccountIamPolicy",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/iamServiceAccountIamPolicy:IamServiceAccountIamPolicy": "IamServiceAccountIamPolicy"
   }
@@ -420,7 +420,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/iamServiceAccountKey",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/iamServiceAccountKey:IamServiceAccountKey": "IamServiceAccountKey"
   }
@@ -428,7 +428,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/iamServiceAccountStaticAccessKey",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/iamServiceAccountStaticAccessKey:IamServiceAccountStaticAccessKey": "IamServiceAccountStaticAccessKey"
   }
@@ -436,7 +436,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/iotCoreDevice",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/iotCoreDevice:IotCoreDevice": "IotCoreDevice"
   }
@@ -444,7 +444,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/iotCoreRegistry",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/iotCoreRegistry:IotCoreRegistry": "IotCoreRegistry"
   }
@@ -452,7 +452,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/kmsSecretCiphertext",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/kmsSecretCiphertext:KmsSecretCiphertext": "KmsSecretCiphertext"
   }
@@ -460,7 +460,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/kmsSymmetricKey",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/kmsSymmetricKey:KmsSymmetricKey": "KmsSymmetricKey"
   }
@@ -468,7 +468,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/kmsSymmetricKeyIamBinding",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/kmsSymmetricKeyIamBinding:KmsSymmetricKeyIamBinding": "KmsSymmetricKeyIamBinding"
   }
@@ -476,7 +476,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/kubernetesCluster",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/kubernetesCluster:KubernetesCluster": "KubernetesCluster"
   }
@@ -484,7 +484,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/kubernetesNodeGroup",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/kubernetesNodeGroup:KubernetesNodeGroup": "KubernetesNodeGroup"
   }
@@ -492,7 +492,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/lbNetworkLoadBalancer",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/lbNetworkLoadBalancer:LbNetworkLoadBalancer": "LbNetworkLoadBalancer"
   }
@@ -500,7 +500,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/lbTargetGroup",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/lbTargetGroup:LbTargetGroup": "LbTargetGroup"
   }
@@ -508,7 +508,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/loggingGroup",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/loggingGroup:LoggingGroup": "LoggingGroup"
   }
@@ -516,7 +516,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/mdbClickhouseCluster",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/mdbClickhouseCluster:MdbClickhouseCluster": "MdbClickhouseCluster"
   }
@@ -524,7 +524,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/mdbElasticSearchCluster",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/mdbElasticSearchCluster:MdbElasticSearchCluster": "MdbElasticSearchCluster"
   }
@@ -532,7 +532,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/mdbGreenplumCluster",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/mdbGreenplumCluster:MdbGreenplumCluster": "MdbGreenplumCluster"
   }
@@ -540,7 +540,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/mdbKafkaCluster",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/mdbKafkaCluster:MdbKafkaCluster": "MdbKafkaCluster"
   }
@@ -548,7 +548,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/mdbKafkaTopic",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/mdbKafkaTopic:MdbKafkaTopic": "MdbKafkaTopic"
   }
@@ -556,7 +556,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/mdbMongodbCluster",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/mdbMongodbCluster:MdbMongodbCluster": "MdbMongodbCluster"
   }
@@ -564,7 +564,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/mdbMysqlCluster",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/mdbMysqlCluster:MdbMysqlCluster": "MdbMysqlCluster"
   }
@@ -572,7 +572,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/mdbRedisCluster",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/mdbRedisCluster:MdbRedisCluster": "MdbRedisCluster"
   }
@@ -580,7 +580,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/mdbSqlServerCluster",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/mdbSqlServerCluster:MdbSqlServerCluster": "MdbSqlServerCluster"
   }
@@ -588,7 +588,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/messageQueue",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/messageQueue:MessageQueue": "MessageQueue"
   }
@@ -596,7 +596,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/organizationManagerOrganizationIamBinding",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/organizationManagerOrganizationIamBinding:OrganizationManagerOrganizationIamBinding": "OrganizationManagerOrganizationIamBinding"
   }
@@ -604,7 +604,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/organizationManagerOrganizationIamMember",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/organizationManagerOrganizationIamMember:OrganizationManagerOrganizationIamMember": "OrganizationManagerOrganizationIamMember"
   }
@@ -612,7 +612,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/organizationmanagerSamlFederation",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/organizationmanagerSamlFederation:OrganizationmanagerSamlFederation": "OrganizationmanagerSamlFederation"
   }
@@ -620,7 +620,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/resourcemanagerCloudIamBinding",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/resourcemanagerCloudIamBinding:ResourcemanagerCloudIamBinding": "ResourcemanagerCloudIamBinding"
   }
@@ -628,7 +628,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/resourcemanagerCloudIamMember",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/resourcemanagerCloudIamMember:ResourcemanagerCloudIamMember": "ResourcemanagerCloudIamMember"
   }
@@ -636,7 +636,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/resourcemanagerFolder",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/resourcemanagerFolder:ResourcemanagerFolder": "ResourcemanagerFolder"
   }
@@ -644,7 +644,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/resourcemanagerFolderIamBinding",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/resourcemanagerFolderIamBinding:ResourcemanagerFolderIamBinding": "ResourcemanagerFolderIamBinding"
   }
@@ -652,7 +652,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/resourcemanagerFolderIamMember",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/resourcemanagerFolderIamMember:ResourcemanagerFolderIamMember": "ResourcemanagerFolderIamMember"
   }
@@ -660,7 +660,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/resourcemanagerFolderIamPolicy",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/resourcemanagerFolderIamPolicy:ResourcemanagerFolderIamPolicy": "ResourcemanagerFolderIamPolicy"
   }
@@ -668,7 +668,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/serverlessContainer",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/serverlessContainer:ServerlessContainer": "ServerlessContainer"
   }
@@ -676,7 +676,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/storageBucket",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/storageBucket:StorageBucket": "StorageBucket"
   }
@@ -684,7 +684,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/storageObject",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/storageObject:StorageObject": "StorageObject"
   }
@@ -692,7 +692,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/vpcAddress",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/vpcAddress:VpcAddress": "VpcAddress"
   }
@@ -700,7 +700,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/vpcDefaultSecurityGroup",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/vpcDefaultSecurityGroup:VpcDefaultSecurityGroup": "VpcDefaultSecurityGroup"
   }
@@ -708,7 +708,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/vpcNetwork",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/vpcNetwork:VpcNetwork": "VpcNetwork"
   }
@@ -716,7 +716,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/vpcRouteTable",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/vpcRouteTable:VpcRouteTable": "VpcRouteTable"
   }
@@ -724,7 +724,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/vpcSecurityGroup",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/vpcSecurityGroup:VpcSecurityGroup": "VpcSecurityGroup"
   }
@@ -732,7 +732,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/vpcSecurityGroupRule",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/vpcSecurityGroupRule:VpcSecurityGroupRule": "VpcSecurityGroupRule"
   }
@@ -740,7 +740,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/vpcSubnet",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/vpcSubnet:VpcSubnet": "VpcSubnet"
   }
@@ -748,7 +748,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/ydbDatabaseDedicated",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/ydbDatabaseDedicated:YdbDatabaseDedicated": "YdbDatabaseDedicated"
   }
@@ -756,7 +756,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "mod": "index/ydbDatabaseServerless",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/ydbDatabaseServerless:YdbDatabaseServerless": "YdbDatabaseServerless"
   }
@@ -768,7 +768,7 @@ _utilities.register(
  {
   "pkg": "yandex",
   "token": "pulumi:providers:yandex",
-  "fqn": "pulumi_yandex",
+  "fqn": "pulumi_yandex_unofficial",
   "class": "Provider"
  }
 ]

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupVpcRouteTable(ctx *pulumi.Context, args *LookupVpcRouteTableArgs, opts ...pulumi.InvokeOption) (*LookupVpcRouteTableResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcRouteTableResult
 	err := ctx.Invoke("yandex:index/getVpcRouteTable:getVpcRouteTable", args, &rv, opts...)
 	if err != nil {

@@ -27,6 +27,7 @@ func NewComputePlacementGroup(ctx *pulumi.Context,
 		args = &ComputePlacementGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ComputePlacementGroup
 	err := ctx.RegisterResource("yandex:index/computePlacementGroup:ComputePlacementGroup", name, args, &resource, opts...)
 	if err != nil {

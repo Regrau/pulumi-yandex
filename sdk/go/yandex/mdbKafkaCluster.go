@@ -48,6 +48,7 @@ func NewMdbKafkaCluster(ctx *pulumi.Context,
 	if args.NetworkId == nil {
 		return nil, errors.New("invalid value for required argument 'NetworkId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource MdbKafkaCluster
 	err := ctx.RegisterResource("yandex:index/mdbKafkaCluster:MdbKafkaCluster", name, args, &resource, opts...)
 	if err != nil {

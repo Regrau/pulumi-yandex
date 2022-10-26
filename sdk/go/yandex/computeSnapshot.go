@@ -34,6 +34,7 @@ func NewComputeSnapshot(ctx *pulumi.Context,
 	if args.SourceDiskId == nil {
 		return nil, errors.New("invalid value for required argument 'SourceDiskId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ComputeSnapshot
 	err := ctx.RegisterResource("yandex:index/computeSnapshot:ComputeSnapshot", name, args, &resource, opts...)
 	if err != nil {

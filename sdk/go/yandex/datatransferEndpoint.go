@@ -27,6 +27,7 @@ func NewDatatransferEndpoint(ctx *pulumi.Context,
 		args = &DatatransferEndpointArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DatatransferEndpoint
 	err := ctx.RegisterResource("yandex:index/datatransferEndpoint:DatatransferEndpoint", name, args, &resource, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func GetResourcemanagerCloud(ctx *pulumi.Context, args *GetResourcemanagerCloudArgs, opts ...pulumi.InvokeOption) (*GetResourcemanagerCloudResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetResourcemanagerCloudResult
 	err := ctx.Invoke("yandex:index/getResourcemanagerCloud:getResourcemanagerCloud", args, &rv, opts...)
 	if err != nil {

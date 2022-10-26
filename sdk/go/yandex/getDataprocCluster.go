@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDataprocCluster(ctx *pulumi.Context, args *LookupDataprocClusterArgs, opts ...pulumi.InvokeOption) (*LookupDataprocClusterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDataprocClusterResult
 	err := ctx.Invoke("yandex:index/getDataprocCluster:getDataprocCluster", args, &rv, opts...)
 	if err != nil {

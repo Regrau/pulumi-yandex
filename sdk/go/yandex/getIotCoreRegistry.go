@@ -11,6 +11,7 @@ import (
 )
 
 func LookupIotCoreRegistry(ctx *pulumi.Context, args *LookupIotCoreRegistryArgs, opts ...pulumi.InvokeOption) (*LookupIotCoreRegistryResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupIotCoreRegistryResult
 	err := ctx.Invoke("yandex:index/getIotCoreRegistry:getIotCoreRegistry", args, &rv, opts...)
 	if err != nil {

@@ -36,6 +36,7 @@ func NewIamServiceAccountIamBinding(ctx *pulumi.Context,
 	if args.ServiceAccountId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceAccountId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IamServiceAccountIamBinding
 	err := ctx.RegisterResource("yandex:index/iamServiceAccountIamBinding:IamServiceAccountIamBinding", name, args, &resource, opts...)
 	if err != nil {

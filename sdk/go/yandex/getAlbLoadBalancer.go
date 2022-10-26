@@ -11,6 +11,7 @@ import (
 )
 
 func LookupAlbLoadBalancer(ctx *pulumi.Context, args *LookupAlbLoadBalancerArgs, opts ...pulumi.InvokeOption) (*LookupAlbLoadBalancerResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupAlbLoadBalancerResult
 	err := ctx.Invoke("yandex:index/getAlbLoadBalancer:getAlbLoadBalancer", args, &rv, opts...)
 	if err != nil {

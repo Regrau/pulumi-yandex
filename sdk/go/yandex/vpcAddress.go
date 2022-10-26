@@ -30,6 +30,7 @@ func NewVpcAddress(ctx *pulumi.Context,
 		args = &VpcAddressArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcAddress
 	err := ctx.RegisterResource("yandex:index/vpcAddress:VpcAddress", name, args, &resource, opts...)
 	if err != nil {

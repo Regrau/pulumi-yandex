@@ -11,6 +11,7 @@ import (
 )
 
 func LookupKubernetesNodeGroup(ctx *pulumi.Context, args *LookupKubernetesNodeGroupArgs, opts ...pulumi.InvokeOption) (*LookupKubernetesNodeGroupResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupKubernetesNodeGroupResult
 	err := ctx.Invoke("yandex:index/getKubernetesNodeGroup:getKubernetesNodeGroup", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupResourcemanagerFolder(ctx *pulumi.Context, args *LookupResourcemanagerFolderArgs, opts ...pulumi.InvokeOption) (*LookupResourcemanagerFolderResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupResourcemanagerFolderResult
 	err := ctx.Invoke("yandex:index/getResourcemanagerFolder:getResourcemanagerFolder", args, &rv, opts...)
 	if err != nil {

@@ -37,6 +37,7 @@ func NewMdbKafkaTopic(ctx *pulumi.Context,
 	if args.ReplicationFactor == nil {
 		return nil, errors.New("invalid value for required argument 'ReplicationFactor'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource MdbKafkaTopic
 	err := ctx.RegisterResource("yandex:index/mdbKafkaTopic:MdbKafkaTopic", name, args, &resource, opts...)
 	if err != nil {

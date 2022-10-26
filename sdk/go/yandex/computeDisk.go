@@ -37,6 +37,7 @@ func NewComputeDisk(ctx *pulumi.Context,
 		args = &ComputeDiskArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ComputeDisk
 	err := ctx.RegisterResource("yandex:index/computeDisk:ComputeDisk", name, args, &resource, opts...)
 	if err != nil {

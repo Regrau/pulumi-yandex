@@ -33,6 +33,7 @@ func NewKmsSecretCiphertext(ctx *pulumi.Context,
 	if args.Plaintext == nil {
 		return nil, errors.New("invalid value for required argument 'Plaintext'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource KmsSecretCiphertext
 	err := ctx.RegisterResource("yandex:index/kmsSecretCiphertext:KmsSecretCiphertext", name, args, &resource, opts...)
 	if err != nil {

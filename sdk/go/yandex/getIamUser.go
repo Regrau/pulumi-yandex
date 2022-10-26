@@ -11,6 +11,7 @@ import (
 )
 
 func GetIamUser(ctx *pulumi.Context, args *GetIamUserArgs, opts ...pulumi.InvokeOption) (*GetIamUserResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetIamUserResult
 	err := ctx.Invoke("yandex:index/getIamUser:getIamUser", args, &rv, opts...)
 	if err != nil {

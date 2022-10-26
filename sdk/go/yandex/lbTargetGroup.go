@@ -29,6 +29,7 @@ func NewLbTargetGroup(ctx *pulumi.Context,
 		args = &LbTargetGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LbTargetGroup
 	err := ctx.RegisterResource("yandex:index/lbTargetGroup:LbTargetGroup", name, args, &resource, opts...)
 	if err != nil {

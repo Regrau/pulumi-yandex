@@ -11,6 +11,7 @@ import (
 )
 
 func LookupMessageQueue(ctx *pulumi.Context, args *LookupMessageQueueArgs, opts ...pulumi.InvokeOption) (*LookupMessageQueueResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupMessageQueueResult
 	err := ctx.Invoke("yandex:index/getMessageQueue:getMessageQueue", args, &rv, opts...)
 	if err != nil {

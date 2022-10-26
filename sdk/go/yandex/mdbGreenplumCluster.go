@@ -91,6 +91,7 @@ func NewMdbGreenplumCluster(ctx *pulumi.Context,
 	if args.Zone == nil {
 		return nil, errors.New("invalid value for required argument 'Zone'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource MdbGreenplumCluster
 	err := ctx.RegisterResource("yandex:index/mdbGreenplumCluster:MdbGreenplumCluster", name, args, &resource, opts...)
 	if err != nil {

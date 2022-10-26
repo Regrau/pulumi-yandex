@@ -11,6 +11,7 @@ import (
 )
 
 func LookupMdbGreenplumCluster(ctx *pulumi.Context, args *LookupMdbGreenplumClusterArgs, opts ...pulumi.InvokeOption) (*LookupMdbGreenplumClusterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupMdbGreenplumClusterResult
 	err := ctx.Invoke("yandex:index/getMdbGreenplumCluster:getMdbGreenplumCluster", args, &rv, opts...)
 	if err != nil {

@@ -29,6 +29,7 @@ func NewComputeDiskPlacementGroup(ctx *pulumi.Context,
 		args = &ComputeDiskPlacementGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ComputeDiskPlacementGroup
 	err := ctx.RegisterResource("yandex:index/computeDiskPlacementGroup:ComputeDiskPlacementGroup", name, args, &resource, opts...)
 	if err != nil {

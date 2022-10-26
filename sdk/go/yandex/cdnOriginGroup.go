@@ -30,6 +30,7 @@ func NewCdnOriginGroup(ctx *pulumi.Context,
 	if args.Origins == nil {
 		return nil, errors.New("invalid value for required argument 'Origins'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource CdnOriginGroup
 	err := ctx.RegisterResource("yandex:index/cdnOriginGroup:CdnOriginGroup", name, args, &resource, opts...)
 	if err != nil {

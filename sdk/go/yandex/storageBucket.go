@@ -44,6 +44,7 @@ func NewStorageBucket(ctx *pulumi.Context,
 		args = &StorageBucketArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource StorageBucket
 	err := ctx.RegisterResource("yandex:index/storageBucket:StorageBucket", name, args, &resource, opts...)
 	if err != nil {

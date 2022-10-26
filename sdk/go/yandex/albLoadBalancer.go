@@ -41,6 +41,7 @@ func NewAlbLoadBalancer(ctx *pulumi.Context,
 	if args.NetworkId == nil {
 		return nil, errors.New("invalid value for required argument 'NetworkId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AlbLoadBalancer
 	err := ctx.RegisterResource("yandex:index/albLoadBalancer:AlbLoadBalancer", name, args, &resource, opts...)
 	if err != nil {

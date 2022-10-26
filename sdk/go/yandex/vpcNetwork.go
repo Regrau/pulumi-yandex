@@ -29,6 +29,7 @@ func NewVpcNetwork(ctx *pulumi.Context,
 		args = &VpcNetworkArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcNetwork
 	err := ctx.RegisterResource("yandex:index/vpcNetwork:VpcNetwork", name, args, &resource, opts...)
 	if err != nil {

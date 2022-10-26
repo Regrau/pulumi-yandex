@@ -11,6 +11,7 @@ import (
 )
 
 func LookupFunctionTrigger(ctx *pulumi.Context, args *LookupFunctionTriggerArgs, opts ...pulumi.InvokeOption) (*LookupFunctionTriggerResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFunctionTriggerResult
 	err := ctx.Invoke("yandex:index/getFunctionTrigger:getFunctionTrigger", args, &rv, opts...)
 	if err != nil {

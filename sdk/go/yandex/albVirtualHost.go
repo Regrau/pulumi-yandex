@@ -33,6 +33,7 @@ func NewAlbVirtualHost(ctx *pulumi.Context,
 	if args.HttpRouterId == nil {
 		return nil, errors.New("invalid value for required argument 'HttpRouterId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AlbVirtualHost
 	err := ctx.RegisterResource("yandex:index/albVirtualHost:AlbVirtualHost", name, args, &resource, opts...)
 	if err != nil {

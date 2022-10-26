@@ -11,6 +11,7 @@ import (
 )
 
 func LookupCdnOriginGroup(ctx *pulumi.Context, args *LookupCdnOriginGroupArgs, opts ...pulumi.InvokeOption) (*LookupCdnOriginGroupResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupCdnOriginGroupResult
 	err := ctx.Invoke("yandex:index/getCdnOriginGroup:getCdnOriginGroup", args, &rv, opts...)
 	if err != nil {

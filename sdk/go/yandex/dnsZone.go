@@ -34,6 +34,7 @@ func NewDnsZone(ctx *pulumi.Context,
 	if args.Zone == nil {
 		return nil, errors.New("invalid value for required argument 'Zone'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DnsZone
 	err := ctx.RegisterResource("yandex:index/dnsZone:DnsZone", name, args, &resource, opts...)
 	if err != nil {

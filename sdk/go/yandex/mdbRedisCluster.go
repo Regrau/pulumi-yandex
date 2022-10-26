@@ -56,6 +56,7 @@ func NewMdbRedisCluster(ctx *pulumi.Context,
 	if args.Resources == nil {
 		return nil, errors.New("invalid value for required argument 'Resources'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource MdbRedisCluster
 	err := ctx.RegisterResource("yandex:index/mdbRedisCluster:MdbRedisCluster", name, args, &resource, opts...)
 	if err != nil {

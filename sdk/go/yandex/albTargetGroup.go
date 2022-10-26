@@ -28,6 +28,7 @@ func NewAlbTargetGroup(ctx *pulumi.Context,
 		args = &AlbTargetGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AlbTargetGroup
 	err := ctx.RegisterResource("yandex:index/albTargetGroup:AlbTargetGroup", name, args, &resource, opts...)
 	if err != nil {

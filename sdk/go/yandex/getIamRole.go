@@ -11,6 +11,7 @@ import (
 )
 
 func GetIamRole(ctx *pulumi.Context, args *GetIamRoleArgs, opts ...pulumi.InvokeOption) (*GetIamRoleResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetIamRoleResult
 	err := ctx.Invoke("yandex:index/getIamRole:getIamRole", args, &rv, opts...)
 	if err != nil {

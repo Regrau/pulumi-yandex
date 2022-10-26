@@ -41,6 +41,7 @@ func NewVpcSecurityGroupRule(ctx *pulumi.Context,
 	if args.SecurityGroupBinding == nil {
 		return nil, errors.New("invalid value for required argument 'SecurityGroupBinding'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcSecurityGroupRule
 	err := ctx.RegisterResource("yandex:index/vpcSecurityGroupRule:VpcSecurityGroupRule", name, args, &resource, opts...)
 	if err != nil {

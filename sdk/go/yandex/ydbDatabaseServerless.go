@@ -35,6 +35,7 @@ func NewYdbDatabaseServerless(ctx *pulumi.Context,
 		args = &YdbDatabaseServerlessArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource YdbDatabaseServerless
 	err := ctx.RegisterResource("yandex:index/ydbDatabaseServerless:YdbDatabaseServerless", name, args, &resource, opts...)
 	if err != nil {

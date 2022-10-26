@@ -11,6 +11,7 @@ import (
 )
 
 func LookupAlbTargetGroup(ctx *pulumi.Context, args *LookupAlbTargetGroupArgs, opts ...pulumi.InvokeOption) (*LookupAlbTargetGroupResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupAlbTargetGroupResult
 	err := ctx.Invoke("yandex:index/getAlbTargetGroup:getAlbTargetGroup", args, &rv, opts...)
 	if err != nil {

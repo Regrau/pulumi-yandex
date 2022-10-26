@@ -31,6 +31,7 @@ func NewResourcemanagerFolderIamPolicy(ctx *pulumi.Context,
 	if args.PolicyData == nil {
 		return nil, errors.New("invalid value for required argument 'PolicyData'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ResourcemanagerFolderIamPolicy
 	err := ctx.RegisterResource("yandex:index/resourcemanagerFolderIamPolicy:ResourcemanagerFolderIamPolicy", name, args, &resource, opts...)
 	if err != nil {

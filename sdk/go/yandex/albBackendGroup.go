@@ -31,6 +31,7 @@ func NewAlbBackendGroup(ctx *pulumi.Context,
 		args = &AlbBackendGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AlbBackendGroup
 	err := ctx.RegisterResource("yandex:index/albBackendGroup:AlbBackendGroup", name, args, &resource, opts...)
 	if err != nil {

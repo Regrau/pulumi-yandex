@@ -11,6 +11,7 @@ import (
 )
 
 func LookupFunctionScalingPolicy(ctx *pulumi.Context, args *LookupFunctionScalingPolicyArgs, opts ...pulumi.InvokeOption) (*LookupFunctionScalingPolicyResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFunctionScalingPolicyResult
 	err := ctx.Invoke("yandex:index/getFunctionScalingPolicy:getFunctionScalingPolicy", args, &rv, opts...)
 	if err != nil {

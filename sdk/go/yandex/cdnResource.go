@@ -33,6 +33,7 @@ func NewCdnResource(ctx *pulumi.Context,
 		args = &CdnResourceArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource CdnResource
 	err := ctx.RegisterResource("yandex:index/cdnResource:CdnResource", name, args, &resource, opts...)
 	if err != nil {

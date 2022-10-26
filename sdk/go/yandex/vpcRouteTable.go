@@ -33,6 +33,7 @@ func NewVpcRouteTable(ctx *pulumi.Context,
 	if args.NetworkId == nil {
 		return nil, errors.New("invalid value for required argument 'NetworkId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcRouteTable
 	err := ctx.RegisterResource("yandex:index/vpcRouteTable:VpcRouteTable", name, args, &resource, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupContainerRegistry(ctx *pulumi.Context, args *LookupContainerRegistryArgs, opts ...pulumi.InvokeOption) (*LookupContainerRegistryResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupContainerRegistryResult
 	err := ctx.Invoke("yandex:index/getContainerRegistry:getContainerRegistry", args, &rv, opts...)
 	if err != nil {

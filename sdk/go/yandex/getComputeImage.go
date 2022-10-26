@@ -11,6 +11,7 @@ import (
 )
 
 func LookupComputeImage(ctx *pulumi.Context, args *LookupComputeImageArgs, opts ...pulumi.InvokeOption) (*LookupComputeImageResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupComputeImageResult
 	err := ctx.Invoke("yandex:index/getComputeImage:getComputeImage", args, &rv, opts...)
 	if err != nil {

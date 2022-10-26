@@ -11,6 +11,7 @@ import (
 )
 
 func LookupComputeDiskPlacementGroup(ctx *pulumi.Context, args *LookupComputeDiskPlacementGroupArgs, opts ...pulumi.InvokeOption) (*LookupComputeDiskPlacementGroupResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupComputeDiskPlacementGroupResult
 	err := ctx.Invoke("yandex:index/getComputeDiskPlacementGroup:getComputeDiskPlacementGroup", args, &rv, opts...)
 	if err != nil {

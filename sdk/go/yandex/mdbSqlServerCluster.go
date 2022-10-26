@@ -64,6 +64,7 @@ func NewMdbSqlServerCluster(ctx *pulumi.Context,
 	if args.Version == nil {
 		return nil, errors.New("invalid value for required argument 'Version'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource MdbSqlServerCluster
 	err := ctx.RegisterResource("yandex:index/mdbSqlServerCluster:MdbSqlServerCluster", name, args, &resource, opts...)
 	if err != nil {

@@ -26,6 +26,7 @@ func NewIamServiceAccount(ctx *pulumi.Context,
 		args = &IamServiceAccountArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IamServiceAccount
 	err := ctx.RegisterResource("yandex:index/iamServiceAccount:IamServiceAccount", name, args, &resource, opts...)
 	if err != nil {

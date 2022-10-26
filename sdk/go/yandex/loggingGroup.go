@@ -30,6 +30,7 @@ func NewLoggingGroup(ctx *pulumi.Context,
 		args = &LoggingGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LoggingGroup
 	err := ctx.RegisterResource("yandex:index/loggingGroup:LoggingGroup", name, args, &resource, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupMdbClickhouseCluster(ctx *pulumi.Context, args *LookupMdbClickhouseClusterArgs, opts ...pulumi.InvokeOption) (*LookupMdbClickhouseClusterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupMdbClickhouseClusterResult
 	err := ctx.Invoke("yandex:index/getMdbClickhouseCluster:getMdbClickhouseCluster", args, &rv, opts...)
 	if err != nil {

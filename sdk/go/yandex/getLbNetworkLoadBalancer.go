@@ -11,6 +11,7 @@ import (
 )
 
 func LookupLbNetworkLoadBalancer(ctx *pulumi.Context, args *LookupLbNetworkLoadBalancerArgs, opts ...pulumi.InvokeOption) (*LookupLbNetworkLoadBalancerResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupLbNetworkLoadBalancerResult
 	err := ctx.Invoke("yandex:index/getLbNetworkLoadBalancer:getLbNetworkLoadBalancer", args, &rv, opts...)
 	if err != nil {

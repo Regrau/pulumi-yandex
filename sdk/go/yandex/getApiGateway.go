@@ -11,6 +11,7 @@ import (
 )
 
 func LookupApiGateway(ctx *pulumi.Context, args *LookupApiGatewayArgs, opts ...pulumi.InvokeOption) (*LookupApiGatewayResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupApiGatewayResult
 	err := ctx.Invoke("yandex:index/getApiGateway:getApiGateway", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupComputeInstanceGroup(ctx *pulumi.Context, args *LookupComputeInstanceGroupArgs, opts ...pulumi.InvokeOption) (*LookupComputeInstanceGroupResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupComputeInstanceGroupResult
 	err := ctx.Invoke("yandex:index/getComputeInstanceGroup:getComputeInstanceGroup", args, &rv, opts...)
 	if err != nil {

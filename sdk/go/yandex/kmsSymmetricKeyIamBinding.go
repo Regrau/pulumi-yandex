@@ -36,6 +36,7 @@ func NewKmsSymmetricKeyIamBinding(ctx *pulumi.Context,
 	if args.SymmetricKeyId == nil {
 		return nil, errors.New("invalid value for required argument 'SymmetricKeyId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource KmsSymmetricKeyIamBinding
 	err := ctx.RegisterResource("yandex:index/kmsSymmetricKeyIamBinding:KmsSymmetricKeyIamBinding", name, args, &resource, opts...)
 	if err != nil {

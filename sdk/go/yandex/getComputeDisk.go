@@ -11,6 +11,7 @@ import (
 )
 
 func LookupComputeDisk(ctx *pulumi.Context, args *LookupComputeDiskArgs, opts ...pulumi.InvokeOption) (*LookupComputeDiskResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupComputeDiskResult
 	err := ctx.Invoke("yandex:index/getComputeDisk:getComputeDisk", args, &rv, opts...)
 	if err != nil {

@@ -49,6 +49,7 @@ func NewKubernetesNodeGroup(ctx *pulumi.Context,
 	if args.ScalePolicy == nil {
 		return nil, errors.New("invalid value for required argument 'ScalePolicy'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource KubernetesNodeGroup
 	err := ctx.RegisterResource("yandex:index/kubernetesNodeGroup:KubernetesNodeGroup", name, args, &resource, opts...)
 	if err != nil {

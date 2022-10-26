@@ -11,6 +11,7 @@ import (
 )
 
 func LookupMdbElasticSearchCluster(ctx *pulumi.Context, args *LookupMdbElasticSearchClusterArgs, opts ...pulumi.InvokeOption) (*LookupMdbElasticSearchClusterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupMdbElasticSearchClusterResult
 	err := ctx.Invoke("yandex:index/getMdbElasticSearchCluster:getMdbElasticSearchCluster", args, &rv, opts...)
 	if err != nil {

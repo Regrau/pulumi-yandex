@@ -11,6 +11,7 @@ import (
 )
 
 func LookupMdbRedisCluster(ctx *pulumi.Context, args *LookupMdbRedisClusterArgs, opts ...pulumi.InvokeOption) (*LookupMdbRedisClusterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupMdbRedisClusterResult
 	err := ctx.Invoke("yandex:index/getMdbRedisCluster:getMdbRedisCluster", args, &rv, opts...)
 	if err != nil {

@@ -45,6 +45,7 @@ func NewServerlessContainer(ctx *pulumi.Context,
 	if args.Memory == nil {
 		return nil, errors.New("invalid value for required argument 'Memory'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ServerlessContainer
 	err := ctx.RegisterResource("yandex:index/serverlessContainer:ServerlessContainer", name, args, &resource, opts...)
 	if err != nil {

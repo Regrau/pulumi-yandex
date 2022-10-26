@@ -36,6 +36,7 @@ func NewContainerRepositoryIamBinding(ctx *pulumi.Context,
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ContainerRepositoryIamBinding
 	err := ctx.RegisterResource("yandex:index/containerRepositoryIamBinding:ContainerRepositoryIamBinding", name, args, &resource, opts...)
 	if err != nil {

@@ -29,6 +29,7 @@ func NewIotCoreRegistry(ctx *pulumi.Context,
 		args = &IotCoreRegistryArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IotCoreRegistry
 	err := ctx.RegisterResource("yandex:index/iotCoreRegistry:IotCoreRegistry", name, args, &resource, opts...)
 	if err != nil {

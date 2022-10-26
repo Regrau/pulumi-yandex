@@ -11,6 +11,7 @@ import (
 )
 
 func LookupMdbKafkaTopic(ctx *pulumi.Context, args *LookupMdbKafkaTopicArgs, opts ...pulumi.InvokeOption) (*LookupMdbKafkaTopicResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupMdbKafkaTopicResult
 	err := ctx.Invoke("yandex:index/getMdbKafkaTopic:getMdbKafkaTopic", args, &rv, opts...)
 	if err != nil {

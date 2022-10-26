@@ -38,6 +38,7 @@ func NewStorageObject(ctx *pulumi.Context,
 	if args.Key == nil {
 		return nil, errors.New("invalid value for required argument 'Key'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource StorageObject
 	err := ctx.RegisterResource("yandex:index/storageObject:StorageObject", name, args, &resource, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupCdnResource(ctx *pulumi.Context, args *LookupCdnResourceArgs, opts ...pulumi.InvokeOption) (*LookupCdnResourceResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupCdnResourceResult
 	err := ctx.Invoke("yandex:index/getCdnResource:getCdnResource", args, &rv, opts...)
 	if err != nil {

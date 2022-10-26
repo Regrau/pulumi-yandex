@@ -28,6 +28,7 @@ func NewFunctionScalingPolicy(ctx *pulumi.Context,
 	if args.FunctionId == nil {
 		return nil, errors.New("invalid value for required argument 'FunctionId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FunctionScalingPolicy
 	err := ctx.RegisterResource("yandex:index/functionScalingPolicy:FunctionScalingPolicy", name, args, &resource, opts...)
 	if err != nil {

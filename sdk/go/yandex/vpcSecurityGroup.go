@@ -35,6 +35,7 @@ func NewVpcSecurityGroup(ctx *pulumi.Context,
 	if args.NetworkId == nil {
 		return nil, errors.New("invalid value for required argument 'NetworkId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpcSecurityGroup
 	err := ctx.RegisterResource("yandex:index/vpcSecurityGroup:VpcSecurityGroup", name, args, &resource, opts...)
 	if err != nil {

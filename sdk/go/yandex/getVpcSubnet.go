@@ -11,6 +11,7 @@ import (
 )
 
 func LookupVpcSubnet(ctx *pulumi.Context, args *LookupVpcSubnetArgs, opts ...pulumi.InvokeOption) (*LookupVpcSubnetResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcSubnetResult
 	err := ctx.Invoke("yandex:index/getVpcSubnet:getVpcSubnet", args, &rv, opts...)
 	if err != nil {

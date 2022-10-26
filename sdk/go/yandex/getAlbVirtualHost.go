@@ -11,6 +11,7 @@ import (
 )
 
 func LookupAlbVirtualHost(ctx *pulumi.Context, args *LookupAlbVirtualHostArgs, opts ...pulumi.InvokeOption) (*LookupAlbVirtualHostResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupAlbVirtualHostResult
 	err := ctx.Invoke("yandex:index/getAlbVirtualHost:getAlbVirtualHost", args, &rv, opts...)
 	if err != nil {

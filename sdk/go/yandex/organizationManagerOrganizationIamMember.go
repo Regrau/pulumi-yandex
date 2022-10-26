@@ -36,6 +36,7 @@ func NewOrganizationManagerOrganizationIamMember(ctx *pulumi.Context,
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource OrganizationManagerOrganizationIamMember
 	err := ctx.RegisterResource("yandex:index/organizationManagerOrganizationIamMember:OrganizationManagerOrganizationIamMember", name, args, &resource, opts...)
 	if err != nil {

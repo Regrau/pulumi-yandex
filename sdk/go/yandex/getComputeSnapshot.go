@@ -11,6 +11,7 @@ import (
 )
 
 func LookupComputeSnapshot(ctx *pulumi.Context, args *LookupComputeSnapshotArgs, opts ...pulumi.InvokeOption) (*LookupComputeSnapshotResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupComputeSnapshotResult
 	err := ctx.Invoke("yandex:index/getComputeSnapshot:getComputeSnapshot", args, &rv, opts...)
 	if err != nil {

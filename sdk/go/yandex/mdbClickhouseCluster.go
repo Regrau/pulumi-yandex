@@ -65,6 +65,7 @@ func NewMdbClickhouseCluster(ctx *pulumi.Context,
 	if args.NetworkId == nil {
 		return nil, errors.New("invalid value for required argument 'NetworkId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource MdbClickhouseCluster
 	err := ctx.RegisterResource("yandex:index/mdbClickhouseCluster:MdbClickhouseCluster", name, args, &resource, opts...)
 	if err != nil {

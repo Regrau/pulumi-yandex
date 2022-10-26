@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'yandex', PLUGIN_VERSION])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'yandex', PLUGIN_VERSION, '--server', 'https://github/regrau/pulumi-yandex/releases'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
@@ -37,7 +37,7 @@ def readme():
         return "yandex Pulumi Package - Development Version"
 
 
-setup(name='pulumi_yandex',
+setup(name='pulumi_yandex_unofficial',
       version=VERSION,
       description="A Pulumi package for creating and managing yandex cloud resources.",
       long_description=readme(),
@@ -53,7 +53,7 @@ setup(name='pulumi_yandex',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumi_yandex': [
+          'pulumi_yandex_unofficial': [
               'py.typed',
               'pulumi-plugin.json',
           ]

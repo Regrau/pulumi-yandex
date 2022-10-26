@@ -39,6 +39,7 @@ func NewComputeImage(ctx *pulumi.Context,
 		args = &ComputeImageArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ComputeImage
 	err := ctx.RegisterResource("yandex:index/computeImage:ComputeImage", name, args, &resource, opts...)
 	if err != nil {

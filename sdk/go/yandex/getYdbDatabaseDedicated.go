@@ -11,6 +11,7 @@ import (
 )
 
 func LookupYdbDatabaseDedicated(ctx *pulumi.Context, args *LookupYdbDatabaseDedicatedArgs, opts ...pulumi.InvokeOption) (*LookupYdbDatabaseDedicatedResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupYdbDatabaseDedicatedResult
 	err := ctx.Invoke("yandex:index/getYdbDatabaseDedicated:getYdbDatabaseDedicated", args, &rv, opts...)
 	if err != nil {

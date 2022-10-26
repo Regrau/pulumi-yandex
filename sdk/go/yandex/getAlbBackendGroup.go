@@ -11,6 +11,7 @@ import (
 )
 
 func LookupAlbBackendGroup(ctx *pulumi.Context, args *LookupAlbBackendGroupArgs, opts ...pulumi.InvokeOption) (*LookupAlbBackendGroupResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupAlbBackendGroupResult
 	err := ctx.Invoke("yandex:index/getAlbBackendGroup:getAlbBackendGroup", args, &rv, opts...)
 	if err != nil {

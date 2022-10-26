@@ -40,6 +40,7 @@ func NewDnsRecordSet(ctx *pulumi.Context,
 	if args.ZoneId == nil {
 		return nil, errors.New("invalid value for required argument 'ZoneId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DnsRecordSet
 	err := ctx.RegisterResource("yandex:index/dnsRecordSet:DnsRecordSet", name, args, &resource, opts...)
 	if err != nil {

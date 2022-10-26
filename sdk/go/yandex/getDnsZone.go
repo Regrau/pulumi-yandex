@@ -11,6 +11,7 @@ import (
 )
 
 func LookupDnsZone(ctx *pulumi.Context, args *LookupDnsZoneArgs, opts ...pulumi.InvokeOption) (*LookupDnsZoneResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupDnsZoneResult
 	err := ctx.Invoke("yandex:index/getDnsZone:getDnsZone", args, &rv, opts...)
 	if err != nil {

@@ -57,6 +57,7 @@ func NewYdbDatabaseDedicated(ctx *pulumi.Context,
 	if args.SubnetIds == nil {
 		return nil, errors.New("invalid value for required argument 'SubnetIds'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource YdbDatabaseDedicated
 	err := ctx.RegisterResource("yandex:index/ydbDatabaseDedicated:YdbDatabaseDedicated", name, args, &resource, opts...)
 	if err != nil {

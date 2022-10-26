@@ -11,6 +11,7 @@ import (
 )
 
 func LookupVpcSecurityGroupRule(ctx *pulumi.Context, args *LookupVpcSecurityGroupRuleArgs, opts ...pulumi.InvokeOption) (*LookupVpcSecurityGroupRuleResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupVpcSecurityGroupRuleResult
 	err := ctx.Invoke("yandex:index/getVpcSecurityGroupRule:getVpcSecurityGroupRule", args, &rv, opts...)
 	if err != nil {

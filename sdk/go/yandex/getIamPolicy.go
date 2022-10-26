@@ -11,6 +11,7 @@ import (
 )
 
 func GetIamPolicy(ctx *pulumi.Context, args *GetIamPolicyArgs, opts ...pulumi.InvokeOption) (*GetIamPolicyResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetIamPolicyResult
 	err := ctx.Invoke("yandex:index/getIamPolicy:getIamPolicy", args, &rv, opts...)
 	if err != nil {

@@ -54,6 +54,7 @@ func NewFunction(ctx *pulumi.Context,
 	if args.UserHash == nil {
 		return nil, errors.New("invalid value for required argument 'UserHash'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Function
 	err := ctx.RegisterResource("yandex:index/function:Function", name, args, &resource, opts...)
 	if err != nil {

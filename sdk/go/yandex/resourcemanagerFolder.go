@@ -27,6 +27,7 @@ func NewResourcemanagerFolder(ctx *pulumi.Context,
 		args = &ResourcemanagerFolderArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ResourcemanagerFolder
 	err := ctx.RegisterResource("yandex:index/resourcemanagerFolder:ResourcemanagerFolder", name, args, &resource, opts...)
 	if err != nil {

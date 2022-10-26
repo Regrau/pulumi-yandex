@@ -11,6 +11,7 @@ import (
 )
 
 func LookupComputePlacementGroup(ctx *pulumi.Context, args *LookupComputePlacementGroupArgs, opts ...pulumi.InvokeOption) (*LookupComputePlacementGroupResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupComputePlacementGroupResult
 	err := ctx.Invoke("yandex:index/getComputePlacementGroup:getComputePlacementGroup", args, &rv, opts...)
 	if err != nil {

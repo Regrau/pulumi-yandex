@@ -11,6 +11,7 @@ import (
 )
 
 func LookupYdbDatabaseServerless(ctx *pulumi.Context, args *LookupYdbDatabaseServerlessArgs, opts ...pulumi.InvokeOption) (*LookupYdbDatabaseServerlessResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupYdbDatabaseServerlessResult
 	err := ctx.Invoke("yandex:index/getYdbDatabaseServerless:getYdbDatabaseServerless", args, &rv, opts...)
 	if err != nil {

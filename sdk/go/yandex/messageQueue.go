@@ -36,6 +36,7 @@ func NewMessageQueue(ctx *pulumi.Context,
 		args = &MessageQueueArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource MessageQueue
 	err := ctx.RegisterResource("yandex:index/messageQueue:MessageQueue", name, args, &resource, opts...)
 	if err != nil {

@@ -47,6 +47,7 @@ func NewMdbElasticSearchCluster(ctx *pulumi.Context,
 	if args.NetworkId == nil {
 		return nil, errors.New("invalid value for required argument 'NetworkId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource MdbElasticSearchCluster
 	err := ctx.RegisterResource("yandex:index/mdbElasticSearchCluster:MdbElasticSearchCluster", name, args, &resource, opts...)
 	if err != nil {

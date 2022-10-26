@@ -31,6 +31,7 @@ func NewKmsSymmetricKey(ctx *pulumi.Context,
 		args = &KmsSymmetricKeyArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource KmsSymmetricKey
 	err := ctx.RegisterResource("yandex:index/kmsSymmetricKey:KmsSymmetricKey", name, args, &resource, opts...)
 	if err != nil {

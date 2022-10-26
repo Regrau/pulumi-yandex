@@ -11,6 +11,7 @@ import (
 )
 
 func GetMdbSqlserverCluster(ctx *pulumi.Context, args *GetMdbSqlserverClusterArgs, opts ...pulumi.InvokeOption) (*GetMdbSqlserverClusterResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetMdbSqlserverClusterResult
 	err := ctx.Invoke("yandex:index/getMdbSqlserverCluster:getMdbSqlserverCluster", args, &rv, opts...)
 	if err != nil {

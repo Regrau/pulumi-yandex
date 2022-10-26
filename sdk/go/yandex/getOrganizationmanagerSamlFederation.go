@@ -11,6 +11,7 @@ import (
 )
 
 func LookupOrganizationmanagerSamlFederation(ctx *pulumi.Context, args *LookupOrganizationmanagerSamlFederationArgs, opts ...pulumi.InvokeOption) (*LookupOrganizationmanagerSamlFederationResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupOrganizationmanagerSamlFederationResult
 	err := ctx.Invoke("yandex:index/getOrganizationmanagerSamlFederation:getOrganizationmanagerSamlFederation", args, &rv, opts...)
 	if err != nil {

@@ -11,6 +11,7 @@ import (
 )
 
 func LookupServerlessContainer(ctx *pulumi.Context, args *LookupServerlessContainerArgs, opts ...pulumi.InvokeOption) (*LookupServerlessContainerResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupServerlessContainerResult
 	err := ctx.Invoke("yandex:index/getServerlessContainer:getServerlessContainer", args, &rv, opts...)
 	if err != nil {

@@ -8,6 +8,7 @@ import (
 )
 
 func GetClientConfig(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetClientConfigResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetClientConfigResult
 	err := ctx.Invoke("yandex:index/getClientConfig:getClientConfig", nil, &rv, opts...)
 	if err != nil {

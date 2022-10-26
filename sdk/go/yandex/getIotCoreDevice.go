@@ -11,6 +11,7 @@ import (
 )
 
 func LookupIotCoreDevice(ctx *pulumi.Context, args *LookupIotCoreDeviceArgs, opts ...pulumi.InvokeOption) (*LookupIotCoreDeviceResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupIotCoreDeviceResult
 	err := ctx.Invoke("yandex:index/getIotCoreDevice:getIotCoreDevice", args, &rv, opts...)
 	if err != nil {

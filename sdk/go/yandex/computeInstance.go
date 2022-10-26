@@ -54,6 +54,7 @@ func NewComputeInstance(ctx *pulumi.Context,
 	if args.Resources == nil {
 		return nil, errors.New("invalid value for required argument 'Resources'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ComputeInstance
 	err := ctx.RegisterResource("yandex:index/computeInstance:ComputeInstance", name, args, &resource, opts...)
 	if err != nil {

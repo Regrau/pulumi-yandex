@@ -36,6 +36,7 @@ func NewApiGateway(ctx *pulumi.Context,
 	if args.Spec == nil {
 		return nil, errors.New("invalid value for required argument 'Spec'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ApiGateway
 	err := ctx.RegisterResource("yandex:index/apiGateway:ApiGateway", name, args, &resource, opts...)
 	if err != nil {
