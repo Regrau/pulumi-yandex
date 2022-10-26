@@ -5,6 +5,7 @@ PACK             := yandex
 ORG              := regrau
 PROJECT          := github.com/${ORG}/pulumi-${PACK}
 NODE_MODULE_NAME := @pulumi/${PACK}
+PYTHON_PACKAGE_NAME := pulumi_yandex_unofficial
 TF_NAME          := ${PACK}
 PROVIDER_PATH    := provider
 VERSION_PATH     := ${PROVIDER_PATH}/pkg/version.Version
@@ -75,6 +76,8 @@ build_python:: install_plugins tfgen # build the python sdk
         python3 setup.py clean --all 2>/dev/null && \
         rm -rf ./bin/ ../python.bin/ && cp -R . ../python.bin && mv ../python.bin ./bin && \
         sed -i.bak -e 's/^VERSION = .*/VERSION = "$(PYPI_VERSION)"/g' -e 's/^PLUGIN_VERSION = .*/PLUGIN_VERSION = "$(VERSION)"/g' ./bin/setup.py && \
+        sed -i.bak -e 's/pulumi_yandex/pulumi_yandex_unofficial/g' ./bin/setup.py && \
+        sed -i.bak -e "s/'yandex',/'yandex', f'https:\/\/github.com\/Regrau\/pulumi-yandex\/releases\/download\/{PLUGIN_VERSION}',/g" ./bin/setup.py && \
         rm ./bin/setup.py.bak && \
         cd ./bin && python3 setup.py build sdist
 
