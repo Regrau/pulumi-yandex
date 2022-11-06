@@ -113,10 +113,12 @@ export class IotCoreRegistry extends pulumi.CustomResource {
             resourceInputs["folderId"] = args ? args.folderId : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
-            resourceInputs["passwords"] = args ? args.passwords : undefined;
+            resourceInputs["passwords"] = args?.passwords ? pulumi.secret(args.passwords) : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["passwords"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(IotCoreRegistry.__pulumiType, name, resourceInputs, opts);
     }
 }

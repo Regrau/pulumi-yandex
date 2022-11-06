@@ -29,13 +29,13 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := yandex.NewAlbVirtualHost(ctx, "my-virtual-host", &yandex.AlbVirtualHostArgs{
-//				HttpRouterId: pulumi.Any(yandex_alb_http_router.My - router.Id),
+//				HttpRouterId: pulumi.Any(yandex_alb_http_router.MyRouter.Id),
 //				Routes: AlbVirtualHostRouteArray{
 //					&AlbVirtualHostRouteArgs{
 //						Name: pulumi.String("my-route"),
 //						HttpRoute: &AlbVirtualHostRouteHttpRouteArgs{
 //							HttpRouteAction: &AlbVirtualHostRouteHttpRouteHttpRouteActionArgs{
-//								BackendGroupId: pulumi.Any(yandex_alb_backend_group.My - bg.Id),
+//								BackendGroupId: pulumi.Any(yandex_alb_backend_group.MyBg.Id),
 //								Timeout:        pulumi.String("3s"),
 //							},
 //						},

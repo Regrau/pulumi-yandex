@@ -793,6 +793,13 @@ func NewStorageBucket(ctx *pulumi.Context,
 		args = &StorageBucketArgs{}
 	}
 
+	if args.SecretKey != nil {
+		args.SecretKey = pulumi.ToSecret(args.SecretKey).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secretKey",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource StorageBucket
 	err := ctx.RegisterResource("yandex:index/storageBucket:StorageBucket", name, args, &resource, opts...)

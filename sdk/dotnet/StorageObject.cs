@@ -114,6 +114,10 @@ namespace Pulumi.Yandex
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
+                AdditionalSecretOutputs =
+                {
+                    "secretKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -179,11 +183,21 @@ namespace Pulumi.Yandex
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        [Input("secretKey")]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
         /// </summary>
-        [Input("secretKey")]
-        public Input<string>? SecretKey { get; set; }
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The path to a file that will be read and uploaded as raw bytes for the object content.
@@ -241,11 +255,21 @@ namespace Pulumi.Yandex
         [Input("key")]
         public Input<string>? Key { get; set; }
 
+        [Input("secretKey")]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
         /// </summary>
-        [Input("secretKey")]
-        public Input<string>? SecretKey { get; set; }
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The path to a file that will be read and uploaded as raw bytes for the object content.

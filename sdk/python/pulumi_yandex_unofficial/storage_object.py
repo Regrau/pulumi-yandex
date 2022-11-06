@@ -424,8 +424,10 @@ class StorageObject(pulumi.CustomResource):
             if key is None and not opts.urn:
                 raise TypeError("Missing required property 'key'")
             __props__.__dict__["key"] = key
-            __props__.__dict__["secret_key"] = secret_key
+            __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["source"] = source
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(StorageObject, __self__).__init__(
             'yandex:index/storageObject:StorageObject',
             resource_name,

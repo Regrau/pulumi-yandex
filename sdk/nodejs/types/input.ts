@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface AlbBackendGroupGrpcBackend {
     /**
@@ -2116,6 +2117,29 @@ export interface ComputeInstanceSecondaryDisk {
     mode?: pulumi.Input<string>;
 }
 
+export interface ContainerRepositoryLifecyclePolicyRule {
+    /**
+     * Description of the lifecycle policy.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * The period of time that must pass after creating a image for it to suit the automatic deletion criteria. It must be a multiple of 24 hours.
+     */
+    expirePeriod?: pulumi.Input<string>;
+    /**
+     * The number of images to be retained even if the expirePeriod already expired.
+     */
+    retainedTop?: pulumi.Input<number>;
+    /**
+     * Tag to specify a filter as a regular expression. For example `.*` - all images with tags.
+     */
+    tagRegexp?: pulumi.Input<string>;
+    /**
+     * If enabled, rules apply to untagged Docker images.
+     */
+    untagged?: pulumi.Input<boolean>;
+}
+
 export interface DataprocClusterClusterConfig {
     /**
      * Data Proc specific options. The structure is documented below.
@@ -3787,38 +3811,6 @@ export interface GetAlbBackendGroupSessionAffinityHeaderArgs {
     headerName?: pulumi.Input<string>;
 }
 
-export interface GetAlbBackendGroupStreamBackendArgs {
-    enableProxyProtocol?: pulumi.Input<boolean>;
-    /**
-     * Healthcheck specification that will be used by this backend. Structure is documented below.
-     */
-    healthcheck?: pulumi.Input<inputs.GetAlbBackendGroupStreamBackendHealthcheckArgs>;
-    /**
-     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
-     */
-    loadBalancingConfig?: pulumi.Input<inputs.GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs>;
-    /**
-     * - Name of the Backend Group.
-     */
-    name?: pulumi.Input<string>;
-    /**
-     * Port for incoming traffic.
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * References target groups for the backend.
-     */
-    targetGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
-    /**
-     * Tls specification that will be used by this backend. Structure is documented below.
-     */
-    tls?: pulumi.Input<inputs.GetAlbBackendGroupStreamBackendTlsArgs>;
-    /**
-     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
-     */
-    weight?: pulumi.Input<number>;
-}
-
 export interface GetAlbBackendGroupStreamBackend {
     enableProxyProtocol?: boolean;
     /**
@@ -3849,6 +3841,38 @@ export interface GetAlbBackendGroupStreamBackend {
      * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
      */
     weight?: number;
+}
+
+export interface GetAlbBackendGroupStreamBackendArgs {
+    enableProxyProtocol?: pulumi.Input<boolean>;
+    /**
+     * Healthcheck specification that will be used by this backend. Structure is documented below.
+     */
+    healthcheck?: pulumi.Input<inputs.GetAlbBackendGroupStreamBackendHealthcheckArgs>;
+    /**
+     * Load Balancing Config specification that will be used by this backend. Structure is documented below.
+     */
+    loadBalancingConfig?: pulumi.Input<inputs.GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs>;
+    /**
+     * - Name of the Backend Group.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Port for incoming traffic.
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * References target groups for the backend.
+     */
+    targetGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Tls specification that will be used by this backend. Structure is documented below.
+     */
+    tls?: pulumi.Input<inputs.GetAlbBackendGroupStreamBackendTlsArgs>;
+    /**
+     * Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+     */
+    weight?: pulumi.Input<number>;
 }
 
 export interface GetAlbBackendGroupStreamBackendHealthcheck {
@@ -4259,17 +4283,6 @@ export interface GetComputeDiskDiskPlacementPolicyArgs {
     diskPlacementGroupId: pulumi.Input<string>;
 }
 
-export interface GetComputeInstanceLocalDiskArgs {
-    /**
-     * Name of the device.
-     */
-    deviceName?: pulumi.Input<string>;
-    /**
-     * Size of the disk, specified in bytes.
-     */
-    sizeBytes: pulumi.Input<number>;
-}
-
 export interface GetComputeInstanceLocalDisk {
     /**
      * Name of the device.
@@ -4279,6 +4292,17 @@ export interface GetComputeInstanceLocalDisk {
      * Size of the disk, specified in bytes.
      */
     sizeBytes: number;
+}
+
+export interface GetComputeInstanceLocalDiskArgs {
+    /**
+     * Name of the device.
+     */
+    deviceName?: pulumi.Input<string>;
+    /**
+     * Size of the disk, specified in bytes.
+     */
+    sizeBytes: pulumi.Input<number>;
 }
 
 export interface GetComputeInstancePlacementPolicy {
@@ -5807,6 +5831,36 @@ export interface LbTargetGroupTarget {
     subnetId: pulumi.Input<string>;
 }
 
+export interface LockboxSecretVersionEntry {
+    /**
+     * The command that generates the text value of the entry.
+     */
+    command?: pulumi.Input<inputs.LockboxSecretVersionEntryCommand>;
+    /**
+     * The key of the entry.
+     */
+    key: pulumi.Input<string>;
+    /**
+     * The text value of the entry.
+     */
+    textValue?: pulumi.Input<string>;
+}
+
+export interface LockboxSecretVersionEntryCommand {
+    /**
+     * List of arguments to be passed to the script/command.
+     */
+    args?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Map of environment variables to set before calling the script/command.
+     */
+    env?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * The path to the script or command to execute.
+     */
+    path: pulumi.Input<string>;
+}
+
 export interface MdbClickhouseClusterAccess {
     /**
      * Allow access for DataLens. Can be either `true` or `false`.
@@ -7046,6 +7100,66 @@ export interface MdbKafkaClusterUserPermission {
     topicName: pulumi.Input<string>;
 }
 
+export interface MdbKafkaConnectorConnectorConfigMirrormaker {
+    replicationFactor: pulumi.Input<number>;
+    sourceCluster: pulumi.Input<inputs.MdbKafkaConnectorConnectorConfigMirrormakerSourceCluster>;
+    targetCluster: pulumi.Input<inputs.MdbKafkaConnectorConnectorConfigMirrormakerTargetCluster>;
+    topics: pulumi.Input<string>;
+}
+
+export interface MdbKafkaConnectorConnectorConfigMirrormakerSourceCluster {
+    alias?: pulumi.Input<string>;
+    externalClusters?: pulumi.Input<pulumi.Input<inputs.MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster>[]>;
+    thisClusters?: pulumi.Input<pulumi.Input<inputs.MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisCluster>[]>;
+}
+
+export interface MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster {
+    bootstrapServers: pulumi.Input<string>;
+    saslMechanism?: pulumi.Input<string>;
+    saslPassword?: pulumi.Input<string>;
+    saslUsername?: pulumi.Input<string>;
+    securityProtocol?: pulumi.Input<string>;
+}
+
+export interface MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisCluster {
+}
+
+export interface MdbKafkaConnectorConnectorConfigMirrormakerTargetCluster {
+    alias?: pulumi.Input<string>;
+    externalClusters?: pulumi.Input<pulumi.Input<inputs.MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster>[]>;
+    thisClusters?: pulumi.Input<pulumi.Input<inputs.MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisCluster>[]>;
+}
+
+export interface MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster {
+    bootstrapServers: pulumi.Input<string>;
+    saslMechanism?: pulumi.Input<string>;
+    saslPassword?: pulumi.Input<string>;
+    saslUsername?: pulumi.Input<string>;
+    securityProtocol?: pulumi.Input<string>;
+}
+
+export interface MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisCluster {
+}
+
+export interface MdbKafkaConnectorConnectorConfigS3Sink {
+    fileCompressionType: pulumi.Input<string>;
+    fileMaxRecords?: pulumi.Input<number>;
+    s3Connection: pulumi.Input<inputs.MdbKafkaConnectorConnectorConfigS3SinkS3Connection>;
+    topics: pulumi.Input<string>;
+}
+
+export interface MdbKafkaConnectorConnectorConfigS3SinkS3Connection {
+    bucketName: pulumi.Input<string>;
+    externalS3s: pulumi.Input<pulumi.Input<inputs.MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3>[]>;
+}
+
+export interface MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3 {
+    accessKeyId?: pulumi.Input<string>;
+    endpoint: pulumi.Input<string>;
+    region?: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string>;
+}
+
 export interface MdbKafkaTopicTopicConfig {
     cleanupPolicy?: pulumi.Input<string>;
     compressionType?: pulumi.Input<string>;
@@ -7480,6 +7594,38 @@ export interface MdbMysqlClusterUserPermission {
     roles?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface MdbMysqlUserConnectionLimits {
+    /**
+     * Max connections per hour.
+     */
+    maxConnectionsPerHour?: pulumi.Input<number>;
+    /**
+     * Max questions per hour.
+     */
+    maxQuestionsPerHour?: pulumi.Input<number>;
+    /**
+     * Max updates per hour.
+     */
+    maxUpdatesPerHour?: pulumi.Input<number>;
+    /**
+     * Max user connections.
+     */
+    maxUserConnections?: pulumi.Input<number>;
+}
+
+export interface MdbMysqlUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
+    databaseName: pulumi.Input<string>;
+    /**
+     * List user's roles in the database.
+     * Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+     * `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+     */
+    roles?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface MdbPostgresqlClusterConfig {
     /**
      * Access policy to the PostgreSQL cluster. The structure is documented below.
@@ -7697,6 +7843,24 @@ export interface MdbPostgresqlClusterUser {
 }
 
 export interface MdbPostgresqlClusterUserPermission {
+    databaseName: pulumi.Input<string>;
+}
+
+export interface MdbPostgresqlDatabaseExtension {
+    /**
+     * Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Version of the extension.
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface MdbPostgresqlUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName: pulumi.Input<string>;
 }
 
@@ -8163,6 +8327,9 @@ export interface VpcDefaultSecurityGroupIngress {
     toPort?: pulumi.Input<number>;
     v4CidrBlocks?: pulumi.Input<pulumi.Input<string>[]>;
     v6CidrBlocks?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface VpcGatewaySharedEgressGateway {
 }
 
 export interface VpcRouteTableStaticRoute {

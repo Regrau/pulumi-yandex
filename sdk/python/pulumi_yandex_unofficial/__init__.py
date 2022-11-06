@@ -24,6 +24,7 @@ from .container_registry import *
 from .container_registry_iam_binding import *
 from .container_repository import *
 from .container_repository_iam_binding import *
+from .container_repository_lifecycle_policy import *
 from .dataproc_cluster import *
 from .datatransfer_endpoint import *
 from .datatransfer_transfer import *
@@ -98,6 +99,7 @@ from .iam_service_account_iam_member import *
 from .iam_service_account_iam_policy import *
 from .iam_service_account_key import *
 from .iam_service_account_static_access_key import *
+from .iot_core_broker import *
 from .iot_core_device import *
 from .iot_core_registry import *
 from .kms_secret_ciphertext import *
@@ -107,22 +109,33 @@ from .kubernetes_cluster import *
 from .kubernetes_node_group import *
 from .lb_network_load_balancer import *
 from .lb_target_group import *
+from .lockbox_secret import *
+from .lockbox_secret_version import *
 from .logging_group import *
 from .mdb_clickhouse_cluster import *
 from .mdb_elastic_search_cluster import *
 from .mdb_greenplum_cluster import *
 from .mdb_kafka_cluster import *
+from .mdb_kafka_connector import *
 from .mdb_kafka_topic import *
 from .mdb_mongodb_cluster import *
 from .mdb_mysql_cluster import *
+from .mdb_mysql_database import *
+from .mdb_mysql_user import *
 from .mdb_postgresql_cluster import *
+from .mdb_postgresql_database import *
+from .mdb_postgresql_user import *
 from .mdb_redis_cluster import *
 from .mdb_sql_server_cluster import *
 from .message_queue import *
 from .organization_manager_organization_iam_binding import *
 from .organization_manager_organization_iam_member import *
+from .organizationmanager_group import *
+from .organizationmanager_group_iam_member import *
+from .organizationmanager_group_membership import *
 from .organizationmanager_saml_federation import *
 from .provider import *
+from .resourcemanager_cloud import *
 from .resourcemanager_cloud_iam_binding import *
 from .resourcemanager_cloud_iam_member import *
 from .resourcemanager_folder import *
@@ -130,16 +143,19 @@ from .resourcemanager_folder_iam_binding import *
 from .resourcemanager_folder_iam_member import *
 from .resourcemanager_folder_iam_policy import *
 from .serverless_container import *
+from .serverless_container_iam_binding import *
 from .storage_bucket import *
 from .storage_object import *
 from .vpc_address import *
 from .vpc_default_security_group import *
+from .vpc_gateway import *
 from .vpc_network import *
 from .vpc_route_table import *
 from .vpc_security_group import *
 from .vpc_security_group_rule import *
 from .vpc_subnet import *
 from .ydb_database_dedicated import *
+from .ydb_database_iam_binding import *
 from .ydb_database_serverless import *
 from ._inputs import *
 from . import outputs
@@ -308,6 +324,14 @@ _utilities.register(
  },
  {
   "pkg": "yandex",
+  "mod": "index/containerRepositoryLifecyclePolicy",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/containerRepositoryLifecyclePolicy:containerRepositoryLifecyclePolicy": "ContainerRepositoryLifecyclePolicy"
+  }
+ },
+ {
+  "pkg": "yandex",
   "mod": "index/dataprocCluster",
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
@@ -436,6 +460,14 @@ _utilities.register(
  },
  {
   "pkg": "yandex",
+  "mod": "index/iotCoreBroker",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/iotCoreBroker:iotCoreBroker": "IotCoreBroker"
+  }
+ },
+ {
+  "pkg": "yandex",
   "mod": "index/iotCoreDevice",
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
@@ -508,6 +540,22 @@ _utilities.register(
  },
  {
   "pkg": "yandex",
+  "mod": "index/lockboxSecret",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/lockboxSecret:lockboxSecret": "LockboxSecret"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/lockboxSecretVersion",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/lockboxSecretVersion:lockboxSecretVersion": "LockboxSecretVersion"
+  }
+ },
+ {
+  "pkg": "yandex",
   "mod": "index/loggingGroup",
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
@@ -548,6 +596,14 @@ _utilities.register(
  },
  {
   "pkg": "yandex",
+  "mod": "index/mdbKafkaConnector",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/mdbKafkaConnector:mdbKafkaConnector": "MdbKafkaConnector"
+  }
+ },
+ {
+  "pkg": "yandex",
   "mod": "index/mdbKafkaTopic",
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
@@ -572,10 +628,42 @@ _utilities.register(
  },
  {
   "pkg": "yandex",
+  "mod": "index/mdbMysqlDatabase",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/mdbMysqlDatabase:mdbMysqlDatabase": "MdbMysqlDatabase"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/mdbMysqlUser",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/mdbMysqlUser:mdbMysqlUser": "MdbMysqlUser"
+  }
+ },
+ {
+  "pkg": "yandex",
   "mod": "index/mdbPostgresqlCluster",
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/mdbPostgresqlCluster:MdbPostgresqlCluster": "MdbPostgresqlCluster"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/mdbPostgresqlDatabase",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/mdbPostgresqlDatabase:mdbPostgresqlDatabase": "MdbPostgresqlDatabase"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/mdbPostgresqlUser",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/mdbPostgresqlUser:mdbPostgresqlUser": "MdbPostgresqlUser"
   }
  },
  {
@@ -620,10 +708,42 @@ _utilities.register(
  },
  {
   "pkg": "yandex",
+  "mod": "index/organizationmanagerGroup",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/organizationmanagerGroup:organizationmanagerGroup": "OrganizationmanagerGroup"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/organizationmanagerGroupIamMember",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/organizationmanagerGroupIamMember:organizationmanagerGroupIamMember": "OrganizationmanagerGroupIamMember"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/organizationmanagerGroupMembership",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/organizationmanagerGroupMembership:organizationmanagerGroupMembership": "OrganizationmanagerGroupMembership"
+  }
+ },
+ {
+  "pkg": "yandex",
   "mod": "index/organizationmanagerSamlFederation",
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/organizationmanagerSamlFederation:OrganizationmanagerSamlFederation": "OrganizationmanagerSamlFederation"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/resourcemanagerCloud",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/resourcemanagerCloud:resourcemanagerCloud": "ResourcemanagerCloud"
   }
  },
  {
@@ -684,6 +804,14 @@ _utilities.register(
  },
  {
   "pkg": "yandex",
+  "mod": "index/serverlessContainerIamBinding",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/serverlessContainerIamBinding:serverlessContainerIamBinding": "ServerlessContainerIamBinding"
+  }
+ },
+ {
+  "pkg": "yandex",
   "mod": "index/storageBucket",
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
@@ -712,6 +840,14 @@ _utilities.register(
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/vpcDefaultSecurityGroup:VpcDefaultSecurityGroup": "VpcDefaultSecurityGroup"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/vpcGateway",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/vpcGateway:vpcGateway": "VpcGateway"
   }
  },
  {
@@ -760,6 +896,14 @@ _utilities.register(
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/ydbDatabaseDedicated:YdbDatabaseDedicated": "YdbDatabaseDedicated"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/ydbDatabaseIamBinding",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/ydbDatabaseIamBinding:ydbDatabaseIamBinding": "YdbDatabaseIamBinding"
   }
  },
  {

@@ -6,18 +6,6 @@ import * as utilities from "./utilities";
 
 /**
  * Get attributes used by provider to configure client connection.
- *
- * ## Example Usage
- *
- * ```typescript
- * import * as pulumi from "@pulumi/pulumi";
- * import * as yandex from "@pulumi/yandex";
- *
- * const client = yandex.getClientConfig({});
- * const kubernetes = yandex.getKubernetesCluster({
- *     name: "kubernetes",
- * });
- * ```
  */
 export function getClientConfig(opts?: pulumi.InvokeOptions): Promise<GetClientConfigResult> {
     if (!opts) {

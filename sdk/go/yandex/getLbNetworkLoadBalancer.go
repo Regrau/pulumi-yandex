@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.LookupLbNetworkLoadBalancer(ctx, &GetLbNetworkLoadBalancerArgs{
+//			_, err = yandex.LookupLbNetworkLoadBalancer(ctx, &GetLbNetworkLoadBalancerArgs{
 //				NetworkLoadBalancerId: pulumi.StringRef("my-network-load-balancer"),
 //			}, nil)
 //			if err != nil {

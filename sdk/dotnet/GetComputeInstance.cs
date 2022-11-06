@@ -41,7 +41,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetComputeInstanceResult> InvokeAsync(GetComputeInstanceArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetComputeInstanceResult>("yandex:index/getComputeInstance:getComputeInstance", args ?? new GetComputeInstanceArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetComputeInstanceResult>("yandex:index/getComputeInstance:getComputeInstance", args ?? new GetComputeInstanceArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex Compute instance. For more information, see
@@ -73,7 +73,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetComputeInstanceResult> Invoke(GetComputeInstanceInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetComputeInstanceResult>("yandex:index/getComputeInstance:getComputeInstance", args ?? new GetComputeInstanceInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetComputeInstanceResult>("yandex:index/getComputeInstance:getComputeInstance", args ?? new GetComputeInstanceInvokeArgs(), options.WithDefaults());
     }
 
 

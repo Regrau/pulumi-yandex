@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.LookupLbTargetGroup(ctx, &GetLbTargetGroupArgs{
+//			_, err = yandex.LookupLbTargetGroup(ctx, &GetLbTargetGroupArgs{
 //				TargetGroupId: pulumi.StringRef("my-target-group-id"),
 //			}, nil)
 //			if err != nil {

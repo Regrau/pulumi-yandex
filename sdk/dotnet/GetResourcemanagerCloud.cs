@@ -41,7 +41,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetResourcemanagerCloudResult> InvokeAsync(GetResourcemanagerCloudArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetResourcemanagerCloudResult>("yandex:index/getResourcemanagerCloud:getResourcemanagerCloud", args ?? new GetResourcemanagerCloudArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetResourcemanagerCloudResult>("yandex:index/getResourcemanagerCloud:getResourcemanagerCloud", args ?? new GetResourcemanagerCloudArgs(), options.WithDefaults());
 
         /// <summary>
         /// Use this data source to get cloud details.
@@ -73,7 +73,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetResourcemanagerCloudResult> Invoke(GetResourcemanagerCloudInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetResourcemanagerCloudResult>("yandex:index/getResourcemanagerCloud:getResourcemanagerCloud", args ?? new GetResourcemanagerCloudInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetResourcemanagerCloudResult>("yandex:index/getResourcemanagerCloud:getResourcemanagerCloud", args ?? new GetResourcemanagerCloudInvokeArgs(), options.WithDefaults());
     }
 
 

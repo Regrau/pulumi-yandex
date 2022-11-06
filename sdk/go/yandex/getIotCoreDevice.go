@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.LookupIotCoreDevice(ctx, &GetIotCoreDeviceArgs{
+//			_, err = yandex.LookupIotCoreDevice(ctx, &GetIotCoreDeviceArgs{
 //				DeviceId: pulumi.StringRef("are1sampleregistry11"),
 //			}, nil)
 //			if err != nil {

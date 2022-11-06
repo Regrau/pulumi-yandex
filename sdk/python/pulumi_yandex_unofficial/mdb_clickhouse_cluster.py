@@ -1073,7 +1073,7 @@ class MdbClickhouseCluster(pulumi.CustomResource):
             __props__ = MdbClickhouseClusterArgs.__new__(MdbClickhouseClusterArgs)
 
             __props__.__dict__["access"] = access
-            __props__.__dict__["admin_password"] = admin_password
+            __props__.__dict__["admin_password"] = None if admin_password is None else pulumi.Output.secret(admin_password)
             __props__.__dict__["backup_window_start"] = backup_window_start
             if clickhouse is None and not opts.urn:
                 raise TypeError("Missing required property 'clickhouse'")
@@ -1110,6 +1110,8 @@ class MdbClickhouseCluster(pulumi.CustomResource):
             __props__.__dict__["created_at"] = None
             __props__.__dict__["health"] = None
             __props__.__dict__["status"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["adminPassword"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(MdbClickhouseCluster, __self__).__init__(
             'yandex:index/mdbClickhouseCluster:MdbClickhouseCluster',
             resource_name,

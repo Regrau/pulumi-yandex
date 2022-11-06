@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -107,9 +108,9 @@ import * as utilities from "./utilities";
  *
  * const fooVpcNetwork = new yandex.VpcNetwork("fooVpcNetwork", {});
  * const vpcSubnet = new yandex.VpcSubnet("vpcSubnet", {
- *     zone: "ru-central1-b",
+ *     zone: "ru-central1-a",
  *     networkId: fooVpcNetwork.id,
- *     v4CidrBlocks: ["10.2.0.0/24"],
+ *     v4CidrBlocks: ["10.1.0.0/24"],
  * });
  * const fooMdbPostgresqlCluster = new yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster", {
  *     description: "test High-Availability (HA) PostgreSQL Cluster with priority and set master",
@@ -129,32 +130,32 @@ import * as utilities from "./utilities";
  *             zone: "ru-central1-a",
  *             name: "host_name_a",
  *             priority: 2,
- *             subnetId: yandexIndex / vpcSubnetVpcSubnet.id,
+ *             subnetId: vpcSubnet.id,
  *         },
  *         {
  *             zone: "ru-central1-b",
  *             name: "host_name_b",
  *             replicationSourceName: "host_name_c",
- *             subnetId: vpcSubnet.id,
+ *             subnetId: index / vpcSubnetVpcSubnet.id,
  *         },
  *         {
  *             zone: "ru-central1-c",
  *             name: "host_name_c",
- *             subnetId: index / vpcSubnetVpcSubnet.id,
+ *             subnetId: yandexIndex / vpcSubnetVpcSubnet.id,
  *         },
  *         {
  *             zone: "ru-central1-c",
  *             name: "host_name_c_2",
- *             subnetId: index / vpcSubnetVpcSubnet.id,
+ *             subnetId: yandexIndex / vpcSubnetVpcSubnet.id,
  *         },
  *     ],
  * });
- * const yandexIndex_vpcSubnetVpcSubnet = new yandex.VpcSubnet("yandexIndex/vpcSubnetVpcSubnet", {
- *     zone: "ru-central1-a",
- *     networkId: fooVpcNetwork.id,
- *     v4CidrBlocks: ["10.1.0.0/24"],
- * });
  * const index_vpcSubnetVpcSubnet = new yandex.VpcSubnet("index/vpcSubnetVpcSubnet", {
+ *     zone: "ru-central1-b",
+ *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.2.0.0/24"],
+ * });
+ * const yandexIndex_vpcSubnetVpcSubnet = new yandex.VpcSubnet("yandexIndex/vpcSubnetVpcSubnet", {
  *     zone: "ru-central1-c",
  *     networkId: fooVpcNetwork.id,
  *     v4CidrBlocks: ["10.3.0.0/24"],
@@ -398,7 +399,7 @@ export class MdbPostgresqlCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * To manage databases, please switch to using a separate resource type `yandexMdbPostgresqlDatabase`.
+     * To manage databases, please switch to using a separate resource type `yandex.mdbPostgresqlDatabase`.
      *
      * @deprecated to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database
      */
@@ -462,7 +463,7 @@ export class MdbPostgresqlCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * To manage users, please switch to using a separate resource type `yandexMdbPostgresqlUser`.
+     * To manage users, please switch to using a separate resource type `yandex.mdbPostgresqlUser`.
      *
      * @deprecated to manage users, please switch to using a separate resource type yandex_mdb_postgresql_user
      */
@@ -552,7 +553,7 @@ export interface MdbPostgresqlClusterState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * To manage databases, please switch to using a separate resource type `yandexMdbPostgresqlDatabase`.
+     * To manage databases, please switch to using a separate resource type `yandex.mdbPostgresqlDatabase`.
      *
      * @deprecated to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database
      */
@@ -616,7 +617,7 @@ export interface MdbPostgresqlClusterState {
      */
     status?: pulumi.Input<string>;
     /**
-     * To manage users, please switch to using a separate resource type `yandexMdbPostgresqlUser`.
+     * To manage users, please switch to using a separate resource type `yandex.mdbPostgresqlUser`.
      *
      * @deprecated to manage users, please switch to using a separate resource type yandex_mdb_postgresql_user
      */
@@ -632,7 +633,7 @@ export interface MdbPostgresqlClusterArgs {
      */
     config: pulumi.Input<inputs.MdbPostgresqlClusterConfig>;
     /**
-     * To manage databases, please switch to using a separate resource type `yandexMdbPostgresqlDatabase`.
+     * To manage databases, please switch to using a separate resource type `yandex.mdbPostgresqlDatabase`.
      *
      * @deprecated to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database
      */
@@ -688,7 +689,7 @@ export interface MdbPostgresqlClusterArgs {
      */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * To manage users, please switch to using a separate resource type `yandexMdbPostgresqlUser`.
+     * To manage users, please switch to using a separate resource type `yandex.mdbPostgresqlUser`.
      *
      * @deprecated to manage users, please switch to using a separate resource type yandex_mdb_postgresql_user
      */

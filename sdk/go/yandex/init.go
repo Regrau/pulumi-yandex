@@ -58,6 +58,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ContainerRepository{}
 	case "yandex:index/containerRepositoryIamBinding:ContainerRepositoryIamBinding":
 		r = &ContainerRepositoryIamBinding{}
+	case "yandex:index/containerRepositoryLifecyclePolicy:containerRepositoryLifecyclePolicy":
+		r = &ContainerRepositoryLifecyclePolicy{}
 	case "yandex:index/dataprocCluster:DataprocCluster":
 		r = &DataprocCluster{}
 	case "yandex:index/datatransferEndpoint:DatatransferEndpoint":
@@ -90,6 +92,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IamServiceAccountKey{}
 	case "yandex:index/iamServiceAccountStaticAccessKey:IamServiceAccountStaticAccessKey":
 		r = &IamServiceAccountStaticAccessKey{}
+	case "yandex:index/iotCoreBroker:iotCoreBroker":
+		r = &IotCoreBroker{}
 	case "yandex:index/iotCoreDevice:IotCoreDevice":
 		r = &IotCoreDevice{}
 	case "yandex:index/iotCoreRegistry:IotCoreRegistry":
@@ -108,6 +112,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LbNetworkLoadBalancer{}
 	case "yandex:index/lbTargetGroup:LbTargetGroup":
 		r = &LbTargetGroup{}
+	case "yandex:index/lockboxSecret:lockboxSecret":
+		r = &LockboxSecret{}
+	case "yandex:index/lockboxSecretVersion:lockboxSecretVersion":
+		r = &LockboxSecretVersion{}
 	case "yandex:index/loggingGroup:LoggingGroup":
 		r = &LoggingGroup{}
 	case "yandex:index/mdbClickhouseCluster:MdbClickhouseCluster":
@@ -118,14 +126,24 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MdbGreenplumCluster{}
 	case "yandex:index/mdbKafkaCluster:MdbKafkaCluster":
 		r = &MdbKafkaCluster{}
+	case "yandex:index/mdbKafkaConnector:mdbKafkaConnector":
+		r = &MdbKafkaConnector{}
 	case "yandex:index/mdbKafkaTopic:MdbKafkaTopic":
 		r = &MdbKafkaTopic{}
 	case "yandex:index/mdbMongodbCluster:MdbMongodbCluster":
 		r = &MdbMongodbCluster{}
 	case "yandex:index/mdbMysqlCluster:MdbMysqlCluster":
 		r = &MdbMysqlCluster{}
+	case "yandex:index/mdbMysqlDatabase:mdbMysqlDatabase":
+		r = &MdbMysqlDatabase{}
+	case "yandex:index/mdbMysqlUser:mdbMysqlUser":
+		r = &MdbMysqlUser{}
 	case "yandex:index/mdbPostgresqlCluster:MdbPostgresqlCluster":
 		r = &MdbPostgresqlCluster{}
+	case "yandex:index/mdbPostgresqlDatabase:mdbPostgresqlDatabase":
+		r = &MdbPostgresqlDatabase{}
+	case "yandex:index/mdbPostgresqlUser:mdbPostgresqlUser":
+		r = &MdbPostgresqlUser{}
 	case "yandex:index/mdbRedisCluster:MdbRedisCluster":
 		r = &MdbRedisCluster{}
 	case "yandex:index/mdbSqlServerCluster:MdbSqlServerCluster":
@@ -136,8 +154,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &OrganizationManagerOrganizationIamBinding{}
 	case "yandex:index/organizationManagerOrganizationIamMember:OrganizationManagerOrganizationIamMember":
 		r = &OrganizationManagerOrganizationIamMember{}
+	case "yandex:index/organizationmanagerGroup:organizationmanagerGroup":
+		r = &OrganizationmanagerGroup{}
+	case "yandex:index/organizationmanagerGroupIamMember:organizationmanagerGroupIamMember":
+		r = &OrganizationmanagerGroupIamMember{}
+	case "yandex:index/organizationmanagerGroupMembership:organizationmanagerGroupMembership":
+		r = &OrganizationmanagerGroupMembership{}
 	case "yandex:index/organizationmanagerSamlFederation:OrganizationmanagerSamlFederation":
 		r = &OrganizationmanagerSamlFederation{}
+	case "yandex:index/resourcemanagerCloud:resourcemanagerCloud":
+		r = &ResourcemanagerCloud{}
 	case "yandex:index/resourcemanagerCloudIamBinding:ResourcemanagerCloudIamBinding":
 		r = &ResourcemanagerCloudIamBinding{}
 	case "yandex:index/resourcemanagerCloudIamMember:ResourcemanagerCloudIamMember":
@@ -152,6 +178,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ResourcemanagerFolderIamPolicy{}
 	case "yandex:index/serverlessContainer:ServerlessContainer":
 		r = &ServerlessContainer{}
+	case "yandex:index/serverlessContainerIamBinding:serverlessContainerIamBinding":
+		r = &ServerlessContainerIamBinding{}
 	case "yandex:index/storageBucket:StorageBucket":
 		r = &StorageBucket{}
 	case "yandex:index/storageObject:StorageObject":
@@ -160,6 +188,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpcAddress{}
 	case "yandex:index/vpcDefaultSecurityGroup:VpcDefaultSecurityGroup":
 		r = &VpcDefaultSecurityGroup{}
+	case "yandex:index/vpcGateway:vpcGateway":
+		r = &VpcGateway{}
 	case "yandex:index/vpcNetwork:VpcNetwork":
 		r = &VpcNetwork{}
 	case "yandex:index/vpcRouteTable:VpcRouteTable":
@@ -172,6 +202,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpcSubnet{}
 	case "yandex:index/ydbDatabaseDedicated:YdbDatabaseDedicated":
 		r = &YdbDatabaseDedicated{}
+	case "yandex:index/ydbDatabaseIamBinding:ydbDatabaseIamBinding":
+		r = &YdbDatabaseIamBinding{}
 	case "yandex:index/ydbDatabaseServerless:YdbDatabaseServerless":
 		r = &YdbDatabaseServerless{}
 	default:
@@ -299,6 +331,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"yandex",
+		"index/containerRepositoryLifecyclePolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
 		"index/dataprocCluster",
 		&module{version},
 	)
@@ -379,6 +416,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"yandex",
+		"index/iotCoreBroker",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
 		"index/iotCoreDevice",
 		&module{version},
 	)
@@ -424,6 +466,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"yandex",
+		"index/lockboxSecret",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/lockboxSecretVersion",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
 		"index/loggingGroup",
 		&module{version},
 	)
@@ -449,6 +501,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"yandex",
+		"index/mdbKafkaConnector",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
 		"index/mdbKafkaTopic",
 		&module{version},
 	)
@@ -464,7 +521,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"yandex",
+		"index/mdbMysqlDatabase",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/mdbMysqlUser",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
 		"index/mdbPostgresqlCluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/mdbPostgresqlDatabase",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/mdbPostgresqlUser",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -494,7 +571,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"yandex",
+		"index/organizationmanagerGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/organizationmanagerGroupIamMember",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/organizationmanagerGroupMembership",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
 		"index/organizationmanagerSamlFederation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/resourcemanagerCloud",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -534,6 +631,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"yandex",
+		"index/serverlessContainerIamBinding",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
 		"index/storageBucket",
 		&module{version},
 	)
@@ -550,6 +652,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"yandex",
 		"index/vpcDefaultSecurityGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/vpcGateway",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -580,6 +687,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"yandex",
 		"index/ydbDatabaseDedicated",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/ydbDatabaseIamBinding",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

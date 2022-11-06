@@ -33,7 +33,7 @@ namespace Pulumi.Yandex
         /// This data source is used to define [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
         /// </summary>
         public static Task<GetIotCoreRegistryResult> InvokeAsync(GetIotCoreRegistryArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetIotCoreRegistryResult>("yandex:index/getIotCoreRegistry:getIotCoreRegistry", args ?? new GetIotCoreRegistryArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetIotCoreRegistryResult>("yandex:index/getIotCoreRegistry:getIotCoreRegistry", args ?? new GetIotCoreRegistryArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex IoT Core Registry. For more information IoT Core, see 
@@ -57,7 +57,7 @@ namespace Pulumi.Yandex
         /// This data source is used to define [Yandex.Cloud IoT Registry](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
         /// </summary>
         public static Output<GetIotCoreRegistryResult> Invoke(GetIotCoreRegistryInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetIotCoreRegistryResult>("yandex:index/getIotCoreRegistry:getIotCoreRegistry", args ?? new GetIotCoreRegistryInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetIotCoreRegistryResult>("yandex:index/getIotCoreRegistry:getIotCoreRegistry", args ?? new GetIotCoreRegistryInvokeArgs(), options.WithDefaults());
     }
 
 

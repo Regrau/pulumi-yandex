@@ -12,10 +12,10 @@ namespace Pulumi.Yandex
     public static class GetFunctionScalingPolicy
     {
         public static Task<GetFunctionScalingPolicyResult> InvokeAsync(GetFunctionScalingPolicyArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetFunctionScalingPolicyResult>("yandex:index/getFunctionScalingPolicy:getFunctionScalingPolicy", args ?? new GetFunctionScalingPolicyArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFunctionScalingPolicyResult>("yandex:index/getFunctionScalingPolicy:getFunctionScalingPolicy", args ?? new GetFunctionScalingPolicyArgs(), options.WithDefaults());
 
         public static Output<GetFunctionScalingPolicyResult> Invoke(GetFunctionScalingPolicyInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetFunctionScalingPolicyResult>("yandex:index/getFunctionScalingPolicy:getFunctionScalingPolicy", args ?? new GetFunctionScalingPolicyInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetFunctionScalingPolicyResult>("yandex:index/getFunctionScalingPolicy:getFunctionScalingPolicy", args ?? new GetFunctionScalingPolicyInvokeArgs(), options.WithDefaults());
     }
 
 

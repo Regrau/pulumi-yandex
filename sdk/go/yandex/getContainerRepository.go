@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.LookupContainerRepository(ctx, &GetContainerRepositoryArgs{
+//			_, err = yandex.LookupContainerRepository(ctx, &GetContainerRepositoryArgs{
 //				Name: pulumi.StringRef("some_repository_name"),
 //			}, nil)
 //			if err != nil {

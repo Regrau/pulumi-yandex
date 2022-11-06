@@ -119,6 +119,10 @@ namespace Pulumi.Yandex
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
+                AdditionalSecretOutputs =
+                {
+                    "ymqSecretKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -216,12 +220,22 @@ namespace Pulumi.Yandex
         [Input("ymqEndpoint")]
         public Input<string>? YmqEndpoint { get; set; }
 
+        [Input("ymqSecretKey")]
+        private Input<string>? _ymqSecretKey;
+
         /// <summary>
         /// Yandex.Cloud Message Queue service secret key. Used when a message queue resource doesn't have a secret key explicitly
         /// specified.
         /// </summary>
-        [Input("ymqSecretKey")]
-        public Input<string>? YmqSecretKey { get; set; }
+        public Input<string>? YmqSecretKey
+        {
+            get => _ymqSecretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _ymqSecretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The zone where operations will take place. Examples are ru-central1-a, ru-central2-c, etc.

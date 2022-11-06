@@ -40,7 +40,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetAlbVirtualHostResult> InvokeAsync(GetAlbVirtualHostArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAlbVirtualHostResult>("yandex:index/getAlbVirtualHost:getAlbVirtualHost", args ?? new GetAlbVirtualHostArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlbVirtualHostResult>("yandex:index/getAlbVirtualHost:getAlbVirtualHost", args ?? new GetAlbVirtualHostArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex ALB Virtual Host. For more information, see
@@ -71,7 +71,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetAlbVirtualHostResult> Invoke(GetAlbVirtualHostInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAlbVirtualHostResult>("yandex:index/getAlbVirtualHost:getAlbVirtualHost", args ?? new GetAlbVirtualHostInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAlbVirtualHostResult>("yandex:index/getAlbVirtualHost:getAlbVirtualHost", args ?? new GetAlbVirtualHostInvokeArgs(), options.WithDefaults());
     }
 
 

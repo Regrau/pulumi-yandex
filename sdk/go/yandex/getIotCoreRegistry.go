@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.LookupIotCoreRegistry(ctx, &GetIotCoreRegistryArgs{
+//			_, err = yandex.LookupIotCoreRegistry(ctx, &GetIotCoreRegistryArgs{
 //				RegistryId: pulumi.StringRef("are1sampleregistry11"),
 //			}, nil)
 //			if err != nil {

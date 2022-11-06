@@ -82,6 +82,13 @@ func NewIotCoreDevice(ctx *pulumi.Context,
 	if args.RegistryId == nil {
 		return nil, errors.New("invalid value for required argument 'RegistryId'")
 	}
+	if args.Passwords != nil {
+		args.Passwords = pulumi.ToSecret(args.Passwords).(pulumi.StringArrayOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"passwords",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource IotCoreDevice
 	err := ctx.RegisterResource("yandex:index/iotCoreDevice:IotCoreDevice", name, args, &resource, opts...)

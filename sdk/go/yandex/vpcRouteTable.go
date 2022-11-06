@@ -17,6 +17,52 @@ import (
 // * How-to Guides
 //   - [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewVpcNetwork(ctx, "lab-net", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewvpcGateway(ctx, "egress-gateway", &yandex.vpcGatewayArgs{
+//				SharedEgressGateway: nil,
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewVpcRouteTable(ctx, "lab-rt-a", &yandex.VpcRouteTableArgs{
+//				NetworkId: lab_net.ID(),
+//				StaticRoutes: VpcRouteTableStaticRouteArray{
+//					&VpcRouteTableStaticRouteArgs{
+//						DestinationPrefix: pulumi.String("10.2.0.0/16"),
+//						NextHopAddress:    pulumi.String("172.16.10.10"),
+//					},
+//					&VpcRouteTableStaticRouteArgs{
+//						DestinationPrefix: pulumi.String("0.0.0.0/0"),
+//						GatewayId:         egress_gateway.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // A route table can be imported using the `id` of the resource, e.g.

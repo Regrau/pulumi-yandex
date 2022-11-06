@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -602,7 +603,7 @@ export class MdbClickhouseCluster extends pulumi.CustomResource {
                 throw new Error("Missing required property 'networkId'");
             }
             resourceInputs["access"] = args ? args.access : undefined;
-            resourceInputs["adminPassword"] = args ? args.adminPassword : undefined;
+            resourceInputs["adminPassword"] = args?.adminPassword ? pulumi.secret(args.adminPassword) : undefined;
             resourceInputs["backupWindowStart"] = args ? args.backupWindowStart : undefined;
             resourceInputs["clickhouse"] = args ? args.clickhouse : undefined;
             resourceInputs["cloudStorage"] = args ? args.cloudStorage : undefined;
@@ -633,6 +634,8 @@ export class MdbClickhouseCluster extends pulumi.CustomResource {
             resourceInputs["status"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["adminPassword"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(MdbClickhouseCluster.__pulumiType, name, resourceInputs, opts);
     }
 }

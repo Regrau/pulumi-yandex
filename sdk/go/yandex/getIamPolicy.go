@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.GetIamPolicy(ctx, &GetIamPolicyArgs{
+//			_, err = yandex.GetIamPolicy(ctx, &GetIamPolicyArgs{
 //				Bindings: []GetIamPolicyBinding{
 //					GetIamPolicyBinding{
 //						Members: []string{

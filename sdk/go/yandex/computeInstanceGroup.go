@@ -71,9 +71,9 @@ import (
 //					},
 //					NetworkInterfaces: ComputeInstanceGroupInstanceTemplateNetworkInterfaceArray{
 //						&ComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs{
-//							NetworkId: pulumi.Any(yandex_vpc_network.My - inst - group - network.Id),
+//							NetworkId: pulumi.Any(yandex_vpc_network.MyInstGroupNetwork.Id),
 //							SubnetIds: pulumi.StringArray{
-//								pulumi.Any(yandex_vpc_subnet.My - inst - group - subnet.Id),
+//								pulumi.Any(yandex_vpc_subnet.MyInstGroupSubnet.Id),
 //							},
 //						},
 //					},

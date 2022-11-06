@@ -897,7 +897,7 @@ type MdbMysqlCluster struct {
 	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
 	// Status of the cluster.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// To manage users, please switch to using a separate resource type `yandexMdbMysqlUser`.
+	// To manage users, please switch to using a separate resource type `mdbMysqlUser`.
 	//
 	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_mysql_user
 	Users MdbMysqlClusterUserArrayOutput `pulumi:"users"`
@@ -998,7 +998,7 @@ type mdbMysqlClusterState struct {
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// Status of the cluster.
 	Status *string `pulumi:"status"`
-	// To manage users, please switch to using a separate resource type `yandexMdbMysqlUser`.
+	// To manage users, please switch to using a separate resource type `mdbMysqlUser`.
 	//
 	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_mysql_user
 	Users []MdbMysqlClusterUser `pulumi:"users"`
@@ -1055,7 +1055,7 @@ type MdbMysqlClusterState struct {
 	SecurityGroupIds pulumi.StringArrayInput
 	// Status of the cluster.
 	Status pulumi.StringPtrInput
-	// To manage users, please switch to using a separate resource type `yandexMdbMysqlUser`.
+	// To manage users, please switch to using a separate resource type `mdbMysqlUser`.
 	//
 	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_mysql_user
 	Users MdbMysqlClusterUserArrayInput
@@ -1110,7 +1110,7 @@ type mdbMysqlClusterArgs struct {
 	Restore *MdbMysqlClusterRestore `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
-	// To manage users, please switch to using a separate resource type `yandexMdbMysqlUser`.
+	// To manage users, please switch to using a separate resource type `mdbMysqlUser`.
 	//
 	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_mysql_user
 	Users []MdbMysqlClusterUser `pulumi:"users"`
@@ -1162,7 +1162,7 @@ type MdbMysqlClusterArgs struct {
 	Restore MdbMysqlClusterRestorePtrInput
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds pulumi.StringArrayInput
-	// To manage users, please switch to using a separate resource type `yandexMdbMysqlUser`.
+	// To manage users, please switch to using a separate resource type `mdbMysqlUser`.
 	//
 	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_mysql_user
 	Users MdbMysqlClusterUserArrayInput
@@ -1374,7 +1374,7 @@ func (o MdbMysqlClusterOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbMysqlCluster) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// To manage users, please switch to using a separate resource type `yandexMdbMysqlUser`.
+// To manage users, please switch to using a separate resource type `mdbMysqlUser`.
 //
 // Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_mysql_user
 func (o MdbMysqlClusterOutput) Users() MdbMysqlClusterUserArrayOutput {

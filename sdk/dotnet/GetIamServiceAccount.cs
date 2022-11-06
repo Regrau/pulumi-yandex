@@ -36,7 +36,7 @@ namespace Pulumi.Yandex
         /// ```
         /// </summary>
         public static Task<GetIamServiceAccountResult> InvokeAsync(GetIamServiceAccountArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetIamServiceAccountResult>("yandex:index/getIamServiceAccount:getIamServiceAccount", args ?? new GetIamServiceAccountArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetIamServiceAccountResult>("yandex:index/getIamServiceAccount:getIamServiceAccount", args ?? new GetIamServiceAccountArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex IAM service account. For more information about accounts, see 
@@ -63,7 +63,7 @@ namespace Pulumi.Yandex
         /// ```
         /// </summary>
         public static Output<GetIamServiceAccountResult> Invoke(GetIamServiceAccountInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetIamServiceAccountResult>("yandex:index/getIamServiceAccount:getIamServiceAccount", args ?? new GetIamServiceAccountInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetIamServiceAccountResult>("yandex:index/getIamServiceAccount:getIamServiceAccount", args ?? new GetIamServiceAccountInvokeArgs(), options.WithDefaults());
     }
 
 

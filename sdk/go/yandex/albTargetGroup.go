@@ -13,6 +13,41 @@ import (
 // Creates a target group in the specified folder and adds the specified targets to it.
 // For more information, see [the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/target-group).
 //
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewAlbTargetGroup(ctx, "foo", &yandex.AlbTargetGroupArgs{
+//				Targets: AlbTargetGroupTargetArray{
+//					&AlbTargetGroupTargetArgs{
+//						IpAddress: pulumi.Any(yandex_compute_instance.MyInstance1.Network_interface[0].Ip_address),
+//						SubnetId:  pulumi.Any(yandex_vpc_subnet.MySubnet.Id),
+//					},
+//					&AlbTargetGroupTargetArgs{
+//						IpAddress: pulumi.Any(yandex_compute_instance.MyInstance2.Network_interface[0].Ip_address),
+//						SubnetId:  pulumi.Any(yandex_vpc_subnet.MySubnet.Id),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ## Import
 //
 // A target group can be imported using the `id` of the resource, e.g.

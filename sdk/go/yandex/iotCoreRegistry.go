@@ -74,6 +74,13 @@ func NewIotCoreRegistry(ctx *pulumi.Context,
 		args = &IotCoreRegistryArgs{}
 	}
 
+	if args.Passwords != nil {
+		args.Passwords = pulumi.ToSecret(args.Passwords).(pulumi.StringArrayOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"passwords",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource IotCoreRegistry
 	err := ctx.RegisterResource("yandex:index/iotCoreRegistry:IotCoreRegistry", name, args, &resource, opts...)

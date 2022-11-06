@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.GetIamUser(ctx, &GetIamUserArgs{
+//			_, err = yandex.GetIamUser(ctx, &GetIamUserArgs{
 //				Login: pulumi.StringRef("my-yandex-login"),
 //			}, nil)
 //			if err != nil {

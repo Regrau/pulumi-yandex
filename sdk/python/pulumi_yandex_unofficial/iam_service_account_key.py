@@ -375,6 +375,8 @@ class IamServiceAccountKey(pulumi.CustomResource):
             __props__.__dict__["key_fingerprint"] = None
             __props__.__dict__["private_key"] = None
             __props__.__dict__["public_key"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["privateKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(IamServiceAccountKey, __self__).__init__(
             'yandex:index/iamServiceAccountKey:IamServiceAccountKey',
             resource_name,

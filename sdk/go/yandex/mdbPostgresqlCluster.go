@@ -485,7 +485,7 @@ type MdbPostgresqlCluster struct {
 	Config MdbPostgresqlClusterConfigOutput `pulumi:"config"`
 	// Timestamp of cluster creation.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// To manage databases, please switch to using a separate resource type `yandexMdbPostgresqlDatabase`.
+	// To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
 	//
 	// Deprecated: to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database
 	Databases MdbPostgresqlClusterDatabaseArrayOutput `pulumi:"databases"`
@@ -519,7 +519,7 @@ type MdbPostgresqlCluster struct {
 	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
 	// Status of the cluster.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// To manage users, please switch to using a separate resource type `yandexMdbPostgresqlUser`.
+	// To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
 	//
 	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_postgresql_user
 	Users MdbPostgresqlClusterUserArrayOutput `pulumi:"users"`
@@ -571,7 +571,7 @@ type mdbPostgresqlClusterState struct {
 	Config *MdbPostgresqlClusterConfig `pulumi:"config"`
 	// Timestamp of cluster creation.
 	CreatedAt *string `pulumi:"createdAt"`
-	// To manage databases, please switch to using a separate resource type `yandexMdbPostgresqlDatabase`.
+	// To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
 	//
 	// Deprecated: to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database
 	Databases []MdbPostgresqlClusterDatabase `pulumi:"databases"`
@@ -605,7 +605,7 @@ type mdbPostgresqlClusterState struct {
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// Status of the cluster.
 	Status *string `pulumi:"status"`
-	// To manage users, please switch to using a separate resource type `yandexMdbPostgresqlUser`.
+	// To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
 	//
 	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_postgresql_user
 	Users []MdbPostgresqlClusterUser `pulumi:"users"`
@@ -616,7 +616,7 @@ type MdbPostgresqlClusterState struct {
 	Config MdbPostgresqlClusterConfigPtrInput
 	// Timestamp of cluster creation.
 	CreatedAt pulumi.StringPtrInput
-	// To manage databases, please switch to using a separate resource type `yandexMdbPostgresqlDatabase`.
+	// To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
 	//
 	// Deprecated: to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database
 	Databases MdbPostgresqlClusterDatabaseArrayInput
@@ -650,7 +650,7 @@ type MdbPostgresqlClusterState struct {
 	SecurityGroupIds pulumi.StringArrayInput
 	// Status of the cluster.
 	Status pulumi.StringPtrInput
-	// To manage users, please switch to using a separate resource type `yandexMdbPostgresqlUser`.
+	// To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
 	//
 	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_postgresql_user
 	Users MdbPostgresqlClusterUserArrayInput
@@ -663,7 +663,7 @@ func (MdbPostgresqlClusterState) ElementType() reflect.Type {
 type mdbPostgresqlClusterArgs struct {
 	// Configuration of the PostgreSQL cluster. The structure is documented below.
 	Config MdbPostgresqlClusterConfig `pulumi:"config"`
-	// To manage databases, please switch to using a separate resource type `yandexMdbPostgresqlDatabase`.
+	// To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
 	//
 	// Deprecated: to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database
 	Databases []MdbPostgresqlClusterDatabase `pulumi:"databases"`
@@ -693,7 +693,7 @@ type mdbPostgresqlClusterArgs struct {
 	Restore *MdbPostgresqlClusterRestore `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
-	// To manage users, please switch to using a separate resource type `yandexMdbPostgresqlUser`.
+	// To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
 	//
 	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_postgresql_user
 	Users []MdbPostgresqlClusterUser `pulumi:"users"`
@@ -703,7 +703,7 @@ type mdbPostgresqlClusterArgs struct {
 type MdbPostgresqlClusterArgs struct {
 	// Configuration of the PostgreSQL cluster. The structure is documented below.
 	Config MdbPostgresqlClusterConfigInput
-	// To manage databases, please switch to using a separate resource type `yandexMdbPostgresqlDatabase`.
+	// To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
 	//
 	// Deprecated: to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database
 	Databases MdbPostgresqlClusterDatabaseArrayInput
@@ -733,7 +733,7 @@ type MdbPostgresqlClusterArgs struct {
 	Restore MdbPostgresqlClusterRestorePtrInput
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds pulumi.StringArrayInput
-	// To manage users, please switch to using a separate resource type `yandexMdbPostgresqlUser`.
+	// To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
 	//
 	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_postgresql_user
 	Users MdbPostgresqlClusterUserArrayInput
@@ -836,7 +836,7 @@ func (o MdbPostgresqlClusterOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbPostgresqlCluster) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// To manage databases, please switch to using a separate resource type `yandexMdbPostgresqlDatabase`.
+// To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
 //
 // Deprecated: to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database
 func (o MdbPostgresqlClusterOutput) Databases() MdbPostgresqlClusterDatabaseArrayOutput {
@@ -918,7 +918,7 @@ func (o MdbPostgresqlClusterOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbPostgresqlCluster) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// To manage users, please switch to using a separate resource type `yandexMdbPostgresqlUser`.
+// To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
 //
 // Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_postgresql_user
 func (o MdbPostgresqlClusterOutput) Users() MdbPostgresqlClusterUserArrayOutput {

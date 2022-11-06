@@ -54,7 +54,7 @@ namespace Pulumi.Yandex
         /// from another resource is the only way to apply an IAM policy to a resource.
         /// </summary>
         public static Task<GetIamPolicyResult> InvokeAsync(GetIamPolicyArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetIamPolicyResult>("yandex:index/getIamPolicy:getIamPolicy", args ?? new GetIamPolicyArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetIamPolicyResult>("yandex:index/getIamPolicy:getIamPolicy", args ?? new GetIamPolicyArgs(), options.WithDefaults());
 
         /// <summary>
         /// Generates an [IAM] policy document that may be referenced by and applied to
@@ -99,7 +99,7 @@ namespace Pulumi.Yandex
         /// from another resource is the only way to apply an IAM policy to a resource.
         /// </summary>
         public static Output<GetIamPolicyResult> Invoke(GetIamPolicyInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetIamPolicyResult>("yandex:index/getIamPolicy:getIamPolicy", args ?? new GetIamPolicyInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetIamPolicyResult>("yandex:index/getIamPolicy:getIamPolicy", args ?? new GetIamPolicyInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -102,10 +102,12 @@ export class KmsSecretCiphertext extends pulumi.CustomResource {
             }
             resourceInputs["aadContext"] = args ? args.aadContext : undefined;
             resourceInputs["keyId"] = args ? args.keyId : undefined;
-            resourceInputs["plaintext"] = args ? args.plaintext : undefined;
+            resourceInputs["plaintext"] = args?.plaintext ? pulumi.secret(args.plaintext) : undefined;
             resourceInputs["ciphertext"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["plaintext"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(KmsSecretCiphertext.__pulumiType, name, resourceInputs, opts);
     }
 }

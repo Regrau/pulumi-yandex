@@ -56,6 +56,13 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
+	if args.YmqSecretKey != nil {
+		args.YmqSecretKey = pulumi.ToSecret(args.YmqSecretKey).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"ymqSecretKey",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:yandex", name, args, &resource, opts...)

@@ -18,11 +18,21 @@ namespace Pulumi.Yandex.Inputs
         [Input("saslMechanism")]
         public Input<string>? SaslMechanism { get; set; }
 
+        [Input("saslPassword")]
+        private Input<string>? _saslPassword;
+
         /// <summary>
         /// User password on kafka server.
         /// </summary>
-        [Input("saslPassword")]
-        public Input<string>? SaslPassword { get; set; }
+        public Input<string>? SaslPassword
+        {
+            get => _saslPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _saslPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Username on kafka server.

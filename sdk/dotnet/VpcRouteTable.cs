@@ -16,6 +16,43 @@ namespace Pulumi.Yandex
     /// * How-to Guides
     ///     * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
     /// 
+    /// ## Example Usage
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var lab_net = new Yandex.VpcNetwork("lab-net");
+    /// 
+    ///     var egress_gateway = new Yandex.VpcGateway("egress-gateway", new()
+    ///     {
+    ///         SharedEgressGateway = null,
+    ///     });
+    /// 
+    ///     var lab_rt_a = new Yandex.VpcRouteTable("lab-rt-a", new()
+    ///     {
+    ///         NetworkId = lab_net.Id,
+    ///         StaticRoutes = new[]
+    ///         {
+    ///             new Yandex.Inputs.VpcRouteTableStaticRouteArgs
+    ///             {
+    ///                 DestinationPrefix = "10.2.0.0/16",
+    ///                 NextHopAddress = "172.16.10.10",
+    ///             },
+    ///             new Yandex.Inputs.VpcRouteTableStaticRouteArgs
+    ///             {
+    ///                 DestinationPrefix = "0.0.0.0/0",
+    ///                 GatewayId = egress_gateway.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ## Import
     /// 
     /// A route table can be imported using the `id` of the resource, e.g.

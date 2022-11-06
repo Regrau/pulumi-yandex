@@ -24,7 +24,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.LookupServerlessContainer(ctx, &GetServerlessContainerArgs{
+//			_, err = yandex.LookupServerlessContainer(ctx, &GetServerlessContainerArgs{
 //				ContainerId: pulumi.StringRef("are1samplecontainer11"),
 //			}, nil)
 //			if err != nil {

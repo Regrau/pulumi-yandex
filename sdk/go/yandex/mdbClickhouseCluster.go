@@ -108,6 +108,13 @@ func NewMdbClickhouseCluster(ctx *pulumi.Context,
 	if args.NetworkId == nil {
 		return nil, errors.New("invalid value for required argument 'NetworkId'")
 	}
+	if args.AdminPassword != nil {
+		args.AdminPassword = pulumi.ToSecret(args.AdminPassword).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"adminPassword",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource MdbClickhouseCluster
 	err := ctx.RegisterResource("yandex:index/mdbClickhouseCluster:MdbClickhouseCluster", name, args, &resource, opts...)

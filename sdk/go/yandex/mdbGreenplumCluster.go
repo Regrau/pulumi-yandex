@@ -151,6 +151,13 @@ func NewMdbGreenplumCluster(ctx *pulumi.Context,
 	if args.Zone == nil {
 		return nil, errors.New("invalid value for required argument 'Zone'")
 	}
+	if args.UserPassword != nil {
+		args.UserPassword = pulumi.ToSecret(args.UserPassword).(pulumi.StringOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"userPassword",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource MdbGreenplumCluster
 	err := ctx.RegisterResource("yandex:index/mdbGreenplumCluster:MdbGreenplumCluster", name, args, &resource, opts...)

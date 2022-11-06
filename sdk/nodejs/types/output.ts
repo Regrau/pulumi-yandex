@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
 export interface AlbBackendGroupGrpcBackend {
     /**
@@ -2114,6 +2115,29 @@ export interface ComputeInstanceSecondaryDisk {
      * Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
      */
     mode?: string;
+}
+
+export interface ContainerRepositoryLifecyclePolicyRule {
+    /**
+     * Description of the lifecycle policy.
+     */
+    description: string;
+    /**
+     * The period of time that must pass after creating a image for it to suit the automatic deletion criteria. It must be a multiple of 24 hours.
+     */
+    expirePeriod?: string;
+    /**
+     * The number of images to be retained even if the expirePeriod already expired.
+     */
+    retainedTop: number;
+    /**
+     * Tag to specify a filter as a regular expression. For example `.*` - all images with tags.
+     */
+    tagRegexp?: string;
+    /**
+     * If enabled, rules apply to untagged Docker images.
+     */
+    untagged: boolean;
 }
 
 export interface DataprocClusterClusterConfig {
@@ -8464,6 +8488,36 @@ export interface LbTargetGroupTarget {
     subnetId: string;
 }
 
+export interface LockboxSecretVersionEntry {
+    /**
+     * The command that generates the text value of the entry.
+     */
+    command?: outputs.LockboxSecretVersionEntryCommand;
+    /**
+     * The key of the entry.
+     */
+    key: string;
+    /**
+     * The text value of the entry.
+     */
+    textValue?: string;
+}
+
+export interface LockboxSecretVersionEntryCommand {
+    /**
+     * List of arguments to be passed to the script/command.
+     */
+    args?: string[];
+    /**
+     * Map of environment variables to set before calling the script/command.
+     */
+    env?: {[key: string]: string};
+    /**
+     * The path to the script or command to execute.
+     */
+    path: string;
+}
+
 export interface MdbClickhouseClusterAccess {
     /**
      * Allow access for DataLens. Can be either `true` or `false`.
@@ -9703,6 +9757,66 @@ export interface MdbKafkaClusterUserPermission {
     topicName: string;
 }
 
+export interface MdbKafkaConnectorConnectorConfigMirrormaker {
+    replicationFactor: number;
+    sourceCluster: outputs.MdbKafkaConnectorConnectorConfigMirrormakerSourceCluster;
+    targetCluster: outputs.MdbKafkaConnectorConnectorConfigMirrormakerTargetCluster;
+    topics: string;
+}
+
+export interface MdbKafkaConnectorConnectorConfigMirrormakerSourceCluster {
+    alias?: string;
+    externalClusters?: outputs.MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster[];
+    thisClusters?: outputs.MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisCluster[];
+}
+
+export interface MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster {
+    bootstrapServers: string;
+    saslMechanism?: string;
+    saslPassword?: string;
+    saslUsername?: string;
+    securityProtocol?: string;
+}
+
+export interface MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisCluster {
+}
+
+export interface MdbKafkaConnectorConnectorConfigMirrormakerTargetCluster {
+    alias?: string;
+    externalClusters?: outputs.MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster[];
+    thisClusters?: outputs.MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisCluster[];
+}
+
+export interface MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster {
+    bootstrapServers: string;
+    saslMechanism?: string;
+    saslPassword?: string;
+    saslUsername?: string;
+    securityProtocol?: string;
+}
+
+export interface MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisCluster {
+}
+
+export interface MdbKafkaConnectorConnectorConfigS3Sink {
+    fileCompressionType: string;
+    fileMaxRecords?: number;
+    s3Connection: outputs.MdbKafkaConnectorConnectorConfigS3SinkS3Connection;
+    topics: string;
+}
+
+export interface MdbKafkaConnectorConnectorConfigS3SinkS3Connection {
+    bucketName: string;
+    externalS3s: outputs.MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3[];
+}
+
+export interface MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3 {
+    accessKeyId?: string;
+    endpoint: string;
+    region?: string;
+    secretAccessKey?: string;
+}
+
 export interface MdbKafkaTopicTopicConfig {
     cleanupPolicy?: string;
     compressionType?: string;
@@ -10137,6 +10251,38 @@ export interface MdbMysqlClusterUserPermission {
     roles?: string[];
 }
 
+export interface MdbMysqlUserConnectionLimits {
+    /**
+     * Max connections per hour.
+     */
+    maxConnectionsPerHour?: number;
+    /**
+     * Max questions per hour.
+     */
+    maxQuestionsPerHour?: number;
+    /**
+     * Max updates per hour.
+     */
+    maxUpdatesPerHour?: number;
+    /**
+     * Max user connections.
+     */
+    maxUserConnections?: number;
+}
+
+export interface MdbMysqlUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
+    databaseName: string;
+    /**
+     * List user's roles in the database.
+     * Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+     * `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+     */
+    roles?: string[];
+}
+
 export interface MdbPostgresqlClusterConfig {
     /**
      * Access policy to the PostgreSQL cluster. The structure is documented below.
@@ -10354,6 +10500,24 @@ export interface MdbPostgresqlClusterUser {
 }
 
 export interface MdbPostgresqlClusterUserPermission {
+    databaseName: string;
+}
+
+export interface MdbPostgresqlDatabaseExtension {
+    /**
+     * Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).
+     */
+    name: string;
+    /**
+     * Version of the extension.
+     */
+    version?: string;
+}
+
+export interface MdbPostgresqlUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
     databaseName: string;
 }
 
@@ -10820,6 +10984,9 @@ export interface VpcDefaultSecurityGroupIngress {
     toPort?: number;
     v4CidrBlocks?: string[];
     v6CidrBlocks?: string[];
+}
+
+export interface VpcGatewaySharedEgressGateway {
 }
 
 export interface VpcRouteTableStaticRoute {

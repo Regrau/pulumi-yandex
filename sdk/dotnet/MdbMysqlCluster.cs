@@ -939,7 +939,7 @@ namespace Pulumi.Yandex
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        /// To manage users, please switch to using a separate resource type `yandex.mdbMysqlUser`.
         /// </summary>
         [Output("users")]
         public Output<ImmutableArray<Outputs.MdbMysqlClusterUser>> Users { get; private set; } = null!;
@@ -1152,7 +1152,7 @@ namespace Pulumi.Yandex
         private InputList<Inputs.MdbMysqlClusterUserArgs>? _users;
 
         /// <summary>
-        /// To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        /// To manage users, please switch to using a separate resource type `yandex.mdbMysqlUser`.
         /// </summary>
         [Obsolete(@"to manage users, please switch to using a separate resource type yandex_mdb_mysql_user")]
         public InputList<Inputs.MdbMysqlClusterUserArgs> Users
@@ -1348,7 +1348,7 @@ namespace Pulumi.Yandex
         private InputList<Inputs.MdbMysqlClusterUserGetArgs>? _users;
 
         /// <summary>
-        /// To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        /// To manage users, please switch to using a separate resource type `yandex.mdbMysqlUser`.
         /// </summary>
         [Obsolete(@"to manage users, please switch to using a separate resource type yandex_mdb_mysql_user")]
         public InputList<Inputs.MdbMysqlClusterUserGetArgs> Users

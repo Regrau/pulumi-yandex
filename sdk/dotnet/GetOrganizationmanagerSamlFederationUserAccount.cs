@@ -42,7 +42,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetOrganizationmanagerSamlFederationUserAccountResult> InvokeAsync(GetOrganizationmanagerSamlFederationUserAccountArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationmanagerSamlFederationUserAccountResult>("yandex:index/getOrganizationmanagerSamlFederationUserAccount:getOrganizationmanagerSamlFederationUserAccount", args ?? new GetOrganizationmanagerSamlFederationUserAccountArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationmanagerSamlFederationUserAccountResult>("yandex:index/getOrganizationmanagerSamlFederationUserAccount:getOrganizationmanagerSamlFederationUserAccount", args ?? new GetOrganizationmanagerSamlFederationUserAccountArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a user of Yandex SAML Federation. For more information, see
@@ -75,7 +75,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetOrganizationmanagerSamlFederationUserAccountResult> Invoke(GetOrganizationmanagerSamlFederationUserAccountInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetOrganizationmanagerSamlFederationUserAccountResult>("yandex:index/getOrganizationmanagerSamlFederationUserAccount:getOrganizationmanagerSamlFederationUserAccount", args ?? new GetOrganizationmanagerSamlFederationUserAccountInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationmanagerSamlFederationUserAccountResult>("yandex:index/getOrganizationmanagerSamlFederationUserAccount:getOrganizationmanagerSamlFederationUserAccount", args ?? new GetOrganizationmanagerSamlFederationUserAccountInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -12,10 +12,10 @@ namespace Pulumi.Yandex
     public static class GetMdbKafkaTopic
     {
         public static Task<GetMdbKafkaTopicResult> InvokeAsync(GetMdbKafkaTopicArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetMdbKafkaTopicResult>("yandex:index/getMdbKafkaTopic:getMdbKafkaTopic", args ?? new GetMdbKafkaTopicArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetMdbKafkaTopicResult>("yandex:index/getMdbKafkaTopic:getMdbKafkaTopic", args ?? new GetMdbKafkaTopicArgs(), options.WithDefaults());
 
         public static Output<GetMdbKafkaTopicResult> Invoke(GetMdbKafkaTopicInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetMdbKafkaTopicResult>("yandex:index/getMdbKafkaTopic:getMdbKafkaTopic", args ?? new GetMdbKafkaTopicInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetMdbKafkaTopicResult>("yandex:index/getMdbKafkaTopic:getMdbKafkaTopic", args ?? new GetMdbKafkaTopicInvokeArgs(), options.WithDefaults());
     }
 
 

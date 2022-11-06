@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -773,7 +774,7 @@ export class MdbMysqlCluster extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * To manage users, please switch to using a separate resource type `yandexMdbMysqlUser`.
+     * To manage users, please switch to using a separate resource type `yandex.mdbMysqlUser`.
      *
      * @deprecated to manage users, please switch to using a separate resource type yandex_mdb_mysql_user
      */
@@ -966,7 +967,7 @@ export interface MdbMysqlClusterState {
      */
     status?: pulumi.Input<string>;
     /**
-     * To manage users, please switch to using a separate resource type `yandexMdbMysqlUser`.
+     * To manage users, please switch to using a separate resource type `yandex.mdbMysqlUser`.
      *
      * @deprecated to manage users, please switch to using a separate resource type yandex_mdb_mysql_user
      */
@@ -1062,7 +1063,7 @@ export interface MdbMysqlClusterArgs {
      */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * To manage users, please switch to using a separate resource type `yandexMdbMysqlUser`.
+     * To manage users, please switch to using a separate resource type `yandex.mdbMysqlUser`.
      *
      * @deprecated to manage users, please switch to using a separate resource type yandex_mdb_mysql_user
      */

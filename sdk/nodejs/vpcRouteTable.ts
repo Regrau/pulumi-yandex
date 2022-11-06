@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -19,8 +20,7 @@ import * as utilities from "./utilities";
  * import * as yandex from "@pulumi/yandex";
  *
  * const lab_net = new yandex.VpcNetwork("lab-net", {});
- * const egress_gateway = new yandex.VpcGateway("egress-gateway", {
- *     name: "egress-gateway",
+ * const egress_gateway = new yandex.vpcGateway("egress-gateway", {
  *     sharedEgressGateway: {},
  * });
  * const lab_rt_a = new yandex.VpcRouteTable("lab-rt-a", {

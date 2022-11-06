@@ -8,36 +8,6 @@ import (
 )
 
 // Get attributes used by provider to configure client connection.
-//
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.GetClientConfig(ctx, nil, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.LookupKubernetesCluster(ctx, &GetKubernetesClusterArgs{
-//				Name: pulumi.StringRef("kubernetes"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 func GetClientConfig(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetClientConfigResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetClientConfigResult

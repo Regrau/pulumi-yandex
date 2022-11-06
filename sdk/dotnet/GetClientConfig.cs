@@ -13,32 +13,9 @@ namespace Pulumi.Yandex
     {
         /// <summary>
         /// Get attributes used by provider to configure client connection.
-        /// 
-        /// {{% examples %}}
-        /// ## Example Usage
-        /// {{% example %}}
-        /// 
-        /// ```csharp
-        /// using System.Collections.Generic;
-        /// using Pulumi;
-        /// using Yandex = Pulumi.Yandex;
-        /// 
-        /// return await Deployment.RunAsync(() =&gt; 
-        /// {
-        ///     var client = Yandex.GetClientConfig.Invoke();
-        /// 
-        ///     var kubernetes = Yandex.GetKubernetesCluster.Invoke(new()
-        ///     {
-        ///         Name = "kubernetes",
-        ///     });
-        /// 
-        /// });
-        /// ```
-        /// {{% /example %}}
-        /// {{% /examples %}}
         /// </summary>
         public static Task<GetClientConfigResult> InvokeAsync(InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetClientConfigResult>("yandex:index/getClientConfig:getClientConfig", InvokeArgs.Empty, options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetClientConfigResult>("yandex:index/getClientConfig:getClientConfig", InvokeArgs.Empty, options.WithDefaults());
     }
 
 

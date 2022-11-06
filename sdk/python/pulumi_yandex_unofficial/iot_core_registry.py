@@ -345,8 +345,10 @@ class IotCoreRegistry(pulumi.CustomResource):
             __props__.__dict__["folder_id"] = folder_id
             __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
-            __props__.__dict__["passwords"] = passwords
+            __props__.__dict__["passwords"] = None if passwords is None else pulumi.Output.secret(passwords)
             __props__.__dict__["created_at"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["passwords"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(IotCoreRegistry, __self__).__init__(
             'yandex:index/iotCoreRegistry:IotCoreRegistry',
             resource_name,

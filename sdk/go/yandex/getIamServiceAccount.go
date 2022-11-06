@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.LookupIamServiceAccount(ctx, &GetIamServiceAccountArgs{
+//			_, err = yandex.LookupIamServiceAccount(ctx, &GetIamServiceAccountArgs{
 //				ServiceAccountId: pulumi.StringRef("sa_id"),
 //			}, nil)
 //			if err != nil {

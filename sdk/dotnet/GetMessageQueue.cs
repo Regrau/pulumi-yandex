@@ -37,7 +37,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetMessageQueueResult> InvokeAsync(GetMessageQueueArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetMessageQueueResult>("yandex:index/getMessageQueue:getMessageQueue", args ?? new GetMessageQueueArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetMessageQueueResult>("yandex:index/getMessageQueue:getMessageQueue", args ?? new GetMessageQueueArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex Message Queue. For more information about Yandex Message Queue, see
@@ -65,7 +65,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetMessageQueueResult> Invoke(GetMessageQueueInvokeArgs args, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetMessageQueueResult>("yandex:index/getMessageQueue:getMessageQueue", args ?? new GetMessageQueueInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetMessageQueueResult>("yandex:index/getMessageQueue:getMessageQueue", args ?? new GetMessageQueueInvokeArgs(), options.WithDefaults());
     }
 
 
@@ -87,7 +87,12 @@ namespace Pulumi.Yandex
         public string? RegionId { get; set; }
 
         [Input("secretKey")]
-        public string? SecretKey { get; set; }
+        private string? _secretKey;
+        public string? SecretKey
+        {
+            get => _secretKey;
+            set => _secretKey = value;
+        }
 
         public GetMessageQueueArgs()
         {
@@ -113,7 +118,16 @@ namespace Pulumi.Yandex
         public Input<string>? RegionId { get; set; }
 
         [Input("secretKey")]
-        public Input<string>? SecretKey { get; set; }
+        private Input<string>? _secretKey;
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public GetMessageQueueInvokeArgs()
         {

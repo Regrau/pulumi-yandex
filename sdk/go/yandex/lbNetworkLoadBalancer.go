@@ -39,7 +39,7 @@ import (
 //								Name: pulumi.String("http"),
 //							},
 //						},
-//						TargetGroupId: pulumi.Any(yandex_lb_target_group.My - target - group.Id),
+//						TargetGroupId: pulumi.Any(yandex_lb_target_group.MyTargetGroup.Id),
 //					},
 //				},
 //				Listeners: LbNetworkLoadBalancerListenerArray{

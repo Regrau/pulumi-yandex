@@ -22,7 +22,7 @@ namespace Pulumi.Yandex
         /// from another resource is the only way to apply an IAM role to a resource.
         /// </summary>
         public static Task<GetIamRoleResult> InvokeAsync(GetIamRoleArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetIamRoleResult>("yandex:index/getIamRole:getIamRole", args ?? new GetIamRoleArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetIamRoleResult>("yandex:index/getIamRole:getIamRole", args ?? new GetIamRoleArgs(), options.WithDefaults());
 
         /// <summary>
         /// Generates an [IAM] role document that may be referenced by and applied to
@@ -35,7 +35,7 @@ namespace Pulumi.Yandex
         /// from another resource is the only way to apply an IAM role to a resource.
         /// </summary>
         public static Output<GetIamRoleResult> Invoke(GetIamRoleInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetIamRoleResult>("yandex:index/getIamRole:getIamRole", args ?? new GetIamRoleInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetIamRoleResult>("yandex:index/getIamRole:getIamRole", args ?? new GetIamRoleInvokeArgs(), options.WithDefaults());
     }
 
 

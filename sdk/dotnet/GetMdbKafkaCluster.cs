@@ -41,7 +41,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetMdbKafkaClusterResult> InvokeAsync(GetMdbKafkaClusterArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetMdbKafkaClusterResult>("yandex:index/getMdbKafkaCluster:getMdbKafkaCluster", args ?? new GetMdbKafkaClusterArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetMdbKafkaClusterResult>("yandex:index/getMdbKafkaCluster:getMdbKafkaCluster", args ?? new GetMdbKafkaClusterArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex Managed Kafka cluster. For more information, see
@@ -73,7 +73,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetMdbKafkaClusterResult> Invoke(GetMdbKafkaClusterInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetMdbKafkaClusterResult>("yandex:index/getMdbKafkaCluster:getMdbKafkaCluster", args ?? new GetMdbKafkaClusterInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetMdbKafkaClusterResult>("yandex:index/getMdbKafkaCluster:getMdbKafkaCluster", args ?? new GetMdbKafkaClusterInvokeArgs(), options.WithDefaults());
     }
 
 

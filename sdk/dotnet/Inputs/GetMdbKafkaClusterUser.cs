@@ -18,11 +18,17 @@ namespace Pulumi.Yandex.Inputs
         [Input("name", required: true)]
         public string Name { get; set; } = null!;
 
+        [Input("password", required: true)]
+        private string? _password;
+
         /// <summary>
         /// (Required) The password of the user.
         /// </summary>
-        [Input("password", required: true)]
-        public string Password { get; set; } = null!;
+        public string? Password
+        {
+            get => _password;
+            set => _password = value;
+        }
 
         [Input("permissions")]
         private List<Inputs.GetMdbKafkaClusterUserPermissionArgs>? _permissions;

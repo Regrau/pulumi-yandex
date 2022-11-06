@@ -134,6 +134,8 @@ export class IamServiceAccountKey extends pulumi.CustomResource {
             resourceInputs["publicKey"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["privateKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(IamServiceAccountKey.__pulumiType, name, resourceInputs, opts);
     }
 }

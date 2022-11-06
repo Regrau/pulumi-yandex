@@ -33,7 +33,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
+//			_, err = yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
 //				FolderId: pulumi.StringRef("some_folder_id"),
 //			}, nil)
 //			if err != nil {

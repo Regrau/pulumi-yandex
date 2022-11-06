@@ -46,7 +46,7 @@ import (
 //						return _zero, err
 //					}
 //					json0 := string(tmpJSON0)
-//					return json0, nil
+//					return pulumi.String(json0), nil
 //				}).(pulumi.StringOutput),
 //			})
 //			if err != nil {
@@ -134,6 +134,13 @@ func NewMessageQueue(ctx *pulumi.Context,
 		args = &MessageQueueArgs{}
 	}
 
+	if args.SecretKey != nil {
+		args.SecretKey = pulumi.ToSecret(args.SecretKey).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"secretKey",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource MessageQueue
 	err := ctx.RegisterResource("yandex:index/messageQueue:MessageQueue", name, args, &resource, opts...)

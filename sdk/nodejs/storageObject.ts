@@ -124,10 +124,12 @@ export class StorageObject extends pulumi.CustomResource {
             resourceInputs["contentBase64"] = args ? args.contentBase64 : undefined;
             resourceInputs["contentType"] = args ? args.contentType : undefined;
             resourceInputs["key"] = args ? args.key : undefined;
-            resourceInputs["secretKey"] = args ? args.secretKey : undefined;
+            resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["source"] = args ? args.source : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secretKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(StorageObject.__pulumiType, name, resourceInputs, opts);
     }
 }

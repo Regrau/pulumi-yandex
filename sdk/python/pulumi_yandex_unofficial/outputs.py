@@ -400,6 +400,7 @@ __all__ = [
     'YdbDatabaseDedicatedScalePolicy',
     'YdbDatabaseDedicatedScalePolicyFixedScale',
     'YdbDatabaseDedicatedStorageConfig',
+    'ContainerRepositoryLifecyclePolicyRule',
     'GetAlbBackendGroupGrpcBackendResult',
     'GetAlbBackendGroupGrpcBackendHealthcheckResult',
     'GetAlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheckResult',
@@ -697,6 +698,23 @@ __all__ = [
     'GetYdbDatabaseDedicatedScalePolicyResult',
     'GetYdbDatabaseDedicatedScalePolicyFixedScaleResult',
     'GetYdbDatabaseDedicatedStorageConfigResult',
+    'LockboxSecretVersionEntry',
+    'LockboxSecretVersionEntryCommand',
+    'MdbKafkaConnectorConnectorConfigMirrormaker',
+    'MdbKafkaConnectorConnectorConfigMirrormakerSourceCluster',
+    'MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster',
+    'MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisCluster',
+    'MdbKafkaConnectorConnectorConfigMirrormakerTargetCluster',
+    'MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster',
+    'MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisCluster',
+    'MdbKafkaConnectorConnectorConfigS3Sink',
+    'MdbKafkaConnectorConnectorConfigS3SinkS3Connection',
+    'MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3',
+    'MdbMysqlUserConnectionLimits',
+    'MdbMysqlUserPermission',
+    'MdbPostgresqlDatabaseExtension',
+    'MdbPostgresqlUserPermission',
+    'VpcGatewaySharedEgressGateway',
 ]
 
 @pulumi.output_type
@@ -25096,6 +25114,94 @@ class YdbDatabaseDedicatedStorageConfig(dict):
 
 
 @pulumi.output_type
+class ContainerRepositoryLifecyclePolicyRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "expirePeriod":
+            suggest = "expire_period"
+        elif key == "retainedTop":
+            suggest = "retained_top"
+        elif key == "tagRegexp":
+            suggest = "tag_regexp"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ContainerRepositoryLifecyclePolicyRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ContainerRepositoryLifecyclePolicyRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ContainerRepositoryLifecyclePolicyRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 description: Optional[str] = None,
+                 expire_period: Optional[str] = None,
+                 retained_top: Optional[int] = None,
+                 tag_regexp: Optional[str] = None,
+                 untagged: Optional[bool] = None):
+        """
+        :param str description: Description of the lifecycle policy.
+        :param str expire_period: The period of time that must pass after creating a image for it to suit the automatic deletion criteria. It must be a multiple of 24 hours.
+        :param int retained_top: The number of images to be retained even if the expire_period already expired.
+        :param str tag_regexp: Tag to specify a filter as a regular expression. For example `.*` - all images with tags.
+        :param bool untagged: If enabled, rules apply to untagged Docker images.
+        """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if expire_period is not None:
+            pulumi.set(__self__, "expire_period", expire_period)
+        if retained_top is not None:
+            pulumi.set(__self__, "retained_top", retained_top)
+        if tag_regexp is not None:
+            pulumi.set(__self__, "tag_regexp", tag_regexp)
+        if untagged is not None:
+            pulumi.set(__self__, "untagged", untagged)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the lifecycle policy.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="expirePeriod")
+    def expire_period(self) -> Optional[str]:
+        """
+        The period of time that must pass after creating a image for it to suit the automatic deletion criteria. It must be a multiple of 24 hours.
+        """
+        return pulumi.get(self, "expire_period")
+
+    @property
+    @pulumi.getter(name="retainedTop")
+    def retained_top(self) -> Optional[int]:
+        """
+        The number of images to be retained even if the expire_period already expired.
+        """
+        return pulumi.get(self, "retained_top")
+
+    @property
+    @pulumi.getter(name="tagRegexp")
+    def tag_regexp(self) -> Optional[str]:
+        """
+        Tag to specify a filter as a regular expression. For example `.*` - all images with tags.
+        """
+        return pulumi.get(self, "tag_regexp")
+
+    @property
+    @pulumi.getter
+    def untagged(self) -> Optional[bool]:
+        """
+        If enabled, rules apply to untagged Docker images.
+        """
+        return pulumi.get(self, "untagged")
+
+
+@pulumi.output_type
 class GetAlbBackendGroupGrpcBackendResult(dict):
     def __init__(__self__, *,
                  healthcheck: 'outputs.GetAlbBackendGroupGrpcBackendHealthcheckResult',
@@ -38959,5 +39065,754 @@ class GetYdbDatabaseDedicatedStorageConfigResult(dict):
         Storage type ID of the Yandex Database cluster.
         """
         return pulumi.get(self, "storage_type_id")
+
+
+@pulumi.output_type
+class LockboxSecretVersionEntry(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "textValue":
+            suggest = "text_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in LockboxSecretVersionEntry. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        LockboxSecretVersionEntry.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        LockboxSecretVersionEntry.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 key: str,
+                 command: Optional['outputs.LockboxSecretVersionEntryCommand'] = None,
+                 text_value: Optional[str] = None):
+        """
+        :param str key: The key of the entry.
+        :param 'LockboxSecretVersionEntryCommandArgs' command: The command that generates the text value of the entry.
+        :param str text_value: The text value of the entry.
+        """
+        pulumi.set(__self__, "key", key)
+        if command is not None:
+            pulumi.set(__self__, "command", command)
+        if text_value is not None:
+            pulumi.set(__self__, "text_value", text_value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the entry.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def command(self) -> Optional['outputs.LockboxSecretVersionEntryCommand']:
+        """
+        The command that generates the text value of the entry.
+        """
+        return pulumi.get(self, "command")
+
+    @property
+    @pulumi.getter(name="textValue")
+    def text_value(self) -> Optional[str]:
+        """
+        The text value of the entry.
+        """
+        return pulumi.get(self, "text_value")
+
+
+@pulumi.output_type
+class LockboxSecretVersionEntryCommand(dict):
+    def __init__(__self__, *,
+                 path: str,
+                 args: Optional[Sequence[str]] = None,
+                 env: Optional[Mapping[str, str]] = None):
+        """
+        :param str path: The path to the script or command to execute.
+        :param Sequence[str] args: List of arguments to be passed to the script/command.
+        :param Mapping[str, str] env: Map of environment variables to set before calling the script/command.
+        """
+        pulumi.set(__self__, "path", path)
+        if args is not None:
+            pulumi.set(__self__, "args", args)
+        if env is not None:
+            pulumi.set(__self__, "env", env)
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        """
+        The path to the script or command to execute.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def args(self) -> Optional[Sequence[str]]:
+        """
+        List of arguments to be passed to the script/command.
+        """
+        return pulumi.get(self, "args")
+
+    @property
+    @pulumi.getter
+    def env(self) -> Optional[Mapping[str, str]]:
+        """
+        Map of environment variables to set before calling the script/command.
+        """
+        return pulumi.get(self, "env")
+
+
+@pulumi.output_type
+class MdbKafkaConnectorConnectorConfigMirrormaker(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "replicationFactor":
+            suggest = "replication_factor"
+        elif key == "sourceCluster":
+            suggest = "source_cluster"
+        elif key == "targetCluster":
+            suggest = "target_cluster"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbKafkaConnectorConnectorConfigMirrormaker. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbKafkaConnectorConnectorConfigMirrormaker.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbKafkaConnectorConnectorConfigMirrormaker.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 replication_factor: int,
+                 source_cluster: 'outputs.MdbKafkaConnectorConnectorConfigMirrormakerSourceCluster',
+                 target_cluster: 'outputs.MdbKafkaConnectorConnectorConfigMirrormakerTargetCluster',
+                 topics: str):
+        pulumi.set(__self__, "replication_factor", replication_factor)
+        pulumi.set(__self__, "source_cluster", source_cluster)
+        pulumi.set(__self__, "target_cluster", target_cluster)
+        pulumi.set(__self__, "topics", topics)
+
+    @property
+    @pulumi.getter(name="replicationFactor")
+    def replication_factor(self) -> int:
+        return pulumi.get(self, "replication_factor")
+
+    @property
+    @pulumi.getter(name="sourceCluster")
+    def source_cluster(self) -> 'outputs.MdbKafkaConnectorConnectorConfigMirrormakerSourceCluster':
+        return pulumi.get(self, "source_cluster")
+
+    @property
+    @pulumi.getter(name="targetCluster")
+    def target_cluster(self) -> 'outputs.MdbKafkaConnectorConnectorConfigMirrormakerTargetCluster':
+        return pulumi.get(self, "target_cluster")
+
+    @property
+    @pulumi.getter
+    def topics(self) -> str:
+        return pulumi.get(self, "topics")
+
+
+@pulumi.output_type
+class MdbKafkaConnectorConnectorConfigMirrormakerSourceCluster(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "externalClusters":
+            suggest = "external_clusters"
+        elif key == "thisClusters":
+            suggest = "this_clusters"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbKafkaConnectorConnectorConfigMirrormakerSourceCluster. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbKafkaConnectorConnectorConfigMirrormakerSourceCluster.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbKafkaConnectorConnectorConfigMirrormakerSourceCluster.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 alias: Optional[str] = None,
+                 external_clusters: Optional[Sequence['outputs.MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster']] = None,
+                 this_clusters: Optional[Sequence['outputs.MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisCluster']] = None):
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if external_clusters is not None:
+            pulumi.set(__self__, "external_clusters", external_clusters)
+        if this_clusters is not None:
+            pulumi.set(__self__, "this_clusters", this_clusters)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> Optional[str]:
+        return pulumi.get(self, "alias")
+
+    @property
+    @pulumi.getter(name="externalClusters")
+    def external_clusters(self) -> Optional[Sequence['outputs.MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster']]:
+        return pulumi.get(self, "external_clusters")
+
+    @property
+    @pulumi.getter(name="thisClusters")
+    def this_clusters(self) -> Optional[Sequence['outputs.MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisCluster']]:
+        return pulumi.get(self, "this_clusters")
+
+
+@pulumi.output_type
+class MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bootstrapServers":
+            suggest = "bootstrap_servers"
+        elif key == "saslMechanism":
+            suggest = "sasl_mechanism"
+        elif key == "saslPassword":
+            suggest = "sasl_password"
+        elif key == "saslUsername":
+            suggest = "sasl_username"
+        elif key == "securityProtocol":
+            suggest = "security_protocol"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bootstrap_servers: str,
+                 sasl_mechanism: Optional[str] = None,
+                 sasl_password: Optional[str] = None,
+                 sasl_username: Optional[str] = None,
+                 security_protocol: Optional[str] = None):
+        pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
+        if sasl_mechanism is not None:
+            pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
+        if sasl_password is not None:
+            pulumi.set(__self__, "sasl_password", sasl_password)
+        if sasl_username is not None:
+            pulumi.set(__self__, "sasl_username", sasl_username)
+        if security_protocol is not None:
+            pulumi.set(__self__, "security_protocol", security_protocol)
+
+    @property
+    @pulumi.getter(name="bootstrapServers")
+    def bootstrap_servers(self) -> str:
+        return pulumi.get(self, "bootstrap_servers")
+
+    @property
+    @pulumi.getter(name="saslMechanism")
+    def sasl_mechanism(self) -> Optional[str]:
+        return pulumi.get(self, "sasl_mechanism")
+
+    @property
+    @pulumi.getter(name="saslPassword")
+    def sasl_password(self) -> Optional[str]:
+        return pulumi.get(self, "sasl_password")
+
+    @property
+    @pulumi.getter(name="saslUsername")
+    def sasl_username(self) -> Optional[str]:
+        return pulumi.get(self, "sasl_username")
+
+    @property
+    @pulumi.getter(name="securityProtocol")
+    def security_protocol(self) -> Optional[str]:
+        return pulumi.get(self, "security_protocol")
+
+
+@pulumi.output_type
+class MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisCluster(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class MdbKafkaConnectorConnectorConfigMirrormakerTargetCluster(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "externalClusters":
+            suggest = "external_clusters"
+        elif key == "thisClusters":
+            suggest = "this_clusters"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbKafkaConnectorConnectorConfigMirrormakerTargetCluster. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbKafkaConnectorConnectorConfigMirrormakerTargetCluster.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbKafkaConnectorConnectorConfigMirrormakerTargetCluster.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 alias: Optional[str] = None,
+                 external_clusters: Optional[Sequence['outputs.MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster']] = None,
+                 this_clusters: Optional[Sequence['outputs.MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisCluster']] = None):
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if external_clusters is not None:
+            pulumi.set(__self__, "external_clusters", external_clusters)
+        if this_clusters is not None:
+            pulumi.set(__self__, "this_clusters", this_clusters)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> Optional[str]:
+        return pulumi.get(self, "alias")
+
+    @property
+    @pulumi.getter(name="externalClusters")
+    def external_clusters(self) -> Optional[Sequence['outputs.MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster']]:
+        return pulumi.get(self, "external_clusters")
+
+    @property
+    @pulumi.getter(name="thisClusters")
+    def this_clusters(self) -> Optional[Sequence['outputs.MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisCluster']]:
+        return pulumi.get(self, "this_clusters")
+
+
+@pulumi.output_type
+class MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bootstrapServers":
+            suggest = "bootstrap_servers"
+        elif key == "saslMechanism":
+            suggest = "sasl_mechanism"
+        elif key == "saslPassword":
+            suggest = "sasl_password"
+        elif key == "saslUsername":
+            suggest = "sasl_username"
+        elif key == "securityProtocol":
+            suggest = "security_protocol"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bootstrap_servers: str,
+                 sasl_mechanism: Optional[str] = None,
+                 sasl_password: Optional[str] = None,
+                 sasl_username: Optional[str] = None,
+                 security_protocol: Optional[str] = None):
+        pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
+        if sasl_mechanism is not None:
+            pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
+        if sasl_password is not None:
+            pulumi.set(__self__, "sasl_password", sasl_password)
+        if sasl_username is not None:
+            pulumi.set(__self__, "sasl_username", sasl_username)
+        if security_protocol is not None:
+            pulumi.set(__self__, "security_protocol", security_protocol)
+
+    @property
+    @pulumi.getter(name="bootstrapServers")
+    def bootstrap_servers(self) -> str:
+        return pulumi.get(self, "bootstrap_servers")
+
+    @property
+    @pulumi.getter(name="saslMechanism")
+    def sasl_mechanism(self) -> Optional[str]:
+        return pulumi.get(self, "sasl_mechanism")
+
+    @property
+    @pulumi.getter(name="saslPassword")
+    def sasl_password(self) -> Optional[str]:
+        return pulumi.get(self, "sasl_password")
+
+    @property
+    @pulumi.getter(name="saslUsername")
+    def sasl_username(self) -> Optional[str]:
+        return pulumi.get(self, "sasl_username")
+
+    @property
+    @pulumi.getter(name="securityProtocol")
+    def security_protocol(self) -> Optional[str]:
+        return pulumi.get(self, "security_protocol")
+
+
+@pulumi.output_type
+class MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisCluster(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class MdbKafkaConnectorConnectorConfigS3Sink(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "fileCompressionType":
+            suggest = "file_compression_type"
+        elif key == "s3Connection":
+            suggest = "s3_connection"
+        elif key == "fileMaxRecords":
+            suggest = "file_max_records"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbKafkaConnectorConnectorConfigS3Sink. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbKafkaConnectorConnectorConfigS3Sink.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbKafkaConnectorConnectorConfigS3Sink.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 file_compression_type: str,
+                 s3_connection: 'outputs.MdbKafkaConnectorConnectorConfigS3SinkS3Connection',
+                 topics: str,
+                 file_max_records: Optional[int] = None):
+        pulumi.set(__self__, "file_compression_type", file_compression_type)
+        pulumi.set(__self__, "s3_connection", s3_connection)
+        pulumi.set(__self__, "topics", topics)
+        if file_max_records is not None:
+            pulumi.set(__self__, "file_max_records", file_max_records)
+
+    @property
+    @pulumi.getter(name="fileCompressionType")
+    def file_compression_type(self) -> str:
+        return pulumi.get(self, "file_compression_type")
+
+    @property
+    @pulumi.getter(name="s3Connection")
+    def s3_connection(self) -> 'outputs.MdbKafkaConnectorConnectorConfigS3SinkS3Connection':
+        return pulumi.get(self, "s3_connection")
+
+    @property
+    @pulumi.getter
+    def topics(self) -> str:
+        return pulumi.get(self, "topics")
+
+    @property
+    @pulumi.getter(name="fileMaxRecords")
+    def file_max_records(self) -> Optional[int]:
+        return pulumi.get(self, "file_max_records")
+
+
+@pulumi.output_type
+class MdbKafkaConnectorConnectorConfigS3SinkS3Connection(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bucketName":
+            suggest = "bucket_name"
+        elif key == "externalS3s":
+            suggest = "external_s3s"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbKafkaConnectorConnectorConfigS3SinkS3Connection. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbKafkaConnectorConnectorConfigS3SinkS3Connection.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbKafkaConnectorConnectorConfigS3SinkS3Connection.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 external_s3s: Sequence['outputs.MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3']):
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "external_s3s", external_s3s)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter(name="externalS3s")
+    def external_s3s(self) -> Sequence['outputs.MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3']:
+        return pulumi.get(self, "external_s3s")
+
+
+@pulumi.output_type
+class MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "accessKeyId":
+            suggest = "access_key_id"
+        elif key == "secretAccessKey":
+            suggest = "secret_access_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 endpoint: str,
+                 access_key_id: Optional[str] = None,
+                 region: Optional[str] = None,
+                 secret_access_key: Optional[str] = None):
+        pulumi.set(__self__, "endpoint", endpoint)
+        if access_key_id is not None:
+            pulumi.set(__self__, "access_key_id", access_key_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if secret_access_key is not None:
+            pulumi.set(__self__, "secret_access_key", secret_access_key)
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> str:
+        return pulumi.get(self, "endpoint")
+
+    @property
+    @pulumi.getter(name="accessKeyId")
+    def access_key_id(self) -> Optional[str]:
+        return pulumi.get(self, "access_key_id")
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="secretAccessKey")
+    def secret_access_key(self) -> Optional[str]:
+        return pulumi.get(self, "secret_access_key")
+
+
+@pulumi.output_type
+class MdbMysqlUserConnectionLimits(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxConnectionsPerHour":
+            suggest = "max_connections_per_hour"
+        elif key == "maxQuestionsPerHour":
+            suggest = "max_questions_per_hour"
+        elif key == "maxUpdatesPerHour":
+            suggest = "max_updates_per_hour"
+        elif key == "maxUserConnections":
+            suggest = "max_user_connections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMysqlUserConnectionLimits. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMysqlUserConnectionLimits.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMysqlUserConnectionLimits.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_connections_per_hour: Optional[int] = None,
+                 max_questions_per_hour: Optional[int] = None,
+                 max_updates_per_hour: Optional[int] = None,
+                 max_user_connections: Optional[int] = None):
+        """
+        :param int max_connections_per_hour: Max connections per hour.
+        :param int max_questions_per_hour: Max questions per hour.
+        :param int max_updates_per_hour: Max updates per hour.
+        :param int max_user_connections: Max user connections.
+        """
+        if max_connections_per_hour is not None:
+            pulumi.set(__self__, "max_connections_per_hour", max_connections_per_hour)
+        if max_questions_per_hour is not None:
+            pulumi.set(__self__, "max_questions_per_hour", max_questions_per_hour)
+        if max_updates_per_hour is not None:
+            pulumi.set(__self__, "max_updates_per_hour", max_updates_per_hour)
+        if max_user_connections is not None:
+            pulumi.set(__self__, "max_user_connections", max_user_connections)
+
+    @property
+    @pulumi.getter(name="maxConnectionsPerHour")
+    def max_connections_per_hour(self) -> Optional[int]:
+        """
+        Max connections per hour.
+        """
+        return pulumi.get(self, "max_connections_per_hour")
+
+    @property
+    @pulumi.getter(name="maxQuestionsPerHour")
+    def max_questions_per_hour(self) -> Optional[int]:
+        """
+        Max questions per hour.
+        """
+        return pulumi.get(self, "max_questions_per_hour")
+
+    @property
+    @pulumi.getter(name="maxUpdatesPerHour")
+    def max_updates_per_hour(self) -> Optional[int]:
+        """
+        Max updates per hour.
+        """
+        return pulumi.get(self, "max_updates_per_hour")
+
+    @property
+    @pulumi.getter(name="maxUserConnections")
+    def max_user_connections(self) -> Optional[int]:
+        """
+        Max user connections.
+        """
+        return pulumi.get(self, "max_user_connections")
+
+
+@pulumi.output_type
+class MdbMysqlUserPermission(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "databaseName":
+            suggest = "database_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMysqlUserPermission. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMysqlUserPermission.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMysqlUserPermission.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 database_name: str,
+                 roles: Optional[Sequence[str]] = None):
+        """
+        :param str database_name: The name of the database that the permission grants access to.
+        :param Sequence[str] roles: List user's roles in the database.
+               Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+               `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+        """
+        pulumi.set(__self__, "database_name", database_name)
+        if roles is not None:
+            pulumi.set(__self__, "roles", roles)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> str:
+        """
+        The name of the database that the permission grants access to.
+        """
+        return pulumi.get(self, "database_name")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Optional[Sequence[str]]:
+        """
+        List user's roles in the database.
+        Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+        `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+        """
+        return pulumi.get(self, "roles")
+
+
+@pulumi.output_type
+class MdbPostgresqlDatabaseExtension(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 version: Optional[str] = None):
+        """
+        :param str name: Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).
+        :param str version: Version of the extension.
+        """
+        pulumi.set(__self__, "name", name)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[str]:
+        """
+        Version of the extension.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class MdbPostgresqlUserPermission(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "databaseName":
+            suggest = "database_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbPostgresqlUserPermission. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbPostgresqlUserPermission.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbPostgresqlUserPermission.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 database_name: str):
+        """
+        :param str database_name: The name of the database that the permission grants access to.
+        """
+        pulumi.set(__self__, "database_name", database_name)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> str:
+        """
+        The name of the database that the permission grants access to.
+        """
+        return pulumi.get(self, "database_name")
+
+
+@pulumi.output_type
+class VpcGatewaySharedEgressGateway(dict):
+    def __init__(__self__):
+        pass
 
 

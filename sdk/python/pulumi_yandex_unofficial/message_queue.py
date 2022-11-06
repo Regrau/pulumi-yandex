@@ -631,9 +631,11 @@ class MessageQueue(pulumi.CustomResource):
             __props__.__dict__["receive_wait_time_seconds"] = receive_wait_time_seconds
             __props__.__dict__["redrive_policy"] = redrive_policy
             __props__.__dict__["region_id"] = region_id
-            __props__.__dict__["secret_key"] = secret_key
+            __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["visibility_timeout_seconds"] = visibility_timeout_seconds
             __props__.__dict__["arn"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(MessageQueue, __self__).__init__(
             'yandex:index/messageQueue:MessageQueue',
             resource_name,

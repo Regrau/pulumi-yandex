@@ -225,6 +225,10 @@ namespace Pulumi.Yandex
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
+                AdditionalSecretOutputs =
+                {
+                    "adminPassword",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -254,11 +258,21 @@ namespace Pulumi.Yandex
         [Input("access")]
         public Input<Inputs.MdbClickhouseClusterAccessArgs>? Access { get; set; }
 
+        [Input("adminPassword")]
+        private Input<string>? _adminPassword;
+
         /// <summary>
         /// A password used to authorize as user `admin` when `sql_user_management` enabled.
         /// </summary>
-        [Input("adminPassword")]
-        public Input<string>? AdminPassword { get; set; }
+        public Input<string>? AdminPassword
+        {
+            get => _adminPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _adminPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Time to start the daily backup, in the UTC timezone. The structure is documented below.
@@ -467,11 +481,21 @@ namespace Pulumi.Yandex
         [Input("access")]
         public Input<Inputs.MdbClickhouseClusterAccessGetArgs>? Access { get; set; }
 
+        [Input("adminPassword")]
+        private Input<string>? _adminPassword;
+
         /// <summary>
         /// A password used to authorize as user `admin` when `sql_user_management` enabled.
         /// </summary>
-        [Input("adminPassword")]
-        public Input<string>? AdminPassword { get; set; }
+        public Input<string>? AdminPassword
+        {
+            get => _adminPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _adminPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Time to start the daily backup, in the UTC timezone. The structure is documented below.

@@ -50,7 +50,7 @@ namespace Pulumi.Yandex
     ///                         {
     ///                             new Yandex.Inputs.AlbLoadBalancerListenerEndpointAddressArgs
     ///                             {
-    ///                                 ExternalIpv4Address = ,
+    ///                                 ExternalIpv4Address = null,
     ///                             },
     ///                         },
     ///                         Ports = new[]

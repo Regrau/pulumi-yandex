@@ -263,6 +263,28 @@ class VpcRouteTable(pulumi.CustomResource):
         * How-to Guides
             * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
 
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        lab_net = yandex.VpcNetwork("lab-net")
+        egress_gateway = yandex.VpcGateway("egress-gateway", shared_egress_gateway=yandex.VpcGatewaySharedEgressGatewayArgs())
+        lab_rt_a = yandex.VpcRouteTable("lab-rt-a",
+            network_id=lab_net.id,
+            static_routes=[
+                yandex.VpcRouteTableStaticRouteArgs(
+                    destination_prefix="10.2.0.0/16",
+                    next_hop_address="172.16.10.10",
+                ),
+                yandex.VpcRouteTableStaticRouteArgs(
+                    destination_prefix="0.0.0.0/0",
+                    gateway_id=egress_gateway.id,
+                ),
+            ])
+        ```
+
         ## Import
 
         A route table can be imported using the `id` of the resource, e.g.
@@ -294,6 +316,28 @@ class VpcRouteTable(pulumi.CustomResource):
 
         * How-to Guides
             * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+
+        ## Example Usage
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        lab_net = yandex.VpcNetwork("lab-net")
+        egress_gateway = yandex.VpcGateway("egress-gateway", shared_egress_gateway=yandex.VpcGatewaySharedEgressGatewayArgs())
+        lab_rt_a = yandex.VpcRouteTable("lab-rt-a",
+            network_id=lab_net.id,
+            static_routes=[
+                yandex.VpcRouteTableStaticRouteArgs(
+                    destination_prefix="10.2.0.0/16",
+                    next_hop_address="172.16.10.10",
+                ),
+                yandex.VpcRouteTableStaticRouteArgs(
+                    destination_prefix="0.0.0.0/0",
+                    gateway_id=egress_gateway.id,
+                ),
+            ])
+        ```
 
         ## Import
 

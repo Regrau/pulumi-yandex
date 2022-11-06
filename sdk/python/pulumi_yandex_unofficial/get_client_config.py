@@ -94,16 +94,6 @@ class AwaitableGetClientConfigResult(GetClientConfigResult):
 def get_client_config(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetClientConfigResult:
     """
     Get attributes used by provider to configure client connection.
-
-    ## Example Usage
-
-    ```python
-    import pulumi
-    import pulumi_yandex as yandex
-
-    client = yandex.get_client_config()
-    kubernetes = yandex.get_kubernetes_cluster(name="kubernetes")
-    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

@@ -30,12 +30,12 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := yandex.NewAlbLoadBalancer(ctx, "test-balancer", &yandex.AlbLoadBalancerArgs{
-//				NetworkId: pulumi.Any(yandex_vpc_network.Test - network.Id),
+//				NetworkId: pulumi.Any(yandex_vpc_network.TestNetwork.Id),
 //				AllocationPolicy: &AlbLoadBalancerAllocationPolicyArgs{
 //					Locations: AlbLoadBalancerAllocationPolicyLocationArray{
 //						&AlbLoadBalancerAllocationPolicyLocationArgs{
 //							ZoneId:   pulumi.String("ru-central1-a"),
-//							SubnetId: pulumi.Any(yandex_vpc_subnet.Test - subnet.Id),
+//							SubnetId: pulumi.Any(yandex_vpc_subnet.TestSubnet.Id),
 //						},
 //					},
 //				},
@@ -56,7 +56,7 @@ import (
 //						},
 //						Http: &AlbLoadBalancerListenerHttpArgs{
 //							Handler: &AlbLoadBalancerListenerHttpHandlerArgs{
-//								HttpRouterId: pulumi.Any(yandex_alb_http_router.Test - router.Id),
+//								HttpRouterId: pulumi.Any(yandex_alb_http_router.TestRouter.Id),
 //							},
 //						},
 //					},

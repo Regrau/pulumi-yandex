@@ -347,11 +347,13 @@ class IotCoreDevice(pulumi.CustomResource):
             __props__.__dict__["certificates"] = certificates
             __props__.__dict__["description"] = description
             __props__.__dict__["name"] = name
-            __props__.__dict__["passwords"] = passwords
+            __props__.__dict__["passwords"] = None if passwords is None else pulumi.Output.secret(passwords)
             if registry_id is None and not opts.urn:
                 raise TypeError("Missing required property 'registry_id'")
             __props__.__dict__["registry_id"] = registry_id
             __props__.__dict__["created_at"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["passwords"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(IotCoreDevice, __self__).__init__(
             'yandex:index/iotCoreDevice:IotCoreDevice',
             resource_name,

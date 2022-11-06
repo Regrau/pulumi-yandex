@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.LookupFunction(ctx, &GetFunctionArgs{
+//			_, err = yandex.LookupFunction(ctx, &GetFunctionArgs{
 //				FunctionId: pulumi.StringRef("are1samplefunction11"),
 //			}, nil)
 //			if err != nil {

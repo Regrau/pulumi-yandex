@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.LookupVpcSecurityGroup(ctx, &GetVpcSecurityGroupArgs{
+//			_, err = yandex.LookupVpcSecurityGroup(ctx, &GetVpcSecurityGroupArgs{
 //				SecurityGroupId: pulumi.StringRef("my-id"),
 //			}, nil)
 //			if err != nil {
@@ -49,7 +49,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.LookupVpcSecurityGroup(ctx, &GetVpcSecurityGroupArgs{
+//			_, err = yandex.LookupVpcSecurityGroup(ctx, &GetVpcSecurityGroupArgs{
 //				Name: pulumi.StringRef("my-group1"),
 //			}, nil)
 //			if err != nil {

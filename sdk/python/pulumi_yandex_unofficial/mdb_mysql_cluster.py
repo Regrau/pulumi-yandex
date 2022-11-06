@@ -60,7 +60,7 @@ class MdbMysqlClusterArgs:
         :param pulumi.Input['MdbMysqlClusterPerformanceDiagnosticsArgs'] performance_diagnostics: Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-mysql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
         :param pulumi.Input['MdbMysqlClusterRestoreArgs'] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `mdbMysqlUser`.
         """
         pulumi.set(__self__, "environment", environment)
         pulumi.set(__self__, "hosts", hosts)
@@ -362,7 +362,7 @@ class MdbMysqlClusterArgs:
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserArgs']]]]:
         """
-        To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        To manage users, please switch to using a separate resource type `mdbMysqlUser`.
         """
         return pulumi.get(self, "users")
 
@@ -423,7 +423,7 @@ class _MdbMysqlClusterState:
         :param pulumi.Input['MdbMysqlClusterRestoreArgs'] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         :param pulumi.Input[str] status: Status of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `mdbMysqlUser`.
         :param pulumi.Input[str] version: Version of the MySQL cluster. (allowed versions are: 5.7, 8.0)
         """
         if access is not None:
@@ -761,7 +761,7 @@ class _MdbMysqlClusterState:
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbMysqlClusterUserArgs']]]]:
         """
-        To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        To manage users, please switch to using a separate resource type `mdbMysqlUser`.
         """
         return pulumi.get(self, "users")
 
@@ -1460,7 +1460,7 @@ class MdbMysqlCluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['MdbMysqlClusterResourcesArgs']] resources: Resources allocated to hosts of the MySQL cluster. The structure is documented below.
         :param pulumi.Input[pulumi.InputType['MdbMysqlClusterRestoreArgs']] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMysqlClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMysqlClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `mdbMysqlUser`.
         :param pulumi.Input[str] version: Version of the MySQL cluster. (allowed versions are: 5.7, 8.0)
         """
         ...
@@ -2252,7 +2252,7 @@ class MdbMysqlCluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['MdbMysqlClusterRestoreArgs']] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         :param pulumi.Input[str] status: Status of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMysqlClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMysqlClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `mdbMysqlUser`.
         :param pulumi.Input[str] version: Version of the MySQL cluster. (allowed versions are: 5.7, 8.0)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -2469,7 +2469,7 @@ class MdbMysqlCluster(pulumi.CustomResource):
     @pulumi.getter
     def users(self) -> pulumi.Output[Optional[Sequence['outputs.MdbMysqlClusterUser']]]:
         """
-        To manage users, please switch to using a separate resource type `yandex_mdb_mysql_user`.
+        To manage users, please switch to using a separate resource type `mdbMysqlUser`.
         """
         return pulumi.get(self, "users")
 

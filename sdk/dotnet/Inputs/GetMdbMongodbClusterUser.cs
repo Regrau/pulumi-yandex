@@ -19,7 +19,12 @@ namespace Pulumi.Yandex.Inputs
         public string? Name { get; set; }
 
         [Input("password")]
-        public string? Password { get; set; }
+        private string? _password;
+        public string? Password
+        {
+            get => _password;
+            set => _password = value;
+        }
 
         [Input("permissions", required: true)]
         private List<Inputs.GetMdbMongodbClusterUserPermissionArgs>? _permissions;

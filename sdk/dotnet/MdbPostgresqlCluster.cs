@@ -473,7 +473,7 @@ namespace Pulumi.Yandex
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// To manage databases, please switch to using a separate resource type `yandex_mdb_postgresql_database`.
+        /// To manage databases, please switch to using a separate resource type `yandex.mdbPostgresqlDatabase`.
         /// </summary>
         [Output("databases")]
         public Output<ImmutableArray<Outputs.MdbPostgresqlClusterDatabase>> Databases { get; private set; } = null!;
@@ -567,7 +567,7 @@ namespace Pulumi.Yandex
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// To manage users, please switch to using a separate resource type `yandex_mdb_postgresql_user`.
+        /// To manage users, please switch to using a separate resource type `yandex.mdbPostgresqlUser`.
         /// </summary>
         [Output("users")]
         public Output<ImmutableArray<Outputs.MdbPostgresqlClusterUser>> Users { get; private set; } = null!;
@@ -629,7 +629,7 @@ namespace Pulumi.Yandex
         private InputList<Inputs.MdbPostgresqlClusterDatabaseArgs>? _databases;
 
         /// <summary>
-        /// To manage databases, please switch to using a separate resource type `yandex_mdb_postgresql_database`.
+        /// To manage databases, please switch to using a separate resource type `yandex.mdbPostgresqlDatabase`.
         /// </summary>
         [Obsolete(@"to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database")]
         public InputList<Inputs.MdbPostgresqlClusterDatabaseArgs> Databases
@@ -741,7 +741,7 @@ namespace Pulumi.Yandex
         private InputList<Inputs.MdbPostgresqlClusterUserArgs>? _users;
 
         /// <summary>
-        /// To manage users, please switch to using a separate resource type `yandex_mdb_postgresql_user`.
+        /// To manage users, please switch to using a separate resource type `yandex.mdbPostgresqlUser`.
         /// </summary>
         [Obsolete(@"to manage users, please switch to using a separate resource type yandex_mdb_postgresql_user")]
         public InputList<Inputs.MdbPostgresqlClusterUserArgs> Users
@@ -774,7 +774,7 @@ namespace Pulumi.Yandex
         private InputList<Inputs.MdbPostgresqlClusterDatabaseGetArgs>? _databases;
 
         /// <summary>
-        /// To manage databases, please switch to using a separate resource type `yandex_mdb_postgresql_database`.
+        /// To manage databases, please switch to using a separate resource type `yandex.mdbPostgresqlDatabase`.
         /// </summary>
         [Obsolete(@"to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database")]
         public InputList<Inputs.MdbPostgresqlClusterDatabaseGetArgs> Databases
@@ -898,7 +898,7 @@ namespace Pulumi.Yandex
         private InputList<Inputs.MdbPostgresqlClusterUserGetArgs>? _users;
 
         /// <summary>
-        /// To manage users, please switch to using a separate resource type `yandex_mdb_postgresql_user`.
+        /// To manage users, please switch to using a separate resource type `yandex.mdbPostgresqlUser`.
         /// </summary>
         [Obsolete(@"to manage users, please switch to using a separate resource type yandex_mdb_postgresql_user")]
         public InputList<Inputs.MdbPostgresqlClusterUserGetArgs> Users

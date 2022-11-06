@@ -41,7 +41,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetMdbMysqlClusterResult> InvokeAsync(GetMdbMysqlClusterArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetMdbMysqlClusterResult>("yandex:index/getMdbMysqlCluster:getMdbMysqlCluster", args ?? new GetMdbMysqlClusterArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetMdbMysqlClusterResult>("yandex:index/getMdbMysqlCluster:getMdbMysqlCluster", args ?? new GetMdbMysqlClusterArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex Managed MySQL cluster. For more information, see
@@ -73,7 +73,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetMdbMysqlClusterResult> Invoke(GetMdbMysqlClusterInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetMdbMysqlClusterResult>("yandex:index/getMdbMysqlCluster:getMdbMysqlCluster", args ?? new GetMdbMysqlClusterInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetMdbMysqlClusterResult>("yandex:index/getMdbMysqlCluster:getMdbMysqlCluster", args ?? new GetMdbMysqlClusterInvokeArgs(), options.WithDefaults());
     }
 
 

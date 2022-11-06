@@ -38,7 +38,7 @@ class MdbPostgresqlClusterArgs:
         :param pulumi.Input[str] environment: Deployment environment of the PostgreSQL cluster.
         :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterHostArgs']]] hosts: A host of the PostgreSQL cluster. The structure is documented below.
         :param pulumi.Input[str] network_id: ID of the network, to which the PostgreSQL cluster belongs.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterDatabaseArgs']]] databases: To manage databases, please switch to using a separate resource type `yandex_mdb_postgresql_database`.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterDatabaseArgs']]] databases: To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
         :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
         :param pulumi.Input[str] description: Description of the PostgreSQL cluster.
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it is unset, the default provider `folder_id` is used for create.
@@ -49,7 +49,7 @@ class MdbPostgresqlClusterArgs:
                Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
         :param pulumi.Input['MdbPostgresqlClusterRestoreArgs'] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `yandex_mdb_postgresql_user`.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "environment", environment)
@@ -138,7 +138,7 @@ class MdbPostgresqlClusterArgs:
     @pulumi.getter
     def databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterDatabaseArgs']]]]:
         """
-        To manage databases, please switch to using a separate resource type `yandex_mdb_postgresql_database`.
+        To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
         """
         return pulumi.get(self, "databases")
 
@@ -268,7 +268,7 @@ class MdbPostgresqlClusterArgs:
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserArgs']]]]:
         """
-        To manage users, please switch to using a separate resource type `yandex_mdb_postgresql_user`.
+        To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
         """
         return pulumi.get(self, "users")
 
@@ -303,7 +303,7 @@ class _MdbPostgresqlClusterState:
         Input properties used for looking up and filtering MdbPostgresqlCluster resources.
         :param pulumi.Input['MdbPostgresqlClusterConfigArgs'] config: Configuration of the PostgreSQL cluster. The structure is documented below.
         :param pulumi.Input[str] created_at: Timestamp of cluster creation.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterDatabaseArgs']]] databases: To manage databases, please switch to using a separate resource type `yandex_mdb_postgresql_database`.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterDatabaseArgs']]] databases: To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
         :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
         :param pulumi.Input[str] description: Description of the PostgreSQL cluster.
         :param pulumi.Input[str] environment: Deployment environment of the PostgreSQL cluster.
@@ -319,7 +319,7 @@ class _MdbPostgresqlClusterState:
         :param pulumi.Input['MdbPostgresqlClusterRestoreArgs'] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         :param pulumi.Input[str] status: Status of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `yandex_mdb_postgresql_user`.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
         """
         if config is not None:
             pulumi.set(__self__, "config", config)
@@ -394,7 +394,7 @@ class _MdbPostgresqlClusterState:
     @pulumi.getter
     def databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterDatabaseArgs']]]]:
         """
-        To manage databases, please switch to using a separate resource type `yandex_mdb_postgresql_database`.
+        To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
         """
         return pulumi.get(self, "databases")
 
@@ -584,7 +584,7 @@ class _MdbPostgresqlClusterState:
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserArgs']]]]:
         """
-        To manage users, please switch to using a separate resource type `yandex_mdb_postgresql_user`.
+        To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
         """
         return pulumi.get(self, "users")
 
@@ -712,9 +712,9 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
 
         foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
         vpc_subnet = yandex.VpcSubnet("vpcSubnet",
-            zone="ru-central1-c",
+            zone="ru-central1-a",
             network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.3.0.0/24"])
+            v4_cidr_blocks=["10.1.0.0/24"])
         foo_mdb_postgresql_cluster = yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster",
             description="test High-Availability (HA) PostgreSQL Cluster with priority and set master",
             environment="PRESTABLE",
@@ -733,33 +733,33 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
                     zone="ru-central1-a",
                     name="host_name_a",
                     priority=2,
-                    subnet_id=index / vpc_subnet_vpc_subnet["id"],
+                    subnet_id=vpc_subnet.id,
                 ),
                 yandex.MdbPostgresqlClusterHostArgs(
                     zone="ru-central1-b",
                     name="host_name_b",
                     replication_source_name="host_name_c",
-                    subnet_id=yandex_index / vpc_subnet_vpc_subnet["id"],
+                    subnet_id=index / vpc_subnet_vpc_subnet["id"],
                 ),
                 yandex.MdbPostgresqlClusterHostArgs(
                     zone="ru-central1-c",
                     name="host_name_c",
-                    subnet_id=vpc_subnet.id,
+                    subnet_id=yandex_index / vpc_subnet_vpc_subnet["id"],
                 ),
                 yandex.MdbPostgresqlClusterHostArgs(
                     zone="ru-central1-c",
                     name="host_name_c_2",
-                    subnet_id=vpc_subnet.id,
+                    subnet_id=yandex_index / vpc_subnet_vpc_subnet["id"],
                 ),
             ])
         index_vpc_subnet_vpc_subnet = yandex.VpcSubnet("index/vpcSubnetVpcSubnet",
-            zone="ru-central1-a",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.1.0.0/24"])
-        yandex_index_vpc_subnet_vpc_subnet = yandex.VpcSubnet("yandexIndex/vpcSubnetVpcSubnet",
             zone="ru-central1-b",
             network_id=foo_vpc_network.id,
             v4_cidr_blocks=["10.2.0.0/24"])
+        yandex_index_vpc_subnet_vpc_subnet = yandex.VpcSubnet("yandexIndex/vpcSubnetVpcSubnet",
+            zone="ru-central1-c",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.3.0.0/24"])
         ```
 
         Example of creating a Single Node PostgreSQL from backup.
@@ -963,7 +963,7 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['MdbPostgresqlClusterConfigArgs']] config: Configuration of the PostgreSQL cluster. The structure is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterDatabaseArgs']]]] databases: To manage databases, please switch to using a separate resource type `yandex_mdb_postgresql_database`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterDatabaseArgs']]]] databases: To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
         :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
         :param pulumi.Input[str] description: Description of the PostgreSQL cluster.
         :param pulumi.Input[str] environment: Deployment environment of the PostgreSQL cluster.
@@ -977,7 +977,7 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
         :param pulumi.Input[str] network_id: ID of the network, to which the PostgreSQL cluster belongs.
         :param pulumi.Input[pulumi.InputType['MdbPostgresqlClusterRestoreArgs']] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `yandex_mdb_postgresql_user`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
         """
         ...
     @overload
@@ -1082,9 +1082,9 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
 
         foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
         vpc_subnet = yandex.VpcSubnet("vpcSubnet",
-            zone="ru-central1-c",
+            zone="ru-central1-a",
             network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.3.0.0/24"])
+            v4_cidr_blocks=["10.1.0.0/24"])
         foo_mdb_postgresql_cluster = yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster",
             description="test High-Availability (HA) PostgreSQL Cluster with priority and set master",
             environment="PRESTABLE",
@@ -1103,33 +1103,33 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
                     zone="ru-central1-a",
                     name="host_name_a",
                     priority=2,
-                    subnet_id=index / vpc_subnet_vpc_subnet["id"],
+                    subnet_id=vpc_subnet.id,
                 ),
                 yandex.MdbPostgresqlClusterHostArgs(
                     zone="ru-central1-b",
                     name="host_name_b",
                     replication_source_name="host_name_c",
-                    subnet_id=yandex_index / vpc_subnet_vpc_subnet["id"],
+                    subnet_id=index / vpc_subnet_vpc_subnet["id"],
                 ),
                 yandex.MdbPostgresqlClusterHostArgs(
                     zone="ru-central1-c",
                     name="host_name_c",
-                    subnet_id=vpc_subnet.id,
+                    subnet_id=yandex_index / vpc_subnet_vpc_subnet["id"],
                 ),
                 yandex.MdbPostgresqlClusterHostArgs(
                     zone="ru-central1-c",
                     name="host_name_c_2",
-                    subnet_id=vpc_subnet.id,
+                    subnet_id=yandex_index / vpc_subnet_vpc_subnet["id"],
                 ),
             ])
         index_vpc_subnet_vpc_subnet = yandex.VpcSubnet("index/vpcSubnetVpcSubnet",
-            zone="ru-central1-a",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.1.0.0/24"])
-        yandex_index_vpc_subnet_vpc_subnet = yandex.VpcSubnet("yandexIndex/vpcSubnetVpcSubnet",
             zone="ru-central1-b",
             network_id=foo_vpc_network.id,
             v4_cidr_blocks=["10.2.0.0/24"])
+        yandex_index_vpc_subnet_vpc_subnet = yandex.VpcSubnet("yandexIndex/vpcSubnetVpcSubnet",
+            zone="ru-central1-c",
+            network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.3.0.0/24"])
         ```
 
         Example of creating a Single Node PostgreSQL from backup.
@@ -1441,7 +1441,7 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['MdbPostgresqlClusterConfigArgs']] config: Configuration of the PostgreSQL cluster. The structure is documented below.
         :param pulumi.Input[str] created_at: Timestamp of cluster creation.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterDatabaseArgs']]]] databases: To manage databases, please switch to using a separate resource type `yandex_mdb_postgresql_database`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterDatabaseArgs']]]] databases: To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
         :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
         :param pulumi.Input[str] description: Description of the PostgreSQL cluster.
         :param pulumi.Input[str] environment: Deployment environment of the PostgreSQL cluster.
@@ -1457,7 +1457,7 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['MdbPostgresqlClusterRestoreArgs']] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         :param pulumi.Input[str] status: Status of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `yandex_mdb_postgresql_user`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1504,7 +1504,7 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
     @pulumi.getter
     def databases(self) -> pulumi.Output[Optional[Sequence['outputs.MdbPostgresqlClusterDatabase']]]:
         """
-        To manage databases, please switch to using a separate resource type `yandex_mdb_postgresql_database`.
+        To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
         """
         return pulumi.get(self, "databases")
 
@@ -1630,7 +1630,7 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
     @pulumi.getter
     def users(self) -> pulumi.Output[Optional[Sequence['outputs.MdbPostgresqlClusterUser']]]:
         """
-        To manage users, please switch to using a separate resource type `yandex_mdb_postgresql_user`.
+        To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
         """
         return pulumi.get(self, "users")
 

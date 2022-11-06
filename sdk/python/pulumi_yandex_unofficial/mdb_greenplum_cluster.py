@@ -1083,7 +1083,7 @@ class MdbGreenplumCluster(pulumi.CustomResource):
             __props__.__dict__["user_name"] = user_name
             if user_password is None and not opts.urn:
                 raise TypeError("Missing required property 'user_password'")
-            __props__.__dict__["user_password"] = user_password
+            __props__.__dict__["user_password"] = None if user_password is None else pulumi.Output.secret(user_password)
             if version is None and not opts.urn:
                 raise TypeError("Missing required property 'version'")
             __props__.__dict__["version"] = version
@@ -1095,6 +1095,8 @@ class MdbGreenplumCluster(pulumi.CustomResource):
             __props__.__dict__["master_hosts"] = None
             __props__.__dict__["segment_hosts"] = None
             __props__.__dict__["status"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["userPassword"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(MdbGreenplumCluster, __self__).__init__(
             'yandex:index/mdbGreenplumCluster:MdbGreenplumCluster',
             resource_name,

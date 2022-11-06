@@ -105,6 +105,10 @@ namespace Pulumi.Yandex
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
+                AdditionalSecretOutputs =
+                {
+                    "secretKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -184,11 +188,21 @@ namespace Pulumi.Yandex
         [Input("pgpKey")]
         public Input<string>? PgpKey { get; set; }
 
+        [Input("secretKey")]
+        private Input<string>? _secretKey;
+
         /// <summary>
         /// The secret key. This is only populated when no `pgp_key` is provided.
         /// </summary>
-        [Input("secretKey")]
-        public Input<string>? SecretKey { get; set; }
+        public Input<string>? SecretKey
+        {
+            get => _secretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _secretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// ID of the service account to an API key for.

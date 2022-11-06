@@ -106,10 +106,12 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["token"] = args ? args.token : undefined;
             resourceInputs["ymqAccessKey"] = args ? args.ymqAccessKey : undefined;
             resourceInputs["ymqEndpoint"] = args ? args.ymqEndpoint : undefined;
-            resourceInputs["ymqSecretKey"] = args ? args.ymqSecretKey : undefined;
+            resourceInputs["ymqSecretKey"] = args?.ymqSecretKey ? pulumi.secret(args.ymqSecretKey) : undefined;
             resourceInputs["zone"] = args ? args.zone : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["ymqSecretKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }

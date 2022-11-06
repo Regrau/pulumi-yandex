@@ -44,7 +44,7 @@ import (
 //						Name: pulumi.String("test-http-backend"),
 //						Port: pulumi.Int(8080),
 //						TargetGroupIds: pulumi.StringArray{
-//							pulumi.Any(yandex_alb_target_group.Test - target - group.Id),
+//							pulumi.Any(yandex_alb_target_group.TestTargetGroup.Id),
 //						},
 //						Tls: &AlbBackendGroupHttpBackendTlsArgs{
 //							Sni: pulumi.String("backend-domain.internal"),

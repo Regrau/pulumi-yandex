@@ -94,6 +94,10 @@ namespace Pulumi.Yandex
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
+                AdditionalSecretOutputs =
+                {
+                    "plaintext",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -129,11 +133,21 @@ namespace Pulumi.Yandex
         [Input("keyId", required: true)]
         public Input<string> KeyId { get; set; } = null!;
 
+        [Input("plaintext", required: true)]
+        private Input<string>? _plaintext;
+
         /// <summary>
         /// Plaintext to be encrypted.
         /// </summary>
-        [Input("plaintext", required: true)]
-        public Input<string> Plaintext { get; set; } = null!;
+        public Input<string>? Plaintext
+        {
+            get => _plaintext;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _plaintext = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public KmsSecretCiphertextArgs()
         {
@@ -161,11 +175,21 @@ namespace Pulumi.Yandex
         [Input("keyId")]
         public Input<string>? KeyId { get; set; }
 
+        [Input("plaintext")]
+        private Input<string>? _plaintext;
+
         /// <summary>
         /// Plaintext to be encrypted.
         /// </summary>
-        [Input("plaintext")]
-        public Input<string>? Plaintext { get; set; }
+        public Input<string>? Plaintext
+        {
+            get => _plaintext;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _plaintext = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public KmsSecretCiphertextState()
         {

@@ -32,7 +32,7 @@ namespace Pulumi.Yandex
         /// This data source is used to define Yandex Cloud Container that can be used by other resources.
         /// </summary>
         public static Task<GetServerlessContainerResult> InvokeAsync(GetServerlessContainerArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetServerlessContainerResult>("yandex:index/getServerlessContainer:getServerlessContainer", args ?? new GetServerlessContainerArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetServerlessContainerResult>("yandex:index/getServerlessContainer:getServerlessContainer", args ?? new GetServerlessContainerArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex Cloud Serverless Container. 
@@ -55,7 +55,7 @@ namespace Pulumi.Yandex
         /// This data source is used to define Yandex Cloud Container that can be used by other resources.
         /// </summary>
         public static Output<GetServerlessContainerResult> Invoke(GetServerlessContainerInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetServerlessContainerResult>("yandex:index/getServerlessContainer:getServerlessContainer", args ?? new GetServerlessContainerInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetServerlessContainerResult>("yandex:index/getServerlessContainer:getServerlessContainer", args ?? new GetServerlessContainerInvokeArgs(), options.WithDefaults());
     }
 
 

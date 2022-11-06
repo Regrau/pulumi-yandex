@@ -25,7 +25,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.LookupVpcRouteTable(ctx, &GetVpcRouteTableArgs{
+//			_, err = yandex.LookupVpcRouteTable(ctx, &GetVpcRouteTableArgs{
 //				RouteTableId: pulumi.StringRef("my-rt-id"),
 //			}, nil)
 //			if err != nil {

@@ -43,7 +43,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCdnOriginGroupResult> InvokeAsync(GetCdnOriginGroupArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCdnOriginGroupResult>("yandex:index/getCdnOriginGroup:getCdnOriginGroup", args ?? new GetCdnOriginGroupArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCdnOriginGroupResult>("yandex:index/getCdnOriginGroup:getCdnOriginGroup", args ?? new GetCdnOriginGroupArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex CDN Origin Group. For more information, see
@@ -77,7 +77,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetCdnOriginGroupResult> Invoke(GetCdnOriginGroupInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCdnOriginGroupResult>("yandex:index/getCdnOriginGroup:getCdnOriginGroup", args ?? new GetCdnOriginGroupInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetCdnOriginGroupResult>("yandex:index/getCdnOriginGroup:getCdnOriginGroup", args ?? new GetCdnOriginGroupInvokeArgs(), options.WithDefaults());
     }
 
 

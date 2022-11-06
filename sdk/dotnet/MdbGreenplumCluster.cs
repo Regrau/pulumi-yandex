@@ -241,6 +241,10 @@ namespace Pulumi.Yandex
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
+                AdditionalSecretOutputs =
+                {
+                    "userPassword",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -409,11 +413,21 @@ namespace Pulumi.Yandex
         [Input("userName", required: true)]
         public Input<string> UserName { get; set; } = null!;
 
+        [Input("userPassword", required: true)]
+        private Input<string>? _userPassword;
+
         /// <summary>
         /// Greenplum cluster admin password name.
         /// </summary>
-        [Input("userPassword", required: true)]
-        public Input<string> UserPassword { get; set; } = null!;
+        public Input<string>? UserPassword
+        {
+            get => _userPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _userPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Version of the Greenplum cluster. (6.19)
@@ -622,11 +636,21 @@ namespace Pulumi.Yandex
         [Input("userName")]
         public Input<string>? UserName { get; set; }
 
+        [Input("userPassword")]
+        private Input<string>? _userPassword;
+
         /// <summary>
         /// Greenplum cluster admin password name.
         /// </summary>
-        [Input("userPassword")]
-        public Input<string>? UserPassword { get; set; }
+        public Input<string>? UserPassword
+        {
+            get => _userPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _userPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Version of the Greenplum cluster. (6.19)

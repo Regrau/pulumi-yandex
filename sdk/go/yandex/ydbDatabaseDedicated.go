@@ -36,7 +36,7 @@ import (
 //						Id: pulumi.String("ru-central1"),
 //					},
 //				},
-//				NetworkId:        pulumi.Any(yandex_vpc_network.My - inst - group - network.Id),
+//				NetworkId:        pulumi.Any(yandex_vpc_network.MyInstGroupNetwork.Id),
 //				ResourcePresetId: pulumi.String("medium"),
 //				ScalePolicy: &YdbDatabaseDedicatedScalePolicyArgs{
 //					FixedScale: &YdbDatabaseDedicatedScalePolicyFixedScaleArgs{
@@ -48,7 +48,7 @@ import (
 //					StorageTypeId: pulumi.String("ssd"),
 //				},
 //				SubnetIds: pulumi.StringArray{
-//					pulumi.Any(yandex_vpc_subnet.My - inst - group - subnet.Id),
+//					pulumi.Any(yandex_vpc_subnet.MyInstGroupSubnet.Id),
 //				},
 //			})
 //			if err != nil {

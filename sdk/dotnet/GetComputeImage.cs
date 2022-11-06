@@ -12,10 +12,10 @@ namespace Pulumi.Yandex
     public static class GetComputeImage
     {
         public static Task<GetComputeImageResult> InvokeAsync(GetComputeImageArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetComputeImageResult>("yandex:index/getComputeImage:getComputeImage", args ?? new GetComputeImageArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetComputeImageResult>("yandex:index/getComputeImage:getComputeImage", args ?? new GetComputeImageArgs(), options.WithDefaults());
 
         public static Output<GetComputeImageResult> Invoke(GetComputeImageInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetComputeImageResult>("yandex:index/getComputeImage:getComputeImage", args ?? new GetComputeImageInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetComputeImageResult>("yandex:index/getComputeImage:getComputeImage", args ?? new GetComputeImageInvokeArgs(), options.WithDefaults());
     }
 
 

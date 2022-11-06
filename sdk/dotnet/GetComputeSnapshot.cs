@@ -16,14 +16,14 @@ namespace Pulumi.Yandex
         /// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/snapshot).
         /// </summary>
         public static Task<GetComputeSnapshotResult> InvokeAsync(GetComputeSnapshotArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetComputeSnapshotResult>("yandex:index/getComputeSnapshot:getComputeSnapshot", args ?? new GetComputeSnapshotArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetComputeSnapshotResult>("yandex:index/getComputeSnapshot:getComputeSnapshot", args ?? new GetComputeSnapshotArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex Compute snapshot. For more information, see
         /// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/snapshot).
         /// </summary>
         public static Output<GetComputeSnapshotResult> Invoke(GetComputeSnapshotInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetComputeSnapshotResult>("yandex:index/getComputeSnapshot:getComputeSnapshot", args ?? new GetComputeSnapshotInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetComputeSnapshotResult>("yandex:index/getComputeSnapshot:getComputeSnapshot", args ?? new GetComputeSnapshotInvokeArgs(), options.WithDefaults());
     }
 
 

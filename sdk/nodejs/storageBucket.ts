@@ -2,7 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -604,7 +605,7 @@ export class StorageBucket extends pulumi.CustomResource {
             resourceInputs["loggings"] = args ? args.loggings : undefined;
             resourceInputs["maxSize"] = args ? args.maxSize : undefined;
             resourceInputs["policy"] = args ? args.policy : undefined;
-            resourceInputs["secretKey"] = args ? args.secretKey : undefined;
+            resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["serverSideEncryptionConfiguration"] = args ? args.serverSideEncryptionConfiguration : undefined;
             resourceInputs["versioning"] = args ? args.versioning : undefined;
             resourceInputs["website"] = args ? args.website : undefined;
@@ -613,6 +614,8 @@ export class StorageBucket extends pulumi.CustomResource {
             resourceInputs["bucketDomainName"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secretKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(StorageBucket.__pulumiType, name, resourceInputs, opts);
     }
 }

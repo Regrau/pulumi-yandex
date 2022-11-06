@@ -300,6 +300,8 @@ class IamServiceAccountStaticAccessKey(pulumi.CustomResource):
             __props__.__dict__["encrypted_secret_key"] = None
             __props__.__dict__["key_fingerprint"] = None
             __props__.__dict__["secret_key"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(IamServiceAccountStaticAccessKey, __self__).__init__(
             'yandex:index/iamServiceAccountStaticAccessKey:IamServiceAccountStaticAccessKey',
             resource_name,

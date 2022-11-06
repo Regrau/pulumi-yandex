@@ -12,10 +12,10 @@ namespace Pulumi.Yandex
     public static class GetLoggingGroup
     {
         public static Task<GetLoggingGroupResult> InvokeAsync(GetLoggingGroupArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetLoggingGroupResult>("yandex:index/getLoggingGroup:getLoggingGroup", args ?? new GetLoggingGroupArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetLoggingGroupResult>("yandex:index/getLoggingGroup:getLoggingGroup", args ?? new GetLoggingGroupArgs(), options.WithDefaults());
 
         public static Output<GetLoggingGroupResult> Invoke(GetLoggingGroupInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetLoggingGroupResult>("yandex:index/getLoggingGroup:getLoggingGroup", args ?? new GetLoggingGroupInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetLoggingGroupResult>("yandex:index/getLoggingGroup:getLoggingGroup", args ?? new GetLoggingGroupInvokeArgs(), options.WithDefaults());
     }
 
 

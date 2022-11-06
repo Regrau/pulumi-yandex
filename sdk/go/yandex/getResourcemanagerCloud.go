@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			foo, err := yandex.GetResourcemanagerCloud(ctx, &GetResourcemanagerCloudArgs{
+//			foo, err := yandex.LookupResourcemanagerCloud(ctx, &GetResourcemanagerCloudArgs{
 //				Name: pulumi.StringRef("foo-cloud"),
 //			}, nil)
 //			if err != nil {
@@ -39,9 +39,9 @@ import (
 //	}
 //
 // ```
-func GetResourcemanagerCloud(ctx *pulumi.Context, args *GetResourcemanagerCloudArgs, opts ...pulumi.InvokeOption) (*GetResourcemanagerCloudResult, error) {
+func LookupResourcemanagerCloud(ctx *pulumi.Context, args *LookupResourcemanagerCloudArgs, opts ...pulumi.InvokeOption) (*LookupResourcemanagerCloudResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
-	var rv GetResourcemanagerCloudResult
+	var rv LookupResourcemanagerCloudResult
 	err := ctx.Invoke("yandex:index/getResourcemanagerCloud:getResourcemanagerCloud", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -50,7 +50,7 @@ func GetResourcemanagerCloud(ctx *pulumi.Context, args *GetResourcemanagerCloudA
 }
 
 // A collection of arguments for invoking getResourcemanagerCloud.
-type GetResourcemanagerCloudArgs struct {
+type LookupResourcemanagerCloudArgs struct {
 	// ID of the cloud.
 	CloudId *string `pulumi:"cloudId"`
 	// Description of the cloud.
@@ -60,7 +60,7 @@ type GetResourcemanagerCloudArgs struct {
 }
 
 // A collection of values returned by getResourcemanagerCloud.
-type GetResourcemanagerCloudResult struct {
+type LookupResourcemanagerCloudResult struct {
 	CloudId string `pulumi:"cloudId"`
 	// Cloud creation timestamp.
 	CreatedAt string `pulumi:"createdAt"`
@@ -72,21 +72,21 @@ type GetResourcemanagerCloudResult struct {
 	Name string `pulumi:"name"`
 }
 
-func GetResourcemanagerCloudOutput(ctx *pulumi.Context, args GetResourcemanagerCloudOutputArgs, opts ...pulumi.InvokeOption) GetResourcemanagerCloudResultOutput {
+func LookupResourcemanagerCloudOutput(ctx *pulumi.Context, args LookupResourcemanagerCloudOutputArgs, opts ...pulumi.InvokeOption) LookupResourcemanagerCloudResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetResourcemanagerCloudResult, error) {
-			args := v.(GetResourcemanagerCloudArgs)
-			r, err := GetResourcemanagerCloud(ctx, &args, opts...)
-			var s GetResourcemanagerCloudResult
+		ApplyT(func(v interface{}) (LookupResourcemanagerCloudResult, error) {
+			args := v.(LookupResourcemanagerCloudArgs)
+			r, err := LookupResourcemanagerCloud(ctx, &args, opts...)
+			var s LookupResourcemanagerCloudResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetResourcemanagerCloudResultOutput)
+		}).(LookupResourcemanagerCloudResultOutput)
 }
 
 // A collection of arguments for invoking getResourcemanagerCloud.
-type GetResourcemanagerCloudOutputArgs struct {
+type LookupResourcemanagerCloudOutputArgs struct {
 	// ID of the cloud.
 	CloudId pulumi.StringPtrInput `pulumi:"cloudId"`
 	// Description of the cloud.
@@ -95,49 +95,49 @@ type GetResourcemanagerCloudOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (GetResourcemanagerCloudOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcemanagerCloudArgs)(nil)).Elem()
+func (LookupResourcemanagerCloudOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupResourcemanagerCloudArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getResourcemanagerCloud.
-type GetResourcemanagerCloudResultOutput struct{ *pulumi.OutputState }
+type LookupResourcemanagerCloudResultOutput struct{ *pulumi.OutputState }
 
-func (GetResourcemanagerCloudResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetResourcemanagerCloudResult)(nil)).Elem()
+func (LookupResourcemanagerCloudResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupResourcemanagerCloudResult)(nil)).Elem()
 }
 
-func (o GetResourcemanagerCloudResultOutput) ToGetResourcemanagerCloudResultOutput() GetResourcemanagerCloudResultOutput {
+func (o LookupResourcemanagerCloudResultOutput) ToLookupResourcemanagerCloudResultOutput() LookupResourcemanagerCloudResultOutput {
 	return o
 }
 
-func (o GetResourcemanagerCloudResultOutput) ToGetResourcemanagerCloudResultOutputWithContext(ctx context.Context) GetResourcemanagerCloudResultOutput {
+func (o LookupResourcemanagerCloudResultOutput) ToLookupResourcemanagerCloudResultOutputWithContext(ctx context.Context) LookupResourcemanagerCloudResultOutput {
 	return o
 }
 
-func (o GetResourcemanagerCloudResultOutput) CloudId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcemanagerCloudResult) string { return v.CloudId }).(pulumi.StringOutput)
+func (o LookupResourcemanagerCloudResultOutput) CloudId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupResourcemanagerCloudResult) string { return v.CloudId }).(pulumi.StringOutput)
 }
 
 // Cloud creation timestamp.
-func (o GetResourcemanagerCloudResultOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcemanagerCloudResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+func (o LookupResourcemanagerCloudResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupResourcemanagerCloudResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
 // Description of the cloud.
-func (o GetResourcemanagerCloudResultOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetResourcemanagerCloudResult) *string { return v.Description }).(pulumi.StringPtrOutput)
+func (o LookupResourcemanagerCloudResultOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupResourcemanagerCloudResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o GetResourcemanagerCloudResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcemanagerCloudResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupResourcemanagerCloudResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupResourcemanagerCloudResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Name of the cloud.
-func (o GetResourcemanagerCloudResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetResourcemanagerCloudResult) string { return v.Name }).(pulumi.StringOutput)
+func (o LookupResourcemanagerCloudResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupResourcemanagerCloudResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetResourcemanagerCloudResultOutput{})
+	pulumi.RegisterOutputType(LookupResourcemanagerCloudResultOutput{})
 }

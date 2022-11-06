@@ -12,10 +12,10 @@ namespace Pulumi.Yandex
     public static class GetAlbLoadBalancer
     {
         public static Task<GetAlbLoadBalancerResult> InvokeAsync(GetAlbLoadBalancerArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetAlbLoadBalancerResult>("yandex:index/getAlbLoadBalancer:getAlbLoadBalancer", args ?? new GetAlbLoadBalancerArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlbLoadBalancerResult>("yandex:index/getAlbLoadBalancer:getAlbLoadBalancer", args ?? new GetAlbLoadBalancerArgs(), options.WithDefaults());
 
         public static Output<GetAlbLoadBalancerResult> Invoke(GetAlbLoadBalancerInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetAlbLoadBalancerResult>("yandex:index/getAlbLoadBalancer:getAlbLoadBalancer", args ?? new GetAlbLoadBalancerInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetAlbLoadBalancerResult>("yandex:index/getAlbLoadBalancer:getAlbLoadBalancer", args ?? new GetAlbLoadBalancerInvokeArgs(), options.WithDefaults());
     }
 
 

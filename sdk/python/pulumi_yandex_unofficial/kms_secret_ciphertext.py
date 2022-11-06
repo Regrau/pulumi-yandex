@@ -237,8 +237,10 @@ class KmsSecretCiphertext(pulumi.CustomResource):
             __props__.__dict__["key_id"] = key_id
             if plaintext is None and not opts.urn:
                 raise TypeError("Missing required property 'plaintext'")
-            __props__.__dict__["plaintext"] = plaintext
+            __props__.__dict__["plaintext"] = None if plaintext is None else pulumi.Output.secret(plaintext)
             __props__.__dict__["ciphertext"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["plaintext"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(KmsSecretCiphertext, __self__).__init__(
             'yandex:index/kmsSecretCiphertext:KmsSecretCiphertext',
             resource_name,

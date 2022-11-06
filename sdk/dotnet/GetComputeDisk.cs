@@ -16,14 +16,14 @@ namespace Pulumi.Yandex
         /// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/disk).
         /// </summary>
         public static Task<GetComputeDiskResult> InvokeAsync(GetComputeDiskArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetComputeDiskResult>("yandex:index/getComputeDisk:getComputeDisk", args ?? new GetComputeDiskArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetComputeDiskResult>("yandex:index/getComputeDisk:getComputeDisk", args ?? new GetComputeDiskArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex Compute disk. For more information, see
         /// [the official documentation](https://cloud.yandex.com/docs/compute/concepts/disk).
         /// </summary>
         public static Output<GetComputeDiskResult> Invoke(GetComputeDiskInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetComputeDiskResult>("yandex:index/getComputeDisk:getComputeDisk", args ?? new GetComputeDiskInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetComputeDiskResult>("yandex:index/getComputeDisk:getComputeDisk", args ?? new GetComputeDiskInvokeArgs(), options.WithDefaults());
     }
 
 

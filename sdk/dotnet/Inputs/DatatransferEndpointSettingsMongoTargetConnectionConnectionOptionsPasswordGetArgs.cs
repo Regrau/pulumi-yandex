@@ -13,7 +13,16 @@ namespace Pulumi.Yandex.Inputs
     public sealed class DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsPasswordGetArgs : global::Pulumi.ResourceArgs
     {
         [Input("raw")]
-        public Input<string>? Raw { get; set; }
+        private Input<string>? _raw;
+        public Input<string>? Raw
+        {
+            get => _raw;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _raw = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         public DatatransferEndpointSettingsMongoTargetConnectionConnectionOptionsPasswordGetArgs()
         {

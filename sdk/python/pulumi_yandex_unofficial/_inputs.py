@@ -399,6 +399,7 @@ __all__ = [
     'YdbDatabaseDedicatedScalePolicyArgs',
     'YdbDatabaseDedicatedScalePolicyFixedScaleArgs',
     'YdbDatabaseDedicatedStorageConfigArgs',
+    'ContainerRepositoryLifecyclePolicyRuleArgs',
     'GetAlbBackendGroupGrpcBackendArgs',
     'GetAlbBackendGroupGrpcBackendHealthcheckArgs',
     'GetAlbBackendGroupGrpcBackendHealthcheckGrpcHealthcheckArgs',
@@ -465,6 +466,23 @@ __all__ = [
     'GetMdbMongodbClusterUserPermissionArgs',
     'GetMdbMysqlClusterAccessArgs',
     'GetServerlessContainerSecretArgs',
+    'LockboxSecretVersionEntryArgs',
+    'LockboxSecretVersionEntryCommandArgs',
+    'MdbKafkaConnectorConnectorConfigMirrormakerArgs',
+    'MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterArgs',
+    'MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArgs',
+    'MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArgs',
+    'MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterArgs',
+    'MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArgs',
+    'MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArgs',
+    'MdbKafkaConnectorConnectorConfigS3SinkArgs',
+    'MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionArgs',
+    'MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args',
+    'MdbMysqlUserConnectionLimitsArgs',
+    'MdbMysqlUserPermissionArgs',
+    'MdbPostgresqlDatabaseExtensionArgs',
+    'MdbPostgresqlUserPermissionArgs',
+    'VpcGatewaySharedEgressGatewayArgs',
 ]
 
 @pulumi.input_type
@@ -25011,6 +25029,93 @@ class YdbDatabaseDedicatedStorageConfigArgs:
 
 
 @pulumi.input_type
+class ContainerRepositoryLifecyclePolicyRuleArgs:
+    def __init__(__self__, *,
+                 description: Optional[pulumi.Input[str]] = None,
+                 expire_period: Optional[pulumi.Input[str]] = None,
+                 retained_top: Optional[pulumi.Input[int]] = None,
+                 tag_regexp: Optional[pulumi.Input[str]] = None,
+                 untagged: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] description: Description of the lifecycle policy.
+        :param pulumi.Input[str] expire_period: The period of time that must pass after creating a image for it to suit the automatic deletion criteria. It must be a multiple of 24 hours.
+        :param pulumi.Input[int] retained_top: The number of images to be retained even if the expire_period already expired.
+        :param pulumi.Input[str] tag_regexp: Tag to specify a filter as a regular expression. For example `.*` - all images with tags.
+        :param pulumi.Input[bool] untagged: If enabled, rules apply to untagged Docker images.
+        """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if expire_period is not None:
+            pulumi.set(__self__, "expire_period", expire_period)
+        if retained_top is not None:
+            pulumi.set(__self__, "retained_top", retained_top)
+        if tag_regexp is not None:
+            pulumi.set(__self__, "tag_regexp", tag_regexp)
+        if untagged is not None:
+            pulumi.set(__self__, "untagged", untagged)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the lifecycle policy.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="expirePeriod")
+    def expire_period(self) -> Optional[pulumi.Input[str]]:
+        """
+        The period of time that must pass after creating a image for it to suit the automatic deletion criteria. It must be a multiple of 24 hours.
+        """
+        return pulumi.get(self, "expire_period")
+
+    @expire_period.setter
+    def expire_period(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "expire_period", value)
+
+    @property
+    @pulumi.getter(name="retainedTop")
+    def retained_top(self) -> Optional[pulumi.Input[int]]:
+        """
+        The number of images to be retained even if the expire_period already expired.
+        """
+        return pulumi.get(self, "retained_top")
+
+    @retained_top.setter
+    def retained_top(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retained_top", value)
+
+    @property
+    @pulumi.getter(name="tagRegexp")
+    def tag_regexp(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tag to specify a filter as a regular expression. For example `.*` - all images with tags.
+        """
+        return pulumi.get(self, "tag_regexp")
+
+    @tag_regexp.setter
+    def tag_regexp(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tag_regexp", value)
+
+    @property
+    @pulumi.getter
+    def untagged(self) -> Optional[pulumi.Input[bool]]:
+        """
+        If enabled, rules apply to untagged Docker images.
+        """
+        return pulumi.get(self, "untagged")
+
+    @untagged.setter
+    def untagged(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "untagged", value)
+
+
+@pulumi.input_type
 class GetAlbBackendGroupGrpcBackendArgs:
     def __init__(__self__, *,
                  healthcheck: 'GetAlbBackendGroupGrpcBackendHealthcheckArgs',
@@ -29133,5 +29238,692 @@ class GetServerlessContainerSecretArgs:
     @version_id.setter
     def version_id(self, value: str):
         pulumi.set(self, "version_id", value)
+
+
+@pulumi.input_type
+class LockboxSecretVersionEntryArgs:
+    def __init__(__self__, *,
+                 key: pulumi.Input[str],
+                 command: Optional[pulumi.Input['LockboxSecretVersionEntryCommandArgs']] = None,
+                 text_value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key: The key of the entry.
+        :param pulumi.Input['LockboxSecretVersionEntryCommandArgs'] command: The command that generates the text value of the entry.
+        :param pulumi.Input[str] text_value: The text value of the entry.
+        """
+        pulumi.set(__self__, "key", key)
+        if command is not None:
+            pulumi.set(__self__, "command", command)
+        if text_value is not None:
+            pulumi.set(__self__, "text_value", text_value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        """
+        The key of the entry.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def command(self) -> Optional[pulumi.Input['LockboxSecretVersionEntryCommandArgs']]:
+        """
+        The command that generates the text value of the entry.
+        """
+        return pulumi.get(self, "command")
+
+    @command.setter
+    def command(self, value: Optional[pulumi.Input['LockboxSecretVersionEntryCommandArgs']]):
+        pulumi.set(self, "command", value)
+
+    @property
+    @pulumi.getter(name="textValue")
+    def text_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        The text value of the entry.
+        """
+        return pulumi.get(self, "text_value")
+
+    @text_value.setter
+    def text_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "text_value", value)
+
+
+@pulumi.input_type
+class LockboxSecretVersionEntryCommandArgs:
+    def __init__(__self__, *,
+                 path: pulumi.Input[str],
+                 args: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 env: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] path: The path to the script or command to execute.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] args: List of arguments to be passed to the script/command.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] env: Map of environment variables to set before calling the script/command.
+        """
+        pulumi.set(__self__, "path", path)
+        if args is not None:
+            pulumi.set(__self__, "args", args)
+        if env is not None:
+            pulumi.set(__self__, "env", env)
+
+    @property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[str]:
+        """
+        The path to the script or command to execute.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[str]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def args(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of arguments to be passed to the script/command.
+        """
+        return pulumi.get(self, "args")
+
+    @args.setter
+    def args(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "args", value)
+
+    @property
+    @pulumi.getter
+    def env(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Map of environment variables to set before calling the script/command.
+        """
+        return pulumi.get(self, "env")
+
+    @env.setter
+    def env(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "env", value)
+
+
+@pulumi.input_type
+class MdbKafkaConnectorConnectorConfigMirrormakerArgs:
+    def __init__(__self__, *,
+                 replication_factor: pulumi.Input[int],
+                 source_cluster: pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterArgs'],
+                 target_cluster: pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterArgs'],
+                 topics: pulumi.Input[str]):
+        pulumi.set(__self__, "replication_factor", replication_factor)
+        pulumi.set(__self__, "source_cluster", source_cluster)
+        pulumi.set(__self__, "target_cluster", target_cluster)
+        pulumi.set(__self__, "topics", topics)
+
+    @property
+    @pulumi.getter(name="replicationFactor")
+    def replication_factor(self) -> pulumi.Input[int]:
+        return pulumi.get(self, "replication_factor")
+
+    @replication_factor.setter
+    def replication_factor(self, value: pulumi.Input[int]):
+        pulumi.set(self, "replication_factor", value)
+
+    @property
+    @pulumi.getter(name="sourceCluster")
+    def source_cluster(self) -> pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterArgs']:
+        return pulumi.get(self, "source_cluster")
+
+    @source_cluster.setter
+    def source_cluster(self, value: pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterArgs']):
+        pulumi.set(self, "source_cluster", value)
+
+    @property
+    @pulumi.getter(name="targetCluster")
+    def target_cluster(self) -> pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterArgs']:
+        return pulumi.get(self, "target_cluster")
+
+    @target_cluster.setter
+    def target_cluster(self, value: pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterArgs']):
+        pulumi.set(self, "target_cluster", value)
+
+    @property
+    @pulumi.getter
+    def topics(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "topics")
+
+    @topics.setter
+    def topics(self, value: pulumi.Input[str]):
+        pulumi.set(self, "topics", value)
+
+
+@pulumi.input_type
+class MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterArgs:
+    def __init__(__self__, *,
+                 alias: Optional[pulumi.Input[str]] = None,
+                 external_clusters: Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArgs']]]] = None,
+                 this_clusters: Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArgs']]]] = None):
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if external_clusters is not None:
+            pulumi.set(__self__, "external_clusters", external_clusters)
+        if this_clusters is not None:
+            pulumi.set(__self__, "this_clusters", this_clusters)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alias", value)
+
+    @property
+    @pulumi.getter(name="externalClusters")
+    def external_clusters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArgs']]]]:
+        return pulumi.get(self, "external_clusters")
+
+    @external_clusters.setter
+    def external_clusters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArgs']]]]):
+        pulumi.set(self, "external_clusters", value)
+
+    @property
+    @pulumi.getter(name="thisClusters")
+    def this_clusters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArgs']]]]:
+        return pulumi.get(self, "this_clusters")
+
+    @this_clusters.setter
+    def this_clusters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArgs']]]]):
+        pulumi.set(self, "this_clusters", value)
+
+
+@pulumi.input_type
+class MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArgs:
+    def __init__(__self__, *,
+                 bootstrap_servers: pulumi.Input[str],
+                 sasl_mechanism: Optional[pulumi.Input[str]] = None,
+                 sasl_password: Optional[pulumi.Input[str]] = None,
+                 sasl_username: Optional[pulumi.Input[str]] = None,
+                 security_protocol: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
+        if sasl_mechanism is not None:
+            pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
+        if sasl_password is not None:
+            pulumi.set(__self__, "sasl_password", sasl_password)
+        if sasl_username is not None:
+            pulumi.set(__self__, "sasl_username", sasl_username)
+        if security_protocol is not None:
+            pulumi.set(__self__, "security_protocol", security_protocol)
+
+    @property
+    @pulumi.getter(name="bootstrapServers")
+    def bootstrap_servers(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "bootstrap_servers")
+
+    @bootstrap_servers.setter
+    def bootstrap_servers(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bootstrap_servers", value)
+
+    @property
+    @pulumi.getter(name="saslMechanism")
+    def sasl_mechanism(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sasl_mechanism")
+
+    @sasl_mechanism.setter
+    def sasl_mechanism(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sasl_mechanism", value)
+
+    @property
+    @pulumi.getter(name="saslPassword")
+    def sasl_password(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sasl_password")
+
+    @sasl_password.setter
+    def sasl_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sasl_password", value)
+
+    @property
+    @pulumi.getter(name="saslUsername")
+    def sasl_username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sasl_username")
+
+    @sasl_username.setter
+    def sasl_username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sasl_username", value)
+
+    @property
+    @pulumi.getter(name="securityProtocol")
+    def security_protocol(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "security_protocol")
+
+    @security_protocol.setter
+    def security_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "security_protocol", value)
+
+
+@pulumi.input_type
+class MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArgs:
+    def __init__(__self__):
+        pass
+
+
+@pulumi.input_type
+class MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterArgs:
+    def __init__(__self__, *,
+                 alias: Optional[pulumi.Input[str]] = None,
+                 external_clusters: Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArgs']]]] = None,
+                 this_clusters: Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArgs']]]] = None):
+        if alias is not None:
+            pulumi.set(__self__, "alias", alias)
+        if external_clusters is not None:
+            pulumi.set(__self__, "external_clusters", external_clusters)
+        if this_clusters is not None:
+            pulumi.set(__self__, "this_clusters", this_clusters)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "alias")
+
+    @alias.setter
+    def alias(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alias", value)
+
+    @property
+    @pulumi.getter(name="externalClusters")
+    def external_clusters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArgs']]]]:
+        return pulumi.get(self, "external_clusters")
+
+    @external_clusters.setter
+    def external_clusters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArgs']]]]):
+        pulumi.set(self, "external_clusters", value)
+
+    @property
+    @pulumi.getter(name="thisClusters")
+    def this_clusters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArgs']]]]:
+        return pulumi.get(self, "this_clusters")
+
+    @this_clusters.setter
+    def this_clusters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArgs']]]]):
+        pulumi.set(self, "this_clusters", value)
+
+
+@pulumi.input_type
+class MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArgs:
+    def __init__(__self__, *,
+                 bootstrap_servers: pulumi.Input[str],
+                 sasl_mechanism: Optional[pulumi.Input[str]] = None,
+                 sasl_password: Optional[pulumi.Input[str]] = None,
+                 sasl_username: Optional[pulumi.Input[str]] = None,
+                 security_protocol: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
+        if sasl_mechanism is not None:
+            pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
+        if sasl_password is not None:
+            pulumi.set(__self__, "sasl_password", sasl_password)
+        if sasl_username is not None:
+            pulumi.set(__self__, "sasl_username", sasl_username)
+        if security_protocol is not None:
+            pulumi.set(__self__, "security_protocol", security_protocol)
+
+    @property
+    @pulumi.getter(name="bootstrapServers")
+    def bootstrap_servers(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "bootstrap_servers")
+
+    @bootstrap_servers.setter
+    def bootstrap_servers(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bootstrap_servers", value)
+
+    @property
+    @pulumi.getter(name="saslMechanism")
+    def sasl_mechanism(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sasl_mechanism")
+
+    @sasl_mechanism.setter
+    def sasl_mechanism(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sasl_mechanism", value)
+
+    @property
+    @pulumi.getter(name="saslPassword")
+    def sasl_password(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sasl_password")
+
+    @sasl_password.setter
+    def sasl_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sasl_password", value)
+
+    @property
+    @pulumi.getter(name="saslUsername")
+    def sasl_username(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sasl_username")
+
+    @sasl_username.setter
+    def sasl_username(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sasl_username", value)
+
+    @property
+    @pulumi.getter(name="securityProtocol")
+    def security_protocol(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "security_protocol")
+
+    @security_protocol.setter
+    def security_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "security_protocol", value)
+
+
+@pulumi.input_type
+class MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArgs:
+    def __init__(__self__):
+        pass
+
+
+@pulumi.input_type
+class MdbKafkaConnectorConnectorConfigS3SinkArgs:
+    def __init__(__self__, *,
+                 file_compression_type: pulumi.Input[str],
+                 s3_connection: pulumi.Input['MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionArgs'],
+                 topics: pulumi.Input[str],
+                 file_max_records: Optional[pulumi.Input[int]] = None):
+        pulumi.set(__self__, "file_compression_type", file_compression_type)
+        pulumi.set(__self__, "s3_connection", s3_connection)
+        pulumi.set(__self__, "topics", topics)
+        if file_max_records is not None:
+            pulumi.set(__self__, "file_max_records", file_max_records)
+
+    @property
+    @pulumi.getter(name="fileCompressionType")
+    def file_compression_type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "file_compression_type")
+
+    @file_compression_type.setter
+    def file_compression_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "file_compression_type", value)
+
+    @property
+    @pulumi.getter(name="s3Connection")
+    def s3_connection(self) -> pulumi.Input['MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionArgs']:
+        return pulumi.get(self, "s3_connection")
+
+    @s3_connection.setter
+    def s3_connection(self, value: pulumi.Input['MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionArgs']):
+        pulumi.set(self, "s3_connection", value)
+
+    @property
+    @pulumi.getter
+    def topics(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "topics")
+
+    @topics.setter
+    def topics(self, value: pulumi.Input[str]):
+        pulumi.set(self, "topics", value)
+
+    @property
+    @pulumi.getter(name="fileMaxRecords")
+    def file_max_records(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "file_max_records")
+
+    @file_max_records.setter
+    def file_max_records(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "file_max_records", value)
+
+
+@pulumi.input_type
+class MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionArgs:
+    def __init__(__self__, *,
+                 bucket_name: pulumi.Input[str],
+                 external_s3s: pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args']]]):
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "external_s3s", external_s3s)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "bucket_name")
+
+    @bucket_name.setter
+    def bucket_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "bucket_name", value)
+
+    @property
+    @pulumi.getter(name="externalS3s")
+    def external_s3s(self) -> pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args']]]:
+        return pulumi.get(self, "external_s3s")
+
+    @external_s3s.setter
+    def external_s3s(self, value: pulumi.Input[Sequence[pulumi.Input['MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args']]]):
+        pulumi.set(self, "external_s3s", value)
+
+
+@pulumi.input_type
+class MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args:
+    def __init__(__self__, *,
+                 endpoint: pulumi.Input[str],
+                 access_key_id: Optional[pulumi.Input[str]] = None,
+                 region: Optional[pulumi.Input[str]] = None,
+                 secret_access_key: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "endpoint", endpoint)
+        if access_key_id is not None:
+            pulumi.set(__self__, "access_key_id", access_key_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if secret_access_key is not None:
+            pulumi.set(__self__, "secret_access_key", secret_access_key)
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "endpoint")
+
+    @endpoint.setter
+    def endpoint(self, value: pulumi.Input[str]):
+        pulumi.set(self, "endpoint", value)
+
+    @property
+    @pulumi.getter(name="accessKeyId")
+    def access_key_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "access_key_id")
+
+    @access_key_id.setter
+    def access_key_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_key_id", value)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "region", value)
+
+    @property
+    @pulumi.getter(name="secretAccessKey")
+    def secret_access_key(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "secret_access_key")
+
+    @secret_access_key.setter
+    def secret_access_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secret_access_key", value)
+
+
+@pulumi.input_type
+class MdbMysqlUserConnectionLimitsArgs:
+    def __init__(__self__, *,
+                 max_connections_per_hour: Optional[pulumi.Input[int]] = None,
+                 max_questions_per_hour: Optional[pulumi.Input[int]] = None,
+                 max_updates_per_hour: Optional[pulumi.Input[int]] = None,
+                 max_user_connections: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] max_connections_per_hour: Max connections per hour.
+        :param pulumi.Input[int] max_questions_per_hour: Max questions per hour.
+        :param pulumi.Input[int] max_updates_per_hour: Max updates per hour.
+        :param pulumi.Input[int] max_user_connections: Max user connections.
+        """
+        if max_connections_per_hour is not None:
+            pulumi.set(__self__, "max_connections_per_hour", max_connections_per_hour)
+        if max_questions_per_hour is not None:
+            pulumi.set(__self__, "max_questions_per_hour", max_questions_per_hour)
+        if max_updates_per_hour is not None:
+            pulumi.set(__self__, "max_updates_per_hour", max_updates_per_hour)
+        if max_user_connections is not None:
+            pulumi.set(__self__, "max_user_connections", max_user_connections)
+
+    @property
+    @pulumi.getter(name="maxConnectionsPerHour")
+    def max_connections_per_hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max connections per hour.
+        """
+        return pulumi.get(self, "max_connections_per_hour")
+
+    @max_connections_per_hour.setter
+    def max_connections_per_hour(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_connections_per_hour", value)
+
+    @property
+    @pulumi.getter(name="maxQuestionsPerHour")
+    def max_questions_per_hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max questions per hour.
+        """
+        return pulumi.get(self, "max_questions_per_hour")
+
+    @max_questions_per_hour.setter
+    def max_questions_per_hour(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_questions_per_hour", value)
+
+    @property
+    @pulumi.getter(name="maxUpdatesPerHour")
+    def max_updates_per_hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max updates per hour.
+        """
+        return pulumi.get(self, "max_updates_per_hour")
+
+    @max_updates_per_hour.setter
+    def max_updates_per_hour(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_updates_per_hour", value)
+
+    @property
+    @pulumi.getter(name="maxUserConnections")
+    def max_user_connections(self) -> Optional[pulumi.Input[int]]:
+        """
+        Max user connections.
+        """
+        return pulumi.get(self, "max_user_connections")
+
+    @max_user_connections.setter
+    def max_user_connections(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_user_connections", value)
+
+
+@pulumi.input_type
+class MdbMysqlUserPermissionArgs:
+    def __init__(__self__, *,
+                 database_name: pulumi.Input[str],
+                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] database_name: The name of the database that the permission grants access to.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: List user's roles in the database.
+               Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+               `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+        """
+        pulumi.set(__self__, "database_name", database_name)
+        if roles is not None:
+            pulumi.set(__self__, "roles", roles)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> pulumi.Input[str]:
+        """
+        The name of the database that the permission grants access to.
+        """
+        return pulumi.get(self, "database_name")
+
+    @database_name.setter
+    def database_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "database_name", value)
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List user's roles in the database.
+        Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+        `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+        """
+        return pulumi.get(self, "roles")
+
+    @roles.setter
+    def roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "roles", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlDatabaseExtensionArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).
+        :param pulumi.Input[str] version: Version of the extension.
+        """
+        pulumi.set(__self__, "name", name)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of the extension.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlUserPermissionArgs:
+    def __init__(__self__, *,
+                 database_name: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] database_name: The name of the database that the permission grants access to.
+        """
+        pulumi.set(__self__, "database_name", database_name)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> pulumi.Input[str]:
+        """
+        The name of the database that the permission grants access to.
+        """
+        return pulumi.get(self, "database_name")
+
+    @database_name.setter
+    def database_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "database_name", value)
+
+
+@pulumi.input_type
+class VpcGatewaySharedEgressGatewayArgs:
+    def __init__(__self__):
+        pass
 
 

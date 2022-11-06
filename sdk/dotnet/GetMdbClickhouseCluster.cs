@@ -41,7 +41,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetMdbClickhouseClusterResult> InvokeAsync(GetMdbClickhouseClusterArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetMdbClickhouseClusterResult>("yandex:index/getMdbClickhouseCluster:getMdbClickhouseCluster", args ?? new GetMdbClickhouseClusterArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetMdbClickhouseClusterResult>("yandex:index/getMdbClickhouseCluster:getMdbClickhouseCluster", args ?? new GetMdbClickhouseClusterArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex Managed ClickHouse cluster. For more information, see
@@ -73,7 +73,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetMdbClickhouseClusterResult> Invoke(GetMdbClickhouseClusterInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetMdbClickhouseClusterResult>("yandex:index/getMdbClickhouseCluster:getMdbClickhouseCluster", args ?? new GetMdbClickhouseClusterInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetMdbClickhouseClusterResult>("yandex:index/getMdbClickhouseCluster:getMdbClickhouseCluster", args ?? new GetMdbClickhouseClusterInvokeArgs(), options.WithDefaults());
     }
 
 

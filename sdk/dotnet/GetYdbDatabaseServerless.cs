@@ -41,7 +41,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetYdbDatabaseServerlessResult> InvokeAsync(GetYdbDatabaseServerlessArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetYdbDatabaseServerlessResult>("yandex:index/getYdbDatabaseServerless:getYdbDatabaseServerless", args ?? new GetYdbDatabaseServerlessArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetYdbDatabaseServerlessResult>("yandex:index/getYdbDatabaseServerless:getYdbDatabaseServerless", args ?? new GetYdbDatabaseServerlessArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex Database serverless cluster.
@@ -73,7 +73,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetYdbDatabaseServerlessResult> Invoke(GetYdbDatabaseServerlessInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetYdbDatabaseServerlessResult>("yandex:index/getYdbDatabaseServerless:getYdbDatabaseServerless", args ?? new GetYdbDatabaseServerlessInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetYdbDatabaseServerlessResult>("yandex:index/getYdbDatabaseServerless:getYdbDatabaseServerless", args ?? new GetYdbDatabaseServerlessInvokeArgs(), options.WithDefaults());
     }
 
 

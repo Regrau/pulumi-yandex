@@ -33,7 +33,7 @@ namespace Pulumi.Yandex
         /// This data source is used to define [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
         /// </summary>
         public static Task<GetIotCoreDeviceResult> InvokeAsync(GetIotCoreDeviceArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetIotCoreDeviceResult>("yandex:index/getIotCoreDevice:getIotCoreDevice", args ?? new GetIotCoreDeviceArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetIotCoreDeviceResult>("yandex:index/getIotCoreDevice:getIotCoreDevice", args ?? new GetIotCoreDeviceArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex IoT Core device. For more information about IoT Core, see 
@@ -57,7 +57,7 @@ namespace Pulumi.Yandex
         /// This data source is used to define [Yandex.Cloud IoT Device](https://cloud.yandex.com/docs/iot-core/quickstart) that can be used by other resources.
         /// </summary>
         public static Output<GetIotCoreDeviceResult> Invoke(GetIotCoreDeviceInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetIotCoreDeviceResult>("yandex:index/getIotCoreDevice:getIotCoreDevice", args ?? new GetIotCoreDeviceInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetIotCoreDeviceResult>("yandex:index/getIotCoreDevice:getIotCoreDevice", args ?? new GetIotCoreDeviceInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -42,7 +42,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetOrganizationmanagerSamlFederationResult> InvokeAsync(GetOrganizationmanagerSamlFederationArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationmanagerSamlFederationResult>("yandex:index/getOrganizationmanagerSamlFederation:getOrganizationmanagerSamlFederation", args ?? new GetOrganizationmanagerSamlFederationArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationmanagerSamlFederationResult>("yandex:index/getOrganizationmanagerSamlFederation:getOrganizationmanagerSamlFederation", args ?? new GetOrganizationmanagerSamlFederationArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex SAML Federation. For more information, see
@@ -75,7 +75,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetOrganizationmanagerSamlFederationResult> Invoke(GetOrganizationmanagerSamlFederationInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetOrganizationmanagerSamlFederationResult>("yandex:index/getOrganizationmanagerSamlFederation:getOrganizationmanagerSamlFederation", args ?? new GetOrganizationmanagerSamlFederationInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetOrganizationmanagerSamlFederationResult>("yandex:index/getOrganizationmanagerSamlFederation:getOrganizationmanagerSamlFederation", args ?? new GetOrganizationmanagerSamlFederationInvokeArgs(), options.WithDefaults());
     }
 
 

@@ -33,7 +33,7 @@ namespace Pulumi.Yandex
         /// This data source is used to define [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) that can be used by other resources.
         /// </summary>
         public static Task<GetFunctionResult> InvokeAsync(GetFunctionArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetFunctionResult>("yandex:index/getFunction:getFunction", args ?? new GetFunctionArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFunctionResult>("yandex:index/getFunction:getFunction", args ?? new GetFunctionArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex Cloud Function. For more information about Yandex Cloud Functions, see 
@@ -57,7 +57,7 @@ namespace Pulumi.Yandex
         /// This data source is used to define [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) that can be used by other resources.
         /// </summary>
         public static Output<GetFunctionResult> Invoke(GetFunctionInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetFunctionResult>("yandex:index/getFunction:getFunction", args ?? new GetFunctionInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetFunctionResult>("yandex:index/getFunction:getFunction", args ?? new GetFunctionInvokeArgs(), options.WithDefaults());
     }
 
 

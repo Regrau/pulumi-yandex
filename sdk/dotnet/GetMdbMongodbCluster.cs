@@ -41,7 +41,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetMdbMongodbClusterResult> InvokeAsync(GetMdbMongodbClusterArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetMdbMongodbClusterResult>("yandex:index/getMdbMongodbCluster:getMdbMongodbCluster", args ?? new GetMdbMongodbClusterArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetMdbMongodbClusterResult>("yandex:index/getMdbMongodbCluster:getMdbMongodbCluster", args ?? new GetMdbMongodbClusterArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex Managed MongoDB cluster. For more information, see
@@ -73,7 +73,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetMdbMongodbClusterResult> Invoke(GetMdbMongodbClusterInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetMdbMongodbClusterResult>("yandex:index/getMdbMongodbCluster:getMdbMongodbCluster", args ?? new GetMdbMongodbClusterInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetMdbMongodbClusterResult>("yandex:index/getMdbMongodbCluster:getMdbMongodbCluster", args ?? new GetMdbMongodbClusterInvokeArgs(), options.WithDefaults());
     }
 
 

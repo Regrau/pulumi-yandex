@@ -33,7 +33,7 @@ namespace Pulumi.Yandex
         /// This data source is used to define [Yandex Cloud Functions Trigger](https://cloud.yandex.com/docs/functions/concepts/trigger) that can be used by other resources.
         /// </summary>
         public static Task<GetFunctionTriggerResult> InvokeAsync(GetFunctionTriggerArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetFunctionTriggerResult>("yandex:index/getFunctionTrigger:getFunctionTrigger", args ?? new GetFunctionTriggerArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetFunctionTriggerResult>("yandex:index/getFunctionTrigger:getFunctionTrigger", args ?? new GetFunctionTriggerArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex Cloud Function Trigger. For more information about Yandex Cloud Functions, see 
@@ -57,7 +57,7 @@ namespace Pulumi.Yandex
         /// This data source is used to define [Yandex Cloud Functions Trigger](https://cloud.yandex.com/docs/functions/concepts/trigger) that can be used by other resources.
         /// </summary>
         public static Output<GetFunctionTriggerResult> Invoke(GetFunctionTriggerInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetFunctionTriggerResult>("yandex:index/getFunctionTrigger:getFunctionTrigger", args ?? new GetFunctionTriggerInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetFunctionTriggerResult>("yandex:index/getFunctionTrigger:getFunctionTrigger", args ?? new GetFunctionTriggerInvokeArgs(), options.WithDefaults());
     }
 
 

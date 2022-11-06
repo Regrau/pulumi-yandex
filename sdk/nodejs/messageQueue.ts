@@ -170,11 +170,13 @@ export class MessageQueue extends pulumi.CustomResource {
             resourceInputs["receiveWaitTimeSeconds"] = args ? args.receiveWaitTimeSeconds : undefined;
             resourceInputs["redrivePolicy"] = args ? args.redrivePolicy : undefined;
             resourceInputs["regionId"] = args ? args.regionId : undefined;
-            resourceInputs["secretKey"] = args ? args.secretKey : undefined;
+            resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["visibilityTimeoutSeconds"] = args ? args.visibilityTimeoutSeconds : undefined;
             resourceInputs["arn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secretKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(MessageQueue.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -30,7 +30,7 @@ namespace Pulumi.Yandex
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("yandex");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("yandex");
 
         private static readonly __Value<string?> _cloudId = new __Value<string?>(() => __config.Get("cloudId"));
         /// <summary>

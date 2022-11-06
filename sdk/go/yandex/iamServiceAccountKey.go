@@ -80,6 +80,10 @@ func NewIamServiceAccountKey(ctx *pulumi.Context,
 	if args.ServiceAccountId == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceAccountId'")
 	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"privateKey",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource IamServiceAccountKey
 	err := ctx.RegisterResource("yandex:index/iamServiceAccountKey:IamServiceAccountKey", name, args, &resource, opts...)

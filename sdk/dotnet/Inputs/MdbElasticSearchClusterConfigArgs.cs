@@ -12,11 +12,21 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbElasticSearchClusterConfigArgs : global::Pulumi.ResourceArgs
     {
+        [Input("adminPassword", required: true)]
+        private Input<string>? _adminPassword;
+
         /// <summary>
         /// Password for admin user of Elasticsearch.
         /// </summary>
-        [Input("adminPassword", required: true)]
-        public Input<string> AdminPassword { get; set; } = null!;
+        public Input<string>? AdminPassword
+        {
+            get => _adminPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _adminPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Configuration for Elasticsearch data nodes subcluster. The structure is documented below.

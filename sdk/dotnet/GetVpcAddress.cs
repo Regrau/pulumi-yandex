@@ -33,7 +33,7 @@ namespace Pulumi.Yandex
         /// This data source is used to define [VPC Address] that can be used by other resources.
         /// </summary>
         public static Task<GetVpcAddressResult> InvokeAsync(GetVpcAddressArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetVpcAddressResult>("yandex:index/getVpcAddress:getVpcAddress", args ?? new GetVpcAddressArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpcAddressResult>("yandex:index/getVpcAddress:getVpcAddress", args ?? new GetVpcAddressArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex VPC address. For more information, see
@@ -57,7 +57,7 @@ namespace Pulumi.Yandex
         /// This data source is used to define [VPC Address] that can be used by other resources.
         /// </summary>
         public static Output<GetVpcAddressResult> Invoke(GetVpcAddressInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetVpcAddressResult>("yandex:index/getVpcAddress:getVpcAddress", args ?? new GetVpcAddressInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetVpcAddressResult>("yandex:index/getVpcAddress:getVpcAddress", args ?? new GetVpcAddressInvokeArgs(), options.WithDefaults());
     }
 
 

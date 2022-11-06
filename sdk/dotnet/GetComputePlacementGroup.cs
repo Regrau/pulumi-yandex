@@ -41,7 +41,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetComputePlacementGroupResult> InvokeAsync(GetComputePlacementGroupArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetComputePlacementGroupResult>("yandex:index/getComputePlacementGroup:getComputePlacementGroup", args ?? new GetComputePlacementGroupArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetComputePlacementGroupResult>("yandex:index/getComputePlacementGroup:getComputePlacementGroup", args ?? new GetComputePlacementGroupArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex Compute Placement group. For more information, see
@@ -73,7 +73,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetComputePlacementGroupResult> Invoke(GetComputePlacementGroupInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetComputePlacementGroupResult>("yandex:index/getComputePlacementGroup:getComputePlacementGroup", args ?? new GetComputePlacementGroupInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetComputePlacementGroupResult>("yandex:index/getComputePlacementGroup:getComputePlacementGroup", args ?? new GetComputePlacementGroupInvokeArgs(), options.WithDefaults());
     }
 
 

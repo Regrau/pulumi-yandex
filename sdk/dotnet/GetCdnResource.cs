@@ -43,7 +43,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Task<GetCdnResourceResult> InvokeAsync(GetCdnResourceArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetCdnResourceResult>("yandex:index/getCdnResource:getCdnResource", args ?? new GetCdnResourceArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetCdnResourceResult>("yandex:index/getCdnResource:getCdnResource", args ?? new GetCdnResourceArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get information about a Yandex CDN Resource. For more information, see
@@ -77,7 +77,7 @@ namespace Pulumi.Yandex
         /// {{% /examples %}}
         /// </summary>
         public static Output<GetCdnResourceResult> Invoke(GetCdnResourceInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetCdnResourceResult>("yandex:index/getCdnResource:getCdnResource", args ?? new GetCdnResourceInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetCdnResourceResult>("yandex:index/getCdnResource:getCdnResource", args ?? new GetCdnResourceInvokeArgs(), options.WithDefaults());
     }
 
 

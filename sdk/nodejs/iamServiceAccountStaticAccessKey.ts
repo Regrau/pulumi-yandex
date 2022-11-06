@@ -122,6 +122,8 @@ export class IamServiceAccountStaticAccessKey extends pulumi.CustomResource {
             resourceInputs["secretKey"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["secretKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(IamServiceAccountStaticAccessKey.__pulumiType, name, resourceInputs, opts);
     }
 }

@@ -1662,13 +1662,15 @@ class StorageBucket(pulumi.CustomResource):
             __props__.__dict__["loggings"] = loggings
             __props__.__dict__["max_size"] = max_size
             __props__.__dict__["policy"] = policy
-            __props__.__dict__["secret_key"] = secret_key
+            __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["server_side_encryption_configuration"] = server_side_encryption_configuration
             __props__.__dict__["versioning"] = versioning
             __props__.__dict__["website"] = website
             __props__.__dict__["website_domain"] = website_domain
             __props__.__dict__["website_endpoint"] = website_endpoint
             __props__.__dict__["bucket_domain_name"] = None
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretKey"])
+        opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(StorageBucket, __self__).__init__(
             'yandex:index/storageBucket:StorageBucket',
             resource_name,

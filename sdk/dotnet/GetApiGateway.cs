@@ -12,10 +12,10 @@ namespace Pulumi.Yandex
     public static class GetApiGateway
     {
         public static Task<GetApiGatewayResult> InvokeAsync(GetApiGatewayArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.InvokeAsync<GetApiGatewayResult>("yandex:index/getApiGateway:getApiGateway", args ?? new GetApiGatewayArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.InvokeAsync<GetApiGatewayResult>("yandex:index/getApiGateway:getApiGateway", args ?? new GetApiGatewayArgs(), options.WithDefaults());
 
         public static Output<GetApiGatewayResult> Invoke(GetApiGatewayInvokeArgs? args = null, InvokeOptions? options = null)
-            => Pulumi.Deployment.Instance.Invoke<GetApiGatewayResult>("yandex:index/getApiGateway:getApiGateway", args ?? new GetApiGatewayInvokeArgs(), options.WithDefaults());
+            => global::Pulumi.Deployment.Instance.Invoke<GetApiGatewayResult>("yandex:index/getApiGateway:getApiGateway", args ?? new GetApiGatewayInvokeArgs(), options.WithDefaults());
     }
 
 
