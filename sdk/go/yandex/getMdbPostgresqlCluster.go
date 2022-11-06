@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			foo, err := yandex.GetMdbPostgresqlCluster(ctx, &GetMdbPostgresqlClusterArgs{
+//			foo, err := yandex.LookupMdbPostgresqlCluster(ctx, &GetMdbPostgresqlClusterArgs{
 //				Name: pulumi.StringRef("test"),
 //			}, nil)
 //			if err != nil {
@@ -40,9 +40,9 @@ import (
 //	}
 //
 // ```
-func GetMdbPostgresqlCluster(ctx *pulumi.Context, args *GetMdbPostgresqlClusterArgs, opts ...pulumi.InvokeOption) (*GetMdbPostgresqlClusterResult, error) {
+func LookupMdbPostgresqlCluster(ctx *pulumi.Context, args *LookupMdbPostgresqlClusterArgs, opts ...pulumi.InvokeOption) (*LookupMdbPostgresqlClusterResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
-	var rv GetMdbPostgresqlClusterResult
+	var rv LookupMdbPostgresqlClusterResult
 	err := ctx.Invoke("yandex:index/getMdbPostgresqlCluster:getMdbPostgresqlCluster", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -51,7 +51,7 @@ func GetMdbPostgresqlCluster(ctx *pulumi.Context, args *GetMdbPostgresqlClusterA
 }
 
 // A collection of arguments for invoking getMdbPostgresqlCluster.
-type GetMdbPostgresqlClusterArgs struct {
+type LookupMdbPostgresqlClusterArgs struct {
 	// The ID of the PostgreSQL cluster.
 	ClusterId          *string `pulumi:"clusterId"`
 	DeletionProtection *bool   `pulumi:"deletionProtection"`
@@ -64,7 +64,7 @@ type GetMdbPostgresqlClusterArgs struct {
 }
 
 // A collection of values returned by getMdbPostgresqlCluster.
-type GetMdbPostgresqlClusterResult struct {
+type LookupMdbPostgresqlClusterResult struct {
 	ClusterId string `pulumi:"clusterId"`
 	// Configuration of the PostgreSQL cluster. The structure is documented below.
 	Configs []GetMdbPostgresqlClusterConfig `pulumi:"configs"`
@@ -96,21 +96,21 @@ type GetMdbPostgresqlClusterResult struct {
 	Status string `pulumi:"status"`
 }
 
-func GetMdbPostgresqlClusterOutput(ctx *pulumi.Context, args GetMdbPostgresqlClusterOutputArgs, opts ...pulumi.InvokeOption) GetMdbPostgresqlClusterResultOutput {
+func LookupMdbPostgresqlClusterOutput(ctx *pulumi.Context, args LookupMdbPostgresqlClusterOutputArgs, opts ...pulumi.InvokeOption) LookupMdbPostgresqlClusterResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetMdbPostgresqlClusterResult, error) {
-			args := v.(GetMdbPostgresqlClusterArgs)
-			r, err := GetMdbPostgresqlCluster(ctx, &args, opts...)
-			var s GetMdbPostgresqlClusterResult
+		ApplyT(func(v interface{}) (LookupMdbPostgresqlClusterResult, error) {
+			args := v.(LookupMdbPostgresqlClusterArgs)
+			r, err := LookupMdbPostgresqlCluster(ctx, &args, opts...)
+			var s LookupMdbPostgresqlClusterResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetMdbPostgresqlClusterResultOutput)
+		}).(LookupMdbPostgresqlClusterResultOutput)
 }
 
 // A collection of arguments for invoking getMdbPostgresqlCluster.
-type GetMdbPostgresqlClusterOutputArgs struct {
+type LookupMdbPostgresqlClusterOutputArgs struct {
 	// The ID of the PostgreSQL cluster.
 	ClusterId          pulumi.StringPtrInput `pulumi:"clusterId"`
 	DeletionProtection pulumi.BoolPtrInput   `pulumi:"deletionProtection"`
@@ -122,107 +122,107 @@ type GetMdbPostgresqlClusterOutputArgs struct {
 	Name pulumi.StringPtrInput `pulumi:"name"`
 }
 
-func (GetMdbPostgresqlClusterOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMdbPostgresqlClusterArgs)(nil)).Elem()
+func (LookupMdbPostgresqlClusterOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupMdbPostgresqlClusterArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getMdbPostgresqlCluster.
-type GetMdbPostgresqlClusterResultOutput struct{ *pulumi.OutputState }
+type LookupMdbPostgresqlClusterResultOutput struct{ *pulumi.OutputState }
 
-func (GetMdbPostgresqlClusterResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetMdbPostgresqlClusterResult)(nil)).Elem()
+func (LookupMdbPostgresqlClusterResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupMdbPostgresqlClusterResult)(nil)).Elem()
 }
 
-func (o GetMdbPostgresqlClusterResultOutput) ToGetMdbPostgresqlClusterResultOutput() GetMdbPostgresqlClusterResultOutput {
+func (o LookupMdbPostgresqlClusterResultOutput) ToLookupMdbPostgresqlClusterResultOutput() LookupMdbPostgresqlClusterResultOutput {
 	return o
 }
 
-func (o GetMdbPostgresqlClusterResultOutput) ToGetMdbPostgresqlClusterResultOutputWithContext(ctx context.Context) GetMdbPostgresqlClusterResultOutput {
+func (o LookupMdbPostgresqlClusterResultOutput) ToLookupMdbPostgresqlClusterResultOutputWithContext(ctx context.Context) LookupMdbPostgresqlClusterResultOutput {
 	return o
 }
 
-func (o GetMdbPostgresqlClusterResultOutput) ClusterId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) string { return v.ClusterId }).(pulumi.StringOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) string { return v.ClusterId }).(pulumi.StringOutput)
 }
 
 // Configuration of the PostgreSQL cluster. The structure is documented below.
-func (o GetMdbPostgresqlClusterResultOutput) Configs() GetMdbPostgresqlClusterConfigArrayOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) []GetMdbPostgresqlClusterConfig { return v.Configs }).(GetMdbPostgresqlClusterConfigArrayOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) Configs() GetMdbPostgresqlClusterConfigArrayOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) []GetMdbPostgresqlClusterConfig { return v.Configs }).(GetMdbPostgresqlClusterConfigArrayOutput)
 }
 
 // Timestamp of cluster creation.
-func (o GetMdbPostgresqlClusterResultOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-func (o GetMdbPostgresqlClusterResultOutput) DeletionProtection() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) bool { return v.DeletionProtection }).(pulumi.BoolOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) DeletionProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) bool { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
 // Description of the PostgreSQL cluster.
-func (o GetMdbPostgresqlClusterResultOutput) Description() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) *string { return v.Description }).(pulumi.StringPtrOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // Deployment environment of the PostgreSQL cluster.
-func (o GetMdbPostgresqlClusterResultOutput) Environment() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) string { return v.Environment }).(pulumi.StringOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) Environment() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) string { return v.Environment }).(pulumi.StringOutput)
 }
 
-func (o GetMdbPostgresqlClusterResultOutput) FolderId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) string { return v.FolderId }).(pulumi.StringOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) FolderId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) string { return v.FolderId }).(pulumi.StringOutput)
 }
 
 // Aggregated health of the cluster.
-func (o GetMdbPostgresqlClusterResultOutput) Health() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) string { return v.Health }).(pulumi.StringOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) Health() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) string { return v.Health }).(pulumi.StringOutput)
 }
 
-func (o GetMdbPostgresqlClusterResultOutput) HostGroupIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) []string { return v.HostGroupIds }).(pulumi.StringArrayOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) HostGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) []string { return v.HostGroupIds }).(pulumi.StringArrayOutput)
 }
 
 // A host of the PostgreSQL cluster. The structure is documented below.
-func (o GetMdbPostgresqlClusterResultOutput) Hosts() GetMdbPostgresqlClusterHostArrayOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) []GetMdbPostgresqlClusterHost { return v.Hosts }).(GetMdbPostgresqlClusterHostArrayOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) Hosts() GetMdbPostgresqlClusterHostArrayOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) []GetMdbPostgresqlClusterHost { return v.Hosts }).(GetMdbPostgresqlClusterHostArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o GetMdbPostgresqlClusterResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // A set of key/value label pairs to assign to the PostgreSQL cluster.
-func (o GetMdbPostgresqlClusterResultOutput) Labels() pulumi.StringMapOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
 // Maintenance window settings of the PostgreSQL cluster. The structure is documented below.
-func (o GetMdbPostgresqlClusterResultOutput) MaintenanceWindows() GetMdbPostgresqlClusterMaintenanceWindowArrayOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) []GetMdbPostgresqlClusterMaintenanceWindow {
+func (o LookupMdbPostgresqlClusterResultOutput) MaintenanceWindows() GetMdbPostgresqlClusterMaintenanceWindowArrayOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) []GetMdbPostgresqlClusterMaintenanceWindow {
 		return v.MaintenanceWindows
 	}).(GetMdbPostgresqlClusterMaintenanceWindowArrayOutput)
 }
 
-func (o GetMdbPostgresqlClusterResultOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) string { return v.Name }).(pulumi.StringOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
 // ID of the network, to which the PostgreSQL cluster belongs.
-func (o GetMdbPostgresqlClusterResultOutput) NetworkId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) string { return v.NetworkId }).(pulumi.StringOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) NetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) string { return v.NetworkId }).(pulumi.StringOutput)
 }
 
 // A set of ids of security groups assigned to hosts of the cluster.
-func (o GetMdbPostgresqlClusterResultOutput) SecurityGroupIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) []string { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) SecurityGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) []string { return v.SecurityGroupIds }).(pulumi.StringArrayOutput)
 }
 
 // Status of the cluster.
-func (o GetMdbPostgresqlClusterResultOutput) Status() pulumi.StringOutput {
-	return o.ApplyT(func(v GetMdbPostgresqlClusterResult) string { return v.Status }).(pulumi.StringOutput)
+func (o LookupMdbPostgresqlClusterResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetMdbPostgresqlClusterResultOutput{})
+	pulumi.RegisterOutputType(LookupMdbPostgresqlClusterResultOutput{})
 }

@@ -124,6 +124,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MdbMongodbCluster{}
 	case "yandex:index/mdbMysqlCluster:MdbMysqlCluster":
 		r = &MdbMysqlCluster{}
+	case "yandex:index/mdbPostgresqlCluster:MdbPostgresqlCluster":
+		r = &MdbPostgresqlCluster{}
 	case "yandex:index/mdbRedisCluster:MdbRedisCluster":
 		r = &MdbRedisCluster{}
 	case "yandex:index/mdbSqlServerCluster:MdbSqlServerCluster":
@@ -458,6 +460,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"yandex",
 		"index/mdbMysqlCluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/mdbPostgresqlCluster",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

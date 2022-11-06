@@ -346,6 +346,19 @@ __all__ = [
     'MdbMysqlClusterUserArgs',
     'MdbMysqlClusterUserConnectionLimitsArgs',
     'MdbMysqlClusterUserPermissionArgs',
+    'MdbPostgresqlClusterConfigArgs',
+    'MdbPostgresqlClusterConfigAccessArgs',
+    'MdbPostgresqlClusterConfigBackupWindowStartArgs',
+    'MdbPostgresqlClusterConfigPerformanceDiagnosticsArgs',
+    'MdbPostgresqlClusterConfigPoolerConfigArgs',
+    'MdbPostgresqlClusterConfigResourcesArgs',
+    'MdbPostgresqlClusterDatabaseArgs',
+    'MdbPostgresqlClusterDatabaseExtensionArgs',
+    'MdbPostgresqlClusterHostArgs',
+    'MdbPostgresqlClusterMaintenanceWindowArgs',
+    'MdbPostgresqlClusterRestoreArgs',
+    'MdbPostgresqlClusterUserArgs',
+    'MdbPostgresqlClusterUserPermissionArgs',
     'MdbRedisClusterConfigArgs',
     'MdbRedisClusterHostArgs',
     'MdbRedisClusterMaintenanceWindowArgs',
@@ -21661,6 +21674,902 @@ class MdbMysqlClusterUserPermissionArgs:
     @roles.setter
     def roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "roles", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlClusterConfigArgs:
+    def __init__(__self__, *,
+                 resources: pulumi.Input['MdbPostgresqlClusterConfigResourcesArgs'],
+                 version: pulumi.Input[str],
+                 access: Optional[pulumi.Input['MdbPostgresqlClusterConfigAccessArgs']] = None,
+                 autofailover: Optional[pulumi.Input[bool]] = None,
+                 backup_retain_period_days: Optional[pulumi.Input[int]] = None,
+                 backup_window_start: Optional[pulumi.Input['MdbPostgresqlClusterConfigBackupWindowStartArgs']] = None,
+                 performance_diagnostics: Optional[pulumi.Input['MdbPostgresqlClusterConfigPerformanceDiagnosticsArgs']] = None,
+                 pooler_config: Optional[pulumi.Input['MdbPostgresqlClusterConfigPoolerConfigArgs']] = None,
+                 postgresql_config: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input['MdbPostgresqlClusterConfigResourcesArgs'] resources: Resources allocated to hosts of the PostgreSQL cluster. The structure is documented below.
+        :param pulumi.Input[str] version: Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
+        :param pulumi.Input['MdbPostgresqlClusterConfigAccessArgs'] access: Access policy to the PostgreSQL cluster. The structure is documented below.
+        :param pulumi.Input[bool] autofailover: Configuration setting which enables/disables autofailover in cluster.
+        :param pulumi.Input[int] backup_retain_period_days: The period in days during which backups are stored.
+        :param pulumi.Input['MdbPostgresqlClusterConfigBackupWindowStartArgs'] backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        :param pulumi.Input['MdbPostgresqlClusterConfigPerformanceDiagnosticsArgs'] performance_diagnostics: Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-postgresql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        :param pulumi.Input['MdbPostgresqlClusterConfigPoolerConfigArgs'] pooler_config: Configuration of the connection pooler. The structure is documented below.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] postgresql_config: PostgreSQL cluster config. Detail info in "postresql config" section (documented below).
+        """
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "version", version)
+        if access is not None:
+            pulumi.set(__self__, "access", access)
+        if autofailover is not None:
+            pulumi.set(__self__, "autofailover", autofailover)
+        if backup_retain_period_days is not None:
+            pulumi.set(__self__, "backup_retain_period_days", backup_retain_period_days)
+        if backup_window_start is not None:
+            pulumi.set(__self__, "backup_window_start", backup_window_start)
+        if performance_diagnostics is not None:
+            pulumi.set(__self__, "performance_diagnostics", performance_diagnostics)
+        if pooler_config is not None:
+            pulumi.set(__self__, "pooler_config", pooler_config)
+        if postgresql_config is not None:
+            pulumi.set(__self__, "postgresql_config", postgresql_config)
+
+    @property
+    @pulumi.getter
+    def resources(self) -> pulumi.Input['MdbPostgresqlClusterConfigResourcesArgs']:
+        """
+        Resources allocated to hosts of the PostgreSQL cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources")
+
+    @resources.setter
+    def resources(self, value: pulumi.Input['MdbPostgresqlClusterConfigResourcesArgs']):
+        pulumi.set(self, "resources", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> pulumi.Input[str]:
+        """
+        Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: pulumi.Input[str]):
+        pulumi.set(self, "version", value)
+
+    @property
+    @pulumi.getter
+    def access(self) -> Optional[pulumi.Input['MdbPostgresqlClusterConfigAccessArgs']]:
+        """
+        Access policy to the PostgreSQL cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "access")
+
+    @access.setter
+    def access(self, value: Optional[pulumi.Input['MdbPostgresqlClusterConfigAccessArgs']]):
+        pulumi.set(self, "access", value)
+
+    @property
+    @pulumi.getter
+    def autofailover(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Configuration setting which enables/disables autofailover in cluster.
+        """
+        return pulumi.get(self, "autofailover")
+
+    @autofailover.setter
+    def autofailover(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "autofailover", value)
+
+    @property
+    @pulumi.getter(name="backupRetainPeriodDays")
+    def backup_retain_period_days(self) -> Optional[pulumi.Input[int]]:
+        """
+        The period in days during which backups are stored.
+        """
+        return pulumi.get(self, "backup_retain_period_days")
+
+    @backup_retain_period_days.setter
+    def backup_retain_period_days(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "backup_retain_period_days", value)
+
+    @property
+    @pulumi.getter(name="backupWindowStart")
+    def backup_window_start(self) -> Optional[pulumi.Input['MdbPostgresqlClusterConfigBackupWindowStartArgs']]:
+        """
+        Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        """
+        return pulumi.get(self, "backup_window_start")
+
+    @backup_window_start.setter
+    def backup_window_start(self, value: Optional[pulumi.Input['MdbPostgresqlClusterConfigBackupWindowStartArgs']]):
+        pulumi.set(self, "backup_window_start", value)
+
+    @property
+    @pulumi.getter(name="performanceDiagnostics")
+    def performance_diagnostics(self) -> Optional[pulumi.Input['MdbPostgresqlClusterConfigPerformanceDiagnosticsArgs']]:
+        """
+        Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-postgresql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+        """
+        return pulumi.get(self, "performance_diagnostics")
+
+    @performance_diagnostics.setter
+    def performance_diagnostics(self, value: Optional[pulumi.Input['MdbPostgresqlClusterConfigPerformanceDiagnosticsArgs']]):
+        pulumi.set(self, "performance_diagnostics", value)
+
+    @property
+    @pulumi.getter(name="poolerConfig")
+    def pooler_config(self) -> Optional[pulumi.Input['MdbPostgresqlClusterConfigPoolerConfigArgs']]:
+        """
+        Configuration of the connection pooler. The structure is documented below.
+        """
+        return pulumi.get(self, "pooler_config")
+
+    @pooler_config.setter
+    def pooler_config(self, value: Optional[pulumi.Input['MdbPostgresqlClusterConfigPoolerConfigArgs']]):
+        pulumi.set(self, "pooler_config", value)
+
+    @property
+    @pulumi.getter(name="postgresqlConfig")
+    def postgresql_config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        PostgreSQL cluster config. Detail info in "postresql config" section (documented below).
+        """
+        return pulumi.get(self, "postgresql_config")
+
+    @postgresql_config.setter
+    def postgresql_config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "postgresql_config", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlClusterConfigAccessArgs:
+    def __init__(__self__, *,
+                 data_lens: Optional[pulumi.Input[bool]] = None,
+                 data_transfer: Optional[pulumi.Input[bool]] = None,
+                 serverless: Optional[pulumi.Input[bool]] = None,
+                 web_sql: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] data_lens: Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        :param pulumi.Input[bool] data_transfer: Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        :param pulumi.Input[bool] serverless: Allow access for [connection to managed databases from functions](https://cloud.yandex.com/docs/functions/operations/database-connection)
+        :param pulumi.Input[bool] web_sql: Allow access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-postgresql/operations/web-sql-query)
+        """
+        if data_lens is not None:
+            pulumi.set(__self__, "data_lens", data_lens)
+        if data_transfer is not None:
+            pulumi.set(__self__, "data_transfer", data_transfer)
+        if serverless is not None:
+            pulumi.set(__self__, "serverless", serverless)
+        if web_sql is not None:
+            pulumi.set(__self__, "web_sql", web_sql)
+
+    @property
+    @pulumi.getter(name="dataLens")
+    def data_lens(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+        """
+        return pulumi.get(self, "data_lens")
+
+    @data_lens.setter
+    def data_lens(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "data_lens", value)
+
+    @property
+    @pulumi.getter(name="dataTransfer")
+    def data_transfer(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+        """
+        return pulumi.get(self, "data_transfer")
+
+    @data_transfer.setter
+    def data_transfer(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "data_transfer", value)
+
+    @property
+    @pulumi.getter
+    def serverless(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for [connection to managed databases from functions](https://cloud.yandex.com/docs/functions/operations/database-connection)
+        """
+        return pulumi.get(self, "serverless")
+
+    @serverless.setter
+    def serverless(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "serverless", value)
+
+    @property
+    @pulumi.getter(name="webSql")
+    def web_sql(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-postgresql/operations/web-sql-query)
+        """
+        return pulumi.get(self, "web_sql")
+
+    @web_sql.setter
+    def web_sql(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "web_sql", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlClusterConfigBackupWindowStartArgs:
+    def __init__(__self__, *,
+                 hours: Optional[pulumi.Input[int]] = None,
+                 minutes: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] hours: The hour at which backup will be started (UTC).
+        :param pulumi.Input[int] minutes: The minute at which backup will be started (UTC).
+        """
+        if hours is not None:
+            pulumi.set(__self__, "hours", hours)
+        if minutes is not None:
+            pulumi.set(__self__, "minutes", minutes)
+
+    @property
+    @pulumi.getter
+    def hours(self) -> Optional[pulumi.Input[int]]:
+        """
+        The hour at which backup will be started (UTC).
+        """
+        return pulumi.get(self, "hours")
+
+    @hours.setter
+    def hours(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "hours", value)
+
+    @property
+    @pulumi.getter
+    def minutes(self) -> Optional[pulumi.Input[int]]:
+        """
+        The minute at which backup will be started (UTC).
+        """
+        return pulumi.get(self, "minutes")
+
+    @minutes.setter
+    def minutes(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "minutes", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlClusterConfigPerformanceDiagnosticsArgs:
+    def __init__(__self__, *,
+                 sessions_sampling_interval: pulumi.Input[int],
+                 statements_sampling_interval: pulumi.Input[int],
+                 enabled: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[int] sessions_sampling_interval: Interval (in seconds) for pg_stat_activity sampling Acceptable values are 1 to 86400, inclusive.
+        :param pulumi.Input[int] statements_sampling_interval: Interval (in seconds) for pg_stat_statements sampling Acceptable values are 1 to 86400, inclusive.
+        :param pulumi.Input[bool] enabled: Enable performance diagnostics
+        """
+        pulumi.set(__self__, "sessions_sampling_interval", sessions_sampling_interval)
+        pulumi.set(__self__, "statements_sampling_interval", statements_sampling_interval)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter(name="sessionsSamplingInterval")
+    def sessions_sampling_interval(self) -> pulumi.Input[int]:
+        """
+        Interval (in seconds) for pg_stat_activity sampling Acceptable values are 1 to 86400, inclusive.
+        """
+        return pulumi.get(self, "sessions_sampling_interval")
+
+    @sessions_sampling_interval.setter
+    def sessions_sampling_interval(self, value: pulumi.Input[int]):
+        pulumi.set(self, "sessions_sampling_interval", value)
+
+    @property
+    @pulumi.getter(name="statementsSamplingInterval")
+    def statements_sampling_interval(self) -> pulumi.Input[int]:
+        """
+        Interval (in seconds) for pg_stat_statements sampling Acceptable values are 1 to 86400, inclusive.
+        """
+        return pulumi.get(self, "statements_sampling_interval")
+
+    @statements_sampling_interval.setter
+    def statements_sampling_interval(self, value: pulumi.Input[int]):
+        pulumi.set(self, "statements_sampling_interval", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable performance diagnostics
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlClusterConfigPoolerConfigArgs:
+    def __init__(__self__, *,
+                 pool_discard: Optional[pulumi.Input[bool]] = None,
+                 pooling_mode: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] pool_discard: Setting `pool_discard` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_discard-yesno).
+        :param pulumi.Input[str] pooling_mode: Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
+        """
+        if pool_discard is not None:
+            pulumi.set(__self__, "pool_discard", pool_discard)
+        if pooling_mode is not None:
+            pulumi.set(__self__, "pooling_mode", pooling_mode)
+
+    @property
+    @pulumi.getter(name="poolDiscard")
+    def pool_discard(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Setting `pool_discard` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_discard-yesno).
+        """
+        return pulumi.get(self, "pool_discard")
+
+    @pool_discard.setter
+    def pool_discard(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "pool_discard", value)
+
+    @property
+    @pulumi.getter(name="poolingMode")
+    def pooling_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
+        """
+        return pulumi.get(self, "pooling_mode")
+
+    @pooling_mode.setter
+    def pooling_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pooling_mode", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlClusterConfigResourcesArgs:
+    def __init__(__self__, *,
+                 disk_size: pulumi.Input[int],
+                 resource_preset_id: pulumi.Input[str],
+                 disk_type_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a PostgreSQL host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of PostgreSQL hosts.
+        """
+        pulumi.set(__self__, "disk_size", disk_size)
+        pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+        if disk_type_id is not None:
+            pulumi.set(__self__, "disk_type_id", disk_type_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a PostgreSQL host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: pulumi.Input[int]):
+        pulumi.set(self, "disk_size", value)
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "resource_preset_id")
+
+    @resource_preset_id.setter
+    def resource_preset_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "resource_preset_id", value)
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type of the storage of PostgreSQL hosts.
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @disk_type_id.setter
+    def disk_type_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "disk_type_id", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlClusterDatabaseArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 owner: pulumi.Input[str],
+                 extensions: Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterDatabaseExtensionArgs']]]] = None,
+                 lc_collate: Optional[pulumi.Input[str]] = None,
+                 lc_type: Optional[pulumi.Input[str]] = None,
+                 template_db: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
+               Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner", owner)
+        if extensions is not None:
+            pulumi.set(__self__, "extensions", extensions)
+        if lc_collate is not None:
+            pulumi.set(__self__, "lc_collate", lc_collate)
+        if lc_type is not None:
+            pulumi.set(__self__, "lc_type", lc_type)
+        if template_db is not None:
+            pulumi.set(__self__, "template_db", template_db)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
+        Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def owner(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "owner")
+
+    @owner.setter
+    def owner(self, value: pulumi.Input[str]):
+        pulumi.set(self, "owner", value)
+
+    @property
+    @pulumi.getter
+    def extensions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterDatabaseExtensionArgs']]]]:
+        return pulumi.get(self, "extensions")
+
+    @extensions.setter
+    def extensions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterDatabaseExtensionArgs']]]]):
+        pulumi.set(self, "extensions", value)
+
+    @property
+    @pulumi.getter(name="lcCollate")
+    def lc_collate(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "lc_collate")
+
+    @lc_collate.setter
+    def lc_collate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lc_collate", value)
+
+    @property
+    @pulumi.getter(name="lcType")
+    def lc_type(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "lc_type")
+
+    @lc_type.setter
+    def lc_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "lc_type", value)
+
+    @property
+    @pulumi.getter(name="templateDb")
+    def template_db(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "template_db")
+
+    @template_db.setter
+    def template_db(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "template_db", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlClusterDatabaseExtensionArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 version: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
+               Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
+        :param pulumi.Input[str] version: Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
+        """
+        pulumi.set(__self__, "name", name)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
+        Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlClusterHostArgs:
+    def __init__(__self__, *,
+                 zone: pulumi.Input[str],
+                 assign_public_ip: Optional[pulumi.Input[bool]] = None,
+                 fqdn: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 priority: Optional[pulumi.Input[int]] = None,
+                 replication_source: Optional[pulumi.Input[str]] = None,
+                 replication_source_name: Optional[pulumi.Input[str]] = None,
+                 role: Optional[pulumi.Input[str]] = None,
+                 subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] zone: The availability zone where the PostgreSQL host will be created.
+        :param pulumi.Input[bool] assign_public_ip: Sets whether the host should get a public IP address on creation. It can be changed on the fly only when `name` is set.
+        :param pulumi.Input[str] fqdn: The fully qualified domain name of the host.
+        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
+               Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
+        :param pulumi.Input[int] priority: Host priority in HA group. It works only when `name` is set.
+        :param pulumi.Input[str] replication_source: Host replication source (fqdn), when replication_source is empty then host is in HA group.
+        :param pulumi.Input[str] replication_source_name: Host replication source name points to host's `name` from which this host should replicate. When not set then host in HA group. It works only when `name` is set.
+        :param pulumi.Input[str] subnet_id: The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        """
+        pulumi.set(__self__, "zone", zone)
+        if assign_public_ip is not None:
+            pulumi.set(__self__, "assign_public_ip", assign_public_ip)
+        if fqdn is not None:
+            pulumi.set(__self__, "fqdn", fqdn)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if replication_source is not None:
+            pulumi.set(__self__, "replication_source", replication_source)
+        if replication_source_name is not None:
+            pulumi.set(__self__, "replication_source_name", replication_source_name)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @property
+    @pulumi.getter
+    def zone(self) -> pulumi.Input[str]:
+        """
+        The availability zone where the PostgreSQL host will be created.
+        """
+        return pulumi.get(self, "zone")
+
+    @zone.setter
+    def zone(self, value: pulumi.Input[str]):
+        pulumi.set(self, "zone", value)
+
+    @property
+    @pulumi.getter(name="assignPublicIp")
+    def assign_public_ip(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Sets whether the host should get a public IP address on creation. It can be changed on the fly only when `name` is set.
+        """
+        return pulumi.get(self, "assign_public_ip")
+
+    @assign_public_ip.setter
+    def assign_public_ip(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "assign_public_ip", value)
+
+    @property
+    @pulumi.getter
+    def fqdn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The fully qualified domain name of the host.
+        """
+        return pulumi.get(self, "fqdn")
+
+    @fqdn.setter
+    def fqdn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fqdn", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
+        Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[pulumi.Input[int]]:
+        """
+        Host priority in HA group. It works only when `name` is set.
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "priority", value)
+
+    @property
+    @pulumi.getter(name="replicationSource")
+    def replication_source(self) -> Optional[pulumi.Input[str]]:
+        """
+        Host replication source (fqdn), when replication_source is empty then host is in HA group.
+        """
+        return pulumi.get(self, "replication_source")
+
+    @replication_source.setter
+    def replication_source(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "replication_source", value)
+
+    @property
+    @pulumi.getter(name="replicationSourceName")
+    def replication_source_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Host replication source name points to host's `name` from which this host should replicate. When not set then host in HA group. It works only when `name` is set.
+        """
+        return pulumi.get(self, "replication_source_name")
+
+    @replication_source_name.setter
+    def replication_source_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "replication_source_name", value)
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @subnet_id.setter
+    def subnet_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_id", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlClusterMaintenanceWindowArgs:
+    def __init__(__self__, *,
+                 type: pulumi.Input[str],
+                 day: Optional[pulumi.Input[str]] = None,
+                 hour: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param pulumi.Input[str] day: Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+        :param pulumi.Input[int] hour: Hour of the day in UTC (in `HH` format). Allowed value is between 1 and 24.
+        """
+        pulumi.set(__self__, "type", type)
+        if day is not None:
+            pulumi.set(__self__, "day", day)
+        if hour is not None:
+            pulumi.set(__self__, "hour", hour)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def day(self) -> Optional[pulumi.Input[str]]:
+        """
+        Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+        """
+        return pulumi.get(self, "day")
+
+    @day.setter
+    def day(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "day", value)
+
+    @property
+    @pulumi.getter
+    def hour(self) -> Optional[pulumi.Input[int]]:
+        """
+        Hour of the day in UTC (in `HH` format). Allowed value is between 1 and 24.
+        """
+        return pulumi.get(self, "hour")
+
+    @hour.setter
+    def hour(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "hour", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlClusterRestoreArgs:
+    def __init__(__self__, *,
+                 backup_id: pulumi.Input[str],
+                 time: Optional[pulumi.Input[str]] = None,
+                 time_inclusive: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[str] backup_id: Backup ID. The cluster will be created from the specified backup. [How to get a list of PostgreSQL backups](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-backups).
+        :param pulumi.Input[str] time: Timestamp of the moment to which the PostgreSQL cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
+        :param pulumi.Input[bool] time_inclusive: Flag that indicates whether a database should be restored to the first backup point available just after the timestamp specified in the [time] field instead of just before.  
+               Possible values:
+               - false (default) — the restore point refers to the first backup moment before [time].
+               - true — the restore point refers to the first backup point after [time].
+        """
+        pulumi.set(__self__, "backup_id", backup_id)
+        if time is not None:
+            pulumi.set(__self__, "time", time)
+        if time_inclusive is not None:
+            pulumi.set(__self__, "time_inclusive", time_inclusive)
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> pulumi.Input[str]:
+        """
+        Backup ID. The cluster will be created from the specified backup. [How to get a list of PostgreSQL backups](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-backups).
+        """
+        return pulumi.get(self, "backup_id")
+
+    @backup_id.setter
+    def backup_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "backup_id", value)
+
+    @property
+    @pulumi.getter
+    def time(self) -> Optional[pulumi.Input[str]]:
+        """
+        Timestamp of the moment to which the PostgreSQL cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
+        """
+        return pulumi.get(self, "time")
+
+    @time.setter
+    def time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "time", value)
+
+    @property
+    @pulumi.getter(name="timeInclusive")
+    def time_inclusive(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that indicates whether a database should be restored to the first backup point available just after the timestamp specified in the [time] field instead of just before.  
+        Possible values:
+        - false (default) — the restore point refers to the first backup moment before [time].
+        - true — the restore point refers to the first backup point after [time].
+        """
+        return pulumi.get(self, "time_inclusive")
+
+    @time_inclusive.setter
+    def time_inclusive(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "time_inclusive", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlClusterUserArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 password: pulumi.Input[str],
+                 conn_limit: Optional[pulumi.Input[int]] = None,
+                 grants: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 login: Optional[pulumi.Input[bool]] = None,
+                 permissions: Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserPermissionArgs']]]] = None,
+                 settings: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
+               Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "password", password)
+        if conn_limit is not None:
+            pulumi.set(__self__, "conn_limit", conn_limit)
+        if grants is not None:
+            pulumi.set(__self__, "grants", grants)
+        if login is not None:
+            pulumi.set(__self__, "login", login)
+        if permissions is not None:
+            pulumi.set(__self__, "permissions", permissions)
+        if settings is not None:
+            pulumi.set(__self__, "settings", settings)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
+        Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: pulumi.Input[str]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter(name="connLimit")
+    def conn_limit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "conn_limit")
+
+    @conn_limit.setter
+    def conn_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "conn_limit", value)
+
+    @property
+    @pulumi.getter
+    def grants(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "grants")
+
+    @grants.setter
+    def grants(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "grants", value)
+
+    @property
+    @pulumi.getter
+    def login(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "login")
+
+    @login.setter
+    def login(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "login", value)
+
+    @property
+    @pulumi.getter
+    def permissions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserPermissionArgs']]]]:
+        return pulumi.get(self, "permissions")
+
+    @permissions.setter
+    def permissions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserPermissionArgs']]]]):
+        pulumi.set(self, "permissions", value)
+
+    @property
+    @pulumi.getter
+    def settings(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "settings")
+
+    @settings.setter
+    def settings(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "settings", value)
+
+
+@pulumi.input_type
+class MdbPostgresqlClusterUserPermissionArgs:
+    def __init__(__self__, *,
+                 database_name: pulumi.Input[str]):
+        pulumi.set(__self__, "database_name", database_name)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "database_name")
+
+    @database_name.setter
+    def database_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "database_name", value)
 
 
 @pulumi.input_type

@@ -156,14 +156,10 @@ func Provider() tfbridge.ProviderInfo {
 			"yandex_mdb_mongodb_cluster":                   {Tok: makeResource(mainMod, "MdbMongodbCluster")},
 			"yandex_mdb_mysql_cluster":                     {Tok: makeResource(mainMod, "MdbMysqlCluster")},
 			"yandex_mdb_elasticsearch_cluster":             {Tok: makeResource(mainMod, "MdbElasticSearchCluster")},
-			// Per @stack72, this resource has broken docs which cause the generated Pulumi docs to generate in an
-			// indeterminate manner:
-			//"yandex_mdb_postgresql_cluster": {
-			//	Tok: makeResource(mainMod, "MdbPostgresqlCluster"),
-			//	Docs: &tfbridge.DocInfo{
-			//		Markdown: []byte{}, // there are some broken docs here that we want to exclude for the time being
-			//	},
-			//},
+			"yandex_mdb_postgresql_cluster": {Tok: makeResource(mainMod, "MdbPostgresqlCluster"),
+				Docs: &tfbridge.DocInfo{
+					Source: "None",
+				}},
 			"yandex_mdb_redis_cluster":     {Tok: makeResource(mainMod, "MdbRedisCluster")},
 			"yandex_mdb_sqlserver_cluster": {Tok: makeResource(mainMod, "MdbSqlServerCluster")},
 			"yandex_mdb_greenplum_cluster": {Tok: makeResource(mainMod, "MdbGreenplumCluster")},

@@ -4607,19 +4607,6 @@ export interface GetMdbKafkaClusterConfigZookeeperArgs {
     resources?: pulumi.Input<inputs.GetMdbKafkaClusterConfigZookeeperResourcesArgs>;
 }
 
-export interface GetMdbKafkaClusterConfigZookeeperResourcesArgs {
-    /**
-     * (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
-     */
-    diskSize?: pulumi.Input<number>;
-    /**
-     * (Optional) Type of the storage of ZooKeeper hosts.
-     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
-     */
-    diskTypeId?: pulumi.Input<string>;
-    resourcePresetId?: pulumi.Input<string>;
-}
-
 export interface GetMdbKafkaClusterConfigZookeeperResources {
     /**
      * (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
@@ -4631,6 +4618,19 @@ export interface GetMdbKafkaClusterConfigZookeeperResources {
      */
     diskTypeId?: string;
     resourcePresetId?: string;
+}
+
+export interface GetMdbKafkaClusterConfigZookeeperResourcesArgs {
+    /**
+     * (Optional) Volume of the storage available to a ZooKeeper host, in gigabytes.
+     */
+    diskSize?: pulumi.Input<number>;
+    /**
+     * (Optional) Type of the storage of ZooKeeper hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-kafka/concepts/storage).
+     */
+    diskTypeId?: pulumi.Input<string>;
+    resourcePresetId?: pulumi.Input<string>;
 }
 
 export interface GetMdbKafkaClusterTopic {
@@ -4679,22 +4679,6 @@ export interface GetMdbKafkaClusterTopicArgs {
     topicConfig?: pulumi.Input<inputs.GetMdbKafkaClusterTopicTopicConfigArgs>;
 }
 
-export interface GetMdbKafkaClusterTopicTopicConfigArgs {
-    cleanupPolicy?: pulumi.Input<string>;
-    compressionType?: pulumi.Input<string>;
-    deleteRetentionMs?: pulumi.Input<string>;
-    fileDeleteDelayMs?: pulumi.Input<string>;
-    flushMessages?: pulumi.Input<string>;
-    flushMs?: pulumi.Input<string>;
-    maxMessageBytes?: pulumi.Input<string>;
-    minCompactionLagMs?: pulumi.Input<string>;
-    minInsyncReplicas?: pulumi.Input<string>;
-    preallocate?: pulumi.Input<boolean>;
-    retentionBytes?: pulumi.Input<string>;
-    retentionMs?: pulumi.Input<string>;
-    segmentBytes?: pulumi.Input<string>;
-}
-
 export interface GetMdbKafkaClusterTopicTopicConfig {
     cleanupPolicy?: string;
     compressionType?: string;
@@ -4711,19 +4695,20 @@ export interface GetMdbKafkaClusterTopicTopicConfig {
     segmentBytes?: string;
 }
 
-export interface GetMdbKafkaClusterUserArgs {
-    /**
-     * The name of the Kafka cluster.
-     */
-    name: pulumi.Input<string>;
-    /**
-     * (Required) The password of the user.
-     */
-    password: pulumi.Input<string>;
-    /**
-     * (Optional) Set of permissions granted to the user. The structure is documented below.
-     */
-    permissions?: pulumi.Input<pulumi.Input<inputs.GetMdbKafkaClusterUserPermissionArgs>[]>;
+export interface GetMdbKafkaClusterTopicTopicConfigArgs {
+    cleanupPolicy?: pulumi.Input<string>;
+    compressionType?: pulumi.Input<string>;
+    deleteRetentionMs?: pulumi.Input<string>;
+    fileDeleteDelayMs?: pulumi.Input<string>;
+    flushMessages?: pulumi.Input<string>;
+    flushMs?: pulumi.Input<string>;
+    maxMessageBytes?: pulumi.Input<string>;
+    minCompactionLagMs?: pulumi.Input<string>;
+    minInsyncReplicas?: pulumi.Input<string>;
+    preallocate?: pulumi.Input<boolean>;
+    retentionBytes?: pulumi.Input<string>;
+    retentionMs?: pulumi.Input<string>;
+    segmentBytes?: pulumi.Input<string>;
 }
 
 export interface GetMdbKafkaClusterUser {
@@ -4739,6 +4724,21 @@ export interface GetMdbKafkaClusterUser {
      * (Optional) Set of permissions granted to the user. The structure is documented below.
      */
     permissions?: inputs.GetMdbKafkaClusterUserPermission[];
+}
+
+export interface GetMdbKafkaClusterUserArgs {
+    /**
+     * The name of the Kafka cluster.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * (Required) The password of the user.
+     */
+    password: pulumi.Input<string>;
+    /**
+     * (Optional) Set of permissions granted to the user. The structure is documented below.
+     */
+    permissions?: pulumi.Input<pulumi.Input<inputs.GetMdbKafkaClusterUserPermissionArgs>[]>;
 }
 
 export interface GetMdbKafkaClusterUserPermission {
@@ -4809,17 +4809,6 @@ export interface GetMdbMongodbClusterClusterConfigArgs {
     version?: pulumi.Input<string>;
 }
 
-export interface GetMdbMongodbClusterClusterConfigAccessArgs {
-    /**
-     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
-     */
-    dataLens?: pulumi.Input<boolean>;
-    /**
-     * (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
-     */
-    dataTransfer?: pulumi.Input<boolean>;
-}
-
 export interface GetMdbMongodbClusterClusterConfigAccess {
     /**
      * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
@@ -4829,6 +4818,17 @@ export interface GetMdbMongodbClusterClusterConfigAccess {
      * (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
      */
     dataTransfer?: boolean;
+}
+
+export interface GetMdbMongodbClusterClusterConfigAccessArgs {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
+    dataLens?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
+    dataTransfer?: pulumi.Input<boolean>;
 }
 
 export interface GetMdbMongodbClusterClusterConfigBackupWindowStart {
@@ -4945,39 +4945,6 @@ export interface GetMdbMongodbClusterClusterConfigMongodSecurityArgs {
     kmip?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs>;
 }
 
-export interface GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs {
-    /**
-     * (Required) String containing the client certificate used for authenticating MongoDB to the KMIP server.
-     * For more information see [security.kmip.clientCertificateFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.clientCertificateFile)
-     * description in the official documentation.
-     */
-    clientCertificate?: pulumi.Input<string>;
-    /**
-     * (Optional) Unique KMIP identifier for an existing key within the KMIP server.
-     * For more information see [security.kmip.keyIdentifier](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.keyIdentifier)
-     * description in the official documentation.
-     */
-    keyIdentifier?: pulumi.Input<string>;
-    /**
-     * (Optional) Port number to use to communicate with the KMIP server. Default: 5696
-     * For more information see [security.kmip.port](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.port)
-     * description in the official documentation.
-     */
-    port?: pulumi.Input<number>;
-    /**
-     * (Required) Path to CA File. Used for validating secure client connection to KMIP server.
-     * For more information see [security.kmip.serverCAFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverCAFile)
-     * description in the official documentation.
-     */
-    serverCa?: pulumi.Input<string>;
-    /**
-     * (Required) Hostname or IP address of the KMIP server to connect to.
-     * For more information see [security.kmip.serverName](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverName)
-     * description in the official documentation.
-     */
-    serverName?: pulumi.Input<string>;
-}
-
 export interface GetMdbMongodbClusterClusterConfigMongodSecurityKmip {
     /**
      * (Required) String containing the client certificate used for authenticating MongoDB to the KMIP server.
@@ -5009,6 +4976,39 @@ export interface GetMdbMongodbClusterClusterConfigMongodSecurityKmip {
      * description in the official documentation.
      */
     serverName?: string;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs {
+    /**
+     * (Required) String containing the client certificate used for authenticating MongoDB to the KMIP server.
+     * For more information see [security.kmip.clientCertificateFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.clientCertificateFile)
+     * description in the official documentation.
+     */
+    clientCertificate?: pulumi.Input<string>;
+    /**
+     * (Optional) Unique KMIP identifier for an existing key within the KMIP server.
+     * For more information see [security.kmip.keyIdentifier](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.keyIdentifier)
+     * description in the official documentation.
+     */
+    keyIdentifier?: pulumi.Input<string>;
+    /**
+     * (Optional) Port number to use to communicate with the KMIP server. Default: 5696
+     * For more information see [security.kmip.port](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.port)
+     * description in the official documentation.
+     */
+    port?: pulumi.Input<number>;
+    /**
+     * (Required) Path to CA File. Used for validating secure client connection to KMIP server.
+     * For more information see [security.kmip.serverCAFile](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverCAFile)
+     * description in the official documentation.
+     */
+    serverCa?: pulumi.Input<string>;
+    /**
+     * (Required) Hostname or IP address of the KMIP server to connect to.
+     * For more information see [security.kmip.serverName](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-security.kmip.serverName)
+     * description in the official documentation.
+     */
+    serverName?: pulumi.Input<string>;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodSetParameter {
@@ -5215,21 +5215,6 @@ export interface GetMdbMongodbClusterUserPermissionArgs {
     roles?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
-export interface GetMdbMysqlClusterAccessArgs {
-    /**
-     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
-     */
-    dataLens?: pulumi.Input<boolean>;
-    /**
-     * (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
-     */
-    dataTransfer?: pulumi.Input<boolean>;
-    /**
-     * Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
-     */
-    webSql?: pulumi.Input<boolean>;
-}
-
 export interface GetMdbMysqlClusterAccess {
     /**
      * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
@@ -5243,6 +5228,21 @@ export interface GetMdbMysqlClusterAccess {
      * Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
      */
     webSql?: boolean;
+}
+
+export interface GetMdbMysqlClusterAccessArgs {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
+    dataLens?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
+    dataTransfer?: pulumi.Input<boolean>;
+    /**
+     * Allows access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-mysql/operations/web-sql-query).
+     */
+    webSql?: pulumi.Input<boolean>;
 }
 
 export interface GetServerlessContainerSecret {
@@ -7480,6 +7480,226 @@ export interface MdbMysqlClusterUserPermission {
     roles?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface MdbPostgresqlClusterConfig {
+    /**
+     * Access policy to the PostgreSQL cluster. The structure is documented below.
+     */
+    access?: pulumi.Input<inputs.MdbPostgresqlClusterConfigAccess>;
+    /**
+     * Configuration setting which enables/disables autofailover in cluster.
+     */
+    autofailover?: pulumi.Input<boolean>;
+    /**
+     * The period in days during which backups are stored.
+     */
+    backupRetainPeriodDays?: pulumi.Input<number>;
+    /**
+     * Time to start the daily backup, in the UTC timezone. The structure is documented below.
+     */
+    backupWindowStart?: pulumi.Input<inputs.MdbPostgresqlClusterConfigBackupWindowStart>;
+    /**
+     * Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-postgresql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
+     */
+    performanceDiagnostics?: pulumi.Input<inputs.MdbPostgresqlClusterConfigPerformanceDiagnostics>;
+    /**
+     * Configuration of the connection pooler. The structure is documented below.
+     */
+    poolerConfig?: pulumi.Input<inputs.MdbPostgresqlClusterConfigPoolerConfig>;
+    /**
+     * PostgreSQL cluster config. Detail info in "postresql config" section (documented below).
+     */
+    postgresqlConfig?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Resources allocated to hosts of the PostgreSQL cluster. The structure is documented below.
+     */
+    resources: pulumi.Input<inputs.MdbPostgresqlClusterConfigResources>;
+    /**
+     * Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
+     */
+    version: pulumi.Input<string>;
+}
+
+export interface MdbPostgresqlClusterConfigAccess {
+    /**
+     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
+     */
+    dataLens?: pulumi.Input<boolean>;
+    /**
+     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
+     */
+    dataTransfer?: pulumi.Input<boolean>;
+    /**
+     * Allow access for [connection to managed databases from functions](https://cloud.yandex.com/docs/functions/operations/database-connection)
+     */
+    serverless?: pulumi.Input<boolean>;
+    /**
+     * Allow access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-postgresql/operations/web-sql-query)
+     */
+    webSql?: pulumi.Input<boolean>;
+}
+
+export interface MdbPostgresqlClusterConfigBackupWindowStart {
+    /**
+     * The hour at which backup will be started (UTC).
+     */
+    hours?: pulumi.Input<number>;
+    /**
+     * The minute at which backup will be started (UTC).
+     */
+    minutes?: pulumi.Input<number>;
+}
+
+export interface MdbPostgresqlClusterConfigPerformanceDiagnostics {
+    /**
+     * Enable performance diagnostics
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * Interval (in seconds) for pgStatActivity sampling Acceptable values are 1 to 86400, inclusive.
+     */
+    sessionsSamplingInterval: pulumi.Input<number>;
+    /**
+     * Interval (in seconds) for pgStatStatements sampling Acceptable values are 1 to 86400, inclusive.
+     */
+    statementsSamplingInterval: pulumi.Input<number>;
+}
+
+export interface MdbPostgresqlClusterConfigPoolerConfig {
+    /**
+     * Setting `poolDiscard` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_discard-yesno).
+     */
+    poolDiscard?: pulumi.Input<boolean>;
+    /**
+     * Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
+     */
+    poolingMode?: pulumi.Input<string>;
+}
+
+export interface MdbPostgresqlClusterConfigResources {
+    /**
+     * Volume of the storage available to a PostgreSQL host, in gigabytes.
+     */
+    diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of PostgreSQL hosts.
+     */
+    diskTypeId?: pulumi.Input<string>;
+    resourcePresetId: pulumi.Input<string>;
+}
+
+export interface MdbPostgresqlClusterDatabase {
+    extensions?: pulumi.Input<pulumi.Input<inputs.MdbPostgresqlClusterDatabaseExtension>[]>;
+    lcCollate?: pulumi.Input<string>;
+    lcType?: pulumi.Input<string>;
+    /**
+     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replicationSourceName` parameter.
+     * Also, this field is used to select which host will be selected as a master host. Please see `hostMasterName` parameter.
+     */
+    name: pulumi.Input<string>;
+    owner: pulumi.Input<string>;
+    templateDb?: pulumi.Input<string>;
+}
+
+export interface MdbPostgresqlClusterDatabaseExtension {
+    /**
+     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replicationSourceName` parameter.
+     * Also, this field is used to select which host will be selected as a master host. Please see `hostMasterName` parameter.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
+     */
+    version?: pulumi.Input<string>;
+}
+
+export interface MdbPostgresqlClusterHost {
+    /**
+     * Sets whether the host should get a public IP address on creation. It can be changed on the fly only when `name` is set.
+     */
+    assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * The fully qualified domain name of the host.
+     */
+    fqdn?: pulumi.Input<string>;
+    /**
+     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replicationSourceName` parameter.
+     * Also, this field is used to select which host will be selected as a master host. Please see `hostMasterName` parameter.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Host priority in HA group. It works only when `name` is set.
+     */
+    priority?: pulumi.Input<number>;
+    /**
+     * Host replication source (fqdn), when replicationSource is empty then host is in HA group.
+     */
+    replicationSource?: pulumi.Input<string>;
+    /**
+     * Host replication source name points to host's `name` from which this host should replicate. When not set then host in HA group. It works only when `name` is set.
+     */
+    replicationSourceName?: pulumi.Input<string>;
+    role?: pulumi.Input<string>;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
+    subnetId?: pulumi.Input<string>;
+    /**
+     * The availability zone where the PostgreSQL host will be created.
+     */
+    zone: pulumi.Input<string>;
+}
+
+export interface MdbPostgresqlClusterMaintenanceWindow {
+    /**
+     * Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
+     */
+    day?: pulumi.Input<string>;
+    /**
+     * Hour of the day in UTC (in `HH` format). Allowed value is between 1 and 24.
+     */
+    hour?: pulumi.Input<number>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface MdbPostgresqlClusterRestore {
+    /**
+     * Backup ID. The cluster will be created from the specified backup. [How to get a list of PostgreSQL backups](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-backups).
+     */
+    backupId: pulumi.Input<string>;
+    /**
+     * Timestamp of the moment to which the PostgreSQL cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
+     */
+    time?: pulumi.Input<string>;
+    /**
+     * Flag that indicates whether a database should be restored to the first backup point available just after the timestamp specified in the [time] field instead of just before.  
+     * Possible values:
+     * - false (default) — the restore point refers to the first backup moment before [time].
+     * - true — the restore point refers to the first backup point after [time].
+     */
+    timeInclusive?: pulumi.Input<boolean>;
+}
+
+export interface MdbPostgresqlClusterUser {
+    connLimit?: pulumi.Input<number>;
+    grants?: pulumi.Input<pulumi.Input<string>[]>;
+    login?: pulumi.Input<boolean>;
+    /**
+     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replicationSourceName` parameter.
+     * Also, this field is used to select which host will be selected as a master host. Please see `hostMasterName` parameter.
+     */
+    name: pulumi.Input<string>;
+    password: pulumi.Input<string>;
+    permissions?: pulumi.Input<pulumi.Input<inputs.MdbPostgresqlClusterUserPermission>[]>;
+    settings?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
+export interface MdbPostgresqlClusterUserPermission {
+    databaseName: pulumi.Input<string>;
+}
+
 export interface MdbRedisClusterConfig {
     /**
      * Normal clients output buffer limits.
@@ -8062,4 +8282,3 @@ export interface YdbDatabaseDedicatedStorageConfig {
      */
     storageTypeId: pulumi.Input<string>;
 }
-

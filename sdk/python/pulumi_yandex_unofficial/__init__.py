@@ -115,6 +115,7 @@ from .mdb_kafka_cluster import *
 from .mdb_kafka_topic import *
 from .mdb_mongodb_cluster import *
 from .mdb_mysql_cluster import *
+from .mdb_postgresql_cluster import *
 from .mdb_redis_cluster import *
 from .mdb_sql_server_cluster import *
 from .message_queue import *
@@ -567,6 +568,14 @@ _utilities.register(
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/mdbMysqlCluster:MdbMysqlCluster": "MdbMysqlCluster"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/mdbPostgresqlCluster",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/mdbPostgresqlCluster:MdbPostgresqlCluster": "MdbPostgresqlCluster"
   }
  },
  {
