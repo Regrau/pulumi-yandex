@@ -10284,108 +10284,42 @@ export interface MdbMysqlUserPermission {
 }
 
 export interface MdbPostgresqlClusterConfig {
-    /**
-     * Access policy to the PostgreSQL cluster. The structure is documented below.
-     */
     access: outputs.MdbPostgresqlClusterConfigAccess;
-    /**
-     * Configuration setting which enables/disables autofailover in cluster.
-     */
     autofailover: boolean;
-    /**
-     * The period in days during which backups are stored.
-     */
     backupRetainPeriodDays: number;
-    /**
-     * Time to start the daily backup, in the UTC timezone. The structure is documented below.
-     */
     backupWindowStart: outputs.MdbPostgresqlClusterConfigBackupWindowStart;
-    /**
-     * Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-postgresql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
-     */
     performanceDiagnostics: outputs.MdbPostgresqlClusterConfigPerformanceDiagnostics;
-    /**
-     * Configuration of the connection pooler. The structure is documented below.
-     */
     poolerConfig?: outputs.MdbPostgresqlClusterConfigPoolerConfig;
-    /**
-     * PostgreSQL cluster config. Detail info in "postresql config" section (documented below).
-     */
     postgresqlConfig: {[key: string]: string};
-    /**
-     * Resources allocated to hosts of the PostgreSQL cluster. The structure is documented below.
-     */
     resources: outputs.MdbPostgresqlClusterConfigResources;
-    /**
-     * Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
-     */
     version: string;
 }
 
 export interface MdbPostgresqlClusterConfigAccess {
-    /**
-     * Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
-     */
     dataLens?: boolean;
-    /**
-     * Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
-     */
     dataTransfer?: boolean;
-    /**
-     * Allow access for [connection to managed databases from functions](https://cloud.yandex.com/docs/functions/operations/database-connection)
-     */
     serverless?: boolean;
-    /**
-     * Allow access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-postgresql/operations/web-sql-query)
-     */
     webSql: boolean;
 }
 
 export interface MdbPostgresqlClusterConfigBackupWindowStart {
-    /**
-     * The hour at which backup will be started (UTC).
-     */
     hours?: number;
-    /**
-     * The minute at which backup will be started (UTC).
-     */
     minutes?: number;
 }
 
 export interface MdbPostgresqlClusterConfigPerformanceDiagnostics {
-    /**
-     * Enable performance diagnostics
-     */
     enabled: boolean;
-    /**
-     * Interval (in seconds) for pgStatActivity sampling Acceptable values are 1 to 86400, inclusive.
-     */
     sessionsSamplingInterval: number;
-    /**
-     * Interval (in seconds) for pgStatStatements sampling Acceptable values are 1 to 86400, inclusive.
-     */
     statementsSamplingInterval: number;
 }
 
 export interface MdbPostgresqlClusterConfigPoolerConfig {
-    /**
-     * Setting `poolDiscard` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_discard-yesno).
-     */
     poolDiscard?: boolean;
-    /**
-     * Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
-     */
     poolingMode?: string;
 }
 
 export interface MdbPostgresqlClusterConfigResources {
-    /**
-     * Volume of the storage available to a PostgreSQL host, in gigabytes.
-     */
     diskSize: number;
-    /**
-     * Type of the storage of PostgreSQL hosts.
-     */
     diskTypeId?: string;
     resourcePresetId: string;
 }
@@ -10394,94 +10328,37 @@ export interface MdbPostgresqlClusterDatabase {
     extensions?: outputs.MdbPostgresqlClusterDatabaseExtension[];
     lcCollate?: string;
     lcType?: string;
-    /**
-     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replicationSourceName` parameter.
-     * Also, this field is used to select which host will be selected as a master host. Please see `hostMasterName` parameter.
-     */
     name: string;
     owner: string;
     templateDb?: string;
 }
 
 export interface MdbPostgresqlClusterDatabaseExtension {
-    /**
-     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replicationSourceName` parameter.
-     * Also, this field is used to select which host will be selected as a master host. Please see `hostMasterName` parameter.
-     */
     name: string;
-    /**
-     * Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
-     */
     version?: string;
 }
 
 export interface MdbPostgresqlClusterHost {
-    /**
-     * Sets whether the host should get a public IP address on creation. It can be changed on the fly only when `name` is set.
-     */
     assignPublicIp?: boolean;
-    /**
-     * The fully qualified domain name of the host.
-     */
     fqdn: string;
-    /**
-     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replicationSourceName` parameter.
-     * Also, this field is used to select which host will be selected as a master host. Please see `hostMasterName` parameter.
-     */
     name: string;
-    /**
-     * Host priority in HA group. It works only when `name` is set.
-     */
     priority: number;
-    /**
-     * Host replication source (fqdn), when replicationSource is empty then host is in HA group.
-     */
     replicationSource: string;
-    /**
-     * Host replication source name points to host's `name` from which this host should replicate. When not set then host in HA group. It works only when `name` is set.
-     */
     replicationSourceName: string;
     role: string;
-    /**
-     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
-     */
     subnetId: string;
-    /**
-     * The availability zone where the PostgreSQL host will be created.
-     */
     zone: string;
 }
 
 export interface MdbPostgresqlClusterMaintenanceWindow {
-    /**
-     * Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
-     */
     day?: string;
-    /**
-     * Hour of the day in UTC (in `HH` format). Allowed value is between 1 and 24.
-     */
     hour?: number;
-    /**
-     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
-     */
     type: string;
 }
 
 export interface MdbPostgresqlClusterRestore {
-    /**
-     * Backup ID. The cluster will be created from the specified backup. [How to get a list of PostgreSQL backups](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-backups).
-     */
     backupId: string;
-    /**
-     * Timestamp of the moment to which the PostgreSQL cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
-     */
     time?: string;
-    /**
-     * Flag that indicates whether a database should be restored to the first backup point available just after the timestamp specified in the [time] field instead of just before.  
-     * Possible values:
-     * - false (default) — the restore point refers to the first backup moment before [time].
-     * - true — the restore point refers to the first backup point after [time].
-     */
     timeInclusive?: boolean;
 }
 
@@ -10489,10 +10366,6 @@ export interface MdbPostgresqlClusterUser {
     connLimit: number;
     grants: string[];
     login?: boolean;
-    /**
-     * Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replicationSourceName` parameter.
-     * Also, this field is used to select which host will be selected as a master host. Please see `hostMasterName` parameter.
-     */
     name: string;
     password: string;
     permissions: outputs.MdbPostgresqlClusterUserPermission[];

@@ -12,15 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbPostgresqlClusterConfigResourcesGetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Volume of the storage available to a PostgreSQL host, in gigabytes.
-        /// </summary>
         [Input("diskSize", required: true)]
         public Input<int> DiskSize { get; set; } = null!;
 
-        /// <summary>
-        /// Type of the storage of PostgreSQL hosts.
-        /// </summary>
         [Input("diskTypeId")]
         public Input<string>? DiskTypeId { get; set; }
 

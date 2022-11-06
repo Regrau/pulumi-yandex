@@ -156,14 +156,24 @@ func Provider() tfbridge.ProviderInfo {
 			"yandex_mdb_mongodb_cluster":                   {Tok: makeResource(mainMod, "MdbMongodbCluster")},
 			"yandex_mdb_mysql_cluster":                     {Tok: makeResource(mainMod, "MdbMysqlCluster")},
 			"yandex_mdb_elasticsearch_cluster":             {Tok: makeResource(mainMod, "MdbElasticSearchCluster")},
+			"yandex_mdb_redis_cluster":                     {Tok: makeResource(mainMod, "MdbRedisCluster")},
+			"yandex_mdb_sqlserver_cluster":                 {Tok: makeResource(mainMod, "MdbSqlServerCluster")},
+			"yandex_mdb_greenplum_cluster":                 {Tok: makeResource(mainMod, "MdbGreenplumCluster")},
+			"yandex_message_queue":                         {Tok: makeResource(mainMod, "MessageQueue")},
+			// Due to an unknown problem in the documentation markdown for the postgres cluster resource
+			// a rebuild forces a documentation change and nondeterministic behaviour.
+			// As a workaround we ignore the docs.
+			// Links to more information
+			// Github issue on the official pulumi_yandex provider
+			// https://github.com/pulumi/pulumi-yandex/issues/60
+			// The offending markdown document
+			// https://github.com/yandex-cloud/terraform-provider-yandex/blob/master/website/docs/r/mdb_postgresql_cluster.html.markdown
+
 			"yandex_mdb_postgresql_cluster": {Tok: makeResource(mainMod, "MdbPostgresqlCluster"),
 				Docs: &tfbridge.DocInfo{
-					Source: "None",
-				}},
-			"yandex_mdb_redis_cluster":     {Tok: makeResource(mainMod, "MdbRedisCluster")},
-			"yandex_mdb_sqlserver_cluster": {Tok: makeResource(mainMod, "MdbSqlServerCluster")},
-			"yandex_mdb_greenplum_cluster": {Tok: makeResource(mainMod, "MdbGreenplumCluster")},
-			"yandex_message_queue":         {Tok: makeResource(mainMod, "MessageQueue")},
+					Markdown: []byte("Skip this doc")},
+			},
+
 			"yandex_organizationmanager_organization_iam_binding": {
 				Tok: makeResource(mainMod, "OrganizationManagerOrganizationIamBinding"),
 			},

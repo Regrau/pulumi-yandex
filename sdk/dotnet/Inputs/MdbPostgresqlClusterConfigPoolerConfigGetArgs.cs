@@ -12,15 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbPostgresqlClusterConfigPoolerConfigGetArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Setting `pool_discard` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_discard-yesno).
-        /// </summary>
         [Input("poolDiscard")]
         public Input<bool>? PoolDiscard { get; set; }
 
-        /// <summary>
-        /// Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
-        /// </summary>
         [Input("poolingMode")]
         public Input<string>? PoolingMode { get; set; }
 

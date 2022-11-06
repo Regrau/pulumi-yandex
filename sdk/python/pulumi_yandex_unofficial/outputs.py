@@ -21842,17 +21842,6 @@ class MdbPostgresqlClusterConfig(dict):
                  performance_diagnostics: Optional['outputs.MdbPostgresqlClusterConfigPerformanceDiagnostics'] = None,
                  pooler_config: Optional['outputs.MdbPostgresqlClusterConfigPoolerConfig'] = None,
                  postgresql_config: Optional[Mapping[str, str]] = None):
-        """
-        :param 'MdbPostgresqlClusterConfigResourcesArgs' resources: Resources allocated to hosts of the PostgreSQL cluster. The structure is documented below.
-        :param str version: Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
-        :param 'MdbPostgresqlClusterConfigAccessArgs' access: Access policy to the PostgreSQL cluster. The structure is documented below.
-        :param bool autofailover: Configuration setting which enables/disables autofailover in cluster.
-        :param int backup_retain_period_days: The period in days during which backups are stored.
-        :param 'MdbPostgresqlClusterConfigBackupWindowStartArgs' backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
-        :param 'MdbPostgresqlClusterConfigPerformanceDiagnosticsArgs' performance_diagnostics: Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-postgresql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
-        :param 'MdbPostgresqlClusterConfigPoolerConfigArgs' pooler_config: Configuration of the connection pooler. The structure is documented below.
-        :param Mapping[str, str] postgresql_config: PostgreSQL cluster config. Detail info in "postresql config" section (documented below).
-        """
         pulumi.set(__self__, "resources", resources)
         pulumi.set(__self__, "version", version)
         if access is not None:
@@ -21873,73 +21862,46 @@ class MdbPostgresqlClusterConfig(dict):
     @property
     @pulumi.getter
     def resources(self) -> 'outputs.MdbPostgresqlClusterConfigResources':
-        """
-        Resources allocated to hosts of the PostgreSQL cluster. The structure is documented below.
-        """
         return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter
     def version(self) -> str:
-        """
-        Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
-        """
         return pulumi.get(self, "version")
 
     @property
     @pulumi.getter
     def access(self) -> Optional['outputs.MdbPostgresqlClusterConfigAccess']:
-        """
-        Access policy to the PostgreSQL cluster. The structure is documented below.
-        """
         return pulumi.get(self, "access")
 
     @property
     @pulumi.getter
     def autofailover(self) -> Optional[bool]:
-        """
-        Configuration setting which enables/disables autofailover in cluster.
-        """
         return pulumi.get(self, "autofailover")
 
     @property
     @pulumi.getter(name="backupRetainPeriodDays")
     def backup_retain_period_days(self) -> Optional[int]:
-        """
-        The period in days during which backups are stored.
-        """
         return pulumi.get(self, "backup_retain_period_days")
 
     @property
     @pulumi.getter(name="backupWindowStart")
     def backup_window_start(self) -> Optional['outputs.MdbPostgresqlClusterConfigBackupWindowStart']:
-        """
-        Time to start the daily backup, in the UTC timezone. The structure is documented below.
-        """
         return pulumi.get(self, "backup_window_start")
 
     @property
     @pulumi.getter(name="performanceDiagnostics")
     def performance_diagnostics(self) -> Optional['outputs.MdbPostgresqlClusterConfigPerformanceDiagnostics']:
-        """
-        Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-postgresql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
-        """
         return pulumi.get(self, "performance_diagnostics")
 
     @property
     @pulumi.getter(name="poolerConfig")
     def pooler_config(self) -> Optional['outputs.MdbPostgresqlClusterConfigPoolerConfig']:
-        """
-        Configuration of the connection pooler. The structure is documented below.
-        """
         return pulumi.get(self, "pooler_config")
 
     @property
     @pulumi.getter(name="postgresqlConfig")
     def postgresql_config(self) -> Optional[Mapping[str, str]]:
-        """
-        PostgreSQL cluster config. Detail info in "postresql config" section (documented below).
-        """
         return pulumi.get(self, "postgresql_config")
 
 
@@ -21971,12 +21933,6 @@ class MdbPostgresqlClusterConfigAccess(dict):
                  data_transfer: Optional[bool] = None,
                  serverless: Optional[bool] = None,
                  web_sql: Optional[bool] = None):
-        """
-        :param bool data_lens: Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
-        :param bool data_transfer: Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
-        :param bool serverless: Allow access for [connection to managed databases from functions](https://cloud.yandex.com/docs/functions/operations/database-connection)
-        :param bool web_sql: Allow access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-postgresql/operations/web-sql-query)
-        """
         if data_lens is not None:
             pulumi.set(__self__, "data_lens", data_lens)
         if data_transfer is not None:
@@ -21989,33 +21945,21 @@ class MdbPostgresqlClusterConfigAccess(dict):
     @property
     @pulumi.getter(name="dataLens")
     def data_lens(self) -> Optional[bool]:
-        """
-        Allow access for [Yandex DataLens](https://cloud.yandex.com/services/datalens).
-        """
         return pulumi.get(self, "data_lens")
 
     @property
     @pulumi.getter(name="dataTransfer")
     def data_transfer(self) -> Optional[bool]:
-        """
-        Allow access for [DataTransfer](https://cloud.yandex.com/services/data-transfer)
-        """
         return pulumi.get(self, "data_transfer")
 
     @property
     @pulumi.getter
     def serverless(self) -> Optional[bool]:
-        """
-        Allow access for [connection to managed databases from functions](https://cloud.yandex.com/docs/functions/operations/database-connection)
-        """
         return pulumi.get(self, "serverless")
 
     @property
     @pulumi.getter(name="webSql")
     def web_sql(self) -> Optional[bool]:
-        """
-        Allow access for [SQL queries in the management console](https://cloud.yandex.com/docs/managed-postgresql/operations/web-sql-query)
-        """
         return pulumi.get(self, "web_sql")
 
 
@@ -22024,10 +21968,6 @@ class MdbPostgresqlClusterConfigBackupWindowStart(dict):
     def __init__(__self__, *,
                  hours: Optional[int] = None,
                  minutes: Optional[int] = None):
-        """
-        :param int hours: The hour at which backup will be started (UTC).
-        :param int minutes: The minute at which backup will be started (UTC).
-        """
         if hours is not None:
             pulumi.set(__self__, "hours", hours)
         if minutes is not None:
@@ -22036,17 +21976,11 @@ class MdbPostgresqlClusterConfigBackupWindowStart(dict):
     @property
     @pulumi.getter
     def hours(self) -> Optional[int]:
-        """
-        The hour at which backup will be started (UTC).
-        """
         return pulumi.get(self, "hours")
 
     @property
     @pulumi.getter
     def minutes(self) -> Optional[int]:
-        """
-        The minute at which backup will be started (UTC).
-        """
         return pulumi.get(self, "minutes")
 
 
@@ -22075,11 +22009,6 @@ class MdbPostgresqlClusterConfigPerformanceDiagnostics(dict):
                  sessions_sampling_interval: int,
                  statements_sampling_interval: int,
                  enabled: Optional[bool] = None):
-        """
-        :param int sessions_sampling_interval: Interval (in seconds) for pg_stat_activity sampling Acceptable values are 1 to 86400, inclusive.
-        :param int statements_sampling_interval: Interval (in seconds) for pg_stat_statements sampling Acceptable values are 1 to 86400, inclusive.
-        :param bool enabled: Enable performance diagnostics
-        """
         pulumi.set(__self__, "sessions_sampling_interval", sessions_sampling_interval)
         pulumi.set(__self__, "statements_sampling_interval", statements_sampling_interval)
         if enabled is not None:
@@ -22088,25 +22017,16 @@ class MdbPostgresqlClusterConfigPerformanceDiagnostics(dict):
     @property
     @pulumi.getter(name="sessionsSamplingInterval")
     def sessions_sampling_interval(self) -> int:
-        """
-        Interval (in seconds) for pg_stat_activity sampling Acceptable values are 1 to 86400, inclusive.
-        """
         return pulumi.get(self, "sessions_sampling_interval")
 
     @property
     @pulumi.getter(name="statementsSamplingInterval")
     def statements_sampling_interval(self) -> int:
-        """
-        Interval (in seconds) for pg_stat_statements sampling Acceptable values are 1 to 86400, inclusive.
-        """
         return pulumi.get(self, "statements_sampling_interval")
 
     @property
     @pulumi.getter
     def enabled(self) -> Optional[bool]:
-        """
-        Enable performance diagnostics
-        """
         return pulumi.get(self, "enabled")
 
 
@@ -22134,10 +22054,6 @@ class MdbPostgresqlClusterConfigPoolerConfig(dict):
     def __init__(__self__, *,
                  pool_discard: Optional[bool] = None,
                  pooling_mode: Optional[str] = None):
-        """
-        :param bool pool_discard: Setting `pool_discard` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_discard-yesno).
-        :param str pooling_mode: Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
-        """
         if pool_discard is not None:
             pulumi.set(__self__, "pool_discard", pool_discard)
         if pooling_mode is not None:
@@ -22146,17 +22062,11 @@ class MdbPostgresqlClusterConfigPoolerConfig(dict):
     @property
     @pulumi.getter(name="poolDiscard")
     def pool_discard(self) -> Optional[bool]:
-        """
-        Setting `pool_discard` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_discard-yesno).
-        """
         return pulumi.get(self, "pool_discard")
 
     @property
     @pulumi.getter(name="poolingMode")
     def pooling_mode(self) -> Optional[str]:
-        """
-        Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
-        """
         return pulumi.get(self, "pooling_mode")
 
 
@@ -22187,10 +22097,6 @@ class MdbPostgresqlClusterConfigResources(dict):
                  disk_size: int,
                  resource_preset_id: str,
                  disk_type_id: Optional[str] = None):
-        """
-        :param int disk_size: Volume of the storage available to a PostgreSQL host, in gigabytes.
-        :param str disk_type_id: Type of the storage of PostgreSQL hosts.
-        """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "resource_preset_id", resource_preset_id)
         if disk_type_id is not None:
@@ -22199,9 +22105,6 @@ class MdbPostgresqlClusterConfigResources(dict):
     @property
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> int:
-        """
-        Volume of the storage available to a PostgreSQL host, in gigabytes.
-        """
         return pulumi.get(self, "disk_size")
 
     @property
@@ -22212,9 +22115,6 @@ class MdbPostgresqlClusterConfigResources(dict):
     @property
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> Optional[str]:
-        """
-        Type of the storage of PostgreSQL hosts.
-        """
         return pulumi.get(self, "disk_type_id")
 
 
@@ -22248,10 +22148,6 @@ class MdbPostgresqlClusterDatabase(dict):
                  lc_collate: Optional[str] = None,
                  lc_type: Optional[str] = None,
                  template_db: Optional[str] = None):
-        """
-        :param str name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-               Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "owner", owner)
         if extensions is not None:
@@ -22266,10 +22162,6 @@ class MdbPostgresqlClusterDatabase(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-        Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        """
         return pulumi.get(self, "name")
 
     @property
@@ -22303,11 +22195,6 @@ class MdbPostgresqlClusterDatabaseExtension(dict):
     def __init__(__self__, *,
                  name: str,
                  version: Optional[str] = None):
-        """
-        :param str name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-               Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        :param str version: Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
-        """
         pulumi.set(__self__, "name", name)
         if version is not None:
             pulumi.set(__self__, "version", version)
@@ -22315,18 +22202,11 @@ class MdbPostgresqlClusterDatabaseExtension(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-        Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def version(self) -> Optional[str]:
-        """
-        Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
-        """
         return pulumi.get(self, "version")
 
 
@@ -22365,17 +22245,6 @@ class MdbPostgresqlClusterHost(dict):
                  replication_source_name: Optional[str] = None,
                  role: Optional[str] = None,
                  subnet_id: Optional[str] = None):
-        """
-        :param str zone: The availability zone where the PostgreSQL host will be created.
-        :param bool assign_public_ip: Sets whether the host should get a public IP address on creation. It can be changed on the fly only when `name` is set.
-        :param str fqdn: The fully qualified domain name of the host.
-        :param str name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-               Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        :param int priority: Host priority in HA group. It works only when `name` is set.
-        :param str replication_source: Host replication source (fqdn), when replication_source is empty then host is in HA group.
-        :param str replication_source_name: Host replication source name points to host's `name` from which this host should replicate. When not set then host in HA group. It works only when `name` is set.
-        :param str subnet_id: The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
-        """
         pulumi.set(__self__, "zone", zone)
         if assign_public_ip is not None:
             pulumi.set(__self__, "assign_public_ip", assign_public_ip)
@@ -22397,58 +22266,36 @@ class MdbPostgresqlClusterHost(dict):
     @property
     @pulumi.getter
     def zone(self) -> str:
-        """
-        The availability zone where the PostgreSQL host will be created.
-        """
         return pulumi.get(self, "zone")
 
     @property
     @pulumi.getter(name="assignPublicIp")
     def assign_public_ip(self) -> Optional[bool]:
-        """
-        Sets whether the host should get a public IP address on creation. It can be changed on the fly only when `name` is set.
-        """
         return pulumi.get(self, "assign_public_ip")
 
     @property
     @pulumi.getter
     def fqdn(self) -> Optional[str]:
-        """
-        The fully qualified domain name of the host.
-        """
         return pulumi.get(self, "fqdn")
 
     @property
     @pulumi.getter
     def name(self) -> Optional[str]:
-        """
-        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-        Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def priority(self) -> Optional[int]:
-        """
-        Host priority in HA group. It works only when `name` is set.
-        """
         return pulumi.get(self, "priority")
 
     @property
     @pulumi.getter(name="replicationSource")
     def replication_source(self) -> Optional[str]:
-        """
-        Host replication source (fqdn), when replication_source is empty then host is in HA group.
-        """
         return pulumi.get(self, "replication_source")
 
     @property
     @pulumi.getter(name="replicationSourceName")
     def replication_source_name(self) -> Optional[str]:
-        """
-        Host replication source name points to host's `name` from which this host should replicate. When not set then host in HA group. It works only when `name` is set.
-        """
         return pulumi.get(self, "replication_source_name")
 
     @property
@@ -22459,9 +22306,6 @@ class MdbPostgresqlClusterHost(dict):
     @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[str]:
-        """
-        The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
-        """
         return pulumi.get(self, "subnet_id")
 
 
@@ -22471,11 +22315,6 @@ class MdbPostgresqlClusterMaintenanceWindow(dict):
                  type: str,
                  day: Optional[str] = None,
                  hour: Optional[int] = None):
-        """
-        :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
-        :param str day: Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
-        :param int hour: Hour of the day in UTC (in `HH` format). Allowed value is between 1 and 24.
-        """
         pulumi.set(__self__, "type", type)
         if day is not None:
             pulumi.set(__self__, "day", day)
@@ -22485,25 +22324,16 @@ class MdbPostgresqlClusterMaintenanceWindow(dict):
     @property
     @pulumi.getter
     def type(self) -> str:
-        """
-        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
-        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter
     def day(self) -> Optional[str]:
-        """
-        Day of the week (in `DDD` format). Allowed values: "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"
-        """
         return pulumi.get(self, "day")
 
     @property
     @pulumi.getter
     def hour(self) -> Optional[int]:
-        """
-        Hour of the day in UTC (in `HH` format). Allowed value is between 1 and 24.
-        """
         return pulumi.get(self, "hour")
 
 
@@ -22532,14 +22362,6 @@ class MdbPostgresqlClusterRestore(dict):
                  backup_id: str,
                  time: Optional[str] = None,
                  time_inclusive: Optional[bool] = None):
-        """
-        :param str backup_id: Backup ID. The cluster will be created from the specified backup. [How to get a list of PostgreSQL backups](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-backups).
-        :param str time: Timestamp of the moment to which the PostgreSQL cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
-        :param bool time_inclusive: Flag that indicates whether a database should be restored to the first backup point available just after the timestamp specified in the [time] field instead of just before.  
-               Possible values:
-               - false (default) — the restore point refers to the first backup moment before [time].
-               - true — the restore point refers to the first backup point after [time].
-        """
         pulumi.set(__self__, "backup_id", backup_id)
         if time is not None:
             pulumi.set(__self__, "time", time)
@@ -22549,28 +22371,16 @@ class MdbPostgresqlClusterRestore(dict):
     @property
     @pulumi.getter(name="backupId")
     def backup_id(self) -> str:
-        """
-        Backup ID. The cluster will be created from the specified backup. [How to get a list of PostgreSQL backups](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-backups).
-        """
         return pulumi.get(self, "backup_id")
 
     @property
     @pulumi.getter
     def time(self) -> Optional[str]:
-        """
-        Timestamp of the moment to which the PostgreSQL cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
-        """
         return pulumi.get(self, "time")
 
     @property
     @pulumi.getter(name="timeInclusive")
     def time_inclusive(self) -> Optional[bool]:
-        """
-        Flag that indicates whether a database should be restored to the first backup point available just after the timestamp specified in the [time] field instead of just before.  
-        Possible values:
-        - false (default) — the restore point refers to the first backup moment before [time].
-        - true — the restore point refers to the first backup point after [time].
-        """
         return pulumi.get(self, "time_inclusive")
 
 
@@ -22601,10 +22411,6 @@ class MdbPostgresqlClusterUser(dict):
                  login: Optional[bool] = None,
                  permissions: Optional[Sequence['outputs.MdbPostgresqlClusterUserPermission']] = None,
                  settings: Optional[Mapping[str, str]] = None):
-        """
-        :param str name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-               Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "password", password)
         if conn_limit is not None:
@@ -22621,10 +22427,6 @@ class MdbPostgresqlClusterUser(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
-        """
-        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-        Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        """
         return pulumi.get(self, "name")
 
     @property

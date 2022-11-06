@@ -16,10 +16,6 @@ namespace Pulumi.Yandex.Outputs
         public readonly int? ConnLimit;
         public readonly ImmutableArray<string> Grants;
         public readonly bool? Login;
-        /// <summary>
-        /// Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-        /// Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        /// </summary>
         public readonly string Name;
         public readonly string Password;
         public readonly ImmutableArray<Outputs.MdbPostgresqlClusterUserPermission> Permissions;

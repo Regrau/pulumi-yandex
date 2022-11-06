@@ -13,13 +13,7 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbPostgresqlClusterConfigPoolerConfig
     {
-        /// <summary>
-        /// Setting `pool_discard` [parameter in Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool_discard-yesno).
-        /// </summary>
         public readonly bool? PoolDiscard;
-        /// <summary>
-        /// Mode that the connection pooler is working in. See descriptions of all modes in the [documentation for Odyssey](https://github.com/yandex/odyssey/blob/master/documentation/configuration.md#pool-string.
-        /// </summary>
         public readonly string? PoolingMode;
 
         [OutputConstructor]

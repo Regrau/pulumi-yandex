@@ -13,41 +13,14 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbPostgresqlClusterConfig
     {
-        /// <summary>
-        /// Access policy to the PostgreSQL cluster. The structure is documented below.
-        /// </summary>
         public readonly Outputs.MdbPostgresqlClusterConfigAccess? Access;
-        /// <summary>
-        /// Configuration setting which enables/disables autofailover in cluster.
-        /// </summary>
         public readonly bool? Autofailover;
-        /// <summary>
-        /// The period in days during which backups are stored.
-        /// </summary>
         public readonly int? BackupRetainPeriodDays;
-        /// <summary>
-        /// Time to start the daily backup, in the UTC timezone. The structure is documented below.
-        /// </summary>
         public readonly Outputs.MdbPostgresqlClusterConfigBackupWindowStart? BackupWindowStart;
-        /// <summary>
-        /// Cluster performance diagnostics settings. The structure is documented below. [YC Documentation](https://cloud.yandex.com/en-ru/docs/managed-postgresql/api-ref/grpc/cluster_service#PerformanceDiagnostics)
-        /// </summary>
         public readonly Outputs.MdbPostgresqlClusterConfigPerformanceDiagnostics? PerformanceDiagnostics;
-        /// <summary>
-        /// Configuration of the connection pooler. The structure is documented below.
-        /// </summary>
         public readonly Outputs.MdbPostgresqlClusterConfigPoolerConfig? PoolerConfig;
-        /// <summary>
-        /// PostgreSQL cluster config. Detail info in "postresql config" section (documented below).
-        /// </summary>
         public readonly ImmutableDictionary<string, string>? PostgresqlConfig;
-        /// <summary>
-        /// Resources allocated to hosts of the PostgreSQL cluster. The structure is documented below.
-        /// </summary>
         public readonly Outputs.MdbPostgresqlClusterConfigResources Resources;
-        /// <summary>
-        /// Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
-        /// </summary>
         public readonly string Version;
 
         [OutputConstructor]

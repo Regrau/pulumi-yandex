@@ -34,22 +34,6 @@ class MdbPostgresqlClusterArgs:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserArgs']]]] = None):
         """
         The set of arguments for constructing a MdbPostgresqlCluster resource.
-        :param pulumi.Input['MdbPostgresqlClusterConfigArgs'] config: Configuration of the PostgreSQL cluster. The structure is documented below.
-        :param pulumi.Input[str] environment: Deployment environment of the PostgreSQL cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterHostArgs']]] hosts: A host of the PostgreSQL cluster. The structure is documented below.
-        :param pulumi.Input[str] network_id: ID of the network, to which the PostgreSQL cluster belongs.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterDatabaseArgs']]] databases: To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
-        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
-        :param pulumi.Input[str] description: Description of the PostgreSQL cluster.
-        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it is unset, the default provider `folder_id` is used for create.
-        :param pulumi.Input[str] host_master_name: It sets name of master host. It works only when `host.name` is set.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the PostgreSQL cluster.
-        :param pulumi.Input['MdbPostgresqlClusterMaintenanceWindowArgs'] maintenance_window: Maintenance policy of the PostgreSQL cluster. The structure is documented below.
-        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-               Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        :param pulumi.Input['MdbPostgresqlClusterRestoreArgs'] restore: The cluster will be created from the specified backup. The structure is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "environment", environment)
@@ -89,9 +73,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter
     def config(self) -> pulumi.Input['MdbPostgresqlClusterConfigArgs']:
-        """
-        Configuration of the PostgreSQL cluster. The structure is documented below.
-        """
         return pulumi.get(self, "config")
 
     @config.setter
@@ -101,9 +82,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Input[str]:
-        """
-        Deployment environment of the PostgreSQL cluster.
-        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -113,9 +91,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter
     def hosts(self) -> pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterHostArgs']]]:
-        """
-        A host of the PostgreSQL cluster. The structure is documented below.
-        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -125,9 +100,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Input[str]:
-        """
-        ID of the network, to which the PostgreSQL cluster belongs.
-        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -137,9 +109,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter
     def databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterDatabaseArgs']]]]:
-        """
-        To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
-        """
         return pulumi.get(self, "databases")
 
     @databases.setter
@@ -149,9 +118,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Inhibits deletion of the cluster.  Can be either `true` or `false`.
-        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -161,9 +127,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
-        """
-        Description of the PostgreSQL cluster.
-        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -173,9 +136,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of the folder that the resource belongs to. If it is unset, the default provider `folder_id` is used for create.
-        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -194,9 +154,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter(name="hostMasterName")
     def host_master_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        It sets name of master host. It works only when `host.name` is set.
-        """
         return pulumi.get(self, "host_master_name")
 
     @host_master_name.setter
@@ -206,9 +163,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        A set of key/value label pairs to assign to the PostgreSQL cluster.
-        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -218,9 +172,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MdbPostgresqlClusterMaintenanceWindowArgs']]:
-        """
-        Maintenance policy of the PostgreSQL cluster. The structure is documented below.
-        """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
@@ -230,10 +181,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-        Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -243,9 +190,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter
     def restore(self) -> Optional[pulumi.Input['MdbPostgresqlClusterRestoreArgs']]:
-        """
-        The cluster will be created from the specified backup. The structure is documented below.
-        """
         return pulumi.get(self, "restore")
 
     @restore.setter
@@ -255,9 +199,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        A set of ids of security groups assigned to hosts of the cluster.
-        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -267,9 +208,6 @@ class MdbPostgresqlClusterArgs:
     @property
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserArgs']]]]:
-        """
-        To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
-        """
         return pulumi.get(self, "users")
 
     @users.setter
@@ -301,25 +239,6 @@ class _MdbPostgresqlClusterState:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserArgs']]]] = None):
         """
         Input properties used for looking up and filtering MdbPostgresqlCluster resources.
-        :param pulumi.Input['MdbPostgresqlClusterConfigArgs'] config: Configuration of the PostgreSQL cluster. The structure is documented below.
-        :param pulumi.Input[str] created_at: Timestamp of cluster creation.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterDatabaseArgs']]] databases: To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
-        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
-        :param pulumi.Input[str] description: Description of the PostgreSQL cluster.
-        :param pulumi.Input[str] environment: Deployment environment of the PostgreSQL cluster.
-        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it is unset, the default provider `folder_id` is used for create.
-        :param pulumi.Input[str] health: Aggregated health of the cluster.
-        :param pulumi.Input[str] host_master_name: It sets name of master host. It works only when `host.name` is set.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterHostArgs']]] hosts: A host of the PostgreSQL cluster. The structure is documented below.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the PostgreSQL cluster.
-        :param pulumi.Input['MdbPostgresqlClusterMaintenanceWindowArgs'] maintenance_window: Maintenance policy of the PostgreSQL cluster. The structure is documented below.
-        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-               Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        :param pulumi.Input[str] network_id: ID of the network, to which the PostgreSQL cluster belongs.
-        :param pulumi.Input['MdbPostgresqlClusterRestoreArgs'] restore: The cluster will be created from the specified backup. The structure is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
-        :param pulumi.Input[str] status: Status of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
         """
         if config is not None:
             pulumi.set(__self__, "config", config)
@@ -369,9 +288,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter
     def config(self) -> Optional[pulumi.Input['MdbPostgresqlClusterConfigArgs']]:
-        """
-        Configuration of the PostgreSQL cluster. The structure is documented below.
-        """
         return pulumi.get(self, "config")
 
     @config.setter
@@ -381,9 +297,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> Optional[pulumi.Input[str]]:
-        """
-        Timestamp of cluster creation.
-        """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
@@ -393,9 +306,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter
     def databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterDatabaseArgs']]]]:
-        """
-        To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
-        """
         return pulumi.get(self, "databases")
 
     @databases.setter
@@ -405,9 +315,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
-        """
-        Inhibits deletion of the cluster.  Can be either `true` or `false`.
-        """
         return pulumi.get(self, "deletion_protection")
 
     @deletion_protection.setter
@@ -417,9 +324,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
-        """
-        Description of the PostgreSQL cluster.
-        """
         return pulumi.get(self, "description")
 
     @description.setter
@@ -429,9 +333,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter
     def environment(self) -> Optional[pulumi.Input[str]]:
-        """
-        Deployment environment of the PostgreSQL cluster.
-        """
         return pulumi.get(self, "environment")
 
     @environment.setter
@@ -441,9 +342,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        The ID of the folder that the resource belongs to. If it is unset, the default provider `folder_id` is used for create.
-        """
         return pulumi.get(self, "folder_id")
 
     @folder_id.setter
@@ -453,9 +351,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter
     def health(self) -> Optional[pulumi.Input[str]]:
-        """
-        Aggregated health of the cluster.
-        """
         return pulumi.get(self, "health")
 
     @health.setter
@@ -474,9 +369,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter(name="hostMasterName")
     def host_master_name(self) -> Optional[pulumi.Input[str]]:
-        """
-        It sets name of master host. It works only when `host.name` is set.
-        """
         return pulumi.get(self, "host_master_name")
 
     @host_master_name.setter
@@ -486,9 +378,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter
     def hosts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterHostArgs']]]]:
-        """
-        A host of the PostgreSQL cluster. The structure is documented below.
-        """
         return pulumi.get(self, "hosts")
 
     @hosts.setter
@@ -498,9 +387,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
-        """
-        A set of key/value label pairs to assign to the PostgreSQL cluster.
-        """
         return pulumi.get(self, "labels")
 
     @labels.setter
@@ -510,9 +396,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MdbPostgresqlClusterMaintenanceWindowArgs']]:
-        """
-        Maintenance policy of the PostgreSQL cluster. The structure is documented below.
-        """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
@@ -522,10 +405,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
-        """
-        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-        Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        """
         return pulumi.get(self, "name")
 
     @name.setter
@@ -535,9 +414,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> Optional[pulumi.Input[str]]:
-        """
-        ID of the network, to which the PostgreSQL cluster belongs.
-        """
         return pulumi.get(self, "network_id")
 
     @network_id.setter
@@ -547,9 +423,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter
     def restore(self) -> Optional[pulumi.Input['MdbPostgresqlClusterRestoreArgs']]:
-        """
-        The cluster will be created from the specified backup. The structure is documented below.
-        """
         return pulumi.get(self, "restore")
 
     @restore.setter
@@ -559,9 +432,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
-        """
-        A set of ids of security groups assigned to hosts of the cluster.
-        """
         return pulumi.get(self, "security_group_ids")
 
     @security_group_ids.setter
@@ -571,9 +441,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
-        """
-        Status of the cluster.
-        """
         return pulumi.get(self, "status")
 
     @status.setter
@@ -583,9 +450,6 @@ class _MdbPostgresqlClusterState:
     @property
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlClusterUserArgs']]]]:
-        """
-        To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
-        """
         return pulumi.get(self, "users")
 
     @users.setter
@@ -616,368 +480,9 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterUserArgs']]]]] = None,
                  __props__=None):
         """
-        Manages a PostgreSQL cluster within the Yandex.Cloud. For more information, see
-        [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/).
-        [How to connect to the DB](https://cloud.yandex.com/en-ru/docs/managed-postgresql/quickstart#connect). To connect, use port 6432. The port number is not configurable.
-
-        ## Example Usage
-
-        Example of creating a Single Node PostgreSQL.
-
-        ```python
-        import pulumi
-        import pulumi_yandex_unofficial as yandex
-
-        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
-        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
-            zone="ru-central1-a",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.5.0.0/24"])
-        foo_mdb_postgresql_cluster = yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster",
-            environment="PRESTABLE",
-            network_id=foo_vpc_network.id,
-            config=yandex.MdbPostgresqlClusterConfigArgs(
-                version="12",
-                resources=yandex.MdbPostgresqlClusterConfigResourcesArgs(
-                    resource_preset_id="s2.micro",
-                    disk_type_id="network-ssd",
-                    disk_size=16,
-                ),
-                postgresql_config={
-                    "max_connections": "395",
-                    "enable_parallel_hash": "true",
-                    "vacuum_cleanup_index_scale_factor": "0.2",
-                    "autovacuum_vacuum_scale_factor": "0.34",
-                    "default_transaction_isolation": "TRANSACTION_ISOLATION_READ_COMMITTED",
-                    "shared_preload_libraries": "SHARED_PRELOAD_LIBRARIES_AUTO_EXPLAIN,SHARED_PRELOAD_LIBRARIES_PG_HINT_PLAN",
-                },
-            ),
-            maintenance_window=yandex.MdbPostgresqlClusterMaintenanceWindowArgs(
-                type="WEEKLY",
-                day="SAT",
-                hour=12,
-            ),
-            hosts=[yandex.MdbPostgresqlClusterHostArgs(
-                zone="ru-central1-a",
-                subnet_id=foo_vpc_subnet.id,
-            )])
-        ```
-
-        Example of creating a High-Availability (HA) PostgreSQL Cluster.
-
-        ```python
-        import pulumi
-        import pulumi_yandex_unofficial as yandex
-
-        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
-        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
-            zone="ru-central1-a",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.1.0.0/24"])
-        bar = yandex.VpcSubnet("bar",
-            zone="ru-central1-b",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.2.0.0/24"])
-        foo_mdb_postgresql_cluster = yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster",
-            environment="PRESTABLE",
-            network_id=foo_vpc_network.id,
-            config=yandex.MdbPostgresqlClusterConfigArgs(
-                version="12",
-                resources=yandex.MdbPostgresqlClusterConfigResourcesArgs(
-                    resource_preset_id="s2.micro",
-                    disk_type_id="network-ssd",
-                    disk_size=16,
-                ),
-            ),
-            maintenance_window=yandex.MdbPostgresqlClusterMaintenanceWindowArgs(
-                type="ANYTIME",
-            ),
-            hosts=[
-                yandex.MdbPostgresqlClusterHostArgs(
-                    zone="ru-central1-a",
-                    subnet_id=foo_vpc_subnet.id,
-                ),
-                yandex.MdbPostgresqlClusterHostArgs(
-                    zone="ru-central1-b",
-                    subnet_id=bar.id,
-                ),
-            ])
-        ```
-
-        Example of creating a High-Availability (HA) PostgreSQL Cluster with priority and set master.
-
-        ```python
-        import pulumi
-        import pulumi_yandex_unofficial as yandex
-
-        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
-        vpc_subnet = yandex.VpcSubnet("vpcSubnet",
-            zone="ru-central1-a",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.1.0.0/24"])
-        foo_mdb_postgresql_cluster = yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster",
-            description="test High-Availability (HA) PostgreSQL Cluster with priority and set master",
-            environment="PRESTABLE",
-            network_id=foo_vpc_network.id,
-            host_master_name="host_name_c_2",
-            config=yandex.MdbPostgresqlClusterConfigArgs(
-                version="12",
-                resources=yandex.MdbPostgresqlClusterConfigResourcesArgs(
-                    resource_preset_id="s2.micro",
-                    disk_size=10,
-                    disk_type_id="network-ssd",
-                ),
-            ),
-            hosts=[
-                yandex.MdbPostgresqlClusterHostArgs(
-                    zone="ru-central1-a",
-                    name="host_name_a",
-                    priority=2,
-                    subnet_id=vpc_subnet.id,
-                ),
-                yandex.MdbPostgresqlClusterHostArgs(
-                    zone="ru-central1-b",
-                    name="host_name_b",
-                    replication_source_name="host_name_c",
-                    subnet_id=index / vpc_subnet_vpc_subnet["id"],
-                ),
-                yandex.MdbPostgresqlClusterHostArgs(
-                    zone="ru-central1-c",
-                    name="host_name_c",
-                    subnet_id=yandex_index / vpc_subnet_vpc_subnet["id"],
-                ),
-                yandex.MdbPostgresqlClusterHostArgs(
-                    zone="ru-central1-c",
-                    name="host_name_c_2",
-                    subnet_id=yandex_index / vpc_subnet_vpc_subnet["id"],
-                ),
-            ])
-        index_vpc_subnet_vpc_subnet = yandex.VpcSubnet("index/vpcSubnetVpcSubnet",
-            zone="ru-central1-b",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.2.0.0/24"])
-        yandex_index_vpc_subnet_vpc_subnet = yandex.VpcSubnet("yandexIndex/vpcSubnetVpcSubnet",
-            zone="ru-central1-c",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.3.0.0/24"])
-        ```
-
-        Example of creating a Single Node PostgreSQL from backup.
-
-        ```python
-        import pulumi
-        import pulumi_yandex_unofficial as yandex
-
-        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
-        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
-            zone="ru-central1-a",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.5.0.0/24"])
-        foo_mdb_postgresql_cluster = yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster",
-            environment="PRESTABLE",
-            network_id=foo_vpc_network.id,
-            restore=yandex.MdbPostgresqlClusterRestoreArgs(
-                backup_id="c9q99999999999999994cm:base_000000010000005F000000B4",
-                time="2021-02-11T15:04:05",
-            ),
-            config=yandex.MdbPostgresqlClusterConfigArgs(
-                version="12",
-                resources=yandex.MdbPostgresqlClusterConfigResourcesArgs(
-                    resource_preset_id="s2.micro",
-                    disk_type_id="network-ssd",
-                    disk_size=16,
-                ),
-                postgresql_config={
-                    "max_connections": "395",
-                    "enable_parallel_hash": "true",
-                    "vacuum_cleanup_index_scale_factor": "0.2",
-                    "autovacuum_vacuum_scale_factor": "0.34",
-                    "default_transaction_isolation": "TRANSACTION_ISOLATION_READ_COMMITTED",
-                    "shared_preload_libraries": "SHARED_PRELOAD_LIBRARIES_AUTO_EXPLAIN,SHARED_PRELOAD_LIBRARIES_PG_HINT_PLAN",
-                },
-            ),
-            hosts=[yandex.MdbPostgresqlClusterHostArgs(
-                zone="ru-central1-a",
-                subnet_id=foo_vpc_subnet.id,
-            )])
-        ```
-        ## PostgreSQL cluster settings
-
-        More information about config:
-        * https://cloud.yandex.com/docs/managed-postgresql/concepts/settings-list
-        * https://www.postgresql.org/docs/current/runtime-config-connection.html
-        * https://www.postgresql.org/docs/current/runtime-config-resource.html
-        * https://www.postgresql.org/docs/current/runtime-config-wal.html
-        * https://www.postgresql.org/docs/current/runtime-config-query.html
-        * https://www.postgresql.org/docs/current/runtime-config-logging.html
-        * https://www.postgresql.org/docs/current/runtime-config-autovacuum.html
-        * https://www.postgresql.org/docs/current/runtime-config-client.html
-        * https://www.postgresql.org/docs/current/runtime-config-locks.html
-        * https://www.postgresql.org/docs/current/runtime-config-compatible.html
-
-        | Setting name and type \\ PostgreSQL version | 10 | 11 | 12 | 13 | 14 |
-        | ------------------------------------------ | -- | -- | -- | -- | -- |
-        | archive_timeout : integer | supported | supported | supported | supported | supported |
-        | array_nulls : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_log_analyze : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_log_buffers : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_log_min_duration : integer | supported | supported | supported | supported | supported |
-        | auto_explain_log_nested_statements : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_log_timing : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_log_triggers : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_log_verbose : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_sample_rate : float | supported | supported | supported | supported | supported |
-        | autovacuum_analyze_scale_factor : float | supported | supported | supported | supported | supported |
-        | autovacuum_max_workers : integer | supported | supported | supported | supported | supported |
-        | autovacuum_naptime : integer | supported | supported | supported | supported | supported |
-        | autovacuum_vacuum_cost_delay : integer | supported | supported | supported | supported | supported |
-        | autovacuum_vacuum_cost_limit : integer | supported | supported | supported | supported | supported |
-        | autovacuum_vacuum_insert_scale_factor : float | - | - | - | supported | supported |
-        | autovacuum_vacuum_insert_threshold : integer | - | - | - | supported | supported |
-        | autovacuum_vacuum_scale_factor : float | supported | supported | supported | supported | supported |
-        | autovacuum_work_mem : integer | supported | supported | supported | supported | supported |
-        | backend_flush_after : integer | supported | supported | supported | supported | supported |
-        | backslash_quote : one of<br>  - 0: "BACKSLASH_QUOTE_UNSPECIFIED"<br>  - 1: "BACKSLASH_QUOTE"<br>  - 2: "BACKSLASH_QUOTE_ON"<br>  - 3: "BACKSLASH_QUOTE_OFF"<br>  - 4: "BACKSLASH_QUOTE_SAFE_ENCODING" | supported | supported | supported | supported | supported |
-        | bgwriter_delay : integer | supported | supported | supported | supported | supported |
-        | bgwriter_flush_after : integer | supported | supported | supported | supported | supported |
-        | bgwriter_lru_maxpages : integer | supported | supported | supported | supported | supported |
-        | bgwriter_lru_multiplier : float | supported | supported | supported | supported | supported |
-        | bytea_output : one of<br>  - 0: "BYTEA_OUTPUT_UNSPECIFIED"<br>  - 1: "BYTEA_OUTPUT_HEX"<br>  - 2: "BYTEA_OUTPUT_ESCAPED" | supported | supported | supported | supported | supported |
-        | checkpoint_completion_target : float | supported | supported | supported | supported | supported |
-        | checkpoint_flush_after : integer | supported | supported | supported | supported | supported |
-        | checkpoint_timeout : integer | supported | supported | supported | supported | supported |
-        | client_min_messages : one of<br>  - 0: "LOG_LEVEL_UNSPECIFIED"<br>  - 1: "LOG_LEVEL_DEBUG5"<br>  - 2: "LOG_LEVEL_DEBUG4"<br>  - 3: "LOG_LEVEL_DEBUG3"<br>  - 4: "LOG_LEVEL_DEBUG2"<br>  - 5: "LOG_LEVEL_DEBUG1"<br>  - 6: "LOG_LEVEL_LOG"<br>  - 7: "LOG_LEVEL_NOTICE"<br>  - 8: "LOG_LEVEL_WARNING"<br>  - 9: "LOG_LEVEL_ERROR"<br>  - 10: "LOG_LEVEL_FATAL"<br>  - 11: "LOG_LEVEL_PANIC" | supported | supported | supported | supported | supported |
-        | constraint_exclusion : one of<br>  - 0: "CONSTRAINT_EXCLUSION_UNSPECIFIED"<br>  - 1: "CONSTRAINT_EXCLUSION_ON"<br>  - 2: "CONSTRAINT_EXCLUSION_OFF"<br>  - 3: "CONSTRAINT_EXCLUSION_PARTITION" | supported | supported | supported | supported | supported |
-        | cursor_tuple_fraction : float | supported | supported | supported | supported | supported |
-        | deadlock_timeout : integer | supported | supported | supported | supported | supported |
-        | default_statistics_target : integer | supported | supported | supported | supported | supported |
-        | default_transaction_isolation : one of<br>  - 0: "TRANSACTION_ISOLATION_UNSPECIFIED"<br>  - 1: "TRANSACTION_ISOLATION_READ_UNCOMMITTED"<br>  - 2: "TRANSACTION_ISOLATION_READ_COMMITTED"<br>  - 3: "TRANSACTION_ISOLATION_REPEATABLE_READ"<br>  - 4: "TRANSACTION_ISOLATION_SERIALIZABLE" | supported | supported | supported | supported | supported |
-        | default_transaction_read_only : boolean | supported | supported | supported | supported | supported |
-        | default_with_oids : boolean | supported | supported | supported | supported | supported |
-        | effective_cache_size : integer | supported | supported | supported | supported | supported |
-        | effective_io_concurrency : integer | supported | supported | supported | supported | supported |
-        | enable_bitmapscan : boolean | supported | supported | supported | supported | supported |
-        | enable_hashagg : boolean | supported | supported | supported | supported | supported |
-        | enable_hashjoin : boolean | supported | supported | supported | supported | supported |
-        | enable_incremental_sort : boolean | - | - | - | supported | supported |
-        | enable_indexonlyscan : boolean | supported | supported | supported | supported | supported |
-        | enable_indexscan : boolean | supported | supported | supported | supported | supported |
-        | enable_material : boolean | supported | supported | supported | supported | supported |
-        | enable_mergejoin : boolean | supported | supported | supported | supported | supported |
-        | enable_nestloop : boolean | supported | supported | supported | supported | supported |
-        | enable_parallel_append : boolean | - | supported | supported | supported | supported |
-        | enable_parallel_hash : boolean | - | supported | supported | supported | supported |
-        | enable_partition_pruning : boolean | - | supported | supported | supported | supported |
-        | enable_partitionwise_aggregate : boolean | - | supported | supported | supported | supported |
-        | enable_partitionwise_join : boolean | - | supported | supported | supported | supported |
-        | enable_seqscan : boolean | supported | supported | supported | supported | supported |
-        | enable_sort : boolean | supported | supported | supported | supported | supported |
-        | enable_tidscan : boolean | supported | supported | supported | supported | supported |
-        | escape_string_warning : boolean | supported | supported | supported | supported | supported |
-        | exit_on_error : boolean | supported | supported | supported | supported | supported |
-        | force_parallel_mode : one of<br>  - 0: "FORCE_PARALLEL_MODE_UNSPECIFIED"<br>  - 1: "FORCE_PARALLEL_MODE_ON"<br>  - 2: "FORCE_PARALLEL_MODE_OFF"<br>  - 3: "FORCE_PARALLEL_MODE_REGRESS" | supported | supported | supported | supported | supported |
-        | from_collapse_limit : integer | supported | supported | supported | supported | supported |
-        | gin_pending_list_limit : integer | supported | supported | supported | supported | supported |
-        | hash_mem_multiplier : float | - | - | - | supported | supported |
-        | idle_in_transaction_session_timeout : integer | supported | supported | supported | supported | supported |
-        | jit : boolean | - | supported | supported | supported | supported |
-        | join_collapse_limit : integer | supported | supported | supported | supported | supported |
-        | lo_compat_privileges : boolean | supported | supported | supported | supported | supported |
-        | lock_timeout : integer | supported | supported | supported | supported | supported |
-        | log_checkpoints : boolean | supported | supported | supported | supported | supported |
-        | log_connections : boolean | supported | supported | supported | supported | supported |
-        | log_disconnections : boolean | supported | supported | supported | supported | supported |
-        | log_duration : boolean | supported | supported | supported | supported | supported |
-        | log_error_verbosity : one of<br>  - 0: "LOG_ERROR_VERBOSITY_UNSPECIFIED"<br>  - 1: "LOG_ERROR_VERBOSITY_TERSE"<br>  - 2: "LOG_ERROR_VERBOSITY_DEFAULT"<br>  - 3: "LOG_ERROR_VERBOSITY_VERBOSE" | supported | supported | supported | supported | supported |
-        | log_lock_waits : boolean | supported | supported | supported | supported | supported |
-        | log_min_duration_sample : integer | - | - | - | supported | supported |
-        | log_min_duration_statement : integer | supported | supported | supported | supported | supported |
-        | log_min_error_statement : one of<br>  - 0: "LOG_LEVEL_UNSPECIFIED"<br>  - 1: "LOG_LEVEL_DEBUG5"<br>  - 2: "LOG_LEVEL_DEBUG4"<br>  - 3: "LOG_LEVEL_DEBUG3"<br>  - 4: "LOG_LEVEL_DEBUG2"<br>  - 5: "LOG_LEVEL_DEBUG1"<br>  - 6: "LOG_LEVEL_LOG"<br>  - 7: "LOG_LEVEL_NOTICE"<br>  - 8: "LOG_LEVEL_WARNING"<br>  - 9: "LOG_LEVEL_ERROR"<br>  - 10: "LOG_LEVEL_FATAL"<br>  - 11: "LOG_LEVEL_PANIC" | supported | supported | supported | supported | supported |
-        | log_min_messages : one of<br>  - 0: "LOG_LEVEL_UNSPECIFIED"<br>  - 1: "LOG_LEVEL_DEBUG5"<br>  - 2: "LOG_LEVEL_DEBUG4"<br>  - 3: "LOG_LEVEL_DEBUG3"<br>  - 4: "LOG_LEVEL_DEBUG2"<br>  - 5: "LOG_LEVEL_DEBUG1"<br>  - 6: "LOG_LEVEL_LOG"<br>  - 7: "LOG_LEVEL_NOTICE"<br>  - 8: "LOG_LEVEL_WARNING"<br>  - 9: "LOG_LEVEL_ERROR"<br>  - 10: "LOG_LEVEL_FATAL"<br>  - 11: "LOG_LEVEL_PANIC" | supported | supported | supported | supported | supported |
-        | log_parameter_max_length : integer | - | - | - | supported | supported |
-        | log_parameter_max_length_on_error : integer | - | - | - | supported | supported |
-        | log_statement : one of<br>  - 0: "LOG_STATEMENT_UNSPECIFIED"<br>  - 1: "LOG_STATEMENT_NONE"<br>  - 2: "LOG_STATEMENT_DDL"<br>  - 3: "LOG_STATEMENT_MOD"<br>  - 4: "LOG_STATEMENT_ALL" | supported | supported | supported | supported | supported |
-        | log_statement_sample_rate : float | - | - | - | supported | supported |
-        | log_temp_files : integer | supported | supported | supported | supported | supported |
-        | log_transaction_sample_rate : float | - | - | supported | supported | supported |
-        | logical_decoding_work_mem : integer | - | - | - | supported | supported |
-        | maintenance_io_concurrency : integer | - | - | - | supported | supported |
-        | maintenance_work_mem : integer | supported | supported | supported | supported | supported |
-        | max_connections : integer | supported | supported | supported | supported | supported |
-        | max_locks_per_transaction : integer | supported | supported | supported | supported | supported |
-        | max_parallel_maintenance_workers : integer | - | supported | supported | supported | supported |
-        | max_parallel_workers : integer | supported | supported | supported | supported | supported |
-        | max_parallel_workers_per_gather : integer | supported | supported | supported | supported | supported |
-        | max_pred_locks_per_transaction : integer | supported | supported | supported | supported | supported |
-        | max_prepared_transactions : integer | supported | supported | supported | supported | supported |
-        | max_slot_wal_keep_size : integer | - | - | - | supported | supported |
-        | max_standby_streaming_delay : integer | supported | supported | supported | supported | supported |
-        | max_wal_size : integer | supported | supported | supported | supported | supported |
-        | max_worker_processes : integer | supported | supported | supported | supported | supported |
-        | min_wal_size : integer | supported | supported | supported | supported | supported |
-        | old_snapshot_threshold : integer | supported | supported | supported | supported | supported |
-        | operator_precedence_warning : boolean | supported | supported | supported | supported | supported |
-        | parallel_leader_participation : boolean | - | supported | supported | supported | supported |
-        | pg_hint_plan_debug_print : one of<br>  - 0: "PG_HINT_PLAN_DEBUG_PRINT_UNSPECIFIED"<br>  - 1: "PG_HINT_PLAN_DEBUG_PRINT_OFF"<br>  - 2: "PG_HINT_PLAN_DEBUG_PRINT_ON"<br>  - 3: "PG_HINT_PLAN_DEBUG_PRINT_DETAILED"<br>  - 4: "PG_HINT_PLAN_DEBUG_PRINT_VERBOSE" | supported | supported | supported | supported | supported |
-        | pg_hint_plan_enable_hint : boolean | supported | supported | supported | supported | supported |
-        | pg_hint_plan_enable_hint_table : boolean | supported | supported | supported | supported | supported |
-        | pg_hint_plan_message_level : one of<br>  - 0: "LOG_LEVEL_UNSPECIFIED"<br>  - 1: "LOG_LEVEL_DEBUG5"<br>  - 2: "LOG_LEVEL_DEBUG4"<br>  - 3: "LOG_LEVEL_DEBUG3"<br>  - 4: "LOG_LEVEL_DEBUG2"<br>  - 5: "LOG_LEVEL_DEBUG1"<br>  - 6: "LOG_LEVEL_LOG"<br>  - 7: "LOG_LEVEL_NOTICE"<br>  - 8: "LOG_LEVEL_WARNING"<br>  - 9: "LOG_LEVEL_ERROR"<br>  - 10: "LOG_LEVEL_FATAL"<br>  - 11: "LOG_LEVEL_PANIC" | supported | supported | supported | supported | supported |
-        | plan_cache_mode : one of<br>  - 0: "PLAN_CACHE_MODE_UNSPECIFIED"<br>  - 1: "PLAN_CACHE_MODE_AUTO"<br>  - 2: "PLAN_CACHE_MODE_FORCE_CUSTOM_PLAN"<br>  - 3: "PLAN_CACHE_MODE_FORCE_GENERIC_PLAN" | - | - | supported | supported | supported |
-        | quote_all_identifiers : boolean | supported | supported | supported | supported | supported |
-        | random_page_cost : float | supported | supported | supported | supported | supported |
-        | replacement_sort_tuples : integer | supported | - | - | - | - |
-        | row_security : boolean | supported | supported | supported | supported | supported |
-        | search_path : text | supported | supported | supported | supported | supported |
-        | seq_page_cost : float | supported | supported | supported | supported | supported |
-        | shared_buffers : integer | supported | supported | supported | supported | supported |
-        | shared_preload_libraries : override if not set. one of<br> - "SHARED_PRELOAD_LIBRARIES_AUTO_EXPLAIN<br> - "SHARED_PRELOAD_LIBRARIES_PG_HINT_PLAN"<br> - "SHARED_PRELOAD_LIBRARIES_AUTO_EXPLAIN"<br> - "SHARED_PRELOAD_LIBRARIES_PG_HINT_PLAN"<br> - NO value | supported | supported | supported | supported | supported |
-        | standard_conforming_strings : boolean | supported | supported | supported | supported | supported |
-        | statement_timeout : integer | supported | supported | supported | supported | supported |
-        | synchronize_seqscans : boolean | supported | supported | supported | supported | supported |
-        | synchronous_commit : one of<br>  - 0: "SYNCHRONOUS_COMMIT_UNSPECIFIED"<br>  - 1: "SYNCHRONOUS_COMMIT_ON"<br>  - 2: "SYNCHRONOUS_COMMIT_OFF"<br>  - 3: "SYNCHRONOUS_COMMIT_LOCAL"<br>  - 4: "SYNCHRONOUS_COMMIT_REMOTE_WRITE"<br>  - 5: "SYNCHRONOUS_COMMIT_REMOTE_APPLY" | supported | supported | supported | supported | supported |
-        | temp_buffers : integer | supported | supported | supported | supported | supported |
-        | temp_file_limit : integer | supported | supported | supported | supported | supported |
-        | timezone : text | supported | supported | supported | supported | supported |
-        | track_activity_query_size : integer | supported | supported | supported | supported | supported |
-        | transform_null_equals : boolean | supported | supported | supported | supported | supported |
-        | vacuum_cleanup_index_scale_factor : float | - | supported | supported | supported | - |
-        | vacuum_cost_delay : integer | supported | supported | supported | supported | supported |
-        | vacuum_cost_limit : integer | supported | supported | supported | supported | supported |
-        | vacuum_cost_page_dirty : integer | supported | supported | supported | supported | supported |
-        | vacuum_cost_page_hit : integer | supported | supported | supported | supported | supported |
-        | vacuum_cost_page_miss : integer | supported | supported | supported | supported | supported |
-        | wal_keep_size : integer | - | - | - | supported | supported |
-        | wal_level : one of<br>  - 0: "WAL_LEVEL_UNSPECIFIED"<br>  - 1: "WAL_LEVEL_REPLICA"<br>  - 2: "WAL_LEVEL_LOGICAL" | supported | supported | supported | supported | supported |
-        | work_mem : integer | supported | supported | supported | supported | supported |
-        | xmlbinary : one of<br>  - 0: "XML_BINARY_UNSPECIFIED"<br>  - 1: "XML_BINARY_BASE64"<br>  - 2: "XML_BINARY_HEX" | supported | supported | supported | supported | supported |
-        | xmloption : one of<br>  - 0: "XML_OPTION_UNSPECIFIED"<br>  - 1: "XML_OPTION_DOCUMENT"<br>  - 2: "XML_OPTION_CONTENT" | supported | supported | supported | supported | supported |
-
-        ## Import
-
-        A cluster can be imported using the `id` of the resource, e.g.
-
-        ```sh
-         $ pulumi import yandex:index/mdbPostgresqlCluster:MdbPostgresqlCluster foo cluster_id
-        ```
-
+        Create a MdbPostgresqlCluster resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['MdbPostgresqlClusterConfigArgs']] config: Configuration of the PostgreSQL cluster. The structure is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterDatabaseArgs']]]] databases: To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
-        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
-        :param pulumi.Input[str] description: Description of the PostgreSQL cluster.
-        :param pulumi.Input[str] environment: Deployment environment of the PostgreSQL cluster.
-        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it is unset, the default provider `folder_id` is used for create.
-        :param pulumi.Input[str] host_master_name: It sets name of master host. It works only when `host.name` is set.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterHostArgs']]]] hosts: A host of the PostgreSQL cluster. The structure is documented below.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the PostgreSQL cluster.
-        :param pulumi.Input[pulumi.InputType['MdbPostgresqlClusterMaintenanceWindowArgs']] maintenance_window: Maintenance policy of the PostgreSQL cluster. The structure is documented below.
-        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-               Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        :param pulumi.Input[str] network_id: ID of the network, to which the PostgreSQL cluster belongs.
-        :param pulumi.Input[pulumi.InputType['MdbPostgresqlClusterRestoreArgs']] restore: The cluster will be created from the specified backup. The structure is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
         """
         ...
     @overload
@@ -986,350 +491,7 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
                  args: MdbPostgresqlClusterArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Manages a PostgreSQL cluster within the Yandex.Cloud. For more information, see
-        [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/).
-        [How to connect to the DB](https://cloud.yandex.com/en-ru/docs/managed-postgresql/quickstart#connect). To connect, use port 6432. The port number is not configurable.
-
-        ## Example Usage
-
-        Example of creating a Single Node PostgreSQL.
-
-        ```python
-        import pulumi
-        import pulumi_yandex_unofficial as yandex
-
-        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
-        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
-            zone="ru-central1-a",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.5.0.0/24"])
-        foo_mdb_postgresql_cluster = yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster",
-            environment="PRESTABLE",
-            network_id=foo_vpc_network.id,
-            config=yandex.MdbPostgresqlClusterConfigArgs(
-                version="12",
-                resources=yandex.MdbPostgresqlClusterConfigResourcesArgs(
-                    resource_preset_id="s2.micro",
-                    disk_type_id="network-ssd",
-                    disk_size=16,
-                ),
-                postgresql_config={
-                    "max_connections": "395",
-                    "enable_parallel_hash": "true",
-                    "vacuum_cleanup_index_scale_factor": "0.2",
-                    "autovacuum_vacuum_scale_factor": "0.34",
-                    "default_transaction_isolation": "TRANSACTION_ISOLATION_READ_COMMITTED",
-                    "shared_preload_libraries": "SHARED_PRELOAD_LIBRARIES_AUTO_EXPLAIN,SHARED_PRELOAD_LIBRARIES_PG_HINT_PLAN",
-                },
-            ),
-            maintenance_window=yandex.MdbPostgresqlClusterMaintenanceWindowArgs(
-                type="WEEKLY",
-                day="SAT",
-                hour=12,
-            ),
-            hosts=[yandex.MdbPostgresqlClusterHostArgs(
-                zone="ru-central1-a",
-                subnet_id=foo_vpc_subnet.id,
-            )])
-        ```
-
-        Example of creating a High-Availability (HA) PostgreSQL Cluster.
-
-        ```python
-        import pulumi
-        import pulumi_yandex_unofficial as yandex
-
-        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
-        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
-            zone="ru-central1-a",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.1.0.0/24"])
-        bar = yandex.VpcSubnet("bar",
-            zone="ru-central1-b",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.2.0.0/24"])
-        foo_mdb_postgresql_cluster = yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster",
-            environment="PRESTABLE",
-            network_id=foo_vpc_network.id,
-            config=yandex.MdbPostgresqlClusterConfigArgs(
-                version="12",
-                resources=yandex.MdbPostgresqlClusterConfigResourcesArgs(
-                    resource_preset_id="s2.micro",
-                    disk_type_id="network-ssd",
-                    disk_size=16,
-                ),
-            ),
-            maintenance_window=yandex.MdbPostgresqlClusterMaintenanceWindowArgs(
-                type="ANYTIME",
-            ),
-            hosts=[
-                yandex.MdbPostgresqlClusterHostArgs(
-                    zone="ru-central1-a",
-                    subnet_id=foo_vpc_subnet.id,
-                ),
-                yandex.MdbPostgresqlClusterHostArgs(
-                    zone="ru-central1-b",
-                    subnet_id=bar.id,
-                ),
-            ])
-        ```
-
-        Example of creating a High-Availability (HA) PostgreSQL Cluster with priority and set master.
-
-        ```python
-        import pulumi
-        import pulumi_yandex_unofficial as yandex
-
-        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
-        vpc_subnet = yandex.VpcSubnet("vpcSubnet",
-            zone="ru-central1-a",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.1.0.0/24"])
-        foo_mdb_postgresql_cluster = yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster",
-            description="test High-Availability (HA) PostgreSQL Cluster with priority and set master",
-            environment="PRESTABLE",
-            network_id=foo_vpc_network.id,
-            host_master_name="host_name_c_2",
-            config=yandex.MdbPostgresqlClusterConfigArgs(
-                version="12",
-                resources=yandex.MdbPostgresqlClusterConfigResourcesArgs(
-                    resource_preset_id="s2.micro",
-                    disk_size=10,
-                    disk_type_id="network-ssd",
-                ),
-            ),
-            hosts=[
-                yandex.MdbPostgresqlClusterHostArgs(
-                    zone="ru-central1-a",
-                    name="host_name_a",
-                    priority=2,
-                    subnet_id=vpc_subnet.id,
-                ),
-                yandex.MdbPostgresqlClusterHostArgs(
-                    zone="ru-central1-b",
-                    name="host_name_b",
-                    replication_source_name="host_name_c",
-                    subnet_id=index / vpc_subnet_vpc_subnet["id"],
-                ),
-                yandex.MdbPostgresqlClusterHostArgs(
-                    zone="ru-central1-c",
-                    name="host_name_c",
-                    subnet_id=yandex_index / vpc_subnet_vpc_subnet["id"],
-                ),
-                yandex.MdbPostgresqlClusterHostArgs(
-                    zone="ru-central1-c",
-                    name="host_name_c_2",
-                    subnet_id=yandex_index / vpc_subnet_vpc_subnet["id"],
-                ),
-            ])
-        index_vpc_subnet_vpc_subnet = yandex.VpcSubnet("index/vpcSubnetVpcSubnet",
-            zone="ru-central1-b",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.2.0.0/24"])
-        yandex_index_vpc_subnet_vpc_subnet = yandex.VpcSubnet("yandexIndex/vpcSubnetVpcSubnet",
-            zone="ru-central1-c",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.3.0.0/24"])
-        ```
-
-        Example of creating a Single Node PostgreSQL from backup.
-
-        ```python
-        import pulumi
-        import pulumi_yandex_unofficial as yandex
-
-        foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
-        foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
-            zone="ru-central1-a",
-            network_id=foo_vpc_network.id,
-            v4_cidr_blocks=["10.5.0.0/24"])
-        foo_mdb_postgresql_cluster = yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster",
-            environment="PRESTABLE",
-            network_id=foo_vpc_network.id,
-            restore=yandex.MdbPostgresqlClusterRestoreArgs(
-                backup_id="c9q99999999999999994cm:base_000000010000005F000000B4",
-                time="2021-02-11T15:04:05",
-            ),
-            config=yandex.MdbPostgresqlClusterConfigArgs(
-                version="12",
-                resources=yandex.MdbPostgresqlClusterConfigResourcesArgs(
-                    resource_preset_id="s2.micro",
-                    disk_type_id="network-ssd",
-                    disk_size=16,
-                ),
-                postgresql_config={
-                    "max_connections": "395",
-                    "enable_parallel_hash": "true",
-                    "vacuum_cleanup_index_scale_factor": "0.2",
-                    "autovacuum_vacuum_scale_factor": "0.34",
-                    "default_transaction_isolation": "TRANSACTION_ISOLATION_READ_COMMITTED",
-                    "shared_preload_libraries": "SHARED_PRELOAD_LIBRARIES_AUTO_EXPLAIN,SHARED_PRELOAD_LIBRARIES_PG_HINT_PLAN",
-                },
-            ),
-            hosts=[yandex.MdbPostgresqlClusterHostArgs(
-                zone="ru-central1-a",
-                subnet_id=foo_vpc_subnet.id,
-            )])
-        ```
-        ## PostgreSQL cluster settings
-
-        More information about config:
-        * https://cloud.yandex.com/docs/managed-postgresql/concepts/settings-list
-        * https://www.postgresql.org/docs/current/runtime-config-connection.html
-        * https://www.postgresql.org/docs/current/runtime-config-resource.html
-        * https://www.postgresql.org/docs/current/runtime-config-wal.html
-        * https://www.postgresql.org/docs/current/runtime-config-query.html
-        * https://www.postgresql.org/docs/current/runtime-config-logging.html
-        * https://www.postgresql.org/docs/current/runtime-config-autovacuum.html
-        * https://www.postgresql.org/docs/current/runtime-config-client.html
-        * https://www.postgresql.org/docs/current/runtime-config-locks.html
-        * https://www.postgresql.org/docs/current/runtime-config-compatible.html
-
-        | Setting name and type \\ PostgreSQL version | 10 | 11 | 12 | 13 | 14 |
-        | ------------------------------------------ | -- | -- | -- | -- | -- |
-        | archive_timeout : integer | supported | supported | supported | supported | supported |
-        | array_nulls : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_log_analyze : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_log_buffers : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_log_min_duration : integer | supported | supported | supported | supported | supported |
-        | auto_explain_log_nested_statements : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_log_timing : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_log_triggers : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_log_verbose : boolean | supported | supported | supported | supported | supported |
-        | auto_explain_sample_rate : float | supported | supported | supported | supported | supported |
-        | autovacuum_analyze_scale_factor : float | supported | supported | supported | supported | supported |
-        | autovacuum_max_workers : integer | supported | supported | supported | supported | supported |
-        | autovacuum_naptime : integer | supported | supported | supported | supported | supported |
-        | autovacuum_vacuum_cost_delay : integer | supported | supported | supported | supported | supported |
-        | autovacuum_vacuum_cost_limit : integer | supported | supported | supported | supported | supported |
-        | autovacuum_vacuum_insert_scale_factor : float | - | - | - | supported | supported |
-        | autovacuum_vacuum_insert_threshold : integer | - | - | - | supported | supported |
-        | autovacuum_vacuum_scale_factor : float | supported | supported | supported | supported | supported |
-        | autovacuum_work_mem : integer | supported | supported | supported | supported | supported |
-        | backend_flush_after : integer | supported | supported | supported | supported | supported |
-        | backslash_quote : one of<br>  - 0: "BACKSLASH_QUOTE_UNSPECIFIED"<br>  - 1: "BACKSLASH_QUOTE"<br>  - 2: "BACKSLASH_QUOTE_ON"<br>  - 3: "BACKSLASH_QUOTE_OFF"<br>  - 4: "BACKSLASH_QUOTE_SAFE_ENCODING" | supported | supported | supported | supported | supported |
-        | bgwriter_delay : integer | supported | supported | supported | supported | supported |
-        | bgwriter_flush_after : integer | supported | supported | supported | supported | supported |
-        | bgwriter_lru_maxpages : integer | supported | supported | supported | supported | supported |
-        | bgwriter_lru_multiplier : float | supported | supported | supported | supported | supported |
-        | bytea_output : one of<br>  - 0: "BYTEA_OUTPUT_UNSPECIFIED"<br>  - 1: "BYTEA_OUTPUT_HEX"<br>  - 2: "BYTEA_OUTPUT_ESCAPED" | supported | supported | supported | supported | supported |
-        | checkpoint_completion_target : float | supported | supported | supported | supported | supported |
-        | checkpoint_flush_after : integer | supported | supported | supported | supported | supported |
-        | checkpoint_timeout : integer | supported | supported | supported | supported | supported |
-        | client_min_messages : one of<br>  - 0: "LOG_LEVEL_UNSPECIFIED"<br>  - 1: "LOG_LEVEL_DEBUG5"<br>  - 2: "LOG_LEVEL_DEBUG4"<br>  - 3: "LOG_LEVEL_DEBUG3"<br>  - 4: "LOG_LEVEL_DEBUG2"<br>  - 5: "LOG_LEVEL_DEBUG1"<br>  - 6: "LOG_LEVEL_LOG"<br>  - 7: "LOG_LEVEL_NOTICE"<br>  - 8: "LOG_LEVEL_WARNING"<br>  - 9: "LOG_LEVEL_ERROR"<br>  - 10: "LOG_LEVEL_FATAL"<br>  - 11: "LOG_LEVEL_PANIC" | supported | supported | supported | supported | supported |
-        | constraint_exclusion : one of<br>  - 0: "CONSTRAINT_EXCLUSION_UNSPECIFIED"<br>  - 1: "CONSTRAINT_EXCLUSION_ON"<br>  - 2: "CONSTRAINT_EXCLUSION_OFF"<br>  - 3: "CONSTRAINT_EXCLUSION_PARTITION" | supported | supported | supported | supported | supported |
-        | cursor_tuple_fraction : float | supported | supported | supported | supported | supported |
-        | deadlock_timeout : integer | supported | supported | supported | supported | supported |
-        | default_statistics_target : integer | supported | supported | supported | supported | supported |
-        | default_transaction_isolation : one of<br>  - 0: "TRANSACTION_ISOLATION_UNSPECIFIED"<br>  - 1: "TRANSACTION_ISOLATION_READ_UNCOMMITTED"<br>  - 2: "TRANSACTION_ISOLATION_READ_COMMITTED"<br>  - 3: "TRANSACTION_ISOLATION_REPEATABLE_READ"<br>  - 4: "TRANSACTION_ISOLATION_SERIALIZABLE" | supported | supported | supported | supported | supported |
-        | default_transaction_read_only : boolean | supported | supported | supported | supported | supported |
-        | default_with_oids : boolean | supported | supported | supported | supported | supported |
-        | effective_cache_size : integer | supported | supported | supported | supported | supported |
-        | effective_io_concurrency : integer | supported | supported | supported | supported | supported |
-        | enable_bitmapscan : boolean | supported | supported | supported | supported | supported |
-        | enable_hashagg : boolean | supported | supported | supported | supported | supported |
-        | enable_hashjoin : boolean | supported | supported | supported | supported | supported |
-        | enable_incremental_sort : boolean | - | - | - | supported | supported |
-        | enable_indexonlyscan : boolean | supported | supported | supported | supported | supported |
-        | enable_indexscan : boolean | supported | supported | supported | supported | supported |
-        | enable_material : boolean | supported | supported | supported | supported | supported |
-        | enable_mergejoin : boolean | supported | supported | supported | supported | supported |
-        | enable_nestloop : boolean | supported | supported | supported | supported | supported |
-        | enable_parallel_append : boolean | - | supported | supported | supported | supported |
-        | enable_parallel_hash : boolean | - | supported | supported | supported | supported |
-        | enable_partition_pruning : boolean | - | supported | supported | supported | supported |
-        | enable_partitionwise_aggregate : boolean | - | supported | supported | supported | supported |
-        | enable_partitionwise_join : boolean | - | supported | supported | supported | supported |
-        | enable_seqscan : boolean | supported | supported | supported | supported | supported |
-        | enable_sort : boolean | supported | supported | supported | supported | supported |
-        | enable_tidscan : boolean | supported | supported | supported | supported | supported |
-        | escape_string_warning : boolean | supported | supported | supported | supported | supported |
-        | exit_on_error : boolean | supported | supported | supported | supported | supported |
-        | force_parallel_mode : one of<br>  - 0: "FORCE_PARALLEL_MODE_UNSPECIFIED"<br>  - 1: "FORCE_PARALLEL_MODE_ON"<br>  - 2: "FORCE_PARALLEL_MODE_OFF"<br>  - 3: "FORCE_PARALLEL_MODE_REGRESS" | supported | supported | supported | supported | supported |
-        | from_collapse_limit : integer | supported | supported | supported | supported | supported |
-        | gin_pending_list_limit : integer | supported | supported | supported | supported | supported |
-        | hash_mem_multiplier : float | - | - | - | supported | supported |
-        | idle_in_transaction_session_timeout : integer | supported | supported | supported | supported | supported |
-        | jit : boolean | - | supported | supported | supported | supported |
-        | join_collapse_limit : integer | supported | supported | supported | supported | supported |
-        | lo_compat_privileges : boolean | supported | supported | supported | supported | supported |
-        | lock_timeout : integer | supported | supported | supported | supported | supported |
-        | log_checkpoints : boolean | supported | supported | supported | supported | supported |
-        | log_connections : boolean | supported | supported | supported | supported | supported |
-        | log_disconnections : boolean | supported | supported | supported | supported | supported |
-        | log_duration : boolean | supported | supported | supported | supported | supported |
-        | log_error_verbosity : one of<br>  - 0: "LOG_ERROR_VERBOSITY_UNSPECIFIED"<br>  - 1: "LOG_ERROR_VERBOSITY_TERSE"<br>  - 2: "LOG_ERROR_VERBOSITY_DEFAULT"<br>  - 3: "LOG_ERROR_VERBOSITY_VERBOSE" | supported | supported | supported | supported | supported |
-        | log_lock_waits : boolean | supported | supported | supported | supported | supported |
-        | log_min_duration_sample : integer | - | - | - | supported | supported |
-        | log_min_duration_statement : integer | supported | supported | supported | supported | supported |
-        | log_min_error_statement : one of<br>  - 0: "LOG_LEVEL_UNSPECIFIED"<br>  - 1: "LOG_LEVEL_DEBUG5"<br>  - 2: "LOG_LEVEL_DEBUG4"<br>  - 3: "LOG_LEVEL_DEBUG3"<br>  - 4: "LOG_LEVEL_DEBUG2"<br>  - 5: "LOG_LEVEL_DEBUG1"<br>  - 6: "LOG_LEVEL_LOG"<br>  - 7: "LOG_LEVEL_NOTICE"<br>  - 8: "LOG_LEVEL_WARNING"<br>  - 9: "LOG_LEVEL_ERROR"<br>  - 10: "LOG_LEVEL_FATAL"<br>  - 11: "LOG_LEVEL_PANIC" | supported | supported | supported | supported | supported |
-        | log_min_messages : one of<br>  - 0: "LOG_LEVEL_UNSPECIFIED"<br>  - 1: "LOG_LEVEL_DEBUG5"<br>  - 2: "LOG_LEVEL_DEBUG4"<br>  - 3: "LOG_LEVEL_DEBUG3"<br>  - 4: "LOG_LEVEL_DEBUG2"<br>  - 5: "LOG_LEVEL_DEBUG1"<br>  - 6: "LOG_LEVEL_LOG"<br>  - 7: "LOG_LEVEL_NOTICE"<br>  - 8: "LOG_LEVEL_WARNING"<br>  - 9: "LOG_LEVEL_ERROR"<br>  - 10: "LOG_LEVEL_FATAL"<br>  - 11: "LOG_LEVEL_PANIC" | supported | supported | supported | supported | supported |
-        | log_parameter_max_length : integer | - | - | - | supported | supported |
-        | log_parameter_max_length_on_error : integer | - | - | - | supported | supported |
-        | log_statement : one of<br>  - 0: "LOG_STATEMENT_UNSPECIFIED"<br>  - 1: "LOG_STATEMENT_NONE"<br>  - 2: "LOG_STATEMENT_DDL"<br>  - 3: "LOG_STATEMENT_MOD"<br>  - 4: "LOG_STATEMENT_ALL" | supported | supported | supported | supported | supported |
-        | log_statement_sample_rate : float | - | - | - | supported | supported |
-        | log_temp_files : integer | supported | supported | supported | supported | supported |
-        | log_transaction_sample_rate : float | - | - | supported | supported | supported |
-        | logical_decoding_work_mem : integer | - | - | - | supported | supported |
-        | maintenance_io_concurrency : integer | - | - | - | supported | supported |
-        | maintenance_work_mem : integer | supported | supported | supported | supported | supported |
-        | max_connections : integer | supported | supported | supported | supported | supported |
-        | max_locks_per_transaction : integer | supported | supported | supported | supported | supported |
-        | max_parallel_maintenance_workers : integer | - | supported | supported | supported | supported |
-        | max_parallel_workers : integer | supported | supported | supported | supported | supported |
-        | max_parallel_workers_per_gather : integer | supported | supported | supported | supported | supported |
-        | max_pred_locks_per_transaction : integer | supported | supported | supported | supported | supported |
-        | max_prepared_transactions : integer | supported | supported | supported | supported | supported |
-        | max_slot_wal_keep_size : integer | - | - | - | supported | supported |
-        | max_standby_streaming_delay : integer | supported | supported | supported | supported | supported |
-        | max_wal_size : integer | supported | supported | supported | supported | supported |
-        | max_worker_processes : integer | supported | supported | supported | supported | supported |
-        | min_wal_size : integer | supported | supported | supported | supported | supported |
-        | old_snapshot_threshold : integer | supported | supported | supported | supported | supported |
-        | operator_precedence_warning : boolean | supported | supported | supported | supported | supported |
-        | parallel_leader_participation : boolean | - | supported | supported | supported | supported |
-        | pg_hint_plan_debug_print : one of<br>  - 0: "PG_HINT_PLAN_DEBUG_PRINT_UNSPECIFIED"<br>  - 1: "PG_HINT_PLAN_DEBUG_PRINT_OFF"<br>  - 2: "PG_HINT_PLAN_DEBUG_PRINT_ON"<br>  - 3: "PG_HINT_PLAN_DEBUG_PRINT_DETAILED"<br>  - 4: "PG_HINT_PLAN_DEBUG_PRINT_VERBOSE" | supported | supported | supported | supported | supported |
-        | pg_hint_plan_enable_hint : boolean | supported | supported | supported | supported | supported |
-        | pg_hint_plan_enable_hint_table : boolean | supported | supported | supported | supported | supported |
-        | pg_hint_plan_message_level : one of<br>  - 0: "LOG_LEVEL_UNSPECIFIED"<br>  - 1: "LOG_LEVEL_DEBUG5"<br>  - 2: "LOG_LEVEL_DEBUG4"<br>  - 3: "LOG_LEVEL_DEBUG3"<br>  - 4: "LOG_LEVEL_DEBUG2"<br>  - 5: "LOG_LEVEL_DEBUG1"<br>  - 6: "LOG_LEVEL_LOG"<br>  - 7: "LOG_LEVEL_NOTICE"<br>  - 8: "LOG_LEVEL_WARNING"<br>  - 9: "LOG_LEVEL_ERROR"<br>  - 10: "LOG_LEVEL_FATAL"<br>  - 11: "LOG_LEVEL_PANIC" | supported | supported | supported | supported | supported |
-        | plan_cache_mode : one of<br>  - 0: "PLAN_CACHE_MODE_UNSPECIFIED"<br>  - 1: "PLAN_CACHE_MODE_AUTO"<br>  - 2: "PLAN_CACHE_MODE_FORCE_CUSTOM_PLAN"<br>  - 3: "PLAN_CACHE_MODE_FORCE_GENERIC_PLAN" | - | - | supported | supported | supported |
-        | quote_all_identifiers : boolean | supported | supported | supported | supported | supported |
-        | random_page_cost : float | supported | supported | supported | supported | supported |
-        | replacement_sort_tuples : integer | supported | - | - | - | - |
-        | row_security : boolean | supported | supported | supported | supported | supported |
-        | search_path : text | supported | supported | supported | supported | supported |
-        | seq_page_cost : float | supported | supported | supported | supported | supported |
-        | shared_buffers : integer | supported | supported | supported | supported | supported |
-        | shared_preload_libraries : override if not set. one of<br> - "SHARED_PRELOAD_LIBRARIES_AUTO_EXPLAIN<br> - "SHARED_PRELOAD_LIBRARIES_PG_HINT_PLAN"<br> - "SHARED_PRELOAD_LIBRARIES_AUTO_EXPLAIN"<br> - "SHARED_PRELOAD_LIBRARIES_PG_HINT_PLAN"<br> - NO value | supported | supported | supported | supported | supported |
-        | standard_conforming_strings : boolean | supported | supported | supported | supported | supported |
-        | statement_timeout : integer | supported | supported | supported | supported | supported |
-        | synchronize_seqscans : boolean | supported | supported | supported | supported | supported |
-        | synchronous_commit : one of<br>  - 0: "SYNCHRONOUS_COMMIT_UNSPECIFIED"<br>  - 1: "SYNCHRONOUS_COMMIT_ON"<br>  - 2: "SYNCHRONOUS_COMMIT_OFF"<br>  - 3: "SYNCHRONOUS_COMMIT_LOCAL"<br>  - 4: "SYNCHRONOUS_COMMIT_REMOTE_WRITE"<br>  - 5: "SYNCHRONOUS_COMMIT_REMOTE_APPLY" | supported | supported | supported | supported | supported |
-        | temp_buffers : integer | supported | supported | supported | supported | supported |
-        | temp_file_limit : integer | supported | supported | supported | supported | supported |
-        | timezone : text | supported | supported | supported | supported | supported |
-        | track_activity_query_size : integer | supported | supported | supported | supported | supported |
-        | transform_null_equals : boolean | supported | supported | supported | supported | supported |
-        | vacuum_cleanup_index_scale_factor : float | - | supported | supported | supported | - |
-        | vacuum_cost_delay : integer | supported | supported | supported | supported | supported |
-        | vacuum_cost_limit : integer | supported | supported | supported | supported | supported |
-        | vacuum_cost_page_dirty : integer | supported | supported | supported | supported | supported |
-        | vacuum_cost_page_hit : integer | supported | supported | supported | supported | supported |
-        | vacuum_cost_page_miss : integer | supported | supported | supported | supported | supported |
-        | wal_keep_size : integer | - | - | - | supported | supported |
-        | wal_level : one of<br>  - 0: "WAL_LEVEL_UNSPECIFIED"<br>  - 1: "WAL_LEVEL_REPLICA"<br>  - 2: "WAL_LEVEL_LOGICAL" | supported | supported | supported | supported | supported |
-        | work_mem : integer | supported | supported | supported | supported | supported |
-        | xmlbinary : one of<br>  - 0: "XML_BINARY_UNSPECIFIED"<br>  - 1: "XML_BINARY_BASE64"<br>  - 2: "XML_BINARY_HEX" | supported | supported | supported | supported | supported |
-        | xmloption : one of<br>  - 0: "XML_OPTION_UNSPECIFIED"<br>  - 1: "XML_OPTION_DOCUMENT"<br>  - 2: "XML_OPTION_CONTENT" | supported | supported | supported | supported | supported |
-
-        ## Import
-
-        A cluster can be imported using the `id` of the resource, e.g.
-
-        ```sh
-         $ pulumi import yandex:index/mdbPostgresqlCluster:MdbPostgresqlCluster foo cluster_id
-        ```
-
+        Create a MdbPostgresqlCluster resource with the given unique name, props, and options.
         :param str resource_name: The name of the resource.
         :param MdbPostgresqlClusterArgs args: The arguments to use to populate this resource's properties.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -1439,25 +601,6 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['MdbPostgresqlClusterConfigArgs']] config: Configuration of the PostgreSQL cluster. The structure is documented below.
-        :param pulumi.Input[str] created_at: Timestamp of cluster creation.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterDatabaseArgs']]]] databases: To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
-        :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
-        :param pulumi.Input[str] description: Description of the PostgreSQL cluster.
-        :param pulumi.Input[str] environment: Deployment environment of the PostgreSQL cluster.
-        :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it is unset, the default provider `folder_id` is used for create.
-        :param pulumi.Input[str] health: Aggregated health of the cluster.
-        :param pulumi.Input[str] host_master_name: It sets name of master host. It works only when `host.name` is set.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterHostArgs']]]] hosts: A host of the PostgreSQL cluster. The structure is documented below.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the PostgreSQL cluster.
-        :param pulumi.Input[pulumi.InputType['MdbPostgresqlClusterMaintenanceWindowArgs']] maintenance_window: Maintenance policy of the PostgreSQL cluster. The structure is documented below.
-        :param pulumi.Input[str] name: Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-               Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        :param pulumi.Input[str] network_id: ID of the network, to which the PostgreSQL cluster belongs.
-        :param pulumi.Input[pulumi.InputType['MdbPostgresqlClusterRestoreArgs']] restore: The cluster will be created from the specified backup. The structure is documented below.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
-        :param pulumi.Input[str] status: Status of the cluster.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1487,65 +630,41 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
     @property
     @pulumi.getter
     def config(self) -> pulumi.Output['outputs.MdbPostgresqlClusterConfig']:
-        """
-        Configuration of the PostgreSQL cluster. The structure is documented below.
-        """
         return pulumi.get(self, "config")
 
     @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
-        """
-        Timestamp of cluster creation.
-        """
         return pulumi.get(self, "created_at")
 
     @property
     @pulumi.getter
     def databases(self) -> pulumi.Output[Optional[Sequence['outputs.MdbPostgresqlClusterDatabase']]]:
-        """
-        To manage databases, please switch to using a separate resource type `mdbPostgresqlDatabase`.
-        """
         return pulumi.get(self, "databases")
 
     @property
     @pulumi.getter(name="deletionProtection")
     def deletion_protection(self) -> pulumi.Output[bool]:
-        """
-        Inhibits deletion of the cluster.  Can be either `true` or `false`.
-        """
         return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
     def description(self) -> pulumi.Output[str]:
-        """
-        Description of the PostgreSQL cluster.
-        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def environment(self) -> pulumi.Output[str]:
-        """
-        Deployment environment of the PostgreSQL cluster.
-        """
         return pulumi.get(self, "environment")
 
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> pulumi.Output[str]:
-        """
-        The ID of the folder that the resource belongs to. If it is unset, the default provider `folder_id` is used for create.
-        """
         return pulumi.get(self, "folder_id")
 
     @property
     @pulumi.getter
     def health(self) -> pulumi.Output[str]:
-        """
-        Aggregated health of the cluster.
-        """
         return pulumi.get(self, "health")
 
     @property
@@ -1556,81 +675,50 @@ class MdbPostgresqlCluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="hostMasterName")
     def host_master_name(self) -> pulumi.Output[str]:
-        """
-        It sets name of master host. It works only when `host.name` is set.
-        """
         return pulumi.get(self, "host_master_name")
 
     @property
     @pulumi.getter
     def hosts(self) -> pulumi.Output[Sequence['outputs.MdbPostgresqlClusterHost']]:
-        """
-        A host of the PostgreSQL cluster. The structure is documented below.
-        """
         return pulumi.get(self, "hosts")
 
     @property
     @pulumi.getter
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
-        """
-        A set of key/value label pairs to assign to the PostgreSQL cluster.
-        """
         return pulumi.get(self, "labels")
 
     @property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> pulumi.Output['outputs.MdbPostgresqlClusterMaintenanceWindow']:
-        """
-        Maintenance policy of the PostgreSQL cluster. The structure is documented below.
-        """
         return pulumi.get(self, "maintenance_window")
 
     @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
-        """
-        Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-        Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter(name="networkId")
     def network_id(self) -> pulumi.Output[str]:
-        """
-        ID of the network, to which the PostgreSQL cluster belongs.
-        """
         return pulumi.get(self, "network_id")
 
     @property
     @pulumi.getter
     def restore(self) -> pulumi.Output[Optional['outputs.MdbPostgresqlClusterRestore']]:
-        """
-        The cluster will be created from the specified backup. The structure is documented below.
-        """
         return pulumi.get(self, "restore")
 
     @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> pulumi.Output[Sequence[str]]:
-        """
-        A set of ids of security groups assigned to hosts of the cluster.
-        """
         return pulumi.get(self, "security_group_ids")
 
     @property
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
-        """
-        Status of the cluster.
-        """
         return pulumi.get(self, "status")
 
     @property
     @pulumi.getter
     def users(self) -> pulumi.Output[Optional[Sequence['outputs.MdbPostgresqlClusterUser']]]:
-        """
-        To manage users, please switch to using a separate resource type `mdbPostgresqlUser`.
-        """
         return pulumi.get(self, "users")
 

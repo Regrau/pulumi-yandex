@@ -13,39 +13,14 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbPostgresqlClusterHost
     {
-        /// <summary>
-        /// Sets whether the host should get a public IP address on creation. It can be changed on the fly only when `name` is set.
-        /// </summary>
         public readonly bool? AssignPublicIp;
-        /// <summary>
-        /// The fully qualified domain name of the host.
-        /// </summary>
         public readonly string? Fqdn;
-        /// <summary>
-        /// Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-        /// Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        /// </summary>
         public readonly string? Name;
-        /// <summary>
-        /// Host priority in HA group. It works only when `name` is set.
-        /// </summary>
         public readonly int? Priority;
-        /// <summary>
-        /// Host replication source (fqdn), when replication_source is empty then host is in HA group.
-        /// </summary>
         public readonly string? ReplicationSource;
-        /// <summary>
-        /// Host replication source name points to host's `name` from which this host should replicate. When not set then host in HA group. It works only when `name` is set.
-        /// </summary>
         public readonly string? ReplicationSourceName;
         public readonly string? Role;
-        /// <summary>
-        /// The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
-        /// </summary>
         public readonly string? SubnetId;
-        /// <summary>
-        /// The availability zone where the PostgreSQL host will be created.
-        /// </summary>
         public readonly string Zone;
 
         [OutputConstructor]

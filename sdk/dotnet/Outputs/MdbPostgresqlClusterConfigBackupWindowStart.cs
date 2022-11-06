@@ -13,13 +13,7 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class MdbPostgresqlClusterConfigBackupWindowStart
     {
-        /// <summary>
-        /// The hour at which backup will be started (UTC).
-        /// </summary>
         public readonly int? Hours;
-        /// <summary>
-        /// The minute at which backup will be started (UTC).
-        /// </summary>
         public readonly int? Minutes;
 
         [OutputConstructor]

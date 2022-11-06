@@ -12,16 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbPostgresqlClusterDatabaseExtensionArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-        /// Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        /// </summary>
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
-        /// <summary>
-        /// Version of the PostgreSQL cluster. (allowed versions are: 10, 10-1c, 11, 11-1c, 12, 12-1c, 13, 13-1c, 14, 14-1c)
-        /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
 

@@ -9,566 +9,63 @@ using Pulumi.Serialization;
 
 namespace Pulumi.Yandex
 {
-    /// <summary>
-    /// Manages a PostgreSQL cluster within the Yandex.Cloud. For more information, see
-    /// [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/).
-    /// [How to connect to the DB](https://cloud.yandex.com/en-ru/docs/managed-postgresql/quickstart#connect). To connect, use port 6432. The port number is not configurable.
-    /// 
-    /// ## Example Usage
-    /// 
-    /// Example of creating a Single Node PostgreSQL.
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Yandex = Pulumi.Yandex;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var fooVpcNetwork = new Yandex.VpcNetwork("fooVpcNetwork");
-    /// 
-    ///     var fooVpcSubnet = new Yandex.VpcSubnet("fooVpcSubnet", new()
-    ///     {
-    ///         Zone = "ru-central1-a",
-    ///         NetworkId = fooVpcNetwork.Id,
-    ///         V4CidrBlocks = new[]
-    ///         {
-    ///             "10.5.0.0/24",
-    ///         },
-    ///     });
-    /// 
-    ///     var fooMdbPostgresqlCluster = new Yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster", new()
-    ///     {
-    ///         Environment = "PRESTABLE",
-    ///         NetworkId = fooVpcNetwork.Id,
-    ///         Config = new Yandex.Inputs.MdbPostgresqlClusterConfigArgs
-    ///         {
-    ///             Version = "12",
-    ///             Resources = new Yandex.Inputs.MdbPostgresqlClusterConfigResourcesArgs
-    ///             {
-    ///                 ResourcePresetId = "s2.micro",
-    ///                 DiskTypeId = "network-ssd",
-    ///                 DiskSize = 16,
-    ///             },
-    ///             PostgresqlConfig = 
-    ///             {
-    ///                 { "max_connections", "395" },
-    ///                 { "enable_parallel_hash", "true" },
-    ///                 { "vacuum_cleanup_index_scale_factor", "0.2" },
-    ///                 { "autovacuum_vacuum_scale_factor", "0.34" },
-    ///                 { "default_transaction_isolation", "TRANSACTION_ISOLATION_READ_COMMITTED" },
-    ///                 { "shared_preload_libraries", "SHARED_PRELOAD_LIBRARIES_AUTO_EXPLAIN,SHARED_PRELOAD_LIBRARIES_PG_HINT_PLAN" },
-    ///             },
-    ///         },
-    ///         MaintenanceWindow = new Yandex.Inputs.MdbPostgresqlClusterMaintenanceWindowArgs
-    ///         {
-    ///             Type = "WEEKLY",
-    ///             Day = "SAT",
-    ///             Hour = 12,
-    ///         },
-    ///         Hosts = new[]
-    ///         {
-    ///             new Yandex.Inputs.MdbPostgresqlClusterHostArgs
-    ///             {
-    ///                 Zone = "ru-central1-a",
-    ///                 SubnetId = fooVpcSubnet.Id,
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// Example of creating a High-Availability (HA) PostgreSQL Cluster.
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Yandex = Pulumi.Yandex;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var fooVpcNetwork = new Yandex.VpcNetwork("fooVpcNetwork");
-    /// 
-    ///     var fooVpcSubnet = new Yandex.VpcSubnet("fooVpcSubnet", new()
-    ///     {
-    ///         Zone = "ru-central1-a",
-    ///         NetworkId = fooVpcNetwork.Id,
-    ///         V4CidrBlocks = new[]
-    ///         {
-    ///             "10.1.0.0/24",
-    ///         },
-    ///     });
-    /// 
-    ///     var bar = new Yandex.VpcSubnet("bar", new()
-    ///     {
-    ///         Zone = "ru-central1-b",
-    ///         NetworkId = fooVpcNetwork.Id,
-    ///         V4CidrBlocks = new[]
-    ///         {
-    ///             "10.2.0.0/24",
-    ///         },
-    ///     });
-    /// 
-    ///     var fooMdbPostgresqlCluster = new Yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster", new()
-    ///     {
-    ///         Environment = "PRESTABLE",
-    ///         NetworkId = fooVpcNetwork.Id,
-    ///         Config = new Yandex.Inputs.MdbPostgresqlClusterConfigArgs
-    ///         {
-    ///             Version = "12",
-    ///             Resources = new Yandex.Inputs.MdbPostgresqlClusterConfigResourcesArgs
-    ///             {
-    ///                 ResourcePresetId = "s2.micro",
-    ///                 DiskTypeId = "network-ssd",
-    ///                 DiskSize = 16,
-    ///             },
-    ///         },
-    ///         MaintenanceWindow = new Yandex.Inputs.MdbPostgresqlClusterMaintenanceWindowArgs
-    ///         {
-    ///             Type = "ANYTIME",
-    ///         },
-    ///         Hosts = new[]
-    ///         {
-    ///             new Yandex.Inputs.MdbPostgresqlClusterHostArgs
-    ///             {
-    ///                 Zone = "ru-central1-a",
-    ///                 SubnetId = fooVpcSubnet.Id,
-    ///             },
-    ///             new Yandex.Inputs.MdbPostgresqlClusterHostArgs
-    ///             {
-    ///                 Zone = "ru-central1-b",
-    ///                 SubnetId = bar.Id,
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// Example of creating a High-Availability (HA) PostgreSQL Cluster with priority and set master.
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Yandex = Pulumi.Yandex;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var fooVpcNetwork = new Yandex.VpcNetwork("fooVpcNetwork");
-    /// 
-    ///     var vpcSubnet = new Yandex.VpcSubnet("vpcSubnet", new()
-    ///     {
-    ///         Zone = "ru-central1-a",
-    ///         NetworkId = fooVpcNetwork.Id,
-    ///         V4CidrBlocks = new[]
-    ///         {
-    ///             "10.1.0.0/24",
-    ///         },
-    ///     });
-    /// 
-    ///     var fooMdbPostgresqlCluster = new Yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster", new()
-    ///     {
-    ///         Description = "test High-Availability (HA) PostgreSQL Cluster with priority and set master",
-    ///         Environment = "PRESTABLE",
-    ///         NetworkId = fooVpcNetwork.Id,
-    ///         HostMasterName = "host_name_c_2",
-    ///         Config = new Yandex.Inputs.MdbPostgresqlClusterConfigArgs
-    ///         {
-    ///             Version = "12",
-    ///             Resources = new Yandex.Inputs.MdbPostgresqlClusterConfigResourcesArgs
-    ///             {
-    ///                 ResourcePresetId = "s2.micro",
-    ///                 DiskSize = 10,
-    ///                 DiskTypeId = "network-ssd",
-    ///             },
-    ///         },
-    ///         Hosts = new[]
-    ///         {
-    ///             new Yandex.Inputs.MdbPostgresqlClusterHostArgs
-    ///             {
-    ///                 Zone = "ru-central1-a",
-    ///                 Name = "host_name_a",
-    ///                 Priority = 2,
-    ///                 SubnetId = vpcSubnet.Id,
-    ///             },
-    ///             new Yandex.Inputs.MdbPostgresqlClusterHostArgs
-    ///             {
-    ///                 Zone = "ru-central1-b",
-    ///                 Name = "host_name_b",
-    ///                 ReplicationSourceName = "host_name_c",
-    ///                 SubnetId = index / vpcSubnetVpcSubnet.Id,
-    ///             },
-    ///             new Yandex.Inputs.MdbPostgresqlClusterHostArgs
-    ///             {
-    ///                 Zone = "ru-central1-c",
-    ///                 Name = "host_name_c",
-    ///                 SubnetId = yandexIndex / vpcSubnetVpcSubnet.Id,
-    ///             },
-    ///             new Yandex.Inputs.MdbPostgresqlClusterHostArgs
-    ///             {
-    ///                 Zone = "ru-central1-c",
-    ///                 Name = "host_name_c_2",
-    ///                 SubnetId = yandexIndex / vpcSubnetVpcSubnet.Id,
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    ///     var index_vpcSubnetVpcSubnet = new Yandex.VpcSubnet("index/vpcSubnetVpcSubnet", new()
-    ///     {
-    ///         Zone = "ru-central1-b",
-    ///         NetworkId = fooVpcNetwork.Id,
-    ///         V4CidrBlocks = new[]
-    ///         {
-    ///             "10.2.0.0/24",
-    ///         },
-    ///     });
-    /// 
-    ///     var yandexIndex_vpcSubnetVpcSubnet = new Yandex.VpcSubnet("yandexIndex/vpcSubnetVpcSubnet", new()
-    ///     {
-    ///         Zone = "ru-central1-c",
-    ///         NetworkId = fooVpcNetwork.Id,
-    ///         V4CidrBlocks = new[]
-    ///         {
-    ///             "10.3.0.0/24",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// 
-    /// Example of creating a Single Node PostgreSQL from backup.
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Yandex = Pulumi.Yandex;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var fooVpcNetwork = new Yandex.VpcNetwork("fooVpcNetwork");
-    /// 
-    ///     var fooVpcSubnet = new Yandex.VpcSubnet("fooVpcSubnet", new()
-    ///     {
-    ///         Zone = "ru-central1-a",
-    ///         NetworkId = fooVpcNetwork.Id,
-    ///         V4CidrBlocks = new[]
-    ///         {
-    ///             "10.5.0.0/24",
-    ///         },
-    ///     });
-    /// 
-    ///     var fooMdbPostgresqlCluster = new Yandex.MdbPostgresqlCluster("fooMdbPostgresqlCluster", new()
-    ///     {
-    ///         Environment = "PRESTABLE",
-    ///         NetworkId = fooVpcNetwork.Id,
-    ///         Restore = new Yandex.Inputs.MdbPostgresqlClusterRestoreArgs
-    ///         {
-    ///             BackupId = "c9q99999999999999994cm:base_000000010000005F000000B4",
-    ///             Time = "2021-02-11T15:04:05",
-    ///         },
-    ///         Config = new Yandex.Inputs.MdbPostgresqlClusterConfigArgs
-    ///         {
-    ///             Version = "12",
-    ///             Resources = new Yandex.Inputs.MdbPostgresqlClusterConfigResourcesArgs
-    ///             {
-    ///                 ResourcePresetId = "s2.micro",
-    ///                 DiskTypeId = "network-ssd",
-    ///                 DiskSize = 16,
-    ///             },
-    ///             PostgresqlConfig = 
-    ///             {
-    ///                 { "max_connections", "395" },
-    ///                 { "enable_parallel_hash", "true" },
-    ///                 { "vacuum_cleanup_index_scale_factor", "0.2" },
-    ///                 { "autovacuum_vacuum_scale_factor", "0.34" },
-    ///                 { "default_transaction_isolation", "TRANSACTION_ISOLATION_READ_COMMITTED" },
-    ///                 { "shared_preload_libraries", "SHARED_PRELOAD_LIBRARIES_AUTO_EXPLAIN,SHARED_PRELOAD_LIBRARIES_PG_HINT_PLAN" },
-    ///             },
-    ///         },
-    ///         Hosts = new[]
-    ///         {
-    ///             new Yandex.Inputs.MdbPostgresqlClusterHostArgs
-    ///             {
-    ///                 Zone = "ru-central1-a",
-    ///                 SubnetId = fooVpcSubnet.Id,
-    ///             },
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
-    /// ## PostgreSQL cluster settings
-    /// 
-    /// More information about config:
-    /// * https://cloud.yandex.com/docs/managed-postgresql/concepts/settings-list
-    /// * https://www.postgresql.org/docs/current/runtime-config-connection.html
-    /// * https://www.postgresql.org/docs/current/runtime-config-resource.html
-    /// * https://www.postgresql.org/docs/current/runtime-config-wal.html
-    /// * https://www.postgresql.org/docs/current/runtime-config-query.html
-    /// * https://www.postgresql.org/docs/current/runtime-config-logging.html
-    /// * https://www.postgresql.org/docs/current/runtime-config-autovacuum.html
-    /// * https://www.postgresql.org/docs/current/runtime-config-client.html
-    /// * https://www.postgresql.org/docs/current/runtime-config-locks.html
-    /// * https://www.postgresql.org/docs/current/runtime-config-compatible.html
-    /// 
-    /// | Setting name and type \ PostgreSQL version | 10 | 11 | 12 | 13 | 14 |
-    /// | ------------------------------------------ | -- | -- | -- | -- | -- |
-    /// | archive_timeout : integer | supported | supported | supported | supported | supported |
-    /// | array_nulls : boolean | supported | supported | supported | supported | supported |
-    /// | auto_explain_log_analyze : boolean | supported | supported | supported | supported | supported |
-    /// | auto_explain_log_buffers : boolean | supported | supported | supported | supported | supported |
-    /// | auto_explain_log_min_duration : integer | supported | supported | supported | supported | supported |
-    /// | auto_explain_log_nested_statements : boolean | supported | supported | supported | supported | supported |
-    /// | auto_explain_log_timing : boolean | supported | supported | supported | supported | supported |
-    /// | auto_explain_log_triggers : boolean | supported | supported | supported | supported | supported |
-    /// | auto_explain_log_verbose : boolean | supported | supported | supported | supported | supported |
-    /// | auto_explain_sample_rate : float | supported | supported | supported | supported | supported |
-    /// | autovacuum_analyze_scale_factor : float | supported | supported | supported | supported | supported |
-    /// | autovacuum_max_workers : integer | supported | supported | supported | supported | supported |
-    /// | autovacuum_naptime : integer | supported | supported | supported | supported | supported |
-    /// | autovacuum_vacuum_cost_delay : integer | supported | supported | supported | supported | supported |
-    /// | autovacuum_vacuum_cost_limit : integer | supported | supported | supported | supported | supported |
-    /// | autovacuum_vacuum_insert_scale_factor : float | - | - | - | supported | supported |
-    /// | autovacuum_vacuum_insert_threshold : integer | - | - | - | supported | supported |
-    /// | autovacuum_vacuum_scale_factor : float | supported | supported | supported | supported | supported |
-    /// | autovacuum_work_mem : integer | supported | supported | supported | supported | supported |
-    /// | backend_flush_after : integer | supported | supported | supported | supported | supported |
-    /// | backslash_quote : one of&lt;br&gt;  - 0: "BACKSLASH_QUOTE_UNSPECIFIED"&lt;br&gt;  - 1: "BACKSLASH_QUOTE"&lt;br&gt;  - 2: "BACKSLASH_QUOTE_ON"&lt;br&gt;  - 3: "BACKSLASH_QUOTE_OFF"&lt;br&gt;  - 4: "BACKSLASH_QUOTE_SAFE_ENCODING" | supported | supported | supported | supported | supported |
-    /// | bgwriter_delay : integer | supported | supported | supported | supported | supported |
-    /// | bgwriter_flush_after : integer | supported | supported | supported | supported | supported |
-    /// | bgwriter_lru_maxpages : integer | supported | supported | supported | supported | supported |
-    /// | bgwriter_lru_multiplier : float | supported | supported | supported | supported | supported |
-    /// | bytea_output : one of&lt;br&gt;  - 0: "BYTEA_OUTPUT_UNSPECIFIED"&lt;br&gt;  - 1: "BYTEA_OUTPUT_HEX"&lt;br&gt;  - 2: "BYTEA_OUTPUT_ESCAPED" | supported | supported | supported | supported | supported |
-    /// | checkpoint_completion_target : float | supported | supported | supported | supported | supported |
-    /// | checkpoint_flush_after : integer | supported | supported | supported | supported | supported |
-    /// | checkpoint_timeout : integer | supported | supported | supported | supported | supported |
-    /// | client_min_messages : one of&lt;br&gt;  - 0: "LOG_LEVEL_UNSPECIFIED"&lt;br&gt;  - 1: "LOG_LEVEL_DEBUG5"&lt;br&gt;  - 2: "LOG_LEVEL_DEBUG4"&lt;br&gt;  - 3: "LOG_LEVEL_DEBUG3"&lt;br&gt;  - 4: "LOG_LEVEL_DEBUG2"&lt;br&gt;  - 5: "LOG_LEVEL_DEBUG1"&lt;br&gt;  - 6: "LOG_LEVEL_LOG"&lt;br&gt;  - 7: "LOG_LEVEL_NOTICE"&lt;br&gt;  - 8: "LOG_LEVEL_WARNING"&lt;br&gt;  - 9: "LOG_LEVEL_ERROR"&lt;br&gt;  - 10: "LOG_LEVEL_FATAL"&lt;br&gt;  - 11: "LOG_LEVEL_PANIC" | supported | supported | supported | supported | supported |
-    /// | constraint_exclusion : one of&lt;br&gt;  - 0: "CONSTRAINT_EXCLUSION_UNSPECIFIED"&lt;br&gt;  - 1: "CONSTRAINT_EXCLUSION_ON"&lt;br&gt;  - 2: "CONSTRAINT_EXCLUSION_OFF"&lt;br&gt;  - 3: "CONSTRAINT_EXCLUSION_PARTITION" | supported | supported | supported | supported | supported |
-    /// | cursor_tuple_fraction : float | supported | supported | supported | supported | supported |
-    /// | deadlock_timeout : integer | supported | supported | supported | supported | supported |
-    /// | default_statistics_target : integer | supported | supported | supported | supported | supported |
-    /// | default_transaction_isolation : one of&lt;br&gt;  - 0: "TRANSACTION_ISOLATION_UNSPECIFIED"&lt;br&gt;  - 1: "TRANSACTION_ISOLATION_READ_UNCOMMITTED"&lt;br&gt;  - 2: "TRANSACTION_ISOLATION_READ_COMMITTED"&lt;br&gt;  - 3: "TRANSACTION_ISOLATION_REPEATABLE_READ"&lt;br&gt;  - 4: "TRANSACTION_ISOLATION_SERIALIZABLE" | supported | supported | supported | supported | supported |
-    /// | default_transaction_read_only : boolean | supported | supported | supported | supported | supported |
-    /// | default_with_oids : boolean | supported | supported | supported | supported | supported |
-    /// | effective_cache_size : integer | supported | supported | supported | supported | supported |
-    /// | effective_io_concurrency : integer | supported | supported | supported | supported | supported |
-    /// | enable_bitmapscan : boolean | supported | supported | supported | supported | supported |
-    /// | enable_hashagg : boolean | supported | supported | supported | supported | supported |
-    /// | enable_hashjoin : boolean | supported | supported | supported | supported | supported |
-    /// | enable_incremental_sort : boolean | - | - | - | supported | supported |
-    /// | enable_indexonlyscan : boolean | supported | supported | supported | supported | supported |
-    /// | enable_indexscan : boolean | supported | supported | supported | supported | supported |
-    /// | enable_material : boolean | supported | supported | supported | supported | supported |
-    /// | enable_mergejoin : boolean | supported | supported | supported | supported | supported |
-    /// | enable_nestloop : boolean | supported | supported | supported | supported | supported |
-    /// | enable_parallel_append : boolean | - | supported | supported | supported | supported |
-    /// | enable_parallel_hash : boolean | - | supported | supported | supported | supported |
-    /// | enable_partition_pruning : boolean | - | supported | supported | supported | supported |
-    /// | enable_partitionwise_aggregate : boolean | - | supported | supported | supported | supported |
-    /// | enable_partitionwise_join : boolean | - | supported | supported | supported | supported |
-    /// | enable_seqscan : boolean | supported | supported | supported | supported | supported |
-    /// | enable_sort : boolean | supported | supported | supported | supported | supported |
-    /// | enable_tidscan : boolean | supported | supported | supported | supported | supported |
-    /// | escape_string_warning : boolean | supported | supported | supported | supported | supported |
-    /// | exit_on_error : boolean | supported | supported | supported | supported | supported |
-    /// | force_parallel_mode : one of&lt;br&gt;  - 0: "FORCE_PARALLEL_MODE_UNSPECIFIED"&lt;br&gt;  - 1: "FORCE_PARALLEL_MODE_ON"&lt;br&gt;  - 2: "FORCE_PARALLEL_MODE_OFF"&lt;br&gt;  - 3: "FORCE_PARALLEL_MODE_REGRESS" | supported | supported | supported | supported | supported |
-    /// | from_collapse_limit : integer | supported | supported | supported | supported | supported |
-    /// | gin_pending_list_limit : integer | supported | supported | supported | supported | supported |
-    /// | hash_mem_multiplier : float | - | - | - | supported | supported |
-    /// | idle_in_transaction_session_timeout : integer | supported | supported | supported | supported | supported |
-    /// | jit : boolean | - | supported | supported | supported | supported |
-    /// | join_collapse_limit : integer | supported | supported | supported | supported | supported |
-    /// | lo_compat_privileges : boolean | supported | supported | supported | supported | supported |
-    /// | lock_timeout : integer | supported | supported | supported | supported | supported |
-    /// | log_checkpoints : boolean | supported | supported | supported | supported | supported |
-    /// | log_connections : boolean | supported | supported | supported | supported | supported |
-    /// | log_disconnections : boolean | supported | supported | supported | supported | supported |
-    /// | log_duration : boolean | supported | supported | supported | supported | supported |
-    /// | log_error_verbosity : one of&lt;br&gt;  - 0: "LOG_ERROR_VERBOSITY_UNSPECIFIED"&lt;br&gt;  - 1: "LOG_ERROR_VERBOSITY_TERSE"&lt;br&gt;  - 2: "LOG_ERROR_VERBOSITY_DEFAULT"&lt;br&gt;  - 3: "LOG_ERROR_VERBOSITY_VERBOSE" | supported | supported | supported | supported | supported |
-    /// | log_lock_waits : boolean | supported | supported | supported | supported | supported |
-    /// | log_min_duration_sample : integer | - | - | - | supported | supported |
-    /// | log_min_duration_statement : integer | supported | supported | supported | supported | supported |
-    /// | log_min_error_statement : one of&lt;br&gt;  - 0: "LOG_LEVEL_UNSPECIFIED"&lt;br&gt;  - 1: "LOG_LEVEL_DEBUG5"&lt;br&gt;  - 2: "LOG_LEVEL_DEBUG4"&lt;br&gt;  - 3: "LOG_LEVEL_DEBUG3"&lt;br&gt;  - 4: "LOG_LEVEL_DEBUG2"&lt;br&gt;  - 5: "LOG_LEVEL_DEBUG1"&lt;br&gt;  - 6: "LOG_LEVEL_LOG"&lt;br&gt;  - 7: "LOG_LEVEL_NOTICE"&lt;br&gt;  - 8: "LOG_LEVEL_WARNING"&lt;br&gt;  - 9: "LOG_LEVEL_ERROR"&lt;br&gt;  - 10: "LOG_LEVEL_FATAL"&lt;br&gt;  - 11: "LOG_LEVEL_PANIC" | supported | supported | supported | supported | supported |
-    /// | log_min_messages : one of&lt;br&gt;  - 0: "LOG_LEVEL_UNSPECIFIED"&lt;br&gt;  - 1: "LOG_LEVEL_DEBUG5"&lt;br&gt;  - 2: "LOG_LEVEL_DEBUG4"&lt;br&gt;  - 3: "LOG_LEVEL_DEBUG3"&lt;br&gt;  - 4: "LOG_LEVEL_DEBUG2"&lt;br&gt;  - 5: "LOG_LEVEL_DEBUG1"&lt;br&gt;  - 6: "LOG_LEVEL_LOG"&lt;br&gt;  - 7: "LOG_LEVEL_NOTICE"&lt;br&gt;  - 8: "LOG_LEVEL_WARNING"&lt;br&gt;  - 9: "LOG_LEVEL_ERROR"&lt;br&gt;  - 10: "LOG_LEVEL_FATAL"&lt;br&gt;  - 11: "LOG_LEVEL_PANIC" | supported | supported | supported | supported | supported |
-    /// | log_parameter_max_length : integer | - | - | - | supported | supported |
-    /// | log_parameter_max_length_on_error : integer | - | - | - | supported | supported |
-    /// | log_statement : one of&lt;br&gt;  - 0: "LOG_STATEMENT_UNSPECIFIED"&lt;br&gt;  - 1: "LOG_STATEMENT_NONE"&lt;br&gt;  - 2: "LOG_STATEMENT_DDL"&lt;br&gt;  - 3: "LOG_STATEMENT_MOD"&lt;br&gt;  - 4: "LOG_STATEMENT_ALL" | supported | supported | supported | supported | supported |
-    /// | log_statement_sample_rate : float | - | - | - | supported | supported |
-    /// | log_temp_files : integer | supported | supported | supported | supported | supported |
-    /// | log_transaction_sample_rate : float | - | - | supported | supported | supported |
-    /// | logical_decoding_work_mem : integer | - | - | - | supported | supported |
-    /// | maintenance_io_concurrency : integer | - | - | - | supported | supported |
-    /// | maintenance_work_mem : integer | supported | supported | supported | supported | supported |
-    /// | max_connections : integer | supported | supported | supported | supported | supported |
-    /// | max_locks_per_transaction : integer | supported | supported | supported | supported | supported |
-    /// | max_parallel_maintenance_workers : integer | - | supported | supported | supported | supported |
-    /// | max_parallel_workers : integer | supported | supported | supported | supported | supported |
-    /// | max_parallel_workers_per_gather : integer | supported | supported | supported | supported | supported |
-    /// | max_pred_locks_per_transaction : integer | supported | supported | supported | supported | supported |
-    /// | max_prepared_transactions : integer | supported | supported | supported | supported | supported |
-    /// | max_slot_wal_keep_size : integer | - | - | - | supported | supported |
-    /// | max_standby_streaming_delay : integer | supported | supported | supported | supported | supported |
-    /// | max_wal_size : integer | supported | supported | supported | supported | supported |
-    /// | max_worker_processes : integer | supported | supported | supported | supported | supported |
-    /// | min_wal_size : integer | supported | supported | supported | supported | supported |
-    /// | old_snapshot_threshold : integer | supported | supported | supported | supported | supported |
-    /// | operator_precedence_warning : boolean | supported | supported | supported | supported | supported |
-    /// | parallel_leader_participation : boolean | - | supported | supported | supported | supported |
-    /// | pg_hint_plan_debug_print : one of&lt;br&gt;  - 0: "PG_HINT_PLAN_DEBUG_PRINT_UNSPECIFIED"&lt;br&gt;  - 1: "PG_HINT_PLAN_DEBUG_PRINT_OFF"&lt;br&gt;  - 2: "PG_HINT_PLAN_DEBUG_PRINT_ON"&lt;br&gt;  - 3: "PG_HINT_PLAN_DEBUG_PRINT_DETAILED"&lt;br&gt;  - 4: "PG_HINT_PLAN_DEBUG_PRINT_VERBOSE" | supported | supported | supported | supported | supported |
-    /// | pg_hint_plan_enable_hint : boolean | supported | supported | supported | supported | supported |
-    /// | pg_hint_plan_enable_hint_table : boolean | supported | supported | supported | supported | supported |
-    /// | pg_hint_plan_message_level : one of&lt;br&gt;  - 0: "LOG_LEVEL_UNSPECIFIED"&lt;br&gt;  - 1: "LOG_LEVEL_DEBUG5"&lt;br&gt;  - 2: "LOG_LEVEL_DEBUG4"&lt;br&gt;  - 3: "LOG_LEVEL_DEBUG3"&lt;br&gt;  - 4: "LOG_LEVEL_DEBUG2"&lt;br&gt;  - 5: "LOG_LEVEL_DEBUG1"&lt;br&gt;  - 6: "LOG_LEVEL_LOG"&lt;br&gt;  - 7: "LOG_LEVEL_NOTICE"&lt;br&gt;  - 8: "LOG_LEVEL_WARNING"&lt;br&gt;  - 9: "LOG_LEVEL_ERROR"&lt;br&gt;  - 10: "LOG_LEVEL_FATAL"&lt;br&gt;  - 11: "LOG_LEVEL_PANIC" | supported | supported | supported | supported | supported |
-    /// | plan_cache_mode : one of&lt;br&gt;  - 0: "PLAN_CACHE_MODE_UNSPECIFIED"&lt;br&gt;  - 1: "PLAN_CACHE_MODE_AUTO"&lt;br&gt;  - 2: "PLAN_CACHE_MODE_FORCE_CUSTOM_PLAN"&lt;br&gt;  - 3: "PLAN_CACHE_MODE_FORCE_GENERIC_PLAN" | - | - | supported | supported | supported |
-    /// | quote_all_identifiers : boolean | supported | supported | supported | supported | supported |
-    /// | random_page_cost : float | supported | supported | supported | supported | supported |
-    /// | replacement_sort_tuples : integer | supported | - | - | - | - |
-    /// | row_security : boolean | supported | supported | supported | supported | supported |
-    /// | search_path : text | supported | supported | supported | supported | supported |
-    /// | seq_page_cost : float | supported | supported | supported | supported | supported |
-    /// | shared_buffers : integer | supported | supported | supported | supported | supported |
-    /// | shared_preload_libraries : override if not set. one of&lt;br&gt; - "SHARED_PRELOAD_LIBRARIES_AUTO_EXPLAIN&lt;br&gt; - "SHARED_PRELOAD_LIBRARIES_PG_HINT_PLAN"&lt;br&gt; - "SHARED_PRELOAD_LIBRARIES_AUTO_EXPLAIN"&lt;br&gt; - "SHARED_PRELOAD_LIBRARIES_PG_HINT_PLAN"&lt;br&gt; - NO value | supported | supported | supported | supported | supported |
-    /// | standard_conforming_strings : boolean | supported | supported | supported | supported | supported |
-    /// | statement_timeout : integer | supported | supported | supported | supported | supported |
-    /// | synchronize_seqscans : boolean | supported | supported | supported | supported | supported |
-    /// | synchronous_commit : one of&lt;br&gt;  - 0: "SYNCHRONOUS_COMMIT_UNSPECIFIED"&lt;br&gt;  - 1: "SYNCHRONOUS_COMMIT_ON"&lt;br&gt;  - 2: "SYNCHRONOUS_COMMIT_OFF"&lt;br&gt;  - 3: "SYNCHRONOUS_COMMIT_LOCAL"&lt;br&gt;  - 4: "SYNCHRONOUS_COMMIT_REMOTE_WRITE"&lt;br&gt;  - 5: "SYNCHRONOUS_COMMIT_REMOTE_APPLY" | supported | supported | supported | supported | supported |
-    /// | temp_buffers : integer | supported | supported | supported | supported | supported |
-    /// | temp_file_limit : integer | supported | supported | supported | supported | supported |
-    /// | timezone : text | supported | supported | supported | supported | supported |
-    /// | track_activity_query_size : integer | supported | supported | supported | supported | supported |
-    /// | transform_null_equals : boolean | supported | supported | supported | supported | supported |
-    /// | vacuum_cleanup_index_scale_factor : float | - | supported | supported | supported | - |
-    /// | vacuum_cost_delay : integer | supported | supported | supported | supported | supported |
-    /// | vacuum_cost_limit : integer | supported | supported | supported | supported | supported |
-    /// | vacuum_cost_page_dirty : integer | supported | supported | supported | supported | supported |
-    /// | vacuum_cost_page_hit : integer | supported | supported | supported | supported | supported |
-    /// | vacuum_cost_page_miss : integer | supported | supported | supported | supported | supported |
-    /// | wal_keep_size : integer | - | - | - | supported | supported |
-    /// | wal_level : one of&lt;br&gt;  - 0: "WAL_LEVEL_UNSPECIFIED"&lt;br&gt;  - 1: "WAL_LEVEL_REPLICA"&lt;br&gt;  - 2: "WAL_LEVEL_LOGICAL" | supported | supported | supported | supported | supported |
-    /// | work_mem : integer | supported | supported | supported | supported | supported |
-    /// | xmlbinary : one of&lt;br&gt;  - 0: "XML_BINARY_UNSPECIFIED"&lt;br&gt;  - 1: "XML_BINARY_BASE64"&lt;br&gt;  - 2: "XML_BINARY_HEX" | supported | supported | supported | supported | supported |
-    /// | xmloption : one of&lt;br&gt;  - 0: "XML_OPTION_UNSPECIFIED"&lt;br&gt;  - 1: "XML_OPTION_DOCUMENT"&lt;br&gt;  - 2: "XML_OPTION_CONTENT" | supported | supported | supported | supported | supported |
-    /// 
-    /// ## Import
-    /// 
-    /// A cluster can be imported using the `id` of the resource, e.g.
-    /// 
-    /// ```sh
-    ///  $ pulumi import yandex:index/mdbPostgresqlCluster:MdbPostgresqlCluster foo cluster_id
-    /// ```
-    /// </summary>
     [YandexResourceType("yandex:index/mdbPostgresqlCluster:MdbPostgresqlCluster")]
     public partial class MdbPostgresqlCluster : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// Configuration of the PostgreSQL cluster. The structure is documented below.
-        /// </summary>
         [Output("config")]
         public Output<Outputs.MdbPostgresqlClusterConfig> Config { get; private set; } = null!;
 
-        /// <summary>
-        /// Timestamp of cluster creation.
-        /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
-        /// <summary>
-        /// To manage databases, please switch to using a separate resource type `yandex.mdbPostgresqlDatabase`.
-        /// </summary>
         [Output("databases")]
         public Output<ImmutableArray<Outputs.MdbPostgresqlClusterDatabase>> Databases { get; private set; } = null!;
 
-        /// <summary>
-        /// Inhibits deletion of the cluster.  Can be either `true` or `false`.
-        /// </summary>
         [Output("deletionProtection")]
         public Output<bool> DeletionProtection { get; private set; } = null!;
 
-        /// <summary>
-        /// Description of the PostgreSQL cluster.
-        /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
 
-        /// <summary>
-        /// Deployment environment of the PostgreSQL cluster.
-        /// </summary>
         [Output("environment")]
         public Output<string> Environment { get; private set; } = null!;
 
-        /// <summary>
-        /// The ID of the folder that the resource belongs to. If it is unset, the default provider `folder_id` is used for create.
-        /// </summary>
         [Output("folderId")]
         public Output<string> FolderId { get; private set; } = null!;
 
-        /// <summary>
-        /// Aggregated health of the cluster.
-        /// </summary>
         [Output("health")]
         public Output<string> Health { get; private set; } = null!;
 
         [Output("hostGroupIds")]
         public Output<ImmutableArray<string>> HostGroupIds { get; private set; } = null!;
 
-        /// <summary>
-        /// It sets name of master host. It works only when `host.name` is set.
-        /// </summary>
         [Output("hostMasterName")]
         public Output<string> HostMasterName { get; private set; } = null!;
 
-        /// <summary>
-        /// A host of the PostgreSQL cluster. The structure is documented below.
-        /// </summary>
         [Output("hosts")]
         public Output<ImmutableArray<Outputs.MdbPostgresqlClusterHost>> Hosts { get; private set; } = null!;
 
-        /// <summary>
-        /// A set of key/value label pairs to assign to the PostgreSQL cluster.
-        /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
-        /// <summary>
-        /// Maintenance policy of the PostgreSQL cluster. The structure is documented below.
-        /// </summary>
         [Output("maintenanceWindow")]
         public Output<Outputs.MdbPostgresqlClusterMaintenanceWindow> MaintenanceWindow { get; private set; } = null!;
 
-        /// <summary>
-        /// Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-        /// Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
-        /// <summary>
-        /// ID of the network, to which the PostgreSQL cluster belongs.
-        /// </summary>
         [Output("networkId")]
         public Output<string> NetworkId { get; private set; } = null!;
 
-        /// <summary>
-        /// The cluster will be created from the specified backup. The structure is documented below.
-        /// </summary>
         [Output("restore")]
         public Output<Outputs.MdbPostgresqlClusterRestore?> Restore { get; private set; } = null!;
 
-        /// <summary>
-        /// A set of ids of security groups assigned to hosts of the cluster.
-        /// </summary>
         [Output("securityGroupIds")]
         public Output<ImmutableArray<string>> SecurityGroupIds { get; private set; } = null!;
 
-        /// <summary>
-        /// Status of the cluster.
-        /// </summary>
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
-        /// <summary>
-        /// To manage users, please switch to using a separate resource type `yandex.mdbPostgresqlUser`.
-        /// </summary>
         [Output("users")]
         public Output<ImmutableArray<Outputs.MdbPostgresqlClusterUser>> Users { get; private set; } = null!;
 
@@ -619,18 +116,11 @@ namespace Pulumi.Yandex
 
     public sealed class MdbPostgresqlClusterArgs : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Configuration of the PostgreSQL cluster. The structure is documented below.
-        /// </summary>
         [Input("config", required: true)]
         public Input<Inputs.MdbPostgresqlClusterConfigArgs> Config { get; set; } = null!;
 
         [Input("databases")]
         private InputList<Inputs.MdbPostgresqlClusterDatabaseArgs>? _databases;
-
-        /// <summary>
-        /// To manage databases, please switch to using a separate resource type `yandex.mdbPostgresqlDatabase`.
-        /// </summary>
         [Obsolete(@"to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database")]
         public InputList<Inputs.MdbPostgresqlClusterDatabaseArgs> Databases
         {
@@ -638,27 +128,15 @@ namespace Pulumi.Yandex
             set => _databases = value;
         }
 
-        /// <summary>
-        /// Inhibits deletion of the cluster.  Can be either `true` or `false`.
-        /// </summary>
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
-        /// <summary>
-        /// Description of the PostgreSQL cluster.
-        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
-        /// <summary>
-        /// Deployment environment of the PostgreSQL cluster.
-        /// </summary>
         [Input("environment", required: true)]
         public Input<string> Environment { get; set; } = null!;
 
-        /// <summary>
-        /// The ID of the folder that the resource belongs to. If it is unset, the default provider `folder_id` is used for create.
-        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
@@ -670,18 +148,11 @@ namespace Pulumi.Yandex
             set => _hostGroupIds = value;
         }
 
-        /// <summary>
-        /// It sets name of master host. It works only when `host.name` is set.
-        /// </summary>
         [Input("hostMasterName")]
         public Input<string>? HostMasterName { get; set; }
 
         [Input("hosts", required: true)]
         private InputList<Inputs.MdbPostgresqlClusterHostArgs>? _hosts;
-
-        /// <summary>
-        /// A host of the PostgreSQL cluster. The structure is documented below.
-        /// </summary>
         public InputList<Inputs.MdbPostgresqlClusterHostArgs> Hosts
         {
             get => _hosts ?? (_hosts = new InputList<Inputs.MdbPostgresqlClusterHostArgs>());
@@ -690,47 +161,26 @@ namespace Pulumi.Yandex
 
         [Input("labels")]
         private InputMap<string>? _labels;
-
-        /// <summary>
-        /// A set of key/value label pairs to assign to the PostgreSQL cluster.
-        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
-        /// <summary>
-        /// Maintenance policy of the PostgreSQL cluster. The structure is documented below.
-        /// </summary>
         [Input("maintenanceWindow")]
         public Input<Inputs.MdbPostgresqlClusterMaintenanceWindowArgs>? MaintenanceWindow { get; set; }
 
-        /// <summary>
-        /// Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-        /// Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// ID of the network, to which the PostgreSQL cluster belongs.
-        /// </summary>
         [Input("networkId", required: true)]
         public Input<string> NetworkId { get; set; } = null!;
 
-        /// <summary>
-        /// The cluster will be created from the specified backup. The structure is documented below.
-        /// </summary>
         [Input("restore")]
         public Input<Inputs.MdbPostgresqlClusterRestoreArgs>? Restore { get; set; }
 
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
-
-        /// <summary>
-        /// A set of ids of security groups assigned to hosts of the cluster.
-        /// </summary>
         public InputList<string> SecurityGroupIds
         {
             get => _securityGroupIds ?? (_securityGroupIds = new InputList<string>());
@@ -739,10 +189,6 @@ namespace Pulumi.Yandex
 
         [Input("users")]
         private InputList<Inputs.MdbPostgresqlClusterUserArgs>? _users;
-
-        /// <summary>
-        /// To manage users, please switch to using a separate resource type `yandex.mdbPostgresqlUser`.
-        /// </summary>
         [Obsolete(@"to manage users, please switch to using a separate resource type yandex_mdb_postgresql_user")]
         public InputList<Inputs.MdbPostgresqlClusterUserArgs> Users
         {
@@ -758,24 +204,14 @@ namespace Pulumi.Yandex
 
     public sealed class MdbPostgresqlClusterState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// Configuration of the PostgreSQL cluster. The structure is documented below.
-        /// </summary>
         [Input("config")]
         public Input<Inputs.MdbPostgresqlClusterConfigGetArgs>? Config { get; set; }
 
-        /// <summary>
-        /// Timestamp of cluster creation.
-        /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
 
         [Input("databases")]
         private InputList<Inputs.MdbPostgresqlClusterDatabaseGetArgs>? _databases;
-
-        /// <summary>
-        /// To manage databases, please switch to using a separate resource type `yandex.mdbPostgresqlDatabase`.
-        /// </summary>
         [Obsolete(@"to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database")]
         public InputList<Inputs.MdbPostgresqlClusterDatabaseGetArgs> Databases
         {
@@ -783,33 +219,18 @@ namespace Pulumi.Yandex
             set => _databases = value;
         }
 
-        /// <summary>
-        /// Inhibits deletion of the cluster.  Can be either `true` or `false`.
-        /// </summary>
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
 
-        /// <summary>
-        /// Description of the PostgreSQL cluster.
-        /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
-        /// <summary>
-        /// Deployment environment of the PostgreSQL cluster.
-        /// </summary>
         [Input("environment")]
         public Input<string>? Environment { get; set; }
 
-        /// <summary>
-        /// The ID of the folder that the resource belongs to. If it is unset, the default provider `folder_id` is used for create.
-        /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
-        /// <summary>
-        /// Aggregated health of the cluster.
-        /// </summary>
         [Input("health")]
         public Input<string>? Health { get; set; }
 
@@ -821,18 +242,11 @@ namespace Pulumi.Yandex
             set => _hostGroupIds = value;
         }
 
-        /// <summary>
-        /// It sets name of master host. It works only when `host.name` is set.
-        /// </summary>
         [Input("hostMasterName")]
         public Input<string>? HostMasterName { get; set; }
 
         [Input("hosts")]
         private InputList<Inputs.MdbPostgresqlClusterHostGetArgs>? _hosts;
-
-        /// <summary>
-        /// A host of the PostgreSQL cluster. The structure is documented below.
-        /// </summary>
         public InputList<Inputs.MdbPostgresqlClusterHostGetArgs> Hosts
         {
             get => _hosts ?? (_hosts = new InputList<Inputs.MdbPostgresqlClusterHostGetArgs>());
@@ -841,65 +255,37 @@ namespace Pulumi.Yandex
 
         [Input("labels")]
         private InputMap<string>? _labels;
-
-        /// <summary>
-        /// A set of key/value label pairs to assign to the PostgreSQL cluster.
-        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());
             set => _labels = value;
         }
 
-        /// <summary>
-        /// Maintenance policy of the PostgreSQL cluster. The structure is documented below.
-        /// </summary>
         [Input("maintenanceWindow")]
         public Input<Inputs.MdbPostgresqlClusterMaintenanceWindowGetArgs>? MaintenanceWindow { get; set; }
 
-        /// <summary>
-        /// Host state name. It should be set for all hosts or unset for all hosts. This field can be used by another host, to select which host will be its replication source. Please see `replication_source_name` parameter.
-        /// Also, this field is used to select which host will be selected as a master host. Please see `host_master_name` parameter.
-        /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
-        /// <summary>
-        /// ID of the network, to which the PostgreSQL cluster belongs.
-        /// </summary>
         [Input("networkId")]
         public Input<string>? NetworkId { get; set; }
 
-        /// <summary>
-        /// The cluster will be created from the specified backup. The structure is documented below.
-        /// </summary>
         [Input("restore")]
         public Input<Inputs.MdbPostgresqlClusterRestoreGetArgs>? Restore { get; set; }
 
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
-
-        /// <summary>
-        /// A set of ids of security groups assigned to hosts of the cluster.
-        /// </summary>
         public InputList<string> SecurityGroupIds
         {
             get => _securityGroupIds ?? (_securityGroupIds = new InputList<string>());
             set => _securityGroupIds = value;
         }
 
-        /// <summary>
-        /// Status of the cluster.
-        /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
 
         [Input("users")]
         private InputList<Inputs.MdbPostgresqlClusterUserGetArgs>? _users;
-
-        /// <summary>
-        /// To manage users, please switch to using a separate resource type `yandex.mdbPostgresqlUser`.
-        /// </summary>
         [Obsolete(@"to manage users, please switch to using a separate resource type yandex_mdb_postgresql_user")]
         public InputList<Inputs.MdbPostgresqlClusterUserGetArgs> Users
         {
