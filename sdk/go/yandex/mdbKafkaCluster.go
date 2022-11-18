@@ -65,6 +65,10 @@ import (
 //							NumPartitions:               pulumi.String("10"),
 //							OffsetsRetentionMinutes:     pulumi.String("10080"),
 //							ReplicaFetchMaxBytes:        pulumi.String("1048576"),
+//							SaslEnabledMechanisms: pulumi.StringArray{
+//								pulumi.String("SASL_MECHANISM_SCRAM_SHA_256"),
+//								pulumi.String("SASL_MECHANISM_SCRAM_SHA_512"),
+//							},
 //							SslCipherSuites: pulumi.StringArray{
 //								pulumi.String("TLS_DHE_RSA_WITH_AES_128_CBC_SHA"),
 //								pulumi.String("TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"),
@@ -193,6 +197,10 @@ import (
 //							NumPartitions:               pulumi.String("10"),
 //							OffsetsRetentionMinutes:     pulumi.String("10080"),
 //							ReplicaFetchMaxBytes:        pulumi.String("1048576"),
+//							SaslEnabledMechanisms: pulumi.StringArray{
+//								pulumi.String("SASL_MECHANISM_SCRAM_SHA_256"),
+//								pulumi.String("SASL_MECHANISM_SCRAM_SHA_512"),
+//							},
 //							SslCipherSuites: pulumi.StringArray{
 //								pulumi.String("TLS_DHE_RSA_WITH_AES_128_CBC_SHA"),
 //								pulumi.String("TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"),

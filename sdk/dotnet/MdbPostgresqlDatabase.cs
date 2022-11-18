@@ -40,7 +40,7 @@ namespace Pulumi.Yandex
     ///         NetworkId = fooVpcNetwork.Id,
     ///         Config = new Yandex.Inputs.MdbPostgresqlClusterConfigArgs
     ///         {
-    ///             Version = "14",
+    ///             Version = "15",
     ///             Resources = new Yandex.Inputs.MdbPostgresqlClusterConfigResourcesArgs
     ///             {
     ///                 ResourcePresetId = "s2.micro",

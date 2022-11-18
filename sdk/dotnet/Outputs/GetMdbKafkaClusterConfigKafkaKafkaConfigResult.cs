@@ -29,6 +29,7 @@ namespace Pulumi.Yandex.Outputs
         public readonly string? NumPartitions;
         public readonly string? OffsetsRetentionMinutes;
         public readonly string? ReplicaFetchMaxBytes;
+        public readonly ImmutableArray<string> SaslEnabledMechanisms;
         public readonly string? SocketReceiveBufferBytes;
         public readonly string? SocketSendBufferBytes;
         public readonly ImmutableArray<string> SslCipherSuites;
@@ -67,6 +68,8 @@ namespace Pulumi.Yandex.Outputs
 
             string? replicaFetchMaxBytes,
 
+            ImmutableArray<string> saslEnabledMechanisms,
+
             string? socketReceiveBufferBytes,
 
             string? socketSendBufferBytes,
@@ -89,6 +92,7 @@ namespace Pulumi.Yandex.Outputs
             NumPartitions = numPartitions;
             OffsetsRetentionMinutes = offsetsRetentionMinutes;
             ReplicaFetchMaxBytes = replicaFetchMaxBytes;
+            SaslEnabledMechanisms = saslEnabledMechanisms;
             SocketReceiveBufferBytes = socketReceiveBufferBytes;
             SocketSendBufferBytes = socketSendBufferBytes;
             SslCipherSuites = sslCipherSuites;

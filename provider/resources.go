@@ -219,6 +219,7 @@ func Provider() tfbridge.ProviderInfo {
 			"yandex_vpc_gateway":                           {Tok: makeResource(mainMod, "vpcGateway")},
 			"yandex_ydb_database_iam_binding":              {Tok: makeResource(mainMod, "ydbDatabaseIamBinding")},
 			"yandex_container_repository_lifecycle_policy": {Tok: makeResource(mainMod, "containerRepositoryLifecyclePolicy")},
+			"yandex_compute_snapshot_schedule":             {Tok: makeResource(mainMod, "computeSnapshotSchedule")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"yandex_alb_target_group": {

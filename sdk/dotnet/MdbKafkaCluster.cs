@@ -61,6 +61,11 @@ namespace Pulumi.Yandex
     ///                     NumPartitions = "10",
     ///                     OffsetsRetentionMinutes = "10080",
     ///                     ReplicaFetchMaxBytes = "1048576",
+    ///                     SaslEnabledMechanisms = new[]
+    ///                     {
+    ///                         "SASL_MECHANISM_SCRAM_SHA_256",
+    ///                         "SASL_MECHANISM_SCRAM_SHA_512",
+    ///                     },
     ///                     SslCipherSuites = new[]
     ///                     {
     ///                         "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
@@ -193,6 +198,11 @@ namespace Pulumi.Yandex
     ///                     NumPartitions = "10",
     ///                     OffsetsRetentionMinutes = "10080",
     ///                     ReplicaFetchMaxBytes = "1048576",
+    ///                     SaslEnabledMechanisms = new[]
+    ///                     {
+    ///                         "SASL_MECHANISM_SCRAM_SHA_256",
+    ///                         "SASL_MECHANISM_SCRAM_SHA_512",
+    ///                     },
     ///                     SslCipherSuites = new[]
     ///                     {
     ///                         "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",

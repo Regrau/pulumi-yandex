@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  *     environment: "PRESTABLE",
  *     networkId: fooVpcNetwork.id,
  *     config: {
- *         version: "14",
+ *         version: "15",
  *         resources: {
  *             resourcePresetId: "s2.micro",
  *             diskTypeId: "network-ssd",

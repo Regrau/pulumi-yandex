@@ -149,7 +149,7 @@ namespace Pulumi.Yandex
         /// Configuration of the connection pooler. The structure is documented below.
         /// </summary>
         [Output("poolerConfig")]
-        public Output<Outputs.MdbGreenplumClusterPoolerConfig?> PoolerConfig { get; private set; } = null!;
+        public Output<Outputs.MdbGreenplumClusterPoolerConfig> PoolerConfig { get; private set; } = null!;
 
         /// <summary>
         /// A set of ids of security groups assigned to hosts of the cluster.

@@ -60,13 +60,21 @@ namespace Pulumi.Yandex.Inputs
         [Input("replicaFetchMaxBytes")]
         public string? ReplicaFetchMaxBytes { get; set; }
 
+        [Input("saslEnabledMechanisms")]
+        private List<string>? _saslEnabledMechanisms;
+        public List<string> SaslEnabledMechanisms
+        {
+            get => _saslEnabledMechanisms ?? (_saslEnabledMechanisms = new List<string>());
+            set => _saslEnabledMechanisms = value;
+        }
+
         [Input("socketReceiveBufferBytes")]
         public string? SocketReceiveBufferBytes { get; set; }
 
         [Input("socketSendBufferBytes")]
         public string? SocketSendBufferBytes { get; set; }
 
-        [Input("sslCipherSuites", required: true)]
+        [Input("sslCipherSuites")]
         private List<string>? _sslCipherSuites;
         public List<string> SslCipherSuites
         {

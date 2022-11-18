@@ -136,7 +136,7 @@ export class MdbGreenplumCluster extends pulumi.CustomResource {
     /**
      * Configuration of the connection pooler. The structure is documented below.
      */
-    public readonly poolerConfig!: pulumi.Output<outputs.MdbGreenplumClusterPoolerConfig | undefined>;
+    public readonly poolerConfig!: pulumi.Output<outputs.MdbGreenplumClusterPoolerConfig>;
     /**
      * A set of ids of security groups assigned to hosts of the cluster.
      */

@@ -45,6 +45,10 @@ import * as utilities from "./utilities";
  *                 numPartitions: "10",
  *                 offsetsRetentionMinutes: "10080",
  *                 replicaFetchMaxBytes: "1.048576e+06",
+ *                 saslEnabledMechanisms: [
+ *                     "SASL_MECHANISM_SCRAM_SHA_256",
+ *                     "SASL_MECHANISM_SCRAM_SHA_512",
+ *                 ],
  *                 sslCipherSuites: [
  *                     "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
  *                     "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256",
@@ -134,6 +138,10 @@ import * as utilities from "./utilities";
  *                 numPartitions: "10",
  *                 offsetsRetentionMinutes: "10080",
  *                 replicaFetchMaxBytes: "1.048576e+06",
+ *                 saslEnabledMechanisms: [
+ *                     "SASL_MECHANISM_SCRAM_SHA_256",
+ *                     "SASL_MECHANISM_SCRAM_SHA_512",
+ *                 ],
  *                 sslCipherSuites: [
  *                     "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
  *                     "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256",

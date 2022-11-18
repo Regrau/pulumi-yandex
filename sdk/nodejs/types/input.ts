@@ -2117,6 +2117,22 @@ export interface ComputeInstanceSecondaryDisk {
     mode?: pulumi.Input<string>;
 }
 
+export interface ComputeSnapshotScheduleSchedulePolicy {
+    expression?: pulumi.Input<string>;
+    startAt?: pulumi.Input<string>;
+}
+
+export interface ComputeSnapshotScheduleSnapshotSpec {
+    /**
+     * Description of the resource.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * A set of key/value label pairs to assign to the snapshot schedule.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
 export interface ContainerRepositoryLifecyclePolicyRule {
     /**
      * Description of the lifecycle policy.
@@ -4564,6 +4580,7 @@ export interface GetMdbKafkaClusterConfigKafkaKafkaConfig {
     numPartitions?: string;
     offsetsRetentionMinutes?: string;
     replicaFetchMaxBytes?: string;
+    saslEnabledMechanisms?: string[];
     socketReceiveBufferBytes?: string;
     socketSendBufferBytes?: string;
     sslCipherSuites?: string[];
@@ -4586,6 +4603,7 @@ export interface GetMdbKafkaClusterConfigKafkaKafkaConfigArgs {
     numPartitions?: pulumi.Input<string>;
     offsetsRetentionMinutes?: pulumi.Input<string>;
     replicaFetchMaxBytes?: pulumi.Input<string>;
+    saslEnabledMechanisms?: pulumi.Input<pulumi.Input<string>[]>;
     socketReceiveBufferBytes?: pulumi.Input<string>;
     socketSendBufferBytes?: pulumi.Input<string>;
     sslCipherSuites?: pulumi.Input<pulumi.Input<string>[]>;
@@ -6959,6 +6977,7 @@ export interface MdbKafkaClusterConfigKafkaKafkaConfig {
     numPartitions?: pulumi.Input<string>;
     offsetsRetentionMinutes?: pulumi.Input<string>;
     replicaFetchMaxBytes?: pulumi.Input<string>;
+    saslEnabledMechanisms?: pulumi.Input<pulumi.Input<string>[]>;
     socketReceiveBufferBytes?: pulumi.Input<string>;
     socketSendBufferBytes?: pulumi.Input<string>;
     sslCipherSuites?: pulumi.Input<pulumi.Input<string>[]>;

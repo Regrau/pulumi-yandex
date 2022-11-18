@@ -400,6 +400,8 @@ __all__ = [
     'YdbDatabaseDedicatedScalePolicy',
     'YdbDatabaseDedicatedScalePolicyFixedScale',
     'YdbDatabaseDedicatedStorageConfig',
+    'ComputeSnapshotScheduleSchedulePolicy',
+    'ComputeSnapshotScheduleSnapshotSpec',
     'ContainerRepositoryLifecyclePolicyRule',
     'GetAlbBackendGroupGrpcBackendResult',
     'GetAlbBackendGroupGrpcBackendHealthcheckResult',
@@ -19376,6 +19378,8 @@ class MdbKafkaClusterConfigKafkaKafkaConfig(dict):
             suggest = "offsets_retention_minutes"
         elif key == "replicaFetchMaxBytes":
             suggest = "replica_fetch_max_bytes"
+        elif key == "saslEnabledMechanisms":
+            suggest = "sasl_enabled_mechanisms"
         elif key == "socketReceiveBufferBytes":
             suggest = "socket_receive_buffer_bytes"
         elif key == "socketSendBufferBytes":
@@ -19411,6 +19415,7 @@ class MdbKafkaClusterConfigKafkaKafkaConfig(dict):
                  num_partitions: Optional[str] = None,
                  offsets_retention_minutes: Optional[str] = None,
                  replica_fetch_max_bytes: Optional[str] = None,
+                 sasl_enabled_mechanisms: Optional[Sequence[str]] = None,
                  socket_receive_buffer_bytes: Optional[str] = None,
                  socket_send_buffer_bytes: Optional[str] = None,
                  ssl_cipher_suites: Optional[Sequence[str]] = None):
@@ -19446,6 +19451,8 @@ class MdbKafkaClusterConfigKafkaKafkaConfig(dict):
             pulumi.set(__self__, "offsets_retention_minutes", offsets_retention_minutes)
         if replica_fetch_max_bytes is not None:
             pulumi.set(__self__, "replica_fetch_max_bytes", replica_fetch_max_bytes)
+        if sasl_enabled_mechanisms is not None:
+            pulumi.set(__self__, "sasl_enabled_mechanisms", sasl_enabled_mechanisms)
         if socket_receive_buffer_bytes is not None:
             pulumi.set(__self__, "socket_receive_buffer_bytes", socket_receive_buffer_bytes)
         if socket_send_buffer_bytes is not None:
@@ -19532,6 +19539,11 @@ class MdbKafkaClusterConfigKafkaKafkaConfig(dict):
     @pulumi.getter(name="replicaFetchMaxBytes")
     def replica_fetch_max_bytes(self) -> Optional[str]:
         return pulumi.get(self, "replica_fetch_max_bytes")
+
+    @property
+    @pulumi.getter(name="saslEnabledMechanisms")
+    def sasl_enabled_mechanisms(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "sasl_enabled_mechanisms")
 
     @property
     @pulumi.getter(name="socketReceiveBufferBytes")
@@ -24913,6 +24925,75 @@ class YdbDatabaseDedicatedStorageConfig(dict):
         Available presets can be obtained via `yc ydb storage-type list` command.
         """
         return pulumi.get(self, "storage_type_id")
+
+
+@pulumi.output_type
+class ComputeSnapshotScheduleSchedulePolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "startAt":
+            suggest = "start_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ComputeSnapshotScheduleSchedulePolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ComputeSnapshotScheduleSchedulePolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ComputeSnapshotScheduleSchedulePolicy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 expression: Optional[str] = None,
+                 start_at: Optional[str] = None):
+        if expression is not None:
+            pulumi.set(__self__, "expression", expression)
+        if start_at is not None:
+            pulumi.set(__self__, "start_at", start_at)
+
+    @property
+    @pulumi.getter
+    def expression(self) -> Optional[str]:
+        return pulumi.get(self, "expression")
+
+    @property
+    @pulumi.getter(name="startAt")
+    def start_at(self) -> Optional[str]:
+        return pulumi.get(self, "start_at")
+
+
+@pulumi.output_type
+class ComputeSnapshotScheduleSnapshotSpec(dict):
+    def __init__(__self__, *,
+                 description: Optional[str] = None,
+                 labels: Optional[Mapping[str, str]] = None):
+        """
+        :param str description: Description of the resource.
+        :param Mapping[str, str] labels: A set of key/value label pairs to assign to the snapshot schedule.
+        """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the resource.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        A set of key/value label pairs to assign to the snapshot schedule.
+        """
+        return pulumi.get(self, "labels")
 
 
 @pulumi.output_type
@@ -35596,7 +35677,6 @@ class GetMdbKafkaClusterConfigKafkaResult(dict):
 @pulumi.output_type
 class GetMdbKafkaClusterConfigKafkaKafkaConfigResult(dict):
     def __init__(__self__, *,
-                 ssl_cipher_suites: Sequence[str],
                  auto_create_topics_enable: Optional[bool] = None,
                  compression_type: Optional[str] = None,
                  default_replication_factor: Optional[str] = None,
@@ -35613,9 +35693,10 @@ class GetMdbKafkaClusterConfigKafkaKafkaConfigResult(dict):
                  num_partitions: Optional[str] = None,
                  offsets_retention_minutes: Optional[str] = None,
                  replica_fetch_max_bytes: Optional[str] = None,
+                 sasl_enabled_mechanisms: Optional[Sequence[str]] = None,
                  socket_receive_buffer_bytes: Optional[str] = None,
-                 socket_send_buffer_bytes: Optional[str] = None):
-        pulumi.set(__self__, "ssl_cipher_suites", ssl_cipher_suites)
+                 socket_send_buffer_bytes: Optional[str] = None,
+                 ssl_cipher_suites: Optional[Sequence[str]] = None):
         if auto_create_topics_enable is not None:
             pulumi.set(__self__, "auto_create_topics_enable", auto_create_topics_enable)
         if compression_type is not None:
@@ -35648,15 +35729,14 @@ class GetMdbKafkaClusterConfigKafkaKafkaConfigResult(dict):
             pulumi.set(__self__, "offsets_retention_minutes", offsets_retention_minutes)
         if replica_fetch_max_bytes is not None:
             pulumi.set(__self__, "replica_fetch_max_bytes", replica_fetch_max_bytes)
+        if sasl_enabled_mechanisms is not None:
+            pulumi.set(__self__, "sasl_enabled_mechanisms", sasl_enabled_mechanisms)
         if socket_receive_buffer_bytes is not None:
             pulumi.set(__self__, "socket_receive_buffer_bytes", socket_receive_buffer_bytes)
         if socket_send_buffer_bytes is not None:
             pulumi.set(__self__, "socket_send_buffer_bytes", socket_send_buffer_bytes)
-
-    @property
-    @pulumi.getter(name="sslCipherSuites")
-    def ssl_cipher_suites(self) -> Sequence[str]:
-        return pulumi.get(self, "ssl_cipher_suites")
+        if ssl_cipher_suites is not None:
+            pulumi.set(__self__, "ssl_cipher_suites", ssl_cipher_suites)
 
     @property
     @pulumi.getter(name="autoCreateTopicsEnable")
@@ -35739,6 +35819,11 @@ class GetMdbKafkaClusterConfigKafkaKafkaConfigResult(dict):
         return pulumi.get(self, "replica_fetch_max_bytes")
 
     @property
+    @pulumi.getter(name="saslEnabledMechanisms")
+    def sasl_enabled_mechanisms(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "sasl_enabled_mechanisms")
+
+    @property
     @pulumi.getter(name="socketReceiveBufferBytes")
     def socket_receive_buffer_bytes(self) -> Optional[str]:
         return pulumi.get(self, "socket_receive_buffer_bytes")
@@ -35747,6 +35832,11 @@ class GetMdbKafkaClusterConfigKafkaKafkaConfigResult(dict):
     @pulumi.getter(name="socketSendBufferBytes")
     def socket_send_buffer_bytes(self) -> Optional[str]:
         return pulumi.get(self, "socket_send_buffer_bytes")
+
+    @property
+    @pulumi.getter(name="sslCipherSuites")
+    def ssl_cipher_suites(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "ssl_cipher_suites")
 
 
 @pulumi.output_type

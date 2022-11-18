@@ -50,6 +50,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ComputePlacementGroup{}
 	case "yandex:index/computeSnapshot:ComputeSnapshot":
 		r = &ComputeSnapshot{}
+	case "yandex:index/computeSnapshotSchedule:computeSnapshotSchedule":
+		r = &ComputeSnapshotSchedule{}
 	case "yandex:index/containerRegistry:ContainerRegistry":
 		r = &ContainerRegistry{}
 	case "yandex:index/containerRegistryIamBinding:ContainerRegistryIamBinding":
@@ -307,6 +309,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"yandex",
 		"index/computeSnapshot",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/computeSnapshotSchedule",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

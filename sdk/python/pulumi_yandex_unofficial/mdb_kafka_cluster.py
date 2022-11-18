@@ -609,6 +609,10 @@ class MdbKafkaCluster(pulumi.CustomResource):
                         num_partitions="10",
                         offsets_retention_minutes="10080",
                         replica_fetch_max_bytes="1048576",
+                        sasl_enabled_mechanisms=[
+                            "SASL_MECHANISM_SCRAM_SHA_256",
+                            "SASL_MECHANISM_SCRAM_SHA_512",
+                        ],
                         ssl_cipher_suites=[
                             "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
                             "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256",
@@ -694,6 +698,10 @@ class MdbKafkaCluster(pulumi.CustomResource):
                         num_partitions="10",
                         offsets_retention_minutes="10080",
                         replica_fetch_max_bytes="1048576",
+                        sasl_enabled_mechanisms=[
+                            "SASL_MECHANISM_SCRAM_SHA_256",
+                            "SASL_MECHANISM_SCRAM_SHA_512",
+                        ],
                         ssl_cipher_suites=[
                             "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
                             "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256",
@@ -824,6 +832,10 @@ class MdbKafkaCluster(pulumi.CustomResource):
                         num_partitions="10",
                         offsets_retention_minutes="10080",
                         replica_fetch_max_bytes="1048576",
+                        sasl_enabled_mechanisms=[
+                            "SASL_MECHANISM_SCRAM_SHA_256",
+                            "SASL_MECHANISM_SCRAM_SHA_512",
+                        ],
                         ssl_cipher_suites=[
                             "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
                             "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256",
@@ -909,6 +921,10 @@ class MdbKafkaCluster(pulumi.CustomResource):
                         num_partitions="10",
                         offsets_retention_minutes="10080",
                         replica_fetch_max_bytes="1048576",
+                        sasl_enabled_mechanisms=[
+                            "SASL_MECHANISM_SCRAM_SHA_256",
+                            "SASL_MECHANISM_SCRAM_SHA_512",
+                        ],
                         ssl_cipher_suites=[
                             "TLS_DHE_RSA_WITH_AES_128_CBC_SHA",
                             "TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256",

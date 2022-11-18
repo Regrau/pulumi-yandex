@@ -308,7 +308,7 @@ class MdbPostgresqlUser(pulumi.CustomResource):
             environment="PRESTABLE",
             network_id=foo_vpc_network.id,
             config=yandex.MdbPostgresqlClusterConfigArgs(
-                version="14",
+                version="15",
                 resources=yandex.MdbPostgresqlClusterConfigResourcesArgs(
                     resource_preset_id="s2.micro",
                     disk_type_id="network-ssd",
@@ -372,7 +372,7 @@ class MdbPostgresqlUser(pulumi.CustomResource):
             environment="PRESTABLE",
             network_id=foo_vpc_network.id,
             config=yandex.MdbPostgresqlClusterConfigArgs(
-                version="14",
+                version="15",
                 resources=yandex.MdbPostgresqlClusterConfigResourcesArgs(
                     resource_preset_id="s2.micro",
                     disk_type_id="network-ssd",

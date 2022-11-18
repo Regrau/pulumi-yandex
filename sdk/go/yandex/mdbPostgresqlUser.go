@@ -46,7 +46,7 @@ import (
 //				Environment: pulumi.String("PRESTABLE"),
 //				NetworkId:   fooVpcNetwork.ID(),
 //				Config: &MdbPostgresqlClusterConfigArgs{
-//					Version: pulumi.String("14"),
+//					Version: pulumi.String("15"),
 //					Resources: &MdbPostgresqlClusterConfigResourcesArgs{
 //						ResourcePresetId: pulumi.String("s2.micro"),
 //						DiskTypeId:       pulumi.String("network-ssd"),

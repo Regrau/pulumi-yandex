@@ -80,6 +80,11 @@ export type ComputeSnapshot = import("./computeSnapshot").ComputeSnapshot;
 export const ComputeSnapshot: typeof import("./computeSnapshot").ComputeSnapshot = null as any;
 utilities.lazyLoad(exports, ["ComputeSnapshot"], () => require("./computeSnapshot"));
 
+export { ComputeSnapshotScheduleArgs, ComputeSnapshotScheduleState } from "./computeSnapshotSchedule";
+export type ComputeSnapshotSchedule = import("./computeSnapshotSchedule").ComputeSnapshotSchedule;
+export const ComputeSnapshotSchedule: typeof import("./computeSnapshotSchedule").ComputeSnapshotSchedule = null as any;
+utilities.lazyLoad(exports, ["ComputeSnapshotSchedule"], () => require("./computeSnapshotSchedule"));
+
 export { ContainerRegistryArgs, ContainerRegistryState } from "./containerRegistry";
 export type ContainerRegistry = import("./containerRegistry").ContainerRegistry;
 export const ContainerRegistry: typeof import("./containerRegistry").ContainerRegistry = null as any;
@@ -808,6 +813,8 @@ const _module = {
                 return new ComputePlacementGroup(name, <any>undefined, { urn })
             case "yandex:index/computeSnapshot:ComputeSnapshot":
                 return new ComputeSnapshot(name, <any>undefined, { urn })
+            case "yandex:index/computeSnapshotSchedule:computeSnapshotSchedule":
+                return new ComputeSnapshotSchedule(name, <any>undefined, { urn })
             case "yandex:index/containerRegistry:ContainerRegistry":
                 return new ContainerRegistry(name, <any>undefined, { urn })
             case "yandex:index/containerRegistryIamBinding:ContainerRegistryIamBinding":
@@ -984,6 +991,7 @@ pulumi.runtime.registerResourceModule("yandex", "index/computeInstance", _module
 pulumi.runtime.registerResourceModule("yandex", "index/computeInstanceGroup", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/computePlacementGroup", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/computeSnapshot", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/computeSnapshotSchedule", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/containerRegistry", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/containerRegistryIamBinding", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/containerRepository", _module)

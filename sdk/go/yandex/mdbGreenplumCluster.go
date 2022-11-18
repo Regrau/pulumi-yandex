@@ -80,7 +80,7 @@ type MdbGreenplumCluster struct {
 	// ID of the network, to which the Greenplum cluster uses.
 	NetworkId pulumi.StringOutput `pulumi:"networkId"`
 	// Configuration of the connection pooler. The structure is documented below.
-	PoolerConfig MdbGreenplumClusterPoolerConfigPtrOutput `pulumi:"poolerConfig"`
+	PoolerConfig MdbGreenplumClusterPoolerConfigOutput `pulumi:"poolerConfig"`
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
 	// Number of hosts in segment subcluster (from 1 to 32).
@@ -587,8 +587,8 @@ func (o MdbGreenplumClusterOutput) NetworkId() pulumi.StringOutput {
 }
 
 // Configuration of the connection pooler. The structure is documented below.
-func (o MdbGreenplumClusterOutput) PoolerConfig() MdbGreenplumClusterPoolerConfigPtrOutput {
-	return o.ApplyT(func(v *MdbGreenplumCluster) MdbGreenplumClusterPoolerConfigPtrOutput { return v.PoolerConfig }).(MdbGreenplumClusterPoolerConfigPtrOutput)
+func (o MdbGreenplumClusterOutput) PoolerConfig() MdbGreenplumClusterPoolerConfigOutput {
+	return o.ApplyT(func(v *MdbGreenplumCluster) MdbGreenplumClusterPoolerConfigOutput { return v.PoolerConfig }).(MdbGreenplumClusterPoolerConfigOutput)
 }
 
 // A set of ids of security groups assigned to hosts of the cluster.

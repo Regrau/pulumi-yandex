@@ -10,6 +10,251 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type GetComputeInstanceGroupInstanceTemplatePlacementPolicy struct {
+	PlacementGroupId string `pulumi:"placementGroupId"`
+}
+
+// GetComputeInstanceGroupInstanceTemplatePlacementPolicyInput is an input type that accepts GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs and GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplatePlacementPolicyInput` via:
+//
+//	GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs{...}
+type GetComputeInstanceGroupInstanceTemplatePlacementPolicyInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput() GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput
+	ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyOutputWithContext(context.Context) GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput
+}
+
+type GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs struct {
+	PlacementGroupId pulumi.StringInput `pulumi:"placementGroupId"`
+}
+
+func (GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupInstanceTemplatePlacementPolicy)(nil)).Elem()
+}
+
+func (i GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs) ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput() GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput {
+	return i.ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs) ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyOutputWithContext(ctx context.Context) GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput)
+}
+
+func (i GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs) ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput() GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput {
+	return i.ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs) ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutputWithContext(ctx context.Context) GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput).ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutputWithContext(ctx)
+}
+
+// GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrInput is an input type that accepts GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs, GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtr and GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrInput` via:
+//
+//	        GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput() GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput
+	ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutputWithContext(context.Context) GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput
+}
+
+type getComputeInstanceGroupInstanceTemplatePlacementPolicyPtrType GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs
+
+func GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtr(v *GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs) GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrInput {
+	return (*getComputeInstanceGroupInstanceTemplatePlacementPolicyPtrType)(v)
+}
+
+func (*getComputeInstanceGroupInstanceTemplatePlacementPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetComputeInstanceGroupInstanceTemplatePlacementPolicy)(nil)).Elem()
+}
+
+func (i *getComputeInstanceGroupInstanceTemplatePlacementPolicyPtrType) ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput() GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput {
+	return i.ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *getComputeInstanceGroupInstanceTemplatePlacementPolicyPtrType) ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutputWithContext(ctx context.Context) GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput)
+}
+
+type GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupInstanceTemplatePlacementPolicy)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput) ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput() GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput) ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyOutputWithContext(ctx context.Context) GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput) ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput() GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput {
+	return o.ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput) ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutputWithContext(ctx context.Context) GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetComputeInstanceGroupInstanceTemplatePlacementPolicy) *GetComputeInstanceGroupInstanceTemplatePlacementPolicy {
+		return &v
+	}).(GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput)
+}
+
+func (o GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput) PlacementGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupInstanceTemplatePlacementPolicy) string { return v.PlacementGroupId }).(pulumi.StringOutput)
+}
+
+type GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetComputeInstanceGroupInstanceTemplatePlacementPolicy)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput) ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput() GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput) ToGetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutputWithContext(ctx context.Context) GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput) Elem() GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput {
+	return o.ApplyT(func(v *GetComputeInstanceGroupInstanceTemplatePlacementPolicy) GetComputeInstanceGroupInstanceTemplatePlacementPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret GetComputeInstanceGroupInstanceTemplatePlacementPolicy
+		return ret
+	}).(GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput)
+}
+
+func (o GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput) PlacementGroupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetComputeInstanceGroupInstanceTemplatePlacementPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.PlacementGroupId
+	}).(pulumi.StringPtrOutput)
+}
+
+type GetComputeInstanceGroupInstanceTemplateResource struct {
+	CoreFraction int     `pulumi:"coreFraction"`
+	Cores        int     `pulumi:"cores"`
+	Gpus         int     `pulumi:"gpus"`
+	Memory       float64 `pulumi:"memory"`
+}
+
+// GetComputeInstanceGroupInstanceTemplateResourceInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateResourceArgs and GetComputeInstanceGroupInstanceTemplateResourceOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateResourceInput` via:
+//
+//	GetComputeInstanceGroupInstanceTemplateResourceArgs{...}
+type GetComputeInstanceGroupInstanceTemplateResourceInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupInstanceTemplateResourceOutput() GetComputeInstanceGroupInstanceTemplateResourceOutput
+	ToGetComputeInstanceGroupInstanceTemplateResourceOutputWithContext(context.Context) GetComputeInstanceGroupInstanceTemplateResourceOutput
+}
+
+type GetComputeInstanceGroupInstanceTemplateResourceArgs struct {
+	CoreFraction pulumi.IntInput     `pulumi:"coreFraction"`
+	Cores        pulumi.IntInput     `pulumi:"cores"`
+	Gpus         pulumi.IntInput     `pulumi:"gpus"`
+	Memory       pulumi.Float64Input `pulumi:"memory"`
+}
+
+func (GetComputeInstanceGroupInstanceTemplateResourceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupInstanceTemplateResource)(nil)).Elem()
+}
+
+func (i GetComputeInstanceGroupInstanceTemplateResourceArgs) ToGetComputeInstanceGroupInstanceTemplateResourceOutput() GetComputeInstanceGroupInstanceTemplateResourceOutput {
+	return i.ToGetComputeInstanceGroupInstanceTemplateResourceOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupInstanceTemplateResourceArgs) ToGetComputeInstanceGroupInstanceTemplateResourceOutputWithContext(ctx context.Context) GetComputeInstanceGroupInstanceTemplateResourceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupInstanceTemplateResourceOutput)
+}
+
+// GetComputeInstanceGroupInstanceTemplateResourceArrayInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateResourceArray and GetComputeInstanceGroupInstanceTemplateResourceArrayOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateResourceArrayInput` via:
+//
+//	GetComputeInstanceGroupInstanceTemplateResourceArray{ GetComputeInstanceGroupInstanceTemplateResourceArgs{...} }
+type GetComputeInstanceGroupInstanceTemplateResourceArrayInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupInstanceTemplateResourceArrayOutput() GetComputeInstanceGroupInstanceTemplateResourceArrayOutput
+	ToGetComputeInstanceGroupInstanceTemplateResourceArrayOutputWithContext(context.Context) GetComputeInstanceGroupInstanceTemplateResourceArrayOutput
+}
+
+type GetComputeInstanceGroupInstanceTemplateResourceArray []GetComputeInstanceGroupInstanceTemplateResourceInput
+
+func (GetComputeInstanceGroupInstanceTemplateResourceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceGroupInstanceTemplateResource)(nil)).Elem()
+}
+
+func (i GetComputeInstanceGroupInstanceTemplateResourceArray) ToGetComputeInstanceGroupInstanceTemplateResourceArrayOutput() GetComputeInstanceGroupInstanceTemplateResourceArrayOutput {
+	return i.ToGetComputeInstanceGroupInstanceTemplateResourceArrayOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupInstanceTemplateResourceArray) ToGetComputeInstanceGroupInstanceTemplateResourceArrayOutputWithContext(ctx context.Context) GetComputeInstanceGroupInstanceTemplateResourceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupInstanceTemplateResourceArrayOutput)
+}
+
+type GetComputeInstanceGroupInstanceTemplateResourceOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupInstanceTemplateResourceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupInstanceTemplateResource)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupInstanceTemplateResourceOutput) ToGetComputeInstanceGroupInstanceTemplateResourceOutput() GetComputeInstanceGroupInstanceTemplateResourceOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupInstanceTemplateResourceOutput) ToGetComputeInstanceGroupInstanceTemplateResourceOutputWithContext(ctx context.Context) GetComputeInstanceGroupInstanceTemplateResourceOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupInstanceTemplateResourceOutput) CoreFraction() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupInstanceTemplateResource) int { return v.CoreFraction }).(pulumi.IntOutput)
+}
+
+func (o GetComputeInstanceGroupInstanceTemplateResourceOutput) Cores() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupInstanceTemplateResource) int { return v.Cores }).(pulumi.IntOutput)
+}
+
+func (o GetComputeInstanceGroupInstanceTemplateResourceOutput) Gpus() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupInstanceTemplateResource) int { return v.Gpus }).(pulumi.IntOutput)
+}
+
+func (o GetComputeInstanceGroupInstanceTemplateResourceOutput) Memory() pulumi.Float64Output {
+	return o.ApplyT(func(v GetComputeInstanceGroupInstanceTemplateResource) float64 { return v.Memory }).(pulumi.Float64Output)
+}
+
+type GetComputeInstanceGroupInstanceTemplateResourceArrayOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupInstanceTemplateResourceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceGroupInstanceTemplateResource)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupInstanceTemplateResourceArrayOutput) ToGetComputeInstanceGroupInstanceTemplateResourceArrayOutput() GetComputeInstanceGroupInstanceTemplateResourceArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupInstanceTemplateResourceArrayOutput) ToGetComputeInstanceGroupInstanceTemplateResourceArrayOutputWithContext(ctx context.Context) GetComputeInstanceGroupInstanceTemplateResourceArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupInstanceTemplateResourceArrayOutput) Index(i pulumi.IntInput) GetComputeInstanceGroupInstanceTemplateResourceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetComputeInstanceGroupInstanceTemplateResource {
+		return vs[0].([]GetComputeInstanceGroupInstanceTemplateResource)[vs[1].(int)]
+	}).(GetComputeInstanceGroupInstanceTemplateResourceOutput)
+}
+
 type GetComputeInstanceGroupInstanceTemplateSchedulingPolicy struct {
 	// Specifies if the instance is preemptible. Defaults to false.
 	Preemptible bool `pulumi:"preemptible"`
@@ -15406,6 +15651,7 @@ type GetMdbKafkaClusterConfigKafkaKafkaConfig struct {
 	NumPartitions               *string  `pulumi:"numPartitions"`
 	OffsetsRetentionMinutes     *string  `pulumi:"offsetsRetentionMinutes"`
 	ReplicaFetchMaxBytes        *string  `pulumi:"replicaFetchMaxBytes"`
+	SaslEnabledMechanisms       []string `pulumi:"saslEnabledMechanisms"`
 	SocketReceiveBufferBytes    *string  `pulumi:"socketReceiveBufferBytes"`
 	SocketSendBufferBytes       *string  `pulumi:"socketSendBufferBytes"`
 	SslCipherSuites             []string `pulumi:"sslCipherSuites"`
@@ -15439,6 +15685,7 @@ type GetMdbKafkaClusterConfigKafkaKafkaConfigArgs struct {
 	NumPartitions               pulumi.StringPtrInput   `pulumi:"numPartitions"`
 	OffsetsRetentionMinutes     pulumi.StringPtrInput   `pulumi:"offsetsRetentionMinutes"`
 	ReplicaFetchMaxBytes        pulumi.StringPtrInput   `pulumi:"replicaFetchMaxBytes"`
+	SaslEnabledMechanisms       pulumi.StringArrayInput `pulumi:"saslEnabledMechanisms"`
 	SocketReceiveBufferBytes    pulumi.StringPtrInput   `pulumi:"socketReceiveBufferBytes"`
 	SocketSendBufferBytes       pulumi.StringPtrInput   `pulumi:"socketSendBufferBytes"`
 	SslCipherSuites             pulumi.StringArrayInput `pulumi:"sslCipherSuites"`
@@ -15583,6 +15830,10 @@ func (o GetMdbKafkaClusterConfigKafkaKafkaConfigOutput) OffsetsRetentionMinutes(
 
 func (o GetMdbKafkaClusterConfigKafkaKafkaConfigOutput) ReplicaFetchMaxBytes() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetMdbKafkaClusterConfigKafkaKafkaConfig) *string { return v.ReplicaFetchMaxBytes }).(pulumi.StringPtrOutput)
+}
+
+func (o GetMdbKafkaClusterConfigKafkaKafkaConfigOutput) SaslEnabledMechanisms() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetMdbKafkaClusterConfigKafkaKafkaConfig) []string { return v.SaslEnabledMechanisms }).(pulumi.StringArrayOutput)
 }
 
 func (o GetMdbKafkaClusterConfigKafkaKafkaConfigOutput) SocketReceiveBufferBytes() pulumi.StringPtrOutput {
@@ -15763,6 +16014,15 @@ func (o GetMdbKafkaClusterConfigKafkaKafkaConfigPtrOutput) ReplicaFetchMaxBytes(
 		}
 		return v.ReplicaFetchMaxBytes
 	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetMdbKafkaClusterConfigKafkaKafkaConfigPtrOutput) SaslEnabledMechanisms() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetMdbKafkaClusterConfigKafkaKafkaConfig) []string {
+		if v == nil {
+			return nil
+		}
+		return v.SaslEnabledMechanisms
+	}).(pulumi.StringArrayOutput)
 }
 
 func (o GetMdbKafkaClusterConfigKafkaKafkaConfigPtrOutput) SocketReceiveBufferBytes() pulumi.StringPtrOutput {
@@ -26664,6 +26924,10 @@ func (o VpcGatewaySharedEgressGatewayPtrOutput) Elem() VpcGatewaySharedEgressGat
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupInstanceTemplatePlacementPolicyInput)(nil)).Elem(), GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrInput)(nil)).Elem(), GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupInstanceTemplateResourceInput)(nil)).Elem(), GetComputeInstanceGroupInstanceTemplateResourceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupInstanceTemplateResourceArrayInput)(nil)).Elem(), GetComputeInstanceGroupInstanceTemplateResourceArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupInstanceTemplateSchedulingPolicyInput)(nil)).Elem(), GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArrayInput)(nil)).Elem(), GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupInstanceTemplateSecondaryDiskInput)(nil)).Elem(), GetComputeInstanceGroupInstanceTemplateSecondaryDiskArgs{})
@@ -27063,6 +27327,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MdbPostgresqlUserPermissionArrayInput)(nil)).Elem(), MdbPostgresqlUserPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewaySharedEgressGatewayInput)(nil)).Elem(), VpcGatewaySharedEgressGatewayArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewaySharedEgressGatewayPtrInput)(nil)).Elem(), VpcGatewaySharedEgressGatewayArgs{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupInstanceTemplateResourceOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupInstanceTemplateResourceArrayOutput{})
 	pulumi.RegisterOutputType(GetComputeInstanceGroupInstanceTemplateSchedulingPolicyOutput{})
 	pulumi.RegisterOutputType(GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetComputeInstanceGroupInstanceTemplateSecondaryDiskOutput{})

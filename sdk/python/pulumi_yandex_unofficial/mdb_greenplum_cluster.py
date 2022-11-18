@@ -1348,7 +1348,7 @@ class MdbGreenplumCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="poolerConfig")
-    def pooler_config(self) -> pulumi.Output[Optional['outputs.MdbGreenplumClusterPoolerConfig']]:
+    def pooler_config(self) -> pulumi.Output['outputs.MdbGreenplumClusterPoolerConfig']:
         """
         Configuration of the connection pooler. The structure is documented below.
         """

@@ -20,6 +20,7 @@ from .compute_instance import *
 from .compute_instance_group import *
 from .compute_placement_group import *
 from .compute_snapshot import *
+from .compute_snapshot_schedule import *
 from .container_registry import *
 from .container_registry_iam_binding import *
 from .container_repository import *
@@ -288,6 +289,14 @@ _utilities.register(
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/computeSnapshot:ComputeSnapshot": "ComputeSnapshot"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/computeSnapshotSchedule",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/computeSnapshotSchedule:computeSnapshotSchedule": "ComputeSnapshotSchedule"
   }
  },
  {

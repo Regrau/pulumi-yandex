@@ -2117,6 +2117,22 @@ export interface ComputeInstanceSecondaryDisk {
     mode?: string;
 }
 
+export interface ComputeSnapshotScheduleSchedulePolicy {
+    expression?: string;
+    startAt: string;
+}
+
+export interface ComputeSnapshotScheduleSnapshotSpec {
+    /**
+     * Description of the resource.
+     */
+    description?: string;
+    /**
+     * A set of key/value label pairs to assign to the snapshot schedule.
+     */
+    labels?: {[key: string]: string};
+}
+
 export interface ContainerRepositoryLifecyclePolicyRule {
     /**
      * Description of the lifecycle policy.
@@ -6847,9 +6863,10 @@ export interface GetMdbKafkaClusterConfigKafkaKafkaConfig {
     numPartitions?: string;
     offsetsRetentionMinutes?: string;
     replicaFetchMaxBytes?: string;
+    saslEnabledMechanisms?: string[];
     socketReceiveBufferBytes?: string;
     socketSendBufferBytes?: string;
-    sslCipherSuites: string[];
+    sslCipherSuites?: string[];
 }
 
 export interface GetMdbKafkaClusterConfigKafkaResources {
@@ -9616,9 +9633,10 @@ export interface MdbKafkaClusterConfigKafkaKafkaConfig {
     numPartitions?: string;
     offsetsRetentionMinutes?: string;
     replicaFetchMaxBytes?: string;
+    saslEnabledMechanisms?: string[];
     socketReceiveBufferBytes?: string;
     socketSendBufferBytes?: string;
-    sslCipherSuites: string[];
+    sslCipherSuites?: string[];
 }
 
 export interface MdbKafkaClusterConfigKafkaResources {

@@ -28,6 +28,7 @@
         "computeInstanceGroup.ts",
         "computePlacementGroup.ts",
         "computeSnapshot.ts",
+        "computeSnapshotSchedule.ts",
         "config/index.ts",
         "config/vars.ts",
         "containerRegistry.ts",
