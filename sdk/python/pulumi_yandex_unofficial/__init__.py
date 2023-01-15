@@ -13,6 +13,7 @@ from .alb_virtual_host import *
 from .api_gateway import *
 from .cdn_origin_group import *
 from .cdn_resource import *
+from .cm_certificate import *
 from .compute_disk import *
 from .compute_disk_placement_group import *
 from .compute_image import *
@@ -44,6 +45,8 @@ from .get_api_gateway import *
 from .get_cdn_origin_group import *
 from .get_cdn_resource import *
 from .get_client_config import *
+from .get_cm_certificate import *
+from .get_cm_certificate_content import *
 from .get_compute_disk import *
 from .get_compute_disk_placement_group import *
 from .get_compute_image import *
@@ -233,6 +236,14 @@ _utilities.register(
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/cdnResource:CdnResource": "CdnResource"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/cmCertificate",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/cmCertificate:cmCertificate": "CmCertificate"
   }
  },
  {

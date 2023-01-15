@@ -22,6 +22,7 @@ class AlbLoadBalancerArgs:
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  listeners: Optional[pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerListenerArgs']]]] = None,
+                 log_options: Optional[pulumi.Input['AlbLoadBalancerLogOptionsArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -33,6 +34,7 @@ class AlbLoadBalancerArgs:
         :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs. If omitted, the provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this Load Balancer. A list of key/value pairs.
         :param pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerListenerArgs']]] listeners: List of listeners for the Load Balancer. The structure is documented below.
+        :param pulumi.Input['AlbLoadBalancerLogOptionsArgs'] log_options: Cloud Logging settings. The structure is documented below.
         :param pulumi.Input[str] name: name of SNI match.
         :param pulumi.Input[str] region_id: ID of the region that the Load Balancer is located at.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A list of ID's of security groups attached to the Load Balancer.
@@ -47,6 +49,8 @@ class AlbLoadBalancerArgs:
             pulumi.set(__self__, "labels", labels)
         if listeners is not None:
             pulumi.set(__self__, "listeners", listeners)
+        if log_options is not None:
+            pulumi.set(__self__, "log_options", log_options)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if region_id is not None:
@@ -127,6 +131,18 @@ class AlbLoadBalancerArgs:
         pulumi.set(self, "listeners", value)
 
     @property
+    @pulumi.getter(name="logOptions")
+    def log_options(self) -> Optional[pulumi.Input['AlbLoadBalancerLogOptionsArgs']]:
+        """
+        Cloud Logging settings. The structure is documented below.
+        """
+        return pulumi.get(self, "log_options")
+
+    @log_options.setter
+    def log_options(self, value: Optional[pulumi.Input['AlbLoadBalancerLogOptionsArgs']]):
+        pulumi.set(self, "log_options", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -173,6 +189,7 @@ class _AlbLoadBalancerState:
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  listeners: Optional[pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerListenerArgs']]]] = None,
                  log_group_id: Optional[pulumi.Input[str]] = None,
+                 log_options: Optional[pulumi.Input['AlbLoadBalancerLogOptionsArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
@@ -186,7 +203,8 @@ class _AlbLoadBalancerState:
         :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs. If omitted, the provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this Load Balancer. A list of key/value pairs.
         :param pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerListenerArgs']]] listeners: List of listeners for the Load Balancer. The structure is documented below.
-        :param pulumi.Input[str] log_group_id: Cloud log group used by the Load Balancer to store access logs.
+        :param pulumi.Input[str] log_group_id: Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
+        :param pulumi.Input['AlbLoadBalancerLogOptionsArgs'] log_options: Cloud Logging settings. The structure is documented below.
         :param pulumi.Input[str] name: name of SNI match.
         :param pulumi.Input[str] network_id: ID of the network that the Load Balancer is located at.
         :param pulumi.Input[str] region_id: ID of the region that the Load Balancer is located at.
@@ -207,6 +225,8 @@ class _AlbLoadBalancerState:
             pulumi.set(__self__, "listeners", listeners)
         if log_group_id is not None:
             pulumi.set(__self__, "log_group_id", log_group_id)
+        if log_options is not None:
+            pulumi.set(__self__, "log_options", log_options)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if network_id is not None:
@@ -294,13 +314,25 @@ class _AlbLoadBalancerState:
     @pulumi.getter(name="logGroupId")
     def log_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Cloud log group used by the Load Balancer to store access logs.
+        Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
         """
         return pulumi.get(self, "log_group_id")
 
     @log_group_id.setter
     def log_group_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "log_group_id", value)
+
+    @property
+    @pulumi.getter(name="logOptions")
+    def log_options(self) -> Optional[pulumi.Input['AlbLoadBalancerLogOptionsArgs']]:
+        """
+        Cloud Logging settings. The structure is documented below.
+        """
+        return pulumi.get(self, "log_options")
+
+    @log_options.setter
+    def log_options(self, value: Optional[pulumi.Input['AlbLoadBalancerLogOptionsArgs']]):
+        pulumi.set(self, "log_options", value)
 
     @property
     @pulumi.getter
@@ -373,6 +405,7 @@ class AlbLoadBalancer(pulumi.CustomResource):
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  listeners: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbLoadBalancerListenerArgs']]]]] = None,
+                 log_options: Optional[pulumi.Input[pulumi.InputType['AlbLoadBalancerLogOptionsArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
@@ -410,7 +443,13 @@ class AlbLoadBalancer(pulumi.CustomResource):
                         http_router_id=yandex_alb_http_router["test-router"]["id"],
                     ),
                 ),
-            )])
+            )],
+            log_options=yandex.AlbLoadBalancerLogOptionsArgs(
+                discard_rules=[yandex.AlbLoadBalancerLogOptionsDiscardRuleArgs(
+                    http_code_intervals=["2XX"],
+                    discard_percent=75,
+                )],
+            ))
         ```
 
         ## Import
@@ -428,6 +467,7 @@ class AlbLoadBalancer(pulumi.CustomResource):
         :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs. If omitted, the provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this Load Balancer. A list of key/value pairs.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbLoadBalancerListenerArgs']]]] listeners: List of listeners for the Load Balancer. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['AlbLoadBalancerLogOptionsArgs']] log_options: Cloud Logging settings. The structure is documented below.
         :param pulumi.Input[str] name: name of SNI match.
         :param pulumi.Input[str] network_id: ID of the network that the Load Balancer is located at.
         :param pulumi.Input[str] region_id: ID of the region that the Load Balancer is located at.
@@ -471,7 +511,13 @@ class AlbLoadBalancer(pulumi.CustomResource):
                         http_router_id=yandex_alb_http_router["test-router"]["id"],
                     ),
                 ),
-            )])
+            )],
+            log_options=yandex.AlbLoadBalancerLogOptionsArgs(
+                discard_rules=[yandex.AlbLoadBalancerLogOptionsDiscardRuleArgs(
+                    http_code_intervals=["2XX"],
+                    discard_percent=75,
+                )],
+            ))
         ```
 
         ## Import
@@ -502,6 +548,7 @@ class AlbLoadBalancer(pulumi.CustomResource):
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  listeners: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbLoadBalancerListenerArgs']]]]] = None,
+                 log_options: Optional[pulumi.Input[pulumi.InputType['AlbLoadBalancerLogOptionsArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
@@ -522,6 +569,7 @@ class AlbLoadBalancer(pulumi.CustomResource):
             __props__.__dict__["folder_id"] = folder_id
             __props__.__dict__["labels"] = labels
             __props__.__dict__["listeners"] = listeners
+            __props__.__dict__["log_options"] = log_options
             __props__.__dict__["name"] = name
             if network_id is None and not opts.urn:
                 raise TypeError("Missing required property 'network_id'")
@@ -548,6 +596,7 @@ class AlbLoadBalancer(pulumi.CustomResource):
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             listeners: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbLoadBalancerListenerArgs']]]]] = None,
             log_group_id: Optional[pulumi.Input[str]] = None,
+            log_options: Optional[pulumi.Input[pulumi.InputType['AlbLoadBalancerLogOptionsArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             network_id: Optional[pulumi.Input[str]] = None,
             region_id: Optional[pulumi.Input[str]] = None,
@@ -566,7 +615,8 @@ class AlbLoadBalancer(pulumi.CustomResource):
         :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs. If omitted, the provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this Load Balancer. A list of key/value pairs.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AlbLoadBalancerListenerArgs']]]] listeners: List of listeners for the Load Balancer. The structure is documented below.
-        :param pulumi.Input[str] log_group_id: Cloud log group used by the Load Balancer to store access logs.
+        :param pulumi.Input[str] log_group_id: Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
+        :param pulumi.Input[pulumi.InputType['AlbLoadBalancerLogOptionsArgs']] log_options: Cloud Logging settings. The structure is documented below.
         :param pulumi.Input[str] name: name of SNI match.
         :param pulumi.Input[str] network_id: ID of the network that the Load Balancer is located at.
         :param pulumi.Input[str] region_id: ID of the region that the Load Balancer is located at.
@@ -584,6 +634,7 @@ class AlbLoadBalancer(pulumi.CustomResource):
         __props__.__dict__["labels"] = labels
         __props__.__dict__["listeners"] = listeners
         __props__.__dict__["log_group_id"] = log_group_id
+        __props__.__dict__["log_options"] = log_options
         __props__.__dict__["name"] = name
         __props__.__dict__["network_id"] = network_id
         __props__.__dict__["region_id"] = region_id
@@ -643,9 +694,17 @@ class AlbLoadBalancer(pulumi.CustomResource):
     @pulumi.getter(name="logGroupId")
     def log_group_id(self) -> pulumi.Output[str]:
         """
-        Cloud log group used by the Load Balancer to store access logs.
+        Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
         """
         return pulumi.get(self, "log_group_id")
+
+    @property
+    @pulumi.getter(name="logOptions")
+    def log_options(self) -> pulumi.Output[Optional['outputs.AlbLoadBalancerLogOptions']]:
+        """
+        Cloud Logging settings. The structure is documented below.
+        """
+        return pulumi.get(self, "log_options")
 
     @property
     @pulumi.getter

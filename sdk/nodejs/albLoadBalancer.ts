@@ -39,6 +39,12 @@ import * as utilities from "./utilities";
  *             },
  *         },
  *     }],
+ *     logOptions: {
+ *         discardRules: [{
+ *             httpCodeIntervals: ["2XX"],
+ *             discardPercent: 75,
+ *         }],
+ *     },
  * });
  * ```
  *
@@ -103,9 +109,13 @@ export class AlbLoadBalancer extends pulumi.CustomResource {
      */
     public readonly listeners!: pulumi.Output<outputs.AlbLoadBalancerListener[] | undefined>;
     /**
-     * Cloud log group used by the Load Balancer to store access logs.
+     * Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
      */
     public /*out*/ readonly logGroupId!: pulumi.Output<string>;
+    /**
+     * Cloud Logging settings. The structure is documented below.
+     */
+    public readonly logOptions!: pulumi.Output<outputs.AlbLoadBalancerLogOptions | undefined>;
     /**
      * name of SNI match.
      */
@@ -147,6 +157,7 @@ export class AlbLoadBalancer extends pulumi.CustomResource {
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["listeners"] = state ? state.listeners : undefined;
             resourceInputs["logGroupId"] = state ? state.logGroupId : undefined;
+            resourceInputs["logOptions"] = state ? state.logOptions : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["networkId"] = state ? state.networkId : undefined;
             resourceInputs["regionId"] = state ? state.regionId : undefined;
@@ -165,6 +176,7 @@ export class AlbLoadBalancer extends pulumi.CustomResource {
             resourceInputs["folderId"] = args ? args.folderId : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["listeners"] = args ? args.listeners : undefined;
+            resourceInputs["logOptions"] = args ? args.logOptions : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["networkId"] = args ? args.networkId : undefined;
             resourceInputs["regionId"] = args ? args.regionId : undefined;
@@ -207,9 +219,13 @@ export interface AlbLoadBalancerState {
      */
     listeners?: pulumi.Input<pulumi.Input<inputs.AlbLoadBalancerListener>[]>;
     /**
-     * Cloud log group used by the Load Balancer to store access logs.
+     * Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
      */
     logGroupId?: pulumi.Input<string>;
+    /**
+     * Cloud Logging settings. The structure is documented below.
+     */
+    logOptions?: pulumi.Input<inputs.AlbLoadBalancerLogOptions>;
     /**
      * name of SNI match.
      */
@@ -256,6 +272,10 @@ export interface AlbLoadBalancerArgs {
      * List of listeners for the Load Balancer. The structure is documented below.
      */
     listeners?: pulumi.Input<pulumi.Input<inputs.AlbLoadBalancerListener>[]>;
+    /**
+     * Cloud Logging settings. The structure is documented below.
+     */
+    logOptions?: pulumi.Input<inputs.AlbLoadBalancerLogOptions>;
     /**
      * name of SNI match.
      */

@@ -102,6 +102,10 @@ type DatatransferTransfer struct {
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// Name of the transfer.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Activation action on create a new incremental transfer.
+	// It is not part of the transfer parameter and is used only on create.
+	// One of "syncActivate", "asyncActivate", "dontActivate". The default is "syncActivate".
+	OnCreateActivateMode pulumi.StringPtrOutput `pulumi:"onCreateActivateMode"`
 	// ID of the source endpoint for the transfer.
 	SourceId pulumi.StringPtrOutput `pulumi:"sourceId"`
 	// ID of the target endpoint for the transfer.
@@ -150,6 +154,10 @@ type datatransferTransferState struct {
 	Labels map[string]string `pulumi:"labels"`
 	// Name of the transfer.
 	Name *string `pulumi:"name"`
+	// Activation action on create a new incremental transfer.
+	// It is not part of the transfer parameter and is used only on create.
+	// One of "syncActivate", "asyncActivate", "dontActivate". The default is "syncActivate".
+	OnCreateActivateMode *string `pulumi:"onCreateActivateMode"`
 	// ID of the source endpoint for the transfer.
 	SourceId *string `pulumi:"sourceId"`
 	// ID of the target endpoint for the transfer.
@@ -169,6 +177,10 @@ type DatatransferTransferState struct {
 	Labels pulumi.StringMapInput
 	// Name of the transfer.
 	Name pulumi.StringPtrInput
+	// Activation action on create a new incremental transfer.
+	// It is not part of the transfer parameter and is used only on create.
+	// One of "syncActivate", "asyncActivate", "dontActivate". The default is "syncActivate".
+	OnCreateActivateMode pulumi.StringPtrInput
 	// ID of the source endpoint for the transfer.
 	SourceId pulumi.StringPtrInput
 	// ID of the target endpoint for the transfer.
@@ -192,6 +204,10 @@ type datatransferTransferArgs struct {
 	Labels map[string]string `pulumi:"labels"`
 	// Name of the transfer.
 	Name *string `pulumi:"name"`
+	// Activation action on create a new incremental transfer.
+	// It is not part of the transfer parameter and is used only on create.
+	// One of "syncActivate", "asyncActivate", "dontActivate". The default is "syncActivate".
+	OnCreateActivateMode *string `pulumi:"onCreateActivateMode"`
 	// ID of the source endpoint for the transfer.
 	SourceId *string `pulumi:"sourceId"`
 	// ID of the target endpoint for the transfer.
@@ -210,6 +226,10 @@ type DatatransferTransferArgs struct {
 	Labels pulumi.StringMapInput
 	// Name of the transfer.
 	Name pulumi.StringPtrInput
+	// Activation action on create a new incremental transfer.
+	// It is not part of the transfer parameter and is used only on create.
+	// One of "syncActivate", "asyncActivate", "dontActivate". The default is "syncActivate".
+	OnCreateActivateMode pulumi.StringPtrInput
 	// ID of the source endpoint for the transfer.
 	SourceId pulumi.StringPtrInput
 	// ID of the target endpoint for the transfer.
@@ -323,6 +343,13 @@ func (o DatatransferTransferOutput) Labels() pulumi.StringMapOutput {
 // Name of the transfer.
 func (o DatatransferTransferOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatatransferTransfer) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Activation action on create a new incremental transfer.
+// It is not part of the transfer parameter and is used only on create.
+// One of "syncActivate", "asyncActivate", "dontActivate". The default is "syncActivate".
+func (o DatatransferTransferOutput) OnCreateActivateMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatatransferTransfer) pulumi.StringPtrOutput { return v.OnCreateActivateMode }).(pulumi.StringPtrOutput)
 }
 
 // ID of the source endpoint for the transfer.

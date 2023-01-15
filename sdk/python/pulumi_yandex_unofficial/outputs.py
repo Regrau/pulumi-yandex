@@ -69,6 +69,8 @@ __all__ = [
     'AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandler',
     'AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2Options',
     'AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandler',
+    'AlbLoadBalancerLogOptions',
+    'AlbLoadBalancerLogOptionsDiscardRule',
     'AlbTargetGroupTarget',
     'AlbVirtualHostModifyRequestHeader',
     'AlbVirtualHostModifyResponseHeader',
@@ -400,6 +402,10 @@ __all__ = [
     'YdbDatabaseDedicatedScalePolicy',
     'YdbDatabaseDedicatedScalePolicyFixedScale',
     'YdbDatabaseDedicatedStorageConfig',
+    'CmCertificateChallenge',
+    'CmCertificateManaged',
+    'CmCertificateSelfManaged',
+    'CmCertificateSelfManagedPrivateKeyLockboxSecret',
     'ComputeSnapshotScheduleSchedulePolicy',
     'ComputeSnapshotScheduleSnapshotSpec',
     'ContainerRepositoryLifecyclePolicyRule',
@@ -461,6 +467,8 @@ __all__ = [
     'GetAlbLoadBalancerListenerTlSniHandlerHandlerHttpHandlerResult',
     'GetAlbLoadBalancerListenerTlSniHandlerHandlerHttpHandlerHttp2OptionResult',
     'GetAlbLoadBalancerListenerTlSniHandlerHandlerStreamHandlerResult',
+    'GetAlbLoadBalancerLogOptionResult',
+    'GetAlbLoadBalancerLogOptionDiscardRuleResult',
     'GetAlbTargetGroupTargetResult',
     'GetAlbVirtualHostModifyRequestHeaderResult',
     'GetAlbVirtualHostModifyResponseHeaderResult',
@@ -491,6 +499,7 @@ __all__ = [
     'GetCdnOriginGroupOriginResult',
     'GetCdnResourceOptionsResult',
     'GetCdnResourceSslCertificateResult',
+    'GetCmCertificateChallengeResult',
     'GetComputeDiskDiskPlacementPolicyResult',
     'GetComputeInstanceBootDiskResult',
     'GetComputeInstanceBootDiskInitializeParamResult',
@@ -3643,6 +3652,142 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandler(dict):
         Backend group id.
         """
         return pulumi.get(self, "backend_group_id")
+
+
+@pulumi.output_type
+class AlbLoadBalancerLogOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "discardRules":
+            suggest = "discard_rules"
+        elif key == "logGroupId":
+            suggest = "log_group_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlbLoadBalancerLogOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlbLoadBalancerLogOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlbLoadBalancerLogOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disable: Optional[bool] = None,
+                 discard_rules: Optional[Sequence['outputs.AlbLoadBalancerLogOptionsDiscardRule']] = None,
+                 log_group_id: Optional[str] = None):
+        """
+        :param bool disable: Set to true to disable Cloud Logging for the balancer
+        :param Sequence['AlbLoadBalancerLogOptionsDiscardRuleArgs'] discard_rules: List of rules to discard a fraction of logs. The structure is documented below.
+        :param str log_group_id: Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
+        """
+        if disable is not None:
+            pulumi.set(__self__, "disable", disable)
+        if discard_rules is not None:
+            pulumi.set(__self__, "discard_rules", discard_rules)
+        if log_group_id is not None:
+            pulumi.set(__self__, "log_group_id", log_group_id)
+
+    @property
+    @pulumi.getter
+    def disable(self) -> Optional[bool]:
+        """
+        Set to true to disable Cloud Logging for the balancer
+        """
+        return pulumi.get(self, "disable")
+
+    @property
+    @pulumi.getter(name="discardRules")
+    def discard_rules(self) -> Optional[Sequence['outputs.AlbLoadBalancerLogOptionsDiscardRule']]:
+        """
+        List of rules to discard a fraction of logs. The structure is documented below.
+        """
+        return pulumi.get(self, "discard_rules")
+
+    @property
+    @pulumi.getter(name="logGroupId")
+    def log_group_id(self) -> Optional[str]:
+        """
+        Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
+        """
+        return pulumi.get(self, "log_group_id")
+
+
+@pulumi.output_type
+class AlbLoadBalancerLogOptionsDiscardRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "discardPercent":
+            suggest = "discard_percent"
+        elif key == "grpcCodes":
+            suggest = "grpc_codes"
+        elif key == "httpCodeIntervals":
+            suggest = "http_code_intervals"
+        elif key == "httpCodes":
+            suggest = "http_codes"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AlbLoadBalancerLogOptionsDiscardRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AlbLoadBalancerLogOptionsDiscardRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AlbLoadBalancerLogOptionsDiscardRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 discard_percent: Optional[int] = None,
+                 grpc_codes: Optional[Sequence[str]] = None,
+                 http_code_intervals: Optional[Sequence[str]] = None,
+                 http_codes: Optional[Sequence[int]] = None):
+        """
+        :param Sequence[str] grpc_codes: list of grpc codes by name, e.g, _["NOT_FOUND", "RESOURCE_EXHAUSTED"]_
+        :param Sequence[str] http_code_intervals: list of http code intervals _1XX_-_5XX_ or _ALL_
+        :param Sequence[int] http_codes: list of http codes _100_-_599_
+        """
+        if discard_percent is not None:
+            pulumi.set(__self__, "discard_percent", discard_percent)
+        if grpc_codes is not None:
+            pulumi.set(__self__, "grpc_codes", grpc_codes)
+        if http_code_intervals is not None:
+            pulumi.set(__self__, "http_code_intervals", http_code_intervals)
+        if http_codes is not None:
+            pulumi.set(__self__, "http_codes", http_codes)
+
+    @property
+    @pulumi.getter(name="discardPercent")
+    def discard_percent(self) -> Optional[int]:
+        return pulumi.get(self, "discard_percent")
+
+    @property
+    @pulumi.getter(name="grpcCodes")
+    def grpc_codes(self) -> Optional[Sequence[str]]:
+        """
+        list of grpc codes by name, e.g, _["NOT_FOUND", "RESOURCE_EXHAUSTED"]_
+        """
+        return pulumi.get(self, "grpc_codes")
+
+    @property
+    @pulumi.getter(name="httpCodeIntervals")
+    def http_code_intervals(self) -> Optional[Sequence[str]]:
+        """
+        list of http code intervals _1XX_-_5XX_ or _ALL_
+        """
+        return pulumi.get(self, "http_code_intervals")
+
+    @property
+    @pulumi.getter(name="httpCodes")
+    def http_codes(self) -> Optional[Sequence[int]]:
+        """
+        list of http codes _100_-_599_
+        """
+        return pulumi.get(self, "http_codes")
 
 
 @pulumi.output_type
@@ -13312,6 +13457,10 @@ class KubernetesClusterMaster(dict):
             suggest = "external_v4_address"
         elif key == "externalV4Endpoint":
             suggest = "external_v4_endpoint"
+        elif key == "externalV6Address":
+            suggest = "external_v6_address"
+        elif key == "externalV6Endpoint":
+            suggest = "external_v6_endpoint"
         elif key == "internalV4Address":
             suggest = "internal_v4_address"
         elif key == "internalV4Endpoint":
@@ -13340,6 +13489,8 @@ class KubernetesClusterMaster(dict):
                  cluster_ca_certificate: Optional[str] = None,
                  external_v4_address: Optional[str] = None,
                  external_v4_endpoint: Optional[str] = None,
+                 external_v6_address: Optional[str] = None,
+                 external_v6_endpoint: Optional[str] = None,
                  internal_v4_address: Optional[str] = None,
                  internal_v4_endpoint: Optional[str] = None,
                  maintenance_policy: Optional['outputs.KubernetesClusterMasterMaintenancePolicy'] = None,
@@ -13372,6 +13523,10 @@ class KubernetesClusterMaster(dict):
             pulumi.set(__self__, "external_v4_address", external_v4_address)
         if external_v4_endpoint is not None:
             pulumi.set(__self__, "external_v4_endpoint", external_v4_endpoint)
+        if external_v6_address is not None:
+            pulumi.set(__self__, "external_v6_address", external_v6_address)
+        if external_v6_endpoint is not None:
+            pulumi.set(__self__, "external_v6_endpoint", external_v6_endpoint)
         if internal_v4_address is not None:
             pulumi.set(__self__, "internal_v4_address", internal_v4_address)
         if internal_v4_endpoint is not None:
@@ -13414,6 +13569,16 @@ class KubernetesClusterMaster(dict):
         (Computed) External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).
         """
         return pulumi.get(self, "external_v4_endpoint")
+
+    @property
+    @pulumi.getter(name="externalV6Address")
+    def external_v6_address(self) -> Optional[str]:
+        return pulumi.get(self, "external_v6_address")
+
+    @property
+    @pulumi.getter(name="externalV6Endpoint")
+    def external_v6_endpoint(self) -> Optional[str]:
+        return pulumi.get(self, "external_v6_endpoint")
 
     @property
     @pulumi.getter(name="internalV4Address")
@@ -24928,6 +25093,307 @@ class YdbDatabaseDedicatedStorageConfig(dict):
 
 
 @pulumi.output_type
+class CmCertificateChallenge(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "createdAt":
+            suggest = "created_at"
+        elif key == "dnsName":
+            suggest = "dns_name"
+        elif key == "dnsType":
+            suggest = "dns_type"
+        elif key == "dnsValue":
+            suggest = "dns_value"
+        elif key == "httpContent":
+            suggest = "http_content"
+        elif key == "httpUrl":
+            suggest = "http_url"
+        elif key == "updatedAt":
+            suggest = "updated_at"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CmCertificateChallenge. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CmCertificateChallenge.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CmCertificateChallenge.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 created_at: Optional[str] = None,
+                 dns_name: Optional[str] = None,
+                 dns_type: Optional[str] = None,
+                 dns_value: Optional[str] = None,
+                 domain: Optional[str] = None,
+                 http_content: Optional[str] = None,
+                 http_url: Optional[str] = None,
+                 message: Optional[str] = None,
+                 type: Optional[str] = None,
+                 updated_at: Optional[str] = None):
+        """
+        :param str created_at: Time the challenge was created.
+        :param str dns_name: DNS record name (only for DNS challenge).
+        :param str dns_type: DNS record type: `"TXT"` or `"CNAME"` (only for DNS challenge).
+        :param str dns_value: DNS record value (only for DNS challenge).
+        :param str domain: Validated domain.
+        :param str http_content: The content that should be made accessible with the given `http_url` (only for HTTP challenge).
+        :param str http_url: URL where the challenge content http_content should be placed (only for HTTP challenge).
+        :param str message: Current status message.
+        :param str type: Challenge type `"DNS"` or `"HTTP"`.
+        :param str updated_at: Last time the challenge was updated.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if dns_name is not None:
+            pulumi.set(__self__, "dns_name", dns_name)
+        if dns_type is not None:
+            pulumi.set(__self__, "dns_type", dns_type)
+        if dns_value is not None:
+            pulumi.set(__self__, "dns_value", dns_value)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if http_content is not None:
+            pulumi.set(__self__, "http_content", http_content)
+        if http_url is not None:
+            pulumi.set(__self__, "http_url", http_url)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[str]:
+        """
+        Time the challenge was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> Optional[str]:
+        """
+        DNS record name (only for DNS challenge).
+        """
+        return pulumi.get(self, "dns_name")
+
+    @property
+    @pulumi.getter(name="dnsType")
+    def dns_type(self) -> Optional[str]:
+        """
+        DNS record type: `"TXT"` or `"CNAME"` (only for DNS challenge).
+        """
+        return pulumi.get(self, "dns_type")
+
+    @property
+    @pulumi.getter(name="dnsValue")
+    def dns_value(self) -> Optional[str]:
+        """
+        DNS record value (only for DNS challenge).
+        """
+        return pulumi.get(self, "dns_value")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> Optional[str]:
+        """
+        Validated domain.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="httpContent")
+    def http_content(self) -> Optional[str]:
+        """
+        The content that should be made accessible with the given `http_url` (only for HTTP challenge).
+        """
+        return pulumi.get(self, "http_content")
+
+    @property
+    @pulumi.getter(name="httpUrl")
+    def http_url(self) -> Optional[str]:
+        """
+        URL where the challenge content http_content should be placed (only for HTTP challenge).
+        """
+        return pulumi.get(self, "http_url")
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[str]:
+        """
+        Current status message.
+        """
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Challenge type `"DNS"` or `"HTTP"`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[str]:
+        """
+        Last time the challenge was updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+
+@pulumi.output_type
+class CmCertificateManaged(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "challengeType":
+            suggest = "challenge_type"
+        elif key == "challengeCount":
+            suggest = "challenge_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CmCertificateManaged. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CmCertificateManaged.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CmCertificateManaged.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 challenge_type: str,
+                 challenge_count: Optional[int] = None):
+        """
+        :param str challenge_type: Domain owner-check method. Possible values:
+               - "DNS_CNAME" - you will need to create a CNAME dns record with the specified value. Recommended for fully automated certificate renewal;
+               - "DNS_TXT" - you will need to create a TXT dns record with specified value;
+               - "HTTP" - you will need to place specified value into specified url.
+        :param int challenge_count: . Expected number of challenge count needed to validate certificate. 
+               Resource creation will fail if the specified value does not match the actual number of challenges received from issue provider.
+               This argument is helpful for safe automatic resource creation for passing challenges for multi-domain certificates.
+        """
+        pulumi.set(__self__, "challenge_type", challenge_type)
+        if challenge_count is not None:
+            pulumi.set(__self__, "challenge_count", challenge_count)
+
+    @property
+    @pulumi.getter(name="challengeType")
+    def challenge_type(self) -> str:
+        """
+        Domain owner-check method. Possible values:
+        - "DNS_CNAME" - you will need to create a CNAME dns record with the specified value. Recommended for fully automated certificate renewal;
+        - "DNS_TXT" - you will need to create a TXT dns record with specified value;
+        - "HTTP" - you will need to place specified value into specified url.
+        """
+        return pulumi.get(self, "challenge_type")
+
+    @property
+    @pulumi.getter(name="challengeCount")
+    def challenge_count(self) -> Optional[int]:
+        """
+        . Expected number of challenge count needed to validate certificate. 
+        Resource creation will fail if the specified value does not match the actual number of challenges received from issue provider.
+        This argument is helpful for safe automatic resource creation for passing challenges for multi-domain certificates.
+        """
+        return pulumi.get(self, "challenge_count")
+
+
+@pulumi.output_type
+class CmCertificateSelfManaged(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "privateKey":
+            suggest = "private_key"
+        elif key == "privateKeyLockboxSecret":
+            suggest = "private_key_lockbox_secret"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CmCertificateSelfManaged. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CmCertificateSelfManaged.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CmCertificateSelfManaged.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 certificate: str,
+                 private_key: Optional[str] = None,
+                 private_key_lockbox_secret: Optional['outputs.CmCertificateSelfManagedPrivateKeyLockboxSecret'] = None):
+        """
+        :param str certificate: Certificate with chain.
+        :param str private_key: Private key of certificate.
+        :param 'CmCertificateSelfManagedPrivateKeyLockboxSecretArgs' private_key_lockbox_secret: Lockbox secret specification for getting private key. Structure is documented below.
+        """
+        pulumi.set(__self__, "certificate", certificate)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_lockbox_secret is not None:
+            pulumi.set(__self__, "private_key_lockbox_secret", private_key_lockbox_secret)
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> str:
+        """
+        Certificate with chain.
+        """
+        return pulumi.get(self, "certificate")
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[str]:
+        """
+        Private key of certificate.
+        """
+        return pulumi.get(self, "private_key")
+
+    @property
+    @pulumi.getter(name="privateKeyLockboxSecret")
+    def private_key_lockbox_secret(self) -> Optional['outputs.CmCertificateSelfManagedPrivateKeyLockboxSecret']:
+        """
+        Lockbox secret specification for getting private key. Structure is documented below.
+        """
+        return pulumi.get(self, "private_key_lockbox_secret")
+
+
+@pulumi.output_type
+class CmCertificateSelfManagedPrivateKeyLockboxSecret(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 key: str):
+        """
+        :param str id: Certificate Id.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Certificate Id.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        return pulumi.get(self, "key")
+
+
+@pulumi.output_type
 class ComputeSnapshotScheduleSchedulePolicy(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -26895,6 +27361,65 @@ class GetAlbLoadBalancerListenerTlSniHandlerHandlerStreamHandlerResult(dict):
 
 
 @pulumi.output_type
+class GetAlbLoadBalancerLogOptionResult(dict):
+    def __init__(__self__, *,
+                 disable: bool,
+                 discard_rules: Sequence['outputs.GetAlbLoadBalancerLogOptionDiscardRuleResult'],
+                 log_group_id: str):
+        pulumi.set(__self__, "disable", disable)
+        pulumi.set(__self__, "discard_rules", discard_rules)
+        pulumi.set(__self__, "log_group_id", log_group_id)
+
+    @property
+    @pulumi.getter
+    def disable(self) -> bool:
+        return pulumi.get(self, "disable")
+
+    @property
+    @pulumi.getter(name="discardRules")
+    def discard_rules(self) -> Sequence['outputs.GetAlbLoadBalancerLogOptionDiscardRuleResult']:
+        return pulumi.get(self, "discard_rules")
+
+    @property
+    @pulumi.getter(name="logGroupId")
+    def log_group_id(self) -> str:
+        return pulumi.get(self, "log_group_id")
+
+
+@pulumi.output_type
+class GetAlbLoadBalancerLogOptionDiscardRuleResult(dict):
+    def __init__(__self__, *,
+                 discard_percent: int,
+                 grpc_codes: Sequence[str],
+                 http_code_intervals: Sequence[str],
+                 http_codes: Sequence[int]):
+        pulumi.set(__self__, "discard_percent", discard_percent)
+        pulumi.set(__self__, "grpc_codes", grpc_codes)
+        pulumi.set(__self__, "http_code_intervals", http_code_intervals)
+        pulumi.set(__self__, "http_codes", http_codes)
+
+    @property
+    @pulumi.getter(name="discardPercent")
+    def discard_percent(self) -> int:
+        return pulumi.get(self, "discard_percent")
+
+    @property
+    @pulumi.getter(name="grpcCodes")
+    def grpc_codes(self) -> Sequence[str]:
+        return pulumi.get(self, "grpc_codes")
+
+    @property
+    @pulumi.getter(name="httpCodeIntervals")
+    def http_code_intervals(self) -> Sequence[str]:
+        return pulumi.get(self, "http_code_intervals")
+
+    @property
+    @pulumi.getter(name="httpCodes")
+    def http_codes(self) -> Sequence[int]:
+        return pulumi.get(self, "http_codes")
+
+
+@pulumi.output_type
 class GetAlbTargetGroupTargetResult(dict):
     def __init__(__self__, *,
                  ip_address: str,
@@ -28097,6 +28622,81 @@ class GetCdnResourceSslCertificateResult(dict):
     @pulumi.getter(name="certificateManagerId")
     def certificate_manager_id(self) -> Optional[str]:
         return pulumi.get(self, "certificate_manager_id")
+
+
+@pulumi.output_type
+class GetCmCertificateChallengeResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 dns_name: str,
+                 dns_type: str,
+                 dns_value: str,
+                 domain: str,
+                 http_content: str,
+                 http_url: str,
+                 message: str,
+                 type: str,
+                 updated_at: str):
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "dns_name", dns_name)
+        pulumi.set(__self__, "dns_type", dns_type)
+        pulumi.set(__self__, "dns_value", dns_value)
+        pulumi.set(__self__, "domain", domain)
+        pulumi.set(__self__, "http_content", http_content)
+        pulumi.set(__self__, "http_url", http_url)
+        pulumi.set(__self__, "message", message)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> str:
+        return pulumi.get(self, "dns_name")
+
+    @property
+    @pulumi.getter(name="dnsType")
+    def dns_type(self) -> str:
+        return pulumi.get(self, "dns_type")
+
+    @property
+    @pulumi.getter(name="dnsValue")
+    def dns_value(self) -> str:
+        return pulumi.get(self, "dns_value")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> str:
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="httpContent")
+    def http_content(self) -> str:
+        return pulumi.get(self, "http_content")
+
+    @property
+    @pulumi.getter(name="httpUrl")
+    def http_url(self) -> str:
+        return pulumi.get(self, "http_url")
+
+    @property
+    @pulumi.getter
+    def message(self) -> str:
+        return pulumi.get(self, "message")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        return pulumi.get(self, "updated_at")
 
 
 @pulumi.output_type
@@ -31293,6 +31893,8 @@ class GetKubernetesClusterMasterResult(dict):
                  cluster_ca_certificate: str,
                  external_v4_address: str,
                  external_v4_endpoint: str,
+                 external_v6_address: str,
+                 external_v6_endpoint: str,
                  internal_v4_address: str,
                  internal_v4_endpoint: str,
                  maintenance_policies: Sequence['outputs.GetKubernetesClusterMasterMaintenancePolicyResult'],
@@ -31319,6 +31921,8 @@ class GetKubernetesClusterMasterResult(dict):
         pulumi.set(__self__, "cluster_ca_certificate", cluster_ca_certificate)
         pulumi.set(__self__, "external_v4_address", external_v4_address)
         pulumi.set(__self__, "external_v4_endpoint", external_v4_endpoint)
+        pulumi.set(__self__, "external_v6_address", external_v6_address)
+        pulumi.set(__self__, "external_v6_endpoint", external_v6_endpoint)
         pulumi.set(__self__, "internal_v4_address", internal_v4_address)
         pulumi.set(__self__, "internal_v4_endpoint", internal_v4_endpoint)
         pulumi.set(__self__, "maintenance_policies", maintenance_policies)
@@ -31352,6 +31956,16 @@ class GetKubernetesClusterMasterResult(dict):
         External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).
         """
         return pulumi.get(self, "external_v4_endpoint")
+
+    @property
+    @pulumi.getter(name="externalV6Address")
+    def external_v6_address(self) -> str:
+        return pulumi.get(self, "external_v6_address")
+
+    @property
+    @pulumi.getter(name="externalV6Endpoint")
+    def external_v6_endpoint(self) -> str:
+        return pulumi.get(self, "external_v6_endpoint")
 
     @property
     @pulumi.getter(name="internalV4Address")

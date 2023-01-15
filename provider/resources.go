@@ -220,6 +220,7 @@ func Provider() tfbridge.ProviderInfo {
 			"yandex_ydb_database_iam_binding":              {Tok: makeResource(mainMod, "ydbDatabaseIamBinding")},
 			"yandex_container_repository_lifecycle_policy": {Tok: makeResource(mainMod, "containerRepositoryLifecyclePolicy")},
 			"yandex_compute_snapshot_schedule":             {Tok: makeResource(mainMod, "computeSnapshotSchedule")},
+			"yandex_cm_certificate":                        {Tok: makeResource(mainMod, "cmCertificate")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"yandex_alb_target_group": {
@@ -534,6 +535,18 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeDataSource(mainMod, "getOrganizationmanagerSamlFederationUserAccount"),
 				Docs: &tfbridge.DocInfo{
 					Source: "datasource_organizationmanager_saml_federation_user_account.html.markdown",
+				},
+			},
+			"yandex_cm_certificate_content": {
+				Tok: makeDataSource(mainMod, "getCmCertificateContent"),
+				Docs: &tfbridge.DocInfo{
+					Source: "datasource_yandex_cm_certificate_content.html.markdown",
+				},
+			},
+			"yandex_cm_certificate": {
+				Tok: makeDataSource(mainMod, "getCmCertificate"),
+				Docs: &tfbridge.DocInfo{
+					Source: "datasource_yandex_cm_certificate.html.markdown",
 				},
 			},
 		},

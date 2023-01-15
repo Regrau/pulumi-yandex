@@ -68,6 +68,20 @@ namespace Pulumi.Yandex
     ///                 },
     ///             },
     ///         },
+    ///         LogOptions = new Yandex.Inputs.AlbLoadBalancerLogOptionsArgs
+    ///         {
+    ///             DiscardRules = new[]
+    ///             {
+    ///                 new Yandex.Inputs.AlbLoadBalancerLogOptionsDiscardRuleArgs
+    ///                 {
+    ///                     HttpCodeIntervals = new[]
+    ///                     {
+    ///                         "2XX",
+    ///                     },
+    ///                     DiscardPercent = 75,
+    ///                 },
+    ///             },
+    ///         },
     ///     });
     /// 
     /// });
@@ -121,10 +135,16 @@ namespace Pulumi.Yandex
         public Output<ImmutableArray<Outputs.AlbLoadBalancerListener>> Listeners { get; private set; } = null!;
 
         /// <summary>
-        /// Cloud log group used by the Load Balancer to store access logs.
+        /// Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
         /// </summary>
         [Output("logGroupId")]
         public Output<string> LogGroupId { get; private set; } = null!;
+
+        /// <summary>
+        /// Cloud Logging settings. The structure is documented below.
+        /// </summary>
+        [Output("logOptions")]
+        public Output<Outputs.AlbLoadBalancerLogOptions?> LogOptions { get; private set; } = null!;
 
         /// <summary>
         /// name of SNI match.
@@ -246,6 +266,12 @@ namespace Pulumi.Yandex
         }
 
         /// <summary>
+        /// Cloud Logging settings. The structure is documented below.
+        /// </summary>
+        [Input("logOptions")]
+        public Input<Inputs.AlbLoadBalancerLogOptionsArgs>? LogOptions { get; set; }
+
+        /// <summary>
         /// name of SNI match.
         /// </summary>
         [Input("name")]
@@ -332,10 +358,16 @@ namespace Pulumi.Yandex
         }
 
         /// <summary>
-        /// Cloud log group used by the Load Balancer to store access logs.
+        /// Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
         /// </summary>
         [Input("logGroupId")]
         public Input<string>? LogGroupId { get; set; }
+
+        /// <summary>
+        /// Cloud Logging settings. The structure is documented below.
+        /// </summary>
+        [Input("logOptions")]
+        public Input<Inputs.AlbLoadBalancerLogOptionsGetArgs>? LogOptions { get; set; }
 
         /// <summary>
         /// name of SNI match.

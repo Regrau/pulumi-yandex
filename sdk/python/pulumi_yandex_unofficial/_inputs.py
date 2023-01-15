@@ -68,6 +68,8 @@ __all__ = [
     'AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerArgs',
     'AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2OptionsArgs',
     'AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandlerArgs',
+    'AlbLoadBalancerLogOptionsArgs',
+    'AlbLoadBalancerLogOptionsDiscardRuleArgs',
     'AlbTargetGroupTargetArgs',
     'AlbVirtualHostModifyRequestHeaderArgs',
     'AlbVirtualHostModifyResponseHeaderArgs',
@@ -399,6 +401,10 @@ __all__ = [
     'YdbDatabaseDedicatedScalePolicyArgs',
     'YdbDatabaseDedicatedScalePolicyFixedScaleArgs',
     'YdbDatabaseDedicatedStorageConfigArgs',
+    'CmCertificateChallengeArgs',
+    'CmCertificateManagedArgs',
+    'CmCertificateSelfManagedArgs',
+    'CmCertificateSelfManagedPrivateKeyLockboxSecretArgs',
     'ComputeSnapshotScheduleSchedulePolicyArgs',
     'ComputeSnapshotScheduleSnapshotSpecArgs',
     'ContainerRepositoryLifecyclePolicyRuleArgs',
@@ -3290,6 +3296,128 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandlerArgs:
     @backend_group_id.setter
     def backend_group_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "backend_group_id", value)
+
+
+@pulumi.input_type
+class AlbLoadBalancerLogOptionsArgs:
+    def __init__(__self__, *,
+                 disable: Optional[pulumi.Input[bool]] = None,
+                 discard_rules: Optional[pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerLogOptionsDiscardRuleArgs']]]] = None,
+                 log_group_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] disable: Set to true to disable Cloud Logging for the balancer
+        :param pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerLogOptionsDiscardRuleArgs']]] discard_rules: List of rules to discard a fraction of logs. The structure is documented below.
+        :param pulumi.Input[str] log_group_id: Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
+        """
+        if disable is not None:
+            pulumi.set(__self__, "disable", disable)
+        if discard_rules is not None:
+            pulumi.set(__self__, "discard_rules", discard_rules)
+        if log_group_id is not None:
+            pulumi.set(__self__, "log_group_id", log_group_id)
+
+    @property
+    @pulumi.getter
+    def disable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Set to true to disable Cloud Logging for the balancer
+        """
+        return pulumi.get(self, "disable")
+
+    @disable.setter
+    def disable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disable", value)
+
+    @property
+    @pulumi.getter(name="discardRules")
+    def discard_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerLogOptionsDiscardRuleArgs']]]]:
+        """
+        List of rules to discard a fraction of logs. The structure is documented below.
+        """
+        return pulumi.get(self, "discard_rules")
+
+    @discard_rules.setter
+    def discard_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AlbLoadBalancerLogOptionsDiscardRuleArgs']]]]):
+        pulumi.set(self, "discard_rules", value)
+
+    @property
+    @pulumi.getter(name="logGroupId")
+    def log_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
+        """
+        return pulumi.get(self, "log_group_id")
+
+    @log_group_id.setter
+    def log_group_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_group_id", value)
+
+
+@pulumi.input_type
+class AlbLoadBalancerLogOptionsDiscardRuleArgs:
+    def __init__(__self__, *,
+                 discard_percent: Optional[pulumi.Input[int]] = None,
+                 grpc_codes: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 http_code_intervals: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 http_codes: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] grpc_codes: list of grpc codes by name, e.g, _["NOT_FOUND", "RESOURCE_EXHAUSTED"]_
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] http_code_intervals: list of http code intervals _1XX_-_5XX_ or _ALL_
+        :param pulumi.Input[Sequence[pulumi.Input[int]]] http_codes: list of http codes _100_-_599_
+        """
+        if discard_percent is not None:
+            pulumi.set(__self__, "discard_percent", discard_percent)
+        if grpc_codes is not None:
+            pulumi.set(__self__, "grpc_codes", grpc_codes)
+        if http_code_intervals is not None:
+            pulumi.set(__self__, "http_code_intervals", http_code_intervals)
+        if http_codes is not None:
+            pulumi.set(__self__, "http_codes", http_codes)
+
+    @property
+    @pulumi.getter(name="discardPercent")
+    def discard_percent(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "discard_percent")
+
+    @discard_percent.setter
+    def discard_percent(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "discard_percent", value)
+
+    @property
+    @pulumi.getter(name="grpcCodes")
+    def grpc_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        list of grpc codes by name, e.g, _["NOT_FOUND", "RESOURCE_EXHAUSTED"]_
+        """
+        return pulumi.get(self, "grpc_codes")
+
+    @grpc_codes.setter
+    def grpc_codes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "grpc_codes", value)
+
+    @property
+    @pulumi.getter(name="httpCodeIntervals")
+    def http_code_intervals(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        list of http code intervals _1XX_-_5XX_ or _ALL_
+        """
+        return pulumi.get(self, "http_code_intervals")
+
+    @http_code_intervals.setter
+    def http_code_intervals(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "http_code_intervals", value)
+
+    @property
+    @pulumi.getter(name="httpCodes")
+    def http_codes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]:
+        """
+        list of http codes _100_-_599_
+        """
+        return pulumi.get(self, "http_codes")
+
+    @http_codes.setter
+    def http_codes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[int]]]]):
+        pulumi.set(self, "http_codes", value)
 
 
 @pulumi.input_type
@@ -12909,6 +13037,8 @@ class KubernetesClusterMasterArgs:
                  cluster_ca_certificate: Optional[pulumi.Input[str]] = None,
                  external_v4_address: Optional[pulumi.Input[str]] = None,
                  external_v4_endpoint: Optional[pulumi.Input[str]] = None,
+                 external_v6_address: Optional[pulumi.Input[str]] = None,
+                 external_v6_endpoint: Optional[pulumi.Input[str]] = None,
                  internal_v4_address: Optional[pulumi.Input[str]] = None,
                  internal_v4_endpoint: Optional[pulumi.Input[str]] = None,
                  maintenance_policy: Optional[pulumi.Input['KubernetesClusterMasterMaintenancePolicyArgs']] = None,
@@ -12941,6 +13071,10 @@ class KubernetesClusterMasterArgs:
             pulumi.set(__self__, "external_v4_address", external_v4_address)
         if external_v4_endpoint is not None:
             pulumi.set(__self__, "external_v4_endpoint", external_v4_endpoint)
+        if external_v6_address is not None:
+            pulumi.set(__self__, "external_v6_address", external_v6_address)
+        if external_v6_endpoint is not None:
+            pulumi.set(__self__, "external_v6_endpoint", external_v6_endpoint)
         if internal_v4_address is not None:
             pulumi.set(__self__, "internal_v4_address", internal_v4_address)
         if internal_v4_endpoint is not None:
@@ -12995,6 +13129,24 @@ class KubernetesClusterMasterArgs:
     @external_v4_endpoint.setter
     def external_v4_endpoint(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "external_v4_endpoint", value)
+
+    @property
+    @pulumi.getter(name="externalV6Address")
+    def external_v6_address(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "external_v6_address")
+
+    @external_v6_address.setter
+    def external_v6_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_v6_address", value)
+
+    @property
+    @pulumi.getter(name="externalV6Endpoint")
+    def external_v6_endpoint(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "external_v6_endpoint")
+
+    @external_v6_endpoint.setter
+    def external_v6_endpoint(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_v6_endpoint", value)
 
     @property
     @pulumi.getter(name="internalV4Address")
@@ -24842,6 +24994,308 @@ class YdbDatabaseDedicatedStorageConfigArgs:
     @storage_type_id.setter
     def storage_type_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "storage_type_id", value)
+
+
+@pulumi.input_type
+class CmCertificateChallengeArgs:
+    def __init__(__self__, *,
+                 created_at: Optional[pulumi.Input[str]] = None,
+                 dns_name: Optional[pulumi.Input[str]] = None,
+                 dns_type: Optional[pulumi.Input[str]] = None,
+                 dns_value: Optional[pulumi.Input[str]] = None,
+                 domain: Optional[pulumi.Input[str]] = None,
+                 http_content: Optional[pulumi.Input[str]] = None,
+                 http_url: Optional[pulumi.Input[str]] = None,
+                 message: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 updated_at: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] created_at: Time the challenge was created.
+        :param pulumi.Input[str] dns_name: DNS record name (only for DNS challenge).
+        :param pulumi.Input[str] dns_type: DNS record type: `"TXT"` or `"CNAME"` (only for DNS challenge).
+        :param pulumi.Input[str] dns_value: DNS record value (only for DNS challenge).
+        :param pulumi.Input[str] domain: Validated domain.
+        :param pulumi.Input[str] http_content: The content that should be made accessible with the given `http_url` (only for HTTP challenge).
+        :param pulumi.Input[str] http_url: URL where the challenge content http_content should be placed (only for HTTP challenge).
+        :param pulumi.Input[str] message: Current status message.
+        :param pulumi.Input[str] type: Challenge type `"DNS"` or `"HTTP"`.
+        :param pulumi.Input[str] updated_at: Last time the challenge was updated.
+        """
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if dns_name is not None:
+            pulumi.set(__self__, "dns_name", dns_name)
+        if dns_type is not None:
+            pulumi.set(__self__, "dns_type", dns_type)
+        if dns_value is not None:
+            pulumi.set(__self__, "dns_value", dns_value)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if http_content is not None:
+            pulumi.set(__self__, "http_content", http_content)
+        if http_url is not None:
+            pulumi.set(__self__, "http_url", http_url)
+        if message is not None:
+            pulumi.set(__self__, "message", message)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if updated_at is not None:
+            pulumi.set(__self__, "updated_at", updated_at)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Time the challenge was created.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="dnsName")
+    def dns_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS record name (only for DNS challenge).
+        """
+        return pulumi.get(self, "dns_name")
+
+    @dns_name.setter
+    def dns_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dns_name", value)
+
+    @property
+    @pulumi.getter(name="dnsType")
+    def dns_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS record type: `"TXT"` or `"CNAME"` (only for DNS challenge).
+        """
+        return pulumi.get(self, "dns_type")
+
+    @dns_type.setter
+    def dns_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dns_type", value)
+
+    @property
+    @pulumi.getter(name="dnsValue")
+    def dns_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS record value (only for DNS challenge).
+        """
+        return pulumi.get(self, "dns_value")
+
+    @dns_value.setter
+    def dns_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dns_value", value)
+
+    @property
+    @pulumi.getter
+    def domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Validated domain.
+        """
+        return pulumi.get(self, "domain")
+
+    @domain.setter
+    def domain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "domain", value)
+
+    @property
+    @pulumi.getter(name="httpContent")
+    def http_content(self) -> Optional[pulumi.Input[str]]:
+        """
+        The content that should be made accessible with the given `http_url` (only for HTTP challenge).
+        """
+        return pulumi.get(self, "http_content")
+
+    @http_content.setter
+    def http_content(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_content", value)
+
+    @property
+    @pulumi.getter(name="httpUrl")
+    def http_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        URL where the challenge content http_content should be placed (only for HTTP challenge).
+        """
+        return pulumi.get(self, "http_url")
+
+    @http_url.setter
+    def http_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "http_url", value)
+
+    @property
+    @pulumi.getter
+    def message(self) -> Optional[pulumi.Input[str]]:
+        """
+        Current status message.
+        """
+        return pulumi.get(self, "message")
+
+    @message.setter
+    def message(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Challenge type `"DNS"` or `"HTTP"`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Last time the challenge was updated.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @updated_at.setter
+    def updated_at(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "updated_at", value)
+
+
+@pulumi.input_type
+class CmCertificateManagedArgs:
+    def __init__(__self__, *,
+                 challenge_type: pulumi.Input[str],
+                 challenge_count: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] challenge_type: Domain owner-check method. Possible values:
+               - "DNS_CNAME" - you will need to create a CNAME dns record with the specified value. Recommended for fully automated certificate renewal;
+               - "DNS_TXT" - you will need to create a TXT dns record with specified value;
+               - "HTTP" - you will need to place specified value into specified url.
+        :param pulumi.Input[int] challenge_count: . Expected number of challenge count needed to validate certificate. 
+               Resource creation will fail if the specified value does not match the actual number of challenges received from issue provider.
+               This argument is helpful for safe automatic resource creation for passing challenges for multi-domain certificates.
+        """
+        pulumi.set(__self__, "challenge_type", challenge_type)
+        if challenge_count is not None:
+            pulumi.set(__self__, "challenge_count", challenge_count)
+
+    @property
+    @pulumi.getter(name="challengeType")
+    def challenge_type(self) -> pulumi.Input[str]:
+        """
+        Domain owner-check method. Possible values:
+        - "DNS_CNAME" - you will need to create a CNAME dns record with the specified value. Recommended for fully automated certificate renewal;
+        - "DNS_TXT" - you will need to create a TXT dns record with specified value;
+        - "HTTP" - you will need to place specified value into specified url.
+        """
+        return pulumi.get(self, "challenge_type")
+
+    @challenge_type.setter
+    def challenge_type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "challenge_type", value)
+
+    @property
+    @pulumi.getter(name="challengeCount")
+    def challenge_count(self) -> Optional[pulumi.Input[int]]:
+        """
+        . Expected number of challenge count needed to validate certificate. 
+        Resource creation will fail if the specified value does not match the actual number of challenges received from issue provider.
+        This argument is helpful for safe automatic resource creation for passing challenges for multi-domain certificates.
+        """
+        return pulumi.get(self, "challenge_count")
+
+    @challenge_count.setter
+    def challenge_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "challenge_count", value)
+
+
+@pulumi.input_type
+class CmCertificateSelfManagedArgs:
+    def __init__(__self__, *,
+                 certificate: pulumi.Input[str],
+                 private_key: Optional[pulumi.Input[str]] = None,
+                 private_key_lockbox_secret: Optional[pulumi.Input['CmCertificateSelfManagedPrivateKeyLockboxSecretArgs']] = None):
+        """
+        :param pulumi.Input[str] certificate: Certificate with chain.
+        :param pulumi.Input[str] private_key: Private key of certificate.
+        :param pulumi.Input['CmCertificateSelfManagedPrivateKeyLockboxSecretArgs'] private_key_lockbox_secret: Lockbox secret specification for getting private key. Structure is documented below.
+        """
+        pulumi.set(__self__, "certificate", certificate)
+        if private_key is not None:
+            pulumi.set(__self__, "private_key", private_key)
+        if private_key_lockbox_secret is not None:
+            pulumi.set(__self__, "private_key_lockbox_secret", private_key_lockbox_secret)
+
+    @property
+    @pulumi.getter
+    def certificate(self) -> pulumi.Input[str]:
+        """
+        Certificate with chain.
+        """
+        return pulumi.get(self, "certificate")
+
+    @certificate.setter
+    def certificate(self, value: pulumi.Input[str]):
+        pulumi.set(self, "certificate", value)
+
+    @property
+    @pulumi.getter(name="privateKey")
+    def private_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Private key of certificate.
+        """
+        return pulumi.get(self, "private_key")
+
+    @private_key.setter
+    def private_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="privateKeyLockboxSecret")
+    def private_key_lockbox_secret(self) -> Optional[pulumi.Input['CmCertificateSelfManagedPrivateKeyLockboxSecretArgs']]:
+        """
+        Lockbox secret specification for getting private key. Structure is documented below.
+        """
+        return pulumi.get(self, "private_key_lockbox_secret")
+
+    @private_key_lockbox_secret.setter
+    def private_key_lockbox_secret(self, value: Optional[pulumi.Input['CmCertificateSelfManagedPrivateKeyLockboxSecretArgs']]):
+        pulumi.set(self, "private_key_lockbox_secret", value)
+
+
+@pulumi.input_type
+class CmCertificateSelfManagedPrivateKeyLockboxSecretArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[str],
+                 key: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] id: Certificate Id.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "key", key)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[str]:
+        """
+        Certificate Id.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "key", value)
 
 
 @pulumi.input_type

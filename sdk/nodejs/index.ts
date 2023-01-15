@@ -45,6 +45,11 @@ export type CdnResource = import("./cdnResource").CdnResource;
 export const CdnResource: typeof import("./cdnResource").CdnResource = null as any;
 utilities.lazyLoad(exports, ["CdnResource"], () => require("./cdnResource"));
 
+export { CmCertificateArgs, CmCertificateState } from "./cmCertificate";
+export type CmCertificate = import("./cmCertificate").CmCertificate;
+export const CmCertificate: typeof import("./cmCertificate").CmCertificate = null as any;
+utilities.lazyLoad(exports, ["CmCertificate"], () => require("./cmCertificate"));
+
 export { ComputeDiskArgs, ComputeDiskState } from "./computeDisk";
 export type ComputeDisk = import("./computeDisk").ComputeDisk;
 export const ComputeDisk: typeof import("./computeDisk").ComputeDisk = null as any;
@@ -198,6 +203,16 @@ utilities.lazyLoad(exports, ["getCdnResource","getCdnResourceOutput"], () => req
 export { GetClientConfigResult } from "./getClientConfig";
 export const getClientConfig: typeof import("./getClientConfig").getClientConfig = null as any;
 utilities.lazyLoad(exports, ["getClientConfig"], () => require("./getClientConfig"));
+
+export { GetCmCertificateArgs, GetCmCertificateResult, GetCmCertificateOutputArgs } from "./getCmCertificate";
+export const getCmCertificate: typeof import("./getCmCertificate").getCmCertificate = null as any;
+export const getCmCertificateOutput: typeof import("./getCmCertificate").getCmCertificateOutput = null as any;
+utilities.lazyLoad(exports, ["getCmCertificate","getCmCertificateOutput"], () => require("./getCmCertificate"));
+
+export { GetCmCertificateContentArgs, GetCmCertificateContentResult, GetCmCertificateContentOutputArgs } from "./getCmCertificateContent";
+export const getCmCertificateContent: typeof import("./getCmCertificateContent").getCmCertificateContent = null as any;
+export const getCmCertificateContentOutput: typeof import("./getCmCertificateContent").getCmCertificateContentOutput = null as any;
+utilities.lazyLoad(exports, ["getCmCertificateContent","getCmCertificateContentOutput"], () => require("./getCmCertificateContent"));
 
 export { GetComputeDiskArgs, GetComputeDiskResult, GetComputeDiskOutputArgs } from "./getComputeDisk";
 export const getComputeDisk: typeof import("./getComputeDisk").getComputeDisk = null as any;
@@ -799,6 +814,8 @@ const _module = {
                 return new CdnOriginGroup(name, <any>undefined, { urn })
             case "yandex:index/cdnResource:CdnResource":
                 return new CdnResource(name, <any>undefined, { urn })
+            case "yandex:index/cmCertificate:cmCertificate":
+                return new CmCertificate(name, <any>undefined, { urn })
             case "yandex:index/computeDisk:ComputeDisk":
                 return new ComputeDisk(name, <any>undefined, { urn })
             case "yandex:index/computeDiskPlacementGroup:ComputeDiskPlacementGroup":
@@ -984,6 +1001,7 @@ pulumi.runtime.registerResourceModule("yandex", "index/albVirtualHost", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/apiGateway", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/cdnOriginGroup", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/cdnResource", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/cmCertificate", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/computeDisk", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/computeDiskPlacementGroup", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/computeImage", _module)

@@ -63,6 +63,7 @@ namespace Pulumi.Yandex
         public readonly ImmutableArray<Outputs.GetAlbLoadBalancerListenerResult> Listeners;
         public readonly string LoadBalancerId;
         public readonly string LogGroupId;
+        public readonly ImmutableArray<Outputs.GetAlbLoadBalancerLogOptionResult> LogOptions;
         public readonly string Name;
         public readonly string NetworkId;
         public readonly string RegionId;
@@ -89,6 +90,8 @@ namespace Pulumi.Yandex
 
             string logGroupId,
 
+            ImmutableArray<Outputs.GetAlbLoadBalancerLogOptionResult> logOptions,
+
             string name,
 
             string networkId,
@@ -108,6 +111,7 @@ namespace Pulumi.Yandex
             Listeners = listeners;
             LoadBalancerId = loadBalancerId;
             LogGroupId = logGroupId;
+            LogOptions = logOptions;
             Name = name;
             NetworkId = networkId;
             RegionId = regionId;

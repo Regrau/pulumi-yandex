@@ -22,7 +22,7 @@ class GetAlbLoadBalancerResult:
     """
     A collection of values returned by getAlbLoadBalancer.
     """
-    def __init__(__self__, allocation_policies=None, created_at=None, description=None, folder_id=None, id=None, labels=None, listeners=None, load_balancer_id=None, log_group_id=None, name=None, network_id=None, region_id=None, security_group_ids=None, status=None):
+    def __init__(__self__, allocation_policies=None, created_at=None, description=None, folder_id=None, id=None, labels=None, listeners=None, load_balancer_id=None, log_group_id=None, log_options=None, name=None, network_id=None, region_id=None, security_group_ids=None, status=None):
         if allocation_policies and not isinstance(allocation_policies, list):
             raise TypeError("Expected argument 'allocation_policies' to be a list")
         pulumi.set(__self__, "allocation_policies", allocation_policies)
@@ -50,6 +50,9 @@ class GetAlbLoadBalancerResult:
         if log_group_id and not isinstance(log_group_id, str):
             raise TypeError("Expected argument 'log_group_id' to be a str")
         pulumi.set(__self__, "log_group_id", log_group_id)
+        if log_options and not isinstance(log_options, list):
+            raise TypeError("Expected argument 'log_options' to be a list")
+        pulumi.set(__self__, "log_options", log_options)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -115,6 +118,11 @@ class GetAlbLoadBalancerResult:
         return pulumi.get(self, "log_group_id")
 
     @property
+    @pulumi.getter(name="logOptions")
+    def log_options(self) -> Sequence['outputs.GetAlbLoadBalancerLogOptionResult']:
+        return pulumi.get(self, "log_options")
+
+    @property
     @pulumi.getter
     def name(self) -> str:
         return pulumi.get(self, "name")
@@ -155,6 +163,7 @@ class AwaitableGetAlbLoadBalancerResult(GetAlbLoadBalancerResult):
             listeners=self.listeners,
             load_balancer_id=self.load_balancer_id,
             log_group_id=self.log_group_id,
+            log_options=self.log_options,
             name=self.name,
             network_id=self.network_id,
             region_id=self.region_id,
@@ -184,6 +193,7 @@ def get_alb_load_balancer(load_balancer_id: Optional[str] = None,
         listeners=__ret__.listeners,
         load_balancer_id=__ret__.load_balancer_id,
         log_group_id=__ret__.log_group_id,
+        log_options=__ret__.log_options,
         name=__ret__.name,
         network_id=__ret__.network_id,
         region_id=__ret__.region_id,

@@ -30,6 +30,12 @@ namespace Pulumi.Yandex.Inputs
         [Input("externalV4Endpoint")]
         public Input<string>? ExternalV4Endpoint { get; set; }
 
+        [Input("externalV6Address")]
+        public Input<string>? ExternalV6Address { get; set; }
+
+        [Input("externalV6Endpoint")]
+        public Input<string>? ExternalV6Endpoint { get; set; }
+
         /// <summary>
         /// (Computed) An IPv4 internal network address that is assigned to the master.
         /// </summary>

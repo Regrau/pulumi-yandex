@@ -18,6 +18,7 @@ class DatatransferTransferArgs:
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 on_create_activate_mode: Optional[pulumi.Input[str]] = None,
                  source_id: Optional[pulumi.Input[str]] = None,
                  target_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None):
@@ -27,6 +28,9 @@ class DatatransferTransferArgs:
         :param pulumi.Input[str] folder_id: ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Transfer transfer.
         :param pulumi.Input[str] name: Name of the transfer.
+        :param pulumi.Input[str] on_create_activate_mode: Activation action on create a new incremental transfer.
+               It is not part of the transfer parameter and is used only on create.
+               One of "sync_activate", "async_activate", "dont_activate". The default is "sync_activate".
         :param pulumi.Input[str] source_id: ID of the source endpoint for the transfer.
         :param pulumi.Input[str] target_id: ID of the target endpoint for the transfer.
         :param pulumi.Input[str] type: Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
@@ -39,6 +43,8 @@ class DatatransferTransferArgs:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if on_create_activate_mode is not None:
+            pulumi.set(__self__, "on_create_activate_mode", on_create_activate_mode)
         if source_id is not None:
             pulumi.set(__self__, "source_id", source_id)
         if target_id is not None:
@@ -95,6 +101,20 @@ class DatatransferTransferArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="onCreateActivateMode")
+    def on_create_activate_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Activation action on create a new incremental transfer.
+        It is not part of the transfer parameter and is used only on create.
+        One of "sync_activate", "async_activate", "dont_activate". The default is "sync_activate".
+        """
+        return pulumi.get(self, "on_create_activate_mode")
+
+    @on_create_activate_mode.setter
+    def on_create_activate_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "on_create_activate_mode", value)
+
+    @property
     @pulumi.getter(name="sourceId")
     def source_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -138,6 +158,7 @@ class _DatatransferTransferState:
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 on_create_activate_mode: Optional[pulumi.Input[str]] = None,
                  source_id: Optional[pulumi.Input[str]] = None,
                  target_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -148,6 +169,9 @@ class _DatatransferTransferState:
         :param pulumi.Input[str] folder_id: ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Transfer transfer.
         :param pulumi.Input[str] name: Name of the transfer.
+        :param pulumi.Input[str] on_create_activate_mode: Activation action on create a new incremental transfer.
+               It is not part of the transfer parameter and is used only on create.
+               One of "sync_activate", "async_activate", "dont_activate". The default is "sync_activate".
         :param pulumi.Input[str] source_id: ID of the source endpoint for the transfer.
         :param pulumi.Input[str] target_id: ID of the target endpoint for the transfer.
         :param pulumi.Input[str] type: Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
@@ -161,6 +185,8 @@ class _DatatransferTransferState:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if on_create_activate_mode is not None:
+            pulumi.set(__self__, "on_create_activate_mode", on_create_activate_mode)
         if source_id is not None:
             pulumi.set(__self__, "source_id", source_id)
         if target_id is not None:
@@ -217,6 +243,20 @@ class _DatatransferTransferState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="onCreateActivateMode")
+    def on_create_activate_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Activation action on create a new incremental transfer.
+        It is not part of the transfer parameter and is used only on create.
+        One of "sync_activate", "async_activate", "dont_activate". The default is "sync_activate".
+        """
+        return pulumi.get(self, "on_create_activate_mode")
+
+    @on_create_activate_mode.setter
+    def on_create_activate_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "on_create_activate_mode", value)
 
     @property
     @pulumi.getter(name="sourceId")
@@ -276,6 +316,7 @@ class DatatransferTransfer(pulumi.CustomResource):
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 on_create_activate_mode: Optional[pulumi.Input[str]] = None,
                  source_id: Optional[pulumi.Input[str]] = None,
                  target_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -340,6 +381,9 @@ class DatatransferTransfer(pulumi.CustomResource):
         :param pulumi.Input[str] folder_id: ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Transfer transfer.
         :param pulumi.Input[str] name: Name of the transfer.
+        :param pulumi.Input[str] on_create_activate_mode: Activation action on create a new incremental transfer.
+               It is not part of the transfer parameter and is used only on create.
+               One of "sync_activate", "async_activate", "dont_activate". The default is "sync_activate".
         :param pulumi.Input[str] source_id: ID of the source endpoint for the transfer.
         :param pulumi.Input[str] target_id: ID of the target endpoint for the transfer.
         :param pulumi.Input[str] type: Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
@@ -423,6 +467,7 @@ class DatatransferTransfer(pulumi.CustomResource):
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 on_create_activate_mode: Optional[pulumi.Input[str]] = None,
                  source_id: Optional[pulumi.Input[str]] = None,
                  target_id: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -439,6 +484,7 @@ class DatatransferTransfer(pulumi.CustomResource):
             __props__.__dict__["folder_id"] = folder_id
             __props__.__dict__["labels"] = labels
             __props__.__dict__["name"] = name
+            __props__.__dict__["on_create_activate_mode"] = on_create_activate_mode
             __props__.__dict__["source_id"] = source_id
             __props__.__dict__["target_id"] = target_id
             __props__.__dict__["type"] = type
@@ -457,6 +503,7 @@ class DatatransferTransfer(pulumi.CustomResource):
             folder_id: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            on_create_activate_mode: Optional[pulumi.Input[str]] = None,
             source_id: Optional[pulumi.Input[str]] = None,
             target_id: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
@@ -472,6 +519,9 @@ class DatatransferTransfer(pulumi.CustomResource):
         :param pulumi.Input[str] folder_id: ID of the folder to create the transfer in. If it is not provided, the default provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Data Transfer transfer.
         :param pulumi.Input[str] name: Name of the transfer.
+        :param pulumi.Input[str] on_create_activate_mode: Activation action on create a new incremental transfer.
+               It is not part of the transfer parameter and is used only on create.
+               One of "sync_activate", "async_activate", "dont_activate". The default is "sync_activate".
         :param pulumi.Input[str] source_id: ID of the source endpoint for the transfer.
         :param pulumi.Input[str] target_id: ID of the target endpoint for the transfer.
         :param pulumi.Input[str] type: Type of the transfer. One of "SNAPSHOT_ONLY", "INCREMENT_ONLY", "SNAPSHOT_AND_INCREMENT".
@@ -485,6 +535,7 @@ class DatatransferTransfer(pulumi.CustomResource):
         __props__.__dict__["folder_id"] = folder_id
         __props__.__dict__["labels"] = labels
         __props__.__dict__["name"] = name
+        __props__.__dict__["on_create_activate_mode"] = on_create_activate_mode
         __props__.__dict__["source_id"] = source_id
         __props__.__dict__["target_id"] = target_id
         __props__.__dict__["type"] = type
@@ -522,6 +573,16 @@ class DatatransferTransfer(pulumi.CustomResource):
         Name of the transfer.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="onCreateActivateMode")
+    def on_create_activate_mode(self) -> pulumi.Output[Optional[str]]:
+        """
+        Activation action on create a new incremental transfer.
+        It is not part of the transfer parameter and is used only on create.
+        One of "sync_activate", "async_activate", "dont_activate". The default is "sync_activate".
+        """
+        return pulumi.get(self, "on_create_activate_mode")
 
     @property
     @pulumi.getter(name="sourceId")

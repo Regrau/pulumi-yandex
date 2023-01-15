@@ -61,6 +61,16 @@ import (
 //						},
 //					},
 //				},
+//				LogOptions: &AlbLoadBalancerLogOptionsArgs{
+//					DiscardRules: AlbLoadBalancerLogOptionsDiscardRuleArray{
+//						&AlbLoadBalancerLogOptionsDiscardRuleArgs{
+//							HttpCodeIntervals: pulumi.StringArray{
+//								pulumi.String("2XX"),
+//							},
+//							DiscardPercent: pulumi.Int(75),
+//						},
+//					},
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -95,8 +105,10 @@ type AlbLoadBalancer struct {
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// List of listeners for the Load Balancer. The structure is documented below.
 	Listeners AlbLoadBalancerListenerArrayOutput `pulumi:"listeners"`
-	// Cloud log group used by the Load Balancer to store access logs.
+	// Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
 	LogGroupId pulumi.StringOutput `pulumi:"logGroupId"`
+	// Cloud Logging settings. The structure is documented below.
+	LogOptions AlbLoadBalancerLogOptionsPtrOutput `pulumi:"logOptions"`
 	// name of SNI match.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ID of the network that the Load Balancer is located at.
@@ -157,8 +169,10 @@ type albLoadBalancerState struct {
 	Labels map[string]string `pulumi:"labels"`
 	// List of listeners for the Load Balancer. The structure is documented below.
 	Listeners []AlbLoadBalancerListener `pulumi:"listeners"`
-	// Cloud log group used by the Load Balancer to store access logs.
+	// Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
 	LogGroupId *string `pulumi:"logGroupId"`
+	// Cloud Logging settings. The structure is documented below.
+	LogOptions *AlbLoadBalancerLogOptions `pulumi:"logOptions"`
 	// name of SNI match.
 	Name *string `pulumi:"name"`
 	// ID of the network that the Load Balancer is located at.
@@ -184,8 +198,10 @@ type AlbLoadBalancerState struct {
 	Labels pulumi.StringMapInput
 	// List of listeners for the Load Balancer. The structure is documented below.
 	Listeners AlbLoadBalancerListenerArrayInput
-	// Cloud log group used by the Load Balancer to store access logs.
+	// Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
 	LogGroupId pulumi.StringPtrInput
+	// Cloud Logging settings. The structure is documented below.
+	LogOptions AlbLoadBalancerLogOptionsPtrInput
 	// name of SNI match.
 	Name pulumi.StringPtrInput
 	// ID of the network that the Load Balancer is located at.
@@ -213,6 +229,8 @@ type albLoadBalancerArgs struct {
 	Labels map[string]string `pulumi:"labels"`
 	// List of listeners for the Load Balancer. The structure is documented below.
 	Listeners []AlbLoadBalancerListener `pulumi:"listeners"`
+	// Cloud Logging settings. The structure is documented below.
+	LogOptions *AlbLoadBalancerLogOptions `pulumi:"logOptions"`
 	// name of SNI match.
 	Name *string `pulumi:"name"`
 	// ID of the network that the Load Balancer is located at.
@@ -235,6 +253,8 @@ type AlbLoadBalancerArgs struct {
 	Labels pulumi.StringMapInput
 	// List of listeners for the Load Balancer. The structure is documented below.
 	Listeners AlbLoadBalancerListenerArrayInput
+	// Cloud Logging settings. The structure is documented below.
+	LogOptions AlbLoadBalancerLogOptionsPtrInput
 	// name of SNI match.
 	Name pulumi.StringPtrInput
 	// ID of the network that the Load Balancer is located at.
@@ -362,9 +382,14 @@ func (o AlbLoadBalancerOutput) Listeners() AlbLoadBalancerListenerArrayOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) AlbLoadBalancerListenerArrayOutput { return v.Listeners }).(AlbLoadBalancerListenerArrayOutput)
 }
 
-// Cloud log group used by the Load Balancer to store access logs.
+// Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
 func (o AlbLoadBalancerOutput) LogGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *AlbLoadBalancer) pulumi.StringOutput { return v.LogGroupId }).(pulumi.StringOutput)
+}
+
+// Cloud Logging settings. The structure is documented below.
+func (o AlbLoadBalancerOutput) LogOptions() AlbLoadBalancerLogOptionsPtrOutput {
+	return o.ApplyT(func(v *AlbLoadBalancer) AlbLoadBalancerLogOptionsPtrOutput { return v.LogOptions }).(AlbLoadBalancerLogOptionsPtrOutput)
 }
 
 // name of SNI match.

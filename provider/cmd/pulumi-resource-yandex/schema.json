@@ -1954,6 +1954,90 @@
             },
             "type": "object"
         },
+        "yandex:index/AlbLoadBalancerLogOptions:AlbLoadBalancerLogOptions": {
+            "properties": {
+                "disable": {
+                    "type": "boolean",
+                    "description": "Set to true to disable Cloud Logging for the balancer\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "discardRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/yandex:index/AlbLoadBalancerLogOptionsDiscardRule:AlbLoadBalancerLogOptionsDiscardRule"
+                    },
+                    "description": "List of rules to discard a fraction of logs. The structure is documented below.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "logGroupId": {
+                    "type": "string",
+                    "description": "Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
+        "yandex:index/AlbLoadBalancerLogOptionsDiscardRule:AlbLoadBalancerLogOptionsDiscardRule": {
+            "properties": {
+                "discardPercent": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "grpcCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "list of grpc codes by name, e.g, _[\"NOT_FOUND\", \"RESOURCE_EXHAUSTED\"]_\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpCodeIntervals": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "list of http code intervals _1XX_-_5XX_ or _ALL_\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "description": "list of http codes _100_-_599_\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object"
+        },
         "yandex:index/AlbTargetGroupTarget:AlbTargetGroupTarget": {
             "properties": {
                 "ipAddress": {
@@ -8882,6 +8966,23 @@
                         }
                     }
                 },
+                "externalV6Address": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    },
+                    "willReplaceOnChanges": true
+                },
+                "externalV6Endpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "internalV4Address": {
                     "type": "string",
                     "description": "(Computed) An IPv4 internal network address that is assigned to the master.\n",
@@ -8980,6 +9081,7 @@
                         "clusterCaCertificate",
                         "externalV4Address",
                         "externalV4Endpoint",
+                        "externalV6Endpoint",
                         "internalV4Address",
                         "internalV4Endpoint",
                         "maintenancePolicy",
@@ -17383,6 +17485,206 @@
                 "storageTypeId"
             ]
         },
+        "yandex:index/cmCertificateChallenge:cmCertificateChallenge": {
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "description": "Time the challenge was created.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "dnsName": {
+                    "type": "string",
+                    "description": "DNS record name (only for DNS challenge).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "dnsType": {
+                    "type": "string",
+                    "description": "DNS record type: `\"TXT\"` or `\"CNAME\"` (only for DNS challenge).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "dnsValue": {
+                    "type": "string",
+                    "description": "DNS record value (only for DNS challenge).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "domain": {
+                    "type": "string",
+                    "description": "Validated domain.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpContent": {
+                    "type": "string",
+                    "description": "The content that should be made accessible with the given `http_url` (only for HTTP challenge).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpUrl": {
+                    "type": "string",
+                    "description": "URL where the challenge content http_content should be placed (only for HTTP challenge).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Current status message.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Challenge type `\"DNS\"` or `\"HTTP\"`.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Last time the challenge was updated.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "createdAt",
+                        "dnsName",
+                        "dnsType",
+                        "dnsValue",
+                        "domain",
+                        "httpContent",
+                        "httpUrl",
+                        "message",
+                        "type",
+                        "updatedAt"
+                    ]
+                }
+            }
+        },
+        "yandex:index/cmCertificateManaged:cmCertificateManaged": {
+            "properties": {
+                "challengeCount": {
+                    "type": "integer",
+                    "description": ". Expected number of challenge count needed to validate certificate. \nResource creation will fail if the specified value does not match the actual number of challenges received from issue provider.\nThis argument is helpful for safe automatic resource creation for passing challenges for multi-domain certificates.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "challengeType": {
+                    "type": "string",
+                    "description": "Domain owner-check method. Possible values:\n- \"DNS_CNAME\" - you will need to create a CNAME dns record with the specified value. Recommended for fully automated certificate renewal;\n- \"DNS_TXT\" - you will need to create a TXT dns record with specified value;\n- \"HTTP\" - you will need to place specified value into specified url.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    },
+                    "willReplaceOnChanges": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "challengeType"
+            ]
+        },
+        "yandex:index/cmCertificateSelfManaged:cmCertificateSelfManaged": {
+            "properties": {
+                "certificate": {
+                    "type": "string",
+                    "description": "Certificate with chain.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "privateKey": {
+                    "type": "string",
+                    "description": "Private key of certificate.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    },
+                    "secret": true
+                },
+                "privateKeyLockboxSecret": {
+                    "$ref": "#/types/yandex:index/cmCertificateSelfManagedPrivateKeyLockboxSecret:cmCertificateSelfManagedPrivateKeyLockboxSecret",
+                    "description": "Lockbox secret specification for getting private key. Structure is documented below.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "certificate"
+            ]
+        },
+        "yandex:index/cmCertificateSelfManagedPrivateKeyLockboxSecret:cmCertificateSelfManagedPrivateKeyLockboxSecret": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "description": "Certificate Id.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "key": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "key"
+            ]
+        },
         "yandex:index/computeSnapshotScheduleSchedulePolicy:computeSnapshotScheduleSchedulePolicy": {
             "properties": {
                 "expression": {
@@ -19779,6 +20081,105 @@
                 }
             }
         },
+        "yandex:index/getAlbLoadBalancerLogOption:getAlbLoadBalancerLogOption": {
+            "properties": {
+                "disable": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "discardRules": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/yandex:index/getAlbLoadBalancerLogOptionDiscardRule:getAlbLoadBalancerLogOptionDiscardRule"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "logGroupId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "disable",
+                "discardRules",
+                "logGroupId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "yandex:index/getAlbLoadBalancerLogOptionDiscardRule:getAlbLoadBalancerLogOptionDiscardRule": {
+            "properties": {
+                "discardPercent": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "grpcCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpCodeIntervals": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "discardPercent",
+                "grpcCodes",
+                "httpCodeIntervals",
+                "httpCodes"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "yandex:index/getAlbTargetGroupTarget:getAlbTargetGroupTarget": {
             "properties": {
                 "ipAddress": {
@@ -21213,6 +21614,108 @@
                     "requiredInputs": [
                         "type"
                     ]
+                }
+            }
+        },
+        "yandex:index/getCmCertificateChallenge:getCmCertificateChallenge": {
+            "properties": {
+                "createdAt": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "dnsName": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "dnsType": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "dnsValue": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "domain": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpContent": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "httpUrl": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "type": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "createdAt",
+                "dnsName",
+                "dnsType",
+                "dnsValue",
+                "domain",
+                "httpContent",
+                "httpUrl",
+                "message",
+                "type",
+                "updatedAt"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
                 }
             }
         },
@@ -24690,6 +25193,22 @@
                         }
                     }
                 },
+                "externalV6Address": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "externalV6Endpoint": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "internalV4Address": {
                     "type": "string",
                     "description": "An IPv4 internal network address that is assigned to the master.\n",
@@ -24792,6 +25311,8 @@
                 "clusterCaCertificate",
                 "externalV4Address",
                 "externalV4Endpoint",
+                "externalV6Address",
+                "externalV6Endpoint",
                 "internalV4Address",
                 "internalV4Endpoint",
                 "maintenancePolicies",
@@ -33547,7 +34068,7 @@
             }
         },
         "yandex:index/albLoadBalancer:AlbLoadBalancer": {
-            "description": "Creates an Application Load Balancer in the specified folder. For more information, see\n[the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/application-load-balancer)\n.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as yandex from \"@pulumi/yandex\";\n\nconst test_balancer = new yandex.AlbLoadBalancer(\"test-balancer\", {\n    networkId: yandex_vpc_network[\"test-network\"].id,\n    allocationPolicy: {\n        locations: [{\n            zoneId: \"ru-central1-a\",\n            subnetId: yandex_vpc_subnet[\"test-subnet\"].id,\n        }],\n    },\n    listeners: [{\n        name: \"my-listener\",\n        endpoints: [{\n            addresses: [{\n                externalIpv4Address: {},\n            }],\n            ports: [8080],\n        }],\n        http: {\n            handler: {\n                httpRouterId: yandex_alb_http_router[\"test-router\"].id,\n            },\n        },\n    }],\n});\n```\n```python\nimport pulumi\nimport pulumi_yandex_unofficial as yandex\n\ntest_balancer = yandex.AlbLoadBalancer(\"test-balancer\",\n    network_id=yandex_vpc_network[\"test-network\"][\"id\"],\n    allocation_policy=yandex.AlbLoadBalancerAllocationPolicyArgs(\n        locations=[yandex.AlbLoadBalancerAllocationPolicyLocationArgs(\n            zone_id=\"ru-central1-a\",\n            subnet_id=yandex_vpc_subnet[\"test-subnet\"][\"id\"],\n        )],\n    ),\n    listeners=[yandex.AlbLoadBalancerListenerArgs(\n        name=\"my-listener\",\n        endpoints=[yandex.AlbLoadBalancerListenerEndpointArgs(\n            addresses=[yandex.AlbLoadBalancerListenerEndpointAddressArgs(\n                external_ipv4_address=yandex.AlbLoadBalancerListenerEndpointAddressExternalIpv4AddressArgs(),\n            )],\n            ports=[8080],\n        )],\n        http=yandex.AlbLoadBalancerListenerHttpArgs(\n            handler=yandex.AlbLoadBalancerListenerHttpHandlerArgs(\n                http_router_id=yandex_alb_http_router[\"test-router\"][\"id\"],\n            ),\n        ),\n    )])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Yandex = Pulumi.Yandex;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test_balancer = new Yandex.AlbLoadBalancer(\"test-balancer\", new()\n    {\n        NetworkId = yandex_vpc_network.Test_network.Id,\n        AllocationPolicy = new Yandex.Inputs.AlbLoadBalancerAllocationPolicyArgs\n        {\n            Locations = new[]\n            {\n                new Yandex.Inputs.AlbLoadBalancerAllocationPolicyLocationArgs\n                {\n                    ZoneId = \"ru-central1-a\",\n                    SubnetId = yandex_vpc_subnet.Test_subnet.Id,\n                },\n            },\n        },\n        Listeners = new[]\n        {\n            new Yandex.Inputs.AlbLoadBalancerListenerArgs\n            {\n                Name = \"my-listener\",\n                Endpoints = new[]\n                {\n                    new Yandex.Inputs.AlbLoadBalancerListenerEndpointArgs\n                    {\n                        Addresses = new[]\n                        {\n                            new Yandex.Inputs.AlbLoadBalancerListenerEndpointAddressArgs\n                            {\n                                ExternalIpv4Address = null,\n                            },\n                        },\n                        Ports = new[]\n                        {\n                            8080,\n                        },\n                    },\n                },\n                Http = new Yandex.Inputs.AlbLoadBalancerListenerHttpArgs\n                {\n                    Handler = new Yandex.Inputs.AlbLoadBalancerListenerHttpHandlerArgs\n                    {\n                        HttpRouterId = yandex_alb_http_router.Test_router.Id,\n                    },\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-yandex/sdk/go/yandex\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := yandex.NewAlbLoadBalancer(ctx, \"test-balancer\", \u0026yandex.AlbLoadBalancerArgs{\n\t\t\tNetworkId: pulumi.Any(yandex_vpc_network.TestNetwork.Id),\n\t\t\tAllocationPolicy: \u0026AlbLoadBalancerAllocationPolicyArgs{\n\t\t\t\tLocations: AlbLoadBalancerAllocationPolicyLocationArray{\n\t\t\t\t\t\u0026AlbLoadBalancerAllocationPolicyLocationArgs{\n\t\t\t\t\t\tZoneId:   pulumi.String(\"ru-central1-a\"),\n\t\t\t\t\t\tSubnetId: pulumi.Any(yandex_vpc_subnet.TestSubnet.Id),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tListeners: AlbLoadBalancerListenerArray{\n\t\t\t\t\u0026AlbLoadBalancerListenerArgs{\n\t\t\t\t\tName: pulumi.String(\"my-listener\"),\n\t\t\t\t\tEndpoints: AlbLoadBalancerListenerEndpointArray{\n\t\t\t\t\t\t\u0026AlbLoadBalancerListenerEndpointArgs{\n\t\t\t\t\t\t\tAddresses: AlbLoadBalancerListenerEndpointAddressArray{\n\t\t\t\t\t\t\t\t\u0026AlbLoadBalancerListenerEndpointAddressArgs{\n\t\t\t\t\t\t\t\t\tExternalIpv4Address: nil,\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\tPorts: pulumi.IntArray{\n\t\t\t\t\t\t\t\tpulumi.Int(8080),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tHttp: \u0026AlbLoadBalancerListenerHttpArgs{\n\t\t\t\t\t\tHandler: \u0026AlbLoadBalancerListenerHttpHandlerArgs{\n\t\t\t\t\t\t\tHttpRouterId: pulumi.Any(yandex_alb_http_router.TestRouter.Id),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.yandex.AlbLoadBalancer;\nimport com.pulumi.yandex.AlbLoadBalancerArgs;\nimport com.pulumi.yandex.inputs.AlbLoadBalancerAllocationPolicyArgs;\nimport com.pulumi.yandex.inputs.AlbLoadBalancerListenerArgs;\nimport com.pulumi.yandex.inputs.AlbLoadBalancerListenerHttpArgs;\nimport com.pulumi.yandex.inputs.AlbLoadBalancerListenerHttpHandlerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test_balancer = new AlbLoadBalancer(\"test-balancer\", AlbLoadBalancerArgs.builder()        \n            .networkId(yandex_vpc_network.test-network().id())\n            .allocationPolicy(AlbLoadBalancerAllocationPolicyArgs.builder()\n                .locations(AlbLoadBalancerAllocationPolicyLocationArgs.builder()\n                    .zoneId(\"ru-central1-a\")\n                    .subnetId(yandex_vpc_subnet.test-subnet().id())\n                    .build())\n                .build())\n            .listeners(AlbLoadBalancerListenerArgs.builder()\n                .name(\"my-listener\")\n                .endpoints(AlbLoadBalancerListenerEndpointArgs.builder()\n                    .addresses(AlbLoadBalancerListenerEndpointAddressArgs.builder()\n                        .externalIpv4Address()\n                        .build())\n                    .ports(8080)\n                    .build())\n                .http(AlbLoadBalancerListenerHttpArgs.builder()\n                    .handler(AlbLoadBalancerListenerHttpHandlerArgs.builder()\n                        .httpRouterId(yandex_alb_http_router.test-router().id())\n                        .build())\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test-balancer:\n    type: yandex:AlbLoadBalancer\n    properties:\n      networkId: ${yandex_vpc_network\"test-network\"[%!s(MISSING)].id}\n      allocationPolicy:\n        locations:\n          - zoneId: ru-central1-a\n            subnetId: ${yandex_vpc_subnet\"test-subnet\"[%!s(MISSING)].id}\n      listeners:\n        - name: my-listener\n          endpoints:\n            - addresses:\n                - externalIpv4Address: {}\n              ports:\n                - 8080\n          http:\n            handler:\n              httpRouterId: ${yandex_alb_http_router\"test-router\"[%!s(MISSING)].id}\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAn Application Load Balancer can be imported using the `id` of the resource, e.g.\n\n```sh\n $ pulumi import yandex:index/albLoadBalancer:AlbLoadBalancer default load_balancer_id\n```\n\n ",
+            "description": "Creates an Application Load Balancer in the specified folder. For more information, see\n[the official documentation](https://cloud.yandex.com/en/docs/application-load-balancer/concepts/application-load-balancer)\n.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as yandex from \"@pulumi/yandex\";\n\nconst test_balancer = new yandex.AlbLoadBalancer(\"test-balancer\", {\n    networkId: yandex_vpc_network[\"test-network\"].id,\n    allocationPolicy: {\n        locations: [{\n            zoneId: \"ru-central1-a\",\n            subnetId: yandex_vpc_subnet[\"test-subnet\"].id,\n        }],\n    },\n    listeners: [{\n        name: \"my-listener\",\n        endpoints: [{\n            addresses: [{\n                externalIpv4Address: {},\n            }],\n            ports: [8080],\n        }],\n        http: {\n            handler: {\n                httpRouterId: yandex_alb_http_router[\"test-router\"].id,\n            },\n        },\n    }],\n    logOptions: {\n        discardRules: [{\n            httpCodeIntervals: [\"2XX\"],\n            discardPercent: 75,\n        }],\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_yandex_unofficial as yandex\n\ntest_balancer = yandex.AlbLoadBalancer(\"test-balancer\",\n    network_id=yandex_vpc_network[\"test-network\"][\"id\"],\n    allocation_policy=yandex.AlbLoadBalancerAllocationPolicyArgs(\n        locations=[yandex.AlbLoadBalancerAllocationPolicyLocationArgs(\n            zone_id=\"ru-central1-a\",\n            subnet_id=yandex_vpc_subnet[\"test-subnet\"][\"id\"],\n        )],\n    ),\n    listeners=[yandex.AlbLoadBalancerListenerArgs(\n        name=\"my-listener\",\n        endpoints=[yandex.AlbLoadBalancerListenerEndpointArgs(\n            addresses=[yandex.AlbLoadBalancerListenerEndpointAddressArgs(\n                external_ipv4_address=yandex.AlbLoadBalancerListenerEndpointAddressExternalIpv4AddressArgs(),\n            )],\n            ports=[8080],\n        )],\n        http=yandex.AlbLoadBalancerListenerHttpArgs(\n            handler=yandex.AlbLoadBalancerListenerHttpHandlerArgs(\n                http_router_id=yandex_alb_http_router[\"test-router\"][\"id\"],\n            ),\n        ),\n    )],\n    log_options=yandex.AlbLoadBalancerLogOptionsArgs(\n        discard_rules=[yandex.AlbLoadBalancerLogOptionsDiscardRuleArgs(\n            http_code_intervals=[\"2XX\"],\n            discard_percent=75,\n        )],\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Yandex = Pulumi.Yandex;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var test_balancer = new Yandex.AlbLoadBalancer(\"test-balancer\", new()\n    {\n        NetworkId = yandex_vpc_network.Test_network.Id,\n        AllocationPolicy = new Yandex.Inputs.AlbLoadBalancerAllocationPolicyArgs\n        {\n            Locations = new[]\n            {\n                new Yandex.Inputs.AlbLoadBalancerAllocationPolicyLocationArgs\n                {\n                    ZoneId = \"ru-central1-a\",\n                    SubnetId = yandex_vpc_subnet.Test_subnet.Id,\n                },\n            },\n        },\n        Listeners = new[]\n        {\n            new Yandex.Inputs.AlbLoadBalancerListenerArgs\n            {\n                Name = \"my-listener\",\n                Endpoints = new[]\n                {\n                    new Yandex.Inputs.AlbLoadBalancerListenerEndpointArgs\n                    {\n                        Addresses = new[]\n                        {\n                            new Yandex.Inputs.AlbLoadBalancerListenerEndpointAddressArgs\n                            {\n                                ExternalIpv4Address = null,\n                            },\n                        },\n                        Ports = new[]\n                        {\n                            8080,\n                        },\n                    },\n                },\n                Http = new Yandex.Inputs.AlbLoadBalancerListenerHttpArgs\n                {\n                    Handler = new Yandex.Inputs.AlbLoadBalancerListenerHttpHandlerArgs\n                    {\n                        HttpRouterId = yandex_alb_http_router.Test_router.Id,\n                    },\n                },\n            },\n        },\n        LogOptions = new Yandex.Inputs.AlbLoadBalancerLogOptionsArgs\n        {\n            DiscardRules = new[]\n            {\n                new Yandex.Inputs.AlbLoadBalancerLogOptionsDiscardRuleArgs\n                {\n                    HttpCodeIntervals = new[]\n                    {\n                        \"2XX\",\n                    },\n                    DiscardPercent = 75,\n                },\n            },\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-yandex/sdk/go/yandex\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := yandex.NewAlbLoadBalancer(ctx, \"test-balancer\", \u0026yandex.AlbLoadBalancerArgs{\n\t\t\tNetworkId: pulumi.Any(yandex_vpc_network.TestNetwork.Id),\n\t\t\tAllocationPolicy: \u0026AlbLoadBalancerAllocationPolicyArgs{\n\t\t\t\tLocations: AlbLoadBalancerAllocationPolicyLocationArray{\n\t\t\t\t\t\u0026AlbLoadBalancerAllocationPolicyLocationArgs{\n\t\t\t\t\t\tZoneId:   pulumi.String(\"ru-central1-a\"),\n\t\t\t\t\t\tSubnetId: pulumi.Any(yandex_vpc_subnet.TestSubnet.Id),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tListeners: AlbLoadBalancerListenerArray{\n\t\t\t\t\u0026AlbLoadBalancerListenerArgs{\n\t\t\t\t\tName: pulumi.String(\"my-listener\"),\n\t\t\t\t\tEndpoints: AlbLoadBalancerListenerEndpointArray{\n\t\t\t\t\t\t\u0026AlbLoadBalancerListenerEndpointArgs{\n\t\t\t\t\t\t\tAddresses: AlbLoadBalancerListenerEndpointAddressArray{\n\t\t\t\t\t\t\t\t\u0026AlbLoadBalancerListenerEndpointAddressArgs{\n\t\t\t\t\t\t\t\t\tExternalIpv4Address: nil,\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\tPorts: pulumi.IntArray{\n\t\t\t\t\t\t\t\tpulumi.Int(8080),\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t\tHttp: \u0026AlbLoadBalancerListenerHttpArgs{\n\t\t\t\t\t\tHandler: \u0026AlbLoadBalancerListenerHttpHandlerArgs{\n\t\t\t\t\t\t\tHttpRouterId: pulumi.Any(yandex_alb_http_router.TestRouter.Id),\n\t\t\t\t\t\t},\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tLogOptions: \u0026AlbLoadBalancerLogOptionsArgs{\n\t\t\t\tDiscardRules: AlbLoadBalancerLogOptionsDiscardRuleArray{\n\t\t\t\t\t\u0026AlbLoadBalancerLogOptionsDiscardRuleArgs{\n\t\t\t\t\t\tHttpCodeIntervals: pulumi.StringArray{\n\t\t\t\t\t\t\tpulumi.String(\"2XX\"),\n\t\t\t\t\t\t},\n\t\t\t\t\t\tDiscardPercent: pulumi.Int(75),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.yandex.AlbLoadBalancer;\nimport com.pulumi.yandex.AlbLoadBalancerArgs;\nimport com.pulumi.yandex.inputs.AlbLoadBalancerAllocationPolicyArgs;\nimport com.pulumi.yandex.inputs.AlbLoadBalancerListenerArgs;\nimport com.pulumi.yandex.inputs.AlbLoadBalancerListenerHttpArgs;\nimport com.pulumi.yandex.inputs.AlbLoadBalancerListenerHttpHandlerArgs;\nimport com.pulumi.yandex.inputs.AlbLoadBalancerLogOptionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var test_balancer = new AlbLoadBalancer(\"test-balancer\", AlbLoadBalancerArgs.builder()        \n            .networkId(yandex_vpc_network.test-network().id())\n            .allocationPolicy(AlbLoadBalancerAllocationPolicyArgs.builder()\n                .locations(AlbLoadBalancerAllocationPolicyLocationArgs.builder()\n                    .zoneId(\"ru-central1-a\")\n                    .subnetId(yandex_vpc_subnet.test-subnet().id())\n                    .build())\n                .build())\n            .listeners(AlbLoadBalancerListenerArgs.builder()\n                .name(\"my-listener\")\n                .endpoints(AlbLoadBalancerListenerEndpointArgs.builder()\n                    .addresses(AlbLoadBalancerListenerEndpointAddressArgs.builder()\n                        .externalIpv4Address()\n                        .build())\n                    .ports(8080)\n                    .build())\n                .http(AlbLoadBalancerListenerHttpArgs.builder()\n                    .handler(AlbLoadBalancerListenerHttpHandlerArgs.builder()\n                        .httpRouterId(yandex_alb_http_router.test-router().id())\n                        .build())\n                    .build())\n                .build())\n            .logOptions(AlbLoadBalancerLogOptionsArgs.builder()\n                .discardRules(AlbLoadBalancerLogOptionsDiscardRuleArgs.builder()\n                    .httpCodeIntervals(\"2XX\")\n                    .discardPercent(75)\n                    .build())\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  test-balancer:\n    type: yandex:AlbLoadBalancer\n    properties:\n      networkId: ${yandex_vpc_network\"test-network\"[%!s(MISSING)].id}\n      allocationPolicy:\n        locations:\n          - zoneId: ru-central1-a\n            subnetId: ${yandex_vpc_subnet\"test-subnet\"[%!s(MISSING)].id}\n      listeners:\n        - name: my-listener\n          endpoints:\n            - addresses:\n                - externalIpv4Address: {}\n              ports:\n                - 8080\n          http:\n            handler:\n              httpRouterId: ${yandex_alb_http_router\"test-router\"[%!s(MISSING)].id}\n      logOptions:\n        discardRules:\n          - httpCodeIntervals:\n              - 2XX\n            discardPercent: 75\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nAn Application Load Balancer can be imported using the `id` of the resource, e.g.\n\n```sh\n $ pulumi import yandex:index/albLoadBalancer:AlbLoadBalancer default load_balancer_id\n```\n\n ",
             "properties": {
                 "allocationPolicy": {
                     "$ref": "#/types/yandex:index/AlbLoadBalancerAllocationPolicy:AlbLoadBalancerAllocationPolicy",
@@ -33581,7 +34102,11 @@
                 },
                 "logGroupId": {
                     "type": "string",
-                    "description": "Cloud log group used by the Load Balancer to store access logs.\n"
+                    "description": "Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.\n"
+                },
+                "logOptions": {
+                    "$ref": "#/types/yandex:index/AlbLoadBalancerLogOptions:AlbLoadBalancerLogOptions",
+                    "description": "Cloud Logging settings. The structure is documented below.\n"
                 },
                 "name": {
                     "type": "string",
@@ -33643,6 +34168,10 @@
                         "$ref": "#/types/yandex:index/AlbLoadBalancerListener:AlbLoadBalancerListener"
                     },
                     "description": "List of listeners for the Load Balancer. The structure is documented below.\n"
+                },
+                "logOptions": {
+                    "$ref": "#/types/yandex:index/AlbLoadBalancerLogOptions:AlbLoadBalancerLogOptions",
+                    "description": "Cloud Logging settings. The structure is documented below.\n"
                 },
                 "name": {
                     "type": "string",
@@ -33706,7 +34235,11 @@
                     },
                     "logGroupId": {
                         "type": "string",
-                        "description": "Cloud log group used by the Load Balancer to store access logs.\n"
+                        "description": "Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.\n"
+                    },
+                    "logOptions": {
+                        "$ref": "#/types/yandex:index/AlbLoadBalancerLogOptions:AlbLoadBalancerLogOptions",
+                        "description": "Cloud Logging settings. The structure is documented below.\n"
                     },
                     "name": {
                         "type": "string",
@@ -34332,6 +34865,244 @@
                     },
                     "updatedAt": {
                         "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "yandex:index/cmCertificate:cmCertificate": {
+            "description": "Creates or requests a TLS certificate in the specified folder.\nFor more information, see [the official documentation](https://cloud.yandex.com/en/docs/certificate-manager/concepts/).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n### Managed Certificate\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as yandex from \"@pulumi/yandex\";\n\nconst example = new yandex.cmCertificate(\"example\", {\n    domains: [\"example.com\"],\n    managed: {\n        challengeType: \"DNS_CNAME\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_yandex_unofficial as yandex\n\nexample = yandex.CmCertificate(\"example\",\n    domains=[\"example.com\"],\n    managed=yandex.CmCertificateManagedArgs(\n        challenge_type=\"DNS_CNAME\",\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Yandex = Pulumi.Yandex;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Yandex.CmCertificate(\"example\", new()\n    {\n        Domains = new[]\n        {\n            \"example.com\",\n        },\n        Managed = new Yandex.Inputs.CmCertificateManagedArgs\n        {\n            ChallengeType = \"DNS_CNAME\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-yandex/sdk/go/yandex\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := yandex.NewcmCertificate(ctx, \"example\", \u0026yandex.cmCertificateArgs{\n\t\t\tDomains: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"example.com\"),\n\t\t\t},\n\t\t\tManaged: \u0026CmCertificateManagedArgs{\n\t\t\t\tChallengeType: pulumi.String(\"DNS_CNAME\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.yandex.cmCertificate;\nimport com.pulumi.yandex.CmCertificateArgs;\nimport com.pulumi.yandex.inputs.CmCertificateManagedArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new CmCertificate(\"example\", CmCertificateArgs.builder()        \n            .domains(\"example.com\")\n            .managed(CmCertificateManagedArgs.builder()\n                .challengeType(\"DNS_CNAME\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: yandex:cmCertificate\n    properties:\n      domains:\n        - example.com\n      managed:\n        challengeType: DNS_CNAME\n```\n\n{{% /example %}}\n{{% example %}}\n### Self-Managed Certificate\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as yandex from \"@pulumi/yandex\";\n\nconst example = new yandex.cmCertificate(\"example\", {\n    domains: [\"example.com\"],\n    selfManaged: {\n        certificate: `-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----- \n -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----`,\n        privateKey: \"-----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY-----\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_yandex_unofficial as yandex\n\nexample = yandex.CmCertificate(\"example\",\n    domains=[\"example.com\"],\n    self_managed=yandex.CmCertificateSelfManagedArgs(\n        certificate=\"\"\"-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----- \n -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----\n\"\"\",\n        private_key=\"-----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY-----\",\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Yandex = Pulumi.Yandex;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var example = new Yandex.CmCertificate(\"example\", new()\n    {\n        Domains = new[]\n        {\n            \"example.com\",\n        },\n        SelfManaged = new Yandex.Inputs.CmCertificateSelfManagedArgs\n        {\n            Certificate = @\"-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----- \n -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----\n\",\n            PrivateKey = \"-----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY-----\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\n\t\"github.com/pulumi/pulumi-yandex/sdk/go/yandex\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := yandex.NewcmCertificate(ctx, \"example\", \u0026yandex.cmCertificateArgs{\n\t\t\tDomains: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"example.com\"),\n\t\t\t},\n\t\t\tSelfManaged: \u0026CmCertificateSelfManagedArgs{\n\t\t\t\tCertificate: pulumi.String(fmt.Sprintf(\"-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----- \\n -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----\\n\")),\n\t\t\t\tPrivateKey:  pulumi.String(\"-----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY-----\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.yandex.cmCertificate;\nimport com.pulumi.yandex.CmCertificateArgs;\nimport com.pulumi.yandex.inputs.CmCertificateSelfManagedArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var example = new CmCertificate(\"example\", CmCertificateArgs.builder()        \n            .domains(\"example.com\")\n            .selfManaged(CmCertificateSelfManagedArgs.builder()\n                .certificate(\"\"\"\n-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----- \n -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----\n                \"\"\")\n                .privateKey(\"-----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY-----\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  example:\n    type: yandex:cmCertificate\n    properties:\n      domains:\n        - example.com\n      selfManaged:\n        certificate: \"-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----- \\n -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----\\n\"\n        privateKey: '-----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY-----'\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nA certificate can be imported using the `id` of the resource, e.g.\n\n```sh\n $ pulumi import yandex:index/cmCertificate:cmCertificate default \u003ccertificate_id\u003e\n```\n\n ",
+            "properties": {
+                "challenges": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/yandex:index/cmCertificateChallenge:cmCertificateChallenge"
+                    },
+                    "description": "Array of challenges. Structure is documented below.\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "Time the challenge was created.\n"
+                },
+                "deletionProtection": {
+                    "type": "boolean"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Certificate description.\n"
+                },
+                "domains": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Domains for this certificate. Should be specified for managed certificates.\n"
+                },
+                "folderId": {
+                    "type": "string",
+                    "description": "Folder that the resource belongs to. If value is omitted, the default provider folder is used.\n"
+                },
+                "issuedAt": {
+                    "type": "string",
+                    "description": "Certificate issue timestamp.\n"
+                },
+                "issuer": {
+                    "type": "string",
+                    "description": "Certificate issuer.\n"
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Labels to assign to this certificate.\n"
+                },
+                "managed": {
+                    "$ref": "#/types/yandex:index/cmCertificateManaged:cmCertificateManaged",
+                    "description": "Managed specification. Structure is documented below.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Certificate name.\n"
+                },
+                "notAfter": {
+                    "type": "string",
+                    "description": "Certificate end valid period.\n"
+                },
+                "notBefore": {
+                    "type": "string",
+                    "description": "Certificate start valid period.\n"
+                },
+                "selfManaged": {
+                    "$ref": "#/types/yandex:index/cmCertificateSelfManaged:cmCertificateSelfManaged",
+                    "description": "Self-managed specification. Structure is documented below.\n"
+                },
+                "serial": {
+                    "type": "string",
+                    "description": "Certificate serial number.\n"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Certificate status: `\"VALIDATING\"`, `\"INVALID\"`,  `\"ISSUED\"`, `\"REVOKED\"`, `\"RENEWING\"` or `\"RENEWAL_FAILED\"`.\n"
+                },
+                "subject": {
+                    "type": "string",
+                    "description": "Certificate subject.\n"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Challenge type `\"DNS\"` or `\"HTTP\"`.\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Last time the challenge was updated.\n"
+                }
+            },
+            "required": [
+                "challenges",
+                "createdAt",
+                "domains",
+                "folderId",
+                "issuedAt",
+                "issuer",
+                "name",
+                "notAfter",
+                "notBefore",
+                "serial",
+                "status",
+                "subject",
+                "type",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "deletionProtection": {
+                    "type": "boolean"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Certificate description.\n"
+                },
+                "domains": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Domains for this certificate. Should be specified for managed certificates.\n",
+                    "willReplaceOnChanges": true
+                },
+                "folderId": {
+                    "type": "string",
+                    "description": "Folder that the resource belongs to. If value is omitted, the default provider folder is used.\n",
+                    "willReplaceOnChanges": true
+                },
+                "labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "Labels to assign to this certificate.\n"
+                },
+                "managed": {
+                    "$ref": "#/types/yandex:index/cmCertificateManaged:cmCertificateManaged",
+                    "description": "Managed specification. Structure is documented below.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Certificate name.\n"
+                },
+                "selfManaged": {
+                    "$ref": "#/types/yandex:index/cmCertificateSelfManaged:cmCertificateSelfManaged",
+                    "description": "Self-managed specification. Structure is documented below.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering cmCertificate resources.\n",
+                "properties": {
+                    "challenges": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/yandex:index/cmCertificateChallenge:cmCertificateChallenge"
+                        },
+                        "description": "Array of challenges. Structure is documented below.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Time the challenge was created.\n"
+                    },
+                    "deletionProtection": {
+                        "type": "boolean"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Certificate description.\n"
+                    },
+                    "domains": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Domains for this certificate. Should be specified for managed certificates.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "folderId": {
+                        "type": "string",
+                        "description": "Folder that the resource belongs to. If value is omitted, the default provider folder is used.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "issuedAt": {
+                        "type": "string",
+                        "description": "Certificate issue timestamp.\n"
+                    },
+                    "issuer": {
+                        "type": "string",
+                        "description": "Certificate issuer.\n"
+                    },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Labels to assign to this certificate.\n"
+                    },
+                    "managed": {
+                        "$ref": "#/types/yandex:index/cmCertificateManaged:cmCertificateManaged",
+                        "description": "Managed specification. Structure is documented below.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Certificate name.\n"
+                    },
+                    "notAfter": {
+                        "type": "string",
+                        "description": "Certificate end valid period.\n"
+                    },
+                    "notBefore": {
+                        "type": "string",
+                        "description": "Certificate start valid period.\n"
+                    },
+                    "selfManaged": {
+                        "$ref": "#/types/yandex:index/cmCertificateSelfManaged:cmCertificateSelfManaged",
+                        "description": "Self-managed specification. Structure is documented below.\n"
+                    },
+                    "serial": {
+                        "type": "string",
+                        "description": "Certificate serial number.\n"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Certificate status: `\"VALIDATING\"`, `\"INVALID\"`,  `\"ISSUED\"`, `\"REVOKED\"`, `\"RENEWING\"` or `\"RENEWAL_FAILED\"`.\n"
+                    },
+                    "subject": {
+                        "type": "string",
+                        "description": "Certificate subject.\n"
+                    },
+                    "type": {
+                        "type": "string",
+                        "description": "Challenge type `\"DNS\"` or `\"HTTP\"`.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Last time the challenge was updated.\n"
                     }
                 },
                 "type": "object"
@@ -36582,6 +37353,10 @@
                     "type": "string",
                     "description": "Name of the transfer.\n"
                 },
+                "onCreateActivateMode": {
+                    "type": "string",
+                    "description": "Activation action on create a new incremental transfer.\nIt is not part of the transfer parameter and is used only on create.\nOne of \"sync_activate\", \"async_activate\", \"dont_activate\". The default is \"sync_activate\".\n"
+                },
                 "sourceId": {
                     "type": "string",
                     "description": "ID of the source endpoint for the transfer.\n"
@@ -36625,6 +37400,10 @@
                     "type": "string",
                     "description": "Name of the transfer.\n"
                 },
+                "onCreateActivateMode": {
+                    "type": "string",
+                    "description": "Activation action on create a new incremental transfer.\nIt is not part of the transfer parameter and is used only on create.\nOne of \"sync_activate\", \"async_activate\", \"dont_activate\". The default is \"sync_activate\".\n"
+                },
                 "sourceId": {
                     "type": "string",
                     "description": "ID of the source endpoint for the transfer.\n",
@@ -36663,6 +37442,10 @@
                     "name": {
                         "type": "string",
                         "description": "Name of the transfer.\n"
+                    },
+                    "onCreateActivateMode": {
+                        "type": "string",
+                        "description": "Activation action on create a new incremental transfer.\nIt is not part of the transfer parameter and is used only on create.\nOne of \"sync_activate\", \"async_activate\", \"dont_activate\". The default is \"sync_activate\".\n"
                     },
                     "sourceId": {
                         "type": "string",
@@ -47549,6 +48332,12 @@
                     "logGroupId": {
                         "type": "string"
                     },
+                    "logOptions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/yandex:index/getAlbLoadBalancerLogOption:getAlbLoadBalancerLogOption"
+                        }
+                    },
                     "name": {
                         "type": "string"
                     },
@@ -47578,6 +48367,7 @@
                     "listeners",
                     "loadBalancerId",
                     "logGroupId",
+                    "logOptions",
                     "name",
                     "networkId",
                     "regionId",
@@ -48022,6 +48812,192 @@
                     "folderId",
                     "iamToken",
                     "zone",
+                    "id"
+                ]
+            }
+        },
+        "yandex:index/getCmCertificate:getCmCertificate": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getCmCertificate.\n",
+                "properties": {
+                    "certificateId": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "folderId": {
+                        "type": "string",
+                        "willReplaceOnChanges": true
+                    },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "waitValidation": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getCmCertificate.\n",
+                "properties": {
+                    "certificateId": {
+                        "type": "string"
+                    },
+                    "challenges": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/yandex:index/getCmCertificateChallenge:getCmCertificateChallenge"
+                        }
+                    },
+                    "createdAt": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "domains": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "folderId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "issuedAt": {
+                        "type": "string"
+                    },
+                    "issuer": {
+                        "type": "string"
+                    },
+                    "labels": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        }
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "notAfter": {
+                        "type": "string"
+                    },
+                    "notBefore": {
+                        "type": "string"
+                    },
+                    "serial": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "subject": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "updatedAt": {
+                        "type": "string"
+                    },
+                    "waitValidation": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "certificateId",
+                    "challenges",
+                    "createdAt",
+                    "description",
+                    "domains",
+                    "folderId",
+                    "issuedAt",
+                    "issuer",
+                    "labels",
+                    "name",
+                    "notAfter",
+                    "notBefore",
+                    "serial",
+                    "status",
+                    "subject",
+                    "type",
+                    "updatedAt",
+                    "id"
+                ]
+            }
+        },
+        "yandex:index/getCmCertificateContent:getCmCertificateContent": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getCmCertificateContent.\n",
+                "properties": {
+                    "certificateId": {
+                        "type": "string"
+                    },
+                    "folderId": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "privateKeyFormat": {
+                        "type": "string"
+                    },
+                    "waitValidation": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getCmCertificateContent.\n",
+                "properties": {
+                    "certificateId": {
+                        "type": "string"
+                    },
+                    "certificates": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "folderId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "privateKey": {
+                        "type": "string",
+                        "secret": true
+                    },
+                    "privateKeyFormat": {
+                        "type": "string"
+                    },
+                    "waitValidation": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "certificates",
+                    "privateKey",
                     "id"
                 ]
             }

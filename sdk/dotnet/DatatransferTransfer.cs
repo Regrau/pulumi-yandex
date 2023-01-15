@@ -117,6 +117,14 @@ namespace Pulumi.Yandex
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
+        /// Activation action on create a new incremental transfer.
+        /// It is not part of the transfer parameter and is used only on create.
+        /// One of "sync_activate", "async_activate", "dont_activate". The default is "sync_activate".
+        /// </summary>
+        [Output("onCreateActivateMode")]
+        public Output<string?> OnCreateActivateMode { get; private set; } = null!;
+
+        /// <summary>
         /// ID of the source endpoint for the transfer.
         /// </summary>
         [Output("sourceId")]
@@ -218,6 +226,14 @@ namespace Pulumi.Yandex
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// Activation action on create a new incremental transfer.
+        /// It is not part of the transfer parameter and is used only on create.
+        /// One of "sync_activate", "async_activate", "dont_activate". The default is "sync_activate".
+        /// </summary>
+        [Input("onCreateActivateMode")]
+        public Input<string>? OnCreateActivateMode { get; set; }
+
+        /// <summary>
         /// ID of the source endpoint for the transfer.
         /// </summary>
         [Input("sourceId")]
@@ -272,6 +288,14 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Activation action on create a new incremental transfer.
+        /// It is not part of the transfer parameter and is used only on create.
+        /// One of "sync_activate", "async_activate", "dont_activate". The default is "sync_activate".
+        /// </summary>
+        [Input("onCreateActivateMode")]
+        public Input<string>? OnCreateActivateMode { get; set; }
 
         /// <summary>
         /// ID of the source endpoint for the transfer.

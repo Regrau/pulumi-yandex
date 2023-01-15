@@ -33,16 +33,17 @@ type LookupAlbLoadBalancerResult struct {
 	Description        string                               `pulumi:"description"`
 	FolderId           string                               `pulumi:"folderId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id               string                       `pulumi:"id"`
-	Labels           map[string]string            `pulumi:"labels"`
-	Listeners        []GetAlbLoadBalancerListener `pulumi:"listeners"`
-	LoadBalancerId   string                       `pulumi:"loadBalancerId"`
-	LogGroupId       string                       `pulumi:"logGroupId"`
-	Name             string                       `pulumi:"name"`
-	NetworkId        string                       `pulumi:"networkId"`
-	RegionId         string                       `pulumi:"regionId"`
-	SecurityGroupIds []string                     `pulumi:"securityGroupIds"`
-	Status           string                       `pulumi:"status"`
+	Id               string                        `pulumi:"id"`
+	Labels           map[string]string             `pulumi:"labels"`
+	Listeners        []GetAlbLoadBalancerListener  `pulumi:"listeners"`
+	LoadBalancerId   string                        `pulumi:"loadBalancerId"`
+	LogGroupId       string                        `pulumi:"logGroupId"`
+	LogOptions       []GetAlbLoadBalancerLogOption `pulumi:"logOptions"`
+	Name             string                        `pulumi:"name"`
+	NetworkId        string                        `pulumi:"networkId"`
+	RegionId         string                        `pulumi:"regionId"`
+	SecurityGroupIds []string                      `pulumi:"securityGroupIds"`
+	Status           string                        `pulumi:"status"`
 }
 
 func LookupAlbLoadBalancerOutput(ctx *pulumi.Context, args LookupAlbLoadBalancerOutputArgs, opts ...pulumi.InvokeOption) LookupAlbLoadBalancerResultOutput {
@@ -118,6 +119,10 @@ func (o LookupAlbLoadBalancerResultOutput) LoadBalancerId() pulumi.StringOutput 
 
 func (o LookupAlbLoadBalancerResultOutput) LogGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAlbLoadBalancerResult) string { return v.LogGroupId }).(pulumi.StringOutput)
+}
+
+func (o LookupAlbLoadBalancerResultOutput) LogOptions() GetAlbLoadBalancerLogOptionArrayOutput {
+	return o.ApplyT(func(v LookupAlbLoadBalancerResult) []GetAlbLoadBalancerLogOption { return v.LogOptions }).(GetAlbLoadBalancerLogOptionArrayOutput)
 }
 
 func (o LookupAlbLoadBalancerResultOutput) Name() pulumi.StringOutput {

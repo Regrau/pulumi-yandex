@@ -105,6 +105,12 @@ export class DatatransferTransfer extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Activation action on create a new incremental transfer.
+     * It is not part of the transfer parameter and is used only on create.
+     * One of "syncActivate", "asyncActivate", "dontActivate". The default is "syncActivate".
+     */
+    public readonly onCreateActivateMode!: pulumi.Output<string | undefined>;
+    /**
      * ID of the source endpoint for the transfer.
      */
     public readonly sourceId!: pulumi.Output<string | undefined>;
@@ -138,6 +144,7 @@ export class DatatransferTransfer extends pulumi.CustomResource {
             resourceInputs["folderId"] = state ? state.folderId : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["onCreateActivateMode"] = state ? state.onCreateActivateMode : undefined;
             resourceInputs["sourceId"] = state ? state.sourceId : undefined;
             resourceInputs["targetId"] = state ? state.targetId : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
@@ -148,6 +155,7 @@ export class DatatransferTransfer extends pulumi.CustomResource {
             resourceInputs["folderId"] = args ? args.folderId : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["onCreateActivateMode"] = args ? args.onCreateActivateMode : undefined;
             resourceInputs["sourceId"] = args ? args.sourceId : undefined;
             resourceInputs["targetId"] = args ? args.targetId : undefined;
             resourceInputs["type"] = args ? args.type : undefined;
@@ -178,6 +186,12 @@ export interface DatatransferTransferState {
      * Name of the transfer.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Activation action on create a new incremental transfer.
+     * It is not part of the transfer parameter and is used only on create.
+     * One of "syncActivate", "asyncActivate", "dontActivate". The default is "syncActivate".
+     */
+    onCreateActivateMode?: pulumi.Input<string>;
     /**
      * ID of the source endpoint for the transfer.
      */
@@ -216,6 +230,12 @@ export interface DatatransferTransferArgs {
      * Name of the transfer.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Activation action on create a new incremental transfer.
+     * It is not part of the transfer parameter and is used only on create.
+     * One of "syncActivate", "asyncActivate", "dontActivate". The default is "syncActivate".
+     */
+    onCreateActivateMode?: pulumi.Input<string>;
     /**
      * ID of the source endpoint for the transfer.
      */

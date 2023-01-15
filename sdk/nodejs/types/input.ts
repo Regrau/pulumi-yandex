@@ -742,6 +742,37 @@ export interface AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandler {
     backendGroupId?: pulumi.Input<string>;
 }
 
+export interface AlbLoadBalancerLogOptions {
+    /**
+     * Set to true to disable Cloud Logging for the balancer
+     */
+    disable?: pulumi.Input<boolean>;
+    /**
+     * List of rules to discard a fraction of logs. The structure is documented below.
+     */
+    discardRules?: pulumi.Input<pulumi.Input<inputs.AlbLoadBalancerLogOptionsDiscardRule>[]>;
+    /**
+     * Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
+     */
+    logGroupId?: pulumi.Input<string>;
+}
+
+export interface AlbLoadBalancerLogOptionsDiscardRule {
+    discardPercent?: pulumi.Input<number>;
+    /**
+     * list of grpc codes by name, e.g, _["NOT_FOUND", "RESOURCE_EXHAUSTED"]_
+     */
+    grpcCodes?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * list of http code intervals _1XX_-_5XX_ or _ALL_
+     */
+    httpCodeIntervals?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * list of http codes _100_-_599_
+     */
+    httpCodes?: pulumi.Input<pulumi.Input<number>[]>;
+}
+
 export interface AlbTargetGroupTarget {
     /**
      * IP address of the target.
@@ -1174,6 +1205,88 @@ export interface CdnResourceSslCertificate {
     certificateManagerId?: pulumi.Input<string>;
     status?: pulumi.Input<string>;
     type: pulumi.Input<string>;
+}
+
+export interface CmCertificateChallenge {
+    /**
+     * Time the challenge was created.
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * DNS record name (only for DNS challenge).
+     */
+    dnsName?: pulumi.Input<string>;
+    /**
+     * DNS record type: `"TXT"` or `"CNAME"` (only for DNS challenge).
+     */
+    dnsType?: pulumi.Input<string>;
+    /**
+     * DNS record value (only for DNS challenge).
+     */
+    dnsValue?: pulumi.Input<string>;
+    /**
+     * Validated domain.
+     */
+    domain?: pulumi.Input<string>;
+    /**
+     * The content that should be made accessible with the given `httpUrl` (only for HTTP challenge).
+     */
+    httpContent?: pulumi.Input<string>;
+    /**
+     * URL where the challenge content httpContent should be placed (only for HTTP challenge).
+     */
+    httpUrl?: pulumi.Input<string>;
+    /**
+     * Current status message.
+     */
+    message?: pulumi.Input<string>;
+    /**
+     * Challenge type `"DNS"` or `"HTTP"`.
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * Last time the challenge was updated.
+     */
+    updatedAt?: pulumi.Input<string>;
+}
+
+export interface CmCertificateManaged {
+    /**
+     * . Expected number of challenge count needed to validate certificate. 
+     * Resource creation will fail if the specified value does not match the actual number of challenges received from issue provider.
+     * This argument is helpful for safe automatic resource creation for passing challenges for multi-domain certificates.
+     */
+    challengeCount?: pulumi.Input<number>;
+    /**
+     * Domain owner-check method. Possible values:
+     * - "DNS_CNAME" - you will need to create a CNAME dns record with the specified value. Recommended for fully automated certificate renewal;
+     * - "DNS_TXT" - you will need to create a TXT dns record with specified value;
+     * - "HTTP" - you will need to place specified value into specified url.
+     */
+    challengeType: pulumi.Input<string>;
+}
+
+export interface CmCertificateSelfManaged {
+    /**
+     * Certificate with chain.
+     */
+    certificate: pulumi.Input<string>;
+    /**
+     * Private key of certificate.
+     */
+    privateKey?: pulumi.Input<string>;
+    /**
+     * Lockbox secret specification for getting private key. Structure is documented below.
+     */
+    privateKeyLockboxSecret?: pulumi.Input<inputs.CmCertificateSelfManagedPrivateKeyLockboxSecret>;
+}
+
+export interface CmCertificateSelfManagedPrivateKeyLockboxSecret {
+    /**
+     * Certificate Id.
+     */
+    id: pulumi.Input<string>;
+    key: pulumi.Input<string>;
 }
 
 export interface ComputeDiskDiskPlacementPolicy {
@@ -5321,6 +5434,8 @@ export interface KubernetesClusterMaster {
      * (Computed) External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).
      */
     externalV4Endpoint?: pulumi.Input<string>;
+    externalV6Address?: pulumi.Input<string>;
+    externalV6Endpoint?: pulumi.Input<string>;
     /**
      * (Computed) An IPv4 internal network address that is assigned to the master.
      */

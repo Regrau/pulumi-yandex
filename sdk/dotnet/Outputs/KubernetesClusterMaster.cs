@@ -25,6 +25,8 @@ namespace Pulumi.Yandex.Outputs
         /// (Computed) External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).
         /// </summary>
         public readonly string? ExternalV4Endpoint;
+        public readonly string? ExternalV6Address;
+        public readonly string? ExternalV6Endpoint;
         /// <summary>
         /// (Computed) An IPv4 internal network address that is assigned to the master.
         /// </summary>
@@ -73,6 +75,10 @@ namespace Pulumi.Yandex.Outputs
 
             string? externalV4Endpoint,
 
+            string? externalV6Address,
+
+            string? externalV6Endpoint,
+
             string? internalV4Address,
 
             string? internalV4Endpoint,
@@ -94,6 +100,8 @@ namespace Pulumi.Yandex.Outputs
             ClusterCaCertificate = clusterCaCertificate;
             ExternalV4Address = externalV4Address;
             ExternalV4Endpoint = externalV4Endpoint;
+            ExternalV6Address = externalV6Address;
+            ExternalV6Endpoint = externalV6Endpoint;
             InternalV4Address = internalV4Address;
             InternalV4Endpoint = internalV4Endpoint;
             MaintenancePolicy = maintenancePolicy;

@@ -43,6 +43,7 @@ export interface GetAlbLoadBalancerResult {
     readonly listeners: outputs.GetAlbLoadBalancerListener[];
     readonly loadBalancerId: string;
     readonly logGroupId: string;
+    readonly logOptions: outputs.GetAlbLoadBalancerLogOption[];
     readonly name: string;
     readonly networkId: string;
     readonly regionId: string;

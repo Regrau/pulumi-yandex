@@ -742,6 +742,37 @@ export interface AlbLoadBalancerListenerTlsSniHandlerHandlerStreamHandler {
     backendGroupId?: string;
 }
 
+export interface AlbLoadBalancerLogOptions {
+    /**
+     * Set to true to disable Cloud Logging for the balancer
+     */
+    disable?: boolean;
+    /**
+     * List of rules to discard a fraction of logs. The structure is documented below.
+     */
+    discardRules?: outputs.AlbLoadBalancerLogOptionsDiscardRule[];
+    /**
+     * Cloud Logging group ID to send logs to. Leave empty to use the balancer folder default log group.
+     */
+    logGroupId?: string;
+}
+
+export interface AlbLoadBalancerLogOptionsDiscardRule {
+    discardPercent?: number;
+    /**
+     * list of grpc codes by name, e.g, _["NOT_FOUND", "RESOURCE_EXHAUSTED"]_
+     */
+    grpcCodes?: string[];
+    /**
+     * list of http code intervals _1XX_-_5XX_ or _ALL_
+     */
+    httpCodeIntervals?: string[];
+    /**
+     * list of http codes _100_-_599_
+     */
+    httpCodes?: number[];
+}
+
 export interface AlbTargetGroupTarget {
     /**
      * IP address of the target.
@@ -1174,6 +1205,88 @@ export interface CdnResourceSslCertificate {
     certificateManagerId?: string;
     status: string;
     type: string;
+}
+
+export interface CmCertificateChallenge {
+    /**
+     * Time the challenge was created.
+     */
+    createdAt: string;
+    /**
+     * DNS record name (only for DNS challenge).
+     */
+    dnsName: string;
+    /**
+     * DNS record type: `"TXT"` or `"CNAME"` (only for DNS challenge).
+     */
+    dnsType: string;
+    /**
+     * DNS record value (only for DNS challenge).
+     */
+    dnsValue: string;
+    /**
+     * Validated domain.
+     */
+    domain: string;
+    /**
+     * The content that should be made accessible with the given `httpUrl` (only for HTTP challenge).
+     */
+    httpContent: string;
+    /**
+     * URL where the challenge content httpContent should be placed (only for HTTP challenge).
+     */
+    httpUrl: string;
+    /**
+     * Current status message.
+     */
+    message: string;
+    /**
+     * Challenge type `"DNS"` or `"HTTP"`.
+     */
+    type: string;
+    /**
+     * Last time the challenge was updated.
+     */
+    updatedAt: string;
+}
+
+export interface CmCertificateManaged {
+    /**
+     * . Expected number of challenge count needed to validate certificate. 
+     * Resource creation will fail if the specified value does not match the actual number of challenges received from issue provider.
+     * This argument is helpful for safe automatic resource creation for passing challenges for multi-domain certificates.
+     */
+    challengeCount?: number;
+    /**
+     * Domain owner-check method. Possible values:
+     * - "DNS_CNAME" - you will need to create a CNAME dns record with the specified value. Recommended for fully automated certificate renewal;
+     * - "DNS_TXT" - you will need to create a TXT dns record with specified value;
+     * - "HTTP" - you will need to place specified value into specified url.
+     */
+    challengeType: string;
+}
+
+export interface CmCertificateSelfManaged {
+    /**
+     * Certificate with chain.
+     */
+    certificate: string;
+    /**
+     * Private key of certificate.
+     */
+    privateKey?: string;
+    /**
+     * Lockbox secret specification for getting private key. Structure is documented below.
+     */
+    privateKeyLockboxSecret?: outputs.CmCertificateSelfManagedPrivateKeyLockboxSecret;
+}
+
+export interface CmCertificateSelfManagedPrivateKeyLockboxSecret {
+    /**
+     * Certificate Id.
+     */
+    id: string;
+    key: string;
 }
 
 export interface ComputeDiskDiskPlacementPolicy {
@@ -3816,6 +3929,19 @@ export interface GetAlbLoadBalancerListenerTlSniHandlerHandlerStreamHandler {
     backendGroupId: string;
 }
 
+export interface GetAlbLoadBalancerLogOption {
+    disable: boolean;
+    discardRules: outputs.GetAlbLoadBalancerLogOptionDiscardRule[];
+    logGroupId: string;
+}
+
+export interface GetAlbLoadBalancerLogOptionDiscardRule {
+    discardPercent: number;
+    grpcCodes: string[];
+    httpCodeIntervals: string[];
+    httpCodes: number[];
+}
+
 export interface GetAlbTargetGroupTarget {
     ipAddress: string;
     privateIpv4Address?: boolean;
@@ -4227,6 +4353,19 @@ export interface GetCdnResourceSslCertificate {
     certificateManagerId?: string;
     status: string;
     type: string;
+}
+
+export interface GetCmCertificateChallenge {
+    createdAt: string;
+    dnsName: string;
+    dnsType: string;
+    dnsValue: string;
+    domain: string;
+    httpContent: string;
+    httpUrl: string;
+    message: string;
+    type: string;
+    updatedAt: string;
 }
 
 export interface GetComputeDiskDiskPlacementPolicy {
@@ -5361,6 +5500,8 @@ export interface GetKubernetesClusterMaster {
      * External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).
      */
     externalV4Endpoint: string;
+    externalV6Address: string;
+    externalV6Endpoint: string;
     /**
      * An IPv4 internal network address that is assigned to the master.
      */
@@ -7977,6 +8118,8 @@ export interface KubernetesClusterMaster {
      * (Computed) External endpoint that can be used to access Kubernetes cluster API from the internet (outside of the cloud).
      */
     externalV4Endpoint: string;
+    externalV6Address?: string;
+    externalV6Endpoint: string;
     /**
      * (Computed) An IPv4 internal network address that is assigned to the master.
      */

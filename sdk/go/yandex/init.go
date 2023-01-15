@@ -36,6 +36,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CdnOriginGroup{}
 	case "yandex:index/cdnResource:CdnResource":
 		r = &CdnResource{}
+	case "yandex:index/cmCertificate:cmCertificate":
+		r = &CmCertificate{}
 	case "yandex:index/computeDisk:ComputeDisk":
 		r = &ComputeDisk{}
 	case "yandex:index/computeDiskPlacementGroup:ComputeDiskPlacementGroup":
@@ -274,6 +276,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"yandex",
 		"index/cdnResource",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/cmCertificate",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
