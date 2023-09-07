@@ -490,7 +490,7 @@ export class StorageBucket extends pulumi.CustomResource {
      */
     public readonly bucketPrefix!: pulumi.Output<string | undefined>;
     /**
-     * A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+     * A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
      */
     public readonly corsRules!: pulumi.Output<outputs.StorageBucketCorsRule[] | undefined>;
     /**
@@ -648,7 +648,7 @@ export interface StorageBucketState {
      */
     bucketPrefix?: pulumi.Input<string>;
     /**
-     * A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+     * A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
      */
     corsRules?: pulumi.Input<pulumi.Input<inputs.StorageBucketCorsRule>[]>;
     /**
@@ -736,7 +736,7 @@ export interface StorageBucketArgs {
      */
     bucketPrefix?: pulumi.Input<string>;
     /**
-     * A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+     * A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
      */
     corsRules?: pulumi.Input<pulumi.Input<inputs.StorageBucketCorsRule>[]>;
     /**

@@ -150,7 +150,7 @@ export interface GetMdbMongodbClusterResult {
     /**
      * Description of the MongoDB cluster.
      */
-    readonly description: string;
+    readonly description?: string;
     /**
      * Deployment environment of the MongoDB cluster.
      */

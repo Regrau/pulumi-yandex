@@ -22,54 +22,51 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewContainerRegistry(ctx, "your-registry", &yandex.ContainerRegistryArgs{
-//				FolderId: pulumi.String("your-folder-id"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewContainerRepository(ctx, "repo-1", nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewContainerRepositoryIamBinding(ctx, "puller", &yandex.ContainerRepositoryIamBindingArgs{
-//				RepositoryId: repo_1.ID(),
-//				Role:         pulumi.String("container-registry.images.puller"),
-//				Members: pulumi.StringArray{
-//					pulumi.String("system:allUsers"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			repo_2, err := yandex.LookupContainerRepository(ctx, &GetContainerRepositoryArgs{
-//				Name: pulumi.StringRef("some_repository_name"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewContainerRepositoryIamBinding(ctx, "pusher", &yandex.ContainerRepositoryIamBindingArgs{
-//				RepositoryId: pulumi.String(repo_2.Id),
-//				Role:         pulumi.String("container-registry.images.pusher"),
-//				Members: pulumi.StringArray{
-//					pulumi.String("serviceAccount:your-service-account-id"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewContainerRegistry(ctx, "your-registry", &yandex.ContainerRegistryArgs{
+// 			FolderId: pulumi.String("your-folder-id"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewContainerRepository(ctx, "repo-1", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewContainerRepositoryIamBinding(ctx, "puller", &yandex.ContainerRepositoryIamBindingArgs{
+// 			RepositoryId: repo_1.ID(),
+// 			Role:         pulumi.String("container-registry.images.puller"),
+// 			Members: pulumi.StringArray{
+// 				pulumi.String("system:allUsers"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		repo_2, err := yandex.LookupContainerRepository(ctx, &GetContainerRepositoryArgs{
+// 			Name: pulumi.StringRef("some_repository_name"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewContainerRepositoryIamBinding(ctx, "pusher", &yandex.ContainerRepositoryIamBindingArgs{
+// 			RepositoryId: pulumi.String(repo_2.Id),
+// 			Role:         pulumi.String("container-registry.images.pusher"),
+// 			Members: pulumi.StringArray{
+// 				pulumi.String("serviceAccount:your-service-account-id"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -77,9 +74,7 @@ import (
 // IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `repository_id` and role, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/containerRepositoryIamBinding:ContainerRepositoryIamBinding puller "repository_id container-registry.images.puller"
-//
+//  $ pulumi import yandex:index/containerRepositoryIamBinding:ContainerRepositoryIamBinding puller "repository_id container-registry.images.puller"
 // ```
 type ContainerRepositoryIamBinding struct {
 	pulumi.CustomResourceState
@@ -222,7 +217,7 @@ func (i *ContainerRepositoryIamBinding) ToContainerRepositoryIamBindingOutputWit
 // ContainerRepositoryIamBindingArrayInput is an input type that accepts ContainerRepositoryIamBindingArray and ContainerRepositoryIamBindingArrayOutput values.
 // You can construct a concrete instance of `ContainerRepositoryIamBindingArrayInput` via:
 //
-//	ContainerRepositoryIamBindingArray{ ContainerRepositoryIamBindingArgs{...} }
+//          ContainerRepositoryIamBindingArray{ ContainerRepositoryIamBindingArgs{...} }
 type ContainerRepositoryIamBindingArrayInput interface {
 	pulumi.Input
 
@@ -247,7 +242,7 @@ func (i ContainerRepositoryIamBindingArray) ToContainerRepositoryIamBindingArray
 // ContainerRepositoryIamBindingMapInput is an input type that accepts ContainerRepositoryIamBindingMap and ContainerRepositoryIamBindingMapOutput values.
 // You can construct a concrete instance of `ContainerRepositoryIamBindingMapInput` via:
 //
-//	ContainerRepositoryIamBindingMap{ "key": ContainerRepositoryIamBindingArgs{...} }
+//          ContainerRepositoryIamBindingMap{ "key": ContainerRepositoryIamBindingArgs{...} }
 type ContainerRepositoryIamBindingMapInput interface {
 	pulumi.Input
 

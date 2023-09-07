@@ -22,34 +22,31 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewKmsSymmetricKey(ctx, "your-key", &yandex.KmsSymmetricKeyArgs{
-//				FolderId: pulumi.String("your-folder-id"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewKmsSymmetricKeyIamBinding(ctx, "viewer", &yandex.KmsSymmetricKeyIamBindingArgs{
-//				SymmetricKeyId: your_key.ID(),
-//				Role:           pulumi.String("viewer"),
-//				Members: pulumi.StringArray{
-//					pulumi.String("userAccount:foo_user_id"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewKmsSymmetricKey(ctx, "your-key", &yandex.KmsSymmetricKeyArgs{
+// 			FolderId: pulumi.String("your-folder-id"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewKmsSymmetricKeyIamBinding(ctx, "viewer", &yandex.KmsSymmetricKeyIamBindingArgs{
+// 			SymmetricKeyId: your_key.ID(),
+// 			Role:           pulumi.String("viewer"),
+// 			Members: pulumi.StringArray{
+// 				pulumi.String("userAccount:foo_user_id"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -57,9 +54,7 @@ import (
 // IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `symmetric_key_id` and role, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/kmsSymmetricKeyIamBinding:KmsSymmetricKeyIamBinding viewer "symmetric_key_id viewer"
-//
+//  $ pulumi import yandex:index/kmsSymmetricKeyIamBinding:KmsSymmetricKeyIamBinding viewer "symmetric_key_id viewer"
 // ```
 type KmsSymmetricKeyIamBinding struct {
 	pulumi.CustomResourceState
@@ -202,7 +197,7 @@ func (i *KmsSymmetricKeyIamBinding) ToKmsSymmetricKeyIamBindingOutputWithContext
 // KmsSymmetricKeyIamBindingArrayInput is an input type that accepts KmsSymmetricKeyIamBindingArray and KmsSymmetricKeyIamBindingArrayOutput values.
 // You can construct a concrete instance of `KmsSymmetricKeyIamBindingArrayInput` via:
 //
-//	KmsSymmetricKeyIamBindingArray{ KmsSymmetricKeyIamBindingArgs{...} }
+//          KmsSymmetricKeyIamBindingArray{ KmsSymmetricKeyIamBindingArgs{...} }
 type KmsSymmetricKeyIamBindingArrayInput interface {
 	pulumi.Input
 
@@ -227,7 +222,7 @@ func (i KmsSymmetricKeyIamBindingArray) ToKmsSymmetricKeyIamBindingArrayOutputWi
 // KmsSymmetricKeyIamBindingMapInput is an input type that accepts KmsSymmetricKeyIamBindingMap and KmsSymmetricKeyIamBindingMapOutput values.
 // You can construct a concrete instance of `KmsSymmetricKeyIamBindingMapInput` via:
 //
-//	KmsSymmetricKeyIamBindingMap{ "key": KmsSymmetricKeyIamBindingArgs{...} }
+//          KmsSymmetricKeyIamBindingMap{ "key": KmsSymmetricKeyIamBindingArgs{...} }
 type KmsSymmetricKeyIamBindingMapInput interface {
 	pulumi.Input
 

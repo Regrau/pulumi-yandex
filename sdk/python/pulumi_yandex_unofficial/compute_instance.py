@@ -22,11 +22,13 @@ class ComputeInstanceArgs:
                  allow_recreate: Optional[pulumi.Input[bool]] = None,
                  allow_stopping_for_update: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 filesystems: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceFilesystemArgs']]]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  local_disks: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceLocalDiskArgs']]]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 metadata_options: Optional[pulumi.Input['ComputeInstanceMetadataOptionsArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_acceleration_type: Optional[pulumi.Input[str]] = None,
                  placement_policy: Optional[pulumi.Input['ComputeInstancePlacementPolicyArgs']] = None,
@@ -42,6 +44,7 @@ class ComputeInstanceArgs:
                be specified multiple times. The structure is documented below.
         :param pulumi.Input['ComputeInstanceResourcesArgs'] resources: Compute resources that are allocated for the instance. The structure is documented below.
         :param pulumi.Input[str] description: Description of the boot disk.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceFilesystemArgs']]] filesystems: List of filesystems that are attached to the instance. Structure is documented below.
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
                is not provided, the default provider folder is used.
         :param pulumi.Input[str] hostname: Host name for the instance. This field is used to generate the instance `fqdn` value. 
@@ -52,6 +55,7 @@ class ComputeInstanceArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceLocalDiskArgs']]] local_disks: List of local disks that are attached to the instance. Structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata key/value pairs to make available from
                within the instance.
+        :param pulumi.Input['ComputeInstanceMetadataOptionsArgs'] metadata_options: Options allow user to configure access to instance's metadata
         :param pulumi.Input[str] name: Name of the boot disk.
         :param pulumi.Input[str] network_acceleration_type: Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
         :param pulumi.Input['ComputeInstancePlacementPolicyArgs'] placement_policy: The placement policy configuration. The structure is documented below.
@@ -72,6 +76,8 @@ class ComputeInstanceArgs:
             pulumi.set(__self__, "allow_stopping_for_update", allow_stopping_for_update)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if filesystems is not None:
+            pulumi.set(__self__, "filesystems", filesystems)
         if folder_id is not None:
             pulumi.set(__self__, "folder_id", folder_id)
         if hostname is not None:
@@ -82,6 +88,8 @@ class ComputeInstanceArgs:
             pulumi.set(__self__, "local_disks", local_disks)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if metadata_options is not None:
+            pulumi.set(__self__, "metadata_options", metadata_options)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if network_acceleration_type is not None:
@@ -167,6 +175,18 @@ class ComputeInstanceArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter
+    def filesystems(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceFilesystemArgs']]]]:
+        """
+        List of filesystems that are attached to the instance. Structure is documented below.
+        """
+        return pulumi.get(self, "filesystems")
+
+    @filesystems.setter
+    def filesystems(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceFilesystemArgs']]]]):
+        pulumi.set(self, "filesystems", value)
+
+    @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -230,6 +250,18 @@ class ComputeInstanceArgs:
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "metadata", value)
+
+    @property
+    @pulumi.getter(name="metadataOptions")
+    def metadata_options(self) -> Optional[pulumi.Input['ComputeInstanceMetadataOptionsArgs']]:
+        """
+        Options allow user to configure access to instance's metadata
+        """
+        return pulumi.get(self, "metadata_options")
+
+    @metadata_options.setter
+    def metadata_options(self, value: Optional[pulumi.Input['ComputeInstanceMetadataOptionsArgs']]):
+        pulumi.set(self, "metadata_options", value)
 
     @property
     @pulumi.getter
@@ -338,12 +370,14 @@ class _ComputeInstanceState:
                  boot_disk: Optional[pulumi.Input['ComputeInstanceBootDiskArgs']] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 filesystems: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceFilesystemArgs']]]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  local_disks: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceLocalDiskArgs']]]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 metadata_options: Optional[pulumi.Input['ComputeInstanceMetadataOptionsArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_acceleration_type: Optional[pulumi.Input[str]] = None,
                  network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceNetworkInterfaceArgs']]]] = None,
@@ -360,6 +394,7 @@ class _ComputeInstanceState:
         :param pulumi.Input['ComputeInstanceBootDiskArgs'] boot_disk: The boot disk for the instance. The structure is documented below.
         :param pulumi.Input[str] created_at: Creation timestamp of the instance.
         :param pulumi.Input[str] description: Description of the boot disk.
+        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceFilesystemArgs']]] filesystems: List of filesystems that are attached to the instance. Structure is documented below.
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
                is not provided, the default provider folder is used.
         :param pulumi.Input[str] fqdn: DNS record FQDN (must have a dot at the end).
@@ -371,6 +406,7 @@ class _ComputeInstanceState:
         :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceLocalDiskArgs']]] local_disks: List of local disks that are attached to the instance. Structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata key/value pairs to make available from
                within the instance.
+        :param pulumi.Input['ComputeInstanceMetadataOptionsArgs'] metadata_options: Options allow user to configure access to instance's metadata
         :param pulumi.Input[str] name: Name of the boot disk.
         :param pulumi.Input[str] network_acceleration_type: Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
         :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceNetworkInterfaceArgs']]] network_interfaces: Networks to attach to the instance. This can
@@ -396,6 +432,8 @@ class _ComputeInstanceState:
             pulumi.set(__self__, "created_at", created_at)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if filesystems is not None:
+            pulumi.set(__self__, "filesystems", filesystems)
         if folder_id is not None:
             pulumi.set(__self__, "folder_id", folder_id)
         if fqdn is not None:
@@ -408,6 +446,8 @@ class _ComputeInstanceState:
             pulumi.set(__self__, "local_disks", local_disks)
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
+        if metadata_options is not None:
+            pulumi.set(__self__, "metadata_options", metadata_options)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if network_acceleration_type is not None:
@@ -486,6 +526,18 @@ class _ComputeInstanceState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter
+    def filesystems(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceFilesystemArgs']]]]:
+        """
+        List of filesystems that are attached to the instance. Structure is documented below.
+        """
+        return pulumi.get(self, "filesystems")
+
+    @filesystems.setter
+    def filesystems(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceFilesystemArgs']]]]):
+        pulumi.set(self, "filesystems", value)
+
+    @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -561,6 +613,18 @@ class _ComputeInstanceState:
     @metadata.setter
     def metadata(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "metadata", value)
+
+    @property
+    @pulumi.getter(name="metadataOptions")
+    def metadata_options(self) -> Optional[pulumi.Input['ComputeInstanceMetadataOptionsArgs']]:
+        """
+        Options allow user to configure access to instance's metadata
+        """
+        return pulumi.get(self, "metadata_options")
+
+    @metadata_options.setter
+    def metadata_options(self, value: Optional[pulumi.Input['ComputeInstanceMetadataOptionsArgs']]):
+        pulumi.set(self, "metadata_options", value)
 
     @property
     @pulumi.getter
@@ -707,11 +771,13 @@ class ComputeInstance(pulumi.CustomResource):
                  allow_stopping_for_update: Optional[pulumi.Input[bool]] = None,
                  boot_disk: Optional[pulumi.Input[pulumi.InputType['ComputeInstanceBootDiskArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceFilesystemArgs']]]]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  local_disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceLocalDiskArgs']]]]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 metadata_options: Optional[pulumi.Input[pulumi.InputType['ComputeInstanceMetadataOptionsArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_acceleration_type: Optional[pulumi.Input[str]] = None,
                  network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceNetworkInterfaceArgs']]]]] = None,
@@ -736,6 +802,7 @@ class ComputeInstance(pulumi.CustomResource):
         foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
         foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
             network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.5.0.0/24"],
             zone="ru-central1-a")
         default = yandex.ComputeInstance("default",
             boot_disk=yandex.ComputeInstanceBootDiskArgs(
@@ -770,6 +837,7 @@ class ComputeInstance(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['ComputeInstanceBootDiskArgs']] boot_disk: The boot disk for the instance. The structure is documented below.
         :param pulumi.Input[str] description: Description of the boot disk.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceFilesystemArgs']]]] filesystems: List of filesystems that are attached to the instance. Structure is documented below.
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
                is not provided, the default provider folder is used.
         :param pulumi.Input[str] hostname: Host name for the instance. This field is used to generate the instance `fqdn` value. 
@@ -780,6 +848,7 @@ class ComputeInstance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceLocalDiskArgs']]]] local_disks: List of local disks that are attached to the instance. Structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata key/value pairs to make available from
                within the instance.
+        :param pulumi.Input[pulumi.InputType['ComputeInstanceMetadataOptionsArgs']] metadata_options: Options allow user to configure access to instance's metadata
         :param pulumi.Input[str] name: Name of the boot disk.
         :param pulumi.Input[str] network_acceleration_type: Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceNetworkInterfaceArgs']]]] network_interfaces: Networks to attach to the instance. This can
@@ -813,6 +882,7 @@ class ComputeInstance(pulumi.CustomResource):
         foo_vpc_network = yandex.VpcNetwork("fooVpcNetwork")
         foo_vpc_subnet = yandex.VpcSubnet("fooVpcSubnet",
             network_id=foo_vpc_network.id,
+            v4_cidr_blocks=["10.5.0.0/24"],
             zone="ru-central1-a")
         default = yandex.ComputeInstance("default",
             boot_disk=yandex.ComputeInstanceBootDiskArgs(
@@ -862,11 +932,13 @@ class ComputeInstance(pulumi.CustomResource):
                  allow_stopping_for_update: Optional[pulumi.Input[bool]] = None,
                  boot_disk: Optional[pulumi.Input[pulumi.InputType['ComputeInstanceBootDiskArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceFilesystemArgs']]]]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  local_disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceLocalDiskArgs']]]]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+                 metadata_options: Optional[pulumi.Input[pulumi.InputType['ComputeInstanceMetadataOptionsArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  network_acceleration_type: Optional[pulumi.Input[str]] = None,
                  network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceNetworkInterfaceArgs']]]]] = None,
@@ -892,11 +964,13 @@ class ComputeInstance(pulumi.CustomResource):
                 raise TypeError("Missing required property 'boot_disk'")
             __props__.__dict__["boot_disk"] = boot_disk
             __props__.__dict__["description"] = description
+            __props__.__dict__["filesystems"] = filesystems
             __props__.__dict__["folder_id"] = folder_id
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["labels"] = labels
             __props__.__dict__["local_disks"] = local_disks
             __props__.__dict__["metadata"] = metadata
+            __props__.__dict__["metadata_options"] = metadata_options
             __props__.__dict__["name"] = name
             __props__.__dict__["network_acceleration_type"] = network_acceleration_type
             if network_interfaces is None and not opts.urn:
@@ -929,12 +1003,14 @@ class ComputeInstance(pulumi.CustomResource):
             boot_disk: Optional[pulumi.Input[pulumi.InputType['ComputeInstanceBootDiskArgs']]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceFilesystemArgs']]]]] = None,
             folder_id: Optional[pulumi.Input[str]] = None,
             fqdn: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             local_disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceLocalDiskArgs']]]]] = None,
             metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
+            metadata_options: Optional[pulumi.Input[pulumi.InputType['ComputeInstanceMetadataOptionsArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             network_acceleration_type: Optional[pulumi.Input[str]] = None,
             network_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceNetworkInterfaceArgs']]]]] = None,
@@ -956,6 +1032,7 @@ class ComputeInstance(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['ComputeInstanceBootDiskArgs']] boot_disk: The boot disk for the instance. The structure is documented below.
         :param pulumi.Input[str] created_at: Creation timestamp of the instance.
         :param pulumi.Input[str] description: Description of the boot disk.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceFilesystemArgs']]]] filesystems: List of filesystems that are attached to the instance. Structure is documented below.
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
                is not provided, the default provider folder is used.
         :param pulumi.Input[str] fqdn: DNS record FQDN (must have a dot at the end).
@@ -967,6 +1044,7 @@ class ComputeInstance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceLocalDiskArgs']]]] local_disks: List of local disks that are attached to the instance. Structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: Metadata key/value pairs to make available from
                within the instance.
+        :param pulumi.Input[pulumi.InputType['ComputeInstanceMetadataOptionsArgs']] metadata_options: Options allow user to configure access to instance's metadata
         :param pulumi.Input[str] name: Name of the boot disk.
         :param pulumi.Input[str] network_acceleration_type: Type of network acceleration. The default is `standard`. Values: `standard`, `software_accelerated`
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceNetworkInterfaceArgs']]]] network_interfaces: Networks to attach to the instance. This can
@@ -991,12 +1069,14 @@ class ComputeInstance(pulumi.CustomResource):
         __props__.__dict__["boot_disk"] = boot_disk
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
+        __props__.__dict__["filesystems"] = filesystems
         __props__.__dict__["folder_id"] = folder_id
         __props__.__dict__["fqdn"] = fqdn
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["labels"] = labels
         __props__.__dict__["local_disks"] = local_disks
         __props__.__dict__["metadata"] = metadata
+        __props__.__dict__["metadata_options"] = metadata_options
         __props__.__dict__["name"] = name
         __props__.__dict__["network_acceleration_type"] = network_acceleration_type
         __props__.__dict__["network_interfaces"] = network_interfaces
@@ -1043,6 +1123,14 @@ class ComputeInstance(pulumi.CustomResource):
         Description of the boot disk.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def filesystems(self) -> pulumi.Output[Optional[Sequence['outputs.ComputeInstanceFilesystem']]]:
+        """
+        List of filesystems that are attached to the instance. Structure is documented below.
+        """
+        return pulumi.get(self, "filesystems")
 
     @property
     @pulumi.getter(name="folderId")
@@ -1096,6 +1184,14 @@ class ComputeInstance(pulumi.CustomResource):
         within the instance.
         """
         return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter(name="metadataOptions")
+    def metadata_options(self) -> pulumi.Output['outputs.ComputeInstanceMetadataOptions']:
+        """
+        Options allow user to configure access to instance's metadata
+        """
+        return pulumi.get(self, "metadata_options")
 
     @property
     @pulumi.getter

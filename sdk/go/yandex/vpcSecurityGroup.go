@@ -20,64 +20,61 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewVpcNetwork(ctx, "lab-net", nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewVpcSecurityGroup(ctx, "group1", &yandex.VpcSecurityGroupArgs{
-//				Description: pulumi.String("description for my security group"),
-//				Egresses: VpcSecurityGroupEgressArray{
-//					&VpcSecurityGroupEgressArgs{
-//						Description: pulumi.String("rule2 description"),
-//						FromPort:    pulumi.Int(8090),
-//						Protocol:    pulumi.String("ANY"),
-//						ToPort:      pulumi.Int(8099),
-//						V4CidrBlocks: pulumi.StringArray{
-//							pulumi.String("10.0.1.0/24"),
-//							pulumi.String("10.0.2.0/24"),
-//						},
-//					},
-//					&VpcSecurityGroupEgressArgs{
-//						Description: pulumi.String("rule3 description"),
-//						FromPort:    pulumi.Int(8090),
-//						Protocol:    pulumi.String("UDP"),
-//						ToPort:      pulumi.Int(8099),
-//						V4CidrBlocks: pulumi.StringArray{
-//							pulumi.String("10.0.1.0/24"),
-//						},
-//					},
-//				},
-//				Ingresses: VpcSecurityGroupIngressArray{
-//					&VpcSecurityGroupIngressArgs{
-//						Description: pulumi.String("rule1 description"),
-//						Port:        pulumi.Int(8080),
-//						Protocol:    pulumi.String("TCP"),
-//						V4CidrBlocks: pulumi.StringArray{
-//							pulumi.String("10.0.1.0/24"),
-//							pulumi.String("10.0.2.0/24"),
-//						},
-//					},
-//				},
-//				Labels: pulumi.StringMap{
-//					"my-label": pulumi.String("my-label-value"),
-//				},
-//				NetworkId: lab_net.ID(),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewVpcNetwork(ctx, "lab-net", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewVpcSecurityGroup(ctx, "group1", &yandex.VpcSecurityGroupArgs{
+// 			Description: pulumi.String("description for my security group"),
+// 			Egresses: VpcSecurityGroupEgressArray{
+// 				&VpcSecurityGroupEgressArgs{
+// 					Description: pulumi.String("rule2 description"),
+// 					FromPort:    pulumi.Int(8090),
+// 					Protocol:    pulumi.String("ANY"),
+// 					ToPort:      pulumi.Int(8099),
+// 					V4CidrBlocks: pulumi.StringArray{
+// 						pulumi.String("10.0.1.0/24"),
+// 						pulumi.String("10.0.2.0/24"),
+// 					},
+// 				},
+// 				&VpcSecurityGroupEgressArgs{
+// 					Description: pulumi.String("rule3 description"),
+// 					FromPort:    pulumi.Int(8090),
+// 					Protocol:    pulumi.String("UDP"),
+// 					ToPort:      pulumi.Int(8099),
+// 					V4CidrBlocks: pulumi.StringArray{
+// 						pulumi.String("10.0.1.0/24"),
+// 					},
+// 				},
+// 			},
+// 			Ingresses: VpcSecurityGroupIngressArray{
+// 				&VpcSecurityGroupIngressArgs{
+// 					Description: pulumi.String("rule1 description"),
+// 					Port:        pulumi.Int(8080),
+// 					Protocol:    pulumi.String("TCP"),
+// 					V4CidrBlocks: pulumi.StringArray{
+// 						pulumi.String("10.0.1.0/24"),
+// 						pulumi.String("10.0.2.0/24"),
+// 					},
+// 				},
+// 			},
+// 			Labels: pulumi.StringMap{
+// 				"my-label": pulumi.String("my-label-value"),
+// 			},
+// 			NetworkId: lab_net.ID(),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type VpcSecurityGroup struct {
 	pulumi.CustomResourceState
@@ -241,7 +238,7 @@ func (i *VpcSecurityGroup) ToVpcSecurityGroupOutputWithContext(ctx context.Conte
 // VpcSecurityGroupArrayInput is an input type that accepts VpcSecurityGroupArray and VpcSecurityGroupArrayOutput values.
 // You can construct a concrete instance of `VpcSecurityGroupArrayInput` via:
 //
-//	VpcSecurityGroupArray{ VpcSecurityGroupArgs{...} }
+//          VpcSecurityGroupArray{ VpcSecurityGroupArgs{...} }
 type VpcSecurityGroupArrayInput interface {
 	pulumi.Input
 
@@ -266,7 +263,7 @@ func (i VpcSecurityGroupArray) ToVpcSecurityGroupArrayOutputWithContext(ctx cont
 // VpcSecurityGroupMapInput is an input type that accepts VpcSecurityGroupMap and VpcSecurityGroupMapOutput values.
 // You can construct a concrete instance of `VpcSecurityGroupMapInput` via:
 //
-//	VpcSecurityGroupMap{ "key": VpcSecurityGroupArgs{...} }
+//          VpcSecurityGroupMap{ "key": VpcSecurityGroupArgs{...} }
 type VpcSecurityGroupMapInput interface {
 	pulumi.Input
 

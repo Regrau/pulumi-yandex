@@ -18,59 +18,56 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewDatatransferEndpoint(ctx, "pgSource", &yandex.DatatransferEndpointArgs{
-//				Settings: &DatatransferEndpointSettingsArgs{
-//					PostgresSource: &DatatransferEndpointSettingsPostgresSourceArgs{
-//						Connection: &DatatransferEndpointSettingsPostgresSourceConnectionArgs{
-//							OnPremise: &DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs{
-//								Hosts: pulumi.StringArray{
-//									pulumi.String("example.org"),
-//								},
-//								Port: pulumi.Int(5432),
-//							},
-//						},
-//						Database: pulumi.String("db1"),
-//						Password: &DatatransferEndpointSettingsPostgresSourcePasswordArgs{
-//							Raw: pulumi.String("123"),
-//						},
-//						SlotGigabyteLagLimit: pulumi.Int(100),
-//						User:                 pulumi.String("user1"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewDatatransferEndpoint(ctx, "pgTarget", &yandex.DatatransferEndpointArgs{
-//				FolderId: pulumi.String("some_folder_id"),
-//				Settings: &DatatransferEndpointSettingsArgs{
-//					PostgresTarget: &DatatransferEndpointSettingsPostgresTargetArgs{
-//						Connection: &DatatransferEndpointSettingsPostgresTargetConnectionArgs{
-//							MdbClusterId: pulumi.String("some_cluster_id"),
-//						},
-//						Database: pulumi.String("db2"),
-//						Password: &DatatransferEndpointSettingsPostgresTargetPasswordArgs{
-//							Raw: pulumi.String("321"),
-//						},
-//						User: pulumi.String("user2"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewDatatransferEndpoint(ctx, "pgSource", &yandex.DatatransferEndpointArgs{
+// 			Settings: &DatatransferEndpointSettingsArgs{
+// 				PostgresSource: &DatatransferEndpointSettingsPostgresSourceArgs{
+// 					Connection: &DatatransferEndpointSettingsPostgresSourceConnectionArgs{
+// 						OnPremise: &DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs{
+// 							Hosts: pulumi.StringArray{
+// 								pulumi.String("example.org"),
+// 							},
+// 							Port: pulumi.Int(5432),
+// 						},
+// 					},
+// 					Database: pulumi.String("db1"),
+// 					Password: &DatatransferEndpointSettingsPostgresSourcePasswordArgs{
+// 						Raw: pulumi.String("123"),
+// 					},
+// 					SlotGigabyteLagLimit: pulumi.Int(100),
+// 					User:                 pulumi.String("user1"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewDatatransferEndpoint(ctx, "pgTarget", &yandex.DatatransferEndpointArgs{
+// 			FolderId: pulumi.String("some_folder_id"),
+// 			Settings: &DatatransferEndpointSettingsArgs{
+// 				PostgresTarget: &DatatransferEndpointSettingsPostgresTargetArgs{
+// 					Connection: &DatatransferEndpointSettingsPostgresTargetConnectionArgs{
+// 						MdbClusterId: pulumi.String("some_cluster_id"),
+// 					},
+// 					Database: pulumi.String("db2"),
+// 					Password: &DatatransferEndpointSettingsPostgresTargetPasswordArgs{
+// 						Raw: pulumi.String("321"),
+// 					},
+// 					User: pulumi.String("user2"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -78,9 +75,7 @@ import (
 // An endpoint can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/datatransferEndpoint:DatatransferEndpoint foo endpoint_id
-//
+//  $ pulumi import yandex:index/datatransferEndpoint:DatatransferEndpoint foo endpoint_id
 // ```
 type DatatransferEndpoint struct {
 	pulumi.CustomResourceState
@@ -209,7 +204,7 @@ func (i *DatatransferEndpoint) ToDatatransferEndpointOutputWithContext(ctx conte
 // DatatransferEndpointArrayInput is an input type that accepts DatatransferEndpointArray and DatatransferEndpointArrayOutput values.
 // You can construct a concrete instance of `DatatransferEndpointArrayInput` via:
 //
-//	DatatransferEndpointArray{ DatatransferEndpointArgs{...} }
+//          DatatransferEndpointArray{ DatatransferEndpointArgs{...} }
 type DatatransferEndpointArrayInput interface {
 	pulumi.Input
 
@@ -234,7 +229,7 @@ func (i DatatransferEndpointArray) ToDatatransferEndpointArrayOutputWithContext(
 // DatatransferEndpointMapInput is an input type that accepts DatatransferEndpointMap and DatatransferEndpointMapOutput values.
 // You can construct a concrete instance of `DatatransferEndpointMapInput` via:
 //
-//	DatatransferEndpointMap{ "key": DatatransferEndpointArgs{...} }
+//          DatatransferEndpointMap{ "key": DatatransferEndpointArgs{...} }
 type DatatransferEndpointMapInput interface {
 	pulumi.Input
 

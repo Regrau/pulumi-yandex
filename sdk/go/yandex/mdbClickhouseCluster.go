@@ -19,9 +19,7 @@ import (
 // A cluster can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/mdbClickhouseCluster:MdbClickhouseCluster foo cluster_id
-//
+//  $ pulumi import yandex:index/mdbClickhouseCluster:MdbClickhouseCluster foo cluster_id
 // ```
 type MdbClickhouseCluster struct {
 	pulumi.CustomResourceState
@@ -33,8 +31,8 @@ type MdbClickhouseCluster struct {
 	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
 	BackupWindowStart MdbClickhouseClusterBackupWindowStartOutput `pulumi:"backupWindowStart"`
 	// Configuration of the ClickHouse subcluster. The structure is documented below.
-	Clickhouse   MdbClickhouseClusterClickhouseOutput      `pulumi:"clickhouse"`
-	CloudStorage MdbClickhouseClusterCloudStoragePtrOutput `pulumi:"cloudStorage"`
+	Clickhouse   MdbClickhouseClusterClickhouseOutput   `pulumi:"clickhouse"`
+	CloudStorage MdbClickhouseClusterCloudStorageOutput `pulumi:"cloudStorage"`
 	// Whether to copy schema on new ClickHouse hosts.
 	CopySchemaOnNewHosts pulumi.BoolPtrOutput `pulumi:"copySchemaOnNewHosts"`
 	// Timestamp of cluster creation.
@@ -408,7 +406,7 @@ func (i *MdbClickhouseCluster) ToMdbClickhouseClusterOutputWithContext(ctx conte
 // MdbClickhouseClusterArrayInput is an input type that accepts MdbClickhouseClusterArray and MdbClickhouseClusterArrayOutput values.
 // You can construct a concrete instance of `MdbClickhouseClusterArrayInput` via:
 //
-//	MdbClickhouseClusterArray{ MdbClickhouseClusterArgs{...} }
+//          MdbClickhouseClusterArray{ MdbClickhouseClusterArgs{...} }
 type MdbClickhouseClusterArrayInput interface {
 	pulumi.Input
 
@@ -433,7 +431,7 @@ func (i MdbClickhouseClusterArray) ToMdbClickhouseClusterArrayOutputWithContext(
 // MdbClickhouseClusterMapInput is an input type that accepts MdbClickhouseClusterMap and MdbClickhouseClusterMapOutput values.
 // You can construct a concrete instance of `MdbClickhouseClusterMapInput` via:
 //
-//	MdbClickhouseClusterMap{ "key": MdbClickhouseClusterArgs{...} }
+//          MdbClickhouseClusterMap{ "key": MdbClickhouseClusterArgs{...} }
 type MdbClickhouseClusterMapInput interface {
 	pulumi.Input
 
@@ -489,8 +487,8 @@ func (o MdbClickhouseClusterOutput) Clickhouse() MdbClickhouseClusterClickhouseO
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterClickhouseOutput { return v.Clickhouse }).(MdbClickhouseClusterClickhouseOutput)
 }
 
-func (o MdbClickhouseClusterOutput) CloudStorage() MdbClickhouseClusterCloudStoragePtrOutput {
-	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterCloudStoragePtrOutput { return v.CloudStorage }).(MdbClickhouseClusterCloudStoragePtrOutput)
+func (o MdbClickhouseClusterOutput) CloudStorage() MdbClickhouseClusterCloudStorageOutput {
+	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterCloudStorageOutput { return v.CloudStorage }).(MdbClickhouseClusterCloudStorageOutput)
 }
 
 // Whether to copy schema on new ClickHouse hosts.

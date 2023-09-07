@@ -24,26 +24,23 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewIamServiceAccountStaticAccessKey(ctx, "sa-static-key", &yandex.IamServiceAccountStaticAccessKeyArgs{
-//				Description:      pulumi.String("static access key for object storage"),
-//				PgpKey:           pulumi.String("keybase:keybaseusername"),
-//				ServiceAccountId: pulumi.String("some_sa_id"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewIamServiceAccountStaticAccessKey(ctx, "sa-static-key", &yandex.IamServiceAccountStaticAccessKeyArgs{
+// 			Description:      pulumi.String("static access key for object storage"),
+// 			PgpKey:           pulumi.String("keybase:keybaseusername"),
+// 			ServiceAccountId: pulumi.String("some_sa_id"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type IamServiceAccountStaticAccessKey struct {
 	pulumi.CustomResourceState
@@ -189,7 +186,7 @@ func (i *IamServiceAccountStaticAccessKey) ToIamServiceAccountStaticAccessKeyOut
 // IamServiceAccountStaticAccessKeyArrayInput is an input type that accepts IamServiceAccountStaticAccessKeyArray and IamServiceAccountStaticAccessKeyArrayOutput values.
 // You can construct a concrete instance of `IamServiceAccountStaticAccessKeyArrayInput` via:
 //
-//	IamServiceAccountStaticAccessKeyArray{ IamServiceAccountStaticAccessKeyArgs{...} }
+//          IamServiceAccountStaticAccessKeyArray{ IamServiceAccountStaticAccessKeyArgs{...} }
 type IamServiceAccountStaticAccessKeyArrayInput interface {
 	pulumi.Input
 
@@ -214,7 +211,7 @@ func (i IamServiceAccountStaticAccessKeyArray) ToIamServiceAccountStaticAccessKe
 // IamServiceAccountStaticAccessKeyMapInput is an input type that accepts IamServiceAccountStaticAccessKeyMap and IamServiceAccountStaticAccessKeyMapOutput values.
 // You can construct a concrete instance of `IamServiceAccountStaticAccessKeyMapInput` via:
 //
-//	IamServiceAccountStaticAccessKeyMap{ "key": IamServiceAccountStaticAccessKeyArgs{...} }
+//          IamServiceAccountStaticAccessKeyMap{ "key": IamServiceAccountStaticAccessKeyArgs{...} }
 type IamServiceAccountStaticAccessKeyMapInput interface {
 	pulumi.Input
 

@@ -443,7 +443,7 @@ export class MdbClickhouseCluster extends pulumi.CustomResource {
      * Configuration of the ClickHouse subcluster. The structure is documented below.
      */
     public readonly clickhouse!: pulumi.Output<outputs.MdbClickhouseClusterClickhouse>;
-    public readonly cloudStorage!: pulumi.Output<outputs.MdbClickhouseClusterCloudStorage | undefined>;
+    public readonly cloudStorage!: pulumi.Output<outputs.MdbClickhouseClusterCloudStorage>;
     /**
      * Whether to copy schema on new ClickHouse hosts.
      */

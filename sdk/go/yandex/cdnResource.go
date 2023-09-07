@@ -16,12 +16,10 @@ import (
 //
 // ## Import
 //
-// # A origin group can be imported using any of these accepted formats
+// A origin group can be imported using any of these accepted formats
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/cdnResource:CdnResource default origin_group_id
-//
+//  $ pulumi import yandex:index/cdnResource:CdnResource default origin_group_id
 // ```
 type CdnResource struct {
 	pulumi.CustomResourceState
@@ -186,7 +184,7 @@ func (i *CdnResource) ToCdnResourceOutputWithContext(ctx context.Context) CdnRes
 // CdnResourceArrayInput is an input type that accepts CdnResourceArray and CdnResourceArrayOutput values.
 // You can construct a concrete instance of `CdnResourceArrayInput` via:
 //
-//	CdnResourceArray{ CdnResourceArgs{...} }
+//          CdnResourceArray{ CdnResourceArgs{...} }
 type CdnResourceArrayInput interface {
 	pulumi.Input
 
@@ -211,7 +209,7 @@ func (i CdnResourceArray) ToCdnResourceArrayOutputWithContext(ctx context.Contex
 // CdnResourceMapInput is an input type that accepts CdnResourceMap and CdnResourceMapOutput values.
 // You can construct a concrete instance of `CdnResourceMapInput` via:
 //
-//	CdnResourceMap{ "key": CdnResourceArgs{...} }
+//          CdnResourceMap{ "key": CdnResourceArgs{...} }
 type CdnResourceMapInput interface {
 	pulumi.Input
 

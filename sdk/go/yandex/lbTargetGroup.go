@@ -19,34 +19,31 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewLbTargetGroup(ctx, "foo", &yandex.LbTargetGroupArgs{
-//				RegionId: pulumi.String("ru-central1"),
-//				Targets: LbTargetGroupTargetArray{
-//					&LbTargetGroupTargetArgs{
-//						Address:  pulumi.Any(yandex_compute_instance.MyInstance1.Network_interface[0].Ip_address),
-//						SubnetId: pulumi.Any(yandex_vpc_subnet.MySubnet.Id),
-//					},
-//					&LbTargetGroupTargetArgs{
-//						Address:  pulumi.Any(yandex_compute_instance.MyInstance2.Network_interface[0].Ip_address),
-//						SubnetId: pulumi.Any(yandex_vpc_subnet.MySubnet.Id),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewLbTargetGroup(ctx, "foo", &yandex.LbTargetGroupArgs{
+// 			RegionId: pulumi.String("ru-central1"),
+// 			Targets: LbTargetGroupTargetArray{
+// 				&LbTargetGroupTargetArgs{
+// 					Address:  pulumi.Any(yandex_compute_instance.MyInstance1.Network_interface[0].Ip_address),
+// 					SubnetId: pulumi.Any(yandex_vpc_subnet.MySubnet.Id),
+// 				},
+// 				&LbTargetGroupTargetArgs{
+// 					Address:  pulumi.Any(yandex_compute_instance.MyInstance2.Network_interface[0].Ip_address),
+// 					SubnetId: pulumi.Any(yandex_vpc_subnet.MySubnet.Id),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -54,9 +51,7 @@ import (
 // A target group can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/lbTargetGroup:LbTargetGroup default target_group_id
-//
+//  $ pulumi import yandex:index/lbTargetGroup:LbTargetGroup default target_group_id
 // ```
 type LbTargetGroup struct {
 	pulumi.CustomResourceState
@@ -216,7 +211,7 @@ func (i *LbTargetGroup) ToLbTargetGroupOutputWithContext(ctx context.Context) Lb
 // LbTargetGroupArrayInput is an input type that accepts LbTargetGroupArray and LbTargetGroupArrayOutput values.
 // You can construct a concrete instance of `LbTargetGroupArrayInput` via:
 //
-//	LbTargetGroupArray{ LbTargetGroupArgs{...} }
+//          LbTargetGroupArray{ LbTargetGroupArgs{...} }
 type LbTargetGroupArrayInput interface {
 	pulumi.Input
 
@@ -241,7 +236,7 @@ func (i LbTargetGroupArray) ToLbTargetGroupArrayOutputWithContext(ctx context.Co
 // LbTargetGroupMapInput is an input type that accepts LbTargetGroupMap and LbTargetGroupMapOutput values.
 // You can construct a concrete instance of `LbTargetGroupMapInput` via:
 //
-//	LbTargetGroupMap{ "key": LbTargetGroupArgs{...} }
+//          LbTargetGroupMap{ "key": LbTargetGroupArgs{...} }
 type LbTargetGroupMapInput interface {
 	pulumi.Input
 

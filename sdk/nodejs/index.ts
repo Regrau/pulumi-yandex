@@ -224,6 +224,11 @@ export const getComputeDiskPlacementGroup: typeof import("./getComputeDiskPlacem
 export const getComputeDiskPlacementGroupOutput: typeof import("./getComputeDiskPlacementGroup").getComputeDiskPlacementGroupOutput = null as any;
 utilities.lazyLoad(exports, ["getComputeDiskPlacementGroup","getComputeDiskPlacementGroupOutput"], () => require("./getComputeDiskPlacementGroup"));
 
+export { GetComputeFilesystemArgs, GetComputeFilesystemResult, GetComputeFilesystemOutputArgs } from "./getComputeFilesystem";
+export const getComputeFilesystem: typeof import("./getComputeFilesystem").getComputeFilesystem = null as any;
+export const getComputeFilesystemOutput: typeof import("./getComputeFilesystem").getComputeFilesystemOutput = null as any;
+utilities.lazyLoad(exports, ["getComputeFilesystem","getComputeFilesystemOutput"], () => require("./getComputeFilesystem"));
+
 export { GetComputeImageArgs, GetComputeImageResult, GetComputeImageOutputArgs } from "./getComputeImage";
 export const getComputeImage: typeof import("./getComputeImage").getComputeImage = null as any;
 export const getComputeImageOutput: typeof import("./getComputeImage").getComputeImageOutput = null as any;
@@ -769,6 +774,11 @@ export type VpcSubnet = import("./vpcSubnet").VpcSubnet;
 export const VpcSubnet: typeof import("./vpcSubnet").VpcSubnet = null as any;
 utilities.lazyLoad(exports, ["VpcSubnet"], () => require("./vpcSubnet"));
 
+export { YandexComputeFilesystemArgs, YandexComputeFilesystemState } from "./yandexComputeFilesystem";
+export type YandexComputeFilesystem = import("./yandexComputeFilesystem").YandexComputeFilesystem;
+export const YandexComputeFilesystem: typeof import("./yandexComputeFilesystem").YandexComputeFilesystem = null as any;
+utilities.lazyLoad(exports, ["YandexComputeFilesystem"], () => require("./yandexComputeFilesystem"));
+
 export { YdbDatabaseDedicatedArgs, YdbDatabaseDedicatedState } from "./ydbDatabaseDedicated";
 export type YdbDatabaseDedicated = import("./ydbDatabaseDedicated").YdbDatabaseDedicated;
 export const YdbDatabaseDedicated: typeof import("./ydbDatabaseDedicated").YdbDatabaseDedicated = null as any;
@@ -982,6 +992,8 @@ const _module = {
                 return new VpcSecurityGroupRule(name, <any>undefined, { urn })
             case "yandex:index/vpcSubnet:VpcSubnet":
                 return new VpcSubnet(name, <any>undefined, { urn })
+            case "yandex:index/yandexComputeFilesystem:yandexComputeFilesystem":
+                return new YandexComputeFilesystem(name, <any>undefined, { urn })
             case "yandex:index/ydbDatabaseDedicated:YdbDatabaseDedicated":
                 return new YdbDatabaseDedicated(name, <any>undefined, { urn })
             case "yandex:index/ydbDatabaseIamBinding:ydbDatabaseIamBinding":
@@ -1085,6 +1097,7 @@ pulumi.runtime.registerResourceModule("yandex", "index/vpcRouteTable", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/vpcSecurityGroup", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/vpcSecurityGroupRule", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/vpcSubnet", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/yandexComputeFilesystem", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/ydbDatabaseDedicated", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/ydbDatabaseIamBinding", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/ydbDatabaseServerless", _module)

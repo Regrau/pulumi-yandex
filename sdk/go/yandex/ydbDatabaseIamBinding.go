@@ -22,34 +22,31 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			database1, err := yandex.NewYdbDatabaseServerless(ctx, "database1", &yandex.YdbDatabaseServerlessArgs{
-//				FolderId: pulumi.Any(data.Yandex_resourcemanager_folder.Test_folder.Id),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewydbDatabaseIamBinding(ctx, "viewer", &yandex.ydbDatabaseIamBindingArgs{
-//				DatabaseId: database1.ID(),
-//				Role:       pulumi.String("ydb.viewer"),
-//				Members: pulumi.StringArray{
-//					pulumi.String("userAccount:foo_user_id"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		database1, err := yandex.NewYdbDatabaseServerless(ctx, "database1", &yandex.YdbDatabaseServerlessArgs{
+// 			FolderId: pulumi.Any(data.Yandex_resourcemanager_folder.Test_folder.Id),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewydbDatabaseIamBinding(ctx, "viewer", &yandex.ydbDatabaseIamBindingArgs{
+// 			DatabaseId: database1.ID(),
+// 			Role:       pulumi.String("ydb.viewer"),
+// 			Members: pulumi.StringArray{
+// 				pulumi.String("userAccount:foo_user_id"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -57,9 +54,7 @@ import (
 // IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `database_id` and role, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/ydbDatabaseIamBinding:ydbDatabaseIamBinding viewer "database_id ydb.viewer"
-//
+//  $ pulumi import yandex:index/ydbDatabaseIamBinding:ydbDatabaseIamBinding viewer "database_id ydb.viewer"
 // ```
 type YdbDatabaseIamBinding struct {
 	pulumi.CustomResourceState
@@ -202,7 +197,7 @@ func (i *YdbDatabaseIamBinding) ToYdbDatabaseIamBindingOutputWithContext(ctx con
 // YdbDatabaseIamBindingArrayInput is an input type that accepts YdbDatabaseIamBindingArray and YdbDatabaseIamBindingArrayOutput values.
 // You can construct a concrete instance of `YdbDatabaseIamBindingArrayInput` via:
 //
-//	YdbDatabaseIamBindingArray{ YdbDatabaseIamBindingArgs{...} }
+//          YdbDatabaseIamBindingArray{ YdbDatabaseIamBindingArgs{...} }
 type YdbDatabaseIamBindingArrayInput interface {
 	pulumi.Input
 
@@ -227,7 +222,7 @@ func (i YdbDatabaseIamBindingArray) ToYdbDatabaseIamBindingArrayOutputWithContex
 // YdbDatabaseIamBindingMapInput is an input type that accepts YdbDatabaseIamBindingMap and YdbDatabaseIamBindingMapOutput values.
 // You can construct a concrete instance of `YdbDatabaseIamBindingMapInput` via:
 //
-//	YdbDatabaseIamBindingMap{ "key": YdbDatabaseIamBindingArgs{...} }
+//          YdbDatabaseIamBindingMap{ "key": YdbDatabaseIamBindingArgs{...} }
 type YdbDatabaseIamBindingMapInput interface {
 	pulumi.Input
 

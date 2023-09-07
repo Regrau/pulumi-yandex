@@ -17,37 +17,34 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = yandex.GetIamPolicy(ctx, &GetIamPolicyArgs{
-//				Bindings: []GetIamPolicyBinding{
-//					GetIamPolicyBinding{
-//						Members: []string{
-//							"userAccount:user_id_1",
-//						},
-//						Role: "admin",
-//					},
-//					GetIamPolicyBinding{
-//						Members: []string{
-//							"userAccount:user_id_2",
-//						},
-//						Role: "viewer",
-//					},
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = yandex.GetIamPolicy(ctx, &GetIamPolicyArgs{
+// 			Bindings: []GetIamPolicyBinding{
+// 				GetIamPolicyBinding{
+// 					Members: []string{
+// 						"userAccount:user_id_1",
+// 					},
+// 					Role: "admin",
+// 				},
+// 				GetIamPolicyBinding{
+// 					Members: []string{
+// 						"userAccount:user_id_2",
+// 					},
+// 					Role: "viewer",
+// 				},
+// 			},
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // This data source is used to define [IAM] policies to apply to other resources.

@@ -121,7 +121,7 @@ func (i *MdbKafkaConnector) ToMdbKafkaConnectorOutputWithContext(ctx context.Con
 // MdbKafkaConnectorArrayInput is an input type that accepts MdbKafkaConnectorArray and MdbKafkaConnectorArrayOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorArrayInput` via:
 //
-//	MdbKafkaConnectorArray{ MdbKafkaConnectorArgs{...} }
+//          MdbKafkaConnectorArray{ MdbKafkaConnectorArgs{...} }
 type MdbKafkaConnectorArrayInput interface {
 	pulumi.Input
 
@@ -146,7 +146,7 @@ func (i MdbKafkaConnectorArray) ToMdbKafkaConnectorArrayOutputWithContext(ctx co
 // MdbKafkaConnectorMapInput is an input type that accepts MdbKafkaConnectorMap and MdbKafkaConnectorMapOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorMapInput` via:
 //
-//	MdbKafkaConnectorMap{ "key": MdbKafkaConnectorArgs{...} }
+//          MdbKafkaConnectorMap{ "key": MdbKafkaConnectorArgs{...} }
 type MdbKafkaConnectorMapInput interface {
 	pulumi.Input
 

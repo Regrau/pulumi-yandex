@@ -31,9 +31,11 @@ export function getComputeInstance(args?: GetComputeInstanceArgs, opts?: pulumi.
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("yandex:index/getComputeInstance:getComputeInstance", {
+        "filesystems": args.filesystems,
         "folderId": args.folderId,
         "instanceId": args.instanceId,
         "localDisks": args.localDisks,
+        "metadataOptions": args.metadataOptions,
         "name": args.name,
         "placementPolicy": args.placementPolicy,
     }, opts);
@@ -43,6 +45,7 @@ export function getComputeInstance(args?: GetComputeInstanceArgs, opts?: pulumi.
  * A collection of arguments for invoking getComputeInstance.
  */
 export interface GetComputeInstanceArgs {
+    filesystems?: inputs.GetComputeInstanceFilesystem[];
     /**
      * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
      */
@@ -55,6 +58,10 @@ export interface GetComputeInstanceArgs {
      * List of local disks that are attached to the instance. Structure is documented below.
      */
     localDisks?: inputs.GetComputeInstanceLocalDisk[];
+    /**
+     * Options allow user to configure access to instance's metadata
+     */
+    metadataOptions?: inputs.GetComputeInstanceMetadataOptions;
     /**
      * Name of the instance.
      */
@@ -81,6 +88,7 @@ export interface GetComputeInstanceResult {
      * Description of the boot disk.
      */
     readonly description: string;
+    readonly filesystems?: outputs.GetComputeInstanceFilesystem[];
     readonly folderId: string;
     /**
      * DNS record FQDN.
@@ -104,6 +112,10 @@ export interface GetComputeInstanceResult {
      * within the instance.
      */
     readonly metadata: {[key: string]: string};
+    /**
+     * Options allow user to configure access to instance's metadata
+     */
+    readonly metadataOptions: outputs.GetComputeInstanceMetadataOptions;
     /**
      * Name of the boot disk.
      */
@@ -161,6 +173,7 @@ export function getComputeInstanceOutput(args?: GetComputeInstanceOutputArgs, op
  * A collection of arguments for invoking getComputeInstance.
  */
 export interface GetComputeInstanceOutputArgs {
+    filesystems?: pulumi.Input<pulumi.Input<inputs.GetComputeInstanceFilesystemArgs>[]>;
     /**
      * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
      */
@@ -173,6 +186,10 @@ export interface GetComputeInstanceOutputArgs {
      * List of local disks that are attached to the instance. Structure is documented below.
      */
     localDisks?: pulumi.Input<pulumi.Input<inputs.GetComputeInstanceLocalDiskArgs>[]>;
+    /**
+     * Options allow user to configure access to instance's metadata
+     */
+    metadataOptions?: pulumi.Input<inputs.GetComputeInstanceMetadataOptionsArgs>;
     /**
      * Name of the instance.
      */

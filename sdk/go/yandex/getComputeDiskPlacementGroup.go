@@ -19,25 +19,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myGroup, err := yandex.LookupComputeDiskPlacementGroup(ctx, &GetComputeDiskPlacementGroupArgs{
-//				GroupId: pulumi.StringRef("some_group_id"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("placementGroupName", myGroup.Name)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myGroup, err := yandex.LookupComputeDiskPlacementGroup(ctx, &GetComputeDiskPlacementGroupArgs{
+// 			GroupId: pulumi.StringRef("some_group_id"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("placementGroupName", myGroup.Name)
+// 		return nil
+// 	})
+// }
 // ```
 func LookupComputeDiskPlacementGroup(ctx *pulumi.Context, args *LookupComputeDiskPlacementGroupArgs, opts ...pulumi.InvokeOption) (*LookupComputeDiskPlacementGroupResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

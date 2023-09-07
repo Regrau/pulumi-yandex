@@ -20,25 +20,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			foo, err := yandex.LookupMdbPostgresqlCluster(ctx, &GetMdbPostgresqlClusterArgs{
-//				Name: pulumi.StringRef("test"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("fqdn", foo.Hosts[0].Fqdn)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		foo, err := yandex.LookupMdbPostgresqlCluster(ctx, &GetMdbPostgresqlClusterArgs{
+// 			Name: pulumi.StringRef("test"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("fqdn", foo.Hosts[0].Fqdn)
+// 		return nil
+// 	})
+// }
 // ```
 func LookupMdbPostgresqlCluster(ctx *pulumi.Context, args *LookupMdbPostgresqlClusterArgs, opts ...pulumi.InvokeOption) (*LookupMdbPostgresqlClusterResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

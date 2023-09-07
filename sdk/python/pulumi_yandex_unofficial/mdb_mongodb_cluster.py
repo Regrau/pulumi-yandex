@@ -928,7 +928,7 @@ class MdbMongodbCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def description(self) -> pulumi.Output[str]:
+    def description(self) -> pulumi.Output[Optional[str]]:
         """
         Description of the MongoDB cluster.
         """

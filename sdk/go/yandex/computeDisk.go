@@ -18,8 +18,8 @@ import (
 //
 // * [Documentation](https://cloud.yandex.com/docs/compute/concepts/disk)
 // * How-to Guides
-//   - [Attach and detach a disk](https://cloud.yandex.com/docs/compute/concepts/disk#attach-detach)
-//   - [Backup operation](https://cloud.yandex.com/docs/compute/concepts/disk#backup)
+//     * [Attach and detach a disk](https://cloud.yandex.com/docs/compute/concepts/disk#attach-detach)
+//     * [Backup operation](https://cloud.yandex.com/docs/compute/concepts/disk#backup)
 //
 // ## Example Usage
 //
@@ -27,79 +27,70 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewComputeDisk(ctx, "default", &yandex.ComputeDiskArgs{
-//				ImageId: pulumi.String("ubuntu-16.04-v20180727"),
-//				Labels: pulumi.StringMap{
-//					"environment": pulumi.String("test"),
-//				},
-//				Type: pulumi.String("network-ssd"),
-//				Zone: pulumi.String("ru-central1-a"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewComputeDisk(ctx, "default", &yandex.ComputeDiskArgs{
+// 			ImageId: pulumi.String("ubuntu-16.04-v20180727"),
+// 			Labels: pulumi.StringMap{
+// 				"environment": pulumi.String("test"),
+// 			},
+// 			Type: pulumi.String("network-ssd"),
+// 			Zone: pulumi.String("ru-central1-a"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ### Non-Replicated Disk
 //
 // **Note**: Non-replicated disks are at the [Preview](https://cloud.yandex.com/docs/overview/concepts/launch-stages)
-//
-//	stage.
+//           stage.
 //
 // ```go
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			this, err := yandex.NewComputeDiskPlacementGroup(ctx, "this", &yandex.ComputeDiskPlacementGroupArgs{
-//				Zone: pulumi.String("ru-central1-b"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewComputeDisk(ctx, "nr", &yandex.ComputeDiskArgs{
-//				Size: pulumi.Int(93),
-//				Type: pulumi.String("network-ssd-nonreplicated"),
-//				Zone: pulumi.String("ru-central1-b"),
-//				DiskPlacementPolicy: &ComputeDiskDiskPlacementPolicyArgs{
-//					DiskPlacementGroupId: this.ID(),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		this, err := yandex.NewComputeDiskPlacementGroup(ctx, "this", &yandex.ComputeDiskPlacementGroupArgs{
+// 			Zone: pulumi.String("ru-central1-b"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewComputeDisk(ctx, "nr", &yandex.ComputeDiskArgs{
+// 			Size: pulumi.Int(93),
+// 			Type: pulumi.String("network-ssd-nonreplicated"),
+// 			Zone: pulumi.String("ru-central1-b"),
+// 			DiskPlacementPolicy: &ComputeDiskDiskPlacementPolicyArgs{
+// 				DiskPlacementGroupId: this.ID(),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
 //
-// # A disk can be imported using any of these accepted formats
+// A disk can be imported using any of these accepted formats
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/computeDisk:ComputeDisk default disk_id
-//
+//  $ pulumi import yandex:index/computeDisk:ComputeDisk default disk_id
 // ```
 type ComputeDisk struct {
 	pulumi.CustomResourceState
@@ -353,7 +344,7 @@ func (i *ComputeDisk) ToComputeDiskOutputWithContext(ctx context.Context) Comput
 // ComputeDiskArrayInput is an input type that accepts ComputeDiskArray and ComputeDiskArrayOutput values.
 // You can construct a concrete instance of `ComputeDiskArrayInput` via:
 //
-//	ComputeDiskArray{ ComputeDiskArgs{...} }
+//          ComputeDiskArray{ ComputeDiskArgs{...} }
 type ComputeDiskArrayInput interface {
 	pulumi.Input
 
@@ -378,7 +369,7 @@ func (i ComputeDiskArray) ToComputeDiskArrayOutputWithContext(ctx context.Contex
 // ComputeDiskMapInput is an input type that accepts ComputeDiskMap and ComputeDiskMapOutput values.
 // You can construct a concrete instance of `ComputeDiskMapInput` via:
 //
-//	ComputeDiskMap{ "key": ComputeDiskArgs{...} }
+//          ComputeDiskMap{ "key": ComputeDiskArgs{...} }
 type ComputeDiskMapInput interface {
 	pulumi.Input
 

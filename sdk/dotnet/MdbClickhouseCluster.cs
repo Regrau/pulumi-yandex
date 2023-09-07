@@ -49,7 +49,7 @@ namespace Pulumi.Yandex
         public Output<Outputs.MdbClickhouseClusterClickhouse> Clickhouse { get; private set; } = null!;
 
         [Output("cloudStorage")]
-        public Output<Outputs.MdbClickhouseClusterCloudStorage?> CloudStorage { get; private set; } = null!;
+        public Output<Outputs.MdbClickhouseClusterCloudStorage> CloudStorage { get; private set; } = null!;
 
         /// <summary>
         /// Whether to copy schema on new ClickHouse hosts.

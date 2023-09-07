@@ -17,30 +17,27 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = yandex.LookupIamServiceAccount(ctx, &GetIamServiceAccountArgs{
-//				ServiceAccountId: pulumi.StringRef("sa_id"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.LookupIamServiceAccount(ctx, &GetIamServiceAccountArgs{
-//				Name: pulumi.StringRef("sa_name"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = yandex.LookupIamServiceAccount(ctx, &GetIamServiceAccountArgs{
+// 			ServiceAccountId: pulumi.StringRef("sa_id"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.LookupIamServiceAccount(ctx, &GetIamServiceAccountArgs{
+// 			Name: pulumi.StringRef("sa_name"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 func LookupIamServiceAccount(ctx *pulumi.Context, args *LookupIamServiceAccountArgs, opts ...pulumi.InvokeOption) (*LookupIamServiceAccountResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

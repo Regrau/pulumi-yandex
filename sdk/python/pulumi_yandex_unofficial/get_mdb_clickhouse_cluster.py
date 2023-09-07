@@ -141,7 +141,7 @@ class GetMdbClickhouseClusterResult:
 
     @property
     @pulumi.getter(name="cloudStorage")
-    def cloud_storage(self) -> Optional['outputs.GetMdbClickhouseClusterCloudStorageResult']:
+    def cloud_storage(self) -> 'outputs.GetMdbClickhouseClusterCloudStorageResult':
         return pulumi.get(self, "cloud_storage")
 
     @property

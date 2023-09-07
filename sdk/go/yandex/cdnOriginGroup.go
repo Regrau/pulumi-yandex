@@ -21,49 +21,44 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewCdnOriginGroup(ctx, "myGroup", &yandex.CdnOriginGroupArgs{
-//				Origins: CdnOriginGroupOriginArray{
-//					&CdnOriginGroupOriginArgs{
-//						Source: pulumi.String("ya.ru"),
-//					},
-//					&CdnOriginGroupOriginArgs{
-//						Source: pulumi.String("yandex.ru"),
-//					},
-//					&CdnOriginGroupOriginArgs{
-//						Source: pulumi.String("goo.gl"),
-//					},
-//					&CdnOriginGroupOriginArgs{
-//						Backup: pulumi.Bool(false),
-//						Source: pulumi.String("amazon.com"),
-//					},
-//				},
-//				UseNext: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewCdnOriginGroup(ctx, "myGroup", &yandex.CdnOriginGroupArgs{
+// 			Origins: CdnOriginGroupOriginArray{
+// 				&CdnOriginGroupOriginArgs{
+// 					Source: pulumi.String("ya.ru"),
+// 				},
+// 				&CdnOriginGroupOriginArgs{
+// 					Source: pulumi.String("yandex.ru"),
+// 				},
+// 				&CdnOriginGroupOriginArgs{
+// 					Source: pulumi.String("goo.gl"),
+// 				},
+// 				&CdnOriginGroupOriginArgs{
+// 					Backup: pulumi.Bool(false),
+// 					Source: pulumi.String("amazon.com"),
+// 				},
+// 			},
+// 			UseNext: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
 //
-// # A origin group can be imported using any of these accepted formats
+// A origin group can be imported using any of these accepted formats
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/cdnOriginGroup:CdnOriginGroup default origin_group_id
-//
+//  $ pulumi import yandex:index/cdnOriginGroup:CdnOriginGroup default origin_group_id
 // ```
 type CdnOriginGroup struct {
 	pulumi.CustomResourceState
@@ -175,7 +170,7 @@ func (i *CdnOriginGroup) ToCdnOriginGroupOutputWithContext(ctx context.Context) 
 // CdnOriginGroupArrayInput is an input type that accepts CdnOriginGroupArray and CdnOriginGroupArrayOutput values.
 // You can construct a concrete instance of `CdnOriginGroupArrayInput` via:
 //
-//	CdnOriginGroupArray{ CdnOriginGroupArgs{...} }
+//          CdnOriginGroupArray{ CdnOriginGroupArgs{...} }
 type CdnOriginGroupArrayInput interface {
 	pulumi.Input
 
@@ -200,7 +195,7 @@ func (i CdnOriginGroupArray) ToCdnOriginGroupArrayOutputWithContext(ctx context.
 // CdnOriginGroupMapInput is an input type that accepts CdnOriginGroupMap and CdnOriginGroupMapOutput values.
 // You can construct a concrete instance of `CdnOriginGroupMapInput` via:
 //
-//	CdnOriginGroupMap{ "key": CdnOriginGroupArgs{...} }
+//          CdnOriginGroupMap{ "key": CdnOriginGroupArgs{...} }
 type CdnOriginGroupMapInput interface {
 	pulumi.Input
 

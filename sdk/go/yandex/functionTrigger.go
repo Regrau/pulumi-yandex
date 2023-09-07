@@ -19,30 +19,27 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewFunctionTrigger(ctx, "myTrigger", &yandex.FunctionTriggerArgs{
-//				Description: pulumi.String("any description"),
-//				Function: &FunctionTriggerFunctionArgs{
-//					Id: pulumi.String("tf-test"),
-//				},
-//				Timer: &FunctionTriggerTimerArgs{
-//					CronExpression: pulumi.String("* * * * ? *"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewFunctionTrigger(ctx, "myTrigger", &yandex.FunctionTriggerArgs{
+// 			Description: pulumi.String("any description"),
+// 			Function: &FunctionTriggerFunctionArgs{
+// 				Id: pulumi.String("tf-test"),
+// 			},
+// 			Timer: &FunctionTriggerTimerArgs{
+// 				CronExpression: pulumi.String("* * * * ? *"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type FunctionTrigger struct {
 	pulumi.CustomResourceState
@@ -385,7 +382,7 @@ func (i *FunctionTrigger) ToFunctionTriggerOutputWithContext(ctx context.Context
 // FunctionTriggerArrayInput is an input type that accepts FunctionTriggerArray and FunctionTriggerArrayOutput values.
 // You can construct a concrete instance of `FunctionTriggerArrayInput` via:
 //
-//	FunctionTriggerArray{ FunctionTriggerArgs{...} }
+//          FunctionTriggerArray{ FunctionTriggerArgs{...} }
 type FunctionTriggerArrayInput interface {
 	pulumi.Input
 
@@ -410,7 +407,7 @@ func (i FunctionTriggerArray) ToFunctionTriggerArrayOutputWithContext(ctx contex
 // FunctionTriggerMapInput is an input type that accepts FunctionTriggerMap and FunctionTriggerMapOutput values.
 // You can construct a concrete instance of `FunctionTriggerMapInput` via:
 //
-//	FunctionTriggerMap{ "key": FunctionTriggerArgs{...} }
+//          FunctionTriggerMap{ "key": FunctionTriggerArgs{...} }
 type FunctionTriggerMapInput interface {
 	pulumi.Input
 

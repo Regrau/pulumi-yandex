@@ -118,7 +118,7 @@ export class MdbMongodbCluster extends pulumi.CustomResource {
     /**
      * Description of the MongoDB cluster.
      */
-    public readonly description!: pulumi.Output<string>;
+    public readonly description!: pulumi.Output<string | undefined>;
     /**
      * Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
      */

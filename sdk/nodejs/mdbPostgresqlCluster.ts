@@ -41,7 +41,7 @@ export class MdbPostgresqlCluster extends pulumi.CustomResource {
      */
     public readonly databases!: pulumi.Output<outputs.MdbPostgresqlClusterDatabase[] | undefined>;
     public readonly deletionProtection!: pulumi.Output<boolean>;
-    public readonly description!: pulumi.Output<string>;
+    public readonly description!: pulumi.Output<string | undefined>;
     public readonly environment!: pulumi.Output<string>;
     public readonly folderId!: pulumi.Output<string>;
     public /*out*/ readonly health!: pulumi.Output<string>;

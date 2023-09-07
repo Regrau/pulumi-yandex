@@ -59,6 +59,7 @@
         "getCmCertificateContent.ts",
         "getComputeDisk.ts",
         "getComputeDiskPlacementGroup.ts",
+        "getComputeFilesystem.ts",
         "getComputeImage.ts",
         "getComputeInstance.ts",
         "getComputeInstanceGroup.ts",
@@ -173,6 +174,7 @@
         "vpcSecurityGroup.ts",
         "vpcSecurityGroupRule.ts",
         "vpcSubnet.ts",
+        "yandexComputeFilesystem.ts",
         "ydbDatabaseDedicated.ts",
         "ydbDatabaseIamBinding.ts",
         "ydbDatabaseServerless.ts"

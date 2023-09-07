@@ -19,7 +19,7 @@ type MdbPostgresqlCluster struct {
 	// Deprecated: to manage databases, please switch to using a separate resource type yandex_mdb_postgresql_database
 	Databases          MdbPostgresqlClusterDatabaseArrayOutput     `pulumi:"databases"`
 	DeletionProtection pulumi.BoolOutput                           `pulumi:"deletionProtection"`
-	Description        pulumi.StringOutput                         `pulumi:"description"`
+	Description        pulumi.StringPtrOutput                      `pulumi:"description"`
 	Environment        pulumi.StringOutput                         `pulumi:"environment"`
 	FolderId           pulumi.StringOutput                         `pulumi:"folderId"`
 	Health             pulumi.StringOutput                         `pulumi:"health"`
@@ -199,7 +199,7 @@ func (i *MdbPostgresqlCluster) ToMdbPostgresqlClusterOutputWithContext(ctx conte
 // MdbPostgresqlClusterArrayInput is an input type that accepts MdbPostgresqlClusterArray and MdbPostgresqlClusterArrayOutput values.
 // You can construct a concrete instance of `MdbPostgresqlClusterArrayInput` via:
 //
-//	MdbPostgresqlClusterArray{ MdbPostgresqlClusterArgs{...} }
+//          MdbPostgresqlClusterArray{ MdbPostgresqlClusterArgs{...} }
 type MdbPostgresqlClusterArrayInput interface {
 	pulumi.Input
 
@@ -224,7 +224,7 @@ func (i MdbPostgresqlClusterArray) ToMdbPostgresqlClusterArrayOutputWithContext(
 // MdbPostgresqlClusterMapInput is an input type that accepts MdbPostgresqlClusterMap and MdbPostgresqlClusterMapOutput values.
 // You can construct a concrete instance of `MdbPostgresqlClusterMapInput` via:
 //
-//	MdbPostgresqlClusterMap{ "key": MdbPostgresqlClusterArgs{...} }
+//          MdbPostgresqlClusterMap{ "key": MdbPostgresqlClusterArgs{...} }
 type MdbPostgresqlClusterMapInput interface {
 	pulumi.Input
 
@@ -277,8 +277,8 @@ func (o MdbPostgresqlClusterOutput) DeletionProtection() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MdbPostgresqlCluster) pulumi.BoolOutput { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
-func (o MdbPostgresqlClusterOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v *MdbPostgresqlCluster) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+func (o MdbPostgresqlClusterOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MdbPostgresqlCluster) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 func (o MdbPostgresqlClusterOutput) Environment() pulumi.StringOutput {

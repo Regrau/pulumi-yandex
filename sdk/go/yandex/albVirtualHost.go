@@ -20,35 +20,32 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewAlbVirtualHost(ctx, "my-virtual-host", &yandex.AlbVirtualHostArgs{
-//				HttpRouterId: pulumi.Any(yandex_alb_http_router.MyRouter.Id),
-//				Routes: AlbVirtualHostRouteArray{
-//					&AlbVirtualHostRouteArgs{
-//						Name: pulumi.String("my-route"),
-//						HttpRoute: &AlbVirtualHostRouteHttpRouteArgs{
-//							HttpRouteAction: &AlbVirtualHostRouteHttpRouteHttpRouteActionArgs{
-//								BackendGroupId: pulumi.Any(yandex_alb_backend_group.MyBg.Id),
-//								Timeout:        pulumi.String("3s"),
-//							},
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewAlbVirtualHost(ctx, "my-virtual-host", &yandex.AlbVirtualHostArgs{
+// 			HttpRouterId: pulumi.Any(yandex_alb_http_router.MyRouter.Id),
+// 			Routes: AlbVirtualHostRouteArray{
+// 				&AlbVirtualHostRouteArgs{
+// 					Name: pulumi.String("my-route"),
+// 					HttpRoute: &AlbVirtualHostRouteHttpRouteArgs{
+// 						HttpRouteAction: &AlbVirtualHostRouteHttpRouteHttpRouteActionArgs{
+// 							BackendGroupId: pulumi.Any(yandex_alb_backend_group.MyBg.Id),
+// 							Timeout:        pulumi.String("3s"),
+// 						},
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -56,9 +53,7 @@ import (
 // A virtual host can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/albVirtualHost:AlbVirtualHost default virtual_host_id
-//
+//  $ pulumi import yandex:index/albVirtualHost:AlbVirtualHost default virtual_host_id
 // ```
 type AlbVirtualHost struct {
 	pulumi.CustomResourceState
@@ -220,7 +215,7 @@ func (i *AlbVirtualHost) ToAlbVirtualHostOutputWithContext(ctx context.Context) 
 // AlbVirtualHostArrayInput is an input type that accepts AlbVirtualHostArray and AlbVirtualHostArrayOutput values.
 // You can construct a concrete instance of `AlbVirtualHostArrayInput` via:
 //
-//	AlbVirtualHostArray{ AlbVirtualHostArgs{...} }
+//          AlbVirtualHostArray{ AlbVirtualHostArgs{...} }
 type AlbVirtualHostArrayInput interface {
 	pulumi.Input
 
@@ -245,7 +240,7 @@ func (i AlbVirtualHostArray) ToAlbVirtualHostArrayOutputWithContext(ctx context.
 // AlbVirtualHostMapInput is an input type that accepts AlbVirtualHostMap and AlbVirtualHostMapOutput values.
 // You can construct a concrete instance of `AlbVirtualHostMapInput` via:
 //
-//	AlbVirtualHostMap{ "key": AlbVirtualHostArgs{...} }
+//          AlbVirtualHostMap{ "key": AlbVirtualHostArgs{...} }
 type AlbVirtualHostMapInput interface {
 	pulumi.Input
 

@@ -28,6 +28,10 @@ namespace Pulumi.Yandex
     ///     var fooVpcSubnet = new Yandex.VpcSubnet("fooVpcSubnet", new()
     ///     {
     ///         NetworkId = fooVpcNetwork.Id,
+    ///         V4CidrBlocks = new[]
+    ///         {
+    ///             "10.5.0.0/24",
+    ///         },
     ///         Zone = "ru-central1-a",
     ///     });
     /// 
@@ -100,6 +104,12 @@ namespace Pulumi.Yandex
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// List of filesystems that are attached to the instance. Structure is documented below.
+        /// </summary>
+        [Output("filesystems")]
+        public Output<ImmutableArray<Outputs.ComputeInstanceFilesystem>> Filesystems { get; private set; } = null!;
+
+        /// <summary>
         /// The ID of the folder that the resource belongs to. If it
         /// is not provided, the default provider folder is used.
         /// </summary>
@@ -139,6 +149,12 @@ namespace Pulumi.Yandex
         /// </summary>
         [Output("metadata")]
         public Output<ImmutableDictionary<string, string>?> Metadata { get; private set; } = null!;
+
+        /// <summary>
+        /// Options allow user to configure access to instance's metadata
+        /// </summary>
+        [Output("metadataOptions")]
+        public Output<Outputs.ComputeInstanceMetadataOptions> MetadataOptions { get; private set; } = null!;
 
         /// <summary>
         /// Name of the boot disk.
@@ -274,6 +290,18 @@ namespace Pulumi.Yandex
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        [Input("filesystems")]
+        private InputList<Inputs.ComputeInstanceFilesystemArgs>? _filesystems;
+
+        /// <summary>
+        /// List of filesystems that are attached to the instance. Structure is documented below.
+        /// </summary>
+        public InputList<Inputs.ComputeInstanceFilesystemArgs> Filesystems
+        {
+            get => _filesystems ?? (_filesystems = new InputList<Inputs.ComputeInstanceFilesystemArgs>());
+            set => _filesystems = value;
+        }
+
         /// <summary>
         /// The ID of the folder that the resource belongs to. If it
         /// is not provided, the default provider folder is used.
@@ -326,6 +354,12 @@ namespace Pulumi.Yandex
             get => _metadata ?? (_metadata = new InputMap<string>());
             set => _metadata = value;
         }
+
+        /// <summary>
+        /// Options allow user to configure access to instance's metadata
+        /// </summary>
+        [Input("metadataOptions")]
+        public Input<Inputs.ComputeInstanceMetadataOptionsArgs>? MetadataOptions { get; set; }
 
         /// <summary>
         /// Name of the boot disk.
@@ -434,6 +468,18 @@ namespace Pulumi.Yandex
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        [Input("filesystems")]
+        private InputList<Inputs.ComputeInstanceFilesystemGetArgs>? _filesystems;
+
+        /// <summary>
+        /// List of filesystems that are attached to the instance. Structure is documented below.
+        /// </summary>
+        public InputList<Inputs.ComputeInstanceFilesystemGetArgs> Filesystems
+        {
+            get => _filesystems ?? (_filesystems = new InputList<Inputs.ComputeInstanceFilesystemGetArgs>());
+            set => _filesystems = value;
+        }
+
         /// <summary>
         /// The ID of the folder that the resource belongs to. If it
         /// is not provided, the default provider folder is used.
@@ -492,6 +538,12 @@ namespace Pulumi.Yandex
             get => _metadata ?? (_metadata = new InputMap<string>());
             set => _metadata = value;
         }
+
+        /// <summary>
+        /// Options allow user to configure access to instance's metadata
+        /// </summary>
+        [Input("metadataOptions")]
+        public Input<Inputs.ComputeInstanceMetadataOptionsGetArgs>? MetadataOptions { get; set; }
 
         /// <summary>
         /// Name of the boot disk.

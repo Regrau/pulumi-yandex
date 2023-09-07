@@ -21,25 +21,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myResource, err := yandex.LookupCdnResource(ctx, &GetCdnResourceArgs{
-//				ResourceId: pulumi.StringRef("some resource id"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("resourceCname", myResource.Cname)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myResource, err := yandex.LookupCdnResource(ctx, &GetCdnResourceArgs{
+// 			ResourceId: pulumi.StringRef("some resource id"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("resourceCname", myResource.Cname)
+// 		return nil
+// 	})
+// }
 // ```
 func LookupCdnResource(ctx *pulumi.Context, args *LookupCdnResourceArgs, opts ...pulumi.InvokeOption) (*LookupCdnResourceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

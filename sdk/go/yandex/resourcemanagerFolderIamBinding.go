@@ -15,13 +15,11 @@ import (
 // an existing Yandex Resource Manager folder.
 //
 // > **Note:** This resource _must not_ be used in conjunction with
-//
-//	`ResourcemanagerFolderIamPolicy` or they will conflict over what your policy
-//	should be.
+//    `ResourcemanagerFolderIamPolicy` or they will conflict over what your policy
+//    should be.
 //
 // > **Note:** When you delete `ResourcemanagerFolderIamBinding` resource,
-//
-//	the roles can be deleted from other users within the folder as well. Be careful!
+//    the roles can be deleted from other users within the folder as well. Be careful!
 //
 // ## Example Usage
 //
@@ -29,34 +27,31 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			project1, err := yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
-//				FolderId: pulumi.StringRef("some_folder_id"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewResourcemanagerFolderIamBinding(ctx, "admin", &yandex.ResourcemanagerFolderIamBindingArgs{
-//				FolderId: pulumi.String(project1.Id),
-//				Members: pulumi.StringArray{
-//					pulumi.String("userAccount:some_user_id"),
-//				},
-//				Role: pulumi.String("editor"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		project1, err := yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
+// 			FolderId: pulumi.StringRef("some_folder_id"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewResourcemanagerFolderIamBinding(ctx, "admin", &yandex.ResourcemanagerFolderIamBindingArgs{
+// 			FolderId: pulumi.String(project1.Id),
+// 			Members: pulumi.StringArray{
+// 				pulumi.String("userAccount:some_user_id"),
+// 			},
+// 			Role: pulumi.String("editor"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -64,9 +59,7 @@ import (
 // IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `folder_id` and role, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/resourcemanagerFolderIamBinding:ResourcemanagerFolderIamBinding viewer "folder_id viewer"
-//
+//  $ pulumi import yandex:index/resourcemanagerFolderIamBinding:ResourcemanagerFolderIamBinding viewer "folder_id viewer"
 // ```
 type ResourcemanagerFolderIamBinding struct {
 	pulumi.CustomResourceState
@@ -209,7 +202,7 @@ func (i *ResourcemanagerFolderIamBinding) ToResourcemanagerFolderIamBindingOutpu
 // ResourcemanagerFolderIamBindingArrayInput is an input type that accepts ResourcemanagerFolderIamBindingArray and ResourcemanagerFolderIamBindingArrayOutput values.
 // You can construct a concrete instance of `ResourcemanagerFolderIamBindingArrayInput` via:
 //
-//	ResourcemanagerFolderIamBindingArray{ ResourcemanagerFolderIamBindingArgs{...} }
+//          ResourcemanagerFolderIamBindingArray{ ResourcemanagerFolderIamBindingArgs{...} }
 type ResourcemanagerFolderIamBindingArrayInput interface {
 	pulumi.Input
 
@@ -234,7 +227,7 @@ func (i ResourcemanagerFolderIamBindingArray) ToResourcemanagerFolderIamBindingA
 // ResourcemanagerFolderIamBindingMapInput is an input type that accepts ResourcemanagerFolderIamBindingMap and ResourcemanagerFolderIamBindingMapOutput values.
 // You can construct a concrete instance of `ResourcemanagerFolderIamBindingMapInput` via:
 //
-//	ResourcemanagerFolderIamBindingMap{ "key": ResourcemanagerFolderIamBindingArgs{...} }
+//          ResourcemanagerFolderIamBindingMap{ "key": ResourcemanagerFolderIamBindingArgs{...} }
 type ResourcemanagerFolderIamBindingMapInput interface {
 	pulumi.Input
 

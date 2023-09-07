@@ -19,25 +19,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			foo, err := yandex.LookupResourcemanagerCloud(ctx, &GetResourcemanagerCloudArgs{
-//				Name: pulumi.StringRef("foo-cloud"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("cloudCreateTimestamp", foo.CreatedAt)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		foo, err := yandex.LookupResourcemanagerCloud(ctx, &GetResourcemanagerCloudArgs{
+// 			Name: pulumi.StringRef("foo-cloud"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("cloudCreateTimestamp", foo.CreatedAt)
+// 		return nil
+// 	})
+// }
 // ```
 func LookupResourcemanagerCloud(ctx *pulumi.Context, args *LookupResourcemanagerCloudArgs, opts ...pulumi.InvokeOption) (*LookupResourcemanagerCloudResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

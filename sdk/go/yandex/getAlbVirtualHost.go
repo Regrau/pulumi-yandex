@@ -19,25 +19,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = yandex.LookupAlbVirtualHost(ctx, &GetAlbVirtualHostArgs{
-//				Name:         pulumi.StringRef(yandex_alb_virtual_host.MyVh.Name),
-//				HttpRouterId: pulumi.StringRef(yandex_alb_virtual_host.MyRouter.Id),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = yandex.LookupAlbVirtualHost(ctx, &GetAlbVirtualHostArgs{
+// 			Name:         pulumi.StringRef(yandex_alb_virtual_host.MyVh.Name),
+// 			HttpRouterId: pulumi.StringRef(yandex_alb_virtual_host.MyRouter.Id),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // This data source is used to define [Application Load Balancer Virtual Host] that can be used by other resources.

@@ -19,25 +19,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myInstance, err := yandex.LookupComputeInstance(ctx, &GetComputeInstanceArgs{
-//				InstanceId: pulumi.StringRef("some_instance_id"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("instanceExternalIp", myInstance.NetworkInterfaces[0].NatIpAddress)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myInstance, err := yandex.LookupComputeInstance(ctx, &GetComputeInstanceArgs{
+// 			InstanceId: pulumi.StringRef("some_instance_id"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("instanceExternalIp", myInstance.NetworkInterfaces[0].NatIpAddress)
+// 		return nil
+// 	})
+// }
 // ```
 func LookupComputeInstance(ctx *pulumi.Context, args *LookupComputeInstanceArgs, opts ...pulumi.InvokeOption) (*LookupComputeInstanceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
@@ -51,12 +48,15 @@ func LookupComputeInstance(ctx *pulumi.Context, args *LookupComputeInstanceArgs,
 
 // A collection of arguments for invoking getComputeInstance.
 type LookupComputeInstanceArgs struct {
+	Filesystems []GetComputeInstanceFilesystem `pulumi:"filesystems"`
 	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
 	FolderId *string `pulumi:"folderId"`
 	// The ID of a specific instance.
 	InstanceId *string `pulumi:"instanceId"`
 	// List of local disks that are attached to the instance. Structure is documented below.
 	LocalDisks []GetComputeInstanceLocalDisk `pulumi:"localDisks"`
+	// Options allow user to configure access to instance's metadata
+	MetadataOptions *GetComputeInstanceMetadataOptions `pulumi:"metadataOptions"`
 	// Name of the instance.
 	Name *string `pulumi:"name"`
 	// The placement policy configuration. The structure is documented below.
@@ -70,8 +70,9 @@ type LookupComputeInstanceResult struct {
 	// Instance creation timestamp.
 	CreatedAt string `pulumi:"createdAt"`
 	// Description of the boot disk.
-	Description string `pulumi:"description"`
-	FolderId    string `pulumi:"folderId"`
+	Description string                         `pulumi:"description"`
+	Filesystems []GetComputeInstanceFilesystem `pulumi:"filesystems"`
+	FolderId    string                         `pulumi:"folderId"`
 	// DNS record FQDN.
 	Fqdn string `pulumi:"fqdn"`
 	// The provider-assigned unique ID for this managed resource.
@@ -84,6 +85,8 @@ type LookupComputeInstanceResult struct {
 	// Metadata key/value pairs to make available from
 	// within the instance.
 	Metadata map[string]string `pulumi:"metadata"`
+	// Options allow user to configure access to instance's metadata
+	MetadataOptions GetComputeInstanceMetadataOptions `pulumi:"metadataOptions"`
 	// Name of the boot disk.
 	Name string `pulumi:"name"`
 	// Type of network acceleration. The default is `standard`. Values: `standard`, `softwareAccelerated`
@@ -128,12 +131,15 @@ func LookupComputeInstanceOutput(ctx *pulumi.Context, args LookupComputeInstance
 
 // A collection of arguments for invoking getComputeInstance.
 type LookupComputeInstanceOutputArgs struct {
+	Filesystems GetComputeInstanceFilesystemArrayInput `pulumi:"filesystems"`
 	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
 	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
 	// The ID of a specific instance.
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
 	// List of local disks that are attached to the instance. Structure is documented below.
 	LocalDisks GetComputeInstanceLocalDiskArrayInput `pulumi:"localDisks"`
+	// Options allow user to configure access to instance's metadata
+	MetadataOptions GetComputeInstanceMetadataOptionsPtrInput `pulumi:"metadataOptions"`
 	// Name of the instance.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The placement policy configuration. The structure is documented below.
@@ -174,6 +180,10 @@ func (o LookupComputeInstanceResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupComputeInstanceResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+func (o LookupComputeInstanceResultOutput) Filesystems() GetComputeInstanceFilesystemArrayOutput {
+	return o.ApplyT(func(v LookupComputeInstanceResult) []GetComputeInstanceFilesystem { return v.Filesystems }).(GetComputeInstanceFilesystemArrayOutput)
+}
+
 func (o LookupComputeInstanceResultOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupComputeInstanceResult) string { return v.FolderId }).(pulumi.StringOutput)
 }
@@ -206,6 +216,11 @@ func (o LookupComputeInstanceResultOutput) LocalDisks() GetComputeInstanceLocalD
 // within the instance.
 func (o LookupComputeInstanceResultOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupComputeInstanceResult) map[string]string { return v.Metadata }).(pulumi.StringMapOutput)
+}
+
+// Options allow user to configure access to instance's metadata
+func (o LookupComputeInstanceResultOutput) MetadataOptions() GetComputeInstanceMetadataOptionsOutput {
+	return o.ApplyT(func(v LookupComputeInstanceResult) GetComputeInstanceMetadataOptions { return v.MetadataOptions }).(GetComputeInstanceMetadataOptionsOutput)
 }
 
 // Name of the boot disk.

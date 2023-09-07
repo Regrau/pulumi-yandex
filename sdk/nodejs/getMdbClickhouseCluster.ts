@@ -77,7 +77,7 @@ export interface GetMdbClickhouseClusterResult {
      * Configuration of the ClickHouse subcluster. The structure is documented below.
      */
     readonly clickhouses: outputs.GetMdbClickhouseClusterClickhouse[];
-    readonly cloudStorage?: outputs.GetMdbClickhouseClusterCloudStorage;
+    readonly cloudStorage: outputs.GetMdbClickhouseClusterCloudStorage;
     readonly clusterId: string;
     /**
      * Creation timestamp of the key.

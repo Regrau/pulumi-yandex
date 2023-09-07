@@ -20,44 +20,41 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
-//				FolderId: pulumi.StringRef("my_folder_id"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			admin, err := yandex.GetIamPolicy(ctx, &GetIamPolicyArgs{
-//				Bindings: []GetIamPolicyBinding{
-//					GetIamPolicyBinding{
-//						Members: []string{
-//							"userAccount:some_user_id",
-//						},
-//						Role: "editor",
-//					},
-//				},
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewResourcemanagerFolderIamPolicy(ctx, "folderAdminPolicy", &yandex.ResourcemanagerFolderIamPolicyArgs{
-//				FolderId:   pulumi.Any(data.Yandex_folder.Project1.Id),
-//				PolicyData: pulumi.String(admin.PolicyData),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
+// 			FolderId: pulumi.StringRef("my_folder_id"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		admin, err := yandex.GetIamPolicy(ctx, &GetIamPolicyArgs{
+// 			Bindings: []GetIamPolicyBinding{
+// 				GetIamPolicyBinding{
+// 					Members: []string{
+// 						"userAccount:some_user_id",
+// 					},
+// 					Role: "editor",
+// 				},
+// 			},
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewResourcemanagerFolderIamPolicy(ctx, "folderAdminPolicy", &yandex.ResourcemanagerFolderIamPolicyArgs{
+// 			FolderId:   pulumi.Any(data.Yandex_folder.Project1.Id),
+// 			PolicyData: pulumi.String(admin.PolicyData),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type ResourcemanagerFolderIamPolicy struct {
 	pulumi.CustomResourceState
@@ -167,7 +164,7 @@ func (i *ResourcemanagerFolderIamPolicy) ToResourcemanagerFolderIamPolicyOutputW
 // ResourcemanagerFolderIamPolicyArrayInput is an input type that accepts ResourcemanagerFolderIamPolicyArray and ResourcemanagerFolderIamPolicyArrayOutput values.
 // You can construct a concrete instance of `ResourcemanagerFolderIamPolicyArrayInput` via:
 //
-//	ResourcemanagerFolderIamPolicyArray{ ResourcemanagerFolderIamPolicyArgs{...} }
+//          ResourcemanagerFolderIamPolicyArray{ ResourcemanagerFolderIamPolicyArgs{...} }
 type ResourcemanagerFolderIamPolicyArrayInput interface {
 	pulumi.Input
 
@@ -192,7 +189,7 @@ func (i ResourcemanagerFolderIamPolicyArray) ToResourcemanagerFolderIamPolicyArr
 // ResourcemanagerFolderIamPolicyMapInput is an input type that accepts ResourcemanagerFolderIamPolicyMap and ResourcemanagerFolderIamPolicyMapOutput values.
 // You can construct a concrete instance of `ResourcemanagerFolderIamPolicyMapInput` via:
 //
-//	ResourcemanagerFolderIamPolicyMap{ "key": ResourcemanagerFolderIamPolicyArgs{...} }
+//          ResourcemanagerFolderIamPolicyMap{ "key": ResourcemanagerFolderIamPolicyArgs{...} }
 type ResourcemanagerFolderIamPolicyMapInput interface {
 	pulumi.Input
 

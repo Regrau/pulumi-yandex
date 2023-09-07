@@ -19,40 +19,37 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewcomputeSnapshotSchedule(ctx, "default", &yandex.computeSnapshotScheduleArgs{
-//				DiskIds: pulumi.StringArray{
-//					pulumi.String("test_disk_id"),
-//					pulumi.String("another_test_disk_id"),
-//				},
-//				Labels: pulumi.StringMap{
-//					"my-label": pulumi.String("my-label-value"),
-//				},
-//				SchedulePolicy: &ComputeSnapshotScheduleSchedulePolicyArgs{
-//					Expression: pulumi.String("0 0 * * *"),
-//				},
-//				SnapshotCount: pulumi.Int(1),
-//				SnapshotSpec: &ComputeSnapshotScheduleSnapshotSpecArgs{
-//					Description: pulumi.String("snapshot-description"),
-//					Labels: pulumi.StringMap{
-//						"snapshot-label": pulumi.String("my-snapshot-label-value"),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewcomputeSnapshotSchedule(ctx, "default", &yandex.computeSnapshotScheduleArgs{
+// 			DiskIds: pulumi.StringArray{
+// 				pulumi.String("test_disk_id"),
+// 				pulumi.String("another_test_disk_id"),
+// 			},
+// 			Labels: pulumi.StringMap{
+// 				"my-label": pulumi.String("my-label-value"),
+// 			},
+// 			SchedulePolicy: &ComputeSnapshotScheduleSchedulePolicyArgs{
+// 				Expression: pulumi.String("0 0 * * *"),
+// 			},
+// 			SnapshotCount: pulumi.Int(1),
+// 			SnapshotSpec: &ComputeSnapshotScheduleSnapshotSpecArgs{
+// 				Description: pulumi.String("snapshot-description"),
+// 				Labels: pulumi.StringMap{
+// 					"snapshot-label": pulumi.String("my-snapshot-label-value"),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -60,9 +57,7 @@ import (
 // A snapshot schedule can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/computeSnapshotSchedule:computeSnapshotSchedule my-schedule snapshot_schedule_id
-//
+//  $ pulumi import yandex:index/computeSnapshotSchedule:computeSnapshotSchedule my-schedule snapshot_schedule_id
 // ```
 type ComputeSnapshotSchedule struct {
 	pulumi.CustomResourceState
@@ -248,7 +243,7 @@ func (i *ComputeSnapshotSchedule) ToComputeSnapshotScheduleOutputWithContext(ctx
 // ComputeSnapshotScheduleArrayInput is an input type that accepts ComputeSnapshotScheduleArray and ComputeSnapshotScheduleArrayOutput values.
 // You can construct a concrete instance of `ComputeSnapshotScheduleArrayInput` via:
 //
-//	ComputeSnapshotScheduleArray{ ComputeSnapshotScheduleArgs{...} }
+//          ComputeSnapshotScheduleArray{ ComputeSnapshotScheduleArgs{...} }
 type ComputeSnapshotScheduleArrayInput interface {
 	pulumi.Input
 
@@ -273,7 +268,7 @@ func (i ComputeSnapshotScheduleArray) ToComputeSnapshotScheduleArrayOutputWithCo
 // ComputeSnapshotScheduleMapInput is an input type that accepts ComputeSnapshotScheduleMap and ComputeSnapshotScheduleMapOutput values.
 // You can construct a concrete instance of `ComputeSnapshotScheduleMapInput` via:
 //
-//	ComputeSnapshotScheduleMap{ "key": ComputeSnapshotScheduleArgs{...} }
+//          ComputeSnapshotScheduleMap{ "key": ComputeSnapshotScheduleArgs{...} }
 type ComputeSnapshotScheduleMapInput interface {
 	pulumi.Input
 

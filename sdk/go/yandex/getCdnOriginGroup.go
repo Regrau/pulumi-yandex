@@ -21,25 +21,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myGroup, err := yandex.LookupCdnOriginGroup(ctx, &GetCdnOriginGroupArgs{
-//				OriginGroupId: pulumi.IntRef("some_instance_id"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("originGroupName", myGroup.Name)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myGroup, err := yandex.LookupCdnOriginGroup(ctx, &GetCdnOriginGroupArgs{
+// 			OriginGroupId: pulumi.IntRef("some_instance_id"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("originGroupName", myGroup.Name)
+// 		return nil
+// 	})
+// }
 // ```
 func LookupCdnOriginGroup(ctx *pulumi.Context, args *LookupCdnOriginGroupArgs, opts ...pulumi.InvokeOption) (*LookupCdnOriginGroupResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

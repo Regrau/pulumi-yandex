@@ -17,24 +17,21 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = yandex.LookupLbNetworkLoadBalancer(ctx, &GetLbNetworkLoadBalancerArgs{
-//				NetworkLoadBalancerId: pulumi.StringRef("my-network-load-balancer"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = yandex.LookupLbNetworkLoadBalancer(ctx, &GetLbNetworkLoadBalancerArgs{
+// 			NetworkLoadBalancerId: pulumi.StringRef("my-network-load-balancer"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // This data source is used to define [Load Balancer Network Load Balancers] that can be used by other resources.

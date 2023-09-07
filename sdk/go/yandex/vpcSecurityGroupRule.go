@@ -23,60 +23,57 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewVpcNetwork(ctx, "lab-net", nil)
-//			if err != nil {
-//				return err
-//			}
-//			group1, err := yandex.NewVpcSecurityGroup(ctx, "group1", &yandex.VpcSecurityGroupArgs{
-//				Description: pulumi.String("description for my security group"),
-//				NetworkId:   lab_net.ID(),
-//				Labels: pulumi.StringMap{
-//					"my-label": pulumi.String("my-label-value"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewVpcSecurityGroupRule(ctx, "rule1", &yandex.VpcSecurityGroupRuleArgs{
-//				SecurityGroupBinding: group1.ID(),
-//				Direction:            pulumi.String("ingress"),
-//				Description:          pulumi.String("rule1 description"),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.0.1.0/24"),
-//					pulumi.String("10.0.2.0/24"),
-//				},
-//				Port:     pulumi.Int(8080),
-//				Protocol: pulumi.String("TCP"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewVpcSecurityGroupRule(ctx, "rule2", &yandex.VpcSecurityGroupRuleArgs{
-//				SecurityGroupBinding: group1.ID(),
-//				Direction:            pulumi.String("egress"),
-//				Description:          pulumi.String("rule2 description"),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.0.1.0/24"),
-//				},
-//				FromPort: pulumi.Int(8090),
-//				ToPort:   pulumi.Int(8099),
-//				Protocol: pulumi.String("UDP"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewVpcNetwork(ctx, "lab-net", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		group1, err := yandex.NewVpcSecurityGroup(ctx, "group1", &yandex.VpcSecurityGroupArgs{
+// 			Description: pulumi.String("description for my security group"),
+// 			NetworkId:   lab_net.ID(),
+// 			Labels: pulumi.StringMap{
+// 				"my-label": pulumi.String("my-label-value"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewVpcSecurityGroupRule(ctx, "rule1", &yandex.VpcSecurityGroupRuleArgs{
+// 			SecurityGroupBinding: group1.ID(),
+// 			Direction:            pulumi.String("ingress"),
+// 			Description:          pulumi.String("rule1 description"),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.0.1.0/24"),
+// 				pulumi.String("10.0.2.0/24"),
+// 			},
+// 			Port:     pulumi.Int(8080),
+// 			Protocol: pulumi.String("TCP"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewVpcSecurityGroupRule(ctx, "rule2", &yandex.VpcSecurityGroupRuleArgs{
+// 			SecurityGroupBinding: group1.ID(),
+// 			Direction:            pulumi.String("egress"),
+// 			Description:          pulumi.String("rule2 description"),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.0.1.0/24"),
+// 			},
+// 			FromPort: pulumi.Int(8090),
+// 			ToPort:   pulumi.Int(8099),
+// 			Protocol: pulumi.String("UDP"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type VpcSecurityGroupRule struct {
 	pulumi.CustomResourceState
@@ -281,7 +278,7 @@ func (i *VpcSecurityGroupRule) ToVpcSecurityGroupRuleOutputWithContext(ctx conte
 // VpcSecurityGroupRuleArrayInput is an input type that accepts VpcSecurityGroupRuleArray and VpcSecurityGroupRuleArrayOutput values.
 // You can construct a concrete instance of `VpcSecurityGroupRuleArrayInput` via:
 //
-//	VpcSecurityGroupRuleArray{ VpcSecurityGroupRuleArgs{...} }
+//          VpcSecurityGroupRuleArray{ VpcSecurityGroupRuleArgs{...} }
 type VpcSecurityGroupRuleArrayInput interface {
 	pulumi.Input
 
@@ -306,7 +303,7 @@ func (i VpcSecurityGroupRuleArray) ToVpcSecurityGroupRuleArrayOutputWithContext(
 // VpcSecurityGroupRuleMapInput is an input type that accepts VpcSecurityGroupRuleMap and VpcSecurityGroupRuleMapOutput values.
 // You can construct a concrete instance of `VpcSecurityGroupRuleMapInput` via:
 //
-//	VpcSecurityGroupRuleMap{ "key": VpcSecurityGroupRuleArgs{...} }
+//          VpcSecurityGroupRuleMap{ "key": VpcSecurityGroupRuleArgs{...} }
 type VpcSecurityGroupRuleMapInput interface {
 	pulumi.Input
 

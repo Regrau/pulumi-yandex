@@ -21,64 +21,61 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewAlbLoadBalancer(ctx, "test-balancer", &yandex.AlbLoadBalancerArgs{
-//				NetworkId: pulumi.Any(yandex_vpc_network.TestNetwork.Id),
-//				AllocationPolicy: &AlbLoadBalancerAllocationPolicyArgs{
-//					Locations: AlbLoadBalancerAllocationPolicyLocationArray{
-//						&AlbLoadBalancerAllocationPolicyLocationArgs{
-//							ZoneId:   pulumi.String("ru-central1-a"),
-//							SubnetId: pulumi.Any(yandex_vpc_subnet.TestSubnet.Id),
-//						},
-//					},
-//				},
-//				Listeners: AlbLoadBalancerListenerArray{
-//					&AlbLoadBalancerListenerArgs{
-//						Name: pulumi.String("my-listener"),
-//						Endpoints: AlbLoadBalancerListenerEndpointArray{
-//							&AlbLoadBalancerListenerEndpointArgs{
-//								Addresses: AlbLoadBalancerListenerEndpointAddressArray{
-//									&AlbLoadBalancerListenerEndpointAddressArgs{
-//										ExternalIpv4Address: nil,
-//									},
-//								},
-//								Ports: pulumi.IntArray{
-//									pulumi.Int(8080),
-//								},
-//							},
-//						},
-//						Http: &AlbLoadBalancerListenerHttpArgs{
-//							Handler: &AlbLoadBalancerListenerHttpHandlerArgs{
-//								HttpRouterId: pulumi.Any(yandex_alb_http_router.TestRouter.Id),
-//							},
-//						},
-//					},
-//				},
-//				LogOptions: &AlbLoadBalancerLogOptionsArgs{
-//					DiscardRules: AlbLoadBalancerLogOptionsDiscardRuleArray{
-//						&AlbLoadBalancerLogOptionsDiscardRuleArgs{
-//							HttpCodeIntervals: pulumi.StringArray{
-//								pulumi.String("2XX"),
-//							},
-//							DiscardPercent: pulumi.Int(75),
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewAlbLoadBalancer(ctx, "test-balancer", &yandex.AlbLoadBalancerArgs{
+// 			NetworkId: pulumi.Any(yandex_vpc_network.TestNetwork.Id),
+// 			AllocationPolicy: &AlbLoadBalancerAllocationPolicyArgs{
+// 				Locations: AlbLoadBalancerAllocationPolicyLocationArray{
+// 					&AlbLoadBalancerAllocationPolicyLocationArgs{
+// 						ZoneId:   pulumi.String("ru-central1-a"),
+// 						SubnetId: pulumi.Any(yandex_vpc_subnet.TestSubnet.Id),
+// 					},
+// 				},
+// 			},
+// 			Listeners: AlbLoadBalancerListenerArray{
+// 				&AlbLoadBalancerListenerArgs{
+// 					Name: pulumi.String("my-listener"),
+// 					Endpoints: AlbLoadBalancerListenerEndpointArray{
+// 						&AlbLoadBalancerListenerEndpointArgs{
+// 							Addresses: AlbLoadBalancerListenerEndpointAddressArray{
+// 								&AlbLoadBalancerListenerEndpointAddressArgs{
+// 									ExternalIpv4Address: nil,
+// 								},
+// 							},
+// 							Ports: pulumi.IntArray{
+// 								pulumi.Int(8080),
+// 							},
+// 						},
+// 					},
+// 					Http: &AlbLoadBalancerListenerHttpArgs{
+// 						Handler: &AlbLoadBalancerListenerHttpHandlerArgs{
+// 							HttpRouterId: pulumi.Any(yandex_alb_http_router.TestRouter.Id),
+// 						},
+// 					},
+// 				},
+// 			},
+// 			LogOptions: &AlbLoadBalancerLogOptionsArgs{
+// 				DiscardRules: AlbLoadBalancerLogOptionsDiscardRuleArray{
+// 					&AlbLoadBalancerLogOptionsDiscardRuleArgs{
+// 						HttpCodeIntervals: pulumi.StringArray{
+// 							pulumi.String("2XX"),
+// 						},
+// 						DiscardPercent: pulumi.Int(75),
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -86,9 +83,7 @@ import (
 // An Application Load Balancer can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/albLoadBalancer:AlbLoadBalancer default load_balancer_id
-//
+//  $ pulumi import yandex:index/albLoadBalancer:AlbLoadBalancer default load_balancer_id
 // ```
 type AlbLoadBalancer struct {
 	pulumi.CustomResourceState
@@ -291,7 +286,7 @@ func (i *AlbLoadBalancer) ToAlbLoadBalancerOutputWithContext(ctx context.Context
 // AlbLoadBalancerArrayInput is an input type that accepts AlbLoadBalancerArray and AlbLoadBalancerArrayOutput values.
 // You can construct a concrete instance of `AlbLoadBalancerArrayInput` via:
 //
-//	AlbLoadBalancerArray{ AlbLoadBalancerArgs{...} }
+//          AlbLoadBalancerArray{ AlbLoadBalancerArgs{...} }
 type AlbLoadBalancerArrayInput interface {
 	pulumi.Input
 
@@ -316,7 +311,7 @@ func (i AlbLoadBalancerArray) ToAlbLoadBalancerArrayOutputWithContext(ctx contex
 // AlbLoadBalancerMapInput is an input type that accepts AlbLoadBalancerMap and AlbLoadBalancerMapOutput values.
 // You can construct a concrete instance of `AlbLoadBalancerMapInput` via:
 //
-//	AlbLoadBalancerMap{ "key": AlbLoadBalancerArgs{...} }
+//          AlbLoadBalancerMap{ "key": AlbLoadBalancerArgs{...} }
 type AlbLoadBalancerMapInput interface {
 	pulumi.Input
 

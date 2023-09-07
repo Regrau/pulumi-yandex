@@ -1303,8 +1303,7 @@ export interface ComputeInstanceBootDisk {
      */
     autoDelete?: boolean;
     /**
-     * Name that can be used to access an attached disk
-     * under `/dev/disk/by-id/`.
+     * Name of the device representing the filesystem on the instance.
      */
     deviceName: string;
     /**
@@ -1317,7 +1316,8 @@ export interface ComputeInstanceBootDisk {
      */
     initializeParams: outputs.ComputeInstanceBootDiskInitializeParams;
     /**
-     * Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+     * Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+     * in `READ_WRITE` mode.
      */
     mode: string;
 }
@@ -1351,6 +1351,22 @@ export interface ComputeInstanceBootDiskInitializeParams {
      * Disk type.
      */
     type?: string;
+}
+
+export interface ComputeInstanceFilesystem {
+    /**
+     * Name of the device representing the filesystem on the instance.
+     */
+    deviceName: string;
+    /**
+     * ID of the filesystem that should be attached.
+     */
+    filesystemId: string;
+    /**
+     * Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+     * in `READ_WRITE` mode.
+     */
+    mode?: string;
 }
 
 export interface ComputeInstanceGroupAllocationPolicy {
@@ -2042,14 +2058,20 @@ export interface ComputeInstanceGroupScalePolicyTestAutoScaleCustomRule {
 
 export interface ComputeInstanceLocalDisk {
     /**
-     * Name that can be used to access an attached disk
-     * under `/dev/disk/by-id/`.
+     * Name of the device representing the filesystem on the instance.
      */
     deviceName: string;
     /**
      * Size of the disk, specified in bytes.
      */
     sizeBytes: number;
+}
+
+export interface ComputeInstanceMetadataOptions {
+    awsV1HttpEndpoint: number;
+    awsV1HttpToken: number;
+    gceHttpEndpoint: number;
+    gceHttpToken: number;
 }
 
 export interface ComputeInstanceNetworkInterface {
@@ -2216,8 +2238,7 @@ export interface ComputeInstanceSecondaryDisk {
      */
     autoDelete?: boolean;
     /**
-     * Name that can be used to access an attached disk
-     * under `/dev/disk/by-id/`.
+     * Name of the device representing the filesystem on the instance.
      */
     deviceName: string;
     /**
@@ -2225,7 +2246,8 @@ export interface ComputeInstanceSecondaryDisk {
      */
     diskId: string;
     /**
-     * Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+     * Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+     * in `READ_WRITE` mode.
      */
     mode?: string;
 }
@@ -4426,6 +4448,18 @@ export interface GetComputeInstanceBootDiskInitializeParam {
     type: string;
 }
 
+export interface GetComputeInstanceFilesystem {
+    /**
+     * Name of the device.
+     */
+    deviceName: string;
+    filesystemId: string;
+    /**
+     * Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+     */
+    mode: string;
+}
+
 export interface GetComputeInstanceGroupAllocationPolicy {
     /**
      * A list of availability zones.
@@ -5118,6 +5152,13 @@ export interface GetComputeInstanceLocalDisk {
      * Size of the disk, specified in bytes.
      */
     sizeBytes: number;
+}
+
+export interface GetComputeInstanceMetadataOptions {
+    awsV1HttpEndpoint: number;
+    awsV1HttpToken: number;
+    gceHttpEndpoint: number;
+    gceHttpToken: number;
 }
 
 export interface GetComputeInstanceNetworkInterface {

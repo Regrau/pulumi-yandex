@@ -19,25 +19,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myDatabase, err := yandex.LookupYdbDatabaseServerless(ctx, &GetYdbDatabaseServerlessArgs{
-//				DatabaseId: pulumi.StringRef("some_ydb_serverless_database_id"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("ydbApiEndpoint", myDatabase.YdbApiEndpoint)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myDatabase, err := yandex.LookupYdbDatabaseServerless(ctx, &GetYdbDatabaseServerlessArgs{
+// 			DatabaseId: pulumi.StringRef("some_ydb_serverless_database_id"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("ydbApiEndpoint", myDatabase.YdbApiEndpoint)
+// 		return nil
+// 	})
+// }
 // ```
 func LookupYdbDatabaseServerless(ctx *pulumi.Context, args *LookupYdbDatabaseServerlessArgs, opts ...pulumi.InvokeOption) (*LookupYdbDatabaseServerlessResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

@@ -13,8 +13,8 @@ import (
 // Manages a address within the Yandex.Cloud. You can only create a reserved (static) address via this resource. An ephemeral address could be obtained via implicit creation at a compute instance creation only. For more information, see [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/address).
 //
 // * How-to Guides
-//   - [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
-//   - [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+//     * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+//     * [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
 //
 // ## Example Usage
 // ### External ipv4 address
@@ -23,26 +23,23 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewVpcAddress(ctx, "addr", &yandex.VpcAddressArgs{
-//				ExternalIpv4Address: &VpcAddressExternalIpv4AddressArgs{
-//					ZoneId: pulumi.String("ru-central1-a"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewVpcAddress(ctx, "addr", &yandex.VpcAddressArgs{
+// 			ExternalIpv4Address: &VpcAddressExternalIpv4AddressArgs{
+// 				ZoneId: pulumi.String("ru-central1-a"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ### Address with DDoS protection
 //
@@ -50,27 +47,24 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewVpcAddress(ctx, "vpnaddr", &yandex.VpcAddressArgs{
-//				ExternalIpv4Address: &VpcAddressExternalIpv4AddressArgs{
-//					DdosProtectionProvider: pulumi.String("qrator"),
-//					ZoneId:                 pulumi.String("ru-central1-a"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewVpcAddress(ctx, "vpnaddr", &yandex.VpcAddressArgs{
+// 			ExternalIpv4Address: &VpcAddressExternalIpv4AddressArgs{
+// 				DdosProtectionProvider: pulumi.String("qrator"),
+// 				ZoneId:                 pulumi.String("ru-central1-a"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -78,9 +72,7 @@ import (
 // A address can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/vpcAddress:VpcAddress addr address_id
-//
+//  $ pulumi import yandex:index/vpcAddress:VpcAddress addr address_id
 // ```
 type VpcAddress struct {
 	pulumi.CustomResourceState
@@ -242,7 +234,7 @@ func (i *VpcAddress) ToVpcAddressOutputWithContext(ctx context.Context) VpcAddre
 // VpcAddressArrayInput is an input type that accepts VpcAddressArray and VpcAddressArrayOutput values.
 // You can construct a concrete instance of `VpcAddressArrayInput` via:
 //
-//	VpcAddressArray{ VpcAddressArgs{...} }
+//          VpcAddressArray{ VpcAddressArgs{...} }
 type VpcAddressArrayInput interface {
 	pulumi.Input
 
@@ -267,7 +259,7 @@ func (i VpcAddressArray) ToVpcAddressArrayOutputWithContext(ctx context.Context)
 // VpcAddressMapInput is an input type that accepts VpcAddressMap and VpcAddressMapOutput values.
 // You can construct a concrete instance of `VpcAddressMapInput` via:
 //
-//	VpcAddressMap{ "key": VpcAddressArgs{...} }
+//          VpcAddressMap{ "key": VpcAddressArgs{...} }
 type VpcAddressMapInput interface {
 	pulumi.Input
 

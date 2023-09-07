@@ -19,9 +19,7 @@ import (
 // A cluster can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/mdbElasticSearchCluster:MdbElasticSearchCluster foo cluster_id
-//
+//  $ pulumi import yandex:index/mdbElasticSearchCluster:MdbElasticSearchCluster foo cluster_id
 // ```
 type MdbElasticSearchCluster struct {
 	pulumi.CustomResourceState
@@ -248,7 +246,7 @@ func (i *MdbElasticSearchCluster) ToMdbElasticSearchClusterOutputWithContext(ctx
 // MdbElasticSearchClusterArrayInput is an input type that accepts MdbElasticSearchClusterArray and MdbElasticSearchClusterArrayOutput values.
 // You can construct a concrete instance of `MdbElasticSearchClusterArrayInput` via:
 //
-//	MdbElasticSearchClusterArray{ MdbElasticSearchClusterArgs{...} }
+//          MdbElasticSearchClusterArray{ MdbElasticSearchClusterArgs{...} }
 type MdbElasticSearchClusterArrayInput interface {
 	pulumi.Input
 
@@ -273,7 +271,7 @@ func (i MdbElasticSearchClusterArray) ToMdbElasticSearchClusterArrayOutputWithCo
 // MdbElasticSearchClusterMapInput is an input type that accepts MdbElasticSearchClusterMap and MdbElasticSearchClusterMapOutput values.
 // You can construct a concrete instance of `MdbElasticSearchClusterMapInput` via:
 //
-//	MdbElasticSearchClusterMap{ "key": MdbElasticSearchClusterArgs{...} }
+//          MdbElasticSearchClusterMap{ "key": MdbElasticSearchClusterArgs{...} }
 type MdbElasticSearchClusterMapInput interface {
 	pulumi.Input
 

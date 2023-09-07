@@ -20,29 +20,26 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewcmCertificate(ctx, "example", &yandex.cmCertificateArgs{
-//				Domains: pulumi.StringArray{
-//					pulumi.String("example.com"),
-//				},
-//				Managed: &CmCertificateManagedArgs{
-//					ChallengeType: pulumi.String("DNS_CNAME"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewcmCertificate(ctx, "example", &yandex.cmCertificateArgs{
+// 			Domains: pulumi.StringArray{
+// 				pulumi.String("example.com"),
+// 			},
+// 			Managed: &CmCertificateManagedArgs{
+// 				ChallengeType: pulumi.String("DNS_CNAME"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ### Self-Managed Certificate
 //
@@ -50,32 +47,29 @@ import (
 // package main
 //
 // import (
+// 	"fmt"
 //
-//	"fmt"
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewcmCertificate(ctx, "example", &yandex.cmCertificateArgs{
-//				Domains: pulumi.StringArray{
-//					pulumi.String("example.com"),
-//				},
-//				SelfManaged: &CmCertificateSelfManagedArgs{
-//					Certificate: pulumi.String(fmt.Sprintf("-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----- \n -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----\n")),
-//					PrivateKey:  pulumi.String("-----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY-----"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewcmCertificate(ctx, "example", &yandex.cmCertificateArgs{
+// 			Domains: pulumi.StringArray{
+// 				pulumi.String("example.com"),
+// 			},
+// 			SelfManaged: &CmCertificateSelfManagedArgs{
+// 				Certificate: pulumi.String(fmt.Sprintf("-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----- \n -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----\n")),
+// 				PrivateKey:  pulumi.String("-----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY-----"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -83,9 +77,7 @@ import (
 // A certificate can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/cmCertificate:cmCertificate default <certificate_id>
-//
+//  $ pulumi import yandex:index/cmCertificate:cmCertificate default <certificate_id>
 // ```
 type CmCertificate struct {
 	pulumi.CustomResourceState
@@ -305,7 +297,7 @@ func (i *CmCertificate) ToCmCertificateOutputWithContext(ctx context.Context) Cm
 // CmCertificateArrayInput is an input type that accepts CmCertificateArray and CmCertificateArrayOutput values.
 // You can construct a concrete instance of `CmCertificateArrayInput` via:
 //
-//	CmCertificateArray{ CmCertificateArgs{...} }
+//          CmCertificateArray{ CmCertificateArgs{...} }
 type CmCertificateArrayInput interface {
 	pulumi.Input
 
@@ -330,7 +322,7 @@ func (i CmCertificateArray) ToCmCertificateArrayOutputWithContext(ctx context.Co
 // CmCertificateMapInput is an input type that accepts CmCertificateMap and CmCertificateMapOutput values.
 // You can construct a concrete instance of `CmCertificateMapInput` via:
 //
-//	CmCertificateMap{ "key": CmCertificateArgs{...} }
+//          CmCertificateMap{ "key": CmCertificateArgs{...} }
 type CmCertificateMapInput interface {
 	pulumi.Input
 

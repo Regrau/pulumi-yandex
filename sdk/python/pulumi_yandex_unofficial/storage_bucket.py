@@ -45,7 +45,7 @@ class StorageBucketArgs:
                See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
                for more infomation.
         :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
-        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketCorsRuleArgs']]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketCorsRuleArgs']]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         :param pulumi.Input[str] default_storage_class: Storage class which is used for storing objects by default.
                Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
                See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
@@ -169,7 +169,7 @@ class StorageBucketArgs:
     @pulumi.getter(name="corsRules")
     def cors_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketCorsRuleArgs']]]]:
         """
-        A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         """
         return pulumi.get(self, "cors_rules")
 
@@ -391,7 +391,7 @@ class _StorageBucketState:
                for more infomation.
         :param pulumi.Input[str] bucket_domain_name: The bucket domain name.
         :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
-        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketCorsRuleArgs']]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        :param pulumi.Input[Sequence[pulumi.Input['StorageBucketCorsRuleArgs']]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         :param pulumi.Input[str] default_storage_class: Storage class which is used for storing objects by default.
                Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
                See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
@@ -529,7 +529,7 @@ class _StorageBucketState:
     @pulumi.getter(name="corsRules")
     def cors_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketCorsRuleArgs']]]]:
         """
-        A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         """
         return pulumi.get(self, "cors_rules")
 
@@ -1165,7 +1165,7 @@ class StorageBucket(pulumi.CustomResource):
                See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
                for more infomation.
         :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         :param pulumi.Input[str] default_storage_class: Storage class which is used for storing objects by default.
                Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
                See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
@@ -1717,7 +1717,7 @@ class StorageBucket(pulumi.CustomResource):
                for more infomation.
         :param pulumi.Input[str] bucket_domain_name: The bucket domain name.
         :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         :param pulumi.Input[str] default_storage_class: Storage class which is used for storing objects by default.
                Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
                See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
@@ -1814,7 +1814,7 @@ class StorageBucket(pulumi.CustomResource):
     @pulumi.getter(name="corsRules")
     def cors_rules(self) -> pulumi.Output[Optional[Sequence['outputs.StorageBucketCorsRule']]]:
         """
-        A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         """
         return pulumi.get(self, "cors_rules")
 

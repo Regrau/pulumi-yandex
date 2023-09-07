@@ -20,28 +20,25 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewOrganizationManagerOrganizationIamBinding(ctx, "editor", &yandex.OrganizationManagerOrganizationIamBindingArgs{
-//				Members: pulumi.StringArray{
-//					pulumi.String("userAccount:some_user_id"),
-//				},
-//				OrganizationId: pulumi.String("some_organization_id"),
-//				Role:           pulumi.String("editor"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewOrganizationManagerOrganizationIamBinding(ctx, "editor", &yandex.OrganizationManagerOrganizationIamBindingArgs{
+// 			Members: pulumi.StringArray{
+// 				pulumi.String("userAccount:some_user_id"),
+// 			},
+// 			OrganizationId: pulumi.String("some_organization_id"),
+// 			Role:           pulumi.String("editor"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -49,9 +46,7 @@ import (
 // IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `organization_id` and role, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/organizationManagerOrganizationIamBinding:OrganizationManagerOrganizationIamBinding viewer "organization_id viewer"
-//
+//  $ pulumi import yandex:index/organizationManagerOrganizationIamBinding:OrganizationManagerOrganizationIamBinding viewer "organization_id viewer"
 // ```
 type OrganizationManagerOrganizationIamBinding struct {
 	pulumi.CustomResourceState
@@ -199,7 +194,7 @@ func (i *OrganizationManagerOrganizationIamBinding) ToOrganizationManagerOrganiz
 // OrganizationManagerOrganizationIamBindingArrayInput is an input type that accepts OrganizationManagerOrganizationIamBindingArray and OrganizationManagerOrganizationIamBindingArrayOutput values.
 // You can construct a concrete instance of `OrganizationManagerOrganizationIamBindingArrayInput` via:
 //
-//	OrganizationManagerOrganizationIamBindingArray{ OrganizationManagerOrganizationIamBindingArgs{...} }
+//          OrganizationManagerOrganizationIamBindingArray{ OrganizationManagerOrganizationIamBindingArgs{...} }
 type OrganizationManagerOrganizationIamBindingArrayInput interface {
 	pulumi.Input
 
@@ -224,7 +219,7 @@ func (i OrganizationManagerOrganizationIamBindingArray) ToOrganizationManagerOrg
 // OrganizationManagerOrganizationIamBindingMapInput is an input type that accepts OrganizationManagerOrganizationIamBindingMap and OrganizationManagerOrganizationIamBindingMapOutput values.
 // You can construct a concrete instance of `OrganizationManagerOrganizationIamBindingMapInput` via:
 //
-//	OrganizationManagerOrganizationIamBindingMap{ "key": OrganizationManagerOrganizationIamBindingArgs{...} }
+//          OrganizationManagerOrganizationIamBindingMap{ "key": OrganizationManagerOrganizationIamBindingArgs{...} }
 type OrganizationManagerOrganizationIamBindingMapInput interface {
 	pulumi.Input
 

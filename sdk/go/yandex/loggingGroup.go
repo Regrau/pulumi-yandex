@@ -19,24 +19,21 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewLoggingGroup(ctx, "group1", &yandex.LoggingGroupArgs{
-//				FolderId: pulumi.Any(data.Yandex_resourcemanager_folder.Test_folder.Id),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewLoggingGroup(ctx, "group1", &yandex.LoggingGroupArgs{
+// 			FolderId: pulumi.Any(data.Yandex_resourcemanager_folder.Test_folder.Id),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type LoggingGroup struct {
 	pulumi.CustomResourceState
@@ -188,7 +185,7 @@ func (i *LoggingGroup) ToLoggingGroupOutputWithContext(ctx context.Context) Logg
 // LoggingGroupArrayInput is an input type that accepts LoggingGroupArray and LoggingGroupArrayOutput values.
 // You can construct a concrete instance of `LoggingGroupArrayInput` via:
 //
-//	LoggingGroupArray{ LoggingGroupArgs{...} }
+//          LoggingGroupArray{ LoggingGroupArgs{...} }
 type LoggingGroupArrayInput interface {
 	pulumi.Input
 
@@ -213,7 +210,7 @@ func (i LoggingGroupArray) ToLoggingGroupArrayOutputWithContext(ctx context.Cont
 // LoggingGroupMapInput is an input type that accepts LoggingGroupMap and LoggingGroupMapOutput values.
 // You can construct a concrete instance of `LoggingGroupMapInput` via:
 //
-//	LoggingGroupMap{ "key": LoggingGroupArgs{...} }
+//          LoggingGroupMap{ "key": LoggingGroupArgs{...} }
 type LoggingGroupMapInput interface {
 	pulumi.Input
 

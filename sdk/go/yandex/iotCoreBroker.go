@@ -20,31 +20,28 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewiotCoreBroker(ctx, "myBroker", &yandex.iotCoreBrokerArgs{
-//				Certificates: pulumi.StringArray{
-//					pulumi.String("public part of certificate1"),
-//					pulumi.String("public part of certificate2"),
-//				},
-//				Description: pulumi.String("any description"),
-//				Labels: pulumi.StringMap{
-//					"my-label": pulumi.String("my-label-value"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewiotCoreBroker(ctx, "myBroker", &yandex.iotCoreBrokerArgs{
+// 			Certificates: pulumi.StringArray{
+// 				pulumi.String("public part of certificate1"),
+// 				pulumi.String("public part of certificate2"),
+// 			},
+// 			Description: pulumi.String("any description"),
+// 			Labels: pulumi.StringMap{
+// 				"my-label": pulumi.String("my-label-value"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type IotCoreBroker struct {
 	pulumi.CustomResourceState
@@ -179,7 +176,7 @@ func (i *IotCoreBroker) ToIotCoreBrokerOutputWithContext(ctx context.Context) Io
 // IotCoreBrokerArrayInput is an input type that accepts IotCoreBrokerArray and IotCoreBrokerArrayOutput values.
 // You can construct a concrete instance of `IotCoreBrokerArrayInput` via:
 //
-//	IotCoreBrokerArray{ IotCoreBrokerArgs{...} }
+//          IotCoreBrokerArray{ IotCoreBrokerArgs{...} }
 type IotCoreBrokerArrayInput interface {
 	pulumi.Input
 
@@ -204,7 +201,7 @@ func (i IotCoreBrokerArray) ToIotCoreBrokerArrayOutputWithContext(ctx context.Co
 // IotCoreBrokerMapInput is an input type that accepts IotCoreBrokerMap and IotCoreBrokerMapOutput values.
 // You can construct a concrete instance of `IotCoreBrokerMapInput` via:
 //
-//	IotCoreBrokerMap{ "key": IotCoreBrokerArgs{...} }
+//          IotCoreBrokerMap{ "key": IotCoreBrokerArgs{...} }
 type IotCoreBrokerMapInput interface {
 	pulumi.Input
 

@@ -19,26 +19,23 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewContainerRegistry(ctx, "my-registry", nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewContainerRepository(ctx, "my-repository", nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewContainerRegistry(ctx, "my-registry", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewContainerRepository(ctx, "my-repository", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -46,9 +43,7 @@ import (
 // A repository can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/containerRepository:ContainerRepository my-repository repository_id
-//
+//  $ pulumi import yandex:index/containerRepository:ContainerRepository my-repository repository_id
 // ```
 type ContainerRepository struct {
 	pulumi.CustomResourceState
@@ -137,7 +132,7 @@ func (i *ContainerRepository) ToContainerRepositoryOutputWithContext(ctx context
 // ContainerRepositoryArrayInput is an input type that accepts ContainerRepositoryArray and ContainerRepositoryArrayOutput values.
 // You can construct a concrete instance of `ContainerRepositoryArrayInput` via:
 //
-//	ContainerRepositoryArray{ ContainerRepositoryArgs{...} }
+//          ContainerRepositoryArray{ ContainerRepositoryArgs{...} }
 type ContainerRepositoryArrayInput interface {
 	pulumi.Input
 
@@ -162,7 +157,7 @@ func (i ContainerRepositoryArray) ToContainerRepositoryArrayOutputWithContext(ct
 // ContainerRepositoryMapInput is an input type that accepts ContainerRepositoryMap and ContainerRepositoryMapOutput values.
 // You can construct a concrete instance of `ContainerRepositoryMapInput` via:
 //
-//	ContainerRepositoryMap{ "key": ContainerRepositoryArgs{...} }
+//          ContainerRepositoryMap{ "key": ContainerRepositoryArgs{...} }
 type ContainerRepositoryMapInput interface {
 	pulumi.Input
 

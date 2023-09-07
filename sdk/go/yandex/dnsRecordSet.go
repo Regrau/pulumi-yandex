@@ -19,68 +19,63 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			foo, err := yandex.NewVpcNetwork(ctx, "foo", nil)
-//			if err != nil {
-//				return err
-//			}
-//			zone1, err := yandex.NewDnsZone(ctx, "zone1", &yandex.DnsZoneArgs{
-//				Description: pulumi.String("desc"),
-//				Labels: pulumi.StringMap{
-//					"label1": pulumi.String("label-1-value"),
-//				},
-//				Zone:   pulumi.String("example.com."),
-//				Public: pulumi.Bool(false),
-//				PrivateNetworks: pulumi.StringArray{
-//					foo.ID(),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewDnsRecordSet(ctx, "rs1", &yandex.DnsRecordSetArgs{
-//				ZoneId: zone1.ID(),
-//				Type:   pulumi.String("A"),
-//				Ttl:    pulumi.Int(200),
-//				Datas: pulumi.StringArray{
-//					pulumi.String("10.1.0.1"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewDnsRecordSet(ctx, "rs2", &yandex.DnsRecordSetArgs{
-//				ZoneId: zone1.ID(),
-//				Type:   pulumi.String("A"),
-//				Ttl:    pulumi.Int(200),
-//				Datas: pulumi.StringArray{
-//					pulumi.String("10.1.0.2"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		foo, err := yandex.NewVpcNetwork(ctx, "foo", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		zone1, err := yandex.NewDnsZone(ctx, "zone1", &yandex.DnsZoneArgs{
+// 			Description: pulumi.String("desc"),
+// 			Labels: pulumi.StringMap{
+// 				"label1": pulumi.String("label-1-value"),
+// 			},
+// 			Zone:   pulumi.String("example.com."),
+// 			Public: pulumi.Bool(false),
+// 			PrivateNetworks: pulumi.StringArray{
+// 				foo.ID(),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewDnsRecordSet(ctx, "rs1", &yandex.DnsRecordSetArgs{
+// 			ZoneId: zone1.ID(),
+// 			Type:   pulumi.String("A"),
+// 			Ttl:    pulumi.Int(200),
+// 			Datas: pulumi.StringArray{
+// 				pulumi.String("10.1.0.1"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewDnsRecordSet(ctx, "rs2", &yandex.DnsRecordSetArgs{
+// 			ZoneId: zone1.ID(),
+// 			Type:   pulumi.String("A"),
+// 			Ttl:    pulumi.Int(200),
+// 			Datas: pulumi.StringArray{
+// 				pulumi.String("10.1.0.2"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
 //
-// # DNS recordset can be imported using this format
+// DNS recordset can be imported using this format
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/dnsRecordSet:DnsRecordSet rs1 {{zone_id}}/{{name}}/{{type}}
-//
+//  $ pulumi import yandex:index/dnsRecordSet:DnsRecordSet rs1 {{zone_id}}/{{name}}/{{type}}
 // ```
 type DnsRecordSet struct {
 	pulumi.CustomResourceState
@@ -221,7 +216,7 @@ func (i *DnsRecordSet) ToDnsRecordSetOutputWithContext(ctx context.Context) DnsR
 // DnsRecordSetArrayInput is an input type that accepts DnsRecordSetArray and DnsRecordSetArrayOutput values.
 // You can construct a concrete instance of `DnsRecordSetArrayInput` via:
 //
-//	DnsRecordSetArray{ DnsRecordSetArgs{...} }
+//          DnsRecordSetArray{ DnsRecordSetArgs{...} }
 type DnsRecordSetArrayInput interface {
 	pulumi.Input
 
@@ -246,7 +241,7 @@ func (i DnsRecordSetArray) ToDnsRecordSetArrayOutputWithContext(ctx context.Cont
 // DnsRecordSetMapInput is an input type that accepts DnsRecordSetMap and DnsRecordSetMapOutput values.
 // You can construct a concrete instance of `DnsRecordSetMapInput` via:
 //
-//	DnsRecordSetMap{ "key": DnsRecordSetArgs{...} }
+//          DnsRecordSetMap{ "key": DnsRecordSetArgs{...} }
 type DnsRecordSetMapInput interface {
 	pulumi.Input
 

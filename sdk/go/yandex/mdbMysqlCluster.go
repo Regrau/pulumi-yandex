@@ -22,57 +22,54 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-//			if err != nil {
-//				return err
-//			}
-//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-//				Zone:      pulumi.String("ru-central1-a"),
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.5.0.0/24"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
-//				Environment: pulumi.String("PRESTABLE"),
-//				NetworkId:   fooVpcNetwork.ID(),
-//				Version:     pulumi.String("8.0"),
-//				Resources: &MdbMysqlClusterResourcesArgs{
-//					ResourcePresetId: pulumi.String("s2.micro"),
-//					DiskTypeId:       pulumi.String("network-ssd"),
-//					DiskSize:         pulumi.Int(16),
-//				},
-//				MysqlConfig: pulumi.StringMap{
-//					"sql_mode":                      pulumi.String("ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"),
-//					"max_connections":               pulumi.String("100"),
-//					"default_authentication_plugin": pulumi.String("MYSQL_NATIVE_PASSWORD"),
-//					"innodb_print_all_deadlocks":    pulumi.String("true"),
-//				},
-//				Hosts: MdbMysqlClusterHostArray{
-//					&MdbMysqlClusterHostArgs{
-//						Zone:     pulumi.String("ru-central1-a"),
-//						SubnetId: fooVpcSubnet.ID(),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+// 			Zone:      pulumi.String("ru-central1-a"),
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.5.0.0/24"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
+// 			Environment: pulumi.String("PRESTABLE"),
+// 			NetworkId:   fooVpcNetwork.ID(),
+// 			Version:     pulumi.String("8.0"),
+// 			Resources: &MdbMysqlClusterResourcesArgs{
+// 				ResourcePresetId: pulumi.String("s2.micro"),
+// 				DiskTypeId:       pulumi.String("network-ssd"),
+// 				DiskSize:         pulumi.Int(16),
+// 			},
+// 			MysqlConfig: pulumi.StringMap{
+// 				"sql_mode":                      pulumi.String("ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"),
+// 				"max_connections":               pulumi.String("100"),
+// 				"default_authentication_plugin": pulumi.String("MYSQL_NATIVE_PASSWORD"),
+// 				"innodb_print_all_deadlocks":    pulumi.String("true"),
+// 			},
+// 			Hosts: MdbMysqlClusterHostArray{
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:     pulumi.String("ru-central1-a"),
+// 					SubnetId: fooVpcSubnet.ID(),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // Example of creating a High-Availability(HA) MySQL Cluster.
@@ -81,70 +78,67 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-//			if err != nil {
-//				return err
-//			}
-//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-//				Zone:      pulumi.String("ru-central1-a"),
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.1.0.0/24"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			bar, err := yandex.NewVpcSubnet(ctx, "bar", &yandex.VpcSubnetArgs{
-//				Zone:      pulumi.String("ru-central1-b"),
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.2.0.0/24"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
-//				Environment: pulumi.String("PRESTABLE"),
-//				NetworkId:   fooVpcNetwork.ID(),
-//				Version:     pulumi.String("8.0"),
-//				Resources: &MdbMysqlClusterResourcesArgs{
-//					ResourcePresetId: pulumi.String("s2.micro"),
-//					DiskTypeId:       pulumi.String("network-ssd"),
-//					DiskSize:         pulumi.Int(16),
-//				},
-//				MaintenanceWindow: &MdbMysqlClusterMaintenanceWindowArgs{
-//					Type: pulumi.String("WEEKLY"),
-//					Day:  pulumi.String("SAT"),
-//					Hour: pulumi.Int(12),
-//				},
-//				Hosts: MdbMysqlClusterHostArray{
-//					&MdbMysqlClusterHostArgs{
-//						Zone:     pulumi.String("ru-central1-a"),
-//						SubnetId: fooVpcSubnet.ID(),
-//					},
-//					&MdbMysqlClusterHostArgs{
-//						Zone:     pulumi.String("ru-central1-b"),
-//						SubnetId: bar.ID(),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+// 			Zone:      pulumi.String("ru-central1-a"),
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.1.0.0/24"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		bar, err := yandex.NewVpcSubnet(ctx, "bar", &yandex.VpcSubnetArgs{
+// 			Zone:      pulumi.String("ru-central1-b"),
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.2.0.0/24"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
+// 			Environment: pulumi.String("PRESTABLE"),
+// 			NetworkId:   fooVpcNetwork.ID(),
+// 			Version:     pulumi.String("8.0"),
+// 			Resources: &MdbMysqlClusterResourcesArgs{
+// 				ResourcePresetId: pulumi.String("s2.micro"),
+// 				DiskTypeId:       pulumi.String("network-ssd"),
+// 				DiskSize:         pulumi.Int(16),
+// 			},
+// 			MaintenanceWindow: &MdbMysqlClusterMaintenanceWindowArgs{
+// 				Type: pulumi.String("WEEKLY"),
+// 				Day:  pulumi.String("SAT"),
+// 				Hour: pulumi.Int(12),
+// 			},
+// 			Hosts: MdbMysqlClusterHostArray{
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:     pulumi.String("ru-central1-a"),
+// 					SubnetId: fooVpcSubnet.ID(),
+// 				},
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:     pulumi.String("ru-central1-b"),
+// 					SubnetId: bar.ID(),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // Example of creating a MySQL Cluster with cascade replicas: HA-group consist of 'na-1' and 'na-2', cascade replicas form a chain 'na-1' > 'nb-1' > 'nb-2'
@@ -153,84 +147,81 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-//			if err != nil {
-//				return err
-//			}
-//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-//				Zone:      pulumi.String("ru-central1-a"),
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.1.0.0/24"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			bar, err := yandex.NewVpcSubnet(ctx, "bar", &yandex.VpcSubnetArgs{
-//				Zone:      pulumi.String("ru-central1-b"),
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.2.0.0/24"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
-//				Environment: pulumi.String("PRESTABLE"),
-//				NetworkId:   fooVpcNetwork.ID(),
-//				Version:     pulumi.String("8.0"),
-//				Resources: &MdbMysqlClusterResourcesArgs{
-//					ResourcePresetId: pulumi.String("s2.micro"),
-//					DiskTypeId:       pulumi.String("network-ssd"),
-//					DiskSize:         pulumi.Int(16),
-//				},
-//				MaintenanceWindow: &MdbMysqlClusterMaintenanceWindowArgs{
-//					Type: pulumi.String("WEEKLY"),
-//					Day:  pulumi.String("SAT"),
-//					Hour: pulumi.Int(12),
-//				},
-//				Hosts: MdbMysqlClusterHostArray{
-//					&MdbMysqlClusterHostArgs{
-//						Zone:     pulumi.String("ru-central1-a"),
-//						Name:     pulumi.String("na-1"),
-//						SubnetId: fooVpcSubnet.ID(),
-//					},
-//					&MdbMysqlClusterHostArgs{
-//						Zone:     pulumi.String("ru-central1-a"),
-//						Name:     pulumi.String("na-2"),
-//						SubnetId: fooVpcSubnet.ID(),
-//					},
-//					&MdbMysqlClusterHostArgs{
-//						Zone:                  pulumi.String("ru-central1-b"),
-//						Name:                  pulumi.String("nb-1"),
-//						ReplicationSourceName: pulumi.String("na-1"),
-//						SubnetId:              bar.ID(),
-//					},
-//					&MdbMysqlClusterHostArgs{
-//						Zone:                  pulumi.String("ru-central1-b"),
-//						Name:                  pulumi.String("nb-2"),
-//						ReplicationSourceName: pulumi.String("nb-1"),
-//						SubnetId:              bar.ID(),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+// 			Zone:      pulumi.String("ru-central1-a"),
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.1.0.0/24"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		bar, err := yandex.NewVpcSubnet(ctx, "bar", &yandex.VpcSubnetArgs{
+// 			Zone:      pulumi.String("ru-central1-b"),
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.2.0.0/24"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
+// 			Environment: pulumi.String("PRESTABLE"),
+// 			NetworkId:   fooVpcNetwork.ID(),
+// 			Version:     pulumi.String("8.0"),
+// 			Resources: &MdbMysqlClusterResourcesArgs{
+// 				ResourcePresetId: pulumi.String("s2.micro"),
+// 				DiskTypeId:       pulumi.String("network-ssd"),
+// 				DiskSize:         pulumi.Int(16),
+// 			},
+// 			MaintenanceWindow: &MdbMysqlClusterMaintenanceWindowArgs{
+// 				Type: pulumi.String("WEEKLY"),
+// 				Day:  pulumi.String("SAT"),
+// 				Hour: pulumi.Int(12),
+// 			},
+// 			Hosts: MdbMysqlClusterHostArray{
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:     pulumi.String("ru-central1-a"),
+// 					Name:     pulumi.String("na-1"),
+// 					SubnetId: fooVpcSubnet.ID(),
+// 				},
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:     pulumi.String("ru-central1-a"),
+// 					Name:     pulumi.String("na-2"),
+// 					SubnetId: fooVpcSubnet.ID(),
+// 				},
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:                  pulumi.String("ru-central1-b"),
+// 					Name:                  pulumi.String("nb-1"),
+// 					ReplicationSourceName: pulumi.String("na-1"),
+// 					SubnetId:              bar.ID(),
+// 				},
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:                  pulumi.String("ru-central1-b"),
+// 					Name:                  pulumi.String("nb-2"),
+// 					ReplicationSourceName: pulumi.String("nb-1"),
+// 					SubnetId:              bar.ID(),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // Example of creating a MySQL Cluster with different backup priorities. Backup will be created from nb-2, if it's not master. na-2 will be used as a backup source as a last resort.
@@ -239,79 +230,76 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-//			if err != nil {
-//				return err
-//			}
-//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-//				Zone:      pulumi.String("ru-central1-a"),
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.1.0.0/24"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			bar, err := yandex.NewVpcSubnet(ctx, "bar", &yandex.VpcSubnetArgs{
-//				Zone:      pulumi.String("ru-central1-b"),
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.2.0.0/24"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
-//				Environment: pulumi.String("PRESTABLE"),
-//				NetworkId:   fooVpcNetwork.ID(),
-//				Version:     pulumi.String("8.0"),
-//				Resources: &MdbMysqlClusterResourcesArgs{
-//					ResourcePresetId: pulumi.String("s2.micro"),
-//					DiskTypeId:       pulumi.String("network-ssd"),
-//					DiskSize:         pulumi.Int(16),
-//				},
-//				MaintenanceWindow: &MdbMysqlClusterMaintenanceWindowArgs{
-//					Type: pulumi.String("WEEKLY"),
-//					Day:  pulumi.String("SAT"),
-//					Hour: pulumi.Int(12),
-//				},
-//				Hosts: MdbMysqlClusterHostArray{
-//					&MdbMysqlClusterHostArgs{
-//						Zone:     pulumi.String("ru-central1-a"),
-//						Name:     pulumi.String("na-1"),
-//						SubnetId: fooVpcSubnet.ID(),
-//					},
-//					&MdbMysqlClusterHostArgs{
-//						Zone:           pulumi.String("ru-central1-b"),
-//						Name:           pulumi.String("nb-1"),
-//						BackupPriority: pulumi.Int(5),
-//						SubnetId:       bar.ID(),
-//					},
-//					&MdbMysqlClusterHostArgs{
-//						Zone:           pulumi.String("ru-central1-b"),
-//						Name:           pulumi.String("nb-2"),
-//						BackupPriority: pulumi.Int(10),
-//						SubnetId:       bar.ID(),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+// 			Zone:      pulumi.String("ru-central1-a"),
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.1.0.0/24"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		bar, err := yandex.NewVpcSubnet(ctx, "bar", &yandex.VpcSubnetArgs{
+// 			Zone:      pulumi.String("ru-central1-b"),
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.2.0.0/24"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
+// 			Environment: pulumi.String("PRESTABLE"),
+// 			NetworkId:   fooVpcNetwork.ID(),
+// 			Version:     pulumi.String("8.0"),
+// 			Resources: &MdbMysqlClusterResourcesArgs{
+// 				ResourcePresetId: pulumi.String("s2.micro"),
+// 				DiskTypeId:       pulumi.String("network-ssd"),
+// 				DiskSize:         pulumi.Int(16),
+// 			},
+// 			MaintenanceWindow: &MdbMysqlClusterMaintenanceWindowArgs{
+// 				Type: pulumi.String("WEEKLY"),
+// 				Day:  pulumi.String("SAT"),
+// 				Hour: pulumi.Int(12),
+// 			},
+// 			Hosts: MdbMysqlClusterHostArray{
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:     pulumi.String("ru-central1-a"),
+// 					Name:     pulumi.String("na-1"),
+// 					SubnetId: fooVpcSubnet.ID(),
+// 				},
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:           pulumi.String("ru-central1-b"),
+// 					Name:           pulumi.String("nb-1"),
+// 					BackupPriority: pulumi.Int(5),
+// 					SubnetId:       bar.ID(),
+// 				},
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:           pulumi.String("ru-central1-b"),
+// 					Name:           pulumi.String("nb-2"),
+// 					BackupPriority: pulumi.Int(10),
+// 					SubnetId:       bar.ID(),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // Example of creating a MySQL Cluster with different host priorities. During failover master will be set to nb-2
@@ -320,79 +308,76 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-//			if err != nil {
-//				return err
-//			}
-//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-//				Zone:      pulumi.String("ru-central1-a"),
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.1.0.0/24"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			bar, err := yandex.NewVpcSubnet(ctx, "bar", &yandex.VpcSubnetArgs{
-//				Zone:      pulumi.String("ru-central1-b"),
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.2.0.0/24"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
-//				Environment: pulumi.String("PRESTABLE"),
-//				NetworkId:   fooVpcNetwork.ID(),
-//				Version:     pulumi.String("8.0"),
-//				Resources: &MdbMysqlClusterResourcesArgs{
-//					ResourcePresetId: pulumi.String("s2.micro"),
-//					DiskTypeId:       pulumi.String("network-ssd"),
-//					DiskSize:         pulumi.Int(16),
-//				},
-//				MaintenanceWindow: &MdbMysqlClusterMaintenanceWindowArgs{
-//					Type: pulumi.String("WEEKLY"),
-//					Day:  pulumi.String("SAT"),
-//					Hour: pulumi.Int(12),
-//				},
-//				Hosts: MdbMysqlClusterHostArray{
-//					&MdbMysqlClusterHostArgs{
-//						Zone:     pulumi.String("ru-central1-a"),
-//						Name:     pulumi.String("na-1"),
-//						SubnetId: fooVpcSubnet.ID(),
-//					},
-//					&MdbMysqlClusterHostArgs{
-//						Zone:     pulumi.String("ru-central1-b"),
-//						Name:     pulumi.String("nb-1"),
-//						Priority: pulumi.Int(5),
-//						SubnetId: bar.ID(),
-//					},
-//					&MdbMysqlClusterHostArgs{
-//						Zone:     pulumi.String("ru-central1-b"),
-//						Name:     pulumi.String("nb-2"),
-//						Priority: pulumi.Int(10),
-//						SubnetId: bar.ID(),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+// 			Zone:      pulumi.String("ru-central1-a"),
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.1.0.0/24"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		bar, err := yandex.NewVpcSubnet(ctx, "bar", &yandex.VpcSubnetArgs{
+// 			Zone:      pulumi.String("ru-central1-b"),
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.2.0.0/24"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
+// 			Environment: pulumi.String("PRESTABLE"),
+// 			NetworkId:   fooVpcNetwork.ID(),
+// 			Version:     pulumi.String("8.0"),
+// 			Resources: &MdbMysqlClusterResourcesArgs{
+// 				ResourcePresetId: pulumi.String("s2.micro"),
+// 				DiskTypeId:       pulumi.String("network-ssd"),
+// 				DiskSize:         pulumi.Int(16),
+// 			},
+// 			MaintenanceWindow: &MdbMysqlClusterMaintenanceWindowArgs{
+// 				Type: pulumi.String("WEEKLY"),
+// 				Day:  pulumi.String("SAT"),
+// 				Hour: pulumi.Int(12),
+// 			},
+// 			Hosts: MdbMysqlClusterHostArray{
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:     pulumi.String("ru-central1-a"),
+// 					Name:     pulumi.String("na-1"),
+// 					SubnetId: fooVpcSubnet.ID(),
+// 				},
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:     pulumi.String("ru-central1-b"),
+// 					Name:     pulumi.String("nb-1"),
+// 					Priority: pulumi.Int(5),
+// 					SubnetId: bar.ID(),
+// 				},
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:     pulumi.String("ru-central1-b"),
+// 					Name:     pulumi.String("nb-2"),
+// 					Priority: pulumi.Int(10),
+// 					SubnetId: bar.ID(),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // Example of creating a Single Node MySQL with user params.
@@ -401,54 +386,51 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-//			if err != nil {
-//				return err
-//			}
-//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-//				Zone:      pulumi.String("ru-central1-a"),
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.5.0.0/24"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
-//				Environment: pulumi.String("PRESTABLE"),
-//				NetworkId:   fooVpcNetwork.ID(),
-//				Version:     pulumi.String("8.0"),
-//				Resources: &MdbMysqlClusterResourcesArgs{
-//					ResourcePresetId: pulumi.String("s2.micro"),
-//					DiskTypeId:       pulumi.String("network-ssd"),
-//					DiskSize:         pulumi.Int(16),
-//				},
-//				MaintenanceWindow: &MdbMysqlClusterMaintenanceWindowArgs{
-//					Type: pulumi.String("ANYTIME"),
-//				},
-//				Hosts: MdbMysqlClusterHostArray{
-//					&MdbMysqlClusterHostArgs{
-//						Zone:     pulumi.String("ru-central1-a"),
-//						SubnetId: fooVpcSubnet.ID(),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+// 			Zone:      pulumi.String("ru-central1-a"),
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.5.0.0/24"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
+// 			Environment: pulumi.String("PRESTABLE"),
+// 			NetworkId:   fooVpcNetwork.ID(),
+// 			Version:     pulumi.String("8.0"),
+// 			Resources: &MdbMysqlClusterResourcesArgs{
+// 				ResourcePresetId: pulumi.String("s2.micro"),
+// 				DiskTypeId:       pulumi.String("network-ssd"),
+// 				DiskSize:         pulumi.Int(16),
+// 			},
+// 			MaintenanceWindow: &MdbMysqlClusterMaintenanceWindowArgs{
+// 				Type: pulumi.String("ANYTIME"),
+// 			},
+// 			Hosts: MdbMysqlClusterHostArray{
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:     pulumi.String("ru-central1-a"),
+// 					SubnetId: fooVpcSubnet.ID(),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // Example of restoring MySQL cluster.
@@ -457,55 +439,52 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-//			if err != nil {
-//				return err
-//			}
-//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-//				Zone:      pulumi.String("ru-central1-a"),
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.5.0.0/24"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
-//				Environment: pulumi.String("PRESTABLE"),
-//				NetworkId:   fooVpcNetwork.ID(),
-//				Version:     pulumi.String("8.0"),
-//				Restore: &MdbMysqlClusterRestoreArgs{
-//					BackupId: pulumi.String("c9qj2tns23432471d9qha:stream_20210122T141717Z"),
-//					Time:     pulumi.String("2021-01-23T15:04:05"),
-//				},
-//				Resources: &MdbMysqlClusterResourcesArgs{
-//					ResourcePresetId: pulumi.String("s2.micro"),
-//					DiskTypeId:       pulumi.String("network-ssd"),
-//					DiskSize:         pulumi.Int(16),
-//				},
-//				Hosts: MdbMysqlClusterHostArray{
-//					&MdbMysqlClusterHostArgs{
-//						Zone:     pulumi.String("ru-central1-a"),
-//						SubnetId: fooVpcSubnet.ID(),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+// 			Zone:      pulumi.String("ru-central1-a"),
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.5.0.0/24"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
+// 			Environment: pulumi.String("PRESTABLE"),
+// 			NetworkId:   fooVpcNetwork.ID(),
+// 			Version:     pulumi.String("8.0"),
+// 			Restore: &MdbMysqlClusterRestoreArgs{
+// 				BackupId: pulumi.String("c9qj2tns23432471d9qha:stream_20210122T141717Z"),
+// 				Time:     pulumi.String("2021-01-23T15:04:05"),
+// 			},
+// 			Resources: &MdbMysqlClusterResourcesArgs{
+// 				ResourcePresetId: pulumi.String("s2.micro"),
+// 				DiskTypeId:       pulumi.String("network-ssd"),
+// 				DiskSize:         pulumi.Int(16),
+// 			},
+// 			Hosts: MdbMysqlClusterHostArray{
+// 				&MdbMysqlClusterHostArgs{
+// 					Zone:     pulumi.String("ru-central1-a"),
+// 					SubnetId: fooVpcSubnet.ID(),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 // ## MySQL config
 //
@@ -514,28 +493,27 @@ import (
 // * `sqlMode` default value: `ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION`
 //
 // some of:\
-//   - 1: "ALLOW_INVALID_DATES"
-//   - 2: "ANSI_QUOTES"
-//   - 3: "ERROR_FOR_DIVISION_BY_ZERO"
-//   - 4: "HIGH_NOT_PRECEDENCE"
-//   - 5: "IGNORE_SPACE"
-//   - 6: "NO_AUTO_VALUE_ON_ZERO"
-//   - 7: "NO_BACKSLASH_ESCAPES"
-//   - 8: "NO_ENGINE_SUBSTITUTION"
-//   - 9: "NO_UNSIGNED_SUBTRACTION"
-//   - 10: "NO_ZERO_DATE"
-//   - 11: "NO_ZERO_IN_DATE"
-//   - 15: "ONLY_FULL_GROUP_BY"
-//   - 16: "PAD_CHAR_TO_FULL_LENGTH"
-//   - 17: "PIPES_AS_CONCAT"
-//   - 18: "REAL_AS_FLOAT"
-//   - 19: "STRICT_ALL_TABLES"
-//   - 20: "STRICT_TRANS_TABLES"
-//   - 21: "TIME_TRUNCATE_FRACTIONAL"
-//   - 22: "ANSI"
-//   - 23: "TRADITIONAL"
-//   - 24: "NO_DIR_IN_CREATE"
-//
+// 	-	1: "ALLOW_INVALID_DATES"
+// 	-	2: "ANSI_QUOTES"
+// 	-	3: "ERROR_FOR_DIVISION_BY_ZERO"
+// 	-	4: "HIGH_NOT_PRECEDENCE"
+// 	-	5: "IGNORE_SPACE"
+// 	-	6: "NO_AUTO_VALUE_ON_ZERO"
+// 	-	7: "NO_BACKSLASH_ESCAPES"
+// 	-	8: "NO_ENGINE_SUBSTITUTION"
+// 	-	9: "NO_UNSIGNED_SUBTRACTION"
+// 	-	10: "NO_ZERO_DATE"
+// 	-	11: "NO_ZERO_IN_DATE"
+// 	-	15: "ONLY_FULL_GROUP_BY"
+// 	-	16: "PAD_CHAR_TO_FULL_LENGTH"
+// 	-	17: "PIPES_AS_CONCAT"
+// 	-	18: "REAL_AS_FLOAT"
+// 	-	19: "STRICT_ALL_TABLES"
+// 	-	20: "STRICT_TRANS_TABLES"
+// 	-	21: "TIME_TRUNCATE_FRACTIONAL"
+// 	-	22: "ANSI"
+// 	-	23: "TRADITIONAL"
+// 	-	24: "NO_DIR_IN_CREATE"
 // or:
 //   - 0: "SQLMODE_UNSPECIFIED"
 //
@@ -621,8 +599,8 @@ import (
 // * `logSlowRateLimit` intger
 //
 // * `logSlowRateType` one of:
-//   - 0: "SESSION"
-//   - 1: "QUERY"
+//    - 0: "SESSION"
+//    - 1: "QUERY"
 //
 // * `logSlowSpStatements` boolean
 //
@@ -771,8 +749,8 @@ import (
 // * `logSlowRateLimit` integer
 //
 // * `logSlowRateType` one of:
-//   - 0: "SESSION"
-//   - 1: "QUERY"
+//    - 0: "SESSION"
+//    - 1: "QUERY"
 //
 // * `logSlowSpStatements` boolean
 //
@@ -842,9 +820,7 @@ import (
 // A cluster can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/mdbMysqlCluster:MdbMysqlCluster foo cluster_id
-//
+//  $ pulumi import yandex:index/mdbMysqlCluster:MdbMysqlCluster foo cluster_id
 // ```
 type MdbMysqlCluster struct {
 	pulumi.CustomResourceState
@@ -1196,7 +1172,7 @@ func (i *MdbMysqlCluster) ToMdbMysqlClusterOutputWithContext(ctx context.Context
 // MdbMysqlClusterArrayInput is an input type that accepts MdbMysqlClusterArray and MdbMysqlClusterArrayOutput values.
 // You can construct a concrete instance of `MdbMysqlClusterArrayInput` via:
 //
-//	MdbMysqlClusterArray{ MdbMysqlClusterArgs{...} }
+//          MdbMysqlClusterArray{ MdbMysqlClusterArgs{...} }
 type MdbMysqlClusterArrayInput interface {
 	pulumi.Input
 
@@ -1221,7 +1197,7 @@ func (i MdbMysqlClusterArray) ToMdbMysqlClusterArrayOutputWithContext(ctx contex
 // MdbMysqlClusterMapInput is an input type that accepts MdbMysqlClusterMap and MdbMysqlClusterMapOutput values.
 // You can construct a concrete instance of `MdbMysqlClusterMapInput` via:
 //
-//	MdbMysqlClusterMap{ "key": MdbMysqlClusterArgs{...} }
+//          MdbMysqlClusterMap{ "key": MdbMysqlClusterArgs{...} }
 type MdbMysqlClusterMapInput interface {
 	pulumi.Input
 

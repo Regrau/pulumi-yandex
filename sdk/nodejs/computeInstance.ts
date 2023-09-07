@@ -20,6 +20,7 @@ import * as utilities from "./utilities";
  * const fooVpcNetwork = new yandex.VpcNetwork("foo", {});
  * const fooVpcSubnet = new yandex.VpcSubnet("foo", {
  *     networkId: fooVpcNetwork.id,
+ *     v4CidrBlocks: ["10.5.0.0/24"],
  *     zone: "ru-central1-a",
  * });
  * const defaultComputeInstance = new yandex.ComputeInstance("default", {
@@ -95,6 +96,10 @@ export class ComputeInstance extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * List of filesystems that are attached to the instance. Structure is documented below.
+     */
+    public readonly filesystems!: pulumi.Output<outputs.ComputeInstanceFilesystem[] | undefined>;
+    /**
      * The ID of the folder that the resource belongs to. If it
      * is not provided, the default provider folder is used.
      */
@@ -123,6 +128,10 @@ export class ComputeInstance extends pulumi.CustomResource {
      * within the instance.
      */
     public readonly metadata!: pulumi.Output<{[key: string]: string} | undefined>;
+    /**
+     * Options allow user to configure access to instance's metadata
+     */
+    public readonly metadataOptions!: pulumi.Output<outputs.ComputeInstanceMetadataOptions>;
     /**
      * Name of the boot disk.
      */
@@ -189,12 +198,14 @@ export class ComputeInstance extends pulumi.CustomResource {
             resourceInputs["bootDisk"] = state ? state.bootDisk : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["filesystems"] = state ? state.filesystems : undefined;
             resourceInputs["folderId"] = state ? state.folderId : undefined;
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
             resourceInputs["hostname"] = state ? state.hostname : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["localDisks"] = state ? state.localDisks : undefined;
             resourceInputs["metadata"] = state ? state.metadata : undefined;
+            resourceInputs["metadataOptions"] = state ? state.metadataOptions : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["networkAccelerationType"] = state ? state.networkAccelerationType : undefined;
             resourceInputs["networkInterfaces"] = state ? state.networkInterfaces : undefined;
@@ -221,11 +232,13 @@ export class ComputeInstance extends pulumi.CustomResource {
             resourceInputs["allowStoppingForUpdate"] = args ? args.allowStoppingForUpdate : undefined;
             resourceInputs["bootDisk"] = args ? args.bootDisk : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["filesystems"] = args ? args.filesystems : undefined;
             resourceInputs["folderId"] = args ? args.folderId : undefined;
             resourceInputs["hostname"] = args ? args.hostname : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["localDisks"] = args ? args.localDisks : undefined;
             resourceInputs["metadata"] = args ? args.metadata : undefined;
+            resourceInputs["metadataOptions"] = args ? args.metadataOptions : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["networkAccelerationType"] = args ? args.networkAccelerationType : undefined;
             resourceInputs["networkInterfaces"] = args ? args.networkInterfaces : undefined;
@@ -264,6 +277,10 @@ export interface ComputeInstanceState {
      */
     description?: pulumi.Input<string>;
     /**
+     * List of filesystems that are attached to the instance. Structure is documented below.
+     */
+    filesystems?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceFilesystem>[]>;
+    /**
      * The ID of the folder that the resource belongs to. If it
      * is not provided, the default provider folder is used.
      */
@@ -292,6 +309,10 @@ export interface ComputeInstanceState {
      * within the instance.
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Options allow user to configure access to instance's metadata
+     */
+    metadataOptions?: pulumi.Input<inputs.ComputeInstanceMetadataOptions>;
     /**
      * Name of the boot disk.
      */
@@ -356,6 +377,10 @@ export interface ComputeInstanceArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * List of filesystems that are attached to the instance. Structure is documented below.
+     */
+    filesystems?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceFilesystem>[]>;
+    /**
      * The ID of the folder that the resource belongs to. If it
      * is not provided, the default provider folder is used.
      */
@@ -380,6 +405,10 @@ export interface ComputeInstanceArgs {
      * within the instance.
      */
     metadata?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Options allow user to configure access to instance's metadata
+     */
+    metadataOptions?: pulumi.Input<inputs.ComputeInstanceMetadataOptions>;
     /**
      * Name of the boot disk.
      */

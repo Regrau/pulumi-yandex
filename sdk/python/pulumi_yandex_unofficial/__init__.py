@@ -49,6 +49,7 @@ from .get_cm_certificate import *
 from .get_cm_certificate_content import *
 from .get_compute_disk import *
 from .get_compute_disk_placement_group import *
+from .get_compute_filesystem import *
 from .get_compute_image import *
 from .get_compute_instance import *
 from .get_compute_instance_group import *
@@ -158,6 +159,7 @@ from .vpc_route_table import *
 from .vpc_security_group import *
 from .vpc_security_group_rule import *
 from .vpc_subnet import *
+from .yandex_compute_filesystem import *
 from .ydb_database_dedicated import *
 from .ydb_database_iam_binding import *
 from .ydb_database_serverless import *
@@ -908,6 +910,14 @@ _utilities.register(
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/vpcSubnet:VpcSubnet": "VpcSubnet"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/yandexComputeFilesystem",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/yandexComputeFilesystem:yandexComputeFilesystem": "YandexComputeFilesystem"
   }
  },
  {

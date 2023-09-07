@@ -1303,8 +1303,7 @@ export interface ComputeInstanceBootDisk {
      */
     autoDelete?: pulumi.Input<boolean>;
     /**
-     * Name that can be used to access an attached disk
-     * under `/dev/disk/by-id/`.
+     * Name of the device representing the filesystem on the instance.
      */
     deviceName?: pulumi.Input<string>;
     /**
@@ -1317,7 +1316,8 @@ export interface ComputeInstanceBootDisk {
      */
     initializeParams?: pulumi.Input<inputs.ComputeInstanceBootDiskInitializeParams>;
     /**
-     * Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+     * Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+     * in `READ_WRITE` mode.
      */
     mode?: pulumi.Input<string>;
 }
@@ -1351,6 +1351,22 @@ export interface ComputeInstanceBootDiskInitializeParams {
      * Disk type.
      */
     type?: pulumi.Input<string>;
+}
+
+export interface ComputeInstanceFilesystem {
+    /**
+     * Name of the device representing the filesystem on the instance.
+     */
+    deviceName?: pulumi.Input<string>;
+    /**
+     * ID of the filesystem that should be attached.
+     */
+    filesystemId: pulumi.Input<string>;
+    /**
+     * Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+     * in `READ_WRITE` mode.
+     */
+    mode?: pulumi.Input<string>;
 }
 
 export interface ComputeInstanceGroupAllocationPolicy {
@@ -2042,14 +2058,20 @@ export interface ComputeInstanceGroupScalePolicyTestAutoScaleCustomRule {
 
 export interface ComputeInstanceLocalDisk {
     /**
-     * Name that can be used to access an attached disk
-     * under `/dev/disk/by-id/`.
+     * Name of the device representing the filesystem on the instance.
      */
     deviceName?: pulumi.Input<string>;
     /**
      * Size of the disk, specified in bytes.
      */
     sizeBytes: pulumi.Input<number>;
+}
+
+export interface ComputeInstanceMetadataOptions {
+    awsV1HttpEndpoint?: pulumi.Input<number>;
+    awsV1HttpToken?: pulumi.Input<number>;
+    gceHttpEndpoint?: pulumi.Input<number>;
+    gceHttpToken?: pulumi.Input<number>;
 }
 
 export interface ComputeInstanceNetworkInterface {
@@ -2216,8 +2238,7 @@ export interface ComputeInstanceSecondaryDisk {
      */
     autoDelete?: pulumi.Input<boolean>;
     /**
-     * Name that can be used to access an attached disk
-     * under `/dev/disk/by-id/`.
+     * Name of the device representing the filesystem on the instance.
      */
     deviceName?: pulumi.Input<string>;
     /**
@@ -2225,7 +2246,8 @@ export interface ComputeInstanceSecondaryDisk {
      */
     diskId: pulumi.Input<string>;
     /**
-     * Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+     * Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+     * in `READ_WRITE` mode.
      */
     mode?: pulumi.Input<string>;
 }
@@ -4412,6 +4434,30 @@ export interface GetComputeDiskDiskPlacementPolicyArgs {
     diskPlacementGroupId: pulumi.Input<string>;
 }
 
+export interface GetComputeInstanceFilesystem {
+    /**
+     * Name of the device.
+     */
+    deviceName?: string;
+    filesystemId?: string;
+    /**
+     * Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+     */
+    mode?: string;
+}
+
+export interface GetComputeInstanceFilesystemArgs {
+    /**
+     * Name of the device.
+     */
+    deviceName?: pulumi.Input<string>;
+    filesystemId?: pulumi.Input<string>;
+    /**
+     * Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+     */
+    mode?: pulumi.Input<string>;
+}
+
 export interface GetComputeInstanceLocalDisk {
     /**
      * Name of the device.
@@ -4432,6 +4478,20 @@ export interface GetComputeInstanceLocalDiskArgs {
      * Size of the disk, specified in bytes.
      */
     sizeBytes: pulumi.Input<number>;
+}
+
+export interface GetComputeInstanceMetadataOptions {
+    awsV1HttpEndpoint?: number;
+    awsV1HttpToken?: number;
+    gceHttpEndpoint?: number;
+    gceHttpToken?: number;
+}
+
+export interface GetComputeInstanceMetadataOptionsArgs {
+    awsV1HttpEndpoint?: pulumi.Input<number>;
+    awsV1HttpToken?: pulumi.Input<number>;
+    gceHttpEndpoint?: pulumi.Input<number>;
+    gceHttpToken?: pulumi.Input<number>;
 }
 
 export interface GetComputeInstancePlacementPolicy {

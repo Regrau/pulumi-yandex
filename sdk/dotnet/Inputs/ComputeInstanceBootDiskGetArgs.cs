@@ -20,8 +20,7 @@ namespace Pulumi.Yandex.Inputs
         public Input<bool>? AutoDelete { get; set; }
 
         /// <summary>
-        /// Name that can be used to access an attached disk
-        /// under `/dev/disk/by-id/`.
+        /// Name of the device representing the filesystem on the instance.
         /// </summary>
         [Input("deviceName")]
         public Input<string>? DeviceName { get; set; }
@@ -40,7 +39,8 @@ namespace Pulumi.Yandex.Inputs
         public Input<Inputs.ComputeInstanceBootDiskInitializeParamsGetArgs>? InitializeParams { get; set; }
 
         /// <summary>
-        /// Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        /// Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+        /// in `READ_WRITE` mode.
         /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }

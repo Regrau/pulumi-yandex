@@ -23,7 +23,7 @@ class GetComputeInstanceResult:
     """
     A collection of values returned by getComputeInstance.
     """
-    def __init__(__self__, boot_disks=None, created_at=None, description=None, folder_id=None, fqdn=None, id=None, instance_id=None, labels=None, local_disks=None, metadata=None, name=None, network_acceleration_type=None, network_interfaces=None, placement_policy=None, platform_id=None, resources=None, scheduling_policies=None, secondary_disks=None, service_account_id=None, status=None, zone=None):
+    def __init__(__self__, boot_disks=None, created_at=None, description=None, filesystems=None, folder_id=None, fqdn=None, id=None, instance_id=None, labels=None, local_disks=None, metadata=None, metadata_options=None, name=None, network_acceleration_type=None, network_interfaces=None, placement_policy=None, platform_id=None, resources=None, scheduling_policies=None, secondary_disks=None, service_account_id=None, status=None, zone=None):
         if boot_disks and not isinstance(boot_disks, list):
             raise TypeError("Expected argument 'boot_disks' to be a list")
         pulumi.set(__self__, "boot_disks", boot_disks)
@@ -33,6 +33,9 @@ class GetComputeInstanceResult:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if filesystems and not isinstance(filesystems, list):
+            raise TypeError("Expected argument 'filesystems' to be a list")
+        pulumi.set(__self__, "filesystems", filesystems)
         if folder_id and not isinstance(folder_id, str):
             raise TypeError("Expected argument 'folder_id' to be a str")
         pulumi.set(__self__, "folder_id", folder_id)
@@ -54,6 +57,9 @@ class GetComputeInstanceResult:
         if metadata and not isinstance(metadata, dict):
             raise TypeError("Expected argument 'metadata' to be a dict")
         pulumi.set(__self__, "metadata", metadata)
+        if metadata_options and not isinstance(metadata_options, dict):
+            raise TypeError("Expected argument 'metadata_options' to be a dict")
+        pulumi.set(__self__, "metadata_options", metadata_options)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -113,6 +119,11 @@ class GetComputeInstanceResult:
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter
+    def filesystems(self) -> Optional[Sequence['outputs.GetComputeInstanceFilesystemResult']]:
+        return pulumi.get(self, "filesystems")
+
+    @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> str:
         return pulumi.get(self, "folder_id")
@@ -162,6 +173,14 @@ class GetComputeInstanceResult:
         within the instance.
         """
         return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter(name="metadataOptions")
+    def metadata_options(self) -> 'outputs.GetComputeInstanceMetadataOptionsResult':
+        """
+        Options allow user to configure access to instance's metadata
+        """
+        return pulumi.get(self, "metadata_options")
 
     @property
     @pulumi.getter
@@ -264,6 +283,7 @@ class AwaitableGetComputeInstanceResult(GetComputeInstanceResult):
             boot_disks=self.boot_disks,
             created_at=self.created_at,
             description=self.description,
+            filesystems=self.filesystems,
             folder_id=self.folder_id,
             fqdn=self.fqdn,
             id=self.id,
@@ -271,6 +291,7 @@ class AwaitableGetComputeInstanceResult(GetComputeInstanceResult):
             labels=self.labels,
             local_disks=self.local_disks,
             metadata=self.metadata,
+            metadata_options=self.metadata_options,
             name=self.name,
             network_acceleration_type=self.network_acceleration_type,
             network_interfaces=self.network_interfaces,
@@ -284,9 +305,11 @@ class AwaitableGetComputeInstanceResult(GetComputeInstanceResult):
             zone=self.zone)
 
 
-def get_compute_instance(folder_id: Optional[str] = None,
+def get_compute_instance(filesystems: Optional[Sequence[pulumi.InputType['GetComputeInstanceFilesystemArgs']]] = None,
+                         folder_id: Optional[str] = None,
                          instance_id: Optional[str] = None,
                          local_disks: Optional[Sequence[pulumi.InputType['GetComputeInstanceLocalDiskArgs']]] = None,
+                         metadata_options: Optional[pulumi.InputType['GetComputeInstanceMetadataOptionsArgs']] = None,
                          name: Optional[str] = None,
                          placement_policy: Optional[pulumi.InputType['GetComputeInstancePlacementPolicyArgs']] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetComputeInstanceResult:
@@ -308,13 +331,16 @@ def get_compute_instance(folder_id: Optional[str] = None,
     :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
     :param str instance_id: The ID of a specific instance.
     :param Sequence[pulumi.InputType['GetComputeInstanceLocalDiskArgs']] local_disks: List of local disks that are attached to the instance. Structure is documented below.
+    :param pulumi.InputType['GetComputeInstanceMetadataOptionsArgs'] metadata_options: Options allow user to configure access to instance's metadata
     :param str name: Name of the instance.
     :param pulumi.InputType['GetComputeInstancePlacementPolicyArgs'] placement_policy: The placement policy configuration. The structure is documented below.
     """
     __args__ = dict()
+    __args__['filesystems'] = filesystems
     __args__['folderId'] = folder_id
     __args__['instanceId'] = instance_id
     __args__['localDisks'] = local_disks
+    __args__['metadataOptions'] = metadata_options
     __args__['name'] = name
     __args__['placementPolicy'] = placement_policy
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -324,6 +350,7 @@ def get_compute_instance(folder_id: Optional[str] = None,
         boot_disks=__ret__.boot_disks,
         created_at=__ret__.created_at,
         description=__ret__.description,
+        filesystems=__ret__.filesystems,
         folder_id=__ret__.folder_id,
         fqdn=__ret__.fqdn,
         id=__ret__.id,
@@ -331,6 +358,7 @@ def get_compute_instance(folder_id: Optional[str] = None,
         labels=__ret__.labels,
         local_disks=__ret__.local_disks,
         metadata=__ret__.metadata,
+        metadata_options=__ret__.metadata_options,
         name=__ret__.name,
         network_acceleration_type=__ret__.network_acceleration_type,
         network_interfaces=__ret__.network_interfaces,
@@ -345,9 +373,11 @@ def get_compute_instance(folder_id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_compute_instance)
-def get_compute_instance_output(folder_id: Optional[pulumi.Input[Optional[str]]] = None,
+def get_compute_instance_output(filesystems: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetComputeInstanceFilesystemArgs']]]]] = None,
+                                folder_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 local_disks: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetComputeInstanceLocalDiskArgs']]]]] = None,
+                                metadata_options: Optional[pulumi.Input[Optional[pulumi.InputType['GetComputeInstanceMetadataOptionsArgs']]]] = None,
                                 name: Optional[pulumi.Input[Optional[str]]] = None,
                                 placement_policy: Optional[pulumi.Input[Optional[pulumi.InputType['GetComputeInstancePlacementPolicyArgs']]]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetComputeInstanceResult]:
@@ -369,6 +399,7 @@ def get_compute_instance_output(folder_id: Optional[pulumi.Input[Optional[str]]]
     :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
     :param str instance_id: The ID of a specific instance.
     :param Sequence[pulumi.InputType['GetComputeInstanceLocalDiskArgs']] local_disks: List of local disks that are attached to the instance. Structure is documented below.
+    :param pulumi.InputType['GetComputeInstanceMetadataOptionsArgs'] metadata_options: Options allow user to configure access to instance's metadata
     :param str name: Name of the instance.
     :param pulumi.InputType['GetComputeInstancePlacementPolicyArgs'] placement_policy: The placement policy configuration. The structure is documented below.
     """

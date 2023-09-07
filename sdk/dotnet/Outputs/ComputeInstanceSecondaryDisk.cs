@@ -19,8 +19,7 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly bool? AutoDelete;
         /// <summary>
-        /// Name that can be used to access an attached disk
-        /// under `/dev/disk/by-id/`.
+        /// Name of the device representing the filesystem on the instance.
         /// </summary>
         public readonly string? DeviceName;
         /// <summary>
@@ -28,7 +27,8 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly string DiskId;
         /// <summary>
-        /// Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        /// Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+        /// in `READ_WRITE` mode.
         /// </summary>
         public readonly string? Mode;
 

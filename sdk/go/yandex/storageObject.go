@@ -21,26 +21,23 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewStorageObject(ctx, "cute-cat-picture", &yandex.StorageObjectArgs{
-//				Bucket: pulumi.String("cat-pictures"),
-//				Key:    pulumi.String("cute-cat"),
-//				Source: pulumi.String("/images/cats/cute-cat.jpg"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewStorageObject(ctx, "cute-cat-picture", &yandex.StorageObjectArgs{
+// 			Bucket: pulumi.String("cat-pictures"),
+// 			Key:    pulumi.String("cute-cat"),
+// 			Source: pulumi.String("/images/cats/cute-cat.jpg"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type StorageObject struct {
 	pulumi.CustomResourceState
@@ -222,7 +219,7 @@ func (i *StorageObject) ToStorageObjectOutputWithContext(ctx context.Context) St
 // StorageObjectArrayInput is an input type that accepts StorageObjectArray and StorageObjectArrayOutput values.
 // You can construct a concrete instance of `StorageObjectArrayInput` via:
 //
-//	StorageObjectArray{ StorageObjectArgs{...} }
+//          StorageObjectArray{ StorageObjectArgs{...} }
 type StorageObjectArrayInput interface {
 	pulumi.Input
 
@@ -247,7 +244,7 @@ func (i StorageObjectArray) ToStorageObjectArrayOutputWithContext(ctx context.Co
 // StorageObjectMapInput is an input type that accepts StorageObjectMap and StorageObjectMapOutput values.
 // You can construct a concrete instance of `StorageObjectMapInput` via:
 //
-//	StorageObjectMap{ "key": StorageObjectArgs{...} }
+//          StorageObjectMap{ "key": StorageObjectArgs{...} }
 type StorageObjectMapInput interface {
 	pulumi.Input
 

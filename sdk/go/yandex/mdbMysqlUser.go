@@ -16,12 +16,10 @@ import (
 //
 // ## Import
 //
-// # A MySQL user can be imported using the following format
+// A MySQL user can be imported using the following format
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/mdbMysqlUser:mdbMysqlUser foo {{cluster_id}}:{{username}}
-//
+//  $ pulumi import yandex:index/mdbMysqlUser:mdbMysqlUser foo {{cluster_id}}:{{username}}
 // ```
 type MdbMysqlUser struct {
 	pulumi.CustomResourceState
@@ -193,7 +191,7 @@ func (i *MdbMysqlUser) ToMdbMysqlUserOutputWithContext(ctx context.Context) MdbM
 // MdbMysqlUserArrayInput is an input type that accepts MdbMysqlUserArray and MdbMysqlUserArrayOutput values.
 // You can construct a concrete instance of `MdbMysqlUserArrayInput` via:
 //
-//	MdbMysqlUserArray{ MdbMysqlUserArgs{...} }
+//          MdbMysqlUserArray{ MdbMysqlUserArgs{...} }
 type MdbMysqlUserArrayInput interface {
 	pulumi.Input
 
@@ -218,7 +216,7 @@ func (i MdbMysqlUserArray) ToMdbMysqlUserArrayOutputWithContext(ctx context.Cont
 // MdbMysqlUserMapInput is an input type that accepts MdbMysqlUserMap and MdbMysqlUserMapOutput values.
 // You can construct a concrete instance of `MdbMysqlUserMapInput` via:
 //
-//	MdbMysqlUserMap{ "key": MdbMysqlUserArgs{...} }
+//          MdbMysqlUserMap{ "key": MdbMysqlUserArgs{...} }
 type MdbMysqlUserMapInput interface {
 	pulumi.Input
 

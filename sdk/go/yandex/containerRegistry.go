@@ -19,27 +19,24 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewContainerRegistry(ctx, "default", &yandex.ContainerRegistryArgs{
-//				FolderId: pulumi.String("test_folder_id"),
-//				Labels: pulumi.StringMap{
-//					"my-label": pulumi.String("my-label-value"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewContainerRegistry(ctx, "default", &yandex.ContainerRegistryArgs{
+// 			FolderId: pulumi.String("test_folder_id"),
+// 			Labels: pulumi.StringMap{
+// 				"my-label": pulumi.String("my-label-value"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -47,9 +44,7 @@ import (
 // A registry can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/containerRegistry:ContainerRegistry default registry_id
-//
+//  $ pulumi import yandex:index/containerRegistry:ContainerRegistry default registry_id
 // ```
 type ContainerRegistry struct {
 	pulumi.CustomResourceState
@@ -170,7 +165,7 @@ func (i *ContainerRegistry) ToContainerRegistryOutputWithContext(ctx context.Con
 // ContainerRegistryArrayInput is an input type that accepts ContainerRegistryArray and ContainerRegistryArrayOutput values.
 // You can construct a concrete instance of `ContainerRegistryArrayInput` via:
 //
-//	ContainerRegistryArray{ ContainerRegistryArgs{...} }
+//          ContainerRegistryArray{ ContainerRegistryArgs{...} }
 type ContainerRegistryArrayInput interface {
 	pulumi.Input
 
@@ -195,7 +190,7 @@ func (i ContainerRegistryArray) ToContainerRegistryArrayOutputWithContext(ctx co
 // ContainerRegistryMapInput is an input type that accepts ContainerRegistryMap and ContainerRegistryMapOutput values.
 // You can construct a concrete instance of `ContainerRegistryMapInput` via:
 //
-//	ContainerRegistryMap{ "key": ContainerRegistryArgs{...} }
+//          ContainerRegistryMap{ "key": ContainerRegistryArgs{...} }
 type ContainerRegistryMapInput interface {
 	pulumi.Input
 

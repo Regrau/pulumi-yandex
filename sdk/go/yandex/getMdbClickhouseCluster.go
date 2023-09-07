@@ -19,25 +19,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			foo, err := yandex.LookupMdbClickhouseCluster(ctx, &GetMdbClickhouseClusterArgs{
-//				Name: pulumi.StringRef("test"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("networkId", foo.NetworkId)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		foo, err := yandex.LookupMdbClickhouseCluster(ctx, &GetMdbClickhouseClusterArgs{
+// 			Name: pulumi.StringRef("test"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("networkId", foo.NetworkId)
+// 		return nil
+// 	})
+// }
 // ```
 func LookupMdbClickhouseCluster(ctx *pulumi.Context, args *LookupMdbClickhouseClusterArgs, opts ...pulumi.InvokeOption) (*LookupMdbClickhouseClusterResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
@@ -69,9 +66,9 @@ type LookupMdbClickhouseClusterResult struct {
 	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
 	BackupWindowStarts []GetMdbClickhouseClusterBackupWindowStart `pulumi:"backupWindowStarts"`
 	// Configuration of the ClickHouse subcluster. The structure is documented below.
-	Clickhouses  []GetMdbClickhouseClusterClickhouse  `pulumi:"clickhouses"`
-	CloudStorage *GetMdbClickhouseClusterCloudStorage `pulumi:"cloudStorage"`
-	ClusterId    string                               `pulumi:"clusterId"`
+	Clickhouses  []GetMdbClickhouseClusterClickhouse `pulumi:"clickhouses"`
+	CloudStorage GetMdbClickhouseClusterCloudStorage `pulumi:"cloudStorage"`
+	ClusterId    string                              `pulumi:"clusterId"`
 	// Creation timestamp of the key.
 	CreatedAt string `pulumi:"createdAt"`
 	// A database of the ClickHouse cluster. The structure is documented below.
@@ -181,8 +178,8 @@ func (o LookupMdbClickhouseClusterResultOutput) Clickhouses() GetMdbClickhouseCl
 	return o.ApplyT(func(v LookupMdbClickhouseClusterResult) []GetMdbClickhouseClusterClickhouse { return v.Clickhouses }).(GetMdbClickhouseClusterClickhouseArrayOutput)
 }
 
-func (o LookupMdbClickhouseClusterResultOutput) CloudStorage() GetMdbClickhouseClusterCloudStoragePtrOutput {
-	return o.ApplyT(func(v LookupMdbClickhouseClusterResult) *GetMdbClickhouseClusterCloudStorage { return v.CloudStorage }).(GetMdbClickhouseClusterCloudStoragePtrOutput)
+func (o LookupMdbClickhouseClusterResultOutput) CloudStorage() GetMdbClickhouseClusterCloudStorageOutput {
+	return o.ApplyT(func(v LookupMdbClickhouseClusterResult) GetMdbClickhouseClusterCloudStorage { return v.CloudStorage }).(GetMdbClickhouseClusterCloudStorageOutput)
 }
 
 func (o LookupMdbClickhouseClusterResultOutput) ClusterId() pulumi.StringOutput {

@@ -104,6 +104,7 @@ __all__ = [
     'ComputeDiskDiskPlacementPolicy',
     'ComputeInstanceBootDisk',
     'ComputeInstanceBootDiskInitializeParams',
+    'ComputeInstanceFilesystem',
     'ComputeInstanceGroupAllocationPolicy',
     'ComputeInstanceGroupApplicationLoadBalancer',
     'ComputeInstanceGroupDeployPolicy',
@@ -133,6 +134,7 @@ __all__ = [
     'ComputeInstanceGroupScalePolicyTestAutoScale',
     'ComputeInstanceGroupScalePolicyTestAutoScaleCustomRule',
     'ComputeInstanceLocalDisk',
+    'ComputeInstanceMetadataOptions',
     'ComputeInstanceNetworkInterface',
     'ComputeInstanceNetworkInterfaceDnsRecord',
     'ComputeInstanceNetworkInterfaceIpv6DnsRecord',
@@ -503,6 +505,7 @@ __all__ = [
     'GetComputeDiskDiskPlacementPolicyResult',
     'GetComputeInstanceBootDiskResult',
     'GetComputeInstanceBootDiskInitializeParamResult',
+    'GetComputeInstanceFilesystemResult',
     'GetComputeInstanceGroupAllocationPolicyResult',
     'GetComputeInstanceGroupApplicationBalancerStateResult',
     'GetComputeInstanceGroupApplicationLoadBalancerResult',
@@ -534,6 +537,7 @@ __all__ = [
     'GetComputeInstanceGroupScalePolicyTestAutoScaleResult',
     'GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleResult',
     'GetComputeInstanceLocalDiskResult',
+    'GetComputeInstanceMetadataOptionsResult',
     'GetComputeInstanceNetworkInterfaceResult',
     'GetComputeInstanceNetworkInterfaceDnsRecordResult',
     'GetComputeInstanceNetworkInterfaceIpv6DnsRecordResult',
@@ -5527,12 +5531,12 @@ class ComputeInstanceBootDisk(dict):
         """
         :param bool auto_delete: Whether the disk is auto-deleted when the instance
                is deleted. The default value is false.
-        :param str device_name: Name that can be used to access an attached disk
-               under `/dev/disk/by-id/`.
+        :param str device_name: Name of the device representing the filesystem on the instance.
         :param str disk_id: ID of the disk that is attached to the instance.
         :param 'ComputeInstanceBootDiskInitializeParamsArgs' initialize_params: Parameters for a new disk that will be created
                alongside the new instance. Either `initialize_params` or `disk_id` must be set. The structure is documented below.
-        :param str mode: Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        :param str mode: Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+               in `READ_WRITE` mode.
         """
         if auto_delete is not None:
             pulumi.set(__self__, "auto_delete", auto_delete)
@@ -5558,8 +5562,7 @@ class ComputeInstanceBootDisk(dict):
     @pulumi.getter(name="deviceName")
     def device_name(self) -> Optional[str]:
         """
-        Name that can be used to access an attached disk
-        under `/dev/disk/by-id/`.
+        Name of the device representing the filesystem on the instance.
         """
         return pulumi.get(self, "device_name")
 
@@ -5584,7 +5587,8 @@ class ComputeInstanceBootDisk(dict):
     @pulumi.getter
     def mode(self) -> Optional[str]:
         """
-        Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+        in `READ_WRITE` mode.
         """
         return pulumi.get(self, "mode")
 
@@ -5699,6 +5703,69 @@ class ComputeInstanceBootDiskInitializeParams(dict):
         Disk type.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class ComputeInstanceFilesystem(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "filesystemId":
+            suggest = "filesystem_id"
+        elif key == "deviceName":
+            suggest = "device_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ComputeInstanceFilesystem. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ComputeInstanceFilesystem.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ComputeInstanceFilesystem.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 filesystem_id: str,
+                 device_name: Optional[str] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str filesystem_id: ID of the filesystem that should be attached.
+        :param str device_name: Name of the device representing the filesystem on the instance.
+        :param str mode: Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+               in `READ_WRITE` mode.
+        """
+        pulumi.set(__self__, "filesystem_id", filesystem_id)
+        if device_name is not None:
+            pulumi.set(__self__, "device_name", device_name)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="filesystemId")
+    def filesystem_id(self) -> str:
+        """
+        ID of the filesystem that should be attached.
+        """
+        return pulumi.get(self, "filesystem_id")
+
+    @property
+    @pulumi.getter(name="deviceName")
+    def device_name(self) -> Optional[str]:
+        """
+        Name of the device representing the filesystem on the instance.
+        """
+        return pulumi.get(self, "device_name")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+        in `READ_WRITE` mode.
+        """
+        return pulumi.get(self, "mode")
 
 
 @pulumi.output_type
@@ -8197,8 +8264,7 @@ class ComputeInstanceLocalDisk(dict):
                  device_name: Optional[str] = None):
         """
         :param int size_bytes: Size of the disk, specified in bytes.
-        :param str device_name: Name that can be used to access an attached disk
-               under `/dev/disk/by-id/`.
+        :param str device_name: Name of the device representing the filesystem on the instance.
         """
         pulumi.set(__self__, "size_bytes", size_bytes)
         if device_name is not None:
@@ -8216,10 +8282,69 @@ class ComputeInstanceLocalDisk(dict):
     @pulumi.getter(name="deviceName")
     def device_name(self) -> Optional[str]:
         """
-        Name that can be used to access an attached disk
-        under `/dev/disk/by-id/`.
+        Name of the device representing the filesystem on the instance.
         """
         return pulumi.get(self, "device_name")
+
+
+@pulumi.output_type
+class ComputeInstanceMetadataOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "awsV1HttpEndpoint":
+            suggest = "aws_v1_http_endpoint"
+        elif key == "awsV1HttpToken":
+            suggest = "aws_v1_http_token"
+        elif key == "gceHttpEndpoint":
+            suggest = "gce_http_endpoint"
+        elif key == "gceHttpToken":
+            suggest = "gce_http_token"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ComputeInstanceMetadataOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ComputeInstanceMetadataOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ComputeInstanceMetadataOptions.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 aws_v1_http_endpoint: Optional[int] = None,
+                 aws_v1_http_token: Optional[int] = None,
+                 gce_http_endpoint: Optional[int] = None,
+                 gce_http_token: Optional[int] = None):
+        if aws_v1_http_endpoint is not None:
+            pulumi.set(__self__, "aws_v1_http_endpoint", aws_v1_http_endpoint)
+        if aws_v1_http_token is not None:
+            pulumi.set(__self__, "aws_v1_http_token", aws_v1_http_token)
+        if gce_http_endpoint is not None:
+            pulumi.set(__self__, "gce_http_endpoint", gce_http_endpoint)
+        if gce_http_token is not None:
+            pulumi.set(__self__, "gce_http_token", gce_http_token)
+
+    @property
+    @pulumi.getter(name="awsV1HttpEndpoint")
+    def aws_v1_http_endpoint(self) -> Optional[int]:
+        return pulumi.get(self, "aws_v1_http_endpoint")
+
+    @property
+    @pulumi.getter(name="awsV1HttpToken")
+    def aws_v1_http_token(self) -> Optional[int]:
+        return pulumi.get(self, "aws_v1_http_token")
+
+    @property
+    @pulumi.getter(name="gceHttpEndpoint")
+    def gce_http_endpoint(self) -> Optional[int]:
+        return pulumi.get(self, "gce_http_endpoint")
+
+    @property
+    @pulumi.getter(name="gceHttpToken")
+    def gce_http_token(self) -> Optional[int]:
+        return pulumi.get(self, "gce_http_token")
 
 
 @pulumi.output_type
@@ -8843,9 +8968,9 @@ class ComputeInstanceSecondaryDisk(dict):
         :param str disk_id: ID of the disk that is attached to the instance.
         :param bool auto_delete: Whether the disk is auto-deleted when the instance
                is deleted. The default value is false.
-        :param str device_name: Name that can be used to access an attached disk
-               under `/dev/disk/by-id/`.
-        :param str mode: Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        :param str device_name: Name of the device representing the filesystem on the instance.
+        :param str mode: Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+               in `READ_WRITE` mode.
         """
         pulumi.set(__self__, "disk_id", disk_id)
         if auto_delete is not None:
@@ -8876,8 +9001,7 @@ class ComputeInstanceSecondaryDisk(dict):
     @pulumi.getter(name="deviceName")
     def device_name(self) -> Optional[str]:
         """
-        Name that can be used to access an attached disk
-        under `/dev/disk/by-id/`.
+        Name of the device representing the filesystem on the instance.
         """
         return pulumi.get(self, "device_name")
 
@@ -8885,7 +9009,8 @@ class ComputeInstanceSecondaryDisk(dict):
     @pulumi.getter
     def mode(self) -> Optional[str]:
         """
-        Type of access to the disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        Mode of access to the filesystem that should be attached. By default, filesystem is attached 
+        in `READ_WRITE` mode.
         """
         return pulumi.get(self, "mode")
 
@@ -28858,6 +28983,42 @@ class GetComputeInstanceBootDiskInitializeParamResult(dict):
 
 
 @pulumi.output_type
+class GetComputeInstanceFilesystemResult(dict):
+    def __init__(__self__, *,
+                 device_name: str,
+                 filesystem_id: str,
+                 mode: str):
+        """
+        :param str device_name: Name of the device.
+        :param str mode: Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        """
+        pulumi.set(__self__, "device_name", device_name)
+        pulumi.set(__self__, "filesystem_id", filesystem_id)
+        pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="deviceName")
+    def device_name(self) -> str:
+        """
+        Name of the device.
+        """
+        return pulumi.get(self, "device_name")
+
+    @property
+    @pulumi.getter(name="filesystemId")
+    def filesystem_id(self) -> str:
+        return pulumi.get(self, "filesystem_id")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> str:
+        """
+        Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
 class GetComputeInstanceGroupAllocationPolicyResult(dict):
     def __init__(__self__, *,
                  zones: Sequence[str]):
@@ -30738,6 +30899,39 @@ class GetComputeInstanceLocalDiskResult(dict):
         Size of the disk, specified in bytes.
         """
         return pulumi.get(self, "size_bytes")
+
+
+@pulumi.output_type
+class GetComputeInstanceMetadataOptionsResult(dict):
+    def __init__(__self__, *,
+                 aws_v1_http_endpoint: int,
+                 aws_v1_http_token: int,
+                 gce_http_endpoint: int,
+                 gce_http_token: int):
+        pulumi.set(__self__, "aws_v1_http_endpoint", aws_v1_http_endpoint)
+        pulumi.set(__self__, "aws_v1_http_token", aws_v1_http_token)
+        pulumi.set(__self__, "gce_http_endpoint", gce_http_endpoint)
+        pulumi.set(__self__, "gce_http_token", gce_http_token)
+
+    @property
+    @pulumi.getter(name="awsV1HttpEndpoint")
+    def aws_v1_http_endpoint(self) -> int:
+        return pulumi.get(self, "aws_v1_http_endpoint")
+
+    @property
+    @pulumi.getter(name="awsV1HttpToken")
+    def aws_v1_http_token(self) -> int:
+        return pulumi.get(self, "aws_v1_http_token")
+
+    @property
+    @pulumi.getter(name="gceHttpEndpoint")
+    def gce_http_endpoint(self) -> int:
+        return pulumi.get(self, "gce_http_endpoint")
+
+    @property
+    @pulumi.getter(name="gceHttpToken")
+    def gce_http_token(self) -> int:
+        return pulumi.get(self, "gce_http_token")
 
 
 @pulumi.output_type

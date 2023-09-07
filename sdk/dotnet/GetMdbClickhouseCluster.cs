@@ -163,7 +163,7 @@ namespace Pulumi.Yandex
         /// Configuration of the ClickHouse subcluster. The structure is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseResult> Clickhouses;
-        public readonly Outputs.GetMdbClickhouseClusterCloudStorageResult? CloudStorage;
+        public readonly Outputs.GetMdbClickhouseClusterCloudStorageResult CloudStorage;
         public readonly string ClusterId;
         /// <summary>
         /// Creation timestamp of the key.
@@ -259,7 +259,7 @@ namespace Pulumi.Yandex
 
             ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseResult> clickhouses,
 
-            Outputs.GetMdbClickhouseClusterCloudStorageResult? cloudStorage,
+            Outputs.GetMdbClickhouseClusterCloudStorageResult cloudStorage,
 
             string clusterId,
 

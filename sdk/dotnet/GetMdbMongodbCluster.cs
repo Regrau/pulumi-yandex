@@ -390,7 +390,7 @@ namespace Pulumi.Yandex
         /// <summary>
         /// Description of the MongoDB cluster.
         /// </summary>
-        public readonly string Description;
+        public readonly string? Description;
         /// <summary>
         /// Deployment environment of the MongoDB cluster.
         /// </summary>
@@ -454,7 +454,7 @@ namespace Pulumi.Yandex
 
             bool deletionProtection,
 
-            string description,
+            string? description,
 
             string? environment,
 

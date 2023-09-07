@@ -692,7 +692,7 @@ namespace Pulumi.Yandex
         public Output<string?> BucketPrefix { get; private set; } = null!;
 
         /// <summary>
-        /// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        /// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         /// </summary>
         [Output("corsRules")]
         public Output<ImmutableArray<Outputs.StorageBucketCorsRule>> CorsRules { get; private set; } = null!;
@@ -870,7 +870,7 @@ namespace Pulumi.Yandex
         private InputList<Inputs.StorageBucketCorsRuleArgs>? _corsRules;
 
         /// <summary>
-        /// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        /// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         /// </summary>
         public InputList<Inputs.StorageBucketCorsRuleArgs> CorsRules
         {
@@ -1042,7 +1042,7 @@ namespace Pulumi.Yandex
         private InputList<Inputs.StorageBucketCorsRuleGetArgs>? _corsRules;
 
         /// <summary>
-        /// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/cors/) (documented below).
+        /// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         /// </summary>
         public InputList<Inputs.StorageBucketCorsRuleGetArgs> CorsRules
         {

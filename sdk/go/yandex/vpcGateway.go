@@ -14,7 +14,7 @@ import (
 // [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/gateway#gateway).
 //
 // * How-to Guides
-//   - [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+//     * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
 //
 // ## Example Usage
 //
@@ -22,24 +22,21 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewvpcGateway(ctx, "default", &yandex.vpcGatewayArgs{
-//				SharedEgressGateway: nil,
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewvpcGateway(ctx, "default", &yandex.vpcGatewayArgs{
+// 			SharedEgressGateway: nil,
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -47,9 +44,7 @@ import (
 // A gateway can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/vpcGateway:vpcGateway default gateway_id
-//
+//  $ pulumi import yandex:index/vpcGateway:vpcGateway default gateway_id
 // ```
 type VpcGateway struct {
 	pulumi.CustomResourceState
@@ -194,7 +189,7 @@ func (i *VpcGateway) ToVpcGatewayOutputWithContext(ctx context.Context) VpcGatew
 // VpcGatewayArrayInput is an input type that accepts VpcGatewayArray and VpcGatewayArrayOutput values.
 // You can construct a concrete instance of `VpcGatewayArrayInput` via:
 //
-//	VpcGatewayArray{ VpcGatewayArgs{...} }
+//          VpcGatewayArray{ VpcGatewayArgs{...} }
 type VpcGatewayArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +214,7 @@ func (i VpcGatewayArray) ToVpcGatewayArrayOutputWithContext(ctx context.Context)
 // VpcGatewayMapInput is an input type that accepts VpcGatewayMap and VpcGatewayMapOutput values.
 // You can construct a concrete instance of `VpcGatewayMapInput` via:
 //
-//	VpcGatewayMap{ "key": VpcGatewayArgs{...} }
+//          VpcGatewayMap{ "key": VpcGatewayArgs{...} }
 type VpcGatewayMapInput interface {
 	pulumi.Input
 

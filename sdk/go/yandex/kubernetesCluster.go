@@ -18,9 +18,7 @@ import (
 // A Managed Kubernetes cluster can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/kubernetesCluster:KubernetesCluster default cluster_id
-//
+//  $ pulumi import yandex:index/kubernetesCluster:KubernetesCluster default cluster_id
 // ```
 type KubernetesCluster struct {
 	pulumi.CustomResourceState
@@ -345,7 +343,7 @@ func (i *KubernetesCluster) ToKubernetesClusterOutputWithContext(ctx context.Con
 // KubernetesClusterArrayInput is an input type that accepts KubernetesClusterArray and KubernetesClusterArrayOutput values.
 // You can construct a concrete instance of `KubernetesClusterArrayInput` via:
 //
-//	KubernetesClusterArray{ KubernetesClusterArgs{...} }
+//          KubernetesClusterArray{ KubernetesClusterArgs{...} }
 type KubernetesClusterArrayInput interface {
 	pulumi.Input
 
@@ -370,7 +368,7 @@ func (i KubernetesClusterArray) ToKubernetesClusterArrayOutputWithContext(ctx co
 // KubernetesClusterMapInput is an input type that accepts KubernetesClusterMap and KubernetesClusterMapOutput values.
 // You can construct a concrete instance of `KubernetesClusterMapInput` via:
 //
-//	KubernetesClusterMap{ "key": KubernetesClusterArgs{...} }
+//          KubernetesClusterMap{ "key": KubernetesClusterArgs{...} }
 type KubernetesClusterMapInput interface {
 	pulumi.Input
 

@@ -19,46 +19,43 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewLbNetworkLoadBalancer(ctx, "foo", &yandex.LbNetworkLoadBalancerArgs{
-//				AttachedTargetGroups: LbNetworkLoadBalancerAttachedTargetGroupArray{
-//					&LbNetworkLoadBalancerAttachedTargetGroupArgs{
-//						Healthchecks: LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArray{
-//							&LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs{
-//								HttpOptions: &LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionsArgs{
-//									Path: pulumi.String("/ping"),
-//									Port: pulumi.Int(8080),
-//								},
-//								Name: pulumi.String("http"),
-//							},
-//						},
-//						TargetGroupId: pulumi.Any(yandex_lb_target_group.MyTargetGroup.Id),
-//					},
-//				},
-//				Listeners: LbNetworkLoadBalancerListenerArray{
-//					&LbNetworkLoadBalancerListenerArgs{
-//						ExternalAddressSpec: &LbNetworkLoadBalancerListenerExternalAddressSpecArgs{
-//							IpVersion: pulumi.String("ipv4"),
-//						},
-//						Name: pulumi.String("my-listener"),
-//						Port: pulumi.Int(8080),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewLbNetworkLoadBalancer(ctx, "foo", &yandex.LbNetworkLoadBalancerArgs{
+// 			AttachedTargetGroups: LbNetworkLoadBalancerAttachedTargetGroupArray{
+// 				&LbNetworkLoadBalancerAttachedTargetGroupArgs{
+// 					Healthchecks: LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArray{
+// 						&LbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs{
+// 							HttpOptions: &LbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionsArgs{
+// 								Path: pulumi.String("/ping"),
+// 								Port: pulumi.Int(8080),
+// 							},
+// 							Name: pulumi.String("http"),
+// 						},
+// 					},
+// 					TargetGroupId: pulumi.Any(yandex_lb_target_group.MyTargetGroup.Id),
+// 				},
+// 			},
+// 			Listeners: LbNetworkLoadBalancerListenerArray{
+// 				&LbNetworkLoadBalancerListenerArgs{
+// 					ExternalAddressSpec: &LbNetworkLoadBalancerListenerExternalAddressSpecArgs{
+// 						IpVersion: pulumi.String("ipv4"),
+// 					},
+// 					Name: pulumi.String("my-listener"),
+// 					Port: pulumi.Int(8080),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -66,9 +63,7 @@ import (
 // A network load balancer can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/lbNetworkLoadBalancer:LbNetworkLoadBalancer default network_load_balancer_id
-//
+//  $ pulumi import yandex:index/lbNetworkLoadBalancer:LbNetworkLoadBalancer default network_load_balancer_id
 // ```
 type LbNetworkLoadBalancer struct {
 	pulumi.CustomResourceState
@@ -248,7 +243,7 @@ func (i *LbNetworkLoadBalancer) ToLbNetworkLoadBalancerOutputWithContext(ctx con
 // LbNetworkLoadBalancerArrayInput is an input type that accepts LbNetworkLoadBalancerArray and LbNetworkLoadBalancerArrayOutput values.
 // You can construct a concrete instance of `LbNetworkLoadBalancerArrayInput` via:
 //
-//	LbNetworkLoadBalancerArray{ LbNetworkLoadBalancerArgs{...} }
+//          LbNetworkLoadBalancerArray{ LbNetworkLoadBalancerArgs{...} }
 type LbNetworkLoadBalancerArrayInput interface {
 	pulumi.Input
 
@@ -273,7 +268,7 @@ func (i LbNetworkLoadBalancerArray) ToLbNetworkLoadBalancerArrayOutputWithContex
 // LbNetworkLoadBalancerMapInput is an input type that accepts LbNetworkLoadBalancerMap and LbNetworkLoadBalancerMapOutput values.
 // You can construct a concrete instance of `LbNetworkLoadBalancerMapInput` via:
 //
-//	LbNetworkLoadBalancerMap{ "key": LbNetworkLoadBalancerArgs{...} }
+//          LbNetworkLoadBalancerMap{ "key": LbNetworkLoadBalancerArgs{...} }
 type LbNetworkLoadBalancerMapInput interface {
 	pulumi.Input
 

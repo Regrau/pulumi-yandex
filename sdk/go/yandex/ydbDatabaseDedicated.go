@@ -20,44 +20,41 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewYdbDatabaseDedicated(ctx, "database1", &yandex.YdbDatabaseDedicatedArgs{
-//				DeletionProtection: pulumi.Bool(true),
-//				FolderId:           pulumi.Any(data.Yandex_resourcemanager_folder.Test_folder.Id),
-//				Location: &YdbDatabaseDedicatedLocationArgs{
-//					Region: &YdbDatabaseDedicatedLocationRegionArgs{
-//						Id: pulumi.String("ru-central1"),
-//					},
-//				},
-//				NetworkId:        pulumi.Any(yandex_vpc_network.MyInstGroupNetwork.Id),
-//				ResourcePresetId: pulumi.String("medium"),
-//				ScalePolicy: &YdbDatabaseDedicatedScalePolicyArgs{
-//					FixedScale: &YdbDatabaseDedicatedScalePolicyFixedScaleArgs{
-//						Size: pulumi.Int(1),
-//					},
-//				},
-//				StorageConfig: &YdbDatabaseDedicatedStorageConfigArgs{
-//					GroupCount:    pulumi.Int(1),
-//					StorageTypeId: pulumi.String("ssd"),
-//				},
-//				SubnetIds: pulumi.StringArray{
-//					pulumi.Any(yandex_vpc_subnet.MyInstGroupSubnet.Id),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewYdbDatabaseDedicated(ctx, "database1", &yandex.YdbDatabaseDedicatedArgs{
+// 			DeletionProtection: pulumi.Bool(true),
+// 			FolderId:           pulumi.Any(data.Yandex_resourcemanager_folder.Test_folder.Id),
+// 			Location: &YdbDatabaseDedicatedLocationArgs{
+// 				Region: &YdbDatabaseDedicatedLocationRegionArgs{
+// 					Id: pulumi.String("ru-central1"),
+// 				},
+// 			},
+// 			NetworkId:        pulumi.Any(yandex_vpc_network.MyInstGroupNetwork.Id),
+// 			ResourcePresetId: pulumi.String("medium"),
+// 			ScalePolicy: &YdbDatabaseDedicatedScalePolicyArgs{
+// 				FixedScale: &YdbDatabaseDedicatedScalePolicyFixedScaleArgs{
+// 					Size: pulumi.Int(1),
+// 				},
+// 			},
+// 			StorageConfig: &YdbDatabaseDedicatedStorageConfigArgs{
+// 				GroupCount:    pulumi.Int(1),
+// 				StorageTypeId: pulumi.String("ssd"),
+// 			},
+// 			SubnetIds: pulumi.StringArray{
+// 				pulumi.Any(yandex_vpc_subnet.MyInstGroupSubnet.Id),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type YdbDatabaseDedicated struct {
 	pulumi.CustomResourceState
@@ -351,7 +348,7 @@ func (i *YdbDatabaseDedicated) ToYdbDatabaseDedicatedOutputWithContext(ctx conte
 // YdbDatabaseDedicatedArrayInput is an input type that accepts YdbDatabaseDedicatedArray and YdbDatabaseDedicatedArrayOutput values.
 // You can construct a concrete instance of `YdbDatabaseDedicatedArrayInput` via:
 //
-//	YdbDatabaseDedicatedArray{ YdbDatabaseDedicatedArgs{...} }
+//          YdbDatabaseDedicatedArray{ YdbDatabaseDedicatedArgs{...} }
 type YdbDatabaseDedicatedArrayInput interface {
 	pulumi.Input
 
@@ -376,7 +373,7 @@ func (i YdbDatabaseDedicatedArray) ToYdbDatabaseDedicatedArrayOutputWithContext(
 // YdbDatabaseDedicatedMapInput is an input type that accepts YdbDatabaseDedicatedMap and YdbDatabaseDedicatedMapOutput values.
 // You can construct a concrete instance of `YdbDatabaseDedicatedMapInput` via:
 //
-//	YdbDatabaseDedicatedMap{ "key": YdbDatabaseDedicatedArgs{...} }
+//          YdbDatabaseDedicatedMap{ "key": YdbDatabaseDedicatedArgs{...} }
 type YdbDatabaseDedicatedMapInput interface {
 	pulumi.Input
 

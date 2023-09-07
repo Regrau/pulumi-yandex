@@ -20,27 +20,24 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewComputeSnapshot(ctx, "default", &yandex.ComputeSnapshotArgs{
-//				Labels: pulumi.StringMap{
-//					"my-label": pulumi.String("my-label-value"),
-//				},
-//				SourceDiskId: pulumi.String("test_disk_id"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewComputeSnapshot(ctx, "default", &yandex.ComputeSnapshotArgs{
+// 			Labels: pulumi.StringMap{
+// 				"my-label": pulumi.String("my-label-value"),
+// 			},
+// 			SourceDiskId: pulumi.String("test_disk_id"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -48,9 +45,7 @@ import (
 // A snapshot can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/computeSnapshot:ComputeSnapshot disk-snapshot shapshot_id
-//
+//  $ pulumi import yandex:index/computeSnapshot:ComputeSnapshot disk-snapshot shapshot_id
 // ```
 type ComputeSnapshot struct {
 	pulumi.CustomResourceState
@@ -205,7 +200,7 @@ func (i *ComputeSnapshot) ToComputeSnapshotOutputWithContext(ctx context.Context
 // ComputeSnapshotArrayInput is an input type that accepts ComputeSnapshotArray and ComputeSnapshotArrayOutput values.
 // You can construct a concrete instance of `ComputeSnapshotArrayInput` via:
 //
-//	ComputeSnapshotArray{ ComputeSnapshotArgs{...} }
+//          ComputeSnapshotArray{ ComputeSnapshotArgs{...} }
 type ComputeSnapshotArrayInput interface {
 	pulumi.Input
 
@@ -230,7 +225,7 @@ func (i ComputeSnapshotArray) ToComputeSnapshotArrayOutputWithContext(ctx contex
 // ComputeSnapshotMapInput is an input type that accepts ComputeSnapshotMap and ComputeSnapshotMapOutput values.
 // You can construct a concrete instance of `ComputeSnapshotMapInput` via:
 //
-//	ComputeSnapshotMap{ "key": ComputeSnapshotArgs{...} }
+//          ComputeSnapshotMap{ "key": ComputeSnapshotArgs{...} }
 type ComputeSnapshotMapInput interface {
 	pulumi.Input
 

@@ -19,25 +19,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			foo, err := yandex.LookupMdbMongodbCluster(ctx, &GetMdbMongodbClusterArgs{
-//				Name: pulumi.StringRef("test"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("networkId", foo.NetworkId)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		foo, err := yandex.LookupMdbMongodbCluster(ctx, &GetMdbMongodbClusterArgs{
+// 			Name: pulumi.StringRef("test"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("networkId", foo.NetworkId)
+// 		return nil
+// 	})
+// }
 // ```
 func LookupMdbMongodbCluster(ctx *pulumi.Context, args *LookupMdbMongodbClusterArgs, opts ...pulumi.InvokeOption) (*LookupMdbMongodbClusterResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
@@ -100,7 +97,7 @@ type LookupMdbMongodbClusterResult struct {
 	Databases          []GetMdbMongodbClusterDatabase `pulumi:"databases"`
 	DeletionProtection bool                           `pulumi:"deletionProtection"`
 	// Description of the MongoDB cluster.
-	Description string `pulumi:"description"`
+	Description *string `pulumi:"description"`
 	// Deployment environment of the MongoDB cluster.
 	Environment *string `pulumi:"environment"`
 	FolderId    string  `pulumi:"folderId"`
@@ -225,8 +222,8 @@ func (o LookupMdbMongodbClusterResultOutput) DeletionProtection() pulumi.BoolOut
 }
 
 // Description of the MongoDB cluster.
-func (o LookupMdbMongodbClusterResultOutput) Description() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMdbMongodbClusterResult) string { return v.Description }).(pulumi.StringOutput)
+func (o LookupMdbMongodbClusterResultOutput) Description() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupMdbMongodbClusterResult) *string { return v.Description }).(pulumi.StringPtrOutput)
 }
 
 // Deployment environment of the MongoDB cluster.

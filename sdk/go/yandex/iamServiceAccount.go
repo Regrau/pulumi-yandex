@@ -23,24 +23,21 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewIamServiceAccount(ctx, "sa", &yandex.IamServiceAccountArgs{
-//				Description: pulumi.String("service account to manage VMs"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewIamServiceAccount(ctx, "sa", &yandex.IamServiceAccountArgs{
+// 			Description: pulumi.String("service account to manage VMs"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -48,9 +45,7 @@ import (
 // A service account can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/iamServiceAccount:IamServiceAccount sa account_id
-//
+//  $ pulumi import yandex:index/iamServiceAccount:IamServiceAccount sa account_id
 // ```
 type IamServiceAccount struct {
 	pulumi.CustomResourceState
@@ -172,7 +167,7 @@ func (i *IamServiceAccount) ToIamServiceAccountOutputWithContext(ctx context.Con
 // IamServiceAccountArrayInput is an input type that accepts IamServiceAccountArray and IamServiceAccountArrayOutput values.
 // You can construct a concrete instance of `IamServiceAccountArrayInput` via:
 //
-//	IamServiceAccountArray{ IamServiceAccountArgs{...} }
+//          IamServiceAccountArray{ IamServiceAccountArgs{...} }
 type IamServiceAccountArrayInput interface {
 	pulumi.Input
 
@@ -197,7 +192,7 @@ func (i IamServiceAccountArray) ToIamServiceAccountArrayOutputWithContext(ctx co
 // IamServiceAccountMapInput is an input type that accepts IamServiceAccountMap and IamServiceAccountMapOutput values.
 // You can construct a concrete instance of `IamServiceAccountMapInput` via:
 //
-//	IamServiceAccountMap{ "key": IamServiceAccountArgs{...} }
+//          IamServiceAccountMap{ "key": IamServiceAccountArgs{...} }
 type IamServiceAccountMapInput interface {
 	pulumi.Input
 

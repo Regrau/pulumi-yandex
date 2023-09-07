@@ -79,6 +79,14 @@ namespace Pulumi.Yandex
 
     public sealed class GetComputeInstanceArgs : global::Pulumi.InvokeArgs
     {
+        [Input("filesystems")]
+        private List<Inputs.GetComputeInstanceFilesystemArgs>? _filesystems;
+        public List<Inputs.GetComputeInstanceFilesystemArgs> Filesystems
+        {
+            get => _filesystems ?? (_filesystems = new List<Inputs.GetComputeInstanceFilesystemArgs>());
+            set => _filesystems = value;
+        }
+
         /// <summary>
         /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
         /// </summary>
@@ -104,6 +112,12 @@ namespace Pulumi.Yandex
         }
 
         /// <summary>
+        /// Options allow user to configure access to instance's metadata
+        /// </summary>
+        [Input("metadataOptions")]
+        public Inputs.GetComputeInstanceMetadataOptionsArgs? MetadataOptions { get; set; }
+
+        /// <summary>
         /// Name of the instance.
         /// </summary>
         [Input("name")]
@@ -123,6 +137,14 @@ namespace Pulumi.Yandex
 
     public sealed class GetComputeInstanceInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("filesystems")]
+        private InputList<Inputs.GetComputeInstanceFilesystemInputArgs>? _filesystems;
+        public InputList<Inputs.GetComputeInstanceFilesystemInputArgs> Filesystems
+        {
+            get => _filesystems ?? (_filesystems = new InputList<Inputs.GetComputeInstanceFilesystemInputArgs>());
+            set => _filesystems = value;
+        }
+
         /// <summary>
         /// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
         /// </summary>
@@ -146,6 +168,12 @@ namespace Pulumi.Yandex
             get => _localDisks ?? (_localDisks = new InputList<Inputs.GetComputeInstanceLocalDiskInputArgs>());
             set => _localDisks = value;
         }
+
+        /// <summary>
+        /// Options allow user to configure access to instance's metadata
+        /// </summary>
+        [Input("metadataOptions")]
+        public Input<Inputs.GetComputeInstanceMetadataOptionsInputArgs>? MetadataOptions { get; set; }
 
         /// <summary>
         /// Name of the instance.
@@ -181,6 +209,7 @@ namespace Pulumi.Yandex
         /// Description of the boot disk.
         /// </summary>
         public readonly string Description;
+        public readonly ImmutableArray<Outputs.GetComputeInstanceFilesystemResult> Filesystems;
         public readonly string FolderId;
         /// <summary>
         /// DNS record FQDN.
@@ -204,6 +233,10 @@ namespace Pulumi.Yandex
         /// within the instance.
         /// </summary>
         public readonly ImmutableDictionary<string, string> Metadata;
+        /// <summary>
+        /// Options allow user to configure access to instance's metadata
+        /// </summary>
+        public readonly Outputs.GetComputeInstanceMetadataOptionsResult MetadataOptions;
         /// <summary>
         /// Name of the boot disk.
         /// </summary>
@@ -260,6 +293,8 @@ namespace Pulumi.Yandex
 
             string description,
 
+            ImmutableArray<Outputs.GetComputeInstanceFilesystemResult> filesystems,
+
             string folderId,
 
             string fqdn,
@@ -273,6 +308,8 @@ namespace Pulumi.Yandex
             ImmutableArray<Outputs.GetComputeInstanceLocalDiskResult> localDisks,
 
             ImmutableDictionary<string, string> metadata,
+
+            Outputs.GetComputeInstanceMetadataOptionsResult metadataOptions,
 
             string name,
 
@@ -299,6 +336,7 @@ namespace Pulumi.Yandex
             BootDisks = bootDisks;
             CreatedAt = createdAt;
             Description = description;
+            Filesystems = filesystems;
             FolderId = folderId;
             Fqdn = fqdn;
             Id = id;
@@ -306,6 +344,7 @@ namespace Pulumi.Yandex
             Labels = labels;
             LocalDisks = localDisks;
             Metadata = metadata;
+            MetadataOptions = metadataOptions;
             Name = name;
             NetworkAccelerationType = networkAccelerationType;
             NetworkInterfaces = networkInterfaces;

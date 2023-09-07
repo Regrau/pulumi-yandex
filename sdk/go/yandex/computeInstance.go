@@ -20,65 +20,65 @@ import (
 // package main
 //
 // import (
+// 	"fmt"
+// 	"io/ioutil"
 //
-//	"fmt"
-//	"io/ioutil"
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func readFileOrPanic(path string) pulumi.StringPtrInput {
-//		data, err := ioutil.ReadFile(path)
-//		if err != nil {
-//			panic(err.Error())
-//		}
-//		return pulumi.String(string(data))
-//	}
+// func readFileOrPanic(path string) pulumi.StringPtrInput {
+// 	data, err := ioutil.ReadFile(path)
+// 	if err != nil {
+// 		panic(err.Error())
+// 	}
+// 	return pulumi.String(string(data))
+// }
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-//			if err != nil {
-//				return err
-//			}
-//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-//				NetworkId: fooVpcNetwork.ID(),
-//				Zone:      pulumi.String("ru-central1-a"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewComputeInstance(ctx, "default", &yandex.ComputeInstanceArgs{
-//				BootDisk: &ComputeInstanceBootDiskArgs{
-//					InitializeParams: &ComputeInstanceBootDiskInitializeParamsArgs{
-//						ImageId: pulumi.String("image_id"),
-//					},
-//				},
-//				Metadata: pulumi.StringMap{
-//					"foo":      pulumi.String("bar"),
-//					"ssh-keys": pulumi.String(fmt.Sprintf("ubuntu:%v", readFileOrPanic("~/.ssh/id_rsa.pub"))),
-//				},
-//				NetworkInterfaces: ComputeInstanceNetworkInterfaceArray{
-//					&ComputeInstanceNetworkInterfaceArgs{
-//						SubnetId: fooVpcSubnet.ID(),
-//					},
-//				},
-//				PlatformId: pulumi.String("standard-v1"),
-//				Resources: &ComputeInstanceResourcesArgs{
-//					Cores:  pulumi.Int(2),
-//					Memory: pulumi.Float64(4),
-//				},
-//				Zone: pulumi.String("ru-central1-a"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.5.0.0/24"),
+// 			},
+// 			Zone: pulumi.String("ru-central1-a"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewComputeInstance(ctx, "default", &yandex.ComputeInstanceArgs{
+// 			BootDisk: &ComputeInstanceBootDiskArgs{
+// 				InitializeParams: &ComputeInstanceBootDiskInitializeParamsArgs{
+// 					ImageId: pulumi.String("image_id"),
+// 				},
+// 			},
+// 			Metadata: pulumi.StringMap{
+// 				"foo":      pulumi.String("bar"),
+// 				"ssh-keys": pulumi.String(fmt.Sprintf("ubuntu:%v", readFileOrPanic("~/.ssh/id_rsa.pub"))),
+// 			},
+// 			NetworkInterfaces: ComputeInstanceNetworkInterfaceArray{
+// 				&ComputeInstanceNetworkInterfaceArgs{
+// 					SubnetId: fooVpcSubnet.ID(),
+// 				},
+// 			},
+// 			PlatformId: pulumi.String("standard-v1"),
+// 			Resources: &ComputeInstanceResourcesArgs{
+// 				Cores:  pulumi.Int(2),
+// 				Memory: pulumi.Float64(4),
+// 			},
+// 			Zone: pulumi.String("ru-central1-a"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -86,9 +86,7 @@ import (
 // Instances can be imported using the `ID` of an instance, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/computeInstance:ComputeInstance default instance_id
-//
+//  $ pulumi import yandex:index/computeInstance:ComputeInstance default instance_id
 // ```
 type ComputeInstance struct {
 	pulumi.CustomResourceState
@@ -101,6 +99,8 @@ type ComputeInstance struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Description of the boot disk.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// List of filesystems that are attached to the instance. Structure is documented below.
+	Filesystems ComputeInstanceFilesystemArrayOutput `pulumi:"filesystems"`
 	// The ID of the folder that the resource belongs to. If it
 	// is not provided, the default provider folder is used.
 	FolderId pulumi.StringOutput `pulumi:"folderId"`
@@ -118,6 +118,8 @@ type ComputeInstance struct {
 	// Metadata key/value pairs to make available from
 	// within the instance.
 	Metadata pulumi.StringMapOutput `pulumi:"metadata"`
+	// Options allow user to configure access to instance's metadata
+	MetadataOptions ComputeInstanceMetadataOptionsOutput `pulumi:"metadataOptions"`
 	// Name of the boot disk.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Type of network acceleration. The default is `standard`. Values: `standard`, `softwareAccelerated`
@@ -192,6 +194,8 @@ type computeInstanceState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Description of the boot disk.
 	Description *string `pulumi:"description"`
+	// List of filesystems that are attached to the instance. Structure is documented below.
+	Filesystems []ComputeInstanceFilesystem `pulumi:"filesystems"`
 	// The ID of the folder that the resource belongs to. If it
 	// is not provided, the default provider folder is used.
 	FolderId *string `pulumi:"folderId"`
@@ -209,6 +213,8 @@ type computeInstanceState struct {
 	// Metadata key/value pairs to make available from
 	// within the instance.
 	Metadata map[string]string `pulumi:"metadata"`
+	// Options allow user to configure access to instance's metadata
+	MetadataOptions *ComputeInstanceMetadataOptions `pulumi:"metadataOptions"`
 	// Name of the boot disk.
 	Name *string `pulumi:"name"`
 	// Type of network acceleration. The default is `standard`. Values: `standard`, `softwareAccelerated`
@@ -245,6 +251,8 @@ type ComputeInstanceState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Description of the boot disk.
 	Description pulumi.StringPtrInput
+	// List of filesystems that are attached to the instance. Structure is documented below.
+	Filesystems ComputeInstanceFilesystemArrayInput
 	// The ID of the folder that the resource belongs to. If it
 	// is not provided, the default provider folder is used.
 	FolderId pulumi.StringPtrInput
@@ -262,6 +270,8 @@ type ComputeInstanceState struct {
 	// Metadata key/value pairs to make available from
 	// within the instance.
 	Metadata pulumi.StringMapInput
+	// Options allow user to configure access to instance's metadata
+	MetadataOptions ComputeInstanceMetadataOptionsPtrInput
 	// Name of the boot disk.
 	Name pulumi.StringPtrInput
 	// Type of network acceleration. The default is `standard`. Values: `standard`, `softwareAccelerated`
@@ -300,6 +310,8 @@ type computeInstanceArgs struct {
 	BootDisk ComputeInstanceBootDisk `pulumi:"bootDisk"`
 	// Description of the boot disk.
 	Description *string `pulumi:"description"`
+	// List of filesystems that are attached to the instance. Structure is documented below.
+	Filesystems []ComputeInstanceFilesystem `pulumi:"filesystems"`
 	// The ID of the folder that the resource belongs to. If it
 	// is not provided, the default provider folder is used.
 	FolderId *string `pulumi:"folderId"`
@@ -315,6 +327,8 @@ type computeInstanceArgs struct {
 	// Metadata key/value pairs to make available from
 	// within the instance.
 	Metadata map[string]string `pulumi:"metadata"`
+	// Options allow user to configure access to instance's metadata
+	MetadataOptions *ComputeInstanceMetadataOptions `pulumi:"metadataOptions"`
 	// Name of the boot disk.
 	Name *string `pulumi:"name"`
 	// Type of network acceleration. The default is `standard`. Values: `standard`, `softwareAccelerated`
@@ -348,6 +362,8 @@ type ComputeInstanceArgs struct {
 	BootDisk ComputeInstanceBootDiskInput
 	// Description of the boot disk.
 	Description pulumi.StringPtrInput
+	// List of filesystems that are attached to the instance. Structure is documented below.
+	Filesystems ComputeInstanceFilesystemArrayInput
 	// The ID of the folder that the resource belongs to. If it
 	// is not provided, the default provider folder is used.
 	FolderId pulumi.StringPtrInput
@@ -363,6 +379,8 @@ type ComputeInstanceArgs struct {
 	// Metadata key/value pairs to make available from
 	// within the instance.
 	Metadata pulumi.StringMapInput
+	// Options allow user to configure access to instance's metadata
+	MetadataOptions ComputeInstanceMetadataOptionsPtrInput
 	// Name of the boot disk.
 	Name pulumi.StringPtrInput
 	// Type of network acceleration. The default is `standard`. Values: `standard`, `softwareAccelerated`
@@ -414,7 +432,7 @@ func (i *ComputeInstance) ToComputeInstanceOutputWithContext(ctx context.Context
 // ComputeInstanceArrayInput is an input type that accepts ComputeInstanceArray and ComputeInstanceArrayOutput values.
 // You can construct a concrete instance of `ComputeInstanceArrayInput` via:
 //
-//	ComputeInstanceArray{ ComputeInstanceArgs{...} }
+//          ComputeInstanceArray{ ComputeInstanceArgs{...} }
 type ComputeInstanceArrayInput interface {
 	pulumi.Input
 
@@ -439,7 +457,7 @@ func (i ComputeInstanceArray) ToComputeInstanceArrayOutputWithContext(ctx contex
 // ComputeInstanceMapInput is an input type that accepts ComputeInstanceMap and ComputeInstanceMapOutput values.
 // You can construct a concrete instance of `ComputeInstanceMapInput` via:
 //
-//	ComputeInstanceMap{ "key": ComputeInstanceArgs{...} }
+//          ComputeInstanceMap{ "key": ComputeInstanceArgs{...} }
 type ComputeInstanceMapInput interface {
 	pulumi.Input
 
@@ -498,6 +516,11 @@ func (o ComputeInstanceOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputeInstance) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+// List of filesystems that are attached to the instance. Structure is documented below.
+func (o ComputeInstanceOutput) Filesystems() ComputeInstanceFilesystemArrayOutput {
+	return o.ApplyT(func(v *ComputeInstance) ComputeInstanceFilesystemArrayOutput { return v.Filesystems }).(ComputeInstanceFilesystemArrayOutput)
+}
+
 // The ID of the folder that the resource belongs to. If it
 // is not provided, the default provider folder is used.
 func (o ComputeInstanceOutput) FolderId() pulumi.StringOutput {
@@ -531,6 +554,11 @@ func (o ComputeInstanceOutput) LocalDisks() ComputeInstanceLocalDiskArrayOutput 
 // within the instance.
 func (o ComputeInstanceOutput) Metadata() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ComputeInstance) pulumi.StringMapOutput { return v.Metadata }).(pulumi.StringMapOutput)
+}
+
+// Options allow user to configure access to instance's metadata
+func (o ComputeInstanceOutput) MetadataOptions() ComputeInstanceMetadataOptionsOutput {
+	return o.ApplyT(func(v *ComputeInstance) ComputeInstanceMetadataOptionsOutput { return v.MetadataOptions }).(ComputeInstanceMetadataOptionsOutput)
 }
 
 // Name of the boot disk.

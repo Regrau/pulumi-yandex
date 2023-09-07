@@ -18,68 +18,65 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			pgSource, err := yandex.NewDatatransferEndpoint(ctx, "pgSource", &yandex.DatatransferEndpointArgs{
-//				Settings: &DatatransferEndpointSettingsArgs{
-//					PostgresSource: &DatatransferEndpointSettingsPostgresSourceArgs{
-//						Connection: &DatatransferEndpointSettingsPostgresSourceConnectionArgs{
-//							OnPremise: &DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs{
-//								Hosts: pulumi.StringArray{
-//									pulumi.String("example.org"),
-//								},
-//								Port: pulumi.Int(5432),
-//							},
-//						},
-//						SlotGigabyteLagLimit: pulumi.Int(100),
-//						Database:             pulumi.String("db1"),
-//						User:                 pulumi.String("user1"),
-//						Password: &DatatransferEndpointSettingsPostgresSourcePasswordArgs{
-//							Raw: pulumi.String("123"),
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			pgTarget, err := yandex.NewDatatransferEndpoint(ctx, "pgTarget", &yandex.DatatransferEndpointArgs{
-//				FolderId: pulumi.String("some_folder_id"),
-//				Settings: &DatatransferEndpointSettingsArgs{
-//					PostgresTarget: &DatatransferEndpointSettingsPostgresTargetArgs{
-//						Connection: &DatatransferEndpointSettingsPostgresTargetConnectionArgs{
-//							MdbClusterId: pulumi.String("some_cluster_id"),
-//						},
-//						Database: pulumi.String("db2"),
-//						User:     pulumi.String("user2"),
-//						Password: &DatatransferEndpointSettingsPostgresTargetPasswordArgs{
-//							Raw: pulumi.String("321"),
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewDatatransferTransfer(ctx, "pgpgTransfer", &yandex.DatatransferTransferArgs{
-//				FolderId: pulumi.String("some_folder_id"),
-//				SourceId: pgSource.ID(),
-//				TargetId: pgTarget.ID(),
-//				Type:     pulumi.String("SNAPSHOT_AND_INCREMENT"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		pgSource, err := yandex.NewDatatransferEndpoint(ctx, "pgSource", &yandex.DatatransferEndpointArgs{
+// 			Settings: &DatatransferEndpointSettingsArgs{
+// 				PostgresSource: &DatatransferEndpointSettingsPostgresSourceArgs{
+// 					Connection: &DatatransferEndpointSettingsPostgresSourceConnectionArgs{
+// 						OnPremise: &DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs{
+// 							Hosts: pulumi.StringArray{
+// 								pulumi.String("example.org"),
+// 							},
+// 							Port: pulumi.Int(5432),
+// 						},
+// 					},
+// 					SlotGigabyteLagLimit: pulumi.Int(100),
+// 					Database:             pulumi.String("db1"),
+// 					User:                 pulumi.String("user1"),
+// 					Password: &DatatransferEndpointSettingsPostgresSourcePasswordArgs{
+// 						Raw: pulumi.String("123"),
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		pgTarget, err := yandex.NewDatatransferEndpoint(ctx, "pgTarget", &yandex.DatatransferEndpointArgs{
+// 			FolderId: pulumi.String("some_folder_id"),
+// 			Settings: &DatatransferEndpointSettingsArgs{
+// 				PostgresTarget: &DatatransferEndpointSettingsPostgresTargetArgs{
+// 					Connection: &DatatransferEndpointSettingsPostgresTargetConnectionArgs{
+// 						MdbClusterId: pulumi.String("some_cluster_id"),
+// 					},
+// 					Database: pulumi.String("db2"),
+// 					User:     pulumi.String("user2"),
+// 					Password: &DatatransferEndpointSettingsPostgresTargetPasswordArgs{
+// 						Raw: pulumi.String("321"),
+// 					},
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewDatatransferTransfer(ctx, "pgpgTransfer", &yandex.DatatransferTransferArgs{
+// 			FolderId: pulumi.String("some_folder_id"),
+// 			SourceId: pgSource.ID(),
+// 			TargetId: pgTarget.ID(),
+// 			Type:     pulumi.String("SNAPSHOT_AND_INCREMENT"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -87,9 +84,7 @@ import (
 // A transfer can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/datatransferTransfer:DatatransferTransfer foo transfer_id
-//
+//  $ pulumi import yandex:index/datatransferTransfer:DatatransferTransfer foo transfer_id
 // ```
 type DatatransferTransfer struct {
 	pulumi.CustomResourceState
@@ -264,7 +259,7 @@ func (i *DatatransferTransfer) ToDatatransferTransferOutputWithContext(ctx conte
 // DatatransferTransferArrayInput is an input type that accepts DatatransferTransferArray and DatatransferTransferArrayOutput values.
 // You can construct a concrete instance of `DatatransferTransferArrayInput` via:
 //
-//	DatatransferTransferArray{ DatatransferTransferArgs{...} }
+//          DatatransferTransferArray{ DatatransferTransferArgs{...} }
 type DatatransferTransferArrayInput interface {
 	pulumi.Input
 
@@ -289,7 +284,7 @@ func (i DatatransferTransferArray) ToDatatransferTransferArrayOutputWithContext(
 // DatatransferTransferMapInput is an input type that accepts DatatransferTransferMap and DatatransferTransferMapOutput values.
 // You can construct a concrete instance of `DatatransferTransferMapInput` via:
 //
-//	DatatransferTransferMap{ "key": DatatransferTransferArgs{...} }
+//          DatatransferTransferMap{ "key": DatatransferTransferArgs{...} }
 type DatatransferTransferMapInput interface {
 	pulumi.Input
 

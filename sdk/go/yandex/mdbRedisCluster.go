@@ -22,56 +22,53 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-//			if err != nil {
-//				return err
-//			}
-//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.5.0.0/24"),
-//				},
-//				Zone: pulumi.String("ru-central1-a"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewMdbRedisCluster(ctx, "fooMdbRedisCluster", &yandex.MdbRedisClusterArgs{
-//				Config: &MdbRedisClusterConfigArgs{
-//					Password: pulumi.String("your_password"),
-//					Version:  pulumi.String("6.2"),
-//				},
-//				Environment: pulumi.String("PRESTABLE"),
-//				Hosts: MdbRedisClusterHostArray{
-//					&MdbRedisClusterHostArgs{
-//						SubnetId: fooVpcSubnet.ID(),
-//						Zone:     pulumi.String("ru-central1-a"),
-//					},
-//				},
-//				MaintenanceWindow: &MdbRedisClusterMaintenanceWindowArgs{
-//					Type: pulumi.String("ANYTIME"),
-//				},
-//				NetworkId: fooVpcNetwork.ID(),
-//				Resources: &MdbRedisClusterResourcesArgs{
-//					DiskSize:         pulumi.Int(16),
-//					ResourcePresetId: pulumi.String("hm1.nano"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.5.0.0/24"),
+// 			},
+// 			Zone: pulumi.String("ru-central1-a"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewMdbRedisCluster(ctx, "fooMdbRedisCluster", &yandex.MdbRedisClusterArgs{
+// 			Config: &MdbRedisClusterConfigArgs{
+// 				Password: pulumi.String("your_password"),
+// 				Version:  pulumi.String("6.2"),
+// 			},
+// 			Environment: pulumi.String("PRESTABLE"),
+// 			Hosts: MdbRedisClusterHostArray{
+// 				&MdbRedisClusterHostArgs{
+// 					SubnetId: fooVpcSubnet.ID(),
+// 					Zone:     pulumi.String("ru-central1-a"),
+// 				},
+// 			},
+// 			MaintenanceWindow: &MdbRedisClusterMaintenanceWindowArgs{
+// 				Type: pulumi.String("ANYTIME"),
+// 			},
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			Resources: &MdbRedisClusterResourcesArgs{
+// 				DiskSize:         pulumi.Int(16),
+// 				ResourcePresetId: pulumi.String("hm1.nano"),
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // Example of creating a sharded Redis Cluster.
@@ -80,85 +77,82 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-//			if err != nil {
-//				return err
-//			}
-//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.1.0.0/24"),
-//				},
-//				Zone: pulumi.String("ru-central1-a"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			bar, err := yandex.NewVpcSubnet(ctx, "bar", &yandex.VpcSubnetArgs{
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.2.0.0/24"),
-//				},
-//				Zone: pulumi.String("ru-central1-b"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			baz, err := yandex.NewVpcSubnet(ctx, "baz", &yandex.VpcSubnetArgs{
-//				NetworkId: fooVpcNetwork.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.3.0.0/24"),
-//				},
-//				Zone: pulumi.String("ru-central1-c"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewMdbRedisCluster(ctx, "fooMdbRedisCluster", &yandex.MdbRedisClusterArgs{
-//				Config: &MdbRedisClusterConfigArgs{
-//					Password: pulumi.String("your_password"),
-//					Version:  pulumi.String("6.2"),
-//				},
-//				Environment: pulumi.String("PRESTABLE"),
-//				Hosts: MdbRedisClusterHostArray{
-//					&MdbRedisClusterHostArgs{
-//						ShardName: pulumi.String("first"),
-//						SubnetId:  fooVpcSubnet.ID(),
-//						Zone:      pulumi.String("ru-central1-a"),
-//					},
-//					&MdbRedisClusterHostArgs{
-//						ShardName: pulumi.String("second"),
-//						SubnetId:  bar.ID(),
-//						Zone:      pulumi.String("ru-central1-b"),
-//					},
-//					&MdbRedisClusterHostArgs{
-//						ShardName: pulumi.String("third"),
-//						SubnetId:  baz.ID(),
-//						Zone:      pulumi.String("ru-central1-c"),
-//					},
-//				},
-//				NetworkId: fooVpcNetwork.ID(),
-//				Resources: &MdbRedisClusterResourcesArgs{
-//					DiskSize:         pulumi.Int(16),
-//					ResourcePresetId: pulumi.String("hm1.nano"),
-//				},
-//				Sharded: pulumi.Bool(true),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.1.0.0/24"),
+// 			},
+// 			Zone: pulumi.String("ru-central1-a"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		bar, err := yandex.NewVpcSubnet(ctx, "bar", &yandex.VpcSubnetArgs{
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.2.0.0/24"),
+// 			},
+// 			Zone: pulumi.String("ru-central1-b"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		baz, err := yandex.NewVpcSubnet(ctx, "baz", &yandex.VpcSubnetArgs{
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.3.0.0/24"),
+// 			},
+// 			Zone: pulumi.String("ru-central1-c"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewMdbRedisCluster(ctx, "fooMdbRedisCluster", &yandex.MdbRedisClusterArgs{
+// 			Config: &MdbRedisClusterConfigArgs{
+// 				Password: pulumi.String("your_password"),
+// 				Version:  pulumi.String("6.2"),
+// 			},
+// 			Environment: pulumi.String("PRESTABLE"),
+// 			Hosts: MdbRedisClusterHostArray{
+// 				&MdbRedisClusterHostArgs{
+// 					ShardName: pulumi.String("first"),
+// 					SubnetId:  fooVpcSubnet.ID(),
+// 					Zone:      pulumi.String("ru-central1-a"),
+// 				},
+// 				&MdbRedisClusterHostArgs{
+// 					ShardName: pulumi.String("second"),
+// 					SubnetId:  bar.ID(),
+// 					Zone:      pulumi.String("ru-central1-b"),
+// 				},
+// 				&MdbRedisClusterHostArgs{
+// 					ShardName: pulumi.String("third"),
+// 					SubnetId:  baz.ID(),
+// 					Zone:      pulumi.String("ru-central1-c"),
+// 				},
+// 			},
+// 			NetworkId: fooVpcNetwork.ID(),
+// 			Resources: &MdbRedisClusterResourcesArgs{
+// 				DiskSize:         pulumi.Int(16),
+// 				ResourcePresetId: pulumi.String("hm1.nano"),
+// 			},
+// 			Sharded: pulumi.Bool(true),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -166,9 +160,7 @@ import (
 // A cluster can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/mdbRedisCluster:MdbRedisCluster foo cluster_id
-//
+//  $ pulumi import yandex:index/mdbRedisCluster:MdbRedisCluster foo cluster_id
 // ```
 type MdbRedisCluster struct {
 	pulumi.CustomResourceState
@@ -436,7 +428,7 @@ func (i *MdbRedisCluster) ToMdbRedisClusterOutputWithContext(ctx context.Context
 // MdbRedisClusterArrayInput is an input type that accepts MdbRedisClusterArray and MdbRedisClusterArrayOutput values.
 // You can construct a concrete instance of `MdbRedisClusterArrayInput` via:
 //
-//	MdbRedisClusterArray{ MdbRedisClusterArgs{...} }
+//          MdbRedisClusterArray{ MdbRedisClusterArgs{...} }
 type MdbRedisClusterArrayInput interface {
 	pulumi.Input
 
@@ -461,7 +453,7 @@ func (i MdbRedisClusterArray) ToMdbRedisClusterArrayOutputWithContext(ctx contex
 // MdbRedisClusterMapInput is an input type that accepts MdbRedisClusterMap and MdbRedisClusterMapOutput values.
 // You can construct a concrete instance of `MdbRedisClusterMapInput` via:
 //
-//	MdbRedisClusterMap{ "key": MdbRedisClusterArgs{...} }
+//          MdbRedisClusterMap{ "key": MdbRedisClusterArgs{...} }
 type MdbRedisClusterMapInput interface {
 	pulumi.Input
 

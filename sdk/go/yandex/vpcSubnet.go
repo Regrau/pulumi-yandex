@@ -15,8 +15,8 @@ import (
 // [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/network#subnet).
 //
 // * How-to Guides
-//   - [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
-//   - [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+//     * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+//     * [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
 //
 // ## Example Usage
 //
@@ -24,32 +24,29 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewVpcNetwork(ctx, "lab-net", nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewVpcSubnet(ctx, "lab-subnet-a", &yandex.VpcSubnetArgs{
-//				NetworkId: lab_net.ID(),
-//				V4CidrBlocks: pulumi.StringArray{
-//					pulumi.String("10.2.0.0/16"),
-//				},
-//				Zone: pulumi.String("ru-central1-a"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewVpcNetwork(ctx, "lab-net", nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.NewVpcSubnet(ctx, "lab-subnet-a", &yandex.VpcSubnetArgs{
+// 			NetworkId: lab_net.ID(),
+// 			V4CidrBlocks: pulumi.StringArray{
+// 				pulumi.String("10.2.0.0/16"),
+// 			},
+// 			Zone: pulumi.String("ru-central1-a"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -57,9 +54,7 @@ import (
 // A subnet can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/vpcSubnet:VpcSubnet default subnet_id
-//
+//  $ pulumi import yandex:index/vpcSubnet:VpcSubnet default subnet_id
 // ```
 type VpcSubnet struct {
 	pulumi.CustomResourceState
@@ -278,7 +273,7 @@ func (i *VpcSubnet) ToVpcSubnetOutputWithContext(ctx context.Context) VpcSubnetO
 // VpcSubnetArrayInput is an input type that accepts VpcSubnetArray and VpcSubnetArrayOutput values.
 // You can construct a concrete instance of `VpcSubnetArrayInput` via:
 //
-//	VpcSubnetArray{ VpcSubnetArgs{...} }
+//          VpcSubnetArray{ VpcSubnetArgs{...} }
 type VpcSubnetArrayInput interface {
 	pulumi.Input
 
@@ -303,7 +298,7 @@ func (i VpcSubnetArray) ToVpcSubnetArrayOutputWithContext(ctx context.Context) V
 // VpcSubnetMapInput is an input type that accepts VpcSubnetMap and VpcSubnetMapOutput values.
 // You can construct a concrete instance of `VpcSubnetMapInput` via:
 //
-//	VpcSubnetMap{ "key": VpcSubnetArgs{...} }
+//          VpcSubnetMap{ "key": VpcSubnetArgs{...} }
 type VpcSubnetMapInput interface {
 	pulumi.Input
 

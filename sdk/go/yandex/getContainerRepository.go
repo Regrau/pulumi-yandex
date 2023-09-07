@@ -19,30 +19,27 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = yandex.LookupContainerRepository(ctx, &GetContainerRepositoryArgs{
-//				Name: pulumi.StringRef("some_repository_name"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.LookupContainerRepository(ctx, &GetContainerRepositoryArgs{
-//				RepositoryId: pulumi.StringRef("some_repository_id"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err = yandex.LookupContainerRepository(ctx, &GetContainerRepositoryArgs{
+// 			Name: pulumi.StringRef("some_repository_name"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		_, err = yandex.LookupContainerRepository(ctx, &GetContainerRepositoryArgs{
+// 			RepositoryId: pulumi.StringRef("some_repository_id"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 func LookupContainerRepository(ctx *pulumi.Context, args *LookupContainerRepositoryArgs, opts ...pulumi.InvokeOption) (*LookupContainerRepositoryResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

@@ -19,38 +19,35 @@ import (
 // package main
 //
 // import (
+// 	"fmt"
 //
-//	"fmt"
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NewFunctionScalingPolicy(ctx, "myScalingPolicy", &yandex.FunctionScalingPolicyArgs{
-//				FunctionId: pulumi.String("are1samplefunction11"),
-//				Policies: FunctionScalingPolicyPolicyArray{
-//					&FunctionScalingPolicyPolicyArgs{
-//						Tag:                pulumi.String(fmt.Sprintf("$latest")),
-//						ZoneInstancesLimit: pulumi.Int(3),
-//						ZoneRequestsLimit:  pulumi.Int(100),
-//					},
-//					&FunctionScalingPolicyPolicyArgs{
-//						Tag:                pulumi.String("my_tag"),
-//						ZoneInstancesLimit: pulumi.Int(4),
-//						ZoneRequestsLimit:  pulumi.Int(150),
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NewFunctionScalingPolicy(ctx, "myScalingPolicy", &yandex.FunctionScalingPolicyArgs{
+// 			FunctionId: pulumi.String("are1samplefunction11"),
+// 			Policies: FunctionScalingPolicyPolicyArray{
+// 				&FunctionScalingPolicyPolicyArgs{
+// 					Tag:                pulumi.String(fmt.Sprintf("$latest")),
+// 					ZoneInstancesLimit: pulumi.Int(3),
+// 					ZoneRequestsLimit:  pulumi.Int(100),
+// 				},
+// 				&FunctionScalingPolicyPolicyArgs{
+// 					Tag:                pulumi.String("my_tag"),
+// 					ZoneInstancesLimit: pulumi.Int(4),
+// 					ZoneRequestsLimit:  pulumi.Int(150),
+// 				},
+// 			},
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 type FunctionScalingPolicy struct {
 	pulumi.CustomResourceState
@@ -172,7 +169,7 @@ func (i *FunctionScalingPolicy) ToFunctionScalingPolicyOutputWithContext(ctx con
 // FunctionScalingPolicyArrayInput is an input type that accepts FunctionScalingPolicyArray and FunctionScalingPolicyArrayOutput values.
 // You can construct a concrete instance of `FunctionScalingPolicyArrayInput` via:
 //
-//	FunctionScalingPolicyArray{ FunctionScalingPolicyArgs{...} }
+//          FunctionScalingPolicyArray{ FunctionScalingPolicyArgs{...} }
 type FunctionScalingPolicyArrayInput interface {
 	pulumi.Input
 
@@ -197,7 +194,7 @@ func (i FunctionScalingPolicyArray) ToFunctionScalingPolicyArrayOutputWithContex
 // FunctionScalingPolicyMapInput is an input type that accepts FunctionScalingPolicyMap and FunctionScalingPolicyMapOutput values.
 // You can construct a concrete instance of `FunctionScalingPolicyMapInput` via:
 //
-//	FunctionScalingPolicyMap{ "key": FunctionScalingPolicyArgs{...} }
+//          FunctionScalingPolicyMap{ "key": FunctionScalingPolicyArgs{...} }
 type FunctionScalingPolicyMapInput interface {
 	pulumi.Input
 

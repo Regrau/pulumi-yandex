@@ -17,33 +17,30 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			myFolder1, err := yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
-//				FolderId: pulumi.StringRef("folder_id_number_1"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			myFolder2, err := yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
-//				CloudId: pulumi.StringRef("some_cloud_id"),
-//				Name:    pulumi.StringRef("folder_name"),
-//			}, nil)
-//			if err != nil {
-//				return err
-//			}
-//			ctx.Export("myFolder1Name", myFolder1.Name)
-//			ctx.Export("myFolder2CloudId", myFolder2.CloudId)
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		myFolder1, err := yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
+// 			FolderId: pulumi.StringRef("folder_id_number_1"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		myFolder2, err := yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
+// 			CloudId: pulumi.StringRef("some_cloud_id"),
+// 			Name:    pulumi.StringRef("folder_name"),
+// 		}, nil)
+// 		if err != nil {
+// 			return err
+// 		}
+// 		ctx.Export("myFolder1Name", myFolder1.Name)
+// 		ctx.Export("myFolder2CloudId", myFolder2.CloudId)
+// 		return nil
+// 	})
+// }
 // ```
 func LookupResourcemanagerFolder(ctx *pulumi.Context, args *LookupResourcemanagerFolderArgs, opts ...pulumi.InvokeOption) (*LookupResourcemanagerFolderResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

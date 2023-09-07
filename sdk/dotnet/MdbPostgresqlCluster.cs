@@ -25,7 +25,7 @@ namespace Pulumi.Yandex
         public Output<bool> DeletionProtection { get; private set; } = null!;
 
         [Output("description")]
-        public Output<string> Description { get; private set; } = null!;
+        public Output<string?> Description { get; private set; } = null!;
 
         [Output("environment")]
         public Output<string> Environment { get; private set; } = null!;

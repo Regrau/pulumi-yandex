@@ -19,25 +19,22 @@ import (
 // package main
 //
 // import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
+// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := yandex.NeworganizationmanagerGroup(ctx, "group", &yandex.organizationmanagerGroupArgs{
-//				Description:    pulumi.String("My new Group"),
-//				OrganizationId: pulumi.String("sdf4*********3fr"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := yandex.NeworganizationmanagerGroup(ctx, "group", &yandex.organizationmanagerGroupArgs{
+// 			Description:    pulumi.String("My new Group"),
+// 			OrganizationId: pulumi.String("sdf4*********3fr"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
 // ```
 //
 // ## Import
@@ -45,9 +42,7 @@ import (
 // A Yandex.Cloud Organization Manager Group can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//
-//	$ pulumi import yandex:index/organizationmanagerGroup:organizationmanagerGroup group "group_id"
-//
+//  $ pulumi import yandex:index/organizationmanagerGroup:organizationmanagerGroup group "group_id"
 // ```
 type OrganizationmanagerGroup struct {
 	pulumi.CustomResourceState
@@ -165,7 +160,7 @@ func (i *OrganizationmanagerGroup) ToOrganizationmanagerGroupOutputWithContext(c
 // OrganizationmanagerGroupArrayInput is an input type that accepts OrganizationmanagerGroupArray and OrganizationmanagerGroupArrayOutput values.
 // You can construct a concrete instance of `OrganizationmanagerGroupArrayInput` via:
 //
-//	OrganizationmanagerGroupArray{ OrganizationmanagerGroupArgs{...} }
+//          OrganizationmanagerGroupArray{ OrganizationmanagerGroupArgs{...} }
 type OrganizationmanagerGroupArrayInput interface {
 	pulumi.Input
 
@@ -190,7 +185,7 @@ func (i OrganizationmanagerGroupArray) ToOrganizationmanagerGroupArrayOutputWith
 // OrganizationmanagerGroupMapInput is an input type that accepts OrganizationmanagerGroupMap and OrganizationmanagerGroupMapOutput values.
 // You can construct a concrete instance of `OrganizationmanagerGroupMapInput` via:
 //
-//	OrganizationmanagerGroupMap{ "key": OrganizationmanagerGroupArgs{...} }
+//          OrganizationmanagerGroupMap{ "key": OrganizationmanagerGroupArgs{...} }
 type OrganizationmanagerGroupMapInput interface {
 	pulumi.Input
 
