@@ -20,37 +20,40 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		mySecret, err := yandex.NewlockboxSecret(ctx, "mySecret", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewlockboxSecretVersion(ctx, "myVersion", &yandex.lockboxSecretVersionArgs{
-// 			SecretId: mySecret.ID(),
-// 			Entries: LockboxSecretVersionEntryArray{
-// 				&LockboxSecretVersionEntryArgs{
-// 					Key:       pulumi.String("key1"),
-// 					TextValue: pulumi.String("value1"),
-// 				},
-// 				&LockboxSecretVersionEntryArgs{
-// 					Key: pulumi.String("k2"),
-// 					Command: &LockboxSecretVersionEntryCommandArgs{
-// 						Path: pulumi.String("my_secret_generator.sh"),
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			mySecret, err := yandex.NewlockboxSecret(ctx, "mySecret", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewlockboxSecretVersion(ctx, "myVersion", &yandex.lockboxSecretVersionArgs{
+//				SecretId: mySecret.ID(),
+//				Entries: LockboxSecretVersionEntryArray{
+//					&LockboxSecretVersionEntryArgs{
+//						Key:       pulumi.String("key1"),
+//						TextValue: pulumi.String("value1"),
+//					},
+//					&LockboxSecretVersionEntryArgs{
+//						Key: pulumi.String("k2"),
+//						Command: &LockboxSecretVersionEntryCommandArgs{
+//							Path: pulumi.String("my_secret_generator.sh"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type LockboxSecretVersion struct {
 	pulumi.CustomResourceState
@@ -165,7 +168,7 @@ func (i *LockboxSecretVersion) ToLockboxSecretVersionOutputWithContext(ctx conte
 // LockboxSecretVersionArrayInput is an input type that accepts LockboxSecretVersionArray and LockboxSecretVersionArrayOutput values.
 // You can construct a concrete instance of `LockboxSecretVersionArrayInput` via:
 //
-//          LockboxSecretVersionArray{ LockboxSecretVersionArgs{...} }
+//	LockboxSecretVersionArray{ LockboxSecretVersionArgs{...} }
 type LockboxSecretVersionArrayInput interface {
 	pulumi.Input
 
@@ -190,7 +193,7 @@ func (i LockboxSecretVersionArray) ToLockboxSecretVersionArrayOutputWithContext(
 // LockboxSecretVersionMapInput is an input type that accepts LockboxSecretVersionMap and LockboxSecretVersionMapOutput values.
 // You can construct a concrete instance of `LockboxSecretVersionMapInput` via:
 //
-//          LockboxSecretVersionMap{ "key": LockboxSecretVersionArgs{...} }
+//	LockboxSecretVersionMap{ "key": LockboxSecretVersionArgs{...} }
 type LockboxSecretVersionMapInput interface {
 	pulumi.Input
 

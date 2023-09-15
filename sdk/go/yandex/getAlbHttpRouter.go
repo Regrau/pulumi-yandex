@@ -17,21 +17,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = yandex.LookupAlbHttpRouter(ctx, &GetAlbHttpRouterArgs{
-// 			HttpRouterId: pulumi.StringRef("my-http-router-id"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err = yandex.LookupAlbHttpRouter(ctx, &GetAlbHttpRouterArgs{
+//				HttpRouterId: pulumi.StringRef("my-http-router-id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // This data source is used to define [Application Load Balancer HTTP Router] that can be used by other resources.

@@ -20,8 +20,8 @@ import (
 //
 // * [Documentation](https://cloud.yandex.com/docs/compute/concepts/filesystem)
 // * How-to Guides
-//     * [Attach filesystem to a VM](https://cloud.yandex.com/en-ru/docs/compute/operations/filesystem/attach-to-vm)
-//     * [Detach filesystem from VM](https://cloud.yandex.com/en-ru/docs/compute/operations/filesystem/detach-from-vm)
+//   - [Attach filesystem to a VM](https://cloud.yandex.com/en-ru/docs/compute/operations/filesystem/attach-to-vm)
+//   - [Detach filesystem from VM](https://cloud.yandex.com/en-ru/docs/compute/operations/filesystem/detach-from-vm)
 //
 // ## Example Usage
 //
@@ -29,34 +29,39 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewyandexComputeFilesystem(ctx, "default", &yandex.yandexComputeFilesystemArgs{
-// 			Labels: pulumi.StringMap{
-// 				"environment": pulumi.String("test"),
-// 			},
-// 			Size: pulumi.Int(10),
-// 			Type: pulumi.String("network-ssd"),
-// 			Zone: pulumi.String("ru-central1-a"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewyandexComputeFilesystem(ctx, "default", &yandex.yandexComputeFilesystemArgs{
+//				Labels: pulumi.StringMap{
+//					"environment": pulumi.String("test"),
+//				},
+//				Size: pulumi.Int(10),
+//				Type: pulumi.String("network-ssd"),
+//				Zone: pulumi.String("ru-central1-a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// A filesystem can be imported using any of these accepted formats
+// # A filesystem can be imported using any of these accepted formats
 //
 // ```sh
-//  $ pulumi import yandex:index/yandexComputeFilesystem:yandexComputeFilesystem default filesystem_id
+//
+//	$ pulumi import yandex:index/yandexComputeFilesystem:yandexComputeFilesystem default filesystem_id
+//
 // ```
 type YandexComputeFilesystem struct {
 	pulumi.CustomResourceState
@@ -237,7 +242,7 @@ func (i *YandexComputeFilesystem) ToYandexComputeFilesystemOutputWithContext(ctx
 // YandexComputeFilesystemArrayInput is an input type that accepts YandexComputeFilesystemArray and YandexComputeFilesystemArrayOutput values.
 // You can construct a concrete instance of `YandexComputeFilesystemArrayInput` via:
 //
-//          YandexComputeFilesystemArray{ YandexComputeFilesystemArgs{...} }
+//	YandexComputeFilesystemArray{ YandexComputeFilesystemArgs{...} }
 type YandexComputeFilesystemArrayInput interface {
 	pulumi.Input
 
@@ -262,7 +267,7 @@ func (i YandexComputeFilesystemArray) ToYandexComputeFilesystemArrayOutputWithCo
 // YandexComputeFilesystemMapInput is an input type that accepts YandexComputeFilesystemMap and YandexComputeFilesystemMapOutput values.
 // You can construct a concrete instance of `YandexComputeFilesystemMapInput` via:
 //
-//          YandexComputeFilesystemMap{ "key": YandexComputeFilesystemArgs{...} }
+//	YandexComputeFilesystemMap{ "key": YandexComputeFilesystemArgs{...} }
 type YandexComputeFilesystemMapInput interface {
 	pulumi.Input
 

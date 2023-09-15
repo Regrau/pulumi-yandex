@@ -22,24 +22,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewIamServiceAccountKey(ctx, "sa-auth-key", &yandex.IamServiceAccountKeyArgs{
-// 			Description:      pulumi.String("key for service account"),
-// 			KeyAlgorithm:     pulumi.String("RSA_4096"),
-// 			PgpKey:           pulumi.String("keybase:keybaseusername"),
-// 			ServiceAccountId: pulumi.String("some_sa_id"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewIamServiceAccountKey(ctx, "sa-auth-key", &yandex.IamServiceAccountKeyArgs{
+//				Description:      pulumi.String("key for service account"),
+//				KeyAlgorithm:     pulumi.String("RSA_4096"),
+//				PgpKey:           pulumi.String("keybase:keybaseusername"),
+//				ServiceAccountId: pulumi.String("some_sa_id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type IamServiceAccountKey struct {
 	pulumi.CustomResourceState
@@ -210,7 +213,7 @@ func (i *IamServiceAccountKey) ToIamServiceAccountKeyOutputWithContext(ctx conte
 // IamServiceAccountKeyArrayInput is an input type that accepts IamServiceAccountKeyArray and IamServiceAccountKeyArrayOutput values.
 // You can construct a concrete instance of `IamServiceAccountKeyArrayInput` via:
 //
-//          IamServiceAccountKeyArray{ IamServiceAccountKeyArgs{...} }
+//	IamServiceAccountKeyArray{ IamServiceAccountKeyArgs{...} }
 type IamServiceAccountKeyArrayInput interface {
 	pulumi.Input
 
@@ -235,7 +238,7 @@ func (i IamServiceAccountKeyArray) ToIamServiceAccountKeyArrayOutputWithContext(
 // IamServiceAccountKeyMapInput is an input type that accepts IamServiceAccountKeyMap and IamServiceAccountKeyMapOutput values.
 // You can construct a concrete instance of `IamServiceAccountKeyMapInput` via:
 //
-//          IamServiceAccountKeyMap{ "key": IamServiceAccountKeyArgs{...} }
+//	IamServiceAccountKeyMap{ "key": IamServiceAccountKeyArgs{...} }
 type IamServiceAccountKeyMapInput interface {
 	pulumi.Input
 

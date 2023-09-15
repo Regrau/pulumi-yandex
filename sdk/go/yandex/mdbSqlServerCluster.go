@@ -24,149 +24,152 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-// 			Zone:      pulumi.String("ru-central1-a"),
-// 			NetworkId: fooVpcNetwork.ID(),
-// 			V4CidrBlocks: pulumi.StringArray{
-// 				pulumi.String("10.5.0.0/24"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewVpcSecurityGroup(ctx, "test-sg-x", &yandex.VpcSecurityGroupArgs{
-// 			NetworkId: fooVpcNetwork.ID(),
-// 			Ingresses: VpcSecurityGroupIngressArray{
-// 				&VpcSecurityGroupIngressArgs{
-// 					Protocol:    pulumi.String("ANY"),
-// 					Description: pulumi.String("Allow incoming traffic from members of the same security group"),
-// 					FromPort:    pulumi.Int(0),
-// 					ToPort:      pulumi.Int(65535),
-// 					V4CidrBlocks: pulumi.StringArray{
-// 						pulumi.String("0.0.0.0/0"),
-// 					},
-// 				},
-// 			},
-// 			Egresses: VpcSecurityGroupEgressArray{
-// 				&VpcSecurityGroupEgressArgs{
-// 					Protocol:    pulumi.String("ANY"),
-// 					Description: pulumi.String("Allow outgoing traffic to members of the same security group"),
-// 					FromPort:    pulumi.Int(0),
-// 					ToPort:      pulumi.Int(65535),
-// 					V4CidrBlocks: pulumi.StringArray{
-// 						pulumi.String("0.0.0.0/0"),
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewMdbSqlServerCluster(ctx, "fooMdbSqlServerCluster", &yandex.MdbSqlServerClusterArgs{
-// 			Environment: pulumi.String("PRESTABLE"),
-// 			NetworkId:   fooVpcNetwork.ID(),
-// 			Version:     pulumi.String("2016sp2std"),
-// 			Resources: &MdbSqlServerClusterResourcesArgs{
-// 				ResourcePresetId: pulumi.String("s2.small"),
-// 				DiskTypeId:       pulumi.String("network-ssd"),
-// 				DiskSize:         pulumi.Int(20),
-// 			},
-// 			Labels: pulumi.StringMap{
-// 				"test_key": pulumi.String("test_value"),
-// 			},
-// 			BackupWindowStart: &MdbSqlServerClusterBackupWindowStartArgs{
-// 				Hours:   pulumi.Int(20),
-// 				Minutes: pulumi.Int(30),
-// 			},
-// 			SqlserverConfig: pulumi.StringMap{
-// 				"fill_factor_percent":           pulumi.String("49"),
-// 				"optimize_for_ad_hoc_workloads": pulumi.String("true"),
-// 			},
-// 			Databases: MdbSqlServerClusterDatabaseArray{
-// 				&MdbSqlServerClusterDatabaseArgs{
-// 					Name: pulumi.String("db_name_a"),
-// 				},
-// 				&MdbSqlServerClusterDatabaseArgs{
-// 					Name: pulumi.String("db_name"),
-// 				},
-// 				&MdbSqlServerClusterDatabaseArgs{
-// 					Name: pulumi.String("db_name_b"),
-// 				},
-// 			},
-// 			Users: MdbSqlServerClusterUserArray{
-// 				&MdbSqlServerClusterUserArgs{
-// 					Name:     pulumi.String("bob"),
-// 					Password: pulumi.String("mysecurepassword"),
-// 				},
-// 				&MdbSqlServerClusterUserArgs{
-// 					Name:     pulumi.String("alice"),
-// 					Password: pulumi.String("mysecurepassword"),
-// 					Permissions: MdbSqlServerClusterUserPermissionArray{
-// 						&MdbSqlServerClusterUserPermissionArgs{
-// 							DatabaseName: pulumi.String("db_name"),
-// 							Roles: pulumi.StringArray{
-// 								pulumi.String("DDLADMIN"),
-// 							},
-// 						},
-// 					},
-// 				},
-// 				&MdbSqlServerClusterUserArgs{
-// 					Name:     pulumi.String("chuck"),
-// 					Password: pulumi.String("mysecurepassword"),
-// 					Permissions: MdbSqlServerClusterUserPermissionArray{
-// 						&MdbSqlServerClusterUserPermissionArgs{
-// 							DatabaseName: pulumi.String("db_name_a"),
-// 							Roles: pulumi.StringArray{
-// 								pulumi.String("OWNER"),
-// 							},
-// 						},
-// 						&MdbSqlServerClusterUserPermissionArgs{
-// 							DatabaseName: pulumi.String("db_name"),
-// 							Roles: pulumi.StringArray{
-// 								pulumi.String("OWNER"),
-// 								pulumi.String("DDLADMIN"),
-// 							},
-// 						},
-// 						&MdbSqlServerClusterUserPermissionArgs{
-// 							DatabaseName: pulumi.String("db_name_b"),
-// 							Roles: pulumi.StringArray{
-// 								pulumi.String("OWNER"),
-// 								pulumi.String("DDLADMIN"),
-// 							},
-// 						},
-// 					},
-// 				},
-// 			},
-// 			Hosts: MdbSqlServerClusterHostArray{
-// 				&MdbSqlServerClusterHostArgs{
-// 					Zone:     pulumi.String("ru-central1-a"),
-// 					SubnetId: fooVpcSubnet.ID(),
-// 				},
-// 			},
-// 			SecurityGroupIds: pulumi.StringArray{
-// 				test_sg_x.ID(),
-// 			},
-// 			HostGroupIds: pulumi.StringArray{
-// 				pulumi.String("host_group_1"),
-// 				pulumi.String("host_group_2"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+//				Zone:      pulumi.String("ru-central1-a"),
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.5.0.0/24"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewVpcSecurityGroup(ctx, "test-sg-x", &yandex.VpcSecurityGroupArgs{
+//				NetworkId: fooVpcNetwork.ID(),
+//				Ingresses: VpcSecurityGroupIngressArray{
+//					&VpcSecurityGroupIngressArgs{
+//						Protocol:    pulumi.String("ANY"),
+//						Description: pulumi.String("Allow incoming traffic from members of the same security group"),
+//						FromPort:    pulumi.Int(0),
+//						ToPort:      pulumi.Int(65535),
+//						V4CidrBlocks: pulumi.StringArray{
+//							pulumi.String("0.0.0.0/0"),
+//						},
+//					},
+//				},
+//				Egresses: VpcSecurityGroupEgressArray{
+//					&VpcSecurityGroupEgressArgs{
+//						Protocol:    pulumi.String("ANY"),
+//						Description: pulumi.String("Allow outgoing traffic to members of the same security group"),
+//						FromPort:    pulumi.Int(0),
+//						ToPort:      pulumi.Int(65535),
+//						V4CidrBlocks: pulumi.StringArray{
+//							pulumi.String("0.0.0.0/0"),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewMdbSqlServerCluster(ctx, "fooMdbSqlServerCluster", &yandex.MdbSqlServerClusterArgs{
+//				Environment: pulumi.String("PRESTABLE"),
+//				NetworkId:   fooVpcNetwork.ID(),
+//				Version:     pulumi.String("2016sp2std"),
+//				Resources: &MdbSqlServerClusterResourcesArgs{
+//					ResourcePresetId: pulumi.String("s2.small"),
+//					DiskTypeId:       pulumi.String("network-ssd"),
+//					DiskSize:         pulumi.Int(20),
+//				},
+//				Labels: pulumi.StringMap{
+//					"test_key": pulumi.String("test_value"),
+//				},
+//				BackupWindowStart: &MdbSqlServerClusterBackupWindowStartArgs{
+//					Hours:   pulumi.Int(20),
+//					Minutes: pulumi.Int(30),
+//				},
+//				SqlserverConfig: pulumi.StringMap{
+//					"fill_factor_percent":           pulumi.String("49"),
+//					"optimize_for_ad_hoc_workloads": pulumi.String("true"),
+//				},
+//				Databases: MdbSqlServerClusterDatabaseArray{
+//					&MdbSqlServerClusterDatabaseArgs{
+//						Name: pulumi.String("db_name_a"),
+//					},
+//					&MdbSqlServerClusterDatabaseArgs{
+//						Name: pulumi.String("db_name"),
+//					},
+//					&MdbSqlServerClusterDatabaseArgs{
+//						Name: pulumi.String("db_name_b"),
+//					},
+//				},
+//				Users: MdbSqlServerClusterUserArray{
+//					&MdbSqlServerClusterUserArgs{
+//						Name:     pulumi.String("bob"),
+//						Password: pulumi.String("mysecurepassword"),
+//					},
+//					&MdbSqlServerClusterUserArgs{
+//						Name:     pulumi.String("alice"),
+//						Password: pulumi.String("mysecurepassword"),
+//						Permissions: MdbSqlServerClusterUserPermissionArray{
+//							&MdbSqlServerClusterUserPermissionArgs{
+//								DatabaseName: pulumi.String("db_name"),
+//								Roles: pulumi.StringArray{
+//									pulumi.String("DDLADMIN"),
+//								},
+//							},
+//						},
+//					},
+//					&MdbSqlServerClusterUserArgs{
+//						Name:     pulumi.String("chuck"),
+//						Password: pulumi.String("mysecurepassword"),
+//						Permissions: MdbSqlServerClusterUserPermissionArray{
+//							&MdbSqlServerClusterUserPermissionArgs{
+//								DatabaseName: pulumi.String("db_name_a"),
+//								Roles: pulumi.StringArray{
+//									pulumi.String("OWNER"),
+//								},
+//							},
+//							&MdbSqlServerClusterUserPermissionArgs{
+//								DatabaseName: pulumi.String("db_name"),
+//								Roles: pulumi.StringArray{
+//									pulumi.String("OWNER"),
+//									pulumi.String("DDLADMIN"),
+//								},
+//							},
+//							&MdbSqlServerClusterUserPermissionArgs{
+//								DatabaseName: pulumi.String("db_name_b"),
+//								Roles: pulumi.StringArray{
+//									pulumi.String("OWNER"),
+//									pulumi.String("DDLADMIN"),
+//								},
+//							},
+//						},
+//					},
+//				},
+//				Hosts: MdbSqlServerClusterHostArray{
+//					&MdbSqlServerClusterHostArgs{
+//						Zone:     pulumi.String("ru-central1-a"),
+//						SubnetId: fooVpcSubnet.ID(),
+//					},
+//				},
+//				SecurityGroupIds: pulumi.StringArray{
+//					test_sg_x.ID(),
+//				},
+//				HostGroupIds: pulumi.StringArray{
+//					pulumi.String("host_group_1"),
+//					pulumi.String("host_group_2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## SQLServer config
 //
@@ -181,7 +184,7 @@ import (
 //   - 1 — log only failed login attempts,
 //   - 2 — log only successful login attempts (not recommended),
 //   - 3 — log all login attempts (not recommended).
-//      See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/ssms/configure-login-auditing-sql-server-management-studio?view=sql-server-2016).
+//     See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/ssms/configure-login-auditing-sql-server-management-studio?view=sql-server-2016).
 //
 // * fillFactorPercent - Manages the fill factor server configuration option. When an index is created or rebuilt the fill factor determines the percentage of space on each index leaf-level page to be filled with data, reserving the rest as free space for future growth. Values 0 and 100 mean full page usage (no space reserved). See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-fill-factor-server-configuration-option?view=sql-server-2016).
 // * optimizeForAdHocWorkloads - Determines whether plans should be cached only after second execution. Allows to avoid SQL cache bloat because of single-use plans. See in-depth description in [SQL Server documentation](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/optimize-for-ad-hoc-workloads-server-configuration-option?view=sql-server-2016).
@@ -191,7 +194,9 @@ import (
 // A cluster can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/mdbSqlServerCluster:MdbSqlServerCluster foo cluster_id
+//
+//	$ pulumi import yandex:index/mdbSqlServerCluster:MdbSqlServerCluster foo cluster_id
+//
 // ```
 type MdbSqlServerCluster struct {
 	pulumi.CustomResourceState
@@ -484,7 +489,7 @@ func (i *MdbSqlServerCluster) ToMdbSqlServerClusterOutputWithContext(ctx context
 // MdbSqlServerClusterArrayInput is an input type that accepts MdbSqlServerClusterArray and MdbSqlServerClusterArrayOutput values.
 // You can construct a concrete instance of `MdbSqlServerClusterArrayInput` via:
 //
-//          MdbSqlServerClusterArray{ MdbSqlServerClusterArgs{...} }
+//	MdbSqlServerClusterArray{ MdbSqlServerClusterArgs{...} }
 type MdbSqlServerClusterArrayInput interface {
 	pulumi.Input
 
@@ -509,7 +514,7 @@ func (i MdbSqlServerClusterArray) ToMdbSqlServerClusterArrayOutputWithContext(ct
 // MdbSqlServerClusterMapInput is an input type that accepts MdbSqlServerClusterMap and MdbSqlServerClusterMapOutput values.
 // You can construct a concrete instance of `MdbSqlServerClusterMapInput` via:
 //
-//          MdbSqlServerClusterMap{ "key": MdbSqlServerClusterArgs{...} }
+//	MdbSqlServerClusterMap{ "key": MdbSqlServerClusterArgs{...} }
 type MdbSqlServerClusterMapInput interface {
 	pulumi.Input
 

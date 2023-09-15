@@ -19,36 +19,39 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewIotCoreDevice(ctx, "myDevice", &yandex.IotCoreDeviceArgs{
-// 			Aliases: pulumi.StringMap{
-// 				"some_alias1/subtopic": pulumi.String(fmt.Sprintf("$devices/{id}/events/somesubtopic")),
-// 				"some_alias2/subtopic": pulumi.String(fmt.Sprintf("$devices/{id}/events/aaa/bbb")),
-// 			},
-// 			Certificates: pulumi.StringArray{
-// 				pulumi.String("public part of certificate1"),
-// 				pulumi.String("public part of certificate2"),
-// 			},
-// 			Description: pulumi.String("any description"),
-// 			Passwords: pulumi.StringArray{
-// 				pulumi.String("my-password1"),
-// 				pulumi.String("my-password2"),
-// 			},
-// 			RegistryId: pulumi.String("are1sampleregistryid11"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewIotCoreDevice(ctx, "myDevice", &yandex.IotCoreDeviceArgs{
+//				Aliases: pulumi.StringMap{
+//					"some_alias1/subtopic": pulumi.String(fmt.Sprintf("$devices/{id}/events/somesubtopic")),
+//					"some_alias2/subtopic": pulumi.String(fmt.Sprintf("$devices/{id}/events/aaa/bbb")),
+//				},
+//				Certificates: pulumi.StringArray{
+//					pulumi.String("public part of certificate1"),
+//					pulumi.String("public part of certificate2"),
+//				},
+//				Description: pulumi.String("any description"),
+//				Passwords: pulumi.StringArray{
+//					pulumi.String("my-password1"),
+//					pulumi.String("my-password2"),
+//				},
+//				RegistryId: pulumi.String("are1sampleregistryid11"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type IotCoreDevice struct {
 	pulumi.CustomResourceState
@@ -203,7 +206,7 @@ func (i *IotCoreDevice) ToIotCoreDeviceOutputWithContext(ctx context.Context) Io
 // IotCoreDeviceArrayInput is an input type that accepts IotCoreDeviceArray and IotCoreDeviceArrayOutput values.
 // You can construct a concrete instance of `IotCoreDeviceArrayInput` via:
 //
-//          IotCoreDeviceArray{ IotCoreDeviceArgs{...} }
+//	IotCoreDeviceArray{ IotCoreDeviceArgs{...} }
 type IotCoreDeviceArrayInput interface {
 	pulumi.Input
 
@@ -228,7 +231,7 @@ func (i IotCoreDeviceArray) ToIotCoreDeviceArrayOutputWithContext(ctx context.Co
 // IotCoreDeviceMapInput is an input type that accepts IotCoreDeviceMap and IotCoreDeviceMapOutput values.
 // You can construct a concrete instance of `IotCoreDeviceMapInput` via:
 //
-//          IotCoreDeviceMap{ "key": IotCoreDeviceArgs{...} }
+//	IotCoreDeviceMap{ "key": IotCoreDeviceArgs{...} }
 type IotCoreDeviceMapInput interface {
 	pulumi.Input
 

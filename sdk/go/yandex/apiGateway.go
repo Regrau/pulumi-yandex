@@ -19,59 +19,68 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewApiGateway(ctx, "test-api-gateway", &yandex.ApiGatewayArgs{
-// 			Description: pulumi.String("any description"),
-// 			Labels: pulumi.StringMap{
-// 				"label":       pulumi.String("label"),
-// 				"empty-label": pulumi.String(""),
-// 			},
-// 			Spec: pulumi.String(fmt.Sprintf(`openapi: "3.0.0"
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewApiGateway(ctx, "test-api-gateway", &yandex.ApiGatewayArgs{
+//				Description: pulumi.String("any description"),
+//				Labels: pulumi.StringMap{
+//					"label":       pulumi.String("label"),
+//					"empty-label": pulumi.String(""),
+//				},
+//				Spec: pulumi.String(fmt.Sprintf(`openapi: "3.0.0"
+//
 // info:
-//   version: 1.0.0
-//   title: Test API
+//
+//	version: 1.0.0
+//	title: Test API
+//
 // paths:
-//   /hello:
-//     get:
-//       summary: Say hello
-//       operationId: hello
-//       parameters:
-//         - name: user
-//           in: query
-//           description: User name to appear in greetings
-//           required: false
-//           schema:
-//             type: string
-//             default: 'world'
-//       responses:
-//         '200':
-//           description: Greeting
-//           content:
-//             'text/plain':
-//               schema:
-//                 type: "string"
-//       x-yc-apigateway-integration:
-//         type: dummy
-//         http_code: 200
-//         http_headers:
-//           'Content-Type': "text/plain"
-//         content:
-//           'text/plain': "Hello again, {user}!\n"
+//
+//	/hello:
+//	  get:
+//	    summary: Say hello
+//	    operationId: hello
+//	    parameters:
+//	      - name: user
+//	        in: query
+//	        description: User name to appear in greetings
+//	        required: false
+//	        schema:
+//	          type: string
+//	          default: 'world'
+//	    responses:
+//	      '200':
+//	        description: Greeting
+//	        content:
+//	          'text/plain':
+//	            schema:
+//	              type: "string"
+//	    x-yc-apigateway-integration:
+//	      type: dummy
+//	      http_code: 200
+//	      http_headers:
+//	        'Content-Type': "text/plain"
+//	      content:
+//	        'text/plain': "Hello again, {user}!\n"
+//
 // `)),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type ApiGateway struct {
 	pulumi.CustomResourceState
@@ -230,7 +239,7 @@ func (i *ApiGateway) ToApiGatewayOutputWithContext(ctx context.Context) ApiGatew
 // ApiGatewayArrayInput is an input type that accepts ApiGatewayArray and ApiGatewayArrayOutput values.
 // You can construct a concrete instance of `ApiGatewayArrayInput` via:
 //
-//          ApiGatewayArray{ ApiGatewayArgs{...} }
+//	ApiGatewayArray{ ApiGatewayArgs{...} }
 type ApiGatewayArrayInput interface {
 	pulumi.Input
 
@@ -255,7 +264,7 @@ func (i ApiGatewayArray) ToApiGatewayArrayOutputWithContext(ctx context.Context)
 // ApiGatewayMapInput is an input type that accepts ApiGatewayMap and ApiGatewayMapOutput values.
 // You can construct a concrete instance of `ApiGatewayMapInput` via:
 //
-//          ApiGatewayMap{ "key": ApiGatewayArgs{...} }
+//	ApiGatewayMap{ "key": ApiGatewayArgs{...} }
 type ApiGatewayMapInput interface {
 	pulumi.Input
 

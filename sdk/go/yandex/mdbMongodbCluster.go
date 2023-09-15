@@ -22,72 +22,75 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-// 			NetworkId: fooVpcNetwork.ID(),
-// 			V4CidrBlocks: pulumi.StringArray{
-// 				pulumi.String("10.1.0.0/24"),
-// 			},
-// 			Zone: pulumi.String("ru-central1-a"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewMdbMongodbCluster(ctx, "fooMdbMongodbCluster", &yandex.MdbMongodbClusterArgs{
-// 			ClusterConfig: &MdbMongodbClusterClusterConfigArgs{
-// 				Version: pulumi.String("4.2"),
-// 			},
-// 			Databases: MdbMongodbClusterDatabaseArray{
-// 				&MdbMongodbClusterDatabaseArgs{
-// 					Name: pulumi.String("testdb"),
-// 				},
-// 			},
-// 			Environment: pulumi.String("PRESTABLE"),
-// 			Hosts: MdbMongodbClusterHostArray{
-// 				&MdbMongodbClusterHostArgs{
-// 					SubnetId: fooVpcSubnet.ID(),
-// 					ZoneId:   pulumi.String("ru-central1-a"),
-// 				},
-// 			},
-// 			Labels: pulumi.StringMap{
-// 				"test_key": pulumi.String("test_value"),
-// 			},
-// 			MaintenanceWindow: &MdbMongodbClusterMaintenanceWindowArgs{
-// 				Type: pulumi.String("ANYTIME"),
-// 			},
-// 			NetworkId: fooVpcNetwork.ID(),
-// 			Resources: &MdbMongodbClusterResourcesArgs{
-// 				DiskSize:         pulumi.Int(16),
-// 				DiskTypeId:       pulumi.String("network-hdd"),
-// 				ResourcePresetId: pulumi.String("b1.nano"),
-// 			},
-// 			Users: MdbMongodbClusterUserArray{
-// 				&MdbMongodbClusterUserArgs{
-// 					Name:     pulumi.String("john"),
-// 					Password: pulumi.String("password"),
-// 					Permissions: MdbMongodbClusterUserPermissionArray{
-// 						&MdbMongodbClusterUserPermissionArgs{
-// 							DatabaseName: pulumi.String("testdb"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.1.0.0/24"),
+//				},
+//				Zone: pulumi.String("ru-central1-a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewMdbMongodbCluster(ctx, "fooMdbMongodbCluster", &yandex.MdbMongodbClusterArgs{
+//				ClusterConfig: &MdbMongodbClusterClusterConfigArgs{
+//					Version: pulumi.String("4.2"),
+//				},
+//				Databases: MdbMongodbClusterDatabaseArray{
+//					&MdbMongodbClusterDatabaseArgs{
+//						Name: pulumi.String("testdb"),
+//					},
+//				},
+//				Environment: pulumi.String("PRESTABLE"),
+//				Hosts: MdbMongodbClusterHostArray{
+//					&MdbMongodbClusterHostArgs{
+//						SubnetId: fooVpcSubnet.ID(),
+//						ZoneId:   pulumi.String("ru-central1-a"),
+//					},
+//				},
+//				Labels: pulumi.StringMap{
+//					"test_key": pulumi.String("test_value"),
+//				},
+//				MaintenanceWindow: &MdbMongodbClusterMaintenanceWindowArgs{
+//					Type: pulumi.String("ANYTIME"),
+//				},
+//				NetworkId: fooVpcNetwork.ID(),
+//				Resources: &MdbMongodbClusterResourcesArgs{
+//					DiskSize:         pulumi.Int(16),
+//					DiskTypeId:       pulumi.String("network-hdd"),
+//					ResourcePresetId: pulumi.String("b1.nano"),
+//				},
+//				Users: MdbMongodbClusterUserArray{
+//					&MdbMongodbClusterUserArgs{
+//						Name:     pulumi.String("john"),
+//						Password: pulumi.String("password"),
+//						Permissions: MdbMongodbClusterUserPermissionArray{
+//							&MdbMongodbClusterUserPermissionArgs{
+//								DatabaseName: pulumi.String("testdb"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -95,7 +98,9 @@ import (
 // A cluster can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/mdbMongodbCluster:MdbMongodbCluster foo cluster_id
+//
+//	$ pulumi import yandex:index/mdbMongodbCluster:MdbMongodbCluster foo cluster_id
+//
 // ```
 type MdbMongodbCluster struct {
 	pulumi.CustomResourceState
@@ -377,7 +382,7 @@ func (i *MdbMongodbCluster) ToMdbMongodbClusterOutputWithContext(ctx context.Con
 // MdbMongodbClusterArrayInput is an input type that accepts MdbMongodbClusterArray and MdbMongodbClusterArrayOutput values.
 // You can construct a concrete instance of `MdbMongodbClusterArrayInput` via:
 //
-//          MdbMongodbClusterArray{ MdbMongodbClusterArgs{...} }
+//	MdbMongodbClusterArray{ MdbMongodbClusterArgs{...} }
 type MdbMongodbClusterArrayInput interface {
 	pulumi.Input
 
@@ -402,7 +407,7 @@ func (i MdbMongodbClusterArray) ToMdbMongodbClusterArrayOutputWithContext(ctx co
 // MdbMongodbClusterMapInput is an input type that accepts MdbMongodbClusterMap and MdbMongodbClusterMapOutput values.
 // You can construct a concrete instance of `MdbMongodbClusterMapInput` via:
 //
-//          MdbMongodbClusterMap{ "key": MdbMongodbClusterArgs{...} }
+//	MdbMongodbClusterMap{ "key": MdbMongodbClusterArgs{...} }
 type MdbMongodbClusterMapInput interface {
 	pulumi.Input
 

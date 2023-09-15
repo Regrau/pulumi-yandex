@@ -20,23 +20,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NeworganizationmanagerGroupIamMember(ctx, "editor", &yandex.organizationmanagerGroupIamMemberArgs{
-// 			GroupId: pulumi.String("some_group_id"),
-// 			Member:  pulumi.String("userAccount:user_id"),
-// 			Role:    pulumi.String("editor"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NeworganizationmanagerGroupIamMember(ctx, "editor", &yandex.organizationmanagerGroupIamMemberArgs{
+//				GroupId: pulumi.String("some_group_id"),
+//				Member:  pulumi.String("userAccount:user_id"),
+//				Role:    pulumi.String("editor"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -44,7 +47,9 @@ import (
 // IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the `group_id`, role, and account, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/organizationmanagerGroupIamMember:organizationmanagerGroupIamMember my_project "group_id viewer foo@example.com"
+//
+//	$ pulumi import yandex:index/organizationmanagerGroupIamMember:organizationmanagerGroupIamMember my_project "group_id viewer foo@example.com"
+//
 // ```
 type OrganizationmanagerGroupIamMember struct {
 	pulumi.CustomResourceState
@@ -187,7 +192,7 @@ func (i *OrganizationmanagerGroupIamMember) ToOrganizationmanagerGroupIamMemberO
 // OrganizationmanagerGroupIamMemberArrayInput is an input type that accepts OrganizationmanagerGroupIamMemberArray and OrganizationmanagerGroupIamMemberArrayOutput values.
 // You can construct a concrete instance of `OrganizationmanagerGroupIamMemberArrayInput` via:
 //
-//          OrganizationmanagerGroupIamMemberArray{ OrganizationmanagerGroupIamMemberArgs{...} }
+//	OrganizationmanagerGroupIamMemberArray{ OrganizationmanagerGroupIamMemberArgs{...} }
 type OrganizationmanagerGroupIamMemberArrayInput interface {
 	pulumi.Input
 
@@ -212,7 +217,7 @@ func (i OrganizationmanagerGroupIamMemberArray) ToOrganizationmanagerGroupIamMem
 // OrganizationmanagerGroupIamMemberMapInput is an input type that accepts OrganizationmanagerGroupIamMemberMap and OrganizationmanagerGroupIamMemberMapOutput values.
 // You can construct a concrete instance of `OrganizationmanagerGroupIamMemberMapInput` via:
 //
-//          OrganizationmanagerGroupIamMemberMap{ "key": OrganizationmanagerGroupIamMemberArgs{...} }
+//	OrganizationmanagerGroupIamMemberMap{ "key": OrganizationmanagerGroupIamMemberArgs{...} }
 type OrganizationmanagerGroupIamMemberMapInput interface {
 	pulumi.Input
 

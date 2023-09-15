@@ -19,53 +19,59 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewServerlessContainer(ctx, "test-container", &yandex.ServerlessContainerArgs{
-// 			CoreFraction:     pulumi.Int(100),
-// 			Cores:            pulumi.Int(1),
-// 			Description:      pulumi.String("any description"),
-// 			ExecutionTimeout: pulumi.String("15s"),
-// 			Image: &ServerlessContainerImageArgs{
-// 				Url: pulumi.String("cr.yandex/yc/test-image:v1"),
-// 			},
-// 			Memory:           pulumi.Int(256),
-// 			ServiceAccountId: pulumi.String("are1service2account3id"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewServerlessContainer(ctx, "test-container", &yandex.ServerlessContainerArgs{
+//				CoreFraction:     pulumi.Int(100),
+//				Cores:            pulumi.Int(1),
+//				Description:      pulumi.String("any description"),
+//				ExecutionTimeout: pulumi.String("15s"),
+//				Image: &ServerlessContainerImageArgs{
+//					Url: pulumi.String("cr.yandex/yc/test-image:v1"),
+//				},
+//				Memory:           pulumi.Int(256),
+//				ServiceAccountId: pulumi.String("are1service2account3id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ```go
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewServerlessContainer(ctx, "test-container-with-digest", &yandex.ServerlessContainerArgs{
-// 			Image: &ServerlessContainerImageArgs{
-// 				Digest: pulumi.String("sha256:e1d772fa8795adac847a2420c87d0d2e3d38fb02f168cab8c0b5fe2fb95c47f4"),
-// 				Url:    pulumi.String("cr.yandex/yc/test-image:v1"),
-// 			},
-// 			Memory: pulumi.Int(128),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewServerlessContainer(ctx, "test-container-with-digest", &yandex.ServerlessContainerArgs{
+//				Image: &ServerlessContainerImageArgs{
+//					Digest: pulumi.String("sha256:e1d772fa8795adac847a2420c87d0d2e3d38fb02f168cab8c0b5fe2fb95c47f4"),
+//					Url:    pulumi.String("cr.yandex/yc/test-image:v1"),
+//				},
+//				Memory: pulumi.Int(128),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type ServerlessContainer struct {
 	pulumi.CustomResourceState
@@ -328,7 +334,7 @@ func (i *ServerlessContainer) ToServerlessContainerOutputWithContext(ctx context
 // ServerlessContainerArrayInput is an input type that accepts ServerlessContainerArray and ServerlessContainerArrayOutput values.
 // You can construct a concrete instance of `ServerlessContainerArrayInput` via:
 //
-//          ServerlessContainerArray{ ServerlessContainerArgs{...} }
+//	ServerlessContainerArray{ ServerlessContainerArgs{...} }
 type ServerlessContainerArrayInput interface {
 	pulumi.Input
 
@@ -353,7 +359,7 @@ func (i ServerlessContainerArray) ToServerlessContainerArrayOutputWithContext(ct
 // ServerlessContainerMapInput is an input type that accepts ServerlessContainerMap and ServerlessContainerMapOutput values.
 // You can construct a concrete instance of `ServerlessContainerMapInput` via:
 //
-//          ServerlessContainerMap{ "key": ServerlessContainerArgs{...} }
+//	ServerlessContainerMap{ "key": ServerlessContainerArgs{...} }
 type ServerlessContainerMapInput interface {
 	pulumi.Input
 
@@ -424,15 +430,15 @@ func (o ServerlessContainerOutput) FolderId() pulumi.StringOutput {
 }
 
 // Revision deployment image for Yandex Cloud Serverless Container
-// * `image.0.url` (Required) - URL of image that will be deployed as Yandex Cloud Serverless Container
-// * `image.0.work_dir` - Working directory for Yandex Cloud Serverless Container
-// * `image.0.digest` - Digest of image that will be deployed as Yandex Cloud Serverless Container.
-//   If presented, should be equal to digest that will be resolved at server side by URL.
-//   Container will be updated on digest change even if `image.0.url` stays the same.
-//   If field not specified then its value will be computed.
-// * `image.0.command` - List of commands for Yandex Cloud Serverless Container
-// * `image.0.args` - List of arguments for Yandex Cloud Serverless Container
-// * `image.0.environment` -  A set of key/value environment variable pairs for Yandex Cloud Serverless Container
+//   - `image.0.url` (Required) - URL of image that will be deployed as Yandex Cloud Serverless Container
+//   - `image.0.work_dir` - Working directory for Yandex Cloud Serverless Container
+//   - `image.0.digest` - Digest of image that will be deployed as Yandex Cloud Serverless Container.
+//     If presented, should be equal to digest that will be resolved at server side by URL.
+//     Container will be updated on digest change even if `image.0.url` stays the same.
+//     If field not specified then its value will be computed.
+//   - `image.0.command` - List of commands for Yandex Cloud Serverless Container
+//   - `image.0.args` - List of arguments for Yandex Cloud Serverless Container
+//   - `image.0.environment` -  A set of key/value environment variable pairs for Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) Image() ServerlessContainerImageOutput {
 	return o.ApplyT(func(v *ServerlessContainer) ServerlessContainerImageOutput { return v.Image }).(ServerlessContainerImageOutput)
 }

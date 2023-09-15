@@ -32,23 +32,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewIamServiceAccountIamMember(ctx, "admin-account-iam", &yandex.IamServiceAccountIamMemberArgs{
-// 			Member:           pulumi.String("userAccount:bar_user_id"),
-// 			Role:             pulumi.String("admin"),
-// 			ServiceAccountId: pulumi.String("your-service-account-id"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewIamServiceAccountIamMember(ctx, "admin-account-iam", &yandex.IamServiceAccountIamMemberArgs{
+//				Member:           pulumi.String("userAccount:bar_user_id"),
+//				Role:             pulumi.String("admin"),
+//				ServiceAccountId: pulumi.String("your-service-account-id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -56,7 +59,9 @@ import (
 // Service account IAM member resources can be imported using the service account ID, role and member.
 //
 // ```sh
-//  $ pulumi import yandex:index/iamServiceAccountIamMember:IamServiceAccountIamMember admin-account-iam "service_account_id roles/editor foo@example.com"
+//
+//	$ pulumi import yandex:index/iamServiceAccountIamMember:IamServiceAccountIamMember admin-account-iam "service_account_id roles/editor foo@example.com"
+//
 // ```
 type IamServiceAccountIamMember struct {
 	pulumi.CustomResourceState
@@ -199,7 +204,7 @@ func (i *IamServiceAccountIamMember) ToIamServiceAccountIamMemberOutputWithConte
 // IamServiceAccountIamMemberArrayInput is an input type that accepts IamServiceAccountIamMemberArray and IamServiceAccountIamMemberArrayOutput values.
 // You can construct a concrete instance of `IamServiceAccountIamMemberArrayInput` via:
 //
-//          IamServiceAccountIamMemberArray{ IamServiceAccountIamMemberArgs{...} }
+//	IamServiceAccountIamMemberArray{ IamServiceAccountIamMemberArgs{...} }
 type IamServiceAccountIamMemberArrayInput interface {
 	pulumi.Input
 
@@ -224,7 +229,7 @@ func (i IamServiceAccountIamMemberArray) ToIamServiceAccountIamMemberArrayOutput
 // IamServiceAccountIamMemberMapInput is an input type that accepts IamServiceAccountIamMemberMap and IamServiceAccountIamMemberMapOutput values.
 // You can construct a concrete instance of `IamServiceAccountIamMemberMapInput` via:
 //
-//          IamServiceAccountIamMemberMap{ "key": IamServiceAccountIamMemberArgs{...} }
+//	IamServiceAccountIamMemberMap{ "key": IamServiceAccountIamMemberArgs{...} }
 type IamServiceAccountIamMemberMapInput interface {
 	pulumi.Input
 

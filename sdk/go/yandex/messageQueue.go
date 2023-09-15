@@ -18,41 +18,44 @@ import (
 // package main
 //
 // import (
-// 	"encoding/json"
 //
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		exampleDeadletterQueue, err := yandex.NewMessageQueue(ctx, "exampleDeadletterQueue", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewMessageQueue(ctx, "exampleQueue", &yandex.MessageQueueArgs{
-// 			VisibilityTimeoutSeconds: pulumi.Int(600),
-// 			ReceiveWaitTimeSeconds:   pulumi.Int(20),
-// 			MessageRetentionSeconds:  pulumi.Int(1209600),
-// 			RedrivePolicy: exampleDeadletterQueue.Arn.ApplyT(func(arn string) (pulumi.String, error) {
-// 				var _zero pulumi.String
-// 				tmpJSON0, err := json.Marshal(map[string]interface{}{
-// 					"deadLetterTargetArn": arn,
-// 					"maxReceiveCount":     3,
-// 				})
-// 				if err != nil {
-// 					return _zero, err
-// 				}
-// 				json0 := string(tmpJSON0)
-// 				return pulumi.String(json0), nil
-// 			}).(pulumi.StringOutput),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			exampleDeadletterQueue, err := yandex.NewMessageQueue(ctx, "exampleDeadletterQueue", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewMessageQueue(ctx, "exampleQueue", &yandex.MessageQueueArgs{
+//				VisibilityTimeoutSeconds: pulumi.Int(600),
+//				ReceiveWaitTimeSeconds:   pulumi.Int(20),
+//				MessageRetentionSeconds:  pulumi.Int(1209600),
+//				RedrivePolicy: exampleDeadletterQueue.Arn.ApplyT(func(arn string) (pulumi.String, error) {
+//					var _zero pulumi.String
+//					tmpJSON0, err := json.Marshal(map[string]interface{}{
+//						"deadLetterTargetArn": arn,
+//						"maxReceiveCount":     3,
+//					})
+//					if err != nil {
+//						return _zero, err
+//					}
+//					json0 := string(tmpJSON0)
+//					return pulumi.String(json0), nil
+//				}).(pulumi.StringOutput),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 // ## FIFO queue
 //
@@ -60,22 +63,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewMessageQueue(ctx, "exampleFifoQueue", &yandex.MessageQueueArgs{
-// 			ContentBasedDeduplication: pulumi.Bool(true),
-// 			FifoQueue:                 pulumi.Bool(true),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewMessageQueue(ctx, "exampleFifoQueue", &yandex.MessageQueueArgs{
+//				ContentBasedDeduplication: pulumi.Bool(true),
+//				FifoQueue:                 pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -83,7 +89,9 @@ import (
 // Yandex Message Queues can be imported using its `queue url`, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/messageQueue:MessageQueue example_import_queue https://message-queue.api.cloud.yandex.net/abcdefghijklmn123456/opqrstuvwxyz87654321/ymq_terraform_import_example
+//
+//	$ pulumi import yandex:index/messageQueue:MessageQueue example_import_queue https://message-queue.api.cloud.yandex.net/abcdefghijklmn123456/opqrstuvwxyz87654321/ymq_terraform_import_example
+//
 // ```
 type MessageQueue struct {
 	pulumi.CustomResourceState
@@ -310,7 +318,7 @@ func (i *MessageQueue) ToMessageQueueOutputWithContext(ctx context.Context) Mess
 // MessageQueueArrayInput is an input type that accepts MessageQueueArray and MessageQueueArrayOutput values.
 // You can construct a concrete instance of `MessageQueueArrayInput` via:
 //
-//          MessageQueueArray{ MessageQueueArgs{...} }
+//	MessageQueueArray{ MessageQueueArgs{...} }
 type MessageQueueArrayInput interface {
 	pulumi.Input
 
@@ -335,7 +343,7 @@ func (i MessageQueueArray) ToMessageQueueArrayOutputWithContext(ctx context.Cont
 // MessageQueueMapInput is an input type that accepts MessageQueueMap and MessageQueueMapOutput values.
 // You can construct a concrete instance of `MessageQueueMapInput` via:
 //
-//          MessageQueueMap{ "key": MessageQueueArgs{...} }
+//	MessageQueueMap{ "key": MessageQueueArgs{...} }
 type MessageQueueMapInput interface {
 	pulumi.Input
 

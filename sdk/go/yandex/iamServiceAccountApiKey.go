@@ -24,23 +24,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewIamServiceAccountApiKey(ctx, "sa-api-key", &yandex.IamServiceAccountApiKeyArgs{
-// 			Description:      pulumi.String("api key for authorization"),
-// 			PgpKey:           pulumi.String("keybase:keybaseusername"),
-// 			ServiceAccountId: pulumi.String("some_sa_id"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewIamServiceAccountApiKey(ctx, "sa-api-key", &yandex.IamServiceAccountApiKeyArgs{
+//				Description:      pulumi.String("api key for authorization"),
+//				PgpKey:           pulumi.String("keybase:keybaseusername"),
+//				ServiceAccountId: pulumi.String("some_sa_id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type IamServiceAccountApiKey struct {
 	pulumi.CustomResourceState
@@ -180,7 +183,7 @@ func (i *IamServiceAccountApiKey) ToIamServiceAccountApiKeyOutputWithContext(ctx
 // IamServiceAccountApiKeyArrayInput is an input type that accepts IamServiceAccountApiKeyArray and IamServiceAccountApiKeyArrayOutput values.
 // You can construct a concrete instance of `IamServiceAccountApiKeyArrayInput` via:
 //
-//          IamServiceAccountApiKeyArray{ IamServiceAccountApiKeyArgs{...} }
+//	IamServiceAccountApiKeyArray{ IamServiceAccountApiKeyArgs{...} }
 type IamServiceAccountApiKeyArrayInput interface {
 	pulumi.Input
 
@@ -205,7 +208,7 @@ func (i IamServiceAccountApiKeyArray) ToIamServiceAccountApiKeyArrayOutputWithCo
 // IamServiceAccountApiKeyMapInput is an input type that accepts IamServiceAccountApiKeyMap and IamServiceAccountApiKeyMapOutput values.
 // You can construct a concrete instance of `IamServiceAccountApiKeyMapInput` via:
 //
-//          IamServiceAccountApiKeyMap{ "key": IamServiceAccountApiKeyArgs{...} }
+//	IamServiceAccountApiKeyMap{ "key": IamServiceAccountApiKeyArgs{...} }
 type IamServiceAccountApiKeyMapInput interface {
 	pulumi.Input
 

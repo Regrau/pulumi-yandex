@@ -19,22 +19,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		myNodeGroup, err := yandex.LookupKubernetesNodeGroup(ctx, &GetKubernetesNodeGroupArgs{
-// 			NodeGroupId: pulumi.StringRef("some_k8s_node_group_id"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("myNodeGroup.status", myNodeGroup.Status)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myNodeGroup, err := yandex.LookupKubernetesNodeGroup(ctx, &GetKubernetesNodeGroupArgs{
+//				NodeGroupId: pulumi.StringRef("some_k8s_node_group_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("myNodeGroup.status", myNodeGroup.Status)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupKubernetesNodeGroup(ctx *pulumi.Context, args *LookupKubernetesNodeGroupArgs, opts ...pulumi.InvokeOption) (*LookupKubernetesNodeGroupResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

@@ -20,66 +20,71 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		foo, err := yandex.NewMdbKafkaCluster(ctx, "foo", &yandex.MdbKafkaClusterArgs{
-// 			NetworkId: pulumi.String("c64vs98keiqc7f24pvkd"),
-// 			Config: &MdbKafkaClusterConfigArgs{
-// 				Version: pulumi.String("2.8"),
-// 				Zones: pulumi.StringArray{
-// 					pulumi.String("ru-central1-a"),
-// 				},
-// 				UnmanagedTopics: pulumi.Bool(true),
-// 				Kafka: &MdbKafkaClusterConfigKafkaArgs{
-// 					Resources: &MdbKafkaClusterConfigKafkaResourcesArgs{
-// 						ResourcePresetId: pulumi.String("s2.micro"),
-// 						DiskTypeId:       pulumi.String("network-hdd"),
-// 						DiskSize:         pulumi.Int(16),
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewMdbKafkaTopic(ctx, "events", &yandex.MdbKafkaTopicArgs{
-// 			ClusterId:         foo.ID(),
-// 			Partitions:        pulumi.Int(4),
-// 			ReplicationFactor: pulumi.Int(1),
-// 			TopicConfig: &MdbKafkaTopicTopicConfigArgs{
-// 				CleanupPolicy:      pulumi.String("CLEANUP_POLICY_COMPACT"),
-// 				CompressionType:    pulumi.String("COMPRESSION_TYPE_LZ4"),
-// 				DeleteRetentionMs:  pulumi.String("86400000"),
-// 				FileDeleteDelayMs:  pulumi.String("60000"),
-// 				FlushMessages:      pulumi.String("128"),
-// 				FlushMs:            pulumi.String("1000"),
-// 				MinCompactionLagMs: pulumi.String("0"),
-// 				RetentionBytes:     pulumi.String("10737418240"),
-// 				RetentionMs:        pulumi.String("604800000"),
-// 				MaxMessageBytes:    pulumi.String("1048588"),
-// 				MinInsyncReplicas:  pulumi.String("1"),
-// 				SegmentBytes:       pulumi.String("268435456"),
-// 				Preallocate:        pulumi.Bool(true),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			foo, err := yandex.NewMdbKafkaCluster(ctx, "foo", &yandex.MdbKafkaClusterArgs{
+//				NetworkId: pulumi.String("c64vs98keiqc7f24pvkd"),
+//				Config: &MdbKafkaClusterConfigArgs{
+//					Version: pulumi.String("2.8"),
+//					Zones: pulumi.StringArray{
+//						pulumi.String("ru-central1-a"),
+//					},
+//					UnmanagedTopics: pulumi.Bool(true),
+//					Kafka: &MdbKafkaClusterConfigKafkaArgs{
+//						Resources: &MdbKafkaClusterConfigKafkaResourcesArgs{
+//							ResourcePresetId: pulumi.String("s2.micro"),
+//							DiskTypeId:       pulumi.String("network-hdd"),
+//							DiskSize:         pulumi.Int(16),
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewMdbKafkaTopic(ctx, "events", &yandex.MdbKafkaTopicArgs{
+//				ClusterId:         foo.ID(),
+//				Partitions:        pulumi.Int(4),
+//				ReplicationFactor: pulumi.Int(1),
+//				TopicConfig: &MdbKafkaTopicTopicConfigArgs{
+//					CleanupPolicy:      pulumi.String("CLEANUP_POLICY_COMPACT"),
+//					CompressionType:    pulumi.String("COMPRESSION_TYPE_LZ4"),
+//					DeleteRetentionMs:  pulumi.String("86400000"),
+//					FileDeleteDelayMs:  pulumi.String("60000"),
+//					FlushMessages:      pulumi.String("128"),
+//					FlushMs:            pulumi.String("1000"),
+//					MinCompactionLagMs: pulumi.String("0"),
+//					RetentionBytes:     pulumi.String("10737418240"),
+//					RetentionMs:        pulumi.String("604800000"),
+//					MaxMessageBytes:    pulumi.String("1048588"),
+//					MinInsyncReplicas:  pulumi.String("1"),
+//					SegmentBytes:       pulumi.String("268435456"),
+//					Preallocate:        pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// Kafka topic can be imported using following format
+// # Kafka topic can be imported using following format
 //
 // ```sh
-//  $ pulumi import yandex:index/mdbKafkaTopic:MdbKafkaTopic foo {{cluster_id}}:{{topic_name}}
+//
+//	$ pulumi import yandex:index/mdbKafkaTopic:MdbKafkaTopic foo {{cluster_id}}:{{topic_name}}
+//
 // ```
 type MdbKafkaTopic struct {
 	pulumi.CustomResourceState
@@ -212,7 +217,7 @@ func (i *MdbKafkaTopic) ToMdbKafkaTopicOutputWithContext(ctx context.Context) Md
 // MdbKafkaTopicArrayInput is an input type that accepts MdbKafkaTopicArray and MdbKafkaTopicArrayOutput values.
 // You can construct a concrete instance of `MdbKafkaTopicArrayInput` via:
 //
-//          MdbKafkaTopicArray{ MdbKafkaTopicArgs{...} }
+//	MdbKafkaTopicArray{ MdbKafkaTopicArgs{...} }
 type MdbKafkaTopicArrayInput interface {
 	pulumi.Input
 
@@ -237,7 +242,7 @@ func (i MdbKafkaTopicArray) ToMdbKafkaTopicArrayOutputWithContext(ctx context.Co
 // MdbKafkaTopicMapInput is an input type that accepts MdbKafkaTopicMap and MdbKafkaTopicMapOutput values.
 // You can construct a concrete instance of `MdbKafkaTopicMapInput` via:
 //
-//          MdbKafkaTopicMap{ "key": MdbKafkaTopicArgs{...} }
+//	MdbKafkaTopicMap{ "key": MdbKafkaTopicArgs{...} }
 type MdbKafkaTopicMapInput interface {
 	pulumi.Input
 

@@ -26,29 +26,32 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		example, err := yandex.NewKmsSymmetricKey(ctx, "example", &yandex.KmsSymmetricKeyArgs{
-// 			Description: pulumi.String("description for key"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewKmsSecretCiphertext(ctx, "password", &yandex.KmsSecretCiphertextArgs{
-// 			AadContext: pulumi.String("additional authenticated data"),
-// 			KeyId:      example.ID(),
-// 			Plaintext:  pulumi.String("strong password"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			example, err := yandex.NewKmsSymmetricKey(ctx, "example", &yandex.KmsSymmetricKeyArgs{
+//				Description: pulumi.String("description for key"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewKmsSecretCiphertext(ctx, "password", &yandex.KmsSecretCiphertextArgs{
+//				AadContext: pulumi.String("additional authenticated data"),
+//				KeyId:      example.ID(),
+//				Plaintext:  pulumi.String("strong password"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type KmsSecretCiphertext struct {
 	pulumi.CustomResourceState
@@ -176,7 +179,7 @@ func (i *KmsSecretCiphertext) ToKmsSecretCiphertextOutputWithContext(ctx context
 // KmsSecretCiphertextArrayInput is an input type that accepts KmsSecretCiphertextArray and KmsSecretCiphertextArrayOutput values.
 // You can construct a concrete instance of `KmsSecretCiphertextArrayInput` via:
 //
-//          KmsSecretCiphertextArray{ KmsSecretCiphertextArgs{...} }
+//	KmsSecretCiphertextArray{ KmsSecretCiphertextArgs{...} }
 type KmsSecretCiphertextArrayInput interface {
 	pulumi.Input
 
@@ -201,7 +204,7 @@ func (i KmsSecretCiphertextArray) ToKmsSecretCiphertextArrayOutputWithContext(ct
 // KmsSecretCiphertextMapInput is an input type that accepts KmsSecretCiphertextMap and KmsSecretCiphertextMapOutput values.
 // You can construct a concrete instance of `KmsSecretCiphertextMapInput` via:
 //
-//          KmsSecretCiphertextMap{ "key": KmsSecretCiphertextArgs{...} }
+//	KmsSecretCiphertextMap{ "key": KmsSecretCiphertextArgs{...} }
 type KmsSecretCiphertextMapInput interface {
 	pulumi.Input
 

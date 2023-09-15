@@ -19,22 +19,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewComputeDiskPlacementGroup(ctx, "group1", &yandex.ComputeDiskPlacementGroupArgs{
-// 			Description: pulumi.String("my description"),
-// 			FolderId:    pulumi.String("abc*********123"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewComputeDiskPlacementGroup(ctx, "group1", &yandex.ComputeDiskPlacementGroupArgs{
+//				Description: pulumi.String("my description"),
+//				FolderId:    pulumi.String("abc*********123"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type ComputeDiskPlacementGroup struct {
 	pulumi.CustomResourceState
@@ -172,7 +175,7 @@ func (i *ComputeDiskPlacementGroup) ToComputeDiskPlacementGroupOutputWithContext
 // ComputeDiskPlacementGroupArrayInput is an input type that accepts ComputeDiskPlacementGroupArray and ComputeDiskPlacementGroupArrayOutput values.
 // You can construct a concrete instance of `ComputeDiskPlacementGroupArrayInput` via:
 //
-//          ComputeDiskPlacementGroupArray{ ComputeDiskPlacementGroupArgs{...} }
+//	ComputeDiskPlacementGroupArray{ ComputeDiskPlacementGroupArgs{...} }
 type ComputeDiskPlacementGroupArrayInput interface {
 	pulumi.Input
 
@@ -197,7 +200,7 @@ func (i ComputeDiskPlacementGroupArray) ToComputeDiskPlacementGroupArrayOutputWi
 // ComputeDiskPlacementGroupMapInput is an input type that accepts ComputeDiskPlacementGroupMap and ComputeDiskPlacementGroupMapOutput values.
 // You can construct a concrete instance of `ComputeDiskPlacementGroupMapInput` via:
 //
-//          ComputeDiskPlacementGroupMap{ "key": ComputeDiskPlacementGroupArgs{...} }
+//	ComputeDiskPlacementGroupMap{ "key": ComputeDiskPlacementGroupArgs{...} }
 type ComputeDiskPlacementGroupMapInput interface {
 	pulumi.Input
 

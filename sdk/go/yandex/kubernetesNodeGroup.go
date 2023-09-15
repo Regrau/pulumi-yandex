@@ -19,79 +19,82 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewKubernetesNodeGroup(ctx, "myNodeGroup", &yandex.KubernetesNodeGroupArgs{
-// 			AllocationPolicy: &KubernetesNodeGroupAllocationPolicyArgs{
-// 				Locations: KubernetesNodeGroupAllocationPolicyLocationArray{
-// 					&KubernetesNodeGroupAllocationPolicyLocationArgs{
-// 						Zone: pulumi.String("ru-central1-a"),
-// 					},
-// 				},
-// 			},
-// 			ClusterId:   pulumi.Any(yandex_kubernetes_cluster.My_cluster.Id),
-// 			Description: pulumi.String("description"),
-// 			InstanceTemplate: &KubernetesNodeGroupInstanceTemplateArgs{
-// 				BootDisk: &KubernetesNodeGroupInstanceTemplateBootDiskArgs{
-// 					Size: pulumi.Int(64),
-// 					Type: pulumi.String("network-hdd"),
-// 				},
-// 				ContainerRuntime: &KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs{
-// 					Type: pulumi.String("containerd"),
-// 				},
-// 				NetworkInterfaces: KubernetesNodeGroupInstanceTemplateNetworkInterfaceArray{
-// 					&KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs{
-// 						Nat: pulumi.Bool(true),
-// 						SubnetIds: pulumi.StringArray{
-// 							pulumi.Any(yandex_vpc_subnet.My_subnet.Id),
-// 						},
-// 					},
-// 				},
-// 				PlatformId: pulumi.String("standard-v2"),
-// 				Resources: &KubernetesNodeGroupInstanceTemplateResourcesArgs{
-// 					Cores:  pulumi.Int(2),
-// 					Memory: pulumi.Float64(2),
-// 				},
-// 				SchedulingPolicy: &KubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs{
-// 					Preemptible: pulumi.Bool(false),
-// 				},
-// 			},
-// 			Labels: pulumi.StringMap{
-// 				"key": pulumi.String("value"),
-// 			},
-// 			MaintenancePolicy: &KubernetesNodeGroupMaintenancePolicyArgs{
-// 				AutoRepair:  pulumi.Bool(true),
-// 				AutoUpgrade: pulumi.Bool(true),
-// 				MaintenanceWindows: KubernetesNodeGroupMaintenancePolicyMaintenanceWindowArray{
-// 					&KubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs{
-// 						Day:       pulumi.String("monday"),
-// 						Duration:  pulumi.String("3h"),
-// 						StartTime: pulumi.String("15:00"),
-// 					},
-// 					&KubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs{
-// 						Day:       pulumi.String("friday"),
-// 						Duration:  pulumi.String("4h30m"),
-// 						StartTime: pulumi.String("10:00"),
-// 					},
-// 				},
-// 			},
-// 			ScalePolicy: &KubernetesNodeGroupScalePolicyArgs{
-// 				FixedScale: &KubernetesNodeGroupScalePolicyFixedScaleArgs{
-// 					Size: pulumi.Int(1),
-// 				},
-// 			},
-// 			Version: pulumi.String("1.17"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewKubernetesNodeGroup(ctx, "myNodeGroup", &yandex.KubernetesNodeGroupArgs{
+//				AllocationPolicy: &KubernetesNodeGroupAllocationPolicyArgs{
+//					Locations: KubernetesNodeGroupAllocationPolicyLocationArray{
+//						&KubernetesNodeGroupAllocationPolicyLocationArgs{
+//							Zone: pulumi.String("ru-central1-a"),
+//						},
+//					},
+//				},
+//				ClusterId:   pulumi.Any(yandex_kubernetes_cluster.My_cluster.Id),
+//				Description: pulumi.String("description"),
+//				InstanceTemplate: &KubernetesNodeGroupInstanceTemplateArgs{
+//					BootDisk: &KubernetesNodeGroupInstanceTemplateBootDiskArgs{
+//						Size: pulumi.Int(64),
+//						Type: pulumi.String("network-hdd"),
+//					},
+//					ContainerRuntime: &KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs{
+//						Type: pulumi.String("containerd"),
+//					},
+//					NetworkInterfaces: KubernetesNodeGroupInstanceTemplateNetworkInterfaceArray{
+//						&KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs{
+//							Nat: pulumi.Bool(true),
+//							SubnetIds: pulumi.StringArray{
+//								pulumi.Any(yandex_vpc_subnet.My_subnet.Id),
+//							},
+//						},
+//					},
+//					PlatformId: pulumi.String("standard-v2"),
+//					Resources: &KubernetesNodeGroupInstanceTemplateResourcesArgs{
+//						Cores:  pulumi.Int(2),
+//						Memory: pulumi.Float64(2),
+//					},
+//					SchedulingPolicy: &KubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs{
+//						Preemptible: pulumi.Bool(false),
+//					},
+//				},
+//				Labels: pulumi.StringMap{
+//					"key": pulumi.String("value"),
+//				},
+//				MaintenancePolicy: &KubernetesNodeGroupMaintenancePolicyArgs{
+//					AutoRepair:  pulumi.Bool(true),
+//					AutoUpgrade: pulumi.Bool(true),
+//					MaintenanceWindows: KubernetesNodeGroupMaintenancePolicyMaintenanceWindowArray{
+//						&KubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs{
+//							Day:       pulumi.String("monday"),
+//							Duration:  pulumi.String("3h"),
+//							StartTime: pulumi.String("15:00"),
+//						},
+//						&KubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs{
+//							Day:       pulumi.String("friday"),
+//							Duration:  pulumi.String("4h30m"),
+//							StartTime: pulumi.String("10:00"),
+//						},
+//					},
+//				},
+//				ScalePolicy: &KubernetesNodeGroupScalePolicyArgs{
+//					FixedScale: &KubernetesNodeGroupScalePolicyFixedScaleArgs{
+//						Size: pulumi.Int(1),
+//					},
+//				},
+//				Version: pulumi.String("1.17"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -99,7 +102,9 @@ import (
 // A Yandex Kubernetes Node Group can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/kubernetesNodeGroup:KubernetesNodeGroup default node_group_id
+//
+//	$ pulumi import yandex:index/kubernetesNodeGroup:KubernetesNodeGroup default node_group_id
+//
 // ```
 type KubernetesNodeGroup struct {
 	pulumi.CustomResourceState
@@ -396,7 +401,7 @@ func (i *KubernetesNodeGroup) ToKubernetesNodeGroupOutputWithContext(ctx context
 // KubernetesNodeGroupArrayInput is an input type that accepts KubernetesNodeGroupArray and KubernetesNodeGroupArrayOutput values.
 // You can construct a concrete instance of `KubernetesNodeGroupArrayInput` via:
 //
-//          KubernetesNodeGroupArray{ KubernetesNodeGroupArgs{...} }
+//	KubernetesNodeGroupArray{ KubernetesNodeGroupArgs{...} }
 type KubernetesNodeGroupArrayInput interface {
 	pulumi.Input
 
@@ -421,7 +426,7 @@ func (i KubernetesNodeGroupArray) ToKubernetesNodeGroupArrayOutputWithContext(ct
 // KubernetesNodeGroupMapInput is an input type that accepts KubernetesNodeGroupMap and KubernetesNodeGroupMapOutput values.
 // You can construct a concrete instance of `KubernetesNodeGroupMapInput` via:
 //
-//          KubernetesNodeGroupMap{ "key": KubernetesNodeGroupArgs{...} }
+//	KubernetesNodeGroupMap{ "key": KubernetesNodeGroupArgs{...} }
 type KubernetesNodeGroupMapInput interface {
 	pulumi.Input
 

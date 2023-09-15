@@ -17,25 +17,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewserverlessContainerIamBinding(ctx, "container-iam", &yandex.serverlessContainerIamBindingArgs{
-// 			ContainerId: pulumi.String("your-container-id"),
-// 			Members: pulumi.StringArray{
-// 				pulumi.String("system:allUsers"),
-// 			},
-// 			Role: pulumi.String("serverless.containers.invoker"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewserverlessContainerIamBinding(ctx, "container-iam", &yandex.serverlessContainerIamBindingArgs{
+//				ContainerId: pulumi.String("your-container-id"),
+//				Members: pulumi.StringArray{
+//					pulumi.String("system:allUsers"),
+//				},
+//				Role: pulumi.String("serverless.containers.invoker"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type ServerlessContainerIamBinding struct {
 	pulumi.CustomResourceState
@@ -178,7 +181,7 @@ func (i *ServerlessContainerIamBinding) ToServerlessContainerIamBindingOutputWit
 // ServerlessContainerIamBindingArrayInput is an input type that accepts ServerlessContainerIamBindingArray and ServerlessContainerIamBindingArrayOutput values.
 // You can construct a concrete instance of `ServerlessContainerIamBindingArrayInput` via:
 //
-//          ServerlessContainerIamBindingArray{ ServerlessContainerIamBindingArgs{...} }
+//	ServerlessContainerIamBindingArray{ ServerlessContainerIamBindingArgs{...} }
 type ServerlessContainerIamBindingArrayInput interface {
 	pulumi.Input
 
@@ -203,7 +206,7 @@ func (i ServerlessContainerIamBindingArray) ToServerlessContainerIamBindingArray
 // ServerlessContainerIamBindingMapInput is an input type that accepts ServerlessContainerIamBindingMap and ServerlessContainerIamBindingMapOutput values.
 // You can construct a concrete instance of `ServerlessContainerIamBindingMapInput` via:
 //
-//          ServerlessContainerIamBindingMap{ "key": ServerlessContainerIamBindingArgs{...} }
+//	ServerlessContainerIamBindingMap{ "key": ServerlessContainerIamBindingArgs{...} }
 type ServerlessContainerIamBindingMapInput interface {
 	pulumi.Input
 

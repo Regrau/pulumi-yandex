@@ -19,22 +19,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewComputePlacementGroup(ctx, "group1", &yandex.ComputePlacementGroupArgs{
-// 			Description: pulumi.String("my description"),
-// 			FolderId:    pulumi.String("abc*********123"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewComputePlacementGroup(ctx, "group1", &yandex.ComputePlacementGroupArgs{
+//				Description: pulumi.String("my description"),
+//				FolderId:    pulumi.String("abc*********123"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type ComputePlacementGroup struct {
 	pulumi.CustomResourceState
@@ -156,7 +159,7 @@ func (i *ComputePlacementGroup) ToComputePlacementGroupOutputWithContext(ctx con
 // ComputePlacementGroupArrayInput is an input type that accepts ComputePlacementGroupArray and ComputePlacementGroupArrayOutput values.
 // You can construct a concrete instance of `ComputePlacementGroupArrayInput` via:
 //
-//          ComputePlacementGroupArray{ ComputePlacementGroupArgs{...} }
+//	ComputePlacementGroupArray{ ComputePlacementGroupArgs{...} }
 type ComputePlacementGroupArrayInput interface {
 	pulumi.Input
 
@@ -181,7 +184,7 @@ func (i ComputePlacementGroupArray) ToComputePlacementGroupArrayOutputWithContex
 // ComputePlacementGroupMapInput is an input type that accepts ComputePlacementGroupMap and ComputePlacementGroupMapOutput values.
 // You can construct a concrete instance of `ComputePlacementGroupMapInput` via:
 //
-//          ComputePlacementGroupMap{ "key": ComputePlacementGroupArgs{...} }
+//	ComputePlacementGroupMap{ "key": ComputePlacementGroupArgs{...} }
 type ComputePlacementGroupMapInput interface {
 	pulumi.Input
 

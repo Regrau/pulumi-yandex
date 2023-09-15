@@ -19,22 +19,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		foo, err := yandex.LookupMdbMongodbCluster(ctx, &GetMdbMongodbClusterArgs{
-// 			Name: pulumi.StringRef("test"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("networkId", foo.NetworkId)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			foo, err := yandex.LookupMdbMongodbCluster(ctx, &GetMdbMongodbClusterArgs{
+//				Name: pulumi.StringRef("test"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("networkId", foo.NetworkId)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupMdbMongodbCluster(ctx *pulumi.Context, args *LookupMdbMongodbClusterArgs, opts ...pulumi.InvokeOption) (*LookupMdbMongodbClusterResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

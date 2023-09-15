@@ -15,8 +15,9 @@ import (
 // the IAM policy for an existing Yandex Resource Manager folder.
 //
 // > **Note:** This resource _must not_ be used in conjunction with
-//    `ResourcemanagerFolderIamPolicy` or they will conflict over what your policy should be. Similarly, roles controlled by `ResourcemanagerFolderIamBinding`
-//    should not be assigned using `ResourcemanagerFolderIamMember`.
+//
+//	`ResourcemanagerFolderIamPolicy` or they will conflict over what your policy should be. Similarly, roles controlled by `ResourcemanagerFolderIamBinding`
+//	should not be assigned using `ResourcemanagerFolderIamMember`.
 //
 // ## Example Usage
 //
@@ -24,29 +25,32 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
-// 			FolderId: pulumi.StringRef("some_folder_id"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewResourcemanagerFolderIamMember(ctx, "admin", &yandex.ResourcemanagerFolderIamMemberArgs{
-// 			FolderId: pulumi.Any(data.Yandex_resourcemanager.Department1.Name),
-// 			Member:   pulumi.String("userAccount:user_id"),
-// 			Role:     pulumi.String("editor"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err = yandex.LookupResourcemanagerFolder(ctx, &GetResourcemanagerFolderArgs{
+//				FolderId: pulumi.StringRef("some_folder_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewResourcemanagerFolderIamMember(ctx, "admin", &yandex.ResourcemanagerFolderIamMemberArgs{
+//				FolderId: pulumi.Any(data.Yandex_resourcemanager.Department1.Name),
+//				Member:   pulumi.String("userAccount:user_id"),
+//				Role:     pulumi.String("editor"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -54,7 +58,9 @@ import (
 // IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the `folder id`, role, and account, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/resourcemanagerFolderIamMember:ResourcemanagerFolderIamMember my_project "folder_id viewer foo@example.com"
+//
+//	$ pulumi import yandex:index/resourcemanagerFolderIamMember:ResourcemanagerFolderIamMember my_project "folder_id viewer foo@example.com"
+//
 // ```
 type ResourcemanagerFolderIamMember struct {
 	pulumi.CustomResourceState
@@ -192,7 +198,7 @@ func (i *ResourcemanagerFolderIamMember) ToResourcemanagerFolderIamMemberOutputW
 // ResourcemanagerFolderIamMemberArrayInput is an input type that accepts ResourcemanagerFolderIamMemberArray and ResourcemanagerFolderIamMemberArrayOutput values.
 // You can construct a concrete instance of `ResourcemanagerFolderIamMemberArrayInput` via:
 //
-//          ResourcemanagerFolderIamMemberArray{ ResourcemanagerFolderIamMemberArgs{...} }
+//	ResourcemanagerFolderIamMemberArray{ ResourcemanagerFolderIamMemberArgs{...} }
 type ResourcemanagerFolderIamMemberArrayInput interface {
 	pulumi.Input
 
@@ -217,7 +223,7 @@ func (i ResourcemanagerFolderIamMemberArray) ToResourcemanagerFolderIamMemberArr
 // ResourcemanagerFolderIamMemberMapInput is an input type that accepts ResourcemanagerFolderIamMemberMap and ResourcemanagerFolderIamMemberMapOutput values.
 // You can construct a concrete instance of `ResourcemanagerFolderIamMemberMapInput` via:
 //
-//          ResourcemanagerFolderIamMemberMap{ "key": ResourcemanagerFolderIamMemberArgs{...} }
+//	ResourcemanagerFolderIamMemberMap{ "key": ResourcemanagerFolderIamMemberArgs{...} }
 type ResourcemanagerFolderIamMemberMapInput interface {
 	pulumi.Input
 

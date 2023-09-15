@@ -20,31 +20,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		project1, err := yandex.LookupResourcemanagerCloud(ctx, &GetResourcemanagerCloudArgs{
-// 			Name: pulumi.StringRef("Project 1"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewResourcemanagerCloudIamBinding(ctx, "admin", &yandex.ResourcemanagerCloudIamBindingArgs{
-// 			CloudId: pulumi.String(project1.Id),
-// 			Members: pulumi.StringArray{
-// 				pulumi.String("userAccount:some_user_id"),
-// 			},
-// 			Role: pulumi.String("editor"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			project1, err := yandex.LookupResourcemanagerCloud(ctx, &GetResourcemanagerCloudArgs{
+//				Name: pulumi.StringRef("Project 1"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewResourcemanagerCloudIamBinding(ctx, "admin", &yandex.ResourcemanagerCloudIamBindingArgs{
+//				CloudId: pulumi.String(project1.Id),
+//				Members: pulumi.StringArray{
+//					pulumi.String("userAccount:some_user_id"),
+//				},
+//				Role: pulumi.String("editor"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -52,7 +55,9 @@ import (
 // IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `cloud_id` and role, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/resourcemanagerCloudIamBinding:ResourcemanagerCloudIamBinding viewer "cloud_id viewer"
+//
+//	$ pulumi import yandex:index/resourcemanagerCloudIamBinding:ResourcemanagerCloudIamBinding viewer "cloud_id viewer"
+//
 // ```
 type ResourcemanagerCloudIamBinding struct {
 	pulumi.CustomResourceState
@@ -200,7 +205,7 @@ func (i *ResourcemanagerCloudIamBinding) ToResourcemanagerCloudIamBindingOutputW
 // ResourcemanagerCloudIamBindingArrayInput is an input type that accepts ResourcemanagerCloudIamBindingArray and ResourcemanagerCloudIamBindingArrayOutput values.
 // You can construct a concrete instance of `ResourcemanagerCloudIamBindingArrayInput` via:
 //
-//          ResourcemanagerCloudIamBindingArray{ ResourcemanagerCloudIamBindingArgs{...} }
+//	ResourcemanagerCloudIamBindingArray{ ResourcemanagerCloudIamBindingArgs{...} }
 type ResourcemanagerCloudIamBindingArrayInput interface {
 	pulumi.Input
 
@@ -225,7 +230,7 @@ func (i ResourcemanagerCloudIamBindingArray) ToResourcemanagerCloudIamBindingArr
 // ResourcemanagerCloudIamBindingMapInput is an input type that accepts ResourcemanagerCloudIamBindingMap and ResourcemanagerCloudIamBindingMapOutput values.
 // You can construct a concrete instance of `ResourcemanagerCloudIamBindingMapInput` via:
 //
-//          ResourcemanagerCloudIamBindingMap{ "key": ResourcemanagerCloudIamBindingArgs{...} }
+//	ResourcemanagerCloudIamBindingMap{ "key": ResourcemanagerCloudIamBindingArgs{...} }
 type ResourcemanagerCloudIamBindingMapInput interface {
 	pulumi.Input
 

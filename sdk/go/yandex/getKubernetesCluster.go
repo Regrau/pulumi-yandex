@@ -18,22 +18,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		myCluster, err := yandex.LookupKubernetesCluster(ctx, &GetKubernetesClusterArgs{
-// 			ClusterId: pulumi.StringRef("some_k8s_cluster_id"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("clusterExternalV4Endpoint", myCluster.Masters[0].ExternalV4Endpoint)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myCluster, err := yandex.LookupKubernetesCluster(ctx, &GetKubernetesClusterArgs{
+//				ClusterId: pulumi.StringRef("some_k8s_cluster_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("clusterExternalV4Endpoint", myCluster.Masters[0].ExternalV4Endpoint)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupKubernetesCluster(ctx *pulumi.Context, args *LookupKubernetesClusterArgs, opts ...pulumi.InvokeOption) (*LookupKubernetesClusterResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

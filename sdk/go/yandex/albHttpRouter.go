@@ -18,7 +18,9 @@ import (
 // An HTTP Router can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/albHttpRouter:AlbHttpRouter default http_router_id
+//
+//	$ pulumi import yandex:index/albHttpRouter:AlbHttpRouter default http_router_id
+//
 // ```
 type AlbHttpRouter struct {
 	pulumi.CustomResourceState
@@ -158,7 +160,7 @@ func (i *AlbHttpRouter) ToAlbHttpRouterOutputWithContext(ctx context.Context) Al
 // AlbHttpRouterArrayInput is an input type that accepts AlbHttpRouterArray and AlbHttpRouterArrayOutput values.
 // You can construct a concrete instance of `AlbHttpRouterArrayInput` via:
 //
-//          AlbHttpRouterArray{ AlbHttpRouterArgs{...} }
+//	AlbHttpRouterArray{ AlbHttpRouterArgs{...} }
 type AlbHttpRouterArrayInput interface {
 	pulumi.Input
 
@@ -183,7 +185,7 @@ func (i AlbHttpRouterArray) ToAlbHttpRouterArrayOutputWithContext(ctx context.Co
 // AlbHttpRouterMapInput is an input type that accepts AlbHttpRouterMap and AlbHttpRouterMapOutput values.
 // You can construct a concrete instance of `AlbHttpRouterMapInput` via:
 //
-//          AlbHttpRouterMap{ "key": AlbHttpRouterArgs{...} }
+//	AlbHttpRouterMap{ "key": AlbHttpRouterArgs{...} }
 type AlbHttpRouterMapInput interface {
 	pulumi.Input
 

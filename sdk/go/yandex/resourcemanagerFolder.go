@@ -19,21 +19,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewResourcemanagerFolder(ctx, "folder1", &yandex.ResourcemanagerFolderArgs{
-// 			CloudId: pulumi.String("my_cloud_id"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewResourcemanagerFolder(ctx, "folder1", &yandex.ResourcemanagerFolderArgs{
+//				CloudId: pulumi.String("my_cloud_id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type ResourcemanagerFolder struct {
 	pulumi.CustomResourceState
@@ -155,7 +158,7 @@ func (i *ResourcemanagerFolder) ToResourcemanagerFolderOutputWithContext(ctx con
 // ResourcemanagerFolderArrayInput is an input type that accepts ResourcemanagerFolderArray and ResourcemanagerFolderArrayOutput values.
 // You can construct a concrete instance of `ResourcemanagerFolderArrayInput` via:
 //
-//          ResourcemanagerFolderArray{ ResourcemanagerFolderArgs{...} }
+//	ResourcemanagerFolderArray{ ResourcemanagerFolderArgs{...} }
 type ResourcemanagerFolderArrayInput interface {
 	pulumi.Input
 
@@ -180,7 +183,7 @@ func (i ResourcemanagerFolderArray) ToResourcemanagerFolderArrayOutputWithContex
 // ResourcemanagerFolderMapInput is an input type that accepts ResourcemanagerFolderMap and ResourcemanagerFolderMapOutput values.
 // You can construct a concrete instance of `ResourcemanagerFolderMapInput` via:
 //
-//          ResourcemanagerFolderMap{ "key": ResourcemanagerFolderArgs{...} }
+//	ResourcemanagerFolderMap{ "key": ResourcemanagerFolderArgs{...} }
 type ResourcemanagerFolderMapInput interface {
 	pulumi.Input
 

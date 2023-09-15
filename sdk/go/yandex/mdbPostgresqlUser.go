@@ -20,70 +20,75 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-// 			Zone:      pulumi.String("ru-central1-a"),
-// 			NetworkId: fooVpcNetwork.ID(),
-// 			V4CidrBlocks: pulumi.StringArray{
-// 				pulumi.String("10.5.0.0/24"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		fooMdbPostgresqlCluster, err := yandex.NewMdbPostgresqlCluster(ctx, "fooMdbPostgresqlCluster", &yandex.MdbPostgresqlClusterArgs{
-// 			Environment: pulumi.String("PRESTABLE"),
-// 			NetworkId:   fooVpcNetwork.ID(),
-// 			Config: &MdbPostgresqlClusterConfigArgs{
-// 				Version: pulumi.String("15"),
-// 				Resources: &MdbPostgresqlClusterConfigResourcesArgs{
-// 					ResourcePresetId: pulumi.String("s2.micro"),
-// 					DiskTypeId:       pulumi.String("network-ssd"),
-// 					DiskSize:         pulumi.Int(16),
-// 				},
-// 			},
-// 			Hosts: MdbPostgresqlClusterHostArray{
-// 				&MdbPostgresqlClusterHostArgs{
-// 					Zone:     pulumi.String("ru-central1-a"),
-// 					SubnetId: fooVpcSubnet.ID(),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewmdbPostgresqlUser(ctx, "foomdbPostgresqlUser", &yandex.mdbPostgresqlUserArgs{
-// 			ClusterId: fooMdbPostgresqlCluster.ID(),
-// 			Password:  pulumi.String("password"),
-// 			ConnLimit: pulumi.Int(50),
-// 			Settings: pulumi.StringMap{
-// 				"default_transaction_isolation": pulumi.String("read committed"),
-// 				"log_min_duration_statement":    pulumi.String("5000"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+//				Zone:      pulumi.String("ru-central1-a"),
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.5.0.0/24"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooMdbPostgresqlCluster, err := yandex.NewMdbPostgresqlCluster(ctx, "fooMdbPostgresqlCluster", &yandex.MdbPostgresqlClusterArgs{
+//				Environment: pulumi.String("PRESTABLE"),
+//				NetworkId:   fooVpcNetwork.ID(),
+//				Config: &MdbPostgresqlClusterConfigArgs{
+//					Version: pulumi.String("15"),
+//					Resources: &MdbPostgresqlClusterConfigResourcesArgs{
+//						ResourcePresetId: pulumi.String("s2.micro"),
+//						DiskTypeId:       pulumi.String("network-ssd"),
+//						DiskSize:         pulumi.Int(16),
+//					},
+//				},
+//				Hosts: MdbPostgresqlClusterHostArray{
+//					&MdbPostgresqlClusterHostArgs{
+//						Zone:     pulumi.String("ru-central1-a"),
+//						SubnetId: fooVpcSubnet.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewmdbPostgresqlUser(ctx, "foomdbPostgresqlUser", &yandex.mdbPostgresqlUserArgs{
+//				ClusterId: fooMdbPostgresqlCluster.ID(),
+//				Password:  pulumi.String("password"),
+//				ConnLimit: pulumi.Int(50),
+//				Settings: pulumi.StringMap{
+//					"default_transaction_isolation": pulumi.String("read committed"),
+//					"log_min_duration_statement":    pulumi.String("5000"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// A PostgreSQL user can be imported using the following format
+// # A PostgreSQL user can be imported using the following format
 //
 // ```sh
-//  $ pulumi import yandex:index/mdbPostgresqlUser:mdbPostgresqlUser foo {{cluster_id}}:{{username}}
+//
+//	$ pulumi import yandex:index/mdbPostgresqlUser:mdbPostgresqlUser foo {{cluster_id}}:{{username}}
+//
 // ```
 type MdbPostgresqlUser struct {
 	pulumi.CustomResourceState
@@ -250,7 +255,7 @@ func (i *MdbPostgresqlUser) ToMdbPostgresqlUserOutputWithContext(ctx context.Con
 // MdbPostgresqlUserArrayInput is an input type that accepts MdbPostgresqlUserArray and MdbPostgresqlUserArrayOutput values.
 // You can construct a concrete instance of `MdbPostgresqlUserArrayInput` via:
 //
-//          MdbPostgresqlUserArray{ MdbPostgresqlUserArgs{...} }
+//	MdbPostgresqlUserArray{ MdbPostgresqlUserArgs{...} }
 type MdbPostgresqlUserArrayInput interface {
 	pulumi.Input
 
@@ -275,7 +280,7 @@ func (i MdbPostgresqlUserArray) ToMdbPostgresqlUserArrayOutputWithContext(ctx co
 // MdbPostgresqlUserMapInput is an input type that accepts MdbPostgresqlUserMap and MdbPostgresqlUserMapOutput values.
 // You can construct a concrete instance of `MdbPostgresqlUserMapInput` via:
 //
-//          MdbPostgresqlUserMap{ "key": MdbPostgresqlUserArgs{...} }
+//	MdbPostgresqlUserMap{ "key": MdbPostgresqlUserArgs{...} }
 type MdbPostgresqlUserMapInput interface {
 	pulumi.Input
 

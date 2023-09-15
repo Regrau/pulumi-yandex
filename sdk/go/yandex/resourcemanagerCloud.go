@@ -19,21 +19,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewresourcemanagerCloud(ctx, "cloud1", &yandex.resourcemanagerCloudArgs{
-// 			OrganizationId: pulumi.String("my_organization_id"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewresourcemanagerCloud(ctx, "cloud1", &yandex.resourcemanagerCloudArgs{
+//				OrganizationId: pulumi.String("my_organization_id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type ResourcemanagerCloud struct {
 	pulumi.CustomResourceState
@@ -155,7 +158,7 @@ func (i *ResourcemanagerCloud) ToResourcemanagerCloudOutputWithContext(ctx conte
 // ResourcemanagerCloudArrayInput is an input type that accepts ResourcemanagerCloudArray and ResourcemanagerCloudArrayOutput values.
 // You can construct a concrete instance of `ResourcemanagerCloudArrayInput` via:
 //
-//          ResourcemanagerCloudArray{ ResourcemanagerCloudArgs{...} }
+//	ResourcemanagerCloudArray{ ResourcemanagerCloudArgs{...} }
 type ResourcemanagerCloudArrayInput interface {
 	pulumi.Input
 
@@ -180,7 +183,7 @@ func (i ResourcemanagerCloudArray) ToResourcemanagerCloudArrayOutputWithContext(
 // ResourcemanagerCloudMapInput is an input type that accepts ResourcemanagerCloudMap and ResourcemanagerCloudMapOutput values.
 // You can construct a concrete instance of `ResourcemanagerCloudMapInput` via:
 //
-//          ResourcemanagerCloudMap{ "key": ResourcemanagerCloudArgs{...} }
+//	ResourcemanagerCloudMap{ "key": ResourcemanagerCloudArgs{...} }
 type ResourcemanagerCloudMapInput interface {
 	pulumi.Input
 

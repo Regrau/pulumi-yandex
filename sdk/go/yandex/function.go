@@ -19,33 +19,36 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewFunction(ctx, "test-function", &yandex.FunctionArgs{
-// 			Content: &FunctionContentArgs{
-// 				ZipFilename: pulumi.String("function.zip"),
-// 			},
-// 			Description:      pulumi.String("any description"),
-// 			Entrypoint:       pulumi.String("main"),
-// 			ExecutionTimeout: pulumi.String("10"),
-// 			Memory:           pulumi.Int(128),
-// 			Runtime:          pulumi.String("python37"),
-// 			ServiceAccountId: pulumi.String("are1service2account3id"),
-// 			Tags: pulumi.StringArray{
-// 				pulumi.String("my_tag"),
-// 			},
-// 			UserHash: pulumi.String("any_user_defined_string"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewFunction(ctx, "test-function", &yandex.FunctionArgs{
+//				Content: &FunctionContentArgs{
+//					ZipFilename: pulumi.String("function.zip"),
+//				},
+//				Description:      pulumi.String("any description"),
+//				Entrypoint:       pulumi.String("main"),
+//				ExecutionTimeout: pulumi.String("10"),
+//				Memory:           pulumi.Int(128),
+//				Runtime:          pulumi.String("python37"),
+//				ServiceAccountId: pulumi.String("are1service2account3id"),
+//				Tags: pulumi.StringArray{
+//					pulumi.String("my_tag"),
+//				},
+//				UserHash: pulumi.String("any_user_defined_string"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type Function struct {
 	pulumi.CustomResourceState
@@ -330,7 +333,7 @@ func (i *Function) ToFunctionOutputWithContext(ctx context.Context) FunctionOutp
 // FunctionArrayInput is an input type that accepts FunctionArray and FunctionArrayOutput values.
 // You can construct a concrete instance of `FunctionArrayInput` via:
 //
-//          FunctionArray{ FunctionArgs{...} }
+//	FunctionArray{ FunctionArgs{...} }
 type FunctionArrayInput interface {
 	pulumi.Input
 
@@ -355,7 +358,7 @@ func (i FunctionArray) ToFunctionArrayOutputWithContext(ctx context.Context) Fun
 // FunctionMapInput is an input type that accepts FunctionMap and FunctionMapOutput values.
 // You can construct a concrete instance of `FunctionMapInput` via:
 //
-//          FunctionMap{ "key": FunctionArgs{...} }
+//	FunctionMap{ "key": FunctionArgs{...} }
 type FunctionMapInput interface {
 	pulumi.Input
 

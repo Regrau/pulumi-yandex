@@ -16,23 +16,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewKmsSymmetricKey(ctx, "key-a", &yandex.KmsSymmetricKeyArgs{
-// 			DefaultAlgorithm: pulumi.String("AES_128"),
-// 			Description:      pulumi.String("description for key"),
-// 			RotationPeriod:   pulumi.String("8760h"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewKmsSymmetricKey(ctx, "key-a", &yandex.KmsSymmetricKeyArgs{
+//				DefaultAlgorithm: pulumi.String("AES_128"),
+//				Description:      pulumi.String("description for key"),
+//				RotationPeriod:   pulumi.String("8760h"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -40,7 +43,9 @@ import (
 // A KMS symmetric key can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/kmsSymmetricKey:KmsSymmetricKey top-secret kms_key_id
+//
+//	$ pulumi import yandex:index/kmsSymmetricKey:KmsSymmetricKey top-secret kms_key_id
+//
 // ```
 type KmsSymmetricKey struct {
 	pulumi.CustomResourceState
@@ -207,7 +212,7 @@ func (i *KmsSymmetricKey) ToKmsSymmetricKeyOutputWithContext(ctx context.Context
 // KmsSymmetricKeyArrayInput is an input type that accepts KmsSymmetricKeyArray and KmsSymmetricKeyArrayOutput values.
 // You can construct a concrete instance of `KmsSymmetricKeyArrayInput` via:
 //
-//          KmsSymmetricKeyArray{ KmsSymmetricKeyArgs{...} }
+//	KmsSymmetricKeyArray{ KmsSymmetricKeyArgs{...} }
 type KmsSymmetricKeyArrayInput interface {
 	pulumi.Input
 
@@ -232,7 +237,7 @@ func (i KmsSymmetricKeyArray) ToKmsSymmetricKeyArrayOutputWithContext(ctx contex
 // KmsSymmetricKeyMapInput is an input type that accepts KmsSymmetricKeyMap and KmsSymmetricKeyMapOutput values.
 // You can construct a concrete instance of `KmsSymmetricKeyMapInput` via:
 //
-//          KmsSymmetricKeyMap{ "key": KmsSymmetricKeyArgs{...} }
+//	KmsSymmetricKeyMap{ "key": KmsSymmetricKeyArgs{...} }
 type KmsSymmetricKeyMapInput interface {
 	pulumi.Input
 

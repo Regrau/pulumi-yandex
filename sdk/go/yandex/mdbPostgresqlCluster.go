@@ -199,7 +199,7 @@ func (i *MdbPostgresqlCluster) ToMdbPostgresqlClusterOutputWithContext(ctx conte
 // MdbPostgresqlClusterArrayInput is an input type that accepts MdbPostgresqlClusterArray and MdbPostgresqlClusterArrayOutput values.
 // You can construct a concrete instance of `MdbPostgresqlClusterArrayInput` via:
 //
-//          MdbPostgresqlClusterArray{ MdbPostgresqlClusterArgs{...} }
+//	MdbPostgresqlClusterArray{ MdbPostgresqlClusterArgs{...} }
 type MdbPostgresqlClusterArrayInput interface {
 	pulumi.Input
 
@@ -224,7 +224,7 @@ func (i MdbPostgresqlClusterArray) ToMdbPostgresqlClusterArrayOutputWithContext(
 // MdbPostgresqlClusterMapInput is an input type that accepts MdbPostgresqlClusterMap and MdbPostgresqlClusterMapOutput values.
 // You can construct a concrete instance of `MdbPostgresqlClusterMapInput` via:
 //
-//          MdbPostgresqlClusterMap{ "key": MdbPostgresqlClusterArgs{...} }
+//	MdbPostgresqlClusterMap{ "key": MdbPostgresqlClusterArgs{...} }
 type MdbPostgresqlClusterMapInput interface {
 	pulumi.Input
 

@@ -20,62 +20,67 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-// 			Zone:      pulumi.String("ru-central1-a"),
-// 			NetworkId: fooVpcNetwork.ID(),
-// 			V4CidrBlocks: pulumi.StringArray{
-// 				pulumi.String("10.5.0.0/24"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		fooMdbMysqlCluster, err := yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
-// 			Environment: pulumi.String("PRESTABLE"),
-// 			NetworkId:   fooVpcNetwork.ID(),
-// 			Version:     pulumi.String("8.0"),
-// 			Resources: &MdbMysqlClusterResourcesArgs{
-// 				ResourcePresetId: pulumi.String("s2.micro"),
-// 				DiskTypeId:       pulumi.String("network-ssd"),
-// 				DiskSize:         pulumi.Int(16),
-// 			},
-// 			Hosts: MdbMysqlClusterHostArray{
-// 				&MdbMysqlClusterHostArgs{
-// 					Zone:     pulumi.String("ru-central1-a"),
-// 					SubnetId: fooVpcSubnet.ID(),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewmdbMysqlDatabase(ctx, "foomdbMysqlDatabase", &yandex.mdbMysqlDatabaseArgs{
-// 			ClusterId: fooMdbMysqlCluster.ID(),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+//				Zone:      pulumi.String("ru-central1-a"),
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.5.0.0/24"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			fooMdbMysqlCluster, err := yandex.NewMdbMysqlCluster(ctx, "fooMdbMysqlCluster", &yandex.MdbMysqlClusterArgs{
+//				Environment: pulumi.String("PRESTABLE"),
+//				NetworkId:   fooVpcNetwork.ID(),
+//				Version:     pulumi.String("8.0"),
+//				Resources: &MdbMysqlClusterResourcesArgs{
+//					ResourcePresetId: pulumi.String("s2.micro"),
+//					DiskTypeId:       pulumi.String("network-ssd"),
+//					DiskSize:         pulumi.Int(16),
+//				},
+//				Hosts: MdbMysqlClusterHostArray{
+//					&MdbMysqlClusterHostArgs{
+//						Zone:     pulumi.String("ru-central1-a"),
+//						SubnetId: fooVpcSubnet.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewmdbMysqlDatabase(ctx, "foomdbMysqlDatabase", &yandex.mdbMysqlDatabaseArgs{
+//				ClusterId: fooMdbMysqlCluster.ID(),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
 //
-// A MySQL database can be imported using the following format
+// # A MySQL database can be imported using the following format
 //
 // ```sh
-//  $ pulumi import yandex:index/mdbMysqlDatabase:mdbMysqlDatabase foo {{cluster_id}}:{{database_name}}
+//
+//	$ pulumi import yandex:index/mdbMysqlDatabase:mdbMysqlDatabase foo {{cluster_id}}:{{database_name}}
+//
 // ```
 type MdbMysqlDatabase struct {
 	pulumi.CustomResourceState
@@ -172,7 +177,7 @@ func (i *MdbMysqlDatabase) ToMdbMysqlDatabaseOutputWithContext(ctx context.Conte
 // MdbMysqlDatabaseArrayInput is an input type that accepts MdbMysqlDatabaseArray and MdbMysqlDatabaseArrayOutput values.
 // You can construct a concrete instance of `MdbMysqlDatabaseArrayInput` via:
 //
-//          MdbMysqlDatabaseArray{ MdbMysqlDatabaseArgs{...} }
+//	MdbMysqlDatabaseArray{ MdbMysqlDatabaseArgs{...} }
 type MdbMysqlDatabaseArrayInput interface {
 	pulumi.Input
 
@@ -197,7 +202,7 @@ func (i MdbMysqlDatabaseArray) ToMdbMysqlDatabaseArrayOutputWithContext(ctx cont
 // MdbMysqlDatabaseMapInput is an input type that accepts MdbMysqlDatabaseMap and MdbMysqlDatabaseMapOutput values.
 // You can construct a concrete instance of `MdbMysqlDatabaseMapInput` via:
 //
-//          MdbMysqlDatabaseMap{ "key": MdbMysqlDatabaseArgs{...} }
+//	MdbMysqlDatabaseMap{ "key": MdbMysqlDatabaseArgs{...} }
 type MdbMysqlDatabaseMapInput interface {
 	pulumi.Input
 

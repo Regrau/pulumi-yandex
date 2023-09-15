@@ -17,25 +17,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewFunctionIamBinding(ctx, "function-iam", &yandex.FunctionIamBindingArgs{
-// 			FunctionId: pulumi.String("your-function-id"),
-// 			Members: pulumi.StringArray{
-// 				pulumi.String("system:allUsers"),
-// 			},
-// 			Role: pulumi.String("serverless.functions.invoker"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewFunctionIamBinding(ctx, "function-iam", &yandex.FunctionIamBindingArgs{
+//				FunctionId: pulumi.String("your-function-id"),
+//				Members: pulumi.StringArray{
+//					pulumi.String("system:allUsers"),
+//				},
+//				Role: pulumi.String("serverless.functions.invoker"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type FunctionIamBinding struct {
 	pulumi.CustomResourceState
@@ -178,7 +181,7 @@ func (i *FunctionIamBinding) ToFunctionIamBindingOutputWithContext(ctx context.C
 // FunctionIamBindingArrayInput is an input type that accepts FunctionIamBindingArray and FunctionIamBindingArrayOutput values.
 // You can construct a concrete instance of `FunctionIamBindingArrayInput` via:
 //
-//          FunctionIamBindingArray{ FunctionIamBindingArgs{...} }
+//	FunctionIamBindingArray{ FunctionIamBindingArgs{...} }
 type FunctionIamBindingArrayInput interface {
 	pulumi.Input
 
@@ -203,7 +206,7 @@ func (i FunctionIamBindingArray) ToFunctionIamBindingArrayOutputWithContext(ctx 
 // FunctionIamBindingMapInput is an input type that accepts FunctionIamBindingMap and FunctionIamBindingMapOutput values.
 // You can construct a concrete instance of `FunctionIamBindingMapInput` via:
 //
-//          FunctionIamBindingMap{ "key": FunctionIamBindingArgs{...} }
+//	FunctionIamBindingMap{ "key": FunctionIamBindingArgs{...} }
 type FunctionIamBindingMapInput interface {
 	pulumi.Input
 

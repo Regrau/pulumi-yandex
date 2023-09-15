@@ -19,44 +19,47 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		foo, err := yandex.NewVpcNetwork(ctx, "foo", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		zone1, err := yandex.NewDnsZone(ctx, "zone1", &yandex.DnsZoneArgs{
-// 			Description: pulumi.String("desc"),
-// 			Labels: pulumi.StringMap{
-// 				"label1": pulumi.String("label-1-value"),
-// 			},
-// 			Zone:   pulumi.String("example.com."),
-// 			Public: pulumi.Bool(false),
-// 			PrivateNetworks: pulumi.StringArray{
-// 				foo.ID(),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewDnsRecordSet(ctx, "rs1", &yandex.DnsRecordSetArgs{
-// 			ZoneId: zone1.ID(),
-// 			Type:   pulumi.String("A"),
-// 			Ttl:    pulumi.Int(200),
-// 			Datas: pulumi.StringArray{
-// 				pulumi.String("10.1.0.1"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			foo, err := yandex.NewVpcNetwork(ctx, "foo", nil)
+//			if err != nil {
+//				return err
+//			}
+//			zone1, err := yandex.NewDnsZone(ctx, "zone1", &yandex.DnsZoneArgs{
+//				Description: pulumi.String("desc"),
+//				Labels: pulumi.StringMap{
+//					"label1": pulumi.String("label-1-value"),
+//				},
+//				Zone:   pulumi.String("example.com."),
+//				Public: pulumi.Bool(false),
+//				PrivateNetworks: pulumi.StringArray{
+//					foo.ID(),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewDnsRecordSet(ctx, "rs1", &yandex.DnsRecordSetArgs{
+//				ZoneId: zone1.ID(),
+//				Type:   pulumi.String("A"),
+//				Ttl:    pulumi.Int(200),
+//				Datas: pulumi.StringArray{
+//					pulumi.String("10.1.0.1"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type DnsZone struct {
 	pulumi.CustomResourceState
@@ -214,7 +217,7 @@ func (i *DnsZone) ToDnsZoneOutputWithContext(ctx context.Context) DnsZoneOutput 
 // DnsZoneArrayInput is an input type that accepts DnsZoneArray and DnsZoneArrayOutput values.
 // You can construct a concrete instance of `DnsZoneArrayInput` via:
 //
-//          DnsZoneArray{ DnsZoneArgs{...} }
+//	DnsZoneArray{ DnsZoneArgs{...} }
 type DnsZoneArrayInput interface {
 	pulumi.Input
 
@@ -239,7 +242,7 @@ func (i DnsZoneArray) ToDnsZoneArrayOutputWithContext(ctx context.Context) DnsZo
 // DnsZoneMapInput is an input type that accepts DnsZoneMap and DnsZoneMapOutput values.
 // You can construct a concrete instance of `DnsZoneMapInput` via:
 //
-//          DnsZoneMap{ "key": DnsZoneArgs{...} }
+//	DnsZoneMap{ "key": DnsZoneArgs{...} }
 type DnsZoneMapInput interface {
 	pulumi.Input
 

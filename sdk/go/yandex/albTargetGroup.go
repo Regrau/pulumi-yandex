@@ -19,30 +19,33 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewAlbTargetGroup(ctx, "foo", &yandex.AlbTargetGroupArgs{
-// 			Targets: AlbTargetGroupTargetArray{
-// 				&AlbTargetGroupTargetArgs{
-// 					IpAddress: pulumi.Any(yandex_compute_instance.MyInstance1.Network_interface[0].Ip_address),
-// 					SubnetId:  pulumi.Any(yandex_vpc_subnet.MySubnet.Id),
-// 				},
-// 				&AlbTargetGroupTargetArgs{
-// 					IpAddress: pulumi.Any(yandex_compute_instance.MyInstance2.Network_interface[0].Ip_address),
-// 					SubnetId:  pulumi.Any(yandex_vpc_subnet.MySubnet.Id),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewAlbTargetGroup(ctx, "foo", &yandex.AlbTargetGroupArgs{
+//				Targets: AlbTargetGroupTargetArray{
+//					&AlbTargetGroupTargetArgs{
+//						IpAddress: pulumi.Any(yandex_compute_instance.MyInstance1.Network_interface[0].Ip_address),
+//						SubnetId:  pulumi.Any(yandex_vpc_subnet.MySubnet.Id),
+//					},
+//					&AlbTargetGroupTargetArgs{
+//						IpAddress: pulumi.Any(yandex_compute_instance.MyInstance2.Network_interface[0].Ip_address),
+//						SubnetId:  pulumi.Any(yandex_vpc_subnet.MySubnet.Id),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -50,7 +53,9 @@ import (
 // A target group can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/albTargetGroup:AlbTargetGroup default target_group_id
+//
+//	$ pulumi import yandex:index/albTargetGroup:AlbTargetGroup default target_group_id
+//
 // ```
 type AlbTargetGroup struct {
 	pulumi.CustomResourceState
@@ -195,7 +200,7 @@ func (i *AlbTargetGroup) ToAlbTargetGroupOutputWithContext(ctx context.Context) 
 // AlbTargetGroupArrayInput is an input type that accepts AlbTargetGroupArray and AlbTargetGroupArrayOutput values.
 // You can construct a concrete instance of `AlbTargetGroupArrayInput` via:
 //
-//          AlbTargetGroupArray{ AlbTargetGroupArgs{...} }
+//	AlbTargetGroupArray{ AlbTargetGroupArgs{...} }
 type AlbTargetGroupArrayInput interface {
 	pulumi.Input
 
@@ -220,7 +225,7 @@ func (i AlbTargetGroupArray) ToAlbTargetGroupArrayOutputWithContext(ctx context.
 // AlbTargetGroupMapInput is an input type that accepts AlbTargetGroupMap and AlbTargetGroupMapOutput values.
 // You can construct a concrete instance of `AlbTargetGroupMapInput` via:
 //
-//          AlbTargetGroupMap{ "key": AlbTargetGroupArgs{...} }
+//	AlbTargetGroupMap{ "key": AlbTargetGroupArgs{...} }
 type AlbTargetGroupMapInput interface {
 	pulumi.Input
 

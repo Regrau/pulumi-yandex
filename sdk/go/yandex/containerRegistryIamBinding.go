@@ -22,31 +22,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewContainerRegistry(ctx, "your-registry", &yandex.ContainerRegistryArgs{
-// 			FolderId: pulumi.String("your-folder-id"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewContainerRegistryIamBinding(ctx, "puller", &yandex.ContainerRegistryIamBindingArgs{
-// 			RegistryId: your_registry.ID(),
-// 			Role:       pulumi.String("container-registry.images.puller"),
-// 			Members: pulumi.StringArray{
-// 				pulumi.String("system:allUsers"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewContainerRegistry(ctx, "your-registry", &yandex.ContainerRegistryArgs{
+//				FolderId: pulumi.String("your-folder-id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewContainerRegistryIamBinding(ctx, "puller", &yandex.ContainerRegistryIamBindingArgs{
+//				RegistryId: your_registry.ID(),
+//				Role:       pulumi.String("container-registry.images.puller"),
+//				Members: pulumi.StringArray{
+//					pulumi.String("system:allUsers"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -54,7 +57,9 @@ import (
 // IAM binding imports use space-delimited identifiers; first the resource in question and then the role. These bindings can be imported using the `registry_id` and role, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/containerRegistryIamBinding:ContainerRegistryIamBinding puller "registry_id container-registry.images.puller"
+//
+//	$ pulumi import yandex:index/containerRegistryIamBinding:ContainerRegistryIamBinding puller "registry_id container-registry.images.puller"
+//
 // ```
 type ContainerRegistryIamBinding struct {
 	pulumi.CustomResourceState
@@ -197,7 +202,7 @@ func (i *ContainerRegistryIamBinding) ToContainerRegistryIamBindingOutputWithCon
 // ContainerRegistryIamBindingArrayInput is an input type that accepts ContainerRegistryIamBindingArray and ContainerRegistryIamBindingArrayOutput values.
 // You can construct a concrete instance of `ContainerRegistryIamBindingArrayInput` via:
 //
-//          ContainerRegistryIamBindingArray{ ContainerRegistryIamBindingArgs{...} }
+//	ContainerRegistryIamBindingArray{ ContainerRegistryIamBindingArgs{...} }
 type ContainerRegistryIamBindingArrayInput interface {
 	pulumi.Input
 
@@ -222,7 +227,7 @@ func (i ContainerRegistryIamBindingArray) ToContainerRegistryIamBindingArrayOutp
 // ContainerRegistryIamBindingMapInput is an input type that accepts ContainerRegistryIamBindingMap and ContainerRegistryIamBindingMapOutput values.
 // You can construct a concrete instance of `ContainerRegistryIamBindingMapInput` via:
 //
-//          ContainerRegistryIamBindingMap{ "key": ContainerRegistryIamBindingArgs{...} }
+//	ContainerRegistryIamBindingMap{ "key": ContainerRegistryIamBindingArgs{...} }
 type ContainerRegistryIamBindingMapInput interface {
 	pulumi.Input
 

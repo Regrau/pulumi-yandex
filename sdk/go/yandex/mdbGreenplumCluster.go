@@ -16,7 +16,7 @@ import (
 //
 // Please read [Pricing for Managed Service for Greenplum](https://cloud.yandex.ru/docs/managed-greenplum/) before using Greenplum cluster.
 //
-// Yandex Managed Service for Greenplum® is now in preview
+// # Yandex Managed Service for Greenplum® is now in preview
 //
 // ## Greenplum cluster settings
 //
@@ -37,7 +37,9 @@ import (
 // A cluster can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/mdbGreenplumCluster:MdbGreenplumCluster foo cluster_id
+//
+//	$ pulumi import yandex:index/mdbGreenplumCluster:MdbGreenplumCluster foo cluster_id
+//
 // ```
 type MdbGreenplumCluster struct {
 	pulumi.CustomResourceState
@@ -437,7 +439,7 @@ func (i *MdbGreenplumCluster) ToMdbGreenplumClusterOutputWithContext(ctx context
 // MdbGreenplumClusterArrayInput is an input type that accepts MdbGreenplumClusterArray and MdbGreenplumClusterArrayOutput values.
 // You can construct a concrete instance of `MdbGreenplumClusterArrayInput` via:
 //
-//          MdbGreenplumClusterArray{ MdbGreenplumClusterArgs{...} }
+//	MdbGreenplumClusterArray{ MdbGreenplumClusterArgs{...} }
 type MdbGreenplumClusterArrayInput interface {
 	pulumi.Input
 
@@ -462,7 +464,7 @@ func (i MdbGreenplumClusterArray) ToMdbGreenplumClusterArrayOutputWithContext(ct
 // MdbGreenplumClusterMapInput is an input type that accepts MdbGreenplumClusterMap and MdbGreenplumClusterMapOutput values.
 // You can construct a concrete instance of `MdbGreenplumClusterMapInput` via:
 //
-//          MdbGreenplumClusterMap{ "key": MdbGreenplumClusterArgs{...} }
+//	MdbGreenplumClusterMap{ "key": MdbGreenplumClusterArgs{...} }
 type MdbGreenplumClusterMapInput interface {
 	pulumi.Input
 

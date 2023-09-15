@@ -19,22 +19,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		myInstance, err := yandex.LookupComputeInstance(ctx, &GetComputeInstanceArgs{
-// 			InstanceId: pulumi.StringRef("some_instance_id"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("instanceExternalIp", myInstance.NetworkInterfaces[0].NatIpAddress)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myInstance, err := yandex.LookupComputeInstance(ctx, &GetComputeInstanceArgs{
+//				InstanceId: pulumi.StringRef("some_instance_id"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("instanceExternalIp", myInstance.NetworkInterfaces[0].NatIpAddress)
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupComputeInstance(ctx *pulumi.Context, args *LookupComputeInstanceArgs, opts ...pulumi.InvokeOption) (*LookupComputeInstanceResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

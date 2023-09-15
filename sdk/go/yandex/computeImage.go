@@ -19,31 +19,34 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewComputeImage(ctx, "foo-image", &yandex.ComputeImageArgs{
-// 			SourceUrl: pulumi.String("https://storage.yandexcloud.net/lucky-images/kube-it.img"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewComputeInstance(ctx, "vm", &yandex.ComputeInstanceArgs{
-// 			BootDisk: &ComputeInstanceBootDiskArgs{
-// 				InitializeParams: &ComputeInstanceBootDiskInitializeParamsArgs{
-// 					ImageId: foo_image.ID(),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewComputeImage(ctx, "foo-image", &yandex.ComputeImageArgs{
+//				SourceUrl: pulumi.String("https://storage.yandexcloud.net/lucky-images/kube-it.img"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewComputeInstance(ctx, "vm", &yandex.ComputeInstanceArgs{
+//				BootDisk: &ComputeInstanceBootDiskArgs{
+//					InitializeParams: &ComputeInstanceBootDiskInitializeParamsArgs{
+//						ImageId: foo_image.ID(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -51,7 +54,9 @@ import (
 // A VM image can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/computeImage:ComputeImage web-image image_id
+//
+//	$ pulumi import yandex:index/computeImage:ComputeImage web-image image_id
+//
 // ```
 type ComputeImage struct {
 	pulumi.CustomResourceState
@@ -333,7 +338,7 @@ func (i *ComputeImage) ToComputeImageOutputWithContext(ctx context.Context) Comp
 // ComputeImageArrayInput is an input type that accepts ComputeImageArray and ComputeImageArrayOutput values.
 // You can construct a concrete instance of `ComputeImageArrayInput` via:
 //
-//          ComputeImageArray{ ComputeImageArgs{...} }
+//	ComputeImageArray{ ComputeImageArgs{...} }
 type ComputeImageArrayInput interface {
 	pulumi.Input
 
@@ -358,7 +363,7 @@ func (i ComputeImageArray) ToComputeImageArrayOutputWithContext(ctx context.Cont
 // ComputeImageMapInput is an input type that accepts ComputeImageMap and ComputeImageMapOutput values.
 // You can construct a concrete instance of `ComputeImageMapInput` via:
 //
-//          ComputeImageMap{ "key": ComputeImageArgs{...} }
+//	ComputeImageMap{ "key": ComputeImageArgs{...} }
 type ComputeImageMapInput interface {
 	pulumi.Input
 

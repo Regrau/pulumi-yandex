@@ -32,25 +32,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewIamServiceAccountIamBinding(ctx, "admin-account-iam", &yandex.IamServiceAccountIamBindingArgs{
-// 			Members: pulumi.StringArray{
-// 				pulumi.String("userAccount:foo_user_id"),
-// 			},
-// 			Role:             pulumi.String("admin"),
-// 			ServiceAccountId: pulumi.String("your-service-account-id"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewIamServiceAccountIamBinding(ctx, "admin-account-iam", &yandex.IamServiceAccountIamBindingArgs{
+//				Members: pulumi.StringArray{
+//					pulumi.String("userAccount:foo_user_id"),
+//				},
+//				Role:             pulumi.String("admin"),
+//				ServiceAccountId: pulumi.String("your-service-account-id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -58,7 +61,9 @@ import (
 // Service account IAM binding resources can be imported using the service account ID and role.
 //
 // ```sh
-//  $ pulumi import yandex:index/iamServiceAccountIamBinding:IamServiceAccountIamBinding admin-account-iam "service_account_id roles/editor"
+//
+//	$ pulumi import yandex:index/iamServiceAccountIamBinding:IamServiceAccountIamBinding admin-account-iam "service_account_id roles/editor"
+//
 // ```
 type IamServiceAccountIamBinding struct {
 	pulumi.CustomResourceState
@@ -201,7 +206,7 @@ func (i *IamServiceAccountIamBinding) ToIamServiceAccountIamBindingOutputWithCon
 // IamServiceAccountIamBindingArrayInput is an input type that accepts IamServiceAccountIamBindingArray and IamServiceAccountIamBindingArrayOutput values.
 // You can construct a concrete instance of `IamServiceAccountIamBindingArrayInput` via:
 //
-//          IamServiceAccountIamBindingArray{ IamServiceAccountIamBindingArgs{...} }
+//	IamServiceAccountIamBindingArray{ IamServiceAccountIamBindingArgs{...} }
 type IamServiceAccountIamBindingArrayInput interface {
 	pulumi.Input
 
@@ -226,7 +231,7 @@ func (i IamServiceAccountIamBindingArray) ToIamServiceAccountIamBindingArrayOutp
 // IamServiceAccountIamBindingMapInput is an input type that accepts IamServiceAccountIamBindingMap and IamServiceAccountIamBindingMapOutput values.
 // You can construct a concrete instance of `IamServiceAccountIamBindingMapInput` via:
 //
-//          IamServiceAccountIamBindingMap{ "key": IamServiceAccountIamBindingArgs{...} }
+//	IamServiceAccountIamBindingMap{ "key": IamServiceAccountIamBindingArgs{...} }
 type IamServiceAccountIamBindingMapInput interface {
 	pulumi.Input
 

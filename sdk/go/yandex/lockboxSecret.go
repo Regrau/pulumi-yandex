@@ -21,19 +21,22 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewlockboxSecret(ctx, "mySecret", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewlockboxSecret(ctx, "mySecret", nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type LockboxSecret struct {
 	pulumi.CustomResourceState
@@ -189,7 +192,7 @@ func (i *LockboxSecret) ToLockboxSecretOutputWithContext(ctx context.Context) Lo
 // LockboxSecretArrayInput is an input type that accepts LockboxSecretArray and LockboxSecretArrayOutput values.
 // You can construct a concrete instance of `LockboxSecretArrayInput` via:
 //
-//          LockboxSecretArray{ LockboxSecretArgs{...} }
+//	LockboxSecretArray{ LockboxSecretArgs{...} }
 type LockboxSecretArrayInput interface {
 	pulumi.Input
 
@@ -214,7 +217,7 @@ func (i LockboxSecretArray) ToLockboxSecretArrayOutputWithContext(ctx context.Co
 // LockboxSecretMapInput is an input type that accepts LockboxSecretMap and LockboxSecretMapOutput values.
 // You can construct a concrete instance of `LockboxSecretMapInput` via:
 //
-//          LockboxSecretMap{ "key": LockboxSecretArgs{...} }
+//	LockboxSecretMap{ "key": LockboxSecretArgs{...} }
 type LockboxSecretMapInput interface {
 	pulumi.Input
 

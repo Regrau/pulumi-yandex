@@ -32,35 +32,38 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		admin, err := yandex.GetIamPolicy(ctx, &GetIamPolicyArgs{
-// 			Bindings: []GetIamPolicyBinding{
-// 				GetIamPolicyBinding{
-// 					Members: []string{
-// 						"userAccount:foobar_user_id",
-// 					},
-// 					Role: "admin",
-// 				},
-// 			},
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewIamServiceAccountIamPolicy(ctx, "admin-account-iam", &yandex.IamServiceAccountIamPolicyArgs{
-// 			PolicyData:       pulumi.String(admin.PolicyData),
-// 			ServiceAccountId: pulumi.String("your-service-account-id"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			admin, err := yandex.GetIamPolicy(ctx, &GetIamPolicyArgs{
+//				Bindings: []GetIamPolicyBinding{
+//					GetIamPolicyBinding{
+//						Members: []string{
+//							"userAccount:foobar_user_id",
+//						},
+//						Role: "admin",
+//					},
+//				},
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewIamServiceAccountIamPolicy(ctx, "admin-account-iam", &yandex.IamServiceAccountIamPolicyArgs{
+//				PolicyData:       pulumi.String(admin.PolicyData),
+//				ServiceAccountId: pulumi.String("your-service-account-id"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -68,7 +71,9 @@ import (
 // Service account IAM policy resources can be imported using the service account ID.
 //
 // ```sh
-//  $ pulumi import yandex:index/iamServiceAccountIamPolicy:IamServiceAccountIamPolicy admin-account-iam service_account_id
+//
+//	$ pulumi import yandex:index/iamServiceAccountIamPolicy:IamServiceAccountIamPolicy admin-account-iam service_account_id
+//
 // ```
 type IamServiceAccountIamPolicy struct {
 	pulumi.CustomResourceState
@@ -178,7 +183,7 @@ func (i *IamServiceAccountIamPolicy) ToIamServiceAccountIamPolicyOutputWithConte
 // IamServiceAccountIamPolicyArrayInput is an input type that accepts IamServiceAccountIamPolicyArray and IamServiceAccountIamPolicyArrayOutput values.
 // You can construct a concrete instance of `IamServiceAccountIamPolicyArrayInput` via:
 //
-//          IamServiceAccountIamPolicyArray{ IamServiceAccountIamPolicyArgs{...} }
+//	IamServiceAccountIamPolicyArray{ IamServiceAccountIamPolicyArgs{...} }
 type IamServiceAccountIamPolicyArrayInput interface {
 	pulumi.Input
 
@@ -203,7 +208,7 @@ func (i IamServiceAccountIamPolicyArray) ToIamServiceAccountIamPolicyArrayOutput
 // IamServiceAccountIamPolicyMapInput is an input type that accepts IamServiceAccountIamPolicyMap and IamServiceAccountIamPolicyMapOutput values.
 // You can construct a concrete instance of `IamServiceAccountIamPolicyMapInput` via:
 //
-//          IamServiceAccountIamPolicyMap{ "key": IamServiceAccountIamPolicyArgs{...} }
+//	IamServiceAccountIamPolicyMap{ "key": IamServiceAccountIamPolicyArgs{...} }
 type IamServiceAccountIamPolicyMapInput interface {
 	pulumi.Input
 

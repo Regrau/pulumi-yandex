@@ -19,23 +19,26 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		account, err := yandex.GetOrganizationmanagerSamlFederationUserAccount(ctx, &GetOrganizationmanagerSamlFederationUserAccountArgs{
-// 			FederationId: "some_federation_id",
-// 			NameId:       "example@example.org",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		ctx.Export("myFederation.id", account.Id)
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			account, err := yandex.GetOrganizationmanagerSamlFederationUserAccount(ctx, &GetOrganizationmanagerSamlFederationUserAccountArgs{
+//				FederationId: "some_federation_id",
+//				NameId:       "example@example.org",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("myFederation.id", account.Id)
+//			return nil
+//		})
+//	}
+//
 // ```
 func GetOrganizationmanagerSamlFederationUserAccount(ctx *pulumi.Context, args *GetOrganizationmanagerSamlFederationUserAccountArgs, opts ...pulumi.InvokeOption) (*GetOrganizationmanagerSamlFederationUserAccountResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

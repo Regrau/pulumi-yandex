@@ -20,7 +20,7 @@ type GetComputeInstanceGroupHealthCheckHttpOption struct {
 // GetComputeInstanceGroupHealthCheckHttpOptionInput is an input type that accepts GetComputeInstanceGroupHealthCheckHttpOptionArgs and GetComputeInstanceGroupHealthCheckHttpOptionOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupHealthCheckHttpOptionInput` via:
 //
-//          GetComputeInstanceGroupHealthCheckHttpOptionArgs{...}
+//	GetComputeInstanceGroupHealthCheckHttpOptionArgs{...}
 type GetComputeInstanceGroupHealthCheckHttpOptionInput interface {
 	pulumi.Input
 
@@ -50,7 +50,7 @@ func (i GetComputeInstanceGroupHealthCheckHttpOptionArgs) ToGetComputeInstanceGr
 // GetComputeInstanceGroupHealthCheckHttpOptionArrayInput is an input type that accepts GetComputeInstanceGroupHealthCheckHttpOptionArray and GetComputeInstanceGroupHealthCheckHttpOptionArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupHealthCheckHttpOptionArrayInput` via:
 //
-//          GetComputeInstanceGroupHealthCheckHttpOptionArray{ GetComputeInstanceGroupHealthCheckHttpOptionArgs{...} }
+//	GetComputeInstanceGroupHealthCheckHttpOptionArray{ GetComputeInstanceGroupHealthCheckHttpOptionArgs{...} }
 type GetComputeInstanceGroupHealthCheckHttpOptionArrayInput interface {
 	pulumi.Input
 
@@ -124,7 +124,7 @@ type GetComputeInstanceGroupHealthCheckTcpOption struct {
 // GetComputeInstanceGroupHealthCheckTcpOptionInput is an input type that accepts GetComputeInstanceGroupHealthCheckTcpOptionArgs and GetComputeInstanceGroupHealthCheckTcpOptionOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupHealthCheckTcpOptionInput` via:
 //
-//          GetComputeInstanceGroupHealthCheckTcpOptionArgs{...}
+//	GetComputeInstanceGroupHealthCheckTcpOptionArgs{...}
 type GetComputeInstanceGroupHealthCheckTcpOptionInput interface {
 	pulumi.Input
 
@@ -152,7 +152,7 @@ func (i GetComputeInstanceGroupHealthCheckTcpOptionArgs) ToGetComputeInstanceGro
 // GetComputeInstanceGroupHealthCheckTcpOptionArrayInput is an input type that accepts GetComputeInstanceGroupHealthCheckTcpOptionArray and GetComputeInstanceGroupHealthCheckTcpOptionArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupHealthCheckTcpOptionArrayInput` via:
 //
-//          GetComputeInstanceGroupHealthCheckTcpOptionArray{ GetComputeInstanceGroupHealthCheckTcpOptionArgs{...} }
+//	GetComputeInstanceGroupHealthCheckTcpOptionArray{ GetComputeInstanceGroupHealthCheckTcpOptionArgs{...} }
 type GetComputeInstanceGroupHealthCheckTcpOptionArrayInput interface {
 	pulumi.Input
 
@@ -235,7 +235,7 @@ type GetComputeInstanceGroupInstance struct {
 // GetComputeInstanceGroupInstanceInput is an input type that accepts GetComputeInstanceGroupInstanceArgs and GetComputeInstanceGroupInstanceOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceInput` via:
 //
-//          GetComputeInstanceGroupInstanceArgs{...}
+//	GetComputeInstanceGroupInstanceArgs{...}
 type GetComputeInstanceGroupInstanceInput interface {
 	pulumi.Input
 
@@ -277,7 +277,7 @@ func (i GetComputeInstanceGroupInstanceArgs) ToGetComputeInstanceGroupInstanceOu
 // GetComputeInstanceGroupInstanceArrayInput is an input type that accepts GetComputeInstanceGroupInstanceArray and GetComputeInstanceGroupInstanceArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceArray{ GetComputeInstanceGroupInstanceArgs{...} }
+//	GetComputeInstanceGroupInstanceArray{ GetComputeInstanceGroupInstanceArgs{...} }
 type GetComputeInstanceGroupInstanceArrayInput interface {
 	pulumi.Input
 
@@ -400,7 +400,7 @@ type GetComputeInstanceGroupInstanceNetworkInterface struct {
 // GetComputeInstanceGroupInstanceNetworkInterfaceInput is an input type that accepts GetComputeInstanceGroupInstanceNetworkInterfaceArgs and GetComputeInstanceGroupInstanceNetworkInterfaceOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceNetworkInterfaceInput` via:
 //
-//          GetComputeInstanceGroupInstanceNetworkInterfaceArgs{...}
+//	GetComputeInstanceGroupInstanceNetworkInterfaceArgs{...}
 type GetComputeInstanceGroupInstanceNetworkInterfaceInput interface {
 	pulumi.Input
 
@@ -445,7 +445,7 @@ func (i GetComputeInstanceGroupInstanceNetworkInterfaceArgs) ToGetComputeInstanc
 // GetComputeInstanceGroupInstanceNetworkInterfaceArrayInput is an input type that accepts GetComputeInstanceGroupInstanceNetworkInterfaceArray and GetComputeInstanceGroupInstanceNetworkInterfaceArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceNetworkInterfaceArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceNetworkInterfaceArray{ GetComputeInstanceGroupInstanceNetworkInterfaceArgs{...} }
+//	GetComputeInstanceGroupInstanceNetworkInterfaceArray{ GetComputeInstanceGroupInstanceNetworkInterfaceArgs{...} }
 type GetComputeInstanceGroupInstanceNetworkInterfaceArrayInput interface {
 	pulumi.Input
 
@@ -587,7 +587,7 @@ type GetComputeInstanceGroupInstanceTemplate struct {
 // GetComputeInstanceGroupInstanceTemplateInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateArgs and GetComputeInstanceGroupInstanceTemplateOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateArgs{...}
+//	GetComputeInstanceGroupInstanceTemplateArgs{...}
 type GetComputeInstanceGroupInstanceTemplateInput interface {
 	pulumi.Input
 
@@ -644,7 +644,7 @@ func (i GetComputeInstanceGroupInstanceTemplateArgs) ToGetComputeInstanceGroupIn
 // GetComputeInstanceGroupInstanceTemplateArrayInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateArray and GetComputeInstanceGroupInstanceTemplateArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateArray{ GetComputeInstanceGroupInstanceTemplateArgs{...} }
+//	GetComputeInstanceGroupInstanceTemplateArray{ GetComputeInstanceGroupInstanceTemplateArgs{...} }
 type GetComputeInstanceGroupInstanceTemplateArrayInput interface {
 	pulumi.Input
 
@@ -801,7 +801,7 @@ type GetComputeInstanceGroupInstanceTemplateBootDisk struct {
 // GetComputeInstanceGroupInstanceTemplateBootDiskInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateBootDiskArgs and GetComputeInstanceGroupInstanceTemplateBootDiskOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateBootDiskInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateBootDiskArgs{...}
+//	GetComputeInstanceGroupInstanceTemplateBootDiskArgs{...}
 type GetComputeInstanceGroupInstanceTemplateBootDiskInput interface {
 	pulumi.Input
 
@@ -835,7 +835,7 @@ func (i GetComputeInstanceGroupInstanceTemplateBootDiskArgs) ToGetComputeInstanc
 // GetComputeInstanceGroupInstanceTemplateBootDiskArrayInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateBootDiskArray and GetComputeInstanceGroupInstanceTemplateBootDiskArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateBootDiskArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateBootDiskArray{ GetComputeInstanceGroupInstanceTemplateBootDiskArgs{...} }
+//	GetComputeInstanceGroupInstanceTemplateBootDiskArray{ GetComputeInstanceGroupInstanceTemplateBootDiskArgs{...} }
 type GetComputeInstanceGroupInstanceTemplateBootDiskArrayInput interface {
 	pulumi.Input
 
@@ -929,7 +929,7 @@ type GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParam struct {
 // GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamArgs and GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamArgs{...}
+//	GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamArgs{...}
 type GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamInput interface {
 	pulumi.Input
 
@@ -965,7 +965,7 @@ func (i GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamArgs) ToGe
 // GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamArrayInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamArray and GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamArray{ GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamArgs{...} }
+//	GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamArray{ GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamArgs{...} }
 type GetComputeInstanceGroupInstanceTemplateBootDiskInitializeParamArrayInput interface {
 	pulumi.Input
 
@@ -1075,7 +1075,7 @@ type GetComputeInstanceGroupInstanceTemplateNetworkInterface struct {
 // GetComputeInstanceGroupInstanceTemplateNetworkInterfaceInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs and GetComputeInstanceGroupInstanceTemplateNetworkInterfaceOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateNetworkInterfaceInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs{...}
+//	GetComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs{...}
 type GetComputeInstanceGroupInstanceTemplateNetworkInterfaceInput interface {
 	pulumi.Input
 
@@ -1124,7 +1124,7 @@ func (i GetComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs) ToGetComput
 // GetComputeInstanceGroupInstanceTemplateNetworkInterfaceArrayInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateNetworkInterfaceArray and GetComputeInstanceGroupInstanceTemplateNetworkInterfaceArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateNetworkInterfaceArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateNetworkInterfaceArray{ GetComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs{...} }
+//	GetComputeInstanceGroupInstanceTemplateNetworkInterfaceArray{ GetComputeInstanceGroupInstanceTemplateNetworkInterfaceArgs{...} }
 type GetComputeInstanceGroupInstanceTemplateNetworkInterfaceArrayInput interface {
 	pulumi.Input
 
@@ -1259,7 +1259,7 @@ type GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecord struct {
 // GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs and GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs{...}
+//	GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs{...}
 type GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordInput interface {
 	pulumi.Input
 
@@ -1293,7 +1293,7 @@ func (i GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs) To
 // GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArrayInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArray and GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArray{ GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs{...} }
+//	GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArray{ GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArgs{...} }
 type GetComputeInstanceGroupInstanceTemplateNetworkInterfaceDnsRecordArrayInput interface {
 	pulumi.Input
 
@@ -1383,7 +1383,7 @@ type GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord struct
 // GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs and GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs{...}
+//	GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs{...}
 type GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordInput interface {
 	pulumi.Input
 
@@ -1417,7 +1417,7 @@ func (i GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs
 // GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArrayInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArray and GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArray{ GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs{...} }
+//	GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArray{ GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs{...} }
 type GetComputeInstanceGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArrayInput interface {
 	pulumi.Input
 
@@ -1509,7 +1509,7 @@ type GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecord struct 
 // GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs and GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs{...}
+//	GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs{...}
 type GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordInput interface {
 	pulumi.Input
 
@@ -1543,7 +1543,7 @@ func (i GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs)
 // GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArrayInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArray and GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArray{ GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs{...} }
+//	GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArray{ GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArgs{...} }
 type GetComputeInstanceGroupInstanceTemplateNetworkInterfaceNatDnsRecordArrayInput interface {
 	pulumi.Input
 
@@ -1627,7 +1627,7 @@ type GetComputeInstanceGroupInstanceTemplateNetworkSetting struct {
 // GetComputeInstanceGroupInstanceTemplateNetworkSettingInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateNetworkSettingArgs and GetComputeInstanceGroupInstanceTemplateNetworkSettingOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateNetworkSettingInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateNetworkSettingArgs{...}
+//	GetComputeInstanceGroupInstanceTemplateNetworkSettingArgs{...}
 type GetComputeInstanceGroupInstanceTemplateNetworkSettingInput interface {
 	pulumi.Input
 
@@ -1655,7 +1655,7 @@ func (i GetComputeInstanceGroupInstanceTemplateNetworkSettingArgs) ToGetComputeI
 // GetComputeInstanceGroupInstanceTemplateNetworkSettingArrayInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateNetworkSettingArray and GetComputeInstanceGroupInstanceTemplateNetworkSettingArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateNetworkSettingArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateNetworkSettingArray{ GetComputeInstanceGroupInstanceTemplateNetworkSettingArgs{...} }
+//	GetComputeInstanceGroupInstanceTemplateNetworkSettingArray{ GetComputeInstanceGroupInstanceTemplateNetworkSettingArgs{...} }
 type GetComputeInstanceGroupInstanceTemplateNetworkSettingArrayInput interface {
 	pulumi.Input
 
@@ -1723,7 +1723,7 @@ type GetComputeInstanceGroupInstanceTemplatePlacementPolicy struct {
 // GetComputeInstanceGroupInstanceTemplatePlacementPolicyInput is an input type that accepts GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs and GetComputeInstanceGroupInstanceTemplatePlacementPolicyOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplatePlacementPolicyInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs{...}
+//	GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs{...}
 type GetComputeInstanceGroupInstanceTemplatePlacementPolicyInput interface {
 	pulumi.Input
 
@@ -1758,11 +1758,11 @@ func (i GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs) ToGetCompute
 // GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrInput is an input type that accepts GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs, GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtr and GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs{...}
+//	        GetComputeInstanceGroupInstanceTemplatePlacementPolicyArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetComputeInstanceGroupInstanceTemplatePlacementPolicyPtrInput interface {
 	pulumi.Input
 
@@ -1859,7 +1859,7 @@ type GetComputeInstanceGroupInstanceTemplateResource struct {
 // GetComputeInstanceGroupInstanceTemplateResourceInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateResourceArgs and GetComputeInstanceGroupInstanceTemplateResourceOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateResourceInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateResourceArgs{...}
+//	GetComputeInstanceGroupInstanceTemplateResourceArgs{...}
 type GetComputeInstanceGroupInstanceTemplateResourceInput interface {
 	pulumi.Input
 
@@ -1889,7 +1889,7 @@ func (i GetComputeInstanceGroupInstanceTemplateResourceArgs) ToGetComputeInstanc
 // GetComputeInstanceGroupInstanceTemplateResourceArrayInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateResourceArray and GetComputeInstanceGroupInstanceTemplateResourceArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateResourceArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateResourceArray{ GetComputeInstanceGroupInstanceTemplateResourceArgs{...} }
+//	GetComputeInstanceGroupInstanceTemplateResourceArray{ GetComputeInstanceGroupInstanceTemplateResourceArgs{...} }
 type GetComputeInstanceGroupInstanceTemplateResourceArrayInput interface {
 	pulumi.Input
 
@@ -1969,7 +1969,7 @@ type GetComputeInstanceGroupInstanceTemplateSchedulingPolicy struct {
 // GetComputeInstanceGroupInstanceTemplateSchedulingPolicyInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArgs and GetComputeInstanceGroupInstanceTemplateSchedulingPolicyOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateSchedulingPolicyInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArgs{...}
+//	GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArgs{...}
 type GetComputeInstanceGroupInstanceTemplateSchedulingPolicyInput interface {
 	pulumi.Input
 
@@ -1997,7 +1997,7 @@ func (i GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArgs) ToGetComput
 // GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArrayInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArray and GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArray{ GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArgs{...} }
+//	GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArray{ GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArgs{...} }
 type GetComputeInstanceGroupInstanceTemplateSchedulingPolicyArrayInput interface {
 	pulumi.Input
 
@@ -2072,7 +2072,7 @@ type GetComputeInstanceGroupInstanceTemplateSecondaryDisk struct {
 // GetComputeInstanceGroupInstanceTemplateSecondaryDiskInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateSecondaryDiskArgs and GetComputeInstanceGroupInstanceTemplateSecondaryDiskOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateSecondaryDiskInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateSecondaryDiskArgs{...}
+//	GetComputeInstanceGroupInstanceTemplateSecondaryDiskArgs{...}
 type GetComputeInstanceGroupInstanceTemplateSecondaryDiskInput interface {
 	pulumi.Input
 
@@ -2106,7 +2106,7 @@ func (i GetComputeInstanceGroupInstanceTemplateSecondaryDiskArgs) ToGetComputeIn
 // GetComputeInstanceGroupInstanceTemplateSecondaryDiskArrayInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateSecondaryDiskArray and GetComputeInstanceGroupInstanceTemplateSecondaryDiskArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateSecondaryDiskArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateSecondaryDiskArray{ GetComputeInstanceGroupInstanceTemplateSecondaryDiskArgs{...} }
+//	GetComputeInstanceGroupInstanceTemplateSecondaryDiskArray{ GetComputeInstanceGroupInstanceTemplateSecondaryDiskArgs{...} }
 type GetComputeInstanceGroupInstanceTemplateSecondaryDiskArrayInput interface {
 	pulumi.Input
 
@@ -2200,7 +2200,7 @@ type GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParam struct 
 // GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamArgs and GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamArgs{...}
+//	GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamArgs{...}
 type GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamInput interface {
 	pulumi.Input
 
@@ -2236,7 +2236,7 @@ func (i GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamArgs)
 // GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamArrayInput is an input type that accepts GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamArray and GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamArrayInput` via:
 //
-//          GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamArray{ GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamArgs{...} }
+//	GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamArray{ GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamArgs{...} }
 type GetComputeInstanceGroupInstanceTemplateSecondaryDiskInitializeParamArrayInput interface {
 	pulumi.Input
 
@@ -2339,7 +2339,7 @@ type GetComputeInstanceGroupLoadBalancer struct {
 // GetComputeInstanceGroupLoadBalancerInput is an input type that accepts GetComputeInstanceGroupLoadBalancerArgs and GetComputeInstanceGroupLoadBalancerOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupLoadBalancerInput` via:
 //
-//          GetComputeInstanceGroupLoadBalancerArgs{...}
+//	GetComputeInstanceGroupLoadBalancerArgs{...}
 type GetComputeInstanceGroupLoadBalancerInput interface {
 	pulumi.Input
 
@@ -2377,7 +2377,7 @@ func (i GetComputeInstanceGroupLoadBalancerArgs) ToGetComputeInstanceGroupLoadBa
 // GetComputeInstanceGroupLoadBalancerArrayInput is an input type that accepts GetComputeInstanceGroupLoadBalancerArray and GetComputeInstanceGroupLoadBalancerArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupLoadBalancerArrayInput` via:
 //
-//          GetComputeInstanceGroupLoadBalancerArray{ GetComputeInstanceGroupLoadBalancerArgs{...} }
+//	GetComputeInstanceGroupLoadBalancerArray{ GetComputeInstanceGroupLoadBalancerArgs{...} }
 type GetComputeInstanceGroupLoadBalancerArrayInput interface {
 	pulumi.Input
 
@@ -2473,7 +2473,7 @@ type GetComputeInstanceGroupLoadBalancerState struct {
 // GetComputeInstanceGroupLoadBalancerStateInput is an input type that accepts GetComputeInstanceGroupLoadBalancerStateArgs and GetComputeInstanceGroupLoadBalancerStateOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupLoadBalancerStateInput` via:
 //
-//          GetComputeInstanceGroupLoadBalancerStateArgs{...}
+//	GetComputeInstanceGroupLoadBalancerStateArgs{...}
 type GetComputeInstanceGroupLoadBalancerStateInput interface {
 	pulumi.Input
 
@@ -2503,7 +2503,7 @@ func (i GetComputeInstanceGroupLoadBalancerStateArgs) ToGetComputeInstanceGroupL
 // GetComputeInstanceGroupLoadBalancerStateArrayInput is an input type that accepts GetComputeInstanceGroupLoadBalancerStateArray and GetComputeInstanceGroupLoadBalancerStateArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupLoadBalancerStateArrayInput` via:
 //
-//          GetComputeInstanceGroupLoadBalancerStateArray{ GetComputeInstanceGroupLoadBalancerStateArgs{...} }
+//	GetComputeInstanceGroupLoadBalancerStateArray{ GetComputeInstanceGroupLoadBalancerStateArgs{...} }
 type GetComputeInstanceGroupLoadBalancerStateArrayInput interface {
 	pulumi.Input
 
@@ -2581,7 +2581,7 @@ type GetComputeInstanceGroupScalePolicy struct {
 // GetComputeInstanceGroupScalePolicyInput is an input type that accepts GetComputeInstanceGroupScalePolicyArgs and GetComputeInstanceGroupScalePolicyOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupScalePolicyInput` via:
 //
-//          GetComputeInstanceGroupScalePolicyArgs{...}
+//	GetComputeInstanceGroupScalePolicyArgs{...}
 type GetComputeInstanceGroupScalePolicyInput interface {
 	pulumi.Input
 
@@ -2613,7 +2613,7 @@ func (i GetComputeInstanceGroupScalePolicyArgs) ToGetComputeInstanceGroupScalePo
 // GetComputeInstanceGroupScalePolicyArrayInput is an input type that accepts GetComputeInstanceGroupScalePolicyArray and GetComputeInstanceGroupScalePolicyArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupScalePolicyArrayInput` via:
 //
-//          GetComputeInstanceGroupScalePolicyArray{ GetComputeInstanceGroupScalePolicyArgs{...} }
+//	GetComputeInstanceGroupScalePolicyArray{ GetComputeInstanceGroupScalePolicyArgs{...} }
 type GetComputeInstanceGroupScalePolicyArrayInput interface {
 	pulumi.Input
 
@@ -2717,7 +2717,7 @@ type GetComputeInstanceGroupScalePolicyAutoScale struct {
 // GetComputeInstanceGroupScalePolicyAutoScaleInput is an input type that accepts GetComputeInstanceGroupScalePolicyAutoScaleArgs and GetComputeInstanceGroupScalePolicyAutoScaleOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupScalePolicyAutoScaleInput` via:
 //
-//          GetComputeInstanceGroupScalePolicyAutoScaleArgs{...}
+//	GetComputeInstanceGroupScalePolicyAutoScaleArgs{...}
 type GetComputeInstanceGroupScalePolicyAutoScaleInput interface {
 	pulumi.Input
 
@@ -2764,7 +2764,7 @@ func (i GetComputeInstanceGroupScalePolicyAutoScaleArgs) ToGetComputeInstanceGro
 // GetComputeInstanceGroupScalePolicyAutoScaleArrayInput is an input type that accepts GetComputeInstanceGroupScalePolicyAutoScaleArray and GetComputeInstanceGroupScalePolicyAutoScaleArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupScalePolicyAutoScaleArrayInput` via:
 //
-//          GetComputeInstanceGroupScalePolicyAutoScaleArray{ GetComputeInstanceGroupScalePolicyAutoScaleArgs{...} }
+//	GetComputeInstanceGroupScalePolicyAutoScaleArray{ GetComputeInstanceGroupScalePolicyAutoScaleArgs{...} }
 type GetComputeInstanceGroupScalePolicyAutoScaleArrayInput interface {
 	pulumi.Input
 
@@ -2895,7 +2895,7 @@ type GetComputeInstanceGroupScalePolicyAutoScaleCustomRule struct {
 // GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleInput is an input type that accepts GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs and GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleInput` via:
 //
-//          GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs{...}
+//	GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs{...}
 type GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleInput interface {
 	pulumi.Input
 
@@ -2943,7 +2943,7 @@ func (i GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs) ToGetComputeI
 // GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleArrayInput is an input type that accepts GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleArray and GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleArrayInput` via:
 //
-//          GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleArray{ GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs{...} }
+//	GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleArray{ GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleArgs{...} }
 type GetComputeInstanceGroupScalePolicyAutoScaleCustomRuleArrayInput interface {
 	pulumi.Input
 
@@ -3050,7 +3050,7 @@ type GetComputeInstanceGroupScalePolicyFixedScale struct {
 // GetComputeInstanceGroupScalePolicyFixedScaleInput is an input type that accepts GetComputeInstanceGroupScalePolicyFixedScaleArgs and GetComputeInstanceGroupScalePolicyFixedScaleOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupScalePolicyFixedScaleInput` via:
 //
-//          GetComputeInstanceGroupScalePolicyFixedScaleArgs{...}
+//	GetComputeInstanceGroupScalePolicyFixedScaleArgs{...}
 type GetComputeInstanceGroupScalePolicyFixedScaleInput interface {
 	pulumi.Input
 
@@ -3078,7 +3078,7 @@ func (i GetComputeInstanceGroupScalePolicyFixedScaleArgs) ToGetComputeInstanceGr
 // GetComputeInstanceGroupScalePolicyFixedScaleArrayInput is an input type that accepts GetComputeInstanceGroupScalePolicyFixedScaleArray and GetComputeInstanceGroupScalePolicyFixedScaleArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupScalePolicyFixedScaleArrayInput` via:
 //
-//          GetComputeInstanceGroupScalePolicyFixedScaleArray{ GetComputeInstanceGroupScalePolicyFixedScaleArgs{...} }
+//	GetComputeInstanceGroupScalePolicyFixedScaleArray{ GetComputeInstanceGroupScalePolicyFixedScaleArgs{...} }
 type GetComputeInstanceGroupScalePolicyFixedScaleArrayInput interface {
 	pulumi.Input
 
@@ -3166,7 +3166,7 @@ type GetComputeInstanceGroupScalePolicyTestAutoScale struct {
 // GetComputeInstanceGroupScalePolicyTestAutoScaleInput is an input type that accepts GetComputeInstanceGroupScalePolicyTestAutoScaleArgs and GetComputeInstanceGroupScalePolicyTestAutoScaleOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupScalePolicyTestAutoScaleInput` via:
 //
-//          GetComputeInstanceGroupScalePolicyTestAutoScaleArgs{...}
+//	GetComputeInstanceGroupScalePolicyTestAutoScaleArgs{...}
 type GetComputeInstanceGroupScalePolicyTestAutoScaleInput interface {
 	pulumi.Input
 
@@ -3213,7 +3213,7 @@ func (i GetComputeInstanceGroupScalePolicyTestAutoScaleArgs) ToGetComputeInstanc
 // GetComputeInstanceGroupScalePolicyTestAutoScaleArrayInput is an input type that accepts GetComputeInstanceGroupScalePolicyTestAutoScaleArray and GetComputeInstanceGroupScalePolicyTestAutoScaleArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupScalePolicyTestAutoScaleArrayInput` via:
 //
-//          GetComputeInstanceGroupScalePolicyTestAutoScaleArray{ GetComputeInstanceGroupScalePolicyTestAutoScaleArgs{...} }
+//	GetComputeInstanceGroupScalePolicyTestAutoScaleArray{ GetComputeInstanceGroupScalePolicyTestAutoScaleArgs{...} }
 type GetComputeInstanceGroupScalePolicyTestAutoScaleArrayInput interface {
 	pulumi.Input
 
@@ -3344,7 +3344,7 @@ type GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRule struct {
 // GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleInput is an input type that accepts GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs and GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleInput` via:
 //
-//          GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs{...}
+//	GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs{...}
 type GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleInput interface {
 	pulumi.Input
 
@@ -3392,7 +3392,7 @@ func (i GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs) ToGetComp
 // GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArrayInput is an input type that accepts GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArray and GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArrayInput` via:
 //
-//          GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArray{ GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs{...} }
+//	GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArray{ GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArgs{...} }
 type GetComputeInstanceGroupScalePolicyTestAutoScaleCustomRuleArrayInput interface {
 	pulumi.Input
 
@@ -3501,7 +3501,7 @@ type GetComputeInstanceLocalDisk struct {
 // GetComputeInstanceLocalDiskInput is an input type that accepts GetComputeInstanceLocalDiskArgs and GetComputeInstanceLocalDiskOutput values.
 // You can construct a concrete instance of `GetComputeInstanceLocalDiskInput` via:
 //
-//          GetComputeInstanceLocalDiskArgs{...}
+//	GetComputeInstanceLocalDiskArgs{...}
 type GetComputeInstanceLocalDiskInput interface {
 	pulumi.Input
 
@@ -3531,7 +3531,7 @@ func (i GetComputeInstanceLocalDiskArgs) ToGetComputeInstanceLocalDiskOutputWith
 // GetComputeInstanceLocalDiskArrayInput is an input type that accepts GetComputeInstanceLocalDiskArray and GetComputeInstanceLocalDiskArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceLocalDiskArrayInput` via:
 //
-//          GetComputeInstanceLocalDiskArray{ GetComputeInstanceLocalDiskArgs{...} }
+//	GetComputeInstanceLocalDiskArray{ GetComputeInstanceLocalDiskArgs{...} }
 type GetComputeInstanceLocalDiskArrayInput interface {
 	pulumi.Input
 
@@ -3607,7 +3607,7 @@ type GetComputeInstanceMetadataOptions struct {
 // GetComputeInstanceMetadataOptionsInput is an input type that accepts GetComputeInstanceMetadataOptionsArgs and GetComputeInstanceMetadataOptionsOutput values.
 // You can construct a concrete instance of `GetComputeInstanceMetadataOptionsInput` via:
 //
-//          GetComputeInstanceMetadataOptionsArgs{...}
+//	GetComputeInstanceMetadataOptionsArgs{...}
 type GetComputeInstanceMetadataOptionsInput interface {
 	pulumi.Input
 
@@ -3645,11 +3645,11 @@ func (i GetComputeInstanceMetadataOptionsArgs) ToGetComputeInstanceMetadataOptio
 // GetComputeInstanceMetadataOptionsPtrInput is an input type that accepts GetComputeInstanceMetadataOptionsArgs, GetComputeInstanceMetadataOptionsPtr and GetComputeInstanceMetadataOptionsPtrOutput values.
 // You can construct a concrete instance of `GetComputeInstanceMetadataOptionsPtrInput` via:
 //
-//          GetComputeInstanceMetadataOptionsArgs{...}
+//	        GetComputeInstanceMetadataOptionsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetComputeInstanceMetadataOptionsPtrInput interface {
 	pulumi.Input
 
@@ -3807,7 +3807,7 @@ type GetComputeInstanceNetworkInterface struct {
 // GetComputeInstanceNetworkInterfaceInput is an input type that accepts GetComputeInstanceNetworkInterfaceArgs and GetComputeInstanceNetworkInterfaceOutput values.
 // You can construct a concrete instance of `GetComputeInstanceNetworkInterfaceInput` via:
 //
-//          GetComputeInstanceNetworkInterfaceArgs{...}
+//	GetComputeInstanceNetworkInterfaceArgs{...}
 type GetComputeInstanceNetworkInterfaceInput interface {
 	pulumi.Input
 
@@ -3859,7 +3859,7 @@ func (i GetComputeInstanceNetworkInterfaceArgs) ToGetComputeInstanceNetworkInter
 // GetComputeInstanceNetworkInterfaceArrayInput is an input type that accepts GetComputeInstanceNetworkInterfaceArray and GetComputeInstanceNetworkInterfaceArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceNetworkInterfaceArrayInput` via:
 //
-//          GetComputeInstanceNetworkInterfaceArray{ GetComputeInstanceNetworkInterfaceArgs{...} }
+//	GetComputeInstanceNetworkInterfaceArray{ GetComputeInstanceNetworkInterfaceArgs{...} }
 type GetComputeInstanceNetworkInterfaceArrayInput interface {
 	pulumi.Input
 
@@ -4003,7 +4003,7 @@ type GetComputeInstanceNetworkInterfaceDnsRecord struct {
 // GetComputeInstanceNetworkInterfaceDnsRecordInput is an input type that accepts GetComputeInstanceNetworkInterfaceDnsRecordArgs and GetComputeInstanceNetworkInterfaceDnsRecordOutput values.
 // You can construct a concrete instance of `GetComputeInstanceNetworkInterfaceDnsRecordInput` via:
 //
-//          GetComputeInstanceNetworkInterfaceDnsRecordArgs{...}
+//	GetComputeInstanceNetworkInterfaceDnsRecordArgs{...}
 type GetComputeInstanceNetworkInterfaceDnsRecordInput interface {
 	pulumi.Input
 
@@ -4037,7 +4037,7 @@ func (i GetComputeInstanceNetworkInterfaceDnsRecordArgs) ToGetComputeInstanceNet
 // GetComputeInstanceNetworkInterfaceDnsRecordArrayInput is an input type that accepts GetComputeInstanceNetworkInterfaceDnsRecordArray and GetComputeInstanceNetworkInterfaceDnsRecordArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceNetworkInterfaceDnsRecordArrayInput` via:
 //
-//          GetComputeInstanceNetworkInterfaceDnsRecordArray{ GetComputeInstanceNetworkInterfaceDnsRecordArgs{...} }
+//	GetComputeInstanceNetworkInterfaceDnsRecordArray{ GetComputeInstanceNetworkInterfaceDnsRecordArgs{...} }
 type GetComputeInstanceNetworkInterfaceDnsRecordArrayInput interface {
 	pulumi.Input
 
@@ -4127,7 +4127,7 @@ type GetComputeInstanceNetworkInterfaceIpv6DnsRecord struct {
 // GetComputeInstanceNetworkInterfaceIpv6DnsRecordInput is an input type that accepts GetComputeInstanceNetworkInterfaceIpv6DnsRecordArgs and GetComputeInstanceNetworkInterfaceIpv6DnsRecordOutput values.
 // You can construct a concrete instance of `GetComputeInstanceNetworkInterfaceIpv6DnsRecordInput` via:
 //
-//          GetComputeInstanceNetworkInterfaceIpv6DnsRecordArgs{...}
+//	GetComputeInstanceNetworkInterfaceIpv6DnsRecordArgs{...}
 type GetComputeInstanceNetworkInterfaceIpv6DnsRecordInput interface {
 	pulumi.Input
 
@@ -4161,7 +4161,7 @@ func (i GetComputeInstanceNetworkInterfaceIpv6DnsRecordArgs) ToGetComputeInstanc
 // GetComputeInstanceNetworkInterfaceIpv6DnsRecordArrayInput is an input type that accepts GetComputeInstanceNetworkInterfaceIpv6DnsRecordArray and GetComputeInstanceNetworkInterfaceIpv6DnsRecordArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceNetworkInterfaceIpv6DnsRecordArrayInput` via:
 //
-//          GetComputeInstanceNetworkInterfaceIpv6DnsRecordArray{ GetComputeInstanceNetworkInterfaceIpv6DnsRecordArgs{...} }
+//	GetComputeInstanceNetworkInterfaceIpv6DnsRecordArray{ GetComputeInstanceNetworkInterfaceIpv6DnsRecordArgs{...} }
 type GetComputeInstanceNetworkInterfaceIpv6DnsRecordArrayInput interface {
 	pulumi.Input
 
@@ -4251,7 +4251,7 @@ type GetComputeInstanceNetworkInterfaceNatDnsRecord struct {
 // GetComputeInstanceNetworkInterfaceNatDnsRecordInput is an input type that accepts GetComputeInstanceNetworkInterfaceNatDnsRecordArgs and GetComputeInstanceNetworkInterfaceNatDnsRecordOutput values.
 // You can construct a concrete instance of `GetComputeInstanceNetworkInterfaceNatDnsRecordInput` via:
 //
-//          GetComputeInstanceNetworkInterfaceNatDnsRecordArgs{...}
+//	GetComputeInstanceNetworkInterfaceNatDnsRecordArgs{...}
 type GetComputeInstanceNetworkInterfaceNatDnsRecordInput interface {
 	pulumi.Input
 
@@ -4285,7 +4285,7 @@ func (i GetComputeInstanceNetworkInterfaceNatDnsRecordArgs) ToGetComputeInstance
 // GetComputeInstanceNetworkInterfaceNatDnsRecordArrayInput is an input type that accepts GetComputeInstanceNetworkInterfaceNatDnsRecordArray and GetComputeInstanceNetworkInterfaceNatDnsRecordArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceNetworkInterfaceNatDnsRecordArrayInput` via:
 //
-//          GetComputeInstanceNetworkInterfaceNatDnsRecordArray{ GetComputeInstanceNetworkInterfaceNatDnsRecordArgs{...} }
+//	GetComputeInstanceNetworkInterfaceNatDnsRecordArray{ GetComputeInstanceNetworkInterfaceNatDnsRecordArgs{...} }
 type GetComputeInstanceNetworkInterfaceNatDnsRecordArrayInput interface {
 	pulumi.Input
 
@@ -4371,7 +4371,7 @@ type GetComputeInstancePlacementPolicy struct {
 // GetComputeInstancePlacementPolicyInput is an input type that accepts GetComputeInstancePlacementPolicyArgs and GetComputeInstancePlacementPolicyOutput values.
 // You can construct a concrete instance of `GetComputeInstancePlacementPolicyInput` via:
 //
-//          GetComputeInstancePlacementPolicyArgs{...}
+//	GetComputeInstancePlacementPolicyArgs{...}
 type GetComputeInstancePlacementPolicyInput interface {
 	pulumi.Input
 
@@ -4409,11 +4409,11 @@ func (i GetComputeInstancePlacementPolicyArgs) ToGetComputeInstancePlacementPoli
 // GetComputeInstancePlacementPolicyPtrInput is an input type that accepts GetComputeInstancePlacementPolicyArgs, GetComputeInstancePlacementPolicyPtr and GetComputeInstancePlacementPolicyPtrOutput values.
 // You can construct a concrete instance of `GetComputeInstancePlacementPolicyPtrInput` via:
 //
-//          GetComputeInstancePlacementPolicyArgs{...}
+//	        GetComputeInstancePlacementPolicyArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetComputeInstancePlacementPolicyPtrInput interface {
 	pulumi.Input
 
@@ -4530,7 +4530,7 @@ type GetComputeInstancePlacementPolicyHostAffinityRule struct {
 // GetComputeInstancePlacementPolicyHostAffinityRuleInput is an input type that accepts GetComputeInstancePlacementPolicyHostAffinityRuleArgs and GetComputeInstancePlacementPolicyHostAffinityRuleOutput values.
 // You can construct a concrete instance of `GetComputeInstancePlacementPolicyHostAffinityRuleInput` via:
 //
-//          GetComputeInstancePlacementPolicyHostAffinityRuleArgs{...}
+//	GetComputeInstancePlacementPolicyHostAffinityRuleArgs{...}
 type GetComputeInstancePlacementPolicyHostAffinityRuleInput interface {
 	pulumi.Input
 
@@ -4561,7 +4561,7 @@ func (i GetComputeInstancePlacementPolicyHostAffinityRuleArgs) ToGetComputeInsta
 // GetComputeInstancePlacementPolicyHostAffinityRuleArrayInput is an input type that accepts GetComputeInstancePlacementPolicyHostAffinityRuleArray and GetComputeInstancePlacementPolicyHostAffinityRuleArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstancePlacementPolicyHostAffinityRuleArrayInput` via:
 //
-//          GetComputeInstancePlacementPolicyHostAffinityRuleArray{ GetComputeInstancePlacementPolicyHostAffinityRuleArgs{...} }
+//	GetComputeInstancePlacementPolicyHostAffinityRuleArray{ GetComputeInstancePlacementPolicyHostAffinityRuleArgs{...} }
 type GetComputeInstancePlacementPolicyHostAffinityRuleArrayInput interface {
 	pulumi.Input
 
@@ -4641,7 +4641,7 @@ type GetComputeInstanceResource struct {
 // GetComputeInstanceResourceInput is an input type that accepts GetComputeInstanceResourceArgs and GetComputeInstanceResourceOutput values.
 // You can construct a concrete instance of `GetComputeInstanceResourceInput` via:
 //
-//          GetComputeInstanceResourceArgs{...}
+//	GetComputeInstanceResourceArgs{...}
 type GetComputeInstanceResourceInput interface {
 	pulumi.Input
 
@@ -4671,7 +4671,7 @@ func (i GetComputeInstanceResourceArgs) ToGetComputeInstanceResourceOutputWithCo
 // GetComputeInstanceResourceArrayInput is an input type that accepts GetComputeInstanceResourceArray and GetComputeInstanceResourceArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceResourceArrayInput` via:
 //
-//          GetComputeInstanceResourceArray{ GetComputeInstanceResourceArgs{...} }
+//	GetComputeInstanceResourceArray{ GetComputeInstanceResourceArgs{...} }
 type GetComputeInstanceResourceArrayInput interface {
 	pulumi.Input
 
@@ -4751,7 +4751,7 @@ type GetComputeInstanceSchedulingPolicy struct {
 // GetComputeInstanceSchedulingPolicyInput is an input type that accepts GetComputeInstanceSchedulingPolicyArgs and GetComputeInstanceSchedulingPolicyOutput values.
 // You can construct a concrete instance of `GetComputeInstanceSchedulingPolicyInput` via:
 //
-//          GetComputeInstanceSchedulingPolicyArgs{...}
+//	GetComputeInstanceSchedulingPolicyArgs{...}
 type GetComputeInstanceSchedulingPolicyInput interface {
 	pulumi.Input
 
@@ -4779,7 +4779,7 @@ func (i GetComputeInstanceSchedulingPolicyArgs) ToGetComputeInstanceSchedulingPo
 // GetComputeInstanceSchedulingPolicyArrayInput is an input type that accepts GetComputeInstanceSchedulingPolicyArray and GetComputeInstanceSchedulingPolicyArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceSchedulingPolicyArrayInput` via:
 //
-//          GetComputeInstanceSchedulingPolicyArray{ GetComputeInstanceSchedulingPolicyArgs{...} }
+//	GetComputeInstanceSchedulingPolicyArray{ GetComputeInstanceSchedulingPolicyArgs{...} }
 type GetComputeInstanceSchedulingPolicyArrayInput interface {
 	pulumi.Input
 
@@ -4854,7 +4854,7 @@ type GetComputeInstanceSecondaryDisk struct {
 // GetComputeInstanceSecondaryDiskInput is an input type that accepts GetComputeInstanceSecondaryDiskArgs and GetComputeInstanceSecondaryDiskOutput values.
 // You can construct a concrete instance of `GetComputeInstanceSecondaryDiskInput` via:
 //
-//          GetComputeInstanceSecondaryDiskArgs{...}
+//	GetComputeInstanceSecondaryDiskArgs{...}
 type GetComputeInstanceSecondaryDiskInput interface {
 	pulumi.Input
 
@@ -4888,7 +4888,7 @@ func (i GetComputeInstanceSecondaryDiskArgs) ToGetComputeInstanceSecondaryDiskOu
 // GetComputeInstanceSecondaryDiskArrayInput is an input type that accepts GetComputeInstanceSecondaryDiskArray and GetComputeInstanceSecondaryDiskArrayOutput values.
 // You can construct a concrete instance of `GetComputeInstanceSecondaryDiskArrayInput` via:
 //
-//          GetComputeInstanceSecondaryDiskArray{ GetComputeInstanceSecondaryDiskArgs{...} }
+//	GetComputeInstanceSecondaryDiskArray{ GetComputeInstanceSecondaryDiskArgs{...} }
 type GetComputeInstanceSecondaryDiskArrayInput interface {
 	pulumi.Input
 
@@ -4976,7 +4976,7 @@ type GetDataprocClusterClusterConfig struct {
 // GetDataprocClusterClusterConfigInput is an input type that accepts GetDataprocClusterClusterConfigArgs and GetDataprocClusterClusterConfigOutput values.
 // You can construct a concrete instance of `GetDataprocClusterClusterConfigInput` via:
 //
-//          GetDataprocClusterClusterConfigArgs{...}
+//	GetDataprocClusterClusterConfigArgs{...}
 type GetDataprocClusterClusterConfigInput interface {
 	pulumi.Input
 
@@ -5008,7 +5008,7 @@ func (i GetDataprocClusterClusterConfigArgs) ToGetDataprocClusterClusterConfigOu
 // GetDataprocClusterClusterConfigArrayInput is an input type that accepts GetDataprocClusterClusterConfigArray and GetDataprocClusterClusterConfigArrayOutput values.
 // You can construct a concrete instance of `GetDataprocClusterClusterConfigArrayInput` via:
 //
-//          GetDataprocClusterClusterConfigArray{ GetDataprocClusterClusterConfigArgs{...} }
+//	GetDataprocClusterClusterConfigArray{ GetDataprocClusterClusterConfigArgs{...} }
 type GetDataprocClusterClusterConfigArrayInput interface {
 	pulumi.Input
 
@@ -5093,7 +5093,7 @@ type GetDataprocClusterClusterConfigHadoop struct {
 // GetDataprocClusterClusterConfigHadoopInput is an input type that accepts GetDataprocClusterClusterConfigHadoopArgs and GetDataprocClusterClusterConfigHadoopOutput values.
 // You can construct a concrete instance of `GetDataprocClusterClusterConfigHadoopInput` via:
 //
-//          GetDataprocClusterClusterConfigHadoopArgs{...}
+//	GetDataprocClusterClusterConfigHadoopArgs{...}
 type GetDataprocClusterClusterConfigHadoopInput interface {
 	pulumi.Input
 
@@ -5125,7 +5125,7 @@ func (i GetDataprocClusterClusterConfigHadoopArgs) ToGetDataprocClusterClusterCo
 // GetDataprocClusterClusterConfigHadoopArrayInput is an input type that accepts GetDataprocClusterClusterConfigHadoopArray and GetDataprocClusterClusterConfigHadoopArrayOutput values.
 // You can construct a concrete instance of `GetDataprocClusterClusterConfigHadoopArrayInput` via:
 //
-//          GetDataprocClusterClusterConfigHadoopArray{ GetDataprocClusterClusterConfigHadoopArgs{...} }
+//	GetDataprocClusterClusterConfigHadoopArray{ GetDataprocClusterClusterConfigHadoopArgs{...} }
 type GetDataprocClusterClusterConfigHadoopArrayInput interface {
 	pulumi.Input
 
@@ -5218,7 +5218,7 @@ type GetDataprocClusterClusterConfigSubclusterSpec struct {
 // GetDataprocClusterClusterConfigSubclusterSpecInput is an input type that accepts GetDataprocClusterClusterConfigSubclusterSpecArgs and GetDataprocClusterClusterConfigSubclusterSpecOutput values.
 // You can construct a concrete instance of `GetDataprocClusterClusterConfigSubclusterSpecInput` via:
 //
-//          GetDataprocClusterClusterConfigSubclusterSpecArgs{...}
+//	GetDataprocClusterClusterConfigSubclusterSpecArgs{...}
 type GetDataprocClusterClusterConfigSubclusterSpecInput interface {
 	pulumi.Input
 
@@ -5260,7 +5260,7 @@ func (i GetDataprocClusterClusterConfigSubclusterSpecArgs) ToGetDataprocClusterC
 // GetDataprocClusterClusterConfigSubclusterSpecArrayInput is an input type that accepts GetDataprocClusterClusterConfigSubclusterSpecArray and GetDataprocClusterClusterConfigSubclusterSpecArrayOutput values.
 // You can construct a concrete instance of `GetDataprocClusterClusterConfigSubclusterSpecArrayInput` via:
 //
-//          GetDataprocClusterClusterConfigSubclusterSpecArray{ GetDataprocClusterClusterConfigSubclusterSpecArgs{...} }
+//	GetDataprocClusterClusterConfigSubclusterSpecArray{ GetDataprocClusterClusterConfigSubclusterSpecArgs{...} }
 type GetDataprocClusterClusterConfigSubclusterSpecArrayInput interface {
 	pulumi.Input
 
@@ -5380,7 +5380,7 @@ type GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfig struct {
 // GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigInput is an input type that accepts GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs and GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigOutput values.
 // You can construct a concrete instance of `GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigInput` via:
 //
-//          GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs{...}
+//	GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs{...}
 type GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigInput interface {
 	pulumi.Input
 
@@ -5420,7 +5420,7 @@ func (i GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs) ToGe
 // GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArrayInput is an input type that accepts GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArray and GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArrayOutput values.
 // You can construct a concrete instance of `GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArrayInput` via:
 //
-//          GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArray{ GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs{...} }
+//	GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArray{ GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArgs{...} }
 type GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArrayInput interface {
 	pulumi.Input
 
@@ -5531,7 +5531,7 @@ type GetDataprocClusterClusterConfigSubclusterSpecResource struct {
 // GetDataprocClusterClusterConfigSubclusterSpecResourceInput is an input type that accepts GetDataprocClusterClusterConfigSubclusterSpecResourceArgs and GetDataprocClusterClusterConfigSubclusterSpecResourceOutput values.
 // You can construct a concrete instance of `GetDataprocClusterClusterConfigSubclusterSpecResourceInput` via:
 //
-//          GetDataprocClusterClusterConfigSubclusterSpecResourceArgs{...}
+//	GetDataprocClusterClusterConfigSubclusterSpecResourceArgs{...}
 type GetDataprocClusterClusterConfigSubclusterSpecResourceInput interface {
 	pulumi.Input
 
@@ -5563,7 +5563,7 @@ func (i GetDataprocClusterClusterConfigSubclusterSpecResourceArgs) ToGetDataproc
 // GetDataprocClusterClusterConfigSubclusterSpecResourceArrayInput is an input type that accepts GetDataprocClusterClusterConfigSubclusterSpecResourceArray and GetDataprocClusterClusterConfigSubclusterSpecResourceArrayOutput values.
 // You can construct a concrete instance of `GetDataprocClusterClusterConfigSubclusterSpecResourceArrayInput` via:
 //
-//          GetDataprocClusterClusterConfigSubclusterSpecResourceArray{ GetDataprocClusterClusterConfigSubclusterSpecResourceArgs{...} }
+//	GetDataprocClusterClusterConfigSubclusterSpecResourceArray{ GetDataprocClusterClusterConfigSubclusterSpecResourceArgs{...} }
 type GetDataprocClusterClusterConfigSubclusterSpecResourceArrayInput interface {
 	pulumi.Input
 
@@ -5643,7 +5643,7 @@ type GetFunctionScalingPolicyPolicy struct {
 // GetFunctionScalingPolicyPolicyInput is an input type that accepts GetFunctionScalingPolicyPolicyArgs and GetFunctionScalingPolicyPolicyOutput values.
 // You can construct a concrete instance of `GetFunctionScalingPolicyPolicyInput` via:
 //
-//          GetFunctionScalingPolicyPolicyArgs{...}
+//	GetFunctionScalingPolicyPolicyArgs{...}
 type GetFunctionScalingPolicyPolicyInput interface {
 	pulumi.Input
 
@@ -5672,7 +5672,7 @@ func (i GetFunctionScalingPolicyPolicyArgs) ToGetFunctionScalingPolicyPolicyOutp
 // GetFunctionScalingPolicyPolicyArrayInput is an input type that accepts GetFunctionScalingPolicyPolicyArray and GetFunctionScalingPolicyPolicyArrayOutput values.
 // You can construct a concrete instance of `GetFunctionScalingPolicyPolicyArrayInput` via:
 //
-//          GetFunctionScalingPolicyPolicyArray{ GetFunctionScalingPolicyPolicyArgs{...} }
+//	GetFunctionScalingPolicyPolicyArray{ GetFunctionScalingPolicyPolicyArgs{...} }
 type GetFunctionScalingPolicyPolicyArrayInput interface {
 	pulumi.Input
 
@@ -5750,7 +5750,7 @@ type GetFunctionSecret struct {
 // GetFunctionSecretInput is an input type that accepts GetFunctionSecretArgs and GetFunctionSecretOutput values.
 // You can construct a concrete instance of `GetFunctionSecretInput` via:
 //
-//          GetFunctionSecretArgs{...}
+//	GetFunctionSecretArgs{...}
 type GetFunctionSecretInput interface {
 	pulumi.Input
 
@@ -5780,7 +5780,7 @@ func (i GetFunctionSecretArgs) ToGetFunctionSecretOutputWithContext(ctx context.
 // GetFunctionSecretArrayInput is an input type that accepts GetFunctionSecretArray and GetFunctionSecretArrayOutput values.
 // You can construct a concrete instance of `GetFunctionSecretArrayInput` via:
 //
-//          GetFunctionSecretArray{ GetFunctionSecretArgs{...} }
+//	GetFunctionSecretArray{ GetFunctionSecretArgs{...} }
 type GetFunctionSecretArrayInput interface {
 	pulumi.Input
 
@@ -5860,7 +5860,7 @@ type GetFunctionTriggerDlq struct {
 // GetFunctionTriggerDlqInput is an input type that accepts GetFunctionTriggerDlqArgs and GetFunctionTriggerDlqOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerDlqInput` via:
 //
-//          GetFunctionTriggerDlqArgs{...}
+//	GetFunctionTriggerDlqArgs{...}
 type GetFunctionTriggerDlqInput interface {
 	pulumi.Input
 
@@ -5888,7 +5888,7 @@ func (i GetFunctionTriggerDlqArgs) ToGetFunctionTriggerDlqOutputWithContext(ctx 
 // GetFunctionTriggerDlqArrayInput is an input type that accepts GetFunctionTriggerDlqArray and GetFunctionTriggerDlqArrayOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerDlqArrayInput` via:
 //
-//          GetFunctionTriggerDlqArray{ GetFunctionTriggerDlqArgs{...} }
+//	GetFunctionTriggerDlqArray{ GetFunctionTriggerDlqArgs{...} }
 type GetFunctionTriggerDlqArrayInput interface {
 	pulumi.Input
 
@@ -5963,7 +5963,7 @@ type GetFunctionTriggerFunction struct {
 // GetFunctionTriggerFunctionInput is an input type that accepts GetFunctionTriggerFunctionArgs and GetFunctionTriggerFunctionOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerFunctionInput` via:
 //
-//          GetFunctionTriggerFunctionArgs{...}
+//	GetFunctionTriggerFunctionArgs{...}
 type GetFunctionTriggerFunctionInput interface {
 	pulumi.Input
 
@@ -5994,7 +5994,7 @@ func (i GetFunctionTriggerFunctionArgs) ToGetFunctionTriggerFunctionOutputWithCo
 // GetFunctionTriggerFunctionArrayInput is an input type that accepts GetFunctionTriggerFunctionArray and GetFunctionTriggerFunctionArrayOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerFunctionArrayInput` via:
 //
-//          GetFunctionTriggerFunctionArray{ GetFunctionTriggerFunctionArgs{...} }
+//	GetFunctionTriggerFunctionArray{ GetFunctionTriggerFunctionArgs{...} }
 type GetFunctionTriggerFunctionArrayInput interface {
 	pulumi.Input
 
@@ -6079,7 +6079,7 @@ type GetFunctionTriggerIot struct {
 // GetFunctionTriggerIotInput is an input type that accepts GetFunctionTriggerIotArgs and GetFunctionTriggerIotOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerIotInput` via:
 //
-//          GetFunctionTriggerIotArgs{...}
+//	GetFunctionTriggerIotArgs{...}
 type GetFunctionTriggerIotInput interface {
 	pulumi.Input
 
@@ -6108,7 +6108,7 @@ func (i GetFunctionTriggerIotArgs) ToGetFunctionTriggerIotOutputWithContext(ctx 
 // GetFunctionTriggerIotArrayInput is an input type that accepts GetFunctionTriggerIotArray and GetFunctionTriggerIotArrayOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerIotArrayInput` via:
 //
-//          GetFunctionTriggerIotArray{ GetFunctionTriggerIotArgs{...} }
+//	GetFunctionTriggerIotArray{ GetFunctionTriggerIotArgs{...} }
 type GetFunctionTriggerIotArrayInput interface {
 	pulumi.Input
 
@@ -6185,7 +6185,7 @@ type GetFunctionTriggerLogGroup struct {
 // GetFunctionTriggerLogGroupInput is an input type that accepts GetFunctionTriggerLogGroupArgs and GetFunctionTriggerLogGroupOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerLogGroupInput` via:
 //
-//          GetFunctionTriggerLogGroupArgs{...}
+//	GetFunctionTriggerLogGroupArgs{...}
 type GetFunctionTriggerLogGroupInput interface {
 	pulumi.Input
 
@@ -6214,7 +6214,7 @@ func (i GetFunctionTriggerLogGroupArgs) ToGetFunctionTriggerLogGroupOutputWithCo
 // GetFunctionTriggerLogGroupArrayInput is an input type that accepts GetFunctionTriggerLogGroupArray and GetFunctionTriggerLogGroupArrayOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerLogGroupArrayInput` via:
 //
-//          GetFunctionTriggerLogGroupArray{ GetFunctionTriggerLogGroupArgs{...} }
+//	GetFunctionTriggerLogGroupArray{ GetFunctionTriggerLogGroupArgs{...} }
 type GetFunctionTriggerLogGroupArrayInput interface {
 	pulumi.Input
 
@@ -6294,7 +6294,7 @@ type GetFunctionTriggerLogging struct {
 // GetFunctionTriggerLoggingInput is an input type that accepts GetFunctionTriggerLoggingArgs and GetFunctionTriggerLoggingOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerLoggingInput` via:
 //
-//          GetFunctionTriggerLoggingArgs{...}
+//	GetFunctionTriggerLoggingArgs{...}
 type GetFunctionTriggerLoggingInput interface {
 	pulumi.Input
 
@@ -6326,7 +6326,7 @@ func (i GetFunctionTriggerLoggingArgs) ToGetFunctionTriggerLoggingOutputWithCont
 // GetFunctionTriggerLoggingArrayInput is an input type that accepts GetFunctionTriggerLoggingArray and GetFunctionTriggerLoggingArrayOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerLoggingArrayInput` via:
 //
-//          GetFunctionTriggerLoggingArray{ GetFunctionTriggerLoggingArgs{...} }
+//	GetFunctionTriggerLoggingArray{ GetFunctionTriggerLoggingArgs{...} }
 type GetFunctionTriggerLoggingArrayInput interface {
 	pulumi.Input
 
@@ -6417,7 +6417,7 @@ type GetFunctionTriggerMessageQueue struct {
 // GetFunctionTriggerMessageQueueInput is an input type that accepts GetFunctionTriggerMessageQueueArgs and GetFunctionTriggerMessageQueueOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerMessageQueueInput` via:
 //
-//          GetFunctionTriggerMessageQueueArgs{...}
+//	GetFunctionTriggerMessageQueueArgs{...}
 type GetFunctionTriggerMessageQueueInput interface {
 	pulumi.Input
 
@@ -6448,7 +6448,7 @@ func (i GetFunctionTriggerMessageQueueArgs) ToGetFunctionTriggerMessageQueueOutp
 // GetFunctionTriggerMessageQueueArrayInput is an input type that accepts GetFunctionTriggerMessageQueueArray and GetFunctionTriggerMessageQueueArrayOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerMessageQueueArrayInput` via:
 //
-//          GetFunctionTriggerMessageQueueArray{ GetFunctionTriggerMessageQueueArgs{...} }
+//	GetFunctionTriggerMessageQueueArray{ GetFunctionTriggerMessageQueueArgs{...} }
 type GetFunctionTriggerMessageQueueArrayInput interface {
 	pulumi.Input
 
@@ -6536,7 +6536,7 @@ type GetFunctionTriggerObjectStorage struct {
 // GetFunctionTriggerObjectStorageInput is an input type that accepts GetFunctionTriggerObjectStorageArgs and GetFunctionTriggerObjectStorageOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerObjectStorageInput` via:
 //
-//          GetFunctionTriggerObjectStorageArgs{...}
+//	GetFunctionTriggerObjectStorageArgs{...}
 type GetFunctionTriggerObjectStorageInput interface {
 	pulumi.Input
 
@@ -6568,7 +6568,7 @@ func (i GetFunctionTriggerObjectStorageArgs) ToGetFunctionTriggerObjectStorageOu
 // GetFunctionTriggerObjectStorageArrayInput is an input type that accepts GetFunctionTriggerObjectStorageArray and GetFunctionTriggerObjectStorageArrayOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerObjectStorageArrayInput` via:
 //
-//          GetFunctionTriggerObjectStorageArray{ GetFunctionTriggerObjectStorageArgs{...} }
+//	GetFunctionTriggerObjectStorageArray{ GetFunctionTriggerObjectStorageArgs{...} }
 type GetFunctionTriggerObjectStorageArrayInput interface {
 	pulumi.Input
 
@@ -6655,7 +6655,7 @@ type GetFunctionTriggerTimer struct {
 // GetFunctionTriggerTimerInput is an input type that accepts GetFunctionTriggerTimerArgs and GetFunctionTriggerTimerOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerTimerInput` via:
 //
-//          GetFunctionTriggerTimerArgs{...}
+//	GetFunctionTriggerTimerArgs{...}
 type GetFunctionTriggerTimerInput interface {
 	pulumi.Input
 
@@ -6682,7 +6682,7 @@ func (i GetFunctionTriggerTimerArgs) ToGetFunctionTriggerTimerOutputWithContext(
 // GetFunctionTriggerTimerArrayInput is an input type that accepts GetFunctionTriggerTimerArray and GetFunctionTriggerTimerArrayOutput values.
 // You can construct a concrete instance of `GetFunctionTriggerTimerArrayInput` via:
 //
-//          GetFunctionTriggerTimerArray{ GetFunctionTriggerTimerArgs{...} }
+//	GetFunctionTriggerTimerArray{ GetFunctionTriggerTimerArgs{...} }
 type GetFunctionTriggerTimerArrayInput interface {
 	pulumi.Input
 
@@ -6756,7 +6756,7 @@ type GetIamPolicyBinding struct {
 // GetIamPolicyBindingInput is an input type that accepts GetIamPolicyBindingArgs and GetIamPolicyBindingOutput values.
 // You can construct a concrete instance of `GetIamPolicyBindingInput` via:
 //
-//          GetIamPolicyBindingArgs{...}
+//	GetIamPolicyBindingArgs{...}
 type GetIamPolicyBindingInput interface {
 	pulumi.Input
 
@@ -6790,7 +6790,7 @@ func (i GetIamPolicyBindingArgs) ToGetIamPolicyBindingOutputWithContext(ctx cont
 // GetIamPolicyBindingArrayInput is an input type that accepts GetIamPolicyBindingArray and GetIamPolicyBindingArrayOutput values.
 // You can construct a concrete instance of `GetIamPolicyBindingArrayInput` via:
 //
-//          GetIamPolicyBindingArray{ GetIamPolicyBindingArgs{...} }
+//	GetIamPolicyBindingArray{ GetIamPolicyBindingArgs{...} }
 type GetIamPolicyBindingArrayInput interface {
 	pulumi.Input
 
@@ -6868,7 +6868,7 @@ type GetKubernetesClusterKmsProvider struct {
 // GetKubernetesClusterKmsProviderInput is an input type that accepts GetKubernetesClusterKmsProviderArgs and GetKubernetesClusterKmsProviderOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterKmsProviderInput` via:
 //
-//          GetKubernetesClusterKmsProviderArgs{...}
+//	GetKubernetesClusterKmsProviderArgs{...}
 type GetKubernetesClusterKmsProviderInput interface {
 	pulumi.Input
 
@@ -6896,7 +6896,7 @@ func (i GetKubernetesClusterKmsProviderArgs) ToGetKubernetesClusterKmsProviderOu
 // GetKubernetesClusterKmsProviderArrayInput is an input type that accepts GetKubernetesClusterKmsProviderArray and GetKubernetesClusterKmsProviderArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterKmsProviderArrayInput` via:
 //
-//          GetKubernetesClusterKmsProviderArray{ GetKubernetesClusterKmsProviderArgs{...} }
+//	GetKubernetesClusterKmsProviderArray{ GetKubernetesClusterKmsProviderArgs{...} }
 type GetKubernetesClusterKmsProviderArrayInput interface {
 	pulumi.Input
 
@@ -6989,7 +6989,7 @@ type GetKubernetesClusterMaster struct {
 // GetKubernetesClusterMasterInput is an input type that accepts GetKubernetesClusterMasterArgs and GetKubernetesClusterMasterOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterMasterInput` via:
 //
-//          GetKubernetesClusterMasterArgs{...}
+//	GetKubernetesClusterMasterArgs{...}
 type GetKubernetesClusterMasterInput interface {
 	pulumi.Input
 
@@ -7041,7 +7041,7 @@ func (i GetKubernetesClusterMasterArgs) ToGetKubernetesClusterMasterOutputWithCo
 // GetKubernetesClusterMasterArrayInput is an input type that accepts GetKubernetesClusterMasterArray and GetKubernetesClusterMasterArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterMasterArrayInput` via:
 //
-//          GetKubernetesClusterMasterArray{ GetKubernetesClusterMasterArgs{...} }
+//	GetKubernetesClusterMasterArray{ GetKubernetesClusterMasterArgs{...} }
 type GetKubernetesClusterMasterArrayInput interface {
 	pulumi.Input
 
@@ -7178,7 +7178,7 @@ type GetKubernetesClusterMasterMaintenancePolicy struct {
 // GetKubernetesClusterMasterMaintenancePolicyInput is an input type that accepts GetKubernetesClusterMasterMaintenancePolicyArgs and GetKubernetesClusterMasterMaintenancePolicyOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterMasterMaintenancePolicyInput` via:
 //
-//          GetKubernetesClusterMasterMaintenancePolicyArgs{...}
+//	GetKubernetesClusterMasterMaintenancePolicyArgs{...}
 type GetKubernetesClusterMasterMaintenancePolicyInput interface {
 	pulumi.Input
 
@@ -7209,7 +7209,7 @@ func (i GetKubernetesClusterMasterMaintenancePolicyArgs) ToGetKubernetesClusterM
 // GetKubernetesClusterMasterMaintenancePolicyArrayInput is an input type that accepts GetKubernetesClusterMasterMaintenancePolicyArray and GetKubernetesClusterMasterMaintenancePolicyArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterMasterMaintenancePolicyArrayInput` via:
 //
-//          GetKubernetesClusterMasterMaintenancePolicyArray{ GetKubernetesClusterMasterMaintenancePolicyArgs{...} }
+//	GetKubernetesClusterMasterMaintenancePolicyArray{ GetKubernetesClusterMasterMaintenancePolicyArgs{...} }
 type GetKubernetesClusterMasterMaintenancePolicyArrayInput interface {
 	pulumi.Input
 
@@ -7287,7 +7287,7 @@ type GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindow struct {
 // GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowInput is an input type that accepts GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArgs and GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowInput` via:
 //
-//          GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArgs{...}
+//	GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArgs{...}
 type GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowInput interface {
 	pulumi.Input
 
@@ -7316,7 +7316,7 @@ func (i GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArgs) ToGetK
 // GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArrayInput is an input type that accepts GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArray and GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArrayInput` via:
 //
-//          GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArray{ GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArgs{...} }
+//	GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArray{ GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArgs{...} }
 type GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArrayInput interface {
 	pulumi.Input
 
@@ -7392,7 +7392,7 @@ type GetKubernetesClusterMasterRegional struct {
 // GetKubernetesClusterMasterRegionalInput is an input type that accepts GetKubernetesClusterMasterRegionalArgs and GetKubernetesClusterMasterRegionalOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterMasterRegionalInput` via:
 //
-//          GetKubernetesClusterMasterRegionalArgs{...}
+//	GetKubernetesClusterMasterRegionalArgs{...}
 type GetKubernetesClusterMasterRegionalInput interface {
 	pulumi.Input
 
@@ -7420,7 +7420,7 @@ func (i GetKubernetesClusterMasterRegionalArgs) ToGetKubernetesClusterMasterRegi
 // GetKubernetesClusterMasterRegionalArrayInput is an input type that accepts GetKubernetesClusterMasterRegionalArray and GetKubernetesClusterMasterRegionalArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterMasterRegionalArrayInput` via:
 //
-//          GetKubernetesClusterMasterRegionalArray{ GetKubernetesClusterMasterRegionalArgs{...} }
+//	GetKubernetesClusterMasterRegionalArray{ GetKubernetesClusterMasterRegionalArgs{...} }
 type GetKubernetesClusterMasterRegionalArrayInput interface {
 	pulumi.Input
 
@@ -7500,7 +7500,7 @@ type GetKubernetesClusterMasterVersionInfo struct {
 // GetKubernetesClusterMasterVersionInfoInput is an input type that accepts GetKubernetesClusterMasterVersionInfoArgs and GetKubernetesClusterMasterVersionInfoOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterMasterVersionInfoInput` via:
 //
-//          GetKubernetesClusterMasterVersionInfoArgs{...}
+//	GetKubernetesClusterMasterVersionInfoArgs{...}
 type GetKubernetesClusterMasterVersionInfoInput interface {
 	pulumi.Input
 
@@ -7539,7 +7539,7 @@ func (i GetKubernetesClusterMasterVersionInfoArgs) ToGetKubernetesClusterMasterV
 // GetKubernetesClusterMasterVersionInfoArrayInput is an input type that accepts GetKubernetesClusterMasterVersionInfoArray and GetKubernetesClusterMasterVersionInfoArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterMasterVersionInfoArrayInput` via:
 //
-//          GetKubernetesClusterMasterVersionInfoArray{ GetKubernetesClusterMasterVersionInfoArgs{...} }
+//	GetKubernetesClusterMasterVersionInfoArray{ GetKubernetesClusterMasterVersionInfoArgs{...} }
 type GetKubernetesClusterMasterVersionInfoArrayInput interface {
 	pulumi.Input
 
@@ -7628,7 +7628,7 @@ type GetKubernetesClusterMasterZonal struct {
 // GetKubernetesClusterMasterZonalInput is an input type that accepts GetKubernetesClusterMasterZonalArgs and GetKubernetesClusterMasterZonalOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterMasterZonalInput` via:
 //
-//          GetKubernetesClusterMasterZonalArgs{...}
+//	GetKubernetesClusterMasterZonalArgs{...}
 type GetKubernetesClusterMasterZonalInput interface {
 	pulumi.Input
 
@@ -7656,7 +7656,7 @@ func (i GetKubernetesClusterMasterZonalArgs) ToGetKubernetesClusterMasterZonalOu
 // GetKubernetesClusterMasterZonalArrayInput is an input type that accepts GetKubernetesClusterMasterZonalArray and GetKubernetesClusterMasterZonalArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterMasterZonalArrayInput` via:
 //
-//          GetKubernetesClusterMasterZonalArray{ GetKubernetesClusterMasterZonalArgs{...} }
+//	GetKubernetesClusterMasterZonalArray{ GetKubernetesClusterMasterZonalArgs{...} }
 type GetKubernetesClusterMasterZonalArrayInput interface {
 	pulumi.Input
 
@@ -7725,7 +7725,7 @@ type GetKubernetesClusterNetworkImplementation struct {
 // GetKubernetesClusterNetworkImplementationInput is an input type that accepts GetKubernetesClusterNetworkImplementationArgs and GetKubernetesClusterNetworkImplementationOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterNetworkImplementationInput` via:
 //
-//          GetKubernetesClusterNetworkImplementationArgs{...}
+//	GetKubernetesClusterNetworkImplementationArgs{...}
 type GetKubernetesClusterNetworkImplementationInput interface {
 	pulumi.Input
 
@@ -7753,7 +7753,7 @@ func (i GetKubernetesClusterNetworkImplementationArgs) ToGetKubernetesClusterNet
 // GetKubernetesClusterNetworkImplementationArrayInput is an input type that accepts GetKubernetesClusterNetworkImplementationArray and GetKubernetesClusterNetworkImplementationArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterNetworkImplementationArrayInput` via:
 //
-//          GetKubernetesClusterNetworkImplementationArray{ GetKubernetesClusterNetworkImplementationArgs{...} }
+//	GetKubernetesClusterNetworkImplementationArray{ GetKubernetesClusterNetworkImplementationArgs{...} }
 type GetKubernetesClusterNetworkImplementationArrayInput interface {
 	pulumi.Input
 
@@ -7823,7 +7823,7 @@ type GetKubernetesClusterNetworkImplementationCilia struct {
 // GetKubernetesClusterNetworkImplementationCiliaInput is an input type that accepts GetKubernetesClusterNetworkImplementationCiliaArgs and GetKubernetesClusterNetworkImplementationCiliaOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterNetworkImplementationCiliaInput` via:
 //
-//          GetKubernetesClusterNetworkImplementationCiliaArgs{...}
+//	GetKubernetesClusterNetworkImplementationCiliaArgs{...}
 type GetKubernetesClusterNetworkImplementationCiliaInput interface {
 	pulumi.Input
 
@@ -7850,7 +7850,7 @@ func (i GetKubernetesClusterNetworkImplementationCiliaArgs) ToGetKubernetesClust
 // GetKubernetesClusterNetworkImplementationCiliaArrayInput is an input type that accepts GetKubernetesClusterNetworkImplementationCiliaArray and GetKubernetesClusterNetworkImplementationCiliaArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesClusterNetworkImplementationCiliaArrayInput` via:
 //
-//          GetKubernetesClusterNetworkImplementationCiliaArray{ GetKubernetesClusterNetworkImplementationCiliaArgs{...} }
+//	GetKubernetesClusterNetworkImplementationCiliaArray{ GetKubernetesClusterNetworkImplementationCiliaArgs{...} }
 type GetKubernetesClusterNetworkImplementationCiliaArrayInput interface {
 	pulumi.Input
 
@@ -7918,7 +7918,7 @@ type GetKubernetesNodeGroupAllocationPolicy struct {
 // GetKubernetesNodeGroupAllocationPolicyInput is an input type that accepts GetKubernetesNodeGroupAllocationPolicyArgs and GetKubernetesNodeGroupAllocationPolicyOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupAllocationPolicyInput` via:
 //
-//          GetKubernetesNodeGroupAllocationPolicyArgs{...}
+//	GetKubernetesNodeGroupAllocationPolicyArgs{...}
 type GetKubernetesNodeGroupAllocationPolicyInput interface {
 	pulumi.Input
 
@@ -7946,7 +7946,7 @@ func (i GetKubernetesNodeGroupAllocationPolicyArgs) ToGetKubernetesNodeGroupAllo
 // GetKubernetesNodeGroupAllocationPolicyArrayInput is an input type that accepts GetKubernetesNodeGroupAllocationPolicyArray and GetKubernetesNodeGroupAllocationPolicyArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupAllocationPolicyArrayInput` via:
 //
-//          GetKubernetesNodeGroupAllocationPolicyArray{ GetKubernetesNodeGroupAllocationPolicyArgs{...} }
+//	GetKubernetesNodeGroupAllocationPolicyArray{ GetKubernetesNodeGroupAllocationPolicyArgs{...} }
 type GetKubernetesNodeGroupAllocationPolicyArrayInput interface {
 	pulumi.Input
 
@@ -8019,7 +8019,7 @@ type GetKubernetesNodeGroupAllocationPolicyLocation struct {
 // GetKubernetesNodeGroupAllocationPolicyLocationInput is an input type that accepts GetKubernetesNodeGroupAllocationPolicyLocationArgs and GetKubernetesNodeGroupAllocationPolicyLocationOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupAllocationPolicyLocationInput` via:
 //
-//          GetKubernetesNodeGroupAllocationPolicyLocationArgs{...}
+//	GetKubernetesNodeGroupAllocationPolicyLocationArgs{...}
 type GetKubernetesNodeGroupAllocationPolicyLocationInput interface {
 	pulumi.Input
 
@@ -8049,7 +8049,7 @@ func (i GetKubernetesNodeGroupAllocationPolicyLocationArgs) ToGetKubernetesNodeG
 // GetKubernetesNodeGroupAllocationPolicyLocationArrayInput is an input type that accepts GetKubernetesNodeGroupAllocationPolicyLocationArray and GetKubernetesNodeGroupAllocationPolicyLocationArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupAllocationPolicyLocationArrayInput` via:
 //
-//          GetKubernetesNodeGroupAllocationPolicyLocationArray{ GetKubernetesNodeGroupAllocationPolicyLocationArgs{...} }
+//	GetKubernetesNodeGroupAllocationPolicyLocationArray{ GetKubernetesNodeGroupAllocationPolicyLocationArgs{...} }
 type GetKubernetesNodeGroupAllocationPolicyLocationArrayInput interface {
 	pulumi.Input
 
@@ -8125,7 +8125,7 @@ type GetKubernetesNodeGroupDeployPolicy struct {
 // GetKubernetesNodeGroupDeployPolicyInput is an input type that accepts GetKubernetesNodeGroupDeployPolicyArgs and GetKubernetesNodeGroupDeployPolicyOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupDeployPolicyInput` via:
 //
-//          GetKubernetesNodeGroupDeployPolicyArgs{...}
+//	GetKubernetesNodeGroupDeployPolicyArgs{...}
 type GetKubernetesNodeGroupDeployPolicyInput interface {
 	pulumi.Input
 
@@ -8155,7 +8155,7 @@ func (i GetKubernetesNodeGroupDeployPolicyArgs) ToGetKubernetesNodeGroupDeployPo
 // GetKubernetesNodeGroupDeployPolicyArrayInput is an input type that accepts GetKubernetesNodeGroupDeployPolicyArray and GetKubernetesNodeGroupDeployPolicyArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupDeployPolicyArrayInput` via:
 //
-//          GetKubernetesNodeGroupDeployPolicyArray{ GetKubernetesNodeGroupDeployPolicyArgs{...} }
+//	GetKubernetesNodeGroupDeployPolicyArray{ GetKubernetesNodeGroupDeployPolicyArgs{...} }
 type GetKubernetesNodeGroupDeployPolicyArrayInput interface {
 	pulumi.Input
 
@@ -8251,7 +8251,7 @@ type GetKubernetesNodeGroupInstanceTemplate struct {
 // GetKubernetesNodeGroupInstanceTemplateInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateArgs and GetKubernetesNodeGroupInstanceTemplateOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateArgs{...}
+//	GetKubernetesNodeGroupInstanceTemplateArgs{...}
 type GetKubernetesNodeGroupInstanceTemplateInput interface {
 	pulumi.Input
 
@@ -8301,7 +8301,7 @@ func (i GetKubernetesNodeGroupInstanceTemplateArgs) ToGetKubernetesNodeGroupInst
 // GetKubernetesNodeGroupInstanceTemplateArrayInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateArray and GetKubernetesNodeGroupInstanceTemplateArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateArrayInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateArray{ GetKubernetesNodeGroupInstanceTemplateArgs{...} }
+//	GetKubernetesNodeGroupInstanceTemplateArray{ GetKubernetesNodeGroupInstanceTemplateArgs{...} }
 type GetKubernetesNodeGroupInstanceTemplateArrayInput interface {
 	pulumi.Input
 
@@ -8439,7 +8439,7 @@ type GetKubernetesNodeGroupInstanceTemplateBootDisk struct {
 // GetKubernetesNodeGroupInstanceTemplateBootDiskInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateBootDiskArgs and GetKubernetesNodeGroupInstanceTemplateBootDiskOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateBootDiskInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateBootDiskArgs{...}
+//	GetKubernetesNodeGroupInstanceTemplateBootDiskArgs{...}
 type GetKubernetesNodeGroupInstanceTemplateBootDiskInput interface {
 	pulumi.Input
 
@@ -8469,7 +8469,7 @@ func (i GetKubernetesNodeGroupInstanceTemplateBootDiskArgs) ToGetKubernetesNodeG
 // GetKubernetesNodeGroupInstanceTemplateBootDiskArrayInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateBootDiskArray and GetKubernetesNodeGroupInstanceTemplateBootDiskArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateBootDiskArrayInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateBootDiskArray{ GetKubernetesNodeGroupInstanceTemplateBootDiskArgs{...} }
+//	GetKubernetesNodeGroupInstanceTemplateBootDiskArray{ GetKubernetesNodeGroupInstanceTemplateBootDiskArgs{...} }
 type GetKubernetesNodeGroupInstanceTemplateBootDiskArrayInput interface {
 	pulumi.Input
 
@@ -8543,7 +8543,7 @@ type GetKubernetesNodeGroupInstanceTemplateContainerRuntime struct {
 // GetKubernetesNodeGroupInstanceTemplateContainerRuntimeInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateContainerRuntimeArgs and GetKubernetesNodeGroupInstanceTemplateContainerRuntimeOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateContainerRuntimeInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateContainerRuntimeArgs{...}
+//	GetKubernetesNodeGroupInstanceTemplateContainerRuntimeArgs{...}
 type GetKubernetesNodeGroupInstanceTemplateContainerRuntimeInput interface {
 	pulumi.Input
 
@@ -8607,7 +8607,7 @@ type GetKubernetesNodeGroupInstanceTemplateNetworkInterface struct {
 // GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs and GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs{...}
+//	GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs{...}
 type GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceInput interface {
 	pulumi.Input
 
@@ -8647,7 +8647,7 @@ func (i GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs) ToGetKuberne
 // GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceArrayInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceArray and GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceArrayInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceArray{ GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs{...} }
+//	GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceArray{ GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs{...} }
 type GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceArrayInput interface {
 	pulumi.Input
 
@@ -8756,7 +8756,7 @@ type GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecord struct 
 // GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs and GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs{...}
+//	GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs{...}
 type GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordInput interface {
 	pulumi.Input
 
@@ -8790,7 +8790,7 @@ func (i GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs)
 // GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArrayInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArray and GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArrayInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArray{ GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs{...} }
+//	GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArray{ GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs{...} }
 type GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArrayInput interface {
 	pulumi.Input
 
@@ -8880,7 +8880,7 @@ type GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord struct 
 // GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs and GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs{...}
+//	GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs{...}
 type GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordInput interface {
 	pulumi.Input
 
@@ -8914,7 +8914,7 @@ func (i GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs)
 // GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArrayInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArray and GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArrayInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArray{ GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs{...} }
+//	GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArray{ GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs{...} }
 type GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArrayInput interface {
 	pulumi.Input
 
@@ -8998,7 +8998,7 @@ type GetKubernetesNodeGroupInstanceTemplatePlacementPolicy struct {
 // GetKubernetesNodeGroupInstanceTemplatePlacementPolicyInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArgs and GetKubernetesNodeGroupInstanceTemplatePlacementPolicyOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplatePlacementPolicyInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArgs{...}
+//	GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArgs{...}
 type GetKubernetesNodeGroupInstanceTemplatePlacementPolicyInput interface {
 	pulumi.Input
 
@@ -9026,7 +9026,7 @@ func (i GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArgs) ToGetKubernet
 // GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArrayInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArray and GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArrayInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArray{ GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArgs{...} }
+//	GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArray{ GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArgs{...} }
 type GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArrayInput interface {
 	pulumi.Input
 
@@ -9097,7 +9097,7 @@ type GetKubernetesNodeGroupInstanceTemplateResource struct {
 // GetKubernetesNodeGroupInstanceTemplateResourceInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateResourceArgs and GetKubernetesNodeGroupInstanceTemplateResourceOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateResourceInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateResourceArgs{...}
+//	GetKubernetesNodeGroupInstanceTemplateResourceArgs{...}
 type GetKubernetesNodeGroupInstanceTemplateResourceInput interface {
 	pulumi.Input
 
@@ -9127,7 +9127,7 @@ func (i GetKubernetesNodeGroupInstanceTemplateResourceArgs) ToGetKubernetesNodeG
 // GetKubernetesNodeGroupInstanceTemplateResourceArrayInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateResourceArray and GetKubernetesNodeGroupInstanceTemplateResourceArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateResourceArrayInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateResourceArray{ GetKubernetesNodeGroupInstanceTemplateResourceArgs{...} }
+//	GetKubernetesNodeGroupInstanceTemplateResourceArray{ GetKubernetesNodeGroupInstanceTemplateResourceArgs{...} }
 type GetKubernetesNodeGroupInstanceTemplateResourceArrayInput interface {
 	pulumi.Input
 
@@ -9208,7 +9208,7 @@ type GetKubernetesNodeGroupInstanceTemplateSchedulingPolicy struct {
 // GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs and GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs{...}
+//	GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs{...}
 type GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyInput interface {
 	pulumi.Input
 
@@ -9237,7 +9237,7 @@ func (i GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs) ToGetKuberne
 // GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyArrayInput is an input type that accepts GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyArray and GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyArrayInput` via:
 //
-//          GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyArray{ GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs{...} }
+//	GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyArray{ GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs{...} }
 type GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyArrayInput interface {
 	pulumi.Input
 
@@ -9312,7 +9312,7 @@ type GetKubernetesNodeGroupMaintenancePolicy struct {
 // GetKubernetesNodeGroupMaintenancePolicyInput is an input type that accepts GetKubernetesNodeGroupMaintenancePolicyArgs and GetKubernetesNodeGroupMaintenancePolicyOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupMaintenancePolicyInput` via:
 //
-//          GetKubernetesNodeGroupMaintenancePolicyArgs{...}
+//	GetKubernetesNodeGroupMaintenancePolicyArgs{...}
 type GetKubernetesNodeGroupMaintenancePolicyInput interface {
 	pulumi.Input
 
@@ -9345,7 +9345,7 @@ func (i GetKubernetesNodeGroupMaintenancePolicyArgs) ToGetKubernetesNodeGroupMai
 // GetKubernetesNodeGroupMaintenancePolicyArrayInput is an input type that accepts GetKubernetesNodeGroupMaintenancePolicyArray and GetKubernetesNodeGroupMaintenancePolicyArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupMaintenancePolicyArrayInput` via:
 //
-//          GetKubernetesNodeGroupMaintenancePolicyArray{ GetKubernetesNodeGroupMaintenancePolicyArgs{...} }
+//	GetKubernetesNodeGroupMaintenancePolicyArray{ GetKubernetesNodeGroupMaintenancePolicyArgs{...} }
 type GetKubernetesNodeGroupMaintenancePolicyArrayInput interface {
 	pulumi.Input
 
@@ -9428,7 +9428,7 @@ type GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindow struct {
 // GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowInput is an input type that accepts GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs and GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowInput` via:
 //
-//          GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs{...}
+//	GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs{...}
 type GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowInput interface {
 	pulumi.Input
 
@@ -9457,7 +9457,7 @@ func (i GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs) ToGetKuber
 // GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowArrayInput is an input type that accepts GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowArray and GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowArrayInput` via:
 //
-//          GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowArray{ GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs{...} }
+//	GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowArray{ GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowArgs{...} }
 type GetKubernetesNodeGroupMaintenancePolicyMaintenanceWindowArrayInput interface {
 	pulumi.Input
 
@@ -9535,7 +9535,7 @@ type GetKubernetesNodeGroupScalePolicy struct {
 // GetKubernetesNodeGroupScalePolicyInput is an input type that accepts GetKubernetesNodeGroupScalePolicyArgs and GetKubernetesNodeGroupScalePolicyOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupScalePolicyInput` via:
 //
-//          GetKubernetesNodeGroupScalePolicyArgs{...}
+//	GetKubernetesNodeGroupScalePolicyArgs{...}
 type GetKubernetesNodeGroupScalePolicyInput interface {
 	pulumi.Input
 
@@ -9565,7 +9565,7 @@ func (i GetKubernetesNodeGroupScalePolicyArgs) ToGetKubernetesNodeGroupScalePoli
 // GetKubernetesNodeGroupScalePolicyArrayInput is an input type that accepts GetKubernetesNodeGroupScalePolicyArray and GetKubernetesNodeGroupScalePolicyArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupScalePolicyArrayInput` via:
 //
-//          GetKubernetesNodeGroupScalePolicyArray{ GetKubernetesNodeGroupScalePolicyArgs{...} }
+//	GetKubernetesNodeGroupScalePolicyArray{ GetKubernetesNodeGroupScalePolicyArgs{...} }
 type GetKubernetesNodeGroupScalePolicyArrayInput interface {
 	pulumi.Input
 
@@ -9647,7 +9647,7 @@ type GetKubernetesNodeGroupScalePolicyAutoScale struct {
 // GetKubernetesNodeGroupScalePolicyAutoScaleInput is an input type that accepts GetKubernetesNodeGroupScalePolicyAutoScaleArgs and GetKubernetesNodeGroupScalePolicyAutoScaleOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupScalePolicyAutoScaleInput` via:
 //
-//          GetKubernetesNodeGroupScalePolicyAutoScaleArgs{...}
+//	GetKubernetesNodeGroupScalePolicyAutoScaleArgs{...}
 type GetKubernetesNodeGroupScalePolicyAutoScaleInput interface {
 	pulumi.Input
 
@@ -9679,7 +9679,7 @@ func (i GetKubernetesNodeGroupScalePolicyAutoScaleArgs) ToGetKubernetesNodeGroup
 // GetKubernetesNodeGroupScalePolicyAutoScaleArrayInput is an input type that accepts GetKubernetesNodeGroupScalePolicyAutoScaleArray and GetKubernetesNodeGroupScalePolicyAutoScaleArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupScalePolicyAutoScaleArrayInput` via:
 //
-//          GetKubernetesNodeGroupScalePolicyAutoScaleArray{ GetKubernetesNodeGroupScalePolicyAutoScaleArgs{...} }
+//	GetKubernetesNodeGroupScalePolicyAutoScaleArray{ GetKubernetesNodeGroupScalePolicyAutoScaleArgs{...} }
 type GetKubernetesNodeGroupScalePolicyAutoScaleArrayInput interface {
 	pulumi.Input
 
@@ -9758,7 +9758,7 @@ type GetKubernetesNodeGroupScalePolicyFixedScale struct {
 // GetKubernetesNodeGroupScalePolicyFixedScaleInput is an input type that accepts GetKubernetesNodeGroupScalePolicyFixedScaleArgs and GetKubernetesNodeGroupScalePolicyFixedScaleOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupScalePolicyFixedScaleInput` via:
 //
-//          GetKubernetesNodeGroupScalePolicyFixedScaleArgs{...}
+//	GetKubernetesNodeGroupScalePolicyFixedScaleArgs{...}
 type GetKubernetesNodeGroupScalePolicyFixedScaleInput interface {
 	pulumi.Input
 
@@ -9786,7 +9786,7 @@ func (i GetKubernetesNodeGroupScalePolicyFixedScaleArgs) ToGetKubernetesNodeGrou
 // GetKubernetesNodeGroupScalePolicyFixedScaleArrayInput is an input type that accepts GetKubernetesNodeGroupScalePolicyFixedScaleArray and GetKubernetesNodeGroupScalePolicyFixedScaleArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupScalePolicyFixedScaleArrayInput` via:
 //
-//          GetKubernetesNodeGroupScalePolicyFixedScaleArray{ GetKubernetesNodeGroupScalePolicyFixedScaleArgs{...} }
+//	GetKubernetesNodeGroupScalePolicyFixedScaleArray{ GetKubernetesNodeGroupScalePolicyFixedScaleArgs{...} }
 type GetKubernetesNodeGroupScalePolicyFixedScaleArrayInput interface {
 	pulumi.Input
 
@@ -9866,7 +9866,7 @@ type GetKubernetesNodeGroupVersionInfo struct {
 // GetKubernetesNodeGroupVersionInfoInput is an input type that accepts GetKubernetesNodeGroupVersionInfoArgs and GetKubernetesNodeGroupVersionInfoOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupVersionInfoInput` via:
 //
-//          GetKubernetesNodeGroupVersionInfoArgs{...}
+//	GetKubernetesNodeGroupVersionInfoArgs{...}
 type GetKubernetesNodeGroupVersionInfoInput interface {
 	pulumi.Input
 
@@ -9905,7 +9905,7 @@ func (i GetKubernetesNodeGroupVersionInfoArgs) ToGetKubernetesNodeGroupVersionIn
 // GetKubernetesNodeGroupVersionInfoArrayInput is an input type that accepts GetKubernetesNodeGroupVersionInfoArray and GetKubernetesNodeGroupVersionInfoArrayOutput values.
 // You can construct a concrete instance of `GetKubernetesNodeGroupVersionInfoArrayInput` via:
 //
-//          GetKubernetesNodeGroupVersionInfoArray{ GetKubernetesNodeGroupVersionInfoArgs{...} }
+//	GetKubernetesNodeGroupVersionInfoArray{ GetKubernetesNodeGroupVersionInfoArgs{...} }
 type GetKubernetesNodeGroupVersionInfoArrayInput interface {
 	pulumi.Input
 
@@ -10003,7 +10003,7 @@ type GetLbNetworkLoadBalancerAttachedTargetGroup struct {
 // GetLbNetworkLoadBalancerAttachedTargetGroupInput is an input type that accepts GetLbNetworkLoadBalancerAttachedTargetGroupArgs and GetLbNetworkLoadBalancerAttachedTargetGroupOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerAttachedTargetGroupInput` via:
 //
-//          GetLbNetworkLoadBalancerAttachedTargetGroupArgs{...}
+//	GetLbNetworkLoadBalancerAttachedTargetGroupArgs{...}
 type GetLbNetworkLoadBalancerAttachedTargetGroupInput interface {
 	pulumi.Input
 
@@ -10040,7 +10040,7 @@ func (i GetLbNetworkLoadBalancerAttachedTargetGroupArgs) ToGetLbNetworkLoadBalan
 // GetLbNetworkLoadBalancerAttachedTargetGroupArrayInput is an input type that accepts GetLbNetworkLoadBalancerAttachedTargetGroupArray and GetLbNetworkLoadBalancerAttachedTargetGroupArrayOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerAttachedTargetGroupArrayInput` via:
 //
-//          GetLbNetworkLoadBalancerAttachedTargetGroupArray{ GetLbNetworkLoadBalancerAttachedTargetGroupArgs{...} }
+//	GetLbNetworkLoadBalancerAttachedTargetGroupArray{ GetLbNetworkLoadBalancerAttachedTargetGroupArgs{...} }
 type GetLbNetworkLoadBalancerAttachedTargetGroupArrayInput interface {
 	pulumi.Input
 
@@ -10129,7 +10129,7 @@ type GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheck struct {
 // GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckInput is an input type that accepts GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs and GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckInput` via:
 //
-//          GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs{...}
+//	GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs{...}
 type GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckInput interface {
 	pulumi.Input
 
@@ -10163,7 +10163,7 @@ func (i GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs) ToGetLbNetwo
 // GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckArrayInput is an input type that accepts GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckArray and GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckArrayOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckArrayInput` via:
 //
-//          GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckArray{ GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs{...} }
+//	GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckArray{ GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckArgs{...} }
 type GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckArrayInput interface {
 	pulumi.Input
 
@@ -10261,7 +10261,7 @@ type GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOption struct {
 // GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionInput is an input type that accepts GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionArgs and GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionInput` via:
 //
-//          GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionArgs{...}
+//	GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionArgs{...}
 type GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionInput interface {
 	pulumi.Input
 
@@ -10290,7 +10290,7 @@ func (i GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionArgs) To
 // GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionArrayInput is an input type that accepts GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionArray and GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionArrayOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionArrayInput` via:
 //
-//          GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionArray{ GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionArgs{...} }
+//	GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionArray{ GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionArgs{...} }
 type GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckHttpOptionArrayInput interface {
 	pulumi.Input
 
@@ -10363,7 +10363,7 @@ type GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOption struct {
 // GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionInput is an input type that accepts GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionArgs and GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionInput` via:
 //
-//          GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionArgs{...}
+//	GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionArgs{...}
 type GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionInput interface {
 	pulumi.Input
 
@@ -10391,7 +10391,7 @@ func (i GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionArgs) ToG
 // GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionArrayInput is an input type that accepts GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionArray and GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionArrayOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionArrayInput` via:
 //
-//          GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionArray{ GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionArgs{...} }
+//	GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionArray{ GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionArgs{...} }
 type GetLbNetworkLoadBalancerAttachedTargetGroupHealthcheckTcpOptionArrayInput interface {
 	pulumi.Input
 
@@ -10473,7 +10473,7 @@ type GetLbNetworkLoadBalancerListener struct {
 // GetLbNetworkLoadBalancerListenerInput is an input type that accepts GetLbNetworkLoadBalancerListenerArgs and GetLbNetworkLoadBalancerListenerOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerListenerInput` via:
 //
-//          GetLbNetworkLoadBalancerListenerArgs{...}
+//	GetLbNetworkLoadBalancerListenerArgs{...}
 type GetLbNetworkLoadBalancerListenerInput interface {
 	pulumi.Input
 
@@ -10514,7 +10514,7 @@ func (i GetLbNetworkLoadBalancerListenerArgs) ToGetLbNetworkLoadBalancerListener
 // GetLbNetworkLoadBalancerListenerArrayInput is an input type that accepts GetLbNetworkLoadBalancerListenerArray and GetLbNetworkLoadBalancerListenerArrayOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerListenerArrayInput` via:
 //
-//          GetLbNetworkLoadBalancerListenerArray{ GetLbNetworkLoadBalancerListenerArgs{...} }
+//	GetLbNetworkLoadBalancerListenerArray{ GetLbNetworkLoadBalancerListenerArgs{...} }
 type GetLbNetworkLoadBalancerListenerArrayInput interface {
 	pulumi.Input
 
@@ -10615,7 +10615,7 @@ type GetLbNetworkLoadBalancerListenerExternalAddressSpec struct {
 // GetLbNetworkLoadBalancerListenerExternalAddressSpecInput is an input type that accepts GetLbNetworkLoadBalancerListenerExternalAddressSpecArgs and GetLbNetworkLoadBalancerListenerExternalAddressSpecOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerListenerExternalAddressSpecInput` via:
 //
-//          GetLbNetworkLoadBalancerListenerExternalAddressSpecArgs{...}
+//	GetLbNetworkLoadBalancerListenerExternalAddressSpecArgs{...}
 type GetLbNetworkLoadBalancerListenerExternalAddressSpecInput interface {
 	pulumi.Input
 
@@ -10643,7 +10643,7 @@ func (i GetLbNetworkLoadBalancerListenerExternalAddressSpecArgs) ToGetLbNetworkL
 // GetLbNetworkLoadBalancerListenerExternalAddressSpecArrayInput is an input type that accepts GetLbNetworkLoadBalancerListenerExternalAddressSpecArray and GetLbNetworkLoadBalancerListenerExternalAddressSpecArrayOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerListenerExternalAddressSpecArrayInput` via:
 //
-//          GetLbNetworkLoadBalancerListenerExternalAddressSpecArray{ GetLbNetworkLoadBalancerListenerExternalAddressSpecArgs{...} }
+//	GetLbNetworkLoadBalancerListenerExternalAddressSpecArray{ GetLbNetworkLoadBalancerListenerExternalAddressSpecArgs{...} }
 type GetLbNetworkLoadBalancerListenerExternalAddressSpecArrayInput interface {
 	pulumi.Input
 
@@ -10716,7 +10716,7 @@ type GetLbNetworkLoadBalancerListenerInternalAddressSpec struct {
 // GetLbNetworkLoadBalancerListenerInternalAddressSpecInput is an input type that accepts GetLbNetworkLoadBalancerListenerInternalAddressSpecArgs and GetLbNetworkLoadBalancerListenerInternalAddressSpecOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerListenerInternalAddressSpecInput` via:
 //
-//          GetLbNetworkLoadBalancerListenerInternalAddressSpecArgs{...}
+//	GetLbNetworkLoadBalancerListenerInternalAddressSpecArgs{...}
 type GetLbNetworkLoadBalancerListenerInternalAddressSpecInput interface {
 	pulumi.Input
 
@@ -10745,7 +10745,7 @@ func (i GetLbNetworkLoadBalancerListenerInternalAddressSpecArgs) ToGetLbNetworkL
 // GetLbNetworkLoadBalancerListenerInternalAddressSpecArrayInput is an input type that accepts GetLbNetworkLoadBalancerListenerInternalAddressSpecArray and GetLbNetworkLoadBalancerListenerInternalAddressSpecArrayOutput values.
 // You can construct a concrete instance of `GetLbNetworkLoadBalancerListenerInternalAddressSpecArrayInput` via:
 //
-//          GetLbNetworkLoadBalancerListenerInternalAddressSpecArray{ GetLbNetworkLoadBalancerListenerInternalAddressSpecArgs{...} }
+//	GetLbNetworkLoadBalancerListenerInternalAddressSpecArray{ GetLbNetworkLoadBalancerListenerInternalAddressSpecArgs{...} }
 type GetLbNetworkLoadBalancerListenerInternalAddressSpecArrayInput interface {
 	pulumi.Input
 
@@ -10821,7 +10821,7 @@ type GetLbTargetGroupTarget struct {
 // GetLbTargetGroupTargetInput is an input type that accepts GetLbTargetGroupTargetArgs and GetLbTargetGroupTargetOutput values.
 // You can construct a concrete instance of `GetLbTargetGroupTargetInput` via:
 //
-//          GetLbTargetGroupTargetArgs{...}
+//	GetLbTargetGroupTargetArgs{...}
 type GetLbTargetGroupTargetInput interface {
 	pulumi.Input
 
@@ -10849,7 +10849,7 @@ func (i GetLbTargetGroupTargetArgs) ToGetLbTargetGroupTargetOutputWithContext(ct
 // GetLbTargetGroupTargetArrayInput is an input type that accepts GetLbTargetGroupTargetArray and GetLbTargetGroupTargetArrayOutput values.
 // You can construct a concrete instance of `GetLbTargetGroupTargetArrayInput` via:
 //
-//          GetLbTargetGroupTargetArray{ GetLbTargetGroupTargetArgs{...} }
+//	GetLbTargetGroupTargetArray{ GetLbTargetGroupTargetArgs{...} }
 type GetLbTargetGroupTargetArrayInput interface {
 	pulumi.Input
 
@@ -10931,7 +10931,7 @@ type GetMdbClickhouseClusterAccess struct {
 // GetMdbClickhouseClusterAccessInput is an input type that accepts GetMdbClickhouseClusterAccessArgs and GetMdbClickhouseClusterAccessOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterAccessInput` via:
 //
-//          GetMdbClickhouseClusterAccessArgs{...}
+//	GetMdbClickhouseClusterAccessArgs{...}
 type GetMdbClickhouseClusterAccessInput interface {
 	pulumi.Input
 
@@ -10969,7 +10969,7 @@ func (i GetMdbClickhouseClusterAccessArgs) ToGetMdbClickhouseClusterAccessOutput
 // GetMdbClickhouseClusterAccessArrayInput is an input type that accepts GetMdbClickhouseClusterAccessArray and GetMdbClickhouseClusterAccessArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterAccessArrayInput` via:
 //
-//          GetMdbClickhouseClusterAccessArray{ GetMdbClickhouseClusterAccessArgs{...} }
+//	GetMdbClickhouseClusterAccessArray{ GetMdbClickhouseClusterAccessArgs{...} }
 type GetMdbClickhouseClusterAccessArrayInput interface {
 	pulumi.Input
 
@@ -11065,7 +11065,7 @@ type GetMdbClickhouseClusterBackupWindowStart struct {
 // GetMdbClickhouseClusterBackupWindowStartInput is an input type that accepts GetMdbClickhouseClusterBackupWindowStartArgs and GetMdbClickhouseClusterBackupWindowStartOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterBackupWindowStartInput` via:
 //
-//          GetMdbClickhouseClusterBackupWindowStartArgs{...}
+//	GetMdbClickhouseClusterBackupWindowStartArgs{...}
 type GetMdbClickhouseClusterBackupWindowStartInput interface {
 	pulumi.Input
 
@@ -11095,7 +11095,7 @@ func (i GetMdbClickhouseClusterBackupWindowStartArgs) ToGetMdbClickhouseClusterB
 // GetMdbClickhouseClusterBackupWindowStartArrayInput is an input type that accepts GetMdbClickhouseClusterBackupWindowStartArray and GetMdbClickhouseClusterBackupWindowStartArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterBackupWindowStartArrayInput` via:
 //
-//          GetMdbClickhouseClusterBackupWindowStartArray{ GetMdbClickhouseClusterBackupWindowStartArgs{...} }
+//	GetMdbClickhouseClusterBackupWindowStartArray{ GetMdbClickhouseClusterBackupWindowStartArgs{...} }
 type GetMdbClickhouseClusterBackupWindowStartArrayInput interface {
 	pulumi.Input
 
@@ -11171,7 +11171,7 @@ type GetMdbClickhouseClusterClickhouse struct {
 // GetMdbClickhouseClusterClickhouseInput is an input type that accepts GetMdbClickhouseClusterClickhouseArgs and GetMdbClickhouseClusterClickhouseOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseArgs{...}
+//	GetMdbClickhouseClusterClickhouseArgs{...}
 type GetMdbClickhouseClusterClickhouseInput interface {
 	pulumi.Input
 
@@ -11201,7 +11201,7 @@ func (i GetMdbClickhouseClusterClickhouseArgs) ToGetMdbClickhouseClusterClickhou
 // GetMdbClickhouseClusterClickhouseArrayInput is an input type that accepts GetMdbClickhouseClusterClickhouseArray and GetMdbClickhouseClusterClickhouseArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseArrayInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseArray{ GetMdbClickhouseClusterClickhouseArgs{...} }
+//	GetMdbClickhouseClusterClickhouseArray{ GetMdbClickhouseClusterClickhouseArgs{...} }
 type GetMdbClickhouseClusterClickhouseArrayInput interface {
 	pulumi.Input
 
@@ -11316,7 +11316,7 @@ type GetMdbClickhouseClusterClickhouseConfig struct {
 // GetMdbClickhouseClusterClickhouseConfigInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigArgs and GetMdbClickhouseClusterClickhouseConfigOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigArgs{...}
+//	GetMdbClickhouseClusterClickhouseConfigArgs{...}
 type GetMdbClickhouseClusterClickhouseConfigInput interface {
 	pulumi.Input
 
@@ -11564,7 +11564,7 @@ type GetMdbClickhouseClusterClickhouseConfigCompression struct {
 // GetMdbClickhouseClusterClickhouseConfigCompressionInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigCompressionArgs and GetMdbClickhouseClusterClickhouseConfigCompressionOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigCompressionInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigCompressionArgs{...}
+//	GetMdbClickhouseClusterClickhouseConfigCompressionArgs{...}
 type GetMdbClickhouseClusterClickhouseConfigCompressionInput interface {
 	pulumi.Input
 
@@ -11596,7 +11596,7 @@ func (i GetMdbClickhouseClusterClickhouseConfigCompressionArgs) ToGetMdbClickhou
 // GetMdbClickhouseClusterClickhouseConfigCompressionArrayInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigCompressionArray and GetMdbClickhouseClusterClickhouseConfigCompressionArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigCompressionArrayInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigCompressionArray{ GetMdbClickhouseClusterClickhouseConfigCompressionArgs{...} }
+//	GetMdbClickhouseClusterClickhouseConfigCompressionArray{ GetMdbClickhouseClusterClickhouseConfigCompressionArgs{...} }
 type GetMdbClickhouseClusterClickhouseConfigCompressionArrayInput interface {
 	pulumi.Input
 
@@ -11677,7 +11677,7 @@ type GetMdbClickhouseClusterClickhouseConfigGraphiteRollup struct {
 // GetMdbClickhouseClusterClickhouseConfigGraphiteRollupInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs and GetMdbClickhouseClusterClickhouseConfigGraphiteRollupOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigGraphiteRollupInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs{...}
+//	GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs{...}
 type GetMdbClickhouseClusterClickhouseConfigGraphiteRollupInput interface {
 	pulumi.Input
 
@@ -11707,7 +11707,7 @@ func (i GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs) ToGetMdbClick
 // GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArrayInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArray and GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArrayInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArray{ GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs{...} }
+//	GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArray{ GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs{...} }
 type GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArrayInput interface {
 	pulumi.Input
 
@@ -11787,7 +11787,7 @@ type GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPattern struct {
 // GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs and GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs{...}
+//	GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs{...}
 type GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternInput interface {
 	pulumi.Input
 
@@ -11819,7 +11819,7 @@ func (i GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs) ToGetM
 // GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArrayInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArray and GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArrayInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArray{ GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs{...} }
+//	GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArray{ GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs{...} }
 type GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArrayInput interface {
 	pulumi.Input
 
@@ -11902,7 +11902,7 @@ type GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetention struc
 // GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs and GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs{...}
+//	GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs{...}
 type GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionInput interface {
 	pulumi.Input
 
@@ -11932,7 +11932,7 @@ func (i GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArg
 // GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArrayInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArray and GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArrayInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArray{ GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs{...} }
+//	GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArray{ GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs{...} }
 type GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArrayInput interface {
 	pulumi.Input
 
@@ -12012,7 +12012,7 @@ type GetMdbClickhouseClusterClickhouseConfigKafka struct {
 // GetMdbClickhouseClusterClickhouseConfigKafkaInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigKafkaArgs and GetMdbClickhouseClusterClickhouseConfigKafkaOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigKafkaInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigKafkaArgs{...}
+//	GetMdbClickhouseClusterClickhouseConfigKafkaArgs{...}
 type GetMdbClickhouseClusterClickhouseConfigKafkaInput interface {
 	pulumi.Input
 
@@ -12046,7 +12046,7 @@ func (i GetMdbClickhouseClusterClickhouseConfigKafkaArgs) ToGetMdbClickhouseClus
 // GetMdbClickhouseClusterClickhouseConfigKafkaArrayInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigKafkaArray and GetMdbClickhouseClusterClickhouseConfigKafkaArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigKafkaArrayInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigKafkaArray{ GetMdbClickhouseClusterClickhouseConfigKafkaArgs{...} }
+//	GetMdbClickhouseClusterClickhouseConfigKafkaArray{ GetMdbClickhouseClusterClickhouseConfigKafkaArgs{...} }
 type GetMdbClickhouseClusterClickhouseConfigKafkaArrayInput interface {
 	pulumi.Input
 
@@ -12132,7 +12132,7 @@ type GetMdbClickhouseClusterClickhouseConfigKafkaTopic struct {
 // GetMdbClickhouseClusterClickhouseConfigKafkaTopicInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs and GetMdbClickhouseClusterClickhouseConfigKafkaTopicOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigKafkaTopicInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs{...}
+//	GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs{...}
 type GetMdbClickhouseClusterClickhouseConfigKafkaTopicInput interface {
 	pulumi.Input
 
@@ -12162,7 +12162,7 @@ func (i GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs) ToGetMdbClickhous
 // GetMdbClickhouseClusterClickhouseConfigKafkaTopicArrayInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigKafkaTopicArray and GetMdbClickhouseClusterClickhouseConfigKafkaTopicArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigKafkaTopicArrayInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigKafkaTopicArray{ GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs{...} }
+//	GetMdbClickhouseClusterClickhouseConfigKafkaTopicArray{ GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs{...} }
 type GetMdbClickhouseClusterClickhouseConfigKafkaTopicArrayInput interface {
 	pulumi.Input
 
@@ -12244,7 +12244,7 @@ type GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettings struct {
 // GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs and GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs{...}
+//	GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs{...}
 type GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsInput interface {
 	pulumi.Input
 
@@ -12286,11 +12286,11 @@ func (i GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs) ToGetMdbC
 // GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsPtrInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs, GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsPtr and GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsPtrOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsPtrInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs{...}
+//	        GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsPtrInput interface {
 	pulumi.Input
 
@@ -12444,7 +12444,7 @@ type GetMdbClickhouseClusterClickhouseConfigMergeTree struct {
 // GetMdbClickhouseClusterClickhouseConfigMergeTreeInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs and GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigMergeTreeInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs{...}
+//	GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs{...}
 type GetMdbClickhouseClusterClickhouseConfigMergeTreeInput interface {
 	pulumi.Input
 
@@ -12546,7 +12546,7 @@ type GetMdbClickhouseClusterClickhouseConfigRabbitmq struct {
 // GetMdbClickhouseClusterClickhouseConfigRabbitmqInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs and GetMdbClickhouseClusterClickhouseConfigRabbitmqOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseConfigRabbitmqInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs{...}
+//	GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs{...}
 type GetMdbClickhouseClusterClickhouseConfigRabbitmqInput interface {
 	pulumi.Input
 
@@ -12608,7 +12608,7 @@ type GetMdbClickhouseClusterClickhouseResource struct {
 // GetMdbClickhouseClusterClickhouseResourceInput is an input type that accepts GetMdbClickhouseClusterClickhouseResourceArgs and GetMdbClickhouseClusterClickhouseResourceOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseResourceInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseResourceArgs{...}
+//	GetMdbClickhouseClusterClickhouseResourceArgs{...}
 type GetMdbClickhouseClusterClickhouseResourceInput interface {
 	pulumi.Input
 
@@ -12639,7 +12639,7 @@ func (i GetMdbClickhouseClusterClickhouseResourceArgs) ToGetMdbClickhouseCluster
 // GetMdbClickhouseClusterClickhouseResourceArrayInput is an input type that accepts GetMdbClickhouseClusterClickhouseResourceArray and GetMdbClickhouseClusterClickhouseResourceArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterClickhouseResourceArrayInput` via:
 //
-//          GetMdbClickhouseClusterClickhouseResourceArray{ GetMdbClickhouseClusterClickhouseResourceArgs{...} }
+//	GetMdbClickhouseClusterClickhouseResourceArray{ GetMdbClickhouseClusterClickhouseResourceArgs{...} }
 type GetMdbClickhouseClusterClickhouseResourceArrayInput interface {
 	pulumi.Input
 
@@ -12717,7 +12717,7 @@ type GetMdbClickhouseClusterCloudStorage struct {
 // GetMdbClickhouseClusterCloudStorageInput is an input type that accepts GetMdbClickhouseClusterCloudStorageArgs and GetMdbClickhouseClusterCloudStorageOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterCloudStorageInput` via:
 //
-//          GetMdbClickhouseClusterCloudStorageArgs{...}
+//	GetMdbClickhouseClusterCloudStorageArgs{...}
 type GetMdbClickhouseClusterCloudStorageInput interface {
 	pulumi.Input
 
@@ -12753,11 +12753,11 @@ func (i GetMdbClickhouseClusterCloudStorageArgs) ToGetMdbClickhouseClusterCloudS
 // GetMdbClickhouseClusterCloudStoragePtrInput is an input type that accepts GetMdbClickhouseClusterCloudStorageArgs, GetMdbClickhouseClusterCloudStoragePtr and GetMdbClickhouseClusterCloudStoragePtrOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterCloudStoragePtrInput` via:
 //
-//          GetMdbClickhouseClusterCloudStorageArgs{...}
+//	        GetMdbClickhouseClusterCloudStorageArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbClickhouseClusterCloudStoragePtrInput interface {
 	pulumi.Input
 
@@ -12854,7 +12854,7 @@ type GetMdbClickhouseClusterDatabase struct {
 // GetMdbClickhouseClusterDatabaseInput is an input type that accepts GetMdbClickhouseClusterDatabaseArgs and GetMdbClickhouseClusterDatabaseOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterDatabaseInput` via:
 //
-//          GetMdbClickhouseClusterDatabaseArgs{...}
+//	GetMdbClickhouseClusterDatabaseArgs{...}
 type GetMdbClickhouseClusterDatabaseInput interface {
 	pulumi.Input
 
@@ -12882,7 +12882,7 @@ func (i GetMdbClickhouseClusterDatabaseArgs) ToGetMdbClickhouseClusterDatabaseOu
 // GetMdbClickhouseClusterDatabaseArrayInput is an input type that accepts GetMdbClickhouseClusterDatabaseArray and GetMdbClickhouseClusterDatabaseArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterDatabaseArrayInput` via:
 //
-//          GetMdbClickhouseClusterDatabaseArray{ GetMdbClickhouseClusterDatabaseArgs{...} }
+//	GetMdbClickhouseClusterDatabaseArray{ GetMdbClickhouseClusterDatabaseArgs{...} }
 type GetMdbClickhouseClusterDatabaseArrayInput interface {
 	pulumi.Input
 
@@ -12955,7 +12955,7 @@ type GetMdbClickhouseClusterFormatSchema struct {
 // GetMdbClickhouseClusterFormatSchemaInput is an input type that accepts GetMdbClickhouseClusterFormatSchemaArgs and GetMdbClickhouseClusterFormatSchemaOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterFormatSchemaInput` via:
 //
-//          GetMdbClickhouseClusterFormatSchemaArgs{...}
+//	GetMdbClickhouseClusterFormatSchemaArgs{...}
 type GetMdbClickhouseClusterFormatSchemaInput interface {
 	pulumi.Input
 
@@ -12987,7 +12987,7 @@ func (i GetMdbClickhouseClusterFormatSchemaArgs) ToGetMdbClickhouseClusterFormat
 // GetMdbClickhouseClusterFormatSchemaArrayInput is an input type that accepts GetMdbClickhouseClusterFormatSchemaArray and GetMdbClickhouseClusterFormatSchemaArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterFormatSchemaArrayInput` via:
 //
-//          GetMdbClickhouseClusterFormatSchemaArray{ GetMdbClickhouseClusterFormatSchemaArgs{...} }
+//	GetMdbClickhouseClusterFormatSchemaArray{ GetMdbClickhouseClusterFormatSchemaArgs{...} }
 type GetMdbClickhouseClusterFormatSchemaArrayInput interface {
 	pulumi.Input
 
@@ -13076,7 +13076,7 @@ type GetMdbClickhouseClusterHost struct {
 // GetMdbClickhouseClusterHostInput is an input type that accepts GetMdbClickhouseClusterHostArgs and GetMdbClickhouseClusterHostOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterHostInput` via:
 //
-//          GetMdbClickhouseClusterHostArgs{...}
+//	GetMdbClickhouseClusterHostArgs{...}
 type GetMdbClickhouseClusterHostInput interface {
 	pulumi.Input
 
@@ -13114,7 +13114,7 @@ func (i GetMdbClickhouseClusterHostArgs) ToGetMdbClickhouseClusterHostOutputWith
 // GetMdbClickhouseClusterHostArrayInput is an input type that accepts GetMdbClickhouseClusterHostArray and GetMdbClickhouseClusterHostArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterHostArrayInput` via:
 //
-//          GetMdbClickhouseClusterHostArray{ GetMdbClickhouseClusterHostArgs{...} }
+//	GetMdbClickhouseClusterHostArray{ GetMdbClickhouseClusterHostArgs{...} }
 type GetMdbClickhouseClusterHostArrayInput interface {
 	pulumi.Input
 
@@ -13212,7 +13212,7 @@ type GetMdbClickhouseClusterMaintenanceWindow struct {
 // GetMdbClickhouseClusterMaintenanceWindowInput is an input type that accepts GetMdbClickhouseClusterMaintenanceWindowArgs and GetMdbClickhouseClusterMaintenanceWindowOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterMaintenanceWindowInput` via:
 //
-//          GetMdbClickhouseClusterMaintenanceWindowArgs{...}
+//	GetMdbClickhouseClusterMaintenanceWindowArgs{...}
 type GetMdbClickhouseClusterMaintenanceWindowInput interface {
 	pulumi.Input
 
@@ -13244,7 +13244,7 @@ func (i GetMdbClickhouseClusterMaintenanceWindowArgs) ToGetMdbClickhouseClusterM
 // GetMdbClickhouseClusterMaintenanceWindowArrayInput is an input type that accepts GetMdbClickhouseClusterMaintenanceWindowArray and GetMdbClickhouseClusterMaintenanceWindowArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterMaintenanceWindowArrayInput` via:
 //
-//          GetMdbClickhouseClusterMaintenanceWindowArray{ GetMdbClickhouseClusterMaintenanceWindowArgs{...} }
+//	GetMdbClickhouseClusterMaintenanceWindowArray{ GetMdbClickhouseClusterMaintenanceWindowArgs{...} }
 type GetMdbClickhouseClusterMaintenanceWindowArrayInput interface {
 	pulumi.Input
 
@@ -13327,7 +13327,7 @@ type GetMdbClickhouseClusterMlModel struct {
 // GetMdbClickhouseClusterMlModelInput is an input type that accepts GetMdbClickhouseClusterMlModelArgs and GetMdbClickhouseClusterMlModelOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterMlModelInput` via:
 //
-//          GetMdbClickhouseClusterMlModelArgs{...}
+//	GetMdbClickhouseClusterMlModelArgs{...}
 type GetMdbClickhouseClusterMlModelInput interface {
 	pulumi.Input
 
@@ -13359,7 +13359,7 @@ func (i GetMdbClickhouseClusterMlModelArgs) ToGetMdbClickhouseClusterMlModelOutp
 // GetMdbClickhouseClusterMlModelArrayInput is an input type that accepts GetMdbClickhouseClusterMlModelArray and GetMdbClickhouseClusterMlModelArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterMlModelArrayInput` via:
 //
-//          GetMdbClickhouseClusterMlModelArray{ GetMdbClickhouseClusterMlModelArgs{...} }
+//	GetMdbClickhouseClusterMlModelArray{ GetMdbClickhouseClusterMlModelArgs{...} }
 type GetMdbClickhouseClusterMlModelArrayInput interface {
 	pulumi.Input
 
@@ -13442,7 +13442,7 @@ type GetMdbClickhouseClusterShardGroup struct {
 // GetMdbClickhouseClusterShardGroupInput is an input type that accepts GetMdbClickhouseClusterShardGroupArgs and GetMdbClickhouseClusterShardGroupOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterShardGroupInput` via:
 //
-//          GetMdbClickhouseClusterShardGroupArgs{...}
+//	GetMdbClickhouseClusterShardGroupArgs{...}
 type GetMdbClickhouseClusterShardGroupInput interface {
 	pulumi.Input
 
@@ -13474,7 +13474,7 @@ func (i GetMdbClickhouseClusterShardGroupArgs) ToGetMdbClickhouseClusterShardGro
 // GetMdbClickhouseClusterShardGroupArrayInput is an input type that accepts GetMdbClickhouseClusterShardGroupArray and GetMdbClickhouseClusterShardGroupArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterShardGroupArrayInput` via:
 //
-//          GetMdbClickhouseClusterShardGroupArray{ GetMdbClickhouseClusterShardGroupArgs{...} }
+//	GetMdbClickhouseClusterShardGroupArray{ GetMdbClickhouseClusterShardGroupArgs{...} }
 type GetMdbClickhouseClusterShardGroupArrayInput interface {
 	pulumi.Input
 
@@ -13559,7 +13559,7 @@ type GetMdbClickhouseClusterUser struct {
 // GetMdbClickhouseClusterUserInput is an input type that accepts GetMdbClickhouseClusterUserArgs and GetMdbClickhouseClusterUserOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterUserInput` via:
 //
-//          GetMdbClickhouseClusterUserArgs{...}
+//	GetMdbClickhouseClusterUserArgs{...}
 type GetMdbClickhouseClusterUserInput interface {
 	pulumi.Input
 
@@ -13593,7 +13593,7 @@ func (i GetMdbClickhouseClusterUserArgs) ToGetMdbClickhouseClusterUserOutputWith
 // GetMdbClickhouseClusterUserArrayInput is an input type that accepts GetMdbClickhouseClusterUserArray and GetMdbClickhouseClusterUserArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterUserArrayInput` via:
 //
-//          GetMdbClickhouseClusterUserArray{ GetMdbClickhouseClusterUserArgs{...} }
+//	GetMdbClickhouseClusterUserArray{ GetMdbClickhouseClusterUserArgs{...} }
 type GetMdbClickhouseClusterUserArrayInput interface {
 	pulumi.Input
 
@@ -13677,7 +13677,7 @@ type GetMdbClickhouseClusterUserPermission struct {
 // GetMdbClickhouseClusterUserPermissionInput is an input type that accepts GetMdbClickhouseClusterUserPermissionArgs and GetMdbClickhouseClusterUserPermissionOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterUserPermissionInput` via:
 //
-//          GetMdbClickhouseClusterUserPermissionArgs{...}
+//	GetMdbClickhouseClusterUserPermissionArgs{...}
 type GetMdbClickhouseClusterUserPermissionInput interface {
 	pulumi.Input
 
@@ -13705,7 +13705,7 @@ func (i GetMdbClickhouseClusterUserPermissionArgs) ToGetMdbClickhouseClusterUser
 // GetMdbClickhouseClusterUserPermissionArrayInput is an input type that accepts GetMdbClickhouseClusterUserPermissionArray and GetMdbClickhouseClusterUserPermissionArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterUserPermissionArrayInput` via:
 //
-//          GetMdbClickhouseClusterUserPermissionArray{ GetMdbClickhouseClusterUserPermissionArgs{...} }
+//	GetMdbClickhouseClusterUserPermissionArray{ GetMdbClickhouseClusterUserPermissionArgs{...} }
 type GetMdbClickhouseClusterUserPermissionArrayInput interface {
 	pulumi.Input
 
@@ -13784,7 +13784,7 @@ type GetMdbClickhouseClusterUserQuota struct {
 // GetMdbClickhouseClusterUserQuotaInput is an input type that accepts GetMdbClickhouseClusterUserQuotaArgs and GetMdbClickhouseClusterUserQuotaOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterUserQuotaInput` via:
 //
-//          GetMdbClickhouseClusterUserQuotaArgs{...}
+//	GetMdbClickhouseClusterUserQuotaArgs{...}
 type GetMdbClickhouseClusterUserQuotaInput interface {
 	pulumi.Input
 
@@ -13822,7 +13822,7 @@ func (i GetMdbClickhouseClusterUserQuotaArgs) ToGetMdbClickhouseClusterUserQuota
 // GetMdbClickhouseClusterUserQuotaArrayInput is an input type that accepts GetMdbClickhouseClusterUserQuotaArray and GetMdbClickhouseClusterUserQuotaArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterUserQuotaArrayInput` via:
 //
-//          GetMdbClickhouseClusterUserQuotaArray{ GetMdbClickhouseClusterUserQuotaArgs{...} }
+//	GetMdbClickhouseClusterUserQuotaArray{ GetMdbClickhouseClusterUserQuotaArgs{...} }
 type GetMdbClickhouseClusterUserQuotaArrayInput interface {
 	pulumi.Input
 
@@ -14100,7 +14100,7 @@ type GetMdbClickhouseClusterUserSettings struct {
 // GetMdbClickhouseClusterUserSettingsInput is an input type that accepts GetMdbClickhouseClusterUserSettingsArgs and GetMdbClickhouseClusterUserSettingsOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterUserSettingsInput` via:
 //
-//          GetMdbClickhouseClusterUserSettingsArgs{...}
+//	GetMdbClickhouseClusterUserSettingsArgs{...}
 type GetMdbClickhouseClusterUserSettingsInput interface {
 	pulumi.Input
 
@@ -14798,7 +14798,7 @@ type GetMdbClickhouseClusterZookeeper struct {
 // GetMdbClickhouseClusterZookeeperInput is an input type that accepts GetMdbClickhouseClusterZookeeperArgs and GetMdbClickhouseClusterZookeeperOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterZookeeperInput` via:
 //
-//          GetMdbClickhouseClusterZookeeperArgs{...}
+//	GetMdbClickhouseClusterZookeeperArgs{...}
 type GetMdbClickhouseClusterZookeeperInput interface {
 	pulumi.Input
 
@@ -14826,7 +14826,7 @@ func (i GetMdbClickhouseClusterZookeeperArgs) ToGetMdbClickhouseClusterZookeeper
 // GetMdbClickhouseClusterZookeeperArrayInput is an input type that accepts GetMdbClickhouseClusterZookeeperArray and GetMdbClickhouseClusterZookeeperArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterZookeeperArrayInput` via:
 //
-//          GetMdbClickhouseClusterZookeeperArray{ GetMdbClickhouseClusterZookeeperArgs{...} }
+//	GetMdbClickhouseClusterZookeeperArray{ GetMdbClickhouseClusterZookeeperArgs{...} }
 type GetMdbClickhouseClusterZookeeperArrayInput interface {
 	pulumi.Input
 
@@ -14900,7 +14900,7 @@ type GetMdbClickhouseClusterZookeeperResource struct {
 // GetMdbClickhouseClusterZookeeperResourceInput is an input type that accepts GetMdbClickhouseClusterZookeeperResourceArgs and GetMdbClickhouseClusterZookeeperResourceOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterZookeeperResourceInput` via:
 //
-//          GetMdbClickhouseClusterZookeeperResourceArgs{...}
+//	GetMdbClickhouseClusterZookeeperResourceArgs{...}
 type GetMdbClickhouseClusterZookeeperResourceInput interface {
 	pulumi.Input
 
@@ -14931,7 +14931,7 @@ func (i GetMdbClickhouseClusterZookeeperResourceArgs) ToGetMdbClickhouseClusterZ
 // GetMdbClickhouseClusterZookeeperResourceArrayInput is an input type that accepts GetMdbClickhouseClusterZookeeperResourceArray and GetMdbClickhouseClusterZookeeperResourceArrayOutput values.
 // You can construct a concrete instance of `GetMdbClickhouseClusterZookeeperResourceArrayInput` via:
 //
-//          GetMdbClickhouseClusterZookeeperResourceArray{ GetMdbClickhouseClusterZookeeperResourceArgs{...} }
+//	GetMdbClickhouseClusterZookeeperResourceArray{ GetMdbClickhouseClusterZookeeperResourceArgs{...} }
 type GetMdbClickhouseClusterZookeeperResourceArrayInput interface {
 	pulumi.Input
 
@@ -15018,7 +15018,7 @@ type GetMdbElasticSearchClusterConfig struct {
 // GetMdbElasticSearchClusterConfigInput is an input type that accepts GetMdbElasticSearchClusterConfigArgs and GetMdbElasticSearchClusterConfigOutput values.
 // You can construct a concrete instance of `GetMdbElasticSearchClusterConfigInput` via:
 //
-//          GetMdbElasticSearchClusterConfigArgs{...}
+//	GetMdbElasticSearchClusterConfigArgs{...}
 type GetMdbElasticSearchClusterConfigInput interface {
 	pulumi.Input
 
@@ -15055,7 +15055,7 @@ func (i GetMdbElasticSearchClusterConfigArgs) ToGetMdbElasticSearchClusterConfig
 // GetMdbElasticSearchClusterConfigArrayInput is an input type that accepts GetMdbElasticSearchClusterConfigArray and GetMdbElasticSearchClusterConfigArrayOutput values.
 // You can construct a concrete instance of `GetMdbElasticSearchClusterConfigArrayInput` via:
 //
-//          GetMdbElasticSearchClusterConfigArray{ GetMdbElasticSearchClusterConfigArgs{...} }
+//	GetMdbElasticSearchClusterConfigArray{ GetMdbElasticSearchClusterConfigArgs{...} }
 type GetMdbElasticSearchClusterConfigArrayInput interface {
 	pulumi.Input
 
@@ -15152,7 +15152,7 @@ type GetMdbElasticSearchClusterConfigDataNode struct {
 // GetMdbElasticSearchClusterConfigDataNodeInput is an input type that accepts GetMdbElasticSearchClusterConfigDataNodeArgs and GetMdbElasticSearchClusterConfigDataNodeOutput values.
 // You can construct a concrete instance of `GetMdbElasticSearchClusterConfigDataNodeInput` via:
 //
-//          GetMdbElasticSearchClusterConfigDataNodeArgs{...}
+//	GetMdbElasticSearchClusterConfigDataNodeArgs{...}
 type GetMdbElasticSearchClusterConfigDataNodeInput interface {
 	pulumi.Input
 
@@ -15180,7 +15180,7 @@ func (i GetMdbElasticSearchClusterConfigDataNodeArgs) ToGetMdbElasticSearchClust
 // GetMdbElasticSearchClusterConfigDataNodeArrayInput is an input type that accepts GetMdbElasticSearchClusterConfigDataNodeArray and GetMdbElasticSearchClusterConfigDataNodeArrayOutput values.
 // You can construct a concrete instance of `GetMdbElasticSearchClusterConfigDataNodeArrayInput` via:
 //
-//          GetMdbElasticSearchClusterConfigDataNodeArray{ GetMdbElasticSearchClusterConfigDataNodeArgs{...} }
+//	GetMdbElasticSearchClusterConfigDataNodeArray{ GetMdbElasticSearchClusterConfigDataNodeArgs{...} }
 type GetMdbElasticSearchClusterConfigDataNodeArrayInput interface {
 	pulumi.Input
 
@@ -15254,7 +15254,7 @@ type GetMdbElasticSearchClusterConfigDataNodeResource struct {
 // GetMdbElasticSearchClusterConfigDataNodeResourceInput is an input type that accepts GetMdbElasticSearchClusterConfigDataNodeResourceArgs and GetMdbElasticSearchClusterConfigDataNodeResourceOutput values.
 // You can construct a concrete instance of `GetMdbElasticSearchClusterConfigDataNodeResourceInput` via:
 //
-//          GetMdbElasticSearchClusterConfigDataNodeResourceArgs{...}
+//	GetMdbElasticSearchClusterConfigDataNodeResourceArgs{...}
 type GetMdbElasticSearchClusterConfigDataNodeResourceInput interface {
 	pulumi.Input
 
@@ -15285,7 +15285,7 @@ func (i GetMdbElasticSearchClusterConfigDataNodeResourceArgs) ToGetMdbElasticSea
 // GetMdbElasticSearchClusterConfigDataNodeResourceArrayInput is an input type that accepts GetMdbElasticSearchClusterConfigDataNodeResourceArray and GetMdbElasticSearchClusterConfigDataNodeResourceArrayOutput values.
 // You can construct a concrete instance of `GetMdbElasticSearchClusterConfigDataNodeResourceArrayInput` via:
 //
-//          GetMdbElasticSearchClusterConfigDataNodeResourceArray{ GetMdbElasticSearchClusterConfigDataNodeResourceArgs{...} }
+//	GetMdbElasticSearchClusterConfigDataNodeResourceArray{ GetMdbElasticSearchClusterConfigDataNodeResourceArgs{...} }
 type GetMdbElasticSearchClusterConfigDataNodeResourceArrayInput interface {
 	pulumi.Input
 
@@ -15363,7 +15363,7 @@ type GetMdbElasticSearchClusterConfigMasterNode struct {
 // GetMdbElasticSearchClusterConfigMasterNodeInput is an input type that accepts GetMdbElasticSearchClusterConfigMasterNodeArgs and GetMdbElasticSearchClusterConfigMasterNodeOutput values.
 // You can construct a concrete instance of `GetMdbElasticSearchClusterConfigMasterNodeInput` via:
 //
-//          GetMdbElasticSearchClusterConfigMasterNodeArgs{...}
+//	GetMdbElasticSearchClusterConfigMasterNodeArgs{...}
 type GetMdbElasticSearchClusterConfigMasterNodeInput interface {
 	pulumi.Input
 
@@ -15420,7 +15420,7 @@ type GetMdbElasticSearchClusterConfigMasterNodeResource struct {
 // GetMdbElasticSearchClusterConfigMasterNodeResourceInput is an input type that accepts GetMdbElasticSearchClusterConfigMasterNodeResourceArgs and GetMdbElasticSearchClusterConfigMasterNodeResourceOutput values.
 // You can construct a concrete instance of `GetMdbElasticSearchClusterConfigMasterNodeResourceInput` via:
 //
-//          GetMdbElasticSearchClusterConfigMasterNodeResourceArgs{...}
+//	GetMdbElasticSearchClusterConfigMasterNodeResourceArgs{...}
 type GetMdbElasticSearchClusterConfigMasterNodeResourceInput interface {
 	pulumi.Input
 
@@ -15451,7 +15451,7 @@ func (i GetMdbElasticSearchClusterConfigMasterNodeResourceArgs) ToGetMdbElasticS
 // GetMdbElasticSearchClusterConfigMasterNodeResourceArrayInput is an input type that accepts GetMdbElasticSearchClusterConfigMasterNodeResourceArray and GetMdbElasticSearchClusterConfigMasterNodeResourceArrayOutput values.
 // You can construct a concrete instance of `GetMdbElasticSearchClusterConfigMasterNodeResourceArrayInput` via:
 //
-//          GetMdbElasticSearchClusterConfigMasterNodeResourceArray{ GetMdbElasticSearchClusterConfigMasterNodeResourceArgs{...} }
+//	GetMdbElasticSearchClusterConfigMasterNodeResourceArray{ GetMdbElasticSearchClusterConfigMasterNodeResourceArgs{...} }
 type GetMdbElasticSearchClusterConfigMasterNodeResourceArrayInput interface {
 	pulumi.Input
 
@@ -15539,7 +15539,7 @@ type GetMdbElasticSearchClusterHost struct {
 // GetMdbElasticSearchClusterHostInput is an input type that accepts GetMdbElasticSearchClusterHostArgs and GetMdbElasticSearchClusterHostOutput values.
 // You can construct a concrete instance of `GetMdbElasticSearchClusterHostInput` via:
 //
-//          GetMdbElasticSearchClusterHostArgs{...}
+//	GetMdbElasticSearchClusterHostArgs{...}
 type GetMdbElasticSearchClusterHostInput interface {
 	pulumi.Input
 
@@ -15577,7 +15577,7 @@ func (i GetMdbElasticSearchClusterHostArgs) ToGetMdbElasticSearchClusterHostOutp
 // GetMdbElasticSearchClusterHostArrayInput is an input type that accepts GetMdbElasticSearchClusterHostArray and GetMdbElasticSearchClusterHostArrayOutput values.
 // You can construct a concrete instance of `GetMdbElasticSearchClusterHostArrayInput` via:
 //
-//          GetMdbElasticSearchClusterHostArray{ GetMdbElasticSearchClusterHostArgs{...} }
+//	GetMdbElasticSearchClusterHostArray{ GetMdbElasticSearchClusterHostArgs{...} }
 type GetMdbElasticSearchClusterHostArrayInput interface {
 	pulumi.Input
 
@@ -15675,7 +15675,7 @@ type GetMdbElasticSearchClusterMaintenanceWindow struct {
 // GetMdbElasticSearchClusterMaintenanceWindowInput is an input type that accepts GetMdbElasticSearchClusterMaintenanceWindowArgs and GetMdbElasticSearchClusterMaintenanceWindowOutput values.
 // You can construct a concrete instance of `GetMdbElasticSearchClusterMaintenanceWindowInput` via:
 //
-//          GetMdbElasticSearchClusterMaintenanceWindowArgs{...}
+//	GetMdbElasticSearchClusterMaintenanceWindowArgs{...}
 type GetMdbElasticSearchClusterMaintenanceWindowInput interface {
 	pulumi.Input
 
@@ -15707,7 +15707,7 @@ func (i GetMdbElasticSearchClusterMaintenanceWindowArgs) ToGetMdbElasticSearchCl
 // GetMdbElasticSearchClusterMaintenanceWindowArrayInput is an input type that accepts GetMdbElasticSearchClusterMaintenanceWindowArray and GetMdbElasticSearchClusterMaintenanceWindowArrayOutput values.
 // You can construct a concrete instance of `GetMdbElasticSearchClusterMaintenanceWindowArrayInput` via:
 //
-//          GetMdbElasticSearchClusterMaintenanceWindowArray{ GetMdbElasticSearchClusterMaintenanceWindowArgs{...} }
+//	GetMdbElasticSearchClusterMaintenanceWindowArray{ GetMdbElasticSearchClusterMaintenanceWindowArgs{...} }
 type GetMdbElasticSearchClusterMaintenanceWindowArrayInput interface {
 	pulumi.Input
 
@@ -15787,7 +15787,7 @@ type GetMdbGreenplumClusterAccess struct {
 // GetMdbGreenplumClusterAccessInput is an input type that accepts GetMdbGreenplumClusterAccessArgs and GetMdbGreenplumClusterAccessOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterAccessInput` via:
 //
-//          GetMdbGreenplumClusterAccessArgs{...}
+//	GetMdbGreenplumClusterAccessArgs{...}
 type GetMdbGreenplumClusterAccessInput interface {
 	pulumi.Input
 
@@ -15816,7 +15816,7 @@ func (i GetMdbGreenplumClusterAccessArgs) ToGetMdbGreenplumClusterAccessOutputWi
 // GetMdbGreenplumClusterAccessArrayInput is an input type that accepts GetMdbGreenplumClusterAccessArray and GetMdbGreenplumClusterAccessArrayOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterAccessArrayInput` via:
 //
-//          GetMdbGreenplumClusterAccessArray{ GetMdbGreenplumClusterAccessArgs{...} }
+//	GetMdbGreenplumClusterAccessArray{ GetMdbGreenplumClusterAccessArgs{...} }
 type GetMdbGreenplumClusterAccessArrayInput interface {
 	pulumi.Input
 
@@ -15892,7 +15892,7 @@ type GetMdbGreenplumClusterBackupWindowStart struct {
 // GetMdbGreenplumClusterBackupWindowStartInput is an input type that accepts GetMdbGreenplumClusterBackupWindowStartArgs and GetMdbGreenplumClusterBackupWindowStartOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterBackupWindowStartInput` via:
 //
-//          GetMdbGreenplumClusterBackupWindowStartArgs{...}
+//	GetMdbGreenplumClusterBackupWindowStartArgs{...}
 type GetMdbGreenplumClusterBackupWindowStartInput interface {
 	pulumi.Input
 
@@ -15920,7 +15920,7 @@ func (i GetMdbGreenplumClusterBackupWindowStartArgs) ToGetMdbGreenplumClusterBac
 // GetMdbGreenplumClusterBackupWindowStartArrayInput is an input type that accepts GetMdbGreenplumClusterBackupWindowStartArray and GetMdbGreenplumClusterBackupWindowStartArrayOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterBackupWindowStartArrayInput` via:
 //
-//          GetMdbGreenplumClusterBackupWindowStartArray{ GetMdbGreenplumClusterBackupWindowStartArgs{...} }
+//	GetMdbGreenplumClusterBackupWindowStartArray{ GetMdbGreenplumClusterBackupWindowStartArgs{...} }
 type GetMdbGreenplumClusterBackupWindowStartArrayInput interface {
 	pulumi.Input
 
@@ -15993,7 +15993,7 @@ type GetMdbGreenplumClusterMaintenanceWindow struct {
 // GetMdbGreenplumClusterMaintenanceWindowInput is an input type that accepts GetMdbGreenplumClusterMaintenanceWindowArgs and GetMdbGreenplumClusterMaintenanceWindowOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterMaintenanceWindowInput` via:
 //
-//          GetMdbGreenplumClusterMaintenanceWindowArgs{...}
+//	GetMdbGreenplumClusterMaintenanceWindowArgs{...}
 type GetMdbGreenplumClusterMaintenanceWindowInput interface {
 	pulumi.Input
 
@@ -16022,7 +16022,7 @@ func (i GetMdbGreenplumClusterMaintenanceWindowArgs) ToGetMdbGreenplumClusterMai
 // GetMdbGreenplumClusterMaintenanceWindowArrayInput is an input type that accepts GetMdbGreenplumClusterMaintenanceWindowArray and GetMdbGreenplumClusterMaintenanceWindowArrayOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterMaintenanceWindowArrayInput` via:
 //
-//          GetMdbGreenplumClusterMaintenanceWindowArray{ GetMdbGreenplumClusterMaintenanceWindowArgs{...} }
+//	GetMdbGreenplumClusterMaintenanceWindowArray{ GetMdbGreenplumClusterMaintenanceWindowArgs{...} }
 type GetMdbGreenplumClusterMaintenanceWindowArrayInput interface {
 	pulumi.Input
 
@@ -16098,7 +16098,7 @@ type GetMdbGreenplumClusterMasterHost struct {
 // GetMdbGreenplumClusterMasterHostInput is an input type that accepts GetMdbGreenplumClusterMasterHostArgs and GetMdbGreenplumClusterMasterHostOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterMasterHostInput` via:
 //
-//          GetMdbGreenplumClusterMasterHostArgs{...}
+//	GetMdbGreenplumClusterMasterHostArgs{...}
 type GetMdbGreenplumClusterMasterHostInput interface {
 	pulumi.Input
 
@@ -16126,7 +16126,7 @@ func (i GetMdbGreenplumClusterMasterHostArgs) ToGetMdbGreenplumClusterMasterHost
 // GetMdbGreenplumClusterMasterHostArrayInput is an input type that accepts GetMdbGreenplumClusterMasterHostArray and GetMdbGreenplumClusterMasterHostArrayOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterMasterHostArrayInput` via:
 //
-//          GetMdbGreenplumClusterMasterHostArray{ GetMdbGreenplumClusterMasterHostArgs{...} }
+//	GetMdbGreenplumClusterMasterHostArray{ GetMdbGreenplumClusterMasterHostArgs{...} }
 type GetMdbGreenplumClusterMasterHostArrayInput interface {
 	pulumi.Input
 
@@ -16197,7 +16197,7 @@ type GetMdbGreenplumClusterMasterSubcluster struct {
 // GetMdbGreenplumClusterMasterSubclusterInput is an input type that accepts GetMdbGreenplumClusterMasterSubclusterArgs and GetMdbGreenplumClusterMasterSubclusterOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterMasterSubclusterInput` via:
 //
-//          GetMdbGreenplumClusterMasterSubclusterArgs{...}
+//	GetMdbGreenplumClusterMasterSubclusterArgs{...}
 type GetMdbGreenplumClusterMasterSubclusterInput interface {
 	pulumi.Input
 
@@ -16224,7 +16224,7 @@ func (i GetMdbGreenplumClusterMasterSubclusterArgs) ToGetMdbGreenplumClusterMast
 // GetMdbGreenplumClusterMasterSubclusterArrayInput is an input type that accepts GetMdbGreenplumClusterMasterSubclusterArray and GetMdbGreenplumClusterMasterSubclusterArrayOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterMasterSubclusterArrayInput` via:
 //
-//          GetMdbGreenplumClusterMasterSubclusterArray{ GetMdbGreenplumClusterMasterSubclusterArgs{...} }
+//	GetMdbGreenplumClusterMasterSubclusterArray{ GetMdbGreenplumClusterMasterSubclusterArgs{...} }
 type GetMdbGreenplumClusterMasterSubclusterArrayInput interface {
 	pulumi.Input
 
@@ -16295,7 +16295,7 @@ type GetMdbGreenplumClusterMasterSubclusterResource struct {
 // GetMdbGreenplumClusterMasterSubclusterResourceInput is an input type that accepts GetMdbGreenplumClusterMasterSubclusterResourceArgs and GetMdbGreenplumClusterMasterSubclusterResourceOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterMasterSubclusterResourceInput` via:
 //
-//          GetMdbGreenplumClusterMasterSubclusterResourceArgs{...}
+//	GetMdbGreenplumClusterMasterSubclusterResourceArgs{...}
 type GetMdbGreenplumClusterMasterSubclusterResourceInput interface {
 	pulumi.Input
 
@@ -16324,7 +16324,7 @@ func (i GetMdbGreenplumClusterMasterSubclusterResourceArgs) ToGetMdbGreenplumClu
 // GetMdbGreenplumClusterMasterSubclusterResourceArrayInput is an input type that accepts GetMdbGreenplumClusterMasterSubclusterResourceArray and GetMdbGreenplumClusterMasterSubclusterResourceArrayOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterMasterSubclusterResourceArrayInput` via:
 //
-//          GetMdbGreenplumClusterMasterSubclusterResourceArray{ GetMdbGreenplumClusterMasterSubclusterResourceArgs{...} }
+//	GetMdbGreenplumClusterMasterSubclusterResourceArray{ GetMdbGreenplumClusterMasterSubclusterResourceArgs{...} }
 type GetMdbGreenplumClusterMasterSubclusterResourceArrayInput interface {
 	pulumi.Input
 
@@ -16401,7 +16401,7 @@ type GetMdbGreenplumClusterPoolerConfig struct {
 // GetMdbGreenplumClusterPoolerConfigInput is an input type that accepts GetMdbGreenplumClusterPoolerConfigArgs and GetMdbGreenplumClusterPoolerConfigOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterPoolerConfigInput` via:
 //
-//          GetMdbGreenplumClusterPoolerConfigArgs{...}
+//	GetMdbGreenplumClusterPoolerConfigArgs{...}
 type GetMdbGreenplumClusterPoolerConfigInput interface {
 	pulumi.Input
 
@@ -16438,11 +16438,11 @@ func (i GetMdbGreenplumClusterPoolerConfigArgs) ToGetMdbGreenplumClusterPoolerCo
 // GetMdbGreenplumClusterPoolerConfigPtrInput is an input type that accepts GetMdbGreenplumClusterPoolerConfigArgs, GetMdbGreenplumClusterPoolerConfigPtr and GetMdbGreenplumClusterPoolerConfigPtrOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterPoolerConfigPtrInput` via:
 //
-//          GetMdbGreenplumClusterPoolerConfigArgs{...}
+//	        GetMdbGreenplumClusterPoolerConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbGreenplumClusterPoolerConfigPtrInput interface {
 	pulumi.Input
 
@@ -16562,7 +16562,7 @@ type GetMdbGreenplumClusterSegmentHost struct {
 // GetMdbGreenplumClusterSegmentHostInput is an input type that accepts GetMdbGreenplumClusterSegmentHostArgs and GetMdbGreenplumClusterSegmentHostOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterSegmentHostInput` via:
 //
-//          GetMdbGreenplumClusterSegmentHostArgs{...}
+//	GetMdbGreenplumClusterSegmentHostArgs{...}
 type GetMdbGreenplumClusterSegmentHostInput interface {
 	pulumi.Input
 
@@ -16589,7 +16589,7 @@ func (i GetMdbGreenplumClusterSegmentHostArgs) ToGetMdbGreenplumClusterSegmentHo
 // GetMdbGreenplumClusterSegmentHostArrayInput is an input type that accepts GetMdbGreenplumClusterSegmentHostArray and GetMdbGreenplumClusterSegmentHostArrayOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterSegmentHostArrayInput` via:
 //
-//          GetMdbGreenplumClusterSegmentHostArray{ GetMdbGreenplumClusterSegmentHostArgs{...} }
+//	GetMdbGreenplumClusterSegmentHostArray{ GetMdbGreenplumClusterSegmentHostArgs{...} }
 type GetMdbGreenplumClusterSegmentHostArrayInput interface {
 	pulumi.Input
 
@@ -16656,7 +16656,7 @@ type GetMdbGreenplumClusterSegmentSubcluster struct {
 // GetMdbGreenplumClusterSegmentSubclusterInput is an input type that accepts GetMdbGreenplumClusterSegmentSubclusterArgs and GetMdbGreenplumClusterSegmentSubclusterOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterSegmentSubclusterInput` via:
 //
-//          GetMdbGreenplumClusterSegmentSubclusterArgs{...}
+//	GetMdbGreenplumClusterSegmentSubclusterArgs{...}
 type GetMdbGreenplumClusterSegmentSubclusterInput interface {
 	pulumi.Input
 
@@ -16683,7 +16683,7 @@ func (i GetMdbGreenplumClusterSegmentSubclusterArgs) ToGetMdbGreenplumClusterSeg
 // GetMdbGreenplumClusterSegmentSubclusterArrayInput is an input type that accepts GetMdbGreenplumClusterSegmentSubclusterArray and GetMdbGreenplumClusterSegmentSubclusterArrayOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterSegmentSubclusterArrayInput` via:
 //
-//          GetMdbGreenplumClusterSegmentSubclusterArray{ GetMdbGreenplumClusterSegmentSubclusterArgs{...} }
+//	GetMdbGreenplumClusterSegmentSubclusterArray{ GetMdbGreenplumClusterSegmentSubclusterArgs{...} }
 type GetMdbGreenplumClusterSegmentSubclusterArrayInput interface {
 	pulumi.Input
 
@@ -16754,7 +16754,7 @@ type GetMdbGreenplumClusterSegmentSubclusterResource struct {
 // GetMdbGreenplumClusterSegmentSubclusterResourceInput is an input type that accepts GetMdbGreenplumClusterSegmentSubclusterResourceArgs and GetMdbGreenplumClusterSegmentSubclusterResourceOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterSegmentSubclusterResourceInput` via:
 //
-//          GetMdbGreenplumClusterSegmentSubclusterResourceArgs{...}
+//	GetMdbGreenplumClusterSegmentSubclusterResourceArgs{...}
 type GetMdbGreenplumClusterSegmentSubclusterResourceInput interface {
 	pulumi.Input
 
@@ -16783,7 +16783,7 @@ func (i GetMdbGreenplumClusterSegmentSubclusterResourceArgs) ToGetMdbGreenplumCl
 // GetMdbGreenplumClusterSegmentSubclusterResourceArrayInput is an input type that accepts GetMdbGreenplumClusterSegmentSubclusterResourceArray and GetMdbGreenplumClusterSegmentSubclusterResourceArrayOutput values.
 // You can construct a concrete instance of `GetMdbGreenplumClusterSegmentSubclusterResourceArrayInput` via:
 //
-//          GetMdbGreenplumClusterSegmentSubclusterResourceArray{ GetMdbGreenplumClusterSegmentSubclusterResourceArgs{...} }
+//	GetMdbGreenplumClusterSegmentSubclusterResourceArray{ GetMdbGreenplumClusterSegmentSubclusterResourceArgs{...} }
 type GetMdbGreenplumClusterSegmentSubclusterResourceArrayInput interface {
 	pulumi.Input
 
@@ -16859,7 +16859,7 @@ type GetMdbKafkaClusterAccess struct {
 // GetMdbKafkaClusterAccessInput is an input type that accepts GetMdbKafkaClusterAccessArgs and GetMdbKafkaClusterAccessOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterAccessInput` via:
 //
-//          GetMdbKafkaClusterAccessArgs{...}
+//	GetMdbKafkaClusterAccessArgs{...}
 type GetMdbKafkaClusterAccessInput interface {
 	pulumi.Input
 
@@ -16887,7 +16887,7 @@ func (i GetMdbKafkaClusterAccessArgs) ToGetMdbKafkaClusterAccessOutputWithContex
 // GetMdbKafkaClusterAccessArrayInput is an input type that accepts GetMdbKafkaClusterAccessArray and GetMdbKafkaClusterAccessArrayOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterAccessArrayInput` via:
 //
-//          GetMdbKafkaClusterAccessArray{ GetMdbKafkaClusterAccessArgs{...} }
+//	GetMdbKafkaClusterAccessArray{ GetMdbKafkaClusterAccessArgs{...} }
 type GetMdbKafkaClusterAccessArrayInput interface {
 	pulumi.Input
 
@@ -16972,7 +16972,7 @@ type GetMdbKafkaClusterConfig struct {
 // GetMdbKafkaClusterConfigInput is an input type that accepts GetMdbKafkaClusterConfigArgs and GetMdbKafkaClusterConfigOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigInput` via:
 //
-//          GetMdbKafkaClusterConfigArgs{...}
+//	GetMdbKafkaClusterConfigArgs{...}
 type GetMdbKafkaClusterConfigInput interface {
 	pulumi.Input
 
@@ -17024,11 +17024,11 @@ func (i GetMdbKafkaClusterConfigArgs) ToGetMdbKafkaClusterConfigPtrOutputWithCon
 // GetMdbKafkaClusterConfigPtrInput is an input type that accepts GetMdbKafkaClusterConfigArgs, GetMdbKafkaClusterConfigPtr and GetMdbKafkaClusterConfigPtrOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigPtrInput` via:
 //
-//          GetMdbKafkaClusterConfigArgs{...}
+//	        GetMdbKafkaClusterConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbKafkaClusterConfigPtrInput interface {
 	pulumi.Input
 
@@ -17245,7 +17245,7 @@ type GetMdbKafkaClusterConfigAccess struct {
 // GetMdbKafkaClusterConfigAccessInput is an input type that accepts GetMdbKafkaClusterConfigAccessArgs and GetMdbKafkaClusterConfigAccessOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigAccessInput` via:
 //
-//          GetMdbKafkaClusterConfigAccessArgs{...}
+//	GetMdbKafkaClusterConfigAccessArgs{...}
 type GetMdbKafkaClusterConfigAccessInput interface {
 	pulumi.Input
 
@@ -17281,11 +17281,11 @@ func (i GetMdbKafkaClusterConfigAccessArgs) ToGetMdbKafkaClusterConfigAccessPtrO
 // GetMdbKafkaClusterConfigAccessPtrInput is an input type that accepts GetMdbKafkaClusterConfigAccessArgs, GetMdbKafkaClusterConfigAccessPtr and GetMdbKafkaClusterConfigAccessPtrOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigAccessPtrInput` via:
 //
-//          GetMdbKafkaClusterConfigAccessArgs{...}
+//	        GetMdbKafkaClusterConfigAccessArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbKafkaClusterConfigAccessPtrInput interface {
 	pulumi.Input
 
@@ -17384,7 +17384,7 @@ type GetMdbKafkaClusterConfigKafka struct {
 // GetMdbKafkaClusterConfigKafkaInput is an input type that accepts GetMdbKafkaClusterConfigKafkaArgs and GetMdbKafkaClusterConfigKafkaOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigKafkaInput` via:
 //
-//          GetMdbKafkaClusterConfigKafkaArgs{...}
+//	GetMdbKafkaClusterConfigKafkaArgs{...}
 type GetMdbKafkaClusterConfigKafkaInput interface {
 	pulumi.Input
 
@@ -17422,11 +17422,11 @@ func (i GetMdbKafkaClusterConfigKafkaArgs) ToGetMdbKafkaClusterConfigKafkaPtrOut
 // GetMdbKafkaClusterConfigKafkaPtrInput is an input type that accepts GetMdbKafkaClusterConfigKafkaArgs, GetMdbKafkaClusterConfigKafkaPtr and GetMdbKafkaClusterConfigKafkaPtrOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigKafkaPtrInput` via:
 //
-//          GetMdbKafkaClusterConfigKafkaArgs{...}
+//	        GetMdbKafkaClusterConfigKafkaArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbKafkaClusterConfigKafkaPtrInput interface {
 	pulumi.Input
 
@@ -17556,7 +17556,7 @@ type GetMdbKafkaClusterConfigKafkaKafkaConfig struct {
 // GetMdbKafkaClusterConfigKafkaKafkaConfigInput is an input type that accepts GetMdbKafkaClusterConfigKafkaKafkaConfigArgs and GetMdbKafkaClusterConfigKafkaKafkaConfigOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigKafkaKafkaConfigInput` via:
 //
-//          GetMdbKafkaClusterConfigKafkaKafkaConfigArgs{...}
+//	GetMdbKafkaClusterConfigKafkaKafkaConfigArgs{...}
 type GetMdbKafkaClusterConfigKafkaKafkaConfigInput interface {
 	pulumi.Input
 
@@ -17610,11 +17610,11 @@ func (i GetMdbKafkaClusterConfigKafkaKafkaConfigArgs) ToGetMdbKafkaClusterConfig
 // GetMdbKafkaClusterConfigKafkaKafkaConfigPtrInput is an input type that accepts GetMdbKafkaClusterConfigKafkaKafkaConfigArgs, GetMdbKafkaClusterConfigKafkaKafkaConfigPtr and GetMdbKafkaClusterConfigKafkaKafkaConfigPtrOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigKafkaKafkaConfigPtrInput` via:
 //
-//          GetMdbKafkaClusterConfigKafkaKafkaConfigArgs{...}
+//	        GetMdbKafkaClusterConfigKafkaKafkaConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbKafkaClusterConfigKafkaKafkaConfigPtrInput interface {
 	pulumi.Input
 
@@ -17960,7 +17960,7 @@ type GetMdbKafkaClusterConfigKafkaResources struct {
 // GetMdbKafkaClusterConfigKafkaResourcesInput is an input type that accepts GetMdbKafkaClusterConfigKafkaResourcesArgs and GetMdbKafkaClusterConfigKafkaResourcesOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigKafkaResourcesInput` via:
 //
-//          GetMdbKafkaClusterConfigKafkaResourcesArgs{...}
+//	GetMdbKafkaClusterConfigKafkaResourcesArgs{...}
 type GetMdbKafkaClusterConfigKafkaResourcesInput interface {
 	pulumi.Input
 
@@ -18000,11 +18000,11 @@ func (i GetMdbKafkaClusterConfigKafkaResourcesArgs) ToGetMdbKafkaClusterConfigKa
 // GetMdbKafkaClusterConfigKafkaResourcesPtrInput is an input type that accepts GetMdbKafkaClusterConfigKafkaResourcesArgs, GetMdbKafkaClusterConfigKafkaResourcesPtr and GetMdbKafkaClusterConfigKafkaResourcesPtrOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigKafkaResourcesPtrInput` via:
 //
-//          GetMdbKafkaClusterConfigKafkaResourcesArgs{...}
+//	        GetMdbKafkaClusterConfigKafkaResourcesArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbKafkaClusterConfigKafkaResourcesPtrInput interface {
 	pulumi.Input
 
@@ -18131,7 +18131,7 @@ type GetMdbKafkaClusterConfigZookeeper struct {
 // GetMdbKafkaClusterConfigZookeeperInput is an input type that accepts GetMdbKafkaClusterConfigZookeeperArgs and GetMdbKafkaClusterConfigZookeeperOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigZookeeperInput` via:
 //
-//          GetMdbKafkaClusterConfigZookeeperArgs{...}
+//	GetMdbKafkaClusterConfigZookeeperArgs{...}
 type GetMdbKafkaClusterConfigZookeeperInput interface {
 	pulumi.Input
 
@@ -18167,11 +18167,11 @@ func (i GetMdbKafkaClusterConfigZookeeperArgs) ToGetMdbKafkaClusterConfigZookeep
 // GetMdbKafkaClusterConfigZookeeperPtrInput is an input type that accepts GetMdbKafkaClusterConfigZookeeperArgs, GetMdbKafkaClusterConfigZookeeperPtr and GetMdbKafkaClusterConfigZookeeperPtrOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigZookeeperPtrInput` via:
 //
-//          GetMdbKafkaClusterConfigZookeeperArgs{...}
+//	        GetMdbKafkaClusterConfigZookeeperArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbKafkaClusterConfigZookeeperPtrInput interface {
 	pulumi.Input
 
@@ -18274,7 +18274,7 @@ type GetMdbKafkaClusterConfigZookeeperResources struct {
 // GetMdbKafkaClusterConfigZookeeperResourcesInput is an input type that accepts GetMdbKafkaClusterConfigZookeeperResourcesArgs and GetMdbKafkaClusterConfigZookeeperResourcesOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigZookeeperResourcesInput` via:
 //
-//          GetMdbKafkaClusterConfigZookeeperResourcesArgs{...}
+//	GetMdbKafkaClusterConfigZookeeperResourcesArgs{...}
 type GetMdbKafkaClusterConfigZookeeperResourcesInput interface {
 	pulumi.Input
 
@@ -18314,11 +18314,11 @@ func (i GetMdbKafkaClusterConfigZookeeperResourcesArgs) ToGetMdbKafkaClusterConf
 // GetMdbKafkaClusterConfigZookeeperResourcesPtrInput is an input type that accepts GetMdbKafkaClusterConfigZookeeperResourcesArgs, GetMdbKafkaClusterConfigZookeeperResourcesPtr and GetMdbKafkaClusterConfigZookeeperResourcesPtrOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterConfigZookeeperResourcesPtrInput` via:
 //
-//          GetMdbKafkaClusterConfigZookeeperResourcesArgs{...}
+//	        GetMdbKafkaClusterConfigZookeeperResourcesArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbKafkaClusterConfigZookeeperResourcesPtrInput interface {
 	pulumi.Input
 
@@ -18455,7 +18455,7 @@ type GetMdbKafkaClusterHost struct {
 // GetMdbKafkaClusterHostInput is an input type that accepts GetMdbKafkaClusterHostArgs and GetMdbKafkaClusterHostOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterHostInput` via:
 //
-//          GetMdbKafkaClusterHostArgs{...}
+//	GetMdbKafkaClusterHostArgs{...}
 type GetMdbKafkaClusterHostInput interface {
 	pulumi.Input
 
@@ -18493,7 +18493,7 @@ func (i GetMdbKafkaClusterHostArgs) ToGetMdbKafkaClusterHostOutputWithContext(ct
 // GetMdbKafkaClusterHostArrayInput is an input type that accepts GetMdbKafkaClusterHostArray and GetMdbKafkaClusterHostArrayOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterHostArrayInput` via:
 //
-//          GetMdbKafkaClusterHostArray{ GetMdbKafkaClusterHostArgs{...} }
+//	GetMdbKafkaClusterHostArray{ GetMdbKafkaClusterHostArgs{...} }
 type GetMdbKafkaClusterHostArrayInput interface {
 	pulumi.Input
 
@@ -18591,7 +18591,7 @@ type GetMdbKafkaClusterMaintenanceWindow struct {
 // GetMdbKafkaClusterMaintenanceWindowInput is an input type that accepts GetMdbKafkaClusterMaintenanceWindowArgs and GetMdbKafkaClusterMaintenanceWindowOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterMaintenanceWindowInput` via:
 //
-//          GetMdbKafkaClusterMaintenanceWindowArgs{...}
+//	GetMdbKafkaClusterMaintenanceWindowArgs{...}
 type GetMdbKafkaClusterMaintenanceWindowInput interface {
 	pulumi.Input
 
@@ -18623,7 +18623,7 @@ func (i GetMdbKafkaClusterMaintenanceWindowArgs) ToGetMdbKafkaClusterMaintenance
 // GetMdbKafkaClusterMaintenanceWindowArrayInput is an input type that accepts GetMdbKafkaClusterMaintenanceWindowArray and GetMdbKafkaClusterMaintenanceWindowArrayOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterMaintenanceWindowArrayInput` via:
 //
-//          GetMdbKafkaClusterMaintenanceWindowArray{ GetMdbKafkaClusterMaintenanceWindowArgs{...} }
+//	GetMdbKafkaClusterMaintenanceWindowArray{ GetMdbKafkaClusterMaintenanceWindowArgs{...} }
 type GetMdbKafkaClusterMaintenanceWindowArrayInput interface {
 	pulumi.Input
 
@@ -18710,7 +18710,7 @@ type GetMdbKafkaClusterTopic struct {
 // GetMdbKafkaClusterTopicInput is an input type that accepts GetMdbKafkaClusterTopicArgs and GetMdbKafkaClusterTopicOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterTopicInput` via:
 //
-//          GetMdbKafkaClusterTopicArgs{...}
+//	GetMdbKafkaClusterTopicArgs{...}
 type GetMdbKafkaClusterTopicInput interface {
 	pulumi.Input
 
@@ -18746,7 +18746,7 @@ func (i GetMdbKafkaClusterTopicArgs) ToGetMdbKafkaClusterTopicOutputWithContext(
 // GetMdbKafkaClusterTopicArrayInput is an input type that accepts GetMdbKafkaClusterTopicArray and GetMdbKafkaClusterTopicArrayOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterTopicArrayInput` via:
 //
-//          GetMdbKafkaClusterTopicArray{ GetMdbKafkaClusterTopicArgs{...} }
+//	GetMdbKafkaClusterTopicArray{ GetMdbKafkaClusterTopicArgs{...} }
 type GetMdbKafkaClusterTopicArrayInput interface {
 	pulumi.Input
 
@@ -18846,7 +18846,7 @@ type GetMdbKafkaClusterTopicTopicConfig struct {
 // GetMdbKafkaClusterTopicTopicConfigInput is an input type that accepts GetMdbKafkaClusterTopicTopicConfigArgs and GetMdbKafkaClusterTopicTopicConfigOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterTopicTopicConfigInput` via:
 //
-//          GetMdbKafkaClusterTopicTopicConfigArgs{...}
+//	GetMdbKafkaClusterTopicTopicConfigArgs{...}
 type GetMdbKafkaClusterTopicTopicConfigInput interface {
 	pulumi.Input
 
@@ -18893,11 +18893,11 @@ func (i GetMdbKafkaClusterTopicTopicConfigArgs) ToGetMdbKafkaClusterTopicTopicCo
 // GetMdbKafkaClusterTopicTopicConfigPtrInput is an input type that accepts GetMdbKafkaClusterTopicTopicConfigArgs, GetMdbKafkaClusterTopicTopicConfigPtr and GetMdbKafkaClusterTopicTopicConfigPtrOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterTopicTopicConfigPtrInput` via:
 //
-//          GetMdbKafkaClusterTopicTopicConfigArgs{...}
+//	        GetMdbKafkaClusterTopicTopicConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbKafkaClusterTopicTopicConfigPtrInput interface {
 	pulumi.Input
 
@@ -19152,7 +19152,7 @@ type GetMdbKafkaClusterUser struct {
 // GetMdbKafkaClusterUserInput is an input type that accepts GetMdbKafkaClusterUserArgs and GetMdbKafkaClusterUserOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterUserInput` via:
 //
-//          GetMdbKafkaClusterUserArgs{...}
+//	GetMdbKafkaClusterUserArgs{...}
 type GetMdbKafkaClusterUserInput interface {
 	pulumi.Input
 
@@ -19184,7 +19184,7 @@ func (i GetMdbKafkaClusterUserArgs) ToGetMdbKafkaClusterUserOutputWithContext(ct
 // GetMdbKafkaClusterUserArrayInput is an input type that accepts GetMdbKafkaClusterUserArray and GetMdbKafkaClusterUserArrayOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterUserArrayInput` via:
 //
-//          GetMdbKafkaClusterUserArray{ GetMdbKafkaClusterUserArgs{...} }
+//	GetMdbKafkaClusterUserArray{ GetMdbKafkaClusterUserArgs{...} }
 type GetMdbKafkaClusterUserArrayInput interface {
 	pulumi.Input
 
@@ -19265,7 +19265,7 @@ type GetMdbKafkaClusterUserPermission struct {
 // GetMdbKafkaClusterUserPermissionInput is an input type that accepts GetMdbKafkaClusterUserPermissionArgs and GetMdbKafkaClusterUserPermissionOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterUserPermissionInput` via:
 //
-//          GetMdbKafkaClusterUserPermissionArgs{...}
+//	GetMdbKafkaClusterUserPermissionArgs{...}
 type GetMdbKafkaClusterUserPermissionInput interface {
 	pulumi.Input
 
@@ -19295,7 +19295,7 @@ func (i GetMdbKafkaClusterUserPermissionArgs) ToGetMdbKafkaClusterUserPermission
 // GetMdbKafkaClusterUserPermissionArrayInput is an input type that accepts GetMdbKafkaClusterUserPermissionArray and GetMdbKafkaClusterUserPermissionArrayOutput values.
 // You can construct a concrete instance of `GetMdbKafkaClusterUserPermissionArrayInput` via:
 //
-//          GetMdbKafkaClusterUserPermissionArray{ GetMdbKafkaClusterUserPermissionArgs{...} }
+//	GetMdbKafkaClusterUserPermissionArray{ GetMdbKafkaClusterUserPermissionArgs{...} }
 type GetMdbKafkaClusterUserPermissionArrayInput interface {
 	pulumi.Input
 
@@ -19380,7 +19380,7 @@ type GetMdbKafkaTopicTopicConfig struct {
 // GetMdbKafkaTopicTopicConfigInput is an input type that accepts GetMdbKafkaTopicTopicConfigArgs and GetMdbKafkaTopicTopicConfigOutput values.
 // You can construct a concrete instance of `GetMdbKafkaTopicTopicConfigInput` via:
 //
-//          GetMdbKafkaTopicTopicConfigArgs{...}
+//	GetMdbKafkaTopicTopicConfigArgs{...}
 type GetMdbKafkaTopicTopicConfigInput interface {
 	pulumi.Input
 
@@ -19419,7 +19419,7 @@ func (i GetMdbKafkaTopicTopicConfigArgs) ToGetMdbKafkaTopicTopicConfigOutputWith
 // GetMdbKafkaTopicTopicConfigArrayInput is an input type that accepts GetMdbKafkaTopicTopicConfigArray and GetMdbKafkaTopicTopicConfigArrayOutput values.
 // You can construct a concrete instance of `GetMdbKafkaTopicTopicConfigArrayInput` via:
 //
-//          GetMdbKafkaTopicTopicConfigArray{ GetMdbKafkaTopicTopicConfigArgs{...} }
+//	GetMdbKafkaTopicTopicConfigArray{ GetMdbKafkaTopicTopicConfigArgs{...} }
 type GetMdbKafkaTopicTopicConfigArrayInput interface {
 	pulumi.Input
 
@@ -19543,7 +19543,7 @@ type GetMdbMongodbClusterClusterConfig struct {
 // GetMdbMongodbClusterClusterConfigInput is an input type that accepts GetMdbMongodbClusterClusterConfigArgs and GetMdbMongodbClusterClusterConfigOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigArgs{...}
+//	GetMdbMongodbClusterClusterConfigArgs{...}
 type GetMdbMongodbClusterClusterConfigInput interface {
 	pulumi.Input
 
@@ -19587,11 +19587,11 @@ func (i GetMdbMongodbClusterClusterConfigArgs) ToGetMdbMongodbClusterClusterConf
 // GetMdbMongodbClusterClusterConfigPtrInput is an input type that accepts GetMdbMongodbClusterClusterConfigArgs, GetMdbMongodbClusterClusterConfigPtr and GetMdbMongodbClusterClusterConfigPtrOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigPtrInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigArgs{...}
+//	        GetMdbMongodbClusterClusterConfigArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbMongodbClusterClusterConfigPtrInput interface {
 	pulumi.Input
 
@@ -19752,7 +19752,7 @@ type GetMdbMongodbClusterClusterConfigAccess struct {
 // GetMdbMongodbClusterClusterConfigAccessInput is an input type that accepts GetMdbMongodbClusterClusterConfigAccessArgs and GetMdbMongodbClusterClusterConfigAccessOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigAccessInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigAccessArgs{...}
+//	GetMdbMongodbClusterClusterConfigAccessArgs{...}
 type GetMdbMongodbClusterClusterConfigAccessInput interface {
 	pulumi.Input
 
@@ -19790,11 +19790,11 @@ func (i GetMdbMongodbClusterClusterConfigAccessArgs) ToGetMdbMongodbClusterClust
 // GetMdbMongodbClusterClusterConfigAccessPtrInput is an input type that accepts GetMdbMongodbClusterClusterConfigAccessArgs, GetMdbMongodbClusterClusterConfigAccessPtr and GetMdbMongodbClusterClusterConfigAccessPtrOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigAccessPtrInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigAccessArgs{...}
+//	        GetMdbMongodbClusterClusterConfigAccessArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbMongodbClusterClusterConfigAccessPtrInput interface {
 	pulumi.Input
 
@@ -19908,7 +19908,7 @@ type GetMdbMongodbClusterClusterConfigBackupWindowStart struct {
 // GetMdbMongodbClusterClusterConfigBackupWindowStartInput is an input type that accepts GetMdbMongodbClusterClusterConfigBackupWindowStartArgs and GetMdbMongodbClusterClusterConfigBackupWindowStartOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigBackupWindowStartInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigBackupWindowStartArgs{...}
+//	GetMdbMongodbClusterClusterConfigBackupWindowStartArgs{...}
 type GetMdbMongodbClusterClusterConfigBackupWindowStartInput interface {
 	pulumi.Input
 
@@ -19946,11 +19946,11 @@ func (i GetMdbMongodbClusterClusterConfigBackupWindowStartArgs) ToGetMdbMongodbC
 // GetMdbMongodbClusterClusterConfigBackupWindowStartPtrInput is an input type that accepts GetMdbMongodbClusterClusterConfigBackupWindowStartArgs, GetMdbMongodbClusterClusterConfigBackupWindowStartPtr and GetMdbMongodbClusterClusterConfigBackupWindowStartPtrOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigBackupWindowStartPtrInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigBackupWindowStartArgs{...}
+//	        GetMdbMongodbClusterClusterConfigBackupWindowStartArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbMongodbClusterClusterConfigBackupWindowStartPtrInput interface {
 	pulumi.Input
 
@@ -20072,7 +20072,7 @@ type GetMdbMongodbClusterClusterConfigMongod struct {
 // GetMdbMongodbClusterClusterConfigMongodInput is an input type that accepts GetMdbMongodbClusterClusterConfigMongodArgs and GetMdbMongodbClusterClusterConfigMongodOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigMongodInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigMongodArgs{...}
+//	GetMdbMongodbClusterClusterConfigMongodArgs{...}
 type GetMdbMongodbClusterClusterConfigMongodInput interface {
 	pulumi.Input
 
@@ -20118,11 +20118,11 @@ func (i GetMdbMongodbClusterClusterConfigMongodArgs) ToGetMdbMongodbClusterClust
 // GetMdbMongodbClusterClusterConfigMongodPtrInput is an input type that accepts GetMdbMongodbClusterClusterConfigMongodArgs, GetMdbMongodbClusterClusterConfigMongodPtr and GetMdbMongodbClusterClusterConfigMongodPtrOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigMongodPtrInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigMongodArgs{...}
+//	        GetMdbMongodbClusterClusterConfigMongodArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbMongodbClusterClusterConfigMongodPtrInput interface {
 	pulumi.Input
 
@@ -20270,7 +20270,7 @@ type GetMdbMongodbClusterClusterConfigMongodAuditLog struct {
 // GetMdbMongodbClusterClusterConfigMongodAuditLogInput is an input type that accepts GetMdbMongodbClusterClusterConfigMongodAuditLogArgs and GetMdbMongodbClusterClusterConfigMongodAuditLogOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigMongodAuditLogInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigMongodAuditLogArgs{...}
+//	GetMdbMongodbClusterClusterConfigMongodAuditLogArgs{...}
 type GetMdbMongodbClusterClusterConfigMongodAuditLogInput interface {
 	pulumi.Input
 
@@ -20309,11 +20309,11 @@ func (i GetMdbMongodbClusterClusterConfigMongodAuditLogArgs) ToGetMdbMongodbClus
 // GetMdbMongodbClusterClusterConfigMongodAuditLogPtrInput is an input type that accepts GetMdbMongodbClusterClusterConfigMongodAuditLogArgs, GetMdbMongodbClusterClusterConfigMongodAuditLogPtr and GetMdbMongodbClusterClusterConfigMongodAuditLogPtrOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigMongodAuditLogPtrInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigMongodAuditLogArgs{...}
+//	        GetMdbMongodbClusterClusterConfigMongodAuditLogArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbMongodbClusterClusterConfigMongodAuditLogPtrInput interface {
 	pulumi.Input
 
@@ -20433,7 +20433,7 @@ type GetMdbMongodbClusterClusterConfigMongodSecurity struct {
 // GetMdbMongodbClusterClusterConfigMongodSecurityInput is an input type that accepts GetMdbMongodbClusterClusterConfigMongodSecurityArgs and GetMdbMongodbClusterClusterConfigMongodSecurityOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigMongodSecurityInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigMongodSecurityArgs{...}
+//	GetMdbMongodbClusterClusterConfigMongodSecurityArgs{...}
 type GetMdbMongodbClusterClusterConfigMongodSecurityInput interface {
 	pulumi.Input
 
@@ -20475,11 +20475,11 @@ func (i GetMdbMongodbClusterClusterConfigMongodSecurityArgs) ToGetMdbMongodbClus
 // GetMdbMongodbClusterClusterConfigMongodSecurityPtrInput is an input type that accepts GetMdbMongodbClusterClusterConfigMongodSecurityArgs, GetMdbMongodbClusterClusterConfigMongodSecurityPtr and GetMdbMongodbClusterClusterConfigMongodSecurityPtrOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigMongodSecurityPtrInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigMongodSecurityArgs{...}
+//	        GetMdbMongodbClusterClusterConfigMongodSecurityArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbMongodbClusterClusterConfigMongodSecurityPtrInput interface {
 	pulumi.Input
 
@@ -20619,7 +20619,7 @@ type GetMdbMongodbClusterClusterConfigMongodSecurityKmip struct {
 // GetMdbMongodbClusterClusterConfigMongodSecurityKmipInput is an input type that accepts GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs and GetMdbMongodbClusterClusterConfigMongodSecurityKmipOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigMongodSecurityKmipInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs{...}
+//	GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs{...}
 type GetMdbMongodbClusterClusterConfigMongodSecurityKmipInput interface {
 	pulumi.Input
 
@@ -20673,11 +20673,11 @@ func (i GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs) ToGetMdbMongodb
 // GetMdbMongodbClusterClusterConfigMongodSecurityKmipPtrInput is an input type that accepts GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs, GetMdbMongodbClusterClusterConfigMongodSecurityKmipPtr and GetMdbMongodbClusterClusterConfigMongodSecurityKmipPtrOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigMongodSecurityKmipPtrInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs{...}
+//	        GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbMongodbClusterClusterConfigMongodSecurityKmipPtrInput interface {
 	pulumi.Input
 
@@ -20856,7 +20856,7 @@ type GetMdbMongodbClusterClusterConfigMongodSetParameter struct {
 // GetMdbMongodbClusterClusterConfigMongodSetParameterInput is an input type that accepts GetMdbMongodbClusterClusterConfigMongodSetParameterArgs and GetMdbMongodbClusterClusterConfigMongodSetParameterOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigMongodSetParameterInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigMongodSetParameterArgs{...}
+//	GetMdbMongodbClusterClusterConfigMongodSetParameterArgs{...}
 type GetMdbMongodbClusterClusterConfigMongodSetParameterInput interface {
 	pulumi.Input
 
@@ -20894,11 +20894,11 @@ func (i GetMdbMongodbClusterClusterConfigMongodSetParameterArgs) ToGetMdbMongodb
 // GetMdbMongodbClusterClusterConfigMongodSetParameterPtrInput is an input type that accepts GetMdbMongodbClusterClusterConfigMongodSetParameterArgs, GetMdbMongodbClusterClusterConfigMongodSetParameterPtr and GetMdbMongodbClusterClusterConfigMongodSetParameterPtrOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterClusterConfigMongodSetParameterPtrInput` via:
 //
-//          GetMdbMongodbClusterClusterConfigMongodSetParameterArgs{...}
+//	        GetMdbMongodbClusterClusterConfigMongodSetParameterArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbMongodbClusterClusterConfigMongodSetParameterPtrInput interface {
 	pulumi.Input
 
@@ -20999,7 +20999,7 @@ type GetMdbMongodbClusterDatabase struct {
 // GetMdbMongodbClusterDatabaseInput is an input type that accepts GetMdbMongodbClusterDatabaseArgs and GetMdbMongodbClusterDatabaseOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterDatabaseInput` via:
 //
-//          GetMdbMongodbClusterDatabaseArgs{...}
+//	GetMdbMongodbClusterDatabaseArgs{...}
 type GetMdbMongodbClusterDatabaseInput interface {
 	pulumi.Input
 
@@ -21027,7 +21027,7 @@ func (i GetMdbMongodbClusterDatabaseArgs) ToGetMdbMongodbClusterDatabaseOutputWi
 // GetMdbMongodbClusterDatabaseArrayInput is an input type that accepts GetMdbMongodbClusterDatabaseArray and GetMdbMongodbClusterDatabaseArrayOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterDatabaseArrayInput` via:
 //
-//          GetMdbMongodbClusterDatabaseArray{ GetMdbMongodbClusterDatabaseArgs{...} }
+//	GetMdbMongodbClusterDatabaseArray{ GetMdbMongodbClusterDatabaseArgs{...} }
 type GetMdbMongodbClusterDatabaseArrayInput interface {
 	pulumi.Input
 
@@ -21111,7 +21111,7 @@ type GetMdbMongodbClusterHost struct {
 // GetMdbMongodbClusterHostInput is an input type that accepts GetMdbMongodbClusterHostArgs and GetMdbMongodbClusterHostOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterHostInput` via:
 //
-//          GetMdbMongodbClusterHostArgs{...}
+//	GetMdbMongodbClusterHostArgs{...}
 type GetMdbMongodbClusterHostInput interface {
 	pulumi.Input
 
@@ -21154,7 +21154,7 @@ func (i GetMdbMongodbClusterHostArgs) ToGetMdbMongodbClusterHostOutputWithContex
 // GetMdbMongodbClusterHostArrayInput is an input type that accepts GetMdbMongodbClusterHostArray and GetMdbMongodbClusterHostArrayOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterHostArrayInput` via:
 //
-//          GetMdbMongodbClusterHostArray{ GetMdbMongodbClusterHostArgs{...} }
+//	GetMdbMongodbClusterHostArray{ GetMdbMongodbClusterHostArgs{...} }
 type GetMdbMongodbClusterHostArrayInput interface {
 	pulumi.Input
 
@@ -21263,7 +21263,7 @@ type GetMdbMongodbClusterMaintenanceWindow struct {
 // GetMdbMongodbClusterMaintenanceWindowInput is an input type that accepts GetMdbMongodbClusterMaintenanceWindowArgs and GetMdbMongodbClusterMaintenanceWindowOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterMaintenanceWindowInput` via:
 //
-//          GetMdbMongodbClusterMaintenanceWindowArgs{...}
+//	GetMdbMongodbClusterMaintenanceWindowArgs{...}
 type GetMdbMongodbClusterMaintenanceWindowInput interface {
 	pulumi.Input
 
@@ -21303,11 +21303,11 @@ func (i GetMdbMongodbClusterMaintenanceWindowArgs) ToGetMdbMongodbClusterMainten
 // GetMdbMongodbClusterMaintenanceWindowPtrInput is an input type that accepts GetMdbMongodbClusterMaintenanceWindowArgs, GetMdbMongodbClusterMaintenanceWindowPtr and GetMdbMongodbClusterMaintenanceWindowPtrOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterMaintenanceWindowPtrInput` via:
 //
-//          GetMdbMongodbClusterMaintenanceWindowArgs{...}
+//	        GetMdbMongodbClusterMaintenanceWindowArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbMongodbClusterMaintenanceWindowPtrInput interface {
 	pulumi.Input
 
@@ -21437,7 +21437,7 @@ type GetMdbMongodbClusterResources struct {
 // GetMdbMongodbClusterResourcesInput is an input type that accepts GetMdbMongodbClusterResourcesArgs and GetMdbMongodbClusterResourcesOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterResourcesInput` via:
 //
-//          GetMdbMongodbClusterResourcesArgs{...}
+//	GetMdbMongodbClusterResourcesArgs{...}
 type GetMdbMongodbClusterResourcesInput interface {
 	pulumi.Input
 
@@ -21476,11 +21476,11 @@ func (i GetMdbMongodbClusterResourcesArgs) ToGetMdbMongodbClusterResourcesPtrOut
 // GetMdbMongodbClusterResourcesPtrInput is an input type that accepts GetMdbMongodbClusterResourcesArgs, GetMdbMongodbClusterResourcesPtr and GetMdbMongodbClusterResourcesPtrOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterResourcesPtrInput` via:
 //
-//          GetMdbMongodbClusterResourcesArgs{...}
+//	        GetMdbMongodbClusterResourcesArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbMongodbClusterResourcesPtrInput interface {
 	pulumi.Input
 
@@ -21608,7 +21608,7 @@ type GetMdbMongodbClusterUser struct {
 // GetMdbMongodbClusterUserInput is an input type that accepts GetMdbMongodbClusterUserArgs and GetMdbMongodbClusterUserOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterUserInput` via:
 //
-//          GetMdbMongodbClusterUserArgs{...}
+//	GetMdbMongodbClusterUserArgs{...}
 type GetMdbMongodbClusterUserInput interface {
 	pulumi.Input
 
@@ -21639,7 +21639,7 @@ func (i GetMdbMongodbClusterUserArgs) ToGetMdbMongodbClusterUserOutputWithContex
 // GetMdbMongodbClusterUserArrayInput is an input type that accepts GetMdbMongodbClusterUserArray and GetMdbMongodbClusterUserArrayOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterUserArrayInput` via:
 //
-//          GetMdbMongodbClusterUserArray{ GetMdbMongodbClusterUserArgs{...} }
+//	GetMdbMongodbClusterUserArray{ GetMdbMongodbClusterUserArgs{...} }
 type GetMdbMongodbClusterUserArrayInput interface {
 	pulumi.Input
 
@@ -21719,7 +21719,7 @@ type GetMdbMongodbClusterUserPermission struct {
 // GetMdbMongodbClusterUserPermissionInput is an input type that accepts GetMdbMongodbClusterUserPermissionArgs and GetMdbMongodbClusterUserPermissionOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterUserPermissionInput` via:
 //
-//          GetMdbMongodbClusterUserPermissionArgs{...}
+//	GetMdbMongodbClusterUserPermissionArgs{...}
 type GetMdbMongodbClusterUserPermissionInput interface {
 	pulumi.Input
 
@@ -21749,7 +21749,7 @@ func (i GetMdbMongodbClusterUserPermissionArgs) ToGetMdbMongodbClusterUserPermis
 // GetMdbMongodbClusterUserPermissionArrayInput is an input type that accepts GetMdbMongodbClusterUserPermissionArray and GetMdbMongodbClusterUserPermissionArrayOutput values.
 // You can construct a concrete instance of `GetMdbMongodbClusterUserPermissionArrayInput` via:
 //
-//          GetMdbMongodbClusterUserPermissionArray{ GetMdbMongodbClusterUserPermissionArgs{...} }
+//	GetMdbMongodbClusterUserPermissionArray{ GetMdbMongodbClusterUserPermissionArgs{...} }
 type GetMdbMongodbClusterUserPermissionArrayInput interface {
 	pulumi.Input
 
@@ -21827,7 +21827,7 @@ type GetMdbMysqlClusterAccess struct {
 // GetMdbMysqlClusterAccessInput is an input type that accepts GetMdbMysqlClusterAccessArgs and GetMdbMysqlClusterAccessOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterAccessInput` via:
 //
-//          GetMdbMysqlClusterAccessArgs{...}
+//	GetMdbMysqlClusterAccessArgs{...}
 type GetMdbMysqlClusterAccessInput interface {
 	pulumi.Input
 
@@ -21867,11 +21867,11 @@ func (i GetMdbMysqlClusterAccessArgs) ToGetMdbMysqlClusterAccessPtrOutputWithCon
 // GetMdbMysqlClusterAccessPtrInput is an input type that accepts GetMdbMysqlClusterAccessArgs, GetMdbMysqlClusterAccessPtr and GetMdbMysqlClusterAccessPtrOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterAccessPtrInput` via:
 //
-//          GetMdbMysqlClusterAccessArgs{...}
+//	        GetMdbMysqlClusterAccessArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type GetMdbMysqlClusterAccessPtrInput interface {
 	pulumi.Input
 
@@ -22000,7 +22000,7 @@ type GetMdbMysqlClusterBackupWindowStart struct {
 // GetMdbMysqlClusterBackupWindowStartInput is an input type that accepts GetMdbMysqlClusterBackupWindowStartArgs and GetMdbMysqlClusterBackupWindowStartOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterBackupWindowStartInput` via:
 //
-//          GetMdbMysqlClusterBackupWindowStartArgs{...}
+//	GetMdbMysqlClusterBackupWindowStartArgs{...}
 type GetMdbMysqlClusterBackupWindowStartInput interface {
 	pulumi.Input
 
@@ -22030,7 +22030,7 @@ func (i GetMdbMysqlClusterBackupWindowStartArgs) ToGetMdbMysqlClusterBackupWindo
 // GetMdbMysqlClusterBackupWindowStartArrayInput is an input type that accepts GetMdbMysqlClusterBackupWindowStartArray and GetMdbMysqlClusterBackupWindowStartArrayOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterBackupWindowStartArrayInput` via:
 //
-//          GetMdbMysqlClusterBackupWindowStartArray{ GetMdbMysqlClusterBackupWindowStartArgs{...} }
+//	GetMdbMysqlClusterBackupWindowStartArray{ GetMdbMysqlClusterBackupWindowStartArgs{...} }
 type GetMdbMysqlClusterBackupWindowStartArrayInput interface {
 	pulumi.Input
 
@@ -22104,7 +22104,7 @@ type GetMdbMysqlClusterDatabase struct {
 // GetMdbMysqlClusterDatabaseInput is an input type that accepts GetMdbMysqlClusterDatabaseArgs and GetMdbMysqlClusterDatabaseOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterDatabaseInput` via:
 //
-//          GetMdbMysqlClusterDatabaseArgs{...}
+//	GetMdbMysqlClusterDatabaseArgs{...}
 type GetMdbMysqlClusterDatabaseInput interface {
 	pulumi.Input
 
@@ -22132,7 +22132,7 @@ func (i GetMdbMysqlClusterDatabaseArgs) ToGetMdbMysqlClusterDatabaseOutputWithCo
 // GetMdbMysqlClusterDatabaseArrayInput is an input type that accepts GetMdbMysqlClusterDatabaseArray and GetMdbMysqlClusterDatabaseArrayOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterDatabaseArrayInput` via:
 //
-//          GetMdbMysqlClusterDatabaseArray{ GetMdbMysqlClusterDatabaseArgs{...} }
+//	GetMdbMysqlClusterDatabaseArray{ GetMdbMysqlClusterDatabaseArgs{...} }
 type GetMdbMysqlClusterDatabaseArrayInput interface {
 	pulumi.Input
 
@@ -22213,7 +22213,7 @@ type GetMdbMysqlClusterHost struct {
 // GetMdbMysqlClusterHostInput is an input type that accepts GetMdbMysqlClusterHostArgs and GetMdbMysqlClusterHostOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterHostInput` via:
 //
-//          GetMdbMysqlClusterHostArgs{...}
+//	GetMdbMysqlClusterHostArgs{...}
 type GetMdbMysqlClusterHostInput interface {
 	pulumi.Input
 
@@ -22253,7 +22253,7 @@ func (i GetMdbMysqlClusterHostArgs) ToGetMdbMysqlClusterHostOutputWithContext(ct
 // GetMdbMysqlClusterHostArrayInput is an input type that accepts GetMdbMysqlClusterHostArray and GetMdbMysqlClusterHostArrayOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterHostArrayInput` via:
 //
-//          GetMdbMysqlClusterHostArray{ GetMdbMysqlClusterHostArgs{...} }
+//	GetMdbMysqlClusterHostArray{ GetMdbMysqlClusterHostArgs{...} }
 type GetMdbMysqlClusterHostArrayInput interface {
 	pulumi.Input
 
@@ -22356,7 +22356,7 @@ type GetMdbMysqlClusterMaintenanceWindow struct {
 // GetMdbMysqlClusterMaintenanceWindowInput is an input type that accepts GetMdbMysqlClusterMaintenanceWindowArgs and GetMdbMysqlClusterMaintenanceWindowOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterMaintenanceWindowInput` via:
 //
-//          GetMdbMysqlClusterMaintenanceWindowArgs{...}
+//	GetMdbMysqlClusterMaintenanceWindowArgs{...}
 type GetMdbMysqlClusterMaintenanceWindowInput interface {
 	pulumi.Input
 
@@ -22388,7 +22388,7 @@ func (i GetMdbMysqlClusterMaintenanceWindowArgs) ToGetMdbMysqlClusterMaintenance
 // GetMdbMysqlClusterMaintenanceWindowArrayInput is an input type that accepts GetMdbMysqlClusterMaintenanceWindowArray and GetMdbMysqlClusterMaintenanceWindowArrayOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterMaintenanceWindowArrayInput` via:
 //
-//          GetMdbMysqlClusterMaintenanceWindowArray{ GetMdbMysqlClusterMaintenanceWindowArgs{...} }
+//	GetMdbMysqlClusterMaintenanceWindowArray{ GetMdbMysqlClusterMaintenanceWindowArgs{...} }
 type GetMdbMysqlClusterMaintenanceWindowArrayInput interface {
 	pulumi.Input
 
@@ -22471,7 +22471,7 @@ type GetMdbMysqlClusterPerformanceDiagnostic struct {
 // GetMdbMysqlClusterPerformanceDiagnosticInput is an input type that accepts GetMdbMysqlClusterPerformanceDiagnosticArgs and GetMdbMysqlClusterPerformanceDiagnosticOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterPerformanceDiagnosticInput` via:
 //
-//          GetMdbMysqlClusterPerformanceDiagnosticArgs{...}
+//	GetMdbMysqlClusterPerformanceDiagnosticArgs{...}
 type GetMdbMysqlClusterPerformanceDiagnosticInput interface {
 	pulumi.Input
 
@@ -22503,7 +22503,7 @@ func (i GetMdbMysqlClusterPerformanceDiagnosticArgs) ToGetMdbMysqlClusterPerform
 // GetMdbMysqlClusterPerformanceDiagnosticArrayInput is an input type that accepts GetMdbMysqlClusterPerformanceDiagnosticArray and GetMdbMysqlClusterPerformanceDiagnosticArrayOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterPerformanceDiagnosticArrayInput` via:
 //
-//          GetMdbMysqlClusterPerformanceDiagnosticArray{ GetMdbMysqlClusterPerformanceDiagnosticArgs{...} }
+//	GetMdbMysqlClusterPerformanceDiagnosticArray{ GetMdbMysqlClusterPerformanceDiagnosticArgs{...} }
 type GetMdbMysqlClusterPerformanceDiagnosticArrayInput interface {
 	pulumi.Input
 
@@ -22585,7 +22585,7 @@ type GetMdbMysqlClusterResource struct {
 // GetMdbMysqlClusterResourceInput is an input type that accepts GetMdbMysqlClusterResourceArgs and GetMdbMysqlClusterResourceOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterResourceInput` via:
 //
-//          GetMdbMysqlClusterResourceArgs{...}
+//	GetMdbMysqlClusterResourceArgs{...}
 type GetMdbMysqlClusterResourceInput interface {
 	pulumi.Input
 
@@ -22616,7 +22616,7 @@ func (i GetMdbMysqlClusterResourceArgs) ToGetMdbMysqlClusterResourceOutputWithCo
 // GetMdbMysqlClusterResourceArrayInput is an input type that accepts GetMdbMysqlClusterResourceArray and GetMdbMysqlClusterResourceArrayOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterResourceArrayInput` via:
 //
-//          GetMdbMysqlClusterResourceArray{ GetMdbMysqlClusterResourceArgs{...} }
+//	GetMdbMysqlClusterResourceArray{ GetMdbMysqlClusterResourceArgs{...} }
 type GetMdbMysqlClusterResourceArrayInput interface {
 	pulumi.Input
 
@@ -22704,7 +22704,7 @@ type GetMdbMysqlClusterUser struct {
 // GetMdbMysqlClusterUserInput is an input type that accepts GetMdbMysqlClusterUserArgs and GetMdbMysqlClusterUserOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterUserInput` via:
 //
-//          GetMdbMysqlClusterUserArgs{...}
+//	GetMdbMysqlClusterUserArgs{...}
 type GetMdbMysqlClusterUserInput interface {
 	pulumi.Input
 
@@ -22742,7 +22742,7 @@ func (i GetMdbMysqlClusterUserArgs) ToGetMdbMysqlClusterUserOutputWithContext(ct
 // GetMdbMysqlClusterUserArrayInput is an input type that accepts GetMdbMysqlClusterUserArray and GetMdbMysqlClusterUserArrayOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterUserArrayInput` via:
 //
-//          GetMdbMysqlClusterUserArray{ GetMdbMysqlClusterUserArgs{...} }
+//	GetMdbMysqlClusterUserArray{ GetMdbMysqlClusterUserArgs{...} }
 type GetMdbMysqlClusterUserArrayInput interface {
 	pulumi.Input
 
@@ -22842,7 +22842,7 @@ type GetMdbMysqlClusterUserConnectionLimit struct {
 // GetMdbMysqlClusterUserConnectionLimitInput is an input type that accepts GetMdbMysqlClusterUserConnectionLimitArgs and GetMdbMysqlClusterUserConnectionLimitOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterUserConnectionLimitInput` via:
 //
-//          GetMdbMysqlClusterUserConnectionLimitArgs{...}
+//	GetMdbMysqlClusterUserConnectionLimitArgs{...}
 type GetMdbMysqlClusterUserConnectionLimitInput interface {
 	pulumi.Input
 
@@ -22876,7 +22876,7 @@ func (i GetMdbMysqlClusterUserConnectionLimitArgs) ToGetMdbMysqlClusterUserConne
 // GetMdbMysqlClusterUserConnectionLimitArrayInput is an input type that accepts GetMdbMysqlClusterUserConnectionLimitArray and GetMdbMysqlClusterUserConnectionLimitArrayOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterUserConnectionLimitArrayInput` via:
 //
-//          GetMdbMysqlClusterUserConnectionLimitArray{ GetMdbMysqlClusterUserConnectionLimitArgs{...} }
+//	GetMdbMysqlClusterUserConnectionLimitArray{ GetMdbMysqlClusterUserConnectionLimitArgs{...} }
 type GetMdbMysqlClusterUserConnectionLimitArrayInput interface {
 	pulumi.Input
 
@@ -22964,7 +22964,7 @@ type GetMdbMysqlClusterUserPermission struct {
 // GetMdbMysqlClusterUserPermissionInput is an input type that accepts GetMdbMysqlClusterUserPermissionArgs and GetMdbMysqlClusterUserPermissionOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterUserPermissionInput` via:
 //
-//          GetMdbMysqlClusterUserPermissionArgs{...}
+//	GetMdbMysqlClusterUserPermissionArgs{...}
 type GetMdbMysqlClusterUserPermissionInput interface {
 	pulumi.Input
 
@@ -22996,7 +22996,7 @@ func (i GetMdbMysqlClusterUserPermissionArgs) ToGetMdbMysqlClusterUserPermission
 // GetMdbMysqlClusterUserPermissionArrayInput is an input type that accepts GetMdbMysqlClusterUserPermissionArray and GetMdbMysqlClusterUserPermissionArrayOutput values.
 // You can construct a concrete instance of `GetMdbMysqlClusterUserPermissionArrayInput` via:
 //
-//          GetMdbMysqlClusterUserPermissionArray{ GetMdbMysqlClusterUserPermissionArgs{...} }
+//	GetMdbMysqlClusterUserPermissionArray{ GetMdbMysqlClusterUserPermissionArgs{...} }
 type GetMdbMysqlClusterUserPermissionArrayInput interface {
 	pulumi.Input
 
@@ -23088,7 +23088,7 @@ type GetMdbPostgresqlClusterConfig struct {
 // GetMdbPostgresqlClusterConfigInput is an input type that accepts GetMdbPostgresqlClusterConfigArgs and GetMdbPostgresqlClusterConfigOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterConfigInput` via:
 //
-//          GetMdbPostgresqlClusterConfigArgs{...}
+//	GetMdbPostgresqlClusterConfigArgs{...}
 type GetMdbPostgresqlClusterConfigInput interface {
 	pulumi.Input
 
@@ -23132,7 +23132,7 @@ func (i GetMdbPostgresqlClusterConfigArgs) ToGetMdbPostgresqlClusterConfigOutput
 // GetMdbPostgresqlClusterConfigArrayInput is an input type that accepts GetMdbPostgresqlClusterConfigArray and GetMdbPostgresqlClusterConfigArrayOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterConfigArrayInput` via:
 //
-//          GetMdbPostgresqlClusterConfigArray{ GetMdbPostgresqlClusterConfigArgs{...} }
+//	GetMdbPostgresqlClusterConfigArray{ GetMdbPostgresqlClusterConfigArgs{...} }
 type GetMdbPostgresqlClusterConfigArrayInput interface {
 	pulumi.Input
 
@@ -23253,7 +23253,7 @@ type GetMdbPostgresqlClusterConfigAccess struct {
 // GetMdbPostgresqlClusterConfigAccessInput is an input type that accepts GetMdbPostgresqlClusterConfigAccessArgs and GetMdbPostgresqlClusterConfigAccessOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterConfigAccessInput` via:
 //
-//          GetMdbPostgresqlClusterConfigAccessArgs{...}
+//	GetMdbPostgresqlClusterConfigAccessArgs{...}
 type GetMdbPostgresqlClusterConfigAccessInput interface {
 	pulumi.Input
 
@@ -23287,7 +23287,7 @@ func (i GetMdbPostgresqlClusterConfigAccessArgs) ToGetMdbPostgresqlClusterConfig
 // GetMdbPostgresqlClusterConfigAccessArrayInput is an input type that accepts GetMdbPostgresqlClusterConfigAccessArray and GetMdbPostgresqlClusterConfigAccessArrayOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterConfigAccessArrayInput` via:
 //
-//          GetMdbPostgresqlClusterConfigAccessArray{ GetMdbPostgresqlClusterConfigAccessArgs{...} }
+//	GetMdbPostgresqlClusterConfigAccessArray{ GetMdbPostgresqlClusterConfigAccessArgs{...} }
 type GetMdbPostgresqlClusterConfigAccessArrayInput interface {
 	pulumi.Input
 
@@ -23373,7 +23373,7 @@ type GetMdbPostgresqlClusterConfigBackupWindowStart struct {
 // GetMdbPostgresqlClusterConfigBackupWindowStartInput is an input type that accepts GetMdbPostgresqlClusterConfigBackupWindowStartArgs and GetMdbPostgresqlClusterConfigBackupWindowStartOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterConfigBackupWindowStartInput` via:
 //
-//          GetMdbPostgresqlClusterConfigBackupWindowStartArgs{...}
+//	GetMdbPostgresqlClusterConfigBackupWindowStartArgs{...}
 type GetMdbPostgresqlClusterConfigBackupWindowStartInput interface {
 	pulumi.Input
 
@@ -23403,7 +23403,7 @@ func (i GetMdbPostgresqlClusterConfigBackupWindowStartArgs) ToGetMdbPostgresqlCl
 // GetMdbPostgresqlClusterConfigBackupWindowStartArrayInput is an input type that accepts GetMdbPostgresqlClusterConfigBackupWindowStartArray and GetMdbPostgresqlClusterConfigBackupWindowStartArrayOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterConfigBackupWindowStartArrayInput` via:
 //
-//          GetMdbPostgresqlClusterConfigBackupWindowStartArray{ GetMdbPostgresqlClusterConfigBackupWindowStartArgs{...} }
+//	GetMdbPostgresqlClusterConfigBackupWindowStartArray{ GetMdbPostgresqlClusterConfigBackupWindowStartArgs{...} }
 type GetMdbPostgresqlClusterConfigBackupWindowStartArrayInput interface {
 	pulumi.Input
 
@@ -23481,7 +23481,7 @@ type GetMdbPostgresqlClusterConfigPerformanceDiagnostic struct {
 // GetMdbPostgresqlClusterConfigPerformanceDiagnosticInput is an input type that accepts GetMdbPostgresqlClusterConfigPerformanceDiagnosticArgs and GetMdbPostgresqlClusterConfigPerformanceDiagnosticOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterConfigPerformanceDiagnosticInput` via:
 //
-//          GetMdbPostgresqlClusterConfigPerformanceDiagnosticArgs{...}
+//	GetMdbPostgresqlClusterConfigPerformanceDiagnosticArgs{...}
 type GetMdbPostgresqlClusterConfigPerformanceDiagnosticInput interface {
 	pulumi.Input
 
@@ -23513,7 +23513,7 @@ func (i GetMdbPostgresqlClusterConfigPerformanceDiagnosticArgs) ToGetMdbPostgres
 // GetMdbPostgresqlClusterConfigPerformanceDiagnosticArrayInput is an input type that accepts GetMdbPostgresqlClusterConfigPerformanceDiagnosticArray and GetMdbPostgresqlClusterConfigPerformanceDiagnosticArrayOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterConfigPerformanceDiagnosticArrayInput` via:
 //
-//          GetMdbPostgresqlClusterConfigPerformanceDiagnosticArray{ GetMdbPostgresqlClusterConfigPerformanceDiagnosticArgs{...} }
+//	GetMdbPostgresqlClusterConfigPerformanceDiagnosticArray{ GetMdbPostgresqlClusterConfigPerformanceDiagnosticArgs{...} }
 type GetMdbPostgresqlClusterConfigPerformanceDiagnosticArrayInput interface {
 	pulumi.Input
 
@@ -23594,7 +23594,7 @@ type GetMdbPostgresqlClusterConfigPoolerConfig struct {
 // GetMdbPostgresqlClusterConfigPoolerConfigInput is an input type that accepts GetMdbPostgresqlClusterConfigPoolerConfigArgs and GetMdbPostgresqlClusterConfigPoolerConfigOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterConfigPoolerConfigInput` via:
 //
-//          GetMdbPostgresqlClusterConfigPoolerConfigArgs{...}
+//	GetMdbPostgresqlClusterConfigPoolerConfigArgs{...}
 type GetMdbPostgresqlClusterConfigPoolerConfigInput interface {
 	pulumi.Input
 
@@ -23624,7 +23624,7 @@ func (i GetMdbPostgresqlClusterConfigPoolerConfigArgs) ToGetMdbPostgresqlCluster
 // GetMdbPostgresqlClusterConfigPoolerConfigArrayInput is an input type that accepts GetMdbPostgresqlClusterConfigPoolerConfigArray and GetMdbPostgresqlClusterConfigPoolerConfigArrayOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterConfigPoolerConfigArrayInput` via:
 //
-//          GetMdbPostgresqlClusterConfigPoolerConfigArray{ GetMdbPostgresqlClusterConfigPoolerConfigArgs{...} }
+//	GetMdbPostgresqlClusterConfigPoolerConfigArray{ GetMdbPostgresqlClusterConfigPoolerConfigArgs{...} }
 type GetMdbPostgresqlClusterConfigPoolerConfigArrayInput interface {
 	pulumi.Input
 
@@ -23701,7 +23701,7 @@ type GetMdbPostgresqlClusterConfigResource struct {
 // GetMdbPostgresqlClusterConfigResourceInput is an input type that accepts GetMdbPostgresqlClusterConfigResourceArgs and GetMdbPostgresqlClusterConfigResourceOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterConfigResourceInput` via:
 //
-//          GetMdbPostgresqlClusterConfigResourceArgs{...}
+//	GetMdbPostgresqlClusterConfigResourceArgs{...}
 type GetMdbPostgresqlClusterConfigResourceInput interface {
 	pulumi.Input
 
@@ -23732,7 +23732,7 @@ func (i GetMdbPostgresqlClusterConfigResourceArgs) ToGetMdbPostgresqlClusterConf
 // GetMdbPostgresqlClusterConfigResourceArrayInput is an input type that accepts GetMdbPostgresqlClusterConfigResourceArray and GetMdbPostgresqlClusterConfigResourceArrayOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterConfigResourceArrayInput` via:
 //
-//          GetMdbPostgresqlClusterConfigResourceArray{ GetMdbPostgresqlClusterConfigResourceArgs{...} }
+//	GetMdbPostgresqlClusterConfigResourceArray{ GetMdbPostgresqlClusterConfigResourceArgs{...} }
 type GetMdbPostgresqlClusterConfigResourceArrayInput interface {
 	pulumi.Input
 
@@ -23822,7 +23822,7 @@ type GetMdbPostgresqlClusterHost struct {
 // GetMdbPostgresqlClusterHostInput is an input type that accepts GetMdbPostgresqlClusterHostArgs and GetMdbPostgresqlClusterHostOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterHostInput` via:
 //
-//          GetMdbPostgresqlClusterHostArgs{...}
+//	GetMdbPostgresqlClusterHostArgs{...}
 type GetMdbPostgresqlClusterHostInput interface {
 	pulumi.Input
 
@@ -23862,7 +23862,7 @@ func (i GetMdbPostgresqlClusterHostArgs) ToGetMdbPostgresqlClusterHostOutputWith
 // GetMdbPostgresqlClusterHostArrayInput is an input type that accepts GetMdbPostgresqlClusterHostArray and GetMdbPostgresqlClusterHostArrayOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterHostArrayInput` via:
 //
-//          GetMdbPostgresqlClusterHostArray{ GetMdbPostgresqlClusterHostArgs{...} }
+//	GetMdbPostgresqlClusterHostArray{ GetMdbPostgresqlClusterHostArgs{...} }
 type GetMdbPostgresqlClusterHostArrayInput interface {
 	pulumi.Input
 
@@ -23965,7 +23965,7 @@ type GetMdbPostgresqlClusterMaintenanceWindow struct {
 // GetMdbPostgresqlClusterMaintenanceWindowInput is an input type that accepts GetMdbPostgresqlClusterMaintenanceWindowArgs and GetMdbPostgresqlClusterMaintenanceWindowOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterMaintenanceWindowInput` via:
 //
-//          GetMdbPostgresqlClusterMaintenanceWindowArgs{...}
+//	GetMdbPostgresqlClusterMaintenanceWindowArgs{...}
 type GetMdbPostgresqlClusterMaintenanceWindowInput interface {
 	pulumi.Input
 
@@ -23997,7 +23997,7 @@ func (i GetMdbPostgresqlClusterMaintenanceWindowArgs) ToGetMdbPostgresqlClusterM
 // GetMdbPostgresqlClusterMaintenanceWindowArrayInput is an input type that accepts GetMdbPostgresqlClusterMaintenanceWindowArray and GetMdbPostgresqlClusterMaintenanceWindowArrayOutput values.
 // You can construct a concrete instance of `GetMdbPostgresqlClusterMaintenanceWindowArrayInput` via:
 //
-//          GetMdbPostgresqlClusterMaintenanceWindowArray{ GetMdbPostgresqlClusterMaintenanceWindowArgs{...} }
+//	GetMdbPostgresqlClusterMaintenanceWindowArray{ GetMdbPostgresqlClusterMaintenanceWindowArgs{...} }
 type GetMdbPostgresqlClusterMaintenanceWindowArrayInput interface {
 	pulumi.Input
 
@@ -24092,7 +24092,7 @@ type GetMdbRedisClusterConfig struct {
 // GetMdbRedisClusterConfigInput is an input type that accepts GetMdbRedisClusterConfigArgs and GetMdbRedisClusterConfigOutput values.
 // You can construct a concrete instance of `GetMdbRedisClusterConfigInput` via:
 //
-//          GetMdbRedisClusterConfigArgs{...}
+//	GetMdbRedisClusterConfigArgs{...}
 type GetMdbRedisClusterConfigInput interface {
 	pulumi.Input
 
@@ -24136,7 +24136,7 @@ func (i GetMdbRedisClusterConfigArgs) ToGetMdbRedisClusterConfigOutputWithContex
 // GetMdbRedisClusterConfigArrayInput is an input type that accepts GetMdbRedisClusterConfigArray and GetMdbRedisClusterConfigArrayOutput values.
 // You can construct a concrete instance of `GetMdbRedisClusterConfigArrayInput` via:
 //
-//          GetMdbRedisClusterConfigArray{ GetMdbRedisClusterConfigArgs{...} }
+//	GetMdbRedisClusterConfigArray{ GetMdbRedisClusterConfigArgs{...} }
 type GetMdbRedisClusterConfigArrayInput interface {
 	pulumi.Input
 
@@ -24256,7 +24256,7 @@ type GetMdbRedisClusterHost struct {
 // GetMdbRedisClusterHostInput is an input type that accepts GetMdbRedisClusterHostArgs and GetMdbRedisClusterHostOutput values.
 // You can construct a concrete instance of `GetMdbRedisClusterHostInput` via:
 //
-//          GetMdbRedisClusterHostArgs{...}
+//	GetMdbRedisClusterHostArgs{...}
 type GetMdbRedisClusterHostInput interface {
 	pulumi.Input
 
@@ -24295,7 +24295,7 @@ func (i GetMdbRedisClusterHostArgs) ToGetMdbRedisClusterHostOutputWithContext(ct
 // GetMdbRedisClusterHostArrayInput is an input type that accepts GetMdbRedisClusterHostArray and GetMdbRedisClusterHostArrayOutput values.
 // You can construct a concrete instance of `GetMdbRedisClusterHostArrayInput` via:
 //
-//          GetMdbRedisClusterHostArray{ GetMdbRedisClusterHostArgs{...} }
+//	GetMdbRedisClusterHostArray{ GetMdbRedisClusterHostArgs{...} }
 type GetMdbRedisClusterHostArrayInput interface {
 	pulumi.Input
 
@@ -24394,7 +24394,7 @@ type GetMdbRedisClusterMaintenanceWindow struct {
 // GetMdbRedisClusterMaintenanceWindowInput is an input type that accepts GetMdbRedisClusterMaintenanceWindowArgs and GetMdbRedisClusterMaintenanceWindowOutput values.
 // You can construct a concrete instance of `GetMdbRedisClusterMaintenanceWindowInput` via:
 //
-//          GetMdbRedisClusterMaintenanceWindowArgs{...}
+//	GetMdbRedisClusterMaintenanceWindowArgs{...}
 type GetMdbRedisClusterMaintenanceWindowInput interface {
 	pulumi.Input
 
@@ -24426,7 +24426,7 @@ func (i GetMdbRedisClusterMaintenanceWindowArgs) ToGetMdbRedisClusterMaintenance
 // GetMdbRedisClusterMaintenanceWindowArrayInput is an input type that accepts GetMdbRedisClusterMaintenanceWindowArray and GetMdbRedisClusterMaintenanceWindowArrayOutput values.
 // You can construct a concrete instance of `GetMdbRedisClusterMaintenanceWindowArrayInput` via:
 //
-//          GetMdbRedisClusterMaintenanceWindowArray{ GetMdbRedisClusterMaintenanceWindowArgs{...} }
+//	GetMdbRedisClusterMaintenanceWindowArray{ GetMdbRedisClusterMaintenanceWindowArgs{...} }
 type GetMdbRedisClusterMaintenanceWindowArrayInput interface {
 	pulumi.Input
 
@@ -24508,7 +24508,7 @@ type GetMdbRedisClusterResource struct {
 // GetMdbRedisClusterResourceInput is an input type that accepts GetMdbRedisClusterResourceArgs and GetMdbRedisClusterResourceOutput values.
 // You can construct a concrete instance of `GetMdbRedisClusterResourceInput` via:
 //
-//          GetMdbRedisClusterResourceArgs{...}
+//	GetMdbRedisClusterResourceArgs{...}
 type GetMdbRedisClusterResourceInput interface {
 	pulumi.Input
 
@@ -24539,7 +24539,7 @@ func (i GetMdbRedisClusterResourceArgs) ToGetMdbRedisClusterResourceOutputWithCo
 // GetMdbRedisClusterResourceArrayInput is an input type that accepts GetMdbRedisClusterResourceArray and GetMdbRedisClusterResourceArrayOutput values.
 // You can construct a concrete instance of `GetMdbRedisClusterResourceArrayInput` via:
 //
-//          GetMdbRedisClusterResourceArray{ GetMdbRedisClusterResourceArgs{...} }
+//	GetMdbRedisClusterResourceArray{ GetMdbRedisClusterResourceArgs{...} }
 type GetMdbRedisClusterResourceArrayInput interface {
 	pulumi.Input
 
@@ -24619,7 +24619,7 @@ type GetMdbSqlserverClusterBackupWindowStart struct {
 // GetMdbSqlserverClusterBackupWindowStartInput is an input type that accepts GetMdbSqlserverClusterBackupWindowStartArgs and GetMdbSqlserverClusterBackupWindowStartOutput values.
 // You can construct a concrete instance of `GetMdbSqlserverClusterBackupWindowStartInput` via:
 //
-//          GetMdbSqlserverClusterBackupWindowStartArgs{...}
+//	GetMdbSqlserverClusterBackupWindowStartArgs{...}
 type GetMdbSqlserverClusterBackupWindowStartInput interface {
 	pulumi.Input
 
@@ -24649,7 +24649,7 @@ func (i GetMdbSqlserverClusterBackupWindowStartArgs) ToGetMdbSqlserverClusterBac
 // GetMdbSqlserverClusterBackupWindowStartArrayInput is an input type that accepts GetMdbSqlserverClusterBackupWindowStartArray and GetMdbSqlserverClusterBackupWindowStartArrayOutput values.
 // You can construct a concrete instance of `GetMdbSqlserverClusterBackupWindowStartArrayInput` via:
 //
-//          GetMdbSqlserverClusterBackupWindowStartArray{ GetMdbSqlserverClusterBackupWindowStartArgs{...} }
+//	GetMdbSqlserverClusterBackupWindowStartArray{ GetMdbSqlserverClusterBackupWindowStartArgs{...} }
 type GetMdbSqlserverClusterBackupWindowStartArrayInput interface {
 	pulumi.Input
 
@@ -24723,7 +24723,7 @@ type GetMdbSqlserverClusterDatabase struct {
 // GetMdbSqlserverClusterDatabaseInput is an input type that accepts GetMdbSqlserverClusterDatabaseArgs and GetMdbSqlserverClusterDatabaseOutput values.
 // You can construct a concrete instance of `GetMdbSqlserverClusterDatabaseInput` via:
 //
-//          GetMdbSqlserverClusterDatabaseArgs{...}
+//	GetMdbSqlserverClusterDatabaseArgs{...}
 type GetMdbSqlserverClusterDatabaseInput interface {
 	pulumi.Input
 
@@ -24751,7 +24751,7 @@ func (i GetMdbSqlserverClusterDatabaseArgs) ToGetMdbSqlserverClusterDatabaseOutp
 // GetMdbSqlserverClusterDatabaseArrayInput is an input type that accepts GetMdbSqlserverClusterDatabaseArray and GetMdbSqlserverClusterDatabaseArrayOutput values.
 // You can construct a concrete instance of `GetMdbSqlserverClusterDatabaseArrayInput` via:
 //
-//          GetMdbSqlserverClusterDatabaseArray{ GetMdbSqlserverClusterDatabaseArgs{...} }
+//	GetMdbSqlserverClusterDatabaseArray{ GetMdbSqlserverClusterDatabaseArgs{...} }
 type GetMdbSqlserverClusterDatabaseArrayInput interface {
 	pulumi.Input
 
@@ -24826,7 +24826,7 @@ type GetMdbSqlserverClusterHost struct {
 // GetMdbSqlserverClusterHostInput is an input type that accepts GetMdbSqlserverClusterHostArgs and GetMdbSqlserverClusterHostOutput values.
 // You can construct a concrete instance of `GetMdbSqlserverClusterHostInput` via:
 //
-//          GetMdbSqlserverClusterHostArgs{...}
+//	GetMdbSqlserverClusterHostArgs{...}
 type GetMdbSqlserverClusterHostInput interface {
 	pulumi.Input
 
@@ -24860,7 +24860,7 @@ func (i GetMdbSqlserverClusterHostArgs) ToGetMdbSqlserverClusterHostOutputWithCo
 // GetMdbSqlserverClusterHostArrayInput is an input type that accepts GetMdbSqlserverClusterHostArray and GetMdbSqlserverClusterHostArrayOutput values.
 // You can construct a concrete instance of `GetMdbSqlserverClusterHostArrayInput` via:
 //
-//          GetMdbSqlserverClusterHostArray{ GetMdbSqlserverClusterHostArgs{...} }
+//	GetMdbSqlserverClusterHostArray{ GetMdbSqlserverClusterHostArgs{...} }
 type GetMdbSqlserverClusterHostArrayInput interface {
 	pulumi.Input
 
@@ -24947,7 +24947,7 @@ type GetMdbSqlserverClusterResource struct {
 // GetMdbSqlserverClusterResourceInput is an input type that accepts GetMdbSqlserverClusterResourceArgs and GetMdbSqlserverClusterResourceOutput values.
 // You can construct a concrete instance of `GetMdbSqlserverClusterResourceInput` via:
 //
-//          GetMdbSqlserverClusterResourceArgs{...}
+//	GetMdbSqlserverClusterResourceArgs{...}
 type GetMdbSqlserverClusterResourceInput interface {
 	pulumi.Input
 
@@ -24978,7 +24978,7 @@ func (i GetMdbSqlserverClusterResourceArgs) ToGetMdbSqlserverClusterResourceOutp
 // GetMdbSqlserverClusterResourceArrayInput is an input type that accepts GetMdbSqlserverClusterResourceArray and GetMdbSqlserverClusterResourceArrayOutput values.
 // You can construct a concrete instance of `GetMdbSqlserverClusterResourceArrayInput` via:
 //
-//          GetMdbSqlserverClusterResourceArray{ GetMdbSqlserverClusterResourceArgs{...} }
+//	GetMdbSqlserverClusterResourceArray{ GetMdbSqlserverClusterResourceArgs{...} }
 type GetMdbSqlserverClusterResourceArrayInput interface {
 	pulumi.Input
 
@@ -25060,7 +25060,7 @@ type GetMdbSqlserverClusterUser struct {
 // GetMdbSqlserverClusterUserInput is an input type that accepts GetMdbSqlserverClusterUserArgs and GetMdbSqlserverClusterUserOutput values.
 // You can construct a concrete instance of `GetMdbSqlserverClusterUserInput` via:
 //
-//          GetMdbSqlserverClusterUserArgs{...}
+//	GetMdbSqlserverClusterUserArgs{...}
 type GetMdbSqlserverClusterUserInput interface {
 	pulumi.Input
 
@@ -25092,7 +25092,7 @@ func (i GetMdbSqlserverClusterUserArgs) ToGetMdbSqlserverClusterUserOutputWithCo
 // GetMdbSqlserverClusterUserArrayInput is an input type that accepts GetMdbSqlserverClusterUserArray and GetMdbSqlserverClusterUserArrayOutput values.
 // You can construct a concrete instance of `GetMdbSqlserverClusterUserArrayInput` via:
 //
-//          GetMdbSqlserverClusterUserArray{ GetMdbSqlserverClusterUserArgs{...} }
+//	GetMdbSqlserverClusterUserArray{ GetMdbSqlserverClusterUserArgs{...} }
 type GetMdbSqlserverClusterUserArrayInput interface {
 	pulumi.Input
 
@@ -25174,7 +25174,7 @@ type GetMdbSqlserverClusterUserPermission struct {
 // GetMdbSqlserverClusterUserPermissionInput is an input type that accepts GetMdbSqlserverClusterUserPermissionArgs and GetMdbSqlserverClusterUserPermissionOutput values.
 // You can construct a concrete instance of `GetMdbSqlserverClusterUserPermissionInput` via:
 //
-//          GetMdbSqlserverClusterUserPermissionArgs{...}
+//	GetMdbSqlserverClusterUserPermissionArgs{...}
 type GetMdbSqlserverClusterUserPermissionInput interface {
 	pulumi.Input
 
@@ -25205,7 +25205,7 @@ func (i GetMdbSqlserverClusterUserPermissionArgs) ToGetMdbSqlserverClusterUserPe
 // GetMdbSqlserverClusterUserPermissionArrayInput is an input type that accepts GetMdbSqlserverClusterUserPermissionArray and GetMdbSqlserverClusterUserPermissionArrayOutput values.
 // You can construct a concrete instance of `GetMdbSqlserverClusterUserPermissionArrayInput` via:
 //
-//          GetMdbSqlserverClusterUserPermissionArray{ GetMdbSqlserverClusterUserPermissionArgs{...} }
+//	GetMdbSqlserverClusterUserPermissionArray{ GetMdbSqlserverClusterUserPermissionArgs{...} }
 type GetMdbSqlserverClusterUserPermissionArrayInput interface {
 	pulumi.Input
 
@@ -25280,7 +25280,7 @@ type GetOrganizationmanagerSamlFederationSecuritySetting struct {
 // GetOrganizationmanagerSamlFederationSecuritySettingInput is an input type that accepts GetOrganizationmanagerSamlFederationSecuritySettingArgs and GetOrganizationmanagerSamlFederationSecuritySettingOutput values.
 // You can construct a concrete instance of `GetOrganizationmanagerSamlFederationSecuritySettingInput` via:
 //
-//          GetOrganizationmanagerSamlFederationSecuritySettingArgs{...}
+//	GetOrganizationmanagerSamlFederationSecuritySettingArgs{...}
 type GetOrganizationmanagerSamlFederationSecuritySettingInput interface {
 	pulumi.Input
 
@@ -25308,7 +25308,7 @@ func (i GetOrganizationmanagerSamlFederationSecuritySettingArgs) ToGetOrganizati
 // GetOrganizationmanagerSamlFederationSecuritySettingArrayInput is an input type that accepts GetOrganizationmanagerSamlFederationSecuritySettingArray and GetOrganizationmanagerSamlFederationSecuritySettingArrayOutput values.
 // You can construct a concrete instance of `GetOrganizationmanagerSamlFederationSecuritySettingArrayInput` via:
 //
-//          GetOrganizationmanagerSamlFederationSecuritySettingArray{ GetOrganizationmanagerSamlFederationSecuritySettingArgs{...} }
+//	GetOrganizationmanagerSamlFederationSecuritySettingArray{ GetOrganizationmanagerSamlFederationSecuritySettingArgs{...} }
 type GetOrganizationmanagerSamlFederationSecuritySettingArrayInput interface {
 	pulumi.Input
 
@@ -25382,7 +25382,7 @@ type GetServerlessContainerImage struct {
 // GetServerlessContainerImageInput is an input type that accepts GetServerlessContainerImageArgs and GetServerlessContainerImageOutput values.
 // You can construct a concrete instance of `GetServerlessContainerImageInput` via:
 //
-//          GetServerlessContainerImageArgs{...}
+//	GetServerlessContainerImageArgs{...}
 type GetServerlessContainerImageInput interface {
 	pulumi.Input
 
@@ -25415,7 +25415,7 @@ func (i GetServerlessContainerImageArgs) ToGetServerlessContainerImageOutputWith
 // GetServerlessContainerImageArrayInput is an input type that accepts GetServerlessContainerImageArray and GetServerlessContainerImageArrayOutput values.
 // You can construct a concrete instance of `GetServerlessContainerImageArrayInput` via:
 //
-//          GetServerlessContainerImageArray{ GetServerlessContainerImageArgs{...} }
+//	GetServerlessContainerImageArray{ GetServerlessContainerImageArgs{...} }
 type GetServerlessContainerImageArrayInput interface {
 	pulumi.Input
 
@@ -25506,7 +25506,7 @@ type GetServerlessContainerSecret struct {
 // GetServerlessContainerSecretInput is an input type that accepts GetServerlessContainerSecretArgs and GetServerlessContainerSecretOutput values.
 // You can construct a concrete instance of `GetServerlessContainerSecretInput` via:
 //
-//          GetServerlessContainerSecretArgs{...}
+//	GetServerlessContainerSecretArgs{...}
 type GetServerlessContainerSecretInput interface {
 	pulumi.Input
 
@@ -25536,7 +25536,7 @@ func (i GetServerlessContainerSecretArgs) ToGetServerlessContainerSecretOutputWi
 // GetServerlessContainerSecretArrayInput is an input type that accepts GetServerlessContainerSecretArray and GetServerlessContainerSecretArrayOutput values.
 // You can construct a concrete instance of `GetServerlessContainerSecretArrayInput` via:
 //
-//          GetServerlessContainerSecretArray{ GetServerlessContainerSecretArgs{...} }
+//	GetServerlessContainerSecretArray{ GetServerlessContainerSecretArgs{...} }
 type GetServerlessContainerSecretArrayInput interface {
 	pulumi.Input
 
@@ -25622,7 +25622,7 @@ type GetVpcAddressExternalIpv4Address struct {
 // GetVpcAddressExternalIpv4AddressInput is an input type that accepts GetVpcAddressExternalIpv4AddressArgs and GetVpcAddressExternalIpv4AddressOutput values.
 // You can construct a concrete instance of `GetVpcAddressExternalIpv4AddressInput` via:
 //
-//          GetVpcAddressExternalIpv4AddressArgs{...}
+//	GetVpcAddressExternalIpv4AddressArgs{...}
 type GetVpcAddressExternalIpv4AddressInput interface {
 	pulumi.Input
 
@@ -25656,7 +25656,7 @@ func (i GetVpcAddressExternalIpv4AddressArgs) ToGetVpcAddressExternalIpv4Address
 // GetVpcAddressExternalIpv4AddressArrayInput is an input type that accepts GetVpcAddressExternalIpv4AddressArray and GetVpcAddressExternalIpv4AddressArrayOutput values.
 // You can construct a concrete instance of `GetVpcAddressExternalIpv4AddressArrayInput` via:
 //
-//          GetVpcAddressExternalIpv4AddressArray{ GetVpcAddressExternalIpv4AddressArgs{...} }
+//	GetVpcAddressExternalIpv4AddressArray{ GetVpcAddressExternalIpv4AddressArgs{...} }
 type GetVpcAddressExternalIpv4AddressArrayInput interface {
 	pulumi.Input
 
@@ -25744,7 +25744,7 @@ type GetVpcRouteTableStaticRoute struct {
 // GetVpcRouteTableStaticRouteInput is an input type that accepts GetVpcRouteTableStaticRouteArgs and GetVpcRouteTableStaticRouteOutput values.
 // You can construct a concrete instance of `GetVpcRouteTableStaticRouteInput` via:
 //
-//          GetVpcRouteTableStaticRouteArgs{...}
+//	GetVpcRouteTableStaticRouteArgs{...}
 type GetVpcRouteTableStaticRouteInput interface {
 	pulumi.Input
 
@@ -25776,7 +25776,7 @@ func (i GetVpcRouteTableStaticRouteArgs) ToGetVpcRouteTableStaticRouteOutputWith
 // GetVpcRouteTableStaticRouteArrayInput is an input type that accepts GetVpcRouteTableStaticRouteArray and GetVpcRouteTableStaticRouteArrayOutput values.
 // You can construct a concrete instance of `GetVpcRouteTableStaticRouteArrayInput` via:
 //
-//          GetVpcRouteTableStaticRouteArray{ GetVpcRouteTableStaticRouteArgs{...} }
+//	GetVpcRouteTableStaticRouteArray{ GetVpcRouteTableStaticRouteArgs{...} }
 type GetVpcRouteTableStaticRouteArrayInput interface {
 	pulumi.Input
 
@@ -25875,7 +25875,7 @@ type GetVpcSecurityGroupEgress struct {
 // GetVpcSecurityGroupEgressInput is an input type that accepts GetVpcSecurityGroupEgressArgs and GetVpcSecurityGroupEgressOutput values.
 // You can construct a concrete instance of `GetVpcSecurityGroupEgressInput` via:
 //
-//          GetVpcSecurityGroupEgressArgs{...}
+//	GetVpcSecurityGroupEgressArgs{...}
 type GetVpcSecurityGroupEgressInput interface {
 	pulumi.Input
 
@@ -25923,7 +25923,7 @@ func (i GetVpcSecurityGroupEgressArgs) ToGetVpcSecurityGroupEgressOutputWithCont
 // GetVpcSecurityGroupEgressArrayInput is an input type that accepts GetVpcSecurityGroupEgressArray and GetVpcSecurityGroupEgressArrayOutput values.
 // You can construct a concrete instance of `GetVpcSecurityGroupEgressArrayInput` via:
 //
-//          GetVpcSecurityGroupEgressArray{ GetVpcSecurityGroupEgressArgs{...} }
+//	GetVpcSecurityGroupEgressArray{ GetVpcSecurityGroupEgressArgs{...} }
 type GetVpcSecurityGroupEgressArrayInput interface {
 	pulumi.Input
 
@@ -26062,7 +26062,7 @@ type GetVpcSecurityGroupIngress struct {
 // GetVpcSecurityGroupIngressInput is an input type that accepts GetVpcSecurityGroupIngressArgs and GetVpcSecurityGroupIngressOutput values.
 // You can construct a concrete instance of `GetVpcSecurityGroupIngressInput` via:
 //
-//          GetVpcSecurityGroupIngressArgs{...}
+//	GetVpcSecurityGroupIngressArgs{...}
 type GetVpcSecurityGroupIngressInput interface {
 	pulumi.Input
 
@@ -26110,7 +26110,7 @@ func (i GetVpcSecurityGroupIngressArgs) ToGetVpcSecurityGroupIngressOutputWithCo
 // GetVpcSecurityGroupIngressArrayInput is an input type that accepts GetVpcSecurityGroupIngressArray and GetVpcSecurityGroupIngressArrayOutput values.
 // You can construct a concrete instance of `GetVpcSecurityGroupIngressArrayInput` via:
 //
-//          GetVpcSecurityGroupIngressArray{ GetVpcSecurityGroupIngressArgs{...} }
+//	GetVpcSecurityGroupIngressArray{ GetVpcSecurityGroupIngressArgs{...} }
 type GetVpcSecurityGroupIngressArrayInput interface {
 	pulumi.Input
 
@@ -26233,7 +26233,7 @@ type GetVpcSubnetDhcpOption struct {
 // GetVpcSubnetDhcpOptionInput is an input type that accepts GetVpcSubnetDhcpOptionArgs and GetVpcSubnetDhcpOptionOutput values.
 // You can construct a concrete instance of `GetVpcSubnetDhcpOptionInput` via:
 //
-//          GetVpcSubnetDhcpOptionArgs{...}
+//	GetVpcSubnetDhcpOptionArgs{...}
 type GetVpcSubnetDhcpOptionInput interface {
 	pulumi.Input
 
@@ -26265,7 +26265,7 @@ func (i GetVpcSubnetDhcpOptionArgs) ToGetVpcSubnetDhcpOptionOutputWithContext(ct
 // GetVpcSubnetDhcpOptionArrayInput is an input type that accepts GetVpcSubnetDhcpOptionArray and GetVpcSubnetDhcpOptionArrayOutput values.
 // You can construct a concrete instance of `GetVpcSubnetDhcpOptionArrayInput` via:
 //
-//          GetVpcSubnetDhcpOptionArray{ GetVpcSubnetDhcpOptionArgs{...} }
+//	GetVpcSubnetDhcpOptionArray{ GetVpcSubnetDhcpOptionArgs{...} }
 type GetVpcSubnetDhcpOptionArrayInput interface {
 	pulumi.Input
 
@@ -26346,7 +26346,7 @@ type GetYdbDatabaseDedicatedLocation struct {
 // GetYdbDatabaseDedicatedLocationInput is an input type that accepts GetYdbDatabaseDedicatedLocationArgs and GetYdbDatabaseDedicatedLocationOutput values.
 // You can construct a concrete instance of `GetYdbDatabaseDedicatedLocationInput` via:
 //
-//          GetYdbDatabaseDedicatedLocationArgs{...}
+//	GetYdbDatabaseDedicatedLocationArgs{...}
 type GetYdbDatabaseDedicatedLocationInput interface {
 	pulumi.Input
 
@@ -26376,7 +26376,7 @@ func (i GetYdbDatabaseDedicatedLocationArgs) ToGetYdbDatabaseDedicatedLocationOu
 // GetYdbDatabaseDedicatedLocationArrayInput is an input type that accepts GetYdbDatabaseDedicatedLocationArray and GetYdbDatabaseDedicatedLocationArrayOutput values.
 // You can construct a concrete instance of `GetYdbDatabaseDedicatedLocationArrayInput` via:
 //
-//          GetYdbDatabaseDedicatedLocationArray{ GetYdbDatabaseDedicatedLocationArgs{...} }
+//	GetYdbDatabaseDedicatedLocationArray{ GetYdbDatabaseDedicatedLocationArgs{...} }
 type GetYdbDatabaseDedicatedLocationArrayInput interface {
 	pulumi.Input
 
@@ -26450,7 +26450,7 @@ type GetYdbDatabaseDedicatedLocationRegion struct {
 // GetYdbDatabaseDedicatedLocationRegionInput is an input type that accepts GetYdbDatabaseDedicatedLocationRegionArgs and GetYdbDatabaseDedicatedLocationRegionOutput values.
 // You can construct a concrete instance of `GetYdbDatabaseDedicatedLocationRegionInput` via:
 //
-//          GetYdbDatabaseDedicatedLocationRegionArgs{...}
+//	GetYdbDatabaseDedicatedLocationRegionArgs{...}
 type GetYdbDatabaseDedicatedLocationRegionInput interface {
 	pulumi.Input
 
@@ -26478,7 +26478,7 @@ func (i GetYdbDatabaseDedicatedLocationRegionArgs) ToGetYdbDatabaseDedicatedLoca
 // GetYdbDatabaseDedicatedLocationRegionArrayInput is an input type that accepts GetYdbDatabaseDedicatedLocationRegionArray and GetYdbDatabaseDedicatedLocationRegionArrayOutput values.
 // You can construct a concrete instance of `GetYdbDatabaseDedicatedLocationRegionArrayInput` via:
 //
-//          GetYdbDatabaseDedicatedLocationRegionArray{ GetYdbDatabaseDedicatedLocationRegionArgs{...} }
+//	GetYdbDatabaseDedicatedLocationRegionArray{ GetYdbDatabaseDedicatedLocationRegionArgs{...} }
 type GetYdbDatabaseDedicatedLocationRegionArrayInput interface {
 	pulumi.Input
 
@@ -26547,7 +26547,7 @@ type GetYdbDatabaseDedicatedLocationZone struct {
 // GetYdbDatabaseDedicatedLocationZoneInput is an input type that accepts GetYdbDatabaseDedicatedLocationZoneArgs and GetYdbDatabaseDedicatedLocationZoneOutput values.
 // You can construct a concrete instance of `GetYdbDatabaseDedicatedLocationZoneInput` via:
 //
-//          GetYdbDatabaseDedicatedLocationZoneArgs{...}
+//	GetYdbDatabaseDedicatedLocationZoneArgs{...}
 type GetYdbDatabaseDedicatedLocationZoneInput interface {
 	pulumi.Input
 
@@ -26575,7 +26575,7 @@ func (i GetYdbDatabaseDedicatedLocationZoneArgs) ToGetYdbDatabaseDedicatedLocati
 // GetYdbDatabaseDedicatedLocationZoneArrayInput is an input type that accepts GetYdbDatabaseDedicatedLocationZoneArray and GetYdbDatabaseDedicatedLocationZoneArrayOutput values.
 // You can construct a concrete instance of `GetYdbDatabaseDedicatedLocationZoneArrayInput` via:
 //
-//          GetYdbDatabaseDedicatedLocationZoneArray{ GetYdbDatabaseDedicatedLocationZoneArgs{...} }
+//	GetYdbDatabaseDedicatedLocationZoneArray{ GetYdbDatabaseDedicatedLocationZoneArgs{...} }
 type GetYdbDatabaseDedicatedLocationZoneArrayInput interface {
 	pulumi.Input
 
@@ -26645,7 +26645,7 @@ type GetYdbDatabaseDedicatedScalePolicy struct {
 // GetYdbDatabaseDedicatedScalePolicyInput is an input type that accepts GetYdbDatabaseDedicatedScalePolicyArgs and GetYdbDatabaseDedicatedScalePolicyOutput values.
 // You can construct a concrete instance of `GetYdbDatabaseDedicatedScalePolicyInput` via:
 //
-//          GetYdbDatabaseDedicatedScalePolicyArgs{...}
+//	GetYdbDatabaseDedicatedScalePolicyArgs{...}
 type GetYdbDatabaseDedicatedScalePolicyInput interface {
 	pulumi.Input
 
@@ -26674,7 +26674,7 @@ func (i GetYdbDatabaseDedicatedScalePolicyArgs) ToGetYdbDatabaseDedicatedScalePo
 // GetYdbDatabaseDedicatedScalePolicyArrayInput is an input type that accepts GetYdbDatabaseDedicatedScalePolicyArray and GetYdbDatabaseDedicatedScalePolicyArrayOutput values.
 // You can construct a concrete instance of `GetYdbDatabaseDedicatedScalePolicyArrayInput` via:
 //
-//          GetYdbDatabaseDedicatedScalePolicyArray{ GetYdbDatabaseDedicatedScalePolicyArgs{...} }
+//	GetYdbDatabaseDedicatedScalePolicyArray{ GetYdbDatabaseDedicatedScalePolicyArgs{...} }
 type GetYdbDatabaseDedicatedScalePolicyArrayInput interface {
 	pulumi.Input
 
@@ -26746,7 +26746,7 @@ type GetYdbDatabaseDedicatedScalePolicyFixedScale struct {
 // GetYdbDatabaseDedicatedScalePolicyFixedScaleInput is an input type that accepts GetYdbDatabaseDedicatedScalePolicyFixedScaleArgs and GetYdbDatabaseDedicatedScalePolicyFixedScaleOutput values.
 // You can construct a concrete instance of `GetYdbDatabaseDedicatedScalePolicyFixedScaleInput` via:
 //
-//          GetYdbDatabaseDedicatedScalePolicyFixedScaleArgs{...}
+//	GetYdbDatabaseDedicatedScalePolicyFixedScaleArgs{...}
 type GetYdbDatabaseDedicatedScalePolicyFixedScaleInput interface {
 	pulumi.Input
 
@@ -26774,7 +26774,7 @@ func (i GetYdbDatabaseDedicatedScalePolicyFixedScaleArgs) ToGetYdbDatabaseDedica
 // GetYdbDatabaseDedicatedScalePolicyFixedScaleArrayInput is an input type that accepts GetYdbDatabaseDedicatedScalePolicyFixedScaleArray and GetYdbDatabaseDedicatedScalePolicyFixedScaleArrayOutput values.
 // You can construct a concrete instance of `GetYdbDatabaseDedicatedScalePolicyFixedScaleArrayInput` via:
 //
-//          GetYdbDatabaseDedicatedScalePolicyFixedScaleArray{ GetYdbDatabaseDedicatedScalePolicyFixedScaleArgs{...} }
+//	GetYdbDatabaseDedicatedScalePolicyFixedScaleArray{ GetYdbDatabaseDedicatedScalePolicyFixedScaleArgs{...} }
 type GetYdbDatabaseDedicatedScalePolicyFixedScaleArrayInput interface {
 	pulumi.Input
 
@@ -26845,7 +26845,7 @@ type GetYdbDatabaseDedicatedStorageConfig struct {
 // GetYdbDatabaseDedicatedStorageConfigInput is an input type that accepts GetYdbDatabaseDedicatedStorageConfigArgs and GetYdbDatabaseDedicatedStorageConfigOutput values.
 // You can construct a concrete instance of `GetYdbDatabaseDedicatedStorageConfigInput` via:
 //
-//          GetYdbDatabaseDedicatedStorageConfigArgs{...}
+//	GetYdbDatabaseDedicatedStorageConfigArgs{...}
 type GetYdbDatabaseDedicatedStorageConfigInput interface {
 	pulumi.Input
 
@@ -26875,7 +26875,7 @@ func (i GetYdbDatabaseDedicatedStorageConfigArgs) ToGetYdbDatabaseDedicatedStora
 // GetYdbDatabaseDedicatedStorageConfigArrayInput is an input type that accepts GetYdbDatabaseDedicatedStorageConfigArray and GetYdbDatabaseDedicatedStorageConfigArrayOutput values.
 // You can construct a concrete instance of `GetYdbDatabaseDedicatedStorageConfigArrayInput` via:
 //
-//          GetYdbDatabaseDedicatedStorageConfigArray{ GetYdbDatabaseDedicatedStorageConfigArgs{...} }
+//	GetYdbDatabaseDedicatedStorageConfigArray{ GetYdbDatabaseDedicatedStorageConfigArgs{...} }
 type GetYdbDatabaseDedicatedStorageConfigArrayInput interface {
 	pulumi.Input
 
@@ -26953,7 +26953,7 @@ type LockboxSecretVersionEntry struct {
 // LockboxSecretVersionEntryInput is an input type that accepts LockboxSecretVersionEntryArgs and LockboxSecretVersionEntryOutput values.
 // You can construct a concrete instance of `LockboxSecretVersionEntryInput` via:
 //
-//          LockboxSecretVersionEntryArgs{...}
+//	LockboxSecretVersionEntryArgs{...}
 type LockboxSecretVersionEntryInput interface {
 	pulumi.Input
 
@@ -26985,7 +26985,7 @@ func (i LockboxSecretVersionEntryArgs) ToLockboxSecretVersionEntryOutputWithCont
 // LockboxSecretVersionEntryArrayInput is an input type that accepts LockboxSecretVersionEntryArray and LockboxSecretVersionEntryArrayOutput values.
 // You can construct a concrete instance of `LockboxSecretVersionEntryArrayInput` via:
 //
-//          LockboxSecretVersionEntryArray{ LockboxSecretVersionEntryArgs{...} }
+//	LockboxSecretVersionEntryArray{ LockboxSecretVersionEntryArgs{...} }
 type LockboxSecretVersionEntryArrayInput interface {
 	pulumi.Input
 
@@ -27068,7 +27068,7 @@ type LockboxSecretVersionEntryCommand struct {
 // LockboxSecretVersionEntryCommandInput is an input type that accepts LockboxSecretVersionEntryCommandArgs and LockboxSecretVersionEntryCommandOutput values.
 // You can construct a concrete instance of `LockboxSecretVersionEntryCommandInput` via:
 //
-//          LockboxSecretVersionEntryCommandArgs{...}
+//	LockboxSecretVersionEntryCommandArgs{...}
 type LockboxSecretVersionEntryCommandInput interface {
 	pulumi.Input
 
@@ -27108,11 +27108,11 @@ func (i LockboxSecretVersionEntryCommandArgs) ToLockboxSecretVersionEntryCommand
 // LockboxSecretVersionEntryCommandPtrInput is an input type that accepts LockboxSecretVersionEntryCommandArgs, LockboxSecretVersionEntryCommandPtr and LockboxSecretVersionEntryCommandPtrOutput values.
 // You can construct a concrete instance of `LockboxSecretVersionEntryCommandPtrInput` via:
 //
-//          LockboxSecretVersionEntryCommandArgs{...}
+//	        LockboxSecretVersionEntryCommandArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type LockboxSecretVersionEntryCommandPtrInput interface {
 	pulumi.Input
 
@@ -27241,7 +27241,7 @@ type MdbKafkaConnectorConnectorConfigMirrormaker struct {
 // MdbKafkaConnectorConnectorConfigMirrormakerInput is an input type that accepts MdbKafkaConnectorConnectorConfigMirrormakerArgs and MdbKafkaConnectorConnectorConfigMirrormakerOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigMirrormakerInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigMirrormakerArgs{...}
+//	MdbKafkaConnectorConnectorConfigMirrormakerArgs{...}
 type MdbKafkaConnectorConnectorConfigMirrormakerInput interface {
 	pulumi.Input
 
@@ -27271,7 +27271,7 @@ func (i MdbKafkaConnectorConnectorConfigMirrormakerArgs) ToMdbKafkaConnectorConn
 // MdbKafkaConnectorConnectorConfigMirrormakerArrayInput is an input type that accepts MdbKafkaConnectorConnectorConfigMirrormakerArray and MdbKafkaConnectorConnectorConfigMirrormakerArrayOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigMirrormakerArrayInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigMirrormakerArray{ MdbKafkaConnectorConnectorConfigMirrormakerArgs{...} }
+//	MdbKafkaConnectorConnectorConfigMirrormakerArray{ MdbKafkaConnectorConnectorConfigMirrormakerArgs{...} }
 type MdbKafkaConnectorConnectorConfigMirrormakerArrayInput interface {
 	pulumi.Input
 
@@ -27356,7 +27356,7 @@ type MdbKafkaConnectorConnectorConfigMirrormakerSourceCluster struct {
 // MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterInput is an input type that accepts MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterArgs and MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterArgs{...}
+//	MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterArgs{...}
 type MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterInput interface {
 	pulumi.Input
 
@@ -27423,7 +27423,7 @@ type MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster str
 // MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterInput is an input type that accepts MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArgs and MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArgs{...}
+//	MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArgs{...}
 type MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterInput interface {
 	pulumi.Input
 
@@ -27454,7 +27454,7 @@ func (i MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterA
 // MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArrayInput is an input type that accepts MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArray and MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArrayOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArrayInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArray{ MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArgs{...} }
+//	MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArray{ MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArgs{...} }
 type MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArrayInput interface {
 	pulumi.Input
 
@@ -27546,7 +27546,7 @@ type MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisCluster struct 
 // MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterInput is an input type that accepts MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArgs and MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArgs{...}
+//	MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArgs{...}
 type MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterInput interface {
 	pulumi.Input
 
@@ -27572,7 +27572,7 @@ func (i MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArgs)
 // MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArrayInput is an input type that accepts MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArray and MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArrayOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArrayInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArray{ MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArgs{...} }
+//	MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArray{ MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArgs{...} }
 type MdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArrayInput interface {
 	pulumi.Input
 
@@ -27637,7 +27637,7 @@ type MdbKafkaConnectorConnectorConfigMirrormakerTargetCluster struct {
 // MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterInput is an input type that accepts MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterArgs and MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterArgs{...}
+//	MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterArgs{...}
 type MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterInput interface {
 	pulumi.Input
 
@@ -27704,7 +27704,7 @@ type MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster str
 // MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterInput is an input type that accepts MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArgs and MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArgs{...}
+//	MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArgs{...}
 type MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterInput interface {
 	pulumi.Input
 
@@ -27735,7 +27735,7 @@ func (i MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterA
 // MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArrayInput is an input type that accepts MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArray and MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArrayOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArrayInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArray{ MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArgs{...} }
+//	MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArray{ MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArgs{...} }
 type MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArrayInput interface {
 	pulumi.Input
 
@@ -27827,7 +27827,7 @@ type MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisCluster struct 
 // MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterInput is an input type that accepts MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArgs and MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArgs{...}
+//	MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArgs{...}
 type MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterInput interface {
 	pulumi.Input
 
@@ -27853,7 +27853,7 @@ func (i MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArgs)
 // MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArrayInput is an input type that accepts MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArray and MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArrayOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArrayInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArray{ MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArgs{...} }
+//	MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArray{ MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArgs{...} }
 type MdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArrayInput interface {
 	pulumi.Input
 
@@ -27919,7 +27919,7 @@ type MdbKafkaConnectorConnectorConfigS3Sink struct {
 // MdbKafkaConnectorConnectorConfigS3SinkInput is an input type that accepts MdbKafkaConnectorConnectorConfigS3SinkArgs and MdbKafkaConnectorConnectorConfigS3SinkOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigS3SinkInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigS3SinkArgs{...}
+//	MdbKafkaConnectorConnectorConfigS3SinkArgs{...}
 type MdbKafkaConnectorConnectorConfigS3SinkInput interface {
 	pulumi.Input
 
@@ -27949,7 +27949,7 @@ func (i MdbKafkaConnectorConnectorConfigS3SinkArgs) ToMdbKafkaConnectorConnector
 // MdbKafkaConnectorConnectorConfigS3SinkArrayInput is an input type that accepts MdbKafkaConnectorConnectorConfigS3SinkArray and MdbKafkaConnectorConnectorConfigS3SinkArrayOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigS3SinkArrayInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigS3SinkArray{ MdbKafkaConnectorConnectorConfigS3SinkArgs{...} }
+//	MdbKafkaConnectorConnectorConfigS3SinkArray{ MdbKafkaConnectorConnectorConfigS3SinkArgs{...} }
 type MdbKafkaConnectorConnectorConfigS3SinkArrayInput interface {
 	pulumi.Input
 
@@ -28031,7 +28031,7 @@ type MdbKafkaConnectorConnectorConfigS3SinkS3Connection struct {
 // MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionInput is an input type that accepts MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionArgs and MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionArgs{...}
+//	MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionArgs{...}
 type MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionInput interface {
 	pulumi.Input
 
@@ -28090,7 +28090,7 @@ type MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3 struct {
 // MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Input is an input type that accepts MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args and MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Output values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Input` via:
 //
-//          MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args{...}
+//	MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args{...}
 type MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Input interface {
 	pulumi.Input
 
@@ -28120,7 +28120,7 @@ func (i MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args) ToMdbK
 // MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3ArrayInput is an input type that accepts MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Array and MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3ArrayOutput values.
 // You can construct a concrete instance of `MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3ArrayInput` via:
 //
-//          MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Array{ MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args{...} }
+//	MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Array{ MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args{...} }
 type MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3ArrayInput interface {
 	pulumi.Input
 
@@ -28206,7 +28206,7 @@ type MdbMysqlUserConnectionLimits struct {
 // MdbMysqlUserConnectionLimitsInput is an input type that accepts MdbMysqlUserConnectionLimitsArgs and MdbMysqlUserConnectionLimitsOutput values.
 // You can construct a concrete instance of `MdbMysqlUserConnectionLimitsInput` via:
 //
-//          MdbMysqlUserConnectionLimitsArgs{...}
+//	MdbMysqlUserConnectionLimitsArgs{...}
 type MdbMysqlUserConnectionLimitsInput interface {
 	pulumi.Input
 
@@ -28248,11 +28248,11 @@ func (i MdbMysqlUserConnectionLimitsArgs) ToMdbMysqlUserConnectionLimitsPtrOutpu
 // MdbMysqlUserConnectionLimitsPtrInput is an input type that accepts MdbMysqlUserConnectionLimitsArgs, MdbMysqlUserConnectionLimitsPtr and MdbMysqlUserConnectionLimitsPtrOutput values.
 // You can construct a concrete instance of `MdbMysqlUserConnectionLimitsPtrInput` via:
 //
-//          MdbMysqlUserConnectionLimitsArgs{...}
+//	        MdbMysqlUserConnectionLimitsArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type MdbMysqlUserConnectionLimitsPtrInput interface {
 	pulumi.Input
 
@@ -28398,7 +28398,7 @@ type MdbMysqlUserPermission struct {
 // MdbMysqlUserPermissionInput is an input type that accepts MdbMysqlUserPermissionArgs and MdbMysqlUserPermissionOutput values.
 // You can construct a concrete instance of `MdbMysqlUserPermissionInput` via:
 //
-//          MdbMysqlUserPermissionArgs{...}
+//	MdbMysqlUserPermissionArgs{...}
 type MdbMysqlUserPermissionInput interface {
 	pulumi.Input
 
@@ -28430,7 +28430,7 @@ func (i MdbMysqlUserPermissionArgs) ToMdbMysqlUserPermissionOutputWithContext(ct
 // MdbMysqlUserPermissionArrayInput is an input type that accepts MdbMysqlUserPermissionArray and MdbMysqlUserPermissionArrayOutput values.
 // You can construct a concrete instance of `MdbMysqlUserPermissionArrayInput` via:
 //
-//          MdbMysqlUserPermissionArray{ MdbMysqlUserPermissionArgs{...} }
+//	MdbMysqlUserPermissionArray{ MdbMysqlUserPermissionArgs{...} }
 type MdbMysqlUserPermissionArrayInput interface {
 	pulumi.Input
 
@@ -28508,7 +28508,7 @@ type MdbPostgresqlDatabaseExtension struct {
 // MdbPostgresqlDatabaseExtensionInput is an input type that accepts MdbPostgresqlDatabaseExtensionArgs and MdbPostgresqlDatabaseExtensionOutput values.
 // You can construct a concrete instance of `MdbPostgresqlDatabaseExtensionInput` via:
 //
-//          MdbPostgresqlDatabaseExtensionArgs{...}
+//	MdbPostgresqlDatabaseExtensionArgs{...}
 type MdbPostgresqlDatabaseExtensionInput interface {
 	pulumi.Input
 
@@ -28538,7 +28538,7 @@ func (i MdbPostgresqlDatabaseExtensionArgs) ToMdbPostgresqlDatabaseExtensionOutp
 // MdbPostgresqlDatabaseExtensionArrayInput is an input type that accepts MdbPostgresqlDatabaseExtensionArray and MdbPostgresqlDatabaseExtensionArrayOutput values.
 // You can construct a concrete instance of `MdbPostgresqlDatabaseExtensionArrayInput` via:
 //
-//          MdbPostgresqlDatabaseExtensionArray{ MdbPostgresqlDatabaseExtensionArgs{...} }
+//	MdbPostgresqlDatabaseExtensionArray{ MdbPostgresqlDatabaseExtensionArgs{...} }
 type MdbPostgresqlDatabaseExtensionArrayInput interface {
 	pulumi.Input
 
@@ -28612,7 +28612,7 @@ type MdbPostgresqlUserPermission struct {
 // MdbPostgresqlUserPermissionInput is an input type that accepts MdbPostgresqlUserPermissionArgs and MdbPostgresqlUserPermissionOutput values.
 // You can construct a concrete instance of `MdbPostgresqlUserPermissionInput` via:
 //
-//          MdbPostgresqlUserPermissionArgs{...}
+//	MdbPostgresqlUserPermissionArgs{...}
 type MdbPostgresqlUserPermissionInput interface {
 	pulumi.Input
 
@@ -28640,7 +28640,7 @@ func (i MdbPostgresqlUserPermissionArgs) ToMdbPostgresqlUserPermissionOutputWith
 // MdbPostgresqlUserPermissionArrayInput is an input type that accepts MdbPostgresqlUserPermissionArray and MdbPostgresqlUserPermissionArrayOutput values.
 // You can construct a concrete instance of `MdbPostgresqlUserPermissionArrayInput` via:
 //
-//          MdbPostgresqlUserPermissionArray{ MdbPostgresqlUserPermissionArgs{...} }
+//	MdbPostgresqlUserPermissionArray{ MdbPostgresqlUserPermissionArgs{...} }
 type MdbPostgresqlUserPermissionArrayInput interface {
 	pulumi.Input
 
@@ -28707,7 +28707,7 @@ type VpcGatewaySharedEgressGateway struct {
 // VpcGatewaySharedEgressGatewayInput is an input type that accepts VpcGatewaySharedEgressGatewayArgs and VpcGatewaySharedEgressGatewayOutput values.
 // You can construct a concrete instance of `VpcGatewaySharedEgressGatewayInput` via:
 //
-//          VpcGatewaySharedEgressGatewayArgs{...}
+//	VpcGatewaySharedEgressGatewayArgs{...}
 type VpcGatewaySharedEgressGatewayInput interface {
 	pulumi.Input
 
@@ -28741,11 +28741,11 @@ func (i VpcGatewaySharedEgressGatewayArgs) ToVpcGatewaySharedEgressGatewayPtrOut
 // VpcGatewaySharedEgressGatewayPtrInput is an input type that accepts VpcGatewaySharedEgressGatewayArgs, VpcGatewaySharedEgressGatewayPtr and VpcGatewaySharedEgressGatewayPtrOutput values.
 // You can construct a concrete instance of `VpcGatewaySharedEgressGatewayPtrInput` via:
 //
-//          VpcGatewaySharedEgressGatewayArgs{...}
+//	        VpcGatewaySharedEgressGatewayArgs{...}
 //
-//  or:
+//	or:
 //
-//          nil
+//	        nil
 type VpcGatewaySharedEgressGatewayPtrInput interface {
 	pulumi.Input
 

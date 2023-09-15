@@ -18,32 +18,35 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewIotCoreRegistry(ctx, "myRegistry", &yandex.IotCoreRegistryArgs{
-// 			Certificates: pulumi.StringArray{
-// 				pulumi.String("public part of certificate1"),
-// 				pulumi.String("public part of certificate2"),
-// 			},
-// 			Description: pulumi.String("any description"),
-// 			Labels: pulumi.StringMap{
-// 				"my-label": pulumi.String("my-label-value"),
-// 			},
-// 			Passwords: pulumi.StringArray{
-// 				pulumi.String("my-password1"),
-// 				pulumi.String("my-password2"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewIotCoreRegistry(ctx, "myRegistry", &yandex.IotCoreRegistryArgs{
+//				Certificates: pulumi.StringArray{
+//					pulumi.String("public part of certificate1"),
+//					pulumi.String("public part of certificate2"),
+//				},
+//				Description: pulumi.String("any description"),
+//				Labels: pulumi.StringMap{
+//					"my-label": pulumi.String("my-label-value"),
+//				},
+//				Passwords: pulumi.StringArray{
+//					pulumi.String("my-password1"),
+//					pulumi.String("my-password2"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type IotCoreRegistry struct {
 	pulumi.CustomResourceState
@@ -195,7 +198,7 @@ func (i *IotCoreRegistry) ToIotCoreRegistryOutputWithContext(ctx context.Context
 // IotCoreRegistryArrayInput is an input type that accepts IotCoreRegistryArray and IotCoreRegistryArrayOutput values.
 // You can construct a concrete instance of `IotCoreRegistryArrayInput` via:
 //
-//          IotCoreRegistryArray{ IotCoreRegistryArgs{...} }
+//	IotCoreRegistryArray{ IotCoreRegistryArgs{...} }
 type IotCoreRegistryArrayInput interface {
 	pulumi.Input
 
@@ -220,7 +223,7 @@ func (i IotCoreRegistryArray) ToIotCoreRegistryArrayOutputWithContext(ctx contex
 // IotCoreRegistryMapInput is an input type that accepts IotCoreRegistryMap and IotCoreRegistryMapOutput values.
 // You can construct a concrete instance of `IotCoreRegistryMapInput` via:
 //
-//          IotCoreRegistryMap{ "key": IotCoreRegistryArgs{...} }
+//	IotCoreRegistryMap{ "key": IotCoreRegistryArgs{...} }
 type IotCoreRegistryMapInput interface {
 	pulumi.Input
 

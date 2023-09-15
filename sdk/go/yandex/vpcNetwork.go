@@ -14,8 +14,8 @@ import (
 // [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/network#network).
 //
 // * How-to Guides
-//     * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
-//     * [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
+//   - [Cloud Networking](https://cloud.yandex.com/docs/vpc/)
+//   - [VPC Addressing](https://cloud.yandex.com/docs/vpc/concepts/address)
 //
 // ## Example Usage
 //
@@ -23,19 +23,22 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewVpcNetwork(ctx, "default", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewVpcNetwork(ctx, "default", nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -43,7 +46,9 @@ import (
 // A network can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/vpcNetwork:VpcNetwork default network_id
+//
+//	$ pulumi import yandex:index/vpcNetwork:VpcNetwork default network_id
+//
 // ```
 type VpcNetwork struct {
 	pulumi.CustomResourceState
@@ -187,7 +192,7 @@ func (i *VpcNetwork) ToVpcNetworkOutputWithContext(ctx context.Context) VpcNetwo
 // VpcNetworkArrayInput is an input type that accepts VpcNetworkArray and VpcNetworkArrayOutput values.
 // You can construct a concrete instance of `VpcNetworkArrayInput` via:
 //
-//          VpcNetworkArray{ VpcNetworkArgs{...} }
+//	VpcNetworkArray{ VpcNetworkArgs{...} }
 type VpcNetworkArrayInput interface {
 	pulumi.Input
 
@@ -212,7 +217,7 @@ func (i VpcNetworkArray) ToVpcNetworkArrayOutputWithContext(ctx context.Context)
 // VpcNetworkMapInput is an input type that accepts VpcNetworkMap and VpcNetworkMapOutput values.
 // You can construct a concrete instance of `VpcNetworkMapInput` via:
 //
-//          VpcNetworkMap{ "key": VpcNetworkArgs{...} }
+//	VpcNetworkMap{ "key": VpcNetworkArgs{...} }
 type VpcNetworkMapInput interface {
 	pulumi.Input
 

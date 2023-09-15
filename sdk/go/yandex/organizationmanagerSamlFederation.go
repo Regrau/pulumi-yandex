@@ -19,25 +19,28 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewOrganizationmanagerSamlFederation(ctx, "federation", &yandex.OrganizationmanagerSamlFederationArgs{
-// 			Description:    pulumi.String("My new SAML federation"),
-// 			Issuer:         pulumi.String("my-issuer"),
-// 			OrganizationId: pulumi.String("sdf4*********3fr"),
-// 			SsoBinding:     pulumi.String("POST"),
-// 			SsoUrl:         pulumi.String("https://my-sso.url"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewOrganizationmanagerSamlFederation(ctx, "federation", &yandex.OrganizationmanagerSamlFederationArgs{
+//				Description:    pulumi.String("My new SAML federation"),
+//				Issuer:         pulumi.String("my-issuer"),
+//				OrganizationId: pulumi.String("sdf4*********3fr"),
+//				SsoBinding:     pulumi.String("POST"),
+//				SsoUrl:         pulumi.String("https://my-sso.url"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -45,7 +48,9 @@ import (
 // A Yandex SAML Federation can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/organizationmanagerSamlFederation:OrganizationmanagerSamlFederation federation "federation_id"
+//
+//	$ pulumi import yandex:index/organizationmanagerSamlFederation:OrganizationmanagerSamlFederation federation "federation_id"
+//
 // ```
 type OrganizationmanagerSamlFederation struct {
 	pulumi.CustomResourceState
@@ -252,7 +257,7 @@ func (i *OrganizationmanagerSamlFederation) ToOrganizationmanagerSamlFederationO
 // OrganizationmanagerSamlFederationArrayInput is an input type that accepts OrganizationmanagerSamlFederationArray and OrganizationmanagerSamlFederationArrayOutput values.
 // You can construct a concrete instance of `OrganizationmanagerSamlFederationArrayInput` via:
 //
-//          OrganizationmanagerSamlFederationArray{ OrganizationmanagerSamlFederationArgs{...} }
+//	OrganizationmanagerSamlFederationArray{ OrganizationmanagerSamlFederationArgs{...} }
 type OrganizationmanagerSamlFederationArrayInput interface {
 	pulumi.Input
 
@@ -277,7 +282,7 @@ func (i OrganizationmanagerSamlFederationArray) ToOrganizationmanagerSamlFederat
 // OrganizationmanagerSamlFederationMapInput is an input type that accepts OrganizationmanagerSamlFederationMap and OrganizationmanagerSamlFederationMapOutput values.
 // You can construct a concrete instance of `OrganizationmanagerSamlFederationMapInput` via:
 //
-//          OrganizationmanagerSamlFederationMap{ "key": OrganizationmanagerSamlFederationArgs{...} }
+//	OrganizationmanagerSamlFederationMap{ "key": OrganizationmanagerSamlFederationArgs{...} }
 type OrganizationmanagerSamlFederationMapInput interface {
 	pulumi.Input
 

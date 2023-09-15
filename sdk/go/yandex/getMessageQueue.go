@@ -19,21 +19,24 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err = yandex.LookupMessageQueue(ctx, &GetMessageQueueArgs{
-// 			Name: "ymq_terraform_example",
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err = yandex.LookupMessageQueue(ctx, &GetMessageQueueArgs{
+//				Name: "ymq_terraform_example",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 func LookupMessageQueue(ctx *pulumi.Context, args *LookupMessageQueueArgs, opts ...pulumi.InvokeOption) (*LookupMessageQueueResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)

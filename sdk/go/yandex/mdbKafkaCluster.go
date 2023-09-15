@@ -22,107 +22,110 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-// 			NetworkId: fooVpcNetwork.ID(),
-// 			V4CidrBlocks: pulumi.StringArray{
-// 				pulumi.String("10.5.0.0/24"),
-// 			},
-// 			Zone: pulumi.String("ru-central1-a"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewMdbKafkaCluster(ctx, "fooMdbKafkaCluster", &yandex.MdbKafkaClusterArgs{
-// 			Config: &MdbKafkaClusterConfigArgs{
-// 				AssignPublicIp: pulumi.Bool(false),
-// 				BrokersCount:   pulumi.Int(1),
-// 				Kafka: &MdbKafkaClusterConfigKafkaArgs{
-// 					KafkaConfig: &MdbKafkaClusterConfigKafkaKafkaConfigArgs{
-// 						CompressionType:             pulumi.String("COMPRESSION_TYPE_ZSTD"),
-// 						DefaultReplicationFactor:    pulumi.String("1"),
-// 						LogFlushIntervalMessages:    pulumi.String("1024"),
-// 						LogFlushIntervalMs:          pulumi.String("1000"),
-// 						LogFlushSchedulerIntervalMs: pulumi.String("1000"),
-// 						LogPreallocate:              pulumi.Bool(true),
-// 						LogRetentionBytes:           pulumi.String("1073741824"),
-// 						LogRetentionHours:           pulumi.String("168"),
-// 						LogRetentionMinutes:         pulumi.String("10080"),
-// 						LogRetentionMs:              pulumi.String("86400000"),
-// 						LogSegmentBytes:             pulumi.String("134217728"),
-// 						MessageMaxBytes:             pulumi.String("1048588"),
-// 						NumPartitions:               pulumi.String("10"),
-// 						OffsetsRetentionMinutes:     pulumi.String("10080"),
-// 						ReplicaFetchMaxBytes:        pulumi.String("1048576"),
-// 						SaslEnabledMechanisms: pulumi.StringArray{
-// 							pulumi.String("SASL_MECHANISM_SCRAM_SHA_256"),
-// 							pulumi.String("SASL_MECHANISM_SCRAM_SHA_512"),
-// 						},
-// 						SslCipherSuites: pulumi.StringArray{
-// 							pulumi.String("TLS_DHE_RSA_WITH_AES_128_CBC_SHA"),
-// 							pulumi.String("TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"),
-// 						},
-// 					},
-// 					Resources: &MdbKafkaClusterConfigKafkaResourcesArgs{
-// 						DiskSize:         pulumi.Int(32),
-// 						DiskTypeId:       pulumi.String("network-ssd"),
-// 						ResourcePresetId: pulumi.String("s2.micro"),
-// 					},
-// 				},
-// 				SchemaRegistry:  pulumi.Bool(false),
-// 				UnmanagedTopics: pulumi.Bool(false),
-// 				Version:         pulumi.String("2.8"),
-// 				Zones: pulumi.StringArray{
-// 					pulumi.String("ru-central1-a"),
-// 				},
-// 			},
-// 			Environment: pulumi.String("PRESTABLE"),
-// 			NetworkId:   fooVpcNetwork.ID(),
-// 			SubnetIds: pulumi.StringArray{
-// 				fooVpcSubnet.ID(),
-// 			},
-// 			Users: MdbKafkaClusterUserArray{
-// 				&MdbKafkaClusterUserArgs{
-// 					Name:     pulumi.String("producer-application"),
-// 					Password: pulumi.String("password"),
-// 					Permissions: MdbKafkaClusterUserPermissionArray{
-// 						&MdbKafkaClusterUserPermissionArgs{
-// 							Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
-// 							TopicName: pulumi.String("input"),
-// 						},
-// 					},
-// 				},
-// 				&MdbKafkaClusterUserArgs{
-// 					Name:     pulumi.String("worker"),
-// 					Password: pulumi.String("password"),
-// 					Permissions: MdbKafkaClusterUserPermissionArray{
-// 						&MdbKafkaClusterUserPermissionArgs{
-// 							Role:      pulumi.String("ACCESS_ROLE_CONSUMER"),
-// 							TopicName: pulumi.String("input"),
-// 						},
-// 						&MdbKafkaClusterUserPermissionArgs{
-// 							Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
-// 							TopicName: pulumi.String("output"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.5.0.0/24"),
+//				},
+//				Zone: pulumi.String("ru-central1-a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewMdbKafkaCluster(ctx, "fooMdbKafkaCluster", &yandex.MdbKafkaClusterArgs{
+//				Config: &MdbKafkaClusterConfigArgs{
+//					AssignPublicIp: pulumi.Bool(false),
+//					BrokersCount:   pulumi.Int(1),
+//					Kafka: &MdbKafkaClusterConfigKafkaArgs{
+//						KafkaConfig: &MdbKafkaClusterConfigKafkaKafkaConfigArgs{
+//							CompressionType:             pulumi.String("COMPRESSION_TYPE_ZSTD"),
+//							DefaultReplicationFactor:    pulumi.String("1"),
+//							LogFlushIntervalMessages:    pulumi.String("1024"),
+//							LogFlushIntervalMs:          pulumi.String("1000"),
+//							LogFlushSchedulerIntervalMs: pulumi.String("1000"),
+//							LogPreallocate:              pulumi.Bool(true),
+//							LogRetentionBytes:           pulumi.String("1073741824"),
+//							LogRetentionHours:           pulumi.String("168"),
+//							LogRetentionMinutes:         pulumi.String("10080"),
+//							LogRetentionMs:              pulumi.String("86400000"),
+//							LogSegmentBytes:             pulumi.String("134217728"),
+//							MessageMaxBytes:             pulumi.String("1048588"),
+//							NumPartitions:               pulumi.String("10"),
+//							OffsetsRetentionMinutes:     pulumi.String("10080"),
+//							ReplicaFetchMaxBytes:        pulumi.String("1048576"),
+//							SaslEnabledMechanisms: pulumi.StringArray{
+//								pulumi.String("SASL_MECHANISM_SCRAM_SHA_256"),
+//								pulumi.String("SASL_MECHANISM_SCRAM_SHA_512"),
+//							},
+//							SslCipherSuites: pulumi.StringArray{
+//								pulumi.String("TLS_DHE_RSA_WITH_AES_128_CBC_SHA"),
+//								pulumi.String("TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"),
+//							},
+//						},
+//						Resources: &MdbKafkaClusterConfigKafkaResourcesArgs{
+//							DiskSize:         pulumi.Int(32),
+//							DiskTypeId:       pulumi.String("network-ssd"),
+//							ResourcePresetId: pulumi.String("s2.micro"),
+//						},
+//					},
+//					SchemaRegistry:  pulumi.Bool(false),
+//					UnmanagedTopics: pulumi.Bool(false),
+//					Version:         pulumi.String("2.8"),
+//					Zones: pulumi.StringArray{
+//						pulumi.String("ru-central1-a"),
+//					},
+//				},
+//				Environment: pulumi.String("PRESTABLE"),
+//				NetworkId:   fooVpcNetwork.ID(),
+//				SubnetIds: pulumi.StringArray{
+//					fooVpcSubnet.ID(),
+//				},
+//				Users: MdbKafkaClusterUserArray{
+//					&MdbKafkaClusterUserArgs{
+//						Name:     pulumi.String("producer-application"),
+//						Password: pulumi.String("password"),
+//						Permissions: MdbKafkaClusterUserPermissionArray{
+//							&MdbKafkaClusterUserPermissionArgs{
+//								Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
+//								TopicName: pulumi.String("input"),
+//							},
+//						},
+//					},
+//					&MdbKafkaClusterUserArgs{
+//						Name:     pulumi.String("worker"),
+//						Password: pulumi.String("password"),
+//						Permissions: MdbKafkaClusterUserPermissionArray{
+//							&MdbKafkaClusterUserPermissionArgs{
+//								Role:      pulumi.String("ACCESS_ROLE_CONSUMER"),
+//								TopicName: pulumi.String("input"),
+//							},
+//							&MdbKafkaClusterUserPermissionArgs{
+//								Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
+//								TopicName: pulumi.String("output"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // Example of creating a HA Kafka Cluster with two brokers per AZ (6 brokers + 3 zk)
@@ -131,138 +134,141 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-// 			NetworkId: fooVpcNetwork.ID(),
-// 			V4CidrBlocks: pulumi.StringArray{
-// 				pulumi.String("10.1.0.0/24"),
-// 			},
-// 			Zone: pulumi.String("ru-central1-a"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		bar, err := yandex.NewVpcSubnet(ctx, "bar", &yandex.VpcSubnetArgs{
-// 			NetworkId: fooVpcNetwork.ID(),
-// 			V4CidrBlocks: pulumi.StringArray{
-// 				pulumi.String("10.2.0.0/24"),
-// 			},
-// 			Zone: pulumi.String("ru-central1-b"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		baz, err := yandex.NewVpcSubnet(ctx, "baz", &yandex.VpcSubnetArgs{
-// 			NetworkId: fooVpcNetwork.ID(),
-// 			V4CidrBlocks: pulumi.StringArray{
-// 				pulumi.String("10.3.0.0/24"),
-// 			},
-// 			Zone: pulumi.String("ru-central1-c"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewMdbKafkaCluster(ctx, "fooMdbKafkaCluster", &yandex.MdbKafkaClusterArgs{
-// 			Config: &MdbKafkaClusterConfigArgs{
-// 				AssignPublicIp: pulumi.Bool(true),
-// 				BrokersCount:   pulumi.Int(2),
-// 				Kafka: &MdbKafkaClusterConfigKafkaArgs{
-// 					KafkaConfig: &MdbKafkaClusterConfigKafkaKafkaConfigArgs{
-// 						CompressionType:             pulumi.String("COMPRESSION_TYPE_ZSTD"),
-// 						DefaultReplicationFactor:    pulumi.String("6"),
-// 						LogFlushIntervalMessages:    pulumi.String("1024"),
-// 						LogFlushIntervalMs:          pulumi.String("1000"),
-// 						LogFlushSchedulerIntervalMs: pulumi.String("1000"),
-// 						LogPreallocate:              pulumi.Bool(true),
-// 						LogRetentionBytes:           pulumi.String("1073741824"),
-// 						LogRetentionHours:           pulumi.String("168"),
-// 						LogRetentionMinutes:         pulumi.String("10080"),
-// 						LogRetentionMs:              pulumi.String("86400000"),
-// 						LogSegmentBytes:             pulumi.String("134217728"),
-// 						MessageMaxBytes:             pulumi.String("1048588"),
-// 						NumPartitions:               pulumi.String("10"),
-// 						OffsetsRetentionMinutes:     pulumi.String("10080"),
-// 						ReplicaFetchMaxBytes:        pulumi.String("1048576"),
-// 						SaslEnabledMechanisms: pulumi.StringArray{
-// 							pulumi.String("SASL_MECHANISM_SCRAM_SHA_256"),
-// 							pulumi.String("SASL_MECHANISM_SCRAM_SHA_512"),
-// 						},
-// 						SslCipherSuites: pulumi.StringArray{
-// 							pulumi.String("TLS_DHE_RSA_WITH_AES_128_CBC_SHA"),
-// 							pulumi.String("TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"),
-// 						},
-// 					},
-// 					Resources: &MdbKafkaClusterConfigKafkaResourcesArgs{
-// 						DiskSize:         pulumi.Int(128),
-// 						DiskTypeId:       pulumi.String("network-ssd"),
-// 						ResourcePresetId: pulumi.String("s2.medium"),
-// 					},
-// 				},
-// 				SchemaRegistry:  pulumi.Bool(false),
-// 				UnmanagedTopics: pulumi.Bool(false),
-// 				Version:         pulumi.String("2.8"),
-// 				Zones: pulumi.StringArray{
-// 					pulumi.String("ru-central1-a"),
-// 					pulumi.String("ru-central1-b"),
-// 					pulumi.String("ru-central1-c"),
-// 				},
-// 				Zookeeper: &MdbKafkaClusterConfigZookeeperArgs{
-// 					Resources: &MdbKafkaClusterConfigZookeeperResourcesArgs{
-// 						DiskSize:         pulumi.Int(20),
-// 						DiskTypeId:       pulumi.String("network-ssd"),
-// 						ResourcePresetId: pulumi.String("s2.micro"),
-// 					},
-// 				},
-// 			},
-// 			Environment: pulumi.String("PRESTABLE"),
-// 			NetworkId:   fooVpcNetwork.ID(),
-// 			SubnetIds: pulumi.StringArray{
-// 				fooVpcSubnet.ID(),
-// 				bar.ID(),
-// 				baz.ID(),
-// 			},
-// 			Users: MdbKafkaClusterUserArray{
-// 				&MdbKafkaClusterUserArgs{
-// 					Name:     pulumi.String("producer-application"),
-// 					Password: pulumi.String("password"),
-// 					Permissions: MdbKafkaClusterUserPermissionArray{
-// 						&MdbKafkaClusterUserPermissionArgs{
-// 							Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
-// 							TopicName: pulumi.String("input"),
-// 						},
-// 					},
-// 				},
-// 				&MdbKafkaClusterUserArgs{
-// 					Name:     pulumi.String("worker"),
-// 					Password: pulumi.String("password"),
-// 					Permissions: MdbKafkaClusterUserPermissionArray{
-// 						&MdbKafkaClusterUserPermissionArgs{
-// 							Role:      pulumi.String("ACCESS_ROLE_CONSUMER"),
-// 							TopicName: pulumi.String("input"),
-// 						},
-// 						&MdbKafkaClusterUserPermissionArgs{
-// 							Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
-// 							TopicName: pulumi.String("output"),
-// 						},
-// 					},
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.1.0.0/24"),
+//				},
+//				Zone: pulumi.String("ru-central1-a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			bar, err := yandex.NewVpcSubnet(ctx, "bar", &yandex.VpcSubnetArgs{
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.2.0.0/24"),
+//				},
+//				Zone: pulumi.String("ru-central1-b"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			baz, err := yandex.NewVpcSubnet(ctx, "baz", &yandex.VpcSubnetArgs{
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.3.0.0/24"),
+//				},
+//				Zone: pulumi.String("ru-central1-c"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewMdbKafkaCluster(ctx, "fooMdbKafkaCluster", &yandex.MdbKafkaClusterArgs{
+//				Config: &MdbKafkaClusterConfigArgs{
+//					AssignPublicIp: pulumi.Bool(true),
+//					BrokersCount:   pulumi.Int(2),
+//					Kafka: &MdbKafkaClusterConfigKafkaArgs{
+//						KafkaConfig: &MdbKafkaClusterConfigKafkaKafkaConfigArgs{
+//							CompressionType:             pulumi.String("COMPRESSION_TYPE_ZSTD"),
+//							DefaultReplicationFactor:    pulumi.String("6"),
+//							LogFlushIntervalMessages:    pulumi.String("1024"),
+//							LogFlushIntervalMs:          pulumi.String("1000"),
+//							LogFlushSchedulerIntervalMs: pulumi.String("1000"),
+//							LogPreallocate:              pulumi.Bool(true),
+//							LogRetentionBytes:           pulumi.String("1073741824"),
+//							LogRetentionHours:           pulumi.String("168"),
+//							LogRetentionMinutes:         pulumi.String("10080"),
+//							LogRetentionMs:              pulumi.String("86400000"),
+//							LogSegmentBytes:             pulumi.String("134217728"),
+//							MessageMaxBytes:             pulumi.String("1048588"),
+//							NumPartitions:               pulumi.String("10"),
+//							OffsetsRetentionMinutes:     pulumi.String("10080"),
+//							ReplicaFetchMaxBytes:        pulumi.String("1048576"),
+//							SaslEnabledMechanisms: pulumi.StringArray{
+//								pulumi.String("SASL_MECHANISM_SCRAM_SHA_256"),
+//								pulumi.String("SASL_MECHANISM_SCRAM_SHA_512"),
+//							},
+//							SslCipherSuites: pulumi.StringArray{
+//								pulumi.String("TLS_DHE_RSA_WITH_AES_128_CBC_SHA"),
+//								pulumi.String("TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256"),
+//							},
+//						},
+//						Resources: &MdbKafkaClusterConfigKafkaResourcesArgs{
+//							DiskSize:         pulumi.Int(128),
+//							DiskTypeId:       pulumi.String("network-ssd"),
+//							ResourcePresetId: pulumi.String("s2.medium"),
+//						},
+//					},
+//					SchemaRegistry:  pulumi.Bool(false),
+//					UnmanagedTopics: pulumi.Bool(false),
+//					Version:         pulumi.String("2.8"),
+//					Zones: pulumi.StringArray{
+//						pulumi.String("ru-central1-a"),
+//						pulumi.String("ru-central1-b"),
+//						pulumi.String("ru-central1-c"),
+//					},
+//					Zookeeper: &MdbKafkaClusterConfigZookeeperArgs{
+//						Resources: &MdbKafkaClusterConfigZookeeperResourcesArgs{
+//							DiskSize:         pulumi.Int(20),
+//							DiskTypeId:       pulumi.String("network-ssd"),
+//							ResourcePresetId: pulumi.String("s2.micro"),
+//						},
+//					},
+//				},
+//				Environment: pulumi.String("PRESTABLE"),
+//				NetworkId:   fooVpcNetwork.ID(),
+//				SubnetIds: pulumi.StringArray{
+//					fooVpcSubnet.ID(),
+//					bar.ID(),
+//					baz.ID(),
+//				},
+//				Users: MdbKafkaClusterUserArray{
+//					&MdbKafkaClusterUserArgs{
+//						Name:     pulumi.String("producer-application"),
+//						Password: pulumi.String("password"),
+//						Permissions: MdbKafkaClusterUserPermissionArray{
+//							&MdbKafkaClusterUserPermissionArgs{
+//								Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
+//								TopicName: pulumi.String("input"),
+//							},
+//						},
+//					},
+//					&MdbKafkaClusterUserArgs{
+//						Name:     pulumi.String("worker"),
+//						Password: pulumi.String("password"),
+//						Permissions: MdbKafkaClusterUserPermissionArray{
+//							&MdbKafkaClusterUserPermissionArgs{
+//								Role:      pulumi.String("ACCESS_ROLE_CONSUMER"),
+//								TopicName: pulumi.String("input"),
+//							},
+//							&MdbKafkaClusterUserPermissionArgs{
+//								Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
+//								TopicName: pulumi.String("output"),
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -270,7 +276,9 @@ import (
 // A cluster can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/mdbKafkaCluster:MdbKafkaCluster foo cluster_id
+//
+//	$ pulumi import yandex:index/mdbKafkaCluster:MdbKafkaCluster foo cluster_id
+//
 // ```
 type MdbKafkaCluster struct {
 	pulumi.CustomResourceState
@@ -537,7 +545,7 @@ func (i *MdbKafkaCluster) ToMdbKafkaClusterOutputWithContext(ctx context.Context
 // MdbKafkaClusterArrayInput is an input type that accepts MdbKafkaClusterArray and MdbKafkaClusterArrayOutput values.
 // You can construct a concrete instance of `MdbKafkaClusterArrayInput` via:
 //
-//          MdbKafkaClusterArray{ MdbKafkaClusterArgs{...} }
+//	MdbKafkaClusterArray{ MdbKafkaClusterArgs{...} }
 type MdbKafkaClusterArrayInput interface {
 	pulumi.Input
 
@@ -562,7 +570,7 @@ func (i MdbKafkaClusterArray) ToMdbKafkaClusterArrayOutputWithContext(ctx contex
 // MdbKafkaClusterMapInput is an input type that accepts MdbKafkaClusterMap and MdbKafkaClusterMapOutput values.
 // You can construct a concrete instance of `MdbKafkaClusterMapInput` via:
 //
-//          MdbKafkaClusterMap{ "key": MdbKafkaClusterArgs{...} }
+//	MdbKafkaClusterMap{ "key": MdbKafkaClusterArgs{...} }
 type MdbKafkaClusterMapInput interface {
 	pulumi.Input
 

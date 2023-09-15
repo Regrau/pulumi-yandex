@@ -11,7 +11,8 @@ import (
 )
 
 // Yandex Database (serverless) resource. For more information, see
-//     [the official documentation](https://cloud.yandex.com/en/docs/ydb/concepts/serverless_and_dedicated).
+//
+//	[the official documentation](https://cloud.yandex.com/en/docs/ydb/concepts/serverless_and_dedicated).
 //
 // ## Example Usage
 //
@@ -19,22 +20,25 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewYdbDatabaseServerless(ctx, "database1", &yandex.YdbDatabaseServerlessArgs{
-// 			DeletionProtection: pulumi.Bool(true),
-// 			FolderId:           pulumi.Any(data.Yandex_resourcemanager_folder.Test_folder.Id),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewYdbDatabaseServerless(ctx, "database1", &yandex.YdbDatabaseServerlessArgs{
+//				DeletionProtection: pulumi.Bool(true),
+//				FolderId:           pulumi.Any(data.Yandex_resourcemanager_folder.Test_folder.Id),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type YdbDatabaseServerless struct {
 	pulumi.CustomResourceState
@@ -229,7 +233,7 @@ func (i *YdbDatabaseServerless) ToYdbDatabaseServerlessOutputWithContext(ctx con
 // YdbDatabaseServerlessArrayInput is an input type that accepts YdbDatabaseServerlessArray and YdbDatabaseServerlessArrayOutput values.
 // You can construct a concrete instance of `YdbDatabaseServerlessArrayInput` via:
 //
-//          YdbDatabaseServerlessArray{ YdbDatabaseServerlessArgs{...} }
+//	YdbDatabaseServerlessArray{ YdbDatabaseServerlessArgs{...} }
 type YdbDatabaseServerlessArrayInput interface {
 	pulumi.Input
 
@@ -254,7 +258,7 @@ func (i YdbDatabaseServerlessArray) ToYdbDatabaseServerlessArrayOutputWithContex
 // YdbDatabaseServerlessMapInput is an input type that accepts YdbDatabaseServerlessMap and YdbDatabaseServerlessMapOutput values.
 // You can construct a concrete instance of `YdbDatabaseServerlessMapInput` via:
 //
-//          YdbDatabaseServerlessMap{ "key": YdbDatabaseServerlessArgs{...} }
+//	YdbDatabaseServerlessMap{ "key": YdbDatabaseServerlessArgs{...} }
 type YdbDatabaseServerlessMapInput interface {
 	pulumi.Input
 

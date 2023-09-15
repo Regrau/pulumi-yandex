@@ -21,24 +21,27 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NeworganizationmanagerGroupMembership(ctx, "group", &yandex.organizationmanagerGroupMembershipArgs{
-// 			GroupId: pulumi.String("sdf4*********3fr"),
-// 			Members: pulumi.StringArray{
-// 				pulumi.String("xdf********123"),
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NeworganizationmanagerGroupMembership(ctx, "group", &yandex.organizationmanagerGroupMembershipArgs{
+//				GroupId: pulumi.String("sdf4*********3fr"),
+//				Members: pulumi.StringArray{
+//					pulumi.String("xdf********123"),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 type OrganizationmanagerGroupMembership struct {
 	pulumi.CustomResourceState
@@ -143,7 +146,7 @@ func (i *OrganizationmanagerGroupMembership) ToOrganizationmanagerGroupMembershi
 // OrganizationmanagerGroupMembershipArrayInput is an input type that accepts OrganizationmanagerGroupMembershipArray and OrganizationmanagerGroupMembershipArrayOutput values.
 // You can construct a concrete instance of `OrganizationmanagerGroupMembershipArrayInput` via:
 //
-//          OrganizationmanagerGroupMembershipArray{ OrganizationmanagerGroupMembershipArgs{...} }
+//	OrganizationmanagerGroupMembershipArray{ OrganizationmanagerGroupMembershipArgs{...} }
 type OrganizationmanagerGroupMembershipArrayInput interface {
 	pulumi.Input
 
@@ -168,7 +171,7 @@ func (i OrganizationmanagerGroupMembershipArray) ToOrganizationmanagerGroupMembe
 // OrganizationmanagerGroupMembershipMapInput is an input type that accepts OrganizationmanagerGroupMembershipMap and OrganizationmanagerGroupMembershipMapOutput values.
 // You can construct a concrete instance of `OrganizationmanagerGroupMembershipMapInput` via:
 //
-//          OrganizationmanagerGroupMembershipMap{ "key": OrganizationmanagerGroupMembershipArgs{...} }
+//	OrganizationmanagerGroupMembershipMap{ "key": OrganizationmanagerGroupMembershipArgs{...} }
 type OrganizationmanagerGroupMembershipMapInput interface {
 	pulumi.Input
 

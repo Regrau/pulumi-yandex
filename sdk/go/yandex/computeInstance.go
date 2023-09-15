@@ -20,65 +20,68 @@ import (
 // package main
 //
 // import (
-// 	"fmt"
-// 	"io/ioutil"
 //
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//	"fmt"
+//	"io/ioutil"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func readFileOrPanic(path string) pulumi.StringPtrInput {
-// 	data, err := ioutil.ReadFile(path)
-// 	if err != nil {
-// 		panic(err.Error())
-// 	}
-// 	return pulumi.String(string(data))
-// }
+//	func readFileOrPanic(path string) pulumi.StringPtrInput {
+//		data, err := ioutil.ReadFile(path)
+//		if err != nil {
+//			panic(err.Error())
+//		}
+//		return pulumi.String(string(data))
+//	}
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
-// 			NetworkId: fooVpcNetwork.ID(),
-// 			V4CidrBlocks: pulumi.StringArray{
-// 				pulumi.String("10.5.0.0/24"),
-// 			},
-// 			Zone: pulumi.String("ru-central1-a"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewComputeInstance(ctx, "default", &yandex.ComputeInstanceArgs{
-// 			BootDisk: &ComputeInstanceBootDiskArgs{
-// 				InitializeParams: &ComputeInstanceBootDiskInitializeParamsArgs{
-// 					ImageId: pulumi.String("image_id"),
-// 				},
-// 			},
-// 			Metadata: pulumi.StringMap{
-// 				"foo":      pulumi.String("bar"),
-// 				"ssh-keys": pulumi.String(fmt.Sprintf("ubuntu:%v", readFileOrPanic("~/.ssh/id_rsa.pub"))),
-// 			},
-// 			NetworkInterfaces: ComputeInstanceNetworkInterfaceArray{
-// 				&ComputeInstanceNetworkInterfaceArgs{
-// 					SubnetId: fooVpcSubnet.ID(),
-// 				},
-// 			},
-// 			PlatformId: pulumi.String("standard-v1"),
-// 			Resources: &ComputeInstanceResourcesArgs{
-// 				Cores:  pulumi.Int(2),
-// 				Memory: pulumi.Float64(4),
-// 			},
-// 			Zone: pulumi.String("ru-central1-a"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			fooVpcNetwork, err := yandex.NewVpcNetwork(ctx, "fooVpcNetwork", nil)
+//			if err != nil {
+//				return err
+//			}
+//			fooVpcSubnet, err := yandex.NewVpcSubnet(ctx, "fooVpcSubnet", &yandex.VpcSubnetArgs{
+//				NetworkId: fooVpcNetwork.ID(),
+//				V4CidrBlocks: pulumi.StringArray{
+//					pulumi.String("10.5.0.0/24"),
+//				},
+//				Zone: pulumi.String("ru-central1-a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewComputeInstance(ctx, "default", &yandex.ComputeInstanceArgs{
+//				BootDisk: &ComputeInstanceBootDiskArgs{
+//					InitializeParams: &ComputeInstanceBootDiskInitializeParamsArgs{
+//						ImageId: pulumi.String("image_id"),
+//					},
+//				},
+//				Metadata: pulumi.StringMap{
+//					"foo":      pulumi.String("bar"),
+//					"ssh-keys": pulumi.String(fmt.Sprintf("ubuntu:%v", readFileOrPanic("~/.ssh/id_rsa.pub"))),
+//				},
+//				NetworkInterfaces: ComputeInstanceNetworkInterfaceArray{
+//					&ComputeInstanceNetworkInterfaceArgs{
+//						SubnetId: fooVpcSubnet.ID(),
+//					},
+//				},
+//				PlatformId: pulumi.String("standard-v1"),
+//				Resources: &ComputeInstanceResourcesArgs{
+//					Cores:  pulumi.Int(2),
+//					Memory: pulumi.Float64(4),
+//				},
+//				Zone: pulumi.String("ru-central1-a"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -86,7 +89,9 @@ import (
 // Instances can be imported using the `ID` of an instance, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/computeInstance:ComputeInstance default instance_id
+//
+//	$ pulumi import yandex:index/computeInstance:ComputeInstance default instance_id
+//
 // ```
 type ComputeInstance struct {
 	pulumi.CustomResourceState
@@ -432,7 +437,7 @@ func (i *ComputeInstance) ToComputeInstanceOutputWithContext(ctx context.Context
 // ComputeInstanceArrayInput is an input type that accepts ComputeInstanceArray and ComputeInstanceArrayOutput values.
 // You can construct a concrete instance of `ComputeInstanceArrayInput` via:
 //
-//          ComputeInstanceArray{ ComputeInstanceArgs{...} }
+//	ComputeInstanceArray{ ComputeInstanceArgs{...} }
 type ComputeInstanceArrayInput interface {
 	pulumi.Input
 
@@ -457,7 +462,7 @@ func (i ComputeInstanceArray) ToComputeInstanceArrayOutputWithContext(ctx contex
 // ComputeInstanceMapInput is an input type that accepts ComputeInstanceMap and ComputeInstanceMapOutput values.
 // You can construct a concrete instance of `ComputeInstanceMapInput` via:
 //
-//          ComputeInstanceMap{ "key": ComputeInstanceArgs{...} }
+//	ComputeInstanceMap{ "key": ComputeInstanceArgs{...} }
 type ComputeInstanceMapInput interface {
 	pulumi.Input
 

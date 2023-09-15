@@ -15,10 +15,12 @@ import (
 // the IAM policy for an existing Yandex Resource Manager cloud.
 //
 // > **Note:** Roles controlled by `ResourcemanagerCloudIamBinding`
-//    should not be assigned using `ResourcemanagerCloudIamMember`.
+//
+//	should not be assigned using `ResourcemanagerCloudIamMember`.
 //
 // > **Note:** When you delete `ResourcemanagerCloudIamBinding` resource,
-//    the roles can be deleted from other users within the cloud as well. Be careful!
+//
+//	the roles can be deleted from other users within the cloud as well. Be careful!
 //
 // ## Example Usage
 //
@@ -26,29 +28,32 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		department1, err := yandex.LookupResourcemanagerCloud(ctx, &GetResourcemanagerCloudArgs{
-// 			Name: pulumi.StringRef("Department 1"),
-// 		}, nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewResourcemanagerCloudIamMember(ctx, "admin", &yandex.ResourcemanagerCloudIamMemberArgs{
-// 			CloudId: pulumi.String(department1.Id),
-// 			Member:  pulumi.String("userAccount:user_id"),
-// 			Role:    pulumi.String("editor"),
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			department1, err := yandex.LookupResourcemanagerCloud(ctx, &GetResourcemanagerCloudArgs{
+//				Name: pulumi.StringRef("Department 1"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewResourcemanagerCloudIamMember(ctx, "admin", &yandex.ResourcemanagerCloudIamMemberArgs{
+//				CloudId: pulumi.String(department1.Id),
+//				Member:  pulumi.String("userAccount:user_id"),
+//				Role:    pulumi.String("editor"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -56,7 +61,9 @@ import (
 // IAM member imports use space-delimited identifiers; the resource in question, the role, and the account. This member resource can be imported using the `cloud id`, role, and account, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/resourcemanagerCloudIamMember:ResourcemanagerCloudIamMember my_project "cloud_id viewer foo@example.com"
+//
+//	$ pulumi import yandex:index/resourcemanagerCloudIamMember:ResourcemanagerCloudIamMember my_project "cloud_id viewer foo@example.com"
+//
 // ```
 type ResourcemanagerCloudIamMember struct {
 	pulumi.CustomResourceState
@@ -194,7 +201,7 @@ func (i *ResourcemanagerCloudIamMember) ToResourcemanagerCloudIamMemberOutputWit
 // ResourcemanagerCloudIamMemberArrayInput is an input type that accepts ResourcemanagerCloudIamMemberArray and ResourcemanagerCloudIamMemberArrayOutput values.
 // You can construct a concrete instance of `ResourcemanagerCloudIamMemberArrayInput` via:
 //
-//          ResourcemanagerCloudIamMemberArray{ ResourcemanagerCloudIamMemberArgs{...} }
+//	ResourcemanagerCloudIamMemberArray{ ResourcemanagerCloudIamMemberArgs{...} }
 type ResourcemanagerCloudIamMemberArrayInput interface {
 	pulumi.Input
 
@@ -219,7 +226,7 @@ func (i ResourcemanagerCloudIamMemberArray) ToResourcemanagerCloudIamMemberArray
 // ResourcemanagerCloudIamMemberMapInput is an input type that accepts ResourcemanagerCloudIamMemberMap and ResourcemanagerCloudIamMemberMapOutput values.
 // You can construct a concrete instance of `ResourcemanagerCloudIamMemberMapInput` via:
 //
-//          ResourcemanagerCloudIamMemberMap{ "key": ResourcemanagerCloudIamMemberArgs{...} }
+//	ResourcemanagerCloudIamMemberMap{ "key": ResourcemanagerCloudIamMemberArgs{...} }
 type ResourcemanagerCloudIamMemberMapInput interface {
 	pulumi.Input
 

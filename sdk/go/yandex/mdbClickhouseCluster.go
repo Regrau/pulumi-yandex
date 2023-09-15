@@ -19,7 +19,9 @@ import (
 // A cluster can be imported using the `id` of the resource, e.g.
 //
 // ```sh
-//  $ pulumi import yandex:index/mdbClickhouseCluster:MdbClickhouseCluster foo cluster_id
+//
+//	$ pulumi import yandex:index/mdbClickhouseCluster:MdbClickhouseCluster foo cluster_id
+//
 // ```
 type MdbClickhouseCluster struct {
 	pulumi.CustomResourceState
@@ -406,7 +408,7 @@ func (i *MdbClickhouseCluster) ToMdbClickhouseClusterOutputWithContext(ctx conte
 // MdbClickhouseClusterArrayInput is an input type that accepts MdbClickhouseClusterArray and MdbClickhouseClusterArrayOutput values.
 // You can construct a concrete instance of `MdbClickhouseClusterArrayInput` via:
 //
-//          MdbClickhouseClusterArray{ MdbClickhouseClusterArgs{...} }
+//	MdbClickhouseClusterArray{ MdbClickhouseClusterArgs{...} }
 type MdbClickhouseClusterArrayInput interface {
 	pulumi.Input
 
@@ -431,7 +433,7 @@ func (i MdbClickhouseClusterArray) ToMdbClickhouseClusterArrayOutputWithContext(
 // MdbClickhouseClusterMapInput is an input type that accepts MdbClickhouseClusterMap and MdbClickhouseClusterMapOutput values.
 // You can construct a concrete instance of `MdbClickhouseClusterMapInput` via:
 //
-//          MdbClickhouseClusterMap{ "key": MdbClickhouseClusterArgs{...} }
+//	MdbClickhouseClusterMap{ "key": MdbClickhouseClusterArgs{...} }
 type MdbClickhouseClusterMapInput interface {
 	pulumi.Input
 

@@ -20,38 +20,41 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
 // )
 //
-// func main() {
-// 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		_, err := yandex.NewContainerRegistry(ctx, "myRegistry", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		myRepository, err := yandex.NewContainerRepository(ctx, "myRepository", nil)
-// 		if err != nil {
-// 			return err
-// 		}
-// 		_, err = yandex.NewcontainerRepositoryLifecyclePolicy(ctx, "myLifecyclePolicy", &yandex.containerRepositoryLifecyclePolicyArgs{
-// 			Status:       pulumi.String("active"),
-// 			RepositoryId: myRepository.ID(),
-// 			Rules: ContainerRepositoryLifecyclePolicyRuleArray{
-// 				&ContainerRepositoryLifecyclePolicyRuleArgs{
-// 					Description: pulumi.String("my description"),
-// 					Untagged:    pulumi.Bool(true),
-// 					TagRegexp:   pulumi.String(".*"),
-// 					RetainedTop: pulumi.Int(1),
-// 				},
-// 			},
-// 		})
-// 		if err != nil {
-// 			return err
-// 		}
-// 		return nil
-// 	})
-// }
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewContainerRegistry(ctx, "myRegistry", nil)
+//			if err != nil {
+//				return err
+//			}
+//			myRepository, err := yandex.NewContainerRepository(ctx, "myRepository", nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = yandex.NewcontainerRepositoryLifecyclePolicy(ctx, "myLifecyclePolicy", &yandex.containerRepositoryLifecyclePolicyArgs{
+//				Status:       pulumi.String("active"),
+//				RepositoryId: myRepository.ID(),
+//				Rules: ContainerRepositoryLifecyclePolicyRuleArray{
+//					&ContainerRepositoryLifecyclePolicyRuleArgs{
+//						Description: pulumi.String("my description"),
+//						Untagged:    pulumi.Bool(true),
+//						TagRegexp:   pulumi.String(".*"),
+//						RetainedTop: pulumi.Int(1),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ## Import
@@ -59,7 +62,9 @@ import (
 // A lifecycle policy can be imported using the `id` of the resource, e.g. bash
 //
 // ```sh
-//  $ pulumi import yandex:index/containerRepositoryLifecyclePolicy:containerRepositoryLifecyclePolicy my_lifecycle_policy lifecycle_policy_id
+//
+//	$ pulumi import yandex:index/containerRepositoryLifecyclePolicy:containerRepositoryLifecyclePolicy my_lifecycle_policy lifecycle_policy_id
+//
 // ```
 type ContainerRepositoryLifecyclePolicy struct {
 	pulumi.CustomResourceState
@@ -195,7 +200,7 @@ func (i *ContainerRepositoryLifecyclePolicy) ToContainerRepositoryLifecyclePolic
 // ContainerRepositoryLifecyclePolicyArrayInput is an input type that accepts ContainerRepositoryLifecyclePolicyArray and ContainerRepositoryLifecyclePolicyArrayOutput values.
 // You can construct a concrete instance of `ContainerRepositoryLifecyclePolicyArrayInput` via:
 //
-//          ContainerRepositoryLifecyclePolicyArray{ ContainerRepositoryLifecyclePolicyArgs{...} }
+//	ContainerRepositoryLifecyclePolicyArray{ ContainerRepositoryLifecyclePolicyArgs{...} }
 type ContainerRepositoryLifecyclePolicyArrayInput interface {
 	pulumi.Input
 
@@ -220,7 +225,7 @@ func (i ContainerRepositoryLifecyclePolicyArray) ToContainerRepositoryLifecycleP
 // ContainerRepositoryLifecyclePolicyMapInput is an input type that accepts ContainerRepositoryLifecyclePolicyMap and ContainerRepositoryLifecyclePolicyMapOutput values.
 // You can construct a concrete instance of `ContainerRepositoryLifecyclePolicyMapInput` via:
 //
-//          ContainerRepositoryLifecyclePolicyMap{ "key": ContainerRepositoryLifecyclePolicyArgs{...} }
+//	ContainerRepositoryLifecyclePolicyMap{ "key": ContainerRepositoryLifecyclePolicyArgs{...} }
 type ContainerRepositoryLifecyclePolicyMapInput interface {
 	pulumi.Input
 
