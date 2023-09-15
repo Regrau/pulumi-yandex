@@ -12,7 +12,8 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "golang.go"
+        "golang.go",
+        "GitHub.vscode-github-actions"
       ]
     }
   },
