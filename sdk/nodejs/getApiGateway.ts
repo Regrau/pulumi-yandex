@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 export function getApiGateway(args?: GetApiGatewayArgs, opts?: pulumi.InvokeOptions): Promise<GetApiGatewayResult> {
@@ -13,6 +15,8 @@ export function getApiGateway(args?: GetApiGatewayArgs, opts?: pulumi.InvokeOpti
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("yandex:index/getApiGateway:getApiGateway", {
         "apiGatewayId": args.apiGatewayId,
+        "connectivity": args.connectivity,
+        "customDomains": args.customDomains,
         "folderId": args.folderId,
         "name": args.name,
     }, opts);
@@ -23,6 +27,8 @@ export function getApiGateway(args?: GetApiGatewayArgs, opts?: pulumi.InvokeOpti
  */
 export interface GetApiGatewayArgs {
     apiGatewayId?: string;
+    connectivity?: inputs.GetApiGatewayConnectivity;
+    customDomains?: inputs.GetApiGatewayCustomDomain[];
     folderId?: string;
     name?: string;
 }
@@ -32,7 +38,9 @@ export interface GetApiGatewayArgs {
  */
 export interface GetApiGatewayResult {
     readonly apiGatewayId?: string;
+    readonly connectivity?: outputs.GetApiGatewayConnectivity;
     readonly createdAt: string;
+    readonly customDomains?: outputs.GetApiGatewayCustomDomain[];
     readonly description: string;
     readonly domain: string;
     readonly folderId?: string;
@@ -44,6 +52,9 @@ export interface GetApiGatewayResult {
     readonly logGroupId: string;
     readonly name?: string;
     readonly status: string;
+    /**
+     * @deprecated The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
+     */
     readonly userDomains: string[];
 }
 
@@ -56,6 +67,8 @@ export function getApiGatewayOutput(args?: GetApiGatewayOutputArgs, opts?: pulum
  */
 export interface GetApiGatewayOutputArgs {
     apiGatewayId?: pulumi.Input<string>;
+    connectivity?: pulumi.Input<inputs.GetApiGatewayConnectivityArgs>;
+    customDomains?: pulumi.Input<pulumi.Input<inputs.GetApiGatewayCustomDomainArgs>[]>;
     folderId?: pulumi.Input<string>;
     name?: pulumi.Input<string>;
 }

@@ -59,6 +59,12 @@ type StorageObject struct {
 	ContentType pulumi.StringOutput `pulumi:"contentType"`
 	// The name of the object once it is in the bucket.
 	Key pulumi.StringOutput `pulumi:"key"`
+	// Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockLegalHoldStatus pulumi.StringPtrOutput `pulumi:"objectLockLegalHoldStatus"`
+	// Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `objectLockRetainUntilDate`. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockMode pulumi.StringPtrOutput `pulumi:"objectLockMode"`
+	// Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `objectLockMode`. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockRetainUntilDate pulumi.StringPtrOutput `pulumi:"objectLockRetainUntilDate"`
 	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in config is used.
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
 	// The path to a file that will be read and uploaded as raw bytes for the object content.
@@ -122,6 +128,12 @@ type storageObjectState struct {
 	ContentType *string `pulumi:"contentType"`
 	// The name of the object once it is in the bucket.
 	Key *string `pulumi:"key"`
+	// Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockLegalHoldStatus *string `pulumi:"objectLockLegalHoldStatus"`
+	// Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `objectLockRetainUntilDate`. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockMode *string `pulumi:"objectLockMode"`
+	// Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `objectLockMode`. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockRetainUntilDate *string `pulumi:"objectLockRetainUntilDate"`
 	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in config is used.
 	SecretKey *string `pulumi:"secretKey"`
 	// The path to a file that will be read and uploaded as raw bytes for the object content.
@@ -143,6 +155,12 @@ type StorageObjectState struct {
 	ContentType pulumi.StringPtrInput
 	// The name of the object once it is in the bucket.
 	Key pulumi.StringPtrInput
+	// Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockLegalHoldStatus pulumi.StringPtrInput
+	// Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `objectLockRetainUntilDate`. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockMode pulumi.StringPtrInput
+	// Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `objectLockMode`. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockRetainUntilDate pulumi.StringPtrInput
 	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in config is used.
 	SecretKey pulumi.StringPtrInput
 	// The path to a file that will be read and uploaded as raw bytes for the object content.
@@ -168,6 +186,12 @@ type storageObjectArgs struct {
 	ContentType *string `pulumi:"contentType"`
 	// The name of the object once it is in the bucket.
 	Key string `pulumi:"key"`
+	// Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockLegalHoldStatus *string `pulumi:"objectLockLegalHoldStatus"`
+	// Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `objectLockRetainUntilDate`. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockMode *string `pulumi:"objectLockMode"`
+	// Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `objectLockMode`. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockRetainUntilDate *string `pulumi:"objectLockRetainUntilDate"`
 	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in config is used.
 	SecretKey *string `pulumi:"secretKey"`
 	// The path to a file that will be read and uploaded as raw bytes for the object content.
@@ -190,6 +214,12 @@ type StorageObjectArgs struct {
 	ContentType pulumi.StringPtrInput
 	// The name of the object once it is in the bucket.
 	Key pulumi.StringInput
+	// Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockLegalHoldStatus pulumi.StringPtrInput
+	// Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `objectLockRetainUntilDate`. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockMode pulumi.StringPtrInput
+	// Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `objectLockMode`. Requires `objectLockConfiguration` to be enabled on a bucket.
+	ObjectLockRetainUntilDate pulumi.StringPtrInput
 	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in config is used.
 	SecretKey pulumi.StringPtrInput
 	// The path to a file that will be read and uploaded as raw bytes for the object content.
@@ -316,6 +346,21 @@ func (o StorageObjectOutput) ContentType() pulumi.StringOutput {
 // The name of the object once it is in the bucket.
 func (o StorageObjectOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v *StorageObject) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
+}
+
+// Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `objectLockConfiguration` to be enabled on a bucket.
+func (o StorageObjectOutput) ObjectLockLegalHoldStatus() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StorageObject) pulumi.StringPtrOutput { return v.ObjectLockLegalHoldStatus }).(pulumi.StringPtrOutput)
+}
+
+// Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `objectLockRetainUntilDate`. Requires `objectLockConfiguration` to be enabled on a bucket.
+func (o StorageObjectOutput) ObjectLockMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StorageObject) pulumi.StringPtrOutput { return v.ObjectLockMode }).(pulumi.StringPtrOutput)
+}
+
+// Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `objectLockMode`. Requires `objectLockConfiguration` to be enabled on a bucket.
+func (o StorageObjectOutput) ObjectLockRetainUntilDate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StorageObject) pulumi.StringPtrOutput { return v.ObjectLockRetainUntilDate }).(pulumi.StringPtrOutput)
 }
 
 // The secret key to use when applying changes. If omitted, `storageSecretKey` specified in config is used.

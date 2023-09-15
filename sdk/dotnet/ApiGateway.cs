@@ -29,6 +29,18 @@ namespace Pulumi.Yandex
     ///             { "label", "label" },
     ///             { "empty-label", "" },
     ///         },
+    ///         CustomDomains = new[]
+    ///         {
+    ///             new Yandex.Inputs.ApiGatewayCustomDomainArgs
+    ///             {
+    ///                 Fqdn = "test.example.com",
+    ///                 CertificateId = "&lt;certificate_id_from_cert_manager&gt;",
+    ///             },
+    ///         },
+    ///         Connectivity = new Yandex.Inputs.ApiGatewayConnectivityArgs
+    ///         {
+    ///             NetworkId = "&lt;dynamic network id&gt;",
+    ///         },
     ///         Spec = @"openapi: ""3.0.0""
     /// info:
     ///   version: 1.0.0
@@ -70,10 +82,23 @@ namespace Pulumi.Yandex
     public partial class ApiGateway : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Gateway connectivity. If specified the gateway will be attached to specified network.
+        /// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+        /// </summary>
+        [Output("connectivity")]
+        public Output<Outputs.ApiGatewayConnectivity?> Connectivity { get; private set; } = null!;
+
+        /// <summary>
         /// Creation timestamp of the Yandex Cloud API Gateway.
         /// </summary>
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
+
+        /// <summary>
+        /// Set of custom domains to be attached to Yandex API Gateway.
+        /// </summary>
+        [Output("customDomains")]
+        public Output<ImmutableArray<Outputs.ApiGatewayCustomDomain>> CustomDomains { get; private set; } = null!;
 
         /// <summary>
         /// Description of the Yandex Cloud API Gateway.
@@ -121,7 +146,7 @@ namespace Pulumi.Yandex
         public Output<string> Status { get; private set; } = null!;
 
         /// <summary>
-        /// Set of user domains attached to Yandex API Gateway.
+        /// (**DEPRECATED**, use `custom_domains` instead) Set of user domains attached to Yandex API Gateway.
         /// </summary>
         [Output("userDomains")]
         public Output<ImmutableArray<string>> UserDomains { get; private set; } = null!;
@@ -174,6 +199,25 @@ namespace Pulumi.Yandex
     public sealed class ApiGatewayArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Gateway connectivity. If specified the gateway will be attached to specified network.
+        /// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+        /// </summary>
+        [Input("connectivity")]
+        public Input<Inputs.ApiGatewayConnectivityArgs>? Connectivity { get; set; }
+
+        [Input("customDomains")]
+        private InputList<Inputs.ApiGatewayCustomDomainArgs>? _customDomains;
+
+        /// <summary>
+        /// Set of custom domains to be attached to Yandex API Gateway.
+        /// </summary>
+        public InputList<Inputs.ApiGatewayCustomDomainArgs> CustomDomains
+        {
+            get => _customDomains ?? (_customDomains = new InputList<Inputs.ApiGatewayCustomDomainArgs>());
+            set => _customDomains = value;
+        }
+
+        /// <summary>
         /// Description of the Yandex Cloud API Gateway.
         /// </summary>
         [Input("description")]
@@ -218,10 +262,29 @@ namespace Pulumi.Yandex
     public sealed class ApiGatewayState : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Gateway connectivity. If specified the gateway will be attached to specified network.
+        /// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+        /// </summary>
+        [Input("connectivity")]
+        public Input<Inputs.ApiGatewayConnectivityGetArgs>? Connectivity { get; set; }
+
+        /// <summary>
         /// Creation timestamp of the Yandex Cloud API Gateway.
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        [Input("customDomains")]
+        private InputList<Inputs.ApiGatewayCustomDomainGetArgs>? _customDomains;
+
+        /// <summary>
+        /// Set of custom domains to be attached to Yandex API Gateway.
+        /// </summary>
+        public InputList<Inputs.ApiGatewayCustomDomainGetArgs> CustomDomains
+        {
+            get => _customDomains ?? (_customDomains = new InputList<Inputs.ApiGatewayCustomDomainGetArgs>());
+            set => _customDomains = value;
+        }
 
         /// <summary>
         /// Description of the Yandex Cloud API Gateway.
@@ -278,8 +341,9 @@ namespace Pulumi.Yandex
         private InputList<string>? _userDomains;
 
         /// <summary>
-        /// Set of user domains attached to Yandex API Gateway.
+        /// (**DEPRECATED**, use `custom_domains` instead) Set of user domains attached to Yandex API Gateway.
         /// </summary>
+        [Obsolete(@"The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.")]
         public InputList<string> UserDomains
         {
             get => _userDomains ?? (_userDomains = new InputList<string>());

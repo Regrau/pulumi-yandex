@@ -79,6 +79,7 @@ type LookupMdbMongodbClusterArgs struct {
 	NetworkId *string `pulumi:"networkId"`
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
 	Resources *GetMdbMongodbClusterResources `pulumi:"resources"`
+	Restore   *GetMdbMongodbClusterRestore   `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// MongoDB Cluster mode enabled/disabled.
@@ -119,6 +120,7 @@ type LookupMdbMongodbClusterResult struct {
 	NetworkId *string `pulumi:"networkId"`
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
 	Resources *GetMdbMongodbClusterResources `pulumi:"resources"`
+	Restore   *GetMdbMongodbClusterRestore   `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// MongoDB Cluster mode enabled/disabled.
@@ -172,6 +174,7 @@ type LookupMdbMongodbClusterOutputArgs struct {
 	NetworkId pulumi.StringPtrInput `pulumi:"networkId"`
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
 	Resources GetMdbMongodbClusterResourcesPtrInput `pulumi:"resources"`
+	Restore   GetMdbMongodbClusterRestorePtrInput   `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
 	// MongoDB Cluster mode enabled/disabled.
@@ -277,6 +280,10 @@ func (o LookupMdbMongodbClusterResultOutput) NetworkId() pulumi.StringPtrOutput 
 // Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
 func (o LookupMdbMongodbClusterResultOutput) Resources() GetMdbMongodbClusterResourcesPtrOutput {
 	return o.ApplyT(func(v LookupMdbMongodbClusterResult) *GetMdbMongodbClusterResources { return v.Resources }).(GetMdbMongodbClusterResourcesPtrOutput)
+}
+
+func (o LookupMdbMongodbClusterResultOutput) Restore() GetMdbMongodbClusterRestorePtrOutput {
+	return o.ApplyT(func(v LookupMdbMongodbClusterResult) *GetMdbMongodbClusterRestore { return v.Restore }).(GetMdbMongodbClusterRestorePtrOutput)
 }
 
 // A set of ids of security groups assigned to hosts of the cluster.

@@ -19,6 +19,7 @@ class ServerlessContainerArgs:
                  image: pulumi.Input['ServerlessContainerImageArgs'],
                  memory: pulumi.Input[int],
                  concurrency: Optional[pulumi.Input[int]] = None,
+                 connectivity: Optional[pulumi.Input['ServerlessContainerConnectivityArgs']] = None,
                  core_fraction: Optional[pulumi.Input[int]] = None,
                  cores: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -42,6 +43,8 @@ class ServerlessContainerArgs:
                * `image.0.environment` -  A set of key/value environment variable pairs for Yandex Cloud Serverless Container
         :param pulumi.Input[int] memory: Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Serverless Container
         :param pulumi.Input[int] concurrency: Concurrency of Yandex Cloud Serverless Container
+        :param pulumi.Input['ServerlessContainerConnectivityArgs'] connectivity: Network access. If specified the revision will be attached to specified network
+               * `connectivity.0.network_id` - Network the revision will have access to
         :param pulumi.Input[int] core_fraction: Core fraction (**0...100**) of the Yandex Cloud Serverless Container
         :param pulumi.Input[str] description: Description of the Yandex Cloud Serverless Container
         :param pulumi.Input[str] execution_timeout: Execution timeout in seconds (**duration format**) for Yandex Cloud Serverless Container
@@ -55,6 +58,8 @@ class ServerlessContainerArgs:
         pulumi.set(__self__, "memory", memory)
         if concurrency is not None:
             pulumi.set(__self__, "concurrency", concurrency)
+        if connectivity is not None:
+            pulumi.set(__self__, "connectivity", connectivity)
         if core_fraction is not None:
             pulumi.set(__self__, "core_fraction", core_fraction)
         if cores is not None:
@@ -118,6 +123,19 @@ class ServerlessContainerArgs:
     @concurrency.setter
     def concurrency(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "concurrency", value)
+
+    @property
+    @pulumi.getter
+    def connectivity(self) -> Optional[pulumi.Input['ServerlessContainerConnectivityArgs']]:
+        """
+        Network access. If specified the revision will be attached to specified network
+        * `connectivity.0.network_id` - Network the revision will have access to
+        """
+        return pulumi.get(self, "connectivity")
+
+    @connectivity.setter
+    def connectivity(self, value: Optional[pulumi.Input['ServerlessContainerConnectivityArgs']]):
+        pulumi.set(self, "connectivity", value)
 
     @property
     @pulumi.getter(name="coreFraction")
@@ -229,6 +247,7 @@ class ServerlessContainerArgs:
 class _ServerlessContainerState:
     def __init__(__self__, *,
                  concurrency: Optional[pulumi.Input[int]] = None,
+                 connectivity: Optional[pulumi.Input['ServerlessContainerConnectivityArgs']] = None,
                  core_fraction: Optional[pulumi.Input[int]] = None,
                  cores: Optional[pulumi.Input[int]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
@@ -246,6 +265,8 @@ class _ServerlessContainerState:
         """
         Input properties used for looking up and filtering ServerlessContainer resources.
         :param pulumi.Input[int] concurrency: Concurrency of Yandex Cloud Serverless Container
+        :param pulumi.Input['ServerlessContainerConnectivityArgs'] connectivity: Network access. If specified the revision will be attached to specified network
+               * `connectivity.0.network_id` - Network the revision will have access to
         :param pulumi.Input[int] core_fraction: Core fraction (**0...100**) of the Yandex Cloud Serverless Container
         :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud Serverless Container
         :param pulumi.Input[str] description: Description of the Yandex Cloud Serverless Container
@@ -271,6 +292,8 @@ class _ServerlessContainerState:
         """
         if concurrency is not None:
             pulumi.set(__self__, "concurrency", concurrency)
+        if connectivity is not None:
+            pulumi.set(__self__, "connectivity", connectivity)
         if core_fraction is not None:
             pulumi.set(__self__, "core_fraction", core_fraction)
         if cores is not None:
@@ -311,6 +334,19 @@ class _ServerlessContainerState:
     @concurrency.setter
     def concurrency(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "concurrency", value)
+
+    @property
+    @pulumi.getter
+    def connectivity(self) -> Optional[pulumi.Input['ServerlessContainerConnectivityArgs']]:
+        """
+        Network access. If specified the revision will be attached to specified network
+        * `connectivity.0.network_id` - Network the revision will have access to
+        """
+        return pulumi.get(self, "connectivity")
+
+    @connectivity.setter
+    def connectivity(self, value: Optional[pulumi.Input['ServerlessContainerConnectivityArgs']]):
+        pulumi.set(self, "connectivity", value)
 
     @property
     @pulumi.getter(name="coreFraction")
@@ -493,6 +529,7 @@ class ServerlessContainer(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  concurrency: Optional[pulumi.Input[int]] = None,
+                 connectivity: Optional[pulumi.Input[pulumi.InputType['ServerlessContainerConnectivityArgs']]] = None,
                  core_fraction: Optional[pulumi.Input[int]] = None,
                  cores: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -523,6 +560,12 @@ class ServerlessContainer(pulumi.CustomResource):
                 url="cr.yandex/yc/test-image:v1",
             ),
             memory=256,
+            secrets=[yandex.ServerlessContainerSecretArgs(
+                environment_variable="ENV_VARIABLE",
+                id=yandex_lockbox_secret["secret"]["id"],
+                key="secret-key",
+                version_id=yandex_lockbox_secret_version["secret_version"]["id"],
+            )],
             service_account_id="are1service2account3id")
         ```
         ```python
@@ -540,6 +583,8 @@ class ServerlessContainer(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] concurrency: Concurrency of Yandex Cloud Serverless Container
+        :param pulumi.Input[pulumi.InputType['ServerlessContainerConnectivityArgs']] connectivity: Network access. If specified the revision will be attached to specified network
+               * `connectivity.0.network_id` - Network the revision will have access to
         :param pulumi.Input[int] core_fraction: Core fraction (**0...100**) of the Yandex Cloud Serverless Container
         :param pulumi.Input[str] description: Description of the Yandex Cloud Serverless Container
         :param pulumi.Input[str] execution_timeout: Execution timeout in seconds (**duration format**) for Yandex Cloud Serverless Container
@@ -584,6 +629,12 @@ class ServerlessContainer(pulumi.CustomResource):
                 url="cr.yandex/yc/test-image:v1",
             ),
             memory=256,
+            secrets=[yandex.ServerlessContainerSecretArgs(
+                environment_variable="ENV_VARIABLE",
+                id=yandex_lockbox_secret["secret"]["id"],
+                key="secret-key",
+                version_id=yandex_lockbox_secret_version["secret_version"]["id"],
+            )],
             service_account_id="are1service2account3id")
         ```
         ```python
@@ -614,6 +665,7 @@ class ServerlessContainer(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  concurrency: Optional[pulumi.Input[int]] = None,
+                 connectivity: Optional[pulumi.Input[pulumi.InputType['ServerlessContainerConnectivityArgs']]] = None,
                  core_fraction: Optional[pulumi.Input[int]] = None,
                  cores: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -635,6 +687,7 @@ class ServerlessContainer(pulumi.CustomResource):
             __props__ = ServerlessContainerArgs.__new__(ServerlessContainerArgs)
 
             __props__.__dict__["concurrency"] = concurrency
+            __props__.__dict__["connectivity"] = connectivity
             __props__.__dict__["core_fraction"] = core_fraction
             __props__.__dict__["cores"] = cores
             __props__.__dict__["description"] = description
@@ -664,6 +717,7 @@ class ServerlessContainer(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             concurrency: Optional[pulumi.Input[int]] = None,
+            connectivity: Optional[pulumi.Input[pulumi.InputType['ServerlessContainerConnectivityArgs']]] = None,
             core_fraction: Optional[pulumi.Input[int]] = None,
             cores: Optional[pulumi.Input[int]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
@@ -686,6 +740,8 @@ class ServerlessContainer(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] concurrency: Concurrency of Yandex Cloud Serverless Container
+        :param pulumi.Input[pulumi.InputType['ServerlessContainerConnectivityArgs']] connectivity: Network access. If specified the revision will be attached to specified network
+               * `connectivity.0.network_id` - Network the revision will have access to
         :param pulumi.Input[int] core_fraction: Core fraction (**0...100**) of the Yandex Cloud Serverless Container
         :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud Serverless Container
         :param pulumi.Input[str] description: Description of the Yandex Cloud Serverless Container
@@ -714,6 +770,7 @@ class ServerlessContainer(pulumi.CustomResource):
         __props__ = _ServerlessContainerState.__new__(_ServerlessContainerState)
 
         __props__.__dict__["concurrency"] = concurrency
+        __props__.__dict__["connectivity"] = connectivity
         __props__.__dict__["core_fraction"] = core_fraction
         __props__.__dict__["cores"] = cores
         __props__.__dict__["created_at"] = created_at
@@ -737,6 +794,15 @@ class ServerlessContainer(pulumi.CustomResource):
         Concurrency of Yandex Cloud Serverless Container
         """
         return pulumi.get(self, "concurrency")
+
+    @property
+    @pulumi.getter
+    def connectivity(self) -> pulumi.Output[Optional['outputs.ServerlessContainerConnectivity']]:
+        """
+        Network access. If specified the revision will be attached to specified network
+        * `connectivity.0.network_id` - Network the revision will have access to
+        """
+        return pulumi.get(self, "connectivity")
 
     @property
     @pulumi.getter(name="coreFraction")

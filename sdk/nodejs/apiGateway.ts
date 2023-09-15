@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -18,6 +20,13 @@ import * as utilities from "./utilities";
  *     labels: {
  *         label: "label",
  *         "empty-label": "",
+ *     },
+ *     customDomains: [{
+ *         fqdn: "test.example.com",
+ *         certificateId: "<certificate_id_from_cert_manager>",
+ *     }],
+ *     connectivity: {
+ *         networkId: "<dynamic network id>",
  *     },
  *     spec: `openapi: "3.0.0"
  * info:
@@ -83,9 +92,18 @@ export class ApiGateway extends pulumi.CustomResource {
     }
 
     /**
+     * Gateway connectivity. If specified the gateway will be attached to specified network.
+     * * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+     */
+    public readonly connectivity!: pulumi.Output<outputs.ApiGatewayConnectivity | undefined>;
+    /**
      * Creation timestamp of the Yandex Cloud API Gateway.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    /**
+     * Set of custom domains to be attached to Yandex API Gateway.
+     */
+    public readonly customDomains!: pulumi.Output<outputs.ApiGatewayCustomDomain[] | undefined>;
     /**
      * Description of the Yandex Cloud API Gateway.
      */
@@ -116,7 +134,9 @@ export class ApiGateway extends pulumi.CustomResource {
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
     /**
-     * Set of user domains attached to Yandex API Gateway.
+     * (**DEPRECATED**, use `customDomains` instead) Set of user domains attached to Yandex API Gateway.
+     *
+     * @deprecated The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
      */
     public /*out*/ readonly userDomains!: pulumi.Output<string[]>;
 
@@ -133,7 +153,9 @@ export class ApiGateway extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ApiGatewayState | undefined;
+            resourceInputs["connectivity"] = state ? state.connectivity : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["customDomains"] = state ? state.customDomains : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["domain"] = state ? state.domain : undefined;
             resourceInputs["folderId"] = state ? state.folderId : undefined;
@@ -148,6 +170,8 @@ export class ApiGateway extends pulumi.CustomResource {
             if ((!args || args.spec === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'spec'");
             }
+            resourceInputs["connectivity"] = args ? args.connectivity : undefined;
+            resourceInputs["customDomains"] = args ? args.customDomains : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["folderId"] = args ? args.folderId : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
@@ -169,9 +193,18 @@ export class ApiGateway extends pulumi.CustomResource {
  */
 export interface ApiGatewayState {
     /**
+     * Gateway connectivity. If specified the gateway will be attached to specified network.
+     * * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+     */
+    connectivity?: pulumi.Input<inputs.ApiGatewayConnectivity>;
+    /**
      * Creation timestamp of the Yandex Cloud API Gateway.
      */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Set of custom domains to be attached to Yandex API Gateway.
+     */
+    customDomains?: pulumi.Input<pulumi.Input<inputs.ApiGatewayCustomDomain>[]>;
     /**
      * Description of the Yandex Cloud API Gateway.
      */
@@ -202,7 +235,9 @@ export interface ApiGatewayState {
      */
     status?: pulumi.Input<string>;
     /**
-     * Set of user domains attached to Yandex API Gateway.
+     * (**DEPRECATED**, use `customDomains` instead) Set of user domains attached to Yandex API Gateway.
+     *
+     * @deprecated The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
      */
     userDomains?: pulumi.Input<pulumi.Input<string>[]>;
 }
@@ -211,6 +246,15 @@ export interface ApiGatewayState {
  * The set of arguments for constructing a ApiGateway resource.
  */
 export interface ApiGatewayArgs {
+    /**
+     * Gateway connectivity. If specified the gateway will be attached to specified network.
+     * * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+     */
+    connectivity?: pulumi.Input<inputs.ApiGatewayConnectivity>;
+    /**
+     * Set of custom domains to be attached to Yandex API Gateway.
+     */
+    customDomains?: pulumi.Input<pulumi.Input<inputs.ApiGatewayCustomDomain>[]>;
     /**
      * Description of the Yandex Cloud API Gateway.
      */

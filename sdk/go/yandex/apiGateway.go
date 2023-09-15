@@ -35,6 +35,15 @@ import (
 //					"label":       pulumi.String("label"),
 //					"empty-label": pulumi.String(""),
 //				},
+//				CustomDomains: ApiGatewayCustomDomainArray{
+//					&ApiGatewayCustomDomainArgs{
+//						Fqdn:          pulumi.String("test.example.com"),
+//						CertificateId: pulumi.String("<certificate_id_from_cert_manager>"),
+//					},
+//				},
+//				Connectivity: &ApiGatewayConnectivityArgs{
+//					NetworkId: pulumi.String("<dynamic network id>"),
+//				},
 //				Spec: pulumi.String(fmt.Sprintf(`openapi: "3.0.0"
 //
 // info:
@@ -85,8 +94,13 @@ import (
 type ApiGateway struct {
 	pulumi.CustomResourceState
 
+	// Gateway connectivity. If specified the gateway will be attached to specified network.
+	// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+	Connectivity ApiGatewayConnectivityPtrOutput `pulumi:"connectivity"`
 	// Creation timestamp of the Yandex Cloud API Gateway.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Set of custom domains to be attached to Yandex API Gateway.
+	CustomDomains ApiGatewayCustomDomainArrayOutput `pulumi:"customDomains"`
 	// Description of the Yandex Cloud API Gateway.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Default domain for the Yandex API Gateway. Generated at creation time.
@@ -102,7 +116,9 @@ type ApiGateway struct {
 	Spec pulumi.StringOutput `pulumi:"spec"`
 	// Status of the Yandex API Gateway.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// Set of user domains attached to Yandex API Gateway.
+	// (**DEPRECATED**, use `customDomains` instead) Set of user domains attached to Yandex API Gateway.
+	//
+	// Deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
 	UserDomains pulumi.StringArrayOutput `pulumi:"userDomains"`
 }
 
@@ -139,8 +155,13 @@ func GetApiGateway(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ApiGateway resources.
 type apiGatewayState struct {
+	// Gateway connectivity. If specified the gateway will be attached to specified network.
+	// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+	Connectivity *ApiGatewayConnectivity `pulumi:"connectivity"`
 	// Creation timestamp of the Yandex Cloud API Gateway.
 	CreatedAt *string `pulumi:"createdAt"`
+	// Set of custom domains to be attached to Yandex API Gateway.
+	CustomDomains []ApiGatewayCustomDomain `pulumi:"customDomains"`
 	// Description of the Yandex Cloud API Gateway.
 	Description *string `pulumi:"description"`
 	// Default domain for the Yandex API Gateway. Generated at creation time.
@@ -156,13 +177,20 @@ type apiGatewayState struct {
 	Spec *string `pulumi:"spec"`
 	// Status of the Yandex API Gateway.
 	Status *string `pulumi:"status"`
-	// Set of user domains attached to Yandex API Gateway.
+	// (**DEPRECATED**, use `customDomains` instead) Set of user domains attached to Yandex API Gateway.
+	//
+	// Deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
 	UserDomains []string `pulumi:"userDomains"`
 }
 
 type ApiGatewayState struct {
+	// Gateway connectivity. If specified the gateway will be attached to specified network.
+	// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+	Connectivity ApiGatewayConnectivityPtrInput
 	// Creation timestamp of the Yandex Cloud API Gateway.
 	CreatedAt pulumi.StringPtrInput
+	// Set of custom domains to be attached to Yandex API Gateway.
+	CustomDomains ApiGatewayCustomDomainArrayInput
 	// Description of the Yandex Cloud API Gateway.
 	Description pulumi.StringPtrInput
 	// Default domain for the Yandex API Gateway. Generated at creation time.
@@ -178,7 +206,9 @@ type ApiGatewayState struct {
 	Spec pulumi.StringPtrInput
 	// Status of the Yandex API Gateway.
 	Status pulumi.StringPtrInput
-	// Set of user domains attached to Yandex API Gateway.
+	// (**DEPRECATED**, use `customDomains` instead) Set of user domains attached to Yandex API Gateway.
+	//
+	// Deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
 	UserDomains pulumi.StringArrayInput
 }
 
@@ -187,6 +217,11 @@ func (ApiGatewayState) ElementType() reflect.Type {
 }
 
 type apiGatewayArgs struct {
+	// Gateway connectivity. If specified the gateway will be attached to specified network.
+	// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+	Connectivity *ApiGatewayConnectivity `pulumi:"connectivity"`
+	// Set of custom domains to be attached to Yandex API Gateway.
+	CustomDomains []ApiGatewayCustomDomain `pulumi:"customDomains"`
 	// Description of the Yandex Cloud API Gateway.
 	Description *string `pulumi:"description"`
 	// Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
@@ -201,6 +236,11 @@ type apiGatewayArgs struct {
 
 // The set of arguments for constructing a ApiGateway resource.
 type ApiGatewayArgs struct {
+	// Gateway connectivity. If specified the gateway will be attached to specified network.
+	// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+	Connectivity ApiGatewayConnectivityPtrInput
+	// Set of custom domains to be attached to Yandex API Gateway.
+	CustomDomains ApiGatewayCustomDomainArrayInput
 	// Description of the Yandex Cloud API Gateway.
 	Description pulumi.StringPtrInput
 	// Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
@@ -300,9 +340,20 @@ func (o ApiGatewayOutput) ToApiGatewayOutputWithContext(ctx context.Context) Api
 	return o
 }
 
+// Gateway connectivity. If specified the gateway will be attached to specified network.
+// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+func (o ApiGatewayOutput) Connectivity() ApiGatewayConnectivityPtrOutput {
+	return o.ApplyT(func(v *ApiGateway) ApiGatewayConnectivityPtrOutput { return v.Connectivity }).(ApiGatewayConnectivityPtrOutput)
+}
+
 // Creation timestamp of the Yandex Cloud API Gateway.
 func (o ApiGatewayOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApiGateway) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Set of custom domains to be attached to Yandex API Gateway.
+func (o ApiGatewayOutput) CustomDomains() ApiGatewayCustomDomainArrayOutput {
+	return o.ApplyT(func(v *ApiGateway) ApiGatewayCustomDomainArrayOutput { return v.CustomDomains }).(ApiGatewayCustomDomainArrayOutput)
 }
 
 // Description of the Yandex Cloud API Gateway.
@@ -344,7 +395,9 @@ func (o ApiGatewayOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApiGateway) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
 }
 
-// Set of user domains attached to Yandex API Gateway.
+// (**DEPRECATED**, use `customDomains` instead) Set of user domains attached to Yandex API Gateway.
+//
+// Deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
 func (o ApiGatewayOutput) UserDomains() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ApiGateway) pulumi.StringArrayOutput { return v.UserDomains }).(pulumi.StringArrayOutput)
 }

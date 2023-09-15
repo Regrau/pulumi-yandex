@@ -69,7 +69,8 @@ type LookupKubernetesClusterResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// A description of the Kubernetes cluster.
 	Description string `pulumi:"description"`
-	FolderId    string `pulumi:"folderId"`
+	// (Optional) ID of the folder default Log group of which should be used to collect logs.
+	FolderId string `pulumi:"folderId"`
 	// Health of the Kubernetes cluster.
 	Health string `pulumi:"health"`
 	// The provider-assigned unique ID for this managed resource.
@@ -78,7 +79,7 @@ type LookupKubernetesClusterResult struct {
 	KmsProviders []GetKubernetesClusterKmsProvider `pulumi:"kmsProviders"`
 	// A set of key/value label pairs to assign to the Kubernetes cluster.
 	Labels map[string]string `pulumi:"labels"`
-	// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+	// (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
 	LogGroupId string `pulumi:"logGroupId"`
 	// Kubernetes master configuration options. The structure is documented below.
 	Masters []GetKubernetesClusterMaster `pulumi:"masters"`
@@ -174,6 +175,7 @@ func (o LookupKubernetesClusterResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.Description }).(pulumi.StringOutput)
 }
 
+// (Optional) ID of the folder default Log group of which should be used to collect logs.
 func (o LookupKubernetesClusterResultOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.FolderId }).(pulumi.StringOutput)
 }
@@ -198,7 +200,7 @@ func (o LookupKubernetesClusterResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
 
-// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+// (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
 func (o LookupKubernetesClusterResultOutput) LogGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubernetesClusterResult) string { return v.LogGroupId }).(pulumi.StringOutput)
 }

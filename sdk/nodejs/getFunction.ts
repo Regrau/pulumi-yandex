@@ -29,6 +29,7 @@ export function getFunction(args?: GetFunctionArgs, opts?: pulumi.InvokeOptions)
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("yandex:index/getFunction:getFunction", {
+        "connectivity": args.connectivity,
         "folderId": args.folderId,
         "functionId": args.functionId,
         "name": args.name,
@@ -40,6 +41,11 @@ export function getFunction(args?: GetFunctionArgs, opts?: pulumi.InvokeOptions)
  * A collection of arguments for invoking getFunction.
  */
 export interface GetFunctionArgs {
+    /**
+     * Function version connectivity. If specified the version will be attached to specified network.
+     * * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+     */
+    connectivity?: inputs.GetFunctionConnectivity;
     /**
      * Folder ID for the Yandex Cloud Function
      */
@@ -62,6 +68,11 @@ export interface GetFunctionArgs {
  * A collection of values returned by getFunction.
  */
 export interface GetFunctionResult {
+    /**
+     * Function version connectivity. If specified the version will be attached to specified network.
+     * * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+     */
+    readonly connectivity?: outputs.GetFunctionConnectivity;
     /**
      * Creation timestamp of the Yandex Cloud Function
      */
@@ -135,6 +146,11 @@ export function getFunctionOutput(args?: GetFunctionOutputArgs, opts?: pulumi.In
  * A collection of arguments for invoking getFunction.
  */
 export interface GetFunctionOutputArgs {
+    /**
+     * Function version connectivity. If specified the version will be attached to specified network.
+     * * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+     */
+    connectivity?: pulumi.Input<inputs.GetFunctionConnectivityArgs>;
     /**
      * Folder ID for the Yandex Cloud Function
      */

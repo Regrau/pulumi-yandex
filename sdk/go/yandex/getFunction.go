@@ -50,6 +50,9 @@ func LookupFunction(ctx *pulumi.Context, args *LookupFunctionArgs, opts ...pulum
 
 // A collection of arguments for invoking getFunction.
 type LookupFunctionArgs struct {
+	// Function version connectivity. If specified the version will be attached to specified network.
+	// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+	Connectivity *GetFunctionConnectivity `pulumi:"connectivity"`
 	// Folder ID for the Yandex Cloud Function
 	FolderId *string `pulumi:"folderId"`
 	// Yandex Cloud Function id used to define function
@@ -62,6 +65,9 @@ type LookupFunctionArgs struct {
 
 // A collection of values returned by getFunction.
 type LookupFunctionResult struct {
+	// Function version connectivity. If specified the version will be attached to specified network.
+	// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+	Connectivity *GetFunctionConnectivity `pulumi:"connectivity"`
 	// Creation timestamp of the Yandex Cloud Function
 	CreatedAt string `pulumi:"createdAt"`
 	// Description of the Yandex Cloud Function
@@ -112,6 +118,9 @@ func LookupFunctionOutput(ctx *pulumi.Context, args LookupFunctionOutputArgs, op
 
 // A collection of arguments for invoking getFunction.
 type LookupFunctionOutputArgs struct {
+	// Function version connectivity. If specified the version will be attached to specified network.
+	// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+	Connectivity GetFunctionConnectivityPtrInput `pulumi:"connectivity"`
 	// Folder ID for the Yandex Cloud Function
 	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
 	// Yandex Cloud Function id used to define function
@@ -139,6 +148,12 @@ func (o LookupFunctionResultOutput) ToLookupFunctionResultOutput() LookupFunctio
 
 func (o LookupFunctionResultOutput) ToLookupFunctionResultOutputWithContext(ctx context.Context) LookupFunctionResultOutput {
 	return o
+}
+
+// Function version connectivity. If specified the version will be attached to specified network.
+// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+func (o LookupFunctionResultOutput) Connectivity() GetFunctionConnectivityPtrOutput {
+	return o.ApplyT(func(v LookupFunctionResult) *GetFunctionConnectivity { return v.Connectivity }).(GetFunctionConnectivityPtrOutput)
 }
 
 // Creation timestamp of the Yandex Cloud Function

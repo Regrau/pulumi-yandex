@@ -474,6 +474,7 @@ export interface AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeader {
 export interface AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderValue {
     exact?: pulumi.Input<string>;
     prefix?: pulumi.Input<string>;
+    regex?: pulumi.Input<string>;
 }
 
 export interface AlbLoadBalancerAllocationPolicy {
@@ -873,6 +874,10 @@ export interface AlbVirtualHostRouteGrpcRouteGrpcMatchFqmn {
      * Match prefix.
      */
     prefix?: pulumi.Input<string>;
+    /**
+     * Match regex.
+     */
+    regex?: pulumi.Input<string>;
 }
 
 export interface AlbVirtualHostRouteGrpcRouteGrpcRouteAction {
@@ -961,6 +966,10 @@ export interface AlbVirtualHostRouteHttpRouteHttpMatchPath {
      * Match prefix.
      */
     prefix?: pulumi.Input<string>;
+    /**
+     * Match regex.
+     */
+    regex?: pulumi.Input<string>;
 }
 
 export interface AlbVirtualHostRouteHttpRouteHttpRouteAction {
@@ -1066,6 +1075,10 @@ export interface AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderValue 
      * Match prefix.
      */
     prefix?: pulumi.Input<string>;
+    /**
+     * Match regex.
+     */
+    regex?: pulumi.Input<string>;
 }
 
 export interface AlbVirtualHostRouteRouteOptions {
@@ -1104,6 +1117,20 @@ export interface AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderV
      * Match prefix.
      */
     prefix?: pulumi.Input<string>;
+    /**
+     * Match regex.
+     */
+    regex?: pulumi.Input<string>;
+}
+
+export interface ApiGatewayConnectivity {
+    networkId: pulumi.Input<string>;
+}
+
+export interface ApiGatewayCustomDomain {
+    certificateId: pulumi.Input<string>;
+    domainId?: pulumi.Input<string>;
+    fqdn: pulumi.Input<string>;
 }
 
 export interface CdnOriginGroupOrigin {
@@ -3282,6 +3309,10 @@ export interface DatatransferEndpointSettingsPostgresTargetPassword {
     raw?: pulumi.Input<string>;
 }
 
+export interface FunctionConnectivity {
+    networkId: pulumi.Input<string>;
+}
+
 export interface FunctionContent {
     zipFilename: pulumi.Input<string>;
 }
@@ -3299,9 +3330,21 @@ export interface FunctionScalingPolicyPolicy {
 }
 
 export interface FunctionSecret {
+    /**
+     * (Required) Function's environment variable in which secret's value will be stored.
+     */
     environmentVariable: pulumi.Input<string>;
+    /**
+     * (Required) Secret's id.
+     */
     id: pulumi.Input<string>;
+    /**
+     * (Required) Secret's entries key which value will be stored in environment variable.
+     */
     key: pulumi.Input<string>;
+    /**
+     * (Required) Secret's version id.
+     */
     versionId: pulumi.Input<string>;
 }
 
@@ -4238,6 +4281,26 @@ export interface GetAlbBackendGroupStreamBackendTlsValidationContextArgs {
     trustedCaId?: pulumi.Input<string>;
 }
 
+export interface GetApiGatewayConnectivity {
+    networkId: string;
+}
+
+export interface GetApiGatewayConnectivityArgs {
+    networkId: pulumi.Input<string>;
+}
+
+export interface GetApiGatewayCustomDomain {
+    certificateId: string;
+    domainId?: string;
+    fqdn: string;
+}
+
+export interface GetApiGatewayCustomDomainArgs {
+    certificateId: pulumi.Input<string>;
+    domainId?: pulumi.Input<string>;
+    fqdn: pulumi.Input<string>;
+}
+
 export interface GetCdnResourceOptions {
     /**
      * HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
@@ -4540,6 +4603,14 @@ export interface GetComputeInstancePlacementPolicyHostAffinityRuleArgs {
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface GetFunctionConnectivity {
+    networkId: string;
+}
+
+export interface GetFunctionConnectivityArgs {
+    networkId: pulumi.Input<string>;
+}
+
 export interface GetFunctionScalingPolicyPolicy {
     tag?: string;
     zoneInstancesLimit?: number;
@@ -4598,16 +4669,62 @@ export interface GetIamPolicyBindingArgs {
 
 export interface GetMdbClickhouseClusterCloudStorage {
     /**
+     * Enables temporary storage in the cluster repository of data requested from the object repository.
+     */
+    dataCacheEnabled?: boolean;
+    /**
+     * Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
+     */
+    dataCacheMaxSize?: number;
+    /**
      * (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
      */
     enabled: boolean;
+    /**
+     * Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+     */
+    moveFactor?: number;
 }
 
 export interface GetMdbClickhouseClusterCloudStorageArgs {
     /**
+     * Enables temporary storage in the cluster repository of data requested from the object repository.
+     */
+    dataCacheEnabled?: pulumi.Input<boolean>;
+    /**
+     * Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
+     */
+    dataCacheMaxSize?: pulumi.Input<number>;
+    /**
      * (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
      */
     enabled: pulumi.Input<boolean>;
+    /**
+     * Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+     */
+    moveFactor?: pulumi.Input<number>;
+}
+
+export interface GetMdbClickhouseClusterShard {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name: string;
+    /**
+     * The weight of the shard.
+     */
+    weight?: number;
+}
+
+export interface GetMdbClickhouseClusterShardArgs {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The weight of the shard.
+     */
+    weight?: pulumi.Input<number>;
 }
 
 export interface GetMdbGreenplumClusterPoolerConfig {
@@ -5384,6 +5501,16 @@ export interface GetMdbMongodbClusterResourcesArgs {
     resourcePresetId?: pulumi.Input<string>;
 }
 
+export interface GetMdbMongodbClusterRestore {
+    backupId?: string;
+    time?: string;
+}
+
+export interface GetMdbMongodbClusterRestoreArgs {
+    backupId?: pulumi.Input<string>;
+    time?: pulumi.Input<string>;
+}
+
 export interface GetMdbMongodbClusterUser {
     /**
      * The name of the MongoDB cluster.
@@ -5460,6 +5587,14 @@ export interface GetMdbMysqlClusterAccessArgs {
     webSql?: pulumi.Input<boolean>;
 }
 
+export interface GetServerlessContainerConnectivity {
+    networkId: string;
+}
+
+export interface GetServerlessContainerConnectivityArgs {
+    networkId: pulumi.Input<string>;
+}
+
 export interface GetServerlessContainerSecret {
     environmentVariable: string;
     id: string;
@@ -5512,6 +5647,10 @@ export interface KubernetesClusterMaster {
      */
     maintenancePolicy?: pulumi.Input<inputs.KubernetesClusterMasterMaintenancePolicy>;
     /**
+     * (Optional) Master Logging options. The structure is documented below.
+     */
+    masterLogging?: pulumi.Input<inputs.KubernetesClusterMasterMasterLogging>;
+    /**
      * (Optional) (Computed) Boolean flag. When `true`, Kubernetes master will have visible ipv4 address.
      */
     publicIp?: pulumi.Input<boolean>;
@@ -5554,6 +5693,34 @@ export interface KubernetesClusterMasterMaintenancePolicyMaintenanceWindow {
     day?: pulumi.Input<string>;
     duration: pulumi.Input<string>;
     startTime: pulumi.Input<string>;
+}
+
+export interface KubernetesClusterMasterMasterLogging {
+    /**
+     * (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
+     */
+    clusterAutoscalerEnabled?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Boolean flag that specifies if master components logs should be sent to [Yandex Cloud Logging](https://cloud.yandex.com/docs/logging/). The exact components that will send their logs must be configured via the options described below.
+     */
+    enabled?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Boolean flag that specifies if kubernetes cluster events should be sent to Yandex Cloud Logging.
+     */
+    eventsEnabled?: pulumi.Input<boolean>;
+    /**
+     * The ID of the folder that the Kubernetes cluster belongs to.
+     * If it is not provided, the default provider folder is used.
+     */
+    folderId?: pulumi.Input<string>;
+    /**
+     * (Optional) Boolean flag that specifies if kube-apiserver logs should be sent to Yandex Cloud Logging.
+     */
+    kubeApiserverEnabled?: pulumi.Input<boolean>;
+    /**
+     * (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
+     */
+    logGroupId?: pulumi.Input<string>;
 }
 
 export interface KubernetesClusterMasterRegional {
@@ -6317,9 +6484,21 @@ export interface MdbClickhouseClusterClickhouseResources {
 
 export interface MdbClickhouseClusterCloudStorage {
     /**
+     * Enables temporary storage in the cluster repository of data requested from the object repository.
+     */
+    dataCacheEnabled?: pulumi.Input<boolean>;
+    /**
+     * Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
+     */
+    dataCacheMaxSize?: pulumi.Input<number>;
+    /**
      * Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
      */
     enabled: pulumi.Input<boolean>;
+    /**
+     * Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+     */
+    moveFactor?: pulumi.Input<number>;
 }
 
 export interface MdbClickhouseClusterDatabase {
@@ -6400,6 +6579,17 @@ export interface MdbClickhouseClusterMlModel {
      * Model file URL. You can only use models stored in Yandex Object Storage.
      */
     uri: pulumi.Input<string>;
+}
+
+export interface MdbClickhouseClusterShard {
+    /**
+     * Graphite rollup configuration name.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * The weight of shard.
+     */
+    weight?: pulumi.Input<number>;
 }
 
 export interface MdbClickhouseClusterShardGroup {
@@ -7575,6 +7765,17 @@ export interface MdbMongodbClusterResources {
     resourcePresetId: pulumi.Input<string>;
 }
 
+export interface MdbMongodbClusterRestore {
+    /**
+     * Backup ID. The cluster will be created from the specified backup. [How to get a list of PostgreSQL backups](https://cloud.yandex.com/en-ru/docs/managed-mongodb/operations/cluster-backups)
+     */
+    backupId: pulumi.Input<string>;
+    /**
+     * Timestamp of the moment to which the MongoDB cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
+     */
+    time?: pulumi.Input<string>;
+}
+
 export interface MdbMongodbClusterUser {
     /**
      * The fully qualified domain name of the host. Computed on server side.
@@ -8116,6 +8317,10 @@ export interface OrganizationmanagerSamlFederationSecuritySettings {
     encryptedAssertions: pulumi.Input<boolean>;
 }
 
+export interface ServerlessContainerConnectivity {
+    networkId: pulumi.Input<string>;
+}
+
 export interface ServerlessContainerImage {
     args?: pulumi.Input<pulumi.Input<string>[]>;
     commands?: pulumi.Input<pulumi.Input<string>[]>;
@@ -8129,13 +8334,26 @@ export interface ServerlessContainerImage {
 }
 
 export interface ServerlessContainerSecret {
+    /**
+     * (Required) Container's environment variable in which secret's value will be stored.
+     */
     environmentVariable: pulumi.Input<string>;
+    /**
+     * (Required) Secret's id.
+     */
     id: pulumi.Input<string>;
+    /**
+     * (Required) Secret's entries key which value will be stored in environment variable.
+     */
     key: pulumi.Input<string>;
+    /**
+     * (Required) Secret's version id.
+     */
     versionId: pulumi.Input<string>;
 }
 
 export interface StorageBucketAnonymousAccessFlags {
+    configRead?: pulumi.Input<boolean>;
     /**
      * Allows to list object in bucket anonymously.
      */
@@ -8278,6 +8496,36 @@ export interface StorageBucketLogging {
      * To specify a key prefix for log objects.
      */
     targetPrefix?: pulumi.Input<string>;
+}
+
+export interface StorageBucketObjectLockConfiguration {
+    /**
+     * Enable object locking in a bucket. Require versioning to be enabled.
+     */
+    objectLockEnabled?: pulumi.Input<string>;
+    /**
+     * Specifies a default locking configuration for added objects. Require objectLockEnabled to be enabled.
+     */
+    rule?: pulumi.Input<inputs.StorageBucketObjectLockConfigurationRule>;
+}
+
+export interface StorageBucketObjectLockConfigurationRule {
+    defaultRetention: pulumi.Input<inputs.StorageBucketObjectLockConfigurationRuleDefaultRetention>;
+}
+
+export interface StorageBucketObjectLockConfigurationRuleDefaultRetention {
+    /**
+     * Specifies a retention period in days after uploading an object version. It must be a positive integer. You can't set it simultaneously with `years`.
+     */
+    days?: pulumi.Input<number>;
+    /**
+     * Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`.
+     */
+    mode: pulumi.Input<string>;
+    /**
+     * Specifies a retention period in years after uploading an object version. It must be a positive integer. You can't set it simultaneously with `days`.
+     */
+    years?: pulumi.Input<number>;
 }
 
 export interface StorageBucketServerSideEncryptionConfiguration {

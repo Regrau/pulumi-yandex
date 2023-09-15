@@ -21,15 +21,22 @@ namespace Pulumi.Yandex.Outputs
         /// Match prefix.
         /// </summary>
         public readonly string? Prefix;
+        /// <summary>
+        /// Match regex.
+        /// </summary>
+        public readonly string? Regex;
 
         [OutputConstructor]
         private AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderValue(
             string? exact,
 
-            string? prefix)
+            string? prefix,
+
+            string? regex)
         {
             Exact = exact;
             Prefix = prefix;
+            Regex = regex;
         }
     }
 }

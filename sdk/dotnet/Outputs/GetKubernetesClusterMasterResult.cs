@@ -40,6 +40,10 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesClusterMasterMaintenancePolicyResult> MaintenancePolicies;
         /// <summary>
+        /// (Optional) Master Logging options. The structure is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetKubernetesClusterMasterMasterLoggingResult> MasterLoggings;
+        /// <summary>
         /// Boolean flag. When `true`, Kubernetes master have visible ipv4 address.
         /// </summary>
         public readonly bool PublicIp;
@@ -82,6 +86,8 @@ namespace Pulumi.Yandex.Outputs
 
             ImmutableArray<Outputs.GetKubernetesClusterMasterMaintenancePolicyResult> maintenancePolicies,
 
+            ImmutableArray<Outputs.GetKubernetesClusterMasterMasterLoggingResult> masterLoggings,
+
             bool publicIp,
 
             ImmutableArray<Outputs.GetKubernetesClusterMasterRegionalResult> regionals,
@@ -102,6 +108,7 @@ namespace Pulumi.Yandex.Outputs
             InternalV4Address = internalV4Address;
             InternalV4Endpoint = internalV4Endpoint;
             MaintenancePolicies = maintenancePolicies;
+            MasterLoggings = masterLoggings;
             PublicIp = publicIp;
             Regionals = regionals;
             SecurityGroupIds = securityGroupIds;

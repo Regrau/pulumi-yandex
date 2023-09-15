@@ -10,6 +10,2022 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type GetCdnResourceOptions struct {
+	// HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
+	AllowedHttpMethods []string `pulumi:"allowedHttpMethods"`
+	// set up a cache period for the end-users browser. Content will be cached due to origin settings. If there are no cache settings on your origin, the content will not be cached. The list of HTTP response codes that can be cached in browsers: 200, 201, 204, 206, 301, 302, 303, 304, 307, 308. Other response codes will not be cached. The default value is 4 days.
+	BrowserCacheSettings int `pulumi:"browserCacheSettings"`
+	// list HTTP headers that must be included in responses to clients.
+	CacheHttpHeaders []string `pulumi:"cacheHttpHeaders"`
+	// parameter that lets browsers get access to selected resources from a domain different to a domain from which the request is received.
+	Cors []string `pulumi:"cors"`
+	// custom value for the Host header. Your server must be able to process requests with the chosen header.
+	CustomHostHeader string `pulumi:"customHostHeader"`
+	// wildcard additional CNAME. If a resource has a wildcard additional CNAME, you can use your own certificate for content delivery via HTTPS. Read-only.
+	CustomServerName string `pulumi:"customServerName"`
+	// setup a cache status.
+	DisableCache bool `pulumi:"disableCache"`
+	// disabling proxy force ranges.
+	DisableProxyForceRanges bool `pulumi:"disableProxyForceRanges"`
+	// content will be cached according to origin cache settings. The value applies for a response with codes 200, 201, 204, 206, 301, 302, 303, 304, 307, 308 if an origin server does not have caching HTTP headers. Responses with other codes will not be cached.
+	EdgeCacheSettings int `pulumi:"edgeCacheSettings"`
+	// option helps you to reduce the bandwidth between origin and CDN servers. Also, content delivery speed becomes higher because of reducing the time for compressing files in a CDN.
+	FetchedCompressed bool `pulumi:"fetchedCompressed"`
+	// choose the Forward Host header option if is important to send in the request to the Origin the same Host header as was sent in the request to CDN server.
+	ForwardHostHeader bool `pulumi:"forwardHostHeader"`
+	// GZip compression at CDN servers reduces file size by 70% and can be as high as 90%.
+	GzipOn bool `pulumi:"gzipOn"`
+	// set for ignoring cookie.
+	IgnoreCookie bool `pulumi:"ignoreCookie"`
+	// files with different query parameters are cached as objects with the same key regardless of the parameter value. selected by default.
+	IgnoreQueryParams bool `pulumi:"ignoreQueryParams"`
+	// allows caching for GET, HEAD and POST requests.
+	ProxyCacheMethodsSet bool `pulumi:"proxyCacheMethodsSet"`
+	// files with the specified query parameters are cached as objects with the same key, files with other parameters are cached as objects with different keys.
+	QueryParamsBlacklists []string `pulumi:"queryParamsBlacklists"`
+	// files with the specified query parameters are cached as objects with different keys, files with other parameters are cached as objects with the same key.
+	QueryParamsWhitelists []string `pulumi:"queryParamsWhitelists"`
+	// set up a redirect from HTTPS to HTTP.
+	RedirectHttpToHttps bool `pulumi:"redirectHttpToHttps"`
+	// set up a redirect from HTTP to HTTPS.
+	RedirectHttpsToHttp bool `pulumi:"redirectHttpsToHttp"`
+	// files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
+	Slice bool `pulumi:"slice"`
+	// set up custom headers that CDN servers send in requests to origins.
+	StaticRequestHeaders  []string          `pulumi:"staticRequestHeaders"`
+	StaticResponseHeaders map[string]string `pulumi:"staticResponseHeaders"`
+}
+
+// GetCdnResourceOptionsInput is an input type that accepts GetCdnResourceOptionsArgs and GetCdnResourceOptionsOutput values.
+// You can construct a concrete instance of `GetCdnResourceOptionsInput` via:
+//
+//	GetCdnResourceOptionsArgs{...}
+type GetCdnResourceOptionsInput interface {
+	pulumi.Input
+
+	ToGetCdnResourceOptionsOutput() GetCdnResourceOptionsOutput
+	ToGetCdnResourceOptionsOutputWithContext(context.Context) GetCdnResourceOptionsOutput
+}
+
+type GetCdnResourceOptionsArgs struct {
+	// HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
+	AllowedHttpMethods pulumi.StringArrayInput `pulumi:"allowedHttpMethods"`
+	// set up a cache period for the end-users browser. Content will be cached due to origin settings. If there are no cache settings on your origin, the content will not be cached. The list of HTTP response codes that can be cached in browsers: 200, 201, 204, 206, 301, 302, 303, 304, 307, 308. Other response codes will not be cached. The default value is 4 days.
+	BrowserCacheSettings pulumi.IntInput `pulumi:"browserCacheSettings"`
+	// list HTTP headers that must be included in responses to clients.
+	CacheHttpHeaders pulumi.StringArrayInput `pulumi:"cacheHttpHeaders"`
+	// parameter that lets browsers get access to selected resources from a domain different to a domain from which the request is received.
+	Cors pulumi.StringArrayInput `pulumi:"cors"`
+	// custom value for the Host header. Your server must be able to process requests with the chosen header.
+	CustomHostHeader pulumi.StringInput `pulumi:"customHostHeader"`
+	// wildcard additional CNAME. If a resource has a wildcard additional CNAME, you can use your own certificate for content delivery via HTTPS. Read-only.
+	CustomServerName pulumi.StringInput `pulumi:"customServerName"`
+	// setup a cache status.
+	DisableCache pulumi.BoolInput `pulumi:"disableCache"`
+	// disabling proxy force ranges.
+	DisableProxyForceRanges pulumi.BoolInput `pulumi:"disableProxyForceRanges"`
+	// content will be cached according to origin cache settings. The value applies for a response with codes 200, 201, 204, 206, 301, 302, 303, 304, 307, 308 if an origin server does not have caching HTTP headers. Responses with other codes will not be cached.
+	EdgeCacheSettings pulumi.IntInput `pulumi:"edgeCacheSettings"`
+	// option helps you to reduce the bandwidth between origin and CDN servers. Also, content delivery speed becomes higher because of reducing the time for compressing files in a CDN.
+	FetchedCompressed pulumi.BoolInput `pulumi:"fetchedCompressed"`
+	// choose the Forward Host header option if is important to send in the request to the Origin the same Host header as was sent in the request to CDN server.
+	ForwardHostHeader pulumi.BoolInput `pulumi:"forwardHostHeader"`
+	// GZip compression at CDN servers reduces file size by 70% and can be as high as 90%.
+	GzipOn pulumi.BoolInput `pulumi:"gzipOn"`
+	// set for ignoring cookie.
+	IgnoreCookie pulumi.BoolInput `pulumi:"ignoreCookie"`
+	// files with different query parameters are cached as objects with the same key regardless of the parameter value. selected by default.
+	IgnoreQueryParams pulumi.BoolInput `pulumi:"ignoreQueryParams"`
+	// allows caching for GET, HEAD and POST requests.
+	ProxyCacheMethodsSet pulumi.BoolInput `pulumi:"proxyCacheMethodsSet"`
+	// files with the specified query parameters are cached as objects with the same key, files with other parameters are cached as objects with different keys.
+	QueryParamsBlacklists pulumi.StringArrayInput `pulumi:"queryParamsBlacklists"`
+	// files with the specified query parameters are cached as objects with different keys, files with other parameters are cached as objects with the same key.
+	QueryParamsWhitelists pulumi.StringArrayInput `pulumi:"queryParamsWhitelists"`
+	// set up a redirect from HTTPS to HTTP.
+	RedirectHttpToHttps pulumi.BoolInput `pulumi:"redirectHttpToHttps"`
+	// set up a redirect from HTTP to HTTPS.
+	RedirectHttpsToHttp pulumi.BoolInput `pulumi:"redirectHttpsToHttp"`
+	// files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
+	Slice pulumi.BoolInput `pulumi:"slice"`
+	// set up custom headers that CDN servers send in requests to origins.
+	StaticRequestHeaders  pulumi.StringArrayInput `pulumi:"staticRequestHeaders"`
+	StaticResponseHeaders pulumi.StringMapInput   `pulumi:"staticResponseHeaders"`
+}
+
+func (GetCdnResourceOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCdnResourceOptions)(nil)).Elem()
+}
+
+func (i GetCdnResourceOptionsArgs) ToGetCdnResourceOptionsOutput() GetCdnResourceOptionsOutput {
+	return i.ToGetCdnResourceOptionsOutputWithContext(context.Background())
+}
+
+func (i GetCdnResourceOptionsArgs) ToGetCdnResourceOptionsOutputWithContext(ctx context.Context) GetCdnResourceOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCdnResourceOptionsOutput)
+}
+
+func (i GetCdnResourceOptionsArgs) ToGetCdnResourceOptionsPtrOutput() GetCdnResourceOptionsPtrOutput {
+	return i.ToGetCdnResourceOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i GetCdnResourceOptionsArgs) ToGetCdnResourceOptionsPtrOutputWithContext(ctx context.Context) GetCdnResourceOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCdnResourceOptionsOutput).ToGetCdnResourceOptionsPtrOutputWithContext(ctx)
+}
+
+// GetCdnResourceOptionsPtrInput is an input type that accepts GetCdnResourceOptionsArgs, GetCdnResourceOptionsPtr and GetCdnResourceOptionsPtrOutput values.
+// You can construct a concrete instance of `GetCdnResourceOptionsPtrInput` via:
+//
+//	        GetCdnResourceOptionsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetCdnResourceOptionsPtrInput interface {
+	pulumi.Input
+
+	ToGetCdnResourceOptionsPtrOutput() GetCdnResourceOptionsPtrOutput
+	ToGetCdnResourceOptionsPtrOutputWithContext(context.Context) GetCdnResourceOptionsPtrOutput
+}
+
+type getCdnResourceOptionsPtrType GetCdnResourceOptionsArgs
+
+func GetCdnResourceOptionsPtr(v *GetCdnResourceOptionsArgs) GetCdnResourceOptionsPtrInput {
+	return (*getCdnResourceOptionsPtrType)(v)
+}
+
+func (*getCdnResourceOptionsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetCdnResourceOptions)(nil)).Elem()
+}
+
+func (i *getCdnResourceOptionsPtrType) ToGetCdnResourceOptionsPtrOutput() GetCdnResourceOptionsPtrOutput {
+	return i.ToGetCdnResourceOptionsPtrOutputWithContext(context.Background())
+}
+
+func (i *getCdnResourceOptionsPtrType) ToGetCdnResourceOptionsPtrOutputWithContext(ctx context.Context) GetCdnResourceOptionsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCdnResourceOptionsPtrOutput)
+}
+
+type GetCdnResourceOptionsOutput struct{ *pulumi.OutputState }
+
+func (GetCdnResourceOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCdnResourceOptions)(nil)).Elem()
+}
+
+func (o GetCdnResourceOptionsOutput) ToGetCdnResourceOptionsOutput() GetCdnResourceOptionsOutput {
+	return o
+}
+
+func (o GetCdnResourceOptionsOutput) ToGetCdnResourceOptionsOutputWithContext(ctx context.Context) GetCdnResourceOptionsOutput {
+	return o
+}
+
+func (o GetCdnResourceOptionsOutput) ToGetCdnResourceOptionsPtrOutput() GetCdnResourceOptionsPtrOutput {
+	return o.ToGetCdnResourceOptionsPtrOutputWithContext(context.Background())
+}
+
+func (o GetCdnResourceOptionsOutput) ToGetCdnResourceOptionsPtrOutputWithContext(ctx context.Context) GetCdnResourceOptionsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetCdnResourceOptions) *GetCdnResourceOptions {
+		return &v
+	}).(GetCdnResourceOptionsPtrOutput)
+}
+
+// HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
+func (o GetCdnResourceOptionsOutput) AllowedHttpMethods() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) []string { return v.AllowedHttpMethods }).(pulumi.StringArrayOutput)
+}
+
+// set up a cache period for the end-users browser. Content will be cached due to origin settings. If there are no cache settings on your origin, the content will not be cached. The list of HTTP response codes that can be cached in browsers: 200, 201, 204, 206, 301, 302, 303, 304, 307, 308. Other response codes will not be cached. The default value is 4 days.
+func (o GetCdnResourceOptionsOutput) BrowserCacheSettings() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) int { return v.BrowserCacheSettings }).(pulumi.IntOutput)
+}
+
+// list HTTP headers that must be included in responses to clients.
+func (o GetCdnResourceOptionsOutput) CacheHttpHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) []string { return v.CacheHttpHeaders }).(pulumi.StringArrayOutput)
+}
+
+// parameter that lets browsers get access to selected resources from a domain different to a domain from which the request is received.
+func (o GetCdnResourceOptionsOutput) Cors() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) []string { return v.Cors }).(pulumi.StringArrayOutput)
+}
+
+// custom value for the Host header. Your server must be able to process requests with the chosen header.
+func (o GetCdnResourceOptionsOutput) CustomHostHeader() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) string { return v.CustomHostHeader }).(pulumi.StringOutput)
+}
+
+// wildcard additional CNAME. If a resource has a wildcard additional CNAME, you can use your own certificate for content delivery via HTTPS. Read-only.
+func (o GetCdnResourceOptionsOutput) CustomServerName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) string { return v.CustomServerName }).(pulumi.StringOutput)
+}
+
+// setup a cache status.
+func (o GetCdnResourceOptionsOutput) DisableCache() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) bool { return v.DisableCache }).(pulumi.BoolOutput)
+}
+
+// disabling proxy force ranges.
+func (o GetCdnResourceOptionsOutput) DisableProxyForceRanges() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) bool { return v.DisableProxyForceRanges }).(pulumi.BoolOutput)
+}
+
+// content will be cached according to origin cache settings. The value applies for a response with codes 200, 201, 204, 206, 301, 302, 303, 304, 307, 308 if an origin server does not have caching HTTP headers. Responses with other codes will not be cached.
+func (o GetCdnResourceOptionsOutput) EdgeCacheSettings() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) int { return v.EdgeCacheSettings }).(pulumi.IntOutput)
+}
+
+// option helps you to reduce the bandwidth between origin and CDN servers. Also, content delivery speed becomes higher because of reducing the time for compressing files in a CDN.
+func (o GetCdnResourceOptionsOutput) FetchedCompressed() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) bool { return v.FetchedCompressed }).(pulumi.BoolOutput)
+}
+
+// choose the Forward Host header option if is important to send in the request to the Origin the same Host header as was sent in the request to CDN server.
+func (o GetCdnResourceOptionsOutput) ForwardHostHeader() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) bool { return v.ForwardHostHeader }).(pulumi.BoolOutput)
+}
+
+// GZip compression at CDN servers reduces file size by 70% and can be as high as 90%.
+func (o GetCdnResourceOptionsOutput) GzipOn() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) bool { return v.GzipOn }).(pulumi.BoolOutput)
+}
+
+// set for ignoring cookie.
+func (o GetCdnResourceOptionsOutput) IgnoreCookie() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) bool { return v.IgnoreCookie }).(pulumi.BoolOutput)
+}
+
+// files with different query parameters are cached as objects with the same key regardless of the parameter value. selected by default.
+func (o GetCdnResourceOptionsOutput) IgnoreQueryParams() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) bool { return v.IgnoreQueryParams }).(pulumi.BoolOutput)
+}
+
+// allows caching for GET, HEAD and POST requests.
+func (o GetCdnResourceOptionsOutput) ProxyCacheMethodsSet() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) bool { return v.ProxyCacheMethodsSet }).(pulumi.BoolOutput)
+}
+
+// files with the specified query parameters are cached as objects with the same key, files with other parameters are cached as objects with different keys.
+func (o GetCdnResourceOptionsOutput) QueryParamsBlacklists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) []string { return v.QueryParamsBlacklists }).(pulumi.StringArrayOutput)
+}
+
+// files with the specified query parameters are cached as objects with different keys, files with other parameters are cached as objects with the same key.
+func (o GetCdnResourceOptionsOutput) QueryParamsWhitelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) []string { return v.QueryParamsWhitelists }).(pulumi.StringArrayOutput)
+}
+
+// set up a redirect from HTTPS to HTTP.
+func (o GetCdnResourceOptionsOutput) RedirectHttpToHttps() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) bool { return v.RedirectHttpToHttps }).(pulumi.BoolOutput)
+}
+
+// set up a redirect from HTTP to HTTPS.
+func (o GetCdnResourceOptionsOutput) RedirectHttpsToHttp() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) bool { return v.RedirectHttpsToHttp }).(pulumi.BoolOutput)
+}
+
+// files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
+func (o GetCdnResourceOptionsOutput) Slice() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) bool { return v.Slice }).(pulumi.BoolOutput)
+}
+
+// set up custom headers that CDN servers send in requests to origins.
+func (o GetCdnResourceOptionsOutput) StaticRequestHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) []string { return v.StaticRequestHeaders }).(pulumi.StringArrayOutput)
+}
+
+func (o GetCdnResourceOptionsOutput) StaticResponseHeaders() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetCdnResourceOptions) map[string]string { return v.StaticResponseHeaders }).(pulumi.StringMapOutput)
+}
+
+type GetCdnResourceOptionsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetCdnResourceOptionsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetCdnResourceOptions)(nil)).Elem()
+}
+
+func (o GetCdnResourceOptionsPtrOutput) ToGetCdnResourceOptionsPtrOutput() GetCdnResourceOptionsPtrOutput {
+	return o
+}
+
+func (o GetCdnResourceOptionsPtrOutput) ToGetCdnResourceOptionsPtrOutputWithContext(ctx context.Context) GetCdnResourceOptionsPtrOutput {
+	return o
+}
+
+func (o GetCdnResourceOptionsPtrOutput) Elem() GetCdnResourceOptionsOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) GetCdnResourceOptions {
+		if v != nil {
+			return *v
+		}
+		var ret GetCdnResourceOptions
+		return ret
+	}).(GetCdnResourceOptionsOutput)
+}
+
+// HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
+func (o GetCdnResourceOptionsPtrOutput) AllowedHttpMethods() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) []string {
+		if v == nil {
+			return nil
+		}
+		return v.AllowedHttpMethods
+	}).(pulumi.StringArrayOutput)
+}
+
+// set up a cache period for the end-users browser. Content will be cached due to origin settings. If there are no cache settings on your origin, the content will not be cached. The list of HTTP response codes that can be cached in browsers: 200, 201, 204, 206, 301, 302, 303, 304, 307, 308. Other response codes will not be cached. The default value is 4 days.
+func (o GetCdnResourceOptionsPtrOutput) BrowserCacheSettings() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.BrowserCacheSettings
+	}).(pulumi.IntPtrOutput)
+}
+
+// list HTTP headers that must be included in responses to clients.
+func (o GetCdnResourceOptionsPtrOutput) CacheHttpHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) []string {
+		if v == nil {
+			return nil
+		}
+		return v.CacheHttpHeaders
+	}).(pulumi.StringArrayOutput)
+}
+
+// parameter that lets browsers get access to selected resources from a domain different to a domain from which the request is received.
+func (o GetCdnResourceOptionsPtrOutput) Cors() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Cors
+	}).(pulumi.StringArrayOutput)
+}
+
+// custom value for the Host header. Your server must be able to process requests with the chosen header.
+func (o GetCdnResourceOptionsPtrOutput) CustomHostHeader() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.CustomHostHeader
+	}).(pulumi.StringPtrOutput)
+}
+
+// wildcard additional CNAME. If a resource has a wildcard additional CNAME, you can use your own certificate for content delivery via HTTPS. Read-only.
+func (o GetCdnResourceOptionsPtrOutput) CustomServerName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.CustomServerName
+	}).(pulumi.StringPtrOutput)
+}
+
+// setup a cache status.
+func (o GetCdnResourceOptionsPtrOutput) DisableCache() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.DisableCache
+	}).(pulumi.BoolPtrOutput)
+}
+
+// disabling proxy force ranges.
+func (o GetCdnResourceOptionsPtrOutput) DisableProxyForceRanges() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.DisableProxyForceRanges
+	}).(pulumi.BoolPtrOutput)
+}
+
+// content will be cached according to origin cache settings. The value applies for a response with codes 200, 201, 204, 206, 301, 302, 303, 304, 307, 308 if an origin server does not have caching HTTP headers. Responses with other codes will not be cached.
+func (o GetCdnResourceOptionsPtrOutput) EdgeCacheSettings() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.EdgeCacheSettings
+	}).(pulumi.IntPtrOutput)
+}
+
+// option helps you to reduce the bandwidth between origin and CDN servers. Also, content delivery speed becomes higher because of reducing the time for compressing files in a CDN.
+func (o GetCdnResourceOptionsPtrOutput) FetchedCompressed() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.FetchedCompressed
+	}).(pulumi.BoolPtrOutput)
+}
+
+// choose the Forward Host header option if is important to send in the request to the Origin the same Host header as was sent in the request to CDN server.
+func (o GetCdnResourceOptionsPtrOutput) ForwardHostHeader() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.ForwardHostHeader
+	}).(pulumi.BoolPtrOutput)
+}
+
+// GZip compression at CDN servers reduces file size by 70% and can be as high as 90%.
+func (o GetCdnResourceOptionsPtrOutput) GzipOn() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.GzipOn
+	}).(pulumi.BoolPtrOutput)
+}
+
+// set for ignoring cookie.
+func (o GetCdnResourceOptionsPtrOutput) IgnoreCookie() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.IgnoreCookie
+	}).(pulumi.BoolPtrOutput)
+}
+
+// files with different query parameters are cached as objects with the same key regardless of the parameter value. selected by default.
+func (o GetCdnResourceOptionsPtrOutput) IgnoreQueryParams() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.IgnoreQueryParams
+	}).(pulumi.BoolPtrOutput)
+}
+
+// allows caching for GET, HEAD and POST requests.
+func (o GetCdnResourceOptionsPtrOutput) ProxyCacheMethodsSet() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.ProxyCacheMethodsSet
+	}).(pulumi.BoolPtrOutput)
+}
+
+// files with the specified query parameters are cached as objects with the same key, files with other parameters are cached as objects with different keys.
+func (o GetCdnResourceOptionsPtrOutput) QueryParamsBlacklists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) []string {
+		if v == nil {
+			return nil
+		}
+		return v.QueryParamsBlacklists
+	}).(pulumi.StringArrayOutput)
+}
+
+// files with the specified query parameters are cached as objects with different keys, files with other parameters are cached as objects with the same key.
+func (o GetCdnResourceOptionsPtrOutput) QueryParamsWhitelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) []string {
+		if v == nil {
+			return nil
+		}
+		return v.QueryParamsWhitelists
+	}).(pulumi.StringArrayOutput)
+}
+
+// set up a redirect from HTTPS to HTTP.
+func (o GetCdnResourceOptionsPtrOutput) RedirectHttpToHttps() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.RedirectHttpToHttps
+	}).(pulumi.BoolPtrOutput)
+}
+
+// set up a redirect from HTTP to HTTPS.
+func (o GetCdnResourceOptionsPtrOutput) RedirectHttpsToHttp() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.RedirectHttpsToHttp
+	}).(pulumi.BoolPtrOutput)
+}
+
+// files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
+func (o GetCdnResourceOptionsPtrOutput) Slice() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.Slice
+	}).(pulumi.BoolPtrOutput)
+}
+
+// set up custom headers that CDN servers send in requests to origins.
+func (o GetCdnResourceOptionsPtrOutput) StaticRequestHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) []string {
+		if v == nil {
+			return nil
+		}
+		return v.StaticRequestHeaders
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o GetCdnResourceOptionsPtrOutput) StaticResponseHeaders() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetCdnResourceOptions) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.StaticResponseHeaders
+	}).(pulumi.StringMapOutput)
+}
+
+type GetCdnResourceSslCertificate struct {
+	CertificateManagerId *string `pulumi:"certificateManagerId"`
+	Status               string  `pulumi:"status"`
+	Type                 string  `pulumi:"type"`
+}
+
+// GetCdnResourceSslCertificateInput is an input type that accepts GetCdnResourceSslCertificateArgs and GetCdnResourceSslCertificateOutput values.
+// You can construct a concrete instance of `GetCdnResourceSslCertificateInput` via:
+//
+//	GetCdnResourceSslCertificateArgs{...}
+type GetCdnResourceSslCertificateInput interface {
+	pulumi.Input
+
+	ToGetCdnResourceSslCertificateOutput() GetCdnResourceSslCertificateOutput
+	ToGetCdnResourceSslCertificateOutputWithContext(context.Context) GetCdnResourceSslCertificateOutput
+}
+
+type GetCdnResourceSslCertificateArgs struct {
+	CertificateManagerId pulumi.StringPtrInput `pulumi:"certificateManagerId"`
+	Status               pulumi.StringInput    `pulumi:"status"`
+	Type                 pulumi.StringInput    `pulumi:"type"`
+}
+
+func (GetCdnResourceSslCertificateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCdnResourceSslCertificate)(nil)).Elem()
+}
+
+func (i GetCdnResourceSslCertificateArgs) ToGetCdnResourceSslCertificateOutput() GetCdnResourceSslCertificateOutput {
+	return i.ToGetCdnResourceSslCertificateOutputWithContext(context.Background())
+}
+
+func (i GetCdnResourceSslCertificateArgs) ToGetCdnResourceSslCertificateOutputWithContext(ctx context.Context) GetCdnResourceSslCertificateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCdnResourceSslCertificateOutput)
+}
+
+func (i GetCdnResourceSslCertificateArgs) ToGetCdnResourceSslCertificatePtrOutput() GetCdnResourceSslCertificatePtrOutput {
+	return i.ToGetCdnResourceSslCertificatePtrOutputWithContext(context.Background())
+}
+
+func (i GetCdnResourceSslCertificateArgs) ToGetCdnResourceSslCertificatePtrOutputWithContext(ctx context.Context) GetCdnResourceSslCertificatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCdnResourceSslCertificateOutput).ToGetCdnResourceSslCertificatePtrOutputWithContext(ctx)
+}
+
+// GetCdnResourceSslCertificatePtrInput is an input type that accepts GetCdnResourceSslCertificateArgs, GetCdnResourceSslCertificatePtr and GetCdnResourceSslCertificatePtrOutput values.
+// You can construct a concrete instance of `GetCdnResourceSslCertificatePtrInput` via:
+//
+//	        GetCdnResourceSslCertificateArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetCdnResourceSslCertificatePtrInput interface {
+	pulumi.Input
+
+	ToGetCdnResourceSslCertificatePtrOutput() GetCdnResourceSslCertificatePtrOutput
+	ToGetCdnResourceSslCertificatePtrOutputWithContext(context.Context) GetCdnResourceSslCertificatePtrOutput
+}
+
+type getCdnResourceSslCertificatePtrType GetCdnResourceSslCertificateArgs
+
+func GetCdnResourceSslCertificatePtr(v *GetCdnResourceSslCertificateArgs) GetCdnResourceSslCertificatePtrInput {
+	return (*getCdnResourceSslCertificatePtrType)(v)
+}
+
+func (*getCdnResourceSslCertificatePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetCdnResourceSslCertificate)(nil)).Elem()
+}
+
+func (i *getCdnResourceSslCertificatePtrType) ToGetCdnResourceSslCertificatePtrOutput() GetCdnResourceSslCertificatePtrOutput {
+	return i.ToGetCdnResourceSslCertificatePtrOutputWithContext(context.Background())
+}
+
+func (i *getCdnResourceSslCertificatePtrType) ToGetCdnResourceSslCertificatePtrOutputWithContext(ctx context.Context) GetCdnResourceSslCertificatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCdnResourceSslCertificatePtrOutput)
+}
+
+type GetCdnResourceSslCertificateOutput struct{ *pulumi.OutputState }
+
+func (GetCdnResourceSslCertificateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCdnResourceSslCertificate)(nil)).Elem()
+}
+
+func (o GetCdnResourceSslCertificateOutput) ToGetCdnResourceSslCertificateOutput() GetCdnResourceSslCertificateOutput {
+	return o
+}
+
+func (o GetCdnResourceSslCertificateOutput) ToGetCdnResourceSslCertificateOutputWithContext(ctx context.Context) GetCdnResourceSslCertificateOutput {
+	return o
+}
+
+func (o GetCdnResourceSslCertificateOutput) ToGetCdnResourceSslCertificatePtrOutput() GetCdnResourceSslCertificatePtrOutput {
+	return o.ToGetCdnResourceSslCertificatePtrOutputWithContext(context.Background())
+}
+
+func (o GetCdnResourceSslCertificateOutput) ToGetCdnResourceSslCertificatePtrOutputWithContext(ctx context.Context) GetCdnResourceSslCertificatePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetCdnResourceSslCertificate) *GetCdnResourceSslCertificate {
+		return &v
+	}).(GetCdnResourceSslCertificatePtrOutput)
+}
+
+func (o GetCdnResourceSslCertificateOutput) CertificateManagerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetCdnResourceSslCertificate) *string { return v.CertificateManagerId }).(pulumi.StringPtrOutput)
+}
+
+func (o GetCdnResourceSslCertificateOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCdnResourceSslCertificate) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o GetCdnResourceSslCertificateOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCdnResourceSslCertificate) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetCdnResourceSslCertificatePtrOutput struct{ *pulumi.OutputState }
+
+func (GetCdnResourceSslCertificatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetCdnResourceSslCertificate)(nil)).Elem()
+}
+
+func (o GetCdnResourceSslCertificatePtrOutput) ToGetCdnResourceSslCertificatePtrOutput() GetCdnResourceSslCertificatePtrOutput {
+	return o
+}
+
+func (o GetCdnResourceSslCertificatePtrOutput) ToGetCdnResourceSslCertificatePtrOutputWithContext(ctx context.Context) GetCdnResourceSslCertificatePtrOutput {
+	return o
+}
+
+func (o GetCdnResourceSslCertificatePtrOutput) Elem() GetCdnResourceSslCertificateOutput {
+	return o.ApplyT(func(v *GetCdnResourceSslCertificate) GetCdnResourceSslCertificate {
+		if v != nil {
+			return *v
+		}
+		var ret GetCdnResourceSslCertificate
+		return ret
+	}).(GetCdnResourceSslCertificateOutput)
+}
+
+func (o GetCdnResourceSslCertificatePtrOutput) CertificateManagerId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceSslCertificate) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CertificateManagerId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetCdnResourceSslCertificatePtrOutput) Status() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceSslCertificate) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Status
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetCdnResourceSslCertificatePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetCdnResourceSslCertificate) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type GetCmCertificateChallenge struct {
+	CreatedAt   string `pulumi:"createdAt"`
+	DnsName     string `pulumi:"dnsName"`
+	DnsType     string `pulumi:"dnsType"`
+	DnsValue    string `pulumi:"dnsValue"`
+	Domain      string `pulumi:"domain"`
+	HttpContent string `pulumi:"httpContent"`
+	HttpUrl     string `pulumi:"httpUrl"`
+	Message     string `pulumi:"message"`
+	Type        string `pulumi:"type"`
+	UpdatedAt   string `pulumi:"updatedAt"`
+}
+
+// GetCmCertificateChallengeInput is an input type that accepts GetCmCertificateChallengeArgs and GetCmCertificateChallengeOutput values.
+// You can construct a concrete instance of `GetCmCertificateChallengeInput` via:
+//
+//	GetCmCertificateChallengeArgs{...}
+type GetCmCertificateChallengeInput interface {
+	pulumi.Input
+
+	ToGetCmCertificateChallengeOutput() GetCmCertificateChallengeOutput
+	ToGetCmCertificateChallengeOutputWithContext(context.Context) GetCmCertificateChallengeOutput
+}
+
+type GetCmCertificateChallengeArgs struct {
+	CreatedAt   pulumi.StringInput `pulumi:"createdAt"`
+	DnsName     pulumi.StringInput `pulumi:"dnsName"`
+	DnsType     pulumi.StringInput `pulumi:"dnsType"`
+	DnsValue    pulumi.StringInput `pulumi:"dnsValue"`
+	Domain      pulumi.StringInput `pulumi:"domain"`
+	HttpContent pulumi.StringInput `pulumi:"httpContent"`
+	HttpUrl     pulumi.StringInput `pulumi:"httpUrl"`
+	Message     pulumi.StringInput `pulumi:"message"`
+	Type        pulumi.StringInput `pulumi:"type"`
+	UpdatedAt   pulumi.StringInput `pulumi:"updatedAt"`
+}
+
+func (GetCmCertificateChallengeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCmCertificateChallenge)(nil)).Elem()
+}
+
+func (i GetCmCertificateChallengeArgs) ToGetCmCertificateChallengeOutput() GetCmCertificateChallengeOutput {
+	return i.ToGetCmCertificateChallengeOutputWithContext(context.Background())
+}
+
+func (i GetCmCertificateChallengeArgs) ToGetCmCertificateChallengeOutputWithContext(ctx context.Context) GetCmCertificateChallengeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCmCertificateChallengeOutput)
+}
+
+// GetCmCertificateChallengeArrayInput is an input type that accepts GetCmCertificateChallengeArray and GetCmCertificateChallengeArrayOutput values.
+// You can construct a concrete instance of `GetCmCertificateChallengeArrayInput` via:
+//
+//	GetCmCertificateChallengeArray{ GetCmCertificateChallengeArgs{...} }
+type GetCmCertificateChallengeArrayInput interface {
+	pulumi.Input
+
+	ToGetCmCertificateChallengeArrayOutput() GetCmCertificateChallengeArrayOutput
+	ToGetCmCertificateChallengeArrayOutputWithContext(context.Context) GetCmCertificateChallengeArrayOutput
+}
+
+type GetCmCertificateChallengeArray []GetCmCertificateChallengeInput
+
+func (GetCmCertificateChallengeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCmCertificateChallenge)(nil)).Elem()
+}
+
+func (i GetCmCertificateChallengeArray) ToGetCmCertificateChallengeArrayOutput() GetCmCertificateChallengeArrayOutput {
+	return i.ToGetCmCertificateChallengeArrayOutputWithContext(context.Background())
+}
+
+func (i GetCmCertificateChallengeArray) ToGetCmCertificateChallengeArrayOutputWithContext(ctx context.Context) GetCmCertificateChallengeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCmCertificateChallengeArrayOutput)
+}
+
+type GetCmCertificateChallengeOutput struct{ *pulumi.OutputState }
+
+func (GetCmCertificateChallengeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCmCertificateChallenge)(nil)).Elem()
+}
+
+func (o GetCmCertificateChallengeOutput) ToGetCmCertificateChallengeOutput() GetCmCertificateChallengeOutput {
+	return o
+}
+
+func (o GetCmCertificateChallengeOutput) ToGetCmCertificateChallengeOutputWithContext(ctx context.Context) GetCmCertificateChallengeOutput {
+	return o
+}
+
+func (o GetCmCertificateChallengeOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCmCertificateChallenge) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o GetCmCertificateChallengeOutput) DnsName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCmCertificateChallenge) string { return v.DnsName }).(pulumi.StringOutput)
+}
+
+func (o GetCmCertificateChallengeOutput) DnsType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCmCertificateChallenge) string { return v.DnsType }).(pulumi.StringOutput)
+}
+
+func (o GetCmCertificateChallengeOutput) DnsValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCmCertificateChallenge) string { return v.DnsValue }).(pulumi.StringOutput)
+}
+
+func (o GetCmCertificateChallengeOutput) Domain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCmCertificateChallenge) string { return v.Domain }).(pulumi.StringOutput)
+}
+
+func (o GetCmCertificateChallengeOutput) HttpContent() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCmCertificateChallenge) string { return v.HttpContent }).(pulumi.StringOutput)
+}
+
+func (o GetCmCertificateChallengeOutput) HttpUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCmCertificateChallenge) string { return v.HttpUrl }).(pulumi.StringOutput)
+}
+
+func (o GetCmCertificateChallengeOutput) Message() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCmCertificateChallenge) string { return v.Message }).(pulumi.StringOutput)
+}
+
+func (o GetCmCertificateChallengeOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCmCertificateChallenge) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o GetCmCertificateChallengeOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCmCertificateChallenge) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+type GetCmCertificateChallengeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCmCertificateChallengeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCmCertificateChallenge)(nil)).Elem()
+}
+
+func (o GetCmCertificateChallengeArrayOutput) ToGetCmCertificateChallengeArrayOutput() GetCmCertificateChallengeArrayOutput {
+	return o
+}
+
+func (o GetCmCertificateChallengeArrayOutput) ToGetCmCertificateChallengeArrayOutputWithContext(ctx context.Context) GetCmCertificateChallengeArrayOutput {
+	return o
+}
+
+func (o GetCmCertificateChallengeArrayOutput) Index(i pulumi.IntInput) GetCmCertificateChallengeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCmCertificateChallenge {
+		return vs[0].([]GetCmCertificateChallenge)[vs[1].(int)]
+	}).(GetCmCertificateChallengeOutput)
+}
+
+type GetComputeDiskDiskPlacementPolicy struct {
+	DiskPlacementGroupId string `pulumi:"diskPlacementGroupId"`
+}
+
+// GetComputeDiskDiskPlacementPolicyInput is an input type that accepts GetComputeDiskDiskPlacementPolicyArgs and GetComputeDiskDiskPlacementPolicyOutput values.
+// You can construct a concrete instance of `GetComputeDiskDiskPlacementPolicyInput` via:
+//
+//	GetComputeDiskDiskPlacementPolicyArgs{...}
+type GetComputeDiskDiskPlacementPolicyInput interface {
+	pulumi.Input
+
+	ToGetComputeDiskDiskPlacementPolicyOutput() GetComputeDiskDiskPlacementPolicyOutput
+	ToGetComputeDiskDiskPlacementPolicyOutputWithContext(context.Context) GetComputeDiskDiskPlacementPolicyOutput
+}
+
+type GetComputeDiskDiskPlacementPolicyArgs struct {
+	DiskPlacementGroupId pulumi.StringInput `pulumi:"diskPlacementGroupId"`
+}
+
+func (GetComputeDiskDiskPlacementPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeDiskDiskPlacementPolicy)(nil)).Elem()
+}
+
+func (i GetComputeDiskDiskPlacementPolicyArgs) ToGetComputeDiskDiskPlacementPolicyOutput() GetComputeDiskDiskPlacementPolicyOutput {
+	return i.ToGetComputeDiskDiskPlacementPolicyOutputWithContext(context.Background())
+}
+
+func (i GetComputeDiskDiskPlacementPolicyArgs) ToGetComputeDiskDiskPlacementPolicyOutputWithContext(ctx context.Context) GetComputeDiskDiskPlacementPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeDiskDiskPlacementPolicyOutput)
+}
+
+func (i GetComputeDiskDiskPlacementPolicyArgs) ToGetComputeDiskDiskPlacementPolicyPtrOutput() GetComputeDiskDiskPlacementPolicyPtrOutput {
+	return i.ToGetComputeDiskDiskPlacementPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i GetComputeDiskDiskPlacementPolicyArgs) ToGetComputeDiskDiskPlacementPolicyPtrOutputWithContext(ctx context.Context) GetComputeDiskDiskPlacementPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeDiskDiskPlacementPolicyOutput).ToGetComputeDiskDiskPlacementPolicyPtrOutputWithContext(ctx)
+}
+
+// GetComputeDiskDiskPlacementPolicyPtrInput is an input type that accepts GetComputeDiskDiskPlacementPolicyArgs, GetComputeDiskDiskPlacementPolicyPtr and GetComputeDiskDiskPlacementPolicyPtrOutput values.
+// You can construct a concrete instance of `GetComputeDiskDiskPlacementPolicyPtrInput` via:
+//
+//	        GetComputeDiskDiskPlacementPolicyArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetComputeDiskDiskPlacementPolicyPtrInput interface {
+	pulumi.Input
+
+	ToGetComputeDiskDiskPlacementPolicyPtrOutput() GetComputeDiskDiskPlacementPolicyPtrOutput
+	ToGetComputeDiskDiskPlacementPolicyPtrOutputWithContext(context.Context) GetComputeDiskDiskPlacementPolicyPtrOutput
+}
+
+type getComputeDiskDiskPlacementPolicyPtrType GetComputeDiskDiskPlacementPolicyArgs
+
+func GetComputeDiskDiskPlacementPolicyPtr(v *GetComputeDiskDiskPlacementPolicyArgs) GetComputeDiskDiskPlacementPolicyPtrInput {
+	return (*getComputeDiskDiskPlacementPolicyPtrType)(v)
+}
+
+func (*getComputeDiskDiskPlacementPolicyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetComputeDiskDiskPlacementPolicy)(nil)).Elem()
+}
+
+func (i *getComputeDiskDiskPlacementPolicyPtrType) ToGetComputeDiskDiskPlacementPolicyPtrOutput() GetComputeDiskDiskPlacementPolicyPtrOutput {
+	return i.ToGetComputeDiskDiskPlacementPolicyPtrOutputWithContext(context.Background())
+}
+
+func (i *getComputeDiskDiskPlacementPolicyPtrType) ToGetComputeDiskDiskPlacementPolicyPtrOutputWithContext(ctx context.Context) GetComputeDiskDiskPlacementPolicyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeDiskDiskPlacementPolicyPtrOutput)
+}
+
+type GetComputeDiskDiskPlacementPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetComputeDiskDiskPlacementPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeDiskDiskPlacementPolicy)(nil)).Elem()
+}
+
+func (o GetComputeDiskDiskPlacementPolicyOutput) ToGetComputeDiskDiskPlacementPolicyOutput() GetComputeDiskDiskPlacementPolicyOutput {
+	return o
+}
+
+func (o GetComputeDiskDiskPlacementPolicyOutput) ToGetComputeDiskDiskPlacementPolicyOutputWithContext(ctx context.Context) GetComputeDiskDiskPlacementPolicyOutput {
+	return o
+}
+
+func (o GetComputeDiskDiskPlacementPolicyOutput) ToGetComputeDiskDiskPlacementPolicyPtrOutput() GetComputeDiskDiskPlacementPolicyPtrOutput {
+	return o.ToGetComputeDiskDiskPlacementPolicyPtrOutputWithContext(context.Background())
+}
+
+func (o GetComputeDiskDiskPlacementPolicyOutput) ToGetComputeDiskDiskPlacementPolicyPtrOutputWithContext(ctx context.Context) GetComputeDiskDiskPlacementPolicyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetComputeDiskDiskPlacementPolicy) *GetComputeDiskDiskPlacementPolicy {
+		return &v
+	}).(GetComputeDiskDiskPlacementPolicyPtrOutput)
+}
+
+func (o GetComputeDiskDiskPlacementPolicyOutput) DiskPlacementGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeDiskDiskPlacementPolicy) string { return v.DiskPlacementGroupId }).(pulumi.StringOutput)
+}
+
+type GetComputeDiskDiskPlacementPolicyPtrOutput struct{ *pulumi.OutputState }
+
+func (GetComputeDiskDiskPlacementPolicyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetComputeDiskDiskPlacementPolicy)(nil)).Elem()
+}
+
+func (o GetComputeDiskDiskPlacementPolicyPtrOutput) ToGetComputeDiskDiskPlacementPolicyPtrOutput() GetComputeDiskDiskPlacementPolicyPtrOutput {
+	return o
+}
+
+func (o GetComputeDiskDiskPlacementPolicyPtrOutput) ToGetComputeDiskDiskPlacementPolicyPtrOutputWithContext(ctx context.Context) GetComputeDiskDiskPlacementPolicyPtrOutput {
+	return o
+}
+
+func (o GetComputeDiskDiskPlacementPolicyPtrOutput) Elem() GetComputeDiskDiskPlacementPolicyOutput {
+	return o.ApplyT(func(v *GetComputeDiskDiskPlacementPolicy) GetComputeDiskDiskPlacementPolicy {
+		if v != nil {
+			return *v
+		}
+		var ret GetComputeDiskDiskPlacementPolicy
+		return ret
+	}).(GetComputeDiskDiskPlacementPolicyOutput)
+}
+
+func (o GetComputeDiskDiskPlacementPolicyPtrOutput) DiskPlacementGroupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetComputeDiskDiskPlacementPolicy) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.DiskPlacementGroupId
+	}).(pulumi.StringPtrOutput)
+}
+
+type GetComputeInstanceBootDisk struct {
+	// Specifies whether the disk is auto-deleted when the instance is deleted.
+	AutoDelete bool `pulumi:"autoDelete"`
+	// Name of the device.
+	DeviceName string `pulumi:"deviceName"`
+	// ID of the disk that is attached to the instance.
+	DiskId string `pulumi:"diskId"`
+	// Parameters used for creating a disk alongside the instance. The structure is documented below.
+	InitializeParams []GetComputeInstanceBootDiskInitializeParam `pulumi:"initializeParams"`
+	// Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+	Mode string `pulumi:"mode"`
+}
+
+// GetComputeInstanceBootDiskInput is an input type that accepts GetComputeInstanceBootDiskArgs and GetComputeInstanceBootDiskOutput values.
+// You can construct a concrete instance of `GetComputeInstanceBootDiskInput` via:
+//
+//	GetComputeInstanceBootDiskArgs{...}
+type GetComputeInstanceBootDiskInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceBootDiskOutput() GetComputeInstanceBootDiskOutput
+	ToGetComputeInstanceBootDiskOutputWithContext(context.Context) GetComputeInstanceBootDiskOutput
+}
+
+type GetComputeInstanceBootDiskArgs struct {
+	// Specifies whether the disk is auto-deleted when the instance is deleted.
+	AutoDelete pulumi.BoolInput `pulumi:"autoDelete"`
+	// Name of the device.
+	DeviceName pulumi.StringInput `pulumi:"deviceName"`
+	// ID of the disk that is attached to the instance.
+	DiskId pulumi.StringInput `pulumi:"diskId"`
+	// Parameters used for creating a disk alongside the instance. The structure is documented below.
+	InitializeParams GetComputeInstanceBootDiskInitializeParamArrayInput `pulumi:"initializeParams"`
+	// Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+	Mode pulumi.StringInput `pulumi:"mode"`
+}
+
+func (GetComputeInstanceBootDiskArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceBootDisk)(nil)).Elem()
+}
+
+func (i GetComputeInstanceBootDiskArgs) ToGetComputeInstanceBootDiskOutput() GetComputeInstanceBootDiskOutput {
+	return i.ToGetComputeInstanceBootDiskOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceBootDiskArgs) ToGetComputeInstanceBootDiskOutputWithContext(ctx context.Context) GetComputeInstanceBootDiskOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceBootDiskOutput)
+}
+
+// GetComputeInstanceBootDiskArrayInput is an input type that accepts GetComputeInstanceBootDiskArray and GetComputeInstanceBootDiskArrayOutput values.
+// You can construct a concrete instance of `GetComputeInstanceBootDiskArrayInput` via:
+//
+//	GetComputeInstanceBootDiskArray{ GetComputeInstanceBootDiskArgs{...} }
+type GetComputeInstanceBootDiskArrayInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceBootDiskArrayOutput() GetComputeInstanceBootDiskArrayOutput
+	ToGetComputeInstanceBootDiskArrayOutputWithContext(context.Context) GetComputeInstanceBootDiskArrayOutput
+}
+
+type GetComputeInstanceBootDiskArray []GetComputeInstanceBootDiskInput
+
+func (GetComputeInstanceBootDiskArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceBootDisk)(nil)).Elem()
+}
+
+func (i GetComputeInstanceBootDiskArray) ToGetComputeInstanceBootDiskArrayOutput() GetComputeInstanceBootDiskArrayOutput {
+	return i.ToGetComputeInstanceBootDiskArrayOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceBootDiskArray) ToGetComputeInstanceBootDiskArrayOutputWithContext(ctx context.Context) GetComputeInstanceBootDiskArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceBootDiskArrayOutput)
+}
+
+type GetComputeInstanceBootDiskOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceBootDiskOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceBootDisk)(nil)).Elem()
+}
+
+func (o GetComputeInstanceBootDiskOutput) ToGetComputeInstanceBootDiskOutput() GetComputeInstanceBootDiskOutput {
+	return o
+}
+
+func (o GetComputeInstanceBootDiskOutput) ToGetComputeInstanceBootDiskOutputWithContext(ctx context.Context) GetComputeInstanceBootDiskOutput {
+	return o
+}
+
+// Specifies whether the disk is auto-deleted when the instance is deleted.
+func (o GetComputeInstanceBootDiskOutput) AutoDelete() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetComputeInstanceBootDisk) bool { return v.AutoDelete }).(pulumi.BoolOutput)
+}
+
+// Name of the device.
+func (o GetComputeInstanceBootDiskOutput) DeviceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceBootDisk) string { return v.DeviceName }).(pulumi.StringOutput)
+}
+
+// ID of the disk that is attached to the instance.
+func (o GetComputeInstanceBootDiskOutput) DiskId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceBootDisk) string { return v.DiskId }).(pulumi.StringOutput)
+}
+
+// Parameters used for creating a disk alongside the instance. The structure is documented below.
+func (o GetComputeInstanceBootDiskOutput) InitializeParams() GetComputeInstanceBootDiskInitializeParamArrayOutput {
+	return o.ApplyT(func(v GetComputeInstanceBootDisk) []GetComputeInstanceBootDiskInitializeParam {
+		return v.InitializeParams
+	}).(GetComputeInstanceBootDiskInitializeParamArrayOutput)
+}
+
+// Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+func (o GetComputeInstanceBootDiskOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceBootDisk) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+type GetComputeInstanceBootDiskArrayOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceBootDiskArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceBootDisk)(nil)).Elem()
+}
+
+func (o GetComputeInstanceBootDiskArrayOutput) ToGetComputeInstanceBootDiskArrayOutput() GetComputeInstanceBootDiskArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceBootDiskArrayOutput) ToGetComputeInstanceBootDiskArrayOutputWithContext(ctx context.Context) GetComputeInstanceBootDiskArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceBootDiskArrayOutput) Index(i pulumi.IntInput) GetComputeInstanceBootDiskOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetComputeInstanceBootDisk {
+		return vs[0].([]GetComputeInstanceBootDisk)[vs[1].(int)]
+	}).(GetComputeInstanceBootDiskOutput)
+}
+
+type GetComputeInstanceBootDiskInitializeParam struct {
+	// The block size of the disk in bytes.
+	BlockSize int `pulumi:"blockSize"`
+	// Description of the boot disk.
+	Description string `pulumi:"description"`
+	// A disk image to initialize this disk from.
+	ImageId string `pulumi:"imageId"`
+	// Name of the instance.
+	Name string `pulumi:"name"`
+	// Size of the disk in GB.
+	Size int `pulumi:"size"`
+	// A snapshot to initialize this disk from.
+	SnapshotId string `pulumi:"snapshotId"`
+	// Disk type.
+	Type string `pulumi:"type"`
+}
+
+// GetComputeInstanceBootDiskInitializeParamInput is an input type that accepts GetComputeInstanceBootDiskInitializeParamArgs and GetComputeInstanceBootDiskInitializeParamOutput values.
+// You can construct a concrete instance of `GetComputeInstanceBootDiskInitializeParamInput` via:
+//
+//	GetComputeInstanceBootDiskInitializeParamArgs{...}
+type GetComputeInstanceBootDiskInitializeParamInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceBootDiskInitializeParamOutput() GetComputeInstanceBootDiskInitializeParamOutput
+	ToGetComputeInstanceBootDiskInitializeParamOutputWithContext(context.Context) GetComputeInstanceBootDiskInitializeParamOutput
+}
+
+type GetComputeInstanceBootDiskInitializeParamArgs struct {
+	// The block size of the disk in bytes.
+	BlockSize pulumi.IntInput `pulumi:"blockSize"`
+	// Description of the boot disk.
+	Description pulumi.StringInput `pulumi:"description"`
+	// A disk image to initialize this disk from.
+	ImageId pulumi.StringInput `pulumi:"imageId"`
+	// Name of the instance.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Size of the disk in GB.
+	Size pulumi.IntInput `pulumi:"size"`
+	// A snapshot to initialize this disk from.
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
+	// Disk type.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetComputeInstanceBootDiskInitializeParamArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceBootDiskInitializeParam)(nil)).Elem()
+}
+
+func (i GetComputeInstanceBootDiskInitializeParamArgs) ToGetComputeInstanceBootDiskInitializeParamOutput() GetComputeInstanceBootDiskInitializeParamOutput {
+	return i.ToGetComputeInstanceBootDiskInitializeParamOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceBootDiskInitializeParamArgs) ToGetComputeInstanceBootDiskInitializeParamOutputWithContext(ctx context.Context) GetComputeInstanceBootDiskInitializeParamOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceBootDiskInitializeParamOutput)
+}
+
+// GetComputeInstanceBootDiskInitializeParamArrayInput is an input type that accepts GetComputeInstanceBootDiskInitializeParamArray and GetComputeInstanceBootDiskInitializeParamArrayOutput values.
+// You can construct a concrete instance of `GetComputeInstanceBootDiskInitializeParamArrayInput` via:
+//
+//	GetComputeInstanceBootDiskInitializeParamArray{ GetComputeInstanceBootDiskInitializeParamArgs{...} }
+type GetComputeInstanceBootDiskInitializeParamArrayInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceBootDiskInitializeParamArrayOutput() GetComputeInstanceBootDiskInitializeParamArrayOutput
+	ToGetComputeInstanceBootDiskInitializeParamArrayOutputWithContext(context.Context) GetComputeInstanceBootDiskInitializeParamArrayOutput
+}
+
+type GetComputeInstanceBootDiskInitializeParamArray []GetComputeInstanceBootDiskInitializeParamInput
+
+func (GetComputeInstanceBootDiskInitializeParamArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceBootDiskInitializeParam)(nil)).Elem()
+}
+
+func (i GetComputeInstanceBootDiskInitializeParamArray) ToGetComputeInstanceBootDiskInitializeParamArrayOutput() GetComputeInstanceBootDiskInitializeParamArrayOutput {
+	return i.ToGetComputeInstanceBootDiskInitializeParamArrayOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceBootDiskInitializeParamArray) ToGetComputeInstanceBootDiskInitializeParamArrayOutputWithContext(ctx context.Context) GetComputeInstanceBootDiskInitializeParamArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceBootDiskInitializeParamArrayOutput)
+}
+
+type GetComputeInstanceBootDiskInitializeParamOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceBootDiskInitializeParamOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceBootDiskInitializeParam)(nil)).Elem()
+}
+
+func (o GetComputeInstanceBootDiskInitializeParamOutput) ToGetComputeInstanceBootDiskInitializeParamOutput() GetComputeInstanceBootDiskInitializeParamOutput {
+	return o
+}
+
+func (o GetComputeInstanceBootDiskInitializeParamOutput) ToGetComputeInstanceBootDiskInitializeParamOutputWithContext(ctx context.Context) GetComputeInstanceBootDiskInitializeParamOutput {
+	return o
+}
+
+// The block size of the disk in bytes.
+func (o GetComputeInstanceBootDiskInitializeParamOutput) BlockSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceBootDiskInitializeParam) int { return v.BlockSize }).(pulumi.IntOutput)
+}
+
+// Description of the boot disk.
+func (o GetComputeInstanceBootDiskInitializeParamOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceBootDiskInitializeParam) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// A disk image to initialize this disk from.
+func (o GetComputeInstanceBootDiskInitializeParamOutput) ImageId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceBootDiskInitializeParam) string { return v.ImageId }).(pulumi.StringOutput)
+}
+
+// Name of the instance.
+func (o GetComputeInstanceBootDiskInitializeParamOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceBootDiskInitializeParam) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Size of the disk in GB.
+func (o GetComputeInstanceBootDiskInitializeParamOutput) Size() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceBootDiskInitializeParam) int { return v.Size }).(pulumi.IntOutput)
+}
+
+// A snapshot to initialize this disk from.
+func (o GetComputeInstanceBootDiskInitializeParamOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceBootDiskInitializeParam) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// Disk type.
+func (o GetComputeInstanceBootDiskInitializeParamOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceBootDiskInitializeParam) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetComputeInstanceBootDiskInitializeParamArrayOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceBootDiskInitializeParamArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceBootDiskInitializeParam)(nil)).Elem()
+}
+
+func (o GetComputeInstanceBootDiskInitializeParamArrayOutput) ToGetComputeInstanceBootDiskInitializeParamArrayOutput() GetComputeInstanceBootDiskInitializeParamArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceBootDiskInitializeParamArrayOutput) ToGetComputeInstanceBootDiskInitializeParamArrayOutputWithContext(ctx context.Context) GetComputeInstanceBootDiskInitializeParamArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceBootDiskInitializeParamArrayOutput) Index(i pulumi.IntInput) GetComputeInstanceBootDiskInitializeParamOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetComputeInstanceBootDiskInitializeParam {
+		return vs[0].([]GetComputeInstanceBootDiskInitializeParam)[vs[1].(int)]
+	}).(GetComputeInstanceBootDiskInitializeParamOutput)
+}
+
+type GetComputeInstanceFilesystem struct {
+	// Name of the device.
+	DeviceName   string `pulumi:"deviceName"`
+	FilesystemId string `pulumi:"filesystemId"`
+	// Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+	Mode string `pulumi:"mode"`
+}
+
+// GetComputeInstanceFilesystemInput is an input type that accepts GetComputeInstanceFilesystemArgs and GetComputeInstanceFilesystemOutput values.
+// You can construct a concrete instance of `GetComputeInstanceFilesystemInput` via:
+//
+//	GetComputeInstanceFilesystemArgs{...}
+type GetComputeInstanceFilesystemInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceFilesystemOutput() GetComputeInstanceFilesystemOutput
+	ToGetComputeInstanceFilesystemOutputWithContext(context.Context) GetComputeInstanceFilesystemOutput
+}
+
+type GetComputeInstanceFilesystemArgs struct {
+	// Name of the device.
+	DeviceName   pulumi.StringInput `pulumi:"deviceName"`
+	FilesystemId pulumi.StringInput `pulumi:"filesystemId"`
+	// Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+	Mode pulumi.StringInput `pulumi:"mode"`
+}
+
+func (GetComputeInstanceFilesystemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceFilesystem)(nil)).Elem()
+}
+
+func (i GetComputeInstanceFilesystemArgs) ToGetComputeInstanceFilesystemOutput() GetComputeInstanceFilesystemOutput {
+	return i.ToGetComputeInstanceFilesystemOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceFilesystemArgs) ToGetComputeInstanceFilesystemOutputWithContext(ctx context.Context) GetComputeInstanceFilesystemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceFilesystemOutput)
+}
+
+// GetComputeInstanceFilesystemArrayInput is an input type that accepts GetComputeInstanceFilesystemArray and GetComputeInstanceFilesystemArrayOutput values.
+// You can construct a concrete instance of `GetComputeInstanceFilesystemArrayInput` via:
+//
+//	GetComputeInstanceFilesystemArray{ GetComputeInstanceFilesystemArgs{...} }
+type GetComputeInstanceFilesystemArrayInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceFilesystemArrayOutput() GetComputeInstanceFilesystemArrayOutput
+	ToGetComputeInstanceFilesystemArrayOutputWithContext(context.Context) GetComputeInstanceFilesystemArrayOutput
+}
+
+type GetComputeInstanceFilesystemArray []GetComputeInstanceFilesystemInput
+
+func (GetComputeInstanceFilesystemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceFilesystem)(nil)).Elem()
+}
+
+func (i GetComputeInstanceFilesystemArray) ToGetComputeInstanceFilesystemArrayOutput() GetComputeInstanceFilesystemArrayOutput {
+	return i.ToGetComputeInstanceFilesystemArrayOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceFilesystemArray) ToGetComputeInstanceFilesystemArrayOutputWithContext(ctx context.Context) GetComputeInstanceFilesystemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceFilesystemArrayOutput)
+}
+
+type GetComputeInstanceFilesystemOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceFilesystemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceFilesystem)(nil)).Elem()
+}
+
+func (o GetComputeInstanceFilesystemOutput) ToGetComputeInstanceFilesystemOutput() GetComputeInstanceFilesystemOutput {
+	return o
+}
+
+func (o GetComputeInstanceFilesystemOutput) ToGetComputeInstanceFilesystemOutputWithContext(ctx context.Context) GetComputeInstanceFilesystemOutput {
+	return o
+}
+
+// Name of the device.
+func (o GetComputeInstanceFilesystemOutput) DeviceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceFilesystem) string { return v.DeviceName }).(pulumi.StringOutput)
+}
+
+func (o GetComputeInstanceFilesystemOutput) FilesystemId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceFilesystem) string { return v.FilesystemId }).(pulumi.StringOutput)
+}
+
+// Access to the Disk resource. By default, a disk is attached in `READ_WRITE` mode.
+func (o GetComputeInstanceFilesystemOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceFilesystem) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+type GetComputeInstanceFilesystemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceFilesystemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceFilesystem)(nil)).Elem()
+}
+
+func (o GetComputeInstanceFilesystemArrayOutput) ToGetComputeInstanceFilesystemArrayOutput() GetComputeInstanceFilesystemArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceFilesystemArrayOutput) ToGetComputeInstanceFilesystemArrayOutputWithContext(ctx context.Context) GetComputeInstanceFilesystemArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceFilesystemArrayOutput) Index(i pulumi.IntInput) GetComputeInstanceFilesystemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetComputeInstanceFilesystem {
+		return vs[0].([]GetComputeInstanceFilesystem)[vs[1].(int)]
+	}).(GetComputeInstanceFilesystemOutput)
+}
+
+type GetComputeInstanceGroupAllocationPolicy struct {
+	// A list of availability zones.
+	Zones []string `pulumi:"zones"`
+}
+
+// GetComputeInstanceGroupAllocationPolicyInput is an input type that accepts GetComputeInstanceGroupAllocationPolicyArgs and GetComputeInstanceGroupAllocationPolicyOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupAllocationPolicyInput` via:
+//
+//	GetComputeInstanceGroupAllocationPolicyArgs{...}
+type GetComputeInstanceGroupAllocationPolicyInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupAllocationPolicyOutput() GetComputeInstanceGroupAllocationPolicyOutput
+	ToGetComputeInstanceGroupAllocationPolicyOutputWithContext(context.Context) GetComputeInstanceGroupAllocationPolicyOutput
+}
+
+type GetComputeInstanceGroupAllocationPolicyArgs struct {
+	// A list of availability zones.
+	Zones pulumi.StringArrayInput `pulumi:"zones"`
+}
+
+func (GetComputeInstanceGroupAllocationPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupAllocationPolicy)(nil)).Elem()
+}
+
+func (i GetComputeInstanceGroupAllocationPolicyArgs) ToGetComputeInstanceGroupAllocationPolicyOutput() GetComputeInstanceGroupAllocationPolicyOutput {
+	return i.ToGetComputeInstanceGroupAllocationPolicyOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupAllocationPolicyArgs) ToGetComputeInstanceGroupAllocationPolicyOutputWithContext(ctx context.Context) GetComputeInstanceGroupAllocationPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupAllocationPolicyOutput)
+}
+
+// GetComputeInstanceGroupAllocationPolicyArrayInput is an input type that accepts GetComputeInstanceGroupAllocationPolicyArray and GetComputeInstanceGroupAllocationPolicyArrayOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupAllocationPolicyArrayInput` via:
+//
+//	GetComputeInstanceGroupAllocationPolicyArray{ GetComputeInstanceGroupAllocationPolicyArgs{...} }
+type GetComputeInstanceGroupAllocationPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupAllocationPolicyArrayOutput() GetComputeInstanceGroupAllocationPolicyArrayOutput
+	ToGetComputeInstanceGroupAllocationPolicyArrayOutputWithContext(context.Context) GetComputeInstanceGroupAllocationPolicyArrayOutput
+}
+
+type GetComputeInstanceGroupAllocationPolicyArray []GetComputeInstanceGroupAllocationPolicyInput
+
+func (GetComputeInstanceGroupAllocationPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceGroupAllocationPolicy)(nil)).Elem()
+}
+
+func (i GetComputeInstanceGroupAllocationPolicyArray) ToGetComputeInstanceGroupAllocationPolicyArrayOutput() GetComputeInstanceGroupAllocationPolicyArrayOutput {
+	return i.ToGetComputeInstanceGroupAllocationPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupAllocationPolicyArray) ToGetComputeInstanceGroupAllocationPolicyArrayOutputWithContext(ctx context.Context) GetComputeInstanceGroupAllocationPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupAllocationPolicyArrayOutput)
+}
+
+type GetComputeInstanceGroupAllocationPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupAllocationPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupAllocationPolicy)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupAllocationPolicyOutput) ToGetComputeInstanceGroupAllocationPolicyOutput() GetComputeInstanceGroupAllocationPolicyOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupAllocationPolicyOutput) ToGetComputeInstanceGroupAllocationPolicyOutputWithContext(ctx context.Context) GetComputeInstanceGroupAllocationPolicyOutput {
+	return o
+}
+
+// A list of availability zones.
+func (o GetComputeInstanceGroupAllocationPolicyOutput) Zones() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupAllocationPolicy) []string { return v.Zones }).(pulumi.StringArrayOutput)
+}
+
+type GetComputeInstanceGroupAllocationPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupAllocationPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceGroupAllocationPolicy)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupAllocationPolicyArrayOutput) ToGetComputeInstanceGroupAllocationPolicyArrayOutput() GetComputeInstanceGroupAllocationPolicyArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupAllocationPolicyArrayOutput) ToGetComputeInstanceGroupAllocationPolicyArrayOutputWithContext(ctx context.Context) GetComputeInstanceGroupAllocationPolicyArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupAllocationPolicyArrayOutput) Index(i pulumi.IntInput) GetComputeInstanceGroupAllocationPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetComputeInstanceGroupAllocationPolicy {
+		return vs[0].([]GetComputeInstanceGroupAllocationPolicy)[vs[1].(int)]
+	}).(GetComputeInstanceGroupAllocationPolicyOutput)
+}
+
+type GetComputeInstanceGroupApplicationBalancerState struct {
+	// The status message of the target group.
+	StatusMessage string `pulumi:"statusMessage"`
+	// The ID of the target group.
+	TargetGroupId string `pulumi:"targetGroupId"`
+}
+
+// GetComputeInstanceGroupApplicationBalancerStateInput is an input type that accepts GetComputeInstanceGroupApplicationBalancerStateArgs and GetComputeInstanceGroupApplicationBalancerStateOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupApplicationBalancerStateInput` via:
+//
+//	GetComputeInstanceGroupApplicationBalancerStateArgs{...}
+type GetComputeInstanceGroupApplicationBalancerStateInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupApplicationBalancerStateOutput() GetComputeInstanceGroupApplicationBalancerStateOutput
+	ToGetComputeInstanceGroupApplicationBalancerStateOutputWithContext(context.Context) GetComputeInstanceGroupApplicationBalancerStateOutput
+}
+
+type GetComputeInstanceGroupApplicationBalancerStateArgs struct {
+	// The status message of the target group.
+	StatusMessage pulumi.StringInput `pulumi:"statusMessage"`
+	// The ID of the target group.
+	TargetGroupId pulumi.StringInput `pulumi:"targetGroupId"`
+}
+
+func (GetComputeInstanceGroupApplicationBalancerStateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupApplicationBalancerState)(nil)).Elem()
+}
+
+func (i GetComputeInstanceGroupApplicationBalancerStateArgs) ToGetComputeInstanceGroupApplicationBalancerStateOutput() GetComputeInstanceGroupApplicationBalancerStateOutput {
+	return i.ToGetComputeInstanceGroupApplicationBalancerStateOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupApplicationBalancerStateArgs) ToGetComputeInstanceGroupApplicationBalancerStateOutputWithContext(ctx context.Context) GetComputeInstanceGroupApplicationBalancerStateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupApplicationBalancerStateOutput)
+}
+
+// GetComputeInstanceGroupApplicationBalancerStateArrayInput is an input type that accepts GetComputeInstanceGroupApplicationBalancerStateArray and GetComputeInstanceGroupApplicationBalancerStateArrayOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupApplicationBalancerStateArrayInput` via:
+//
+//	GetComputeInstanceGroupApplicationBalancerStateArray{ GetComputeInstanceGroupApplicationBalancerStateArgs{...} }
+type GetComputeInstanceGroupApplicationBalancerStateArrayInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupApplicationBalancerStateArrayOutput() GetComputeInstanceGroupApplicationBalancerStateArrayOutput
+	ToGetComputeInstanceGroupApplicationBalancerStateArrayOutputWithContext(context.Context) GetComputeInstanceGroupApplicationBalancerStateArrayOutput
+}
+
+type GetComputeInstanceGroupApplicationBalancerStateArray []GetComputeInstanceGroupApplicationBalancerStateInput
+
+func (GetComputeInstanceGroupApplicationBalancerStateArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceGroupApplicationBalancerState)(nil)).Elem()
+}
+
+func (i GetComputeInstanceGroupApplicationBalancerStateArray) ToGetComputeInstanceGroupApplicationBalancerStateArrayOutput() GetComputeInstanceGroupApplicationBalancerStateArrayOutput {
+	return i.ToGetComputeInstanceGroupApplicationBalancerStateArrayOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupApplicationBalancerStateArray) ToGetComputeInstanceGroupApplicationBalancerStateArrayOutputWithContext(ctx context.Context) GetComputeInstanceGroupApplicationBalancerStateArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupApplicationBalancerStateArrayOutput)
+}
+
+type GetComputeInstanceGroupApplicationBalancerStateOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupApplicationBalancerStateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupApplicationBalancerState)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupApplicationBalancerStateOutput) ToGetComputeInstanceGroupApplicationBalancerStateOutput() GetComputeInstanceGroupApplicationBalancerStateOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupApplicationBalancerStateOutput) ToGetComputeInstanceGroupApplicationBalancerStateOutputWithContext(ctx context.Context) GetComputeInstanceGroupApplicationBalancerStateOutput {
+	return o
+}
+
+// The status message of the target group.
+func (o GetComputeInstanceGroupApplicationBalancerStateOutput) StatusMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupApplicationBalancerState) string { return v.StatusMessage }).(pulumi.StringOutput)
+}
+
+// The ID of the target group.
+func (o GetComputeInstanceGroupApplicationBalancerStateOutput) TargetGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupApplicationBalancerState) string { return v.TargetGroupId }).(pulumi.StringOutput)
+}
+
+type GetComputeInstanceGroupApplicationBalancerStateArrayOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupApplicationBalancerStateArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceGroupApplicationBalancerState)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupApplicationBalancerStateArrayOutput) ToGetComputeInstanceGroupApplicationBalancerStateArrayOutput() GetComputeInstanceGroupApplicationBalancerStateArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupApplicationBalancerStateArrayOutput) ToGetComputeInstanceGroupApplicationBalancerStateArrayOutputWithContext(ctx context.Context) GetComputeInstanceGroupApplicationBalancerStateArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupApplicationBalancerStateArrayOutput) Index(i pulumi.IntInput) GetComputeInstanceGroupApplicationBalancerStateOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetComputeInstanceGroupApplicationBalancerState {
+		return vs[0].([]GetComputeInstanceGroupApplicationBalancerState)[vs[1].(int)]
+	}).(GetComputeInstanceGroupApplicationBalancerStateOutput)
+}
+
+type GetComputeInstanceGroupApplicationLoadBalancer struct {
+	// Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+	MaxOpeningTrafficDuration int `pulumi:"maxOpeningTrafficDuration"`
+	// The status message of the target group.
+	StatusMessage string `pulumi:"statusMessage"`
+	// A description of the target group.
+	TargetGroupDescription string `pulumi:"targetGroupDescription"`
+	// The ID of the target group.
+	TargetGroupId string `pulumi:"targetGroupId"`
+	// A set of key/value label pairs.
+	TargetGroupLabels map[string]string `pulumi:"targetGroupLabels"`
+	// The name of the target group.
+	TargetGroupName string `pulumi:"targetGroupName"`
+}
+
+// GetComputeInstanceGroupApplicationLoadBalancerInput is an input type that accepts GetComputeInstanceGroupApplicationLoadBalancerArgs and GetComputeInstanceGroupApplicationLoadBalancerOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupApplicationLoadBalancerInput` via:
+//
+//	GetComputeInstanceGroupApplicationLoadBalancerArgs{...}
+type GetComputeInstanceGroupApplicationLoadBalancerInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupApplicationLoadBalancerOutput() GetComputeInstanceGroupApplicationLoadBalancerOutput
+	ToGetComputeInstanceGroupApplicationLoadBalancerOutputWithContext(context.Context) GetComputeInstanceGroupApplicationLoadBalancerOutput
+}
+
+type GetComputeInstanceGroupApplicationLoadBalancerArgs struct {
+	// Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+	MaxOpeningTrafficDuration pulumi.IntInput `pulumi:"maxOpeningTrafficDuration"`
+	// The status message of the target group.
+	StatusMessage pulumi.StringInput `pulumi:"statusMessage"`
+	// A description of the target group.
+	TargetGroupDescription pulumi.StringInput `pulumi:"targetGroupDescription"`
+	// The ID of the target group.
+	TargetGroupId pulumi.StringInput `pulumi:"targetGroupId"`
+	// A set of key/value label pairs.
+	TargetGroupLabels pulumi.StringMapInput `pulumi:"targetGroupLabels"`
+	// The name of the target group.
+	TargetGroupName pulumi.StringInput `pulumi:"targetGroupName"`
+}
+
+func (GetComputeInstanceGroupApplicationLoadBalancerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupApplicationLoadBalancer)(nil)).Elem()
+}
+
+func (i GetComputeInstanceGroupApplicationLoadBalancerArgs) ToGetComputeInstanceGroupApplicationLoadBalancerOutput() GetComputeInstanceGroupApplicationLoadBalancerOutput {
+	return i.ToGetComputeInstanceGroupApplicationLoadBalancerOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupApplicationLoadBalancerArgs) ToGetComputeInstanceGroupApplicationLoadBalancerOutputWithContext(ctx context.Context) GetComputeInstanceGroupApplicationLoadBalancerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupApplicationLoadBalancerOutput)
+}
+
+// GetComputeInstanceGroupApplicationLoadBalancerArrayInput is an input type that accepts GetComputeInstanceGroupApplicationLoadBalancerArray and GetComputeInstanceGroupApplicationLoadBalancerArrayOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupApplicationLoadBalancerArrayInput` via:
+//
+//	GetComputeInstanceGroupApplicationLoadBalancerArray{ GetComputeInstanceGroupApplicationLoadBalancerArgs{...} }
+type GetComputeInstanceGroupApplicationLoadBalancerArrayInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupApplicationLoadBalancerArrayOutput() GetComputeInstanceGroupApplicationLoadBalancerArrayOutput
+	ToGetComputeInstanceGroupApplicationLoadBalancerArrayOutputWithContext(context.Context) GetComputeInstanceGroupApplicationLoadBalancerArrayOutput
+}
+
+type GetComputeInstanceGroupApplicationLoadBalancerArray []GetComputeInstanceGroupApplicationLoadBalancerInput
+
+func (GetComputeInstanceGroupApplicationLoadBalancerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceGroupApplicationLoadBalancer)(nil)).Elem()
+}
+
+func (i GetComputeInstanceGroupApplicationLoadBalancerArray) ToGetComputeInstanceGroupApplicationLoadBalancerArrayOutput() GetComputeInstanceGroupApplicationLoadBalancerArrayOutput {
+	return i.ToGetComputeInstanceGroupApplicationLoadBalancerArrayOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupApplicationLoadBalancerArray) ToGetComputeInstanceGroupApplicationLoadBalancerArrayOutputWithContext(ctx context.Context) GetComputeInstanceGroupApplicationLoadBalancerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupApplicationLoadBalancerArrayOutput)
+}
+
+type GetComputeInstanceGroupApplicationLoadBalancerOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupApplicationLoadBalancerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupApplicationLoadBalancer)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupApplicationLoadBalancerOutput) ToGetComputeInstanceGroupApplicationLoadBalancerOutput() GetComputeInstanceGroupApplicationLoadBalancerOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupApplicationLoadBalancerOutput) ToGetComputeInstanceGroupApplicationLoadBalancerOutputWithContext(ctx context.Context) GetComputeInstanceGroupApplicationLoadBalancerOutput {
+	return o
+}
+
+// Timeout for waiting for the VM to be checked by the load balancer. If the timeout is exceeded, the VM will be turned off based on the deployment policy. Specified in seconds.
+func (o GetComputeInstanceGroupApplicationLoadBalancerOutput) MaxOpeningTrafficDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupApplicationLoadBalancer) int { return v.MaxOpeningTrafficDuration }).(pulumi.IntOutput)
+}
+
+// The status message of the target group.
+func (o GetComputeInstanceGroupApplicationLoadBalancerOutput) StatusMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupApplicationLoadBalancer) string { return v.StatusMessage }).(pulumi.StringOutput)
+}
+
+// A description of the target group.
+func (o GetComputeInstanceGroupApplicationLoadBalancerOutput) TargetGroupDescription() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupApplicationLoadBalancer) string { return v.TargetGroupDescription }).(pulumi.StringOutput)
+}
+
+// The ID of the target group.
+func (o GetComputeInstanceGroupApplicationLoadBalancerOutput) TargetGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupApplicationLoadBalancer) string { return v.TargetGroupId }).(pulumi.StringOutput)
+}
+
+// A set of key/value label pairs.
+func (o GetComputeInstanceGroupApplicationLoadBalancerOutput) TargetGroupLabels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupApplicationLoadBalancer) map[string]string { return v.TargetGroupLabels }).(pulumi.StringMapOutput)
+}
+
+// The name of the target group.
+func (o GetComputeInstanceGroupApplicationLoadBalancerOutput) TargetGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupApplicationLoadBalancer) string { return v.TargetGroupName }).(pulumi.StringOutput)
+}
+
+type GetComputeInstanceGroupApplicationLoadBalancerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupApplicationLoadBalancerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceGroupApplicationLoadBalancer)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupApplicationLoadBalancerArrayOutput) ToGetComputeInstanceGroupApplicationLoadBalancerArrayOutput() GetComputeInstanceGroupApplicationLoadBalancerArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupApplicationLoadBalancerArrayOutput) ToGetComputeInstanceGroupApplicationLoadBalancerArrayOutputWithContext(ctx context.Context) GetComputeInstanceGroupApplicationLoadBalancerArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupApplicationLoadBalancerArrayOutput) Index(i pulumi.IntInput) GetComputeInstanceGroupApplicationLoadBalancerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetComputeInstanceGroupApplicationLoadBalancer {
+		return vs[0].([]GetComputeInstanceGroupApplicationLoadBalancer)[vs[1].(int)]
+	}).(GetComputeInstanceGroupApplicationLoadBalancerOutput)
+}
+
+type GetComputeInstanceGroupDeployPolicy struct {
+	// The maximum number of instances that can be created at the same time.
+	MaxCreating int `pulumi:"maxCreating"`
+	// The maximum number of instances that can be deleted at the same time.
+	MaxDeleting int `pulumi:"maxDeleting"`
+	// The maximum number of instances that can be temporarily allocated above the group's target size during the update process.
+	MaxExpansion int `pulumi:"maxExpansion"`
+	// The maximum number of running instances that can be taken offline (stopped or deleted) at the same time
+	// during the update process.
+	MaxUnavailable int `pulumi:"maxUnavailable"`
+	// The amount of time in seconds to allow for an instance to start.
+	StartupDuration int `pulumi:"startupDuration"`
+	// Affects the lifecycle of the instance during deployment. If set to `proactive` (default), Instance Groups
+	// can forcefully stop a running instance. If `opportunistic`, Instance Groups does not stop a running instance. Instead,
+	// it will wait until the instance stops itself or becomes unhealthy.
+	Strategy string `pulumi:"strategy"`
+}
+
+// GetComputeInstanceGroupDeployPolicyInput is an input type that accepts GetComputeInstanceGroupDeployPolicyArgs and GetComputeInstanceGroupDeployPolicyOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupDeployPolicyInput` via:
+//
+//	GetComputeInstanceGroupDeployPolicyArgs{...}
+type GetComputeInstanceGroupDeployPolicyInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupDeployPolicyOutput() GetComputeInstanceGroupDeployPolicyOutput
+	ToGetComputeInstanceGroupDeployPolicyOutputWithContext(context.Context) GetComputeInstanceGroupDeployPolicyOutput
+}
+
+type GetComputeInstanceGroupDeployPolicyArgs struct {
+	// The maximum number of instances that can be created at the same time.
+	MaxCreating pulumi.IntInput `pulumi:"maxCreating"`
+	// The maximum number of instances that can be deleted at the same time.
+	MaxDeleting pulumi.IntInput `pulumi:"maxDeleting"`
+	// The maximum number of instances that can be temporarily allocated above the group's target size during the update process.
+	MaxExpansion pulumi.IntInput `pulumi:"maxExpansion"`
+	// The maximum number of running instances that can be taken offline (stopped or deleted) at the same time
+	// during the update process.
+	MaxUnavailable pulumi.IntInput `pulumi:"maxUnavailable"`
+	// The amount of time in seconds to allow for an instance to start.
+	StartupDuration pulumi.IntInput `pulumi:"startupDuration"`
+	// Affects the lifecycle of the instance during deployment. If set to `proactive` (default), Instance Groups
+	// can forcefully stop a running instance. If `opportunistic`, Instance Groups does not stop a running instance. Instead,
+	// it will wait until the instance stops itself or becomes unhealthy.
+	Strategy pulumi.StringInput `pulumi:"strategy"`
+}
+
+func (GetComputeInstanceGroupDeployPolicyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupDeployPolicy)(nil)).Elem()
+}
+
+func (i GetComputeInstanceGroupDeployPolicyArgs) ToGetComputeInstanceGroupDeployPolicyOutput() GetComputeInstanceGroupDeployPolicyOutput {
+	return i.ToGetComputeInstanceGroupDeployPolicyOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupDeployPolicyArgs) ToGetComputeInstanceGroupDeployPolicyOutputWithContext(ctx context.Context) GetComputeInstanceGroupDeployPolicyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupDeployPolicyOutput)
+}
+
+// GetComputeInstanceGroupDeployPolicyArrayInput is an input type that accepts GetComputeInstanceGroupDeployPolicyArray and GetComputeInstanceGroupDeployPolicyArrayOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupDeployPolicyArrayInput` via:
+//
+//	GetComputeInstanceGroupDeployPolicyArray{ GetComputeInstanceGroupDeployPolicyArgs{...} }
+type GetComputeInstanceGroupDeployPolicyArrayInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupDeployPolicyArrayOutput() GetComputeInstanceGroupDeployPolicyArrayOutput
+	ToGetComputeInstanceGroupDeployPolicyArrayOutputWithContext(context.Context) GetComputeInstanceGroupDeployPolicyArrayOutput
+}
+
+type GetComputeInstanceGroupDeployPolicyArray []GetComputeInstanceGroupDeployPolicyInput
+
+func (GetComputeInstanceGroupDeployPolicyArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceGroupDeployPolicy)(nil)).Elem()
+}
+
+func (i GetComputeInstanceGroupDeployPolicyArray) ToGetComputeInstanceGroupDeployPolicyArrayOutput() GetComputeInstanceGroupDeployPolicyArrayOutput {
+	return i.ToGetComputeInstanceGroupDeployPolicyArrayOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupDeployPolicyArray) ToGetComputeInstanceGroupDeployPolicyArrayOutputWithContext(ctx context.Context) GetComputeInstanceGroupDeployPolicyArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupDeployPolicyArrayOutput)
+}
+
+type GetComputeInstanceGroupDeployPolicyOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupDeployPolicyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupDeployPolicy)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupDeployPolicyOutput) ToGetComputeInstanceGroupDeployPolicyOutput() GetComputeInstanceGroupDeployPolicyOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupDeployPolicyOutput) ToGetComputeInstanceGroupDeployPolicyOutputWithContext(ctx context.Context) GetComputeInstanceGroupDeployPolicyOutput {
+	return o
+}
+
+// The maximum number of instances that can be created at the same time.
+func (o GetComputeInstanceGroupDeployPolicyOutput) MaxCreating() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupDeployPolicy) int { return v.MaxCreating }).(pulumi.IntOutput)
+}
+
+// The maximum number of instances that can be deleted at the same time.
+func (o GetComputeInstanceGroupDeployPolicyOutput) MaxDeleting() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupDeployPolicy) int { return v.MaxDeleting }).(pulumi.IntOutput)
+}
+
+// The maximum number of instances that can be temporarily allocated above the group's target size during the update process.
+func (o GetComputeInstanceGroupDeployPolicyOutput) MaxExpansion() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupDeployPolicy) int { return v.MaxExpansion }).(pulumi.IntOutput)
+}
+
+// The maximum number of running instances that can be taken offline (stopped or deleted) at the same time
+// during the update process.
+func (o GetComputeInstanceGroupDeployPolicyOutput) MaxUnavailable() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupDeployPolicy) int { return v.MaxUnavailable }).(pulumi.IntOutput)
+}
+
+// The amount of time in seconds to allow for an instance to start.
+func (o GetComputeInstanceGroupDeployPolicyOutput) StartupDuration() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupDeployPolicy) int { return v.StartupDuration }).(pulumi.IntOutput)
+}
+
+// Affects the lifecycle of the instance during deployment. If set to `proactive` (default), Instance Groups
+// can forcefully stop a running instance. If `opportunistic`, Instance Groups does not stop a running instance. Instead,
+// it will wait until the instance stops itself or becomes unhealthy.
+func (o GetComputeInstanceGroupDeployPolicyOutput) Strategy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupDeployPolicy) string { return v.Strategy }).(pulumi.StringOutput)
+}
+
+type GetComputeInstanceGroupDeployPolicyArrayOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupDeployPolicyArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceGroupDeployPolicy)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupDeployPolicyArrayOutput) ToGetComputeInstanceGroupDeployPolicyArrayOutput() GetComputeInstanceGroupDeployPolicyArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupDeployPolicyArrayOutput) ToGetComputeInstanceGroupDeployPolicyArrayOutputWithContext(ctx context.Context) GetComputeInstanceGroupDeployPolicyArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupDeployPolicyArrayOutput) Index(i pulumi.IntInput) GetComputeInstanceGroupDeployPolicyOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetComputeInstanceGroupDeployPolicy {
+		return vs[0].([]GetComputeInstanceGroupDeployPolicy)[vs[1].(int)]
+	}).(GetComputeInstanceGroupDeployPolicyOutput)
+}
+
+type GetComputeInstanceGroupHealthCheck struct {
+	// The number of successful health checks before the managed instance is declared healthy.
+	HealthyThreshold int `pulumi:"healthyThreshold"`
+	// HTTP check options. The structure is documented below.
+	HttpOptions []GetComputeInstanceGroupHealthCheckHttpOption `pulumi:"httpOptions"`
+	// The interval between health checks in seconds.
+	Interval int `pulumi:"interval"`
+	// TCP check options. The structure is documented below.
+	TcpOptions []GetComputeInstanceGroupHealthCheckTcpOption `pulumi:"tcpOptions"`
+	// Timeout for the managed instance to return a response for the health check in seconds.
+	Timeout int `pulumi:"timeout"`
+	// The number of failed health checks before the managed instance is declared unhealthy.
+	UnhealthyThreshold int `pulumi:"unhealthyThreshold"`
+}
+
+// GetComputeInstanceGroupHealthCheckInput is an input type that accepts GetComputeInstanceGroupHealthCheckArgs and GetComputeInstanceGroupHealthCheckOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupHealthCheckInput` via:
+//
+//	GetComputeInstanceGroupHealthCheckArgs{...}
+type GetComputeInstanceGroupHealthCheckInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupHealthCheckOutput() GetComputeInstanceGroupHealthCheckOutput
+	ToGetComputeInstanceGroupHealthCheckOutputWithContext(context.Context) GetComputeInstanceGroupHealthCheckOutput
+}
+
+type GetComputeInstanceGroupHealthCheckArgs struct {
+	// The number of successful health checks before the managed instance is declared healthy.
+	HealthyThreshold pulumi.IntInput `pulumi:"healthyThreshold"`
+	// HTTP check options. The structure is documented below.
+	HttpOptions GetComputeInstanceGroupHealthCheckHttpOptionArrayInput `pulumi:"httpOptions"`
+	// The interval between health checks in seconds.
+	Interval pulumi.IntInput `pulumi:"interval"`
+	// TCP check options. The structure is documented below.
+	TcpOptions GetComputeInstanceGroupHealthCheckTcpOptionArrayInput `pulumi:"tcpOptions"`
+	// Timeout for the managed instance to return a response for the health check in seconds.
+	Timeout pulumi.IntInput `pulumi:"timeout"`
+	// The number of failed health checks before the managed instance is declared unhealthy.
+	UnhealthyThreshold pulumi.IntInput `pulumi:"unhealthyThreshold"`
+}
+
+func (GetComputeInstanceGroupHealthCheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupHealthCheck)(nil)).Elem()
+}
+
+func (i GetComputeInstanceGroupHealthCheckArgs) ToGetComputeInstanceGroupHealthCheckOutput() GetComputeInstanceGroupHealthCheckOutput {
+	return i.ToGetComputeInstanceGroupHealthCheckOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupHealthCheckArgs) ToGetComputeInstanceGroupHealthCheckOutputWithContext(ctx context.Context) GetComputeInstanceGroupHealthCheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupHealthCheckOutput)
+}
+
+// GetComputeInstanceGroupHealthCheckArrayInput is an input type that accepts GetComputeInstanceGroupHealthCheckArray and GetComputeInstanceGroupHealthCheckArrayOutput values.
+// You can construct a concrete instance of `GetComputeInstanceGroupHealthCheckArrayInput` via:
+//
+//	GetComputeInstanceGroupHealthCheckArray{ GetComputeInstanceGroupHealthCheckArgs{...} }
+type GetComputeInstanceGroupHealthCheckArrayInput interface {
+	pulumi.Input
+
+	ToGetComputeInstanceGroupHealthCheckArrayOutput() GetComputeInstanceGroupHealthCheckArrayOutput
+	ToGetComputeInstanceGroupHealthCheckArrayOutputWithContext(context.Context) GetComputeInstanceGroupHealthCheckArrayOutput
+}
+
+type GetComputeInstanceGroupHealthCheckArray []GetComputeInstanceGroupHealthCheckInput
+
+func (GetComputeInstanceGroupHealthCheckArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceGroupHealthCheck)(nil)).Elem()
+}
+
+func (i GetComputeInstanceGroupHealthCheckArray) ToGetComputeInstanceGroupHealthCheckArrayOutput() GetComputeInstanceGroupHealthCheckArrayOutput {
+	return i.ToGetComputeInstanceGroupHealthCheckArrayOutputWithContext(context.Background())
+}
+
+func (i GetComputeInstanceGroupHealthCheckArray) ToGetComputeInstanceGroupHealthCheckArrayOutputWithContext(ctx context.Context) GetComputeInstanceGroupHealthCheckArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetComputeInstanceGroupHealthCheckArrayOutput)
+}
+
+type GetComputeInstanceGroupHealthCheckOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupHealthCheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetComputeInstanceGroupHealthCheck)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupHealthCheckOutput) ToGetComputeInstanceGroupHealthCheckOutput() GetComputeInstanceGroupHealthCheckOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupHealthCheckOutput) ToGetComputeInstanceGroupHealthCheckOutputWithContext(ctx context.Context) GetComputeInstanceGroupHealthCheckOutput {
+	return o
+}
+
+// The number of successful health checks before the managed instance is declared healthy.
+func (o GetComputeInstanceGroupHealthCheckOutput) HealthyThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupHealthCheck) int { return v.HealthyThreshold }).(pulumi.IntOutput)
+}
+
+// HTTP check options. The structure is documented below.
+func (o GetComputeInstanceGroupHealthCheckOutput) HttpOptions() GetComputeInstanceGroupHealthCheckHttpOptionArrayOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupHealthCheck) []GetComputeInstanceGroupHealthCheckHttpOption {
+		return v.HttpOptions
+	}).(GetComputeInstanceGroupHealthCheckHttpOptionArrayOutput)
+}
+
+// The interval between health checks in seconds.
+func (o GetComputeInstanceGroupHealthCheckOutput) Interval() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupHealthCheck) int { return v.Interval }).(pulumi.IntOutput)
+}
+
+// TCP check options. The structure is documented below.
+func (o GetComputeInstanceGroupHealthCheckOutput) TcpOptions() GetComputeInstanceGroupHealthCheckTcpOptionArrayOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupHealthCheck) []GetComputeInstanceGroupHealthCheckTcpOption {
+		return v.TcpOptions
+	}).(GetComputeInstanceGroupHealthCheckTcpOptionArrayOutput)
+}
+
+// Timeout for the managed instance to return a response for the health check in seconds.
+func (o GetComputeInstanceGroupHealthCheckOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupHealthCheck) int { return v.Timeout }).(pulumi.IntOutput)
+}
+
+// The number of failed health checks before the managed instance is declared unhealthy.
+func (o GetComputeInstanceGroupHealthCheckOutput) UnhealthyThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetComputeInstanceGroupHealthCheck) int { return v.UnhealthyThreshold }).(pulumi.IntOutput)
+}
+
+type GetComputeInstanceGroupHealthCheckArrayOutput struct{ *pulumi.OutputState }
+
+func (GetComputeInstanceGroupHealthCheckArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetComputeInstanceGroupHealthCheck)(nil)).Elem()
+}
+
+func (o GetComputeInstanceGroupHealthCheckArrayOutput) ToGetComputeInstanceGroupHealthCheckArrayOutput() GetComputeInstanceGroupHealthCheckArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupHealthCheckArrayOutput) ToGetComputeInstanceGroupHealthCheckArrayOutputWithContext(ctx context.Context) GetComputeInstanceGroupHealthCheckArrayOutput {
+	return o
+}
+
+func (o GetComputeInstanceGroupHealthCheckArrayOutput) Index(i pulumi.IntInput) GetComputeInstanceGroupHealthCheckOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetComputeInstanceGroupHealthCheck {
+		return vs[0].([]GetComputeInstanceGroupHealthCheck)[vs[1].(int)]
+	}).(GetComputeInstanceGroupHealthCheckOutput)
+}
+
 type GetComputeInstanceGroupHealthCheckHttpOption struct {
 	// The URL path used for health check requests.
 	Path string `pulumi:"path"`
@@ -5634,6 +7650,139 @@ func (o GetDataprocClusterClusterConfigSubclusterSpecResourceArrayOutput) Index(
 	}).(GetDataprocClusterClusterConfigSubclusterSpecResourceOutput)
 }
 
+type GetFunctionConnectivity struct {
+	NetworkId string `pulumi:"networkId"`
+}
+
+// GetFunctionConnectivityInput is an input type that accepts GetFunctionConnectivityArgs and GetFunctionConnectivityOutput values.
+// You can construct a concrete instance of `GetFunctionConnectivityInput` via:
+//
+//	GetFunctionConnectivityArgs{...}
+type GetFunctionConnectivityInput interface {
+	pulumi.Input
+
+	ToGetFunctionConnectivityOutput() GetFunctionConnectivityOutput
+	ToGetFunctionConnectivityOutputWithContext(context.Context) GetFunctionConnectivityOutput
+}
+
+type GetFunctionConnectivityArgs struct {
+	NetworkId pulumi.StringInput `pulumi:"networkId"`
+}
+
+func (GetFunctionConnectivityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFunctionConnectivity)(nil)).Elem()
+}
+
+func (i GetFunctionConnectivityArgs) ToGetFunctionConnectivityOutput() GetFunctionConnectivityOutput {
+	return i.ToGetFunctionConnectivityOutputWithContext(context.Background())
+}
+
+func (i GetFunctionConnectivityArgs) ToGetFunctionConnectivityOutputWithContext(ctx context.Context) GetFunctionConnectivityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFunctionConnectivityOutput)
+}
+
+func (i GetFunctionConnectivityArgs) ToGetFunctionConnectivityPtrOutput() GetFunctionConnectivityPtrOutput {
+	return i.ToGetFunctionConnectivityPtrOutputWithContext(context.Background())
+}
+
+func (i GetFunctionConnectivityArgs) ToGetFunctionConnectivityPtrOutputWithContext(ctx context.Context) GetFunctionConnectivityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFunctionConnectivityOutput).ToGetFunctionConnectivityPtrOutputWithContext(ctx)
+}
+
+// GetFunctionConnectivityPtrInput is an input type that accepts GetFunctionConnectivityArgs, GetFunctionConnectivityPtr and GetFunctionConnectivityPtrOutput values.
+// You can construct a concrete instance of `GetFunctionConnectivityPtrInput` via:
+//
+//	        GetFunctionConnectivityArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetFunctionConnectivityPtrInput interface {
+	pulumi.Input
+
+	ToGetFunctionConnectivityPtrOutput() GetFunctionConnectivityPtrOutput
+	ToGetFunctionConnectivityPtrOutputWithContext(context.Context) GetFunctionConnectivityPtrOutput
+}
+
+type getFunctionConnectivityPtrType GetFunctionConnectivityArgs
+
+func GetFunctionConnectivityPtr(v *GetFunctionConnectivityArgs) GetFunctionConnectivityPtrInput {
+	return (*getFunctionConnectivityPtrType)(v)
+}
+
+func (*getFunctionConnectivityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetFunctionConnectivity)(nil)).Elem()
+}
+
+func (i *getFunctionConnectivityPtrType) ToGetFunctionConnectivityPtrOutput() GetFunctionConnectivityPtrOutput {
+	return i.ToGetFunctionConnectivityPtrOutputWithContext(context.Background())
+}
+
+func (i *getFunctionConnectivityPtrType) ToGetFunctionConnectivityPtrOutputWithContext(ctx context.Context) GetFunctionConnectivityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFunctionConnectivityPtrOutput)
+}
+
+type GetFunctionConnectivityOutput struct{ *pulumi.OutputState }
+
+func (GetFunctionConnectivityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFunctionConnectivity)(nil)).Elem()
+}
+
+func (o GetFunctionConnectivityOutput) ToGetFunctionConnectivityOutput() GetFunctionConnectivityOutput {
+	return o
+}
+
+func (o GetFunctionConnectivityOutput) ToGetFunctionConnectivityOutputWithContext(ctx context.Context) GetFunctionConnectivityOutput {
+	return o
+}
+
+func (o GetFunctionConnectivityOutput) ToGetFunctionConnectivityPtrOutput() GetFunctionConnectivityPtrOutput {
+	return o.ToGetFunctionConnectivityPtrOutputWithContext(context.Background())
+}
+
+func (o GetFunctionConnectivityOutput) ToGetFunctionConnectivityPtrOutputWithContext(ctx context.Context) GetFunctionConnectivityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetFunctionConnectivity) *GetFunctionConnectivity {
+		return &v
+	}).(GetFunctionConnectivityPtrOutput)
+}
+
+func (o GetFunctionConnectivityOutput) NetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFunctionConnectivity) string { return v.NetworkId }).(pulumi.StringOutput)
+}
+
+type GetFunctionConnectivityPtrOutput struct{ *pulumi.OutputState }
+
+func (GetFunctionConnectivityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetFunctionConnectivity)(nil)).Elem()
+}
+
+func (o GetFunctionConnectivityPtrOutput) ToGetFunctionConnectivityPtrOutput() GetFunctionConnectivityPtrOutput {
+	return o
+}
+
+func (o GetFunctionConnectivityPtrOutput) ToGetFunctionConnectivityPtrOutputWithContext(ctx context.Context) GetFunctionConnectivityPtrOutput {
+	return o
+}
+
+func (o GetFunctionConnectivityPtrOutput) Elem() GetFunctionConnectivityOutput {
+	return o.ApplyT(func(v *GetFunctionConnectivity) GetFunctionConnectivity {
+		if v != nil {
+			return *v
+		}
+		var ret GetFunctionConnectivity
+		return ret
+	}).(GetFunctionConnectivityOutput)
+}
+
+func (o GetFunctionConnectivityPtrOutput) NetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetFunctionConnectivity) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NetworkId
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetFunctionScalingPolicyPolicy struct {
 	Tag                string `pulumi:"tag"`
 	ZoneInstancesLimit *int   `pulumi:"zoneInstancesLimit"`
@@ -6972,6 +9121,8 @@ type GetKubernetesClusterMaster struct {
 	InternalV4Endpoint string `pulumi:"internalV4Endpoint"`
 	// Maintenance policy for Kubernetes master. The structure is documented below.
 	MaintenancePolicies []GetKubernetesClusterMasterMaintenancePolicy `pulumi:"maintenancePolicies"`
+	// (Optional) Master Logging options. The structure is documented below.
+	MasterLoggings []GetKubernetesClusterMasterMasterLogging `pulumi:"masterLoggings"`
 	// Boolean flag. When `true`, Kubernetes master have visible ipv4 address.
 	PublicIp bool `pulumi:"publicIp"`
 	// Information about cluster regional master. The structure is documented below.
@@ -7012,6 +9163,8 @@ type GetKubernetesClusterMasterArgs struct {
 	InternalV4Endpoint pulumi.StringInput `pulumi:"internalV4Endpoint"`
 	// Maintenance policy for Kubernetes master. The structure is documented below.
 	MaintenancePolicies GetKubernetesClusterMasterMaintenancePolicyArrayInput `pulumi:"maintenancePolicies"`
+	// (Optional) Master Logging options. The structure is documented below.
+	MasterLoggings GetKubernetesClusterMasterMasterLoggingArrayInput `pulumi:"masterLoggings"`
 	// Boolean flag. When `true`, Kubernetes master have visible ipv4 address.
 	PublicIp pulumi.BoolInput `pulumi:"publicIp"`
 	// Information about cluster regional master. The structure is documented below.
@@ -7115,6 +9268,11 @@ func (o GetKubernetesClusterMasterOutput) MaintenancePolicies() GetKubernetesClu
 	return o.ApplyT(func(v GetKubernetesClusterMaster) []GetKubernetesClusterMasterMaintenancePolicy {
 		return v.MaintenancePolicies
 	}).(GetKubernetesClusterMasterMaintenancePolicyArrayOutput)
+}
+
+// (Optional) Master Logging options. The structure is documented below.
+func (o GetKubernetesClusterMasterOutput) MasterLoggings() GetKubernetesClusterMasterMasterLoggingArrayOutput {
+	return o.ApplyT(func(v GetKubernetesClusterMaster) []GetKubernetesClusterMasterMasterLogging { return v.MasterLoggings }).(GetKubernetesClusterMasterMasterLoggingArrayOutput)
 }
 
 // Boolean flag. When `true`, Kubernetes master have visible ipv4 address.
@@ -7382,6 +9540,148 @@ func (o GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArrayOutput)
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindow {
 		return vs[0].([]GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindow)[vs[1].(int)]
 	}).(GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowOutput)
+}
+
+type GetKubernetesClusterMasterMasterLogging struct {
+	// (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
+	ClusterAutoscalerEnabled bool `pulumi:"clusterAutoscalerEnabled"`
+	// (Optional) Boolean flag that specifies if master components logs should be sent to [Yandex Cloud Logging](https://cloud.yandex.com/docs/logging/). The exact components that will send their logs must be configured via the options described below.
+	Enabled bool `pulumi:"enabled"`
+	// (Optional) Boolean flag that specifies if kubernetes cluster events should be sent to Yandex Cloud Logging.
+	EventsEnabled bool `pulumi:"eventsEnabled"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId string `pulumi:"folderId"`
+	// (Optional) Boolean flag that specifies if kube-apiserver logs should be sent to Yandex Cloud Logging.
+	KubeApiserverEnabled bool `pulumi:"kubeApiserverEnabled"`
+	// (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
+	LogGroupId string `pulumi:"logGroupId"`
+}
+
+// GetKubernetesClusterMasterMasterLoggingInput is an input type that accepts GetKubernetesClusterMasterMasterLoggingArgs and GetKubernetesClusterMasterMasterLoggingOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterMasterMasterLoggingInput` via:
+//
+//	GetKubernetesClusterMasterMasterLoggingArgs{...}
+type GetKubernetesClusterMasterMasterLoggingInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterMasterMasterLoggingOutput() GetKubernetesClusterMasterMasterLoggingOutput
+	ToGetKubernetesClusterMasterMasterLoggingOutputWithContext(context.Context) GetKubernetesClusterMasterMasterLoggingOutput
+}
+
+type GetKubernetesClusterMasterMasterLoggingArgs struct {
+	// (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
+	ClusterAutoscalerEnabled pulumi.BoolInput `pulumi:"clusterAutoscalerEnabled"`
+	// (Optional) Boolean flag that specifies if master components logs should be sent to [Yandex Cloud Logging](https://cloud.yandex.com/docs/logging/). The exact components that will send their logs must be configured via the options described below.
+	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// (Optional) Boolean flag that specifies if kubernetes cluster events should be sent to Yandex Cloud Logging.
+	EventsEnabled pulumi.BoolInput `pulumi:"eventsEnabled"`
+	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringInput `pulumi:"folderId"`
+	// (Optional) Boolean flag that specifies if kube-apiserver logs should be sent to Yandex Cloud Logging.
+	KubeApiserverEnabled pulumi.BoolInput `pulumi:"kubeApiserverEnabled"`
+	// (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
+	LogGroupId pulumi.StringInput `pulumi:"logGroupId"`
+}
+
+func (GetKubernetesClusterMasterMasterLoggingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesClusterMasterMasterLogging)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterMasterMasterLoggingArgs) ToGetKubernetesClusterMasterMasterLoggingOutput() GetKubernetesClusterMasterMasterLoggingOutput {
+	return i.ToGetKubernetesClusterMasterMasterLoggingOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterMasterMasterLoggingArgs) ToGetKubernetesClusterMasterMasterLoggingOutputWithContext(ctx context.Context) GetKubernetesClusterMasterMasterLoggingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterMasterMasterLoggingOutput)
+}
+
+// GetKubernetesClusterMasterMasterLoggingArrayInput is an input type that accepts GetKubernetesClusterMasterMasterLoggingArray and GetKubernetesClusterMasterMasterLoggingArrayOutput values.
+// You can construct a concrete instance of `GetKubernetesClusterMasterMasterLoggingArrayInput` via:
+//
+//	GetKubernetesClusterMasterMasterLoggingArray{ GetKubernetesClusterMasterMasterLoggingArgs{...} }
+type GetKubernetesClusterMasterMasterLoggingArrayInput interface {
+	pulumi.Input
+
+	ToGetKubernetesClusterMasterMasterLoggingArrayOutput() GetKubernetesClusterMasterMasterLoggingArrayOutput
+	ToGetKubernetesClusterMasterMasterLoggingArrayOutputWithContext(context.Context) GetKubernetesClusterMasterMasterLoggingArrayOutput
+}
+
+type GetKubernetesClusterMasterMasterLoggingArray []GetKubernetesClusterMasterMasterLoggingInput
+
+func (GetKubernetesClusterMasterMasterLoggingArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesClusterMasterMasterLogging)(nil)).Elem()
+}
+
+func (i GetKubernetesClusterMasterMasterLoggingArray) ToGetKubernetesClusterMasterMasterLoggingArrayOutput() GetKubernetesClusterMasterMasterLoggingArrayOutput {
+	return i.ToGetKubernetesClusterMasterMasterLoggingArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubernetesClusterMasterMasterLoggingArray) ToGetKubernetesClusterMasterMasterLoggingArrayOutputWithContext(ctx context.Context) GetKubernetesClusterMasterMasterLoggingArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubernetesClusterMasterMasterLoggingArrayOutput)
+}
+
+type GetKubernetesClusterMasterMasterLoggingOutput struct{ *pulumi.OutputState }
+
+func (GetKubernetesClusterMasterMasterLoggingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubernetesClusterMasterMasterLogging)(nil)).Elem()
+}
+
+func (o GetKubernetesClusterMasterMasterLoggingOutput) ToGetKubernetesClusterMasterMasterLoggingOutput() GetKubernetesClusterMasterMasterLoggingOutput {
+	return o
+}
+
+func (o GetKubernetesClusterMasterMasterLoggingOutput) ToGetKubernetesClusterMasterMasterLoggingOutputWithContext(ctx context.Context) GetKubernetesClusterMasterMasterLoggingOutput {
+	return o
+}
+
+// (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
+func (o GetKubernetesClusterMasterMasterLoggingOutput) ClusterAutoscalerEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetKubernetesClusterMasterMasterLogging) bool { return v.ClusterAutoscalerEnabled }).(pulumi.BoolOutput)
+}
+
+// (Optional) Boolean flag that specifies if master components logs should be sent to [Yandex Cloud Logging](https://cloud.yandex.com/docs/logging/). The exact components that will send their logs must be configured via the options described below.
+func (o GetKubernetesClusterMasterMasterLoggingOutput) Enabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetKubernetesClusterMasterMasterLogging) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// (Optional) Boolean flag that specifies if kubernetes cluster events should be sent to Yandex Cloud Logging.
+func (o GetKubernetesClusterMasterMasterLoggingOutput) EventsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetKubernetesClusterMasterMasterLogging) bool { return v.EventsEnabled }).(pulumi.BoolOutput)
+}
+
+// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+func (o GetKubernetesClusterMasterMasterLoggingOutput) FolderId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesClusterMasterMasterLogging) string { return v.FolderId }).(pulumi.StringOutput)
+}
+
+// (Optional) Boolean flag that specifies if kube-apiserver logs should be sent to Yandex Cloud Logging.
+func (o GetKubernetesClusterMasterMasterLoggingOutput) KubeApiserverEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetKubernetesClusterMasterMasterLogging) bool { return v.KubeApiserverEnabled }).(pulumi.BoolOutput)
+}
+
+// (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
+func (o GetKubernetesClusterMasterMasterLoggingOutput) LogGroupId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubernetesClusterMasterMasterLogging) string { return v.LogGroupId }).(pulumi.StringOutput)
+}
+
+type GetKubernetesClusterMasterMasterLoggingArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKubernetesClusterMasterMasterLoggingArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubernetesClusterMasterMasterLogging)(nil)).Elem()
+}
+
+func (o GetKubernetesClusterMasterMasterLoggingArrayOutput) ToGetKubernetesClusterMasterMasterLoggingArrayOutput() GetKubernetesClusterMasterMasterLoggingArrayOutput {
+	return o
+}
+
+func (o GetKubernetesClusterMasterMasterLoggingArrayOutput) ToGetKubernetesClusterMasterMasterLoggingArrayOutputWithContext(ctx context.Context) GetKubernetesClusterMasterMasterLoggingArrayOutput {
+	return o
+}
+
+func (o GetKubernetesClusterMasterMasterLoggingArrayOutput) Index(i pulumi.IntInput) GetKubernetesClusterMasterMasterLoggingOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubernetesClusterMasterMasterLogging {
+		return vs[0].([]GetKubernetesClusterMasterMasterLogging)[vs[1].(int)]
+	}).(GetKubernetesClusterMasterMasterLoggingOutput)
 }
 
 type GetKubernetesClusterMasterRegional struct {
@@ -12710,8 +15010,14 @@ func (o GetMdbClickhouseClusterClickhouseResourceArrayOutput) Index(i pulumi.Int
 }
 
 type GetMdbClickhouseClusterCloudStorage struct {
+	// Enables temporary storage in the cluster repository of data requested from the object repository.
+	DataCacheEnabled bool `pulumi:"dataCacheEnabled"`
+	// Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
+	DataCacheMaxSize int `pulumi:"dataCacheMaxSize"`
 	// (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
 	Enabled bool `pulumi:"enabled"`
+	// Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+	MoveFactor float64 `pulumi:"moveFactor"`
 }
 
 // GetMdbClickhouseClusterCloudStorageInput is an input type that accepts GetMdbClickhouseClusterCloudStorageArgs and GetMdbClickhouseClusterCloudStorageOutput values.
@@ -12726,8 +15032,14 @@ type GetMdbClickhouseClusterCloudStorageInput interface {
 }
 
 type GetMdbClickhouseClusterCloudStorageArgs struct {
+	// Enables temporary storage in the cluster repository of data requested from the object repository.
+	DataCacheEnabled pulumi.BoolInput `pulumi:"dataCacheEnabled"`
+	// Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
+	DataCacheMaxSize pulumi.IntInput `pulumi:"dataCacheMaxSize"`
 	// (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
+	// Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+	MoveFactor pulumi.Float64Input `pulumi:"moveFactor"`
 }
 
 func (GetMdbClickhouseClusterCloudStorageArgs) ElementType() reflect.Type {
@@ -12807,9 +15119,24 @@ func (o GetMdbClickhouseClusterCloudStorageOutput) ToGetMdbClickhouseClusterClou
 	}).(GetMdbClickhouseClusterCloudStoragePtrOutput)
 }
 
+// Enables temporary storage in the cluster repository of data requested from the object repository.
+func (o GetMdbClickhouseClusterCloudStorageOutput) DataCacheEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterCloudStorage) bool { return v.DataCacheEnabled }).(pulumi.BoolOutput)
+}
+
+// Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
+func (o GetMdbClickhouseClusterCloudStorageOutput) DataCacheMaxSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterCloudStorage) int { return v.DataCacheMaxSize }).(pulumi.IntOutput)
+}
+
 // (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
 func (o GetMdbClickhouseClusterCloudStorageOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterCloudStorage) bool { return v.Enabled }).(pulumi.BoolOutput)
+}
+
+// Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+func (o GetMdbClickhouseClusterCloudStorageOutput) MoveFactor() pulumi.Float64Output {
+	return o.ApplyT(func(v GetMdbClickhouseClusterCloudStorage) float64 { return v.MoveFactor }).(pulumi.Float64Output)
 }
 
 type GetMdbClickhouseClusterCloudStoragePtrOutput struct{ *pulumi.OutputState }
@@ -12836,6 +15163,26 @@ func (o GetMdbClickhouseClusterCloudStoragePtrOutput) Elem() GetMdbClickhouseClu
 	}).(GetMdbClickhouseClusterCloudStorageOutput)
 }
 
+// Enables temporary storage in the cluster repository of data requested from the object repository.
+func (o GetMdbClickhouseClusterCloudStoragePtrOutput) DataCacheEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetMdbClickhouseClusterCloudStorage) *bool {
+		if v == nil {
+			return nil
+		}
+		return &v.DataCacheEnabled
+	}).(pulumi.BoolPtrOutput)
+}
+
+// Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
+func (o GetMdbClickhouseClusterCloudStoragePtrOutput) DataCacheMaxSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetMdbClickhouseClusterCloudStorage) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.DataCacheMaxSize
+	}).(pulumi.IntPtrOutput)
+}
+
 // (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
 func (o GetMdbClickhouseClusterCloudStoragePtrOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *GetMdbClickhouseClusterCloudStorage) *bool {
@@ -12844,6 +15191,16 @@ func (o GetMdbClickhouseClusterCloudStoragePtrOutput) Enabled() pulumi.BoolPtrOu
 		}
 		return &v.Enabled
 	}).(pulumi.BoolPtrOutput)
+}
+
+// Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+func (o GetMdbClickhouseClusterCloudStoragePtrOutput) MoveFactor() pulumi.Float64PtrOutput {
+	return o.ApplyT(func(v *GetMdbClickhouseClusterCloudStorage) *float64 {
+		if v == nil {
+			return nil
+		}
+		return &v.MoveFactor
+	}).(pulumi.Float64PtrOutput)
 }
 
 type GetMdbClickhouseClusterDatabase struct {
@@ -13428,6 +15785,112 @@ func (o GetMdbClickhouseClusterMlModelArrayOutput) Index(i pulumi.IntInput) GetM
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMdbClickhouseClusterMlModel {
 		return vs[0].([]GetMdbClickhouseClusterMlModel)[vs[1].(int)]
 	}).(GetMdbClickhouseClusterMlModelOutput)
+}
+
+type GetMdbClickhouseClusterShard struct {
+	// The name of the ClickHouse cluster.
+	Name string `pulumi:"name"`
+	// The weight of the shard.
+	Weight int `pulumi:"weight"`
+}
+
+// GetMdbClickhouseClusterShardInput is an input type that accepts GetMdbClickhouseClusterShardArgs and GetMdbClickhouseClusterShardOutput values.
+// You can construct a concrete instance of `GetMdbClickhouseClusterShardInput` via:
+//
+//	GetMdbClickhouseClusterShardArgs{...}
+type GetMdbClickhouseClusterShardInput interface {
+	pulumi.Input
+
+	ToGetMdbClickhouseClusterShardOutput() GetMdbClickhouseClusterShardOutput
+	ToGetMdbClickhouseClusterShardOutputWithContext(context.Context) GetMdbClickhouseClusterShardOutput
+}
+
+type GetMdbClickhouseClusterShardArgs struct {
+	// The name of the ClickHouse cluster.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The weight of the shard.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (GetMdbClickhouseClusterShardArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMdbClickhouseClusterShard)(nil)).Elem()
+}
+
+func (i GetMdbClickhouseClusterShardArgs) ToGetMdbClickhouseClusterShardOutput() GetMdbClickhouseClusterShardOutput {
+	return i.ToGetMdbClickhouseClusterShardOutputWithContext(context.Background())
+}
+
+func (i GetMdbClickhouseClusterShardArgs) ToGetMdbClickhouseClusterShardOutputWithContext(ctx context.Context) GetMdbClickhouseClusterShardOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMdbClickhouseClusterShardOutput)
+}
+
+// GetMdbClickhouseClusterShardArrayInput is an input type that accepts GetMdbClickhouseClusterShardArray and GetMdbClickhouseClusterShardArrayOutput values.
+// You can construct a concrete instance of `GetMdbClickhouseClusterShardArrayInput` via:
+//
+//	GetMdbClickhouseClusterShardArray{ GetMdbClickhouseClusterShardArgs{...} }
+type GetMdbClickhouseClusterShardArrayInput interface {
+	pulumi.Input
+
+	ToGetMdbClickhouseClusterShardArrayOutput() GetMdbClickhouseClusterShardArrayOutput
+	ToGetMdbClickhouseClusterShardArrayOutputWithContext(context.Context) GetMdbClickhouseClusterShardArrayOutput
+}
+
+type GetMdbClickhouseClusterShardArray []GetMdbClickhouseClusterShardInput
+
+func (GetMdbClickhouseClusterShardArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMdbClickhouseClusterShard)(nil)).Elem()
+}
+
+func (i GetMdbClickhouseClusterShardArray) ToGetMdbClickhouseClusterShardArrayOutput() GetMdbClickhouseClusterShardArrayOutput {
+	return i.ToGetMdbClickhouseClusterShardArrayOutputWithContext(context.Background())
+}
+
+func (i GetMdbClickhouseClusterShardArray) ToGetMdbClickhouseClusterShardArrayOutputWithContext(ctx context.Context) GetMdbClickhouseClusterShardArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMdbClickhouseClusterShardArrayOutput)
+}
+
+type GetMdbClickhouseClusterShardOutput struct{ *pulumi.OutputState }
+
+func (GetMdbClickhouseClusterShardOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMdbClickhouseClusterShard)(nil)).Elem()
+}
+
+func (o GetMdbClickhouseClusterShardOutput) ToGetMdbClickhouseClusterShardOutput() GetMdbClickhouseClusterShardOutput {
+	return o
+}
+
+func (o GetMdbClickhouseClusterShardOutput) ToGetMdbClickhouseClusterShardOutputWithContext(ctx context.Context) GetMdbClickhouseClusterShardOutput {
+	return o
+}
+
+// The name of the ClickHouse cluster.
+func (o GetMdbClickhouseClusterShardOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterShard) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The weight of the shard.
+func (o GetMdbClickhouseClusterShardOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterShard) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type GetMdbClickhouseClusterShardArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMdbClickhouseClusterShardArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMdbClickhouseClusterShard)(nil)).Elem()
+}
+
+func (o GetMdbClickhouseClusterShardArrayOutput) ToGetMdbClickhouseClusterShardArrayOutput() GetMdbClickhouseClusterShardArrayOutput {
+	return o
+}
+
+func (o GetMdbClickhouseClusterShardArrayOutput) ToGetMdbClickhouseClusterShardArrayOutputWithContext(ctx context.Context) GetMdbClickhouseClusterShardArrayOutput {
+	return o
+}
+
+func (o GetMdbClickhouseClusterShardArrayOutput) Index(i pulumi.IntInput) GetMdbClickhouseClusterShardOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMdbClickhouseClusterShard {
+		return vs[0].([]GetMdbClickhouseClusterShard)[vs[1].(int)]
+	}).(GetMdbClickhouseClusterShardOutput)
 }
 
 type GetMdbClickhouseClusterShardGroup struct {
@@ -21597,6 +24060,154 @@ func (o GetMdbMongodbClusterResourcesPtrOutput) ResourcePresetId() pulumi.String
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetMdbMongodbClusterRestore struct {
+	BackupId *string `pulumi:"backupId"`
+	Time     *string `pulumi:"time"`
+}
+
+// GetMdbMongodbClusterRestoreInput is an input type that accepts GetMdbMongodbClusterRestoreArgs and GetMdbMongodbClusterRestoreOutput values.
+// You can construct a concrete instance of `GetMdbMongodbClusterRestoreInput` via:
+//
+//	GetMdbMongodbClusterRestoreArgs{...}
+type GetMdbMongodbClusterRestoreInput interface {
+	pulumi.Input
+
+	ToGetMdbMongodbClusterRestoreOutput() GetMdbMongodbClusterRestoreOutput
+	ToGetMdbMongodbClusterRestoreOutputWithContext(context.Context) GetMdbMongodbClusterRestoreOutput
+}
+
+type GetMdbMongodbClusterRestoreArgs struct {
+	BackupId pulumi.StringPtrInput `pulumi:"backupId"`
+	Time     pulumi.StringPtrInput `pulumi:"time"`
+}
+
+func (GetMdbMongodbClusterRestoreArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMdbMongodbClusterRestore)(nil)).Elem()
+}
+
+func (i GetMdbMongodbClusterRestoreArgs) ToGetMdbMongodbClusterRestoreOutput() GetMdbMongodbClusterRestoreOutput {
+	return i.ToGetMdbMongodbClusterRestoreOutputWithContext(context.Background())
+}
+
+func (i GetMdbMongodbClusterRestoreArgs) ToGetMdbMongodbClusterRestoreOutputWithContext(ctx context.Context) GetMdbMongodbClusterRestoreOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMdbMongodbClusterRestoreOutput)
+}
+
+func (i GetMdbMongodbClusterRestoreArgs) ToGetMdbMongodbClusterRestorePtrOutput() GetMdbMongodbClusterRestorePtrOutput {
+	return i.ToGetMdbMongodbClusterRestorePtrOutputWithContext(context.Background())
+}
+
+func (i GetMdbMongodbClusterRestoreArgs) ToGetMdbMongodbClusterRestorePtrOutputWithContext(ctx context.Context) GetMdbMongodbClusterRestorePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMdbMongodbClusterRestoreOutput).ToGetMdbMongodbClusterRestorePtrOutputWithContext(ctx)
+}
+
+// GetMdbMongodbClusterRestorePtrInput is an input type that accepts GetMdbMongodbClusterRestoreArgs, GetMdbMongodbClusterRestorePtr and GetMdbMongodbClusterRestorePtrOutput values.
+// You can construct a concrete instance of `GetMdbMongodbClusterRestorePtrInput` via:
+//
+//	        GetMdbMongodbClusterRestoreArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetMdbMongodbClusterRestorePtrInput interface {
+	pulumi.Input
+
+	ToGetMdbMongodbClusterRestorePtrOutput() GetMdbMongodbClusterRestorePtrOutput
+	ToGetMdbMongodbClusterRestorePtrOutputWithContext(context.Context) GetMdbMongodbClusterRestorePtrOutput
+}
+
+type getMdbMongodbClusterRestorePtrType GetMdbMongodbClusterRestoreArgs
+
+func GetMdbMongodbClusterRestorePtr(v *GetMdbMongodbClusterRestoreArgs) GetMdbMongodbClusterRestorePtrInput {
+	return (*getMdbMongodbClusterRestorePtrType)(v)
+}
+
+func (*getMdbMongodbClusterRestorePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetMdbMongodbClusterRestore)(nil)).Elem()
+}
+
+func (i *getMdbMongodbClusterRestorePtrType) ToGetMdbMongodbClusterRestorePtrOutput() GetMdbMongodbClusterRestorePtrOutput {
+	return i.ToGetMdbMongodbClusterRestorePtrOutputWithContext(context.Background())
+}
+
+func (i *getMdbMongodbClusterRestorePtrType) ToGetMdbMongodbClusterRestorePtrOutputWithContext(ctx context.Context) GetMdbMongodbClusterRestorePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMdbMongodbClusterRestorePtrOutput)
+}
+
+type GetMdbMongodbClusterRestoreOutput struct{ *pulumi.OutputState }
+
+func (GetMdbMongodbClusterRestoreOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMdbMongodbClusterRestore)(nil)).Elem()
+}
+
+func (o GetMdbMongodbClusterRestoreOutput) ToGetMdbMongodbClusterRestoreOutput() GetMdbMongodbClusterRestoreOutput {
+	return o
+}
+
+func (o GetMdbMongodbClusterRestoreOutput) ToGetMdbMongodbClusterRestoreOutputWithContext(ctx context.Context) GetMdbMongodbClusterRestoreOutput {
+	return o
+}
+
+func (o GetMdbMongodbClusterRestoreOutput) ToGetMdbMongodbClusterRestorePtrOutput() GetMdbMongodbClusterRestorePtrOutput {
+	return o.ToGetMdbMongodbClusterRestorePtrOutputWithContext(context.Background())
+}
+
+func (o GetMdbMongodbClusterRestoreOutput) ToGetMdbMongodbClusterRestorePtrOutputWithContext(ctx context.Context) GetMdbMongodbClusterRestorePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetMdbMongodbClusterRestore) *GetMdbMongodbClusterRestore {
+		return &v
+	}).(GetMdbMongodbClusterRestorePtrOutput)
+}
+
+func (o GetMdbMongodbClusterRestoreOutput) BackupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMdbMongodbClusterRestore) *string { return v.BackupId }).(pulumi.StringPtrOutput)
+}
+
+func (o GetMdbMongodbClusterRestoreOutput) Time() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetMdbMongodbClusterRestore) *string { return v.Time }).(pulumi.StringPtrOutput)
+}
+
+type GetMdbMongodbClusterRestorePtrOutput struct{ *pulumi.OutputState }
+
+func (GetMdbMongodbClusterRestorePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetMdbMongodbClusterRestore)(nil)).Elem()
+}
+
+func (o GetMdbMongodbClusterRestorePtrOutput) ToGetMdbMongodbClusterRestorePtrOutput() GetMdbMongodbClusterRestorePtrOutput {
+	return o
+}
+
+func (o GetMdbMongodbClusterRestorePtrOutput) ToGetMdbMongodbClusterRestorePtrOutputWithContext(ctx context.Context) GetMdbMongodbClusterRestorePtrOutput {
+	return o
+}
+
+func (o GetMdbMongodbClusterRestorePtrOutput) Elem() GetMdbMongodbClusterRestoreOutput {
+	return o.ApplyT(func(v *GetMdbMongodbClusterRestore) GetMdbMongodbClusterRestore {
+		if v != nil {
+			return *v
+		}
+		var ret GetMdbMongodbClusterRestore
+		return ret
+	}).(GetMdbMongodbClusterRestoreOutput)
+}
+
+func (o GetMdbMongodbClusterRestorePtrOutput) BackupId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetMdbMongodbClusterRestore) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BackupId
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o GetMdbMongodbClusterRestorePtrOutput) Time() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetMdbMongodbClusterRestore) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Time
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetMdbMongodbClusterUser struct {
 	// The name of the MongoDB cluster.
 	Name     *string `pulumi:"name"`
@@ -25369,6 +27980,139 @@ func (o GetOrganizationmanagerSamlFederationSecuritySettingArrayOutput) Index(i 
 	}).(GetOrganizationmanagerSamlFederationSecuritySettingOutput)
 }
 
+type GetServerlessContainerConnectivity struct {
+	NetworkId string `pulumi:"networkId"`
+}
+
+// GetServerlessContainerConnectivityInput is an input type that accepts GetServerlessContainerConnectivityArgs and GetServerlessContainerConnectivityOutput values.
+// You can construct a concrete instance of `GetServerlessContainerConnectivityInput` via:
+//
+//	GetServerlessContainerConnectivityArgs{...}
+type GetServerlessContainerConnectivityInput interface {
+	pulumi.Input
+
+	ToGetServerlessContainerConnectivityOutput() GetServerlessContainerConnectivityOutput
+	ToGetServerlessContainerConnectivityOutputWithContext(context.Context) GetServerlessContainerConnectivityOutput
+}
+
+type GetServerlessContainerConnectivityArgs struct {
+	NetworkId pulumi.StringInput `pulumi:"networkId"`
+}
+
+func (GetServerlessContainerConnectivityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerlessContainerConnectivity)(nil)).Elem()
+}
+
+func (i GetServerlessContainerConnectivityArgs) ToGetServerlessContainerConnectivityOutput() GetServerlessContainerConnectivityOutput {
+	return i.ToGetServerlessContainerConnectivityOutputWithContext(context.Background())
+}
+
+func (i GetServerlessContainerConnectivityArgs) ToGetServerlessContainerConnectivityOutputWithContext(ctx context.Context) GetServerlessContainerConnectivityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerlessContainerConnectivityOutput)
+}
+
+func (i GetServerlessContainerConnectivityArgs) ToGetServerlessContainerConnectivityPtrOutput() GetServerlessContainerConnectivityPtrOutput {
+	return i.ToGetServerlessContainerConnectivityPtrOutputWithContext(context.Background())
+}
+
+func (i GetServerlessContainerConnectivityArgs) ToGetServerlessContainerConnectivityPtrOutputWithContext(ctx context.Context) GetServerlessContainerConnectivityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerlessContainerConnectivityOutput).ToGetServerlessContainerConnectivityPtrOutputWithContext(ctx)
+}
+
+// GetServerlessContainerConnectivityPtrInput is an input type that accepts GetServerlessContainerConnectivityArgs, GetServerlessContainerConnectivityPtr and GetServerlessContainerConnectivityPtrOutput values.
+// You can construct a concrete instance of `GetServerlessContainerConnectivityPtrInput` via:
+//
+//	        GetServerlessContainerConnectivityArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetServerlessContainerConnectivityPtrInput interface {
+	pulumi.Input
+
+	ToGetServerlessContainerConnectivityPtrOutput() GetServerlessContainerConnectivityPtrOutput
+	ToGetServerlessContainerConnectivityPtrOutputWithContext(context.Context) GetServerlessContainerConnectivityPtrOutput
+}
+
+type getServerlessContainerConnectivityPtrType GetServerlessContainerConnectivityArgs
+
+func GetServerlessContainerConnectivityPtr(v *GetServerlessContainerConnectivityArgs) GetServerlessContainerConnectivityPtrInput {
+	return (*getServerlessContainerConnectivityPtrType)(v)
+}
+
+func (*getServerlessContainerConnectivityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetServerlessContainerConnectivity)(nil)).Elem()
+}
+
+func (i *getServerlessContainerConnectivityPtrType) ToGetServerlessContainerConnectivityPtrOutput() GetServerlessContainerConnectivityPtrOutput {
+	return i.ToGetServerlessContainerConnectivityPtrOutputWithContext(context.Background())
+}
+
+func (i *getServerlessContainerConnectivityPtrType) ToGetServerlessContainerConnectivityPtrOutputWithContext(ctx context.Context) GetServerlessContainerConnectivityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServerlessContainerConnectivityPtrOutput)
+}
+
+type GetServerlessContainerConnectivityOutput struct{ *pulumi.OutputState }
+
+func (GetServerlessContainerConnectivityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServerlessContainerConnectivity)(nil)).Elem()
+}
+
+func (o GetServerlessContainerConnectivityOutput) ToGetServerlessContainerConnectivityOutput() GetServerlessContainerConnectivityOutput {
+	return o
+}
+
+func (o GetServerlessContainerConnectivityOutput) ToGetServerlessContainerConnectivityOutputWithContext(ctx context.Context) GetServerlessContainerConnectivityOutput {
+	return o
+}
+
+func (o GetServerlessContainerConnectivityOutput) ToGetServerlessContainerConnectivityPtrOutput() GetServerlessContainerConnectivityPtrOutput {
+	return o.ToGetServerlessContainerConnectivityPtrOutputWithContext(context.Background())
+}
+
+func (o GetServerlessContainerConnectivityOutput) ToGetServerlessContainerConnectivityPtrOutputWithContext(ctx context.Context) GetServerlessContainerConnectivityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetServerlessContainerConnectivity) *GetServerlessContainerConnectivity {
+		return &v
+	}).(GetServerlessContainerConnectivityPtrOutput)
+}
+
+func (o GetServerlessContainerConnectivityOutput) NetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerlessContainerConnectivity) string { return v.NetworkId }).(pulumi.StringOutput)
+}
+
+type GetServerlessContainerConnectivityPtrOutput struct{ *pulumi.OutputState }
+
+func (GetServerlessContainerConnectivityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetServerlessContainerConnectivity)(nil)).Elem()
+}
+
+func (o GetServerlessContainerConnectivityPtrOutput) ToGetServerlessContainerConnectivityPtrOutput() GetServerlessContainerConnectivityPtrOutput {
+	return o
+}
+
+func (o GetServerlessContainerConnectivityPtrOutput) ToGetServerlessContainerConnectivityPtrOutputWithContext(ctx context.Context) GetServerlessContainerConnectivityPtrOutput {
+	return o
+}
+
+func (o GetServerlessContainerConnectivityPtrOutput) Elem() GetServerlessContainerConnectivityOutput {
+	return o.ApplyT(func(v *GetServerlessContainerConnectivity) GetServerlessContainerConnectivity {
+		if v != nil {
+			return *v
+		}
+		var ret GetServerlessContainerConnectivity
+		return ret
+	}).(GetServerlessContainerConnectivityOutput)
+}
+
+func (o GetServerlessContainerConnectivityPtrOutput) NetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetServerlessContainerConnectivity) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NetworkId
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetServerlessContainerImage struct {
 	Args        []string          `pulumi:"args"`
 	Commands    []string          `pulumi:"commands"`
@@ -28820,6 +31564,30 @@ func (o VpcGatewaySharedEgressGatewayPtrOutput) Elem() VpcGatewaySharedEgressGat
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnResourceOptionsInput)(nil)).Elem(), GetCdnResourceOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnResourceOptionsPtrInput)(nil)).Elem(), GetCdnResourceOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnResourceSslCertificateInput)(nil)).Elem(), GetCdnResourceSslCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnResourceSslCertificatePtrInput)(nil)).Elem(), GetCdnResourceSslCertificateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCmCertificateChallengeInput)(nil)).Elem(), GetCmCertificateChallengeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCmCertificateChallengeArrayInput)(nil)).Elem(), GetCmCertificateChallengeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeDiskDiskPlacementPolicyInput)(nil)).Elem(), GetComputeDiskDiskPlacementPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeDiskDiskPlacementPolicyPtrInput)(nil)).Elem(), GetComputeDiskDiskPlacementPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceBootDiskInput)(nil)).Elem(), GetComputeInstanceBootDiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceBootDiskArrayInput)(nil)).Elem(), GetComputeInstanceBootDiskArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceBootDiskInitializeParamInput)(nil)).Elem(), GetComputeInstanceBootDiskInitializeParamArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceBootDiskInitializeParamArrayInput)(nil)).Elem(), GetComputeInstanceBootDiskInitializeParamArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceFilesystemInput)(nil)).Elem(), GetComputeInstanceFilesystemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceFilesystemArrayInput)(nil)).Elem(), GetComputeInstanceFilesystemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupAllocationPolicyInput)(nil)).Elem(), GetComputeInstanceGroupAllocationPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupAllocationPolicyArrayInput)(nil)).Elem(), GetComputeInstanceGroupAllocationPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupApplicationBalancerStateInput)(nil)).Elem(), GetComputeInstanceGroupApplicationBalancerStateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupApplicationBalancerStateArrayInput)(nil)).Elem(), GetComputeInstanceGroupApplicationBalancerStateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupApplicationLoadBalancerInput)(nil)).Elem(), GetComputeInstanceGroupApplicationLoadBalancerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupApplicationLoadBalancerArrayInput)(nil)).Elem(), GetComputeInstanceGroupApplicationLoadBalancerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupDeployPolicyInput)(nil)).Elem(), GetComputeInstanceGroupDeployPolicyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupDeployPolicyArrayInput)(nil)).Elem(), GetComputeInstanceGroupDeployPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupHealthCheckInput)(nil)).Elem(), GetComputeInstanceGroupHealthCheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupHealthCheckArrayInput)(nil)).Elem(), GetComputeInstanceGroupHealthCheckArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupHealthCheckHttpOptionInput)(nil)).Elem(), GetComputeInstanceGroupHealthCheckHttpOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupHealthCheckHttpOptionArrayInput)(nil)).Elem(), GetComputeInstanceGroupHealthCheckHttpOptionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetComputeInstanceGroupHealthCheckTcpOptionInput)(nil)).Elem(), GetComputeInstanceGroupHealthCheckTcpOptionArgs{})
@@ -28902,6 +31670,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArrayInput)(nil)).Elem(), GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDataprocClusterClusterConfigSubclusterSpecResourceInput)(nil)).Elem(), GetDataprocClusterClusterConfigSubclusterSpecResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetDataprocClusterClusterConfigSubclusterSpecResourceArrayInput)(nil)).Elem(), GetDataprocClusterClusterConfigSubclusterSpecResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFunctionConnectivityInput)(nil)).Elem(), GetFunctionConnectivityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFunctionConnectivityPtrInput)(nil)).Elem(), GetFunctionConnectivityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFunctionScalingPolicyPolicyInput)(nil)).Elem(), GetFunctionScalingPolicyPolicyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFunctionScalingPolicyPolicyArrayInput)(nil)).Elem(), GetFunctionScalingPolicyPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFunctionSecretInput)(nil)).Elem(), GetFunctionSecretArgs{})
@@ -28932,6 +31702,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterMasterMaintenancePolicyArrayInput)(nil)).Elem(), GetKubernetesClusterMasterMaintenancePolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowInput)(nil)).Elem(), GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArrayInput)(nil)).Elem(), GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterMasterMasterLoggingInput)(nil)).Elem(), GetKubernetesClusterMasterMasterLoggingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterMasterMasterLoggingArrayInput)(nil)).Elem(), GetKubernetesClusterMasterMasterLoggingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterMasterRegionalInput)(nil)).Elem(), GetKubernetesClusterMasterRegionalArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterMasterRegionalArrayInput)(nil)).Elem(), GetKubernetesClusterMasterRegionalArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubernetesClusterMasterVersionInfoInput)(nil)).Elem(), GetKubernetesClusterMasterVersionInfoArgs{})
@@ -29030,6 +31802,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterMaintenanceWindowArrayInput)(nil)).Elem(), GetMdbClickhouseClusterMaintenanceWindowArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterMlModelInput)(nil)).Elem(), GetMdbClickhouseClusterMlModelArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterMlModelArrayInput)(nil)).Elem(), GetMdbClickhouseClusterMlModelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterShardInput)(nil)).Elem(), GetMdbClickhouseClusterShardArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterShardArrayInput)(nil)).Elem(), GetMdbClickhouseClusterShardArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterShardGroupInput)(nil)).Elem(), GetMdbClickhouseClusterShardGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterShardGroupArrayInput)(nil)).Elem(), GetMdbClickhouseClusterShardGroupArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterUserInput)(nil)).Elem(), GetMdbClickhouseClusterUserArgs{})
@@ -29130,6 +31904,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbMongodbClusterMaintenanceWindowPtrInput)(nil)).Elem(), GetMdbMongodbClusterMaintenanceWindowArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbMongodbClusterResourcesInput)(nil)).Elem(), GetMdbMongodbClusterResourcesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbMongodbClusterResourcesPtrInput)(nil)).Elem(), GetMdbMongodbClusterResourcesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbMongodbClusterRestoreInput)(nil)).Elem(), GetMdbMongodbClusterRestoreArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbMongodbClusterRestorePtrInput)(nil)).Elem(), GetMdbMongodbClusterRestoreArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbMongodbClusterUserInput)(nil)).Elem(), GetMdbMongodbClusterUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbMongodbClusterUserArrayInput)(nil)).Elem(), GetMdbMongodbClusterUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbMongodbClusterUserPermissionInput)(nil)).Elem(), GetMdbMongodbClusterUserPermissionArgs{})
@@ -29192,6 +31968,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbSqlserverClusterUserPermissionArrayInput)(nil)).Elem(), GetMdbSqlserverClusterUserPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationmanagerSamlFederationSecuritySettingInput)(nil)).Elem(), GetOrganizationmanagerSamlFederationSecuritySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationmanagerSamlFederationSecuritySettingArrayInput)(nil)).Elem(), GetOrganizationmanagerSamlFederationSecuritySettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessContainerConnectivityInput)(nil)).Elem(), GetServerlessContainerConnectivityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessContainerConnectivityPtrInput)(nil)).Elem(), GetServerlessContainerConnectivityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessContainerImageInput)(nil)).Elem(), GetServerlessContainerImageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessContainerImageArrayInput)(nil)).Elem(), GetServerlessContainerImageArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetServerlessContainerSecretInput)(nil)).Elem(), GetServerlessContainerSecretArgs{})
@@ -29249,6 +32027,30 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MdbPostgresqlUserPermissionArrayInput)(nil)).Elem(), MdbPostgresqlUserPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewaySharedEgressGatewayInput)(nil)).Elem(), VpcGatewaySharedEgressGatewayArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewaySharedEgressGatewayPtrInput)(nil)).Elem(), VpcGatewaySharedEgressGatewayArgs{})
+	pulumi.RegisterOutputType(GetCdnResourceOptionsOutput{})
+	pulumi.RegisterOutputType(GetCdnResourceOptionsPtrOutput{})
+	pulumi.RegisterOutputType(GetCdnResourceSslCertificateOutput{})
+	pulumi.RegisterOutputType(GetCdnResourceSslCertificatePtrOutput{})
+	pulumi.RegisterOutputType(GetCmCertificateChallengeOutput{})
+	pulumi.RegisterOutputType(GetCmCertificateChallengeArrayOutput{})
+	pulumi.RegisterOutputType(GetComputeDiskDiskPlacementPolicyOutput{})
+	pulumi.RegisterOutputType(GetComputeDiskDiskPlacementPolicyPtrOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceBootDiskOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceBootDiskArrayOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceBootDiskInitializeParamOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceBootDiskInitializeParamArrayOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceFilesystemOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceFilesystemArrayOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupAllocationPolicyOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupAllocationPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupApplicationBalancerStateOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupApplicationBalancerStateArrayOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupApplicationLoadBalancerOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupApplicationLoadBalancerArrayOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupDeployPolicyOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupDeployPolicyArrayOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupHealthCheckOutput{})
+	pulumi.RegisterOutputType(GetComputeInstanceGroupHealthCheckArrayOutput{})
 	pulumi.RegisterOutputType(GetComputeInstanceGroupHealthCheckHttpOptionOutput{})
 	pulumi.RegisterOutputType(GetComputeInstanceGroupHealthCheckHttpOptionArrayOutput{})
 	pulumi.RegisterOutputType(GetComputeInstanceGroupHealthCheckTcpOptionOutput{})
@@ -29331,6 +32133,8 @@ func init() {
 	pulumi.RegisterOutputType(GetDataprocClusterClusterConfigSubclusterSpecAutoscalingConfigArrayOutput{})
 	pulumi.RegisterOutputType(GetDataprocClusterClusterConfigSubclusterSpecResourceOutput{})
 	pulumi.RegisterOutputType(GetDataprocClusterClusterConfigSubclusterSpecResourceArrayOutput{})
+	pulumi.RegisterOutputType(GetFunctionConnectivityOutput{})
+	pulumi.RegisterOutputType(GetFunctionConnectivityPtrOutput{})
 	pulumi.RegisterOutputType(GetFunctionScalingPolicyPolicyOutput{})
 	pulumi.RegisterOutputType(GetFunctionScalingPolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetFunctionSecretOutput{})
@@ -29361,6 +32165,8 @@ func init() {
 	pulumi.RegisterOutputType(GetKubernetesClusterMasterMaintenancePolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowArrayOutput{})
+	pulumi.RegisterOutputType(GetKubernetesClusterMasterMasterLoggingOutput{})
+	pulumi.RegisterOutputType(GetKubernetesClusterMasterMasterLoggingArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterMasterRegionalOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterMasterRegionalArrayOutput{})
 	pulumi.RegisterOutputType(GetKubernetesClusterMasterVersionInfoOutput{})
@@ -29459,6 +32265,8 @@ func init() {
 	pulumi.RegisterOutputType(GetMdbClickhouseClusterMaintenanceWindowArrayOutput{})
 	pulumi.RegisterOutputType(GetMdbClickhouseClusterMlModelOutput{})
 	pulumi.RegisterOutputType(GetMdbClickhouseClusterMlModelArrayOutput{})
+	pulumi.RegisterOutputType(GetMdbClickhouseClusterShardOutput{})
+	pulumi.RegisterOutputType(GetMdbClickhouseClusterShardArrayOutput{})
 	pulumi.RegisterOutputType(GetMdbClickhouseClusterShardGroupOutput{})
 	pulumi.RegisterOutputType(GetMdbClickhouseClusterShardGroupArrayOutput{})
 	pulumi.RegisterOutputType(GetMdbClickhouseClusterUserOutput{})
@@ -29559,6 +32367,8 @@ func init() {
 	pulumi.RegisterOutputType(GetMdbMongodbClusterMaintenanceWindowPtrOutput{})
 	pulumi.RegisterOutputType(GetMdbMongodbClusterResourcesOutput{})
 	pulumi.RegisterOutputType(GetMdbMongodbClusterResourcesPtrOutput{})
+	pulumi.RegisterOutputType(GetMdbMongodbClusterRestoreOutput{})
+	pulumi.RegisterOutputType(GetMdbMongodbClusterRestorePtrOutput{})
 	pulumi.RegisterOutputType(GetMdbMongodbClusterUserOutput{})
 	pulumi.RegisterOutputType(GetMdbMongodbClusterUserArrayOutput{})
 	pulumi.RegisterOutputType(GetMdbMongodbClusterUserPermissionOutput{})
@@ -29621,6 +32431,8 @@ func init() {
 	pulumi.RegisterOutputType(GetMdbSqlserverClusterUserPermissionArrayOutput{})
 	pulumi.RegisterOutputType(GetOrganizationmanagerSamlFederationSecuritySettingOutput{})
 	pulumi.RegisterOutputType(GetOrganizationmanagerSamlFederationSecuritySettingArrayOutput{})
+	pulumi.RegisterOutputType(GetServerlessContainerConnectivityOutput{})
+	pulumi.RegisterOutputType(GetServerlessContainerConnectivityPtrOutput{})
 	pulumi.RegisterOutputType(GetServerlessContainerImageOutput{})
 	pulumi.RegisterOutputType(GetServerlessContainerImageArrayOutput{})
 	pulumi.RegisterOutputType(GetServerlessContainerSecretOutput{})

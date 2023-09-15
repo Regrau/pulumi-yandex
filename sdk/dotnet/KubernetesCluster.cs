@@ -75,7 +75,7 @@ namespace Pulumi.Yandex
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
         /// <summary>
-        /// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        /// (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
         /// </summary>
         [Output("logGroupId")]
         public Output<string> LogGroupId { get; private set; } = null!;
@@ -386,7 +386,7 @@ namespace Pulumi.Yandex
         }
 
         /// <summary>
-        /// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        /// (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
         /// </summary>
         [Input("logGroupId")]
         public Input<string>? LogGroupId { get; set; }

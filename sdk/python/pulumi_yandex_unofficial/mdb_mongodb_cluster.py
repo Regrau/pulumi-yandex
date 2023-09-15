@@ -30,6 +30,7 @@ class MdbMongodbClusterArgs:
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  maintenance_window: Optional[pulumi.Input['MdbMongodbClusterMaintenanceWindowArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 restore: Optional[pulumi.Input['MdbMongodbClusterRestoreArgs']] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a MdbMongodbCluster resource.
@@ -48,6 +49,7 @@ class MdbMongodbClusterArgs:
                is not provided, the default provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the MongoDB cluster.
         :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
+        :param pulumi.Input['MdbMongodbClusterRestoreArgs'] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         """
         pulumi.set(__self__, "cluster_config", cluster_config)
@@ -71,6 +73,8 @@ class MdbMongodbClusterArgs:
             pulumi.set(__self__, "maintenance_window", maintenance_window)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if restore is not None:
+            pulumi.set(__self__, "restore", restore)
         if security_group_ids is not None:
             pulumi.set(__self__, "security_group_ids", security_group_ids)
 
@@ -242,6 +246,18 @@ class MdbMongodbClusterArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter
+    def restore(self) -> Optional[pulumi.Input['MdbMongodbClusterRestoreArgs']]:
+        """
+        The cluster will be created from the specified backup. The structure is documented below.
+        """
+        return pulumi.get(self, "restore")
+
+    @restore.setter
+    def restore(self, value: Optional[pulumi.Input['MdbMongodbClusterRestoreArgs']]):
+        pulumi.set(self, "restore", value)
+
+    @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -272,6 +288,7 @@ class _MdbMongodbClusterState:
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  resources: Optional[pulumi.Input['MdbMongodbClusterResourcesArgs']] = None,
+                 restore: Optional[pulumi.Input['MdbMongodbClusterRestoreArgs']] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  sharded: Optional[pulumi.Input[bool]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -294,6 +311,7 @@ class _MdbMongodbClusterState:
         :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
         :param pulumi.Input[str] network_id: ID of the network, to which the MongoDB cluster belongs.
         :param pulumi.Input['MdbMongodbClusterResourcesArgs'] resources: Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterRestoreArgs'] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         :param pulumi.Input[bool] sharded: MongoDB Cluster mode enabled/disabled.
         :param pulumi.Input[str] status: Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
@@ -330,6 +348,8 @@ class _MdbMongodbClusterState:
             pulumi.set(__self__, "network_id", network_id)
         if resources is not None:
             pulumi.set(__self__, "resources", resources)
+        if restore is not None:
+            pulumi.set(__self__, "restore", restore)
         if security_group_ids is not None:
             pulumi.set(__self__, "security_group_ids", security_group_ids)
         if sharded is not None:
@@ -519,6 +539,18 @@ class _MdbMongodbClusterState:
         pulumi.set(self, "resources", value)
 
     @property
+    @pulumi.getter
+    def restore(self) -> Optional[pulumi.Input['MdbMongodbClusterRestoreArgs']]:
+        """
+        The cluster will be created from the specified backup. The structure is documented below.
+        """
+        return pulumi.get(self, "restore")
+
+    @restore.setter
+    def restore(self, value: Optional[pulumi.Input['MdbMongodbClusterRestoreArgs']]):
+        pulumi.set(self, "restore", value)
+
+    @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
@@ -586,6 +618,7 @@ class MdbMongodbCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  resources: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesArgs']]] = None,
+                 restore: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterRestoreArgs']]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterUserArgs']]]]] = None,
                  __props__=None):
@@ -663,6 +696,7 @@ class MdbMongodbCluster(pulumi.CustomResource):
         :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
         :param pulumi.Input[str] network_id: ID of the network, to which the MongoDB cluster belongs.
         :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesArgs']] resources: Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterRestoreArgs']] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterUserArgs']]]] users: A user of the MongoDB cluster. The structure is documented below.
         """
@@ -758,6 +792,7 @@ class MdbMongodbCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  resources: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesArgs']]] = None,
+                 restore: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterRestoreArgs']]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterUserArgs']]]]] = None,
                  __props__=None):
@@ -794,6 +829,7 @@ class MdbMongodbCluster(pulumi.CustomResource):
             if resources is None and not opts.urn:
                 raise TypeError("Missing required property 'resources'")
             __props__.__dict__["resources"] = resources
+            __props__.__dict__["restore"] = restore
             __props__.__dict__["security_group_ids"] = security_group_ids
             if users is None and not opts.urn:
                 raise TypeError("Missing required property 'users'")
@@ -827,6 +863,7 @@ class MdbMongodbCluster(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             network_id: Optional[pulumi.Input[str]] = None,
             resources: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesArgs']]] = None,
+            restore: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterRestoreArgs']]] = None,
             security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             sharded: Optional[pulumi.Input[bool]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -854,6 +891,7 @@ class MdbMongodbCluster(pulumi.CustomResource):
         :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
         :param pulumi.Input[str] network_id: ID of the network, to which the MongoDB cluster belongs.
         :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesArgs']] resources: Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterRestoreArgs']] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         :param pulumi.Input[bool] sharded: MongoDB Cluster mode enabled/disabled.
         :param pulumi.Input[str] status: Status of the cluster. Can be either `CREATING`, `STARTING`, `RUNNING`, `UPDATING`, `STOPPING`, `STOPPED`, `ERROR` or `STATUS_UNKNOWN`.
@@ -879,6 +917,7 @@ class MdbMongodbCluster(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["network_id"] = network_id
         __props__.__dict__["resources"] = resources
+        __props__.__dict__["restore"] = restore
         __props__.__dict__["security_group_ids"] = security_group_ids
         __props__.__dict__["sharded"] = sharded
         __props__.__dict__["status"] = status
@@ -1003,6 +1042,14 @@ class MdbMongodbCluster(pulumi.CustomResource):
         Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
         """
         return pulumi.get(self, "resources")
+
+    @property
+    @pulumi.getter
+    def restore(self) -> pulumi.Output[Optional['outputs.MdbMongodbClusterRestore']]:
+        """
+        The cluster will be created from the specified backup. The structure is documented below.
+        """
+        return pulumi.get(self, "restore")
 
     @property
     @pulumi.getter(name="securityGroupIds")

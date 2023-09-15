@@ -15,15 +15,19 @@ namespace Pulumi.Yandex.Outputs
     {
         public readonly string Exact;
         public readonly string Prefix;
+        public readonly string Regex;
 
         [OutputConstructor]
         private GetAlbVirtualHostRouteOptionRbacPrincipalAndPrincipalHeaderValueResult(
             string exact,
 
-            string prefix)
+            string prefix,
+
+            string regex)
         {
             Exact = exact;
             Prefix = prefix;
+            Regex = regex;
         }
     }
 }

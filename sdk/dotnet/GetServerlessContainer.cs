@@ -62,6 +62,13 @@ namespace Pulumi.Yandex
     public sealed class GetServerlessContainerArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Network access. If specified the revision will be attached to specified network
+        /// * `connectivity.0.network_id` - Network the revision will have access to
+        /// </summary>
+        [Input("connectivity")]
+        public Inputs.GetServerlessContainerConnectivityArgs? Connectivity { get; set; }
+
+        /// <summary>
         /// Yandex Cloud Serverless Container id used to define container
         /// </summary>
         [Input("containerId")]
@@ -105,6 +112,13 @@ namespace Pulumi.Yandex
 
     public sealed class GetServerlessContainerInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Network access. If specified the revision will be attached to specified network
+        /// * `connectivity.0.network_id` - Network the revision will have access to
+        /// </summary>
+        [Input("connectivity")]
+        public Input<Inputs.GetServerlessContainerConnectivityInputArgs>? Connectivity { get; set; }
+
         /// <summary>
         /// Yandex Cloud Serverless Container id used to define container
         /// </summary>
@@ -155,6 +169,11 @@ namespace Pulumi.Yandex
         /// Concurrency of Yandex Cloud Serverless Container
         /// </summary>
         public readonly int Concurrency;
+        /// <summary>
+        /// Network access. If specified the revision will be attached to specified network
+        /// * `connectivity.0.network_id` - Network the revision will have access to
+        /// </summary>
+        public readonly Outputs.GetServerlessContainerConnectivityResult? Connectivity;
         public readonly string? ContainerId;
         /// <summary>
         /// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
@@ -215,6 +234,8 @@ namespace Pulumi.Yandex
         private GetServerlessContainerResult(
             int concurrency,
 
+            Outputs.GetServerlessContainerConnectivityResult? connectivity,
+
             string? containerId,
 
             int coreFraction,
@@ -248,6 +269,7 @@ namespace Pulumi.Yandex
             string url)
         {
             Concurrency = concurrency;
+            Connectivity = connectivity;
             ContainerId = containerId;
             CoreFraction = coreFraction;
             Cores = cores;

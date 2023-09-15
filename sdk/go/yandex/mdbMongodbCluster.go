@@ -136,6 +136,8 @@ type MdbMongodbCluster struct {
 	NetworkId pulumi.StringOutput `pulumi:"networkId"`
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
 	Resources MdbMongodbClusterResourcesOutput `pulumi:"resources"`
+	// The cluster will be created from the specified backup. The structure is documented below.
+	Restore MdbMongodbClusterRestorePtrOutput `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds pulumi.StringArrayOutput `pulumi:"securityGroupIds"`
 	// MongoDB Cluster mode enabled/disabled.
@@ -229,6 +231,8 @@ type mdbMongodbClusterState struct {
 	NetworkId *string `pulumi:"networkId"`
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
 	Resources *MdbMongodbClusterResources `pulumi:"resources"`
+	// The cluster will be created from the specified backup. The structure is documented below.
+	Restore *MdbMongodbClusterRestore `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// MongoDB Cluster mode enabled/disabled.
@@ -272,6 +276,8 @@ type MdbMongodbClusterState struct {
 	NetworkId pulumi.StringPtrInput
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
 	Resources MdbMongodbClusterResourcesPtrInput
+	// The cluster will be created from the specified backup. The structure is documented below.
+	Restore MdbMongodbClusterRestorePtrInput
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds pulumi.StringArrayInput
 	// MongoDB Cluster mode enabled/disabled.
@@ -315,6 +321,8 @@ type mdbMongodbClusterArgs struct {
 	NetworkId string `pulumi:"networkId"`
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
 	Resources MdbMongodbClusterResources `pulumi:"resources"`
+	// The cluster will be created from the specified backup. The structure is documented below.
+	Restore *MdbMongodbClusterRestore `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// A user of the MongoDB cluster. The structure is documented below.
@@ -350,6 +358,8 @@ type MdbMongodbClusterArgs struct {
 	NetworkId pulumi.StringInput
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
 	Resources MdbMongodbClusterResourcesInput
+	// The cluster will be created from the specified backup. The structure is documented below.
+	Restore MdbMongodbClusterRestorePtrInput
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds pulumi.StringArrayInput
 	// A user of the MongoDB cluster. The structure is documented below.
@@ -517,6 +527,11 @@ func (o MdbMongodbClusterOutput) NetworkId() pulumi.StringOutput {
 // Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
 func (o MdbMongodbClusterOutput) Resources() MdbMongodbClusterResourcesOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterResourcesOutput { return v.Resources }).(MdbMongodbClusterResourcesOutput)
+}
+
+// The cluster will be created from the specified backup. The structure is documented below.
+func (o MdbMongodbClusterOutput) Restore() MdbMongodbClusterRestorePtrOutput {
+	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterRestorePtrOutput { return v.Restore }).(MdbMongodbClusterRestorePtrOutput)
 }
 
 // A set of ids of security groups assigned to hosts of the cluster.

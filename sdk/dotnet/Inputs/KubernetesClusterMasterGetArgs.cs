@@ -58,6 +58,12 @@ namespace Pulumi.Yandex.Inputs
         public Input<Inputs.KubernetesClusterMasterMaintenancePolicyGetArgs>? MaintenancePolicy { get; set; }
 
         /// <summary>
+        /// (Optional) Master Logging options. The structure is documented below.
+        /// </summary>
+        [Input("masterLogging")]
+        public Input<Inputs.KubernetesClusterMasterMasterLoggingGetArgs>? MasterLogging { get; set; }
+
+        /// <summary>
         /// (Optional) (Computed) Boolean flag. When `true`, Kubernetes master will have visible ipv4 address.
         /// </summary>
         [Input("publicIp")]

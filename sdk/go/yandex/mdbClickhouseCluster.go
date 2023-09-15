@@ -74,6 +74,7 @@ type MdbClickhouseCluster struct {
 	ServiceAccountId pulumi.StringOutput `pulumi:"serviceAccountId"`
 	// A group of clickhouse shards. The structure is documented below.
 	ShardGroups MdbClickhouseClusterShardGroupArrayOutput `pulumi:"shardGroups"`
+	Shards      MdbClickhouseClusterShardArrayOutput      `pulumi:"shards"`
 	// Grants `admin` user database management permission.
 	SqlDatabaseManagement pulumi.BoolOutput `pulumi:"sqlDatabaseManagement"`
 	// Enables `admin` user with user management permission.
@@ -186,6 +187,7 @@ type mdbClickhouseClusterState struct {
 	ServiceAccountId *string `pulumi:"serviceAccountId"`
 	// A group of clickhouse shards. The structure is documented below.
 	ShardGroups []MdbClickhouseClusterShardGroup `pulumi:"shardGroups"`
+	Shards      []MdbClickhouseClusterShard      `pulumi:"shards"`
 	// Grants `admin` user database management permission.
 	SqlDatabaseManagement *bool `pulumi:"sqlDatabaseManagement"`
 	// Enables `admin` user with user management permission.
@@ -250,6 +252,7 @@ type MdbClickhouseClusterState struct {
 	ServiceAccountId pulumi.StringPtrInput
 	// A group of clickhouse shards. The structure is documented below.
 	ShardGroups MdbClickhouseClusterShardGroupArrayInput
+	Shards      MdbClickhouseClusterShardArrayInput
 	// Grants `admin` user database management permission.
 	SqlDatabaseManagement pulumi.BoolPtrInput
 	// Enables `admin` user with user management permission.
@@ -313,6 +316,7 @@ type mdbClickhouseClusterArgs struct {
 	ServiceAccountId *string `pulumi:"serviceAccountId"`
 	// A group of clickhouse shards. The structure is documented below.
 	ShardGroups []MdbClickhouseClusterShardGroup `pulumi:"shardGroups"`
+	Shards      []MdbClickhouseClusterShard      `pulumi:"shards"`
 	// Grants `admin` user database management permission.
 	SqlDatabaseManagement *bool `pulumi:"sqlDatabaseManagement"`
 	// Enables `admin` user with user management permission.
@@ -370,6 +374,7 @@ type MdbClickhouseClusterArgs struct {
 	ServiceAccountId pulumi.StringPtrInput
 	// A group of clickhouse shards. The structure is documented below.
 	ShardGroups MdbClickhouseClusterShardGroupArrayInput
+	Shards      MdbClickhouseClusterShardArrayInput
 	// Grants `admin` user database management permission.
 	SqlDatabaseManagement pulumi.BoolPtrInput
 	// Enables `admin` user with user management permission.
@@ -587,6 +592,10 @@ func (o MdbClickhouseClusterOutput) ServiceAccountId() pulumi.StringOutput {
 // A group of clickhouse shards. The structure is documented below.
 func (o MdbClickhouseClusterOutput) ShardGroups() MdbClickhouseClusterShardGroupArrayOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterShardGroupArrayOutput { return v.ShardGroups }).(MdbClickhouseClusterShardGroupArrayOutput)
+}
+
+func (o MdbClickhouseClusterOutput) Shards() MdbClickhouseClusterShardArrayOutput {
+	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterShardArrayOutput { return v.Shards }).(MdbClickhouseClusterShardArrayOutput)
 }
 
 // Grants `admin` user database management permission.

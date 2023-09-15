@@ -23,7 +23,10 @@ class GetFunctionResult:
     """
     A collection of values returned by getFunction.
     """
-    def __init__(__self__, created_at=None, description=None, entrypoint=None, environment=None, execution_timeout=None, folder_id=None, function_id=None, id=None, image_size=None, labels=None, loggroup_id=None, memory=None, name=None, runtime=None, secrets=None, service_account_id=None, tags=None, version=None):
+    def __init__(__self__, connectivity=None, created_at=None, description=None, entrypoint=None, environment=None, execution_timeout=None, folder_id=None, function_id=None, id=None, image_size=None, labels=None, loggroup_id=None, memory=None, name=None, runtime=None, secrets=None, service_account_id=None, tags=None, version=None):
+        if connectivity and not isinstance(connectivity, dict):
+            raise TypeError("Expected argument 'connectivity' to be a dict")
+        pulumi.set(__self__, "connectivity", connectivity)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -78,6 +81,15 @@ class GetFunctionResult:
         if version and not isinstance(version, str):
             raise TypeError("Expected argument 'version' to be a str")
         pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def connectivity(self) -> Optional['outputs.GetFunctionConnectivityResult']:
+        """
+        Function version connectivity. If specified the version will be attached to specified network.
+        * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+        """
+        return pulumi.get(self, "connectivity")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -221,6 +233,7 @@ class AwaitableGetFunctionResult(GetFunctionResult):
         if False:
             yield self
         return GetFunctionResult(
+            connectivity=self.connectivity,
             created_at=self.created_at,
             description=self.description,
             entrypoint=self.entrypoint,
@@ -241,7 +254,8 @@ class AwaitableGetFunctionResult(GetFunctionResult):
             version=self.version)
 
 
-def get_function(folder_id: Optional[str] = None,
+def get_function(connectivity: Optional[pulumi.InputType['GetFunctionConnectivityArgs']] = None,
+                 folder_id: Optional[str] = None,
                  function_id: Optional[str] = None,
                  name: Optional[str] = None,
                  secrets: Optional[Sequence[pulumi.InputType['GetFunctionSecretArgs']]] = None,
@@ -260,12 +274,15 @@ def get_function(folder_id: Optional[str] = None,
     This data source is used to define [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) that can be used by other resources.
 
 
+    :param pulumi.InputType['GetFunctionConnectivityArgs'] connectivity: Function version connectivity. If specified the version will be attached to specified network.
+           * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
     :param str folder_id: Folder ID for the Yandex Cloud Function
     :param str function_id: Yandex Cloud Function id used to define function
     :param str name: Yandex Cloud Function name used to define function
     :param Sequence[pulumi.InputType['GetFunctionSecretArgs']] secrets: Secrets for Yandex Cloud Function.
     """
     __args__ = dict()
+    __args__['connectivity'] = connectivity
     __args__['folderId'] = folder_id
     __args__['functionId'] = function_id
     __args__['name'] = name
@@ -274,6 +291,7 @@ def get_function(folder_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('yandex:index/getFunction:getFunction', __args__, opts=opts, typ=GetFunctionResult).value
 
     return AwaitableGetFunctionResult(
+        connectivity=__ret__.connectivity,
         created_at=__ret__.created_at,
         description=__ret__.description,
         entrypoint=__ret__.entrypoint,
@@ -295,7 +313,8 @@ def get_function(folder_id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_function)
-def get_function_output(folder_id: Optional[pulumi.Input[Optional[str]]] = None,
+def get_function_output(connectivity: Optional[pulumi.Input[Optional[pulumi.InputType['GetFunctionConnectivityArgs']]]] = None,
+                        folder_id: Optional[pulumi.Input[Optional[str]]] = None,
                         function_id: Optional[pulumi.Input[Optional[str]]] = None,
                         name: Optional[pulumi.Input[Optional[str]]] = None,
                         secrets: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetFunctionSecretArgs']]]]] = None,
@@ -314,6 +333,8 @@ def get_function_output(folder_id: Optional[pulumi.Input[Optional[str]]] = None,
     This data source is used to define [Yandex Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) that can be used by other resources.
 
 
+    :param pulumi.InputType['GetFunctionConnectivityArgs'] connectivity: Function version connectivity. If specified the version will be attached to specified network.
+           * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
     :param str folder_id: Folder ID for the Yandex Cloud Function
     :param str function_id: Yandex Cloud Function id used to define function
     :param str name: Yandex Cloud Function name used to define function

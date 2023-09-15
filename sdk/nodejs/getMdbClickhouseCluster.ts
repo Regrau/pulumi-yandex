@@ -37,6 +37,7 @@ export function getMdbClickhouseCluster(args?: GetMdbClickhouseClusterArgs, opts
         "folderId": args.folderId,
         "name": args.name,
         "serviceAccountId": args.serviceAccountId,
+        "shards": args.shards,
     }, opts);
 }
 
@@ -59,6 +60,10 @@ export interface GetMdbClickhouseClusterArgs {
      */
     name?: string;
     serviceAccountId?: string;
+    /**
+     * A shard of the ClickHouse cluster. The structure is documented below.
+     */
+    shards?: inputs.GetMdbClickhouseClusterShard[];
 }
 
 /**
@@ -144,6 +149,10 @@ export interface GetMdbClickhouseClusterResult {
      */
     readonly shardGroups: outputs.GetMdbClickhouseClusterShardGroup[];
     /**
+     * A shard of the ClickHouse cluster. The structure is documented below.
+     */
+    readonly shards: outputs.GetMdbClickhouseClusterShard[];
+    /**
      * Grants `admin` user database management permission.
      */
     readonly sqlDatabaseManagement: boolean;
@@ -189,4 +198,8 @@ export interface GetMdbClickhouseClusterOutputArgs {
      */
     name?: pulumi.Input<string>;
     serviceAccountId?: pulumi.Input<string>;
+    /**
+     * A shard of the ClickHouse cluster. The structure is documented below.
+     */
+    shards?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterShardArgs>[]>;
 }

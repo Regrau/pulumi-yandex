@@ -474,6 +474,7 @@ export interface AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeader {
 export interface AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderValue {
     exact?: string;
     prefix?: string;
+    regex?: string;
 }
 
 export interface AlbLoadBalancerAllocationPolicy {
@@ -873,6 +874,10 @@ export interface AlbVirtualHostRouteGrpcRouteGrpcMatchFqmn {
      * Match prefix.
      */
     prefix?: string;
+    /**
+     * Match regex.
+     */
+    regex?: string;
 }
 
 export interface AlbVirtualHostRouteGrpcRouteGrpcRouteAction {
@@ -961,6 +966,10 @@ export interface AlbVirtualHostRouteHttpRouteHttpMatchPath {
      * Match prefix.
      */
     prefix?: string;
+    /**
+     * Match regex.
+     */
+    regex?: string;
 }
 
 export interface AlbVirtualHostRouteHttpRouteHttpRouteAction {
@@ -1066,6 +1075,10 @@ export interface AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderValue 
      * Match prefix.
      */
     prefix?: string;
+    /**
+     * Match regex.
+     */
+    regex?: string;
 }
 
 export interface AlbVirtualHostRouteRouteOptions {
@@ -1104,6 +1117,20 @@ export interface AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderV
      * Match prefix.
      */
     prefix?: string;
+    /**
+     * Match regex.
+     */
+    regex?: string;
+}
+
+export interface ApiGatewayConnectivity {
+    networkId: string;
+}
+
+export interface ApiGatewayCustomDomain {
+    certificateId: string;
+    domainId: string;
+    fqdn: string;
 }
 
 export interface CdnOriginGroupOrigin {
@@ -3282,6 +3309,10 @@ export interface DatatransferEndpointSettingsPostgresTargetPassword {
     raw: string;
 }
 
+export interface FunctionConnectivity {
+    networkId: string;
+}
+
 export interface FunctionContent {
     zipFilename: string;
 }
@@ -3299,9 +3330,21 @@ export interface FunctionScalingPolicyPolicy {
 }
 
 export interface FunctionSecret {
+    /**
+     * (Required) Function's environment variable in which secret's value will be stored.
+     */
     environmentVariable: string;
+    /**
+     * (Required) Secret's id.
+     */
     id: string;
+    /**
+     * (Required) Secret's entries key which value will be stored in environment variable.
+     */
     key: string;
+    /**
+     * (Required) Secret's version id.
+     */
     versionId: string;
 }
 
@@ -3829,6 +3872,7 @@ export interface GetAlbHttpRouterRouteOptionRbacPrincipalAndPrincipalHeader {
 export interface GetAlbHttpRouterRouteOptionRbacPrincipalAndPrincipalHeaderValue {
     exact: string;
     prefix: string;
+    regex: string;
 }
 
 export interface GetAlbLoadBalancerAllocationPolicy {
@@ -4051,6 +4095,7 @@ export interface GetAlbVirtualHostRouteGrpcRouteGrpcMatch {
 export interface GetAlbVirtualHostRouteGrpcRouteGrpcMatchFqmn {
     exact: string;
     prefix: string;
+    regex: string;
 }
 
 export interface GetAlbVirtualHostRouteGrpcRouteGrpcRouteAction {
@@ -4132,6 +4177,7 @@ export interface GetAlbVirtualHostRouteHttpRouteHttpMatch {
 export interface GetAlbVirtualHostRouteHttpRouteHttpMatchPath {
     exact: string;
     prefix: string;
+    regex: string;
 }
 
 export interface GetAlbVirtualHostRouteHttpRouteHttpRouteAction {
@@ -4230,6 +4276,7 @@ export interface GetAlbVirtualHostRouteOptionRbacPrincipalAndPrincipalHeader {
 export interface GetAlbVirtualHostRouteOptionRbacPrincipalAndPrincipalHeaderValue {
     exact: string;
     prefix: string;
+    regex: string;
 }
 
 export interface GetAlbVirtualHostRouteRouteOption {
@@ -4262,6 +4309,17 @@ export interface GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeade
 export interface GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderValue {
     exact: string;
     prefix: string;
+    regex: string;
+}
+
+export interface GetApiGatewayConnectivity {
+    networkId: string;
+}
+
+export interface GetApiGatewayCustomDomain {
+    certificateId: string;
+    domainId: string;
+    fqdn: string;
 }
 
 export interface GetCdnOriginGroupOrigin {
@@ -5438,6 +5496,10 @@ export interface GetDataprocClusterClusterConfigSubclusterSpecResource {
     resourcePresetId: string;
 }
 
+export interface GetFunctionConnectivity {
+    networkId: string;
+}
+
 export interface GetFunctionScalingPolicyPolicy {
     tag: string;
     zoneInstancesLimit?: number;
@@ -5556,6 +5618,10 @@ export interface GetKubernetesClusterMaster {
      */
     maintenancePolicies: outputs.GetKubernetesClusterMasterMaintenancePolicy[];
     /**
+     * (Optional) Master Logging options. The structure is documented below.
+     */
+    masterLoggings: outputs.GetKubernetesClusterMasterMasterLogging[];
+    /**
      * Boolean flag. When `true`, Kubernetes master have visible ipv4 address.
      */
     publicIp: boolean;
@@ -5597,6 +5663,33 @@ export interface GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindow {
     day: string;
     duration: string;
     startTime: string;
+}
+
+export interface GetKubernetesClusterMasterMasterLogging {
+    /**
+     * (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
+     */
+    clusterAutoscalerEnabled: boolean;
+    /**
+     * (Optional) Boolean flag that specifies if master components logs should be sent to [Yandex Cloud Logging](https://cloud.yandex.com/docs/logging/). The exact components that will send their logs must be configured via the options described below.
+     */
+    enabled: boolean;
+    /**
+     * (Optional) Boolean flag that specifies if kubernetes cluster events should be sent to Yandex Cloud Logging.
+     */
+    eventsEnabled: boolean;
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
+    folderId: string;
+    /**
+     * (Optional) Boolean flag that specifies if kube-apiserver logs should be sent to Yandex Cloud Logging.
+     */
+    kubeApiserverEnabled: boolean;
+    /**
+     * (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
+     */
+    logGroupId: string;
 }
 
 export interface GetKubernetesClusterMasterRegional {
@@ -6262,9 +6355,21 @@ export interface GetMdbClickhouseClusterClickhouseResource {
 
 export interface GetMdbClickhouseClusterCloudStorage {
     /**
+     * Enables temporary storage in the cluster repository of data requested from the object repository.
+     */
+    dataCacheEnabled: boolean;
+    /**
+     * Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
+     */
+    dataCacheMaxSize: number;
+    /**
      * (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
      */
     enabled: boolean;
+    /**
+     * Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+     */
+    moveFactor: number;
 }
 
 export interface GetMdbClickhouseClusterDatabase {
@@ -6344,6 +6449,17 @@ export interface GetMdbClickhouseClusterMlModel {
      * Model file URL. You can only use models stored in Yandex Object Storage.
      */
     uri: string;
+}
+
+export interface GetMdbClickhouseClusterShard {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name: string;
+    /**
+     * The weight of the shard.
+     */
+    weight: number;
 }
 
 export interface GetMdbClickhouseClusterShardGroup {
@@ -7410,6 +7526,11 @@ export interface GetMdbMongodbClusterResources {
     resourcePresetId?: string;
 }
 
+export interface GetMdbMongodbClusterRestore {
+    backupId?: string;
+    time?: string;
+}
+
 export interface GetMdbMongodbClusterUser {
     /**
      * The name of the MongoDB cluster.
@@ -7928,6 +8049,10 @@ export interface GetOrganizationmanagerSamlFederationSecuritySetting {
     encryptedAssertions: boolean;
 }
 
+export interface GetServerlessContainerConnectivity {
+    networkId: string;
+}
+
 export interface GetServerlessContainerImage {
     args: string[];
     commands: string[];
@@ -8177,6 +8302,10 @@ export interface KubernetesClusterMaster {
      */
     maintenancePolicy: outputs.KubernetesClusterMasterMaintenancePolicy;
     /**
+     * (Optional) Master Logging options. The structure is documented below.
+     */
+    masterLogging?: outputs.KubernetesClusterMasterMasterLogging;
+    /**
      * (Optional) (Computed) Boolean flag. When `true`, Kubernetes master will have visible ipv4 address.
      */
     publicIp: boolean;
@@ -8219,6 +8348,34 @@ export interface KubernetesClusterMasterMaintenancePolicyMaintenanceWindow {
     day: string;
     duration: string;
     startTime: string;
+}
+
+export interface KubernetesClusterMasterMasterLogging {
+    /**
+     * (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
+     */
+    clusterAutoscalerEnabled?: boolean;
+    /**
+     * (Optional) Boolean flag that specifies if master components logs should be sent to [Yandex Cloud Logging](https://cloud.yandex.com/docs/logging/). The exact components that will send their logs must be configured via the options described below.
+     */
+    enabled?: boolean;
+    /**
+     * (Optional) Boolean flag that specifies if kubernetes cluster events should be sent to Yandex Cloud Logging.
+     */
+    eventsEnabled?: boolean;
+    /**
+     * The ID of the folder that the Kubernetes cluster belongs to.
+     * If it is not provided, the default provider folder is used.
+     */
+    folderId?: string;
+    /**
+     * (Optional) Boolean flag that specifies if kube-apiserver logs should be sent to Yandex Cloud Logging.
+     */
+    kubeApiserverEnabled?: boolean;
+    /**
+     * (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
+     */
+    logGroupId?: string;
 }
 
 export interface KubernetesClusterMasterRegional {
@@ -8982,9 +9139,21 @@ export interface MdbClickhouseClusterClickhouseResources {
 
 export interface MdbClickhouseClusterCloudStorage {
     /**
+     * Enables temporary storage in the cluster repository of data requested from the object repository.
+     */
+    dataCacheEnabled: boolean;
+    /**
+     * Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
+     */
+    dataCacheMaxSize: number;
+    /**
      * Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
      */
     enabled: boolean;
+    /**
+     * Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+     */
+    moveFactor: number;
 }
 
 export interface MdbClickhouseClusterDatabase {
@@ -9065,6 +9234,17 @@ export interface MdbClickhouseClusterMlModel {
      * Model file URL. You can only use models stored in Yandex Object Storage.
      */
     uri: string;
+}
+
+export interface MdbClickhouseClusterShard {
+    /**
+     * Graphite rollup configuration name.
+     */
+    name: string;
+    /**
+     * The weight of shard.
+     */
+    weight: number;
 }
 
 export interface MdbClickhouseClusterShardGroup {
@@ -10240,6 +10420,17 @@ export interface MdbMongodbClusterResources {
     resourcePresetId: string;
 }
 
+export interface MdbMongodbClusterRestore {
+    /**
+     * Backup ID. The cluster will be created from the specified backup. [How to get a list of PostgreSQL backups](https://cloud.yandex.com/en-ru/docs/managed-mongodb/operations/cluster-backups)
+     */
+    backupId: string;
+    /**
+     * Timestamp of the moment to which the MongoDB cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
+     */
+    time?: string;
+}
+
 export interface MdbMongodbClusterUser {
     /**
      * The fully qualified domain name of the host. Computed on server side.
@@ -10781,6 +10972,10 @@ export interface OrganizationmanagerSamlFederationSecuritySettings {
     encryptedAssertions: boolean;
 }
 
+export interface ServerlessContainerConnectivity {
+    networkId: string;
+}
+
 export interface ServerlessContainerImage {
     args?: string[];
     commands?: string[];
@@ -10794,13 +10989,26 @@ export interface ServerlessContainerImage {
 }
 
 export interface ServerlessContainerSecret {
+    /**
+     * (Required) Container's environment variable in which secret's value will be stored.
+     */
     environmentVariable: string;
+    /**
+     * (Required) Secret's id.
+     */
     id: string;
+    /**
+     * (Required) Secret's entries key which value will be stored in environment variable.
+     */
     key: string;
+    /**
+     * (Required) Secret's version id.
+     */
     versionId: string;
 }
 
 export interface StorageBucketAnonymousAccessFlags {
+    configRead?: boolean;
     /**
      * Allows to list object in bucket anonymously.
      */
@@ -10943,6 +11151,36 @@ export interface StorageBucketLogging {
      * To specify a key prefix for log objects.
      */
     targetPrefix?: string;
+}
+
+export interface StorageBucketObjectLockConfiguration {
+    /**
+     * Enable object locking in a bucket. Require versioning to be enabled.
+     */
+    objectLockEnabled?: string;
+    /**
+     * Specifies a default locking configuration for added objects. Require objectLockEnabled to be enabled.
+     */
+    rule?: outputs.StorageBucketObjectLockConfigurationRule;
+}
+
+export interface StorageBucketObjectLockConfigurationRule {
+    defaultRetention: outputs.StorageBucketObjectLockConfigurationRuleDefaultRetention;
+}
+
+export interface StorageBucketObjectLockConfigurationRuleDefaultRetention {
+    /**
+     * Specifies a retention period in days after uploading an object version. It must be a positive integer. You can't set it simultaneously with `years`.
+     */
+    days?: number;
+    /**
+     * Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`.
+     */
+    mode: string;
+    /**
+     * Specifies a retention period in years after uploading an object version. It must be a positive integer. You can't set it simultaneously with `days`.
+     */
+    years?: number;
 }
 
 export interface StorageBucketServerSideEncryptionConfiguration {

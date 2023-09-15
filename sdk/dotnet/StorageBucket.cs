@@ -195,6 +195,39 @@ namespace Pulumi.Yandex
     /// 
     /// });
     /// ```
+    /// ### Using Object Lock Configuration
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var storageBucket = new Yandex.StorageBucket("storageBucket", new()
+    ///     {
+    ///         Acl = "private",
+    ///         Bucket = "my-tf-test-bucket",
+    ///         ObjectLockConfiguration = new Yandex.Inputs.StorageBucketObjectLockConfigurationArgs
+    ///         {
+    ///             ObjectLockEnabled = "Enabled",
+    ///             Rule = new Yandex.Inputs.StorageBucketObjectLockConfigurationRuleArgs
+    ///             {
+    ///                 DefaultRetention = new Yandex.Inputs.StorageBucketObjectLockConfigurationRuleDefaultRetentionArgs
+    ///                 {
+    ///                     Mode = "GOVERNANCE",
+    ///                     Years = 1,
+    ///                 },
+    ///             },
+    ///         },
+    ///         Versioning = new Yandex.Inputs.StorageBucketVersioningArgs
+    ///         {
+    ///             Enabled = true,
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// ### Enable Logging
     /// 
     /// ```csharp
@@ -426,6 +459,7 @@ namespace Pulumi.Yandex
     ///     {
     ///         AnonymousAccessFlags = new Yandex.Inputs.StorageBucketAnonymousAccessFlagsArgs
     ///         {
+    ///             ConfigRead = true,
     ///             List = false,
     ///             Read = true,
     ///         },
@@ -666,7 +700,7 @@ namespace Pulumi.Yandex
         /// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
         /// </summary>
         [Output("acl")]
-        public Output<string?> Acl { get; private set; } = null!;
+        public Output<string> Acl { get; private set; } = null!;
 
         /// <summary>
         /// Provides various access to objects.
@@ -746,6 +780,12 @@ namespace Pulumi.Yandex
         /// </summary>
         [Output("maxSize")]
         public Output<int?> MaxSize { get; private set; } = null!;
+
+        /// <summary>
+        /// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+        /// </summary>
+        [Output("objectLockConfiguration")]
+        public Output<Outputs.StorageBucketObjectLockConfiguration?> ObjectLockConfiguration { get; private set; } = null!;
 
         [Output("policy")]
         public Output<string?> Policy { get; private set; } = null!;
@@ -946,6 +986,12 @@ namespace Pulumi.Yandex
         [Input("maxSize")]
         public Input<int>? MaxSize { get; set; }
 
+        /// <summary>
+        /// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+        /// </summary>
+        [Input("objectLockConfiguration")]
+        public Input<Inputs.StorageBucketObjectLockConfigurationArgs>? ObjectLockConfiguration { get; set; }
+
         [Input("policy")]
         public Input<string>? Policy { get; set; }
 
@@ -1117,6 +1163,12 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("maxSize")]
         public Input<int>? MaxSize { get; set; }
+
+        /// <summary>
+        /// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+        /// </summary>
+        [Input("objectLockConfiguration")]
+        public Input<Inputs.StorageBucketObjectLockConfigurationGetArgs>? ObjectLockConfiguration { get; set; }
 
         [Input("policy")]
         public Input<string>? Policy { get; set; }

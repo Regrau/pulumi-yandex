@@ -23,10 +23,13 @@ class GetServerlessContainerResult:
     """
     A collection of values returned by getServerlessContainer.
     """
-    def __init__(__self__, concurrency=None, container_id=None, core_fraction=None, cores=None, created_at=None, description=None, execution_timeout=None, folder_id=None, id=None, images=None, labels=None, memory=None, name=None, revision_id=None, secrets=None, service_account_id=None, url=None):
+    def __init__(__self__, concurrency=None, connectivity=None, container_id=None, core_fraction=None, cores=None, created_at=None, description=None, execution_timeout=None, folder_id=None, id=None, images=None, labels=None, memory=None, name=None, revision_id=None, secrets=None, service_account_id=None, url=None):
         if concurrency and not isinstance(concurrency, int):
             raise TypeError("Expected argument 'concurrency' to be a int")
         pulumi.set(__self__, "concurrency", concurrency)
+        if connectivity and not isinstance(connectivity, dict):
+            raise TypeError("Expected argument 'connectivity' to be a dict")
+        pulumi.set(__self__, "connectivity", connectivity)
         if container_id and not isinstance(container_id, str):
             raise TypeError("Expected argument 'container_id' to be a str")
         pulumi.set(__self__, "container_id", container_id)
@@ -83,6 +86,15 @@ class GetServerlessContainerResult:
         Concurrency of Yandex Cloud Serverless Container
         """
         return pulumi.get(self, "concurrency")
+
+    @property
+    @pulumi.getter
+    def connectivity(self) -> Optional['outputs.GetServerlessContainerConnectivityResult']:
+        """
+        Network access. If specified the revision will be attached to specified network
+        * `connectivity.0.network_id` - Network the revision will have access to
+        """
+        return pulumi.get(self, "connectivity")
 
     @property
     @pulumi.getter(name="containerId")
@@ -211,6 +223,7 @@ class AwaitableGetServerlessContainerResult(GetServerlessContainerResult):
             yield self
         return GetServerlessContainerResult(
             concurrency=self.concurrency,
+            connectivity=self.connectivity,
             container_id=self.container_id,
             core_fraction=self.core_fraction,
             cores=self.cores,
@@ -229,7 +242,8 @@ class AwaitableGetServerlessContainerResult(GetServerlessContainerResult):
             url=self.url)
 
 
-def get_serverless_container(container_id: Optional[str] = None,
+def get_serverless_container(connectivity: Optional[pulumi.InputType['GetServerlessContainerConnectivityArgs']] = None,
+                             container_id: Optional[str] = None,
                              folder_id: Optional[str] = None,
                              name: Optional[str] = None,
                              secrets: Optional[Sequence[pulumi.InputType['GetServerlessContainerSecretArgs']]] = None,
@@ -247,6 +261,8 @@ def get_serverless_container(container_id: Optional[str] = None,
     This data source is used to define Yandex Cloud Container that can be used by other resources.
 
 
+    :param pulumi.InputType['GetServerlessContainerConnectivityArgs'] connectivity: Network access. If specified the revision will be attached to specified network
+           * `connectivity.0.network_id` - Network the revision will have access to
     :param str container_id: Yandex Cloud Serverless Container id used to define container
     :param str folder_id: Folder ID for the Yandex Cloud Serverless Container
     :param str name: Yandex Cloud Serverless Container name used to define container
@@ -259,6 +275,7 @@ def get_serverless_container(container_id: Optional[str] = None,
            * `image.0.environment` -  A set of key/value environment variable pairs of Yandex Cloud Serverless Container
     """
     __args__ = dict()
+    __args__['connectivity'] = connectivity
     __args__['containerId'] = container_id
     __args__['folderId'] = folder_id
     __args__['name'] = name
@@ -268,6 +285,7 @@ def get_serverless_container(container_id: Optional[str] = None,
 
     return AwaitableGetServerlessContainerResult(
         concurrency=__ret__.concurrency,
+        connectivity=__ret__.connectivity,
         container_id=__ret__.container_id,
         core_fraction=__ret__.core_fraction,
         cores=__ret__.cores,
@@ -287,7 +305,8 @@ def get_serverless_container(container_id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_serverless_container)
-def get_serverless_container_output(container_id: Optional[pulumi.Input[Optional[str]]] = None,
+def get_serverless_container_output(connectivity: Optional[pulumi.Input[Optional[pulumi.InputType['GetServerlessContainerConnectivityArgs']]]] = None,
+                                    container_id: Optional[pulumi.Input[Optional[str]]] = None,
                                     folder_id: Optional[pulumi.Input[Optional[str]]] = None,
                                     name: Optional[pulumi.Input[Optional[str]]] = None,
                                     secrets: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetServerlessContainerSecretArgs']]]]] = None,
@@ -305,6 +324,8 @@ def get_serverless_container_output(container_id: Optional[pulumi.Input[Optional
     This data source is used to define Yandex Cloud Container that can be used by other resources.
 
 
+    :param pulumi.InputType['GetServerlessContainerConnectivityArgs'] connectivity: Network access. If specified the revision will be attached to specified network
+           * `connectivity.0.network_id` - Network the revision will have access to
     :param str container_id: Yandex Cloud Serverless Container id used to define container
     :param str folder_id: Folder ID for the Yandex Cloud Serverless Container
     :param str name: Yandex Cloud Serverless Container name used to define container

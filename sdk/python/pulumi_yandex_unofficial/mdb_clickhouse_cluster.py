@@ -38,6 +38,7 @@ class MdbClickhouseClusterArgs:
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  shard_groups: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterShardGroupArgs']]]] = None,
+                 shards: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterShardArgs']]]] = None,
                  sql_database_management: Optional[pulumi.Input[bool]] = None,
                  sql_user_management: Optional[pulumi.Input[bool]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterUserArgs']]]] = None,
@@ -112,6 +113,8 @@ class MdbClickhouseClusterArgs:
             pulumi.set(__self__, "service_account_id", service_account_id)
         if shard_groups is not None:
             pulumi.set(__self__, "shard_groups", shard_groups)
+        if shards is not None:
+            pulumi.set(__self__, "shards", shards)
         if sql_database_management is not None:
             pulumi.set(__self__, "sql_database_management", sql_database_management)
         if sql_user_management is not None:
@@ -383,6 +386,15 @@ class MdbClickhouseClusterArgs:
         pulumi.set(self, "shard_groups", value)
 
     @property
+    @pulumi.getter
+    def shards(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterShardArgs']]]]:
+        return pulumi.get(self, "shards")
+
+    @shards.setter
+    def shards(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterShardArgs']]]]):
+        pulumi.set(self, "shards", value)
+
+    @property
     @pulumi.getter(name="sqlDatabaseManagement")
     def sql_database_management(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -470,6 +482,7 @@ class _MdbClickhouseClusterState:
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  shard_groups: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterShardGroupArgs']]]] = None,
+                 shards: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterShardArgs']]]] = None,
                  sql_database_management: Optional[pulumi.Input[bool]] = None,
                  sql_user_management: Optional[pulumi.Input[bool]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -558,6 +571,8 @@ class _MdbClickhouseClusterState:
             pulumi.set(__self__, "service_account_id", service_account_id)
         if shard_groups is not None:
             pulumi.set(__self__, "shard_groups", shard_groups)
+        if shards is not None:
+            pulumi.set(__self__, "shards", shards)
         if sql_database_management is not None:
             pulumi.set(__self__, "sql_database_management", sql_database_management)
         if sql_user_management is not None:
@@ -856,6 +871,15 @@ class _MdbClickhouseClusterState:
         pulumi.set(self, "shard_groups", value)
 
     @property
+    @pulumi.getter
+    def shards(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterShardArgs']]]]:
+        return pulumi.get(self, "shards")
+
+    @shards.setter
+    def shards(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterShardArgs']]]]):
+        pulumi.set(self, "shards", value)
+
+    @property
     @pulumi.getter(name="sqlDatabaseManagement")
     def sql_database_management(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -956,6 +980,7 @@ class MdbClickhouseCluster(pulumi.CustomResource):
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  shard_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterShardGroupArgs']]]]] = None,
+                 shards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterShardArgs']]]]] = None,
                  sql_database_management: Optional[pulumi.Input[bool]] = None,
                  sql_user_management: Optional[pulumi.Input[bool]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterUserArgs']]]]] = None,
@@ -1058,6 +1083,7 @@ class MdbClickhouseCluster(pulumi.CustomResource):
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  shard_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterShardGroupArgs']]]]] = None,
+                 shards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterShardArgs']]]]] = None,
                  sql_database_management: Optional[pulumi.Input[bool]] = None,
                  sql_user_management: Optional[pulumi.Input[bool]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterUserArgs']]]]] = None,
@@ -1102,6 +1128,7 @@ class MdbClickhouseCluster(pulumi.CustomResource):
             __props__.__dict__["security_group_ids"] = security_group_ids
             __props__.__dict__["service_account_id"] = service_account_id
             __props__.__dict__["shard_groups"] = shard_groups
+            __props__.__dict__["shards"] = shards
             __props__.__dict__["sql_database_management"] = sql_database_management
             __props__.__dict__["sql_user_management"] = sql_user_management
             __props__.__dict__["users"] = users
@@ -1146,6 +1173,7 @@ class MdbClickhouseCluster(pulumi.CustomResource):
             security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             service_account_id: Optional[pulumi.Input[str]] = None,
             shard_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterShardGroupArgs']]]]] = None,
+            shards: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterShardArgs']]]]] = None,
             sql_database_management: Optional[pulumi.Input[bool]] = None,
             sql_user_management: Optional[pulumi.Input[bool]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -1219,6 +1247,7 @@ class MdbClickhouseCluster(pulumi.CustomResource):
         __props__.__dict__["security_group_ids"] = security_group_ids
         __props__.__dict__["service_account_id"] = service_account_id
         __props__.__dict__["shard_groups"] = shard_groups
+        __props__.__dict__["shards"] = shards
         __props__.__dict__["sql_database_management"] = sql_database_management
         __props__.__dict__["sql_user_management"] = sql_user_management
         __props__.__dict__["status"] = status
@@ -1414,6 +1443,11 @@ class MdbClickhouseCluster(pulumi.CustomResource):
         A group of clickhouse shards. The structure is documented below.
         """
         return pulumi.get(self, "shard_groups")
+
+    @property
+    @pulumi.getter
+    def shards(self) -> pulumi.Output[Sequence['outputs.MdbClickhouseClusterShard']]:
+        return pulumi.get(self, "shards")
 
     @property
     @pulumi.getter(name="sqlDatabaseManagement")

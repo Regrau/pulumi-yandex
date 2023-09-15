@@ -24,6 +24,17 @@ namespace Pulumi.Yandex
         [Input("apiGatewayId")]
         public string? ApiGatewayId { get; set; }
 
+        [Input("connectivity")]
+        public Inputs.GetApiGatewayConnectivityArgs? Connectivity { get; set; }
+
+        [Input("customDomains")]
+        private List<Inputs.GetApiGatewayCustomDomainArgs>? _customDomains;
+        public List<Inputs.GetApiGatewayCustomDomainArgs> CustomDomains
+        {
+            get => _customDomains ?? (_customDomains = new List<Inputs.GetApiGatewayCustomDomainArgs>());
+            set => _customDomains = value;
+        }
+
         [Input("folderId")]
         public string? FolderId { get; set; }
 
@@ -40,6 +51,17 @@ namespace Pulumi.Yandex
     {
         [Input("apiGatewayId")]
         public Input<string>? ApiGatewayId { get; set; }
+
+        [Input("connectivity")]
+        public Input<Inputs.GetApiGatewayConnectivityInputArgs>? Connectivity { get; set; }
+
+        [Input("customDomains")]
+        private InputList<Inputs.GetApiGatewayCustomDomainInputArgs>? _customDomains;
+        public InputList<Inputs.GetApiGatewayCustomDomainInputArgs> CustomDomains
+        {
+            get => _customDomains ?? (_customDomains = new InputList<Inputs.GetApiGatewayCustomDomainInputArgs>());
+            set => _customDomains = value;
+        }
 
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
@@ -58,7 +80,9 @@ namespace Pulumi.Yandex
     public sealed class GetApiGatewayResult
     {
         public readonly string? ApiGatewayId;
+        public readonly Outputs.GetApiGatewayConnectivityResult? Connectivity;
         public readonly string CreatedAt;
+        public readonly ImmutableArray<Outputs.GetApiGatewayCustomDomainResult> CustomDomains;
         public readonly string Description;
         public readonly string Domain;
         public readonly string? FolderId;
@@ -76,7 +100,11 @@ namespace Pulumi.Yandex
         private GetApiGatewayResult(
             string? apiGatewayId,
 
+            Outputs.GetApiGatewayConnectivityResult? connectivity,
+
             string createdAt,
+
+            ImmutableArray<Outputs.GetApiGatewayCustomDomainResult> customDomains,
 
             string description,
 
@@ -97,7 +125,9 @@ namespace Pulumi.Yandex
             ImmutableArray<string> userDomains)
         {
             ApiGatewayId = apiGatewayId;
+            Connectivity = connectivity;
             CreatedAt = createdAt;
+            CustomDomains = customDomains;
             Description = description;
             Domain = domain;
             FolderId = folderId;

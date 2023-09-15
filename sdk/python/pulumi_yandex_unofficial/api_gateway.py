@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ApiGatewayArgs', 'ApiGateway']
 
@@ -15,6 +17,8 @@ __all__ = ['ApiGatewayArgs', 'ApiGateway']
 class ApiGatewayArgs:
     def __init__(__self__, *,
                  spec: pulumi.Input[str],
+                 connectivity: Optional[pulumi.Input['ApiGatewayConnectivityArgs']] = None,
+                 custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input['ApiGatewayCustomDomainArgs']]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -22,12 +26,19 @@ class ApiGatewayArgs:
         """
         The set of arguments for constructing a ApiGateway resource.
         :param pulumi.Input[str] spec: OpenAPI specification for Yandex API Gateway.
+        :param pulumi.Input['ApiGatewayConnectivityArgs'] connectivity: Gateway connectivity. If specified the gateway will be attached to specified network.
+               * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+        :param pulumi.Input[Sequence[pulumi.Input['ApiGatewayCustomDomainArgs']]] custom_domains: Set of custom domains to be attached to Yandex API Gateway.
         :param pulumi.Input[str] description: Description of the Yandex Cloud API Gateway.
         :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud API Gateway.
         :param pulumi.Input[str] name: Yandex Cloud API Gateway name used to define API Gateway.
         """
         pulumi.set(__self__, "spec", spec)
+        if connectivity is not None:
+            pulumi.set(__self__, "connectivity", connectivity)
+        if custom_domains is not None:
+            pulumi.set(__self__, "custom_domains", custom_domains)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if folder_id is not None:
@@ -48,6 +59,31 @@ class ApiGatewayArgs:
     @spec.setter
     def spec(self, value: pulumi.Input[str]):
         pulumi.set(self, "spec", value)
+
+    @property
+    @pulumi.getter
+    def connectivity(self) -> Optional[pulumi.Input['ApiGatewayConnectivityArgs']]:
+        """
+        Gateway connectivity. If specified the gateway will be attached to specified network.
+        * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+        """
+        return pulumi.get(self, "connectivity")
+
+    @connectivity.setter
+    def connectivity(self, value: Optional[pulumi.Input['ApiGatewayConnectivityArgs']]):
+        pulumi.set(self, "connectivity", value)
+
+    @property
+    @pulumi.getter(name="customDomains")
+    def custom_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApiGatewayCustomDomainArgs']]]]:
+        """
+        Set of custom domains to be attached to Yandex API Gateway.
+        """
+        return pulumi.get(self, "custom_domains")
+
+    @custom_domains.setter
+    def custom_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiGatewayCustomDomainArgs']]]]):
+        pulumi.set(self, "custom_domains", value)
 
     @property
     @pulumi.getter
@@ -101,7 +137,9 @@ class ApiGatewayArgs:
 @pulumi.input_type
 class _ApiGatewayState:
     def __init__(__self__, *,
+                 connectivity: Optional[pulumi.Input['ApiGatewayConnectivityArgs']] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
+                 custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input['ApiGatewayCustomDomainArgs']]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
@@ -113,7 +151,10 @@ class _ApiGatewayState:
                  user_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering ApiGateway resources.
+        :param pulumi.Input['ApiGatewayConnectivityArgs'] connectivity: Gateway connectivity. If specified the gateway will be attached to specified network.
+               * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
         :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud API Gateway.
+        :param pulumi.Input[Sequence[pulumi.Input['ApiGatewayCustomDomainArgs']]] custom_domains: Set of custom domains to be attached to Yandex API Gateway.
         :param pulumi.Input[str] description: Description of the Yandex Cloud API Gateway.
         :param pulumi.Input[str] domain: Default domain for the Yandex API Gateway. Generated at creation time.
         :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
@@ -121,10 +162,14 @@ class _ApiGatewayState:
         :param pulumi.Input[str] name: Yandex Cloud API Gateway name used to define API Gateway.
         :param pulumi.Input[str] spec: OpenAPI specification for Yandex API Gateway.
         :param pulumi.Input[str] status: Status of the Yandex API Gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_domains: Set of user domains attached to Yandex API Gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_domains: (**DEPRECATED**, use `custom_domains` instead) Set of user domains attached to Yandex API Gateway.
         """
+        if connectivity is not None:
+            pulumi.set(__self__, "connectivity", connectivity)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if custom_domains is not None:
+            pulumi.set(__self__, "custom_domains", custom_domains)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if domain is not None:
@@ -142,7 +187,23 @@ class _ApiGatewayState:
         if status is not None:
             pulumi.set(__self__, "status", status)
         if user_domains is not None:
+            warnings.warn("""The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.""", DeprecationWarning)
+            pulumi.log.warn("""user_domains is deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.""")
+        if user_domains is not None:
             pulumi.set(__self__, "user_domains", user_domains)
+
+    @property
+    @pulumi.getter
+    def connectivity(self) -> Optional[pulumi.Input['ApiGatewayConnectivityArgs']]:
+        """
+        Gateway connectivity. If specified the gateway will be attached to specified network.
+        * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+        """
+        return pulumi.get(self, "connectivity")
+
+    @connectivity.setter
+    def connectivity(self, value: Optional[pulumi.Input['ApiGatewayConnectivityArgs']]):
+        pulumi.set(self, "connectivity", value)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -155,6 +216,18 @@ class _ApiGatewayState:
     @created_at.setter
     def created_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="customDomains")
+    def custom_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ApiGatewayCustomDomainArgs']]]]:
+        """
+        Set of custom domains to be attached to Yandex API Gateway.
+        """
+        return pulumi.get(self, "custom_domains")
+
+    @custom_domains.setter
+    def custom_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ApiGatewayCustomDomainArgs']]]]):
+        pulumi.set(self, "custom_domains", value)
 
     @property
     @pulumi.getter
@@ -253,7 +326,7 @@ class _ApiGatewayState:
     @pulumi.getter(name="userDomains")
     def user_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Set of user domains attached to Yandex API Gateway.
+        (**DEPRECATED**, use `custom_domains` instead) Set of user domains attached to Yandex API Gateway.
         """
         return pulumi.get(self, "user_domains")
 
@@ -267,6 +340,8 @@ class ApiGateway(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 connectivity: Optional[pulumi.Input[pulumi.InputType['ApiGatewayConnectivityArgs']]] = None,
+                 custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApiGatewayCustomDomainArgs']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -288,6 +363,13 @@ class ApiGateway(pulumi.CustomResource):
                 "label": "label",
                 "empty-label": "",
             },
+            custom_domains=[yandex.ApiGatewayCustomDomainArgs(
+                fqdn="test.example.com",
+                certificate_id="<certificate_id_from_cert_manager>",
+            )],
+            connectivity=yandex.ApiGatewayConnectivityArgs(
+                network_id="<dynamic network id>",
+            ),
             spec=\"\"\"openapi: "3.0.0"
         info:
           version: 1.0.0
@@ -324,6 +406,9 @@ class ApiGateway(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ApiGatewayConnectivityArgs']] connectivity: Gateway connectivity. If specified the gateway will be attached to specified network.
+               * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApiGatewayCustomDomainArgs']]]] custom_domains: Set of custom domains to be attached to Yandex API Gateway.
         :param pulumi.Input[str] description: Description of the Yandex Cloud API Gateway.
         :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud API Gateway.
@@ -351,6 +436,13 @@ class ApiGateway(pulumi.CustomResource):
                 "label": "label",
                 "empty-label": "",
             },
+            custom_domains=[yandex.ApiGatewayCustomDomainArgs(
+                fqdn="test.example.com",
+                certificate_id="<certificate_id_from_cert_manager>",
+            )],
+            connectivity=yandex.ApiGatewayConnectivityArgs(
+                network_id="<dynamic network id>",
+            ),
             spec=\"\"\"openapi: "3.0.0"
         info:
           version: 1.0.0
@@ -400,6 +492,8 @@ class ApiGateway(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 connectivity: Optional[pulumi.Input[pulumi.InputType['ApiGatewayConnectivityArgs']]] = None,
+                 custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApiGatewayCustomDomainArgs']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -414,6 +508,8 @@ class ApiGateway(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ApiGatewayArgs.__new__(ApiGatewayArgs)
 
+            __props__.__dict__["connectivity"] = connectivity
+            __props__.__dict__["custom_domains"] = custom_domains
             __props__.__dict__["description"] = description
             __props__.__dict__["folder_id"] = folder_id
             __props__.__dict__["labels"] = labels
@@ -436,7 +532,9 @@ class ApiGateway(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            connectivity: Optional[pulumi.Input[pulumi.InputType['ApiGatewayConnectivityArgs']]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
+            custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApiGatewayCustomDomainArgs']]]]] = None,
             description: Optional[pulumi.Input[str]] = None,
             domain: Optional[pulumi.Input[str]] = None,
             folder_id: Optional[pulumi.Input[str]] = None,
@@ -453,7 +551,10 @@ class ApiGateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ApiGatewayConnectivityArgs']] connectivity: Gateway connectivity. If specified the gateway will be attached to specified network.
+               * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
         :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud API Gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApiGatewayCustomDomainArgs']]]] custom_domains: Set of custom domains to be attached to Yandex API Gateway.
         :param pulumi.Input[str] description: Description of the Yandex Cloud API Gateway.
         :param pulumi.Input[str] domain: Default domain for the Yandex API Gateway. Generated at creation time.
         :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
@@ -461,13 +562,15 @@ class ApiGateway(pulumi.CustomResource):
         :param pulumi.Input[str] name: Yandex Cloud API Gateway name used to define API Gateway.
         :param pulumi.Input[str] spec: OpenAPI specification for Yandex API Gateway.
         :param pulumi.Input[str] status: Status of the Yandex API Gateway.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_domains: Set of user domains attached to Yandex API Gateway.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] user_domains: (**DEPRECATED**, use `custom_domains` instead) Set of user domains attached to Yandex API Gateway.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ApiGatewayState.__new__(_ApiGatewayState)
 
+        __props__.__dict__["connectivity"] = connectivity
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["custom_domains"] = custom_domains
         __props__.__dict__["description"] = description
         __props__.__dict__["domain"] = domain
         __props__.__dict__["folder_id"] = folder_id
@@ -480,12 +583,29 @@ class ApiGateway(pulumi.CustomResource):
         return ApiGateway(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter
+    def connectivity(self) -> pulumi.Output[Optional['outputs.ApiGatewayConnectivity']]:
+        """
+        Gateway connectivity. If specified the gateway will be attached to specified network.
+        * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
+        """
+        return pulumi.get(self, "connectivity")
+
+    @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> pulumi.Output[str]:
         """
         Creation timestamp of the Yandex Cloud API Gateway.
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="customDomains")
+    def custom_domains(self) -> pulumi.Output[Optional[Sequence['outputs.ApiGatewayCustomDomain']]]:
+        """
+        Set of custom domains to be attached to Yandex API Gateway.
+        """
+        return pulumi.get(self, "custom_domains")
 
     @property
     @pulumi.getter
@@ -552,7 +672,7 @@ class ApiGateway(pulumi.CustomResource):
     @pulumi.getter(name="userDomains")
     def user_domains(self) -> pulumi.Output[Sequence[str]]:
         """
-        Set of user domains attached to Yandex API Gateway.
+        (**DEPRECATED**, use `custom_domains` instead) Set of user domains attached to Yandex API Gateway.
         """
         return pulumi.get(self, "user_domains")
 

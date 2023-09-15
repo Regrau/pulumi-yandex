@@ -44,7 +44,7 @@ type KubernetesCluster struct {
 	KmsProvider KubernetesClusterKmsProviderPtrOutput `pulumi:"kmsProvider"`
 	// A set of key/value label pairs to assign to the Kubernetes cluster.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
-	// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+	// (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
 	LogGroupId pulumi.StringOutput `pulumi:"logGroupId"`
 	// Kubernetes master configuration options. The structure is documented below.
 	Master KubernetesClusterMasterOutput `pulumi:"master"`
@@ -138,7 +138,7 @@ type kubernetesClusterState struct {
 	KmsProvider *KubernetesClusterKmsProvider `pulumi:"kmsProvider"`
 	// A set of key/value label pairs to assign to the Kubernetes cluster.
 	Labels map[string]string `pulumi:"labels"`
-	// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+	// (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
 	LogGroupId *string `pulumi:"logGroupId"`
 	// Kubernetes master configuration options. The structure is documented below.
 	Master *KubernetesClusterMaster `pulumi:"master"`
@@ -191,7 +191,7 @@ type KubernetesClusterState struct {
 	KmsProvider KubernetesClusterKmsProviderPtrInput
 	// A set of key/value label pairs to assign to the Kubernetes cluster.
 	Labels pulumi.StringMapInput
-	// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+	// (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
 	LogGroupId pulumi.StringPtrInput
 	// Kubernetes master configuration options. The structure is documented below.
 	Master KubernetesClusterMasterPtrInput
@@ -449,7 +449,7 @@ func (o KubernetesClusterOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
-// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+// (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
 func (o KubernetesClusterOutput) LogGroupId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubernetesCluster) pulumi.StringOutput { return v.LogGroupId }).(pulumi.StringOutput)
 }

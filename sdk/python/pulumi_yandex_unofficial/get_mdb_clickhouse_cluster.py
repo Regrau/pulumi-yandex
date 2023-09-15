@@ -23,7 +23,7 @@ class GetMdbClickhouseClusterResult:
     """
     A collection of values returned by getMdbClickhouseCluster.
     """
-    def __init__(__self__, accesses=None, backup_window_starts=None, clickhouses=None, cloud_storage=None, cluster_id=None, created_at=None, databases=None, deletion_protection=None, description=None, embedded_keeper=None, environment=None, folder_id=None, format_schemas=None, health=None, hosts=None, id=None, labels=None, maintenance_windows=None, ml_models=None, name=None, network_id=None, security_group_ids=None, service_account_id=None, shard_groups=None, sql_database_management=None, sql_user_management=None, status=None, users=None, version=None, zookeepers=None):
+    def __init__(__self__, accesses=None, backup_window_starts=None, clickhouses=None, cloud_storage=None, cluster_id=None, created_at=None, databases=None, deletion_protection=None, description=None, embedded_keeper=None, environment=None, folder_id=None, format_schemas=None, health=None, hosts=None, id=None, labels=None, maintenance_windows=None, ml_models=None, name=None, network_id=None, security_group_ids=None, service_account_id=None, shard_groups=None, shards=None, sql_database_management=None, sql_user_management=None, status=None, users=None, version=None, zookeepers=None):
         if accesses and not isinstance(accesses, list):
             raise TypeError("Expected argument 'accesses' to be a list")
         pulumi.set(__self__, "accesses", accesses)
@@ -96,6 +96,9 @@ class GetMdbClickhouseClusterResult:
         if shard_groups and not isinstance(shard_groups, list):
             raise TypeError("Expected argument 'shard_groups' to be a list")
         pulumi.set(__self__, "shard_groups", shard_groups)
+        if shards and not isinstance(shards, list):
+            raise TypeError("Expected argument 'shards' to be a list")
+        pulumi.set(__self__, "shards", shards)
         if sql_database_management and not isinstance(sql_database_management, bool):
             raise TypeError("Expected argument 'sql_database_management' to be a bool")
         pulumi.set(__self__, "sql_database_management", sql_database_management)
@@ -290,6 +293,14 @@ class GetMdbClickhouseClusterResult:
         return pulumi.get(self, "shard_groups")
 
     @property
+    @pulumi.getter
+    def shards(self) -> Sequence['outputs.GetMdbClickhouseClusterShardResult']:
+        """
+        A shard of the ClickHouse cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "shards")
+
+    @property
     @pulumi.getter(name="sqlDatabaseManagement")
     def sql_database_management(self) -> bool:
         """
@@ -365,6 +376,7 @@ class AwaitableGetMdbClickhouseClusterResult(GetMdbClickhouseClusterResult):
             security_group_ids=self.security_group_ids,
             service_account_id=self.service_account_id,
             shard_groups=self.shard_groups,
+            shards=self.shards,
             sql_database_management=self.sql_database_management,
             sql_user_management=self.sql_user_management,
             status=self.status,
@@ -379,6 +391,7 @@ def get_mdb_clickhouse_cluster(cloud_storage: Optional[pulumi.InputType['GetMdbC
                                folder_id: Optional[str] = None,
                                name: Optional[str] = None,
                                service_account_id: Optional[str] = None,
+                               shards: Optional[Sequence[pulumi.InputType['GetMdbClickhouseClusterShardArgs']]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMdbClickhouseClusterResult:
     """
     Get information about a Yandex Managed ClickHouse cluster. For more information, see
@@ -398,6 +411,7 @@ def get_mdb_clickhouse_cluster(cloud_storage: Optional[pulumi.InputType['GetMdbC
     :param str cluster_id: The ID of the ClickHouse cluster.
     :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
     :param str name: The name of the ClickHouse cluster.
+    :param Sequence[pulumi.InputType['GetMdbClickhouseClusterShardArgs']] shards: A shard of the ClickHouse cluster. The structure is documented below.
     """
     __args__ = dict()
     __args__['cloudStorage'] = cloud_storage
@@ -406,6 +420,7 @@ def get_mdb_clickhouse_cluster(cloud_storage: Optional[pulumi.InputType['GetMdbC
     __args__['folderId'] = folder_id
     __args__['name'] = name
     __args__['serviceAccountId'] = service_account_id
+    __args__['shards'] = shards
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('yandex:index/getMdbClickhouseCluster:getMdbClickhouseCluster', __args__, opts=opts, typ=GetMdbClickhouseClusterResult).value
 
@@ -434,6 +449,7 @@ def get_mdb_clickhouse_cluster(cloud_storage: Optional[pulumi.InputType['GetMdbC
         security_group_ids=__ret__.security_group_ids,
         service_account_id=__ret__.service_account_id,
         shard_groups=__ret__.shard_groups,
+        shards=__ret__.shards,
         sql_database_management=__ret__.sql_database_management,
         sql_user_management=__ret__.sql_user_management,
         status=__ret__.status,
@@ -449,6 +465,7 @@ def get_mdb_clickhouse_cluster_output(cloud_storage: Optional[pulumi.Input[Optio
                                       folder_id: Optional[pulumi.Input[Optional[str]]] = None,
                                       name: Optional[pulumi.Input[Optional[str]]] = None,
                                       service_account_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                      shards: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetMdbClickhouseClusterShardArgs']]]]] = None,
                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetMdbClickhouseClusterResult]:
     """
     Get information about a Yandex Managed ClickHouse cluster. For more information, see
@@ -468,5 +485,6 @@ def get_mdb_clickhouse_cluster_output(cloud_storage: Optional[pulumi.Input[Optio
     :param str cluster_id: The ID of the ClickHouse cluster.
     :param str folder_id: The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
     :param str name: The name of the ClickHouse cluster.
+    :param Sequence[pulumi.InputType['GetMdbClickhouseClusterShardArgs']] shards: A shard of the ClickHouse cluster. The structure is documented below.
     """
     ...

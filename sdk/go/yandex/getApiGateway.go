@@ -22,25 +22,30 @@ func LookupApiGateway(ctx *pulumi.Context, args *LookupApiGatewayArgs, opts ...p
 
 // A collection of arguments for invoking getApiGateway.
 type LookupApiGatewayArgs struct {
-	ApiGatewayId *string `pulumi:"apiGatewayId"`
-	FolderId     *string `pulumi:"folderId"`
-	Name         *string `pulumi:"name"`
+	ApiGatewayId  *string                     `pulumi:"apiGatewayId"`
+	Connectivity  *GetApiGatewayConnectivity  `pulumi:"connectivity"`
+	CustomDomains []GetApiGatewayCustomDomain `pulumi:"customDomains"`
+	FolderId      *string                     `pulumi:"folderId"`
+	Name          *string                     `pulumi:"name"`
 }
 
 // A collection of values returned by getApiGateway.
 type LookupApiGatewayResult struct {
-	ApiGatewayId *string `pulumi:"apiGatewayId"`
-	CreatedAt    string  `pulumi:"createdAt"`
-	Description  string  `pulumi:"description"`
-	Domain       string  `pulumi:"domain"`
-	FolderId     *string `pulumi:"folderId"`
+	ApiGatewayId  *string                     `pulumi:"apiGatewayId"`
+	Connectivity  *GetApiGatewayConnectivity  `pulumi:"connectivity"`
+	CreatedAt     string                      `pulumi:"createdAt"`
+	CustomDomains []GetApiGatewayCustomDomain `pulumi:"customDomains"`
+	Description   string                      `pulumi:"description"`
+	Domain        string                      `pulumi:"domain"`
+	FolderId      *string                     `pulumi:"folderId"`
 	// The provider-assigned unique ID for this managed resource.
-	Id          string            `pulumi:"id"`
-	Labels      map[string]string `pulumi:"labels"`
-	LogGroupId  string            `pulumi:"logGroupId"`
-	Name        *string           `pulumi:"name"`
-	Status      string            `pulumi:"status"`
-	UserDomains []string          `pulumi:"userDomains"`
+	Id         string            `pulumi:"id"`
+	Labels     map[string]string `pulumi:"labels"`
+	LogGroupId string            `pulumi:"logGroupId"`
+	Name       *string           `pulumi:"name"`
+	Status     string            `pulumi:"status"`
+	// Deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
+	UserDomains []string `pulumi:"userDomains"`
 }
 
 func LookupApiGatewayOutput(ctx *pulumi.Context, args LookupApiGatewayOutputArgs, opts ...pulumi.InvokeOption) LookupApiGatewayResultOutput {
@@ -58,9 +63,11 @@ func LookupApiGatewayOutput(ctx *pulumi.Context, args LookupApiGatewayOutputArgs
 
 // A collection of arguments for invoking getApiGateway.
 type LookupApiGatewayOutputArgs struct {
-	ApiGatewayId pulumi.StringPtrInput `pulumi:"apiGatewayId"`
-	FolderId     pulumi.StringPtrInput `pulumi:"folderId"`
-	Name         pulumi.StringPtrInput `pulumi:"name"`
+	ApiGatewayId  pulumi.StringPtrInput               `pulumi:"apiGatewayId"`
+	Connectivity  GetApiGatewayConnectivityPtrInput   `pulumi:"connectivity"`
+	CustomDomains GetApiGatewayCustomDomainArrayInput `pulumi:"customDomains"`
+	FolderId      pulumi.StringPtrInput               `pulumi:"folderId"`
+	Name          pulumi.StringPtrInput               `pulumi:"name"`
 }
 
 func (LookupApiGatewayOutputArgs) ElementType() reflect.Type {
@@ -86,8 +93,16 @@ func (o LookupApiGatewayResultOutput) ApiGatewayId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupApiGatewayResult) *string { return v.ApiGatewayId }).(pulumi.StringPtrOutput)
 }
 
+func (o LookupApiGatewayResultOutput) Connectivity() GetApiGatewayConnectivityPtrOutput {
+	return o.ApplyT(func(v LookupApiGatewayResult) *GetApiGatewayConnectivity { return v.Connectivity }).(GetApiGatewayConnectivityPtrOutput)
+}
+
 func (o LookupApiGatewayResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApiGatewayResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupApiGatewayResultOutput) CustomDomains() GetApiGatewayCustomDomainArrayOutput {
+	return o.ApplyT(func(v LookupApiGatewayResult) []GetApiGatewayCustomDomain { return v.CustomDomains }).(GetApiGatewayCustomDomainArrayOutput)
 }
 
 func (o LookupApiGatewayResultOutput) Description() pulumi.StringOutput {
@@ -123,6 +138,7 @@ func (o LookupApiGatewayResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApiGatewayResult) string { return v.Status }).(pulumi.StringOutput)
 }
 
+// Deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
 func (o LookupApiGatewayResultOutput) UserDomains() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupApiGatewayResult) []string { return v.UserDomains }).(pulumi.StringArrayOutput)
 }

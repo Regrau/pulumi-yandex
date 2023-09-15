@@ -154,6 +154,10 @@ export class MdbMongodbCluster extends pulumi.CustomResource {
      */
     public readonly resources!: pulumi.Output<outputs.MdbMongodbClusterResources>;
     /**
+     * The cluster will be created from the specified backup. The structure is documented below.
+     */
+    public readonly restore!: pulumi.Output<outputs.MdbMongodbClusterRestore | undefined>;
+    /**
      * A set of ids of security groups assigned to hosts of the cluster.
      */
     public readonly securityGroupIds!: pulumi.Output<string[] | undefined>;
@@ -199,6 +203,7 @@ export class MdbMongodbCluster extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["networkId"] = state ? state.networkId : undefined;
             resourceInputs["resources"] = state ? state.resources : undefined;
+            resourceInputs["restore"] = state ? state.restore : undefined;
             resourceInputs["securityGroupIds"] = state ? state.securityGroupIds : undefined;
             resourceInputs["sharded"] = state ? state.sharded : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -239,6 +244,7 @@ export class MdbMongodbCluster extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["networkId"] = args ? args.networkId : undefined;
             resourceInputs["resources"] = args ? args.resources : undefined;
+            resourceInputs["restore"] = args ? args.restore : undefined;
             resourceInputs["securityGroupIds"] = args ? args.securityGroupIds : undefined;
             resourceInputs["users"] = args ? args.users : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -315,6 +321,10 @@ export interface MdbMongodbClusterState {
      */
     resources?: pulumi.Input<inputs.MdbMongodbClusterResources>;
     /**
+     * The cluster will be created from the specified backup. The structure is documented below.
+     */
+    restore?: pulumi.Input<inputs.MdbMongodbClusterRestore>;
+    /**
      * A set of ids of security groups assigned to hosts of the cluster.
      */
     securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
@@ -388,6 +398,10 @@ export interface MdbMongodbClusterArgs {
      * Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
      */
     resources: pulumi.Input<inputs.MdbMongodbClusterResources>;
+    /**
+     * The cluster will be created from the specified backup. The structure is documented below.
+     */
+    restore?: pulumi.Input<inputs.MdbMongodbClusterRestore>;
     /**
      * A set of ids of security groups assigned to hosts of the cluster.
      */

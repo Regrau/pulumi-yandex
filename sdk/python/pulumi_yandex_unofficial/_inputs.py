@@ -97,6 +97,8 @@ __all__ = [
     'AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalArgs',
     'AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderArgs',
     'AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs',
+    'ApiGatewayConnectivityArgs',
+    'ApiGatewayCustomDomainArgs',
     'CdnOriginGroupOriginArgs',
     'CdnResourceOptionsArgs',
     'CdnResourceSslCertificateArgs',
@@ -219,6 +221,7 @@ __all__ = [
     'DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeDisabledArgs',
     'DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeEnabledArgs',
     'DatatransferEndpointSettingsPostgresTargetPasswordArgs',
+    'FunctionConnectivityArgs',
     'FunctionContentArgs',
     'FunctionPackageArgs',
     'FunctionScalingPolicyPolicyArgs',
@@ -235,6 +238,7 @@ __all__ = [
     'KubernetesClusterMasterArgs',
     'KubernetesClusterMasterMaintenancePolicyArgs',
     'KubernetesClusterMasterMaintenancePolicyMaintenanceWindowArgs',
+    'KubernetesClusterMasterMasterLoggingArgs',
     'KubernetesClusterMasterRegionalArgs',
     'KubernetesClusterMasterRegionalLocationArgs',
     'KubernetesClusterMasterVersionInfoArgs',
@@ -287,6 +291,7 @@ __all__ = [
     'MdbClickhouseClusterHostArgs',
     'MdbClickhouseClusterMaintenanceWindowArgs',
     'MdbClickhouseClusterMlModelArgs',
+    'MdbClickhouseClusterShardArgs',
     'MdbClickhouseClusterShardGroupArgs',
     'MdbClickhouseClusterUserArgs',
     'MdbClickhouseClusterUserPermissionArgs',
@@ -337,6 +342,7 @@ __all__ = [
     'MdbMongodbClusterHostArgs',
     'MdbMongodbClusterMaintenanceWindowArgs',
     'MdbMongodbClusterResourcesArgs',
+    'MdbMongodbClusterRestoreArgs',
     'MdbMongodbClusterUserArgs',
     'MdbMongodbClusterUserPermissionArgs',
     'MdbMysqlClusterAccessArgs',
@@ -374,6 +380,7 @@ __all__ = [
     'MdbSqlServerClusterUserArgs',
     'MdbSqlServerClusterUserPermissionArgs',
     'OrganizationmanagerSamlFederationSecuritySettingsArgs',
+    'ServerlessContainerConnectivityArgs',
     'ServerlessContainerImageArgs',
     'ServerlessContainerSecretArgs',
     'StorageBucketAnonymousAccessFlagsArgs',
@@ -386,6 +393,9 @@ __all__ = [
     'StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs',
     'StorageBucketLifecycleRuleTransitionArgs',
     'StorageBucketLoggingArgs',
+    'StorageBucketObjectLockConfigurationArgs',
+    'StorageBucketObjectLockConfigurationRuleArgs',
+    'StorageBucketObjectLockConfigurationRuleDefaultRetentionArgs',
     'StorageBucketServerSideEncryptionConfigurationArgs',
     'StorageBucketServerSideEncryptionConfigurationRuleArgs',
     'StorageBucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs',
@@ -438,6 +448,8 @@ __all__ = [
     'GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs',
     'GetAlbBackendGroupStreamBackendTlsArgs',
     'GetAlbBackendGroupStreamBackendTlsValidationContextArgs',
+    'GetApiGatewayConnectivityArgs',
+    'GetApiGatewayCustomDomainArgs',
     'GetCdnResourceOptionsArgs',
     'GetCdnResourceSslCertificateArgs',
     'GetComputeDiskDiskPlacementPolicyArgs',
@@ -446,10 +458,12 @@ __all__ = [
     'GetComputeInstanceMetadataOptionsArgs',
     'GetComputeInstancePlacementPolicyArgs',
     'GetComputeInstancePlacementPolicyHostAffinityRuleArgs',
+    'GetFunctionConnectivityArgs',
     'GetFunctionScalingPolicyPolicyArgs',
     'GetFunctionSecretArgs',
     'GetIamPolicyBindingArgs',
     'GetMdbClickhouseClusterCloudStorageArgs',
+    'GetMdbClickhouseClusterShardArgs',
     'GetMdbGreenplumClusterPoolerConfigArgs',
     'GetMdbKafkaClusterConfigArgs',
     'GetMdbKafkaClusterConfigAccessArgs',
@@ -474,9 +488,11 @@ __all__ = [
     'GetMdbMongodbClusterHostArgs',
     'GetMdbMongodbClusterMaintenanceWindowArgs',
     'GetMdbMongodbClusterResourcesArgs',
+    'GetMdbMongodbClusterRestoreArgs',
     'GetMdbMongodbClusterUserArgs',
     'GetMdbMongodbClusterUserPermissionArgs',
     'GetMdbMysqlClusterAccessArgs',
+    'GetServerlessContainerConnectivityArgs',
     'GetServerlessContainerSecretArgs',
     'LockboxSecretVersionEntryArgs',
     'LockboxSecretVersionEntryCommandArgs',
@@ -2349,11 +2365,14 @@ class AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderArgs:
 class AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs:
     def __init__(__self__, *,
                  exact: Optional[pulumi.Input[str]] = None,
-                 prefix: Optional[pulumi.Input[str]] = None):
+                 prefix: Optional[pulumi.Input[str]] = None,
+                 regex: Optional[pulumi.Input[str]] = None):
         if exact is not None:
             pulumi.set(__self__, "exact", exact)
         if prefix is not None:
             pulumi.set(__self__, "prefix", prefix)
+        if regex is not None:
+            pulumi.set(__self__, "regex", regex)
 
     @property
     @pulumi.getter
@@ -2372,6 +2391,15 @@ class AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs:
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "prefix", value)
+
+    @property
+    @pulumi.getter
+    def regex(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "regex")
+
+    @regex.setter
+    def regex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "regex", value)
 
 
 @pulumi.input_type
@@ -3769,15 +3797,19 @@ class AlbVirtualHostRouteGrpcRouteGrpcMatchArgs:
 class AlbVirtualHostRouteGrpcRouteGrpcMatchFqmnArgs:
     def __init__(__self__, *,
                  exact: Optional[pulumi.Input[str]] = None,
-                 prefix: Optional[pulumi.Input[str]] = None):
+                 prefix: Optional[pulumi.Input[str]] = None,
+                 regex: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] exact: Match exactly.
         :param pulumi.Input[str] prefix: Match prefix.
+        :param pulumi.Input[str] regex: Match regex.
         """
         if exact is not None:
             pulumi.set(__self__, "exact", exact)
         if prefix is not None:
             pulumi.set(__self__, "prefix", prefix)
+        if regex is not None:
+            pulumi.set(__self__, "regex", regex)
 
     @property
     @pulumi.getter
@@ -3802,6 +3834,18 @@ class AlbVirtualHostRouteGrpcRouteGrpcMatchFqmnArgs:
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "prefix", value)
+
+    @property
+    @pulumi.getter
+    def regex(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match regex.
+        """
+        return pulumi.get(self, "regex")
+
+    @regex.setter
+    def regex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "regex", value)
 
 
 @pulumi.input_type
@@ -4078,15 +4122,19 @@ class AlbVirtualHostRouteHttpRouteHttpMatchArgs:
 class AlbVirtualHostRouteHttpRouteHttpMatchPathArgs:
     def __init__(__self__, *,
                  exact: Optional[pulumi.Input[str]] = None,
-                 prefix: Optional[pulumi.Input[str]] = None):
+                 prefix: Optional[pulumi.Input[str]] = None,
+                 regex: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] exact: Match exactly.
         :param pulumi.Input[str] prefix: Match prefix.
+        :param pulumi.Input[str] regex: Match regex.
         """
         if exact is not None:
             pulumi.set(__self__, "exact", exact)
         if prefix is not None:
             pulumi.set(__self__, "prefix", prefix)
+        if regex is not None:
+            pulumi.set(__self__, "regex", regex)
 
     @property
     @pulumi.getter
@@ -4111,6 +4159,18 @@ class AlbVirtualHostRouteHttpRouteHttpMatchPathArgs:
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "prefix", value)
+
+    @property
+    @pulumi.getter
+    def regex(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match regex.
+        """
+        return pulumi.get(self, "regex")
+
+    @regex.setter
+    def regex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "regex", value)
 
 
 @pulumi.input_type
@@ -4502,15 +4562,19 @@ class AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderArgs:
 class AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs:
     def __init__(__self__, *,
                  exact: Optional[pulumi.Input[str]] = None,
-                 prefix: Optional[pulumi.Input[str]] = None):
+                 prefix: Optional[pulumi.Input[str]] = None,
+                 regex: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] exact: Match exactly.
         :param pulumi.Input[str] prefix: Match prefix.
+        :param pulumi.Input[str] regex: Match regex.
         """
         if exact is not None:
             pulumi.set(__self__, "exact", exact)
         if prefix is not None:
             pulumi.set(__self__, "prefix", prefix)
+        if regex is not None:
+            pulumi.set(__self__, "regex", regex)
 
     @property
     @pulumi.getter
@@ -4535,6 +4599,18 @@ class AlbVirtualHostRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs:
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "prefix", value)
+
+    @property
+    @pulumi.getter
+    def regex(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match regex.
+        """
+        return pulumi.get(self, "regex")
+
+    @regex.setter
+    def regex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "regex", value)
 
 
 @pulumi.input_type
@@ -4677,15 +4753,19 @@ class AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderArgs:
 class AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs:
     def __init__(__self__, *,
                  exact: Optional[pulumi.Input[str]] = None,
-                 prefix: Optional[pulumi.Input[str]] = None):
+                 prefix: Optional[pulumi.Input[str]] = None,
+                 regex: Optional[pulumi.Input[str]] = None):
         """
         :param pulumi.Input[str] exact: Match exactly.
         :param pulumi.Input[str] prefix: Match prefix.
+        :param pulumi.Input[str] regex: Match regex.
         """
         if exact is not None:
             pulumi.set(__self__, "exact", exact)
         if prefix is not None:
             pulumi.set(__self__, "prefix", prefix)
+        if regex is not None:
+            pulumi.set(__self__, "regex", regex)
 
     @property
     @pulumi.getter
@@ -4710,6 +4790,73 @@ class AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs:
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "prefix", value)
+
+    @property
+    @pulumi.getter
+    def regex(self) -> Optional[pulumi.Input[str]]:
+        """
+        Match regex.
+        """
+        return pulumi.get(self, "regex")
+
+    @regex.setter
+    def regex(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "regex", value)
+
+
+@pulumi.input_type
+class ApiGatewayConnectivityArgs:
+    def __init__(__self__, *,
+                 network_id: pulumi.Input[str]):
+        pulumi.set(__self__, "network_id", network_id)
+
+    @property
+    @pulumi.getter(name="networkId")
+    def network_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "network_id")
+
+    @network_id.setter
+    def network_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "network_id", value)
+
+
+@pulumi.input_type
+class ApiGatewayCustomDomainArgs:
+    def __init__(__self__, *,
+                 certificate_id: pulumi.Input[str],
+                 fqdn: pulumi.Input[str],
+                 domain_id: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "certificate_id", certificate_id)
+        pulumi.set(__self__, "fqdn", fqdn)
+        if domain_id is not None:
+            pulumi.set(__self__, "domain_id", domain_id)
+
+    @property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "certificate_id")
+
+    @certificate_id.setter
+    def certificate_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "certificate_id", value)
+
+    @property
+    @pulumi.getter
+    def fqdn(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "fqdn")
+
+    @fqdn.setter
+    def fqdn(self, value: pulumi.Input[str]):
+        pulumi.set(self, "fqdn", value)
+
+    @property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "domain_id")
+
+    @domain_id.setter
+    def domain_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "domain_id", value)
 
 
 @pulumi.input_type
@@ -12580,6 +12727,22 @@ class DatatransferEndpointSettingsPostgresTargetPasswordArgs:
 
 
 @pulumi.input_type
+class FunctionConnectivityArgs:
+    def __init__(__self__, *,
+                 network_id: pulumi.Input[str]):
+        pulumi.set(__self__, "network_id", network_id)
+
+    @property
+    @pulumi.getter(name="networkId")
+    def network_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "network_id")
+
+    @network_id.setter
+    def network_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "network_id", value)
+
+
+@pulumi.input_type
 class FunctionContentArgs:
     def __init__(__self__, *,
                  zip_filename: pulumi.Input[str]):
@@ -12681,6 +12844,12 @@ class FunctionSecretArgs:
                  id: pulumi.Input[str],
                  key: pulumi.Input[str],
                  version_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] environment_variable: (Required) Function's environment variable in which secret's value will be stored.
+        :param pulumi.Input[str] id: (Required) Secret's id.
+        :param pulumi.Input[str] key: (Required) Secret's entries key which value will be stored in environment variable.
+        :param pulumi.Input[str] version_id: (Required) Secret's version id.
+        """
         pulumi.set(__self__, "environment_variable", environment_variable)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "key", key)
@@ -12689,6 +12858,9 @@ class FunctionSecretArgs:
     @property
     @pulumi.getter(name="environmentVariable")
     def environment_variable(self) -> pulumi.Input[str]:
+        """
+        (Required) Function's environment variable in which secret's value will be stored.
+        """
         return pulumi.get(self, "environment_variable")
 
     @environment_variable.setter
@@ -12698,6 +12870,9 @@ class FunctionSecretArgs:
     @property
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
+        """
+        (Required) Secret's id.
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -12707,6 +12882,9 @@ class FunctionSecretArgs:
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        (Required) Secret's entries key which value will be stored in environment variable.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -12716,6 +12894,9 @@ class FunctionSecretArgs:
     @property
     @pulumi.getter(name="versionId")
     def version_id(self) -> pulumi.Input[str]:
+        """
+        (Required) Secret's version id.
+        """
         return pulumi.get(self, "version_id")
 
     @version_id.setter
@@ -13153,6 +13334,7 @@ class KubernetesClusterMasterArgs:
                  internal_v4_address: Optional[pulumi.Input[str]] = None,
                  internal_v4_endpoint: Optional[pulumi.Input[str]] = None,
                  maintenance_policy: Optional[pulumi.Input['KubernetesClusterMasterMaintenancePolicyArgs']] = None,
+                 master_logging: Optional[pulumi.Input['KubernetesClusterMasterMasterLoggingArgs']] = None,
                  public_ip: Optional[pulumi.Input[bool]] = None,
                  regional: Optional[pulumi.Input['KubernetesClusterMasterRegionalArgs']] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
@@ -13169,6 +13351,7 @@ class KubernetesClusterMasterArgs:
                If policy is omitted, automatic revision upgrades of the kubernetes master are enabled and could happen at any time.
                Revision upgrades are performed only within the same minor version, e.g. 1.13.
                Minor version upgrades (e.g. 1.13->1.14) should be performed manually. The structure is documented below.
+        :param pulumi.Input['KubernetesClusterMasterMasterLoggingArgs'] master_logging: (Optional) Master Logging options. The structure is documented below.
         :param pulumi.Input[bool] public_ip: (Optional) (Computed) Boolean flag. When `true`, Kubernetes master will have visible ipv4 address.
         :param pulumi.Input['KubernetesClusterMasterRegionalArgs'] regional: (Optional) Initialize parameters for Regional Master (highly available master). The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: (Optional) List of security group IDs to which the Kubernetes cluster belongs.
@@ -13192,6 +13375,8 @@ class KubernetesClusterMasterArgs:
             pulumi.set(__self__, "internal_v4_endpoint", internal_v4_endpoint)
         if maintenance_policy is not None:
             pulumi.set(__self__, "maintenance_policy", maintenance_policy)
+        if master_logging is not None:
+            pulumi.set(__self__, "master_logging", master_logging)
         if public_ip is not None:
             pulumi.set(__self__, "public_ip", public_ip)
         if regional is not None:
@@ -13297,6 +13482,18 @@ class KubernetesClusterMasterArgs:
     @maintenance_policy.setter
     def maintenance_policy(self, value: Optional[pulumi.Input['KubernetesClusterMasterMaintenancePolicyArgs']]):
         pulumi.set(self, "maintenance_policy", value)
+
+    @property
+    @pulumi.getter(name="masterLogging")
+    def master_logging(self) -> Optional[pulumi.Input['KubernetesClusterMasterMasterLoggingArgs']]:
+        """
+        (Optional) Master Logging options. The structure is documented below.
+        """
+        return pulumi.get(self, "master_logging")
+
+    @master_logging.setter
+    def master_logging(self, value: Optional[pulumi.Input['KubernetesClusterMasterMasterLoggingArgs']]):
+        pulumi.set(self, "master_logging", value)
 
     @property
     @pulumi.getter(name="publicIp")
@@ -13450,6 +13647,111 @@ class KubernetesClusterMasterMaintenancePolicyMaintenanceWindowArgs:
     @day.setter
     def day(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "day", value)
+
+
+@pulumi.input_type
+class KubernetesClusterMasterMasterLoggingArgs:
+    def __init__(__self__, *,
+                 cluster_autoscaler_enabled: Optional[pulumi.Input[bool]] = None,
+                 enabled: Optional[pulumi.Input[bool]] = None,
+                 events_enabled: Optional[pulumi.Input[bool]] = None,
+                 folder_id: Optional[pulumi.Input[str]] = None,
+                 kube_apiserver_enabled: Optional[pulumi.Input[bool]] = None,
+                 log_group_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] cluster_autoscaler_enabled: (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
+        :param pulumi.Input[bool] enabled: (Optional) Boolean flag that specifies if master components logs should be sent to [Yandex Cloud Logging](https://cloud.yandex.com/docs/logging/). The exact components that will send their logs must be configured via the options described below.
+        :param pulumi.Input[bool] events_enabled: (Optional) Boolean flag that specifies if kubernetes cluster events should be sent to Yandex Cloud Logging.
+        :param pulumi.Input[str] folder_id: The ID of the folder that the Kubernetes cluster belongs to.
+               If it is not provided, the default provider folder is used.
+        :param pulumi.Input[bool] kube_apiserver_enabled: (Optional) Boolean flag that specifies if kube-apiserver logs should be sent to Yandex Cloud Logging.
+        :param pulumi.Input[str] log_group_id: (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
+        """
+        if cluster_autoscaler_enabled is not None:
+            pulumi.set(__self__, "cluster_autoscaler_enabled", cluster_autoscaler_enabled)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if events_enabled is not None:
+            pulumi.set(__self__, "events_enabled", events_enabled)
+        if folder_id is not None:
+            pulumi.set(__self__, "folder_id", folder_id)
+        if kube_apiserver_enabled is not None:
+            pulumi.set(__self__, "kube_apiserver_enabled", kube_apiserver_enabled)
+        if log_group_id is not None:
+            pulumi.set(__self__, "log_group_id", log_group_id)
+
+    @property
+    @pulumi.getter(name="clusterAutoscalerEnabled")
+    def cluster_autoscaler_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
+        """
+        return pulumi.get(self, "cluster_autoscaler_enabled")
+
+    @cluster_autoscaler_enabled.setter
+    def cluster_autoscaler_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "cluster_autoscaler_enabled", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        (Optional) Boolean flag that specifies if master components logs should be sent to [Yandex Cloud Logging](https://cloud.yandex.com/docs/logging/). The exact components that will send their logs must be configured via the options described below.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="eventsEnabled")
+    def events_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        (Optional) Boolean flag that specifies if kubernetes cluster events should be sent to Yandex Cloud Logging.
+        """
+        return pulumi.get(self, "events_enabled")
+
+    @events_enabled.setter
+    def events_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "events_enabled", value)
+
+    @property
+    @pulumi.getter(name="folderId")
+    def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The ID of the folder that the Kubernetes cluster belongs to.
+        If it is not provided, the default provider folder is used.
+        """
+        return pulumi.get(self, "folder_id")
+
+    @folder_id.setter
+    def folder_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "folder_id", value)
+
+    @property
+    @pulumi.getter(name="kubeApiserverEnabled")
+    def kube_apiserver_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        (Optional) Boolean flag that specifies if kube-apiserver logs should be sent to Yandex Cloud Logging.
+        """
+        return pulumi.get(self, "kube_apiserver_enabled")
+
+    @kube_apiserver_enabled.setter
+    def kube_apiserver_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "kube_apiserver_enabled", value)
+
+    @property
+    @pulumi.getter(name="logGroupId")
+    def log_group_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
+        """
+        return pulumi.get(self, "log_group_id")
+
+    @log_group_id.setter
+    def log_group_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_group_id", value)
 
 
 @pulumi.input_type
@@ -16351,11 +16653,23 @@ class MdbClickhouseClusterClickhouseResourcesArgs:
 @pulumi.input_type
 class MdbClickhouseClusterCloudStorageArgs:
     def __init__(__self__, *,
-                 enabled: pulumi.Input[bool]):
+                 enabled: pulumi.Input[bool],
+                 data_cache_enabled: Optional[pulumi.Input[bool]] = None,
+                 data_cache_max_size: Optional[pulumi.Input[int]] = None,
+                 move_factor: Optional[pulumi.Input[float]] = None):
         """
         :param pulumi.Input[bool] enabled: Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+        :param pulumi.Input[bool] data_cache_enabled: Enables temporary storage in the cluster repository of data requested from the object repository.
+        :param pulumi.Input[int] data_cache_max_size: Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
+        :param pulumi.Input[float] move_factor: Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
         """
         pulumi.set(__self__, "enabled", enabled)
+        if data_cache_enabled is not None:
+            pulumi.set(__self__, "data_cache_enabled", data_cache_enabled)
+        if data_cache_max_size is not None:
+            pulumi.set(__self__, "data_cache_max_size", data_cache_max_size)
+        if move_factor is not None:
+            pulumi.set(__self__, "move_factor", move_factor)
 
     @property
     @pulumi.getter
@@ -16368,6 +16682,42 @@ class MdbClickhouseClusterCloudStorageArgs:
     @enabled.setter
     def enabled(self, value: pulumi.Input[bool]):
         pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="dataCacheEnabled")
+    def data_cache_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enables temporary storage in the cluster repository of data requested from the object repository.
+        """
+        return pulumi.get(self, "data_cache_enabled")
+
+    @data_cache_enabled.setter
+    def data_cache_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "data_cache_enabled", value)
+
+    @property
+    @pulumi.getter(name="dataCacheMaxSize")
+    def data_cache_max_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
+        """
+        return pulumi.get(self, "data_cache_max_size")
+
+    @data_cache_max_size.setter
+    def data_cache_max_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "data_cache_max_size", value)
+
+    @property
+    @pulumi.getter(name="moveFactor")
+    def move_factor(self) -> Optional[pulumi.Input[float]]:
+        """
+        Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+        """
+        return pulumi.get(self, "move_factor")
+
+    @move_factor.setter
+    def move_factor(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "move_factor", value)
 
 
 @pulumi.input_type
@@ -16651,6 +17001,44 @@ class MdbClickhouseClusterMlModelArgs:
     @uri.setter
     def uri(self, value: pulumi.Input[str]):
         pulumi.set(self, "uri", value)
+
+
+@pulumi.input_type
+class MdbClickhouseClusterShardArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 weight: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] name: Graphite rollup configuration name.
+        :param pulumi.Input[int] weight: The weight of shard.
+        """
+        pulumi.set(__self__, "name", name)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        """
+        Graphite rollup configuration name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def weight(self) -> Optional[pulumi.Input[int]]:
+        """
+        The weight of shard.
+        """
+        return pulumi.get(self, "weight")
+
+    @weight.setter
+    def weight(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "weight", value)
 
 
 @pulumi.input_type
@@ -21202,6 +21590,44 @@ class MdbMongodbClusterResourcesArgs:
 
 
 @pulumi.input_type
+class MdbMongodbClusterRestoreArgs:
+    def __init__(__self__, *,
+                 backup_id: pulumi.Input[str],
+                 time: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] backup_id: Backup ID. The cluster will be created from the specified backup. [How to get a list of PostgreSQL backups](https://cloud.yandex.com/en-ru/docs/managed-mongodb/operations/cluster-backups)
+        :param pulumi.Input[str] time: Timestamp of the moment to which the MongoDB cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
+        """
+        pulumi.set(__self__, "backup_id", backup_id)
+        if time is not None:
+            pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> pulumi.Input[str]:
+        """
+        Backup ID. The cluster will be created from the specified backup. [How to get a list of PostgreSQL backups](https://cloud.yandex.com/en-ru/docs/managed-mongodb/operations/cluster-backups)
+        """
+        return pulumi.get(self, "backup_id")
+
+    @backup_id.setter
+    def backup_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "backup_id", value)
+
+    @property
+    @pulumi.getter
+    def time(self) -> Optional[pulumi.Input[str]]:
+        """
+        Timestamp of the moment to which the MongoDB cluster should be restored. (Format: "2006-01-02T15:04:05" - UTC). When not set, current time is used.
+        """
+        return pulumi.get(self, "time")
+
+    @time.setter
+    def time(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "time", value)
+
+
+@pulumi.input_type
 class MdbMongodbClusterUserArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
@@ -23344,6 +23770,22 @@ class OrganizationmanagerSamlFederationSecuritySettingsArgs:
 
 
 @pulumi.input_type
+class ServerlessContainerConnectivityArgs:
+    def __init__(__self__, *,
+                 network_id: pulumi.Input[str]):
+        pulumi.set(__self__, "network_id", network_id)
+
+    @property
+    @pulumi.getter(name="networkId")
+    def network_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "network_id")
+
+    @network_id.setter
+    def network_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "network_id", value)
+
+
+@pulumi.input_type
 class ServerlessContainerImageArgs:
     def __init__(__self__, *,
                  url: pulumi.Input[str],
@@ -23432,6 +23874,12 @@ class ServerlessContainerSecretArgs:
                  id: pulumi.Input[str],
                  key: pulumi.Input[str],
                  version_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] environment_variable: (Required) Container's environment variable in which secret's value will be stored.
+        :param pulumi.Input[str] id: (Required) Secret's id.
+        :param pulumi.Input[str] key: (Required) Secret's entries key which value will be stored in environment variable.
+        :param pulumi.Input[str] version_id: (Required) Secret's version id.
+        """
         pulumi.set(__self__, "environment_variable", environment_variable)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "key", key)
@@ -23440,6 +23888,9 @@ class ServerlessContainerSecretArgs:
     @property
     @pulumi.getter(name="environmentVariable")
     def environment_variable(self) -> pulumi.Input[str]:
+        """
+        (Required) Container's environment variable in which secret's value will be stored.
+        """
         return pulumi.get(self, "environment_variable")
 
     @environment_variable.setter
@@ -23449,6 +23900,9 @@ class ServerlessContainerSecretArgs:
     @property
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
+        """
+        (Required) Secret's id.
+        """
         return pulumi.get(self, "id")
 
     @id.setter
@@ -23458,6 +23912,9 @@ class ServerlessContainerSecretArgs:
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        (Required) Secret's entries key which value will be stored in environment variable.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -23467,6 +23924,9 @@ class ServerlessContainerSecretArgs:
     @property
     @pulumi.getter(name="versionId")
     def version_id(self) -> pulumi.Input[str]:
+        """
+        (Required) Secret's version id.
+        """
         return pulumi.get(self, "version_id")
 
     @version_id.setter
@@ -23477,16 +23937,28 @@ class ServerlessContainerSecretArgs:
 @pulumi.input_type
 class StorageBucketAnonymousAccessFlagsArgs:
     def __init__(__self__, *,
+                 config_read: Optional[pulumi.Input[bool]] = None,
                  list: Optional[pulumi.Input[bool]] = None,
                  read: Optional[pulumi.Input[bool]] = None):
         """
         :param pulumi.Input[bool] list: Allows to list object in bucket anonymously.
         :param pulumi.Input[bool] read: Allows to read objects in bucket anonymously.
         """
+        if config_read is not None:
+            pulumi.set(__self__, "config_read", config_read)
         if list is not None:
             pulumi.set(__self__, "list", list)
         if read is not None:
             pulumi.set(__self__, "read", read)
+
+    @property
+    @pulumi.getter(name="configRead")
+    def config_read(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "config_read")
+
+    @config_read.setter
+    def config_read(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "config_read", value)
 
     @property
     @pulumi.getter
@@ -24017,6 +24489,115 @@ class StorageBucketLoggingArgs:
     @target_prefix.setter
     def target_prefix(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "target_prefix", value)
+
+
+@pulumi.input_type
+class StorageBucketObjectLockConfigurationArgs:
+    def __init__(__self__, *,
+                 object_lock_enabled: Optional[pulumi.Input[str]] = None,
+                 rule: Optional[pulumi.Input['StorageBucketObjectLockConfigurationRuleArgs']] = None):
+        """
+        :param pulumi.Input[str] object_lock_enabled: Enable object locking in a bucket. Require versioning to be enabled.
+        :param pulumi.Input['StorageBucketObjectLockConfigurationRuleArgs'] rule: Specifies a default locking configuration for added objects. Require object_lock_enabled to be enabled.
+        """
+        if object_lock_enabled is not None:
+            pulumi.set(__self__, "object_lock_enabled", object_lock_enabled)
+        if rule is not None:
+            pulumi.set(__self__, "rule", rule)
+
+    @property
+    @pulumi.getter(name="objectLockEnabled")
+    def object_lock_enabled(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable object locking in a bucket. Require versioning to be enabled.
+        """
+        return pulumi.get(self, "object_lock_enabled")
+
+    @object_lock_enabled.setter
+    def object_lock_enabled(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "object_lock_enabled", value)
+
+    @property
+    @pulumi.getter
+    def rule(self) -> Optional[pulumi.Input['StorageBucketObjectLockConfigurationRuleArgs']]:
+        """
+        Specifies a default locking configuration for added objects. Require object_lock_enabled to be enabled.
+        """
+        return pulumi.get(self, "rule")
+
+    @rule.setter
+    def rule(self, value: Optional[pulumi.Input['StorageBucketObjectLockConfigurationRuleArgs']]):
+        pulumi.set(self, "rule", value)
+
+
+@pulumi.input_type
+class StorageBucketObjectLockConfigurationRuleArgs:
+    def __init__(__self__, *,
+                 default_retention: pulumi.Input['StorageBucketObjectLockConfigurationRuleDefaultRetentionArgs']):
+        pulumi.set(__self__, "default_retention", default_retention)
+
+    @property
+    @pulumi.getter(name="defaultRetention")
+    def default_retention(self) -> pulumi.Input['StorageBucketObjectLockConfigurationRuleDefaultRetentionArgs']:
+        return pulumi.get(self, "default_retention")
+
+    @default_retention.setter
+    def default_retention(self, value: pulumi.Input['StorageBucketObjectLockConfigurationRuleDefaultRetentionArgs']):
+        pulumi.set(self, "default_retention", value)
+
+
+@pulumi.input_type
+class StorageBucketObjectLockConfigurationRuleDefaultRetentionArgs:
+    def __init__(__self__, *,
+                 mode: pulumi.Input[str],
+                 days: Optional[pulumi.Input[int]] = None,
+                 years: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] mode: Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`.
+        :param pulumi.Input[int] days: Specifies a retention period in days after uploading an object version. It must be a positive integer. You can't set it simultaneously with `years`.
+        :param pulumi.Input[int] years: Specifies a retention period in years after uploading an object version. It must be a positive integer. You can't set it simultaneously with `days`.
+        """
+        pulumi.set(__self__, "mode", mode)
+        if days is not None:
+            pulumi.set(__self__, "days", days)
+        if years is not None:
+            pulumi.set(__self__, "years", years)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> pulumi.Input[str]:
+        """
+        Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`.
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: pulumi.Input[str]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter
+    def days(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies a retention period in days after uploading an object version. It must be a positive integer. You can't set it simultaneously with `years`.
+        """
+        return pulumi.get(self, "days")
+
+    @days.setter
+    def days(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "days", value)
+
+    @property
+    @pulumi.getter
+    def years(self) -> Optional[pulumi.Input[int]]:
+        """
+        Specifies a retention period in years after uploading an object version. It must be a positive integer. You can't set it simultaneously with `days`.
+        """
+        return pulumi.get(self, "years")
+
+    @years.setter
+    def years(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "years", value)
 
 
 @pulumi.input_type
@@ -27193,6 +27774,60 @@ class GetAlbBackendGroupStreamBackendTlsValidationContextArgs:
 
 
 @pulumi.input_type
+class GetApiGatewayConnectivityArgs:
+    def __init__(__self__, *,
+                 network_id: str):
+        pulumi.set(__self__, "network_id", network_id)
+
+    @property
+    @pulumi.getter(name="networkId")
+    def network_id(self) -> str:
+        return pulumi.get(self, "network_id")
+
+    @network_id.setter
+    def network_id(self, value: str):
+        pulumi.set(self, "network_id", value)
+
+
+@pulumi.input_type
+class GetApiGatewayCustomDomainArgs:
+    def __init__(__self__, *,
+                 certificate_id: str,
+                 domain_id: str,
+                 fqdn: str):
+        pulumi.set(__self__, "certificate_id", certificate_id)
+        pulumi.set(__self__, "domain_id", domain_id)
+        pulumi.set(__self__, "fqdn", fqdn)
+
+    @property
+    @pulumi.getter(name="certificateId")
+    def certificate_id(self) -> str:
+        return pulumi.get(self, "certificate_id")
+
+    @certificate_id.setter
+    def certificate_id(self, value: str):
+        pulumi.set(self, "certificate_id", value)
+
+    @property
+    @pulumi.getter(name="domainId")
+    def domain_id(self) -> str:
+        return pulumi.get(self, "domain_id")
+
+    @domain_id.setter
+    def domain_id(self, value: str):
+        pulumi.set(self, "domain_id", value)
+
+    @property
+    @pulumi.getter
+    def fqdn(self) -> str:
+        return pulumi.get(self, "fqdn")
+
+    @fqdn.setter
+    def fqdn(self, value: str):
+        pulumi.set(self, "fqdn", value)
+
+
+@pulumi.input_type
 class GetCdnResourceOptionsArgs:
     def __init__(__self__, *,
                  allowed_http_methods: Sequence[str],
@@ -27801,6 +28436,22 @@ class GetComputeInstancePlacementPolicyHostAffinityRuleArgs:
 
 
 @pulumi.input_type
+class GetFunctionConnectivityArgs:
+    def __init__(__self__, *,
+                 network_id: str):
+        pulumi.set(__self__, "network_id", network_id)
+
+    @property
+    @pulumi.getter(name="networkId")
+    def network_id(self) -> str:
+        return pulumi.get(self, "network_id")
+
+    @network_id.setter
+    def network_id(self, value: str):
+        pulumi.set(self, "network_id", value)
+
+
+@pulumi.input_type
 class GetFunctionScalingPolicyPolicyArgs:
     def __init__(__self__, *,
                  tag: str,
@@ -27937,11 +28588,44 @@ class GetIamPolicyBindingArgs:
 @pulumi.input_type
 class GetMdbClickhouseClusterCloudStorageArgs:
     def __init__(__self__, *,
-                 enabled: bool):
+                 data_cache_enabled: bool,
+                 data_cache_max_size: int,
+                 enabled: bool,
+                 move_factor: float):
         """
+        :param bool data_cache_enabled: Enables temporary storage in the cluster repository of data requested from the object repository.
+        :param int data_cache_max_size: Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
         :param bool enabled: (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+        :param float move_factor: Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
         """
+        pulumi.set(__self__, "data_cache_enabled", data_cache_enabled)
+        pulumi.set(__self__, "data_cache_max_size", data_cache_max_size)
         pulumi.set(__self__, "enabled", enabled)
+        pulumi.set(__self__, "move_factor", move_factor)
+
+    @property
+    @pulumi.getter(name="dataCacheEnabled")
+    def data_cache_enabled(self) -> bool:
+        """
+        Enables temporary storage in the cluster repository of data requested from the object repository.
+        """
+        return pulumi.get(self, "data_cache_enabled")
+
+    @data_cache_enabled.setter
+    def data_cache_enabled(self, value: bool):
+        pulumi.set(self, "data_cache_enabled", value)
+
+    @property
+    @pulumi.getter(name="dataCacheMaxSize")
+    def data_cache_max_size(self) -> int:
+        """
+        Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
+        """
+        return pulumi.get(self, "data_cache_max_size")
+
+    @data_cache_max_size.setter
+    def data_cache_max_size(self, value: int):
+        pulumi.set(self, "data_cache_max_size", value)
 
     @property
     @pulumi.getter
@@ -27954,6 +28638,55 @@ class GetMdbClickhouseClusterCloudStorageArgs:
     @enabled.setter
     def enabled(self, value: bool):
         pulumi.set(self, "enabled", value)
+
+    @property
+    @pulumi.getter(name="moveFactor")
+    def move_factor(self) -> float:
+        """
+        Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+        """
+        return pulumi.get(self, "move_factor")
+
+    @move_factor.setter
+    def move_factor(self, value: float):
+        pulumi.set(self, "move_factor", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterShardArgs:
+    def __init__(__self__, *,
+                 name: str,
+                 weight: int):
+        """
+        :param str name: The name of the ClickHouse cluster.
+        :param int weight: The weight of the shard.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the ClickHouse cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: str):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def weight(self) -> int:
+        """
+        The weight of the shard.
+        """
+        return pulumi.get(self, "weight")
+
+    @weight.setter
+    def weight(self, value: int):
+        pulumi.set(self, "weight", value)
 
 
 @pulumi.input_type
@@ -29610,6 +30343,35 @@ class GetMdbMongodbClusterResourcesArgs:
 
 
 @pulumi.input_type
+class GetMdbMongodbClusterRestoreArgs:
+    def __init__(__self__, *,
+                 backup_id: Optional[str] = None,
+                 time: Optional[str] = None):
+        if backup_id is not None:
+            pulumi.set(__self__, "backup_id", backup_id)
+        if time is not None:
+            pulumi.set(__self__, "time", time)
+
+    @property
+    @pulumi.getter(name="backupId")
+    def backup_id(self) -> Optional[str]:
+        return pulumi.get(self, "backup_id")
+
+    @backup_id.setter
+    def backup_id(self, value: Optional[str]):
+        pulumi.set(self, "backup_id", value)
+
+    @property
+    @pulumi.getter
+    def time(self) -> Optional[str]:
+        return pulumi.get(self, "time")
+
+    @time.setter
+    def time(self, value: Optional[str]):
+        pulumi.set(self, "time", value)
+
+
+@pulumi.input_type
 class GetMdbMongodbClusterUserArgs:
     def __init__(__self__, *,
                  permissions: Sequence['GetMdbMongodbClusterUserPermissionArgs'],
@@ -29748,6 +30510,22 @@ class GetMdbMysqlClusterAccessArgs:
     @web_sql.setter
     def web_sql(self, value: bool):
         pulumi.set(self, "web_sql", value)
+
+
+@pulumi.input_type
+class GetServerlessContainerConnectivityArgs:
+    def __init__(__self__, *,
+                 network_id: str):
+        pulumi.set(__self__, "network_id", network_id)
+
+    @property
+    @pulumi.getter(name="networkId")
+    def network_id(self) -> str:
+        return pulumi.get(self, "network_id")
+
+    @network_id.setter
+    def network_id(self, value: str):
+        pulumi.set(self, "network_id", value)
 
 
 @pulumi.input_type

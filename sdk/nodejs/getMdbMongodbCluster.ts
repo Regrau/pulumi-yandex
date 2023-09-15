@@ -46,6 +46,7 @@ export function getMdbMongodbCluster(args?: GetMdbMongodbClusterArgs, opts?: pul
         "name": args.name,
         "networkId": args.networkId,
         "resources": args.resources,
+        "restore": args.restore,
         "securityGroupIds": args.securityGroupIds,
         "sharded": args.sharded,
         "status": args.status,
@@ -111,6 +112,7 @@ export interface GetMdbMongodbClusterArgs {
      * Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
      */
     resources?: inputs.GetMdbMongodbClusterResources;
+    restore?: inputs.GetMdbMongodbClusterRestore;
     /**
      * A set of ids of security groups assigned to hosts of the cluster.
      */
@@ -185,6 +187,7 @@ export interface GetMdbMongodbClusterResult {
      * Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
      */
     readonly resources?: outputs.GetMdbMongodbClusterResources;
+    readonly restore?: outputs.GetMdbMongodbClusterRestore;
     /**
      * A set of ids of security groups assigned to hosts of the cluster.
      */
@@ -265,6 +268,7 @@ export interface GetMdbMongodbClusterOutputArgs {
      * Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
      */
     resources?: pulumi.Input<inputs.GetMdbMongodbClusterResourcesArgs>;
+    restore?: pulumi.Input<inputs.GetMdbMongodbClusterRestoreArgs>;
     /**
      * A set of ids of security groups assigned to hosts of the cluster.
      */

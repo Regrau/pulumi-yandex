@@ -352,6 +352,16 @@ import * as utilities from "./utilities";
  *         },
  *     ],
  *     networkId: fooVpcNetwork.id,
+ *     shards: [
+ *         {
+ *             name: "shard1",
+ *             weight: 110,
+ *         },
+ *         {
+ *             name: "shard2",
+ *             weight: 300,
+ *         },
+ *     ],
  *     shardGroups: [{
  *         description: "Cluster configuration that contain only shard1",
  *         name: "single_shard_group",
@@ -519,6 +529,7 @@ export class MdbClickhouseCluster extends pulumi.CustomResource {
      * A group of clickhouse shards. The structure is documented below.
      */
     public readonly shardGroups!: pulumi.Output<outputs.MdbClickhouseClusterShardGroup[] | undefined>;
+    public readonly shards!: pulumi.Output<outputs.MdbClickhouseClusterShard[]>;
     /**
      * Grants `admin` user database management permission.
      */
@@ -582,6 +593,7 @@ export class MdbClickhouseCluster extends pulumi.CustomResource {
             resourceInputs["securityGroupIds"] = state ? state.securityGroupIds : undefined;
             resourceInputs["serviceAccountId"] = state ? state.serviceAccountId : undefined;
             resourceInputs["shardGroups"] = state ? state.shardGroups : undefined;
+            resourceInputs["shards"] = state ? state.shards : undefined;
             resourceInputs["sqlDatabaseManagement"] = state ? state.sqlDatabaseManagement : undefined;
             resourceInputs["sqlUserManagement"] = state ? state.sqlUserManagement : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
@@ -624,6 +636,7 @@ export class MdbClickhouseCluster extends pulumi.CustomResource {
             resourceInputs["securityGroupIds"] = args ? args.securityGroupIds : undefined;
             resourceInputs["serviceAccountId"] = args ? args.serviceAccountId : undefined;
             resourceInputs["shardGroups"] = args ? args.shardGroups : undefined;
+            resourceInputs["shards"] = args ? args.shards : undefined;
             resourceInputs["sqlDatabaseManagement"] = args ? args.sqlDatabaseManagement : undefined;
             resourceInputs["sqlUserManagement"] = args ? args.sqlUserManagement : undefined;
             resourceInputs["users"] = args ? args.users : undefined;
@@ -736,6 +749,7 @@ export interface MdbClickhouseClusterState {
      * A group of clickhouse shards. The structure is documented below.
      */
     shardGroups?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterShardGroup>[]>;
+    shards?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterShard>[]>;
     /**
      * Grants `admin` user database management permission.
      */
@@ -850,6 +864,7 @@ export interface MdbClickhouseClusterArgs {
      * A group of clickhouse shards. The structure is documented below.
      */
     shardGroups?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterShardGroup>[]>;
+    shards?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterShard>[]>;
     /**
      * Grants `admin` user database management permission.
      */

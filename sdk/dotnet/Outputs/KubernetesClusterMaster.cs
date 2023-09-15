@@ -43,6 +43,10 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly Outputs.KubernetesClusterMasterMaintenancePolicy? MaintenancePolicy;
         /// <summary>
+        /// (Optional) Master Logging options. The structure is documented below.
+        /// </summary>
+        public readonly Outputs.KubernetesClusterMasterMasterLogging? MasterLogging;
+        /// <summary>
         /// (Optional) (Computed) Boolean flag. When `true`, Kubernetes master will have visible ipv4 address.
         /// </summary>
         public readonly bool? PublicIp;
@@ -85,6 +89,8 @@ namespace Pulumi.Yandex.Outputs
 
             Outputs.KubernetesClusterMasterMaintenancePolicy? maintenancePolicy,
 
+            Outputs.KubernetesClusterMasterMasterLogging? masterLogging,
+
             bool? publicIp,
 
             Outputs.KubernetesClusterMasterRegional? regional,
@@ -105,6 +111,7 @@ namespace Pulumi.Yandex.Outputs
             InternalV4Address = internalV4Address;
             InternalV4Endpoint = internalV4Endpoint;
             MaintenancePolicy = maintenancePolicy;
+            MasterLogging = masterLogging;
             PublicIp = publicIp;
             Regional = regional;
             SecurityGroupIds = securityGroupIds;

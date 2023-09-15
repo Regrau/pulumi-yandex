@@ -10,7 +10,7 @@ replace (
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.33.0
 	github.com/pulumi/pulumi/sdk/v3 v3.46.0
-	github.com/yandex-cloud/terraform-provider-yandex v0.84.0
+	github.com/yandex-cloud/terraform-provider-yandex v0.85.0
 )
 
 require (
@@ -209,8 +209,8 @@ require (
 	github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f // indirect
 	github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
-	github.com/yandex-cloud/go-genproto v0.0.0-20221031111057-d02401eddcba // indirect
-	github.com/yandex-cloud/go-sdk v0.0.0-20221031111409-bb28d1769a79 // indirect
+	github.com/yandex-cloud/go-genproto v0.0.0-20221226093308-1d6b7100d2d6 // indirect
+	github.com/yandex-cloud/go-sdk v0.0.0-20221226094806-d4be4392edaf // indirect
 	github.com/zclconf/go-cty v1.10.0 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect

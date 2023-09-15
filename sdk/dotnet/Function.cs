@@ -32,6 +32,16 @@ namespace Pulumi.Yandex
     ///         ExecutionTimeout = "10",
     ///         Memory = 128,
     ///         Runtime = "python37",
+    ///         Secrets = new[]
+    ///         {
+    ///             new Yandex.Inputs.FunctionSecretArgs
+    ///             {
+    ///                 EnvironmentVariable = "ENV_VARIABLE",
+    ///                 Id = yandex_lockbox_secret.Secret.Id,
+    ///                 Key = "secret-key",
+    ///                 VersionId = yandex_lockbox_secret_version.Secret_version.Id,
+    ///             },
+    ///         },
     ///         ServiceAccountId = "are1service2account3id",
     ///         Tags = new[]
     ///         {
@@ -46,6 +56,13 @@ namespace Pulumi.Yandex
     [YandexResourceType("yandex:index/function:Function")]
     public partial class Function : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Function version connectivity. If specified the version will be attached to specified network.
+        /// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+        /// </summary>
+        [Output("connectivity")]
+        public Output<Outputs.FunctionConnectivity?> Connectivity { get; private set; } = null!;
+
         /// <summary>
         /// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
         /// * `content.0.zip_filename` - Filename to zip archive for the version.
@@ -212,6 +229,13 @@ namespace Pulumi.Yandex
     public sealed class FunctionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Function version connectivity. If specified the version will be attached to specified network.
+        /// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+        /// </summary>
+        [Input("connectivity")]
+        public Input<Inputs.FunctionConnectivityArgs>? Connectivity { get; set; }
+
+        /// <summary>
         /// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
         /// * `content.0.zip_filename` - Filename to zip archive for the version.
         /// </summary>
@@ -337,6 +361,13 @@ namespace Pulumi.Yandex
 
     public sealed class FunctionState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Function version connectivity. If specified the version will be attached to specified network.
+        /// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+        /// </summary>
+        [Input("connectivity")]
+        public Input<Inputs.FunctionConnectivityGetArgs>? Connectivity { get; set; }
+
         /// <summary>
         /// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
         /// * `content.0.zip_filename` - Filename to zip archive for the version.

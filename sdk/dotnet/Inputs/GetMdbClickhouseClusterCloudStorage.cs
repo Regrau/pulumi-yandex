@@ -13,10 +13,28 @@ namespace Pulumi.Yandex.Inputs
     public sealed class GetMdbClickhouseClusterCloudStorageArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Enables temporary storage in the cluster repository of data requested from the object repository.
+        /// </summary>
+        [Input("dataCacheEnabled", required: true)]
+        public bool DataCacheEnabled { get; set; }
+
+        /// <summary>
+        /// Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
+        /// </summary>
+        [Input("dataCacheMaxSize", required: true)]
+        public int DataCacheMaxSize { get; set; }
+
+        /// <summary>
         /// (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
         /// </summary>
         [Input("enabled", required: true)]
         public bool Enabled { get; set; }
+
+        /// <summary>
+        /// Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+        /// </summary>
+        [Input("moveFactor", required: true)]
+        public double MoveFactor { get; set; }
 
         public GetMdbClickhouseClusterCloudStorageArgs()
         {

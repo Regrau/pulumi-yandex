@@ -133,6 +133,9 @@ class GetKubernetesClusterResult:
     @property
     @pulumi.getter(name="folderId")
     def folder_id(self) -> str:
+        """
+        (Optional) ID of the folder default Log group of which should be used to collect logs.
+        """
         return pulumi.get(self, "folder_id")
 
     @property
@@ -171,7 +174,7 @@ class GetKubernetesClusterResult:
     @pulumi.getter(name="logGroupId")
     def log_group_id(self) -> str:
         """
-        Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
         """
         return pulumi.get(self, "log_group_id")
 

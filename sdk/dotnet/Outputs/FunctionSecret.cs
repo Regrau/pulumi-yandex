@@ -13,9 +13,21 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class FunctionSecret
     {
+        /// <summary>
+        /// (Required) Function's environment variable in which secret's value will be stored.
+        /// </summary>
         public readonly string EnvironmentVariable;
+        /// <summary>
+        /// (Required) Secret's id.
+        /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// (Required) Secret's entries key which value will be stored in environment variable.
+        /// </summary>
         public readonly string Key;
+        /// <summary>
+        /// (Required) Secret's version id.
+        /// </summary>
         public readonly string VersionId;
 
         [OutputConstructor]

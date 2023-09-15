@@ -16,9 +16,10 @@ package yandex
 
 import (
 	"fmt"
-	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 	"path/filepath"
 	"unicode"
+
+	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
 
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
@@ -124,6 +125,7 @@ func Provider() tfbridge.ProviderInfo {
 			"yandex_compute_snapshot":                      {Tok: makeResource(mainMod, "ComputeSnapshot")},
 			"yandex_container_registry":                    {Tok: makeResource(mainMod, "ContainerRegistry")},
 			"yandex_container_registry_iam_binding":        {Tok: makeResource(mainMod, "ContainerRegistryIamBinding")},
+			"yandex_container_registry_ip_permission":      {Tok: makeResource(mainMod, "ContainerRegistryIpPermission")},
 			"yandex_container_repository":                  {Tok: makeResource(mainMod, "ContainerRepository")},
 			"yandex_container_repository_iam_binding":      {Tok: makeResource(mainMod, "ContainerRepositoryIamBinding")},
 			"yandex_dataproc_cluster":                      {Tok: makeResource(mainMod, "DataprocCluster")},
@@ -221,7 +223,7 @@ func Provider() tfbridge.ProviderInfo {
 			"yandex_container_repository_lifecycle_policy": {Tok: makeResource(mainMod, "containerRepositoryLifecyclePolicy")},
 			"yandex_compute_snapshot_schedule":             {Tok: makeResource(mainMod, "computeSnapshotSchedule")},
 			"yandex_cm_certificate":                        {Tok: makeResource(mainMod, "cmCertificate")},
-			"yandex_compute_filesystem":                        {Tok: makeResource(mainMod, "yandexComputeFilesystem")},
+			"yandex_compute_filesystem":                    {Tok: makeResource(mainMod, "yandexComputeFilesystem")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"yandex_alb_target_group": {

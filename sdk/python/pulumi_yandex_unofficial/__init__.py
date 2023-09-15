@@ -24,6 +24,7 @@ from .compute_snapshot import *
 from .compute_snapshot_schedule import *
 from .container_registry import *
 from .container_registry_iam_binding import *
+from .container_registry_ip_permission import *
 from .container_repository import *
 from .container_repository_iam_binding import *
 from .container_repository_lifecycle_policy import *
@@ -326,6 +327,14 @@ _utilities.register(
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/containerRegistryIamBinding:ContainerRegistryIamBinding": "ContainerRegistryIamBinding"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/containerRegistryIpPermission",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/containerRegistryIpPermission:ContainerRegistryIpPermission": "ContainerRegistryIpPermission"
   }
  },
  {

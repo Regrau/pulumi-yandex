@@ -21,6 +21,9 @@ class StorageObjectArgs:
                  content: Optional[pulumi.Input[str]] = None,
                  content_base64: Optional[pulumi.Input[str]] = None,
                  content_type: Optional[pulumi.Input[str]] = None,
+                 object_lock_legal_hold_status: Optional[pulumi.Input[str]] = None,
+                 object_lock_mode: Optional[pulumi.Input[str]] = None,
+                 object_lock_retain_until_date: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  source: Optional[pulumi.Input[str]] = None):
         """
@@ -32,6 +35,9 @@ class StorageObjectArgs:
         :param pulumi.Input[str] content: Literal string value to use as the object content, which will be uploaded as UTF-8-encoded text.
         :param pulumi.Input[str] content_base64: Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
         :param pulumi.Input[str] content_type: A standard MIME type describing the format of the object data, e.g. `application/octet-stream`. All Valid MIME Types are valid for this input.
+        :param pulumi.Input[str] object_lock_legal_hold_status: Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `object_lock_configuration` to be enabled on a bucket.
+        :param pulumi.Input[str] object_lock_mode: Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `object_lock_retain_until_date`. Requires `object_lock_configuration` to be enabled on a bucket.
+        :param pulumi.Input[str] object_lock_retain_until_date: Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
         :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
         :param pulumi.Input[str] source: The path to a file that will be read and uploaded as raw bytes for the object content.
         """
@@ -47,6 +53,12 @@ class StorageObjectArgs:
             pulumi.set(__self__, "content_base64", content_base64)
         if content_type is not None:
             pulumi.set(__self__, "content_type", content_type)
+        if object_lock_legal_hold_status is not None:
+            pulumi.set(__self__, "object_lock_legal_hold_status", object_lock_legal_hold_status)
+        if object_lock_mode is not None:
+            pulumi.set(__self__, "object_lock_mode", object_lock_mode)
+        if object_lock_retain_until_date is not None:
+            pulumi.set(__self__, "object_lock_retain_until_date", object_lock_retain_until_date)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if source is not None:
@@ -137,6 +149,42 @@ class StorageObjectArgs:
         pulumi.set(self, "content_type", value)
 
     @property
+    @pulumi.getter(name="objectLockLegalHoldStatus")
+    def object_lock_legal_hold_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `object_lock_configuration` to be enabled on a bucket.
+        """
+        return pulumi.get(self, "object_lock_legal_hold_status")
+
+    @object_lock_legal_hold_status.setter
+    def object_lock_legal_hold_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "object_lock_legal_hold_status", value)
+
+    @property
+    @pulumi.getter(name="objectLockMode")
+    def object_lock_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `object_lock_retain_until_date`. Requires `object_lock_configuration` to be enabled on a bucket.
+        """
+        return pulumi.get(self, "object_lock_mode")
+
+    @object_lock_mode.setter
+    def object_lock_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "object_lock_mode", value)
+
+    @property
+    @pulumi.getter(name="objectLockRetainUntilDate")
+    def object_lock_retain_until_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
+        """
+        return pulumi.get(self, "object_lock_retain_until_date")
+
+    @object_lock_retain_until_date.setter
+    def object_lock_retain_until_date(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "object_lock_retain_until_date", value)
+
+    @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
         """
@@ -171,6 +219,9 @@ class _StorageObjectState:
                  content_base64: Optional[pulumi.Input[str]] = None,
                  content_type: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
+                 object_lock_legal_hold_status: Optional[pulumi.Input[str]] = None,
+                 object_lock_mode: Optional[pulumi.Input[str]] = None,
+                 object_lock_retain_until_date: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  source: Optional[pulumi.Input[str]] = None):
         """
@@ -182,6 +233,9 @@ class _StorageObjectState:
         :param pulumi.Input[str] content_base64: Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
         :param pulumi.Input[str] content_type: A standard MIME type describing the format of the object data, e.g. `application/octet-stream`. All Valid MIME Types are valid for this input.
         :param pulumi.Input[str] key: The name of the object once it is in the bucket.
+        :param pulumi.Input[str] object_lock_legal_hold_status: Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `object_lock_configuration` to be enabled on a bucket.
+        :param pulumi.Input[str] object_lock_mode: Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `object_lock_retain_until_date`. Requires `object_lock_configuration` to be enabled on a bucket.
+        :param pulumi.Input[str] object_lock_retain_until_date: Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
         :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
         :param pulumi.Input[str] source: The path to a file that will be read and uploaded as raw bytes for the object content.
         """
@@ -199,6 +253,12 @@ class _StorageObjectState:
             pulumi.set(__self__, "content_type", content_type)
         if key is not None:
             pulumi.set(__self__, "key", key)
+        if object_lock_legal_hold_status is not None:
+            pulumi.set(__self__, "object_lock_legal_hold_status", object_lock_legal_hold_status)
+        if object_lock_mode is not None:
+            pulumi.set(__self__, "object_lock_mode", object_lock_mode)
+        if object_lock_retain_until_date is not None:
+            pulumi.set(__self__, "object_lock_retain_until_date", object_lock_retain_until_date)
         if secret_key is not None:
             pulumi.set(__self__, "secret_key", secret_key)
         if source is not None:
@@ -289,6 +349,42 @@ class _StorageObjectState:
         pulumi.set(self, "key", value)
 
     @property
+    @pulumi.getter(name="objectLockLegalHoldStatus")
+    def object_lock_legal_hold_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `object_lock_configuration` to be enabled on a bucket.
+        """
+        return pulumi.get(self, "object_lock_legal_hold_status")
+
+    @object_lock_legal_hold_status.setter
+    def object_lock_legal_hold_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "object_lock_legal_hold_status", value)
+
+    @property
+    @pulumi.getter(name="objectLockMode")
+    def object_lock_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `object_lock_retain_until_date`. Requires `object_lock_configuration` to be enabled on a bucket.
+        """
+        return pulumi.get(self, "object_lock_mode")
+
+    @object_lock_mode.setter
+    def object_lock_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "object_lock_mode", value)
+
+    @property
+    @pulumi.getter(name="objectLockRetainUntilDate")
+    def object_lock_retain_until_date(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
+        """
+        return pulumi.get(self, "object_lock_retain_until_date")
+
+    @object_lock_retain_until_date.setter
+    def object_lock_retain_until_date(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "object_lock_retain_until_date", value)
+
+    @property
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
         """
@@ -325,6 +421,9 @@ class StorageObject(pulumi.CustomResource):
                  content_base64: Optional[pulumi.Input[str]] = None,
                  content_type: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
+                 object_lock_legal_hold_status: Optional[pulumi.Input[str]] = None,
+                 object_lock_mode: Optional[pulumi.Input[str]] = None,
+                 object_lock_retain_until_date: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  source: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -354,6 +453,9 @@ class StorageObject(pulumi.CustomResource):
         :param pulumi.Input[str] content_base64: Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
         :param pulumi.Input[str] content_type: A standard MIME type describing the format of the object data, e.g. `application/octet-stream`. All Valid MIME Types are valid for this input.
         :param pulumi.Input[str] key: The name of the object once it is in the bucket.
+        :param pulumi.Input[str] object_lock_legal_hold_status: Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `object_lock_configuration` to be enabled on a bucket.
+        :param pulumi.Input[str] object_lock_mode: Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `object_lock_retain_until_date`. Requires `object_lock_configuration` to be enabled on a bucket.
+        :param pulumi.Input[str] object_lock_retain_until_date: Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
         :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
         :param pulumi.Input[str] source: The path to a file that will be read and uploaded as raw bytes for the object content.
         """
@@ -402,6 +504,9 @@ class StorageObject(pulumi.CustomResource):
                  content_base64: Optional[pulumi.Input[str]] = None,
                  content_type: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
+                 object_lock_legal_hold_status: Optional[pulumi.Input[str]] = None,
+                 object_lock_mode: Optional[pulumi.Input[str]] = None,
+                 object_lock_retain_until_date: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  source: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -424,6 +529,9 @@ class StorageObject(pulumi.CustomResource):
             if key is None and not opts.urn:
                 raise TypeError("Missing required property 'key'")
             __props__.__dict__["key"] = key
+            __props__.__dict__["object_lock_legal_hold_status"] = object_lock_legal_hold_status
+            __props__.__dict__["object_lock_mode"] = object_lock_mode
+            __props__.__dict__["object_lock_retain_until_date"] = object_lock_retain_until_date
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["source"] = source
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretKey"])
@@ -445,6 +553,9 @@ class StorageObject(pulumi.CustomResource):
             content_base64: Optional[pulumi.Input[str]] = None,
             content_type: Optional[pulumi.Input[str]] = None,
             key: Optional[pulumi.Input[str]] = None,
+            object_lock_legal_hold_status: Optional[pulumi.Input[str]] = None,
+            object_lock_mode: Optional[pulumi.Input[str]] = None,
+            object_lock_retain_until_date: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
             source: Optional[pulumi.Input[str]] = None) -> 'StorageObject':
         """
@@ -461,6 +572,9 @@ class StorageObject(pulumi.CustomResource):
         :param pulumi.Input[str] content_base64: Base64-encoded data that will be decoded and uploaded as raw bytes for the object content. This allows safely uploading non-UTF8 binary data, but is recommended only for small content such as the result of the `gzipbase64` function with small text strings. For larger objects, use `source` to stream the content from a disk file.
         :param pulumi.Input[str] content_type: A standard MIME type describing the format of the object data, e.g. `application/octet-stream`. All Valid MIME Types are valid for this input.
         :param pulumi.Input[str] key: The name of the object once it is in the bucket.
+        :param pulumi.Input[str] object_lock_legal_hold_status: Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `object_lock_configuration` to be enabled on a bucket.
+        :param pulumi.Input[str] object_lock_mode: Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `object_lock_retain_until_date`. Requires `object_lock_configuration` to be enabled on a bucket.
+        :param pulumi.Input[str] object_lock_retain_until_date: Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
         :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
         :param pulumi.Input[str] source: The path to a file that will be read and uploaded as raw bytes for the object content.
         """
@@ -475,6 +589,9 @@ class StorageObject(pulumi.CustomResource):
         __props__.__dict__["content_base64"] = content_base64
         __props__.__dict__["content_type"] = content_type
         __props__.__dict__["key"] = key
+        __props__.__dict__["object_lock_legal_hold_status"] = object_lock_legal_hold_status
+        __props__.__dict__["object_lock_mode"] = object_lock_mode
+        __props__.__dict__["object_lock_retain_until_date"] = object_lock_retain_until_date
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["source"] = source
         return StorageObject(resource_name, opts=opts, __props__=__props__)
@@ -534,6 +651,30 @@ class StorageObject(pulumi.CustomResource):
         The name of the object once it is in the bucket.
         """
         return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="objectLockLegalHoldStatus")
+    def object_lock_legal_hold_status(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `object_lock_configuration` to be enabled on a bucket.
+        """
+        return pulumi.get(self, "object_lock_legal_hold_status")
+
+    @property
+    @pulumi.getter(name="objectLockMode")
+    def object_lock_mode(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `object_lock_retain_until_date`. Requires `object_lock_configuration` to be enabled on a bucket.
+        """
+        return pulumi.get(self, "object_lock_mode")
+
+    @property
+    @pulumi.getter(name="objectLockRetainUntilDate")
+    def object_lock_retain_until_date(self) -> pulumi.Output[Optional[str]]:
+        """
+        Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
+        """
+        return pulumi.get(self, "object_lock_retain_until_date")
 
     @property
     @pulumi.getter(name="secretKey")

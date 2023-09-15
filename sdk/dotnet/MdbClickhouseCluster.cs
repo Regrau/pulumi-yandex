@@ -164,6 +164,9 @@ namespace Pulumi.Yandex
         [Output("shardGroups")]
         public Output<ImmutableArray<Outputs.MdbClickhouseClusterShardGroup>> ShardGroups { get; private set; } = null!;
 
+        [Output("shards")]
+        public Output<ImmutableArray<Outputs.MdbClickhouseClusterShard>> Shards { get; private set; } = null!;
+
         /// <summary>
         /// Grants `admin` user database management permission.
         /// </summary>
@@ -431,6 +434,14 @@ namespace Pulumi.Yandex
             set => _shardGroups = value;
         }
 
+        [Input("shards")]
+        private InputList<Inputs.MdbClickhouseClusterShardArgs>? _shards;
+        public InputList<Inputs.MdbClickhouseClusterShardArgs> Shards
+        {
+            get => _shards ?? (_shards = new InputList<Inputs.MdbClickhouseClusterShardArgs>());
+            set => _shards = value;
+        }
+
         /// <summary>
         /// Grants `admin` user database management permission.
         /// </summary>
@@ -665,6 +676,14 @@ namespace Pulumi.Yandex
         {
             get => _shardGroups ?? (_shardGroups = new InputList<Inputs.MdbClickhouseClusterShardGroupGetArgs>());
             set => _shardGroups = value;
+        }
+
+        [Input("shards")]
+        private InputList<Inputs.MdbClickhouseClusterShardGetArgs>? _shards;
+        public InputList<Inputs.MdbClickhouseClusterShardGetArgs> Shards
+        {
+            get => _shards ?? (_shards = new InputList<Inputs.MdbClickhouseClusterShardGetArgs>());
+            set => _shards = value;
         }
 
         /// <summary>

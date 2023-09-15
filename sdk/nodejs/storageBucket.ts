@@ -129,6 +129,29 @@ import * as utilities from "./utilities";
  *     },
  * });
  * ```
+ * ### Using Object Lock Configuration
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const storageBucket = new yandex.StorageBucket("b", {
+ *     acl: "private",
+ *     bucket: "my-tf-test-bucket",
+ *     objectLockConfiguration: {
+ *         objectLockEnabled: "Enabled",
+ *         rule: {
+ *             defaultRetention: {
+ *                 mode: "GOVERNANCE",
+ *                 years: 1,
+ *             },
+ *         },
+ *     },
+ *     versioning: {
+ *         enabled: true,
+ *     },
+ * });
+ * ```
  * ### Enable Logging
  *
  * ```typescript
@@ -284,6 +307,7 @@ import * as utilities from "./utilities";
  *
  * const storageBucket = new yandex.StorageBucket("b", {
  *     anonymousAccessFlags: {
+ *         configRead: true,
  *         list: false,
  *         read: true,
  *     },
@@ -473,7 +497,7 @@ export class StorageBucket extends pulumi.CustomResource {
     /**
      * The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
      */
-    public readonly acl!: pulumi.Output<string | undefined>;
+    public readonly acl!: pulumi.Output<string>;
     /**
      * Provides various access to objects.
      * See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
@@ -510,7 +534,7 @@ export class StorageBucket extends pulumi.CustomResource {
     /**
      * An [ACL policy grant](https://cloud.yandex.com/docs/storage/concepts/acl#permissions-types). Conflicts with `acl`.
      */
-    public readonly grants!: pulumi.Output<outputs.StorageBucketGrant[] | undefined>;
+    public readonly grants!: pulumi.Output<outputs.StorageBucketGrant[]>;
     /**
      * Manages https certificates for bucket. See [https](https://cloud.yandex.com/en-ru/docs/storage/operations/hosting/certificate) for more infomation.
      */
@@ -527,6 +551,10 @@ export class StorageBucket extends pulumi.CustomResource {
      * The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
      */
     public readonly maxSize!: pulumi.Output<number | undefined>;
+    /**
+     * A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+     */
+    public readonly objectLockConfiguration!: pulumi.Output<outputs.StorageBucketObjectLockConfiguration | undefined>;
     public readonly policy!: pulumi.Output<string | undefined>;
     /**
      * The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
@@ -581,6 +609,7 @@ export class StorageBucket extends pulumi.CustomResource {
             resourceInputs["lifecycleRules"] = state ? state.lifecycleRules : undefined;
             resourceInputs["loggings"] = state ? state.loggings : undefined;
             resourceInputs["maxSize"] = state ? state.maxSize : undefined;
+            resourceInputs["objectLockConfiguration"] = state ? state.objectLockConfiguration : undefined;
             resourceInputs["policy"] = state ? state.policy : undefined;
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
             resourceInputs["serverSideEncryptionConfiguration"] = state ? state.serverSideEncryptionConfiguration : undefined;
@@ -604,6 +633,7 @@ export class StorageBucket extends pulumi.CustomResource {
             resourceInputs["lifecycleRules"] = args ? args.lifecycleRules : undefined;
             resourceInputs["loggings"] = args ? args.loggings : undefined;
             resourceInputs["maxSize"] = args ? args.maxSize : undefined;
+            resourceInputs["objectLockConfiguration"] = args ? args.objectLockConfiguration : undefined;
             resourceInputs["policy"] = args ? args.policy : undefined;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["serverSideEncryptionConfiguration"] = args ? args.serverSideEncryptionConfiguration : undefined;
@@ -685,6 +715,10 @@ export interface StorageBucketState {
      * The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
      */
     maxSize?: pulumi.Input<number>;
+    /**
+     * A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+     */
+    objectLockConfiguration?: pulumi.Input<inputs.StorageBucketObjectLockConfiguration>;
     policy?: pulumi.Input<string>;
     /**
      * The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
@@ -773,6 +807,10 @@ export interface StorageBucketArgs {
      * The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
      */
     maxSize?: pulumi.Input<number>;
+    /**
+     * A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+     */
+    objectLockConfiguration?: pulumi.Input<inputs.StorageBucketObjectLockConfiguration>;
     policy?: pulumi.Input<string>;
     /**
      * The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.

@@ -18,6 +18,9 @@ namespace Pulumi.Yandex.Inputs
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }
 
+        [Input("regex")]
+        public Input<string>? Regex { get; set; }
+
         public AlbHttpRouterRouteOptionsRbacPrincipalAndPrincipalHeaderValueArgs()
         {
         }

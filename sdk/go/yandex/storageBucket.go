@@ -232,6 +232,44 @@ import (
 //	}
 //
 // ```
+// ### Using Object Lock Configuration
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewStorageBucket(ctx, "storageBucket", &yandex.StorageBucketArgs{
+//				Acl:    pulumi.String("private"),
+//				Bucket: pulumi.String("my-tf-test-bucket"),
+//				ObjectLockConfiguration: &StorageBucketObjectLockConfigurationArgs{
+//					ObjectLockEnabled: pulumi.String("Enabled"),
+//					Rule: &StorageBucketObjectLockConfigurationRuleArgs{
+//						DefaultRetention: &StorageBucketObjectLockConfigurationRuleDefaultRetentionArgs{
+//							Mode:  pulumi.String("GOVERNANCE"),
+//							Years: pulumi.Int(1),
+//						},
+//					},
+//				},
+//				Versioning: &StorageBucketVersioningArgs{
+//					Enabled: pulumi.Bool(true),
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 // ### Enable Logging
 //
 // ```go
@@ -507,8 +545,9 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := yandex.NewStorageBucket(ctx, "storageBucket", &yandex.StorageBucketArgs{
 //				AnonymousAccessFlags: &StorageBucketAnonymousAccessFlagsArgs{
-//					List: pulumi.Bool(false),
-//					Read: pulumi.Bool(true),
+//					ConfigRead: pulumi.Bool(true),
+//					List:       pulumi.Bool(false),
+//					Read:       pulumi.Bool(true),
 //				},
 //				Bucket: pulumi.String("my-policy-bucket"),
 //			})
@@ -741,7 +780,7 @@ type StorageBucket struct {
 	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in provider config is used.
 	AccessKey pulumi.StringPtrOutput `pulumi:"accessKey"`
 	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
-	Acl pulumi.StringPtrOutput `pulumi:"acl"`
+	Acl pulumi.StringOutput `pulumi:"acl"`
 	// Provides various access to objects.
 	// See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
 	// for more infomation.
@@ -770,8 +809,10 @@ type StorageBucket struct {
 	// A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
 	Loggings StorageBucketLoggingArrayOutput `pulumi:"loggings"`
 	// The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
-	MaxSize pulumi.IntPtrOutput    `pulumi:"maxSize"`
-	Policy  pulumi.StringPtrOutput `pulumi:"policy"`
+	MaxSize pulumi.IntPtrOutput `pulumi:"maxSize"`
+	// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+	ObjectLockConfiguration StorageBucketObjectLockConfigurationPtrOutput `pulumi:"objectLockConfiguration"`
+	Policy                  pulumi.StringPtrOutput                        `pulumi:"policy"`
 	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
 	// A configuration of server-side encryption for the bucket (documented below)
@@ -855,8 +896,10 @@ type storageBucketState struct {
 	// A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
 	Loggings []StorageBucketLogging `pulumi:"loggings"`
 	// The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
-	MaxSize *int    `pulumi:"maxSize"`
-	Policy  *string `pulumi:"policy"`
+	MaxSize *int `pulumi:"maxSize"`
+	// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+	ObjectLockConfiguration *StorageBucketObjectLockConfiguration `pulumi:"objectLockConfiguration"`
+	Policy                  *string                               `pulumi:"policy"`
 	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
 	SecretKey *string `pulumi:"secretKey"`
 	// A configuration of server-side encryption for the bucket (documented below)
@@ -905,7 +948,9 @@ type StorageBucketState struct {
 	Loggings StorageBucketLoggingArrayInput
 	// The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
 	MaxSize pulumi.IntPtrInput
-	Policy  pulumi.StringPtrInput
+	// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+	ObjectLockConfiguration StorageBucketObjectLockConfigurationPtrInput
+	Policy                  pulumi.StringPtrInput
 	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
 	SecretKey pulumi.StringPtrInput
 	// A configuration of server-side encryption for the bucket (documented below)
@@ -955,8 +1000,10 @@ type storageBucketArgs struct {
 	// A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
 	Loggings []StorageBucketLogging `pulumi:"loggings"`
 	// The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
-	MaxSize *int    `pulumi:"maxSize"`
-	Policy  *string `pulumi:"policy"`
+	MaxSize *int `pulumi:"maxSize"`
+	// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+	ObjectLockConfiguration *StorageBucketObjectLockConfiguration `pulumi:"objectLockConfiguration"`
+	Policy                  *string                               `pulumi:"policy"`
 	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
 	SecretKey *string `pulumi:"secretKey"`
 	// A configuration of server-side encryption for the bucket (documented below)
@@ -1004,7 +1051,9 @@ type StorageBucketArgs struct {
 	Loggings StorageBucketLoggingArrayInput
 	// The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
 	MaxSize pulumi.IntPtrInput
-	Policy  pulumi.StringPtrInput
+	// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+	ObjectLockConfiguration StorageBucketObjectLockConfigurationPtrInput
+	Policy                  pulumi.StringPtrInput
 	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
 	SecretKey pulumi.StringPtrInput
 	// A configuration of server-side encryption for the bucket (documented below)
@@ -1112,8 +1161,8 @@ func (o StorageBucketOutput) AccessKey() pulumi.StringPtrOutput {
 }
 
 // The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
-func (o StorageBucketOutput) Acl() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *StorageBucket) pulumi.StringPtrOutput { return v.Acl }).(pulumi.StringPtrOutput)
+func (o StorageBucketOutput) Acl() pulumi.StringOutput {
+	return o.ApplyT(func(v *StorageBucket) pulumi.StringOutput { return v.Acl }).(pulumi.StringOutput)
 }
 
 // Provides various access to objects.
@@ -1182,6 +1231,11 @@ func (o StorageBucketOutput) Loggings() StorageBucketLoggingArrayOutput {
 // The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
 func (o StorageBucketOutput) MaxSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *StorageBucket) pulumi.IntPtrOutput { return v.MaxSize }).(pulumi.IntPtrOutput)
+}
+
+// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+func (o StorageBucketOutput) ObjectLockConfiguration() StorageBucketObjectLockConfigurationPtrOutput {
+	return o.ApplyT(func(v *StorageBucket) StorageBucketObjectLockConfigurationPtrOutput { return v.ObjectLockConfiguration }).(StorageBucketObjectLockConfigurationPtrOutput)
 }
 
 func (o StorageBucketOutput) Policy() pulumi.StringPtrOutput {

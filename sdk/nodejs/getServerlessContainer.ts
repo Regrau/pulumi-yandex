@@ -28,6 +28,7 @@ export function getServerlessContainer(args?: GetServerlessContainerArgs, opts?:
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("yandex:index/getServerlessContainer:getServerlessContainer", {
+        "connectivity": args.connectivity,
         "containerId": args.containerId,
         "folderId": args.folderId,
         "name": args.name,
@@ -39,6 +40,11 @@ export function getServerlessContainer(args?: GetServerlessContainerArgs, opts?:
  * A collection of arguments for invoking getServerlessContainer.
  */
 export interface GetServerlessContainerArgs {
+    /**
+     * Network access. If specified the revision will be attached to specified network
+     * * `connectivity.0.network_id` - Network the revision will have access to
+     */
+    connectivity?: inputs.GetServerlessContainerConnectivity;
     /**
      * Yandex Cloud Serverless Container id used to define container
      */
@@ -71,6 +77,11 @@ export interface GetServerlessContainerResult {
      * Concurrency of Yandex Cloud Serverless Container
      */
     readonly concurrency: number;
+    /**
+     * Network access. If specified the revision will be attached to specified network
+     * * `connectivity.0.network_id` - Network the revision will have access to
+     */
+    readonly connectivity?: outputs.GetServerlessContainerConnectivity;
     readonly containerId?: string;
     /**
      * Core fraction (**0...100**) of the Yandex Cloud Serverless Container
@@ -136,6 +147,11 @@ export function getServerlessContainerOutput(args?: GetServerlessContainerOutput
  * A collection of arguments for invoking getServerlessContainer.
  */
 export interface GetServerlessContainerOutputArgs {
+    /**
+     * Network access. If specified the revision will be attached to specified network
+     * * `connectivity.0.network_id` - Network the revision will have access to
+     */
+    connectivity?: pulumi.Input<inputs.GetServerlessContainerConnectivityArgs>;
     /**
      * Yandex Cloud Serverless Container id used to define container
      */

@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetApiGatewayResult',
@@ -21,13 +23,19 @@ class GetApiGatewayResult:
     """
     A collection of values returned by getApiGateway.
     """
-    def __init__(__self__, api_gateway_id=None, created_at=None, description=None, domain=None, folder_id=None, id=None, labels=None, log_group_id=None, name=None, status=None, user_domains=None):
+    def __init__(__self__, api_gateway_id=None, connectivity=None, created_at=None, custom_domains=None, description=None, domain=None, folder_id=None, id=None, labels=None, log_group_id=None, name=None, status=None, user_domains=None):
         if api_gateway_id and not isinstance(api_gateway_id, str):
             raise TypeError("Expected argument 'api_gateway_id' to be a str")
         pulumi.set(__self__, "api_gateway_id", api_gateway_id)
+        if connectivity and not isinstance(connectivity, dict):
+            raise TypeError("Expected argument 'connectivity' to be a dict")
+        pulumi.set(__self__, "connectivity", connectivity)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if custom_domains and not isinstance(custom_domains, list):
+            raise TypeError("Expected argument 'custom_domains' to be a list")
+        pulumi.set(__self__, "custom_domains", custom_domains)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -54,6 +62,10 @@ class GetApiGatewayResult:
         pulumi.set(__self__, "status", status)
         if user_domains and not isinstance(user_domains, list):
             raise TypeError("Expected argument 'user_domains' to be a list")
+        if user_domains is not None:
+            warnings.warn("""The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.""", DeprecationWarning)
+            pulumi.log.warn("""user_domains is deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.""")
+
         pulumi.set(__self__, "user_domains", user_domains)
 
     @property
@@ -62,9 +74,19 @@ class GetApiGatewayResult:
         return pulumi.get(self, "api_gateway_id")
 
     @property
+    @pulumi.getter
+    def connectivity(self) -> Optional['outputs.GetApiGatewayConnectivityResult']:
+        return pulumi.get(self, "connectivity")
+
+    @property
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="customDomains")
+    def custom_domains(self) -> Optional[Sequence['outputs.GetApiGatewayCustomDomainResult']]:
+        return pulumi.get(self, "custom_domains")
 
     @property
     @pulumi.getter
@@ -122,7 +144,9 @@ class AwaitableGetApiGatewayResult(GetApiGatewayResult):
             yield self
         return GetApiGatewayResult(
             api_gateway_id=self.api_gateway_id,
+            connectivity=self.connectivity,
             created_at=self.created_at,
+            custom_domains=self.custom_domains,
             description=self.description,
             domain=self.domain,
             folder_id=self.folder_id,
@@ -135,6 +159,8 @@ class AwaitableGetApiGatewayResult(GetApiGatewayResult):
 
 
 def get_api_gateway(api_gateway_id: Optional[str] = None,
+                    connectivity: Optional[pulumi.InputType['GetApiGatewayConnectivityArgs']] = None,
+                    custom_domains: Optional[Sequence[pulumi.InputType['GetApiGatewayCustomDomainArgs']]] = None,
                     folder_id: Optional[str] = None,
                     name: Optional[str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApiGatewayResult:
@@ -143,6 +169,8 @@ def get_api_gateway(api_gateway_id: Optional[str] = None,
     """
     __args__ = dict()
     __args__['apiGatewayId'] = api_gateway_id
+    __args__['connectivity'] = connectivity
+    __args__['customDomains'] = custom_domains
     __args__['folderId'] = folder_id
     __args__['name'] = name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -150,7 +178,9 @@ def get_api_gateway(api_gateway_id: Optional[str] = None,
 
     return AwaitableGetApiGatewayResult(
         api_gateway_id=__ret__.api_gateway_id,
+        connectivity=__ret__.connectivity,
         created_at=__ret__.created_at,
+        custom_domains=__ret__.custom_domains,
         description=__ret__.description,
         domain=__ret__.domain,
         folder_id=__ret__.folder_id,
@@ -164,6 +194,8 @@ def get_api_gateway(api_gateway_id: Optional[str] = None,
 
 @_utilities.lift_output_func(get_api_gateway)
 def get_api_gateway_output(api_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
+                           connectivity: Optional[pulumi.Input[Optional[pulumi.InputType['GetApiGatewayConnectivityArgs']]]] = None,
+                           custom_domains: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetApiGatewayCustomDomainArgs']]]]] = None,
                            folder_id: Optional[pulumi.Input[Optional[str]]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetApiGatewayResult]:

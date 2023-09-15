@@ -23,7 +23,7 @@ class GetMdbMongodbClusterResult:
     """
     A collection of values returned by getMdbMongodbCluster.
     """
-    def __init__(__self__, cluster_config=None, cluster_id=None, created_at=None, databases=None, deletion_protection=None, description=None, environment=None, folder_id=None, health=None, hosts=None, id=None, labels=None, maintenance_window=None, name=None, network_id=None, resources=None, security_group_ids=None, sharded=None, status=None, users=None):
+    def __init__(__self__, cluster_config=None, cluster_id=None, created_at=None, databases=None, deletion_protection=None, description=None, environment=None, folder_id=None, health=None, hosts=None, id=None, labels=None, maintenance_window=None, name=None, network_id=None, resources=None, restore=None, security_group_ids=None, sharded=None, status=None, users=None):
         if cluster_config and not isinstance(cluster_config, dict):
             raise TypeError("Expected argument 'cluster_config' to be a dict")
         pulumi.set(__self__, "cluster_config", cluster_config)
@@ -72,6 +72,9 @@ class GetMdbMongodbClusterResult:
         if resources and not isinstance(resources, dict):
             raise TypeError("Expected argument 'resources' to be a dict")
         pulumi.set(__self__, "resources", resources)
+        if restore and not isinstance(restore, dict):
+            raise TypeError("Expected argument 'restore' to be a dict")
+        pulumi.set(__self__, "restore", restore)
         if security_group_ids and not isinstance(security_group_ids, list):
             raise TypeError("Expected argument 'security_group_ids' to be a list")
         pulumi.set(__self__, "security_group_ids", security_group_ids)
@@ -202,6 +205,11 @@ class GetMdbMongodbClusterResult:
         return pulumi.get(self, "resources")
 
     @property
+    @pulumi.getter
+    def restore(self) -> Optional['outputs.GetMdbMongodbClusterRestoreResult']:
+        return pulumi.get(self, "restore")
+
+    @property
     @pulumi.getter(name="securityGroupIds")
     def security_group_ids(self) -> Optional[Sequence[str]]:
         """
@@ -256,6 +264,7 @@ class AwaitableGetMdbMongodbClusterResult(GetMdbMongodbClusterResult):
             name=self.name,
             network_id=self.network_id,
             resources=self.resources,
+            restore=self.restore,
             security_group_ids=self.security_group_ids,
             sharded=self.sharded,
             status=self.status,
@@ -277,6 +286,7 @@ def get_mdb_mongodb_cluster(cluster_config: Optional[pulumi.InputType['GetMdbMon
                             name: Optional[str] = None,
                             network_id: Optional[str] = None,
                             resources: Optional[pulumi.InputType['GetMdbMongodbClusterResourcesArgs']] = None,
+                            restore: Optional[pulumi.InputType['GetMdbMongodbClusterRestoreArgs']] = None,
                             security_group_ids: Optional[Sequence[str]] = None,
                             sharded: Optional[bool] = None,
                             status: Optional[str] = None,
@@ -331,6 +341,7 @@ def get_mdb_mongodb_cluster(cluster_config: Optional[pulumi.InputType['GetMdbMon
     __args__['name'] = name
     __args__['networkId'] = network_id
     __args__['resources'] = resources
+    __args__['restore'] = restore
     __args__['securityGroupIds'] = security_group_ids
     __args__['sharded'] = sharded
     __args__['status'] = status
@@ -355,6 +366,7 @@ def get_mdb_mongodb_cluster(cluster_config: Optional[pulumi.InputType['GetMdbMon
         name=__ret__.name,
         network_id=__ret__.network_id,
         resources=__ret__.resources,
+        restore=__ret__.restore,
         security_group_ids=__ret__.security_group_ids,
         sharded=__ret__.sharded,
         status=__ret__.status,
@@ -377,6 +389,7 @@ def get_mdb_mongodb_cluster_output(cluster_config: Optional[pulumi.Input[Optiona
                                    name: Optional[pulumi.Input[Optional[str]]] = None,
                                    network_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    resources: Optional[pulumi.Input[Optional[pulumi.InputType['GetMdbMongodbClusterResourcesArgs']]]] = None,
+                                   restore: Optional[pulumi.Input[Optional[pulumi.InputType['GetMdbMongodbClusterRestoreArgs']]]] = None,
                                    security_group_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                    sharded: Optional[pulumi.Input[Optional[bool]]] = None,
                                    status: Optional[pulumi.Input[Optional[str]]] = None,

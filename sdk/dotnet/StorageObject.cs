@@ -79,6 +79,24 @@ namespace Pulumi.Yandex
         public Output<string> Key { get; private set; } = null!;
 
         /// <summary>
+        /// Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `object_lock_configuration` to be enabled on a bucket.
+        /// </summary>
+        [Output("objectLockLegalHoldStatus")]
+        public Output<string?> ObjectLockLegalHoldStatus { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `object_lock_retain_until_date`. Requires `object_lock_configuration` to be enabled on a bucket.
+        /// </summary>
+        [Output("objectLockMode")]
+        public Output<string?> ObjectLockMode { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
+        /// </summary>
+        [Output("objectLockRetainUntilDate")]
+        public Output<string?> ObjectLockRetainUntilDate { get; private set; } = null!;
+
+        /// <summary>
         /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
         /// </summary>
         [Output("secretKey")]
@@ -183,6 +201,24 @@ namespace Pulumi.Yandex
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `object_lock_configuration` to be enabled on a bucket.
+        /// </summary>
+        [Input("objectLockLegalHoldStatus")]
+        public Input<string>? ObjectLockLegalHoldStatus { get; set; }
+
+        /// <summary>
+        /// Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `object_lock_retain_until_date`. Requires `object_lock_configuration` to be enabled on a bucket.
+        /// </summary>
+        [Input("objectLockMode")]
+        public Input<string>? ObjectLockMode { get; set; }
+
+        /// <summary>
+        /// Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
+        /// </summary>
+        [Input("objectLockRetainUntilDate")]
+        public Input<string>? ObjectLockRetainUntilDate { get; set; }
+
         [Input("secretKey")]
         private Input<string>? _secretKey;
 
@@ -254,6 +290,24 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("key")]
         public Input<string>? Key { get; set; }
+
+        /// <summary>
+        /// Specifies a [legal hold status](https://cloud.yandex.com/en/docs/storage/concepts/object-lock#types) of an object. Requires `object_lock_configuration` to be enabled on a bucket.
+        /// </summary>
+        [Input("objectLockLegalHoldStatus")]
+        public Input<string>? ObjectLockLegalHoldStatus { get; set; }
+
+        /// <summary>
+        /// Specifies a type of object lock. One of `["GOVERNANCE", "COMPLIANCE"]`. It must be set simultaneously with `object_lock_retain_until_date`. Requires `object_lock_configuration` to be enabled on a bucket.
+        /// </summary>
+        [Input("objectLockMode")]
+        public Input<string>? ObjectLockMode { get; set; }
+
+        /// <summary>
+        /// Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
+        /// </summary>
+        [Input("objectLockRetainUntilDate")]
+        public Input<string>? ObjectLockRetainUntilDate { get; set; }
 
         [Input("secretKey")]
         private Input<string>? _secretKey;

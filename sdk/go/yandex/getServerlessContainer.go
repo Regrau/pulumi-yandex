@@ -49,6 +49,9 @@ func LookupServerlessContainer(ctx *pulumi.Context, args *LookupServerlessContai
 
 // A collection of arguments for invoking getServerlessContainer.
 type LookupServerlessContainerArgs struct {
+	// Network access. If specified the revision will be attached to specified network
+	// * `connectivity.0.network_id` - Network the revision will have access to
+	Connectivity *GetServerlessContainerConnectivity `pulumi:"connectivity"`
 	// Yandex Cloud Serverless Container id used to define container
 	ContainerId *string `pulumi:"containerId"`
 	// Folder ID for the Yandex Cloud Serverless Container
@@ -68,8 +71,11 @@ type LookupServerlessContainerArgs struct {
 // A collection of values returned by getServerlessContainer.
 type LookupServerlessContainerResult struct {
 	// Concurrency of Yandex Cloud Serverless Container
-	Concurrency int     `pulumi:"concurrency"`
-	ContainerId *string `pulumi:"containerId"`
+	Concurrency int `pulumi:"concurrency"`
+	// Network access. If specified the revision will be attached to specified network
+	// * `connectivity.0.network_id` - Network the revision will have access to
+	Connectivity *GetServerlessContainerConnectivity `pulumi:"connectivity"`
+	ContainerId  *string                             `pulumi:"containerId"`
 	// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
 	CoreFraction int `pulumi:"coreFraction"`
 	Cores        int `pulumi:"cores"`
@@ -119,6 +125,9 @@ func LookupServerlessContainerOutput(ctx *pulumi.Context, args LookupServerlessC
 
 // A collection of arguments for invoking getServerlessContainer.
 type LookupServerlessContainerOutputArgs struct {
+	// Network access. If specified the revision will be attached to specified network
+	// * `connectivity.0.network_id` - Network the revision will have access to
+	Connectivity GetServerlessContainerConnectivityPtrInput `pulumi:"connectivity"`
 	// Yandex Cloud Serverless Container id used to define container
 	ContainerId pulumi.StringPtrInput `pulumi:"containerId"`
 	// Folder ID for the Yandex Cloud Serverless Container
@@ -157,6 +166,12 @@ func (o LookupServerlessContainerResultOutput) ToLookupServerlessContainerResult
 // Concurrency of Yandex Cloud Serverless Container
 func (o LookupServerlessContainerResultOutput) Concurrency() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupServerlessContainerResult) int { return v.Concurrency }).(pulumi.IntOutput)
+}
+
+// Network access. If specified the revision will be attached to specified network
+// * `connectivity.0.network_id` - Network the revision will have access to
+func (o LookupServerlessContainerResultOutput) Connectivity() GetServerlessContainerConnectivityPtrOutput {
+	return o.ApplyT(func(v LookupServerlessContainerResult) *GetServerlessContainerConnectivity { return v.Connectivity }).(GetServerlessContainerConnectivityPtrOutput)
 }
 
 func (o LookupServerlessContainerResultOutput) ContainerId() pulumi.StringPtrOutput {

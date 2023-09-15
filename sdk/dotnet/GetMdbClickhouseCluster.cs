@@ -106,6 +106,18 @@ namespace Pulumi.Yandex
         [Input("serviceAccountId")]
         public string? ServiceAccountId { get; set; }
 
+        [Input("shards")]
+        private List<Inputs.GetMdbClickhouseClusterShardArgs>? _shards;
+
+        /// <summary>
+        /// A shard of the ClickHouse cluster. The structure is documented below.
+        /// </summary>
+        public List<Inputs.GetMdbClickhouseClusterShardArgs> Shards
+        {
+            get => _shards ?? (_shards = new List<Inputs.GetMdbClickhouseClusterShardArgs>());
+            set => _shards = value;
+        }
+
         public GetMdbClickhouseClusterArgs()
         {
         }
@@ -140,6 +152,18 @@ namespace Pulumi.Yandex
 
         [Input("serviceAccountId")]
         public Input<string>? ServiceAccountId { get; set; }
+
+        [Input("shards")]
+        private InputList<Inputs.GetMdbClickhouseClusterShardInputArgs>? _shards;
+
+        /// <summary>
+        /// A shard of the ClickHouse cluster. The structure is documented below.
+        /// </summary>
+        public InputList<Inputs.GetMdbClickhouseClusterShardInputArgs> Shards
+        {
+            get => _shards ?? (_shards = new InputList<Inputs.GetMdbClickhouseClusterShardInputArgs>());
+            set => _shards = value;
+        }
 
         public GetMdbClickhouseClusterInvokeArgs()
         {
@@ -230,6 +254,10 @@ namespace Pulumi.Yandex
         /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterShardGroupResult> ShardGroups;
         /// <summary>
+        /// A shard of the ClickHouse cluster. The structure is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterShardResult> Shards;
+        /// <summary>
         /// Grants `admin` user database management permission.
         /// </summary>
         public readonly bool SqlDatabaseManagement;
@@ -301,6 +329,8 @@ namespace Pulumi.Yandex
 
             ImmutableArray<Outputs.GetMdbClickhouseClusterShardGroupResult> shardGroups,
 
+            ImmutableArray<Outputs.GetMdbClickhouseClusterShardResult> shards,
+
             bool sqlDatabaseManagement,
 
             bool sqlUserManagement,
@@ -337,6 +367,7 @@ namespace Pulumi.Yandex
             SecurityGroupIds = securityGroupIds;
             ServiceAccountId = serviceAccountId;
             ShardGroups = shardGroups;
+            Shards = shards;
             SqlDatabaseManagement = sqlDatabaseManagement;
             SqlUserManagement = sqlUserManagement;
             Status = status;

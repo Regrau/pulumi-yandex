@@ -32,6 +32,13 @@ import * as utilities from "./utilities";
  *                 startTime: "15:00",
  *             }],
  *         },
+ *         masterLogging: {
+ *             clusterAutoscalerEnabled: true,
+ *             enabled: true,
+ *             eventsEnabled: true,
+ *             kubeApiserverEnabled: true,
+ *             logGroupId: yandex_logging_group_log_group_resoruce_name.id,
+ *         },
  *         publicIp: true,
  *         securityGroupIds: [yandex_vpc_security_group_security_group_name.id],
  *         version: "1.17",
@@ -73,6 +80,13 @@ import * as utilities from "./utilities";
  *                     startTime: "10:00",
  *                 },
  *             ],
+ *         },
+ *         masterLogging: {
+ *             clusterAutoscalerEnabled: true,
+ *             enabled: true,
+ *             eventsEnabled: true,
+ *             folderId: yandex_resourcemanager_folder_folder_resource_name.id,
+ *             kubeApiserverEnabled: true,
  *         },
  *         publicIp: true,
  *         regional: {
@@ -173,7 +187,7 @@ export class KubernetesCluster extends pulumi.CustomResource {
      */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
     /**
-     * Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+     * (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
      */
     public /*out*/ readonly logGroupId!: pulumi.Output<string>;
     /**
@@ -345,7 +359,7 @@ export interface KubernetesClusterState {
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
-     * Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+     * (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
      */
     logGroupId?: pulumi.Input<string>;
     /**

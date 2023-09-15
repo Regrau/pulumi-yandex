@@ -20,6 +20,7 @@ class FunctionArgs:
                  memory: pulumi.Input[int],
                  runtime: pulumi.Input[str],
                  user_hash: pulumi.Input[str],
+                 connectivity: Optional[pulumi.Input['FunctionConnectivityArgs']] = None,
                  content: Optional[pulumi.Input['FunctionContentArgs']] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  environment: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -37,6 +38,8 @@ class FunctionArgs:
         :param pulumi.Input[int] memory: Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
         :param pulumi.Input[str] runtime: Runtime for Yandex Cloud Function
         :param pulumi.Input[str] user_hash: User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
+        :param pulumi.Input['FunctionConnectivityArgs'] connectivity: Function version connectivity. If specified the version will be attached to specified network.
+               * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
         :param pulumi.Input['FunctionContentArgs'] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
                * `content.0.zip_filename` - Filename to zip archive for the version.
         :param pulumi.Input[str] description: Description of the Yandex Cloud Function
@@ -57,6 +60,8 @@ class FunctionArgs:
         pulumi.set(__self__, "memory", memory)
         pulumi.set(__self__, "runtime", runtime)
         pulumi.set(__self__, "user_hash", user_hash)
+        if connectivity is not None:
+            pulumi.set(__self__, "connectivity", connectivity)
         if content is not None:
             pulumi.set(__self__, "content", content)
         if description is not None:
@@ -127,6 +132,19 @@ class FunctionArgs:
     @user_hash.setter
     def user_hash(self, value: pulumi.Input[str]):
         pulumi.set(self, "user_hash", value)
+
+    @property
+    @pulumi.getter
+    def connectivity(self) -> Optional[pulumi.Input['FunctionConnectivityArgs']]:
+        """
+        Function version connectivity. If specified the version will be attached to specified network.
+        * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+        """
+        return pulumi.get(self, "connectivity")
+
+    @connectivity.setter
+    def connectivity(self, value: Optional[pulumi.Input['FunctionConnectivityArgs']]):
+        pulumi.set(self, "connectivity", value)
 
     @property
     @pulumi.getter
@@ -268,6 +286,7 @@ class FunctionArgs:
 @pulumi.input_type
 class _FunctionState:
     def __init__(__self__, *,
+                 connectivity: Optional[pulumi.Input['FunctionConnectivityArgs']] = None,
                  content: Optional[pulumi.Input['FunctionContentArgs']] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -289,6 +308,8 @@ class _FunctionState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Function resources.
+        :param pulumi.Input['FunctionConnectivityArgs'] connectivity: Function version connectivity. If specified the version will be attached to specified network.
+               * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
         :param pulumi.Input['FunctionContentArgs'] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
                * `content.0.zip_filename` - Filename to zip archive for the version.
         :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud Function.
@@ -313,6 +334,8 @@ class _FunctionState:
         :param pulumi.Input[str] user_hash: User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
         :param pulumi.Input[str] version: Version for Yandex Cloud Function.
         """
+        if connectivity is not None:
+            pulumi.set(__self__, "connectivity", connectivity)
         if content is not None:
             pulumi.set(__self__, "content", content)
         if created_at is not None:
@@ -351,6 +374,19 @@ class _FunctionState:
             pulumi.set(__self__, "user_hash", user_hash)
         if version is not None:
             pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def connectivity(self) -> Optional[pulumi.Input['FunctionConnectivityArgs']]:
+        """
+        Function version connectivity. If specified the version will be attached to specified network.
+        * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+        """
+        return pulumi.get(self, "connectivity")
+
+    @connectivity.setter
+    def connectivity(self, value: Optional[pulumi.Input['FunctionConnectivityArgs']]):
+        pulumi.set(self, "connectivity", value)
 
     @property
     @pulumi.getter
@@ -590,6 +626,7 @@ class Function(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 connectivity: Optional[pulumi.Input[pulumi.InputType['FunctionConnectivityArgs']]] = None,
                  content: Optional[pulumi.Input[pulumi.InputType['FunctionContentArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  entrypoint: Optional[pulumi.Input[str]] = None,
@@ -624,6 +661,12 @@ class Function(pulumi.CustomResource):
             execution_timeout="10",
             memory=128,
             runtime="python37",
+            secrets=[yandex.FunctionSecretArgs(
+                environment_variable="ENV_VARIABLE",
+                id=yandex_lockbox_secret["secret"]["id"],
+                key="secret-key",
+                version_id=yandex_lockbox_secret_version["secret_version"]["id"],
+            )],
             service_account_id="are1service2account3id",
             tags=["my_tag"],
             user_hash="any_user_defined_string")
@@ -631,6 +674,8 @@ class Function(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['FunctionConnectivityArgs']] connectivity: Function version connectivity. If specified the version will be attached to specified network.
+               * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
         :param pulumi.Input[pulumi.InputType['FunctionContentArgs']] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
                * `content.0.zip_filename` - Filename to zip archive for the version.
         :param pulumi.Input[str] description: Description of the Yandex Cloud Function
@@ -675,6 +720,12 @@ class Function(pulumi.CustomResource):
             execution_timeout="10",
             memory=128,
             runtime="python37",
+            secrets=[yandex.FunctionSecretArgs(
+                environment_variable="ENV_VARIABLE",
+                id=yandex_lockbox_secret["secret"]["id"],
+                key="secret-key",
+                version_id=yandex_lockbox_secret_version["secret_version"]["id"],
+            )],
             service_account_id="are1service2account3id",
             tags=["my_tag"],
             user_hash="any_user_defined_string")
@@ -695,6 +746,7 @@ class Function(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 connectivity: Optional[pulumi.Input[pulumi.InputType['FunctionConnectivityArgs']]] = None,
                  content: Optional[pulumi.Input[pulumi.InputType['FunctionContentArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  entrypoint: Optional[pulumi.Input[str]] = None,
@@ -719,6 +771,7 @@ class Function(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FunctionArgs.__new__(FunctionArgs)
 
+            __props__.__dict__["connectivity"] = connectivity
             __props__.__dict__["content"] = content
             __props__.__dict__["description"] = description
             if entrypoint is None and not opts.urn:
@@ -756,6 +809,7 @@ class Function(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            connectivity: Optional[pulumi.Input[pulumi.InputType['FunctionConnectivityArgs']]] = None,
             content: Optional[pulumi.Input[pulumi.InputType['FunctionContentArgs']]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
@@ -782,6 +836,8 @@ class Function(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['FunctionConnectivityArgs']] connectivity: Function version connectivity. If specified the version will be attached to specified network.
+               * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
         :param pulumi.Input[pulumi.InputType['FunctionContentArgs']] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
                * `content.0.zip_filename` - Filename to zip archive for the version.
         :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud Function.
@@ -810,6 +866,7 @@ class Function(pulumi.CustomResource):
 
         __props__ = _FunctionState.__new__(_FunctionState)
 
+        __props__.__dict__["connectivity"] = connectivity
         __props__.__dict__["content"] = content
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
@@ -830,6 +887,15 @@ class Function(pulumi.CustomResource):
         __props__.__dict__["user_hash"] = user_hash
         __props__.__dict__["version"] = version
         return Function(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def connectivity(self) -> pulumi.Output[Optional['outputs.FunctionConnectivity']]:
+        """
+        Function version connectivity. If specified the version will be attached to specified network.
+        * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+        """
+        return pulumi.get(self, "connectivity")
 
     @property
     @pulumi.getter

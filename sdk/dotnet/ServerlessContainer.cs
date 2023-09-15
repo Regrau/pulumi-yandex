@@ -32,6 +32,16 @@ namespace Pulumi.Yandex
     ///             Url = "cr.yandex/yc/test-image:v1",
     ///         },
     ///         Memory = 256,
+    ///         Secrets = new[]
+    ///         {
+    ///             new Yandex.Inputs.ServerlessContainerSecretArgs
+    ///             {
+    ///                 EnvironmentVariable = "ENV_VARIABLE",
+    ///                 Id = yandex_lockbox_secret.Secret.Id,
+    ///                 Key = "secret-key",
+    ///                 VersionId = yandex_lockbox_secret_version.Secret_version.Id,
+    ///             },
+    ///         },
     ///         ServiceAccountId = "are1service2account3id",
     ///     });
     /// 
@@ -65,6 +75,13 @@ namespace Pulumi.Yandex
         /// </summary>
         [Output("concurrency")]
         public Output<int?> Concurrency { get; private set; } = null!;
+
+        /// <summary>
+        /// Network access. If specified the revision will be attached to specified network
+        /// * `connectivity.0.network_id` - Network the revision will have access to
+        /// </summary>
+        [Output("connectivity")]
+        public Output<Outputs.ServerlessContainerConnectivity?> Connectivity { get; private set; } = null!;
 
         /// <summary>
         /// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
@@ -210,6 +227,13 @@ namespace Pulumi.Yandex
         public Input<int>? Concurrency { get; set; }
 
         /// <summary>
+        /// Network access. If specified the revision will be attached to specified network
+        /// * `connectivity.0.network_id` - Network the revision will have access to
+        /// </summary>
+        [Input("connectivity")]
+        public Input<Inputs.ServerlessContainerConnectivityArgs>? Connectivity { get; set; }
+
+        /// <summary>
         /// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
         /// </summary>
         [Input("coreFraction")]
@@ -306,6 +330,13 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("concurrency")]
         public Input<int>? Concurrency { get; set; }
+
+        /// <summary>
+        /// Network access. If specified the revision will be attached to specified network
+        /// * `connectivity.0.network_id` - Network the revision will have access to
+        /// </summary>
+        [Input("connectivity")]
+        public Input<Inputs.ServerlessContainerConnectivityGetArgs>? Connectivity { get; set; }
 
         /// <summary>
         /// Core fraction (**0...100**) of the Yandex Cloud Serverless Container

@@ -64,6 +64,13 @@ namespace Pulumi.Yandex
     public sealed class GetFunctionArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Function version connectivity. If specified the version will be attached to specified network.
+        /// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+        /// </summary>
+        [Input("connectivity")]
+        public Inputs.GetFunctionConnectivityArgs? Connectivity { get; set; }
+
+        /// <summary>
         /// Folder ID for the Yandex Cloud Function
         /// </summary>
         [Input("folderId")]
@@ -101,6 +108,13 @@ namespace Pulumi.Yandex
 
     public sealed class GetFunctionInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Function version connectivity. If specified the version will be attached to specified network.
+        /// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+        /// </summary>
+        [Input("connectivity")]
+        public Input<Inputs.GetFunctionConnectivityInputArgs>? Connectivity { get; set; }
+
         /// <summary>
         /// Folder ID for the Yandex Cloud Function
         /// </summary>
@@ -141,6 +155,11 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetFunctionResult
     {
+        /// <summary>
+        /// Function version connectivity. If specified the version will be attached to specified network.
+        /// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+        /// </summary>
+        public readonly Outputs.GetFunctionConnectivityResult? Connectivity;
         /// <summary>
         /// Creation timestamp of the Yandex Cloud Function
         /// </summary>
@@ -207,6 +226,8 @@ namespace Pulumi.Yandex
 
         [OutputConstructor]
         private GetFunctionResult(
+            Outputs.GetFunctionConnectivityResult? connectivity,
+
             string createdAt,
 
             string description,
@@ -243,6 +264,7 @@ namespace Pulumi.Yandex
 
             string version)
         {
+            Connectivity = connectivity;
             CreatedAt = createdAt;
             Description = description;
             Entrypoint = entrypoint;

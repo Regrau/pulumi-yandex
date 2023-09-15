@@ -100,6 +100,11 @@ export type ContainerRegistryIamBinding = import("./containerRegistryIamBinding"
 export const ContainerRegistryIamBinding: typeof import("./containerRegistryIamBinding").ContainerRegistryIamBinding = null as any;
 utilities.lazyLoad(exports, ["ContainerRegistryIamBinding"], () => require("./containerRegistryIamBinding"));
 
+export { ContainerRegistryIpPermissionArgs, ContainerRegistryIpPermissionState } from "./containerRegistryIpPermission";
+export type ContainerRegistryIpPermission = import("./containerRegistryIpPermission").ContainerRegistryIpPermission;
+export const ContainerRegistryIpPermission: typeof import("./containerRegistryIpPermission").ContainerRegistryIpPermission = null as any;
+utilities.lazyLoad(exports, ["ContainerRegistryIpPermission"], () => require("./containerRegistryIpPermission"));
+
 export { ContainerRepositoryArgs, ContainerRepositoryState } from "./containerRepository";
 export type ContainerRepository = import("./containerRepository").ContainerRepository;
 export const ContainerRepository: typeof import("./containerRepository").ContainerRepository = null as any;
@@ -846,6 +851,8 @@ const _module = {
                 return new ContainerRegistry(name, <any>undefined, { urn })
             case "yandex:index/containerRegistryIamBinding:ContainerRegistryIamBinding":
                 return new ContainerRegistryIamBinding(name, <any>undefined, { urn })
+            case "yandex:index/containerRegistryIpPermission:ContainerRegistryIpPermission":
+                return new ContainerRegistryIpPermission(name, <any>undefined, { urn })
             case "yandex:index/containerRepository:ContainerRepository":
                 return new ContainerRepository(name, <any>undefined, { urn })
             case "yandex:index/containerRepositoryIamBinding:ContainerRepositoryIamBinding":
@@ -1024,6 +1031,7 @@ pulumi.runtime.registerResourceModule("yandex", "index/computeSnapshot", _module
 pulumi.runtime.registerResourceModule("yandex", "index/computeSnapshotSchedule", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/containerRegistry", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/containerRegistryIamBinding", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/containerRegistryIpPermission", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/containerRepository", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/containerRepositoryIamBinding", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/containerRepositoryLifecyclePolicy", _module)

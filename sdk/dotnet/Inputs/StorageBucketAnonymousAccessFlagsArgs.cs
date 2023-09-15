@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class StorageBucketAnonymousAccessFlagsArgs : global::Pulumi.ResourceArgs
     {
+        [Input("configRead")]
+        public Input<bool>? ConfigRead { get; set; }
+
         /// <summary>
         /// Allows to list object in bucket anonymously.
         /// </summary>

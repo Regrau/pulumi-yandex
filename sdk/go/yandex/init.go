@@ -58,6 +58,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ContainerRegistry{}
 	case "yandex:index/containerRegistryIamBinding:ContainerRegistryIamBinding":
 		r = &ContainerRegistryIamBinding{}
+	case "yandex:index/containerRegistryIpPermission:ContainerRegistryIpPermission":
+		r = &ContainerRegistryIpPermission{}
 	case "yandex:index/containerRepository:ContainerRepository":
 		r = &ContainerRepository{}
 	case "yandex:index/containerRepositoryIamBinding:ContainerRepositoryIamBinding":
@@ -333,6 +335,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"yandex",
 		"index/containerRegistryIamBinding",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/containerRegistryIpPermission",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

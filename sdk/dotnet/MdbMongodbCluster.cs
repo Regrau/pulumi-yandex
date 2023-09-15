@@ -194,6 +194,12 @@ namespace Pulumi.Yandex
         public Output<Outputs.MdbMongodbClusterResources> Resources { get; private set; } = null!;
 
         /// <summary>
+        /// The cluster will be created from the specified backup. The structure is documented below.
+        /// </summary>
+        [Output("restore")]
+        public Output<Outputs.MdbMongodbClusterRestore?> Restore { get; private set; } = null!;
+
+        /// <summary>
         /// A set of ids of security groups assigned to hosts of the cluster.
         /// </summary>
         [Output("securityGroupIds")]
@@ -360,6 +366,12 @@ namespace Pulumi.Yandex
         [Input("resources", required: true)]
         public Input<Inputs.MdbMongodbClusterResourcesArgs> Resources { get; set; } = null!;
 
+        /// <summary>
+        /// The cluster will be created from the specified backup. The structure is documented below.
+        /// </summary>
+        [Input("restore")]
+        public Input<Inputs.MdbMongodbClusterRestoreArgs>? Restore { get; set; }
+
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
 
@@ -498,6 +510,12 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("resources")]
         public Input<Inputs.MdbMongodbClusterResourcesGetArgs>? Resources { get; set; }
+
+        /// <summary>
+        /// The cluster will be created from the specified backup. The structure is documented below.
+        /// </summary>
+        [Input("restore")]
+        public Input<Inputs.MdbMongodbClusterRestoreGetArgs>? Restore { get; set; }
 
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;

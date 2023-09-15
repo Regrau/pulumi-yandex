@@ -24,6 +24,12 @@ namespace Pulumi.Yandex.Inputs
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }
 
+        /// <summary>
+        /// Match regex.
+        /// </summary>
+        [Input("regex")]
+        public Input<string>? Regex { get; set; }
+
         public AlbVirtualHostRouteGrpcRouteGrpcMatchFqmnGetArgs()
         {
         }

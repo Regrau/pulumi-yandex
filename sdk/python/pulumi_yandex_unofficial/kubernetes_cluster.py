@@ -342,7 +342,7 @@ class _KubernetesClusterState:
         :param pulumi.Input[str] health: (Computed) Health of the Kubernetes cluster.
         :param pulumi.Input['KubernetesClusterKmsProviderArgs'] kms_provider: cluster KMS provider parameters.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Kubernetes cluster.
-        :param pulumi.Input[str] log_group_id: Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        :param pulumi.Input[str] log_group_id: (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
         :param pulumi.Input['KubernetesClusterMasterArgs'] master: Kubernetes master configuration options. The structure is documented below.
         :param pulumi.Input[str] name: Name of a specific Kubernetes cluster.
         :param pulumi.Input[str] network_id: The ID of the cluster network.
@@ -507,7 +507,7 @@ class _KubernetesClusterState:
     @pulumi.getter(name="logGroupId")
     def log_group_id(self) -> Optional[pulumi.Input[str]]:
         """
-        Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
         """
         return pulumi.get(self, "log_group_id")
 
@@ -863,7 +863,7 @@ class KubernetesCluster(pulumi.CustomResource):
         :param pulumi.Input[str] health: (Computed) Health of the Kubernetes cluster.
         :param pulumi.Input[pulumi.InputType['KubernetesClusterKmsProviderArgs']] kms_provider: cluster KMS provider parameters.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Kubernetes cluster.
-        :param pulumi.Input[str] log_group_id: Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        :param pulumi.Input[str] log_group_id: (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
         :param pulumi.Input[pulumi.InputType['KubernetesClusterMasterArgs']] master: Kubernetes master configuration options. The structure is documented below.
         :param pulumi.Input[str] name: Name of a specific Kubernetes cluster.
         :param pulumi.Input[str] network_id: The ID of the cluster network.
@@ -980,7 +980,7 @@ class KubernetesCluster(pulumi.CustomResource):
     @pulumi.getter(name="logGroupId")
     def log_group_id(self) -> pulumi.Output[str]:
         """
-        Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
         """
         return pulumi.get(self, "log_group_id")
 

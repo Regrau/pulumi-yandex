@@ -60,6 +60,8 @@ type LookupMdbClickhouseClusterArgs struct {
 	// The name of the ClickHouse cluster.
 	Name             *string `pulumi:"name"`
 	ServiceAccountId *string `pulumi:"serviceAccountId"`
+	// A shard of the ClickHouse cluster. The structure is documented below.
+	Shards []GetMdbClickhouseClusterShard `pulumi:"shards"`
 }
 
 // A collection of values returned by getMdbClickhouseCluster.
@@ -106,6 +108,8 @@ type LookupMdbClickhouseClusterResult struct {
 	ServiceAccountId string   `pulumi:"serviceAccountId"`
 	// A group of clickhouse shards. The structure is documented below.
 	ShardGroups []GetMdbClickhouseClusterShardGroup `pulumi:"shardGroups"`
+	// A shard of the ClickHouse cluster. The structure is documented below.
+	Shards []GetMdbClickhouseClusterShard `pulumi:"shards"`
 	// Grants `admin` user database management permission.
 	SqlDatabaseManagement bool `pulumi:"sqlDatabaseManagement"`
 	// Enables `admin` user with user management permission.
@@ -143,6 +147,8 @@ type LookupMdbClickhouseClusterOutputArgs struct {
 	// The name of the ClickHouse cluster.
 	Name             pulumi.StringPtrInput `pulumi:"name"`
 	ServiceAccountId pulumi.StringPtrInput `pulumi:"serviceAccountId"`
+	// A shard of the ClickHouse cluster. The structure is documented below.
+	Shards GetMdbClickhouseClusterShardArrayInput `pulumi:"shards"`
 }
 
 func (LookupMdbClickhouseClusterOutputArgs) ElementType() reflect.Type {
@@ -280,6 +286,11 @@ func (o LookupMdbClickhouseClusterResultOutput) ServiceAccountId() pulumi.String
 // A group of clickhouse shards. The structure is documented below.
 func (o LookupMdbClickhouseClusterResultOutput) ShardGroups() GetMdbClickhouseClusterShardGroupArrayOutput {
 	return o.ApplyT(func(v LookupMdbClickhouseClusterResult) []GetMdbClickhouseClusterShardGroup { return v.ShardGroups }).(GetMdbClickhouseClusterShardGroupArrayOutput)
+}
+
+// A shard of the ClickHouse cluster. The structure is documented below.
+func (o LookupMdbClickhouseClusterResultOutput) Shards() GetMdbClickhouseClusterShardArrayOutput {
+	return o.ApplyT(func(v LookupMdbClickhouseClusterResult) []GetMdbClickhouseClusterShard { return v.Shards }).(GetMdbClickhouseClusterShardArrayOutput)
 }
 
 // Grants `admin` user database management permission.

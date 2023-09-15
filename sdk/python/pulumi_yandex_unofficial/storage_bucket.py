@@ -30,6 +30,7 @@ class StorageBucketArgs:
                  lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleArgs']]]] = None,
                  loggings: Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLoggingArgs']]]] = None,
                  max_size: Optional[pulumi.Input[int]] = None,
+                 object_lock_configuration: Optional[pulumi.Input['StorageBucketObjectLockConfigurationArgs']] = None,
                  policy: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  server_side_encryption_configuration: Optional[pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs']] = None,
@@ -56,6 +57,7 @@ class StorageBucketArgs:
         :param pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleArgs']]] lifecycle_rules: A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
         :param pulumi.Input[Sequence[pulumi.Input['StorageBucketLoggingArgs']]] loggings: A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
         :param pulumi.Input[int] max_size: The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        :param pulumi.Input['StorageBucketObjectLockConfigurationArgs'] object_lock_configuration: A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
         :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
         :param pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs'] server_side_encryption_configuration: A configuration of server-side encryption for the bucket (documented below)
         :param pulumi.Input['StorageBucketVersioningArgs'] versioning: A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
@@ -91,6 +93,8 @@ class StorageBucketArgs:
             pulumi.set(__self__, "loggings", loggings)
         if max_size is not None:
             pulumi.set(__self__, "max_size", max_size)
+        if object_lock_configuration is not None:
+            pulumi.set(__self__, "object_lock_configuration", object_lock_configuration)
         if policy is not None:
             pulumi.set(__self__, "policy", policy)
         if secret_key is not None:
@@ -276,6 +280,18 @@ class StorageBucketArgs:
         pulumi.set(self, "max_size", value)
 
     @property
+    @pulumi.getter(name="objectLockConfiguration")
+    def object_lock_configuration(self) -> Optional[pulumi.Input['StorageBucketObjectLockConfigurationArgs']]:
+        """
+        A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+        """
+        return pulumi.get(self, "object_lock_configuration")
+
+    @object_lock_configuration.setter
+    def object_lock_configuration(self, value: Optional[pulumi.Input['StorageBucketObjectLockConfigurationArgs']]):
+        pulumi.set(self, "object_lock_configuration", value)
+
+    @property
     @pulumi.getter
     def policy(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "policy")
@@ -375,6 +391,7 @@ class _StorageBucketState:
                  lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleArgs']]]] = None,
                  loggings: Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLoggingArgs']]]] = None,
                  max_size: Optional[pulumi.Input[int]] = None,
+                 object_lock_configuration: Optional[pulumi.Input['StorageBucketObjectLockConfigurationArgs']] = None,
                  policy: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  server_side_encryption_configuration: Optional[pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs']] = None,
@@ -402,6 +419,7 @@ class _StorageBucketState:
         :param pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleArgs']]] lifecycle_rules: A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
         :param pulumi.Input[Sequence[pulumi.Input['StorageBucketLoggingArgs']]] loggings: A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
         :param pulumi.Input[int] max_size: The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        :param pulumi.Input['StorageBucketObjectLockConfigurationArgs'] object_lock_configuration: A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
         :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
         :param pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs'] server_side_encryption_configuration: A configuration of server-side encryption for the bucket (documented below)
         :param pulumi.Input['StorageBucketVersioningArgs'] versioning: A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
@@ -439,6 +457,8 @@ class _StorageBucketState:
             pulumi.set(__self__, "loggings", loggings)
         if max_size is not None:
             pulumi.set(__self__, "max_size", max_size)
+        if object_lock_configuration is not None:
+            pulumi.set(__self__, "object_lock_configuration", object_lock_configuration)
         if policy is not None:
             pulumi.set(__self__, "policy", policy)
         if secret_key is not None:
@@ -636,6 +656,18 @@ class _StorageBucketState:
         pulumi.set(self, "max_size", value)
 
     @property
+    @pulumi.getter(name="objectLockConfiguration")
+    def object_lock_configuration(self) -> Optional[pulumi.Input['StorageBucketObjectLockConfigurationArgs']]:
+        """
+        A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+        """
+        return pulumi.get(self, "object_lock_configuration")
+
+    @object_lock_configuration.setter
+    def object_lock_configuration(self, value: Optional[pulumi.Input['StorageBucketObjectLockConfigurationArgs']]):
+        pulumi.set(self, "object_lock_configuration", value)
+
+    @property
     @pulumi.getter
     def policy(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "policy")
@@ -736,6 +768,7 @@ class StorageBucket(pulumi.CustomResource):
                  lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLifecycleRuleArgs']]]]] = None,
                  loggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLoggingArgs']]]]] = None,
                  max_size: Optional[pulumi.Input[int]] = None,
+                 object_lock_configuration: Optional[pulumi.Input[pulumi.InputType['StorageBucketObjectLockConfigurationArgs']]] = None,
                  policy: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  server_side_encryption_configuration: Optional[pulumi.Input[pulumi.InputType['StorageBucketServerSideEncryptionConfigurationArgs']]] = None,
@@ -857,6 +890,28 @@ class StorageBucket(pulumi.CustomResource):
         storage_bucket = yandex.StorageBucket("storageBucket",
             acl="private",
             bucket="my-tf-test-bucket",
+            versioning=yandex.StorageBucketVersioningArgs(
+                enabled=True,
+            ))
+        ```
+        ### Using Object Lock Configuration
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            acl="private",
+            bucket="my-tf-test-bucket",
+            object_lock_configuration=yandex.StorageBucketObjectLockConfigurationArgs(
+                object_lock_enabled="Enabled",
+                rule=yandex.StorageBucketObjectLockConfigurationRuleArgs(
+                    default_retention=yandex.StorageBucketObjectLockConfigurationRuleDefaultRetentionArgs(
+                        mode="GOVERNANCE",
+                        years=1,
+                    ),
+                ),
+            ),
             versioning=yandex.StorageBucketVersioningArgs(
                 enabled=True,
             ))
@@ -1009,6 +1064,7 @@ class StorageBucket(pulumi.CustomResource):
 
         storage_bucket = yandex.StorageBucket("storageBucket",
             anonymous_access_flags=yandex.StorageBucketAnonymousAccessFlagsArgs(
+                config_read=True,
                 list=False,
                 read=True,
             ),
@@ -1176,6 +1232,7 @@ class StorageBucket(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLifecycleRuleArgs']]]] lifecycle_rules: A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLoggingArgs']]]] loggings: A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
         :param pulumi.Input[int] max_size: The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        :param pulumi.Input[pulumi.InputType['StorageBucketObjectLockConfigurationArgs']] object_lock_configuration: A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
         :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
         :param pulumi.Input[pulumi.InputType['StorageBucketServerSideEncryptionConfigurationArgs']] server_side_encryption_configuration: A configuration of server-side encryption for the bucket (documented below)
         :param pulumi.Input[pulumi.InputType['StorageBucketVersioningArgs']] versioning: A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
@@ -1302,6 +1359,28 @@ class StorageBucket(pulumi.CustomResource):
         storage_bucket = yandex.StorageBucket("storageBucket",
             acl="private",
             bucket="my-tf-test-bucket",
+            versioning=yandex.StorageBucketVersioningArgs(
+                enabled=True,
+            ))
+        ```
+        ### Using Object Lock Configuration
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            acl="private",
+            bucket="my-tf-test-bucket",
+            object_lock_configuration=yandex.StorageBucketObjectLockConfigurationArgs(
+                object_lock_enabled="Enabled",
+                rule=yandex.StorageBucketObjectLockConfigurationRuleArgs(
+                    default_retention=yandex.StorageBucketObjectLockConfigurationRuleDefaultRetentionArgs(
+                        mode="GOVERNANCE",
+                        years=1,
+                    ),
+                ),
+            ),
             versioning=yandex.StorageBucketVersioningArgs(
                 enabled=True,
             ))
@@ -1454,6 +1533,7 @@ class StorageBucket(pulumi.CustomResource):
 
         storage_bucket = yandex.StorageBucket("storageBucket",
             anonymous_access_flags=yandex.StorageBucketAnonymousAccessFlagsArgs(
+                config_read=True,
                 list=False,
                 read=True,
             ),
@@ -1631,6 +1711,7 @@ class StorageBucket(pulumi.CustomResource):
                  lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLifecycleRuleArgs']]]]] = None,
                  loggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLoggingArgs']]]]] = None,
                  max_size: Optional[pulumi.Input[int]] = None,
+                 object_lock_configuration: Optional[pulumi.Input[pulumi.InputType['StorageBucketObjectLockConfigurationArgs']]] = None,
                  policy: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  server_side_encryption_configuration: Optional[pulumi.Input[pulumi.InputType['StorageBucketServerSideEncryptionConfigurationArgs']]] = None,
@@ -1661,6 +1742,7 @@ class StorageBucket(pulumi.CustomResource):
             __props__.__dict__["lifecycle_rules"] = lifecycle_rules
             __props__.__dict__["loggings"] = loggings
             __props__.__dict__["max_size"] = max_size
+            __props__.__dict__["object_lock_configuration"] = object_lock_configuration
             __props__.__dict__["policy"] = policy
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["server_side_encryption_configuration"] = server_side_encryption_configuration
@@ -1696,6 +1778,7 @@ class StorageBucket(pulumi.CustomResource):
             lifecycle_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLifecycleRuleArgs']]]]] = None,
             loggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLoggingArgs']]]]] = None,
             max_size: Optional[pulumi.Input[int]] = None,
+            object_lock_configuration: Optional[pulumi.Input[pulumi.InputType['StorageBucketObjectLockConfigurationArgs']]] = None,
             policy: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
             server_side_encryption_configuration: Optional[pulumi.Input[pulumi.InputType['StorageBucketServerSideEncryptionConfigurationArgs']]] = None,
@@ -1728,6 +1811,7 @@ class StorageBucket(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLifecycleRuleArgs']]]] lifecycle_rules: A configuration of [object lifecycle management](https://cloud.yandex.com/docs/storage/concepts/lifecycles) (documented below).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLoggingArgs']]]] loggings: A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
         :param pulumi.Input[int] max_size: The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
+        :param pulumi.Input[pulumi.InputType['StorageBucketObjectLockConfigurationArgs']] object_lock_configuration: A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
         :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
         :param pulumi.Input[pulumi.InputType['StorageBucketServerSideEncryptionConfigurationArgs']] server_side_encryption_configuration: A configuration of server-side encryption for the bucket (documented below)
         :param pulumi.Input[pulumi.InputType['StorageBucketVersioningArgs']] versioning: A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
@@ -1754,6 +1838,7 @@ class StorageBucket(pulumi.CustomResource):
         __props__.__dict__["lifecycle_rules"] = lifecycle_rules
         __props__.__dict__["loggings"] = loggings
         __props__.__dict__["max_size"] = max_size
+        __props__.__dict__["object_lock_configuration"] = object_lock_configuration
         __props__.__dict__["policy"] = policy
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["server_side_encryption_configuration"] = server_side_encryption_configuration
@@ -1773,7 +1858,7 @@ class StorageBucket(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def acl(self) -> pulumi.Output[Optional[str]]:
+    def acl(self) -> pulumi.Output[str]:
         """
         The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
         """
@@ -1846,7 +1931,7 @@ class StorageBucket(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def grants(self) -> pulumi.Output[Optional[Sequence['outputs.StorageBucketGrant']]]:
+    def grants(self) -> pulumi.Output[Sequence['outputs.StorageBucketGrant']]:
         """
         An [ACL policy grant](https://cloud.yandex.com/docs/storage/concepts/acl#permissions-types). Conflicts with `acl`.
         """
@@ -1883,6 +1968,14 @@ class StorageBucket(pulumi.CustomResource):
         The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
         """
         return pulumi.get(self, "max_size")
+
+    @property
+    @pulumi.getter(name="objectLockConfiguration")
+    def object_lock_configuration(self) -> pulumi.Output[Optional['outputs.StorageBucketObjectLockConfiguration']]:
+        """
+        A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
+        """
+        return pulumi.get(self, "object_lock_configuration")
 
     @property
     @pulumi.getter

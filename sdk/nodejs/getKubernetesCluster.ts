@@ -75,6 +75,9 @@ export interface GetKubernetesClusterResult {
      * A description of the Kubernetes cluster.
      */
     readonly description: string;
+    /**
+     * (Optional) ID of the folder default Log group of which should be used to collect logs.
+     */
     readonly folderId: string;
     /**
      * Health of the Kubernetes cluster.
@@ -93,7 +96,7 @@ export interface GetKubernetesClusterResult {
      */
     readonly labels: {[key: string]: string};
     /**
-     * Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+     * (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
      */
     readonly logGroupId: string;
     /**

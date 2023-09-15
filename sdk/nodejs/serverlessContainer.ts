@@ -24,6 +24,12 @@ import * as utilities from "./utilities";
  *         url: "cr.yandex/yc/test-image:v1",
  *     },
  *     memory: 256,
+ *     secrets: [{
+ *         environmentVariable: "ENV_VARIABLE",
+ *         id: yandex_lockbox_secret_secret.id,
+ *         key: "secret-key",
+ *         versionId: yandex_lockbox_secret_version_secret_version.id,
+ *     }],
  *     serviceAccountId: "are1service2account3id",
  * });
  * ```
@@ -72,6 +78,11 @@ export class ServerlessContainer extends pulumi.CustomResource {
      * Concurrency of Yandex Cloud Serverless Container
      */
     public readonly concurrency!: pulumi.Output<number | undefined>;
+    /**
+     * Network access. If specified the revision will be attached to specified network
+     * * `connectivity.0.network_id` - Network the revision will have access to
+     */
+    public readonly connectivity!: pulumi.Output<outputs.ServerlessContainerConnectivity | undefined>;
     /**
      * Core fraction (**0...100**) of the Yandex Cloud Serverless Container
      */
@@ -149,6 +160,7 @@ export class ServerlessContainer extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as ServerlessContainerState | undefined;
             resourceInputs["concurrency"] = state ? state.concurrency : undefined;
+            resourceInputs["connectivity"] = state ? state.connectivity : undefined;
             resourceInputs["coreFraction"] = state ? state.coreFraction : undefined;
             resourceInputs["cores"] = state ? state.cores : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
@@ -172,6 +184,7 @@ export class ServerlessContainer extends pulumi.CustomResource {
                 throw new Error("Missing required property 'memory'");
             }
             resourceInputs["concurrency"] = args ? args.concurrency : undefined;
+            resourceInputs["connectivity"] = args ? args.connectivity : undefined;
             resourceInputs["coreFraction"] = args ? args.coreFraction : undefined;
             resourceInputs["cores"] = args ? args.cores : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -200,6 +213,11 @@ export interface ServerlessContainerState {
      * Concurrency of Yandex Cloud Serverless Container
      */
     concurrency?: pulumi.Input<number>;
+    /**
+     * Network access. If specified the revision will be attached to specified network
+     * * `connectivity.0.network_id` - Network the revision will have access to
+     */
+    connectivity?: pulumi.Input<inputs.ServerlessContainerConnectivity>;
     /**
      * Core fraction (**0...100**) of the Yandex Cloud Serverless Container
      */
@@ -272,6 +290,11 @@ export interface ServerlessContainerArgs {
      * Concurrency of Yandex Cloud Serverless Container
      */
     concurrency?: pulumi.Input<number>;
+    /**
+     * Network access. If specified the revision will be attached to specified network
+     * * `connectivity.0.network_id` - Network the revision will have access to
+     */
+    connectivity?: pulumi.Input<inputs.ServerlessContainerConnectivity>;
     /**
      * Core fraction (**0...100**) of the Yandex Cloud Serverless Container
      */

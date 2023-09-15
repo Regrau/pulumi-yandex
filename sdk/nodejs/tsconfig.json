@@ -34,6 +34,7 @@
         "config/vars.ts",
         "containerRegistry.ts",
         "containerRegistryIamBinding.ts",
+        "containerRegistryIpPermission.ts",
         "containerRepository.ts",
         "containerRepositoryIamBinding.ts",
         "containerRepositoryLifecyclePolicy.ts",

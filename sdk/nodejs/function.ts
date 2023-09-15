@@ -24,6 +24,12 @@ import * as utilities from "./utilities";
  *     executionTimeout: "10",
  *     memory: 128,
  *     runtime: "python37",
+ *     secrets: [{
+ *         environmentVariable: "ENV_VARIABLE",
+ *         id: yandex_lockbox_secret_secret.id,
+ *         key: "secret-key",
+ *         versionId: yandex_lockbox_secret_version_secret_version.id,
+ *     }],
  *     serviceAccountId: "are1service2account3id",
  *     tags: ["my_tag"],
  *     userHash: "any_user_defined_string",
@@ -58,6 +64,11 @@ export class Function extends pulumi.CustomResource {
         return obj['__pulumiType'] === Function.__pulumiType;
     }
 
+    /**
+     * Function version connectivity. If specified the version will be attached to specified network.
+     * * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+     */
+    public readonly connectivity!: pulumi.Output<outputs.FunctionConnectivity | undefined>;
     /**
      * Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
      * * `content.0.zip_filename` - Filename to zip archive for the version.
@@ -152,6 +163,7 @@ export class Function extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FunctionState | undefined;
+            resourceInputs["connectivity"] = state ? state.connectivity : undefined;
             resourceInputs["content"] = state ? state.content : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
@@ -185,6 +197,7 @@ export class Function extends pulumi.CustomResource {
             if ((!args || args.userHash === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userHash'");
             }
+            resourceInputs["connectivity"] = args ? args.connectivity : undefined;
             resourceInputs["content"] = args ? args.content : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["entrypoint"] = args ? args.entrypoint : undefined;
@@ -214,6 +227,11 @@ export class Function extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Function resources.
  */
 export interface FunctionState {
+    /**
+     * Function version connectivity. If specified the version will be attached to specified network.
+     * * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+     */
+    connectivity?: pulumi.Input<inputs.FunctionConnectivity>;
     /**
      * Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
      * * `content.0.zip_filename` - Filename to zip archive for the version.
@@ -300,6 +318,11 @@ export interface FunctionState {
  * The set of arguments for constructing a Function resource.
  */
 export interface FunctionArgs {
+    /**
+     * Function version connectivity. If specified the version will be attached to specified network.
+     * * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+     */
+    connectivity?: pulumi.Input<inputs.FunctionConnectivity>;
     /**
      * Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
      * * `content.0.zip_filename` - Filename to zip archive for the version.

@@ -35,7 +35,15 @@ import (
 //				Image: &ServerlessContainerImageArgs{
 //					Url: pulumi.String("cr.yandex/yc/test-image:v1"),
 //				},
-//				Memory:           pulumi.Int(256),
+//				Memory: pulumi.Int(256),
+//				Secrets: ServerlessContainerSecretArray{
+//					&ServerlessContainerSecretArgs{
+//						EnvironmentVariable: pulumi.String("ENV_VARIABLE"),
+//						Id:                  pulumi.Any(yandex_lockbox_secret.Secret.Id),
+//						Key:                 pulumi.String("secret-key"),
+//						VersionId:           pulumi.Any(yandex_lockbox_secret_version.Secret_version.Id),
+//					},
+//				},
 //				ServiceAccountId: pulumi.String("are1service2account3id"),
 //			})
 //			if err != nil {
@@ -78,6 +86,9 @@ type ServerlessContainer struct {
 
 	// Concurrency of Yandex Cloud Serverless Container
 	Concurrency pulumi.IntPtrOutput `pulumi:"concurrency"`
+	// Network access. If specified the revision will be attached to specified network
+	// * `connectivity.0.network_id` - Network the revision will have access to
+	Connectivity ServerlessContainerConnectivityPtrOutput `pulumi:"connectivity"`
 	// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
 	CoreFraction pulumi.IntOutput    `pulumi:"coreFraction"`
 	Cores        pulumi.IntPtrOutput `pulumi:"cores"`
@@ -154,6 +165,9 @@ func GetServerlessContainer(ctx *pulumi.Context,
 type serverlessContainerState struct {
 	// Concurrency of Yandex Cloud Serverless Container
 	Concurrency *int `pulumi:"concurrency"`
+	// Network access. If specified the revision will be attached to specified network
+	// * `connectivity.0.network_id` - Network the revision will have access to
+	Connectivity *ServerlessContainerConnectivity `pulumi:"connectivity"`
 	// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
 	CoreFraction *int `pulumi:"coreFraction"`
 	Cores        *int `pulumi:"cores"`
@@ -195,6 +209,9 @@ type serverlessContainerState struct {
 type ServerlessContainerState struct {
 	// Concurrency of Yandex Cloud Serverless Container
 	Concurrency pulumi.IntPtrInput
+	// Network access. If specified the revision will be attached to specified network
+	// * `connectivity.0.network_id` - Network the revision will have access to
+	Connectivity ServerlessContainerConnectivityPtrInput
 	// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
 	CoreFraction pulumi.IntPtrInput
 	Cores        pulumi.IntPtrInput
@@ -240,6 +257,9 @@ func (ServerlessContainerState) ElementType() reflect.Type {
 type serverlessContainerArgs struct {
 	// Concurrency of Yandex Cloud Serverless Container
 	Concurrency *int `pulumi:"concurrency"`
+	// Network access. If specified the revision will be attached to specified network
+	// * `connectivity.0.network_id` - Network the revision will have access to
+	Connectivity *ServerlessContainerConnectivity `pulumi:"connectivity"`
 	// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
 	CoreFraction *int `pulumi:"coreFraction"`
 	Cores        *int `pulumi:"cores"`
@@ -276,6 +296,9 @@ type serverlessContainerArgs struct {
 type ServerlessContainerArgs struct {
 	// Concurrency of Yandex Cloud Serverless Container
 	Concurrency pulumi.IntPtrInput
+	// Network access. If specified the revision will be attached to specified network
+	// * `connectivity.0.network_id` - Network the revision will have access to
+	Connectivity ServerlessContainerConnectivityPtrInput
 	// Core fraction (**0...100**) of the Yandex Cloud Serverless Container
 	CoreFraction pulumi.IntPtrInput
 	Cores        pulumi.IntPtrInput
@@ -398,6 +421,12 @@ func (o ServerlessContainerOutput) ToServerlessContainerOutputWithContext(ctx co
 // Concurrency of Yandex Cloud Serverless Container
 func (o ServerlessContainerOutput) Concurrency() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ServerlessContainer) pulumi.IntPtrOutput { return v.Concurrency }).(pulumi.IntPtrOutput)
+}
+
+// Network access. If specified the revision will be attached to specified network
+// * `connectivity.0.network_id` - Network the revision will have access to
+func (o ServerlessContainerOutput) Connectivity() ServerlessContainerConnectivityPtrOutput {
+	return o.ApplyT(func(v *ServerlessContainer) ServerlessContainerConnectivityPtrOutput { return v.Connectivity }).(ServerlessContainerConnectivityPtrOutput)
 }
 
 // Core fraction (**0...100**) of the Yandex Cloud Serverless Container

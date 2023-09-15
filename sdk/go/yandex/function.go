@@ -36,6 +36,14 @@ import (
 //				ExecutionTimeout: pulumi.String("10"),
 //				Memory:           pulumi.Int(128),
 //				Runtime:          pulumi.String("python37"),
+//				Secrets: FunctionSecretArray{
+//					&FunctionSecretArgs{
+//						EnvironmentVariable: pulumi.String("ENV_VARIABLE"),
+//						Id:                  pulumi.Any(yandex_lockbox_secret.Secret.Id),
+//						Key:                 pulumi.String("secret-key"),
+//						VersionId:           pulumi.Any(yandex_lockbox_secret_version.Secret_version.Id),
+//					},
+//				},
 //				ServiceAccountId: pulumi.String("are1service2account3id"),
 //				Tags: pulumi.StringArray{
 //					pulumi.String("my_tag"),
@@ -53,6 +61,9 @@ import (
 type Function struct {
 	pulumi.CustomResourceState
 
+	// Function version connectivity. If specified the version will be attached to specified network.
+	// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+	Connectivity FunctionConnectivityPtrOutput `pulumi:"connectivity"`
 	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
 	// * `content.0.zip_filename` - Filename to zip archive for the version.
 	Content FunctionContentPtrOutput `pulumi:"content"`
@@ -139,6 +150,9 @@ func GetFunction(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Function resources.
 type functionState struct {
+	// Function version connectivity. If specified the version will be attached to specified network.
+	// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+	Connectivity *FunctionConnectivity `pulumi:"connectivity"`
 	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
 	// * `content.0.zip_filename` - Filename to zip archive for the version.
 	Content *FunctionContent `pulumi:"content"`
@@ -184,6 +198,9 @@ type functionState struct {
 }
 
 type FunctionState struct {
+	// Function version connectivity. If specified the version will be attached to specified network.
+	// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+	Connectivity FunctionConnectivityPtrInput
 	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
 	// * `content.0.zip_filename` - Filename to zip archive for the version.
 	Content FunctionContentPtrInput
@@ -233,6 +250,9 @@ func (FunctionState) ElementType() reflect.Type {
 }
 
 type functionArgs struct {
+	// Function version connectivity. If specified the version will be attached to specified network.
+	// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+	Connectivity *FunctionConnectivity `pulumi:"connectivity"`
 	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
 	// * `content.0.zip_filename` - Filename to zip archive for the version.
 	Content *FunctionContent `pulumi:"content"`
@@ -271,6 +291,9 @@ type functionArgs struct {
 
 // The set of arguments for constructing a Function resource.
 type FunctionArgs struct {
+	// Function version connectivity. If specified the version will be attached to specified network.
+	// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+	Connectivity FunctionConnectivityPtrInput
 	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
 	// * `content.0.zip_filename` - Filename to zip archive for the version.
 	Content FunctionContentPtrInput
@@ -392,6 +415,12 @@ func (o FunctionOutput) ToFunctionOutput() FunctionOutput {
 
 func (o FunctionOutput) ToFunctionOutputWithContext(ctx context.Context) FunctionOutput {
 	return o
+}
+
+// Function version connectivity. If specified the version will be attached to specified network.
+// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
+func (o FunctionOutput) Connectivity() FunctionConnectivityPtrOutput {
+	return o.ApplyT(func(v *Function) FunctionConnectivityPtrOutput { return v.Connectivity }).(FunctionConnectivityPtrOutput)
 }
 
 // Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.

@@ -181,6 +181,9 @@ namespace Pulumi.Yandex
         [Input("resources")]
         public Inputs.GetMdbMongodbClusterResourcesArgs? Resources { get; set; }
 
+        [Input("restore")]
+        public Inputs.GetMdbMongodbClusterRestoreArgs? Restore { get; set; }
+
         [Input("securityGroupIds")]
         private List<string>? _securityGroupIds;
 
@@ -327,6 +330,9 @@ namespace Pulumi.Yandex
         [Input("resources")]
         public Input<Inputs.GetMdbMongodbClusterResourcesInputArgs>? Resources { get; set; }
 
+        [Input("restore")]
+        public Input<Inputs.GetMdbMongodbClusterRestoreInputArgs>? Restore { get; set; }
+
         [Input("securityGroupIds")]
         private InputList<string>? _securityGroupIds;
 
@@ -425,6 +431,7 @@ namespace Pulumi.Yandex
         /// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
         /// </summary>
         public readonly Outputs.GetMdbMongodbClusterResourcesResult? Resources;
+        public readonly Outputs.GetMdbMongodbClusterRestoreResult? Restore;
         /// <summary>
         /// A set of ids of security groups assigned to hosts of the cluster.
         /// </summary>
@@ -476,6 +483,8 @@ namespace Pulumi.Yandex
 
             Outputs.GetMdbMongodbClusterResourcesResult? resources,
 
+            Outputs.GetMdbMongodbClusterRestoreResult? restore,
+
             ImmutableArray<string> securityGroupIds,
 
             bool sharded,
@@ -500,6 +509,7 @@ namespace Pulumi.Yandex
             Name = name;
             NetworkId = networkId;
             Resources = resources;
+            Restore = restore;
             SecurityGroupIds = securityGroupIds;
             Sharded = sharded;
             Status = status;

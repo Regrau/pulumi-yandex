@@ -148,6 +148,9 @@ namespace Pulumi.Yandex
         /// A description of the Kubernetes cluster.
         /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// (Optional) ID of the folder default Log group of which should be used to collect logs.
+        /// </summary>
         public readonly string FolderId;
         /// <summary>
         /// Health of the Kubernetes cluster.
@@ -166,7 +169,7 @@ namespace Pulumi.Yandex
         /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
         /// <summary>
-        /// Log group where cluster stores cluster system logs, like audit, events, or controlplane logs.
+        /// (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
         /// </summary>
         public readonly string LogGroupId;
         /// <summary>

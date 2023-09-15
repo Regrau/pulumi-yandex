@@ -12,15 +12,27 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class FunctionSecretArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// (Required) Function's environment variable in which secret's value will be stored.
+        /// </summary>
         [Input("environmentVariable", required: true)]
         public Input<string> EnvironmentVariable { get; set; } = null!;
 
+        /// <summary>
+        /// (Required) Secret's id.
+        /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
 
+        /// <summary>
+        /// (Required) Secret's entries key which value will be stored in environment variable.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 
+        /// <summary>
+        /// (Required) Secret's version id.
+        /// </summary>
         [Input("versionId", required: true)]
         public Input<string> VersionId { get; set; } = null!;
 
