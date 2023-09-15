@@ -67,5 +67,6 @@ RUN apt-get update && \
     apt-get install -y dotnet-sdk-6.0
 
 # Install Pulumi
-RUN curl -fsSL https://get.pulumi.com | sh
-ENV PATH=$PATH:/root/.pulumi/bin
+RUN curl -fsSL https://get.pulumi.com | HOME=/usr/local/bin sh \
+    && mv /usr/local/bin/.pulumi/bin/* /usr/local/bin \
+    && rm -r /usr/local/bin/.pulumi
