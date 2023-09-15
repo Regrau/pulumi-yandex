@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['YdbDatabaseServerlessArgs', 'YdbDatabaseServerless']
 
@@ -19,7 +21,8 @@ class YdbDatabaseServerlessArgs:
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  location_id: Optional[pulumi.Input[str]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 serverless_databases: Optional[pulumi.Input[Sequence[pulumi.Input['YdbDatabaseServerlessServerlessDatabaseArgs']]]] = None):
         """
         The set of arguments for constructing a YdbDatabaseServerless resource.
         :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the database. Can be either `true` or `false`
@@ -42,6 +45,8 @@ class YdbDatabaseServerlessArgs:
             pulumi.set(__self__, "location_id", location_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if serverless_databases is not None:
+            pulumi.set(__self__, "serverless_databases", serverless_databases)
 
     @property
     @pulumi.getter(name="deletionProtection")
@@ -116,6 +121,15 @@ class YdbDatabaseServerlessArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter(name="serverlessDatabases")
+    def serverless_databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['YdbDatabaseServerlessServerlessDatabaseArgs']]]]:
+        return pulumi.get(self, "serverless_databases")
+
+    @serverless_databases.setter
+    def serverless_databases(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['YdbDatabaseServerlessServerlessDatabaseArgs']]]]):
+        pulumi.set(self, "serverless_databases", value)
+
 
 @pulumi.input_type
 class _YdbDatabaseServerlessState:
@@ -129,6 +143,7 @@ class _YdbDatabaseServerlessState:
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  location_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 serverless_databases: Optional[pulumi.Input[Sequence[pulumi.Input['YdbDatabaseServerlessServerlessDatabaseArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  tls_enabled: Optional[pulumi.Input[bool]] = None,
                  ydb_api_endpoint: Optional[pulumi.Input[str]] = None,
@@ -171,6 +186,8 @@ class _YdbDatabaseServerlessState:
             pulumi.set(__self__, "location_id", location_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if serverless_databases is not None:
+            pulumi.set(__self__, "serverless_databases", serverless_databases)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if tls_enabled is not None:
@@ -291,6 +308,15 @@ class _YdbDatabaseServerlessState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="serverlessDatabases")
+    def serverless_databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['YdbDatabaseServerlessServerlessDatabaseArgs']]]]:
+        return pulumi.get(self, "serverless_databases")
+
+    @serverless_databases.setter
+    def serverless_databases(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['YdbDatabaseServerlessServerlessDatabaseArgs']]]]):
+        pulumi.set(self, "serverless_databases", value)
+
+    @property
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
@@ -352,6 +378,7 @@ class YdbDatabaseServerless(pulumi.CustomResource):
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  location_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 serverless_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['YdbDatabaseServerlessServerlessDatabaseArgs']]]]] = None,
                  __props__=None):
         """
         Yandex Database (serverless) resource. For more information, see
@@ -420,6 +447,7 @@ class YdbDatabaseServerless(pulumi.CustomResource):
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  location_id: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 serverless_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['YdbDatabaseServerlessServerlessDatabaseArgs']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -435,6 +463,7 @@ class YdbDatabaseServerless(pulumi.CustomResource):
             __props__.__dict__["labels"] = labels
             __props__.__dict__["location_id"] = location_id
             __props__.__dict__["name"] = name
+            __props__.__dict__["serverless_databases"] = serverless_databases
             __props__.__dict__["created_at"] = None
             __props__.__dict__["database_path"] = None
             __props__.__dict__["document_api_endpoint"] = None
@@ -461,6 +490,7 @@ class YdbDatabaseServerless(pulumi.CustomResource):
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             location_id: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            serverless_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['YdbDatabaseServerlessServerlessDatabaseArgs']]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
             tls_enabled: Optional[pulumi.Input[bool]] = None,
             ydb_api_endpoint: Optional[pulumi.Input[str]] = None,
@@ -503,6 +533,7 @@ class YdbDatabaseServerless(pulumi.CustomResource):
         __props__.__dict__["labels"] = labels
         __props__.__dict__["location_id"] = location_id
         __props__.__dict__["name"] = name
+        __props__.__dict__["serverless_databases"] = serverless_databases
         __props__.__dict__["status"] = status
         __props__.__dict__["tls_enabled"] = tls_enabled
         __props__.__dict__["ydb_api_endpoint"] = ydb_api_endpoint
@@ -582,6 +613,11 @@ class YdbDatabaseServerless(pulumi.CustomResource):
         Name for the Yandex Database serverless cluster.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="serverlessDatabases")
+    def serverless_databases(self) -> pulumi.Output[Sequence['outputs.YdbDatabaseServerlessServerlessDatabase']]:
+        return pulumi.get(self, "serverless_databases")
 
     @property
     @pulumi.getter

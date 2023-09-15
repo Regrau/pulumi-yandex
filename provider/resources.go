@@ -225,6 +225,7 @@ func Provider() tfbridge.ProviderInfo {
 			"yandex_cm_certificate":                        {Tok: makeResource(mainMod, "cmCertificate")},
 			"yandex_compute_filesystem":                    {Tok: makeResource(mainMod, "yandexComputeFilesystem")},
 			"yandex_ydb_topic":                             {Tok: makeResource(mainMod, "yandexYdbTopic")},
+			"yandex_billing_cloud_binding":                 {Tok: makeResource(mainMod, "yandexBillingCloudBinding")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"yandex_alb_target_group": {
@@ -563,6 +564,12 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeDataSource(mainMod, "getContainerRegistryIpPermission"),
 				Docs: &tfbridge.DocInfo{
 					Source: "datasource_yandex_container_registry_ip_permission.html.markdown",
+				},
+			},
+			"yandex_billing_cloud_binding": {
+				Tok: makeDataSource(mainMod, "getBillingCloudBinding"),
+				Docs: &tfbridge.DocInfo{
+					Source: "datasource_yandex_billing_cloud_binding.html.markdown",
 				},
 			},
 		},

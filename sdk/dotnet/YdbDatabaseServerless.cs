@@ -90,6 +90,9 @@ namespace Pulumi.Yandex
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        [Output("serverlessDatabases")]
+        public Output<ImmutableArray<Outputs.YdbDatabaseServerlessServerlessDatabase>> ServerlessDatabases { get; private set; } = null!;
+
         /// <summary>
         /// Status of the Yandex Database serverless cluster.
         /// </summary>
@@ -206,6 +209,14 @@ namespace Pulumi.Yandex
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("serverlessDatabases")]
+        private InputList<Inputs.YdbDatabaseServerlessServerlessDatabaseArgs>? _serverlessDatabases;
+        public InputList<Inputs.YdbDatabaseServerlessServerlessDatabaseArgs> ServerlessDatabases
+        {
+            get => _serverlessDatabases ?? (_serverlessDatabases = new InputList<Inputs.YdbDatabaseServerlessServerlessDatabaseArgs>());
+            set => _serverlessDatabases = value;
+        }
+
         public YdbDatabaseServerlessArgs()
         {
         }
@@ -275,6 +286,14 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("serverlessDatabases")]
+        private InputList<Inputs.YdbDatabaseServerlessServerlessDatabaseGetArgs>? _serverlessDatabases;
+        public InputList<Inputs.YdbDatabaseServerlessServerlessDatabaseGetArgs> ServerlessDatabases
+        {
+            get => _serverlessDatabases ?? (_serverlessDatabases = new InputList<Inputs.YdbDatabaseServerlessServerlessDatabaseGetArgs>());
+            set => _serverlessDatabases = value;
+        }
 
         /// <summary>
         /// Status of the Yandex Database serverless cluster.

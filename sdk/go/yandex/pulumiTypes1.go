@@ -10,6 +10,139 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type GetApiGatewayConnectivity struct {
+	NetworkId string `pulumi:"networkId"`
+}
+
+// GetApiGatewayConnectivityInput is an input type that accepts GetApiGatewayConnectivityArgs and GetApiGatewayConnectivityOutput values.
+// You can construct a concrete instance of `GetApiGatewayConnectivityInput` via:
+//
+//	GetApiGatewayConnectivityArgs{...}
+type GetApiGatewayConnectivityInput interface {
+	pulumi.Input
+
+	ToGetApiGatewayConnectivityOutput() GetApiGatewayConnectivityOutput
+	ToGetApiGatewayConnectivityOutputWithContext(context.Context) GetApiGatewayConnectivityOutput
+}
+
+type GetApiGatewayConnectivityArgs struct {
+	NetworkId pulumi.StringInput `pulumi:"networkId"`
+}
+
+func (GetApiGatewayConnectivityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiGatewayConnectivity)(nil)).Elem()
+}
+
+func (i GetApiGatewayConnectivityArgs) ToGetApiGatewayConnectivityOutput() GetApiGatewayConnectivityOutput {
+	return i.ToGetApiGatewayConnectivityOutputWithContext(context.Background())
+}
+
+func (i GetApiGatewayConnectivityArgs) ToGetApiGatewayConnectivityOutputWithContext(ctx context.Context) GetApiGatewayConnectivityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiGatewayConnectivityOutput)
+}
+
+func (i GetApiGatewayConnectivityArgs) ToGetApiGatewayConnectivityPtrOutput() GetApiGatewayConnectivityPtrOutput {
+	return i.ToGetApiGatewayConnectivityPtrOutputWithContext(context.Background())
+}
+
+func (i GetApiGatewayConnectivityArgs) ToGetApiGatewayConnectivityPtrOutputWithContext(ctx context.Context) GetApiGatewayConnectivityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiGatewayConnectivityOutput).ToGetApiGatewayConnectivityPtrOutputWithContext(ctx)
+}
+
+// GetApiGatewayConnectivityPtrInput is an input type that accepts GetApiGatewayConnectivityArgs, GetApiGatewayConnectivityPtr and GetApiGatewayConnectivityPtrOutput values.
+// You can construct a concrete instance of `GetApiGatewayConnectivityPtrInput` via:
+//
+//	        GetApiGatewayConnectivityArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetApiGatewayConnectivityPtrInput interface {
+	pulumi.Input
+
+	ToGetApiGatewayConnectivityPtrOutput() GetApiGatewayConnectivityPtrOutput
+	ToGetApiGatewayConnectivityPtrOutputWithContext(context.Context) GetApiGatewayConnectivityPtrOutput
+}
+
+type getApiGatewayConnectivityPtrType GetApiGatewayConnectivityArgs
+
+func GetApiGatewayConnectivityPtr(v *GetApiGatewayConnectivityArgs) GetApiGatewayConnectivityPtrInput {
+	return (*getApiGatewayConnectivityPtrType)(v)
+}
+
+func (*getApiGatewayConnectivityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetApiGatewayConnectivity)(nil)).Elem()
+}
+
+func (i *getApiGatewayConnectivityPtrType) ToGetApiGatewayConnectivityPtrOutput() GetApiGatewayConnectivityPtrOutput {
+	return i.ToGetApiGatewayConnectivityPtrOutputWithContext(context.Background())
+}
+
+func (i *getApiGatewayConnectivityPtrType) ToGetApiGatewayConnectivityPtrOutputWithContext(ctx context.Context) GetApiGatewayConnectivityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiGatewayConnectivityPtrOutput)
+}
+
+type GetApiGatewayConnectivityOutput struct{ *pulumi.OutputState }
+
+func (GetApiGatewayConnectivityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiGatewayConnectivity)(nil)).Elem()
+}
+
+func (o GetApiGatewayConnectivityOutput) ToGetApiGatewayConnectivityOutput() GetApiGatewayConnectivityOutput {
+	return o
+}
+
+func (o GetApiGatewayConnectivityOutput) ToGetApiGatewayConnectivityOutputWithContext(ctx context.Context) GetApiGatewayConnectivityOutput {
+	return o
+}
+
+func (o GetApiGatewayConnectivityOutput) ToGetApiGatewayConnectivityPtrOutput() GetApiGatewayConnectivityPtrOutput {
+	return o.ToGetApiGatewayConnectivityPtrOutputWithContext(context.Background())
+}
+
+func (o GetApiGatewayConnectivityOutput) ToGetApiGatewayConnectivityPtrOutputWithContext(ctx context.Context) GetApiGatewayConnectivityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetApiGatewayConnectivity) *GetApiGatewayConnectivity {
+		return &v
+	}).(GetApiGatewayConnectivityPtrOutput)
+}
+
+func (o GetApiGatewayConnectivityOutput) NetworkId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiGatewayConnectivity) string { return v.NetworkId }).(pulumi.StringOutput)
+}
+
+type GetApiGatewayConnectivityPtrOutput struct{ *pulumi.OutputState }
+
+func (GetApiGatewayConnectivityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetApiGatewayConnectivity)(nil)).Elem()
+}
+
+func (o GetApiGatewayConnectivityPtrOutput) ToGetApiGatewayConnectivityPtrOutput() GetApiGatewayConnectivityPtrOutput {
+	return o
+}
+
+func (o GetApiGatewayConnectivityPtrOutput) ToGetApiGatewayConnectivityPtrOutputWithContext(ctx context.Context) GetApiGatewayConnectivityPtrOutput {
+	return o
+}
+
+func (o GetApiGatewayConnectivityPtrOutput) Elem() GetApiGatewayConnectivityOutput {
+	return o.ApplyT(func(v *GetApiGatewayConnectivity) GetApiGatewayConnectivity {
+		if v != nil {
+			return *v
+		}
+		var ret GetApiGatewayConnectivity
+		return ret
+	}).(GetApiGatewayConnectivityOutput)
+}
+
+func (o GetApiGatewayConnectivityPtrOutput) NetworkId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetApiGatewayConnectivity) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.NetworkId
+	}).(pulumi.StringPtrOutput)
+}
+
 type GetApiGatewayCustomDomain struct {
 	CertificateId string `pulumi:"certificateId"`
 	DomainId      string `pulumi:"domainId"`
@@ -30334,6 +30467,118 @@ func (o GetYdbDatabaseDedicatedStorageConfigArrayOutput) Index(i pulumi.IntInput
 	}).(GetYdbDatabaseDedicatedStorageConfigOutput)
 }
 
+type GetYdbDatabaseServerlessServerlessDatabase struct {
+	EnableThrottlingRcuLimit bool `pulumi:"enableThrottlingRcuLimit"`
+	ProvisionedRcuLimit      int  `pulumi:"provisionedRcuLimit"`
+	StorageSizeLimit         int  `pulumi:"storageSizeLimit"`
+	ThrottlingRcuLimit       int  `pulumi:"throttlingRcuLimit"`
+}
+
+// GetYdbDatabaseServerlessServerlessDatabaseInput is an input type that accepts GetYdbDatabaseServerlessServerlessDatabaseArgs and GetYdbDatabaseServerlessServerlessDatabaseOutput values.
+// You can construct a concrete instance of `GetYdbDatabaseServerlessServerlessDatabaseInput` via:
+//
+//	GetYdbDatabaseServerlessServerlessDatabaseArgs{...}
+type GetYdbDatabaseServerlessServerlessDatabaseInput interface {
+	pulumi.Input
+
+	ToGetYdbDatabaseServerlessServerlessDatabaseOutput() GetYdbDatabaseServerlessServerlessDatabaseOutput
+	ToGetYdbDatabaseServerlessServerlessDatabaseOutputWithContext(context.Context) GetYdbDatabaseServerlessServerlessDatabaseOutput
+}
+
+type GetYdbDatabaseServerlessServerlessDatabaseArgs struct {
+	EnableThrottlingRcuLimit pulumi.BoolInput `pulumi:"enableThrottlingRcuLimit"`
+	ProvisionedRcuLimit      pulumi.IntInput  `pulumi:"provisionedRcuLimit"`
+	StorageSizeLimit         pulumi.IntInput  `pulumi:"storageSizeLimit"`
+	ThrottlingRcuLimit       pulumi.IntInput  `pulumi:"throttlingRcuLimit"`
+}
+
+func (GetYdbDatabaseServerlessServerlessDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetYdbDatabaseServerlessServerlessDatabase)(nil)).Elem()
+}
+
+func (i GetYdbDatabaseServerlessServerlessDatabaseArgs) ToGetYdbDatabaseServerlessServerlessDatabaseOutput() GetYdbDatabaseServerlessServerlessDatabaseOutput {
+	return i.ToGetYdbDatabaseServerlessServerlessDatabaseOutputWithContext(context.Background())
+}
+
+func (i GetYdbDatabaseServerlessServerlessDatabaseArgs) ToGetYdbDatabaseServerlessServerlessDatabaseOutputWithContext(ctx context.Context) GetYdbDatabaseServerlessServerlessDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetYdbDatabaseServerlessServerlessDatabaseOutput)
+}
+
+// GetYdbDatabaseServerlessServerlessDatabaseArrayInput is an input type that accepts GetYdbDatabaseServerlessServerlessDatabaseArray and GetYdbDatabaseServerlessServerlessDatabaseArrayOutput values.
+// You can construct a concrete instance of `GetYdbDatabaseServerlessServerlessDatabaseArrayInput` via:
+//
+//	GetYdbDatabaseServerlessServerlessDatabaseArray{ GetYdbDatabaseServerlessServerlessDatabaseArgs{...} }
+type GetYdbDatabaseServerlessServerlessDatabaseArrayInput interface {
+	pulumi.Input
+
+	ToGetYdbDatabaseServerlessServerlessDatabaseArrayOutput() GetYdbDatabaseServerlessServerlessDatabaseArrayOutput
+	ToGetYdbDatabaseServerlessServerlessDatabaseArrayOutputWithContext(context.Context) GetYdbDatabaseServerlessServerlessDatabaseArrayOutput
+}
+
+type GetYdbDatabaseServerlessServerlessDatabaseArray []GetYdbDatabaseServerlessServerlessDatabaseInput
+
+func (GetYdbDatabaseServerlessServerlessDatabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetYdbDatabaseServerlessServerlessDatabase)(nil)).Elem()
+}
+
+func (i GetYdbDatabaseServerlessServerlessDatabaseArray) ToGetYdbDatabaseServerlessServerlessDatabaseArrayOutput() GetYdbDatabaseServerlessServerlessDatabaseArrayOutput {
+	return i.ToGetYdbDatabaseServerlessServerlessDatabaseArrayOutputWithContext(context.Background())
+}
+
+func (i GetYdbDatabaseServerlessServerlessDatabaseArray) ToGetYdbDatabaseServerlessServerlessDatabaseArrayOutputWithContext(ctx context.Context) GetYdbDatabaseServerlessServerlessDatabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetYdbDatabaseServerlessServerlessDatabaseArrayOutput)
+}
+
+type GetYdbDatabaseServerlessServerlessDatabaseOutput struct{ *pulumi.OutputState }
+
+func (GetYdbDatabaseServerlessServerlessDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetYdbDatabaseServerlessServerlessDatabase)(nil)).Elem()
+}
+
+func (o GetYdbDatabaseServerlessServerlessDatabaseOutput) ToGetYdbDatabaseServerlessServerlessDatabaseOutput() GetYdbDatabaseServerlessServerlessDatabaseOutput {
+	return o
+}
+
+func (o GetYdbDatabaseServerlessServerlessDatabaseOutput) ToGetYdbDatabaseServerlessServerlessDatabaseOutputWithContext(ctx context.Context) GetYdbDatabaseServerlessServerlessDatabaseOutput {
+	return o
+}
+
+func (o GetYdbDatabaseServerlessServerlessDatabaseOutput) EnableThrottlingRcuLimit() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetYdbDatabaseServerlessServerlessDatabase) bool { return v.EnableThrottlingRcuLimit }).(pulumi.BoolOutput)
+}
+
+func (o GetYdbDatabaseServerlessServerlessDatabaseOutput) ProvisionedRcuLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetYdbDatabaseServerlessServerlessDatabase) int { return v.ProvisionedRcuLimit }).(pulumi.IntOutput)
+}
+
+func (o GetYdbDatabaseServerlessServerlessDatabaseOutput) StorageSizeLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetYdbDatabaseServerlessServerlessDatabase) int { return v.StorageSizeLimit }).(pulumi.IntOutput)
+}
+
+func (o GetYdbDatabaseServerlessServerlessDatabaseOutput) ThrottlingRcuLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetYdbDatabaseServerlessServerlessDatabase) int { return v.ThrottlingRcuLimit }).(pulumi.IntOutput)
+}
+
+type GetYdbDatabaseServerlessServerlessDatabaseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetYdbDatabaseServerlessServerlessDatabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetYdbDatabaseServerlessServerlessDatabase)(nil)).Elem()
+}
+
+func (o GetYdbDatabaseServerlessServerlessDatabaseArrayOutput) ToGetYdbDatabaseServerlessServerlessDatabaseArrayOutput() GetYdbDatabaseServerlessServerlessDatabaseArrayOutput {
+	return o
+}
+
+func (o GetYdbDatabaseServerlessServerlessDatabaseArrayOutput) ToGetYdbDatabaseServerlessServerlessDatabaseArrayOutputWithContext(ctx context.Context) GetYdbDatabaseServerlessServerlessDatabaseArrayOutput {
+	return o
+}
+
+func (o GetYdbDatabaseServerlessServerlessDatabaseArrayOutput) Index(i pulumi.IntInput) GetYdbDatabaseServerlessServerlessDatabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetYdbDatabaseServerlessServerlessDatabase {
+		return vs[0].([]GetYdbDatabaseServerlessServerlessDatabase)[vs[1].(int)]
+	}).(GetYdbDatabaseServerlessServerlessDatabaseOutput)
+}
+
 type LockboxSecretVersionEntry struct {
 	// The command that generates the text value of the entry.
 	Command *LockboxSecretVersionEntryCommand `pulumi:"command"`
@@ -32331,6 +32576,8 @@ func (o YandexYdbTopicConsumerArrayOutput) Index(i pulumi.IntInput) YandexYdbTop
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiGatewayConnectivityInput)(nil)).Elem(), GetApiGatewayConnectivityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiGatewayConnectivityPtrInput)(nil)).Elem(), GetApiGatewayConnectivityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiGatewayCustomDomainInput)(nil)).Elem(), GetApiGatewayCustomDomainArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiGatewayCustomDomainArrayInput)(nil)).Elem(), GetApiGatewayCustomDomainArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnOriginGroupOriginInput)(nil)).Elem(), GetCdnOriginGroupOriginArgs{})
@@ -32770,6 +33017,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetYdbDatabaseDedicatedScalePolicyFixedScaleArrayInput)(nil)).Elem(), GetYdbDatabaseDedicatedScalePolicyFixedScaleArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetYdbDatabaseDedicatedStorageConfigInput)(nil)).Elem(), GetYdbDatabaseDedicatedStorageConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetYdbDatabaseDedicatedStorageConfigArrayInput)(nil)).Elem(), GetYdbDatabaseDedicatedStorageConfigArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetYdbDatabaseServerlessServerlessDatabaseInput)(nil)).Elem(), GetYdbDatabaseServerlessServerlessDatabaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetYdbDatabaseServerlessServerlessDatabaseArrayInput)(nil)).Elem(), GetYdbDatabaseServerlessServerlessDatabaseArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LockboxSecretVersionEntryInput)(nil)).Elem(), LockboxSecretVersionEntryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LockboxSecretVersionEntryArrayInput)(nil)).Elem(), LockboxSecretVersionEntryArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LockboxSecretVersionEntryCommandInput)(nil)).Elem(), LockboxSecretVersionEntryCommandArgs{})
@@ -32803,6 +33052,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewaySharedEgressGatewayPtrInput)(nil)).Elem(), VpcGatewaySharedEgressGatewayArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*YandexYdbTopicConsumerInput)(nil)).Elem(), YandexYdbTopicConsumerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*YandexYdbTopicConsumerArrayInput)(nil)).Elem(), YandexYdbTopicConsumerArray{})
+	pulumi.RegisterOutputType(GetApiGatewayConnectivityOutput{})
+	pulumi.RegisterOutputType(GetApiGatewayConnectivityPtrOutput{})
 	pulumi.RegisterOutputType(GetApiGatewayCustomDomainOutput{})
 	pulumi.RegisterOutputType(GetApiGatewayCustomDomainArrayOutput{})
 	pulumi.RegisterOutputType(GetCdnOriginGroupOriginOutput{})
@@ -33242,6 +33493,8 @@ func init() {
 	pulumi.RegisterOutputType(GetYdbDatabaseDedicatedScalePolicyFixedScaleArrayOutput{})
 	pulumi.RegisterOutputType(GetYdbDatabaseDedicatedStorageConfigOutput{})
 	pulumi.RegisterOutputType(GetYdbDatabaseDedicatedStorageConfigArrayOutput{})
+	pulumi.RegisterOutputType(GetYdbDatabaseServerlessServerlessDatabaseOutput{})
+	pulumi.RegisterOutputType(GetYdbDatabaseServerlessServerlessDatabaseArrayOutput{})
 	pulumi.RegisterOutputType(LockboxSecretVersionEntryOutput{})
 	pulumi.RegisterOutputType(LockboxSecretVersionEntryArrayOutput{})
 	pulumi.RegisterOutputType(LockboxSecretVersionEntryCommandOutput{})

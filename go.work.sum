@@ -11,4 +11,6 @@ github.com/nightlyone/lockfile v1.0.0/go.mod h1:rywoIealpdNse2r832aiD9jRk8ErCatR
 github.com/russross/blackfriday v1.5.2 h1:HyvC0ARfnZBqnXwABFeSZHpKvJHJJfPz81GNueLj0oo=
 github.com/shurcooL/go-goon v0.0.0-20210110234559-7585751d9a17/go.mod h1:N5mDOmsrJOB+vfqUK+7DmDyjhSLIIBnXo9lvZJj3MWQ=
 github.com/skratchdot/open-golang v0.0.0-20200116055534-eef842397966/go.mod h1:sUM3LWHvSMaG192sy56D9F7CNvL7jUJVXoqM1QKLnog=
+github.com/yandex-cloud/terraform-provider-yandex v0.87.0 h1:9ruA9ixuIVxNYkRZyX6V8xufyY1nLPzrOqXpTDVTDak=
+github.com/yandex-cloud/terraform-provider-yandex v0.87.0/go.mod h1:G8stmtYOy3M4KfOyaxAGaxYt+V51SMntrtWaRFEENBQ=
 pgregory.net/rapid v0.4.7/go.mod h1:UYpPVyjFHzYBGHIxLFoupi8vwk6rXNzRY9OMvVxFIOU=

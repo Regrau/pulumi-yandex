@@ -195,6 +195,11 @@ export const getApiGateway: typeof import("./getApiGateway").getApiGateway = nul
 export const getApiGatewayOutput: typeof import("./getApiGateway").getApiGatewayOutput = null as any;
 utilities.lazyLoad(exports, ["getApiGateway","getApiGatewayOutput"], () => require("./getApiGateway"));
 
+export { GetBillingCloudBindingArgs, GetBillingCloudBindingResult, GetBillingCloudBindingOutputArgs } from "./getBillingCloudBinding";
+export const getBillingCloudBinding: typeof import("./getBillingCloudBinding").getBillingCloudBinding = null as any;
+export const getBillingCloudBindingOutput: typeof import("./getBillingCloudBinding").getBillingCloudBindingOutput = null as any;
+utilities.lazyLoad(exports, ["getBillingCloudBinding","getBillingCloudBindingOutput"], () => require("./getBillingCloudBinding"));
+
 export { GetCdnOriginGroupArgs, GetCdnOriginGroupResult, GetCdnOriginGroupOutputArgs } from "./getCdnOriginGroup";
 export const getCdnOriginGroup: typeof import("./getCdnOriginGroup").getCdnOriginGroup = null as any;
 export const getCdnOriginGroupOutput: typeof import("./getCdnOriginGroup").getCdnOriginGroupOutput = null as any;
@@ -784,6 +789,11 @@ export type VpcSubnet = import("./vpcSubnet").VpcSubnet;
 export const VpcSubnet: typeof import("./vpcSubnet").VpcSubnet = null as any;
 utilities.lazyLoad(exports, ["VpcSubnet"], () => require("./vpcSubnet"));
 
+export { YandexBillingCloudBindingArgs, YandexBillingCloudBindingState } from "./yandexBillingCloudBinding";
+export type YandexBillingCloudBinding = import("./yandexBillingCloudBinding").YandexBillingCloudBinding;
+export const YandexBillingCloudBinding: typeof import("./yandexBillingCloudBinding").YandexBillingCloudBinding = null as any;
+utilities.lazyLoad(exports, ["YandexBillingCloudBinding"], () => require("./yandexBillingCloudBinding"));
+
 export { YandexComputeFilesystemArgs, YandexComputeFilesystemState } from "./yandexComputeFilesystem";
 export type YandexComputeFilesystem = import("./yandexComputeFilesystem").YandexComputeFilesystem;
 export const YandexComputeFilesystem: typeof import("./yandexComputeFilesystem").YandexComputeFilesystem = null as any;
@@ -1009,6 +1019,8 @@ const _module = {
                 return new VpcSecurityGroupRule(name, <any>undefined, { urn })
             case "yandex:index/vpcSubnet:VpcSubnet":
                 return new VpcSubnet(name, <any>undefined, { urn })
+            case "yandex:index/yandexBillingCloudBinding:yandexBillingCloudBinding":
+                return new YandexBillingCloudBinding(name, <any>undefined, { urn })
             case "yandex:index/yandexComputeFilesystem:yandexComputeFilesystem":
                 return new YandexComputeFilesystem(name, <any>undefined, { urn })
             case "yandex:index/yandexYdbTopic:yandexYdbTopic":
@@ -1117,6 +1129,7 @@ pulumi.runtime.registerResourceModule("yandex", "index/vpcRouteTable", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/vpcSecurityGroup", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/vpcSecurityGroupRule", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/vpcSubnet", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/yandexBillingCloudBinding", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/yandexComputeFilesystem", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/yandexYdbTopic", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/ydbDatabaseDedicated", _module)

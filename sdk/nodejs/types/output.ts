@@ -8405,6 +8405,13 @@ export interface GetYdbDatabaseDedicatedStorageConfig {
     storageTypeId: string;
 }
 
+export interface GetYdbDatabaseServerlessServerlessDatabase {
+    enableThrottlingRcuLimit: boolean;
+    provisionedRcuLimit: number;
+    storageSizeLimit: number;
+    throttlingRcuLimit: number;
+}
+
 export interface KubernetesClusterKmsProvider {
     /**
      * KMS key ID.
@@ -11680,5 +11687,12 @@ export interface YdbDatabaseDedicatedStorageConfig {
      * Available presets can be obtained via `yc ydb storage-type list` command.
      */
     storageTypeId: string;
+}
+
+export interface YdbDatabaseServerlessServerlessDatabase {
+    enableThrottlingRcuLimit: boolean;
+    provisionedRcuLimit: number;
+    storageSizeLimit: number;
+    throttlingRcuLimit: number;
 }
 

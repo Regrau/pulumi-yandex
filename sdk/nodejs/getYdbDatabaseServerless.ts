@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -33,6 +35,7 @@ export function getYdbDatabaseServerless(args?: GetYdbDatabaseServerlessArgs, op
         "deletionProtection": args.deletionProtection,
         "folderId": args.folderId,
         "name": args.name,
+        "serverlessDatabases": args.serverlessDatabases,
     }, opts);
 }
 
@@ -57,6 +60,7 @@ export interface GetYdbDatabaseServerlessArgs {
      * Name of the Yandex Database serverless cluster.
      */
     name?: string;
+    serverlessDatabases?: inputs.GetYdbDatabaseServerlessServerlessDatabase[];
 }
 
 /**
@@ -99,6 +103,7 @@ export interface GetYdbDatabaseServerlessResult {
      */
     readonly locationId: string;
     readonly name?: string;
+    readonly serverlessDatabases: outputs.GetYdbDatabaseServerlessServerlessDatabase[];
     /**
      * Status of the Yandex Database serverless cluster.
      */
@@ -144,4 +149,5 @@ export interface GetYdbDatabaseServerlessOutputArgs {
      * Name of the Yandex Database serverless cluster.
      */
     name?: pulumi.Input<string>;
+    serverlessDatabases?: pulumi.Input<pulumi.Input<inputs.GetYdbDatabaseServerlessServerlessDatabaseArgs>[]>;
 }

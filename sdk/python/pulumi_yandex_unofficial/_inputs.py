@@ -415,6 +415,7 @@ __all__ = [
     'YdbDatabaseDedicatedScalePolicyArgs',
     'YdbDatabaseDedicatedScalePolicyFixedScaleArgs',
     'YdbDatabaseDedicatedStorageConfigArgs',
+    'YdbDatabaseServerlessServerlessDatabaseArgs',
     'CmCertificateChallengeArgs',
     'CmCertificateManagedArgs',
     'CmCertificateSelfManagedArgs',
@@ -497,6 +498,7 @@ __all__ = [
     'GetMdbMysqlClusterAccessArgs',
     'GetServerlessContainerConnectivityArgs',
     'GetServerlessContainerSecretArgs',
+    'GetYdbDatabaseServerlessServerlessDatabaseArgs',
     'LockboxSecretVersionEntryArgs',
     'LockboxSecretVersionEntryCommandArgs',
     'MdbKafkaConnectorConnectorConfigMirrormakerArgs',
@@ -26266,6 +26268,59 @@ class YdbDatabaseDedicatedStorageConfigArgs:
 
 
 @pulumi.input_type
+class YdbDatabaseServerlessServerlessDatabaseArgs:
+    def __init__(__self__, *,
+                 enable_throttling_rcu_limit: Optional[pulumi.Input[bool]] = None,
+                 provisioned_rcu_limit: Optional[pulumi.Input[int]] = None,
+                 storage_size_limit: Optional[pulumi.Input[int]] = None,
+                 throttling_rcu_limit: Optional[pulumi.Input[int]] = None):
+        if enable_throttling_rcu_limit is not None:
+            pulumi.set(__self__, "enable_throttling_rcu_limit", enable_throttling_rcu_limit)
+        if provisioned_rcu_limit is not None:
+            pulumi.set(__self__, "provisioned_rcu_limit", provisioned_rcu_limit)
+        if storage_size_limit is not None:
+            pulumi.set(__self__, "storage_size_limit", storage_size_limit)
+        if throttling_rcu_limit is not None:
+            pulumi.set(__self__, "throttling_rcu_limit", throttling_rcu_limit)
+
+    @property
+    @pulumi.getter(name="enableThrottlingRcuLimit")
+    def enable_throttling_rcu_limit(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "enable_throttling_rcu_limit")
+
+    @enable_throttling_rcu_limit.setter
+    def enable_throttling_rcu_limit(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enable_throttling_rcu_limit", value)
+
+    @property
+    @pulumi.getter(name="provisionedRcuLimit")
+    def provisioned_rcu_limit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "provisioned_rcu_limit")
+
+    @provisioned_rcu_limit.setter
+    def provisioned_rcu_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "provisioned_rcu_limit", value)
+
+    @property
+    @pulumi.getter(name="storageSizeLimit")
+    def storage_size_limit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "storage_size_limit")
+
+    @storage_size_limit.setter
+    def storage_size_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "storage_size_limit", value)
+
+    @property
+    @pulumi.getter(name="throttlingRcuLimit")
+    def throttling_rcu_limit(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "throttling_rcu_limit")
+
+    @throttling_rcu_limit.setter
+    def throttling_rcu_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "throttling_rcu_limit", value)
+
+
+@pulumi.input_type
 class CmCertificateChallengeArgs:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[str]] = None,
@@ -31215,6 +31270,55 @@ class GetServerlessContainerSecretArgs:
     @version_id.setter
     def version_id(self, value: str):
         pulumi.set(self, "version_id", value)
+
+
+@pulumi.input_type
+class GetYdbDatabaseServerlessServerlessDatabaseArgs:
+    def __init__(__self__, *,
+                 enable_throttling_rcu_limit: bool,
+                 provisioned_rcu_limit: int,
+                 storage_size_limit: int,
+                 throttling_rcu_limit: int):
+        pulumi.set(__self__, "enable_throttling_rcu_limit", enable_throttling_rcu_limit)
+        pulumi.set(__self__, "provisioned_rcu_limit", provisioned_rcu_limit)
+        pulumi.set(__self__, "storage_size_limit", storage_size_limit)
+        pulumi.set(__self__, "throttling_rcu_limit", throttling_rcu_limit)
+
+    @property
+    @pulumi.getter(name="enableThrottlingRcuLimit")
+    def enable_throttling_rcu_limit(self) -> bool:
+        return pulumi.get(self, "enable_throttling_rcu_limit")
+
+    @enable_throttling_rcu_limit.setter
+    def enable_throttling_rcu_limit(self, value: bool):
+        pulumi.set(self, "enable_throttling_rcu_limit", value)
+
+    @property
+    @pulumi.getter(name="provisionedRcuLimit")
+    def provisioned_rcu_limit(self) -> int:
+        return pulumi.get(self, "provisioned_rcu_limit")
+
+    @provisioned_rcu_limit.setter
+    def provisioned_rcu_limit(self, value: int):
+        pulumi.set(self, "provisioned_rcu_limit", value)
+
+    @property
+    @pulumi.getter(name="storageSizeLimit")
+    def storage_size_limit(self) -> int:
+        return pulumi.get(self, "storage_size_limit")
+
+    @storage_size_limit.setter
+    def storage_size_limit(self, value: int):
+        pulumi.set(self, "storage_size_limit", value)
+
+    @property
+    @pulumi.getter(name="throttlingRcuLimit")
+    def throttling_rcu_limit(self) -> int:
+        return pulumi.get(self, "throttling_rcu_limit")
+
+    @throttling_rcu_limit.setter
+    def throttling_rcu_limit(self, value: int):
+        pulumi.set(self, "throttling_rcu_limit", value)
 
 
 @pulumi.input_type

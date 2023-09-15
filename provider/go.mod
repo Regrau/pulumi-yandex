@@ -10,7 +10,7 @@ replace (
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.33.0
 	github.com/pulumi/pulumi/sdk/v3 v3.46.0
-	github.com/yandex-cloud/terraform-provider-yandex v0.86.0
+	github.com/yandex-cloud/terraform-provider-yandex v0.87.0
 )
 
 require (

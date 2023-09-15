@@ -62,7 +62,8 @@ type YdbDatabaseServerless struct {
 	// Location ID for the Yandex Database serverless cluster.
 	LocationId pulumi.StringOutput `pulumi:"locationId"`
 	// Name for the Yandex Database serverless cluster.
-	Name pulumi.StringOutput `pulumi:"name"`
+	Name                pulumi.StringOutput                                `pulumi:"name"`
+	ServerlessDatabases YdbDatabaseServerlessServerlessDatabaseArrayOutput `pulumi:"serverlessDatabases"`
 	// Status of the Yandex Database serverless cluster.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Whether TLS is enabled for the Yandex Database serverless cluster.
@@ -124,7 +125,8 @@ type ydbDatabaseServerlessState struct {
 	// Location ID for the Yandex Database serverless cluster.
 	LocationId *string `pulumi:"locationId"`
 	// Name for the Yandex Database serverless cluster.
-	Name *string `pulumi:"name"`
+	Name                *string                                   `pulumi:"name"`
+	ServerlessDatabases []YdbDatabaseServerlessServerlessDatabase `pulumi:"serverlessDatabases"`
 	// Status of the Yandex Database serverless cluster.
 	Status *string `pulumi:"status"`
 	// Whether TLS is enabled for the Yandex Database serverless cluster.
@@ -157,7 +159,8 @@ type YdbDatabaseServerlessState struct {
 	// Location ID for the Yandex Database serverless cluster.
 	LocationId pulumi.StringPtrInput
 	// Name for the Yandex Database serverless cluster.
-	Name pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	ServerlessDatabases YdbDatabaseServerlessServerlessDatabaseArrayInput
 	// Status of the Yandex Database serverless cluster.
 	Status pulumi.StringPtrInput
 	// Whether TLS is enabled for the Yandex Database serverless cluster.
@@ -187,7 +190,8 @@ type ydbDatabaseServerlessArgs struct {
 	// Location ID for the Yandex Database serverless cluster.
 	LocationId *string `pulumi:"locationId"`
 	// Name for the Yandex Database serverless cluster.
-	Name *string `pulumi:"name"`
+	Name                *string                                   `pulumi:"name"`
+	ServerlessDatabases []YdbDatabaseServerlessServerlessDatabase `pulumi:"serverlessDatabases"`
 }
 
 // The set of arguments for constructing a YdbDatabaseServerless resource.
@@ -204,7 +208,8 @@ type YdbDatabaseServerlessArgs struct {
 	// Location ID for the Yandex Database serverless cluster.
 	LocationId pulumi.StringPtrInput
 	// Name for the Yandex Database serverless cluster.
-	Name pulumi.StringPtrInput
+	Name                pulumi.StringPtrInput
+	ServerlessDatabases YdbDatabaseServerlessServerlessDatabaseArrayInput
 }
 
 func (YdbDatabaseServerlessArgs) ElementType() reflect.Type {
@@ -339,6 +344,12 @@ func (o YdbDatabaseServerlessOutput) LocationId() pulumi.StringOutput {
 // Name for the Yandex Database serverless cluster.
 func (o YdbDatabaseServerlessOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *YdbDatabaseServerless) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o YdbDatabaseServerlessOutput) ServerlessDatabases() YdbDatabaseServerlessServerlessDatabaseArrayOutput {
+	return o.ApplyT(func(v *YdbDatabaseServerless) YdbDatabaseServerlessServerlessDatabaseArrayOutput {
+		return v.ServerlessDatabases
+	}).(YdbDatabaseServerlessServerlessDatabaseArrayOutput)
 }
 
 // Status of the Yandex Database serverless cluster.

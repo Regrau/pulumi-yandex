@@ -104,6 +104,14 @@ namespace Pulumi.Yandex
         [Input("name")]
         public string? Name { get; set; }
 
+        [Input("serverlessDatabases")]
+        private List<Inputs.GetYdbDatabaseServerlessServerlessDatabaseArgs>? _serverlessDatabases;
+        public List<Inputs.GetYdbDatabaseServerlessServerlessDatabaseArgs> ServerlessDatabases
+        {
+            get => _serverlessDatabases ?? (_serverlessDatabases = new List<Inputs.GetYdbDatabaseServerlessServerlessDatabaseArgs>());
+            set => _serverlessDatabases = value;
+        }
+
         public GetYdbDatabaseServerlessArgs()
         {
         }
@@ -136,6 +144,14 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("serverlessDatabases")]
+        private InputList<Inputs.GetYdbDatabaseServerlessServerlessDatabaseInputArgs>? _serverlessDatabases;
+        public InputList<Inputs.GetYdbDatabaseServerlessServerlessDatabaseInputArgs> ServerlessDatabases
+        {
+            get => _serverlessDatabases ?? (_serverlessDatabases = new InputList<Inputs.GetYdbDatabaseServerlessServerlessDatabaseInputArgs>());
+            set => _serverlessDatabases = value;
+        }
 
         public GetYdbDatabaseServerlessInvokeArgs()
         {
@@ -183,6 +199,7 @@ namespace Pulumi.Yandex
         /// </summary>
         public readonly string LocationId;
         public readonly string? Name;
+        public readonly ImmutableArray<Outputs.GetYdbDatabaseServerlessServerlessDatabaseResult> ServerlessDatabases;
         /// <summary>
         /// Status of the Yandex Database serverless cluster.
         /// </summary>
@@ -226,6 +243,8 @@ namespace Pulumi.Yandex
 
             string? name,
 
+            ImmutableArray<Outputs.GetYdbDatabaseServerlessServerlessDatabaseResult> serverlessDatabases,
+
             string status,
 
             bool tlsEnabled,
@@ -245,6 +264,7 @@ namespace Pulumi.Yandex
             Labels = labels;
             LocationId = locationId;
             Name = name;
+            ServerlessDatabases = serverlessDatabases;
             Status = status;
             TlsEnabled = tlsEnabled;
             YdbApiEndpoint = ydbApiEndpoint;

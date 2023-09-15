@@ -2,6 +2,8 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "./types/input";
+import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
@@ -86,6 +88,7 @@ export class YdbDatabaseServerless extends pulumi.CustomResource {
      * Name for the Yandex Database serverless cluster.
      */
     public readonly name!: pulumi.Output<string>;
+    public readonly serverlessDatabases!: pulumi.Output<outputs.YdbDatabaseServerlessServerlessDatabase[]>;
     /**
      * Status of the Yandex Database serverless cluster.
      */
@@ -127,6 +130,7 @@ export class YdbDatabaseServerless extends pulumi.CustomResource {
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["locationId"] = state ? state.locationId : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["serverlessDatabases"] = state ? state.serverlessDatabases : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["tlsEnabled"] = state ? state.tlsEnabled : undefined;
             resourceInputs["ydbApiEndpoint"] = state ? state.ydbApiEndpoint : undefined;
@@ -139,6 +143,7 @@ export class YdbDatabaseServerless extends pulumi.CustomResource {
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["locationId"] = args ? args.locationId : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["serverlessDatabases"] = args ? args.serverlessDatabases : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["databasePath"] = undefined /*out*/;
             resourceInputs["documentApiEndpoint"] = undefined /*out*/;
@@ -194,6 +199,7 @@ export interface YdbDatabaseServerlessState {
      * Name for the Yandex Database serverless cluster.
      */
     name?: pulumi.Input<string>;
+    serverlessDatabases?: pulumi.Input<pulumi.Input<inputs.YdbDatabaseServerlessServerlessDatabase>[]>;
     /**
      * Status of the Yandex Database serverless cluster.
      */
@@ -243,4 +249,5 @@ export interface YdbDatabaseServerlessArgs {
      * Name for the Yandex Database serverless cluster.
      */
     name?: pulumi.Input<string>;
+    serverlessDatabases?: pulumi.Input<pulumi.Input<inputs.YdbDatabaseServerlessServerlessDatabase>[]>;
 }

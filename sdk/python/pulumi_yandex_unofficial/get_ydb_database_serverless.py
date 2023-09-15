@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetYdbDatabaseServerlessResult',
@@ -21,7 +23,7 @@ class GetYdbDatabaseServerlessResult:
     """
     A collection of values returned by getYdbDatabaseServerless.
     """
-    def __init__(__self__, created_at=None, database_id=None, database_path=None, deletion_protection=None, description=None, document_api_endpoint=None, folder_id=None, id=None, labels=None, location_id=None, name=None, status=None, tls_enabled=None, ydb_api_endpoint=None, ydb_full_endpoint=None):
+    def __init__(__self__, created_at=None, database_id=None, database_path=None, deletion_protection=None, description=None, document_api_endpoint=None, folder_id=None, id=None, labels=None, location_id=None, name=None, serverless_databases=None, status=None, tls_enabled=None, ydb_api_endpoint=None, ydb_full_endpoint=None):
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -55,6 +57,9 @@ class GetYdbDatabaseServerlessResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if serverless_databases and not isinstance(serverless_databases, list):
+            raise TypeError("Expected argument 'serverless_databases' to be a list")
+        pulumi.set(__self__, "serverless_databases", serverless_databases)
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
@@ -149,6 +154,11 @@ class GetYdbDatabaseServerlessResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="serverlessDatabases")
+    def serverless_databases(self) -> Sequence['outputs.GetYdbDatabaseServerlessServerlessDatabaseResult']:
+        return pulumi.get(self, "serverless_databases")
+
+    @property
     @pulumi.getter
     def status(self) -> str:
         """
@@ -200,6 +210,7 @@ class AwaitableGetYdbDatabaseServerlessResult(GetYdbDatabaseServerlessResult):
             labels=self.labels,
             location_id=self.location_id,
             name=self.name,
+            serverless_databases=self.serverless_databases,
             status=self.status,
             tls_enabled=self.tls_enabled,
             ydb_api_endpoint=self.ydb_api_endpoint,
@@ -210,6 +221,7 @@ def get_ydb_database_serverless(database_id: Optional[str] = None,
                                 deletion_protection: Optional[bool] = None,
                                 folder_id: Optional[str] = None,
                                 name: Optional[str] = None,
+                                serverless_databases: Optional[Sequence[pulumi.InputType['GetYdbDatabaseServerlessServerlessDatabaseArgs']]] = None,
                                 opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetYdbDatabaseServerlessResult:
     """
     Get information about a Yandex Database serverless cluster.
@@ -237,6 +249,7 @@ def get_ydb_database_serverless(database_id: Optional[str] = None,
     __args__['deletionProtection'] = deletion_protection
     __args__['folderId'] = folder_id
     __args__['name'] = name
+    __args__['serverlessDatabases'] = serverless_databases
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('yandex:index/getYdbDatabaseServerless:getYdbDatabaseServerless', __args__, opts=opts, typ=GetYdbDatabaseServerlessResult).value
 
@@ -252,6 +265,7 @@ def get_ydb_database_serverless(database_id: Optional[str] = None,
         labels=__ret__.labels,
         location_id=__ret__.location_id,
         name=__ret__.name,
+        serverless_databases=__ret__.serverless_databases,
         status=__ret__.status,
         tls_enabled=__ret__.tls_enabled,
         ydb_api_endpoint=__ret__.ydb_api_endpoint,
@@ -263,6 +277,7 @@ def get_ydb_database_serverless_output(database_id: Optional[pulumi.Input[Option
                                        deletion_protection: Optional[pulumi.Input[Optional[bool]]] = None,
                                        folder_id: Optional[pulumi.Input[Optional[str]]] = None,
                                        name: Optional[pulumi.Input[Optional[str]]] = None,
+                                       serverless_databases: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetYdbDatabaseServerlessServerlessDatabaseArgs']]]]] = None,
                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetYdbDatabaseServerlessResult]:
     """
     Get information about a Yandex Database serverless cluster.

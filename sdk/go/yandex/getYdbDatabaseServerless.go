@@ -59,7 +59,8 @@ type LookupYdbDatabaseServerlessArgs struct {
 	// It will be deduced from provider configuration if not set explicitly.
 	FolderId *string `pulumi:"folderId"`
 	// Name of the Yandex Database serverless cluster.
-	Name *string `pulumi:"name"`
+	Name                *string                                      `pulumi:"name"`
+	ServerlessDatabases []GetYdbDatabaseServerlessServerlessDatabase `pulumi:"serverlessDatabases"`
 }
 
 // A collection of values returned by getYdbDatabaseServerless.
@@ -82,8 +83,9 @@ type LookupYdbDatabaseServerlessResult struct {
 	// A set of key/value label pairs assigned to the Yandex Database serverless cluster.
 	Labels map[string]string `pulumi:"labels"`
 	// Location ID of the Yandex Database serverless cluster.
-	LocationId string  `pulumi:"locationId"`
-	Name       *string `pulumi:"name"`
+	LocationId          string                                       `pulumi:"locationId"`
+	Name                *string                                      `pulumi:"name"`
+	ServerlessDatabases []GetYdbDatabaseServerlessServerlessDatabase `pulumi:"serverlessDatabases"`
 	// Status of the Yandex Database serverless cluster.
 	Status string `pulumi:"status"`
 	// Whether TLS is enabled for the Yandex Database serverless cluster.
@@ -119,7 +121,8 @@ type LookupYdbDatabaseServerlessOutputArgs struct {
 	// It will be deduced from provider configuration if not set explicitly.
 	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
 	// Name of the Yandex Database serverless cluster.
-	Name pulumi.StringPtrInput `pulumi:"name"`
+	Name                pulumi.StringPtrInput                                `pulumi:"name"`
+	ServerlessDatabases GetYdbDatabaseServerlessServerlessDatabaseArrayInput `pulumi:"serverlessDatabases"`
 }
 
 func (LookupYdbDatabaseServerlessOutputArgs) ElementType() reflect.Type {
@@ -192,6 +195,12 @@ func (o LookupYdbDatabaseServerlessResultOutput) LocationId() pulumi.StringOutpu
 
 func (o LookupYdbDatabaseServerlessResultOutput) Name() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+func (o LookupYdbDatabaseServerlessResultOutput) ServerlessDatabases() GetYdbDatabaseServerlessServerlessDatabaseArrayOutput {
+	return o.ApplyT(func(v LookupYdbDatabaseServerlessResult) []GetYdbDatabaseServerlessServerlessDatabase {
+		return v.ServerlessDatabases
+	}).(GetYdbDatabaseServerlessServerlessDatabaseArrayOutput)
 }
 
 // Status of the Yandex Database serverless cluster.

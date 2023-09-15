@@ -5661,6 +5661,20 @@ export interface GetServerlessContainerSecretArgs {
     versionId: pulumi.Input<string>;
 }
 
+export interface GetYdbDatabaseServerlessServerlessDatabase {
+    enableThrottlingRcuLimit?: boolean;
+    provisionedRcuLimit?: number;
+    storageSizeLimit?: number;
+    throttlingRcuLimit?: number;
+}
+
+export interface GetYdbDatabaseServerlessServerlessDatabaseArgs {
+    enableThrottlingRcuLimit?: pulumi.Input<boolean>;
+    provisionedRcuLimit?: pulumi.Input<number>;
+    storageSizeLimit?: pulumi.Input<number>;
+    throttlingRcuLimit?: pulumi.Input<number>;
+}
+
 export interface KubernetesClusterKmsProvider {
     /**
      * KMS key ID.
@@ -8936,4 +8950,11 @@ export interface YdbDatabaseDedicatedStorageConfig {
      * Available presets can be obtained via `yc ydb storage-type list` command.
      */
     storageTypeId: pulumi.Input<string>;
+}
+
+export interface YdbDatabaseServerlessServerlessDatabase {
+    enableThrottlingRcuLimit?: pulumi.Input<boolean>;
+    provisionedRcuLimit?: pulumi.Input<number>;
+    storageSizeLimit?: pulumi.Input<number>;
+    throttlingRcuLimit?: pulumi.Input<number>;
 }

@@ -18346,6 +18346,53 @@
                 "storageTypeId"
             ]
         },
+        "yandex:index/YdbDatabaseServerlessServerlessDatabase:YdbDatabaseServerlessServerlessDatabase": {
+            "properties": {
+                "enableThrottlingRcuLimit": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "provisionedRcuLimit": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "storageSizeLimit": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "throttlingRcuLimit": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "enableThrottlingRcuLimit",
+                        "provisionedRcuLimit",
+                        "storageSizeLimit",
+                        "throttlingRcuLimit"
+                    ]
+                }
+            }
+        },
         "yandex:index/cmCertificateChallenge:cmCertificateChallenge": {
             "properties": {
                 "createdAt": {
@@ -34803,6 +34850,54 @@
                 }
             }
         },
+        "yandex:index/getYdbDatabaseServerlessServerlessDatabase:getYdbDatabaseServerlessServerlessDatabase": {
+            "properties": {
+                "enableThrottlingRcuLimit": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "provisionedRcuLimit": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "storageSizeLimit": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "throttlingRcuLimit": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "enableThrottlingRcuLimit",
+                "provisionedRcuLimit",
+                "storageSizeLimit",
+                "throttlingRcuLimit"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "yandex:index/lockboxSecretVersionEntry:lockboxSecretVersionEntry": {
             "properties": {
                 "command": {
@@ -49558,6 +49653,51 @@
                 "type": "object"
             }
         },
+        "yandex:index/yandexBillingCloudBinding:yandexBillingCloudBinding": {
+            "description": "Creating the bind, which connect the cloud to the billing account.\nFor more information, see [Cloud binding](https://cloud.yandex.ru/docs/billing/operations/pin-cloud).\n\n**Note**: Currently resource deletion do not unbind cloud from billing account. Instead it does no-operations.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as yandex from \"@pulumi/yandex\";\n\nconst foo = new yandex.yandexBillingCloudBinding(\"foo\", {\n    billingAccountId: \"foo-ba-id\",\n    cloudId: \"foo-cloud-id\",\n});\n```\n```python\nimport pulumi\nimport pulumi_yandex_unofficial as yandex\n\nfoo = yandex.YandexBillingCloudBinding(\"foo\",\n    billing_account_id=\"foo-ba-id\",\n    cloud_id=\"foo-cloud-id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Yandex = Pulumi.Yandex;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var foo = new Yandex.YandexBillingCloudBinding(\"foo\", new()\n    {\n        BillingAccountId = \"foo-ba-id\",\n        CloudId = \"foo-cloud-id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-yandex/sdk/go/yandex\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := yandex.NewyandexBillingCloudBinding(ctx, \"foo\", \u0026yandex.yandexBillingCloudBindingArgs{\n\t\t\tBillingAccountId: pulumi.String(\"foo-ba-id\"),\n\t\t\tCloudId:          pulumi.String(\"foo-cloud-id\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.yandex.yandexBillingCloudBinding;\nimport com.pulumi.yandex.YandexBillingCloudBindingArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var foo = new YandexBillingCloudBinding(\"foo\", YandexBillingCloudBindingArgs.builder()        \n            .billingAccountId(\"foo-ba-id\")\n            .cloudId(\"foo-cloud-id\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  foo:\n    type: yandex:yandexBillingCloudBinding\n    properties:\n      billingAccountId: foo-ba-id\n      cloudId: foo-cloud-id\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nCloud binding can be imported by ID\n\n```sh\n $ pulumi import yandex:index/yandexBillingCloudBinding:yandexBillingCloudBinding foo cloud-binding-id\n```\n\n **Note**`cloud-binding-id` has the following structure `{billing_account_id}/cloud/{cloud_id}`,\n\nwhere `{billing_account_id}` refers to the billing account id (`foo-ba-id` in example above)\n\nand `{cloud_id}` refers to the cloud id (`foo-cloud-id` in example above). This way `cloud-binding-id` must be equals to `foo-ba-id/cloud/foo-cloud-id`. ",
+            "properties": {
+                "billingAccountId": {
+                    "type": "string",
+                    "description": "ID of billing account to bind cloud to.\n"
+                },
+                "cloudId": {
+                    "type": "string",
+                    "description": "ID of cloud to bind.\n"
+                }
+            },
+            "required": [
+                "billingAccountId",
+                "cloudId"
+            ],
+            "inputProperties": {
+                "billingAccountId": {
+                    "type": "string",
+                    "description": "ID of billing account to bind cloud to.\n"
+                },
+                "cloudId": {
+                    "type": "string",
+                    "description": "ID of cloud to bind.\n"
+                }
+            },
+            "requiredInputs": [
+                "billingAccountId",
+                "cloudId"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering yandexBillingCloudBinding resources.\n",
+                "properties": {
+                    "billingAccountId": {
+                        "type": "string",
+                        "description": "ID of billing account to bind cloud to.\n"
+                    },
+                    "cloudId": {
+                        "type": "string",
+                        "description": "ID of cloud to bind.\n"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "yandex:index/yandexComputeFilesystem:yandexComputeFilesystem": {
             "description": "File storage is a virtual file system that can be attached to multiple Compute Cloud VMs in the same availability zone.\n\nUsers can share files in storage and use them from different VMs.\n\nStorage is attached to a VM through the [Filesystem in Userspace](https://en.wikipedia.org/wiki/Filesystem_in_Userspace) (FUSE) interface as a [virtiofs](https://www.kernel.org/doc/html/latest/filesystems/virtiofs.html) device that is not linked to the host file system directly.\n\nFor more information about filesystems in Yandex.Cloud, see:\n\n* [Documentation](https://cloud.yandex.com/docs/compute/concepts/filesystem)\n* How-to Guides\n    * [Attach filesystem to a VM](https://cloud.yandex.com/en-ru/docs/compute/operations/filesystem/attach-to-vm)\n    * [Detach filesystem from VM](https://cloud.yandex.com/en-ru/docs/compute/operations/filesystem/detach-from-vm)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as yandex from \"@pulumi/yandex\";\n\nconst defaultyandexComputeFilesystem = new yandex.yandexComputeFilesystem(\"default\", {\n    labels: {\n        environment: \"test\",\n    },\n    size: 10,\n    type: \"network-ssd\",\n    zone: \"ru-central1-a\",\n});\n```\n```python\nimport pulumi\nimport pulumi_yandex_unofficial as yandex\n\ndefault = yandex.YandexComputeFilesystem(\"default\",\n    labels={\n        \"environment\": \"test\",\n    },\n    size=10,\n    type=\"network-ssd\",\n    zone=\"ru-central1-a\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Yandex = Pulumi.Yandex;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var @default = new Yandex.YandexComputeFilesystem(\"default\", new()\n    {\n        Labels = \n        {\n            { \"environment\", \"test\" },\n        },\n        Size = 10,\n        Type = \"network-ssd\",\n        Zone = \"ru-central1-a\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-yandex/sdk/go/yandex\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := yandex.NewyandexComputeFilesystem(ctx, \"default\", \u0026yandex.yandexComputeFilesystemArgs{\n\t\t\tLabels: pulumi.StringMap{\n\t\t\t\t\"environment\": pulumi.String(\"test\"),\n\t\t\t},\n\t\t\tSize: pulumi.Int(10),\n\t\t\tType: pulumi.String(\"network-ssd\"),\n\t\t\tZone: pulumi.String(\"ru-central1-a\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.yandex.yandexComputeFilesystem;\nimport com.pulumi.yandex.YandexComputeFilesystemArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var default_ = new YandexComputeFilesystem(\"default\", YandexComputeFilesystemArgs.builder()        \n            .labels(Map.of(\"environment\", \"test\"))\n            .size(10)\n            .type(\"network-ssd\")\n            .zone(\"ru-central1-a\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  default:\n    type: yandex:yandexComputeFilesystem\n    properties:\n      labels:\n        environment: test\n      size: 10\n      type: network-ssd\n      zone: ru-central1-a\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nA filesystem can be imported using any of these accepted formats\n\n```sh\n $ pulumi import yandex:index/yandexComputeFilesystem:yandexComputeFilesystem default filesystem_id\n```\n\n ",
             "properties": {
@@ -50219,6 +50359,12 @@
                     "type": "string",
                     "description": "Name for the Yandex Database serverless cluster.\n"
                 },
+                "serverlessDatabases": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/yandex:index/YdbDatabaseServerlessServerlessDatabase:YdbDatabaseServerlessServerlessDatabase"
+                    }
+                },
                 "status": {
                     "type": "string",
                     "description": "Status of the Yandex Database serverless cluster.\n"
@@ -50243,6 +50389,7 @@
                 "folderId",
                 "locationId",
                 "name",
+                "serverlessDatabases",
                 "status",
                 "tlsEnabled",
                 "ydbApiEndpoint",
@@ -50277,6 +50424,12 @@
                 "name": {
                     "type": "string",
                     "description": "Name for the Yandex Database serverless cluster.\n"
+                },
+                "serverlessDatabases": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/yandex:index/YdbDatabaseServerlessServerlessDatabase:YdbDatabaseServerlessServerlessDatabase"
+                    }
                 }
             },
             "stateInputs": {
@@ -50322,6 +50475,12 @@
                     "name": {
                         "type": "string",
                         "description": "Name for the Yandex Database serverless cluster.\n"
+                    },
+                    "serverlessDatabases": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/yandex:index/YdbDatabaseServerlessServerlessDatabase:YdbDatabaseServerlessServerlessDatabase"
+                        }
                     },
                     "status": {
                         "type": "string",
@@ -50895,6 +51054,45 @@
                     "logGroupId",
                     "status",
                     "userDomains",
+                    "id"
+                ]
+            }
+        },
+        "yandex:index/getBillingCloudBinding:getBillingCloudBinding": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getBillingCloudBinding.\n",
+                "properties": {
+                    "billingAccountId": {
+                        "type": "string"
+                    },
+                    "cloudId": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "billingAccountId",
+                    "cloudId"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getBillingCloudBinding.\n",
+                "properties": {
+                    "billingAccountId": {
+                        "type": "string"
+                    },
+                    "cloudId": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "billingAccountId",
+                    "cloudId",
                     "id"
                 ]
             }
@@ -56579,6 +56777,12 @@
                     "name": {
                         "type": "string",
                         "description": "Name of the Yandex Database serverless cluster.\n"
+                    },
+                    "serverlessDatabases": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/yandex:index/getYdbDatabaseServerlessServerlessDatabase:getYdbDatabaseServerlessServerlessDatabase"
+                        }
                     }
                 },
                 "type": "object"
@@ -56630,6 +56834,12 @@
                     "name": {
                         "type": "string"
                     },
+                    "serverlessDatabases": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/yandex:index/getYdbDatabaseServerlessServerlessDatabase:getYdbDatabaseServerlessServerlessDatabase"
+                        }
+                    },
                     "status": {
                         "type": "string",
                         "description": "Status of the Yandex Database serverless cluster.\n"
@@ -56656,6 +56866,7 @@
                     "documentApiEndpoint",
                     "labels",
                     "locationId",
+                    "serverlessDatabases",
                     "status",
                     "tlsEnabled",
                     "ydbApiEndpoint",

@@ -43,6 +43,7 @@ from .get_alb_load_balancer import *
 from .get_alb_target_group import *
 from .get_alb_virtual_host import *
 from .get_api_gateway import *
+from .get_billing_cloud_binding import *
 from .get_cdn_origin_group import *
 from .get_cdn_resource import *
 from .get_client_config import *
@@ -161,6 +162,7 @@ from .vpc_route_table import *
 from .vpc_security_group import *
 from .vpc_security_group_rule import *
 from .vpc_subnet import *
+from .yandex_billing_cloud_binding import *
 from .yandex_compute_filesystem import *
 from .yandex_ydb_topic import *
 from .ydb_database_dedicated import *
@@ -921,6 +923,14 @@ _utilities.register(
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/vpcSubnet:VpcSubnet": "VpcSubnet"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/yandexBillingCloudBinding",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/yandexBillingCloudBinding:yandexBillingCloudBinding": "YandexBillingCloudBinding"
   }
  },
  {
