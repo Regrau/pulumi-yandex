@@ -14,7 +14,7 @@ namespace Pulumi.Yandex.Outputs
     public sealed class MdbClickhouseClusterZookeeper
     {
         /// <summary>
-        /// Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        /// Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         /// </summary>
         public readonly Outputs.MdbClickhouseClusterZookeeperResources? Resources;
 

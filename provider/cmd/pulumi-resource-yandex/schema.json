@@ -98,11 +98,13 @@
             },
             "storageSecretKey": {
                 "type": "string",
-                "description": "Yandex.Cloud storage service secret key. Used when a storage data/resource doesn't have a secret key explicitly\nspecified.\n"
+                "description": "Yandex.Cloud storage service secret key. Used when a storage data/resource doesn't have a secret key explicitly\nspecified.\n",
+                "secret": true
             },
             "token": {
                 "type": "string",
-                "description": "The access token for API operations.\n"
+                "description": "The access token for API operations.\n",
+                "secret": true
             },
             "ymqAccessKey": {
                 "type": "string",
@@ -1637,6 +1639,15 @@
                             "mapCase": false
                         }
                     }
+                },
+                "rewriteRequestId": {
+                    "type": "boolean",
+                    "description": "When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object"
@@ -1792,6 +1803,15 @@
                             "mapCase": false
                         }
                     }
+                },
+                "rewriteRequestId": {
+                    "type": "boolean",
+                    "description": "When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object"
@@ -1925,6 +1945,15 @@
                 "httpRouterId": {
                     "type": "string",
                     "description": "HTTP router id.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "rewriteRequestId": {
+                    "type": "boolean",
+                    "description": "When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -8771,6 +8800,59 @@
                 "versionId"
             ]
         },
+        "yandex:index/FunctionTriggerContainer:FunctionTriggerContainer": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    },
+                    "willReplaceOnChanges": true
+                },
+                "path": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    },
+                    "willReplaceOnChanges": true
+                },
+                "retryAttempts": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    },
+                    "willReplaceOnChanges": true
+                },
+                "retryInterval": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    },
+                    "willReplaceOnChanges": true
+                },
+                "serviceAccountId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    },
+                    "willReplaceOnChanges": true
+                }
+            },
+            "type": "object",
+            "required": [
+                "id"
+            ]
+        },
         "yandex:index/FunctionTriggerDlq:FunctionTriggerDlq": {
             "properties": {
                 "queueId": {
@@ -10772,7 +10854,7 @@
                 },
                 "resources": {
                     "$ref": "#/types/yandex:index/MdbClickhouseClusterClickhouseResources:MdbClickhouseClusterClickhouseResources",
-                    "description": "Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.\n",
+                    "description": "Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -10781,9 +10863,6 @@
                 }
             },
             "type": "object",
-            "required": [
-                "resources"
-            ],
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
@@ -10795,6 +10874,14 @@
         },
         "yandex:index/MdbClickhouseClusterClickhouseConfig:MdbClickhouseClusterClickhouseConfig": {
             "properties": {
+                "backgroundFetchesPoolSize": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "backgroundPoolSize": {
                     "type": "integer",
                     "language": {
@@ -10817,6 +10904,14 @@
                         "$ref": "#/types/yandex:index/MdbClickhouseClusterClickhouseConfigCompression:MdbClickhouseClusterClickhouseConfigCompression"
                     },
                     "description": "Data compression configuration. The structure is documented below.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "defaultDatabase": {
+                    "type": "string",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -11058,6 +11153,14 @@
                         }
                     }
                 },
+                "totalMemoryProfilerStep": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "traceLogEnabled": {
                     "type": "boolean",
                     "language": {
@@ -11095,8 +11198,10 @@
             "language": {
                 "nodejs": {
                     "requiredOutputs": [
+                        "backgroundFetchesPoolSize",
                         "backgroundPoolSize",
                         "backgroundSchedulePoolSize",
+                        "defaultDatabase",
                         "geobaseUri",
                         "kafka",
                         "keepAliveTimeout",
@@ -11123,6 +11228,7 @@
                         "textLogRetentionSize",
                         "textLogRetentionTime",
                         "timezone",
+                        "totalMemoryProfilerStep",
                         "traceLogEnabled",
                         "traceLogRetentionSize",
                         "traceLogRetentionTime",
@@ -11410,6 +11516,24 @@
                         }
                     }
                 },
+                "minBytesForWidePart": {
+                    "type": "integer",
+                    "description": "Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "minRowsForWidePart": {
+                    "type": "integer",
+                    "description": "Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge": {
                     "type": "integer",
                     "description": "Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.\n",
@@ -11454,6 +11578,15 @@
                             "mapCase": false
                         }
                     }
+                },
+                "ttlOnlyDropParts": {
+                    "type": "boolean",
+                    "description": "Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
@@ -11462,11 +11595,14 @@
                     "requiredOutputs": [
                         "maxBytesToMergeAtMinSpaceInPool",
                         "maxReplicatedMergesInQueue",
+                        "minBytesForWidePart",
+                        "minRowsForWidePart",
                         "numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge",
                         "partsToDelayInsert",
                         "partsToThrowInsert",
                         "replicatedDeduplicationWindow",
-                        "replicatedDeduplicationWindowSeconds"
+                        "replicatedDeduplicationWindowSeconds",
+                        "ttlOnlyDropParts"
                     ]
                 }
             }
@@ -11491,6 +11627,15 @@
                             "mapCase": false
                         }
                     }
+                },
+                "vhost": {
+                    "type": "string",
+                    "description": "RabbitMQ vhost. Default: '\\'.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
@@ -11498,7 +11643,8 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "password",
-                        "username"
+                        "username",
+                        "vhost"
                     ]
                 }
             }
@@ -11507,7 +11653,7 @@
             "properties": {
                 "diskSize": {
                     "type": "integer",
-                    "description": "Volume of the storage available to a ZooKeeper host, in gigabytes.\n",
+                    "description": "Volume of the storage available to a host, in gigabytes.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -11516,7 +11662,7 @@
                 },
                 "diskTypeId": {
                     "type": "string",
-                    "description": "Type of the storage of ZooKeeper hosts.\nFor more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).\n",
+                    "description": "Type of the storage of hosts.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -11533,11 +11679,15 @@
                 }
             },
             "type": "object",
-            "required": [
-                "diskSize",
-                "diskTypeId",
-                "resourcePresetId"
-            ]
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "diskSize",
+                        "diskTypeId",
+                        "resourcePresetId"
+                    ]
+                }
+            }
         },
         "yandex:index/MdbClickhouseClusterCloudStorage:MdbClickhouseClusterCloudStorage": {
             "properties": {
@@ -11804,6 +11954,15 @@
                         }
                     }
                 },
+                "resources": {
+                    "$ref": "#/types/yandex:index/MdbClickhouseClusterShardResources:MdbClickhouseClusterShardResources",
+                    "description": "Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "weight": {
                     "type": "integer",
                     "description": "The weight of shard.\n",
@@ -11822,6 +11981,7 @@
                 "nodejs": {
                     "requiredOutputs": [
                         "name",
+                        "resources",
                         "weight"
                     ]
                 }
@@ -11865,6 +12025,46 @@
                 "name",
                 "shardNames"
             ]
+        },
+        "yandex:index/MdbClickhouseClusterShardResources:MdbClickhouseClusterShardResources": {
+            "properties": {
+                "diskSize": {
+                    "type": "integer",
+                    "description": "Volume of the storage available to a host, in gigabytes.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "diskTypeId": {
+                    "type": "string",
+                    "description": "Type of the storage of hosts.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "resourcePresetId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "diskSize",
+                        "diskTypeId",
+                        "resourcePresetId"
+                    ]
+                }
+            }
         },
         "yandex:index/MdbClickhouseClusterUser:MdbClickhouseClusterUser": {
             "properties": {
@@ -12049,6 +12249,78 @@
                         }
                     }
                 },
+                "allowIntrospectionFunctions": {
+                    "type": "boolean",
+                    "description": "Enables introspections functions for query profiling.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "allowSuspiciousLowCardinalityTypes": {
+                    "type": "boolean",
+                    "description": "Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "asyncInsert": {
+                    "type": "boolean",
+                    "description": "Enables asynchronous inserts. Disabled by default.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "asyncInsertBusyTimeout": {
+                    "type": "integer",
+                    "description": "The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "asyncInsertMaxDataSize": {
+                    "type": "integer",
+                    "description": "The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "asyncInsertStaleTimeout": {
+                    "type": "integer",
+                    "description": "The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the async_insert_busy_timeout with every INSERT query as long as async_insert_max_data_size is not exceeded.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "asyncInsertThreads": {
+                    "type": "integer",
+                    "description": "The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "cancelHttpReadonlyQueriesOnClientClose": {
+                    "type": "boolean",
+                    "description": "Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.\nDefault value: false.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "compile": {
                     "type": "boolean",
                     "description": "Enable compilation of queries.\n",
@@ -12070,6 +12342,15 @@
                 "connectTimeout": {
                     "type": "integer",
                     "description": "Connect timeout in milliseconds on the socket used for communicating with the client.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "connectTimeoutWithFailover": {
+                    "type": "integer",
+                    "description": "The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -12142,6 +12423,15 @@
                 "fallbackToStaleReplicasForDistributedQueries": {
                     "type": "boolean",
                     "description": "Forces a query to an out-of-date replica if updated data is not available.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "flattenNested": {
+                    "type": "boolean",
+                    "description": "Sets the data format of a nested columns.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -12241,6 +12531,15 @@
                 "inputFormatValuesInterpretExpressions": {
                     "type": "boolean",
                     "description": "Enables or disables the full SQL parser if the fast stream parser can’t parse the data.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "insertNullAsDefault": {
+                    "type": "boolean",
+                    "description": "Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -12409,6 +12708,15 @@
                         }
                     }
                 },
+                "maxConcurrentQueriesForUser": {
+                    "type": "integer",
+                    "description": "The maximum number of concurrent requests per user. Default value: 0 (no limit).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "maxExecutionTime": {
                     "type": "integer",
                     "description": "Limits the maximum query execution time in milliseconds.\n",
@@ -12421,6 +12729,15 @@
                 "maxExpandedAstElements": {
                     "type": "integer",
                     "description": "Maximum abstract syntax tree depth after after expansion of aliases.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxHttpGetRedirects": {
+                    "type": "integer",
+                    "description": "Limits the maximum number of HTTP GET redirect hops for URL-engine tables.\nIf the parameter is set to 0 (default), no hops is allowed.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -12592,6 +12909,24 @@
                 "maxThreads": {
                     "type": "integer",
                     "description": "The maximum number of query processing threads, excluding threads for retrieving data from remote servers.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "memoryProfilerSampleProbability": {
+                    "type": "number",
+                    "description": "Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "memoryProfilerStep": {
+                    "type": "integer",
+                    "description": "Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -12832,6 +13167,15 @@
                         }
                     }
                 },
+                "timeoutBeforeCheckingExecutionSpeed": {
+                    "type": "integer",
+                    "description": "Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in min_execution_speed parameter.\nMust be at least 1000.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "timeoutOverflowMode": {
                     "type": "string",
                     "description": "Sets behaviour on overflow. Possible values:\n",
@@ -12867,6 +13211,24 @@
                             "mapCase": false
                         }
                     }
+                },
+                "waitForAsyncInsert": {
+                    "type": "boolean",
+                    "description": "Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "waitForAsyncInsertTimeout": {
+                    "type": "integer",
+                    "description": "The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
@@ -12875,9 +13237,18 @@
                     "requiredOutputs": [
                         "addHttpCorsHeader",
                         "allowDdl",
+                        "allowIntrospectionFunctions",
+                        "allowSuspiciousLowCardinalityTypes",
+                        "asyncInsert",
+                        "asyncInsertBusyTimeout",
+                        "asyncInsertMaxDataSize",
+                        "asyncInsertStaleTimeout",
+                        "asyncInsertThreads",
+                        "cancelHttpReadonlyQueriesOnClientClose",
                         "compile",
                         "compileExpressions",
                         "connectTimeout",
+                        "connectTimeoutWithFailover",
                         "countDistinctImplementation",
                         "distinctOverflowMode",
                         "distributedAggregationMemoryEfficient",
@@ -12886,6 +13257,7 @@
                         "emptyResultForAggregationByEmptySet",
                         "enableHttpCompression",
                         "fallbackToStaleReplicasForDistributedQueries",
+                        "flattenNested",
                         "forceIndexByDate",
                         "forcePrimaryKey",
                         "groupByOverflowMode",
@@ -12897,6 +13269,7 @@
                         "httpSendTimeout",
                         "inputFormatDefaultsForOmittedFields",
                         "inputFormatValuesInterpretExpressions",
+                        "insertNullAsDefault",
                         "insertQuorum",
                         "insertQuorumTimeout",
                         "joinOverflowMode",
@@ -12915,8 +13288,10 @@
                         "maxBytesToSort",
                         "maxBytesToTransfer",
                         "maxColumnsToRead",
+                        "maxConcurrentQueriesForUser",
                         "maxExecutionTime",
                         "maxExpandedAstElements",
+                        "maxHttpGetRedirects",
                         "maxInsertBlockSize",
                         "maxMemoryUsage",
                         "maxMemoryUsageForUser",
@@ -12936,6 +13311,8 @@
                         "maxTemporaryColumns",
                         "maxTemporaryNonConstColumns",
                         "maxThreads",
+                        "memoryProfilerSampleProbability",
+                        "memoryProfilerStep",
                         "mergeTreeMaxBytesToUseCache",
                         "mergeTreeMaxRowsToUseCache",
                         "mergeTreeMinBytesForConcurrentRead",
@@ -12962,10 +13339,13 @@
                         "setOverflowMode",
                         "skipUnavailableShards",
                         "sortOverflowMode",
+                        "timeoutBeforeCheckingExecutionSpeed",
                         "timeoutOverflowMode",
                         "transferOverflowMode",
                         "transformNullIn",
-                        "useUncompressedCache"
+                        "useUncompressedCache",
+                        "waitForAsyncInsert",
+                        "waitForAsyncInsertTimeout"
                     ]
                 }
             }
@@ -12974,7 +13354,7 @@
             "properties": {
                 "resources": {
                     "$ref": "#/types/yandex:index/MdbClickhouseClusterZookeeperResources:MdbClickhouseClusterZookeeperResources",
-                    "description": "Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.\n",
+                    "description": "Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -12995,7 +13375,7 @@
             "properties": {
                 "diskSize": {
                     "type": "integer",
-                    "description": "Volume of the storage available to a ZooKeeper host, in gigabytes.\n",
+                    "description": "Volume of the storage available to a host, in gigabytes.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -13004,7 +13384,7 @@
                 },
                 "diskTypeId": {
                     "type": "string",
-                    "description": "Type of the storage of ZooKeeper hosts.\nFor more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).\n",
+                    "description": "Type of the storage of hosts.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -20140,12 +20520,21 @@
                             "mapCase": false
                         }
                     }
+                },
+                "rewriteRequestId": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
             "required": [
                 "http2Options",
-                "httpRouterId"
+                "httpRouterId",
+                "rewriteRequestId"
             ],
             "language": {
                 "nodejs": {
@@ -20342,12 +20731,21 @@
                             "mapCase": false
                         }
                     }
+                },
+                "rewriteRequestId": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
             "required": [
                 "http2Options",
-                "httpRouterId"
+                "httpRouterId",
+                "rewriteRequestId"
             ],
             "language": {
                 "nodejs": {
@@ -20516,12 +20914,21 @@
                             "mapCase": false
                         }
                     }
+                },
+                "rewriteRequestId": {
+                    "type": "boolean",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
             "required": [
                 "http2Options",
-                "httpRouterId"
+                "httpRouterId",
+                "rewriteRequestId"
             ],
             "language": {
                 "nodejs": {
@@ -25414,6 +25821,63 @@
                 "versionId"
             ]
         },
+        "yandex:index/getFunctionTriggerContainer:getFunctionTriggerContainer": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "retryAttempts": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "retryInterval": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "serviceAccountId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "id",
+                "path",
+                "retryAttempts",
+                "retryInterval",
+                "serviceAccountId"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
         "yandex:index/getFunctionTriggerDlq:getFunctionTriggerDlq": {
             "properties": {
                 "queueId": {
@@ -27605,7 +28069,7 @@
                     "items": {
                         "$ref": "#/types/yandex:index/getMdbClickhouseClusterClickhouseResource:getMdbClickhouseClusterClickhouseResource"
                     },
-                    "description": "Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.\n",
+                    "description": "Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -27626,6 +28090,14 @@
         },
         "yandex:index/getMdbClickhouseClusterClickhouseConfig:getMdbClickhouseClusterClickhouseConfig": {
             "properties": {
+                "backgroundFetchesPoolSize": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "backgroundPoolSize": {
                     "type": "integer",
                     "language": {
@@ -27648,6 +28120,14 @@
                         "$ref": "#/types/yandex:index/getMdbClickhouseClusterClickhouseConfigCompression:getMdbClickhouseClusterClickhouseConfigCompression"
                     },
                     "description": "Data compression configuration. The structure is documented below.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "defaultDatabase": {
+                    "type": "string",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -27892,6 +28372,14 @@
                         }
                     }
                 },
+                "totalMemoryProfilerStep": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "traceLogEnabled": {
                     "type": "boolean",
                     "language": {
@@ -27927,9 +28415,12 @@
             },
             "type": "object",
             "required": [
+                "backgroundFetchesPoolSize",
+                "defaultDatabase",
                 "kafkas",
                 "mergeTree",
-                "rabbitmq"
+                "rabbitmq",
+                "totalMemoryProfilerStep"
             ],
             "language": {
                 "nodejs": {
@@ -28223,6 +28714,24 @@
                         }
                     }
                 },
+                "minBytesForWidePart": {
+                    "type": "integer",
+                    "description": "(Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "minRowsForWidePart": {
+                    "type": "integer",
+                    "description": "(Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge": {
                     "type": "integer",
                     "description": "Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.\n",
@@ -28267,9 +28776,28 @@
                             "mapCase": false
                         }
                     }
+                },
+                "ttlOnlyDropParts": {
+                    "type": "boolean",
+                    "description": "(Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "minBytesForWidePart",
+                "minRowsForWidePart",
+                "ttlOnlyDropParts"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "yandex:index/getMdbClickhouseClusterClickhouseConfigRabbitmq:getMdbClickhouseClusterClickhouseConfigRabbitmq": {
             "properties": {
@@ -28291,15 +28819,32 @@
                             "mapCase": false
                         }
                     }
+                },
+                "vhost": {
+                    "type": "string",
+                    "description": "(Optional) RabbitMQ vhost. Default: '\\'.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
-            "type": "object"
+            "type": "object",
+            "required": [
+                "vhost"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
         },
         "yandex:index/getMdbClickhouseClusterClickhouseResource:getMdbClickhouseClusterClickhouseResource": {
             "properties": {
                 "diskSize": {
                     "type": "integer",
-                    "description": "Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.\n",
+                    "description": "Volume of the storage available to a host, in gigabytes.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -28308,7 +28853,7 @@
                 },
                 "diskTypeId": {
                     "type": "string",
-                    "description": "Type of the storage of ClickHouse or ZooKeeper hosts.\n",
+                    "description": "Type of the storage of hosts.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -28621,6 +29166,15 @@
                         }
                     }
                 },
+                "resources": {
+                    "$ref": "#/types/yandex:index/getMdbClickhouseClusterShardResources:getMdbClickhouseClusterShardResources",
+                    "description": "Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "weight": {
                     "type": "integer",
                     "description": "The weight of the shard.\n",
@@ -28634,6 +29188,7 @@
             "type": "object",
             "required": [
                 "name",
+                "resources",
                 "weight"
             ],
             "language": {
@@ -28682,6 +29237,47 @@
                 "description",
                 "name",
                 "shardNames"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "yandex:index/getMdbClickhouseClusterShardResources:getMdbClickhouseClusterShardResources": {
+            "properties": {
+                "diskSize": {
+                    "type": "integer",
+                    "description": "Volume of the storage available to a host, in gigabytes.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "diskTypeId": {
+                    "type": "string",
+                    "description": "Type of the storage of hosts.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "resourcePresetId": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "diskSize",
+                "diskTypeId",
+                "resourcePresetId"
             ],
             "language": {
                 "nodejs": {
@@ -28861,6 +29457,78 @@
                         }
                     }
                 },
+                "allowIntrospectionFunctions": {
+                    "type": "boolean",
+                    "description": "(Optional) Enables introspections functions for query profiling.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "allowSuspiciousLowCardinalityTypes": {
+                    "type": "boolean",
+                    "description": "(Optional) Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "asyncInsert": {
+                    "type": "boolean",
+                    "description": "(Optional) Enables asynchronous inserts. Disabled by default.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "asyncInsertBusyTimeout": {
+                    "type": "integer",
+                    "description": "(Optional) The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "asyncInsertMaxDataSize": {
+                    "type": "integer",
+                    "description": "(Optional) The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "asyncInsertStaleTimeout": {
+                    "type": "integer",
+                    "description": "(Optional) The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the async_insert_busy_timeout with every INSERT query as long as async_insert_max_data_size is not exceeded.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "asyncInsertThreads": {
+                    "type": "integer",
+                    "description": "(Optional) The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "cancelHttpReadonlyQueriesOnClientClose": {
+                    "type": "boolean",
+                    "description": "(Optional) Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.\nDefault value: false.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "compile": {
                     "type": "boolean",
                     "description": "Enable compilation of queries.\n",
@@ -28882,6 +29550,15 @@
                 "connectTimeout": {
                     "type": "integer",
                     "description": "Connect timeout in milliseconds on the socket used for communicating with the client.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "connectTimeoutWithFailover": {
+                    "type": "integer",
+                    "description": "(Optional) The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -28954,6 +29631,15 @@
                 "fallbackToStaleReplicasForDistributedQueries": {
                     "type": "boolean",
                     "description": "Forces a query to an out-of-date replica if updated data is not available.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "flattenNested": {
+                    "type": "boolean",
+                    "description": "(Optional) Sets the data format of a nested columns.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -29053,6 +29739,15 @@
                 "inputFormatValuesInterpretExpressions": {
                     "type": "boolean",
                     "description": "Enables or disables the full SQL parser if the fast stream parser can’t parse the data.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "insertNullAsDefault": {
+                    "type": "boolean",
+                    "description": "(Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -29221,6 +29916,15 @@
                         }
                     }
                 },
+                "maxConcurrentQueriesForUser": {
+                    "type": "integer",
+                    "description": "(Optional) The maximum number of concurrent requests per user. Default value: 0 (no limit).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "maxExecutionTime": {
                     "type": "integer",
                     "description": "Limits the maximum query execution time in milliseconds.\n",
@@ -29233,6 +29937,15 @@
                 "maxExpandedAstElements": {
                     "type": "integer",
                     "description": "Maximum abstract syntax tree depth after after expansion of aliases.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "maxHttpGetRedirects": {
+                    "type": "integer",
+                    "description": "(Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.\nIf the parameter is set to 0 (default), no hops is allowed.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -29404,6 +30117,24 @@
                 "maxThreads": {
                     "type": "integer",
                     "description": "The maximum number of query processing threads, excluding threads for retrieving data from remote servers.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "memoryProfilerSampleProbability": {
+                    "type": "number",
+                    "description": "(Optional) Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "memoryProfilerStep": {
+                    "type": "integer",
+                    "description": "(Optional) Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -29644,6 +30375,15 @@
                         }
                     }
                 },
+                "timeoutBeforeCheckingExecutionSpeed": {
+                    "type": "integer",
+                    "description": "(Optional) Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in min_execution_speed parameter.\nMust be at least 1000.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
                 "timeoutOverflowMode": {
                     "type": "string",
                     "description": "Sets behaviour on overflow. Possible values:\n",
@@ -29679,15 +30419,42 @@
                             "mapCase": false
                         }
                     }
+                },
+                "waitForAsyncInsert": {
+                    "type": "boolean",
+                    "description": "(Optional) Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "waitForAsyncInsertTimeout": {
+                    "type": "integer",
+                    "description": "(Optional) The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
                 }
             },
             "type": "object",
             "required": [
                 "addHttpCorsHeader",
                 "allowDdl",
+                "allowIntrospectionFunctions",
+                "allowSuspiciousLowCardinalityTypes",
+                "asyncInsert",
+                "asyncInsertBusyTimeout",
+                "asyncInsertMaxDataSize",
+                "asyncInsertStaleTimeout",
+                "asyncInsertThreads",
+                "cancelHttpReadonlyQueriesOnClientClose",
                 "compile",
                 "compileExpressions",
                 "connectTimeout",
+                "connectTimeoutWithFailover",
                 "countDistinctImplementation",
                 "distinctOverflowMode",
                 "distributedAggregationMemoryEfficient",
@@ -29696,6 +30463,7 @@
                 "emptyResultForAggregationByEmptySet",
                 "enableHttpCompression",
                 "fallbackToStaleReplicasForDistributedQueries",
+                "flattenNested",
                 "forceIndexByDate",
                 "forcePrimaryKey",
                 "groupByOverflowMode",
@@ -29707,6 +30475,7 @@
                 "httpSendTimeout",
                 "inputFormatDefaultsForOmittedFields",
                 "inputFormatValuesInterpretExpressions",
+                "insertNullAsDefault",
                 "insertQuorum",
                 "insertQuorumTimeout",
                 "joinOverflowMode",
@@ -29725,8 +30494,10 @@
                 "maxBytesToSort",
                 "maxBytesToTransfer",
                 "maxColumnsToRead",
+                "maxConcurrentQueriesForUser",
                 "maxExecutionTime",
                 "maxExpandedAstElements",
+                "maxHttpGetRedirects",
                 "maxInsertBlockSize",
                 "maxMemoryUsage",
                 "maxMemoryUsageForUser",
@@ -29746,6 +30517,8 @@
                 "maxTemporaryColumns",
                 "maxTemporaryNonConstColumns",
                 "maxThreads",
+                "memoryProfilerSampleProbability",
+                "memoryProfilerStep",
                 "mergeTreeMaxBytesToUseCache",
                 "mergeTreeMaxRowsToUseCache",
                 "mergeTreeMinBytesForConcurrentRead",
@@ -29772,10 +30545,13 @@
                 "setOverflowMode",
                 "skipUnavailableShards",
                 "sortOverflowMode",
+                "timeoutBeforeCheckingExecutionSpeed",
                 "timeoutOverflowMode",
                 "transferOverflowMode",
                 "transformNullIn",
-                "useUncompressedCache"
+                "useUncompressedCache",
+                "waitForAsyncInsert",
+                "waitForAsyncInsertTimeout"
             ],
             "language": {
                 "nodejs": {
@@ -29790,7 +30566,7 @@
                     "items": {
                         "$ref": "#/types/yandex:index/getMdbClickhouseClusterZookeeperResource:getMdbClickhouseClusterZookeeperResource"
                     },
-                    "description": "Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.\n",
+                    "description": "Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -29812,7 +30588,7 @@
             "properties": {
                 "diskSize": {
                     "type": "integer",
-                    "description": "Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.\n",
+                    "description": "Volume of the storage available to a host, in gigabytes.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -29821,7 +30597,7 @@
                 },
                 "diskTypeId": {
                     "type": "string",
-                    "description": "Type of the storage of ClickHouse or ZooKeeper hosts.\n",
+                    "description": "Type of the storage of hosts.\n",
                     "language": {
                         "python": {
                             "mapCase": false
@@ -34554,6 +35330,61 @@
         },
         "yandex:index/vpcGatewaySharedEgressGateway:vpcGatewaySharedEgressGateway": {
             "type": "object"
+        },
+        "yandex:index/yandexYdbTopicConsumer:yandexYdbTopicConsumer": {
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Topic name. Type: string, required. Default value: \"\".\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "serviceType": {
+                    "type": "string",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "startingMessageTimestampMs": {
+                    "type": "integer",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                },
+                "supportedCodecs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Supported data encodings. Types: array[string]. Default value: [\"gzip\", \"raw\", \"zstd\"].\n",
+                    "language": {
+                        "python": {
+                            "mapCase": false
+                        }
+                    }
+                }
+            },
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredOutputs": [
+                        "name",
+                        "serviceType",
+                        "startingMessageTimestampMs",
+                        "supportedCodecs"
+                    ]
+                }
+            }
         }
     },
     "provider": {
@@ -34603,11 +35434,13 @@
             },
             "storageSecretKey": {
                 "type": "string",
-                "description": "Yandex.Cloud storage service secret key. Used when a storage data/resource doesn't have a secret key explicitly\nspecified.\n"
+                "description": "Yandex.Cloud storage service secret key. Used when a storage data/resource doesn't have a secret key explicitly\nspecified.\n",
+                "secret": true
             },
             "token": {
                 "type": "string",
-                "description": "The access token for API operations.\n"
+                "description": "The access token for API operations.\n",
+                "secret": true
             },
             "ymqAccessKey": {
                 "type": "string",
@@ -34672,11 +35505,13 @@
             },
             "storageSecretKey": {
                 "type": "string",
-                "description": "Yandex.Cloud storage service secret key. Used when a storage data/resource doesn't have a secret key explicitly\nspecified.\n"
+                "description": "Yandex.Cloud storage service secret key. Used when a storage data/resource doesn't have a secret key explicitly\nspecified.\n",
+                "secret": true
             },
             "token": {
                 "type": "string",
-                "description": "The access token for API operations.\n"
+                "description": "The access token for API operations.\n",
+                "secret": true
             },
             "ymqAccessKey": {
                 "type": "string",
@@ -38746,7 +39581,7 @@
                 },
                 "content": {
                     "$ref": "#/types/yandex:index/FunctionContent:FunctionContent",
-                    "description": "Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.\n* `content.0.zip_filename` - Filename to zip archive for the version.\n"
+                    "description": "Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.\n* `content.0.zip_filename` - Filename to zip archive for the version.\n"
                 },
                 "createdAt": {
                     "type": "string",
@@ -38800,7 +39635,7 @@
                 },
                 "package": {
                     "$ref": "#/types/yandex:index/FunctionPackage:FunctionPackage",
-                    "description": "Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.\n* `package.0.sha_256` - SHA256 hash of the version deployment package.\n* `package.0.bucket_name` - Name of the bucket that stores the code for the version.\n* `package.0.object_name` - Name of the object in the bucket that stores the code for the version.\n"
+                    "description": "Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.\n* `package.0.sha_256` - SHA256 hash of the version deployment package.\n* `package.0.bucket_name` - Name of the bucket that stores the code for the version.\n* `package.0.object_name` - Name of the object in the bucket that stores the code for the version.\n"
                 },
                 "runtime": {
                     "type": "string",
@@ -38854,7 +39689,7 @@
                 },
                 "content": {
                     "$ref": "#/types/yandex:index/FunctionContent:FunctionContent",
-                    "description": "Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.\n* `content.0.zip_filename` - Filename to zip archive for the version.\n"
+                    "description": "Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.\n* `content.0.zip_filename` - Filename to zip archive for the version.\n"
                 },
                 "description": {
                     "type": "string",
@@ -38897,7 +39732,7 @@
                 },
                 "package": {
                     "$ref": "#/types/yandex:index/FunctionPackage:FunctionPackage",
-                    "description": "Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.\n* `package.0.sha_256` - SHA256 hash of the version deployment package.\n* `package.0.bucket_name` - Name of the bucket that stores the code for the version.\n* `package.0.object_name` - Name of the object in the bucket that stores the code for the version.\n"
+                    "description": "Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.\n* `package.0.sha_256` - SHA256 hash of the version deployment package.\n* `package.0.bucket_name` - Name of the bucket that stores the code for the version.\n* `package.0.object_name` - Name of the object in the bucket that stores the code for the version.\n"
                 },
                 "runtime": {
                     "type": "string",
@@ -38941,7 +39776,7 @@
                     },
                     "content": {
                         "$ref": "#/types/yandex:index/FunctionContent:FunctionContent",
-                        "description": "Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.\n* `content.0.zip_filename` - Filename to zip archive for the version.\n"
+                        "description": "Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.\n* `content.0.zip_filename` - Filename to zip archive for the version.\n"
                     },
                     "createdAt": {
                         "type": "string",
@@ -38996,7 +39831,7 @@
                     },
                     "package": {
                         "$ref": "#/types/yandex:index/FunctionPackage:FunctionPackage",
-                        "description": "Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.\n* `package.0.sha_256` - SHA256 hash of the version deployment package.\n* `package.0.bucket_name` - Name of the bucket that stores the code for the version.\n* `package.0.object_name` - Name of the object in the bucket that stores the code for the version.\n"
+                        "description": "Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.\n* `package.0.sha_256` - SHA256 hash of the version deployment package.\n* `package.0.bucket_name` - Name of the bucket that stores the code for the version.\n* `package.0.object_name` - Name of the object in the bucket that stores the code for the version.\n"
                     },
                     "runtime": {
                         "type": "string",
@@ -39170,6 +40005,9 @@
         "yandex:index/functionTrigger:FunctionTrigger": {
             "description": "Allows management of [Yandex Cloud Functions Trigger](https://cloud.yandex.com/docs/functions/)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as yandex from \"@pulumi/yandex\";\n\nconst myTrigger = new yandex.FunctionTrigger(\"my_trigger\", {\n    description: \"any description\",\n    function: {\n        id: \"tf-test\",\n    },\n    timer: {\n        cronExpression: \"* * * * ? *\",\n    },\n});\n```\n```python\nimport pulumi\nimport pulumi_yandex_unofficial as yandex\n\nmy_trigger = yandex.FunctionTrigger(\"myTrigger\",\n    description=\"any description\",\n    function=yandex.FunctionTriggerFunctionArgs(\n        id=\"tf-test\",\n    ),\n    timer=yandex.FunctionTriggerTimerArgs(\n        cron_expression=\"* * * * ? *\",\n    ))\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Yandex = Pulumi.Yandex;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myTrigger = new Yandex.FunctionTrigger(\"myTrigger\", new()\n    {\n        Description = \"any description\",\n        Function = new Yandex.Inputs.FunctionTriggerFunctionArgs\n        {\n            Id = \"tf-test\",\n        },\n        Timer = new Yandex.Inputs.FunctionTriggerTimerArgs\n        {\n            CronExpression = \"* * * * ? *\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-yandex/sdk/go/yandex\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := yandex.NewFunctionTrigger(ctx, \"myTrigger\", \u0026yandex.FunctionTriggerArgs{\n\t\t\tDescription: pulumi.String(\"any description\"),\n\t\t\tFunction: \u0026FunctionTriggerFunctionArgs{\n\t\t\t\tId: pulumi.String(\"tf-test\"),\n\t\t\t},\n\t\t\tTimer: \u0026FunctionTriggerTimerArgs{\n\t\t\t\tCronExpression: pulumi.String(\"* * * * ? *\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.yandex.FunctionTrigger;\nimport com.pulumi.yandex.FunctionTriggerArgs;\nimport com.pulumi.yandex.inputs.FunctionTriggerFunctionArgs;\nimport com.pulumi.yandex.inputs.FunctionTriggerTimerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myTrigger = new FunctionTrigger(\"myTrigger\", FunctionTriggerArgs.builder()        \n            .description(\"any description\")\n            .function(FunctionTriggerFunctionArgs.builder()\n                .id(\"tf-test\")\n                .build())\n            .timer(FunctionTriggerTimerArgs.builder()\n                .cronExpression(\"* * * * ? *\")\n                .build())\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myTrigger:\n    type: yandex:FunctionTrigger\n    properties:\n      description: any description\n      function:\n        id: tf-test\n      timer:\n        cronExpression: '* * * * ? *'\n```\n{{% /example %}}\n{{% /examples %}}",
             "properties": {
+                "container": {
+                    "$ref": "#/types/yandex:index/FunctionTriggerContainer:FunctionTriggerContainer"
+                },
                 "createdAt": {
                     "type": "string",
                     "description": "Creation timestamp of the Yandex Cloud Functions Trigger\n"
@@ -39228,10 +40066,13 @@
             "required": [
                 "createdAt",
                 "folderId",
-                "function",
                 "name"
             ],
             "inputProperties": {
+                "container": {
+                    "$ref": "#/types/yandex:index/FunctionTriggerContainer:FunctionTriggerContainer",
+                    "willReplaceOnChanges": true
+                },
                 "description": {
                     "type": "string",
                     "description": "Description of the Yandex Cloud Functions Trigger\n"
@@ -39292,12 +40133,13 @@
                     "willReplaceOnChanges": true
                 }
             },
-            "requiredInputs": [
-                "function"
-            ],
             "stateInputs": {
                 "description": "Input properties used for looking up and filtering FunctionTrigger resources.\n",
                 "properties": {
+                    "container": {
+                        "$ref": "#/types/yandex:index/FunctionTriggerContainer:FunctionTriggerContainer",
+                        "willReplaceOnChanges": true
+                    },
                     "createdAt": {
                         "type": "string",
                         "description": "Creation timestamp of the Yandex Cloud Functions Trigger\n"
@@ -41217,6 +42059,10 @@
                     "type": "string",
                     "description": "The network load balancer creation timestamp.\n"
                 },
+                "deletionProtection": {
+                    "type": "boolean",
+                    "description": "Flag that protects the network load balancer from accidental deletion.\n"
+                },
                 "description": {
                     "type": "string",
                     "description": "An optional description of the network load balancer. Provide this property when\nyou create the resource.\n"
@@ -41245,7 +42091,7 @@
                 },
                 "regionId": {
                     "type": "string",
-                    "description": "ID of the availability zone where the network load balancer resides.\nThe default is 'ru-central1'.\n"
+                    "description": "ID of the availability zone where the network load balancer resides.\nIf omitted, default region is being used.\n"
                 },
                 "type": {
                     "type": "string",
@@ -41254,8 +42100,10 @@
             },
             "required": [
                 "createdAt",
+                "deletionProtection",
                 "folderId",
-                "name"
+                "name",
+                "regionId"
             ],
             "inputProperties": {
                 "attachedTargetGroups": {
@@ -41264,6 +42112,10 @@
                         "$ref": "#/types/yandex:index/LbNetworkLoadBalancerAttachedTargetGroup:LbNetworkLoadBalancerAttachedTargetGroup"
                     },
                     "description": "An AttachedTargetGroup resource. The structure is documented below.\n"
+                },
+                "deletionProtection": {
+                    "type": "boolean",
+                    "description": "Flag that protects the network load balancer from accidental deletion.\n"
                 },
                 "description": {
                     "type": "string",
@@ -41294,7 +42146,7 @@
                 },
                 "regionId": {
                     "type": "string",
-                    "description": "ID of the availability zone where the network load balancer resides.\nThe default is 'ru-central1'.\n"
+                    "description": "ID of the availability zone where the network load balancer resides.\nIf omitted, default region is being used.\n"
                 },
                 "type": {
                     "type": "string",
@@ -41314,6 +42166,10 @@
                     "createdAt": {
                         "type": "string",
                         "description": "The network load balancer creation timestamp.\n"
+                    },
+                    "deletionProtection": {
+                        "type": "boolean",
+                        "description": "Flag that protects the network load balancer from accidental deletion.\n"
                     },
                     "description": {
                         "type": "string",
@@ -41344,7 +42200,7 @@
                     },
                     "regionId": {
                         "type": "string",
-                        "description": "ID of the availability zone where the network load balancer resides.\nThe default is 'ru-central1'.\n"
+                        "description": "ID of the availability zone where the network load balancer resides.\nIf omitted, default region is being used.\n"
                     },
                     "type": {
                         "type": "string",
@@ -41382,7 +42238,7 @@
                 },
                 "regionId": {
                     "type": "string",
-                    "description": "ID of the availability zone where the target group resides. \nThe default is 'ru-central1'.\n"
+                    "description": "ID of the availability zone where the target group resides.\nIf omitted, default region is being used.\n"
                 },
                 "targets": {
                     "type": "array",
@@ -41395,7 +42251,8 @@
             "required": [
                 "createdAt",
                 "folderId",
-                "name"
+                "name",
+                "regionId"
             ],
             "inputProperties": {
                 "description": {
@@ -41420,7 +42277,7 @@
                 },
                 "regionId": {
                     "type": "string",
-                    "description": "ID of the availability zone where the target group resides. \nThe default is 'ru-central1'.\n"
+                    "description": "ID of the availability zone where the target group resides.\nIf omitted, default region is being used.\n"
                 },
                 "targets": {
                     "type": "array",
@@ -41459,7 +42316,7 @@
                     },
                     "regionId": {
                         "type": "string",
-                        "description": "ID of the availability zone where the target group resides. \nThe default is 'ru-central1'.\n"
+                        "description": "ID of the availability zone where the target group resides.\nIf omitted, default region is being used.\n"
                     },
                     "targets": {
                         "type": "array",
@@ -42104,7 +42961,6 @@
                 }
             },
             "requiredInputs": [
-                "clickhouse",
                 "environment",
                 "hosts",
                 "networkId"
@@ -47541,6 +48397,10 @@
                     "type": "string",
                     "description": "Creation timestamp of the key.\n"
                 },
+                "deletionProtection": {
+                    "type": "boolean",
+                    "description": "Flag that protects the address from accidental deletion.\n"
+                },
                 "description": {
                     "type": "string",
                     "description": "An optional description of this resource. Provide this property when\nyou create the resource.\n"
@@ -47575,6 +48435,7 @@
             },
             "required": [
                 "createdAt",
+                "deletionProtection",
                 "folderId",
                 "labels",
                 "name",
@@ -47582,6 +48443,10 @@
                 "used"
             ],
             "inputProperties": {
+                "deletionProtection": {
+                    "type": "boolean",
+                    "description": "Flag that protects the address from accidental deletion.\n"
+                },
                 "description": {
                     "type": "string",
                     "description": "An optional description of this resource. Provide this property when\nyou create the resource.\n"
@@ -47614,6 +48479,10 @@
                     "createdAt": {
                         "type": "string",
                         "description": "Creation timestamp of the key.\n"
+                    },
+                    "deletionProtection": {
+                        "type": "boolean",
+                        "description": "Flag that protects the address from accidental deletion.\n"
                     },
                     "description": {
                         "type": "string",
@@ -48833,6 +49702,127 @@
                         "type": "string",
                         "description": "Availability zone where the filesystem will reside.\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "yandex:index/yandexYdbTopic:yandexYdbTopic": {
+            "description": "Get information about a Yandex YDB Topics. For more information, see\n[the official documentation](https://cloud.yandex.ru/docs/ydb/concepts/#ydb).\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as yandex from \"@pulumi/yandex\";\n\nconst databaseName = new yandex.YdbDatabaseServerless(\"database_name\", {\n    locationId: \"ru-central1\",\n});\nconst topic = new yandex.yandexYdbTopic(\"topic\", {\n    consumers: [{\n        name: \"consumer-name\",\n        startingMessageTimestampMs: 0,\n        supportedCodecs: [\n            \"raw\",\n            \"gzip\",\n        ],\n    }],\n    databaseEndpoint: databaseName.ydbFullEndpoint,\n    partitionsCount: 1,\n    retentionPeriodMs: 2000000,\n    supportedCodecs: [\n        \"raw\",\n        \"gzip\",\n    ],\n});\n```\n```python\nimport pulumi\nimport pulumi_yandex_unofficial as yandex\n\ndatabase_name = yandex.YdbDatabaseServerless(\"databaseName\", location_id=\"ru-central1\")\ntopic = yandex.YandexYdbTopic(\"topic\",\n    consumers=[yandex.YandexYdbTopicConsumerArgs(\n        name=\"consumer-name\",\n        starting_message_timestamp_ms=0,\n        supported_codecs=[\n            \"raw\",\n            \"gzip\",\n        ],\n    )],\n    database_endpoint=database_name.ydb_full_endpoint,\n    partitions_count=1,\n    retention_period_ms=2000000,\n    supported_codecs=[\n        \"raw\",\n        \"gzip\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Yandex = Pulumi.Yandex;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var databaseName = new Yandex.YdbDatabaseServerless(\"databaseName\", new()\n    {\n        LocationId = \"ru-central1\",\n    });\n\n    var topic = new Yandex.YandexYdbTopic(\"topic\", new()\n    {\n        Consumers = new[]\n        {\n            new Yandex.Inputs.YandexYdbTopicConsumerArgs\n            {\n                Name = \"consumer-name\",\n                StartingMessageTimestampMs = 0,\n                SupportedCodecs = new[]\n                {\n                    \"raw\",\n                    \"gzip\",\n                },\n            },\n        },\n        DatabaseEndpoint = databaseName.YdbFullEndpoint,\n        PartitionsCount = 1,\n        RetentionPeriodMs = 2000000,\n        SupportedCodecs = new[]\n        {\n            \"raw\",\n            \"gzip\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-yandex/sdk/go/yandex\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\tdatabaseName, err := yandex.NewYdbDatabaseServerless(ctx, \"databaseName\", \u0026yandex.YdbDatabaseServerlessArgs{\n\t\t\tLocationId: pulumi.String(\"ru-central1\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = yandex.NewyandexYdbTopic(ctx, \"topic\", \u0026yandex.yandexYdbTopicArgs{\n\t\t\tConsumers: YandexYdbTopicConsumerArray{\n\t\t\t\t\u0026YandexYdbTopicConsumerArgs{\n\t\t\t\t\tName:                       pulumi.String(\"consumer-name\"),\n\t\t\t\t\tStartingMessageTimestampMs: pulumi.Int(0),\n\t\t\t\t\tSupportedCodecs: pulumi.StringArray{\n\t\t\t\t\t\tpulumi.String(\"raw\"),\n\t\t\t\t\t\tpulumi.String(\"gzip\"),\n\t\t\t\t\t},\n\t\t\t\t},\n\t\t\t},\n\t\t\tDatabaseEndpoint:  databaseName.YdbFullEndpoint,\n\t\t\tPartitionsCount:   pulumi.Int(1),\n\t\t\tRetentionPeriodMs: pulumi.Int(2000000),\n\t\t\tSupportedCodecs: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"raw\"),\n\t\t\t\tpulumi.String(\"gzip\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.yandex.YdbDatabaseServerless;\nimport com.pulumi.yandex.YdbDatabaseServerlessArgs;\nimport com.pulumi.yandex.yandexYdbTopic;\nimport com.pulumi.yandex.YandexYdbTopicArgs;\nimport com.pulumi.yandex.inputs.YandexYdbTopicConsumerArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var databaseName = new YdbDatabaseServerless(\"databaseName\", YdbDatabaseServerlessArgs.builder()        \n            .locationId(\"ru-central1\")\n            .build());\n\n        var topic = new YandexYdbTopic(\"topic\", YandexYdbTopicArgs.builder()        \n            .consumers(YandexYdbTopicConsumerArgs.builder()\n                .name(\"consumer-name\")\n                .startingMessageTimestampMs(0)\n                .supportedCodecs(                \n                    \"raw\",\n                    \"gzip\")\n                .build())\n            .databaseEndpoint(databaseName.ydbFullEndpoint())\n            .partitionsCount(1)\n            .retentionPeriodMs(2000000)\n            .supportedCodecs(            \n                \"raw\",\n                \"gzip\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  databaseName:\n    type: yandex:YdbDatabaseServerless\n    properties:\n      locationId: ru-central1\n  topic:\n    type: yandex:yandexYdbTopic\n    properties:\n      consumers:\n        - name: consumer-name\n          startingMessageTimestampMs: 0\n          supportedCodecs:\n            - raw\n            - gzip\n      databaseEndpoint: ${databaseName.ydbFullEndpoint}\n      partitionsCount: 1\n      retentionPeriodMs: 2e+06\n      supportedCodecs:\n        - raw\n        - gzip\n```\n{{% /example %}}\n{{% /examples %}}\n## Consumer data type description\n\n* `name` - Reader's name. Type: string, required. Default value: \"\".\n* `supported_codecs` - Supported data encodings. Types:Types: array[string], optional. Default value: [\"gzip\", \"raw\", \"zstd\"].\n* `starting_message_timestamp_ms` - Timestamp in UNIX timestamp format from which the reader will start reading data. Type: integer, optional. Default value: 0.\n",
+            "properties": {
+                "consumers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/yandex:index/yandexYdbTopicConsumer:yandexYdbTopicConsumer"
+                    },
+                    "description": "Topic Readers. Types: array[consumer], optional. Default value: null.\n"
+                },
+                "databaseEndpoint": {
+                    "type": "string",
+                    "description": "YDB database endpoint. Types: string, required. Default value: \"\".\n"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Topic name. Type: string, required. Default value: \"\".\n"
+                },
+                "partitionsCount": {
+                    "type": "integer",
+                    "description": "Number of partitions. Types: integer, optional. Default value: 2.\n"
+                },
+                "retentionPeriodMs": {
+                    "type": "integer",
+                    "description": "Data retention time. Types: integer, required. Default value: 86400000\n"
+                },
+                "supportedCodecs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Supported data encodings. Types: array[string]. Default value: [\"gzip\", \"raw\", \"zstd\"].\n"
+                }
+            },
+            "required": [
+                "consumers",
+                "databaseEndpoint",
+                "name",
+                "supportedCodecs"
+            ],
+            "inputProperties": {
+                "consumers": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/types/yandex:index/yandexYdbTopicConsumer:yandexYdbTopicConsumer"
+                    },
+                    "description": "Topic Readers. Types: array[consumer], optional. Default value: null.\n"
+                },
+                "databaseEndpoint": {
+                    "type": "string",
+                    "description": "YDB database endpoint. Types: string, required. Default value: \"\".\n"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Topic name. Type: string, required. Default value: \"\".\n"
+                },
+                "partitionsCount": {
+                    "type": "integer",
+                    "description": "Number of partitions. Types: integer, optional. Default value: 2.\n"
+                },
+                "retentionPeriodMs": {
+                    "type": "integer",
+                    "description": "Data retention time. Types: integer, required. Default value: 86400000\n"
+                },
+                "supportedCodecs": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "Supported data encodings. Types: array[string]. Default value: [\"gzip\", \"raw\", \"zstd\"].\n"
+                }
+            },
+            "requiredInputs": [
+                "databaseEndpoint"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering yandexYdbTopic resources.\n",
+                "properties": {
+                    "consumers": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/yandex:index/yandexYdbTopicConsumer:yandexYdbTopicConsumer"
+                        },
+                        "description": "Topic Readers. Types: array[consumer], optional. Default value: null.\n"
+                    },
+                    "databaseEndpoint": {
+                        "type": "string",
+                        "description": "YDB database endpoint. Types: string, required. Default value: \"\".\n"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Topic name. Type: string, required. Default value: \"\".\n"
+                    },
+                    "partitionsCount": {
+                        "type": "integer",
+                        "description": "Number of partitions. Types: integer, optional. Default value: 2.\n"
+                    },
+                    "retentionPeriodMs": {
+                        "type": "integer",
+                        "description": "Data retention time. Types: integer, required. Default value: 86400000\n"
+                    },
+                    "supportedCodecs": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Supported data encodings. Types: array[string]. Default value: [\"gzip\", \"raw\", \"zstd\"].\n"
                     }
                 },
                 "type": "object"
@@ -51279,6 +52269,55 @@
                 ]
             }
         },
+        "yandex:index/getContainerRegistryIpPermission:getContainerRegistryIpPermission": {
+            "inputs": {
+                "description": "A collection of arguments for invoking getContainerRegistryIpPermission.\n",
+                "properties": {
+                    "registryId": {
+                        "type": "string"
+                    },
+                    "registryName": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "outputs": {
+                "description": "A collection of values returned by getContainerRegistryIpPermission.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "pulls": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "pushes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "registryId": {
+                        "type": "string"
+                    },
+                    "registryName": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "pulls",
+                    "pushes",
+                    "registryId",
+                    "registryName",
+                    "id"
+                ]
+            }
+        },
         "yandex:index/getContainerRepository:getContainerRepository": {
             "description": "Get information about a Yandex Container Repository. For more information, see\n[the official documentation](https://cloud.yandex.com/docs/container-registry/concepts/repository)\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as yandex from \"@pulumi/yandex\";\n\nconst repo_1 = pulumi.output(yandex.getContainerRepository({\n    name: \"some_repository_name\",\n}));\nconst repo_2 = pulumi.output(yandex.getContainerRepository({\n    repositoryId: \"some_repository_id\",\n}));\n```\n```python\nimport pulumi\nimport pulumi_yandex as yandex\n\nrepo_1 = yandex.get_container_repository(name=\"some_repository_name\")\nrepo_2 = yandex.get_container_repository(repository_id=\"some_repository_id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing Pulumi;\nusing Yandex = Pulumi.Yandex;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var repo_1 = Yandex.GetContainerRepository.Invoke(new()\n    {\n        Name = \"some_repository_name\",\n    });\n\n    var repo_2 = Yandex.GetContainerRepository.Invoke(new()\n    {\n        RepositoryId = \"some_repository_id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/pulumi/pulumi-yandex/sdk/go/yandex\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err = yandex.LookupContainerRepository(ctx, \u0026GetContainerRepositoryArgs{\n\t\t\tName: pulumi.StringRef(\"some_repository_name\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = yandex.LookupContainerRepository(ctx, \u0026GetContainerRepositoryArgs{\n\t\t\tRepositoryId: pulumi.StringRef(\"some_repository_id\"),\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.yandex.YandexFunctions;\nimport com.pulumi.yandex.inputs.GetContainerRepositoryArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var repo-1 = YandexFunctions.getContainerRepository(GetContainerRepositoryArgs.builder()\n            .name(\"some_repository_name\")\n            .build());\n\n        final var repo-2 = YandexFunctions.getContainerRepository(GetContainerRepositoryArgs.builder()\n            .repositoryId(\"some_repository_id\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  repo-1:\n    fn::invoke:\n      Function: yandex:getContainerRepository\n      Arguments:\n        name: some_repository_name\n  repo-2:\n    fn::invoke:\n      Function: yandex:getContainerRepository\n      Arguments:\n        repositoryId: some_repository_id\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
@@ -51716,6 +52755,12 @@
             "outputs": {
                 "description": "A collection of values returned by getFunctionTrigger.\n",
                 "properties": {
+                    "containers": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/yandex:index/getFunctionTriggerContainer:getFunctionTriggerContainer"
+                        }
+                    },
                     "createdAt": {
                         "type": "string",
                         "description": "Creation timestamp of the Yandex Cloud Functions Trigger\n"
@@ -51802,6 +52847,7 @@
                 },
                 "type": "object",
                 "required": [
+                    "containers",
                     "createdAt",
                     "description",
                     "dlqs",
@@ -52488,6 +53534,10 @@
                         "type": "string",
                         "description": "Creation timestamp of this network load balancer.\n"
                     },
+                    "deletionProtection": {
+                        "type": "boolean",
+                        "description": "Flag that protects the network load balancer from accidental deletion.\n"
+                    },
                     "description": {
                         "type": "string",
                         "description": "Description of the network load balancer.\n"
@@ -52533,6 +53583,7 @@
                 "required": [
                     "attachedTargetGroups",
                     "createdAt",
+                    "deletionProtection",
                     "description",
                     "folderId",
                     "labels",
@@ -54862,6 +55913,10 @@
                         "type": "string",
                         "description": "Creation timestamp of this address.\n"
                     },
+                    "deletionProtection": {
+                        "type": "boolean",
+                        "description": "Flag that protects the address from accidental deletion.\n"
+                    },
                     "description": {
                         "type": "string",
                         "description": "Description of the address.\n"
@@ -54903,6 +55958,7 @@
                 "required": [
                     "addressId",
                     "createdAt",
+                    "deletionProtection",
                     "description",
                     "externalIpv4Addresses",
                     "folderId",

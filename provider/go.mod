@@ -10,7 +10,7 @@ replace (
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.33.0
 	github.com/pulumi/pulumi/sdk/v3 v3.46.0
-	github.com/yandex-cloud/terraform-provider-yandex v0.85.0
+	github.com/yandex-cloud/terraform-provider-yandex v0.86.0
 )
 
 require (
@@ -144,6 +144,7 @@ require (
 	github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99 // indirect
 	github.com/jen20/awspolicyequivalence v1.1.0 // indirect
 	github.com/jmespath/go-jmespath v0.4.0 // indirect
+	github.com/jonboulle/clockwork v0.2.2 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 // indirect
 	github.com/kevinburke/ssh_config v1.1.0 // indirect
@@ -209,8 +210,11 @@ require (
 	github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f // indirect
 	github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
-	github.com/yandex-cloud/go-genproto v0.0.0-20221226093308-1d6b7100d2d6 // indirect
-	github.com/yandex-cloud/go-sdk v0.0.0-20221226094806-d4be4392edaf // indirect
+	github.com/yandex-cloud/go-genproto v0.0.0-20230206132150-6ca32cf303b0 // indirect
+	github.com/yandex-cloud/go-sdk v0.0.0-20230206132606-87dc0cfe84bf // indirect
+	github.com/ydb-platform/terraform-provider-ydb v0.0.0-20230123171258-1a80b4185d46 // indirect
+	github.com/ydb-platform/ydb-go-genproto v0.0.0-20221215182650-986f9d10542f // indirect
+	github.com/ydb-platform/ydb-go-sdk/v3 v3.42.5 // indirect
 	github.com/zclconf/go-cty v1.10.0 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	go.uber.org/atomic v1.9.0 // indirect

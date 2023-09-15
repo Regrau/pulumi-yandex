@@ -208,6 +208,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpcSubnet{}
 	case "yandex:index/yandexComputeFilesystem:yandexComputeFilesystem":
 		r = &YandexComputeFilesystem{}
+	case "yandex:index/yandexYdbTopic:yandexYdbTopic":
+		r = &YandexYdbTopic{}
 	case "yandex:index/ydbDatabaseDedicated:YdbDatabaseDedicated":
 		r = &YdbDatabaseDedicated{}
 	case "yandex:index/ydbDatabaseIamBinding:ydbDatabaseIamBinding":
@@ -710,6 +712,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"yandex",
 		"index/yandexComputeFilesystem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/yandexYdbTopic",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

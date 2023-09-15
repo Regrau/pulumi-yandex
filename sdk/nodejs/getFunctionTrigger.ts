@@ -57,6 +57,7 @@ export interface GetFunctionTriggerArgs {
  * A collection of values returned by getFunctionTrigger.
  */
 export interface GetFunctionTriggerResult {
+    readonly containers: outputs.GetFunctionTriggerContainer[];
     /**
      * Creation timestamp of the Yandex Cloud Functions Trigger
      */

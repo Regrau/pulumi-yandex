@@ -77,6 +77,8 @@ type LbNetworkLoadBalancer struct {
 	AttachedTargetGroups LbNetworkLoadBalancerAttachedTargetGroupArrayOutput `pulumi:"attachedTargetGroups"`
 	// The network load balancer creation timestamp.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Flag that protects the network load balancer from accidental deletion.
+	DeletionProtection pulumi.BoolOutput `pulumi:"deletionProtection"`
 	// An optional description of the network load balancer. Provide this property when
 	// you create the resource.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
@@ -90,8 +92,8 @@ type LbNetworkLoadBalancer struct {
 	// Name of the listener. The name must be unique for each listener on a single load balancer.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ID of the availability zone where the network load balancer resides.
-	// The default is 'ru-central1'.
-	RegionId pulumi.StringPtrOutput `pulumi:"regionId"`
+	// If omitted, default region is being used.
+	RegionId pulumi.StringOutput `pulumi:"regionId"`
 	// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
 	Type pulumi.StringPtrOutput `pulumi:"type"`
 }
@@ -130,6 +132,8 @@ type lbNetworkLoadBalancerState struct {
 	AttachedTargetGroups []LbNetworkLoadBalancerAttachedTargetGroup `pulumi:"attachedTargetGroups"`
 	// The network load balancer creation timestamp.
 	CreatedAt *string `pulumi:"createdAt"`
+	// Flag that protects the network load balancer from accidental deletion.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
 	// An optional description of the network load balancer. Provide this property when
 	// you create the resource.
 	Description *string `pulumi:"description"`
@@ -143,7 +147,7 @@ type lbNetworkLoadBalancerState struct {
 	// Name of the listener. The name must be unique for each listener on a single load balancer.
 	Name *string `pulumi:"name"`
 	// ID of the availability zone where the network load balancer resides.
-	// The default is 'ru-central1'.
+	// If omitted, default region is being used.
 	RegionId *string `pulumi:"regionId"`
 	// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
 	Type *string `pulumi:"type"`
@@ -154,6 +158,8 @@ type LbNetworkLoadBalancerState struct {
 	AttachedTargetGroups LbNetworkLoadBalancerAttachedTargetGroupArrayInput
 	// The network load balancer creation timestamp.
 	CreatedAt pulumi.StringPtrInput
+	// Flag that protects the network load balancer from accidental deletion.
+	DeletionProtection pulumi.BoolPtrInput
 	// An optional description of the network load balancer. Provide this property when
 	// you create the resource.
 	Description pulumi.StringPtrInput
@@ -167,7 +173,7 @@ type LbNetworkLoadBalancerState struct {
 	// Name of the listener. The name must be unique for each listener on a single load balancer.
 	Name pulumi.StringPtrInput
 	// ID of the availability zone where the network load balancer resides.
-	// The default is 'ru-central1'.
+	// If omitted, default region is being used.
 	RegionId pulumi.StringPtrInput
 	// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
 	Type pulumi.StringPtrInput
@@ -180,6 +186,8 @@ func (LbNetworkLoadBalancerState) ElementType() reflect.Type {
 type lbNetworkLoadBalancerArgs struct {
 	// An AttachedTargetGroup resource. The structure is documented below.
 	AttachedTargetGroups []LbNetworkLoadBalancerAttachedTargetGroup `pulumi:"attachedTargetGroups"`
+	// Flag that protects the network load balancer from accidental deletion.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
 	// An optional description of the network load balancer. Provide this property when
 	// you create the resource.
 	Description *string `pulumi:"description"`
@@ -193,7 +201,7 @@ type lbNetworkLoadBalancerArgs struct {
 	// Name of the listener. The name must be unique for each listener on a single load balancer.
 	Name *string `pulumi:"name"`
 	// ID of the availability zone where the network load balancer resides.
-	// The default is 'ru-central1'.
+	// If omitted, default region is being used.
 	RegionId *string `pulumi:"regionId"`
 	// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
 	Type *string `pulumi:"type"`
@@ -203,6 +211,8 @@ type lbNetworkLoadBalancerArgs struct {
 type LbNetworkLoadBalancerArgs struct {
 	// An AttachedTargetGroup resource. The structure is documented below.
 	AttachedTargetGroups LbNetworkLoadBalancerAttachedTargetGroupArrayInput
+	// Flag that protects the network load balancer from accidental deletion.
+	DeletionProtection pulumi.BoolPtrInput
 	// An optional description of the network load balancer. Provide this property when
 	// you create the resource.
 	Description pulumi.StringPtrInput
@@ -216,7 +226,7 @@ type LbNetworkLoadBalancerArgs struct {
 	// Name of the listener. The name must be unique for each listener on a single load balancer.
 	Name pulumi.StringPtrInput
 	// ID of the availability zone where the network load balancer resides.
-	// The default is 'ru-central1'.
+	// If omitted, default region is being used.
 	RegionId pulumi.StringPtrInput
 	// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
 	Type pulumi.StringPtrInput
@@ -321,6 +331,11 @@ func (o LbNetworkLoadBalancerOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *LbNetworkLoadBalancer) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// Flag that protects the network load balancer from accidental deletion.
+func (o LbNetworkLoadBalancerOutput) DeletionProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v *LbNetworkLoadBalancer) pulumi.BoolOutput { return v.DeletionProtection }).(pulumi.BoolOutput)
+}
+
 // An optional description of the network load balancer. Provide this property when
 // you create the resource.
 func (o LbNetworkLoadBalancerOutput) Description() pulumi.StringPtrOutput {
@@ -349,9 +364,9 @@ func (o LbNetworkLoadBalancerOutput) Name() pulumi.StringOutput {
 }
 
 // ID of the availability zone where the network load balancer resides.
-// The default is 'ru-central1'.
-func (o LbNetworkLoadBalancerOutput) RegionId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LbNetworkLoadBalancer) pulumi.StringPtrOutput { return v.RegionId }).(pulumi.StringPtrOutput)
+// If omitted, default region is being used.
+func (o LbNetworkLoadBalancerOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v *LbNetworkLoadBalancer) pulumi.StringOutput { return v.RegionId }).(pulumi.StringOutput)
 }
 
 // Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.

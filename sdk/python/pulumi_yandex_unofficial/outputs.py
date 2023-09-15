@@ -227,6 +227,7 @@ __all__ = [
     'FunctionPackage',
     'FunctionScalingPolicyPolicy',
     'FunctionSecret',
+    'FunctionTriggerContainer',
     'FunctionTriggerDlq',
     'FunctionTriggerFunction',
     'FunctionTriggerIot',
@@ -294,6 +295,7 @@ __all__ = [
     'MdbClickhouseClusterMlModel',
     'MdbClickhouseClusterShard',
     'MdbClickhouseClusterShardGroup',
+    'MdbClickhouseClusterShardResources',
     'MdbClickhouseClusterUser',
     'MdbClickhouseClusterUserPermission',
     'MdbClickhouseClusterUserQuota',
@@ -567,6 +569,7 @@ __all__ = [
     'GetFunctionConnectivityResult',
     'GetFunctionScalingPolicyPolicyResult',
     'GetFunctionSecretResult',
+    'GetFunctionTriggerContainerResult',
     'GetFunctionTriggerDlqResult',
     'GetFunctionTriggerFunctionResult',
     'GetFunctionTriggerIotResult',
@@ -634,6 +637,7 @@ __all__ = [
     'GetMdbClickhouseClusterMlModelResult',
     'GetMdbClickhouseClusterShardResult',
     'GetMdbClickhouseClusterShardGroupResult',
+    'GetMdbClickhouseClusterShardResourcesResult',
     'GetMdbClickhouseClusterUserResult',
     'GetMdbClickhouseClusterUserPermissionResult',
     'GetMdbClickhouseClusterUserQuotaResult',
@@ -747,6 +751,7 @@ __all__ = [
     'MdbPostgresqlDatabaseExtension',
     'MdbPostgresqlUserPermission',
     'VpcGatewaySharedEgressGateway',
+    'YandexYdbTopicConsumer',
 ]
 
 @pulumi.output_type
@@ -2995,6 +3000,8 @@ class AlbLoadBalancerListenerHttpHandler(dict):
             suggest = "http2_options"
         elif key == "httpRouterId":
             suggest = "http_router_id"
+        elif key == "rewriteRequestId":
+            suggest = "rewrite_request_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in AlbLoadBalancerListenerHttpHandler. Access the value via the '{suggest}' property getter instead.")
@@ -3010,11 +3017,13 @@ class AlbLoadBalancerListenerHttpHandler(dict):
     def __init__(__self__, *,
                  allow_http10: Optional[bool] = None,
                  http2_options: Optional['outputs.AlbLoadBalancerListenerHttpHandlerHttp2Options'] = None,
-                 http_router_id: Optional[str] = None):
+                 http_router_id: Optional[str] = None,
+                 rewrite_request_id: Optional[bool] = None):
         """
         :param bool allow_http10: If set, will enable only HTTP1 protocol with HTTP1.0 support.
         :param 'AlbLoadBalancerListenerHttpHandlerHttp2OptionsArgs' http2_options: If set, will enable HTTP2 protocol for the handler. The structure is documented below.
         :param str http_router_id: HTTP router id.
+        :param bool rewrite_request_id: When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
         """
         if allow_http10 is not None:
             pulumi.set(__self__, "allow_http10", allow_http10)
@@ -3022,6 +3031,8 @@ class AlbLoadBalancerListenerHttpHandler(dict):
             pulumi.set(__self__, "http2_options", http2_options)
         if http_router_id is not None:
             pulumi.set(__self__, "http_router_id", http_router_id)
+        if rewrite_request_id is not None:
+            pulumi.set(__self__, "rewrite_request_id", rewrite_request_id)
 
     @property
     @pulumi.getter(name="allowHttp10")
@@ -3046,6 +3057,14 @@ class AlbLoadBalancerListenerHttpHandler(dict):
         HTTP router id.
         """
         return pulumi.get(self, "http_router_id")
+
+    @property
+    @pulumi.getter(name="rewriteRequestId")
+    def rewrite_request_id(self) -> Optional[bool]:
+        """
+        When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
+        """
+        return pulumi.get(self, "rewrite_request_id")
 
 
 @pulumi.output_type
@@ -3300,6 +3319,8 @@ class AlbLoadBalancerListenerTlsDefaultHandlerHttpHandler(dict):
             suggest = "http2_options"
         elif key == "httpRouterId":
             suggest = "http_router_id"
+        elif key == "rewriteRequestId":
+            suggest = "rewrite_request_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in AlbLoadBalancerListenerTlsDefaultHandlerHttpHandler. Access the value via the '{suggest}' property getter instead.")
@@ -3315,11 +3336,13 @@ class AlbLoadBalancerListenerTlsDefaultHandlerHttpHandler(dict):
     def __init__(__self__, *,
                  allow_http10: Optional[bool] = None,
                  http2_options: Optional['outputs.AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2Options'] = None,
-                 http_router_id: Optional[str] = None):
+                 http_router_id: Optional[str] = None,
+                 rewrite_request_id: Optional[bool] = None):
         """
         :param bool allow_http10: If set, will enable only HTTP1 protocol with HTTP1.0 support.
         :param 'AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2OptionsArgs' http2_options: If set, will enable HTTP2 protocol for the handler. The structure is documented below.
         :param str http_router_id: HTTP router id.
+        :param bool rewrite_request_id: When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
         """
         if allow_http10 is not None:
             pulumi.set(__self__, "allow_http10", allow_http10)
@@ -3327,6 +3350,8 @@ class AlbLoadBalancerListenerTlsDefaultHandlerHttpHandler(dict):
             pulumi.set(__self__, "http2_options", http2_options)
         if http_router_id is not None:
             pulumi.set(__self__, "http_router_id", http_router_id)
+        if rewrite_request_id is not None:
+            pulumi.set(__self__, "rewrite_request_id", rewrite_request_id)
 
     @property
     @pulumi.getter(name="allowHttp10")
@@ -3351,6 +3376,14 @@ class AlbLoadBalancerListenerTlsDefaultHandlerHttpHandler(dict):
         HTTP router id.
         """
         return pulumi.get(self, "http_router_id")
+
+    @property
+    @pulumi.getter(name="rewriteRequestId")
+    def rewrite_request_id(self) -> Optional[bool]:
+        """
+        When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
+        """
+        return pulumi.get(self, "rewrite_request_id")
 
 
 @pulumi.output_type
@@ -3558,6 +3591,8 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandler(dict):
             suggest = "http2_options"
         elif key == "httpRouterId":
             suggest = "http_router_id"
+        elif key == "rewriteRequestId":
+            suggest = "rewrite_request_id"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandler. Access the value via the '{suggest}' property getter instead.")
@@ -3573,11 +3608,13 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandler(dict):
     def __init__(__self__, *,
                  allow_http10: Optional[bool] = None,
                  http2_options: Optional['outputs.AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2Options'] = None,
-                 http_router_id: Optional[str] = None):
+                 http_router_id: Optional[str] = None,
+                 rewrite_request_id: Optional[bool] = None):
         """
         :param bool allow_http10: If set, will enable only HTTP1 protocol with HTTP1.0 support.
         :param 'AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2OptionsArgs' http2_options: If set, will enable HTTP2 protocol for the handler. The structure is documented below.
         :param str http_router_id: HTTP router id.
+        :param bool rewrite_request_id: When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
         """
         if allow_http10 is not None:
             pulumi.set(__self__, "allow_http10", allow_http10)
@@ -3585,6 +3622,8 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandler(dict):
             pulumi.set(__self__, "http2_options", http2_options)
         if http_router_id is not None:
             pulumi.set(__self__, "http_router_id", http_router_id)
+        if rewrite_request_id is not None:
+            pulumi.set(__self__, "rewrite_request_id", rewrite_request_id)
 
     @property
     @pulumi.getter(name="allowHttp10")
@@ -3609,6 +3648,14 @@ class AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandler(dict):
         HTTP router id.
         """
         return pulumi.get(self, "http_router_id")
+
+    @property
+    @pulumi.getter(name="rewriteRequestId")
+    def rewrite_request_id(self) -> Optional[bool]:
+        """
+        When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
+        """
+        return pulumi.get(self, "rewrite_request_id")
 
 
 @pulumi.output_type
@@ -13295,6 +13342,71 @@ class FunctionSecret(dict):
 
 
 @pulumi.output_type
+class FunctionTriggerContainer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "retryAttempts":
+            suggest = "retry_attempts"
+        elif key == "retryInterval":
+            suggest = "retry_interval"
+        elif key == "serviceAccountId":
+            suggest = "service_account_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FunctionTriggerContainer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FunctionTriggerContainer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FunctionTriggerContainer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: str,
+                 path: Optional[str] = None,
+                 retry_attempts: Optional[str] = None,
+                 retry_interval: Optional[str] = None,
+                 service_account_id: Optional[str] = None):
+        pulumi.set(__self__, "id", id)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if retry_attempts is not None:
+            pulumi.set(__self__, "retry_attempts", retry_attempts)
+        if retry_interval is not None:
+            pulumi.set(__self__, "retry_interval", retry_interval)
+        if service_account_id is not None:
+            pulumi.set(__self__, "service_account_id", service_account_id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="retryAttempts")
+    def retry_attempts(self) -> Optional[str]:
+        return pulumi.get(self, "retry_attempts")
+
+    @property
+    @pulumi.getter(name="retryInterval")
+    def retry_interval(self) -> Optional[str]:
+        return pulumi.get(self, "retry_interval")
+
+    @property
+    @pulumi.getter(name="serviceAccountId")
+    def service_account_id(self) -> Optional[str]:
+        return pulumi.get(self, "service_account_id")
+
+
+@pulumi.output_type
 class FunctionTriggerDlq(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -16054,23 +16166,16 @@ class MdbClickhouseClusterBackupWindowStart(dict):
 @pulumi.output_type
 class MdbClickhouseClusterClickhouse(dict):
     def __init__(__self__, *,
-                 resources: 'outputs.MdbClickhouseClusterClickhouseResources',
-                 config: Optional['outputs.MdbClickhouseClusterClickhouseConfig'] = None):
+                 config: Optional['outputs.MdbClickhouseClusterClickhouseConfig'] = None,
+                 resources: Optional['outputs.MdbClickhouseClusterClickhouseResources'] = None):
         """
-        :param 'MdbClickhouseClusterClickhouseResourcesArgs' resources: Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
         :param 'MdbClickhouseClusterClickhouseConfigArgs' config: Main ClickHouse cluster configuration.
+        :param 'MdbClickhouseClusterClickhouseResourcesArgs' resources: Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         """
-        pulumi.set(__self__, "resources", resources)
         if config is not None:
             pulumi.set(__self__, "config", config)
-
-    @property
-    @pulumi.getter
-    def resources(self) -> 'outputs.MdbClickhouseClusterClickhouseResources':
-        """
-        Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
-        """
-        return pulumi.get(self, "resources")
+        if resources is not None:
+            pulumi.set(__self__, "resources", resources)
 
     @property
     @pulumi.getter
@@ -16080,16 +16185,28 @@ class MdbClickhouseClusterClickhouse(dict):
         """
         return pulumi.get(self, "config")
 
+    @property
+    @pulumi.getter
+    def resources(self) -> Optional['outputs.MdbClickhouseClusterClickhouseResources']:
+        """
+        Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources")
+
 
 @pulumi.output_type
 class MdbClickhouseClusterClickhouseConfig(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "backgroundPoolSize":
+        if key == "backgroundFetchesPoolSize":
+            suggest = "background_fetches_pool_size"
+        elif key == "backgroundPoolSize":
             suggest = "background_pool_size"
         elif key == "backgroundSchedulePoolSize":
             suggest = "background_schedule_pool_size"
+        elif key == "defaultDatabase":
+            suggest = "default_database"
         elif key == "geobaseUri":
             suggest = "geobase_uri"
         elif key == "graphiteRollups":
@@ -16140,6 +16257,8 @@ class MdbClickhouseClusterClickhouseConfig(dict):
             suggest = "text_log_retention_size"
         elif key == "textLogRetentionTime":
             suggest = "text_log_retention_time"
+        elif key == "totalMemoryProfilerStep":
+            suggest = "total_memory_profiler_step"
         elif key == "traceLogEnabled":
             suggest = "trace_log_enabled"
         elif key == "traceLogRetentionSize":
@@ -16161,9 +16280,11 @@ class MdbClickhouseClusterClickhouseConfig(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 background_fetches_pool_size: Optional[int] = None,
                  background_pool_size: Optional[int] = None,
                  background_schedule_pool_size: Optional[int] = None,
                  compressions: Optional[Sequence['outputs.MdbClickhouseClusterClickhouseConfigCompression']] = None,
+                 default_database: Optional[str] = None,
                  geobase_uri: Optional[str] = None,
                  graphite_rollups: Optional[Sequence['outputs.MdbClickhouseClusterClickhouseConfigGraphiteRollup']] = None,
                  kafka: Optional['outputs.MdbClickhouseClusterClickhouseConfigKafka'] = None,
@@ -16192,6 +16313,7 @@ class MdbClickhouseClusterClickhouseConfig(dict):
                  text_log_retention_size: Optional[int] = None,
                  text_log_retention_time: Optional[int] = None,
                  timezone: Optional[str] = None,
+                 total_memory_profiler_step: Optional[int] = None,
                  trace_log_enabled: Optional[bool] = None,
                  trace_log_retention_size: Optional[int] = None,
                  trace_log_retention_time: Optional[int] = None,
@@ -16204,12 +16326,16 @@ class MdbClickhouseClusterClickhouseConfig(dict):
         :param 'MdbClickhouseClusterClickhouseConfigMergeTreeArgs' merge_tree: MergeTree engine configuration. The structure is documented below.
         :param 'MdbClickhouseClusterClickhouseConfigRabbitmqArgs' rabbitmq: RabbitMQ connection configuration. The structure is documented below.
         """
+        if background_fetches_pool_size is not None:
+            pulumi.set(__self__, "background_fetches_pool_size", background_fetches_pool_size)
         if background_pool_size is not None:
             pulumi.set(__self__, "background_pool_size", background_pool_size)
         if background_schedule_pool_size is not None:
             pulumi.set(__self__, "background_schedule_pool_size", background_schedule_pool_size)
         if compressions is not None:
             pulumi.set(__self__, "compressions", compressions)
+        if default_database is not None:
+            pulumi.set(__self__, "default_database", default_database)
         if geobase_uri is not None:
             pulumi.set(__self__, "geobase_uri", geobase_uri)
         if graphite_rollups is not None:
@@ -16266,6 +16392,8 @@ class MdbClickhouseClusterClickhouseConfig(dict):
             pulumi.set(__self__, "text_log_retention_time", text_log_retention_time)
         if timezone is not None:
             pulumi.set(__self__, "timezone", timezone)
+        if total_memory_profiler_step is not None:
+            pulumi.set(__self__, "total_memory_profiler_step", total_memory_profiler_step)
         if trace_log_enabled is not None:
             pulumi.set(__self__, "trace_log_enabled", trace_log_enabled)
         if trace_log_retention_size is not None:
@@ -16274,6 +16402,11 @@ class MdbClickhouseClusterClickhouseConfig(dict):
             pulumi.set(__self__, "trace_log_retention_time", trace_log_retention_time)
         if uncompressed_cache_size is not None:
             pulumi.set(__self__, "uncompressed_cache_size", uncompressed_cache_size)
+
+    @property
+    @pulumi.getter(name="backgroundFetchesPoolSize")
+    def background_fetches_pool_size(self) -> Optional[int]:
+        return pulumi.get(self, "background_fetches_pool_size")
 
     @property
     @pulumi.getter(name="backgroundPoolSize")
@@ -16292,6 +16425,11 @@ class MdbClickhouseClusterClickhouseConfig(dict):
         Data compression configuration. The structure is documented below.
         """
         return pulumi.get(self, "compressions")
+
+    @property
+    @pulumi.getter(name="defaultDatabase")
+    def default_database(self) -> Optional[str]:
+        return pulumi.get(self, "default_database")
 
     @property
     @pulumi.getter(name="geobaseUri")
@@ -16447,6 +16585,11 @@ class MdbClickhouseClusterClickhouseConfig(dict):
     @pulumi.getter
     def timezone(self) -> Optional[str]:
         return pulumi.get(self, "timezone")
+
+    @property
+    @pulumi.getter(name="totalMemoryProfilerStep")
+    def total_memory_profiler_step(self) -> Optional[int]:
+        return pulumi.get(self, "total_memory_profiler_step")
 
     @property
     @pulumi.getter(name="traceLogEnabled")
@@ -16824,6 +16967,10 @@ class MdbClickhouseClusterClickhouseConfigMergeTree(dict):
             suggest = "max_bytes_to_merge_at_min_space_in_pool"
         elif key == "maxReplicatedMergesInQueue":
             suggest = "max_replicated_merges_in_queue"
+        elif key == "minBytesForWidePart":
+            suggest = "min_bytes_for_wide_part"
+        elif key == "minRowsForWidePart":
+            suggest = "min_rows_for_wide_part"
         elif key == "numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge":
             suggest = "number_of_free_entries_in_pool_to_lower_max_size_of_merge"
         elif key == "partsToDelayInsert":
@@ -16834,6 +16981,8 @@ class MdbClickhouseClusterClickhouseConfigMergeTree(dict):
             suggest = "replicated_deduplication_window"
         elif key == "replicatedDeduplicationWindowSeconds":
             suggest = "replicated_deduplication_window_seconds"
+        elif key == "ttlOnlyDropParts":
+            suggest = "ttl_only_drop_parts"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in MdbClickhouseClusterClickhouseConfigMergeTree. Access the value via the '{suggest}' property getter instead.")
@@ -16849,24 +16998,34 @@ class MdbClickhouseClusterClickhouseConfigMergeTree(dict):
     def __init__(__self__, *,
                  max_bytes_to_merge_at_min_space_in_pool: Optional[int] = None,
                  max_replicated_merges_in_queue: Optional[int] = None,
+                 min_bytes_for_wide_part: Optional[int] = None,
+                 min_rows_for_wide_part: Optional[int] = None,
                  number_of_free_entries_in_pool_to_lower_max_size_of_merge: Optional[int] = None,
                  parts_to_delay_insert: Optional[int] = None,
                  parts_to_throw_insert: Optional[int] = None,
                  replicated_deduplication_window: Optional[int] = None,
-                 replicated_deduplication_window_seconds: Optional[int] = None):
+                 replicated_deduplication_window_seconds: Optional[int] = None,
+                 ttl_only_drop_parts: Optional[bool] = None):
         """
         :param int max_bytes_to_merge_at_min_space_in_pool: Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
         :param int max_replicated_merges_in_queue: Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
+        :param int min_bytes_for_wide_part: Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        :param int min_rows_for_wide_part: Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
         :param int number_of_free_entries_in_pool_to_lower_max_size_of_merge: Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
         :param int parts_to_delay_insert: Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
         :param int parts_to_throw_insert: Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
         :param int replicated_deduplication_window: Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
         :param int replicated_deduplication_window_seconds: Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
+        :param bool ttl_only_drop_parts: Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
         """
         if max_bytes_to_merge_at_min_space_in_pool is not None:
             pulumi.set(__self__, "max_bytes_to_merge_at_min_space_in_pool", max_bytes_to_merge_at_min_space_in_pool)
         if max_replicated_merges_in_queue is not None:
             pulumi.set(__self__, "max_replicated_merges_in_queue", max_replicated_merges_in_queue)
+        if min_bytes_for_wide_part is not None:
+            pulumi.set(__self__, "min_bytes_for_wide_part", min_bytes_for_wide_part)
+        if min_rows_for_wide_part is not None:
+            pulumi.set(__self__, "min_rows_for_wide_part", min_rows_for_wide_part)
         if number_of_free_entries_in_pool_to_lower_max_size_of_merge is not None:
             pulumi.set(__self__, "number_of_free_entries_in_pool_to_lower_max_size_of_merge", number_of_free_entries_in_pool_to_lower_max_size_of_merge)
         if parts_to_delay_insert is not None:
@@ -16877,6 +17036,8 @@ class MdbClickhouseClusterClickhouseConfigMergeTree(dict):
             pulumi.set(__self__, "replicated_deduplication_window", replicated_deduplication_window)
         if replicated_deduplication_window_seconds is not None:
             pulumi.set(__self__, "replicated_deduplication_window_seconds", replicated_deduplication_window_seconds)
+        if ttl_only_drop_parts is not None:
+            pulumi.set(__self__, "ttl_only_drop_parts", ttl_only_drop_parts)
 
     @property
     @pulumi.getter(name="maxBytesToMergeAtMinSpaceInPool")
@@ -16893,6 +17054,22 @@ class MdbClickhouseClusterClickhouseConfigMergeTree(dict):
         Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
         """
         return pulumi.get(self, "max_replicated_merges_in_queue")
+
+    @property
+    @pulumi.getter(name="minBytesForWidePart")
+    def min_bytes_for_wide_part(self) -> Optional[int]:
+        """
+        Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        """
+        return pulumi.get(self, "min_bytes_for_wide_part")
+
+    @property
+    @pulumi.getter(name="minRowsForWidePart")
+    def min_rows_for_wide_part(self) -> Optional[int]:
+        """
+        Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        """
+        return pulumi.get(self, "min_rows_for_wide_part")
 
     @property
     @pulumi.getter(name="numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge")
@@ -16934,20 +17111,32 @@ class MdbClickhouseClusterClickhouseConfigMergeTree(dict):
         """
         return pulumi.get(self, "replicated_deduplication_window_seconds")
 
+    @property
+    @pulumi.getter(name="ttlOnlyDropParts")
+    def ttl_only_drop_parts(self) -> Optional[bool]:
+        """
+        Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+        """
+        return pulumi.get(self, "ttl_only_drop_parts")
+
 
 @pulumi.output_type
 class MdbClickhouseClusterClickhouseConfigRabbitmq(dict):
     def __init__(__self__, *,
                  password: Optional[str] = None,
-                 username: Optional[str] = None):
+                 username: Optional[str] = None,
+                 vhost: Optional[str] = None):
         """
         :param str password: RabbitMQ user password.
         :param str username: RabbitMQ username.
+        :param str vhost: RabbitMQ vhost. Default: '\\'.
         """
         if password is not None:
             pulumi.set(__self__, "password", password)
         if username is not None:
             pulumi.set(__self__, "username", username)
+        if vhost is not None:
+            pulumi.set(__self__, "vhost", vhost)
 
     @property
     @pulumi.getter
@@ -16964,6 +17153,14 @@ class MdbClickhouseClusterClickhouseConfigRabbitmq(dict):
         RabbitMQ username.
         """
         return pulumi.get(self, "username")
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> Optional[str]:
+        """
+        RabbitMQ vhost. Default: '\\'.
+        """
+        return pulumi.get(self, "vhost")
 
 
 @pulumi.output_type
@@ -16990,38 +17187,39 @@ class MdbClickhouseClusterClickhouseResources(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 disk_size: int,
-                 disk_type_id: str,
-                 resource_preset_id: str):
+                 disk_size: Optional[int] = None,
+                 disk_type_id: Optional[str] = None,
+                 resource_preset_id: Optional[str] = None):
         """
-        :param int disk_size: Volume of the storage available to a ZooKeeper host, in gigabytes.
-        :param str disk_type_id: Type of the storage of ZooKeeper hosts.
-               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: Type of the storage of hosts.
         """
-        pulumi.set(__self__, "disk_size", disk_size)
-        pulumi.set(__self__, "disk_type_id", disk_type_id)
-        pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
+        if disk_type_id is not None:
+            pulumi.set(__self__, "disk_type_id", disk_type_id)
+        if resource_preset_id is not None:
+            pulumi.set(__self__, "resource_preset_id", resource_preset_id)
 
     @property
     @pulumi.getter(name="diskSize")
-    def disk_size(self) -> int:
+    def disk_size(self) -> Optional[int]:
         """
-        Volume of the storage available to a ZooKeeper host, in gigabytes.
+        Volume of the storage available to a host, in gigabytes.
         """
         return pulumi.get(self, "disk_size")
 
     @property
     @pulumi.getter(name="diskTypeId")
-    def disk_type_id(self) -> str:
+    def disk_type_id(self) -> Optional[str]:
         """
-        Type of the storage of ZooKeeper hosts.
-        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        Type of the storage of hosts.
         """
         return pulumi.get(self, "disk_type_id")
 
     @property
     @pulumi.getter(name="resourcePresetId")
-    def resource_preset_id(self) -> str:
+    def resource_preset_id(self) -> Optional[str]:
         return pulumi.get(self, "resource_preset_id")
 
 
@@ -17344,12 +17542,16 @@ class MdbClickhouseClusterMlModel(dict):
 class MdbClickhouseClusterShard(dict):
     def __init__(__self__, *,
                  name: str,
+                 resources: Optional['outputs.MdbClickhouseClusterShardResources'] = None,
                  weight: Optional[int] = None):
         """
         :param str name: Graphite rollup configuration name.
+        :param 'MdbClickhouseClusterShardResourcesArgs' resources: Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         :param int weight: The weight of shard.
         """
         pulumi.set(__self__, "name", name)
+        if resources is not None:
+            pulumi.set(__self__, "resources", resources)
         if weight is not None:
             pulumi.set(__self__, "weight", weight)
 
@@ -17360,6 +17562,14 @@ class MdbClickhouseClusterShard(dict):
         Graphite rollup configuration name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def resources(self) -> Optional['outputs.MdbClickhouseClusterShardResources']:
+        """
+        Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter
@@ -17426,6 +17636,66 @@ class MdbClickhouseClusterShardGroup(dict):
         Description of the shard group.
         """
         return pulumi.get(self, "description")
+
+
+@pulumi.output_type
+class MdbClickhouseClusterShardResources(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "diskSize":
+            suggest = "disk_size"
+        elif key == "diskTypeId":
+            suggest = "disk_type_id"
+        elif key == "resourcePresetId":
+            suggest = "resource_preset_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbClickhouseClusterShardResources. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbClickhouseClusterShardResources.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbClickhouseClusterShardResources.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disk_size: Optional[int] = None,
+                 disk_type_id: Optional[str] = None,
+                 resource_preset_id: Optional[str] = None):
+        """
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: Type of the storage of hosts.
+        """
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
+        if disk_type_id is not None:
+            pulumi.set(__self__, "disk_type_id", disk_type_id)
+        if resource_preset_id is not None:
+            pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> Optional[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> Optional[str]:
+        """
+        Type of the storage of hosts.
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> Optional[str]:
+        return pulumi.get(self, "resource_preset_id")
 
 
 @pulumi.output_type
@@ -17638,10 +17908,28 @@ class MdbClickhouseClusterUserSettings(dict):
             suggest = "add_http_cors_header"
         elif key == "allowDdl":
             suggest = "allow_ddl"
+        elif key == "allowIntrospectionFunctions":
+            suggest = "allow_introspection_functions"
+        elif key == "allowSuspiciousLowCardinalityTypes":
+            suggest = "allow_suspicious_low_cardinality_types"
+        elif key == "asyncInsert":
+            suggest = "async_insert"
+        elif key == "asyncInsertBusyTimeout":
+            suggest = "async_insert_busy_timeout"
+        elif key == "asyncInsertMaxDataSize":
+            suggest = "async_insert_max_data_size"
+        elif key == "asyncInsertStaleTimeout":
+            suggest = "async_insert_stale_timeout"
+        elif key == "asyncInsertThreads":
+            suggest = "async_insert_threads"
+        elif key == "cancelHttpReadonlyQueriesOnClientClose":
+            suggest = "cancel_http_readonly_queries_on_client_close"
         elif key == "compileExpressions":
             suggest = "compile_expressions"
         elif key == "connectTimeout":
             suggest = "connect_timeout"
+        elif key == "connectTimeoutWithFailover":
+            suggest = "connect_timeout_with_failover"
         elif key == "countDistinctImplementation":
             suggest = "count_distinct_implementation"
         elif key == "distinctOverflowMode":
@@ -17658,6 +17946,8 @@ class MdbClickhouseClusterUserSettings(dict):
             suggest = "enable_http_compression"
         elif key == "fallbackToStaleReplicasForDistributedQueries":
             suggest = "fallback_to_stale_replicas_for_distributed_queries"
+        elif key == "flattenNested":
+            suggest = "flatten_nested"
         elif key == "forceIndexByDate":
             suggest = "force_index_by_date"
         elif key == "forcePrimaryKey":
@@ -17680,6 +17970,8 @@ class MdbClickhouseClusterUserSettings(dict):
             suggest = "input_format_defaults_for_omitted_fields"
         elif key == "inputFormatValuesInterpretExpressions":
             suggest = "input_format_values_interpret_expressions"
+        elif key == "insertNullAsDefault":
+            suggest = "insert_null_as_default"
         elif key == "insertQuorum":
             suggest = "insert_quorum"
         elif key == "insertQuorumTimeout":
@@ -17716,10 +18008,14 @@ class MdbClickhouseClusterUserSettings(dict):
             suggest = "max_bytes_to_transfer"
         elif key == "maxColumnsToRead":
             suggest = "max_columns_to_read"
+        elif key == "maxConcurrentQueriesForUser":
+            suggest = "max_concurrent_queries_for_user"
         elif key == "maxExecutionTime":
             suggest = "max_execution_time"
         elif key == "maxExpandedAstElements":
             suggest = "max_expanded_ast_elements"
+        elif key == "maxHttpGetRedirects":
+            suggest = "max_http_get_redirects"
         elif key == "maxInsertBlockSize":
             suggest = "max_insert_block_size"
         elif key == "maxMemoryUsage":
@@ -17758,6 +18054,10 @@ class MdbClickhouseClusterUserSettings(dict):
             suggest = "max_temporary_non_const_columns"
         elif key == "maxThreads":
             suggest = "max_threads"
+        elif key == "memoryProfilerSampleProbability":
+            suggest = "memory_profiler_sample_probability"
+        elif key == "memoryProfilerStep":
+            suggest = "memory_profiler_step"
         elif key == "mergeTreeMaxBytesToUseCache":
             suggest = "merge_tree_max_bytes_to_use_cache"
         elif key == "mergeTreeMaxRowsToUseCache":
@@ -17806,6 +18106,8 @@ class MdbClickhouseClusterUserSettings(dict):
             suggest = "skip_unavailable_shards"
         elif key == "sortOverflowMode":
             suggest = "sort_overflow_mode"
+        elif key == "timeoutBeforeCheckingExecutionSpeed":
+            suggest = "timeout_before_checking_execution_speed"
         elif key == "timeoutOverflowMode":
             suggest = "timeout_overflow_mode"
         elif key == "transferOverflowMode":
@@ -17814,6 +18116,10 @@ class MdbClickhouseClusterUserSettings(dict):
             suggest = "transform_null_in"
         elif key == "useUncompressedCache":
             suggest = "use_uncompressed_cache"
+        elif key == "waitForAsyncInsert":
+            suggest = "wait_for_async_insert"
+        elif key == "waitForAsyncInsertTimeout":
+            suggest = "wait_for_async_insert_timeout"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in MdbClickhouseClusterUserSettings. Access the value via the '{suggest}' property getter instead.")
@@ -17829,9 +18135,18 @@ class MdbClickhouseClusterUserSettings(dict):
     def __init__(__self__, *,
                  add_http_cors_header: Optional[bool] = None,
                  allow_ddl: Optional[bool] = None,
+                 allow_introspection_functions: Optional[bool] = None,
+                 allow_suspicious_low_cardinality_types: Optional[bool] = None,
+                 async_insert: Optional[bool] = None,
+                 async_insert_busy_timeout: Optional[int] = None,
+                 async_insert_max_data_size: Optional[int] = None,
+                 async_insert_stale_timeout: Optional[int] = None,
+                 async_insert_threads: Optional[int] = None,
+                 cancel_http_readonly_queries_on_client_close: Optional[bool] = None,
                  compile: Optional[bool] = None,
                  compile_expressions: Optional[bool] = None,
                  connect_timeout: Optional[int] = None,
+                 connect_timeout_with_failover: Optional[int] = None,
                  count_distinct_implementation: Optional[str] = None,
                  distinct_overflow_mode: Optional[str] = None,
                  distributed_aggregation_memory_efficient: Optional[bool] = None,
@@ -17840,6 +18155,7 @@ class MdbClickhouseClusterUserSettings(dict):
                  empty_result_for_aggregation_by_empty_set: Optional[bool] = None,
                  enable_http_compression: Optional[bool] = None,
                  fallback_to_stale_replicas_for_distributed_queries: Optional[bool] = None,
+                 flatten_nested: Optional[bool] = None,
                  force_index_by_date: Optional[bool] = None,
                  force_primary_key: Optional[bool] = None,
                  group_by_overflow_mode: Optional[str] = None,
@@ -17851,6 +18167,7 @@ class MdbClickhouseClusterUserSettings(dict):
                  http_send_timeout: Optional[int] = None,
                  input_format_defaults_for_omitted_fields: Optional[bool] = None,
                  input_format_values_interpret_expressions: Optional[bool] = None,
+                 insert_null_as_default: Optional[bool] = None,
                  insert_quorum: Optional[int] = None,
                  insert_quorum_timeout: Optional[int] = None,
                  join_overflow_mode: Optional[str] = None,
@@ -17869,8 +18186,10 @@ class MdbClickhouseClusterUserSettings(dict):
                  max_bytes_to_sort: Optional[int] = None,
                  max_bytes_to_transfer: Optional[int] = None,
                  max_columns_to_read: Optional[int] = None,
+                 max_concurrent_queries_for_user: Optional[int] = None,
                  max_execution_time: Optional[int] = None,
                  max_expanded_ast_elements: Optional[int] = None,
+                 max_http_get_redirects: Optional[int] = None,
                  max_insert_block_size: Optional[int] = None,
                  max_memory_usage: Optional[int] = None,
                  max_memory_usage_for_user: Optional[int] = None,
@@ -17890,6 +18209,8 @@ class MdbClickhouseClusterUserSettings(dict):
                  max_temporary_columns: Optional[int] = None,
                  max_temporary_non_const_columns: Optional[int] = None,
                  max_threads: Optional[int] = None,
+                 memory_profiler_sample_probability: Optional[float] = None,
+                 memory_profiler_step: Optional[int] = None,
                  merge_tree_max_bytes_to_use_cache: Optional[int] = None,
                  merge_tree_max_rows_to_use_cache: Optional[int] = None,
                  merge_tree_min_bytes_for_concurrent_read: Optional[int] = None,
@@ -17916,16 +18237,29 @@ class MdbClickhouseClusterUserSettings(dict):
                  set_overflow_mode: Optional[str] = None,
                  skip_unavailable_shards: Optional[bool] = None,
                  sort_overflow_mode: Optional[str] = None,
+                 timeout_before_checking_execution_speed: Optional[int] = None,
                  timeout_overflow_mode: Optional[str] = None,
                  transfer_overflow_mode: Optional[str] = None,
                  transform_null_in: Optional[bool] = None,
-                 use_uncompressed_cache: Optional[bool] = None):
+                 use_uncompressed_cache: Optional[bool] = None,
+                 wait_for_async_insert: Optional[bool] = None,
+                 wait_for_async_insert_timeout: Optional[int] = None):
         """
         :param bool add_http_cors_header: Include CORS headers in HTTP responces.
         :param bool allow_ddl: Allows or denies DDL queries.
+        :param bool allow_introspection_functions: Enables introspections functions for query profiling.
+        :param bool allow_suspicious_low_cardinality_types: Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+        :param bool async_insert: Enables asynchronous inserts. Disabled by default.
+        :param int async_insert_busy_timeout: The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+        :param int async_insert_max_data_size: The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+        :param int async_insert_stale_timeout: The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the async_insert_busy_timeout with every INSERT query as long as async_insert_max_data_size is not exceeded.
+        :param int async_insert_threads: The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+        :param bool cancel_http_readonly_queries_on_client_close: Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+               Default value: false.
         :param bool compile: Enable compilation of queries.
         :param bool compile_expressions: Turn on expression compilation.
         :param int connect_timeout: Connect timeout in milliseconds on the socket used for communicating with the client.
+        :param int connect_timeout_with_failover: The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
         :param str count_distinct_implementation: Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
         :param str distinct_overflow_mode: Sets behaviour on overflow when using DISTINCT. Possible values:
         :param bool distributed_aggregation_memory_efficient: Determine the behavior of distributed subqueries.
@@ -17934,6 +18268,7 @@ class MdbClickhouseClusterUserSettings(dict):
         :param bool empty_result_for_aggregation_by_empty_set: Allows to retunr empty result.
         :param bool enable_http_compression: Enables or disables data compression in the response to an HTTP request.
         :param bool fallback_to_stale_replicas_for_distributed_queries: Forces a query to an out-of-date replica if updated data is not available.
+        :param bool flatten_nested: Sets the data format of a nested columns.
         :param bool force_index_by_date: Disables query execution if the index can’t be used by date.
         :param bool force_primary_key: Disables query execution if indexing by the primary key is not possible.
         :param str group_by_overflow_mode: Sets behaviour on overflow while GROUP BY operation. Possible values:
@@ -17945,6 +18280,7 @@ class MdbClickhouseClusterUserSettings(dict):
         :param int http_send_timeout: Timeout for HTTP connection in milliseconds.
         :param bool input_format_defaults_for_omitted_fields: When performing INSERT queries, replace omitted input column values with default values of the respective columns.
         :param bool input_format_values_interpret_expressions: Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
+        :param bool insert_null_as_default: Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
         :param int insert_quorum: Enables the quorum writes.
         :param int insert_quorum_timeout: Write to a quorum timeout in milliseconds.
         :param str join_overflow_mode: Sets behaviour on overflow in JOIN. Possible values:
@@ -17963,8 +18299,11 @@ class MdbClickhouseClusterUserSettings(dict):
         :param int max_bytes_to_sort: Limits the maximum number of bytes (uncompressed data) that can be read from a table for sorting.
         :param int max_bytes_to_transfer: Limits the maximum number of bytes (uncompressed data) that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
         :param int max_columns_to_read: Limits the maximum number of columns that can be read from a table in a single query.
+        :param int max_concurrent_queries_for_user: The maximum number of concurrent requests per user. Default value: 0 (no limit).
         :param int max_execution_time: Limits the maximum query execution time in milliseconds.
         :param int max_expanded_ast_elements: Maximum abstract syntax tree depth after after expansion of aliases.
+        :param int max_http_get_redirects: Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+               If the parameter is set to 0 (default), no hops is allowed.
         :param int max_insert_block_size: The size of blocks (in a count of rows) to form for insertion into a table.
         :param int max_memory_usage: Limits the maximum memory usage (in bytes) for processing queries on a single server.
         :param int max_memory_usage_for_user: Limits the maximum memory usage (in bytes) for processing of user's queries on a single server.
@@ -17984,6 +18323,8 @@ class MdbClickhouseClusterUserSettings(dict):
         :param int max_temporary_columns: Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, including constant columns.
         :param int max_temporary_non_const_columns: Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, excluding constant columns.
         :param int max_threads: The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
+        :param float memory_profiler_sample_probability: Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+        :param int memory_profiler_step: Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
         :param int merge_tree_max_bytes_to_use_cache: If ClickHouse should read more than merge_tree_max_bytes_to_use_cache bytes in one query, it doesn’t use the cache of uncompressed blocks.
         :param int merge_tree_max_rows_to_use_cache: If ClickHouse should read more than merge_tree_max_rows_to_use_cache rows in one query, it doesn’t use the cache of uncompressed blocks.
         :param int merge_tree_min_bytes_for_concurrent_read: If the number of bytes to read from one file of a MergeTree-engine table exceeds merge_tree_min_bytes_for_concurrent_read, then ClickHouse tries to concurrently read from this file in several threads.
@@ -18010,21 +18351,43 @@ class MdbClickhouseClusterUserSettings(dict):
         :param str set_overflow_mode: Sets behaviour on overflow in the set resulting. Possible values:
         :param bool skip_unavailable_shards: Enables or disables silently skipping of unavailable shards.
         :param str sort_overflow_mode: Sets behaviour on overflow while sort. Possible values:
+        :param int timeout_before_checking_execution_speed: Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in min_execution_speed parameter.
+               Must be at least 1000.
         :param str timeout_overflow_mode: Sets behaviour on overflow. Possible values:
         :param str transfer_overflow_mode: Sets behaviour on overflow. Possible values:
         :param bool transform_null_in: Enables equality of NULL values for IN operator.
         :param bool use_uncompressed_cache: Whether to use a cache of uncompressed blocks.
+        :param bool wait_for_async_insert: Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+        :param int wait_for_async_insert_timeout: The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
         """
         if add_http_cors_header is not None:
             pulumi.set(__self__, "add_http_cors_header", add_http_cors_header)
         if allow_ddl is not None:
             pulumi.set(__self__, "allow_ddl", allow_ddl)
+        if allow_introspection_functions is not None:
+            pulumi.set(__self__, "allow_introspection_functions", allow_introspection_functions)
+        if allow_suspicious_low_cardinality_types is not None:
+            pulumi.set(__self__, "allow_suspicious_low_cardinality_types", allow_suspicious_low_cardinality_types)
+        if async_insert is not None:
+            pulumi.set(__self__, "async_insert", async_insert)
+        if async_insert_busy_timeout is not None:
+            pulumi.set(__self__, "async_insert_busy_timeout", async_insert_busy_timeout)
+        if async_insert_max_data_size is not None:
+            pulumi.set(__self__, "async_insert_max_data_size", async_insert_max_data_size)
+        if async_insert_stale_timeout is not None:
+            pulumi.set(__self__, "async_insert_stale_timeout", async_insert_stale_timeout)
+        if async_insert_threads is not None:
+            pulumi.set(__self__, "async_insert_threads", async_insert_threads)
+        if cancel_http_readonly_queries_on_client_close is not None:
+            pulumi.set(__self__, "cancel_http_readonly_queries_on_client_close", cancel_http_readonly_queries_on_client_close)
         if compile is not None:
             pulumi.set(__self__, "compile", compile)
         if compile_expressions is not None:
             pulumi.set(__self__, "compile_expressions", compile_expressions)
         if connect_timeout is not None:
             pulumi.set(__self__, "connect_timeout", connect_timeout)
+        if connect_timeout_with_failover is not None:
+            pulumi.set(__self__, "connect_timeout_with_failover", connect_timeout_with_failover)
         if count_distinct_implementation is not None:
             pulumi.set(__self__, "count_distinct_implementation", count_distinct_implementation)
         if distinct_overflow_mode is not None:
@@ -18041,6 +18404,8 @@ class MdbClickhouseClusterUserSettings(dict):
             pulumi.set(__self__, "enable_http_compression", enable_http_compression)
         if fallback_to_stale_replicas_for_distributed_queries is not None:
             pulumi.set(__self__, "fallback_to_stale_replicas_for_distributed_queries", fallback_to_stale_replicas_for_distributed_queries)
+        if flatten_nested is not None:
+            pulumi.set(__self__, "flatten_nested", flatten_nested)
         if force_index_by_date is not None:
             pulumi.set(__self__, "force_index_by_date", force_index_by_date)
         if force_primary_key is not None:
@@ -18063,6 +18428,8 @@ class MdbClickhouseClusterUserSettings(dict):
             pulumi.set(__self__, "input_format_defaults_for_omitted_fields", input_format_defaults_for_omitted_fields)
         if input_format_values_interpret_expressions is not None:
             pulumi.set(__self__, "input_format_values_interpret_expressions", input_format_values_interpret_expressions)
+        if insert_null_as_default is not None:
+            pulumi.set(__self__, "insert_null_as_default", insert_null_as_default)
         if insert_quorum is not None:
             pulumi.set(__self__, "insert_quorum", insert_quorum)
         if insert_quorum_timeout is not None:
@@ -18099,10 +18466,14 @@ class MdbClickhouseClusterUserSettings(dict):
             pulumi.set(__self__, "max_bytes_to_transfer", max_bytes_to_transfer)
         if max_columns_to_read is not None:
             pulumi.set(__self__, "max_columns_to_read", max_columns_to_read)
+        if max_concurrent_queries_for_user is not None:
+            pulumi.set(__self__, "max_concurrent_queries_for_user", max_concurrent_queries_for_user)
         if max_execution_time is not None:
             pulumi.set(__self__, "max_execution_time", max_execution_time)
         if max_expanded_ast_elements is not None:
             pulumi.set(__self__, "max_expanded_ast_elements", max_expanded_ast_elements)
+        if max_http_get_redirects is not None:
+            pulumi.set(__self__, "max_http_get_redirects", max_http_get_redirects)
         if max_insert_block_size is not None:
             pulumi.set(__self__, "max_insert_block_size", max_insert_block_size)
         if max_memory_usage is not None:
@@ -18141,6 +18512,10 @@ class MdbClickhouseClusterUserSettings(dict):
             pulumi.set(__self__, "max_temporary_non_const_columns", max_temporary_non_const_columns)
         if max_threads is not None:
             pulumi.set(__self__, "max_threads", max_threads)
+        if memory_profiler_sample_probability is not None:
+            pulumi.set(__self__, "memory_profiler_sample_probability", memory_profiler_sample_probability)
+        if memory_profiler_step is not None:
+            pulumi.set(__self__, "memory_profiler_step", memory_profiler_step)
         if merge_tree_max_bytes_to_use_cache is not None:
             pulumi.set(__self__, "merge_tree_max_bytes_to_use_cache", merge_tree_max_bytes_to_use_cache)
         if merge_tree_max_rows_to_use_cache is not None:
@@ -18193,6 +18568,8 @@ class MdbClickhouseClusterUserSettings(dict):
             pulumi.set(__self__, "skip_unavailable_shards", skip_unavailable_shards)
         if sort_overflow_mode is not None:
             pulumi.set(__self__, "sort_overflow_mode", sort_overflow_mode)
+        if timeout_before_checking_execution_speed is not None:
+            pulumi.set(__self__, "timeout_before_checking_execution_speed", timeout_before_checking_execution_speed)
         if timeout_overflow_mode is not None:
             pulumi.set(__self__, "timeout_overflow_mode", timeout_overflow_mode)
         if transfer_overflow_mode is not None:
@@ -18201,6 +18578,10 @@ class MdbClickhouseClusterUserSettings(dict):
             pulumi.set(__self__, "transform_null_in", transform_null_in)
         if use_uncompressed_cache is not None:
             pulumi.set(__self__, "use_uncompressed_cache", use_uncompressed_cache)
+        if wait_for_async_insert is not None:
+            pulumi.set(__self__, "wait_for_async_insert", wait_for_async_insert)
+        if wait_for_async_insert_timeout is not None:
+            pulumi.set(__self__, "wait_for_async_insert_timeout", wait_for_async_insert_timeout)
 
     @property
     @pulumi.getter(name="addHttpCorsHeader")
@@ -18217,6 +18598,71 @@ class MdbClickhouseClusterUserSettings(dict):
         Allows or denies DDL queries.
         """
         return pulumi.get(self, "allow_ddl")
+
+    @property
+    @pulumi.getter(name="allowIntrospectionFunctions")
+    def allow_introspection_functions(self) -> Optional[bool]:
+        """
+        Enables introspections functions for query profiling.
+        """
+        return pulumi.get(self, "allow_introspection_functions")
+
+    @property
+    @pulumi.getter(name="allowSuspiciousLowCardinalityTypes")
+    def allow_suspicious_low_cardinality_types(self) -> Optional[bool]:
+        """
+        Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+        """
+        return pulumi.get(self, "allow_suspicious_low_cardinality_types")
+
+    @property
+    @pulumi.getter(name="asyncInsert")
+    def async_insert(self) -> Optional[bool]:
+        """
+        Enables asynchronous inserts. Disabled by default.
+        """
+        return pulumi.get(self, "async_insert")
+
+    @property
+    @pulumi.getter(name="asyncInsertBusyTimeout")
+    def async_insert_busy_timeout(self) -> Optional[int]:
+        """
+        The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+        """
+        return pulumi.get(self, "async_insert_busy_timeout")
+
+    @property
+    @pulumi.getter(name="asyncInsertMaxDataSize")
+    def async_insert_max_data_size(self) -> Optional[int]:
+        """
+        The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+        """
+        return pulumi.get(self, "async_insert_max_data_size")
+
+    @property
+    @pulumi.getter(name="asyncInsertStaleTimeout")
+    def async_insert_stale_timeout(self) -> Optional[int]:
+        """
+        The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the async_insert_busy_timeout with every INSERT query as long as async_insert_max_data_size is not exceeded.
+        """
+        return pulumi.get(self, "async_insert_stale_timeout")
+
+    @property
+    @pulumi.getter(name="asyncInsertThreads")
+    def async_insert_threads(self) -> Optional[int]:
+        """
+        The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+        """
+        return pulumi.get(self, "async_insert_threads")
+
+    @property
+    @pulumi.getter(name="cancelHttpReadonlyQueriesOnClientClose")
+    def cancel_http_readonly_queries_on_client_close(self) -> Optional[bool]:
+        """
+        Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+        Default value: false.
+        """
+        return pulumi.get(self, "cancel_http_readonly_queries_on_client_close")
 
     @property
     @pulumi.getter
@@ -18241,6 +18687,14 @@ class MdbClickhouseClusterUserSettings(dict):
         Connect timeout in milliseconds on the socket used for communicating with the client.
         """
         return pulumi.get(self, "connect_timeout")
+
+    @property
+    @pulumi.getter(name="connectTimeoutWithFailover")
+    def connect_timeout_with_failover(self) -> Optional[int]:
+        """
+        The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+        """
+        return pulumi.get(self, "connect_timeout_with_failover")
 
     @property
     @pulumi.getter(name="countDistinctImplementation")
@@ -18305,6 +18759,14 @@ class MdbClickhouseClusterUserSettings(dict):
         Forces a query to an out-of-date replica if updated data is not available.
         """
         return pulumi.get(self, "fallback_to_stale_replicas_for_distributed_queries")
+
+    @property
+    @pulumi.getter(name="flattenNested")
+    def flatten_nested(self) -> Optional[bool]:
+        """
+        Sets the data format of a nested columns.
+        """
+        return pulumi.get(self, "flatten_nested")
 
     @property
     @pulumi.getter(name="forceIndexByDate")
@@ -18393,6 +18855,14 @@ class MdbClickhouseClusterUserSettings(dict):
         Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
         """
         return pulumi.get(self, "input_format_values_interpret_expressions")
+
+    @property
+    @pulumi.getter(name="insertNullAsDefault")
+    def insert_null_as_default(self) -> Optional[bool]:
+        """
+        Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+        """
+        return pulumi.get(self, "insert_null_as_default")
 
     @property
     @pulumi.getter(name="insertQuorum")
@@ -18539,6 +19009,14 @@ class MdbClickhouseClusterUserSettings(dict):
         return pulumi.get(self, "max_columns_to_read")
 
     @property
+    @pulumi.getter(name="maxConcurrentQueriesForUser")
+    def max_concurrent_queries_for_user(self) -> Optional[int]:
+        """
+        The maximum number of concurrent requests per user. Default value: 0 (no limit).
+        """
+        return pulumi.get(self, "max_concurrent_queries_for_user")
+
+    @property
     @pulumi.getter(name="maxExecutionTime")
     def max_execution_time(self) -> Optional[int]:
         """
@@ -18553,6 +19031,15 @@ class MdbClickhouseClusterUserSettings(dict):
         Maximum abstract syntax tree depth after after expansion of aliases.
         """
         return pulumi.get(self, "max_expanded_ast_elements")
+
+    @property
+    @pulumi.getter(name="maxHttpGetRedirects")
+    def max_http_get_redirects(self) -> Optional[int]:
+        """
+        Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+        If the parameter is set to 0 (default), no hops is allowed.
+        """
+        return pulumi.get(self, "max_http_get_redirects")
 
     @property
     @pulumi.getter(name="maxInsertBlockSize")
@@ -18705,6 +19192,22 @@ class MdbClickhouseClusterUserSettings(dict):
         The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
         """
         return pulumi.get(self, "max_threads")
+
+    @property
+    @pulumi.getter(name="memoryProfilerSampleProbability")
+    def memory_profiler_sample_probability(self) -> Optional[float]:
+        """
+        Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+        """
+        return pulumi.get(self, "memory_profiler_sample_probability")
+
+    @property
+    @pulumi.getter(name="memoryProfilerStep")
+    def memory_profiler_step(self) -> Optional[int]:
+        """
+        Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+        """
+        return pulumi.get(self, "memory_profiler_step")
 
     @property
     @pulumi.getter(name="mergeTreeMaxBytesToUseCache")
@@ -18915,6 +19418,15 @@ class MdbClickhouseClusterUserSettings(dict):
         return pulumi.get(self, "sort_overflow_mode")
 
     @property
+    @pulumi.getter(name="timeoutBeforeCheckingExecutionSpeed")
+    def timeout_before_checking_execution_speed(self) -> Optional[int]:
+        """
+        Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in min_execution_speed parameter.
+        Must be at least 1000.
+        """
+        return pulumi.get(self, "timeout_before_checking_execution_speed")
+
+    @property
     @pulumi.getter(name="timeoutOverflowMode")
     def timeout_overflow_mode(self) -> Optional[str]:
         """
@@ -18946,13 +19458,29 @@ class MdbClickhouseClusterUserSettings(dict):
         """
         return pulumi.get(self, "use_uncompressed_cache")
 
+    @property
+    @pulumi.getter(name="waitForAsyncInsert")
+    def wait_for_async_insert(self) -> Optional[bool]:
+        """
+        Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+        """
+        return pulumi.get(self, "wait_for_async_insert")
+
+    @property
+    @pulumi.getter(name="waitForAsyncInsertTimeout")
+    def wait_for_async_insert_timeout(self) -> Optional[int]:
+        """
+        The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+        """
+        return pulumi.get(self, "wait_for_async_insert_timeout")
+
 
 @pulumi.output_type
 class MdbClickhouseClusterZookeeper(dict):
     def __init__(__self__, *,
                  resources: Optional['outputs.MdbClickhouseClusterZookeeperResources'] = None):
         """
-        :param 'MdbClickhouseClusterZookeeperResourcesArgs' resources: Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        :param 'MdbClickhouseClusterZookeeperResourcesArgs' resources: Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         """
         if resources is not None:
             pulumi.set(__self__, "resources", resources)
@@ -18961,7 +19489,7 @@ class MdbClickhouseClusterZookeeper(dict):
     @pulumi.getter
     def resources(self) -> Optional['outputs.MdbClickhouseClusterZookeeperResources']:
         """
-        Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         """
         return pulumi.get(self, "resources")
 
@@ -18994,9 +19522,8 @@ class MdbClickhouseClusterZookeeperResources(dict):
                  disk_type_id: Optional[str] = None,
                  resource_preset_id: Optional[str] = None):
         """
-        :param int disk_size: Volume of the storage available to a ZooKeeper host, in gigabytes.
-        :param str disk_type_id: Type of the storage of ZooKeeper hosts.
-               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: Type of the storage of hosts.
         """
         if disk_size is not None:
             pulumi.set(__self__, "disk_size", disk_size)
@@ -19009,7 +19536,7 @@ class MdbClickhouseClusterZookeeperResources(dict):
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> Optional[int]:
         """
-        Volume of the storage available to a ZooKeeper host, in gigabytes.
+        Volume of the storage available to a host, in gigabytes.
         """
         return pulumi.get(self, "disk_size")
 
@@ -19017,8 +19544,7 @@ class MdbClickhouseClusterZookeeperResources(dict):
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> Optional[str]:
         """
-        Type of the storage of ZooKeeper hosts.
-        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        Type of the storage of hosts.
         """
         return pulumi.get(self, "disk_type_id")
 
@@ -27858,9 +28384,11 @@ class GetAlbLoadBalancerListenerHttpHandlerResult(dict):
     def __init__(__self__, *,
                  http2_options: Sequence['outputs.GetAlbLoadBalancerListenerHttpHandlerHttp2OptionResult'],
                  http_router_id: str,
+                 rewrite_request_id: bool,
                  allow_http10: Optional[bool] = None):
         pulumi.set(__self__, "http2_options", http2_options)
         pulumi.set(__self__, "http_router_id", http_router_id)
+        pulumi.set(__self__, "rewrite_request_id", rewrite_request_id)
         if allow_http10 is not None:
             pulumi.set(__self__, "allow_http10", allow_http10)
 
@@ -27873,6 +28401,11 @@ class GetAlbLoadBalancerListenerHttpHandlerResult(dict):
     @pulumi.getter(name="httpRouterId")
     def http_router_id(self) -> str:
         return pulumi.get(self, "http_router_id")
+
+    @property
+    @pulumi.getter(name="rewriteRequestId")
+    def rewrite_request_id(self) -> bool:
+        return pulumi.get(self, "rewrite_request_id")
 
     @property
     @pulumi.getter(name="allowHttp10")
@@ -27981,9 +28514,11 @@ class GetAlbLoadBalancerListenerTlDefaultHandlerHttpHandlerResult(dict):
     def __init__(__self__, *,
                  http2_options: Sequence['outputs.GetAlbLoadBalancerListenerTlDefaultHandlerHttpHandlerHttp2OptionResult'],
                  http_router_id: str,
+                 rewrite_request_id: bool,
                  allow_http10: Optional[bool] = None):
         pulumi.set(__self__, "http2_options", http2_options)
         pulumi.set(__self__, "http_router_id", http_router_id)
+        pulumi.set(__self__, "rewrite_request_id", rewrite_request_id)
         if allow_http10 is not None:
             pulumi.set(__self__, "allow_http10", allow_http10)
 
@@ -27996,6 +28531,11 @@ class GetAlbLoadBalancerListenerTlDefaultHandlerHttpHandlerResult(dict):
     @pulumi.getter(name="httpRouterId")
     def http_router_id(self) -> str:
         return pulumi.get(self, "http_router_id")
+
+    @property
+    @pulumi.getter(name="rewriteRequestId")
+    def rewrite_request_id(self) -> bool:
+        return pulumi.get(self, "rewrite_request_id")
 
     @property
     @pulumi.getter(name="allowHttp10")
@@ -28086,9 +28626,11 @@ class GetAlbLoadBalancerListenerTlSniHandlerHandlerHttpHandlerResult(dict):
     def __init__(__self__, *,
                  http2_options: Sequence['outputs.GetAlbLoadBalancerListenerTlSniHandlerHandlerHttpHandlerHttp2OptionResult'],
                  http_router_id: str,
+                 rewrite_request_id: bool,
                  allow_http10: Optional[bool] = None):
         pulumi.set(__self__, "http2_options", http2_options)
         pulumi.set(__self__, "http_router_id", http_router_id)
+        pulumi.set(__self__, "rewrite_request_id", rewrite_request_id)
         if allow_http10 is not None:
             pulumi.set(__self__, "allow_http10", allow_http10)
 
@@ -28101,6 +28643,11 @@ class GetAlbLoadBalancerListenerTlSniHandlerHandlerHttpHandlerResult(dict):
     @pulumi.getter(name="httpRouterId")
     def http_router_id(self) -> str:
         return pulumi.get(self, "http_router_id")
+
+    @property
+    @pulumi.getter(name="rewriteRequestId")
+    def rewrite_request_id(self) -> bool:
+        return pulumi.get(self, "rewrite_request_id")
 
     @property
     @pulumi.getter(name="allowHttp10")
@@ -32495,6 +33042,46 @@ class GetFunctionSecretResult(dict):
 
 
 @pulumi.output_type
+class GetFunctionTriggerContainerResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 path: str,
+                 retry_attempts: str,
+                 retry_interval: str,
+                 service_account_id: str):
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "path", path)
+        pulumi.set(__self__, "retry_attempts", retry_attempts)
+        pulumi.set(__self__, "retry_interval", retry_interval)
+        pulumi.set(__self__, "service_account_id", service_account_id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def path(self) -> str:
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="retryAttempts")
+    def retry_attempts(self) -> str:
+        return pulumi.get(self, "retry_attempts")
+
+    @property
+    @pulumi.getter(name="retryInterval")
+    def retry_interval(self) -> str:
+        return pulumi.get(self, "retry_interval")
+
+    @property
+    @pulumi.getter(name="serviceAccountId")
+    def service_account_id(self) -> str:
+        return pulumi.get(self, "service_account_id")
+
+
+@pulumi.output_type
 class GetFunctionTriggerDlqResult(dict):
     def __init__(__self__, *,
                  queue_id: str,
@@ -34353,7 +34940,7 @@ class GetMdbClickhouseClusterClickhouseResult(dict):
                  resources: Sequence['outputs.GetMdbClickhouseClusterClickhouseResourceResult']):
         """
         :param 'GetMdbClickhouseClusterClickhouseConfigArgs' config: Main ClickHouse cluster configuration. The structure is documented below.
-        :param Sequence['GetMdbClickhouseClusterClickhouseResourceArgs'] resources: Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        :param Sequence['GetMdbClickhouseClusterClickhouseResourceArgs'] resources: Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "resources", resources)
@@ -34370,7 +34957,7 @@ class GetMdbClickhouseClusterClickhouseResult(dict):
     @pulumi.getter
     def resources(self) -> Sequence['outputs.GetMdbClickhouseClusterClickhouseResourceResult']:
         """
-        Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         """
         return pulumi.get(self, "resources")
 
@@ -34378,9 +34965,12 @@ class GetMdbClickhouseClusterClickhouseResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterClickhouseConfigResult(dict):
     def __init__(__self__, *,
+                 background_fetches_pool_size: int,
+                 default_database: str,
                  kafkas: Sequence['outputs.GetMdbClickhouseClusterClickhouseConfigKafkaResult'],
                  merge_tree: 'outputs.GetMdbClickhouseClusterClickhouseConfigMergeTreeResult',
                  rabbitmq: 'outputs.GetMdbClickhouseClusterClickhouseConfigRabbitmqResult',
+                 total_memory_profiler_step: int,
                  background_pool_size: Optional[int] = None,
                  background_schedule_pool_size: Optional[int] = None,
                  compressions: Optional[Sequence['outputs.GetMdbClickhouseClusterClickhouseConfigCompressionResult']] = None,
@@ -34421,9 +35011,12 @@ class GetMdbClickhouseClusterClickhouseConfigResult(dict):
         :param Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs'] graphite_rollups: Graphite rollup configuration. The structure is documented below.
         :param Sequence['GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs'] kafka_topics: Kafka topic connection configuration. The structure is documented below.
         """
+        pulumi.set(__self__, "background_fetches_pool_size", background_fetches_pool_size)
+        pulumi.set(__self__, "default_database", default_database)
         pulumi.set(__self__, "kafkas", kafkas)
         pulumi.set(__self__, "merge_tree", merge_tree)
         pulumi.set(__self__, "rabbitmq", rabbitmq)
+        pulumi.set(__self__, "total_memory_profiler_step", total_memory_profiler_step)
         if background_pool_size is not None:
             pulumi.set(__self__, "background_pool_size", background_pool_size)
         if background_schedule_pool_size is not None:
@@ -34490,6 +35083,16 @@ class GetMdbClickhouseClusterClickhouseConfigResult(dict):
             pulumi.set(__self__, "uncompressed_cache_size", uncompressed_cache_size)
 
     @property
+    @pulumi.getter(name="backgroundFetchesPoolSize")
+    def background_fetches_pool_size(self) -> int:
+        return pulumi.get(self, "background_fetches_pool_size")
+
+    @property
+    @pulumi.getter(name="defaultDatabase")
+    def default_database(self) -> str:
+        return pulumi.get(self, "default_database")
+
+    @property
     @pulumi.getter
     def kafkas(self) -> Sequence['outputs.GetMdbClickhouseClusterClickhouseConfigKafkaResult']:
         """
@@ -34512,6 +35115,11 @@ class GetMdbClickhouseClusterClickhouseConfigResult(dict):
         RabbitMQ connection configuration. The structure is documented below.
         """
         return pulumi.get(self, "rabbitmq")
+
+    @property
+    @pulumi.getter(name="totalMemoryProfilerStep")
+    def total_memory_profiler_step(self) -> int:
+        return pulumi.get(self, "total_memory_profiler_step")
 
     @property
     @pulumi.getter(name="backgroundPoolSize")
@@ -34967,6 +35575,9 @@ class GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterClickhouseConfigMergeTreeResult(dict):
     def __init__(__self__, *,
+                 min_bytes_for_wide_part: int,
+                 min_rows_for_wide_part: int,
+                 ttl_only_drop_parts: bool,
                  max_bytes_to_merge_at_min_space_in_pool: Optional[int] = None,
                  max_replicated_merges_in_queue: Optional[int] = None,
                  number_of_free_entries_in_pool_to_lower_max_size_of_merge: Optional[int] = None,
@@ -34975,6 +35586,9 @@ class GetMdbClickhouseClusterClickhouseConfigMergeTreeResult(dict):
                  replicated_deduplication_window: Optional[int] = None,
                  replicated_deduplication_window_seconds: Optional[int] = None):
         """
+        :param int min_bytes_for_wide_part: (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        :param int min_rows_for_wide_part: (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        :param bool ttl_only_drop_parts: (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
         :param int max_bytes_to_merge_at_min_space_in_pool: Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
         :param int max_replicated_merges_in_queue: Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
         :param int number_of_free_entries_in_pool_to_lower_max_size_of_merge: Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
@@ -34983,6 +35597,9 @@ class GetMdbClickhouseClusterClickhouseConfigMergeTreeResult(dict):
         :param int replicated_deduplication_window: Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
         :param int replicated_deduplication_window_seconds: Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
         """
+        pulumi.set(__self__, "min_bytes_for_wide_part", min_bytes_for_wide_part)
+        pulumi.set(__self__, "min_rows_for_wide_part", min_rows_for_wide_part)
+        pulumi.set(__self__, "ttl_only_drop_parts", ttl_only_drop_parts)
         if max_bytes_to_merge_at_min_space_in_pool is not None:
             pulumi.set(__self__, "max_bytes_to_merge_at_min_space_in_pool", max_bytes_to_merge_at_min_space_in_pool)
         if max_replicated_merges_in_queue is not None:
@@ -34997,6 +35614,30 @@ class GetMdbClickhouseClusterClickhouseConfigMergeTreeResult(dict):
             pulumi.set(__self__, "replicated_deduplication_window", replicated_deduplication_window)
         if replicated_deduplication_window_seconds is not None:
             pulumi.set(__self__, "replicated_deduplication_window_seconds", replicated_deduplication_window_seconds)
+
+    @property
+    @pulumi.getter(name="minBytesForWidePart")
+    def min_bytes_for_wide_part(self) -> int:
+        """
+        (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        """
+        return pulumi.get(self, "min_bytes_for_wide_part")
+
+    @property
+    @pulumi.getter(name="minRowsForWidePart")
+    def min_rows_for_wide_part(self) -> int:
+        """
+        (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        """
+        return pulumi.get(self, "min_rows_for_wide_part")
+
+    @property
+    @pulumi.getter(name="ttlOnlyDropParts")
+    def ttl_only_drop_parts(self) -> bool:
+        """
+        (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+        """
+        return pulumi.get(self, "ttl_only_drop_parts")
 
     @property
     @pulumi.getter(name="maxBytesToMergeAtMinSpaceInPool")
@@ -35058,16 +35699,27 @@ class GetMdbClickhouseClusterClickhouseConfigMergeTreeResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterClickhouseConfigRabbitmqResult(dict):
     def __init__(__self__, *,
+                 vhost: str,
                  password: Optional[str] = None,
                  username: Optional[str] = None):
         """
+        :param str vhost: (Optional) RabbitMQ vhost. Default: '\\'.
         :param str password: RabbitMQ user password.
         :param str username: RabbitMQ username.
         """
+        pulumi.set(__self__, "vhost", vhost)
         if password is not None:
             pulumi.set(__self__, "password", password)
         if username is not None:
             pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> str:
+        """
+        (Optional) RabbitMQ vhost. Default: '\\'.
+        """
+        return pulumi.get(self, "vhost")
 
     @property
     @pulumi.getter
@@ -35093,8 +35745,8 @@ class GetMdbClickhouseClusterClickhouseResourceResult(dict):
                  disk_type_id: str,
                  resource_preset_id: str):
         """
-        :param int disk_size: Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
-        :param str disk_type_id: Type of the storage of ClickHouse or ZooKeeper hosts.
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: Type of the storage of hosts.
         """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "disk_type_id", disk_type_id)
@@ -35104,7 +35756,7 @@ class GetMdbClickhouseClusterClickhouseResourceResult(dict):
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> int:
         """
-        Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
+        Volume of the storage available to a host, in gigabytes.
         """
         return pulumi.get(self, "disk_size")
 
@@ -35112,7 +35764,7 @@ class GetMdbClickhouseClusterClickhouseResourceResult(dict):
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> str:
         """
-        Type of the storage of ClickHouse or ZooKeeper hosts.
+        Type of the storage of hosts.
         """
         return pulumi.get(self, "disk_type_id")
 
@@ -35388,12 +36040,15 @@ class GetMdbClickhouseClusterMlModelResult(dict):
 class GetMdbClickhouseClusterShardResult(dict):
     def __init__(__self__, *,
                  name: str,
+                 resources: 'outputs.GetMdbClickhouseClusterShardResourcesResult',
                  weight: int):
         """
         :param str name: The name of the ClickHouse cluster.
+        :param 'GetMdbClickhouseClusterShardResourcesArgs' resources: Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         :param int weight: The weight of the shard.
         """
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "resources", resources)
         pulumi.set(__self__, "weight", weight)
 
     @property
@@ -35403,6 +36058,14 @@ class GetMdbClickhouseClusterShardResult(dict):
         The name of the ClickHouse cluster.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def resources(self) -> 'outputs.GetMdbClickhouseClusterShardResourcesResult':
+        """
+        Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources")
 
     @property
     @pulumi.getter
@@ -35451,6 +36114,42 @@ class GetMdbClickhouseClusterShardGroupResult(dict):
         List of shards names that belong to the shard group.
         """
         return pulumi.get(self, "shard_names")
+
+
+@pulumi.output_type
+class GetMdbClickhouseClusterShardResourcesResult(dict):
+    def __init__(__self__, *,
+                 disk_size: int,
+                 disk_type_id: str,
+                 resource_preset_id: str):
+        """
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: Type of the storage of hosts.
+        """
+        pulumi.set(__self__, "disk_size", disk_size)
+        pulumi.set(__self__, "disk_type_id", disk_type_id)
+        pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> int:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> str:
+        """
+        Type of the storage of hosts.
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> str:
+        return pulumi.get(self, "resource_preset_id")
 
 
 @pulumi.output_type
@@ -35600,9 +36299,18 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
     def __init__(__self__, *,
                  add_http_cors_header: bool,
                  allow_ddl: bool,
+                 allow_introspection_functions: bool,
+                 allow_suspicious_low_cardinality_types: bool,
+                 async_insert: bool,
+                 async_insert_busy_timeout: int,
+                 async_insert_max_data_size: int,
+                 async_insert_stale_timeout: int,
+                 async_insert_threads: int,
+                 cancel_http_readonly_queries_on_client_close: bool,
                  compile: bool,
                  compile_expressions: bool,
                  connect_timeout: int,
+                 connect_timeout_with_failover: int,
                  count_distinct_implementation: str,
                  distinct_overflow_mode: str,
                  distributed_aggregation_memory_efficient: bool,
@@ -35611,6 +36319,7 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
                  empty_result_for_aggregation_by_empty_set: bool,
                  enable_http_compression: bool,
                  fallback_to_stale_replicas_for_distributed_queries: bool,
+                 flatten_nested: bool,
                  force_index_by_date: bool,
                  force_primary_key: bool,
                  group_by_overflow_mode: str,
@@ -35622,6 +36331,7 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
                  http_send_timeout: int,
                  input_format_defaults_for_omitted_fields: bool,
                  input_format_values_interpret_expressions: bool,
+                 insert_null_as_default: bool,
                  insert_quorum: int,
                  insert_quorum_timeout: int,
                  join_overflow_mode: str,
@@ -35640,8 +36350,10 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
                  max_bytes_to_sort: int,
                  max_bytes_to_transfer: int,
                  max_columns_to_read: int,
+                 max_concurrent_queries_for_user: int,
                  max_execution_time: int,
                  max_expanded_ast_elements: int,
+                 max_http_get_redirects: int,
                  max_insert_block_size: int,
                  max_memory_usage: int,
                  max_memory_usage_for_user: int,
@@ -35661,6 +36373,8 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
                  max_temporary_columns: int,
                  max_temporary_non_const_columns: int,
                  max_threads: int,
+                 memory_profiler_sample_probability: float,
+                 memory_profiler_step: int,
                  merge_tree_max_bytes_to_use_cache: int,
                  merge_tree_max_rows_to_use_cache: int,
                  merge_tree_min_bytes_for_concurrent_read: int,
@@ -35687,16 +36401,29 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
                  set_overflow_mode: str,
                  skip_unavailable_shards: bool,
                  sort_overflow_mode: str,
+                 timeout_before_checking_execution_speed: int,
                  timeout_overflow_mode: str,
                  transfer_overflow_mode: str,
                  transform_null_in: bool,
-                 use_uncompressed_cache: bool):
+                 use_uncompressed_cache: bool,
+                 wait_for_async_insert: bool,
+                 wait_for_async_insert_timeout: int):
         """
         :param bool add_http_cors_header: Include CORS headers in HTTP responces.
         :param bool allow_ddl: Allows or denies DDL queries.
+        :param bool allow_introspection_functions: (Optional) Enables introspections functions for query profiling.
+        :param bool allow_suspicious_low_cardinality_types: (Optional) Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+        :param bool async_insert: (Optional) Enables asynchronous inserts. Disabled by default.
+        :param int async_insert_busy_timeout: (Optional) The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+        :param int async_insert_max_data_size: (Optional) The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+        :param int async_insert_stale_timeout: (Optional) The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the async_insert_busy_timeout with every INSERT query as long as async_insert_max_data_size is not exceeded.
+        :param int async_insert_threads: (Optional) The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+        :param bool cancel_http_readonly_queries_on_client_close: (Optional) Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+               Default value: false.
         :param bool compile: Enable compilation of queries.
         :param bool compile_expressions: Turn on expression compilation.
         :param int connect_timeout: Connect timeout in milliseconds on the socket used for communicating with the client.
+        :param int connect_timeout_with_failover: (Optional) The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
         :param str count_distinct_implementation: Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
         :param str distinct_overflow_mode: Sets behaviour on overflow when using DISTINCT. Possible values:
         :param bool distributed_aggregation_memory_efficient: Determine the behavior of distributed subqueries.
@@ -35705,6 +36432,7 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         :param bool empty_result_for_aggregation_by_empty_set: Allows to retunr empty result.
         :param bool enable_http_compression: Enables or disables data compression in the response to an HTTP request.
         :param bool fallback_to_stale_replicas_for_distributed_queries: Forces a query to an out-of-date replica if updated data is not available.
+        :param bool flatten_nested: (Optional) Sets the data format of a nested columns.
         :param bool force_index_by_date: Disables query execution if the index can’t be used by date.
         :param bool force_primary_key: Disables query execution if indexing by the primary key is not possible.
         :param str group_by_overflow_mode: Sets behaviour on overflow while GROUP BY operation. Possible values:
@@ -35716,6 +36444,7 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         :param int http_send_timeout: Timeout for HTTP connection in milliseconds.
         :param bool input_format_defaults_for_omitted_fields: When performing INSERT queries, replace omitted input column values with default values of the respective columns.
         :param bool input_format_values_interpret_expressions: Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
+        :param bool insert_null_as_default: (Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
         :param int insert_quorum: Enables the quorum writes.
         :param int insert_quorum_timeout: Write to a quorum timeout in milliseconds.
         :param str join_overflow_mode: Sets behaviour on overflow in JOIN. Possible values:
@@ -35734,8 +36463,11 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         :param int max_bytes_to_sort: Limits the maximum number of bytes (uncompressed data) that can be read from a table for sorting.
         :param int max_bytes_to_transfer: Limits the maximum number of bytes (uncompressed data) that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
         :param int max_columns_to_read: Limits the maximum number of columns that can be read from a table in a single query.
+        :param int max_concurrent_queries_for_user: (Optional) The maximum number of concurrent requests per user. Default value: 0 (no limit).
         :param int max_execution_time: Limits the maximum query execution time in milliseconds.
         :param int max_expanded_ast_elements: Maximum abstract syntax tree depth after after expansion of aliases.
+        :param int max_http_get_redirects: (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+               If the parameter is set to 0 (default), no hops is allowed.
         :param int max_insert_block_size: The size of blocks (in a count of rows) to form for insertion into a table.
         :param int max_memory_usage: Limits the maximum memory usage (in bytes) for processing queries on a single server.
         :param int max_memory_usage_for_user: Limits the maximum memory usage (in bytes) for processing of user's queries on a single server.
@@ -35755,6 +36487,8 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         :param int max_temporary_columns: Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, including constant columns.
         :param int max_temporary_non_const_columns: Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, excluding constant columns.
         :param int max_threads: The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
+        :param float memory_profiler_sample_probability: (Optional) Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+        :param int memory_profiler_step: (Optional) Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
         :param int merge_tree_max_bytes_to_use_cache: If ClickHouse should read more than merge_tree_max_bytes_to_use_cache bytes in one query, it doesn’t use the cache of uncompressed blocks.
         :param int merge_tree_max_rows_to_use_cache: If ClickHouse should read more than merge_tree_max_rows_to_use_cache rows in one query, it doesn’t use the cache of uncompressed blocks.
         :param int merge_tree_min_bytes_for_concurrent_read: If the number of bytes to read from one file of a MergeTree-engine table exceeds merge_tree_min_bytes_for_concurrent_read, then ClickHouse tries to concurrently read from this file in several threads.
@@ -35781,16 +36515,29 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         :param str set_overflow_mode: Sets behaviour on overflow in the set resulting. Possible values:
         :param bool skip_unavailable_shards: Enables or disables silently skipping of unavailable shards.
         :param str sort_overflow_mode: Sets behaviour on overflow while sort. Possible values:
+        :param int timeout_before_checking_execution_speed: (Optional) Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in min_execution_speed parameter.
+               Must be at least 1000.
         :param str timeout_overflow_mode: Sets behaviour on overflow. Possible values:
         :param str transfer_overflow_mode: Sets behaviour on overflow. Possible values:
         :param bool transform_null_in: Enables equality of NULL values for IN operator.
         :param bool use_uncompressed_cache: Whether to use a cache of uncompressed blocks.
+        :param bool wait_for_async_insert: (Optional) Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+        :param int wait_for_async_insert_timeout: (Optional) The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
         """
         pulumi.set(__self__, "add_http_cors_header", add_http_cors_header)
         pulumi.set(__self__, "allow_ddl", allow_ddl)
+        pulumi.set(__self__, "allow_introspection_functions", allow_introspection_functions)
+        pulumi.set(__self__, "allow_suspicious_low_cardinality_types", allow_suspicious_low_cardinality_types)
+        pulumi.set(__self__, "async_insert", async_insert)
+        pulumi.set(__self__, "async_insert_busy_timeout", async_insert_busy_timeout)
+        pulumi.set(__self__, "async_insert_max_data_size", async_insert_max_data_size)
+        pulumi.set(__self__, "async_insert_stale_timeout", async_insert_stale_timeout)
+        pulumi.set(__self__, "async_insert_threads", async_insert_threads)
+        pulumi.set(__self__, "cancel_http_readonly_queries_on_client_close", cancel_http_readonly_queries_on_client_close)
         pulumi.set(__self__, "compile", compile)
         pulumi.set(__self__, "compile_expressions", compile_expressions)
         pulumi.set(__self__, "connect_timeout", connect_timeout)
+        pulumi.set(__self__, "connect_timeout_with_failover", connect_timeout_with_failover)
         pulumi.set(__self__, "count_distinct_implementation", count_distinct_implementation)
         pulumi.set(__self__, "distinct_overflow_mode", distinct_overflow_mode)
         pulumi.set(__self__, "distributed_aggregation_memory_efficient", distributed_aggregation_memory_efficient)
@@ -35799,6 +36546,7 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         pulumi.set(__self__, "empty_result_for_aggregation_by_empty_set", empty_result_for_aggregation_by_empty_set)
         pulumi.set(__self__, "enable_http_compression", enable_http_compression)
         pulumi.set(__self__, "fallback_to_stale_replicas_for_distributed_queries", fallback_to_stale_replicas_for_distributed_queries)
+        pulumi.set(__self__, "flatten_nested", flatten_nested)
         pulumi.set(__self__, "force_index_by_date", force_index_by_date)
         pulumi.set(__self__, "force_primary_key", force_primary_key)
         pulumi.set(__self__, "group_by_overflow_mode", group_by_overflow_mode)
@@ -35810,6 +36558,7 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         pulumi.set(__self__, "http_send_timeout", http_send_timeout)
         pulumi.set(__self__, "input_format_defaults_for_omitted_fields", input_format_defaults_for_omitted_fields)
         pulumi.set(__self__, "input_format_values_interpret_expressions", input_format_values_interpret_expressions)
+        pulumi.set(__self__, "insert_null_as_default", insert_null_as_default)
         pulumi.set(__self__, "insert_quorum", insert_quorum)
         pulumi.set(__self__, "insert_quorum_timeout", insert_quorum_timeout)
         pulumi.set(__self__, "join_overflow_mode", join_overflow_mode)
@@ -35828,8 +36577,10 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         pulumi.set(__self__, "max_bytes_to_sort", max_bytes_to_sort)
         pulumi.set(__self__, "max_bytes_to_transfer", max_bytes_to_transfer)
         pulumi.set(__self__, "max_columns_to_read", max_columns_to_read)
+        pulumi.set(__self__, "max_concurrent_queries_for_user", max_concurrent_queries_for_user)
         pulumi.set(__self__, "max_execution_time", max_execution_time)
         pulumi.set(__self__, "max_expanded_ast_elements", max_expanded_ast_elements)
+        pulumi.set(__self__, "max_http_get_redirects", max_http_get_redirects)
         pulumi.set(__self__, "max_insert_block_size", max_insert_block_size)
         pulumi.set(__self__, "max_memory_usage", max_memory_usage)
         pulumi.set(__self__, "max_memory_usage_for_user", max_memory_usage_for_user)
@@ -35849,6 +36600,8 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         pulumi.set(__self__, "max_temporary_columns", max_temporary_columns)
         pulumi.set(__self__, "max_temporary_non_const_columns", max_temporary_non_const_columns)
         pulumi.set(__self__, "max_threads", max_threads)
+        pulumi.set(__self__, "memory_profiler_sample_probability", memory_profiler_sample_probability)
+        pulumi.set(__self__, "memory_profiler_step", memory_profiler_step)
         pulumi.set(__self__, "merge_tree_max_bytes_to_use_cache", merge_tree_max_bytes_to_use_cache)
         pulumi.set(__self__, "merge_tree_max_rows_to_use_cache", merge_tree_max_rows_to_use_cache)
         pulumi.set(__self__, "merge_tree_min_bytes_for_concurrent_read", merge_tree_min_bytes_for_concurrent_read)
@@ -35875,10 +36628,13 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         pulumi.set(__self__, "set_overflow_mode", set_overflow_mode)
         pulumi.set(__self__, "skip_unavailable_shards", skip_unavailable_shards)
         pulumi.set(__self__, "sort_overflow_mode", sort_overflow_mode)
+        pulumi.set(__self__, "timeout_before_checking_execution_speed", timeout_before_checking_execution_speed)
         pulumi.set(__self__, "timeout_overflow_mode", timeout_overflow_mode)
         pulumi.set(__self__, "transfer_overflow_mode", transfer_overflow_mode)
         pulumi.set(__self__, "transform_null_in", transform_null_in)
         pulumi.set(__self__, "use_uncompressed_cache", use_uncompressed_cache)
+        pulumi.set(__self__, "wait_for_async_insert", wait_for_async_insert)
+        pulumi.set(__self__, "wait_for_async_insert_timeout", wait_for_async_insert_timeout)
 
     @property
     @pulumi.getter(name="addHttpCorsHeader")
@@ -35895,6 +36651,71 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         Allows or denies DDL queries.
         """
         return pulumi.get(self, "allow_ddl")
+
+    @property
+    @pulumi.getter(name="allowIntrospectionFunctions")
+    def allow_introspection_functions(self) -> bool:
+        """
+        (Optional) Enables introspections functions for query profiling.
+        """
+        return pulumi.get(self, "allow_introspection_functions")
+
+    @property
+    @pulumi.getter(name="allowSuspiciousLowCardinalityTypes")
+    def allow_suspicious_low_cardinality_types(self) -> bool:
+        """
+        (Optional) Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+        """
+        return pulumi.get(self, "allow_suspicious_low_cardinality_types")
+
+    @property
+    @pulumi.getter(name="asyncInsert")
+    def async_insert(self) -> bool:
+        """
+        (Optional) Enables asynchronous inserts. Disabled by default.
+        """
+        return pulumi.get(self, "async_insert")
+
+    @property
+    @pulumi.getter(name="asyncInsertBusyTimeout")
+    def async_insert_busy_timeout(self) -> int:
+        """
+        (Optional) The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+        """
+        return pulumi.get(self, "async_insert_busy_timeout")
+
+    @property
+    @pulumi.getter(name="asyncInsertMaxDataSize")
+    def async_insert_max_data_size(self) -> int:
+        """
+        (Optional) The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+        """
+        return pulumi.get(self, "async_insert_max_data_size")
+
+    @property
+    @pulumi.getter(name="asyncInsertStaleTimeout")
+    def async_insert_stale_timeout(self) -> int:
+        """
+        (Optional) The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the async_insert_busy_timeout with every INSERT query as long as async_insert_max_data_size is not exceeded.
+        """
+        return pulumi.get(self, "async_insert_stale_timeout")
+
+    @property
+    @pulumi.getter(name="asyncInsertThreads")
+    def async_insert_threads(self) -> int:
+        """
+        (Optional) The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+        """
+        return pulumi.get(self, "async_insert_threads")
+
+    @property
+    @pulumi.getter(name="cancelHttpReadonlyQueriesOnClientClose")
+    def cancel_http_readonly_queries_on_client_close(self) -> bool:
+        """
+        (Optional) Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+        Default value: false.
+        """
+        return pulumi.get(self, "cancel_http_readonly_queries_on_client_close")
 
     @property
     @pulumi.getter
@@ -35919,6 +36740,14 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         Connect timeout in milliseconds on the socket used for communicating with the client.
         """
         return pulumi.get(self, "connect_timeout")
+
+    @property
+    @pulumi.getter(name="connectTimeoutWithFailover")
+    def connect_timeout_with_failover(self) -> int:
+        """
+        (Optional) The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+        """
+        return pulumi.get(self, "connect_timeout_with_failover")
 
     @property
     @pulumi.getter(name="countDistinctImplementation")
@@ -35983,6 +36812,14 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         Forces a query to an out-of-date replica if updated data is not available.
         """
         return pulumi.get(self, "fallback_to_stale_replicas_for_distributed_queries")
+
+    @property
+    @pulumi.getter(name="flattenNested")
+    def flatten_nested(self) -> bool:
+        """
+        (Optional) Sets the data format of a nested columns.
+        """
+        return pulumi.get(self, "flatten_nested")
 
     @property
     @pulumi.getter(name="forceIndexByDate")
@@ -36071,6 +36908,14 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
         """
         return pulumi.get(self, "input_format_values_interpret_expressions")
+
+    @property
+    @pulumi.getter(name="insertNullAsDefault")
+    def insert_null_as_default(self) -> bool:
+        """
+        (Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+        """
+        return pulumi.get(self, "insert_null_as_default")
 
     @property
     @pulumi.getter(name="insertQuorum")
@@ -36217,6 +37062,14 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         return pulumi.get(self, "max_columns_to_read")
 
     @property
+    @pulumi.getter(name="maxConcurrentQueriesForUser")
+    def max_concurrent_queries_for_user(self) -> int:
+        """
+        (Optional) The maximum number of concurrent requests per user. Default value: 0 (no limit).
+        """
+        return pulumi.get(self, "max_concurrent_queries_for_user")
+
+    @property
     @pulumi.getter(name="maxExecutionTime")
     def max_execution_time(self) -> int:
         """
@@ -36231,6 +37084,15 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         Maximum abstract syntax tree depth after after expansion of aliases.
         """
         return pulumi.get(self, "max_expanded_ast_elements")
+
+    @property
+    @pulumi.getter(name="maxHttpGetRedirects")
+    def max_http_get_redirects(self) -> int:
+        """
+        (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+        If the parameter is set to 0 (default), no hops is allowed.
+        """
+        return pulumi.get(self, "max_http_get_redirects")
 
     @property
     @pulumi.getter(name="maxInsertBlockSize")
@@ -36383,6 +37245,22 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
         """
         return pulumi.get(self, "max_threads")
+
+    @property
+    @pulumi.getter(name="memoryProfilerSampleProbability")
+    def memory_profiler_sample_probability(self) -> float:
+        """
+        (Optional) Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+        """
+        return pulumi.get(self, "memory_profiler_sample_probability")
+
+    @property
+    @pulumi.getter(name="memoryProfilerStep")
+    def memory_profiler_step(self) -> int:
+        """
+        (Optional) Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+        """
+        return pulumi.get(self, "memory_profiler_step")
 
     @property
     @pulumi.getter(name="mergeTreeMaxBytesToUseCache")
@@ -36593,6 +37471,15 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         return pulumi.get(self, "sort_overflow_mode")
 
     @property
+    @pulumi.getter(name="timeoutBeforeCheckingExecutionSpeed")
+    def timeout_before_checking_execution_speed(self) -> int:
+        """
+        (Optional) Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in min_execution_speed parameter.
+        Must be at least 1000.
+        """
+        return pulumi.get(self, "timeout_before_checking_execution_speed")
+
+    @property
     @pulumi.getter(name="timeoutOverflowMode")
     def timeout_overflow_mode(self) -> str:
         """
@@ -36624,13 +37511,29 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
         """
         return pulumi.get(self, "use_uncompressed_cache")
 
+    @property
+    @pulumi.getter(name="waitForAsyncInsert")
+    def wait_for_async_insert(self) -> bool:
+        """
+        (Optional) Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+        """
+        return pulumi.get(self, "wait_for_async_insert")
+
+    @property
+    @pulumi.getter(name="waitForAsyncInsertTimeout")
+    def wait_for_async_insert_timeout(self) -> int:
+        """
+        (Optional) The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+        """
+        return pulumi.get(self, "wait_for_async_insert_timeout")
+
 
 @pulumi.output_type
 class GetMdbClickhouseClusterZookeeperResult(dict):
     def __init__(__self__, *,
                  resources: Sequence['outputs.GetMdbClickhouseClusterZookeeperResourceResult']):
         """
-        :param Sequence['GetMdbClickhouseClusterZookeeperResourceArgs'] resources: Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        :param Sequence['GetMdbClickhouseClusterZookeeperResourceArgs'] resources: Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         """
         pulumi.set(__self__, "resources", resources)
 
@@ -36638,7 +37541,7 @@ class GetMdbClickhouseClusterZookeeperResult(dict):
     @pulumi.getter
     def resources(self) -> Sequence['outputs.GetMdbClickhouseClusterZookeeperResourceResult']:
         """
-        Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         """
         return pulumi.get(self, "resources")
 
@@ -36650,8 +37553,8 @@ class GetMdbClickhouseClusterZookeeperResourceResult(dict):
                  disk_type_id: str,
                  resource_preset_id: str):
         """
-        :param int disk_size: Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
-        :param str disk_type_id: Type of the storage of ClickHouse or ZooKeeper hosts.
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: Type of the storage of hosts.
         """
         pulumi.set(__self__, "disk_size", disk_size)
         pulumi.set(__self__, "disk_type_id", disk_type_id)
@@ -36661,7 +37564,7 @@ class GetMdbClickhouseClusterZookeeperResourceResult(dict):
     @pulumi.getter(name="diskSize")
     def disk_size(self) -> int:
         """
-        Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
+        Volume of the storage available to a host, in gigabytes.
         """
         return pulumi.get(self, "disk_size")
 
@@ -36669,7 +37572,7 @@ class GetMdbClickhouseClusterZookeeperResourceResult(dict):
     @pulumi.getter(name="diskTypeId")
     def disk_type_id(self) -> str:
         """
-        Type of the storage of ClickHouse or ZooKeeper hosts.
+        Type of the storage of hosts.
         """
         return pulumi.get(self, "disk_type_id")
 
@@ -41418,5 +42321,72 @@ class MdbPostgresqlUserPermission(dict):
 class VpcGatewaySharedEgressGateway(dict):
     def __init__(__self__):
         pass
+
+
+@pulumi.output_type
+class YandexYdbTopicConsumer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "serviceType":
+            suggest = "service_type"
+        elif key == "startingMessageTimestampMs":
+            suggest = "starting_message_timestamp_ms"
+        elif key == "supportedCodecs":
+            suggest = "supported_codecs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in YandexYdbTopicConsumer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        YandexYdbTopicConsumer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        YandexYdbTopicConsumer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 service_type: Optional[str] = None,
+                 starting_message_timestamp_ms: Optional[int] = None,
+                 supported_codecs: Optional[Sequence[str]] = None):
+        """
+        :param str name: Topic name. Type: string, required. Default value: "".
+        :param Sequence[str] supported_codecs: Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
+        """
+        pulumi.set(__self__, "name", name)
+        if service_type is not None:
+            pulumi.set(__self__, "service_type", service_type)
+        if starting_message_timestamp_ms is not None:
+            pulumi.set(__self__, "starting_message_timestamp_ms", starting_message_timestamp_ms)
+        if supported_codecs is not None:
+            pulumi.set(__self__, "supported_codecs", supported_codecs)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Topic name. Type: string, required. Default value: "".
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="serviceType")
+    def service_type(self) -> Optional[str]:
+        return pulumi.get(self, "service_type")
+
+    @property
+    @pulumi.getter(name="startingMessageTimestampMs")
+    def starting_message_timestamp_ms(self) -> Optional[int]:
+        return pulumi.get(self, "starting_message_timestamp_ms")
+
+    @property
+    @pulumi.getter(name="supportedCodecs")
+    def supported_codecs(self) -> Optional[Sequence[str]]:
+        """
+        Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
+        """
+        return pulumi.get(self, "supported_codecs")
 
 

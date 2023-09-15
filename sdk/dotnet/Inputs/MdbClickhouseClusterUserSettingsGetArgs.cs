@@ -25,6 +25,55 @@ namespace Pulumi.Yandex.Inputs
         public Input<bool>? AllowDdl { get; set; }
 
         /// <summary>
+        /// Enables introspections functions for query profiling.
+        /// </summary>
+        [Input("allowIntrospectionFunctions")]
+        public Input<bool>? AllowIntrospectionFunctions { get; set; }
+
+        /// <summary>
+        /// Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+        /// </summary>
+        [Input("allowSuspiciousLowCardinalityTypes")]
+        public Input<bool>? AllowSuspiciousLowCardinalityTypes { get; set; }
+
+        /// <summary>
+        /// Enables asynchronous inserts. Disabled by default.
+        /// </summary>
+        [Input("asyncInsert")]
+        public Input<bool>? AsyncInsert { get; set; }
+
+        /// <summary>
+        /// The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+        /// </summary>
+        [Input("asyncInsertBusyTimeout")]
+        public Input<int>? AsyncInsertBusyTimeout { get; set; }
+
+        /// <summary>
+        /// The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+        /// </summary>
+        [Input("asyncInsertMaxDataSize")]
+        public Input<int>? AsyncInsertMaxDataSize { get; set; }
+
+        /// <summary>
+        /// The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the async_insert_busy_timeout with every INSERT query as long as async_insert_max_data_size is not exceeded.
+        /// </summary>
+        [Input("asyncInsertStaleTimeout")]
+        public Input<int>? AsyncInsertStaleTimeout { get; set; }
+
+        /// <summary>
+        /// The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+        /// </summary>
+        [Input("asyncInsertThreads")]
+        public Input<int>? AsyncInsertThreads { get; set; }
+
+        /// <summary>
+        /// Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+        /// Default value: false.
+        /// </summary>
+        [Input("cancelHttpReadonlyQueriesOnClientClose")]
+        public Input<bool>? CancelHttpReadonlyQueriesOnClientClose { get; set; }
+
+        /// <summary>
         /// Enable compilation of queries.
         /// </summary>
         [Input("compile")]
@@ -41,6 +90,12 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("connectTimeout")]
         public Input<int>? ConnectTimeout { get; set; }
+
+        /// <summary>
+        /// The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+        /// </summary>
+        [Input("connectTimeoutWithFailover")]
+        public Input<int>? ConnectTimeoutWithFailover { get; set; }
 
         /// <summary>
         /// Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
@@ -89,6 +144,12 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("fallbackToStaleReplicasForDistributedQueries")]
         public Input<bool>? FallbackToStaleReplicasForDistributedQueries { get; set; }
+
+        /// <summary>
+        /// Sets the data format of a nested columns.
+        /// </summary>
+        [Input("flattenNested")]
+        public Input<bool>? FlattenNested { get; set; }
 
         /// <summary>
         /// Disables query execution if the index can’t be used by date.
@@ -155,6 +216,12 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("inputFormatValuesInterpretExpressions")]
         public Input<bool>? InputFormatValuesInterpretExpressions { get; set; }
+
+        /// <summary>
+        /// Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+        /// </summary>
+        [Input("insertNullAsDefault")]
+        public Input<bool>? InsertNullAsDefault { get; set; }
 
         /// <summary>
         /// Enables the quorum writes.
@@ -265,6 +332,12 @@ namespace Pulumi.Yandex.Inputs
         public Input<int>? MaxColumnsToRead { get; set; }
 
         /// <summary>
+        /// The maximum number of concurrent requests per user. Default value: 0 (no limit).
+        /// </summary>
+        [Input("maxConcurrentQueriesForUser")]
+        public Input<int>? MaxConcurrentQueriesForUser { get; set; }
+
+        /// <summary>
         /// Limits the maximum query execution time in milliseconds.
         /// </summary>
         [Input("maxExecutionTime")]
@@ -275,6 +348,13 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("maxExpandedAstElements")]
         public Input<int>? MaxExpandedAstElements { get; set; }
+
+        /// <summary>
+        /// Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+        /// If the parameter is set to 0 (default), no hops is allowed.
+        /// </summary>
+        [Input("maxHttpGetRedirects")]
+        public Input<int>? MaxHttpGetRedirects { get; set; }
 
         /// <summary>
         /// The size of blocks (in a count of rows) to form for insertion into a table.
@@ -389,6 +469,18 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("maxThreads")]
         public Input<int>? MaxThreads { get; set; }
+
+        /// <summary>
+        /// Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+        /// </summary>
+        [Input("memoryProfilerSampleProbability")]
+        public Input<double>? MemoryProfilerSampleProbability { get; set; }
+
+        /// <summary>
+        /// Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+        /// </summary>
+        [Input("memoryProfilerStep")]
+        public Input<int>? MemoryProfilerStep { get; set; }
 
         /// <summary>
         /// If ClickHouse should read more than merge_tree_max_bytes_to_use_cache bytes in one query, it doesn’t use the cache of uncompressed blocks.
@@ -547,6 +639,13 @@ namespace Pulumi.Yandex.Inputs
         public Input<string>? SortOverflowMode { get; set; }
 
         /// <summary>
+        /// Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in min_execution_speed parameter.
+        /// Must be at least 1000.
+        /// </summary>
+        [Input("timeoutBeforeCheckingExecutionSpeed")]
+        public Input<int>? TimeoutBeforeCheckingExecutionSpeed { get; set; }
+
+        /// <summary>
         /// Sets behaviour on overflow. Possible values:
         /// </summary>
         [Input("timeoutOverflowMode")]
@@ -569,6 +668,18 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("useUncompressedCache")]
         public Input<bool>? UseUncompressedCache { get; set; }
+
+        /// <summary>
+        /// Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+        /// </summary>
+        [Input("waitForAsyncInsert")]
+        public Input<bool>? WaitForAsyncInsert { get; set; }
+
+        /// <summary>
+        /// The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+        /// </summary>
+        [Input("waitForAsyncInsertTimeout")]
+        public Input<int>? WaitForAsyncInsertTimeout { get; set; }
 
         public MdbClickhouseClusterUserSettingsGetArgs()
         {

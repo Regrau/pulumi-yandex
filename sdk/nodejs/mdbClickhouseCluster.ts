@@ -602,9 +602,6 @@ export class MdbClickhouseCluster extends pulumi.CustomResource {
             resourceInputs["zookeeper"] = state ? state.zookeeper : undefined;
         } else {
             const args = argsOrState as MdbClickhouseClusterArgs | undefined;
-            if ((!args || args.clickhouse === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'clickhouse'");
-            }
             if ((!args || args.environment === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'environment'");
             }
@@ -796,7 +793,7 @@ export interface MdbClickhouseClusterArgs {
     /**
      * Configuration of the ClickHouse subcluster. The structure is documented below.
      */
-    clickhouse: pulumi.Input<inputs.MdbClickhouseClusterClickhouse>;
+    clickhouse?: pulumi.Input<inputs.MdbClickhouseClusterClickhouse>;
     cloudStorage?: pulumi.Input<inputs.MdbClickhouseClusterCloudStorage>;
     /**
      * Whether to copy schema on new ClickHouse hosts.

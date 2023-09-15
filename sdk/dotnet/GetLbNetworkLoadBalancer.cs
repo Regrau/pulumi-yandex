@@ -126,6 +126,10 @@ namespace Pulumi.Yandex
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
+        /// Flag that protects the network load balancer from accidental deletion.
+        /// </summary>
+        public readonly bool DeletionProtection;
+        /// <summary>
         /// Description of the network load balancer.
         /// </summary>
         public readonly string Description;
@@ -162,6 +166,8 @@ namespace Pulumi.Yandex
 
             string createdAt,
 
+            bool deletionProtection,
+
             string description,
 
             string folderId,
@@ -182,6 +188,7 @@ namespace Pulumi.Yandex
         {
             AttachedTargetGroups = attachedTargetGroups;
             CreatedAt = createdAt;
+            DeletionProtection = deletionProtection;
             Description = description;
             FolderId = folderId;
             Id = id;

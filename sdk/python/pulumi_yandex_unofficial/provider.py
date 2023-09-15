@@ -406,13 +406,13 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["service_account_key_file"] = service_account_key_file
             __props__.__dict__["storage_access_key"] = storage_access_key
             __props__.__dict__["storage_endpoint"] = storage_endpoint
-            __props__.__dict__["storage_secret_key"] = storage_secret_key
-            __props__.__dict__["token"] = token
+            __props__.__dict__["storage_secret_key"] = None if storage_secret_key is None else pulumi.Output.secret(storage_secret_key)
+            __props__.__dict__["token"] = None if token is None else pulumi.Output.secret(token)
             __props__.__dict__["ymq_access_key"] = ymq_access_key
             __props__.__dict__["ymq_endpoint"] = ymq_endpoint
             __props__.__dict__["ymq_secret_key"] = None if ymq_secret_key is None else pulumi.Output.secret(ymq_secret_key)
             __props__.__dict__["zone"] = zone
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["ymqSecretKey"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["storageSecretKey", "token", "ymqSecretKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Provider, __self__).__init__(
             'yandex',

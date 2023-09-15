@@ -81,6 +81,10 @@ export class VpcAddress extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
+     * Flag that protects the address from accidental deletion.
+     */
+    public readonly deletionProtection!: pulumi.Output<boolean>;
+    /**
      * An optional description of this resource. Provide this property when
      * you create the resource.
      */
@@ -126,6 +130,7 @@ export class VpcAddress extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as VpcAddressState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["deletionProtection"] = state ? state.deletionProtection : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["externalIpv4Address"] = state ? state.externalIpv4Address : undefined;
             resourceInputs["folderId"] = state ? state.folderId : undefined;
@@ -135,6 +140,7 @@ export class VpcAddress extends pulumi.CustomResource {
             resourceInputs["used"] = state ? state.used : undefined;
         } else {
             const args = argsOrState as VpcAddressArgs | undefined;
+            resourceInputs["deletionProtection"] = args ? args.deletionProtection : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["externalIpv4Address"] = args ? args.externalIpv4Address : undefined;
             resourceInputs["folderId"] = args ? args.folderId : undefined;
@@ -157,6 +163,10 @@ export interface VpcAddressState {
      * Creation timestamp of the key.
      */
     createdAt?: pulumi.Input<string>;
+    /**
+     * Flag that protects the address from accidental deletion.
+     */
+    deletionProtection?: pulumi.Input<boolean>;
     /**
      * An optional description of this resource. Provide this property when
      * you create the resource.
@@ -194,6 +204,10 @@ export interface VpcAddressState {
  * The set of arguments for constructing a VpcAddress resource.
  */
 export interface VpcAddressArgs {
+    /**
+     * Flag that protects the address from accidental deletion.
+     */
+    deletionProtection?: pulumi.Input<boolean>;
     /**
      * An optional description of this resource. Provide this property when
      * you create the resource.

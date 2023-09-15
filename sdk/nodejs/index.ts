@@ -264,6 +264,11 @@ export const getContainerRegistry: typeof import("./getContainerRegistry").getCo
 export const getContainerRegistryOutput: typeof import("./getContainerRegistry").getContainerRegistryOutput = null as any;
 utilities.lazyLoad(exports, ["getContainerRegistry","getContainerRegistryOutput"], () => require("./getContainerRegistry"));
 
+export { GetContainerRegistryIpPermissionArgs, GetContainerRegistryIpPermissionResult, GetContainerRegistryIpPermissionOutputArgs } from "./getContainerRegistryIpPermission";
+export const getContainerRegistryIpPermission: typeof import("./getContainerRegistryIpPermission").getContainerRegistryIpPermission = null as any;
+export const getContainerRegistryIpPermissionOutput: typeof import("./getContainerRegistryIpPermission").getContainerRegistryIpPermissionOutput = null as any;
+utilities.lazyLoad(exports, ["getContainerRegistryIpPermission","getContainerRegistryIpPermissionOutput"], () => require("./getContainerRegistryIpPermission"));
+
 export { GetContainerRepositoryArgs, GetContainerRepositoryResult, GetContainerRepositoryOutputArgs } from "./getContainerRepository";
 export const getContainerRepository: typeof import("./getContainerRepository").getContainerRepository = null as any;
 export const getContainerRepositoryOutput: typeof import("./getContainerRepository").getContainerRepositoryOutput = null as any;
@@ -784,6 +789,11 @@ export type YandexComputeFilesystem = import("./yandexComputeFilesystem").Yandex
 export const YandexComputeFilesystem: typeof import("./yandexComputeFilesystem").YandexComputeFilesystem = null as any;
 utilities.lazyLoad(exports, ["YandexComputeFilesystem"], () => require("./yandexComputeFilesystem"));
 
+export { YandexYdbTopicArgs, YandexYdbTopicState } from "./yandexYdbTopic";
+export type YandexYdbTopic = import("./yandexYdbTopic").YandexYdbTopic;
+export const YandexYdbTopic: typeof import("./yandexYdbTopic").YandexYdbTopic = null as any;
+utilities.lazyLoad(exports, ["YandexYdbTopic"], () => require("./yandexYdbTopic"));
+
 export { YdbDatabaseDedicatedArgs, YdbDatabaseDedicatedState } from "./ydbDatabaseDedicated";
 export type YdbDatabaseDedicated = import("./ydbDatabaseDedicated").YdbDatabaseDedicated;
 export const YdbDatabaseDedicated: typeof import("./ydbDatabaseDedicated").YdbDatabaseDedicated = null as any;
@@ -1001,6 +1011,8 @@ const _module = {
                 return new VpcSubnet(name, <any>undefined, { urn })
             case "yandex:index/yandexComputeFilesystem:yandexComputeFilesystem":
                 return new YandexComputeFilesystem(name, <any>undefined, { urn })
+            case "yandex:index/yandexYdbTopic:yandexYdbTopic":
+                return new YandexYdbTopic(name, <any>undefined, { urn })
             case "yandex:index/ydbDatabaseDedicated:YdbDatabaseDedicated":
                 return new YdbDatabaseDedicated(name, <any>undefined, { urn })
             case "yandex:index/ydbDatabaseIamBinding:ydbDatabaseIamBinding":
@@ -1106,6 +1118,7 @@ pulumi.runtime.registerResourceModule("yandex", "index/vpcSecurityGroup", _modul
 pulumi.runtime.registerResourceModule("yandex", "index/vpcSecurityGroupRule", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/vpcSubnet", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/yandexComputeFilesystem", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/yandexYdbTopic", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/ydbDatabaseDedicated", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/ydbDatabaseIamBinding", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/ydbDatabaseServerless", _module)

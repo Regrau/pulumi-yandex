@@ -63,6 +63,10 @@ export interface GetVpcAddressResult {
      */
     readonly createdAt: string;
     /**
+     * Flag that protects the address from accidental deletion.
+     */
+    readonly deletionProtection: boolean;
+    /**
      * Description of the address.
      */
     readonly description: string;

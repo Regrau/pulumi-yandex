@@ -63,6 +63,8 @@ type LookupVpcAddressResult struct {
 	AddressId string `pulumi:"addressId"`
 	// Creation timestamp of this address.
 	CreatedAt string `pulumi:"createdAt"`
+	// Flag that protects the address from accidental deletion.
+	DeletionProtection bool `pulumi:"deletionProtection"`
 	// Description of the address.
 	Description string `pulumi:"description"`
 	// spec of IP v4 address.
@@ -128,6 +130,11 @@ func (o LookupVpcAddressResultOutput) AddressId() pulumi.StringOutput {
 // Creation timestamp of this address.
 func (o LookupVpcAddressResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupVpcAddressResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Flag that protects the address from accidental deletion.
+func (o LookupVpcAddressResultOutput) DeletionProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupVpcAddressResult) bool { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
 // Description of the address.

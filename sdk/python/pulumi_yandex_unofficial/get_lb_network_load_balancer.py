@@ -22,13 +22,16 @@ class GetLbNetworkLoadBalancerResult:
     """
     A collection of values returned by getLbNetworkLoadBalancer.
     """
-    def __init__(__self__, attached_target_groups=None, created_at=None, description=None, folder_id=None, id=None, labels=None, listeners=None, name=None, network_load_balancer_id=None, region_id=None, type=None):
+    def __init__(__self__, attached_target_groups=None, created_at=None, deletion_protection=None, description=None, folder_id=None, id=None, labels=None, listeners=None, name=None, network_load_balancer_id=None, region_id=None, type=None):
         if attached_target_groups and not isinstance(attached_target_groups, list):
             raise TypeError("Expected argument 'attached_target_groups' to be a list")
         pulumi.set(__self__, "attached_target_groups", attached_target_groups)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if deletion_protection and not isinstance(deletion_protection, bool):
+            raise TypeError("Expected argument 'deletion_protection' to be a bool")
+        pulumi.set(__self__, "deletion_protection", deletion_protection)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -72,6 +75,14 @@ class GetLbNetworkLoadBalancerResult:
         Creation timestamp of this network load balancer.
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> bool:
+        """
+        Flag that protects the network load balancer from accidental deletion.
+        """
+        return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
@@ -148,6 +159,7 @@ class AwaitableGetLbNetworkLoadBalancerResult(GetLbNetworkLoadBalancerResult):
         return GetLbNetworkLoadBalancerResult(
             attached_target_groups=self.attached_target_groups,
             created_at=self.created_at,
+            deletion_protection=self.deletion_protection,
             description=self.description,
             folder_id=self.folder_id,
             id=self.id,
@@ -191,6 +203,7 @@ def get_lb_network_load_balancer(folder_id: Optional[str] = None,
     return AwaitableGetLbNetworkLoadBalancerResult(
         attached_target_groups=__ret__.attached_target_groups,
         created_at=__ret__.created_at,
+        deletion_protection=__ret__.deletion_protection,
         description=__ret__.description,
         folder_id=__ret__.folder_id,
         id=__ret__.id,

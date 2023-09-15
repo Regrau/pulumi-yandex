@@ -22,13 +22,16 @@ class GetVpcAddressResult:
     """
     A collection of values returned by getVpcAddress.
     """
-    def __init__(__self__, address_id=None, created_at=None, description=None, external_ipv4_addresses=None, folder_id=None, id=None, labels=None, name=None, reserved=None, used=None):
+    def __init__(__self__, address_id=None, created_at=None, deletion_protection=None, description=None, external_ipv4_addresses=None, folder_id=None, id=None, labels=None, name=None, reserved=None, used=None):
         if address_id and not isinstance(address_id, str):
             raise TypeError("Expected argument 'address_id' to be a str")
         pulumi.set(__self__, "address_id", address_id)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if deletion_protection and not isinstance(deletion_protection, bool):
+            raise TypeError("Expected argument 'deletion_protection' to be a bool")
+        pulumi.set(__self__, "deletion_protection", deletion_protection)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -66,6 +69,14 @@ class GetVpcAddressResult:
         Creation timestamp of this address.
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> bool:
+        """
+        Flag that protects the address from accidental deletion.
+        """
+        return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
@@ -134,6 +145,7 @@ class AwaitableGetVpcAddressResult(GetVpcAddressResult):
         return GetVpcAddressResult(
             address_id=self.address_id,
             created_at=self.created_at,
+            deletion_protection=self.deletion_protection,
             description=self.description,
             external_ipv4_addresses=self.external_ipv4_addresses,
             folder_id=self.folder_id,
@@ -176,6 +188,7 @@ def get_vpc_address(address_id: Optional[str] = None,
     return AwaitableGetVpcAddressResult(
         address_id=__ret__.address_id,
         created_at=__ret__.created_at,
+        deletion_protection=__ret__.deletion_protection,
         description=__ret__.description,
         external_ipv4_addresses=__ret__.external_ipv4_addresses,
         folder_id=__ret__.folder_id,

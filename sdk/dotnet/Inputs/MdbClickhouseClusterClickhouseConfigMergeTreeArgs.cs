@@ -25,6 +25,18 @@ namespace Pulumi.Yandex.Inputs
         public Input<int>? MaxReplicatedMergesInQueue { get; set; }
 
         /// <summary>
+        /// Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        /// </summary>
+        [Input("minBytesForWidePart")]
+        public Input<int>? MinBytesForWidePart { get; set; }
+
+        /// <summary>
+        /// Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        /// </summary>
+        [Input("minRowsForWidePart")]
+        public Input<int>? MinRowsForWidePart { get; set; }
+
+        /// <summary>
         /// Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
         /// </summary>
         [Input("numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge")]
@@ -53,6 +65,12 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("replicatedDeduplicationWindowSeconds")]
         public Input<int>? ReplicatedDeduplicationWindowSeconds { get; set; }
+
+        /// <summary>
+        /// Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+        /// </summary>
+        [Input("ttlOnlyDropParts")]
+        public Input<bool>? TtlOnlyDropParts { get; set; }
 
         public MdbClickhouseClusterClickhouseConfigMergeTreeArgs()
         {

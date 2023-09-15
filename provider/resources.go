@@ -224,6 +224,7 @@ func Provider() tfbridge.ProviderInfo {
 			"yandex_compute_snapshot_schedule":             {Tok: makeResource(mainMod, "computeSnapshotSchedule")},
 			"yandex_cm_certificate":                        {Tok: makeResource(mainMod, "cmCertificate")},
 			"yandex_compute_filesystem":                    {Tok: makeResource(mainMod, "yandexComputeFilesystem")},
+			"yandex_ydb_topic":                             {Tok: makeResource(mainMod, "yandexYdbTopic")},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"yandex_alb_target_group": {
@@ -556,6 +557,12 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: makeDataSource(mainMod, "getComputeFilesystem"),
 				Docs: &tfbridge.DocInfo{
 					Source: "datasource_yandex_compute_filesystem.html.markdown",
+				},
+			},
+			"yandex_container_registry_ip_permission": {
+				Tok: makeDataSource(mainMod, "getContainerRegistryIpPermission"),
+				Docs: &tfbridge.DocInfo{
+					Source: "datasource_yandex_container_registry_ip_permission.html.markdown",
 				},
 			},
 		},

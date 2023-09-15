@@ -22,7 +22,10 @@ class GetFunctionTriggerResult:
     """
     A collection of values returned by getFunctionTrigger.
     """
-    def __init__(__self__, created_at=None, description=None, dlqs=None, folder_id=None, functions=None, id=None, iots=None, labels=None, log_groups=None, loggings=None, message_queues=None, name=None, object_storages=None, timers=None, trigger_id=None):
+    def __init__(__self__, containers=None, created_at=None, description=None, dlqs=None, folder_id=None, functions=None, id=None, iots=None, labels=None, log_groups=None, loggings=None, message_queues=None, name=None, object_storages=None, timers=None, trigger_id=None):
+        if containers and not isinstance(containers, list):
+            raise TypeError("Expected argument 'containers' to be a list")
+        pulumi.set(__self__, "containers", containers)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
@@ -68,6 +71,11 @@ class GetFunctionTriggerResult:
         if trigger_id and not isinstance(trigger_id, str):
             raise TypeError("Expected argument 'trigger_id' to be a str")
         pulumi.set(__self__, "trigger_id", trigger_id)
+
+    @property
+    @pulumi.getter
+    def containers(self) -> Sequence['outputs.GetFunctionTriggerContainerResult']:
+        return pulumi.get(self, "containers")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -206,6 +214,7 @@ class AwaitableGetFunctionTriggerResult(GetFunctionTriggerResult):
         if False:
             yield self
         return GetFunctionTriggerResult(
+            containers=self.containers,
             created_at=self.created_at,
             description=self.description,
             dlqs=self.dlqs,
@@ -253,6 +262,7 @@ def get_function_trigger(folder_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('yandex:index/getFunctionTrigger:getFunctionTrigger', __args__, opts=opts, typ=GetFunctionTriggerResult).value
 
     return AwaitableGetFunctionTriggerResult(
+        containers=__ret__.containers,
         created_at=__ret__.created_at,
         description=__ret__.description,
         dlqs=__ret__.dlqs,

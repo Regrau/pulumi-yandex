@@ -25,6 +25,10 @@ namespace Pulumi.Yandex.Outputs
         /// HTTP router id.
         /// </summary>
         public readonly string? HttpRouterId;
+        /// <summary>
+        /// When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
+        /// </summary>
+        public readonly bool? RewriteRequestId;
 
         [OutputConstructor]
         private AlbLoadBalancerListenerHttpHandler(
@@ -32,11 +36,14 @@ namespace Pulumi.Yandex.Outputs
 
             Outputs.AlbLoadBalancerListenerHttpHandlerHttp2Options? http2Options,
 
-            string? httpRouterId)
+            string? httpRouterId,
+
+            bool? rewriteRequestId)
         {
             AllowHttp10 = allowHttp10;
             Http2Options = http2Options;
             HttpRouterId = httpRouterId;
+            RewriteRequestId = rewriteRequestId;
         }
     }
 }

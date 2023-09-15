@@ -286,8 +286,8 @@ namespace Pulumi.Yandex
         /// <summary>
         /// Configuration of the ClickHouse subcluster. The structure is documented below.
         /// </summary>
-        [Input("clickhouse", required: true)]
-        public Input<Inputs.MdbClickhouseClusterClickhouseArgs> Clickhouse { get; set; } = null!;
+        [Input("clickhouse")]
+        public Input<Inputs.MdbClickhouseClusterClickhouseArgs>? Clickhouse { get; set; }
 
         [Input("cloudStorage")]
         public Input<Inputs.MdbClickhouseClusterCloudStorageArgs>? CloudStorage { get; set; }

@@ -597,6 +597,10 @@ export interface AlbLoadBalancerListenerHttpHandler {
      * HTTP router id.
      */
     httpRouterId?: string;
+    /**
+     * When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
+     */
+    rewriteRequestId?: boolean;
 }
 
 export interface AlbLoadBalancerListenerHttpHandlerHttp2Options {
@@ -667,6 +671,10 @@ export interface AlbLoadBalancerListenerTlsDefaultHandlerHttpHandler {
      * HTTP router id.
      */
     httpRouterId?: string;
+    /**
+     * When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
+     */
+    rewriteRequestId?: boolean;
 }
 
 export interface AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2Options {
@@ -727,6 +735,10 @@ export interface AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandler {
      * HTTP router id.
      */
     httpRouterId?: string;
+    /**
+     * When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
+     */
+    rewriteRequestId?: boolean;
 }
 
 export interface AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2Options {
@@ -3348,6 +3360,14 @@ export interface FunctionSecret {
     versionId: string;
 }
 
+export interface FunctionTriggerContainer {
+    id: string;
+    path?: string;
+    retryAttempts?: string;
+    retryInterval?: string;
+    serviceAccountId?: string;
+}
+
 export interface FunctionTriggerDlq {
     queueId: string;
     serviceAccountId: string;
@@ -3926,6 +3946,7 @@ export interface GetAlbLoadBalancerListenerHttpHandler {
     allowHttp10?: boolean;
     http2Options: outputs.GetAlbLoadBalancerListenerHttpHandlerHttp2Option[];
     httpRouterId: string;
+    rewriteRequestId: boolean;
 }
 
 export interface GetAlbLoadBalancerListenerHttpHandlerHttp2Option {
@@ -3959,6 +3980,7 @@ export interface GetAlbLoadBalancerListenerTlDefaultHandlerHttpHandler {
     allowHttp10?: boolean;
     http2Options: outputs.GetAlbLoadBalancerListenerTlDefaultHandlerHttpHandlerHttp2Option[];
     httpRouterId: string;
+    rewriteRequestId: boolean;
 }
 
 export interface GetAlbLoadBalancerListenerTlDefaultHandlerHttpHandlerHttp2Option {
@@ -3985,6 +4007,7 @@ export interface GetAlbLoadBalancerListenerTlSniHandlerHandlerHttpHandler {
     allowHttp10?: boolean;
     http2Options: outputs.GetAlbLoadBalancerListenerTlSniHandlerHandlerHttpHandlerHttp2Option[];
     httpRouterId: string;
+    rewriteRequestId: boolean;
 }
 
 export interface GetAlbLoadBalancerListenerTlSniHandlerHandlerHttpHandlerHttp2Option {
@@ -5513,6 +5536,14 @@ export interface GetFunctionSecret {
     versionId: string;
 }
 
+export interface GetFunctionTriggerContainer {
+    id: string;
+    path: string;
+    retryAttempts: string;
+    retryInterval: string;
+    serviceAccountId: string;
+}
+
 export interface GetFunctionTriggerDlq {
     queueId: string;
     serviceAccountId: string;
@@ -6137,18 +6168,20 @@ export interface GetMdbClickhouseClusterClickhouse {
      */
     config: outputs.GetMdbClickhouseClusterClickhouseConfig;
     /**
-     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
      */
     resources: outputs.GetMdbClickhouseClusterClickhouseResource[];
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfig {
+    backgroundFetchesPoolSize: number;
     backgroundPoolSize?: number;
     backgroundSchedulePoolSize?: number;
     /**
      * Data compression configuration. The structure is documented below.
      */
     compressions?: outputs.GetMdbClickhouseClusterClickhouseConfigCompression[];
+    defaultDatabase: string;
     geobaseUri?: string;
     /**
      * Graphite rollup configuration. The structure is documented below.
@@ -6192,6 +6225,7 @@ export interface GetMdbClickhouseClusterClickhouseConfig {
     textLogRetentionSize?: number;
     textLogRetentionTime?: number;
     timezone?: string;
+    totalMemoryProfilerStep: number;
     traceLogEnabled?: boolean;
     traceLogRetentionSize?: number;
     traceLogRetentionTime?: number;
@@ -6309,6 +6343,14 @@ export interface GetMdbClickhouseClusterClickhouseConfigMergeTree {
      */
     maxReplicatedMergesInQueue?: number;
     /**
+     * (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+     */
+    minBytesForWidePart: number;
+    /**
+     * (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+     */
+    minRowsForWidePart: number;
+    /**
      * Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
      */
     numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge?: number;
@@ -6328,6 +6370,10 @@ export interface GetMdbClickhouseClusterClickhouseConfigMergeTree {
      * Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
      */
     replicatedDeduplicationWindowSeconds?: number;
+    /**
+     * (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+     */
+    ttlOnlyDropParts: boolean;
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigRabbitmq {
@@ -6339,15 +6385,19 @@ export interface GetMdbClickhouseClusterClickhouseConfigRabbitmq {
      * RabbitMQ username.
      */
     username?: string;
+    /**
+     * (Optional) RabbitMQ vhost. Default: '\'.
+     */
+    vhost: string;
 }
 
 export interface GetMdbClickhouseClusterClickhouseResource {
     /**
-     * Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
+     * Volume of the storage available to a host, in gigabytes.
      */
     diskSize: number;
     /**
-     * Type of the storage of ClickHouse or ZooKeeper hosts.
+     * Type of the storage of hosts.
      */
     diskTypeId: string;
     resourcePresetId: string;
@@ -6457,6 +6507,10 @@ export interface GetMdbClickhouseClusterShard {
      */
     name: string;
     /**
+     * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+     */
+    resources: outputs.GetMdbClickhouseClusterShardResources;
+    /**
      * The weight of the shard.
      */
     weight: number;
@@ -6475,6 +6529,18 @@ export interface GetMdbClickhouseClusterShardGroup {
      * List of shards names that belong to the shard group.
      */
     shardNames: string[];
+}
+
+export interface GetMdbClickhouseClusterShardResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize: number;
+    /**
+     * Type of the storage of hosts.
+     */
+    diskTypeId: string;
+    resourcePresetId: string;
 }
 
 export interface GetMdbClickhouseClusterUser {
@@ -6540,6 +6606,39 @@ export interface GetMdbClickhouseClusterUserSettings {
      */
     allowDdl: boolean;
     /**
+     * (Optional) Enables introspections functions for query profiling.
+     */
+    allowIntrospectionFunctions: boolean;
+    /**
+     * (Optional) Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+     */
+    allowSuspiciousLowCardinalityTypes: boolean;
+    /**
+     * (Optional) Enables asynchronous inserts. Disabled by default.
+     */
+    asyncInsert: boolean;
+    /**
+     * (Optional) The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+     */
+    asyncInsertBusyTimeout: number;
+    /**
+     * (Optional) The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+     */
+    asyncInsertMaxDataSize: number;
+    /**
+     * (Optional) The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the asyncInsertBusyTimeout with every INSERT query as long as asyncInsertMaxDataSize is not exceeded.
+     */
+    asyncInsertStaleTimeout: number;
+    /**
+     * (Optional) The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+     */
+    asyncInsertThreads: number;
+    /**
+     * (Optional) Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+     * Default value: false.
+     */
+    cancelHttpReadonlyQueriesOnClientClose: boolean;
+    /**
      * Enable compilation of queries.
      */
     compile: boolean;
@@ -6551,6 +6650,10 @@ export interface GetMdbClickhouseClusterUserSettings {
      * Connect timeout in milliseconds on the socket used for communicating with the client.
      */
     connectTimeout: number;
+    /**
+     * (Optional) The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+     */
+    connectTimeoutWithFailover: number;
     /**
      * Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
      */
@@ -6583,6 +6686,10 @@ export interface GetMdbClickhouseClusterUserSettings {
      * Forces a query to an out-of-date replica if updated data is not available.
      */
     fallbackToStaleReplicasForDistributedQueries: boolean;
+    /**
+     * (Optional) Sets the data format of a nested columns.
+     */
+    flattenNested: boolean;
     /**
      * Disables query execution if the index can’t be used by date.
      */
@@ -6627,6 +6734,10 @@ export interface GetMdbClickhouseClusterUserSettings {
      * Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
      */
     inputFormatValuesInterpretExpressions: boolean;
+    /**
+     * (Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+     */
+    insertNullAsDefault: boolean;
     /**
      * Enables the quorum writes.
      */
@@ -6700,6 +6811,10 @@ export interface GetMdbClickhouseClusterUserSettings {
      */
     maxColumnsToRead: number;
     /**
+     * (Optional) The maximum number of concurrent requests per user. Default value: 0 (no limit).
+     */
+    maxConcurrentQueriesForUser: number;
+    /**
      * Limits the maximum query execution time in milliseconds.
      */
     maxExecutionTime: number;
@@ -6707,6 +6822,11 @@ export interface GetMdbClickhouseClusterUserSettings {
      * Maximum abstract syntax tree depth after after expansion of aliases.
      */
     maxExpandedAstElements: number;
+    /**
+     * (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+     * If the parameter is set to 0 (default), no hops is allowed.
+     */
+    maxHttpGetRedirects: number;
     /**
      * The size of blocks (in a count of rows) to form for insertion into a table.
      */
@@ -6783,6 +6903,14 @@ export interface GetMdbClickhouseClusterUserSettings {
      * The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
      */
     maxThreads: number;
+    /**
+     * (Optional) Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+     */
+    memoryProfilerSampleProbability: number;
+    /**
+     * (Optional) Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+     */
+    memoryProfilerStep: number;
     /**
      * If ClickHouse should read more than mergeTreeMaxBytesToUseCache bytes in one query, it doesn’t use the cache of uncompressed blocks.
      */
@@ -6888,6 +7016,11 @@ export interface GetMdbClickhouseClusterUserSettings {
      */
     sortOverflowMode: string;
     /**
+     * (Optional) Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in minExecutionSpeed parameter.
+     * Must be at least 1000.
+     */
+    timeoutBeforeCheckingExecutionSpeed: number;
+    /**
      * Sets behaviour on overflow. Possible values:
      */
     timeoutOverflowMode: string;
@@ -6903,22 +7036,30 @@ export interface GetMdbClickhouseClusterUserSettings {
      * Whether to use a cache of uncompressed blocks.
      */
     useUncompressedCache: boolean;
+    /**
+     * (Optional) Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+     */
+    waitForAsyncInsert: boolean;
+    /**
+     * (Optional) The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+     */
+    waitForAsyncInsertTimeout: number;
 }
 
 export interface GetMdbClickhouseClusterZookeeper {
     /**
-     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
      */
     resources: outputs.GetMdbClickhouseClusterZookeeperResource[];
 }
 
 export interface GetMdbClickhouseClusterZookeeperResource {
     /**
-     * Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
+     * Volume of the storage available to a host, in gigabytes.
      */
     diskSize: number;
     /**
-     * Type of the storage of ClickHouse or ZooKeeper hosts.
+     * Type of the storage of hosts.
      */
     diskTypeId: string;
     resourcePresetId: string;
@@ -8920,18 +9061,20 @@ export interface MdbClickhouseClusterClickhouse {
      */
     config: outputs.MdbClickhouseClusterClickhouseConfig;
     /**
-     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     * Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
      */
     resources: outputs.MdbClickhouseClusterClickhouseResources;
 }
 
 export interface MdbClickhouseClusterClickhouseConfig {
+    backgroundFetchesPoolSize: number;
     backgroundPoolSize: number;
     backgroundSchedulePoolSize: number;
     /**
      * Data compression configuration. The structure is documented below.
      */
     compressions?: outputs.MdbClickhouseClusterClickhouseConfigCompression[];
+    defaultDatabase: string;
     geobaseUri: string;
     /**
      * Graphite rollup configuration. The structure is documented below.
@@ -8975,6 +9118,7 @@ export interface MdbClickhouseClusterClickhouseConfig {
     textLogRetentionSize: number;
     textLogRetentionTime: number;
     timezone: string;
+    totalMemoryProfilerStep: number;
     traceLogEnabled: boolean;
     traceLogRetentionSize: number;
     traceLogRetentionTime: number;
@@ -9092,6 +9236,14 @@ export interface MdbClickhouseClusterClickhouseConfigMergeTree {
      */
     maxReplicatedMergesInQueue: number;
     /**
+     * Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+     */
+    minBytesForWidePart: number;
+    /**
+     * Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+     */
+    minRowsForWidePart: number;
+    /**
      * Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
      */
     numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge: number;
@@ -9111,6 +9263,10 @@ export interface MdbClickhouseClusterClickhouseConfigMergeTree {
      * Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
      */
     replicatedDeduplicationWindowSeconds: number;
+    /**
+     * Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+     */
+    ttlOnlyDropParts: boolean;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigRabbitmq {
@@ -9122,16 +9278,19 @@ export interface MdbClickhouseClusterClickhouseConfigRabbitmq {
      * RabbitMQ username.
      */
     username: string;
+    /**
+     * RabbitMQ vhost. Default: '\'.
+     */
+    vhost: string;
 }
 
 export interface MdbClickhouseClusterClickhouseResources {
     /**
-     * Volume of the storage available to a ZooKeeper host, in gigabytes.
+     * Volume of the storage available to a host, in gigabytes.
      */
     diskSize: number;
     /**
-     * Type of the storage of ZooKeeper hosts.
-     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     * Type of the storage of hosts.
      */
     diskTypeId: string;
     resourcePresetId: string;
@@ -9242,6 +9401,10 @@ export interface MdbClickhouseClusterShard {
      */
     name: string;
     /**
+     * Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+     */
+    resources: outputs.MdbClickhouseClusterShardResources;
+    /**
      * The weight of shard.
      */
     weight: number;
@@ -9260,6 +9423,18 @@ export interface MdbClickhouseClusterShardGroup {
      * List of shards names that belong to the shard group.
      */
     shardNames: string[];
+}
+
+export interface MdbClickhouseClusterShardResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize: number;
+    /**
+     * Type of the storage of hosts.
+     */
+    diskTypeId: string;
+    resourcePresetId: string;
 }
 
 export interface MdbClickhouseClusterUser {
@@ -9329,6 +9504,39 @@ export interface MdbClickhouseClusterUserSettings {
      */
     allowDdl: boolean;
     /**
+     * Enables introspections functions for query profiling.
+     */
+    allowIntrospectionFunctions: boolean;
+    /**
+     * Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+     */
+    allowSuspiciousLowCardinalityTypes: boolean;
+    /**
+     * Enables asynchronous inserts. Disabled by default.
+     */
+    asyncInsert: boolean;
+    /**
+     * The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+     */
+    asyncInsertBusyTimeout: number;
+    /**
+     * The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+     */
+    asyncInsertMaxDataSize: number;
+    /**
+     * The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the asyncInsertBusyTimeout with every INSERT query as long as asyncInsertMaxDataSize is not exceeded.
+     */
+    asyncInsertStaleTimeout: number;
+    /**
+     * The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+     */
+    asyncInsertThreads: number;
+    /**
+     * Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+     * Default value: false.
+     */
+    cancelHttpReadonlyQueriesOnClientClose: boolean;
+    /**
      * Enable compilation of queries.
      */
     compile: boolean;
@@ -9340,6 +9548,10 @@ export interface MdbClickhouseClusterUserSettings {
      * Connect timeout in milliseconds on the socket used for communicating with the client.
      */
     connectTimeout: number;
+    /**
+     * The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+     */
+    connectTimeoutWithFailover: number;
     /**
      * Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
      */
@@ -9372,6 +9584,10 @@ export interface MdbClickhouseClusterUserSettings {
      * Forces a query to an out-of-date replica if updated data is not available.
      */
     fallbackToStaleReplicasForDistributedQueries: boolean;
+    /**
+     * Sets the data format of a nested columns.
+     */
+    flattenNested: boolean;
     /**
      * Disables query execution if the index can’t be used by date.
      */
@@ -9416,6 +9632,10 @@ export interface MdbClickhouseClusterUserSettings {
      * Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
      */
     inputFormatValuesInterpretExpressions: boolean;
+    /**
+     * Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+     */
+    insertNullAsDefault: boolean;
     /**
      * Enables the quorum writes.
      */
@@ -9489,6 +9709,10 @@ export interface MdbClickhouseClusterUserSettings {
      */
     maxColumnsToRead: number;
     /**
+     * The maximum number of concurrent requests per user. Default value: 0 (no limit).
+     */
+    maxConcurrentQueriesForUser: number;
+    /**
      * Limits the maximum query execution time in milliseconds.
      */
     maxExecutionTime: number;
@@ -9496,6 +9720,11 @@ export interface MdbClickhouseClusterUserSettings {
      * Maximum abstract syntax tree depth after after expansion of aliases.
      */
     maxExpandedAstElements: number;
+    /**
+     * Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+     * If the parameter is set to 0 (default), no hops is allowed.
+     */
+    maxHttpGetRedirects: number;
     /**
      * The size of blocks (in a count of rows) to form for insertion into a table.
      */
@@ -9572,6 +9801,14 @@ export interface MdbClickhouseClusterUserSettings {
      * The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
      */
     maxThreads: number;
+    /**
+     * Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+     */
+    memoryProfilerSampleProbability: number;
+    /**
+     * Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+     */
+    memoryProfilerStep: number;
     /**
      * If ClickHouse should read more than mergeTreeMaxBytesToUseCache bytes in one query, it doesn’t use the cache of uncompressed blocks.
      */
@@ -9677,6 +9914,11 @@ export interface MdbClickhouseClusterUserSettings {
      */
     sortOverflowMode: string;
     /**
+     * Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in minExecutionSpeed parameter.
+     * Must be at least 1000.
+     */
+    timeoutBeforeCheckingExecutionSpeed: number;
+    /**
      * Sets behaviour on overflow. Possible values:
      */
     timeoutOverflowMode: string;
@@ -9692,23 +9934,30 @@ export interface MdbClickhouseClusterUserSettings {
      * Whether to use a cache of uncompressed blocks.
      */
     useUncompressedCache: boolean;
+    /**
+     * Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+     */
+    waitForAsyncInsert: boolean;
+    /**
+     * The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+     */
+    waitForAsyncInsertTimeout: number;
 }
 
 export interface MdbClickhouseClusterZookeeper {
     /**
-     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     * Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
      */
     resources: outputs.MdbClickhouseClusterZookeeperResources;
 }
 
 export interface MdbClickhouseClusterZookeeperResources {
     /**
-     * Volume of the storage available to a ZooKeeper host, in gigabytes.
+     * Volume of the storage available to a host, in gigabytes.
      */
     diskSize: number;
     /**
-     * Type of the storage of ZooKeeper hosts.
-     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     * Type of the storage of hosts.
      */
     diskTypeId: string;
     resourcePresetId: string;
@@ -11376,6 +11625,19 @@ export interface VpcSubnetDhcpOptions {
      * NTP server IP addresses.
      */
     ntpServers?: string[];
+}
+
+export interface YandexYdbTopicConsumer {
+    /**
+     * Topic name. Type: string, required. Default value: "".
+     */
+    name: string;
+    serviceType: string;
+    startingMessageTimestampMs: number;
+    /**
+     * Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
+     */
+    supportedCodecs: string[];
 }
 
 export interface YdbDatabaseDedicatedLocation {

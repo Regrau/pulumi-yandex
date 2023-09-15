@@ -19,6 +19,12 @@ namespace Pulumi.Yandex.Inputs
         public string Name { get; set; } = null!;
 
         /// <summary>
+        /// Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+        /// </summary>
+        [Input("resources", required: true)]
+        public Inputs.GetMdbClickhouseClusterShardResourcesArgs Resources { get; set; } = null!;
+
+        /// <summary>
         /// The weight of the shard.
         /// </summary>
         [Input("weight", required: true)]

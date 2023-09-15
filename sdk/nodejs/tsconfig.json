@@ -67,6 +67,7 @@
         "getComputePlacementGroup.ts",
         "getComputeSnapshot.ts",
         "getContainerRegistry.ts",
+        "getContainerRegistryIpPermission.ts",
         "getContainerRepository.ts",
         "getDataprocCluster.ts",
         "getDnsZone.ts",
@@ -176,6 +177,7 @@
         "vpcSecurityGroupRule.ts",
         "vpcSubnet.ts",
         "yandexComputeFilesystem.ts",
+        "yandexYdbTopic.ts",
         "ydbDatabaseDedicated.ts",
         "ydbDatabaseIamBinding.ts",
         "ydbDatabaseServerless.ts"

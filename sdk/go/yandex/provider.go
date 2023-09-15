@@ -56,10 +56,18 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
+	if args.StorageSecretKey != nil {
+		args.StorageSecretKey = pulumi.ToSecret(args.StorageSecretKey).(pulumi.StringPtrOutput)
+	}
+	if args.Token != nil {
+		args.Token = pulumi.ToSecret(args.Token).(pulumi.StringPtrOutput)
+	}
 	if args.YmqSecretKey != nil {
 		args.YmqSecretKey = pulumi.ToSecret(args.YmqSecretKey).(pulumi.StringPtrOutput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"storageSecretKey",
+		"token",
 		"ymqSecretKey",
 	})
 	opts = append(opts, secrets)

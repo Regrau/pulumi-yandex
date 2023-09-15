@@ -22,6 +22,14 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly int? MaxReplicatedMergesInQueue;
         /// <summary>
+        /// (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        /// </summary>
+        public readonly int MinBytesForWidePart;
+        /// <summary>
+        /// (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        /// </summary>
+        public readonly int MinRowsForWidePart;
+        /// <summary>
         /// Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
         /// </summary>
         public readonly int? NumberOfFreeEntriesInPoolToLowerMaxSizeOfMerge;
@@ -41,12 +49,20 @@ namespace Pulumi.Yandex.Outputs
         /// Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
         /// </summary>
         public readonly int? ReplicatedDeduplicationWindowSeconds;
+        /// <summary>
+        /// (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+        /// </summary>
+        public readonly bool TtlOnlyDropParts;
 
         [OutputConstructor]
         private GetMdbClickhouseClusterClickhouseConfigMergeTreeResult(
             int? maxBytesToMergeAtMinSpaceInPool,
 
             int? maxReplicatedMergesInQueue,
+
+            int minBytesForWidePart,
+
+            int minRowsForWidePart,
 
             int? numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge,
 
@@ -56,15 +72,20 @@ namespace Pulumi.Yandex.Outputs
 
             int? replicatedDeduplicationWindow,
 
-            int? replicatedDeduplicationWindowSeconds)
+            int? replicatedDeduplicationWindowSeconds,
+
+            bool ttlOnlyDropParts)
         {
             MaxBytesToMergeAtMinSpaceInPool = maxBytesToMergeAtMinSpaceInPool;
             MaxReplicatedMergesInQueue = maxReplicatedMergesInQueue;
+            MinBytesForWidePart = minBytesForWidePart;
+            MinRowsForWidePart = minRowsForWidePart;
             NumberOfFreeEntriesInPoolToLowerMaxSizeOfMerge = numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge;
             PartsToDelayInsert = partsToDelayInsert;
             PartsToThrowInsert = partsToThrowInsert;
             ReplicatedDeduplicationWindow = replicatedDeduplicationWindow;
             ReplicatedDeduplicationWindowSeconds = replicatedDeduplicationWindowSeconds;
+            TtlOnlyDropParts = ttlOnlyDropParts;
         }
     }
 }

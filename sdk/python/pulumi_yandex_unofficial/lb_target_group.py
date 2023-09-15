@@ -30,8 +30,8 @@ class LbTargetGroupArgs:
                If omitted, the provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this target group. A list of key/value pairs.
         :param pulumi.Input[str] name: Name of the target group. Provided by the client when the target group is created.
-        :param pulumi.Input[str] region_id: ID of the availability zone where the target group resides. 
-               The default is 'ru-central1'.
+        :param pulumi.Input[str] region_id: ID of the availability zone where the target group resides.
+               If omitted, default region is being used.
         :param pulumi.Input[Sequence[pulumi.Input['LbTargetGroupTargetArgs']]] targets: A Target resource. The structure is documented below.
         """
         if description is not None:
@@ -101,8 +101,8 @@ class LbTargetGroupArgs:
     @pulumi.getter(name="regionId")
     def region_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the availability zone where the target group resides. 
-        The default is 'ru-central1'.
+        ID of the availability zone where the target group resides.
+        If omitted, default region is being used.
         """
         return pulumi.get(self, "region_id")
 
@@ -142,8 +142,8 @@ class _LbTargetGroupState:
                If omitted, the provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this target group. A list of key/value pairs.
         :param pulumi.Input[str] name: Name of the target group. Provided by the client when the target group is created.
-        :param pulumi.Input[str] region_id: ID of the availability zone where the target group resides. 
-               The default is 'ru-central1'.
+        :param pulumi.Input[str] region_id: ID of the availability zone where the target group resides.
+               If omitted, default region is being used.
         :param pulumi.Input[Sequence[pulumi.Input['LbTargetGroupTargetArgs']]] targets: A Target resource. The structure is documented below.
         """
         if created_at is not None:
@@ -227,8 +227,8 @@ class _LbTargetGroupState:
     @pulumi.getter(name="regionId")
     def region_id(self) -> Optional[pulumi.Input[str]]:
         """
-        ID of the availability zone where the target group resides. 
-        The default is 'ru-central1'.
+        ID of the availability zone where the target group resides.
+        If omitted, default region is being used.
         """
         return pulumi.get(self, "region_id")
 
@@ -301,8 +301,8 @@ class LbTargetGroup(pulumi.CustomResource):
                If omitted, the provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this target group. A list of key/value pairs.
         :param pulumi.Input[str] name: Name of the target group. Provided by the client when the target group is created.
-        :param pulumi.Input[str] region_id: ID of the availability zone where the target group resides. 
-               The default is 'ru-central1'.
+        :param pulumi.Input[str] region_id: ID of the availability zone where the target group resides.
+               If omitted, default region is being used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbTargetGroupTargetArgs']]]] targets: A Target resource. The structure is documented below.
         """
         ...
@@ -411,8 +411,8 @@ class LbTargetGroup(pulumi.CustomResource):
                If omitted, the provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to assign to this target group. A list of key/value pairs.
         :param pulumi.Input[str] name: Name of the target group. Provided by the client when the target group is created.
-        :param pulumi.Input[str] region_id: ID of the availability zone where the target group resides. 
-               The default is 'ru-central1'.
+        :param pulumi.Input[str] region_id: ID of the availability zone where the target group resides.
+               If omitted, default region is being used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbTargetGroupTargetArgs']]]] targets: A Target resource. The structure is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -472,10 +472,10 @@ class LbTargetGroup(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="regionId")
-    def region_id(self) -> pulumi.Output[Optional[str]]:
+    def region_id(self) -> pulumi.Output[str]:
         """
-        ID of the availability zone where the target group resides. 
-        The default is 'ru-central1'.
+        ID of the availability zone where the target group resides.
+        If omitted, default region is being used.
         """
         return pulumi.get(self, "region_id")
 

@@ -90,10 +90,10 @@ export class LbTargetGroup extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * ID of the availability zone where the target group resides. 
-     * The default is 'ru-central1'.
+     * ID of the availability zone where the target group resides.
+     * If omitted, default region is being used.
      */
-    public readonly regionId!: pulumi.Output<string | undefined>;
+    public readonly regionId!: pulumi.Output<string>;
     /**
      * A Target resource. The structure is documented below.
      */
@@ -161,8 +161,8 @@ export interface LbTargetGroupState {
      */
     name?: pulumi.Input<string>;
     /**
-     * ID of the availability zone where the target group resides. 
-     * The default is 'ru-central1'.
+     * ID of the availability zone where the target group resides.
+     * If omitted, default region is being used.
      */
     regionId?: pulumi.Input<string>;
     /**
@@ -194,8 +194,8 @@ export interface LbTargetGroupArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * ID of the availability zone where the target group resides. 
-     * The default is 'ru-central1'.
+     * ID of the availability zone where the target group resides.
+     * If omitted, default region is being used.
      */
     regionId?: pulumi.Input<string>;
     /**

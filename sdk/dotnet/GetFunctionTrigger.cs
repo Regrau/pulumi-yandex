@@ -117,6 +117,7 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetFunctionTriggerResult
     {
+        public readonly ImmutableArray<Outputs.GetFunctionTriggerContainerResult> Containers;
         /// <summary>
         /// Creation timestamp of the Yandex Cloud Functions Trigger
         /// </summary>
@@ -190,6 +191,8 @@ namespace Pulumi.Yandex
 
         [OutputConstructor]
         private GetFunctionTriggerResult(
+            ImmutableArray<Outputs.GetFunctionTriggerContainerResult> containers,
+
             string createdAt,
 
             string description,
@@ -220,6 +223,7 @@ namespace Pulumi.Yandex
 
             string? triggerId)
         {
+            Containers = containers;
             CreatedAt = createdAt;
             Description = description;
             Dlqs = dlqs;

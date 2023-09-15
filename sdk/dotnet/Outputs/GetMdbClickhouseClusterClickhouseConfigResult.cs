@@ -13,12 +13,14 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbClickhouseClusterClickhouseConfigResult
     {
+        public readonly int BackgroundFetchesPoolSize;
         public readonly int? BackgroundPoolSize;
         public readonly int? BackgroundSchedulePoolSize;
         /// <summary>
         /// Data compression configuration. The structure is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigCompressionResult> Compressions;
+        public readonly string DefaultDatabase;
         public readonly string? GeobaseUri;
         /// <summary>
         /// Graphite rollup configuration. The structure is documented below.
@@ -62,6 +64,7 @@ namespace Pulumi.Yandex.Outputs
         public readonly int? TextLogRetentionSize;
         public readonly int? TextLogRetentionTime;
         public readonly string? Timezone;
+        public readonly int TotalMemoryProfilerStep;
         public readonly bool? TraceLogEnabled;
         public readonly int? TraceLogRetentionSize;
         public readonly int? TraceLogRetentionTime;
@@ -69,11 +72,15 @@ namespace Pulumi.Yandex.Outputs
 
         [OutputConstructor]
         private GetMdbClickhouseClusterClickhouseConfigResult(
+            int backgroundFetchesPoolSize,
+
             int? backgroundPoolSize,
 
             int? backgroundSchedulePoolSize,
 
             ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigCompressionResult> compressions,
+
+            string defaultDatabase,
 
             string? geobaseUri,
 
@@ -131,6 +138,8 @@ namespace Pulumi.Yandex.Outputs
 
             string? timezone,
 
+            int totalMemoryProfilerStep,
+
             bool? traceLogEnabled,
 
             int? traceLogRetentionSize,
@@ -139,9 +148,11 @@ namespace Pulumi.Yandex.Outputs
 
             int? uncompressedCacheSize)
         {
+            BackgroundFetchesPoolSize = backgroundFetchesPoolSize;
             BackgroundPoolSize = backgroundPoolSize;
             BackgroundSchedulePoolSize = backgroundSchedulePoolSize;
             Compressions = compressions;
+            DefaultDatabase = defaultDatabase;
             GeobaseUri = geobaseUri;
             GraphiteRollups = graphiteRollups;
             KafkaTopics = kafkaTopics;
@@ -170,6 +181,7 @@ namespace Pulumi.Yandex.Outputs
             TextLogRetentionSize = textLogRetentionSize;
             TextLogRetentionTime = textLogRetentionTime;
             Timezone = timezone;
+            TotalMemoryProfilerStep = totalMemoryProfilerStep;
             TraceLogEnabled = traceLogEnabled;
             TraceLogRetentionSize = traceLogRetentionSize;
             TraceLogRetentionTime = traceLogRetentionTime;

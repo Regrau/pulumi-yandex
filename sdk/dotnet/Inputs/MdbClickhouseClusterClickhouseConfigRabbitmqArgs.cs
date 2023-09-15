@@ -34,6 +34,12 @@ namespace Pulumi.Yandex.Inputs
         [Input("username")]
         public Input<string>? Username { get; set; }
 
+        /// <summary>
+        /// RabbitMQ vhost. Default: '\'.
+        /// </summary>
+        [Input("vhost")]
+        public Input<string>? Vhost { get; set; }
+
         public MdbClickhouseClusterClickhouseConfigRabbitmqArgs()
         {
         }

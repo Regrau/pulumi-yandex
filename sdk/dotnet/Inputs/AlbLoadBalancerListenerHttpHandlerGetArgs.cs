@@ -30,6 +30,12 @@ namespace Pulumi.Yandex.Inputs
         [Input("httpRouterId")]
         public Input<string>? HttpRouterId { get; set; }
 
+        /// <summary>
+        /// When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
+        /// </summary>
+        [Input("rewriteRequestId")]
+        public Input<bool>? RewriteRequestId { get; set; }
+
         public AlbLoadBalancerListenerHttpHandlerGetArgs()
         {
         }

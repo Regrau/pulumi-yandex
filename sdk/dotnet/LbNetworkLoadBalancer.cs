@@ -84,6 +84,12 @@ namespace Pulumi.Yandex
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
+        /// Flag that protects the network load balancer from accidental deletion.
+        /// </summary>
+        [Output("deletionProtection")]
+        public Output<bool> DeletionProtection { get; private set; } = null!;
+
+        /// <summary>
         /// An optional description of the network load balancer. Provide this property when
         /// you create the resource.
         /// </summary>
@@ -117,10 +123,10 @@ namespace Pulumi.Yandex
 
         /// <summary>
         /// ID of the availability zone where the network load balancer resides.
-        /// The default is 'ru-central1'.
+        /// If omitted, default region is being used.
         /// </summary>
         [Output("regionId")]
-        public Output<string?> RegionId { get; private set; } = null!;
+        public Output<string> RegionId { get; private set; } = null!;
 
         /// <summary>
         /// Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
@@ -188,6 +194,12 @@ namespace Pulumi.Yandex
         }
 
         /// <summary>
+        /// Flag that protects the network load balancer from accidental deletion.
+        /// </summary>
+        [Input("deletionProtection")]
+        public Input<bool>? DeletionProtection { get; set; }
+
+        /// <summary>
         /// An optional description of the network load balancer. Provide this property when
         /// you create the resource.
         /// </summary>
@@ -233,7 +245,7 @@ namespace Pulumi.Yandex
 
         /// <summary>
         /// ID of the availability zone where the network load balancer resides.
-        /// The default is 'ru-central1'.
+        /// If omitted, default region is being used.
         /// </summary>
         [Input("regionId")]
         public Input<string>? RegionId { get; set; }
@@ -269,6 +281,12 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Flag that protects the network load balancer from accidental deletion.
+        /// </summary>
+        [Input("deletionProtection")]
+        public Input<bool>? DeletionProtection { get; set; }
 
         /// <summary>
         /// An optional description of the network load balancer. Provide this property when
@@ -316,7 +334,7 @@ namespace Pulumi.Yandex
 
         /// <summary>
         /// ID of the availability zone where the network load balancer resides.
-        /// The default is 'ru-central1'.
+        /// If omitted, default region is being used.
         /// </summary>
         [Input("regionId")]
         public Input<string>? RegionId { get; set; }

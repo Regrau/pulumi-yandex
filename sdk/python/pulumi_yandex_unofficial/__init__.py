@@ -57,6 +57,7 @@ from .get_compute_instance_group import *
 from .get_compute_placement_group import *
 from .get_compute_snapshot import *
 from .get_container_registry import *
+from .get_container_registry_ip_permission import *
 from .get_container_repository import *
 from .get_dataproc_cluster import *
 from .get_dns_zone import *
@@ -161,6 +162,7 @@ from .vpc_security_group import *
 from .vpc_security_group_rule import *
 from .vpc_subnet import *
 from .yandex_compute_filesystem import *
+from .yandex_ydb_topic import *
 from .ydb_database_dedicated import *
 from .ydb_database_iam_binding import *
 from .ydb_database_serverless import *
@@ -927,6 +929,14 @@ _utilities.register(
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/yandexComputeFilesystem:yandexComputeFilesystem": "YandexComputeFilesystem"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/yandexYdbTopic",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/yandexYdbTopic:yandexYdbTopic": "YandexYdbTopic"
   }
  },
  {

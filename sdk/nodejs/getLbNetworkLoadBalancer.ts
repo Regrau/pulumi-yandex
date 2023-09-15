@@ -66,6 +66,10 @@ export interface GetLbNetworkLoadBalancerResult {
      */
     readonly createdAt: string;
     /**
+     * Flag that protects the network load balancer from accidental deletion.
+     */
+    readonly deletionProtection: boolean;
+    /**
      * Description of the network load balancer.
      */
     readonly description: string;

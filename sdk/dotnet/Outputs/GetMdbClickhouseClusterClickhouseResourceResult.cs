@@ -14,11 +14,11 @@ namespace Pulumi.Yandex.Outputs
     public sealed class GetMdbClickhouseClusterClickhouseResourceResult
     {
         /// <summary>
-        /// Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
+        /// Volume of the storage available to a host, in gigabytes.
         /// </summary>
         public readonly int DiskSize;
         /// <summary>
-        /// Type of the storage of ClickHouse or ZooKeeper hosts.
+        /// Type of the storage of hosts.
         /// </summary>
         public readonly string DiskTypeId;
         public readonly string ResourcePresetId;

@@ -123,6 +123,10 @@ namespace Pulumi.Yandex
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
+        /// Flag that protects the address from accidental deletion.
+        /// </summary>
+        public readonly bool DeletionProtection;
+        /// <summary>
         /// Description of the address.
         /// </summary>
         public readonly string Description;
@@ -155,6 +159,8 @@ namespace Pulumi.Yandex
 
             string createdAt,
 
+            bool deletionProtection,
+
             string description,
 
             ImmutableArray<Outputs.GetVpcAddressExternalIpv4AddressResult> externalIpv4Addresses,
@@ -173,6 +179,7 @@ namespace Pulumi.Yandex
         {
             AddressId = addressId;
             CreatedAt = createdAt;
+            DeletionProtection = deletionProtection;
             Description = description;
             ExternalIpv4Addresses = externalIpv4Addresses;
             FolderId = folderId;

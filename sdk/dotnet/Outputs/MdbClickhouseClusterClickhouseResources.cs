@@ -14,23 +14,22 @@ namespace Pulumi.Yandex.Outputs
     public sealed class MdbClickhouseClusterClickhouseResources
     {
         /// <summary>
-        /// Volume of the storage available to a ZooKeeper host, in gigabytes.
+        /// Volume of the storage available to a host, in gigabytes.
         /// </summary>
-        public readonly int DiskSize;
+        public readonly int? DiskSize;
         /// <summary>
-        /// Type of the storage of ZooKeeper hosts.
-        /// For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        /// Type of the storage of hosts.
         /// </summary>
-        public readonly string DiskTypeId;
-        public readonly string ResourcePresetId;
+        public readonly string? DiskTypeId;
+        public readonly string? ResourcePresetId;
 
         [OutputConstructor]
         private MdbClickhouseClusterClickhouseResources(
-            int diskSize,
+            int? diskSize,
 
-            string diskTypeId,
+            string? diskTypeId,
 
-            string resourcePresetId)
+            string? resourcePresetId)
         {
             DiskSize = diskSize;
             DiskTypeId = diskTypeId;

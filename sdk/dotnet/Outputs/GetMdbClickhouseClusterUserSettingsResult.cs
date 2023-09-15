@@ -22,6 +22,39 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly bool AllowDdl;
         /// <summary>
+        /// (Optional) Enables introspections functions for query profiling.
+        /// </summary>
+        public readonly bool AllowIntrospectionFunctions;
+        /// <summary>
+        /// (Optional) Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+        /// </summary>
+        public readonly bool AllowSuspiciousLowCardinalityTypes;
+        /// <summary>
+        /// (Optional) Enables asynchronous inserts. Disabled by default.
+        /// </summary>
+        public readonly bool AsyncInsert;
+        /// <summary>
+        /// (Optional) The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+        /// </summary>
+        public readonly int AsyncInsertBusyTimeout;
+        /// <summary>
+        /// (Optional) The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+        /// </summary>
+        public readonly int AsyncInsertMaxDataSize;
+        /// <summary>
+        /// (Optional) The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the async_insert_busy_timeout with every INSERT query as long as async_insert_max_data_size is not exceeded.
+        /// </summary>
+        public readonly int AsyncInsertStaleTimeout;
+        /// <summary>
+        /// (Optional) The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+        /// </summary>
+        public readonly int AsyncInsertThreads;
+        /// <summary>
+        /// (Optional) Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+        /// Default value: false.
+        /// </summary>
+        public readonly bool CancelHttpReadonlyQueriesOnClientClose;
+        /// <summary>
         /// Enable compilation of queries.
         /// </summary>
         public readonly bool Compile;
@@ -33,6 +66,10 @@ namespace Pulumi.Yandex.Outputs
         /// Connect timeout in milliseconds on the socket used for communicating with the client.
         /// </summary>
         public readonly int ConnectTimeout;
+        /// <summary>
+        /// (Optional) The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+        /// </summary>
+        public readonly int ConnectTimeoutWithFailover;
         /// <summary>
         /// Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
         /// </summary>
@@ -65,6 +102,10 @@ namespace Pulumi.Yandex.Outputs
         /// Forces a query to an out-of-date replica if updated data is not available.
         /// </summary>
         public readonly bool FallbackToStaleReplicasForDistributedQueries;
+        /// <summary>
+        /// (Optional) Sets the data format of a nested columns.
+        /// </summary>
+        public readonly bool FlattenNested;
         /// <summary>
         /// Disables query execution if the index can’t be used by date.
         /// </summary>
@@ -109,6 +150,10 @@ namespace Pulumi.Yandex.Outputs
         /// Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
         /// </summary>
         public readonly bool InputFormatValuesInterpretExpressions;
+        /// <summary>
+        /// (Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+        /// </summary>
+        public readonly bool InsertNullAsDefault;
         /// <summary>
         /// Enables the quorum writes.
         /// </summary>
@@ -182,6 +227,10 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly int MaxColumnsToRead;
         /// <summary>
+        /// (Optional) The maximum number of concurrent requests per user. Default value: 0 (no limit).
+        /// </summary>
+        public readonly int MaxConcurrentQueriesForUser;
+        /// <summary>
         /// Limits the maximum query execution time in milliseconds.
         /// </summary>
         public readonly int MaxExecutionTime;
@@ -189,6 +238,11 @@ namespace Pulumi.Yandex.Outputs
         /// Maximum abstract syntax tree depth after after expansion of aliases.
         /// </summary>
         public readonly int MaxExpandedAstElements;
+        /// <summary>
+        /// (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+        /// If the parameter is set to 0 (default), no hops is allowed.
+        /// </summary>
+        public readonly int MaxHttpGetRedirects;
         /// <summary>
         /// The size of blocks (in a count of rows) to form for insertion into a table.
         /// </summary>
@@ -265,6 +319,14 @@ namespace Pulumi.Yandex.Outputs
         /// The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
         /// </summary>
         public readonly int MaxThreads;
+        /// <summary>
+        /// (Optional) Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+        /// </summary>
+        public readonly double MemoryProfilerSampleProbability;
+        /// <summary>
+        /// (Optional) Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+        /// </summary>
+        public readonly int MemoryProfilerStep;
         /// <summary>
         /// If ClickHouse should read more than merge_tree_max_bytes_to_use_cache bytes in one query, it doesn’t use the cache of uncompressed blocks.
         /// </summary>
@@ -370,6 +432,11 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly string SortOverflowMode;
         /// <summary>
+        /// (Optional) Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in min_execution_speed parameter.
+        /// Must be at least 1000.
+        /// </summary>
+        public readonly int TimeoutBeforeCheckingExecutionSpeed;
+        /// <summary>
         /// Sets behaviour on overflow. Possible values:
         /// </summary>
         public readonly string TimeoutOverflowMode;
@@ -385,6 +452,14 @@ namespace Pulumi.Yandex.Outputs
         /// Whether to use a cache of uncompressed blocks.
         /// </summary>
         public readonly bool UseUncompressedCache;
+        /// <summary>
+        /// (Optional) Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+        /// </summary>
+        public readonly bool WaitForAsyncInsert;
+        /// <summary>
+        /// (Optional) The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+        /// </summary>
+        public readonly int WaitForAsyncInsertTimeout;
 
         [OutputConstructor]
         private GetMdbClickhouseClusterUserSettingsResult(
@@ -392,11 +467,29 @@ namespace Pulumi.Yandex.Outputs
 
             bool allowDdl,
 
+            bool allowIntrospectionFunctions,
+
+            bool allowSuspiciousLowCardinalityTypes,
+
+            bool asyncInsert,
+
+            int asyncInsertBusyTimeout,
+
+            int asyncInsertMaxDataSize,
+
+            int asyncInsertStaleTimeout,
+
+            int asyncInsertThreads,
+
+            bool cancelHttpReadonlyQueriesOnClientClose,
+
             bool compile,
 
             bool compileExpressions,
 
             int connectTimeout,
+
+            int connectTimeoutWithFailover,
 
             string countDistinctImplementation,
 
@@ -413,6 +506,8 @@ namespace Pulumi.Yandex.Outputs
             bool enableHttpCompression,
 
             bool fallbackToStaleReplicasForDistributedQueries,
+
+            bool flattenNested,
 
             bool forceIndexByDate,
 
@@ -435,6 +530,8 @@ namespace Pulumi.Yandex.Outputs
             bool inputFormatDefaultsForOmittedFields,
 
             bool inputFormatValuesInterpretExpressions,
+
+            bool insertNullAsDefault,
 
             int insertQuorum,
 
@@ -472,9 +569,13 @@ namespace Pulumi.Yandex.Outputs
 
             int maxColumnsToRead,
 
+            int maxConcurrentQueriesForUser,
+
             int maxExecutionTime,
 
             int maxExpandedAstElements,
+
+            int maxHttpGetRedirects,
 
             int maxInsertBlockSize,
 
@@ -513,6 +614,10 @@ namespace Pulumi.Yandex.Outputs
             int maxTemporaryNonConstColumns,
 
             int maxThreads,
+
+            double memoryProfilerSampleProbability,
+
+            int memoryProfilerStep,
 
             int mergeTreeMaxBytesToUseCache,
 
@@ -566,19 +671,34 @@ namespace Pulumi.Yandex.Outputs
 
             string sortOverflowMode,
 
+            int timeoutBeforeCheckingExecutionSpeed,
+
             string timeoutOverflowMode,
 
             string transferOverflowMode,
 
             bool transformNullIn,
 
-            bool useUncompressedCache)
+            bool useUncompressedCache,
+
+            bool waitForAsyncInsert,
+
+            int waitForAsyncInsertTimeout)
         {
             AddHttpCorsHeader = addHttpCorsHeader;
             AllowDdl = allowDdl;
+            AllowIntrospectionFunctions = allowIntrospectionFunctions;
+            AllowSuspiciousLowCardinalityTypes = allowSuspiciousLowCardinalityTypes;
+            AsyncInsert = asyncInsert;
+            AsyncInsertBusyTimeout = asyncInsertBusyTimeout;
+            AsyncInsertMaxDataSize = asyncInsertMaxDataSize;
+            AsyncInsertStaleTimeout = asyncInsertStaleTimeout;
+            AsyncInsertThreads = asyncInsertThreads;
+            CancelHttpReadonlyQueriesOnClientClose = cancelHttpReadonlyQueriesOnClientClose;
             Compile = compile;
             CompileExpressions = compileExpressions;
             ConnectTimeout = connectTimeout;
+            ConnectTimeoutWithFailover = connectTimeoutWithFailover;
             CountDistinctImplementation = countDistinctImplementation;
             DistinctOverflowMode = distinctOverflowMode;
             DistributedAggregationMemoryEfficient = distributedAggregationMemoryEfficient;
@@ -587,6 +707,7 @@ namespace Pulumi.Yandex.Outputs
             EmptyResultForAggregationByEmptySet = emptyResultForAggregationByEmptySet;
             EnableHttpCompression = enableHttpCompression;
             FallbackToStaleReplicasForDistributedQueries = fallbackToStaleReplicasForDistributedQueries;
+            FlattenNested = flattenNested;
             ForceIndexByDate = forceIndexByDate;
             ForcePrimaryKey = forcePrimaryKey;
             GroupByOverflowMode = groupByOverflowMode;
@@ -598,6 +719,7 @@ namespace Pulumi.Yandex.Outputs
             HttpSendTimeout = httpSendTimeout;
             InputFormatDefaultsForOmittedFields = inputFormatDefaultsForOmittedFields;
             InputFormatValuesInterpretExpressions = inputFormatValuesInterpretExpressions;
+            InsertNullAsDefault = insertNullAsDefault;
             InsertQuorum = insertQuorum;
             InsertQuorumTimeout = insertQuorumTimeout;
             JoinOverflowMode = joinOverflowMode;
@@ -616,8 +738,10 @@ namespace Pulumi.Yandex.Outputs
             MaxBytesToSort = maxBytesToSort;
             MaxBytesToTransfer = maxBytesToTransfer;
             MaxColumnsToRead = maxColumnsToRead;
+            MaxConcurrentQueriesForUser = maxConcurrentQueriesForUser;
             MaxExecutionTime = maxExecutionTime;
             MaxExpandedAstElements = maxExpandedAstElements;
+            MaxHttpGetRedirects = maxHttpGetRedirects;
             MaxInsertBlockSize = maxInsertBlockSize;
             MaxMemoryUsage = maxMemoryUsage;
             MaxMemoryUsageForUser = maxMemoryUsageForUser;
@@ -637,6 +761,8 @@ namespace Pulumi.Yandex.Outputs
             MaxTemporaryColumns = maxTemporaryColumns;
             MaxTemporaryNonConstColumns = maxTemporaryNonConstColumns;
             MaxThreads = maxThreads;
+            MemoryProfilerSampleProbability = memoryProfilerSampleProbability;
+            MemoryProfilerStep = memoryProfilerStep;
             MergeTreeMaxBytesToUseCache = mergeTreeMaxBytesToUseCache;
             MergeTreeMaxRowsToUseCache = mergeTreeMaxRowsToUseCache;
             MergeTreeMinBytesForConcurrentRead = mergeTreeMinBytesForConcurrentRead;
@@ -663,10 +789,13 @@ namespace Pulumi.Yandex.Outputs
             SetOverflowMode = setOverflowMode;
             SkipUnavailableShards = skipUnavailableShards;
             SortOverflowMode = sortOverflowMode;
+            TimeoutBeforeCheckingExecutionSpeed = timeoutBeforeCheckingExecutionSpeed;
             TimeoutOverflowMode = timeoutOverflowMode;
             TransferOverflowMode = transferOverflowMode;
             TransformNullIn = transformNullIn;
             UseUncompressedCache = useUncompressedCache;
+            WaitForAsyncInsert = waitForAsyncInsert;
+            WaitForAsyncInsertTimeout = waitForAsyncInsertTimeout;
         }
     }
 }

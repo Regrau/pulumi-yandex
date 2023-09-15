@@ -16,6 +16,7 @@ namespace Pulumi.Yandex.Outputs
         public readonly bool? AllowHttp10;
         public readonly ImmutableArray<Outputs.GetAlbLoadBalancerListenerHttpHandlerHttp2OptionResult> Http2Options;
         public readonly string HttpRouterId;
+        public readonly bool RewriteRequestId;
 
         [OutputConstructor]
         private GetAlbLoadBalancerListenerHttpHandlerResult(
@@ -23,11 +24,14 @@ namespace Pulumi.Yandex.Outputs
 
             ImmutableArray<Outputs.GetAlbLoadBalancerListenerHttpHandlerHttp2OptionResult> http2Options,
 
-            string httpRouterId)
+            string httpRouterId,
+
+            bool rewriteRequestId)
         {
             AllowHttp10 = allowHttp10;
             Http2Options = http2Options;
             HttpRouterId = httpRouterId;
+            RewriteRequestId = rewriteRequestId;
         }
     }
 }

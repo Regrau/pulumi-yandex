@@ -18,6 +18,10 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
+        /// Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+        /// </summary>
+        public readonly Outputs.MdbClickhouseClusterShardResources? Resources;
+        /// <summary>
         /// The weight of shard.
         /// </summary>
         public readonly int? Weight;
@@ -26,9 +30,12 @@ namespace Pulumi.Yandex.Outputs
         private MdbClickhouseClusterShard(
             string name,
 
+            Outputs.MdbClickhouseClusterShardResources? resources,
+
             int? weight)
         {
             Name = name;
+            Resources = resources;
             Weight = weight;
         }
     }

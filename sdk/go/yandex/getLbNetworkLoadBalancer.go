@@ -64,6 +64,8 @@ type LookupLbNetworkLoadBalancerResult struct {
 	AttachedTargetGroups []GetLbNetworkLoadBalancerAttachedTargetGroup `pulumi:"attachedTargetGroups"`
 	// Creation timestamp of this network load balancer.
 	CreatedAt string `pulumi:"createdAt"`
+	// Flag that protects the network load balancer from accidental deletion.
+	DeletionProtection bool `pulumi:"deletionProtection"`
 	// Description of the network load balancer.
 	Description string `pulumi:"description"`
 	FolderId    string `pulumi:"folderId"`
@@ -134,6 +136,11 @@ func (o LookupLbNetworkLoadBalancerResultOutput) AttachedTargetGroups() GetLbNet
 // Creation timestamp of this network load balancer.
 func (o LookupLbNetworkLoadBalancerResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLbNetworkLoadBalancerResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Flag that protects the network load balancer from accidental deletion.
+func (o LookupLbNetworkLoadBalancerResultOutput) DeletionProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupLbNetworkLoadBalancerResult) bool { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
 // Description of the network load balancer.

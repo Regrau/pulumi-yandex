@@ -74,8 +74,8 @@ type LbTargetGroup struct {
 	// Name of the target group. Provided by the client when the target group is created.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ID of the availability zone where the target group resides.
-	// The default is 'ru-central1'.
-	RegionId pulumi.StringPtrOutput `pulumi:"regionId"`
+	// If omitted, default region is being used.
+	RegionId pulumi.StringOutput `pulumi:"regionId"`
 	// A Target resource. The structure is documented below.
 	Targets LbTargetGroupTargetArrayOutput `pulumi:"targets"`
 }
@@ -123,7 +123,7 @@ type lbTargetGroupState struct {
 	// Name of the target group. Provided by the client when the target group is created.
 	Name *string `pulumi:"name"`
 	// ID of the availability zone where the target group resides.
-	// The default is 'ru-central1'.
+	// If omitted, default region is being used.
 	RegionId *string `pulumi:"regionId"`
 	// A Target resource. The structure is documented below.
 	Targets []LbTargetGroupTarget `pulumi:"targets"`
@@ -143,7 +143,7 @@ type LbTargetGroupState struct {
 	// Name of the target group. Provided by the client when the target group is created.
 	Name pulumi.StringPtrInput
 	// ID of the availability zone where the target group resides.
-	// The default is 'ru-central1'.
+	// If omitted, default region is being used.
 	RegionId pulumi.StringPtrInput
 	// A Target resource. The structure is documented below.
 	Targets LbTargetGroupTargetArrayInput
@@ -165,7 +165,7 @@ type lbTargetGroupArgs struct {
 	// Name of the target group. Provided by the client when the target group is created.
 	Name *string `pulumi:"name"`
 	// ID of the availability zone where the target group resides.
-	// The default is 'ru-central1'.
+	// If omitted, default region is being used.
 	RegionId *string `pulumi:"regionId"`
 	// A Target resource. The structure is documented below.
 	Targets []LbTargetGroupTarget `pulumi:"targets"`
@@ -184,7 +184,7 @@ type LbTargetGroupArgs struct {
 	// Name of the target group. Provided by the client when the target group is created.
 	Name pulumi.StringPtrInput
 	// ID of the availability zone where the target group resides.
-	// The default is 'ru-central1'.
+	// If omitted, default region is being used.
 	RegionId pulumi.StringPtrInput
 	// A Target resource. The structure is documented below.
 	Targets LbTargetGroupTargetArrayInput
@@ -305,9 +305,9 @@ func (o LbTargetGroupOutput) Name() pulumi.StringOutput {
 }
 
 // ID of the availability zone where the target group resides.
-// The default is 'ru-central1'.
-func (o LbTargetGroupOutput) RegionId() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *LbTargetGroup) pulumi.StringPtrOutput { return v.RegionId }).(pulumi.StringPtrOutput)
+// If omitted, default region is being used.
+func (o LbTargetGroupOutput) RegionId() pulumi.StringOutput {
+	return o.ApplyT(func(v *LbTargetGroup) pulumi.StringOutput { return v.RegionId }).(pulumi.StringOutput)
 }
 
 // A Target resource. The structure is documented below.

@@ -16,13 +16,13 @@ __all__ = ['MdbClickhouseClusterArgs', 'MdbClickhouseCluster']
 @pulumi.input_type
 class MdbClickhouseClusterArgs:
     def __init__(__self__, *,
-                 clickhouse: pulumi.Input['MdbClickhouseClusterClickhouseArgs'],
                  environment: pulumi.Input[str],
                  hosts: pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterHostArgs']]],
                  network_id: pulumi.Input[str],
                  access: Optional[pulumi.Input['MdbClickhouseClusterAccessArgs']] = None,
                  admin_password: Optional[pulumi.Input[str]] = None,
                  backup_window_start: Optional[pulumi.Input['MdbClickhouseClusterBackupWindowStartArgs']] = None,
+                 clickhouse: Optional[pulumi.Input['MdbClickhouseClusterClickhouseArgs']] = None,
                  cloud_storage: Optional[pulumi.Input['MdbClickhouseClusterCloudStorageArgs']] = None,
                  copy_schema_on_new_hosts: Optional[pulumi.Input[bool]] = None,
                  databases: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterDatabaseArgs']]]] = None,
@@ -46,13 +46,13 @@ class MdbClickhouseClusterArgs:
                  zookeeper: Optional[pulumi.Input['MdbClickhouseClusterZookeeperArgs']] = None):
         """
         The set of arguments for constructing a MdbClickhouseCluster resource.
-        :param pulumi.Input['MdbClickhouseClusterClickhouseArgs'] clickhouse: Configuration of the ClickHouse subcluster. The structure is documented below.
         :param pulumi.Input[str] environment: Deployment environment of the ClickHouse cluster. Can be either `PRESTABLE` or `PRODUCTION`.
         :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterHostArgs']]] hosts: A host of the ClickHouse cluster. The structure is documented below.
         :param pulumi.Input[str] network_id: ID of the network, to which the ClickHouse cluster belongs.
         :param pulumi.Input['MdbClickhouseClusterAccessArgs'] access: Access policy to the ClickHouse cluster. The structure is documented below.
         :param pulumi.Input[str] admin_password: A password used to authorize as user `admin` when `sql_user_management` enabled.
         :param pulumi.Input['MdbClickhouseClusterBackupWindowStartArgs'] backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        :param pulumi.Input['MdbClickhouseClusterClickhouseArgs'] clickhouse: Configuration of the ClickHouse subcluster. The structure is documented below.
         :param pulumi.Input[bool] copy_schema_on_new_hosts: Whether to copy schema on new ClickHouse hosts.
         :param pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterDatabaseArgs']]] databases: A database of the ClickHouse cluster. The structure is documented below.
         :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
@@ -73,7 +73,6 @@ class MdbClickhouseClusterArgs:
         :param pulumi.Input[str] version: Version of the ClickHouse server software.
         :param pulumi.Input['MdbClickhouseClusterZookeeperArgs'] zookeeper: Configuration of the ZooKeeper subcluster. The structure is documented below.
         """
-        pulumi.set(__self__, "clickhouse", clickhouse)
         pulumi.set(__self__, "environment", environment)
         pulumi.set(__self__, "hosts", hosts)
         pulumi.set(__self__, "network_id", network_id)
@@ -83,6 +82,8 @@ class MdbClickhouseClusterArgs:
             pulumi.set(__self__, "admin_password", admin_password)
         if backup_window_start is not None:
             pulumi.set(__self__, "backup_window_start", backup_window_start)
+        if clickhouse is not None:
+            pulumi.set(__self__, "clickhouse", clickhouse)
         if cloud_storage is not None:
             pulumi.set(__self__, "cloud_storage", cloud_storage)
         if copy_schema_on_new_hosts is not None:
@@ -125,18 +126,6 @@ class MdbClickhouseClusterArgs:
             pulumi.set(__self__, "version", version)
         if zookeeper is not None:
             pulumi.set(__self__, "zookeeper", zookeeper)
-
-    @property
-    @pulumi.getter
-    def clickhouse(self) -> pulumi.Input['MdbClickhouseClusterClickhouseArgs']:
-        """
-        Configuration of the ClickHouse subcluster. The structure is documented below.
-        """
-        return pulumi.get(self, "clickhouse")
-
-    @clickhouse.setter
-    def clickhouse(self, value: pulumi.Input['MdbClickhouseClusterClickhouseArgs']):
-        pulumi.set(self, "clickhouse", value)
 
     @property
     @pulumi.getter
@@ -209,6 +198,18 @@ class MdbClickhouseClusterArgs:
     @backup_window_start.setter
     def backup_window_start(self, value: Optional[pulumi.Input['MdbClickhouseClusterBackupWindowStartArgs']]):
         pulumi.set(self, "backup_window_start", value)
+
+    @property
+    @pulumi.getter
+    def clickhouse(self) -> Optional[pulumi.Input['MdbClickhouseClusterClickhouseArgs']]:
+        """
+        Configuration of the ClickHouse subcluster. The structure is documented below.
+        """
+        return pulumi.get(self, "clickhouse")
+
+    @clickhouse.setter
+    def clickhouse(self, value: Optional[pulumi.Input['MdbClickhouseClusterClickhouseArgs']]):
+        pulumi.set(self, "clickhouse", value)
 
     @property
     @pulumi.getter(name="cloudStorage")
@@ -1101,8 +1102,6 @@ class MdbClickhouseCluster(pulumi.CustomResource):
             __props__.__dict__["access"] = access
             __props__.__dict__["admin_password"] = None if admin_password is None else pulumi.Output.secret(admin_password)
             __props__.__dict__["backup_window_start"] = backup_window_start
-            if clickhouse is None and not opts.urn:
-                raise TypeError("Missing required property 'clickhouse'")
             __props__.__dict__["clickhouse"] = clickhouse
             __props__.__dict__["cloud_storage"] = cloud_storage
             __props__.__dict__["copy_schema_on_new_hosts"] = copy_schema_on_new_hosts

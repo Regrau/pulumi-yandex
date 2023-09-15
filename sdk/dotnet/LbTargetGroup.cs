@@ -87,11 +87,11 @@ namespace Pulumi.Yandex
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// ID of the availability zone where the target group resides. 
-        /// The default is 'ru-central1'.
+        /// ID of the availability zone where the target group resides.
+        /// If omitted, default region is being used.
         /// </summary>
         [Output("regionId")]
-        public Output<string?> RegionId { get; private set; } = null!;
+        public Output<string> RegionId { get; private set; } = null!;
 
         /// <summary>
         /// A Target resource. The structure is documented below.
@@ -179,8 +179,8 @@ namespace Pulumi.Yandex
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// ID of the availability zone where the target group resides. 
-        /// The default is 'ru-central1'.
+        /// ID of the availability zone where the target group resides.
+        /// If omitted, default region is being used.
         /// </summary>
         [Input("regionId")]
         public Input<string>? RegionId { get; set; }
@@ -244,8 +244,8 @@ namespace Pulumi.Yandex
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// ID of the availability zone where the target group resides. 
-        /// The default is 'ru-central1'.
+        /// ID of the availability zone where the target group resides.
+        /// If omitted, default region is being used.
         /// </summary>
         [Input("regionId")]
         public Input<string>? RegionId { get; set; }

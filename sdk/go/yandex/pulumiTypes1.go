@@ -10,6 +10,236 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type GetApiGatewayCustomDomain struct {
+	CertificateId string `pulumi:"certificateId"`
+	DomainId      string `pulumi:"domainId"`
+	Fqdn          string `pulumi:"fqdn"`
+}
+
+// GetApiGatewayCustomDomainInput is an input type that accepts GetApiGatewayCustomDomainArgs and GetApiGatewayCustomDomainOutput values.
+// You can construct a concrete instance of `GetApiGatewayCustomDomainInput` via:
+//
+//	GetApiGatewayCustomDomainArgs{...}
+type GetApiGatewayCustomDomainInput interface {
+	pulumi.Input
+
+	ToGetApiGatewayCustomDomainOutput() GetApiGatewayCustomDomainOutput
+	ToGetApiGatewayCustomDomainOutputWithContext(context.Context) GetApiGatewayCustomDomainOutput
+}
+
+type GetApiGatewayCustomDomainArgs struct {
+	CertificateId pulumi.StringInput `pulumi:"certificateId"`
+	DomainId      pulumi.StringInput `pulumi:"domainId"`
+	Fqdn          pulumi.StringInput `pulumi:"fqdn"`
+}
+
+func (GetApiGatewayCustomDomainArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiGatewayCustomDomain)(nil)).Elem()
+}
+
+func (i GetApiGatewayCustomDomainArgs) ToGetApiGatewayCustomDomainOutput() GetApiGatewayCustomDomainOutput {
+	return i.ToGetApiGatewayCustomDomainOutputWithContext(context.Background())
+}
+
+func (i GetApiGatewayCustomDomainArgs) ToGetApiGatewayCustomDomainOutputWithContext(ctx context.Context) GetApiGatewayCustomDomainOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiGatewayCustomDomainOutput)
+}
+
+// GetApiGatewayCustomDomainArrayInput is an input type that accepts GetApiGatewayCustomDomainArray and GetApiGatewayCustomDomainArrayOutput values.
+// You can construct a concrete instance of `GetApiGatewayCustomDomainArrayInput` via:
+//
+//	GetApiGatewayCustomDomainArray{ GetApiGatewayCustomDomainArgs{...} }
+type GetApiGatewayCustomDomainArrayInput interface {
+	pulumi.Input
+
+	ToGetApiGatewayCustomDomainArrayOutput() GetApiGatewayCustomDomainArrayOutput
+	ToGetApiGatewayCustomDomainArrayOutputWithContext(context.Context) GetApiGatewayCustomDomainArrayOutput
+}
+
+type GetApiGatewayCustomDomainArray []GetApiGatewayCustomDomainInput
+
+func (GetApiGatewayCustomDomainArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiGatewayCustomDomain)(nil)).Elem()
+}
+
+func (i GetApiGatewayCustomDomainArray) ToGetApiGatewayCustomDomainArrayOutput() GetApiGatewayCustomDomainArrayOutput {
+	return i.ToGetApiGatewayCustomDomainArrayOutputWithContext(context.Background())
+}
+
+func (i GetApiGatewayCustomDomainArray) ToGetApiGatewayCustomDomainArrayOutputWithContext(ctx context.Context) GetApiGatewayCustomDomainArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiGatewayCustomDomainArrayOutput)
+}
+
+type GetApiGatewayCustomDomainOutput struct{ *pulumi.OutputState }
+
+func (GetApiGatewayCustomDomainOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiGatewayCustomDomain)(nil)).Elem()
+}
+
+func (o GetApiGatewayCustomDomainOutput) ToGetApiGatewayCustomDomainOutput() GetApiGatewayCustomDomainOutput {
+	return o
+}
+
+func (o GetApiGatewayCustomDomainOutput) ToGetApiGatewayCustomDomainOutputWithContext(ctx context.Context) GetApiGatewayCustomDomainOutput {
+	return o
+}
+
+func (o GetApiGatewayCustomDomainOutput) CertificateId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiGatewayCustomDomain) string { return v.CertificateId }).(pulumi.StringOutput)
+}
+
+func (o GetApiGatewayCustomDomainOutput) DomainId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiGatewayCustomDomain) string { return v.DomainId }).(pulumi.StringOutput)
+}
+
+func (o GetApiGatewayCustomDomainOutput) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetApiGatewayCustomDomain) string { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+type GetApiGatewayCustomDomainArrayOutput struct{ *pulumi.OutputState }
+
+func (GetApiGatewayCustomDomainArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetApiGatewayCustomDomain)(nil)).Elem()
+}
+
+func (o GetApiGatewayCustomDomainArrayOutput) ToGetApiGatewayCustomDomainArrayOutput() GetApiGatewayCustomDomainArrayOutput {
+	return o
+}
+
+func (o GetApiGatewayCustomDomainArrayOutput) ToGetApiGatewayCustomDomainArrayOutputWithContext(ctx context.Context) GetApiGatewayCustomDomainArrayOutput {
+	return o
+}
+
+func (o GetApiGatewayCustomDomainArrayOutput) Index(i pulumi.IntInput) GetApiGatewayCustomDomainOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetApiGatewayCustomDomain {
+		return vs[0].([]GetApiGatewayCustomDomain)[vs[1].(int)]
+	}).(GetApiGatewayCustomDomainOutput)
+}
+
+type GetCdnOriginGroupOrigin struct {
+	// specifies whether the origin is used in its origin group as backup. A backup origin is used when one of active origins becomes unavailable.
+	Backup *bool `pulumi:"backup"`
+	// the origin is enabled and used as a source for the CDN. Default is enabled.
+	Enabled *bool `pulumi:"enabled"`
+	// The ID of a specific origin group.
+	OriginGroupId int `pulumi:"originGroupId"`
+	// IP address or Domain name of your origin and the port;
+	Source string `pulumi:"source"`
+}
+
+// GetCdnOriginGroupOriginInput is an input type that accepts GetCdnOriginGroupOriginArgs and GetCdnOriginGroupOriginOutput values.
+// You can construct a concrete instance of `GetCdnOriginGroupOriginInput` via:
+//
+//	GetCdnOriginGroupOriginArgs{...}
+type GetCdnOriginGroupOriginInput interface {
+	pulumi.Input
+
+	ToGetCdnOriginGroupOriginOutput() GetCdnOriginGroupOriginOutput
+	ToGetCdnOriginGroupOriginOutputWithContext(context.Context) GetCdnOriginGroupOriginOutput
+}
+
+type GetCdnOriginGroupOriginArgs struct {
+	// specifies whether the origin is used in its origin group as backup. A backup origin is used when one of active origins becomes unavailable.
+	Backup pulumi.BoolPtrInput `pulumi:"backup"`
+	// the origin is enabled and used as a source for the CDN. Default is enabled.
+	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
+	// The ID of a specific origin group.
+	OriginGroupId pulumi.IntInput `pulumi:"originGroupId"`
+	// IP address or Domain name of your origin and the port;
+	Source pulumi.StringInput `pulumi:"source"`
+}
+
+func (GetCdnOriginGroupOriginArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCdnOriginGroupOrigin)(nil)).Elem()
+}
+
+func (i GetCdnOriginGroupOriginArgs) ToGetCdnOriginGroupOriginOutput() GetCdnOriginGroupOriginOutput {
+	return i.ToGetCdnOriginGroupOriginOutputWithContext(context.Background())
+}
+
+func (i GetCdnOriginGroupOriginArgs) ToGetCdnOriginGroupOriginOutputWithContext(ctx context.Context) GetCdnOriginGroupOriginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCdnOriginGroupOriginOutput)
+}
+
+// GetCdnOriginGroupOriginArrayInput is an input type that accepts GetCdnOriginGroupOriginArray and GetCdnOriginGroupOriginArrayOutput values.
+// You can construct a concrete instance of `GetCdnOriginGroupOriginArrayInput` via:
+//
+//	GetCdnOriginGroupOriginArray{ GetCdnOriginGroupOriginArgs{...} }
+type GetCdnOriginGroupOriginArrayInput interface {
+	pulumi.Input
+
+	ToGetCdnOriginGroupOriginArrayOutput() GetCdnOriginGroupOriginArrayOutput
+	ToGetCdnOriginGroupOriginArrayOutputWithContext(context.Context) GetCdnOriginGroupOriginArrayOutput
+}
+
+type GetCdnOriginGroupOriginArray []GetCdnOriginGroupOriginInput
+
+func (GetCdnOriginGroupOriginArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCdnOriginGroupOrigin)(nil)).Elem()
+}
+
+func (i GetCdnOriginGroupOriginArray) ToGetCdnOriginGroupOriginArrayOutput() GetCdnOriginGroupOriginArrayOutput {
+	return i.ToGetCdnOriginGroupOriginArrayOutputWithContext(context.Background())
+}
+
+func (i GetCdnOriginGroupOriginArray) ToGetCdnOriginGroupOriginArrayOutputWithContext(ctx context.Context) GetCdnOriginGroupOriginArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCdnOriginGroupOriginArrayOutput)
+}
+
+type GetCdnOriginGroupOriginOutput struct{ *pulumi.OutputState }
+
+func (GetCdnOriginGroupOriginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCdnOriginGroupOrigin)(nil)).Elem()
+}
+
+func (o GetCdnOriginGroupOriginOutput) ToGetCdnOriginGroupOriginOutput() GetCdnOriginGroupOriginOutput {
+	return o
+}
+
+func (o GetCdnOriginGroupOriginOutput) ToGetCdnOriginGroupOriginOutputWithContext(ctx context.Context) GetCdnOriginGroupOriginOutput {
+	return o
+}
+
+// specifies whether the origin is used in its origin group as backup. A backup origin is used when one of active origins becomes unavailable.
+func (o GetCdnOriginGroupOriginOutput) Backup() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetCdnOriginGroupOrigin) *bool { return v.Backup }).(pulumi.BoolPtrOutput)
+}
+
+// the origin is enabled and used as a source for the CDN. Default is enabled.
+func (o GetCdnOriginGroupOriginOutput) Enabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetCdnOriginGroupOrigin) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
+}
+
+// The ID of a specific origin group.
+func (o GetCdnOriginGroupOriginOutput) OriginGroupId() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCdnOriginGroupOrigin) int { return v.OriginGroupId }).(pulumi.IntOutput)
+}
+
+// IP address or Domain name of your origin and the port;
+func (o GetCdnOriginGroupOriginOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCdnOriginGroupOrigin) string { return v.Source }).(pulumi.StringOutput)
+}
+
+type GetCdnOriginGroupOriginArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCdnOriginGroupOriginArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCdnOriginGroupOrigin)(nil)).Elem()
+}
+
+func (o GetCdnOriginGroupOriginArrayOutput) ToGetCdnOriginGroupOriginArrayOutput() GetCdnOriginGroupOriginArrayOutput {
+	return o
+}
+
+func (o GetCdnOriginGroupOriginArrayOutput) ToGetCdnOriginGroupOriginArrayOutputWithContext(ctx context.Context) GetCdnOriginGroupOriginArrayOutput {
+	return o
+}
+
+func (o GetCdnOriginGroupOriginArrayOutput) Index(i pulumi.IntInput) GetCdnOriginGroupOriginOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCdnOriginGroupOrigin {
+		return vs[0].([]GetCdnOriginGroupOrigin)[vs[1].(int)]
+	}).(GetCdnOriginGroupOriginOutput)
+}
+
 type GetCdnResourceOptions struct {
 	// HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
 	AllowedHttpMethods []string `pulumi:"allowedHttpMethods"`
@@ -8001,6 +8231,124 @@ func (o GetFunctionSecretArrayOutput) Index(i pulumi.IntInput) GetFunctionSecret
 	}).(GetFunctionSecretOutput)
 }
 
+type GetFunctionTriggerContainer struct {
+	Id               string `pulumi:"id"`
+	Path             string `pulumi:"path"`
+	RetryAttempts    string `pulumi:"retryAttempts"`
+	RetryInterval    string `pulumi:"retryInterval"`
+	ServiceAccountId string `pulumi:"serviceAccountId"`
+}
+
+// GetFunctionTriggerContainerInput is an input type that accepts GetFunctionTriggerContainerArgs and GetFunctionTriggerContainerOutput values.
+// You can construct a concrete instance of `GetFunctionTriggerContainerInput` via:
+//
+//	GetFunctionTriggerContainerArgs{...}
+type GetFunctionTriggerContainerInput interface {
+	pulumi.Input
+
+	ToGetFunctionTriggerContainerOutput() GetFunctionTriggerContainerOutput
+	ToGetFunctionTriggerContainerOutputWithContext(context.Context) GetFunctionTriggerContainerOutput
+}
+
+type GetFunctionTriggerContainerArgs struct {
+	Id               pulumi.StringInput `pulumi:"id"`
+	Path             pulumi.StringInput `pulumi:"path"`
+	RetryAttempts    pulumi.StringInput `pulumi:"retryAttempts"`
+	RetryInterval    pulumi.StringInput `pulumi:"retryInterval"`
+	ServiceAccountId pulumi.StringInput `pulumi:"serviceAccountId"`
+}
+
+func (GetFunctionTriggerContainerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFunctionTriggerContainer)(nil)).Elem()
+}
+
+func (i GetFunctionTriggerContainerArgs) ToGetFunctionTriggerContainerOutput() GetFunctionTriggerContainerOutput {
+	return i.ToGetFunctionTriggerContainerOutputWithContext(context.Background())
+}
+
+func (i GetFunctionTriggerContainerArgs) ToGetFunctionTriggerContainerOutputWithContext(ctx context.Context) GetFunctionTriggerContainerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFunctionTriggerContainerOutput)
+}
+
+// GetFunctionTriggerContainerArrayInput is an input type that accepts GetFunctionTriggerContainerArray and GetFunctionTriggerContainerArrayOutput values.
+// You can construct a concrete instance of `GetFunctionTriggerContainerArrayInput` via:
+//
+//	GetFunctionTriggerContainerArray{ GetFunctionTriggerContainerArgs{...} }
+type GetFunctionTriggerContainerArrayInput interface {
+	pulumi.Input
+
+	ToGetFunctionTriggerContainerArrayOutput() GetFunctionTriggerContainerArrayOutput
+	ToGetFunctionTriggerContainerArrayOutputWithContext(context.Context) GetFunctionTriggerContainerArrayOutput
+}
+
+type GetFunctionTriggerContainerArray []GetFunctionTriggerContainerInput
+
+func (GetFunctionTriggerContainerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFunctionTriggerContainer)(nil)).Elem()
+}
+
+func (i GetFunctionTriggerContainerArray) ToGetFunctionTriggerContainerArrayOutput() GetFunctionTriggerContainerArrayOutput {
+	return i.ToGetFunctionTriggerContainerArrayOutputWithContext(context.Background())
+}
+
+func (i GetFunctionTriggerContainerArray) ToGetFunctionTriggerContainerArrayOutputWithContext(ctx context.Context) GetFunctionTriggerContainerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFunctionTriggerContainerArrayOutput)
+}
+
+type GetFunctionTriggerContainerOutput struct{ *pulumi.OutputState }
+
+func (GetFunctionTriggerContainerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFunctionTriggerContainer)(nil)).Elem()
+}
+
+func (o GetFunctionTriggerContainerOutput) ToGetFunctionTriggerContainerOutput() GetFunctionTriggerContainerOutput {
+	return o
+}
+
+func (o GetFunctionTriggerContainerOutput) ToGetFunctionTriggerContainerOutputWithContext(ctx context.Context) GetFunctionTriggerContainerOutput {
+	return o
+}
+
+func (o GetFunctionTriggerContainerOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFunctionTriggerContainer) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetFunctionTriggerContainerOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFunctionTriggerContainer) string { return v.Path }).(pulumi.StringOutput)
+}
+
+func (o GetFunctionTriggerContainerOutput) RetryAttempts() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFunctionTriggerContainer) string { return v.RetryAttempts }).(pulumi.StringOutput)
+}
+
+func (o GetFunctionTriggerContainerOutput) RetryInterval() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFunctionTriggerContainer) string { return v.RetryInterval }).(pulumi.StringOutput)
+}
+
+func (o GetFunctionTriggerContainerOutput) ServiceAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFunctionTriggerContainer) string { return v.ServiceAccountId }).(pulumi.StringOutput)
+}
+
+type GetFunctionTriggerContainerArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFunctionTriggerContainerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFunctionTriggerContainer)(nil)).Elem()
+}
+
+func (o GetFunctionTriggerContainerArrayOutput) ToGetFunctionTriggerContainerArrayOutput() GetFunctionTriggerContainerArrayOutput {
+	return o
+}
+
+func (o GetFunctionTriggerContainerArrayOutput) ToGetFunctionTriggerContainerArrayOutputWithContext(ctx context.Context) GetFunctionTriggerContainerArrayOutput {
+	return o
+}
+
+func (o GetFunctionTriggerContainerArrayOutput) Index(i pulumi.IntInput) GetFunctionTriggerContainerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFunctionTriggerContainer {
+		return vs[0].([]GetFunctionTriggerContainer)[vs[1].(int)]
+	}).(GetFunctionTriggerContainerOutput)
+}
+
 type GetFunctionTriggerDlq struct {
 	QueueId          string `pulumi:"queueId"`
 	ServiceAccountId string `pulumi:"serviceAccountId"`
@@ -13464,7 +13812,7 @@ func (o GetMdbClickhouseClusterBackupWindowStartArrayOutput) Index(i pulumi.IntI
 type GetMdbClickhouseClusterClickhouse struct {
 	// Main ClickHouse cluster configuration. The structure is documented below.
 	Config GetMdbClickhouseClusterClickhouseConfig `pulumi:"config"`
-	// Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+	// Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
 	Resources []GetMdbClickhouseClusterClickhouseResource `pulumi:"resources"`
 }
 
@@ -13482,7 +13830,7 @@ type GetMdbClickhouseClusterClickhouseInput interface {
 type GetMdbClickhouseClusterClickhouseArgs struct {
 	// Main ClickHouse cluster configuration. The structure is documented below.
 	Config GetMdbClickhouseClusterClickhouseConfigInput `pulumi:"config"`
-	// Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+	// Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
 	Resources GetMdbClickhouseClusterClickhouseResourceArrayInput `pulumi:"resources"`
 }
 
@@ -13542,7 +13890,7 @@ func (o GetMdbClickhouseClusterClickhouseOutput) Config() GetMdbClickhouseCluste
 	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouse) GetMdbClickhouseClusterClickhouseConfig { return v.Config }).(GetMdbClickhouseClusterClickhouseConfigOutput)
 }
 
-// Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+// Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
 func (o GetMdbClickhouseClusterClickhouseOutput) Resources() GetMdbClickhouseClusterClickhouseResourceArrayOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouse) []GetMdbClickhouseClusterClickhouseResource {
 		return v.Resources
@@ -13570,11 +13918,13 @@ func (o GetMdbClickhouseClusterClickhouseArrayOutput) Index(i pulumi.IntInput) G
 }
 
 type GetMdbClickhouseClusterClickhouseConfig struct {
+	BackgroundFetchesPoolSize  int  `pulumi:"backgroundFetchesPoolSize"`
 	BackgroundPoolSize         *int `pulumi:"backgroundPoolSize"`
 	BackgroundSchedulePoolSize *int `pulumi:"backgroundSchedulePoolSize"`
 	// Data compression configuration. The structure is documented below.
-	Compressions []GetMdbClickhouseClusterClickhouseConfigCompression `pulumi:"compressions"`
-	GeobaseUri   *string                                              `pulumi:"geobaseUri"`
+	Compressions    []GetMdbClickhouseClusterClickhouseConfigCompression `pulumi:"compressions"`
+	DefaultDatabase string                                               `pulumi:"defaultDatabase"`
+	GeobaseUri      *string                                              `pulumi:"geobaseUri"`
 	// Graphite rollup configuration. The structure is documented below.
 	GraphiteRollups []GetMdbClickhouseClusterClickhouseConfigGraphiteRollup `pulumi:"graphiteRollups"`
 	// Kafka topic connection configuration. The structure is documented below.
@@ -13601,16 +13951,17 @@ type GetMdbClickhouseClusterClickhouseConfig struct {
 	QueryThreadLogRetentionSize *int                                             `pulumi:"queryThreadLogRetentionSize"`
 	QueryThreadLogRetentionTime *int                                             `pulumi:"queryThreadLogRetentionTime"`
 	// RabbitMQ connection configuration. The structure is documented below.
-	Rabbitmq              GetMdbClickhouseClusterClickhouseConfigRabbitmq `pulumi:"rabbitmq"`
-	TextLogEnabled        *bool                                           `pulumi:"textLogEnabled"`
-	TextLogLevel          *string                                         `pulumi:"textLogLevel"`
-	TextLogRetentionSize  *int                                            `pulumi:"textLogRetentionSize"`
-	TextLogRetentionTime  *int                                            `pulumi:"textLogRetentionTime"`
-	Timezone              *string                                         `pulumi:"timezone"`
-	TraceLogEnabled       *bool                                           `pulumi:"traceLogEnabled"`
-	TraceLogRetentionSize *int                                            `pulumi:"traceLogRetentionSize"`
-	TraceLogRetentionTime *int                                            `pulumi:"traceLogRetentionTime"`
-	UncompressedCacheSize *int                                            `pulumi:"uncompressedCacheSize"`
+	Rabbitmq                GetMdbClickhouseClusterClickhouseConfigRabbitmq `pulumi:"rabbitmq"`
+	TextLogEnabled          *bool                                           `pulumi:"textLogEnabled"`
+	TextLogLevel            *string                                         `pulumi:"textLogLevel"`
+	TextLogRetentionSize    *int                                            `pulumi:"textLogRetentionSize"`
+	TextLogRetentionTime    *int                                            `pulumi:"textLogRetentionTime"`
+	Timezone                *string                                         `pulumi:"timezone"`
+	TotalMemoryProfilerStep int                                             `pulumi:"totalMemoryProfilerStep"`
+	TraceLogEnabled         *bool                                           `pulumi:"traceLogEnabled"`
+	TraceLogRetentionSize   *int                                            `pulumi:"traceLogRetentionSize"`
+	TraceLogRetentionTime   *int                                            `pulumi:"traceLogRetentionTime"`
+	UncompressedCacheSize   *int                                            `pulumi:"uncompressedCacheSize"`
 }
 
 // GetMdbClickhouseClusterClickhouseConfigInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigArgs and GetMdbClickhouseClusterClickhouseConfigOutput values.
@@ -13625,11 +13976,13 @@ type GetMdbClickhouseClusterClickhouseConfigInput interface {
 }
 
 type GetMdbClickhouseClusterClickhouseConfigArgs struct {
+	BackgroundFetchesPoolSize  pulumi.IntInput    `pulumi:"backgroundFetchesPoolSize"`
 	BackgroundPoolSize         pulumi.IntPtrInput `pulumi:"backgroundPoolSize"`
 	BackgroundSchedulePoolSize pulumi.IntPtrInput `pulumi:"backgroundSchedulePoolSize"`
 	// Data compression configuration. The structure is documented below.
-	Compressions GetMdbClickhouseClusterClickhouseConfigCompressionArrayInput `pulumi:"compressions"`
-	GeobaseUri   pulumi.StringPtrInput                                        `pulumi:"geobaseUri"`
+	Compressions    GetMdbClickhouseClusterClickhouseConfigCompressionArrayInput `pulumi:"compressions"`
+	DefaultDatabase pulumi.StringInput                                           `pulumi:"defaultDatabase"`
+	GeobaseUri      pulumi.StringPtrInput                                        `pulumi:"geobaseUri"`
 	// Graphite rollup configuration. The structure is documented below.
 	GraphiteRollups GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArrayInput `pulumi:"graphiteRollups"`
 	// Kafka topic connection configuration. The structure is documented below.
@@ -13656,16 +14009,17 @@ type GetMdbClickhouseClusterClickhouseConfigArgs struct {
 	QueryThreadLogRetentionSize pulumi.IntPtrInput                                    `pulumi:"queryThreadLogRetentionSize"`
 	QueryThreadLogRetentionTime pulumi.IntPtrInput                                    `pulumi:"queryThreadLogRetentionTime"`
 	// RabbitMQ connection configuration. The structure is documented below.
-	Rabbitmq              GetMdbClickhouseClusterClickhouseConfigRabbitmqInput `pulumi:"rabbitmq"`
-	TextLogEnabled        pulumi.BoolPtrInput                                  `pulumi:"textLogEnabled"`
-	TextLogLevel          pulumi.StringPtrInput                                `pulumi:"textLogLevel"`
-	TextLogRetentionSize  pulumi.IntPtrInput                                   `pulumi:"textLogRetentionSize"`
-	TextLogRetentionTime  pulumi.IntPtrInput                                   `pulumi:"textLogRetentionTime"`
-	Timezone              pulumi.StringPtrInput                                `pulumi:"timezone"`
-	TraceLogEnabled       pulumi.BoolPtrInput                                  `pulumi:"traceLogEnabled"`
-	TraceLogRetentionSize pulumi.IntPtrInput                                   `pulumi:"traceLogRetentionSize"`
-	TraceLogRetentionTime pulumi.IntPtrInput                                   `pulumi:"traceLogRetentionTime"`
-	UncompressedCacheSize pulumi.IntPtrInput                                   `pulumi:"uncompressedCacheSize"`
+	Rabbitmq                GetMdbClickhouseClusterClickhouseConfigRabbitmqInput `pulumi:"rabbitmq"`
+	TextLogEnabled          pulumi.BoolPtrInput                                  `pulumi:"textLogEnabled"`
+	TextLogLevel            pulumi.StringPtrInput                                `pulumi:"textLogLevel"`
+	TextLogRetentionSize    pulumi.IntPtrInput                                   `pulumi:"textLogRetentionSize"`
+	TextLogRetentionTime    pulumi.IntPtrInput                                   `pulumi:"textLogRetentionTime"`
+	Timezone                pulumi.StringPtrInput                                `pulumi:"timezone"`
+	TotalMemoryProfilerStep pulumi.IntInput                                      `pulumi:"totalMemoryProfilerStep"`
+	TraceLogEnabled         pulumi.BoolPtrInput                                  `pulumi:"traceLogEnabled"`
+	TraceLogRetentionSize   pulumi.IntPtrInput                                   `pulumi:"traceLogRetentionSize"`
+	TraceLogRetentionTime   pulumi.IntPtrInput                                   `pulumi:"traceLogRetentionTime"`
+	UncompressedCacheSize   pulumi.IntPtrInput                                   `pulumi:"uncompressedCacheSize"`
 }
 
 func (GetMdbClickhouseClusterClickhouseConfigArgs) ElementType() reflect.Type {
@@ -13694,6 +14048,10 @@ func (o GetMdbClickhouseClusterClickhouseConfigOutput) ToGetMdbClickhouseCluster
 	return o
 }
 
+func (o GetMdbClickhouseClusterClickhouseConfigOutput) BackgroundFetchesPoolSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfig) int { return v.BackgroundFetchesPoolSize }).(pulumi.IntOutput)
+}
+
 func (o GetMdbClickhouseClusterClickhouseConfigOutput) BackgroundPoolSize() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfig) *int { return v.BackgroundPoolSize }).(pulumi.IntPtrOutput)
 }
@@ -13707,6 +14065,10 @@ func (o GetMdbClickhouseClusterClickhouseConfigOutput) Compressions() GetMdbClic
 	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfig) []GetMdbClickhouseClusterClickhouseConfigCompression {
 		return v.Compressions
 	}).(GetMdbClickhouseClusterClickhouseConfigCompressionArrayOutput)
+}
+
+func (o GetMdbClickhouseClusterClickhouseConfigOutput) DefaultDatabase() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfig) string { return v.DefaultDatabase }).(pulumi.StringOutput)
 }
 
 func (o GetMdbClickhouseClusterClickhouseConfigOutput) GeobaseUri() pulumi.StringPtrOutput {
@@ -13834,6 +14196,10 @@ func (o GetMdbClickhouseClusterClickhouseConfigOutput) TextLogRetentionTime() pu
 
 func (o GetMdbClickhouseClusterClickhouseConfigOutput) Timezone() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfig) *string { return v.Timezone }).(pulumi.StringPtrOutput)
+}
+
+func (o GetMdbClickhouseClusterClickhouseConfigOutput) TotalMemoryProfilerStep() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfig) int { return v.TotalMemoryProfilerStep }).(pulumi.IntOutput)
 }
 
 func (o GetMdbClickhouseClusterClickhouseConfigOutput) TraceLogEnabled() pulumi.BoolPtrOutput {
@@ -14729,6 +15095,10 @@ type GetMdbClickhouseClusterClickhouseConfigMergeTree struct {
 	MaxBytesToMergeAtMinSpaceInPool *int `pulumi:"maxBytesToMergeAtMinSpaceInPool"`
 	// Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
 	MaxReplicatedMergesInQueue *int `pulumi:"maxReplicatedMergesInQueue"`
+	// (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+	MinBytesForWidePart int `pulumi:"minBytesForWidePart"`
+	// (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+	MinRowsForWidePart int `pulumi:"minRowsForWidePart"`
 	// Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
 	NumberOfFreeEntriesInPoolToLowerMaxSizeOfMerge *int `pulumi:"numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge"`
 	// Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
@@ -14739,6 +15109,8 @@ type GetMdbClickhouseClusterClickhouseConfigMergeTree struct {
 	ReplicatedDeduplicationWindow *int `pulumi:"replicatedDeduplicationWindow"`
 	// Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
 	ReplicatedDeduplicationWindowSeconds *int `pulumi:"replicatedDeduplicationWindowSeconds"`
+	// (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+	TtlOnlyDropParts bool `pulumi:"ttlOnlyDropParts"`
 }
 
 // GetMdbClickhouseClusterClickhouseConfigMergeTreeInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs and GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput values.
@@ -14757,6 +15129,10 @@ type GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs struct {
 	MaxBytesToMergeAtMinSpaceInPool pulumi.IntPtrInput `pulumi:"maxBytesToMergeAtMinSpaceInPool"`
 	// Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
 	MaxReplicatedMergesInQueue pulumi.IntPtrInput `pulumi:"maxReplicatedMergesInQueue"`
+	// (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+	MinBytesForWidePart pulumi.IntInput `pulumi:"minBytesForWidePart"`
+	// (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+	MinRowsForWidePart pulumi.IntInput `pulumi:"minRowsForWidePart"`
 	// Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
 	NumberOfFreeEntriesInPoolToLowerMaxSizeOfMerge pulumi.IntPtrInput `pulumi:"numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge"`
 	// Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
@@ -14767,6 +15143,8 @@ type GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs struct {
 	ReplicatedDeduplicationWindow pulumi.IntPtrInput `pulumi:"replicatedDeduplicationWindow"`
 	// Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
 	ReplicatedDeduplicationWindowSeconds pulumi.IntPtrInput `pulumi:"replicatedDeduplicationWindowSeconds"`
+	// (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+	TtlOnlyDropParts pulumi.BoolInput `pulumi:"ttlOnlyDropParts"`
 }
 
 func (GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs) ElementType() reflect.Type {
@@ -14807,6 +15185,16 @@ func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) MaxReplicatedMer
 	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigMergeTree) *int { return v.MaxReplicatedMergesInQueue }).(pulumi.IntPtrOutput)
 }
 
+// (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) MinBytesForWidePart() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigMergeTree) int { return v.MinBytesForWidePart }).(pulumi.IntOutput)
+}
+
+// (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) MinRowsForWidePart() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigMergeTree) int { return v.MinRowsForWidePart }).(pulumi.IntOutput)
+}
+
 // Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
 func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) NumberOfFreeEntriesInPoolToLowerMaxSizeOfMerge() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigMergeTree) *int {
@@ -14836,11 +15224,18 @@ func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) ReplicatedDedupl
 	}).(pulumi.IntPtrOutput)
 }
 
+// (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) TtlOnlyDropParts() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigMergeTree) bool { return v.TtlOnlyDropParts }).(pulumi.BoolOutput)
+}
+
 type GetMdbClickhouseClusterClickhouseConfigRabbitmq struct {
 	// RabbitMQ user password.
 	Password *string `pulumi:"password"`
 	// RabbitMQ username.
 	Username *string `pulumi:"username"`
+	// (Optional) RabbitMQ vhost. Default: '\'.
+	Vhost string `pulumi:"vhost"`
 }
 
 // GetMdbClickhouseClusterClickhouseConfigRabbitmqInput is an input type that accepts GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs and GetMdbClickhouseClusterClickhouseConfigRabbitmqOutput values.
@@ -14859,6 +15254,8 @@ type GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs struct {
 	Password pulumi.StringPtrInput `pulumi:"password"`
 	// RabbitMQ username.
 	Username pulumi.StringPtrInput `pulumi:"username"`
+	// (Optional) RabbitMQ vhost. Default: '\'.
+	Vhost pulumi.StringInput `pulumi:"vhost"`
 }
 
 func (GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs) ElementType() reflect.Type {
@@ -14897,10 +15294,15 @@ func (o GetMdbClickhouseClusterClickhouseConfigRabbitmqOutput) Username() pulumi
 	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigRabbitmq) *string { return v.Username }).(pulumi.StringPtrOutput)
 }
 
+// (Optional) RabbitMQ vhost. Default: '\'.
+func (o GetMdbClickhouseClusterClickhouseConfigRabbitmqOutput) Vhost() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigRabbitmq) string { return v.Vhost }).(pulumi.StringOutput)
+}
+
 type GetMdbClickhouseClusterClickhouseResource struct {
-	// Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
+	// Volume of the storage available to a host, in gigabytes.
 	DiskSize int `pulumi:"diskSize"`
-	// Type of the storage of ClickHouse or ZooKeeper hosts.
+	// Type of the storage of hosts.
 	DiskTypeId       string `pulumi:"diskTypeId"`
 	ResourcePresetId string `pulumi:"resourcePresetId"`
 }
@@ -14917,9 +15319,9 @@ type GetMdbClickhouseClusterClickhouseResourceInput interface {
 }
 
 type GetMdbClickhouseClusterClickhouseResourceArgs struct {
-	// Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
+	// Volume of the storage available to a host, in gigabytes.
 	DiskSize pulumi.IntInput `pulumi:"diskSize"`
-	// Type of the storage of ClickHouse or ZooKeeper hosts.
+	// Type of the storage of hosts.
 	DiskTypeId       pulumi.StringInput `pulumi:"diskTypeId"`
 	ResourcePresetId pulumi.StringInput `pulumi:"resourcePresetId"`
 }
@@ -14975,12 +15377,12 @@ func (o GetMdbClickhouseClusterClickhouseResourceOutput) ToGetMdbClickhouseClust
 	return o
 }
 
-// Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
+// Volume of the storage available to a host, in gigabytes.
 func (o GetMdbClickhouseClusterClickhouseResourceOutput) DiskSize() pulumi.IntOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseResource) int { return v.DiskSize }).(pulumi.IntOutput)
 }
 
-// Type of the storage of ClickHouse or ZooKeeper hosts.
+// Type of the storage of hosts.
 func (o GetMdbClickhouseClusterClickhouseResourceOutput) DiskTypeId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseResource) string { return v.DiskTypeId }).(pulumi.StringOutput)
 }
@@ -15790,6 +16192,8 @@ func (o GetMdbClickhouseClusterMlModelArrayOutput) Index(i pulumi.IntInput) GetM
 type GetMdbClickhouseClusterShard struct {
 	// The name of the ClickHouse cluster.
 	Name string `pulumi:"name"`
+	// Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+	Resources GetMdbClickhouseClusterShardResources `pulumi:"resources"`
 	// The weight of the shard.
 	Weight int `pulumi:"weight"`
 }
@@ -15808,6 +16212,8 @@ type GetMdbClickhouseClusterShardInput interface {
 type GetMdbClickhouseClusterShardArgs struct {
 	// The name of the ClickHouse cluster.
 	Name pulumi.StringInput `pulumi:"name"`
+	// Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+	Resources GetMdbClickhouseClusterShardResourcesInput `pulumi:"resources"`
 	// The weight of the shard.
 	Weight pulumi.IntInput `pulumi:"weight"`
 }
@@ -15866,6 +16272,11 @@ func (o GetMdbClickhouseClusterShardOutput) ToGetMdbClickhouseClusterShardOutput
 // The name of the ClickHouse cluster.
 func (o GetMdbClickhouseClusterShardOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterShard) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+func (o GetMdbClickhouseClusterShardOutput) Resources() GetMdbClickhouseClusterShardResourcesOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterShard) GetMdbClickhouseClusterShardResources { return v.Resources }).(GetMdbClickhouseClusterShardResourcesOutput)
 }
 
 // The weight of the shard.
@@ -16006,6 +16417,73 @@ func (o GetMdbClickhouseClusterShardGroupArrayOutput) Index(i pulumi.IntInput) G
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMdbClickhouseClusterShardGroup {
 		return vs[0].([]GetMdbClickhouseClusterShardGroup)[vs[1].(int)]
 	}).(GetMdbClickhouseClusterShardGroupOutput)
+}
+
+type GetMdbClickhouseClusterShardResources struct {
+	// Volume of the storage available to a host, in gigabytes.
+	DiskSize int `pulumi:"diskSize"`
+	// Type of the storage of hosts.
+	DiskTypeId       string `pulumi:"diskTypeId"`
+	ResourcePresetId string `pulumi:"resourcePresetId"`
+}
+
+// GetMdbClickhouseClusterShardResourcesInput is an input type that accepts GetMdbClickhouseClusterShardResourcesArgs and GetMdbClickhouseClusterShardResourcesOutput values.
+// You can construct a concrete instance of `GetMdbClickhouseClusterShardResourcesInput` via:
+//
+//	GetMdbClickhouseClusterShardResourcesArgs{...}
+type GetMdbClickhouseClusterShardResourcesInput interface {
+	pulumi.Input
+
+	ToGetMdbClickhouseClusterShardResourcesOutput() GetMdbClickhouseClusterShardResourcesOutput
+	ToGetMdbClickhouseClusterShardResourcesOutputWithContext(context.Context) GetMdbClickhouseClusterShardResourcesOutput
+}
+
+type GetMdbClickhouseClusterShardResourcesArgs struct {
+	// Volume of the storage available to a host, in gigabytes.
+	DiskSize pulumi.IntInput `pulumi:"diskSize"`
+	// Type of the storage of hosts.
+	DiskTypeId       pulumi.StringInput `pulumi:"diskTypeId"`
+	ResourcePresetId pulumi.StringInput `pulumi:"resourcePresetId"`
+}
+
+func (GetMdbClickhouseClusterShardResourcesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMdbClickhouseClusterShardResources)(nil)).Elem()
+}
+
+func (i GetMdbClickhouseClusterShardResourcesArgs) ToGetMdbClickhouseClusterShardResourcesOutput() GetMdbClickhouseClusterShardResourcesOutput {
+	return i.ToGetMdbClickhouseClusterShardResourcesOutputWithContext(context.Background())
+}
+
+func (i GetMdbClickhouseClusterShardResourcesArgs) ToGetMdbClickhouseClusterShardResourcesOutputWithContext(ctx context.Context) GetMdbClickhouseClusterShardResourcesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMdbClickhouseClusterShardResourcesOutput)
+}
+
+type GetMdbClickhouseClusterShardResourcesOutput struct{ *pulumi.OutputState }
+
+func (GetMdbClickhouseClusterShardResourcesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMdbClickhouseClusterShardResources)(nil)).Elem()
+}
+
+func (o GetMdbClickhouseClusterShardResourcesOutput) ToGetMdbClickhouseClusterShardResourcesOutput() GetMdbClickhouseClusterShardResourcesOutput {
+	return o
+}
+
+func (o GetMdbClickhouseClusterShardResourcesOutput) ToGetMdbClickhouseClusterShardResourcesOutputWithContext(ctx context.Context) GetMdbClickhouseClusterShardResourcesOutput {
+	return o
+}
+
+// Volume of the storage available to a host, in gigabytes.
+func (o GetMdbClickhouseClusterShardResourcesOutput) DiskSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterShardResources) int { return v.DiskSize }).(pulumi.IntOutput)
+}
+
+// Type of the storage of hosts.
+func (o GetMdbClickhouseClusterShardResourcesOutput) DiskTypeId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterShardResources) string { return v.DiskTypeId }).(pulumi.StringOutput)
+}
+
+func (o GetMdbClickhouseClusterShardResourcesOutput) ResourcePresetId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterShardResources) string { return v.ResourcePresetId }).(pulumi.StringOutput)
 }
 
 type GetMdbClickhouseClusterUser struct {
@@ -16376,12 +16854,31 @@ type GetMdbClickhouseClusterUserSettings struct {
 	AddHttpCorsHeader bool `pulumi:"addHttpCorsHeader"`
 	// Allows or denies DDL queries.
 	AllowDdl bool `pulumi:"allowDdl"`
+	// (Optional) Enables introspections functions for query profiling.
+	AllowIntrospectionFunctions bool `pulumi:"allowIntrospectionFunctions"`
+	// (Optional) Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+	AllowSuspiciousLowCardinalityTypes bool `pulumi:"allowSuspiciousLowCardinalityTypes"`
+	// (Optional) Enables asynchronous inserts. Disabled by default.
+	AsyncInsert bool `pulumi:"asyncInsert"`
+	// (Optional) The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+	AsyncInsertBusyTimeout int `pulumi:"asyncInsertBusyTimeout"`
+	// (Optional) The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+	AsyncInsertMaxDataSize int `pulumi:"asyncInsertMaxDataSize"`
+	// (Optional) The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the asyncInsertBusyTimeout with every INSERT query as long as asyncInsertMaxDataSize is not exceeded.
+	AsyncInsertStaleTimeout int `pulumi:"asyncInsertStaleTimeout"`
+	// (Optional) The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+	AsyncInsertThreads int `pulumi:"asyncInsertThreads"`
+	// (Optional) Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+	// Default value: false.
+	CancelHttpReadonlyQueriesOnClientClose bool `pulumi:"cancelHttpReadonlyQueriesOnClientClose"`
 	// Enable compilation of queries.
 	Compile bool `pulumi:"compile"`
 	// Turn on expression compilation.
 	CompileExpressions bool `pulumi:"compileExpressions"`
 	// Connect timeout in milliseconds on the socket used for communicating with the client.
 	ConnectTimeout int `pulumi:"connectTimeout"`
+	// (Optional) The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+	ConnectTimeoutWithFailover int `pulumi:"connectTimeoutWithFailover"`
 	// Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
 	CountDistinctImplementation string `pulumi:"countDistinctImplementation"`
 	// Sets behaviour on overflow when using DISTINCT. Possible values:
@@ -16398,6 +16895,8 @@ type GetMdbClickhouseClusterUserSettings struct {
 	EnableHttpCompression bool `pulumi:"enableHttpCompression"`
 	// Forces a query to an out-of-date replica if updated data is not available.
 	FallbackToStaleReplicasForDistributedQueries bool `pulumi:"fallbackToStaleReplicasForDistributedQueries"`
+	// (Optional) Sets the data format of a nested columns.
+	FlattenNested bool `pulumi:"flattenNested"`
 	// Disables query execution if the index can’t be used by date.
 	ForceIndexByDate bool `pulumi:"forceIndexByDate"`
 	// Disables query execution if indexing by the primary key is not possible.
@@ -16420,6 +16919,8 @@ type GetMdbClickhouseClusterUserSettings struct {
 	InputFormatDefaultsForOmittedFields bool `pulumi:"inputFormatDefaultsForOmittedFields"`
 	// Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
 	InputFormatValuesInterpretExpressions bool `pulumi:"inputFormatValuesInterpretExpressions"`
+	// (Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+	InsertNullAsDefault bool `pulumi:"insertNullAsDefault"`
 	// Enables the quorum writes.
 	InsertQuorum int `pulumi:"insertQuorum"`
 	// Write to a quorum timeout in milliseconds.
@@ -16456,10 +16957,15 @@ type GetMdbClickhouseClusterUserSettings struct {
 	MaxBytesToTransfer int `pulumi:"maxBytesToTransfer"`
 	// Limits the maximum number of columns that can be read from a table in a single query.
 	MaxColumnsToRead int `pulumi:"maxColumnsToRead"`
+	// (Optional) The maximum number of concurrent requests per user. Default value: 0 (no limit).
+	MaxConcurrentQueriesForUser int `pulumi:"maxConcurrentQueriesForUser"`
 	// Limits the maximum query execution time in milliseconds.
 	MaxExecutionTime int `pulumi:"maxExecutionTime"`
 	// Maximum abstract syntax tree depth after after expansion of aliases.
 	MaxExpandedAstElements int `pulumi:"maxExpandedAstElements"`
+	// (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+	// If the parameter is set to 0 (default), no hops is allowed.
+	MaxHttpGetRedirects int `pulumi:"maxHttpGetRedirects"`
 	// The size of blocks (in a count of rows) to form for insertion into a table.
 	MaxInsertBlockSize int `pulumi:"maxInsertBlockSize"`
 	// Limits the maximum memory usage (in bytes) for processing queries on a single server.
@@ -16498,6 +17004,10 @@ type GetMdbClickhouseClusterUserSettings struct {
 	MaxTemporaryNonConstColumns int `pulumi:"maxTemporaryNonConstColumns"`
 	// The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
 	MaxThreads int `pulumi:"maxThreads"`
+	// (Optional) Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+	MemoryProfilerSampleProbability float64 `pulumi:"memoryProfilerSampleProbability"`
+	// (Optional) Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+	MemoryProfilerStep int `pulumi:"memoryProfilerStep"`
 	// If ClickHouse should read more than mergeTreeMaxBytesToUseCache bytes in one query, it doesn’t use the cache of uncompressed blocks.
 	MergeTreeMaxBytesToUseCache int `pulumi:"mergeTreeMaxBytesToUseCache"`
 	// If ClickHouse should read more than mergeTreeMaxRowsToUseCache rows in one query, it doesn’t use the cache of uncompressed blocks.
@@ -16550,6 +17060,9 @@ type GetMdbClickhouseClusterUserSettings struct {
 	SkipUnavailableShards bool `pulumi:"skipUnavailableShards"`
 	// Sets behaviour on overflow while sort. Possible values:
 	SortOverflowMode string `pulumi:"sortOverflowMode"`
+	// (Optional) Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in minExecutionSpeed parameter.
+	// Must be at least 1000.
+	TimeoutBeforeCheckingExecutionSpeed int `pulumi:"timeoutBeforeCheckingExecutionSpeed"`
 	// Sets behaviour on overflow. Possible values:
 	TimeoutOverflowMode string `pulumi:"timeoutOverflowMode"`
 	// Sets behaviour on overflow. Possible values:
@@ -16558,6 +17071,10 @@ type GetMdbClickhouseClusterUserSettings struct {
 	TransformNullIn bool `pulumi:"transformNullIn"`
 	// Whether to use a cache of uncompressed blocks.
 	UseUncompressedCache bool `pulumi:"useUncompressedCache"`
+	// (Optional) Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+	WaitForAsyncInsert bool `pulumi:"waitForAsyncInsert"`
+	// (Optional) The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+	WaitForAsyncInsertTimeout int `pulumi:"waitForAsyncInsertTimeout"`
 }
 
 // GetMdbClickhouseClusterUserSettingsInput is an input type that accepts GetMdbClickhouseClusterUserSettingsArgs and GetMdbClickhouseClusterUserSettingsOutput values.
@@ -16576,12 +17093,31 @@ type GetMdbClickhouseClusterUserSettingsArgs struct {
 	AddHttpCorsHeader pulumi.BoolInput `pulumi:"addHttpCorsHeader"`
 	// Allows or denies DDL queries.
 	AllowDdl pulumi.BoolInput `pulumi:"allowDdl"`
+	// (Optional) Enables introspections functions for query profiling.
+	AllowIntrospectionFunctions pulumi.BoolInput `pulumi:"allowIntrospectionFunctions"`
+	// (Optional) Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+	AllowSuspiciousLowCardinalityTypes pulumi.BoolInput `pulumi:"allowSuspiciousLowCardinalityTypes"`
+	// (Optional) Enables asynchronous inserts. Disabled by default.
+	AsyncInsert pulumi.BoolInput `pulumi:"asyncInsert"`
+	// (Optional) The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+	AsyncInsertBusyTimeout pulumi.IntInput `pulumi:"asyncInsertBusyTimeout"`
+	// (Optional) The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+	AsyncInsertMaxDataSize pulumi.IntInput `pulumi:"asyncInsertMaxDataSize"`
+	// (Optional) The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the asyncInsertBusyTimeout with every INSERT query as long as asyncInsertMaxDataSize is not exceeded.
+	AsyncInsertStaleTimeout pulumi.IntInput `pulumi:"asyncInsertStaleTimeout"`
+	// (Optional) The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+	AsyncInsertThreads pulumi.IntInput `pulumi:"asyncInsertThreads"`
+	// (Optional) Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+	// Default value: false.
+	CancelHttpReadonlyQueriesOnClientClose pulumi.BoolInput `pulumi:"cancelHttpReadonlyQueriesOnClientClose"`
 	// Enable compilation of queries.
 	Compile pulumi.BoolInput `pulumi:"compile"`
 	// Turn on expression compilation.
 	CompileExpressions pulumi.BoolInput `pulumi:"compileExpressions"`
 	// Connect timeout in milliseconds on the socket used for communicating with the client.
 	ConnectTimeout pulumi.IntInput `pulumi:"connectTimeout"`
+	// (Optional) The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+	ConnectTimeoutWithFailover pulumi.IntInput `pulumi:"connectTimeoutWithFailover"`
 	// Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
 	CountDistinctImplementation pulumi.StringInput `pulumi:"countDistinctImplementation"`
 	// Sets behaviour on overflow when using DISTINCT. Possible values:
@@ -16598,6 +17134,8 @@ type GetMdbClickhouseClusterUserSettingsArgs struct {
 	EnableHttpCompression pulumi.BoolInput `pulumi:"enableHttpCompression"`
 	// Forces a query to an out-of-date replica if updated data is not available.
 	FallbackToStaleReplicasForDistributedQueries pulumi.BoolInput `pulumi:"fallbackToStaleReplicasForDistributedQueries"`
+	// (Optional) Sets the data format of a nested columns.
+	FlattenNested pulumi.BoolInput `pulumi:"flattenNested"`
 	// Disables query execution if the index can’t be used by date.
 	ForceIndexByDate pulumi.BoolInput `pulumi:"forceIndexByDate"`
 	// Disables query execution if indexing by the primary key is not possible.
@@ -16620,6 +17158,8 @@ type GetMdbClickhouseClusterUserSettingsArgs struct {
 	InputFormatDefaultsForOmittedFields pulumi.BoolInput `pulumi:"inputFormatDefaultsForOmittedFields"`
 	// Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
 	InputFormatValuesInterpretExpressions pulumi.BoolInput `pulumi:"inputFormatValuesInterpretExpressions"`
+	// (Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+	InsertNullAsDefault pulumi.BoolInput `pulumi:"insertNullAsDefault"`
 	// Enables the quorum writes.
 	InsertQuorum pulumi.IntInput `pulumi:"insertQuorum"`
 	// Write to a quorum timeout in milliseconds.
@@ -16656,10 +17196,15 @@ type GetMdbClickhouseClusterUserSettingsArgs struct {
 	MaxBytesToTransfer pulumi.IntInput `pulumi:"maxBytesToTransfer"`
 	// Limits the maximum number of columns that can be read from a table in a single query.
 	MaxColumnsToRead pulumi.IntInput `pulumi:"maxColumnsToRead"`
+	// (Optional) The maximum number of concurrent requests per user. Default value: 0 (no limit).
+	MaxConcurrentQueriesForUser pulumi.IntInput `pulumi:"maxConcurrentQueriesForUser"`
 	// Limits the maximum query execution time in milliseconds.
 	MaxExecutionTime pulumi.IntInput `pulumi:"maxExecutionTime"`
 	// Maximum abstract syntax tree depth after after expansion of aliases.
 	MaxExpandedAstElements pulumi.IntInput `pulumi:"maxExpandedAstElements"`
+	// (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+	// If the parameter is set to 0 (default), no hops is allowed.
+	MaxHttpGetRedirects pulumi.IntInput `pulumi:"maxHttpGetRedirects"`
 	// The size of blocks (in a count of rows) to form for insertion into a table.
 	MaxInsertBlockSize pulumi.IntInput `pulumi:"maxInsertBlockSize"`
 	// Limits the maximum memory usage (in bytes) for processing queries on a single server.
@@ -16698,6 +17243,10 @@ type GetMdbClickhouseClusterUserSettingsArgs struct {
 	MaxTemporaryNonConstColumns pulumi.IntInput `pulumi:"maxTemporaryNonConstColumns"`
 	// The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
 	MaxThreads pulumi.IntInput `pulumi:"maxThreads"`
+	// (Optional) Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+	MemoryProfilerSampleProbability pulumi.Float64Input `pulumi:"memoryProfilerSampleProbability"`
+	// (Optional) Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+	MemoryProfilerStep pulumi.IntInput `pulumi:"memoryProfilerStep"`
 	// If ClickHouse should read more than mergeTreeMaxBytesToUseCache bytes in one query, it doesn’t use the cache of uncompressed blocks.
 	MergeTreeMaxBytesToUseCache pulumi.IntInput `pulumi:"mergeTreeMaxBytesToUseCache"`
 	// If ClickHouse should read more than mergeTreeMaxRowsToUseCache rows in one query, it doesn’t use the cache of uncompressed blocks.
@@ -16750,6 +17299,9 @@ type GetMdbClickhouseClusterUserSettingsArgs struct {
 	SkipUnavailableShards pulumi.BoolInput `pulumi:"skipUnavailableShards"`
 	// Sets behaviour on overflow while sort. Possible values:
 	SortOverflowMode pulumi.StringInput `pulumi:"sortOverflowMode"`
+	// (Optional) Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in minExecutionSpeed parameter.
+	// Must be at least 1000.
+	TimeoutBeforeCheckingExecutionSpeed pulumi.IntInput `pulumi:"timeoutBeforeCheckingExecutionSpeed"`
 	// Sets behaviour on overflow. Possible values:
 	TimeoutOverflowMode pulumi.StringInput `pulumi:"timeoutOverflowMode"`
 	// Sets behaviour on overflow. Possible values:
@@ -16758,6 +17310,10 @@ type GetMdbClickhouseClusterUserSettingsArgs struct {
 	TransformNullIn pulumi.BoolInput `pulumi:"transformNullIn"`
 	// Whether to use a cache of uncompressed blocks.
 	UseUncompressedCache pulumi.BoolInput `pulumi:"useUncompressedCache"`
+	// (Optional) Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+	WaitForAsyncInsert pulumi.BoolInput `pulumi:"waitForAsyncInsert"`
+	// (Optional) The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+	WaitForAsyncInsertTimeout pulumi.IntInput `pulumi:"waitForAsyncInsertTimeout"`
 }
 
 func (GetMdbClickhouseClusterUserSettingsArgs) ElementType() reflect.Type {
@@ -16796,6 +17352,47 @@ func (o GetMdbClickhouseClusterUserSettingsOutput) AllowDdl() pulumi.BoolOutput 
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.AllowDdl }).(pulumi.BoolOutput)
 }
 
+// (Optional) Enables introspections functions for query profiling.
+func (o GetMdbClickhouseClusterUserSettingsOutput) AllowIntrospectionFunctions() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.AllowIntrospectionFunctions }).(pulumi.BoolOutput)
+}
+
+// (Optional) Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+func (o GetMdbClickhouseClusterUserSettingsOutput) AllowSuspiciousLowCardinalityTypes() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.AllowSuspiciousLowCardinalityTypes }).(pulumi.BoolOutput)
+}
+
+// (Optional) Enables asynchronous inserts. Disabled by default.
+func (o GetMdbClickhouseClusterUserSettingsOutput) AsyncInsert() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.AsyncInsert }).(pulumi.BoolOutput)
+}
+
+// (Optional) The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+func (o GetMdbClickhouseClusterUserSettingsOutput) AsyncInsertBusyTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.AsyncInsertBusyTimeout }).(pulumi.IntOutput)
+}
+
+// (Optional) The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+func (o GetMdbClickhouseClusterUserSettingsOutput) AsyncInsertMaxDataSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.AsyncInsertMaxDataSize }).(pulumi.IntOutput)
+}
+
+// (Optional) The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the asyncInsertBusyTimeout with every INSERT query as long as asyncInsertMaxDataSize is not exceeded.
+func (o GetMdbClickhouseClusterUserSettingsOutput) AsyncInsertStaleTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.AsyncInsertStaleTimeout }).(pulumi.IntOutput)
+}
+
+// (Optional) The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+func (o GetMdbClickhouseClusterUserSettingsOutput) AsyncInsertThreads() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.AsyncInsertThreads }).(pulumi.IntOutput)
+}
+
+// (Optional) Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+// Default value: false.
+func (o GetMdbClickhouseClusterUserSettingsOutput) CancelHttpReadonlyQueriesOnClientClose() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.CancelHttpReadonlyQueriesOnClientClose }).(pulumi.BoolOutput)
+}
+
 // Enable compilation of queries.
 func (o GetMdbClickhouseClusterUserSettingsOutput) Compile() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.Compile }).(pulumi.BoolOutput)
@@ -16809,6 +17406,11 @@ func (o GetMdbClickhouseClusterUserSettingsOutput) CompileExpressions() pulumi.B
 // Connect timeout in milliseconds on the socket used for communicating with the client.
 func (o GetMdbClickhouseClusterUserSettingsOutput) ConnectTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.ConnectTimeout }).(pulumi.IntOutput)
+}
+
+// (Optional) The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+func (o GetMdbClickhouseClusterUserSettingsOutput) ConnectTimeoutWithFailover() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.ConnectTimeoutWithFailover }).(pulumi.IntOutput)
 }
 
 // Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
@@ -16851,6 +17453,11 @@ func (o GetMdbClickhouseClusterUserSettingsOutput) FallbackToStaleReplicasForDis
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool {
 		return v.FallbackToStaleReplicasForDistributedQueries
 	}).(pulumi.BoolOutput)
+}
+
+// (Optional) Sets the data format of a nested columns.
+func (o GetMdbClickhouseClusterUserSettingsOutput) FlattenNested() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.FlattenNested }).(pulumi.BoolOutput)
 }
 
 // Disables query execution if the index can’t be used by date.
@@ -16906,6 +17513,11 @@ func (o GetMdbClickhouseClusterUserSettingsOutput) InputFormatDefaultsForOmitted
 // Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
 func (o GetMdbClickhouseClusterUserSettingsOutput) InputFormatValuesInterpretExpressions() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.InputFormatValuesInterpretExpressions }).(pulumi.BoolOutput)
+}
+
+// (Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+func (o GetMdbClickhouseClusterUserSettingsOutput) InsertNullAsDefault() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.InsertNullAsDefault }).(pulumi.BoolOutput)
 }
 
 // Enables the quorum writes.
@@ -16998,6 +17610,11 @@ func (o GetMdbClickhouseClusterUserSettingsOutput) MaxColumnsToRead() pulumi.Int
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.MaxColumnsToRead }).(pulumi.IntOutput)
 }
 
+// (Optional) The maximum number of concurrent requests per user. Default value: 0 (no limit).
+func (o GetMdbClickhouseClusterUserSettingsOutput) MaxConcurrentQueriesForUser() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.MaxConcurrentQueriesForUser }).(pulumi.IntOutput)
+}
+
 // Limits the maximum query execution time in milliseconds.
 func (o GetMdbClickhouseClusterUserSettingsOutput) MaxExecutionTime() pulumi.IntOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.MaxExecutionTime }).(pulumi.IntOutput)
@@ -17006,6 +17623,12 @@ func (o GetMdbClickhouseClusterUserSettingsOutput) MaxExecutionTime() pulumi.Int
 // Maximum abstract syntax tree depth after after expansion of aliases.
 func (o GetMdbClickhouseClusterUserSettingsOutput) MaxExpandedAstElements() pulumi.IntOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.MaxExpandedAstElements }).(pulumi.IntOutput)
+}
+
+// (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+// If the parameter is set to 0 (default), no hops is allowed.
+func (o GetMdbClickhouseClusterUserSettingsOutput) MaxHttpGetRedirects() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.MaxHttpGetRedirects }).(pulumi.IntOutput)
 }
 
 // The size of blocks (in a count of rows) to form for insertion into a table.
@@ -17101,6 +17724,16 @@ func (o GetMdbClickhouseClusterUserSettingsOutput) MaxTemporaryNonConstColumns()
 // The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
 func (o GetMdbClickhouseClusterUserSettingsOutput) MaxThreads() pulumi.IntOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.MaxThreads }).(pulumi.IntOutput)
+}
+
+// (Optional) Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+func (o GetMdbClickhouseClusterUserSettingsOutput) MemoryProfilerSampleProbability() pulumi.Float64Output {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) float64 { return v.MemoryProfilerSampleProbability }).(pulumi.Float64Output)
+}
+
+// (Optional) Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+func (o GetMdbClickhouseClusterUserSettingsOutput) MemoryProfilerStep() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.MemoryProfilerStep }).(pulumi.IntOutput)
 }
 
 // If ClickHouse should read more than mergeTreeMaxBytesToUseCache bytes in one query, it doesn’t use the cache of uncompressed blocks.
@@ -17233,6 +17866,12 @@ func (o GetMdbClickhouseClusterUserSettingsOutput) SortOverflowMode() pulumi.Str
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) string { return v.SortOverflowMode }).(pulumi.StringOutput)
 }
 
+// (Optional) Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in minExecutionSpeed parameter.
+// Must be at least 1000.
+func (o GetMdbClickhouseClusterUserSettingsOutput) TimeoutBeforeCheckingExecutionSpeed() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.TimeoutBeforeCheckingExecutionSpeed }).(pulumi.IntOutput)
+}
+
 // Sets behaviour on overflow. Possible values:
 func (o GetMdbClickhouseClusterUserSettingsOutput) TimeoutOverflowMode() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) string { return v.TimeoutOverflowMode }).(pulumi.StringOutput)
@@ -17253,8 +17892,18 @@ func (o GetMdbClickhouseClusterUserSettingsOutput) UseUncompressedCache() pulumi
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.UseUncompressedCache }).(pulumi.BoolOutput)
 }
 
+// (Optional) Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+func (o GetMdbClickhouseClusterUserSettingsOutput) WaitForAsyncInsert() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.WaitForAsyncInsert }).(pulumi.BoolOutput)
+}
+
+// (Optional) The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+func (o GetMdbClickhouseClusterUserSettingsOutput) WaitForAsyncInsertTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.WaitForAsyncInsertTimeout }).(pulumi.IntOutput)
+}
+
 type GetMdbClickhouseClusterZookeeper struct {
-	// Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+	// Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
 	Resources []GetMdbClickhouseClusterZookeeperResource `pulumi:"resources"`
 }
 
@@ -17270,7 +17919,7 @@ type GetMdbClickhouseClusterZookeeperInput interface {
 }
 
 type GetMdbClickhouseClusterZookeeperArgs struct {
-	// Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+	// Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
 	Resources GetMdbClickhouseClusterZookeeperResourceArrayInput `pulumi:"resources"`
 }
 
@@ -17325,7 +17974,7 @@ func (o GetMdbClickhouseClusterZookeeperOutput) ToGetMdbClickhouseClusterZookeep
 	return o
 }
 
-// Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+// Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
 func (o GetMdbClickhouseClusterZookeeperOutput) Resources() GetMdbClickhouseClusterZookeeperResourceArrayOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterZookeeper) []GetMdbClickhouseClusterZookeeperResource {
 		return v.Resources
@@ -17353,9 +18002,9 @@ func (o GetMdbClickhouseClusterZookeeperArrayOutput) Index(i pulumi.IntInput) Ge
 }
 
 type GetMdbClickhouseClusterZookeeperResource struct {
-	// Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
+	// Volume of the storage available to a host, in gigabytes.
 	DiskSize int `pulumi:"diskSize"`
-	// Type of the storage of ClickHouse or ZooKeeper hosts.
+	// Type of the storage of hosts.
 	DiskTypeId       string `pulumi:"diskTypeId"`
 	ResourcePresetId string `pulumi:"resourcePresetId"`
 }
@@ -17372,9 +18021,9 @@ type GetMdbClickhouseClusterZookeeperResourceInput interface {
 }
 
 type GetMdbClickhouseClusterZookeeperResourceArgs struct {
-	// Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
+	// Volume of the storage available to a host, in gigabytes.
 	DiskSize pulumi.IntInput `pulumi:"diskSize"`
-	// Type of the storage of ClickHouse or ZooKeeper hosts.
+	// Type of the storage of hosts.
 	DiskTypeId       pulumi.StringInput `pulumi:"diskTypeId"`
 	ResourcePresetId pulumi.StringInput `pulumi:"resourcePresetId"`
 }
@@ -17430,12 +18079,12 @@ func (o GetMdbClickhouseClusterZookeeperResourceOutput) ToGetMdbClickhouseCluste
 	return o
 }
 
-// Volume of the storage available to a ClickHouse or ZooKeeper host, in gigabytes.
+// Volume of the storage available to a host, in gigabytes.
 func (o GetMdbClickhouseClusterZookeeperResourceOutput) DiskSize() pulumi.IntOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterZookeeperResource) int { return v.DiskSize }).(pulumi.IntOutput)
 }
 
-// Type of the storage of ClickHouse or ZooKeeper hosts.
+// Type of the storage of hosts.
 func (o GetMdbClickhouseClusterZookeeperResourceOutput) DiskTypeId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterZookeeperResource) string { return v.DiskTypeId }).(pulumi.StringOutput)
 }
@@ -31563,7 +32212,129 @@ func (o VpcGatewaySharedEgressGatewayPtrOutput) Elem() VpcGatewaySharedEgressGat
 	}).(VpcGatewaySharedEgressGatewayOutput)
 }
 
+type YandexYdbTopicConsumer struct {
+	// Topic name. Type: string, required. Default value: "".
+	Name                       string  `pulumi:"name"`
+	ServiceType                *string `pulumi:"serviceType"`
+	StartingMessageTimestampMs *int    `pulumi:"startingMessageTimestampMs"`
+	// Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
+	SupportedCodecs []string `pulumi:"supportedCodecs"`
+}
+
+// YandexYdbTopicConsumerInput is an input type that accepts YandexYdbTopicConsumerArgs and YandexYdbTopicConsumerOutput values.
+// You can construct a concrete instance of `YandexYdbTopicConsumerInput` via:
+//
+//	YandexYdbTopicConsumerArgs{...}
+type YandexYdbTopicConsumerInput interface {
+	pulumi.Input
+
+	ToYandexYdbTopicConsumerOutput() YandexYdbTopicConsumerOutput
+	ToYandexYdbTopicConsumerOutputWithContext(context.Context) YandexYdbTopicConsumerOutput
+}
+
+type YandexYdbTopicConsumerArgs struct {
+	// Topic name. Type: string, required. Default value: "".
+	Name                       pulumi.StringInput    `pulumi:"name"`
+	ServiceType                pulumi.StringPtrInput `pulumi:"serviceType"`
+	StartingMessageTimestampMs pulumi.IntPtrInput    `pulumi:"startingMessageTimestampMs"`
+	// Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
+	SupportedCodecs pulumi.StringArrayInput `pulumi:"supportedCodecs"`
+}
+
+func (YandexYdbTopicConsumerArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*YandexYdbTopicConsumer)(nil)).Elem()
+}
+
+func (i YandexYdbTopicConsumerArgs) ToYandexYdbTopicConsumerOutput() YandexYdbTopicConsumerOutput {
+	return i.ToYandexYdbTopicConsumerOutputWithContext(context.Background())
+}
+
+func (i YandexYdbTopicConsumerArgs) ToYandexYdbTopicConsumerOutputWithContext(ctx context.Context) YandexYdbTopicConsumerOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(YandexYdbTopicConsumerOutput)
+}
+
+// YandexYdbTopicConsumerArrayInput is an input type that accepts YandexYdbTopicConsumerArray and YandexYdbTopicConsumerArrayOutput values.
+// You can construct a concrete instance of `YandexYdbTopicConsumerArrayInput` via:
+//
+//	YandexYdbTopicConsumerArray{ YandexYdbTopicConsumerArgs{...} }
+type YandexYdbTopicConsumerArrayInput interface {
+	pulumi.Input
+
+	ToYandexYdbTopicConsumerArrayOutput() YandexYdbTopicConsumerArrayOutput
+	ToYandexYdbTopicConsumerArrayOutputWithContext(context.Context) YandexYdbTopicConsumerArrayOutput
+}
+
+type YandexYdbTopicConsumerArray []YandexYdbTopicConsumerInput
+
+func (YandexYdbTopicConsumerArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]YandexYdbTopicConsumer)(nil)).Elem()
+}
+
+func (i YandexYdbTopicConsumerArray) ToYandexYdbTopicConsumerArrayOutput() YandexYdbTopicConsumerArrayOutput {
+	return i.ToYandexYdbTopicConsumerArrayOutputWithContext(context.Background())
+}
+
+func (i YandexYdbTopicConsumerArray) ToYandexYdbTopicConsumerArrayOutputWithContext(ctx context.Context) YandexYdbTopicConsumerArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(YandexYdbTopicConsumerArrayOutput)
+}
+
+type YandexYdbTopicConsumerOutput struct{ *pulumi.OutputState }
+
+func (YandexYdbTopicConsumerOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*YandexYdbTopicConsumer)(nil)).Elem()
+}
+
+func (o YandexYdbTopicConsumerOutput) ToYandexYdbTopicConsumerOutput() YandexYdbTopicConsumerOutput {
+	return o
+}
+
+func (o YandexYdbTopicConsumerOutput) ToYandexYdbTopicConsumerOutputWithContext(ctx context.Context) YandexYdbTopicConsumerOutput {
+	return o
+}
+
+// Topic name. Type: string, required. Default value: "".
+func (o YandexYdbTopicConsumerOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v YandexYdbTopicConsumer) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o YandexYdbTopicConsumerOutput) ServiceType() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v YandexYdbTopicConsumer) *string { return v.ServiceType }).(pulumi.StringPtrOutput)
+}
+
+func (o YandexYdbTopicConsumerOutput) StartingMessageTimestampMs() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v YandexYdbTopicConsumer) *int { return v.StartingMessageTimestampMs }).(pulumi.IntPtrOutput)
+}
+
+// Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
+func (o YandexYdbTopicConsumerOutput) SupportedCodecs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v YandexYdbTopicConsumer) []string { return v.SupportedCodecs }).(pulumi.StringArrayOutput)
+}
+
+type YandexYdbTopicConsumerArrayOutput struct{ *pulumi.OutputState }
+
+func (YandexYdbTopicConsumerArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]YandexYdbTopicConsumer)(nil)).Elem()
+}
+
+func (o YandexYdbTopicConsumerArrayOutput) ToYandexYdbTopicConsumerArrayOutput() YandexYdbTopicConsumerArrayOutput {
+	return o
+}
+
+func (o YandexYdbTopicConsumerArrayOutput) ToYandexYdbTopicConsumerArrayOutputWithContext(ctx context.Context) YandexYdbTopicConsumerArrayOutput {
+	return o
+}
+
+func (o YandexYdbTopicConsumerArrayOutput) Index(i pulumi.IntInput) YandexYdbTopicConsumerOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) YandexYdbTopicConsumer {
+		return vs[0].([]YandexYdbTopicConsumer)[vs[1].(int)]
+	}).(YandexYdbTopicConsumerOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiGatewayCustomDomainInput)(nil)).Elem(), GetApiGatewayCustomDomainArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiGatewayCustomDomainArrayInput)(nil)).Elem(), GetApiGatewayCustomDomainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnOriginGroupOriginInput)(nil)).Elem(), GetCdnOriginGroupOriginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnOriginGroupOriginArrayInput)(nil)).Elem(), GetCdnOriginGroupOriginArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnResourceOptionsInput)(nil)).Elem(), GetCdnResourceOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnResourceOptionsPtrInput)(nil)).Elem(), GetCdnResourceOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCdnResourceSslCertificateInput)(nil)).Elem(), GetCdnResourceSslCertificateArgs{})
@@ -31676,6 +32447,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFunctionScalingPolicyPolicyArrayInput)(nil)).Elem(), GetFunctionScalingPolicyPolicyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFunctionSecretInput)(nil)).Elem(), GetFunctionSecretArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFunctionSecretArrayInput)(nil)).Elem(), GetFunctionSecretArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFunctionTriggerContainerInput)(nil)).Elem(), GetFunctionTriggerContainerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFunctionTriggerContainerArrayInput)(nil)).Elem(), GetFunctionTriggerContainerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFunctionTriggerDlqInput)(nil)).Elem(), GetFunctionTriggerDlqArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFunctionTriggerDlqArrayInput)(nil)).Elem(), GetFunctionTriggerDlqArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFunctionTriggerFunctionInput)(nil)).Elem(), GetFunctionTriggerFunctionArgs{})
@@ -31806,6 +32579,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterShardArrayInput)(nil)).Elem(), GetMdbClickhouseClusterShardArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterShardGroupInput)(nil)).Elem(), GetMdbClickhouseClusterShardGroupArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterShardGroupArrayInput)(nil)).Elem(), GetMdbClickhouseClusterShardGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterShardResourcesInput)(nil)).Elem(), GetMdbClickhouseClusterShardResourcesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterUserInput)(nil)).Elem(), GetMdbClickhouseClusterUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterUserArrayInput)(nil)).Elem(), GetMdbClickhouseClusterUserArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMdbClickhouseClusterUserPermissionInput)(nil)).Elem(), GetMdbClickhouseClusterUserPermissionArgs{})
@@ -32027,6 +32801,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MdbPostgresqlUserPermissionArrayInput)(nil)).Elem(), MdbPostgresqlUserPermissionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewaySharedEgressGatewayInput)(nil)).Elem(), VpcGatewaySharedEgressGatewayArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*VpcGatewaySharedEgressGatewayPtrInput)(nil)).Elem(), VpcGatewaySharedEgressGatewayArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*YandexYdbTopicConsumerInput)(nil)).Elem(), YandexYdbTopicConsumerArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*YandexYdbTopicConsumerArrayInput)(nil)).Elem(), YandexYdbTopicConsumerArray{})
+	pulumi.RegisterOutputType(GetApiGatewayCustomDomainOutput{})
+	pulumi.RegisterOutputType(GetApiGatewayCustomDomainArrayOutput{})
+	pulumi.RegisterOutputType(GetCdnOriginGroupOriginOutput{})
+	pulumi.RegisterOutputType(GetCdnOriginGroupOriginArrayOutput{})
 	pulumi.RegisterOutputType(GetCdnResourceOptionsOutput{})
 	pulumi.RegisterOutputType(GetCdnResourceOptionsPtrOutput{})
 	pulumi.RegisterOutputType(GetCdnResourceSslCertificateOutput{})
@@ -32139,6 +32919,8 @@ func init() {
 	pulumi.RegisterOutputType(GetFunctionScalingPolicyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(GetFunctionSecretOutput{})
 	pulumi.RegisterOutputType(GetFunctionSecretArrayOutput{})
+	pulumi.RegisterOutputType(GetFunctionTriggerContainerOutput{})
+	pulumi.RegisterOutputType(GetFunctionTriggerContainerArrayOutput{})
 	pulumi.RegisterOutputType(GetFunctionTriggerDlqOutput{})
 	pulumi.RegisterOutputType(GetFunctionTriggerDlqArrayOutput{})
 	pulumi.RegisterOutputType(GetFunctionTriggerFunctionOutput{})
@@ -32269,6 +33051,7 @@ func init() {
 	pulumi.RegisterOutputType(GetMdbClickhouseClusterShardArrayOutput{})
 	pulumi.RegisterOutputType(GetMdbClickhouseClusterShardGroupOutput{})
 	pulumi.RegisterOutputType(GetMdbClickhouseClusterShardGroupArrayOutput{})
+	pulumi.RegisterOutputType(GetMdbClickhouseClusterShardResourcesOutput{})
 	pulumi.RegisterOutputType(GetMdbClickhouseClusterUserOutput{})
 	pulumi.RegisterOutputType(GetMdbClickhouseClusterUserArrayOutput{})
 	pulumi.RegisterOutputType(GetMdbClickhouseClusterUserPermissionOutput{})
@@ -32490,4 +33273,6 @@ func init() {
 	pulumi.RegisterOutputType(MdbPostgresqlUserPermissionArrayOutput{})
 	pulumi.RegisterOutputType(VpcGatewaySharedEgressGatewayOutput{})
 	pulumi.RegisterOutputType(VpcGatewaySharedEgressGatewayPtrOutput{})
+	pulumi.RegisterOutputType(YandexYdbTopicConsumerOutput{})
+	pulumi.RegisterOutputType(YandexYdbTopicConsumerArrayOutput{})
 }

@@ -75,6 +75,12 @@ namespace Pulumi.Yandex
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
+        /// Flag that protects the address from accidental deletion.
+        /// </summary>
+        [Output("deletionProtection")]
+        public Output<bool> DeletionProtection { get; private set; } = null!;
+
+        /// <summary>
         /// An optional description of this resource. Provide this property when
         /// you create the resource.
         /// </summary>
@@ -167,6 +173,12 @@ namespace Pulumi.Yandex
     public sealed class VpcAddressArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Flag that protects the address from accidental deletion.
+        /// </summary>
+        [Input("deletionProtection")]
+        public Input<bool>? DeletionProtection { get; set; }
+
+        /// <summary>
         /// An optional description of this resource. Provide this property when
         /// you create the resource.
         /// </summary>
@@ -218,6 +230,12 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        /// <summary>
+        /// Flag that protects the address from accidental deletion.
+        /// </summary>
+        [Input("deletionProtection")]
+        public Input<bool>? DeletionProtection { get; set; }
 
         /// <summary>
         /// An optional description of this resource. Provide this property when

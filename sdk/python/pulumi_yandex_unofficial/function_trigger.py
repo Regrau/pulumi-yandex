@@ -16,10 +16,11 @@ __all__ = ['FunctionTriggerArgs', 'FunctionTrigger']
 @pulumi.input_type
 class FunctionTriggerArgs:
     def __init__(__self__, *,
-                 function: pulumi.Input['FunctionTriggerFunctionArgs'],
+                 container: Optional[pulumi.Input['FunctionTriggerContainerArgs']] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dlq: Optional[pulumi.Input['FunctionTriggerDlqArgs']] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
+                 function: Optional[pulumi.Input['FunctionTriggerFunctionArgs']] = None,
                  iot: Optional[pulumi.Input['FunctionTriggerIotArgs']] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  log_group: Optional[pulumi.Input['FunctionTriggerLogGroupArgs']] = None,
@@ -30,17 +31,17 @@ class FunctionTriggerArgs:
                  timer: Optional[pulumi.Input['FunctionTriggerTimerArgs']] = None):
         """
         The set of arguments for constructing a FunctionTrigger resource.
+        :param pulumi.Input[str] description: Description of the Yandex Cloud Functions Trigger
+        :param pulumi.Input['FunctionTriggerDlqArgs'] dlq: Dead Letter Queue settings definition for Yandex Cloud Functions Trigger
+               * `dlq.0.queue_id` - ID of Dead Letter Queue for Trigger (Queue ARN)
+               * `dlq.0.service_account_id` - Service Account ID for Dead Letter Queue for Yandex Cloud Functions Trigger
+        :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud Functions Trigger
         :param pulumi.Input['FunctionTriggerFunctionArgs'] function: [Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger
                * `function.0.id` - Yandex.Cloud Function ID for Yandex Cloud Functions Trigger
                * `function.0.service_account_id` - Service account ID for Yandex.Cloud Function for Yandex Cloud Functions Trigger
                * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
                * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
                * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
-        :param pulumi.Input[str] description: Description of the Yandex Cloud Functions Trigger
-        :param pulumi.Input['FunctionTriggerDlqArgs'] dlq: Dead Letter Queue settings definition for Yandex Cloud Functions Trigger
-               * `dlq.0.queue_id` - ID of Dead Letter Queue for Trigger (Queue ARN)
-               * `dlq.0.service_account_id` - Service Account ID for Dead Letter Queue for Yandex Cloud Functions Trigger
-        :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud Functions Trigger
         :param pulumi.Input['FunctionTriggerIotArgs'] iot: [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `message_queue` or `object_storage` or `timer` can be defined.
                * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
                * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
@@ -70,13 +71,16 @@ class FunctionTriggerArgs:
         :param pulumi.Input['FunctionTriggerTimerArgs'] timer: [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
                * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
         """
-        pulumi.set(__self__, "function", function)
+        if container is not None:
+            pulumi.set(__self__, "container", container)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if dlq is not None:
             pulumi.set(__self__, "dlq", dlq)
         if folder_id is not None:
             pulumi.set(__self__, "folder_id", folder_id)
+        if function is not None:
+            pulumi.set(__self__, "function", function)
         if iot is not None:
             pulumi.set(__self__, "iot", iot)
         if labels is not None:
@@ -96,20 +100,12 @@ class FunctionTriggerArgs:
 
     @property
     @pulumi.getter
-    def function(self) -> pulumi.Input['FunctionTriggerFunctionArgs']:
-        """
-        [Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger
-        * `function.0.id` - Yandex.Cloud Function ID for Yandex Cloud Functions Trigger
-        * `function.0.service_account_id` - Service account ID for Yandex.Cloud Function for Yandex Cloud Functions Trigger
-        * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
-        * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
-        * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
-        """
-        return pulumi.get(self, "function")
+    def container(self) -> Optional[pulumi.Input['FunctionTriggerContainerArgs']]:
+        return pulumi.get(self, "container")
 
-    @function.setter
-    def function(self, value: pulumi.Input['FunctionTriggerFunctionArgs']):
-        pulumi.set(self, "function", value)
+    @container.setter
+    def container(self, value: Optional[pulumi.Input['FunctionTriggerContainerArgs']]):
+        pulumi.set(self, "container", value)
 
     @property
     @pulumi.getter
@@ -148,6 +144,23 @@ class FunctionTriggerArgs:
     @folder_id.setter
     def folder_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "folder_id", value)
+
+    @property
+    @pulumi.getter
+    def function(self) -> Optional[pulumi.Input['FunctionTriggerFunctionArgs']]:
+        """
+        [Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger
+        * `function.0.id` - Yandex.Cloud Function ID for Yandex Cloud Functions Trigger
+        * `function.0.service_account_id` - Service account ID for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+        * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+        * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+        * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
+        """
+        return pulumi.get(self, "function")
+
+    @function.setter
+    def function(self, value: Optional[pulumi.Input['FunctionTriggerFunctionArgs']]):
+        pulumi.set(self, "function", value)
 
     @property
     @pulumi.getter
@@ -267,6 +280,7 @@ class FunctionTriggerArgs:
 @pulumi.input_type
 class _FunctionTriggerState:
     def __init__(__self__, *,
+                 container: Optional[pulumi.Input['FunctionTriggerContainerArgs']] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dlq: Optional[pulumi.Input['FunctionTriggerDlqArgs']] = None,
@@ -323,6 +337,8 @@ class _FunctionTriggerState:
         :param pulumi.Input['FunctionTriggerTimerArgs'] timer: [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
                * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
         """
+        if container is not None:
+            pulumi.set(__self__, "container", container)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if description is not None:
@@ -349,6 +365,15 @@ class _FunctionTriggerState:
             pulumi.set(__self__, "object_storage", object_storage)
         if timer is not None:
             pulumi.set(__self__, "timer", timer)
+
+    @property
+    @pulumi.getter
+    def container(self) -> Optional[pulumi.Input['FunctionTriggerContainerArgs']]:
+        return pulumi.get(self, "container")
+
+    @container.setter
+    def container(self, value: Optional[pulumi.Input['FunctionTriggerContainerArgs']]):
+        pulumi.set(self, "container", value)
 
     @property
     @pulumi.getter(name="createdAt")
@@ -537,6 +562,7 @@ class FunctionTrigger(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 container: Optional[pulumi.Input[pulumi.InputType['FunctionTriggerContainerArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dlq: Optional[pulumi.Input[pulumi.InputType['FunctionTriggerDlqArgs']]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
@@ -615,7 +641,7 @@ class FunctionTrigger(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
-                 args: FunctionTriggerArgs,
+                 args: Optional[FunctionTriggerArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         Allows management of [Yandex Cloud Functions Trigger](https://cloud.yandex.com/docs/functions/)
@@ -651,6 +677,7 @@ class FunctionTrigger(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 container: Optional[pulumi.Input[pulumi.InputType['FunctionTriggerContainerArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  dlq: Optional[pulumi.Input[pulumi.InputType['FunctionTriggerDlqArgs']]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
@@ -672,11 +699,10 @@ class FunctionTrigger(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FunctionTriggerArgs.__new__(FunctionTriggerArgs)
 
+            __props__.__dict__["container"] = container
             __props__.__dict__["description"] = description
             __props__.__dict__["dlq"] = dlq
             __props__.__dict__["folder_id"] = folder_id
-            if function is None and not opts.urn:
-                raise TypeError("Missing required property 'function'")
             __props__.__dict__["function"] = function
             __props__.__dict__["iot"] = iot
             __props__.__dict__["labels"] = labels
@@ -697,6 +723,7 @@ class FunctionTrigger(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            container: Optional[pulumi.Input[pulumi.InputType['FunctionTriggerContainerArgs']]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             dlq: Optional[pulumi.Input[pulumi.InputType['FunctionTriggerDlqArgs']]] = None,
@@ -762,6 +789,7 @@ class FunctionTrigger(pulumi.CustomResource):
 
         __props__ = _FunctionTriggerState.__new__(_FunctionTriggerState)
 
+        __props__.__dict__["container"] = container
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
         __props__.__dict__["dlq"] = dlq
@@ -776,6 +804,11 @@ class FunctionTrigger(pulumi.CustomResource):
         __props__.__dict__["object_storage"] = object_storage
         __props__.__dict__["timer"] = timer
         return FunctionTrigger(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def container(self) -> pulumi.Output[Optional['outputs.FunctionTriggerContainer']]:
+        return pulumi.get(self, "container")
 
     @property
     @pulumi.getter(name="createdAt")
@@ -813,7 +846,7 @@ class FunctionTrigger(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def function(self) -> pulumi.Output['outputs.FunctionTriggerFunction']:
+    def function(self) -> pulumi.Output[Optional['outputs.FunctionTriggerFunction']]:
         """
         [Yandex.Cloud Function](https://cloud.yandex.com/docs/functions/concepts/function) settings definition for Yandex Cloud Functions Trigger
         * `function.0.id` - Yandex.Cloud Function ID for Yandex Cloud Functions Trigger

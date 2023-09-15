@@ -64,7 +64,7 @@ type Function struct {
 	// Function version connectivity. If specified the version will be attached to specified network.
 	// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
 	Connectivity FunctionConnectivityPtrOutput `pulumi:"connectivity"`
-	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
 	// * `content.0.zip_filename` - Filename to zip archive for the version.
 	Content FunctionContentPtrOutput `pulumi:"content"`
 	// Creation timestamp of the Yandex Cloud Function.
@@ -89,7 +89,7 @@ type Function struct {
 	Memory pulumi.IntOutput `pulumi:"memory"`
 	// Yandex Cloud Function name used to define trigger
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
 	// * `package.0.sha_256` - SHA256 hash of the version deployment package.
 	// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
 	// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
@@ -153,7 +153,7 @@ type functionState struct {
 	// Function version connectivity. If specified the version will be attached to specified network.
 	// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
 	Connectivity *FunctionConnectivity `pulumi:"connectivity"`
-	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
 	// * `content.0.zip_filename` - Filename to zip archive for the version.
 	Content *FunctionContent `pulumi:"content"`
 	// Creation timestamp of the Yandex Cloud Function.
@@ -178,7 +178,7 @@ type functionState struct {
 	Memory *int `pulumi:"memory"`
 	// Yandex Cloud Function name used to define trigger
 	Name *string `pulumi:"name"`
-	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
 	// * `package.0.sha_256` - SHA256 hash of the version deployment package.
 	// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
 	// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
@@ -201,7 +201,7 @@ type FunctionState struct {
 	// Function version connectivity. If specified the version will be attached to specified network.
 	// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
 	Connectivity FunctionConnectivityPtrInput
-	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
 	// * `content.0.zip_filename` - Filename to zip archive for the version.
 	Content FunctionContentPtrInput
 	// Creation timestamp of the Yandex Cloud Function.
@@ -226,7 +226,7 @@ type FunctionState struct {
 	Memory pulumi.IntPtrInput
 	// Yandex Cloud Function name used to define trigger
 	Name pulumi.StringPtrInput
-	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
 	// * `package.0.sha_256` - SHA256 hash of the version deployment package.
 	// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
 	// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
@@ -253,7 +253,7 @@ type functionArgs struct {
 	// Function version connectivity. If specified the version will be attached to specified network.
 	// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
 	Connectivity *FunctionConnectivity `pulumi:"connectivity"`
-	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
 	// * `content.0.zip_filename` - Filename to zip archive for the version.
 	Content *FunctionContent `pulumi:"content"`
 	// Description of the Yandex Cloud Function
@@ -272,7 +272,7 @@ type functionArgs struct {
 	Memory int `pulumi:"memory"`
 	// Yandex Cloud Function name used to define trigger
 	Name *string `pulumi:"name"`
-	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
 	// * `package.0.sha_256` - SHA256 hash of the version deployment package.
 	// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
 	// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
@@ -294,7 +294,7 @@ type FunctionArgs struct {
 	// Function version connectivity. If specified the version will be attached to specified network.
 	// * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
 	Connectivity FunctionConnectivityPtrInput
-	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
 	// * `content.0.zip_filename` - Filename to zip archive for the version.
 	Content FunctionContentPtrInput
 	// Description of the Yandex Cloud Function
@@ -313,7 +313,7 @@ type FunctionArgs struct {
 	Memory pulumi.IntInput
 	// Yandex Cloud Function name used to define trigger
 	Name pulumi.StringPtrInput
-	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+	// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
 	// * `package.0.sha_256` - SHA256 hash of the version deployment package.
 	// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
 	// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
@@ -423,7 +423,7 @@ func (o FunctionOutput) Connectivity() FunctionConnectivityPtrOutput {
 	return o.ApplyT(func(v *Function) FunctionConnectivityPtrOutput { return v.Connectivity }).(FunctionConnectivityPtrOutput)
 }
 
-// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
 // * `content.0.zip_filename` - Filename to zip archive for the version.
 func (o FunctionOutput) Content() FunctionContentPtrOutput {
 	return o.ApplyT(func(v *Function) FunctionContentPtrOutput { return v.Content }).(FunctionContentPtrOutput)
@@ -484,7 +484,7 @@ func (o FunctionOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Function) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
 // * `package.0.sha_256` - SHA256 hash of the version deployment package.
 // * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
 // * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.

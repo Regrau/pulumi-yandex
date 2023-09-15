@@ -40,6 +40,9 @@ namespace Pulumi.Yandex
     [YandexResourceType("yandex:index/functionTrigger:FunctionTrigger")]
     public partial class FunctionTrigger : global::Pulumi.CustomResource
     {
+        [Output("container")]
+        public Output<Outputs.FunctionTriggerContainer?> Container { get; private set; } = null!;
+
         /// <summary>
         /// Creation timestamp of the Yandex Cloud Functions Trigger
         /// </summary>
@@ -75,7 +78,7 @@ namespace Pulumi.Yandex
         /// * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
         /// </summary>
         [Output("function")]
-        public Output<Outputs.FunctionTriggerFunction> Function { get; private set; } = null!;
+        public Output<Outputs.FunctionTriggerFunction?> Function { get; private set; } = null!;
 
         /// <summary>
         /// [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `message_queue` or `object_storage` or `timer` can be defined.
@@ -151,7 +154,7 @@ namespace Pulumi.Yandex
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public FunctionTrigger(string name, FunctionTriggerArgs args, CustomResourceOptions? options = null)
+        public FunctionTrigger(string name, FunctionTriggerArgs? args = null, CustomResourceOptions? options = null)
             : base("yandex:index/functionTrigger:FunctionTrigger", name, args ?? new FunctionTriggerArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -190,6 +193,9 @@ namespace Pulumi.Yandex
 
     public sealed class FunctionTriggerArgs : global::Pulumi.ResourceArgs
     {
+        [Input("container")]
+        public Input<Inputs.FunctionTriggerContainerArgs>? Container { get; set; }
+
         /// <summary>
         /// Description of the Yandex Cloud Functions Trigger
         /// </summary>
@@ -218,8 +224,8 @@ namespace Pulumi.Yandex
         /// * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
         /// * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
         /// </summary>
-        [Input("function", required: true)]
-        public Input<Inputs.FunctionTriggerFunctionArgs> Function { get; set; } = null!;
+        [Input("function")]
+        public Input<Inputs.FunctionTriggerFunctionArgs>? Function { get; set; }
 
         /// <summary>
         /// [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `message_queue` or `object_storage` or `timer` can be defined.
@@ -301,6 +307,9 @@ namespace Pulumi.Yandex
 
     public sealed class FunctionTriggerState : global::Pulumi.ResourceArgs
     {
+        [Input("container")]
+        public Input<Inputs.FunctionTriggerContainerGetArgs>? Container { get; set; }
+
         /// <summary>
         /// Creation timestamp of the Yandex Cloud Functions Trigger
         /// </summary>

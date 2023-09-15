@@ -87,6 +87,8 @@ type VpcAddress struct {
 
 	// Creation timestamp of the key.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	// Flag that protects the address from accidental deletion.
+	DeletionProtection pulumi.BoolOutput `pulumi:"deletionProtection"`
 	// An optional description of this resource. Provide this property when
 	// you create the resource.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
@@ -138,6 +140,8 @@ func GetVpcAddress(ctx *pulumi.Context,
 type vpcAddressState struct {
 	// Creation timestamp of the key.
 	CreatedAt *string `pulumi:"createdAt"`
+	// Flag that protects the address from accidental deletion.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
 	// An optional description of this resource. Provide this property when
 	// you create the resource.
 	Description *string `pulumi:"description"`
@@ -160,6 +164,8 @@ type vpcAddressState struct {
 type VpcAddressState struct {
 	// Creation timestamp of the key.
 	CreatedAt pulumi.StringPtrInput
+	// Flag that protects the address from accidental deletion.
+	DeletionProtection pulumi.BoolPtrInput
 	// An optional description of this resource. Provide this property when
 	// you create the resource.
 	Description pulumi.StringPtrInput
@@ -184,6 +190,8 @@ func (VpcAddressState) ElementType() reflect.Type {
 }
 
 type vpcAddressArgs struct {
+	// Flag that protects the address from accidental deletion.
+	DeletionProtection *bool `pulumi:"deletionProtection"`
 	// An optional description of this resource. Provide this property when
 	// you create the resource.
 	Description *string `pulumi:"description"`
@@ -201,6 +209,8 @@ type vpcAddressArgs struct {
 
 // The set of arguments for constructing a VpcAddress resource.
 type VpcAddressArgs struct {
+	// Flag that protects the address from accidental deletion.
+	DeletionProtection pulumi.BoolPtrInput
 	// An optional description of this resource. Provide this property when
 	// you create the resource.
 	Description pulumi.StringPtrInput
@@ -306,6 +316,11 @@ func (o VpcAddressOutput) ToVpcAddressOutputWithContext(ctx context.Context) Vpc
 // Creation timestamp of the key.
 func (o VpcAddressOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *VpcAddress) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Flag that protects the address from accidental deletion.
+func (o VpcAddressOutput) DeletionProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v *VpcAddress) pulumi.BoolOutput { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
 // An optional description of this resource. Provide this property when

@@ -54,6 +54,7 @@ export class FunctionTrigger extends pulumi.CustomResource {
         return obj['__pulumiType'] === FunctionTrigger.__pulumiType;
     }
 
+    public readonly container!: pulumi.Output<outputs.FunctionTriggerContainer | undefined>;
     /**
      * Creation timestamp of the Yandex Cloud Functions Trigger
      */
@@ -80,7 +81,7 @@ export class FunctionTrigger extends pulumi.CustomResource {
      * * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
      * * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
      */
-    public readonly function!: pulumi.Output<outputs.FunctionTriggerFunction>;
+    public readonly function!: pulumi.Output<outputs.FunctionTriggerFunction | undefined>;
     /**
      * [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `messageQueue` or `objectStorage` or `timer` can be defined.
      * * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
@@ -139,12 +140,13 @@ export class FunctionTrigger extends pulumi.CustomResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param opts A bag of options that control this resource's behavior.
      */
-    constructor(name: string, args: FunctionTriggerArgs, opts?: pulumi.CustomResourceOptions)
+    constructor(name: string, args?: FunctionTriggerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FunctionTriggerArgs | FunctionTriggerState, opts?: pulumi.CustomResourceOptions) {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FunctionTriggerState | undefined;
+            resourceInputs["container"] = state ? state.container : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["dlq"] = state ? state.dlq : undefined;
@@ -160,9 +162,7 @@ export class FunctionTrigger extends pulumi.CustomResource {
             resourceInputs["timer"] = state ? state.timer : undefined;
         } else {
             const args = argsOrState as FunctionTriggerArgs | undefined;
-            if ((!args || args.function === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'function'");
-            }
+            resourceInputs["container"] = args ? args.container : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["dlq"] = args ? args.dlq : undefined;
             resourceInputs["folderId"] = args ? args.folderId : undefined;
@@ -186,6 +186,7 @@ export class FunctionTrigger extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FunctionTrigger resources.
  */
 export interface FunctionTriggerState {
+    container?: pulumi.Input<inputs.FunctionTriggerContainer>;
     /**
      * Creation timestamp of the Yandex Cloud Functions Trigger
      */
@@ -269,6 +270,7 @@ export interface FunctionTriggerState {
  * The set of arguments for constructing a FunctionTrigger resource.
  */
 export interface FunctionTriggerArgs {
+    container?: pulumi.Input<inputs.FunctionTriggerContainer>;
     /**
      * Description of the Yandex Cloud Functions Trigger
      */
@@ -291,7 +293,7 @@ export interface FunctionTriggerArgs {
      * * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
      * * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
      */
-    function: pulumi.Input<inputs.FunctionTriggerFunction>;
+    function?: pulumi.Input<inputs.FunctionTriggerFunction>;
     /**
      * [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `messageQueue` or `objectStorage` or `timer` can be defined.
      * * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger

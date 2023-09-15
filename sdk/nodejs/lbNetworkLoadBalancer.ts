@@ -82,6 +82,10 @@ export class LbNetworkLoadBalancer extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
+     * Flag that protects the network load balancer from accidental deletion.
+     */
+    public readonly deletionProtection!: pulumi.Output<boolean>;
+    /**
      * An optional description of the network load balancer. Provide this property when
      * you create the resource.
      */
@@ -105,9 +109,9 @@ export class LbNetworkLoadBalancer extends pulumi.CustomResource {
     public readonly name!: pulumi.Output<string>;
     /**
      * ID of the availability zone where the network load balancer resides.
-     * The default is 'ru-central1'.
+     * If omitted, default region is being used.
      */
-    public readonly regionId!: pulumi.Output<string | undefined>;
+    public readonly regionId!: pulumi.Output<string>;
     /**
      * Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
      */
@@ -128,6 +132,7 @@ export class LbNetworkLoadBalancer extends pulumi.CustomResource {
             const state = argsOrState as LbNetworkLoadBalancerState | undefined;
             resourceInputs["attachedTargetGroups"] = state ? state.attachedTargetGroups : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["deletionProtection"] = state ? state.deletionProtection : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["folderId"] = state ? state.folderId : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
@@ -138,6 +143,7 @@ export class LbNetworkLoadBalancer extends pulumi.CustomResource {
         } else {
             const args = argsOrState as LbNetworkLoadBalancerArgs | undefined;
             resourceInputs["attachedTargetGroups"] = args ? args.attachedTargetGroups : undefined;
+            resourceInputs["deletionProtection"] = args ? args.deletionProtection : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["folderId"] = args ? args.folderId : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
@@ -165,6 +171,10 @@ export interface LbNetworkLoadBalancerState {
      */
     createdAt?: pulumi.Input<string>;
     /**
+     * Flag that protects the network load balancer from accidental deletion.
+     */
+    deletionProtection?: pulumi.Input<boolean>;
+    /**
      * An optional description of the network load balancer. Provide this property when
      * you create the resource.
      */
@@ -188,7 +198,7 @@ export interface LbNetworkLoadBalancerState {
     name?: pulumi.Input<string>;
     /**
      * ID of the availability zone where the network load balancer resides.
-     * The default is 'ru-central1'.
+     * If omitted, default region is being used.
      */
     regionId?: pulumi.Input<string>;
     /**
@@ -206,6 +216,10 @@ export interface LbNetworkLoadBalancerArgs {
      */
     attachedTargetGroups?: pulumi.Input<pulumi.Input<inputs.LbNetworkLoadBalancerAttachedTargetGroup>[]>;
     /**
+     * Flag that protects the network load balancer from accidental deletion.
+     */
+    deletionProtection?: pulumi.Input<boolean>;
+    /**
      * An optional description of the network load balancer. Provide this property when
      * you create the resource.
      */
@@ -229,7 +243,7 @@ export interface LbNetworkLoadBalancerArgs {
     name?: pulumi.Input<string>;
     /**
      * ID of the availability zone where the network load balancer resides.
-     * The default is 'ru-central1'.
+     * If omitted, default region is being used.
      */
     regionId?: pulumi.Input<string>;
     /**

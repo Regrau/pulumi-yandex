@@ -16,6 +16,7 @@ __all__ = ['VpcAddressArgs', 'VpcAddress']
 @pulumi.input_type
 class VpcAddressArgs:
     def __init__(__self__, *,
+                 deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  external_ipv4_address: Optional[pulumi.Input['VpcAddressExternalIpv4AddressArgs']] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
@@ -23,6 +24,7 @@ class VpcAddressArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpcAddress resource.
+        :param pulumi.Input[bool] deletion_protection: Flag that protects the address from accidental deletion.
         :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
                you create the resource.
         :param pulumi.Input['VpcAddressExternalIpv4AddressArgs'] external_ipv4_address: spec of IP v4 address
@@ -32,6 +34,8 @@ class VpcAddressArgs:
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels to apply to this resource. A list of key/value pairs.
         :param pulumi.Input[str] name: Name of the address. Provided by the client when the address is created.
         """
+        if deletion_protection is not None:
+            pulumi.set(__self__, "deletion_protection", deletion_protection)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if external_ipv4_address is not None:
@@ -42,6 +46,18 @@ class VpcAddressArgs:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
             pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that protects the address from accidental deletion.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @deletion_protection.setter
+    def deletion_protection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "deletion_protection", value)
 
     @property
     @pulumi.getter
@@ -111,6 +127,7 @@ class VpcAddressArgs:
 class _VpcAddressState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  external_ipv4_address: Optional[pulumi.Input['VpcAddressExternalIpv4AddressArgs']] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
@@ -121,6 +138,7 @@ class _VpcAddressState:
         """
         Input properties used for looking up and filtering VpcAddress resources.
         :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[bool] deletion_protection: Flag that protects the address from accidental deletion.
         :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
                you create the resource.
         :param pulumi.Input['VpcAddressExternalIpv4AddressArgs'] external_ipv4_address: spec of IP v4 address
@@ -134,6 +152,8 @@ class _VpcAddressState:
         """
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if deletion_protection is not None:
+            pulumi.set(__self__, "deletion_protection", deletion_protection)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if external_ipv4_address is not None:
@@ -160,6 +180,18 @@ class _VpcAddressState:
     @created_at.setter
     def created_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that protects the address from accidental deletion.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @deletion_protection.setter
+    def deletion_protection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "deletion_protection", value)
 
     @property
     @pulumi.getter
@@ -254,6 +286,7 @@ class VpcAddress(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  external_ipv4_address: Optional[pulumi.Input[pulumi.InputType['VpcAddressExternalIpv4AddressArgs']]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
@@ -300,6 +333,7 @@ class VpcAddress(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] deletion_protection: Flag that protects the address from accidental deletion.
         :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
                you create the resource.
         :param pulumi.Input[pulumi.InputType['VpcAddressExternalIpv4AddressArgs']] external_ipv4_address: spec of IP v4 address
@@ -368,6 +402,7 @@ class VpcAddress(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  external_ipv4_address: Optional[pulumi.Input[pulumi.InputType['VpcAddressExternalIpv4AddressArgs']]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
@@ -382,6 +417,7 @@ class VpcAddress(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VpcAddressArgs.__new__(VpcAddressArgs)
 
+            __props__.__dict__["deletion_protection"] = deletion_protection
             __props__.__dict__["description"] = description
             __props__.__dict__["external_ipv4_address"] = external_ipv4_address
             __props__.__dict__["folder_id"] = folder_id
@@ -401,6 +437,7 @@ class VpcAddress(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[str]] = None,
+            deletion_protection: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
             external_ipv4_address: Optional[pulumi.Input[pulumi.InputType['VpcAddressExternalIpv4AddressArgs']]] = None,
             folder_id: Optional[pulumi.Input[str]] = None,
@@ -416,6 +453,7 @@ class VpcAddress(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: Creation timestamp of the key.
+        :param pulumi.Input[bool] deletion_protection: Flag that protects the address from accidental deletion.
         :param pulumi.Input[str] description: An optional description of this resource. Provide this property when
                you create the resource.
         :param pulumi.Input[pulumi.InputType['VpcAddressExternalIpv4AddressArgs']] external_ipv4_address: spec of IP v4 address
@@ -432,6 +470,7 @@ class VpcAddress(pulumi.CustomResource):
         __props__ = _VpcAddressState.__new__(_VpcAddressState)
 
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["deletion_protection"] = deletion_protection
         __props__.__dict__["description"] = description
         __props__.__dict__["external_ipv4_address"] = external_ipv4_address
         __props__.__dict__["folder_id"] = folder_id
@@ -448,6 +487,14 @@ class VpcAddress(pulumi.CustomResource):
         Creation timestamp of the key.
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> pulumi.Output[bool]:
+        """
+        Flag that protects the address from accidental deletion.
+        """
+        return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter

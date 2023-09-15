@@ -17,6 +17,7 @@ __all__ = ['LbNetworkLoadBalancerArgs', 'LbNetworkLoadBalancer']
 class LbNetworkLoadBalancerArgs:
     def __init__(__self__, *,
                  attached_target_groups: Optional[pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupArgs']]]] = None,
+                 deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -27,6 +28,7 @@ class LbNetworkLoadBalancerArgs:
         """
         The set of arguments for constructing a LbNetworkLoadBalancer resource.
         :param pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupArgs']]] attached_target_groups: An AttachedTargetGroup resource. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Flag that protects the network load balancer from accidental deletion.
         :param pulumi.Input[str] description: An optional description of the network load balancer. Provide this property when
                you create the resource.
         :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
@@ -35,11 +37,13 @@ class LbNetworkLoadBalancerArgs:
         :param pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerListenerArgs']]] listeners: Listener specification that will be used by a network load balancer. The structure is documented below.
         :param pulumi.Input[str] name: Name of the listener. The name must be unique for each listener on a single load balancer.
         :param pulumi.Input[str] region_id: ID of the availability zone where the network load balancer resides.
-               The default is 'ru-central1'.
+               If omitted, default region is being used.
         :param pulumi.Input[str] type: Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
         """
         if attached_target_groups is not None:
             pulumi.set(__self__, "attached_target_groups", attached_target_groups)
+        if deletion_protection is not None:
+            pulumi.set(__self__, "deletion_protection", deletion_protection)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if folder_id is not None:
@@ -66,6 +70,18 @@ class LbNetworkLoadBalancerArgs:
     @attached_target_groups.setter
     def attached_target_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupArgs']]]]):
         pulumi.set(self, "attached_target_groups", value)
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that protects the network load balancer from accidental deletion.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @deletion_protection.setter
+    def deletion_protection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "deletion_protection", value)
 
     @property
     @pulumi.getter
@@ -134,7 +150,7 @@ class LbNetworkLoadBalancerArgs:
     def region_id(self) -> Optional[pulumi.Input[str]]:
         """
         ID of the availability zone where the network load balancer resides.
-        The default is 'ru-central1'.
+        If omitted, default region is being used.
         """
         return pulumi.get(self, "region_id")
 
@@ -160,6 +176,7 @@ class _LbNetworkLoadBalancerState:
     def __init__(__self__, *,
                  attached_target_groups: Optional[pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupArgs']]]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -171,6 +188,7 @@ class _LbNetworkLoadBalancerState:
         Input properties used for looking up and filtering LbNetworkLoadBalancer resources.
         :param pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerAttachedTargetGroupArgs']]] attached_target_groups: An AttachedTargetGroup resource. The structure is documented below.
         :param pulumi.Input[str] created_at: The network load balancer creation timestamp.
+        :param pulumi.Input[bool] deletion_protection: Flag that protects the network load balancer from accidental deletion.
         :param pulumi.Input[str] description: An optional description of the network load balancer. Provide this property when
                you create the resource.
         :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
@@ -179,13 +197,15 @@ class _LbNetworkLoadBalancerState:
         :param pulumi.Input[Sequence[pulumi.Input['LbNetworkLoadBalancerListenerArgs']]] listeners: Listener specification that will be used by a network load balancer. The structure is documented below.
         :param pulumi.Input[str] name: Name of the listener. The name must be unique for each listener on a single load balancer.
         :param pulumi.Input[str] region_id: ID of the availability zone where the network load balancer resides.
-               The default is 'ru-central1'.
+               If omitted, default region is being used.
         :param pulumi.Input[str] type: Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
         """
         if attached_target_groups is not None:
             pulumi.set(__self__, "attached_target_groups", attached_target_groups)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if deletion_protection is not None:
+            pulumi.set(__self__, "deletion_protection", deletion_protection)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if folder_id is not None:
@@ -226,6 +246,18 @@ class _LbNetworkLoadBalancerState:
         pulumi.set(self, "created_at", value)
 
     @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Flag that protects the network load balancer from accidental deletion.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @deletion_protection.setter
+    def deletion_protection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "deletion_protection", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -292,7 +324,7 @@ class _LbNetworkLoadBalancerState:
     def region_id(self) -> Optional[pulumi.Input[str]]:
         """
         ID of the availability zone where the network load balancer resides.
-        The default is 'ru-central1'.
+        If omitted, default region is being used.
         """
         return pulumi.get(self, "region_id")
 
@@ -319,6 +351,7 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attached_target_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbNetworkLoadBalancerAttachedTargetGroupArgs']]]]] = None,
+                 deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -368,6 +401,7 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbNetworkLoadBalancerAttachedTargetGroupArgs']]]] attached_target_groups: An AttachedTargetGroup resource. The structure is documented below.
+        :param pulumi.Input[bool] deletion_protection: Flag that protects the network load balancer from accidental deletion.
         :param pulumi.Input[str] description: An optional description of the network load balancer. Provide this property when
                you create the resource.
         :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
@@ -376,7 +410,7 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbNetworkLoadBalancerListenerArgs']]]] listeners: Listener specification that will be used by a network load balancer. The structure is documented below.
         :param pulumi.Input[str] name: Name of the listener. The name must be unique for each listener on a single load balancer.
         :param pulumi.Input[str] region_id: ID of the availability zone where the network load balancer resides.
-               The default is 'ru-central1'.
+               If omitted, default region is being used.
         :param pulumi.Input[str] type: Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
         """
         ...
@@ -439,6 +473,7 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  attached_target_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbNetworkLoadBalancerAttachedTargetGroupArgs']]]]] = None,
+                 deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -456,6 +491,7 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
             __props__ = LbNetworkLoadBalancerArgs.__new__(LbNetworkLoadBalancerArgs)
 
             __props__.__dict__["attached_target_groups"] = attached_target_groups
+            __props__.__dict__["deletion_protection"] = deletion_protection
             __props__.__dict__["description"] = description
             __props__.__dict__["folder_id"] = folder_id
             __props__.__dict__["labels"] = labels
@@ -476,6 +512,7 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             attached_target_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbNetworkLoadBalancerAttachedTargetGroupArgs']]]]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
+            deletion_protection: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
             folder_id: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -492,6 +529,7 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbNetworkLoadBalancerAttachedTargetGroupArgs']]]] attached_target_groups: An AttachedTargetGroup resource. The structure is documented below.
         :param pulumi.Input[str] created_at: The network load balancer creation timestamp.
+        :param pulumi.Input[bool] deletion_protection: Flag that protects the network load balancer from accidental deletion.
         :param pulumi.Input[str] description: An optional description of the network load balancer. Provide this property when
                you create the resource.
         :param pulumi.Input[str] folder_id: The ID of the folder to which the resource belongs.
@@ -500,7 +538,7 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LbNetworkLoadBalancerListenerArgs']]]] listeners: Listener specification that will be used by a network load balancer. The structure is documented below.
         :param pulumi.Input[str] name: Name of the listener. The name must be unique for each listener on a single load balancer.
         :param pulumi.Input[str] region_id: ID of the availability zone where the network load balancer resides.
-               The default is 'ru-central1'.
+               If omitted, default region is being used.
         :param pulumi.Input[str] type: Type of the network load balancer. Must be one of 'external' or 'internal'. The default is 'external'.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -509,6 +547,7 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
 
         __props__.__dict__["attached_target_groups"] = attached_target_groups
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["deletion_protection"] = deletion_protection
         __props__.__dict__["description"] = description
         __props__.__dict__["folder_id"] = folder_id
         __props__.__dict__["labels"] = labels
@@ -533,6 +572,14 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
         The network load balancer creation timestamp.
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> pulumi.Output[bool]:
+        """
+        Flag that protects the network load balancer from accidental deletion.
+        """
+        return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
@@ -578,10 +625,10 @@ class LbNetworkLoadBalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="regionId")
-    def region_id(self) -> pulumi.Output[Optional[str]]:
+    def region_id(self) -> pulumi.Output[str]:
         """
         ID of the availability zone where the network load balancer resides.
-        The default is 'ru-central1'.
+        If omitted, default region is being used.
         """
         return pulumi.get(self, "region_id")
 

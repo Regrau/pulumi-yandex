@@ -40,7 +40,7 @@ class FunctionArgs:
         :param pulumi.Input[str] user_hash: User-defined string for current function version. User must change this string any times when function changed. Function will be updated when hash is changed.
         :param pulumi.Input['FunctionConnectivityArgs'] connectivity: Function version connectivity. If specified the version will be attached to specified network.
                * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
-        :param pulumi.Input['FunctionContentArgs'] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        :param pulumi.Input['FunctionContentArgs'] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
                * `content.0.zip_filename` - Filename to zip archive for the version.
         :param pulumi.Input[str] description: Description of the Yandex Cloud Function
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] environment: A set of key/value environment variables for Yandex Cloud Function
@@ -48,7 +48,7 @@ class FunctionArgs:
         :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud Function
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud Function
         :param pulumi.Input[str] name: Yandex Cloud Function name used to define trigger
-        :param pulumi.Input['FunctionPackageArgs'] package: Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        :param pulumi.Input['FunctionPackageArgs'] package: Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
                * `package.0.sha_256` - SHA256 hash of the version deployment package.
                * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
                * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
@@ -150,7 +150,7 @@ class FunctionArgs:
     @pulumi.getter
     def content(self) -> Optional[pulumi.Input['FunctionContentArgs']]:
         """
-        Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
         * `content.0.zip_filename` - Filename to zip archive for the version.
         """
         return pulumi.get(self, "content")
@@ -235,7 +235,7 @@ class FunctionArgs:
     @pulumi.getter
     def package(self) -> Optional[pulumi.Input['FunctionPackageArgs']]:
         """
-        Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
         * `package.0.sha_256` - SHA256 hash of the version deployment package.
         * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
         * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
@@ -310,7 +310,7 @@ class _FunctionState:
         Input properties used for looking up and filtering Function resources.
         :param pulumi.Input['FunctionConnectivityArgs'] connectivity: Function version connectivity. If specified the version will be attached to specified network.
                * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
-        :param pulumi.Input['FunctionContentArgs'] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        :param pulumi.Input['FunctionContentArgs'] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
                * `content.0.zip_filename` - Filename to zip archive for the version.
         :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud Function.
         :param pulumi.Input[str] description: Description of the Yandex Cloud Function
@@ -323,7 +323,7 @@ class _FunctionState:
         :param pulumi.Input[str] loggroup_id: Loggroup ID size for Yandex Cloud Function.
         :param pulumi.Input[int] memory: Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
         :param pulumi.Input[str] name: Yandex Cloud Function name used to define trigger
-        :param pulumi.Input['FunctionPackageArgs'] package: Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        :param pulumi.Input['FunctionPackageArgs'] package: Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
                * `package.0.sha_256` - SHA256 hash of the version deployment package.
                * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
                * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
@@ -392,7 +392,7 @@ class _FunctionState:
     @pulumi.getter
     def content(self) -> Optional[pulumi.Input['FunctionContentArgs']]:
         """
-        Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
         * `content.0.zip_filename` - Filename to zip archive for the version.
         """
         return pulumi.get(self, "content")
@@ -537,7 +537,7 @@ class _FunctionState:
     @pulumi.getter
     def package(self) -> Optional[pulumi.Input['FunctionPackageArgs']]:
         """
-        Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
         * `package.0.sha_256` - SHA256 hash of the version deployment package.
         * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
         * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
@@ -676,7 +676,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['FunctionConnectivityArgs']] connectivity: Function version connectivity. If specified the version will be attached to specified network.
                * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
-        :param pulumi.Input[pulumi.InputType['FunctionContentArgs']] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        :param pulumi.Input[pulumi.InputType['FunctionContentArgs']] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
                * `content.0.zip_filename` - Filename to zip archive for the version.
         :param pulumi.Input[str] description: Description of the Yandex Cloud Function
         :param pulumi.Input[str] entrypoint: Entrypoint for Yandex Cloud Function
@@ -686,7 +686,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud Function
         :param pulumi.Input[int] memory: Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
         :param pulumi.Input[str] name: Yandex Cloud Function name used to define trigger
-        :param pulumi.Input[pulumi.InputType['FunctionPackageArgs']] package: Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        :param pulumi.Input[pulumi.InputType['FunctionPackageArgs']] package: Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
                * `package.0.sha_256` - SHA256 hash of the version deployment package.
                * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
                * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
@@ -838,7 +838,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[pulumi.InputType['FunctionConnectivityArgs']] connectivity: Function version connectivity. If specified the version will be attached to specified network.
                * `connectivity.0.network_id` - Network the version will have access to. It's essential to specify network with subnets in all availability zones.
-        :param pulumi.Input[pulumi.InputType['FunctionContentArgs']] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        :param pulumi.Input[pulumi.InputType['FunctionContentArgs']] content: Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
                * `content.0.zip_filename` - Filename to zip archive for the version.
         :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud Function.
         :param pulumi.Input[str] description: Description of the Yandex Cloud Function
@@ -851,7 +851,7 @@ class Function(pulumi.CustomResource):
         :param pulumi.Input[str] loggroup_id: Loggroup ID size for Yandex Cloud Function.
         :param pulumi.Input[int] memory: Memory in megabytes (**aligned to 128MB**) for Yandex Cloud Function
         :param pulumi.Input[str] name: Yandex Cloud Function name used to define trigger
-        :param pulumi.Input[pulumi.InputType['FunctionPackageArgs']] package: Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        :param pulumi.Input[pulumi.InputType['FunctionPackageArgs']] package: Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
                * `package.0.sha_256` - SHA256 hash of the version deployment package.
                * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
                * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
@@ -901,7 +901,7 @@ class Function(pulumi.CustomResource):
     @pulumi.getter
     def content(self) -> pulumi.Output[Optional['outputs.FunctionContent']]:
         """
-        Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
         * `content.0.zip_filename` - Filename to zip archive for the version.
         """
         return pulumi.get(self, "content")
@@ -998,7 +998,7 @@ class Function(pulumi.CustomResource):
     @pulumi.getter
     def package(self) -> pulumi.Output[Optional['outputs.FunctionPackage']]:
         """
-        Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
         * `package.0.sha_256` - SHA256 hash of the version deployment package.
         * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
         * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.

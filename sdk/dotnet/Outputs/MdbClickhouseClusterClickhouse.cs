@@ -18,15 +18,15 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly Outputs.MdbClickhouseClusterClickhouseConfig? Config;
         /// <summary>
-        /// Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        /// Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         /// </summary>
-        public readonly Outputs.MdbClickhouseClusterClickhouseResources Resources;
+        public readonly Outputs.MdbClickhouseClusterClickhouseResources? Resources;
 
         [OutputConstructor]
         private MdbClickhouseClusterClickhouse(
             Outputs.MdbClickhouseClusterClickhouseConfig? config,
 
-            Outputs.MdbClickhouseClusterClickhouseResources resources)
+            Outputs.MdbClickhouseClusterClickhouseResources? resources)
         {
             Config = config;
             Resources = resources;

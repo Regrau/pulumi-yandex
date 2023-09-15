@@ -19,10 +19,10 @@ namespace Pulumi.Yandex.Inputs
         public Input<Inputs.MdbClickhouseClusterClickhouseConfigArgs>? Config { get; set; }
 
         /// <summary>
-        /// Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+        /// Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         /// </summary>
-        [Input("resources", required: true)]
-        public Input<Inputs.MdbClickhouseClusterClickhouseResourcesArgs> Resources { get; set; } = null!;
+        [Input("resources")]
+        public Input<Inputs.MdbClickhouseClusterClickhouseResourcesArgs>? Resources { get; set; }
 
         public MdbClickhouseClusterClickhouseArgs()
         {

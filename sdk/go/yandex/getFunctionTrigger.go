@@ -60,6 +60,7 @@ type LookupFunctionTriggerArgs struct {
 
 // A collection of values returned by getFunctionTrigger.
 type LookupFunctionTriggerResult struct {
+	Containers []GetFunctionTriggerContainer `pulumi:"containers"`
 	// Creation timestamp of the Yandex Cloud Functions Trigger
 	CreatedAt string `pulumi:"createdAt"`
 	// Description of the Yandex Cloud Functions Trigger
@@ -150,6 +151,10 @@ func (o LookupFunctionTriggerResultOutput) ToLookupFunctionTriggerResultOutput()
 
 func (o LookupFunctionTriggerResultOutput) ToLookupFunctionTriggerResultOutputWithContext(ctx context.Context) LookupFunctionTriggerResultOutput {
 	return o
+}
+
+func (o LookupFunctionTriggerResultOutput) Containers() GetFunctionTriggerContainerArrayOutput {
+	return o.ApplyT(func(v LookupFunctionTriggerResult) []GetFunctionTriggerContainer { return v.Containers }).(GetFunctionTriggerContainerArrayOutput)
 }
 
 // Creation timestamp of the Yandex Cloud Functions Trigger

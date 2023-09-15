@@ -597,6 +597,10 @@ export interface AlbLoadBalancerListenerHttpHandler {
      * HTTP router id.
      */
     httpRouterId?: pulumi.Input<string>;
+    /**
+     * When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
+     */
+    rewriteRequestId?: pulumi.Input<boolean>;
 }
 
 export interface AlbLoadBalancerListenerHttpHandlerHttp2Options {
@@ -667,6 +671,10 @@ export interface AlbLoadBalancerListenerTlsDefaultHandlerHttpHandler {
      * HTTP router id.
      */
     httpRouterId?: pulumi.Input<string>;
+    /**
+     * When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
+     */
+    rewriteRequestId?: pulumi.Input<boolean>;
 }
 
 export interface AlbLoadBalancerListenerTlsDefaultHandlerHttpHandlerHttp2Options {
@@ -727,6 +735,10 @@ export interface AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandler {
      * HTTP router id.
      */
     httpRouterId?: pulumi.Input<string>;
+    /**
+     * When unset, will preserve the incoming x-request-id header, otherwise would rewrite it with a new value.
+     */
+    rewriteRequestId?: pulumi.Input<boolean>;
 }
 
 export interface AlbLoadBalancerListenerTlsSniHandlerHandlerHttpHandlerHttp2Options {
@@ -3348,6 +3360,14 @@ export interface FunctionSecret {
     versionId: pulumi.Input<string>;
 }
 
+export interface FunctionTriggerContainer {
+    id: pulumi.Input<string>;
+    path?: pulumi.Input<string>;
+    retryAttempts?: pulumi.Input<string>;
+    retryInterval?: pulumi.Input<string>;
+    serviceAccountId?: pulumi.Input<string>;
+}
+
 export interface FunctionTriggerDlq {
     queueId: pulumi.Input<string>;
     serviceAccountId: pulumi.Input<string>;
@@ -4711,6 +4731,10 @@ export interface GetMdbClickhouseClusterShard {
      */
     name: string;
     /**
+     * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+     */
+    resources?: inputs.GetMdbClickhouseClusterShardResources;
+    /**
      * The weight of the shard.
      */
     weight?: number;
@@ -4722,9 +4746,37 @@ export interface GetMdbClickhouseClusterShardArgs {
      */
     name: pulumi.Input<string>;
     /**
+     * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+     */
+    resources?: pulumi.Input<inputs.GetMdbClickhouseClusterShardResourcesArgs>;
+    /**
      * The weight of the shard.
      */
     weight?: pulumi.Input<number>;
+}
+
+export interface GetMdbClickhouseClusterShardResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: number;
+    /**
+     * Type of the storage of hosts.
+     */
+    diskTypeId?: string;
+    resourcePresetId?: string;
+}
+
+export interface GetMdbClickhouseClusterShardResourcesArgs {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: pulumi.Input<number>;
+    /**
+     * Type of the storage of hosts.
+     */
+    diskTypeId?: pulumi.Input<string>;
+    resourcePresetId?: pulumi.Input<string>;
 }
 
 export interface GetMdbGreenplumClusterPoolerConfig {
@@ -6265,18 +6317,20 @@ export interface MdbClickhouseClusterClickhouse {
      */
     config?: pulumi.Input<inputs.MdbClickhouseClusterClickhouseConfig>;
     /**
-     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     * Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
      */
-    resources: pulumi.Input<inputs.MdbClickhouseClusterClickhouseResources>;
+    resources?: pulumi.Input<inputs.MdbClickhouseClusterClickhouseResources>;
 }
 
 export interface MdbClickhouseClusterClickhouseConfig {
+    backgroundFetchesPoolSize?: pulumi.Input<number>;
     backgroundPoolSize?: pulumi.Input<number>;
     backgroundSchedulePoolSize?: pulumi.Input<number>;
     /**
      * Data compression configuration. The structure is documented below.
      */
     compressions?: pulumi.Input<pulumi.Input<inputs.MdbClickhouseClusterClickhouseConfigCompression>[]>;
+    defaultDatabase?: pulumi.Input<string>;
     geobaseUri?: pulumi.Input<string>;
     /**
      * Graphite rollup configuration. The structure is documented below.
@@ -6320,6 +6374,7 @@ export interface MdbClickhouseClusterClickhouseConfig {
     textLogRetentionSize?: pulumi.Input<number>;
     textLogRetentionTime?: pulumi.Input<number>;
     timezone?: pulumi.Input<string>;
+    totalMemoryProfilerStep?: pulumi.Input<number>;
     traceLogEnabled?: pulumi.Input<boolean>;
     traceLogRetentionSize?: pulumi.Input<number>;
     traceLogRetentionTime?: pulumi.Input<number>;
@@ -6437,6 +6492,14 @@ export interface MdbClickhouseClusterClickhouseConfigMergeTree {
      */
     maxReplicatedMergesInQueue?: pulumi.Input<number>;
     /**
+     * Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+     */
+    minBytesForWidePart?: pulumi.Input<number>;
+    /**
+     * Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+     */
+    minRowsForWidePart?: pulumi.Input<number>;
+    /**
      * Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
      */
     numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge?: pulumi.Input<number>;
@@ -6456,6 +6519,10 @@ export interface MdbClickhouseClusterClickhouseConfigMergeTree {
      * Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
      */
     replicatedDeduplicationWindowSeconds?: pulumi.Input<number>;
+    /**
+     * Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+     */
+    ttlOnlyDropParts?: pulumi.Input<boolean>;
 }
 
 export interface MdbClickhouseClusterClickhouseConfigRabbitmq {
@@ -6467,19 +6534,22 @@ export interface MdbClickhouseClusterClickhouseConfigRabbitmq {
      * RabbitMQ username.
      */
     username?: pulumi.Input<string>;
+    /**
+     * RabbitMQ vhost. Default: '\'.
+     */
+    vhost?: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterClickhouseResources {
     /**
-     * Volume of the storage available to a ZooKeeper host, in gigabytes.
+     * Volume of the storage available to a host, in gigabytes.
      */
-    diskSize: pulumi.Input<number>;
+    diskSize?: pulumi.Input<number>;
     /**
-     * Type of the storage of ZooKeeper hosts.
-     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     * Type of the storage of hosts.
      */
-    diskTypeId: pulumi.Input<string>;
-    resourcePresetId: pulumi.Input<string>;
+    diskTypeId?: pulumi.Input<string>;
+    resourcePresetId?: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterCloudStorage {
@@ -6587,6 +6657,10 @@ export interface MdbClickhouseClusterShard {
      */
     name: pulumi.Input<string>;
     /**
+     * Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+     */
+    resources?: pulumi.Input<inputs.MdbClickhouseClusterShardResources>;
+    /**
      * The weight of shard.
      */
     weight?: pulumi.Input<number>;
@@ -6605,6 +6679,18 @@ export interface MdbClickhouseClusterShardGroup {
      * List of shards names that belong to the shard group.
      */
     shardNames: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface MdbClickhouseClusterShardResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: pulumi.Input<number>;
+    /**
+     * Type of the storage of hosts.
+     */
+    diskTypeId?: pulumi.Input<string>;
+    resourcePresetId?: pulumi.Input<string>;
 }
 
 export interface MdbClickhouseClusterUser {
@@ -6674,6 +6760,39 @@ export interface MdbClickhouseClusterUserSettings {
      */
     allowDdl?: pulumi.Input<boolean>;
     /**
+     * Enables introspections functions for query profiling.
+     */
+    allowIntrospectionFunctions?: pulumi.Input<boolean>;
+    /**
+     * Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+     */
+    allowSuspiciousLowCardinalityTypes?: pulumi.Input<boolean>;
+    /**
+     * Enables asynchronous inserts. Disabled by default.
+     */
+    asyncInsert?: pulumi.Input<boolean>;
+    /**
+     * The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+     */
+    asyncInsertBusyTimeout?: pulumi.Input<number>;
+    /**
+     * The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+     */
+    asyncInsertMaxDataSize?: pulumi.Input<number>;
+    /**
+     * The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the asyncInsertBusyTimeout with every INSERT query as long as asyncInsertMaxDataSize is not exceeded.
+     */
+    asyncInsertStaleTimeout?: pulumi.Input<number>;
+    /**
+     * The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+     */
+    asyncInsertThreads?: pulumi.Input<number>;
+    /**
+     * Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+     * Default value: false.
+     */
+    cancelHttpReadonlyQueriesOnClientClose?: pulumi.Input<boolean>;
+    /**
      * Enable compilation of queries.
      */
     compile?: pulumi.Input<boolean>;
@@ -6685,6 +6804,10 @@ export interface MdbClickhouseClusterUserSettings {
      * Connect timeout in milliseconds on the socket used for communicating with the client.
      */
     connectTimeout?: pulumi.Input<number>;
+    /**
+     * The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+     */
+    connectTimeoutWithFailover?: pulumi.Input<number>;
     /**
      * Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
      */
@@ -6717,6 +6840,10 @@ export interface MdbClickhouseClusterUserSettings {
      * Forces a query to an out-of-date replica if updated data is not available.
      */
     fallbackToStaleReplicasForDistributedQueries?: pulumi.Input<boolean>;
+    /**
+     * Sets the data format of a nested columns.
+     */
+    flattenNested?: pulumi.Input<boolean>;
     /**
      * Disables query execution if the index can’t be used by date.
      */
@@ -6761,6 +6888,10 @@ export interface MdbClickhouseClusterUserSettings {
      * Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
      */
     inputFormatValuesInterpretExpressions?: pulumi.Input<boolean>;
+    /**
+     * Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+     */
+    insertNullAsDefault?: pulumi.Input<boolean>;
     /**
      * Enables the quorum writes.
      */
@@ -6834,6 +6965,10 @@ export interface MdbClickhouseClusterUserSettings {
      */
     maxColumnsToRead?: pulumi.Input<number>;
     /**
+     * The maximum number of concurrent requests per user. Default value: 0 (no limit).
+     */
+    maxConcurrentQueriesForUser?: pulumi.Input<number>;
+    /**
      * Limits the maximum query execution time in milliseconds.
      */
     maxExecutionTime?: pulumi.Input<number>;
@@ -6841,6 +6976,11 @@ export interface MdbClickhouseClusterUserSettings {
      * Maximum abstract syntax tree depth after after expansion of aliases.
      */
     maxExpandedAstElements?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+     * If the parameter is set to 0 (default), no hops is allowed.
+     */
+    maxHttpGetRedirects?: pulumi.Input<number>;
     /**
      * The size of blocks (in a count of rows) to form for insertion into a table.
      */
@@ -6917,6 +7057,14 @@ export interface MdbClickhouseClusterUserSettings {
      * The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
      */
     maxThreads?: pulumi.Input<number>;
+    /**
+     * Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+     */
+    memoryProfilerSampleProbability?: pulumi.Input<number>;
+    /**
+     * Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+     */
+    memoryProfilerStep?: pulumi.Input<number>;
     /**
      * If ClickHouse should read more than mergeTreeMaxBytesToUseCache bytes in one query, it doesn’t use the cache of uncompressed blocks.
      */
@@ -7022,6 +7170,11 @@ export interface MdbClickhouseClusterUserSettings {
      */
     sortOverflowMode?: pulumi.Input<string>;
     /**
+     * Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in minExecutionSpeed parameter.
+     * Must be at least 1000.
+     */
+    timeoutBeforeCheckingExecutionSpeed?: pulumi.Input<number>;
+    /**
      * Sets behaviour on overflow. Possible values:
      */
     timeoutOverflowMode?: pulumi.Input<string>;
@@ -7037,23 +7190,30 @@ export interface MdbClickhouseClusterUserSettings {
      * Whether to use a cache of uncompressed blocks.
      */
     useUncompressedCache?: pulumi.Input<boolean>;
+    /**
+     * Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+     */
+    waitForAsyncInsert?: pulumi.Input<boolean>;
+    /**
+     * The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+     */
+    waitForAsyncInsertTimeout?: pulumi.Input<number>;
 }
 
 export interface MdbClickhouseClusterZookeeper {
     /**
-     * Resources allocated to hosts of the ZooKeeper subcluster. The structure is documented below.
+     * Resources allocated to host of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
      */
     resources?: pulumi.Input<inputs.MdbClickhouseClusterZookeeperResources>;
 }
 
 export interface MdbClickhouseClusterZookeeperResources {
     /**
-     * Volume of the storage available to a ZooKeeper host, in gigabytes.
+     * Volume of the storage available to a host, in gigabytes.
      */
     diskSize?: pulumi.Input<number>;
     /**
-     * Type of the storage of ZooKeeper hosts.
-     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     * Type of the storage of hosts.
      */
     diskTypeId?: pulumi.Input<string>;
     resourcePresetId?: pulumi.Input<string>;
@@ -8721,6 +8881,19 @@ export interface VpcSubnetDhcpOptions {
      * NTP server IP addresses.
      */
     ntpServers?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface YandexYdbTopicConsumer {
+    /**
+     * Topic name. Type: string, required. Default value: "".
+     */
+    name: pulumi.Input<string>;
+    serviceType?: pulumi.Input<string>;
+    startingMessageTimestampMs?: pulumi.Input<number>;
+    /**
+     * Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
+     */
+    supportedCodecs?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface YdbDatabaseDedicatedLocation {

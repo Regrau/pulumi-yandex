@@ -64,7 +64,7 @@ namespace Pulumi.Yandex
         public Output<Outputs.FunctionConnectivity?> Connectivity { get; private set; } = null!;
 
         /// <summary>
-        /// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        /// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
         /// * `content.0.zip_filename` - Filename to zip archive for the version.
         /// </summary>
         [Output("content")]
@@ -137,7 +137,7 @@ namespace Pulumi.Yandex
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        /// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
         /// * `package.0.sha_256` - SHA256 hash of the version deployment package.
         /// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
         /// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
@@ -236,7 +236,7 @@ namespace Pulumi.Yandex
         public Input<Inputs.FunctionConnectivityArgs>? Connectivity { get; set; }
 
         /// <summary>
-        /// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        /// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
         /// * `content.0.zip_filename` - Filename to zip archive for the version.
         /// </summary>
         [Input("content")]
@@ -303,7 +303,7 @@ namespace Pulumi.Yandex
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        /// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
         /// * `package.0.sha_256` - SHA256 hash of the version deployment package.
         /// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
         /// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.
@@ -369,7 +369,7 @@ namespace Pulumi.Yandex
         public Input<Inputs.FunctionConnectivityGetArgs>? Connectivity { get; set; }
 
         /// <summary>
-        /// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        /// Version deployment content for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
         /// * `content.0.zip_filename` - Filename to zip archive for the version.
         /// </summary>
         [Input("content")]
@@ -454,7 +454,7 @@ namespace Pulumi.Yandex
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section.
+        /// Version deployment package for Yandex Cloud Function code. Can be only one `package` or `content` section. Either `package` or `content` section must be specified.
         /// * `package.0.sha_256` - SHA256 hash of the version deployment package.
         /// * `package.0.bucket_name` - Name of the bucket that stores the code for the version.
         /// * `package.0.object_name` - Name of the object in the bucket that stores the code for the version.

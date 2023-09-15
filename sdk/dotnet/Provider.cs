@@ -121,6 +121,8 @@ namespace Pulumi.Yandex
                 PluginDownloadURL = "https://github.com/regrau/pulumi-yandex/releases",
                 AdditionalSecretOutputs =
                 {
+                    "storageSecretKey",
+                    "token",
                     "ymqSecretKey",
                 },
             };
@@ -194,18 +196,38 @@ namespace Pulumi.Yandex
         [Input("storageEndpoint")]
         public Input<string>? StorageEndpoint { get; set; }
 
+        [Input("storageSecretKey")]
+        private Input<string>? _storageSecretKey;
+
         /// <summary>
         /// Yandex.Cloud storage service secret key. Used when a storage data/resource doesn't have a secret key explicitly
         /// specified.
         /// </summary>
-        [Input("storageSecretKey")]
-        public Input<string>? StorageSecretKey { get; set; }
+        public Input<string>? StorageSecretKey
+        {
+            get => _storageSecretKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _storageSecretKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("token")]
+        private Input<string>? _token;
 
         /// <summary>
         /// The access token for API operations.
         /// </summary>
-        [Input("token")]
-        public Input<string>? Token { get; set; }
+        public Input<string>? Token
+        {
+            get => _token;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _token = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// Yandex.Cloud Message Queue service access key. Used when a message queue resource doesn't have an access key explicitly

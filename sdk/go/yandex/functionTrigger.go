@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -47,6 +46,7 @@ import (
 type FunctionTrigger struct {
 	pulumi.CustomResourceState
 
+	Container FunctionTriggerContainerPtrOutput `pulumi:"container"`
 	// Creation timestamp of the Yandex Cloud Functions Trigger
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Description of the Yandex Cloud Functions Trigger
@@ -63,7 +63,7 @@ type FunctionTrigger struct {
 	// * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
 	// * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
 	// * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
-	Function FunctionTriggerFunctionOutput `pulumi:"function"`
+	Function FunctionTriggerFunctionPtrOutput `pulumi:"function"`
 	// [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `messageQueue` or `objectStorage` or `timer` can be defined.
 	// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
 	// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
@@ -106,12 +106,9 @@ type FunctionTrigger struct {
 func NewFunctionTrigger(ctx *pulumi.Context,
 	name string, args *FunctionTriggerArgs, opts ...pulumi.ResourceOption) (*FunctionTrigger, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &FunctionTriggerArgs{}
 	}
 
-	if args.Function == nil {
-		return nil, errors.New("invalid value for required argument 'Function'")
-	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource FunctionTrigger
 	err := ctx.RegisterResource("yandex:index/functionTrigger:FunctionTrigger", name, args, &resource, opts...)
@@ -135,6 +132,7 @@ func GetFunctionTrigger(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FunctionTrigger resources.
 type functionTriggerState struct {
+	Container *FunctionTriggerContainer `pulumi:"container"`
 	// Creation timestamp of the Yandex Cloud Functions Trigger
 	CreatedAt *string `pulumi:"createdAt"`
 	// Description of the Yandex Cloud Functions Trigger
@@ -191,6 +189,7 @@ type functionTriggerState struct {
 }
 
 type FunctionTriggerState struct {
+	Container FunctionTriggerContainerPtrInput
 	// Creation timestamp of the Yandex Cloud Functions Trigger
 	CreatedAt pulumi.StringPtrInput
 	// Description of the Yandex Cloud Functions Trigger
@@ -251,6 +250,7 @@ func (FunctionTriggerState) ElementType() reflect.Type {
 }
 
 type functionTriggerArgs struct {
+	Container *FunctionTriggerContainer `pulumi:"container"`
 	// Description of the Yandex Cloud Functions Trigger
 	Description *string `pulumi:"description"`
 	// Dead Letter Queue settings definition for Yandex Cloud Functions Trigger
@@ -265,7 +265,7 @@ type functionTriggerArgs struct {
 	// * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
 	// * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
 	// * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
-	Function FunctionTriggerFunction `pulumi:"function"`
+	Function *FunctionTriggerFunction `pulumi:"function"`
 	// [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `messageQueue` or `objectStorage` or `timer` can be defined.
 	// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
 	// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
@@ -306,6 +306,7 @@ type functionTriggerArgs struct {
 
 // The set of arguments for constructing a FunctionTrigger resource.
 type FunctionTriggerArgs struct {
+	Container FunctionTriggerContainerPtrInput
 	// Description of the Yandex Cloud Functions Trigger
 	Description pulumi.StringPtrInput
 	// Dead Letter Queue settings definition for Yandex Cloud Functions Trigger
@@ -320,7 +321,7 @@ type FunctionTriggerArgs struct {
 	// * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
 	// * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
 	// * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
-	Function FunctionTriggerFunctionInput
+	Function FunctionTriggerFunctionPtrInput
 	// [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `messageQueue` or `objectStorage` or `timer` can be defined.
 	// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
 	// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
@@ -446,6 +447,10 @@ func (o FunctionTriggerOutput) ToFunctionTriggerOutputWithContext(ctx context.Co
 	return o
 }
 
+func (o FunctionTriggerOutput) Container() FunctionTriggerContainerPtrOutput {
+	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerContainerPtrOutput { return v.Container }).(FunctionTriggerContainerPtrOutput)
+}
+
 // Creation timestamp of the Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *FunctionTrigger) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
@@ -474,8 +479,8 @@ func (o FunctionTriggerOutput) FolderId() pulumi.StringOutput {
 // * `function.0.tag` - Tag for Yandex.Cloud Function for Yandex Cloud Functions Trigger
 // * `function.0.retry_attempts` - Retry attempts for Yandex.Cloud Function for Yandex Cloud Functions Trigger
 // * `function.0.retry_interval` - Retry interval in seconds for Yandex.Cloud Function for Yandex Cloud Functions Trigger
-func (o FunctionTriggerOutput) Function() FunctionTriggerFunctionOutput {
-	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerFunctionOutput { return v.Function }).(FunctionTriggerFunctionOutput)
+func (o FunctionTriggerOutput) Function() FunctionTriggerFunctionPtrOutput {
+	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerFunctionPtrOutput { return v.Function }).(FunctionTriggerFunctionPtrOutput)
 }
 
 // [IoT](https://cloud.yandex.com/docs/functions/concepts/trigger/iot-core-trigger) settings definition for Yandex Cloud Functions Trigger, if present. Only one section `iot` or `messageQueue` or `objectStorage` or `timer` can be defined.

@@ -12,6 +12,9 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class MdbClickhouseClusterClickhouseConfigGetArgs : global::Pulumi.ResourceArgs
     {
+        [Input("backgroundFetchesPoolSize")]
+        public Input<int>? BackgroundFetchesPoolSize { get; set; }
+
         [Input("backgroundPoolSize")]
         public Input<int>? BackgroundPoolSize { get; set; }
 
@@ -29,6 +32,9 @@ namespace Pulumi.Yandex.Inputs
             get => _compressions ?? (_compressions = new InputList<Inputs.MdbClickhouseClusterClickhouseConfigCompressionGetArgs>());
             set => _compressions = value;
         }
+
+        [Input("defaultDatabase")]
+        public Input<string>? DefaultDatabase { get; set; }
 
         [Input("geobaseUri")]
         public Input<string>? GeobaseUri { get; set; }
@@ -140,6 +146,9 @@ namespace Pulumi.Yandex.Inputs
 
         [Input("timezone")]
         public Input<string>? Timezone { get; set; }
+
+        [Input("totalMemoryProfilerStep")]
+        public Input<int>? TotalMemoryProfilerStep { get; set; }
 
         [Input("traceLogEnabled")]
         public Input<bool>? TraceLogEnabled { get; set; }

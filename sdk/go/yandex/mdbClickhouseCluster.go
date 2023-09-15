@@ -97,9 +97,6 @@ func NewMdbClickhouseCluster(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.Clickhouse == nil {
-		return nil, errors.New("invalid value for required argument 'Clickhouse'")
-	}
 	if args.Environment == nil {
 		return nil, errors.New("invalid value for required argument 'Environment'")
 	}
@@ -280,7 +277,7 @@ type mdbClickhouseClusterArgs struct {
 	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
 	BackupWindowStart *MdbClickhouseClusterBackupWindowStart `pulumi:"backupWindowStart"`
 	// Configuration of the ClickHouse subcluster. The structure is documented below.
-	Clickhouse   MdbClickhouseClusterClickhouse    `pulumi:"clickhouse"`
+	Clickhouse   *MdbClickhouseClusterClickhouse   `pulumi:"clickhouse"`
 	CloudStorage *MdbClickhouseClusterCloudStorage `pulumi:"cloudStorage"`
 	// Whether to copy schema on new ClickHouse hosts.
 	CopySchemaOnNewHosts *bool `pulumi:"copySchemaOnNewHosts"`
@@ -338,7 +335,7 @@ type MdbClickhouseClusterArgs struct {
 	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
 	BackupWindowStart MdbClickhouseClusterBackupWindowStartPtrInput
 	// Configuration of the ClickHouse subcluster. The structure is documented below.
-	Clickhouse   MdbClickhouseClusterClickhouseInput
+	Clickhouse   MdbClickhouseClusterClickhousePtrInput
 	CloudStorage MdbClickhouseClusterCloudStoragePtrInput
 	// Whether to copy schema on new ClickHouse hosts.
 	CopySchemaOnNewHosts pulumi.BoolPtrInput
