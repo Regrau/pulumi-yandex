@@ -20,14 +20,11 @@ RUN rm -rf /usr/local/go && \
     tar -C /usr/local -xzf ${GO_VERSION}.tar.gz && \
     rm ${GO_VERSION}.tar.gz 
 
-ENV GOPATH=/root/go
 ENV PATH=$PATH:/usr/local/go/bin
 
 # Install go linter
-RUN mkdir -p $GOPATH/bin && \
-    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $GOPATH/bin v1.46.2
+RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b /usr/local/bin v1.46.2
 
-ENV PATH=$PATH:$GOPATH/bin
 
 # Install pulumictl
 ARG PULUMICTL_VERSION=v0.0.32

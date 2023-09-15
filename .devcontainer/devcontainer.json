@@ -9,5 +9,12 @@
       "configureZshAsDefaultShell": true
     }
   },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go"
+      ]
+    }
+  },
   "containerUser": "vscode"
 }
