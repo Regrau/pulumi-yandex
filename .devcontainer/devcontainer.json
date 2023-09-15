@@ -4,5 +4,10 @@
   "name": "TFProvider",
   "build": {
       "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils": {
+      "username": "vscode"
+    }
   }
 }
