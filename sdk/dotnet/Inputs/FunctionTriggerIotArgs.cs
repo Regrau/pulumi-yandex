@@ -12,6 +12,12 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class FunctionTriggerIotArgs : global::Pulumi.ResourceArgs
     {
+        [Input("batchCutoff", required: true)]
+        public Input<string> BatchCutoff { get; set; } = null!;
+
+        [Input("batchSize")]
+        public Input<string>? BatchSize { get; set; }
+
         [Input("deviceId")]
         public Input<string>? DeviceId { get; set; }
 

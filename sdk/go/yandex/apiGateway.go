@@ -20,8 +20,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -44,44 +42,7 @@ import (
 //				Connectivity: &ApiGatewayConnectivityArgs{
 //					NetworkId: pulumi.String("<dynamic network id>"),
 //				},
-//				Spec: pulumi.String(fmt.Sprintf(`openapi: "3.0.0"
-//
-// info:
-//
-//	version: 1.0.0
-//	title: Test API
-//
-// paths:
-//
-//	/hello:
-//	  get:
-//	    summary: Say hello
-//	    operationId: hello
-//	    parameters:
-//	      - name: user
-//	        in: query
-//	        description: User name to appear in greetings
-//	        required: false
-//	        schema:
-//	          type: string
-//	          default: 'world'
-//	    responses:
-//	      '200':
-//	        description: Greeting
-//	        content:
-//	          'text/plain':
-//	            schema:
-//	              type: "string"
-//	    x-yc-apigateway-integration:
-//	      type: dummy
-//	      http_code: 200
-//	      http_headers:
-//	        'Content-Type': "text/plain"
-//	      content:
-//	        'text/plain': "Hello again, {user}!\n"
-//
-// `)),
-//
+//				Spec: pulumi.String("openapi: \"3.0.0\"\ninfo:\n  version: 1.0.0\n  title: Test API\npaths:\n  /hello:\n    get:\n      summary: Say hello\n      operationId: hello\n      parameters:\n        - name: user\n          in: query\n          description: User name to appear in greetings\n          required: false\n          schema:\n            type: string\n            default: 'world'\n      responses:\n        '200':\n          description: Greeting\n          content:\n            'text/plain':\n              schema:\n                type: \"string\"\n      x-yc-apigateway-integration:\n        type: dummy\n        http_code: 200\n        http_headers:\n          'Content-Type': \"text/plain\"\n        content:\n          'text/plain': \"Hello again, {user}!\\n\"\n"),
 //			})
 //			if err != nil {
 //				return err

@@ -42,6 +42,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ComputeDisk{}
 	case "yandex:index/computeDiskPlacementGroup:ComputeDiskPlacementGroup":
 		r = &ComputeDiskPlacementGroup{}
+	case "yandex:index/computeGpuCluster:ComputeGpuCluster":
+		r = &ComputeGpuCluster{}
 	case "yandex:index/computeImage:ComputeImage":
 		r = &ComputeImage{}
 	case "yandex:index/computeInstance:ComputeInstance":
@@ -104,6 +106,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &IotCoreDevice{}
 	case "yandex:index/iotCoreRegistry:IotCoreRegistry":
 		r = &IotCoreRegistry{}
+	case "yandex:index/kmsAsymetricEncryptionKey:KmsAsymetricEncryptionKey":
+		r = &KmsAsymetricEncryptionKey{}
+	case "yandex:index/kmsAsymetricEncryptionKeyIamBinding:KmsAsymetricEncryptionKeyIamBinding":
+		r = &KmsAsymetricEncryptionKeyIamBinding{}
+	case "yandex:index/kmsAsymetricSignatureKey:KmsAsymetricSignatureKey":
+		r = &KmsAsymetricSignatureKey{}
+	case "yandex:index/kmsAsymetricSignatureKeyBinding:KmsAsymetricSignatureKeyBinding":
+		r = &KmsAsymetricSignatureKeyBinding{}
 	case "yandex:index/kmsSecretCiphertext:KmsSecretCiphertext":
 		r = &KmsSecretCiphertext{}
 	case "yandex:index/kmsSymmetricKey:KmsSymmetricKey":
@@ -120,6 +130,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LbTargetGroup{}
 	case "yandex:index/lockboxSecret:lockboxSecret":
 		r = &LockboxSecret{}
+	case "yandex:index/lockboxSecretIamBinding:lockboxSecretIamBinding":
+		r = &LockboxSecretIamBinding{}
 	case "yandex:index/lockboxSecretVersion:lockboxSecretVersion":
 		r = &LockboxSecretVersion{}
 	case "yandex:index/loggingGroup:LoggingGroup":
@@ -136,6 +148,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MdbKafkaConnector{}
 	case "yandex:index/mdbKafkaTopic:MdbKafkaTopic":
 		r = &MdbKafkaTopic{}
+	case "yandex:index/mdbKafkaUser:mdbKafkaUser":
+		r = &MdbKafkaUser{}
 	case "yandex:index/mdbMongodbCluster:MdbMongodbCluster":
 		r = &MdbMongodbCluster{}
 	case "yandex:index/mdbMysqlCluster:MdbMysqlCluster":
@@ -156,6 +170,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &MdbSqlServerCluster{}
 	case "yandex:index/messageQueue:MessageQueue":
 		r = &MessageQueue{}
+	case "yandex:index/monitoringDashboard:monitoringDashboard":
+		r = &MonitoringDashboard{}
 	case "yandex:index/organizationManagerOrganizationIamBinding:OrganizationManagerOrganizationIamBinding":
 		r = &OrganizationManagerOrganizationIamBinding{}
 	case "yandex:index/organizationManagerOrganizationIamMember:OrganizationManagerOrganizationIamMember":
@@ -168,6 +184,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &OrganizationmanagerGroupMembership{}
 	case "yandex:index/organizationmanagerSamlFederation:OrganizationmanagerSamlFederation":
 		r = &OrganizationmanagerSamlFederation{}
+	case "yandex:index/organizationmanagerSamlFederationUserAccount:organizationmanagerSamlFederationUserAccount":
+		r = &OrganizationmanagerSamlFederationUserAccount{}
 	case "yandex:index/resourcemanagerCloud:resourcemanagerCloud":
 		r = &ResourcemanagerCloud{}
 	case "yandex:index/resourcemanagerCloudIamBinding:ResourcemanagerCloudIamBinding":
@@ -206,12 +224,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpcSecurityGroupRule{}
 	case "yandex:index/vpcSubnet:VpcSubnet":
 		r = &VpcSubnet{}
-	case "yandex:index/yandexBillingCloudBinding:yandexBillingCloudBinding":
-		r = &YandexBillingCloudBinding{}
 	case "yandex:index/yandexComputeFilesystem:yandexComputeFilesystem":
 		r = &YandexComputeFilesystem{}
+	case "yandex:index/yandexYdbTable:yandexYdbTable":
+		r = &YandexYdbTable{}
 	case "yandex:index/yandexYdbTopic:yandexYdbTopic":
 		r = &YandexYdbTopic{}
+	case "yandex:index/yandexYdbTopicChangefeed:yandexYdbTopicChangefeed":
+		r = &YandexYdbTopicChangefeed{}
+	case "yandex:index/yandexYdbTopicIndex:yandexYdbTopicIndex":
+		r = &YandexYdbTopicIndex{}
 	case "yandex:index/ydbDatabaseDedicated:YdbDatabaseDedicated":
 		r = &YdbDatabaseDedicated{}
 	case "yandex:index/ydbDatabaseIamBinding:ydbDatabaseIamBinding":
@@ -299,6 +321,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"yandex",
 		"index/computeDiskPlacementGroup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/computeGpuCluster",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -458,6 +485,26 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"yandex",
+		"index/kmsAsymetricEncryptionKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/kmsAsymetricEncryptionKeyIamBinding",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/kmsAsymetricSignatureKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/kmsAsymetricSignatureKeyBinding",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
 		"index/kmsSecretCiphertext",
 		&module{version},
 	)
@@ -498,6 +545,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"yandex",
+		"index/lockboxSecretIamBinding",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
 		"index/lockboxSecretVersion",
 		&module{version},
 	)
@@ -534,6 +586,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"yandex",
 		"index/mdbKafkaTopic",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/mdbKafkaUser",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -588,6 +645,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"yandex",
+		"index/monitoringDashboard",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
 		"index/organizationManagerOrganizationIamBinding",
 		&module{version},
 	)
@@ -614,6 +676,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"yandex",
 		"index/organizationmanagerSamlFederation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/organizationmanagerSamlFederationUserAccount",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -713,17 +780,27 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"yandex",
-		"index/yandexBillingCloudBinding",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"yandex",
 		"index/yandexComputeFilesystem",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"yandex",
+		"index/yandexYdbTable",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
 		"index/yandexYdbTopic",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/yandexYdbTopicChangefeed",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/yandexYdbTopicIndex",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

@@ -15,6 +15,9 @@ namespace Pulumi.Yandex.Inputs
         [Input("routine")]
         public Input<string>? Routine { get; set; }
 
+        [Input("tables")]
+        public Input<string>? Tables { get; set; }
+
         [Input("trigger")]
         public Input<string>? Trigger { get; set; }
 

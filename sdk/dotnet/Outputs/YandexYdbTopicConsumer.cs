@@ -17,7 +17,6 @@ namespace Pulumi.Yandex.Outputs
         /// Topic name. Type: string, required. Default value: "".
         /// </summary>
         public readonly string Name;
-        public readonly string? ServiceType;
         public readonly int? StartingMessageTimestampMs;
         /// <summary>
         /// Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
@@ -28,14 +27,11 @@ namespace Pulumi.Yandex.Outputs
         private YandexYdbTopicConsumer(
             string name,
 
-            string? serviceType,
-
             int? startingMessageTimestampMs,
 
             ImmutableArray<string> supportedCodecs)
         {
             Name = name;
-            ServiceType = serviceType;
             StartingMessageTimestampMs = startingMessageTimestampMs;
             SupportedCodecs = supportedCodecs;
         }

@@ -22,7 +22,7 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly int? Days;
         /// <summary>
-        /// Specifies the storage class to which you want the object to transition. Can only be `COLD` or `STANDARD_IA`.
+        /// Specifies the storage class to which you want the object to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
         /// </summary>
         public readonly string StorageClass;
 

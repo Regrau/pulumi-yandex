@@ -101,6 +101,12 @@ namespace Pulumi.Yandex
         public Output<string> ClusterId { get; private set; } = null!;
 
         /// <summary>
+        /// Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+        /// </summary>
+        [Output("deletionProtection")]
+        public Output<string?> DeletionProtection { get; private set; } = null!;
+
+        /// <summary>
         /// Set of database extensions. The structure is documented below
         /// </summary>
         [Output("extensions")]
@@ -186,6 +192,12 @@ namespace Pulumi.Yandex
         [Input("clusterId", required: true)]
         public Input<string> ClusterId { get; set; } = null!;
 
+        /// <summary>
+        /// Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+        /// </summary>
+        [Input("deletionProtection")]
+        public Input<string>? DeletionProtection { get; set; }
+
         [Input("extensions")]
         private InputList<Inputs.MdbPostgresqlDatabaseExtensionArgs>? _extensions;
 
@@ -238,6 +250,12 @@ namespace Pulumi.Yandex
     {
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
+
+        /// <summary>
+        /// Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+        /// </summary>
+        [Input("deletionProtection")]
+        public Input<string>? DeletionProtection { get; set; }
 
         [Input("extensions")]
         private InputList<Inputs.MdbPostgresqlDatabaseExtensionGetArgs>? _extensions;

@@ -20,8 +20,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -33,7 +31,7 @@ import (
 //				FunctionId: pulumi.String("are1samplefunction11"),
 //				Policies: FunctionScalingPolicyPolicyArray{
 //					&FunctionScalingPolicyPolicyArgs{
-//						Tag:                pulumi.String(fmt.Sprintf("$latest")),
+//						Tag:                pulumi.String("$latest"),
 //						ZoneInstancesLimit: pulumi.Int(3),
 //						ZoneRequestsLimit:  pulumi.Int(100),
 //					},

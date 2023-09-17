@@ -21,18 +21,12 @@ import * as utilities from "./utilities";
  *         "test_disk_id",
  *         "another_test_disk_id",
  *     ],
- *     labels: {
- *         "my-label": "my-label-value",
- *     },
+ *     retentionPeriod: "12h",
  *     schedulePolicy: {
  *         expression: "0 0 * * *",
  *     },
- *     snapshotCount: 1,
  *     snapshotSpec: {
- *         description: "snapshot-description",
- *         labels: {
- *             "snapshot-label": "my-snapshot-label-value",
- *         },
+ *         description: "retention-snapshot",
  *     },
  * });
  * ```
@@ -78,7 +72,7 @@ export class ComputeSnapshotSchedule extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Description of the resource.
+     * Description to assign to snapshots created by this snapshot schedule.
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
@@ -91,7 +85,7 @@ export class ComputeSnapshotSchedule extends pulumi.CustomResource {
      */
     public readonly folderId!: pulumi.Output<string>;
     /**
-     * A set of key/value label pairs to assign to the snapshot schedule.
+     * A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -99,7 +93,7 @@ export class ComputeSnapshotSchedule extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Retention period applied to snapshots created by this snapshot schedule.
+     * Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
      */
     public readonly retentionPeriod!: pulumi.Output<string | undefined>;
     /**
@@ -171,7 +165,7 @@ export interface ComputeSnapshotScheduleState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Description of the resource.
+     * Description to assign to snapshots created by this snapshot schedule.
      */
     description?: pulumi.Input<string>;
     /**
@@ -184,7 +178,7 @@ export interface ComputeSnapshotScheduleState {
      */
     folderId?: pulumi.Input<string>;
     /**
-     * A set of key/value label pairs to assign to the snapshot schedule.
+     * A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -192,7 +186,7 @@ export interface ComputeSnapshotScheduleState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Retention period applied to snapshots created by this snapshot schedule.
+     * Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
      */
     retentionPeriod?: pulumi.Input<string>;
     /**
@@ -218,7 +212,7 @@ export interface ComputeSnapshotScheduleState {
  */
 export interface ComputeSnapshotScheduleArgs {
     /**
-     * Description of the resource.
+     * Description to assign to snapshots created by this snapshot schedule.
      */
     description?: pulumi.Input<string>;
     /**
@@ -231,7 +225,7 @@ export interface ComputeSnapshotScheduleArgs {
      */
     folderId?: pulumi.Input<string>;
     /**
-     * A set of key/value label pairs to assign to the snapshot schedule.
+     * A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -239,7 +233,7 @@ export interface ComputeSnapshotScheduleArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Retention period applied to snapshots created by this snapshot schedule.
+     * Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
      */
     retentionPeriod?: pulumi.Input<string>;
     /**

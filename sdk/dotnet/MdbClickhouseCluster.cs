@@ -51,6 +51,9 @@ namespace Pulumi.Yandex
         [Output("cloudStorage")]
         public Output<Outputs.MdbClickhouseClusterCloudStorage> CloudStorage { get; private set; } = null!;
 
+        [Output("clusterId")]
+        public Output<string> ClusterId { get; private set; } = null!;
+
         /// <summary>
         /// Whether to copy schema on new ClickHouse hosts.
         /// </summary>
@@ -292,6 +295,9 @@ namespace Pulumi.Yandex
         [Input("cloudStorage")]
         public Input<Inputs.MdbClickhouseClusterCloudStorageArgs>? CloudStorage { get; set; }
 
+        [Input("clusterId")]
+        public Input<string>? ClusterId { get; set; }
+
         /// <summary>
         /// Whether to copy schema on new ClickHouse hosts.
         /// </summary>
@@ -522,6 +528,9 @@ namespace Pulumi.Yandex
 
         [Input("cloudStorage")]
         public Input<Inputs.MdbClickhouseClusterCloudStorageGetArgs>? CloudStorage { get; set; }
+
+        [Input("clusterId")]
+        public Input<string>? ClusterId { get; set; }
 
         /// <summary>
         /// Whether to copy schema on new ClickHouse hosts.

@@ -33,6 +33,12 @@ namespace Pulumi.Yandex.Inputs
         public Input<int>? Databases { get; set; }
 
         /// <summary>
+        /// Redis maxmemory usage in percent
+        /// </summary>
+        [Input("maxmemoryPercent")]
+        public Input<int>? MaxmemoryPercent { get; set; }
+
+        /// <summary>
         /// Redis key eviction policy for a dataset that reaches maximum memory.
         /// Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/).
         /// </summary>

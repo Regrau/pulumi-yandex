@@ -16,10 +16,10 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterZookeeperResourceResult> Resources;
+        public readonly Outputs.GetMdbClickhouseClusterZookeeperResourcesResult Resources;
 
         [OutputConstructor]
-        private GetMdbClickhouseClusterZookeeperResult(ImmutableArray<Outputs.GetMdbClickhouseClusterZookeeperResourceResult> resources)
+        private GetMdbClickhouseClusterZookeeperResult(Outputs.GetMdbClickhouseClusterZookeeperResourcesResult resources)
         {
             Resources = resources;
         }

@@ -19,6 +19,7 @@ namespace Pulumi.Yandex.Outputs
         public readonly ImmutableArray<string> Levels;
         public readonly ImmutableArray<string> ResourceIds;
         public readonly ImmutableArray<string> ResourceTypes;
+        public readonly ImmutableArray<string> StreamNames;
 
         [OutputConstructor]
         private GetFunctionTriggerLoggingResult(
@@ -32,7 +33,9 @@ namespace Pulumi.Yandex.Outputs
 
             ImmutableArray<string> resourceIds,
 
-            ImmutableArray<string> resourceTypes)
+            ImmutableArray<string> resourceTypes,
+
+            ImmutableArray<string> streamNames)
         {
             BatchCutoff = batchCutoff;
             BatchSize = batchSize;
@@ -40,6 +43,7 @@ namespace Pulumi.Yandex.Outputs
             Levels = levels;
             ResourceIds = resourceIds;
             ResourceTypes = resourceTypes;
+            StreamNames = streamNames;
         }
     }
 }

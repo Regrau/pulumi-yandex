@@ -20,6 +20,12 @@ namespace Pulumi.Yandex.Inputs
         [Input("auditLog", required: true)]
         public Inputs.GetMdbMongodbClusterClusterConfigMongodAuditLogArgs AuditLog { get; set; } = null!;
 
+        [Input("net")]
+        public Inputs.GetMdbMongodbClusterClusterConfigMongodNetArgs? Net { get; set; }
+
+        [Input("operationProfiling")]
+        public Inputs.GetMdbMongodbClusterClusterConfigMongodOperationProfilingArgs? OperationProfiling { get; set; }
+
         /// <summary>
         /// (Optional) A set of MongoDB Security settings
         /// (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
@@ -35,6 +41,9 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("setParameter", required: true)]
         public Inputs.GetMdbMongodbClusterClusterConfigMongodSetParameterArgs SetParameter { get; set; } = null!;
+
+        [Input("storage")]
+        public Inputs.GetMdbMongodbClusterClusterConfigMongodStorageArgs? Storage { get; set; }
 
         public GetMdbMongodbClusterClusterConfigMongodArgs()
         {

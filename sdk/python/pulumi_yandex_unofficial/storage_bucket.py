@@ -34,21 +34,25 @@ class StorageBucketArgs:
                  policy: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  server_side_encryption_configuration: Optional[pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs']] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  versioning: Optional[pulumi.Input['StorageBucketVersioningArgs']] = None,
                  website: Optional[pulumi.Input['StorageBucketWebsiteArgs']] = None,
                  website_domain: Optional[pulumi.Input[str]] = None,
                  website_endpoint: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a StorageBucket resource.
-        :param pulumi.Input[str] access_key: The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
-        :param pulumi.Input[str] acl: The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        :param pulumi.Input[str] access_key: The access key to use when applying changes. If omitted, `storage_access_key` specified in
+               provider config (explicitly or within `shared_credentials_file`) is used.
+        :param pulumi.Input[str] acl: The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+               Defaults to `private`. Conflicts with `grant`.
         :param pulumi.Input['StorageBucketAnonymousAccessFlagsArgs'] anonymous_access_flags: Provides various access to objects.
                See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
                for more infomation.
-        :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix.
+               Conflicts with `bucket`.
         :param pulumi.Input[Sequence[pulumi.Input['StorageBucketCorsRuleArgs']]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         :param pulumi.Input[str] default_storage_class: Storage class which is used for storing objects by default.
-               Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+               Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
                See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
         :param pulumi.Input[str] folder_id: Allow to create bucket in different folder.
         :param pulumi.Input[bool] force_destroy: A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
@@ -58,7 +62,8 @@ class StorageBucketArgs:
         :param pulumi.Input[Sequence[pulumi.Input['StorageBucketLoggingArgs']]] loggings: A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
         :param pulumi.Input[int] max_size: The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
         :param pulumi.Input['StorageBucketObjectLockConfigurationArgs'] object_lock_configuration: A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
-        :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in
+               provider config (explicitly or within `shared_credentials_file`) is used.
         :param pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs'] server_side_encryption_configuration: A configuration of server-side encryption for the bucket (documented below)
         :param pulumi.Input['StorageBucketVersioningArgs'] versioning: A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
         :param pulumi.Input['StorageBucketWebsiteArgs'] website: A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
@@ -101,6 +106,8 @@ class StorageBucketArgs:
             pulumi.set(__self__, "secret_key", secret_key)
         if server_side_encryption_configuration is not None:
             pulumi.set(__self__, "server_side_encryption_configuration", server_side_encryption_configuration)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if versioning is not None:
             pulumi.set(__self__, "versioning", versioning)
         if website is not None:
@@ -114,7 +121,8 @@ class StorageBucketArgs:
     @pulumi.getter(name="accessKey")
     def access_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        The access key to use when applying changes. If omitted, `storage_access_key` specified in
+        provider config (explicitly or within `shared_credentials_file`) is used.
         """
         return pulumi.get(self, "access_key")
 
@@ -126,7 +134,8 @@ class StorageBucketArgs:
     @pulumi.getter
     def acl(self) -> Optional[pulumi.Input[str]]:
         """
-        The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+        Defaults to `private`. Conflicts with `grant`.
         """
         return pulumi.get(self, "acl")
 
@@ -161,7 +170,8 @@ class StorageBucketArgs:
     @pulumi.getter(name="bucketPrefix")
     def bucket_prefix(self) -> Optional[pulumi.Input[str]]:
         """
-        Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        Creates a unique bucket name beginning with the specified prefix.
+        Conflicts with `bucket`.
         """
         return pulumi.get(self, "bucket_prefix")
 
@@ -186,7 +196,7 @@ class StorageBucketArgs:
     def default_storage_class(self) -> Optional[pulumi.Input[str]]:
         """
         Storage class which is used for storing objects by default.
-        Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+        Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
         See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
         """
         return pulumi.get(self, "default_storage_class")
@@ -304,7 +314,8 @@ class StorageBucketArgs:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        The secret key to use when applying changes. If omitted, `storage_secret_key` specified in
+        provider config (explicitly or within `shared_credentials_file`) is used.
         """
         return pulumi.get(self, "secret_key")
 
@@ -323,6 +334,15 @@ class StorageBucketArgs:
     @server_side_encryption_configuration.setter
     def server_side_encryption_configuration(self, value: Optional[pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs']]):
         pulumi.set(self, "server_side_encryption_configuration", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter
@@ -395,22 +415,26 @@ class _StorageBucketState:
                  policy: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  server_side_encryption_configuration: Optional[pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs']] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  versioning: Optional[pulumi.Input['StorageBucketVersioningArgs']] = None,
                  website: Optional[pulumi.Input['StorageBucketWebsiteArgs']] = None,
                  website_domain: Optional[pulumi.Input[str]] = None,
                  website_endpoint: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering StorageBucket resources.
-        :param pulumi.Input[str] access_key: The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
-        :param pulumi.Input[str] acl: The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        :param pulumi.Input[str] access_key: The access key to use when applying changes. If omitted, `storage_access_key` specified in
+               provider config (explicitly or within `shared_credentials_file`) is used.
+        :param pulumi.Input[str] acl: The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+               Defaults to `private`. Conflicts with `grant`.
         :param pulumi.Input['StorageBucketAnonymousAccessFlagsArgs'] anonymous_access_flags: Provides various access to objects.
                See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
                for more infomation.
         :param pulumi.Input[str] bucket_domain_name: The bucket domain name.
-        :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix.
+               Conflicts with `bucket`.
         :param pulumi.Input[Sequence[pulumi.Input['StorageBucketCorsRuleArgs']]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         :param pulumi.Input[str] default_storage_class: Storage class which is used for storing objects by default.
-               Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+               Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
                See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
         :param pulumi.Input[str] folder_id: Allow to create bucket in different folder.
         :param pulumi.Input[bool] force_destroy: A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
@@ -420,7 +444,8 @@ class _StorageBucketState:
         :param pulumi.Input[Sequence[pulumi.Input['StorageBucketLoggingArgs']]] loggings: A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
         :param pulumi.Input[int] max_size: The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
         :param pulumi.Input['StorageBucketObjectLockConfigurationArgs'] object_lock_configuration: A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
-        :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in
+               provider config (explicitly or within `shared_credentials_file`) is used.
         :param pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs'] server_side_encryption_configuration: A configuration of server-side encryption for the bucket (documented below)
         :param pulumi.Input['StorageBucketVersioningArgs'] versioning: A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
         :param pulumi.Input['StorageBucketWebsiteArgs'] website: A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
@@ -465,6 +490,8 @@ class _StorageBucketState:
             pulumi.set(__self__, "secret_key", secret_key)
         if server_side_encryption_configuration is not None:
             pulumi.set(__self__, "server_side_encryption_configuration", server_side_encryption_configuration)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if versioning is not None:
             pulumi.set(__self__, "versioning", versioning)
         if website is not None:
@@ -478,7 +505,8 @@ class _StorageBucketState:
     @pulumi.getter(name="accessKey")
     def access_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        The access key to use when applying changes. If omitted, `storage_access_key` specified in
+        provider config (explicitly or within `shared_credentials_file`) is used.
         """
         return pulumi.get(self, "access_key")
 
@@ -490,7 +518,8 @@ class _StorageBucketState:
     @pulumi.getter
     def acl(self) -> Optional[pulumi.Input[str]]:
         """
-        The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+        Defaults to `private`. Conflicts with `grant`.
         """
         return pulumi.get(self, "acl")
 
@@ -537,7 +566,8 @@ class _StorageBucketState:
     @pulumi.getter(name="bucketPrefix")
     def bucket_prefix(self) -> Optional[pulumi.Input[str]]:
         """
-        Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        Creates a unique bucket name beginning with the specified prefix.
+        Conflicts with `bucket`.
         """
         return pulumi.get(self, "bucket_prefix")
 
@@ -562,7 +592,7 @@ class _StorageBucketState:
     def default_storage_class(self) -> Optional[pulumi.Input[str]]:
         """
         Storage class which is used for storing objects by default.
-        Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+        Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
         See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
         """
         return pulumi.get(self, "default_storage_class")
@@ -680,7 +710,8 @@ class _StorageBucketState:
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> Optional[pulumi.Input[str]]:
         """
-        The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        The secret key to use when applying changes. If omitted, `storage_secret_key` specified in
+        provider config (explicitly or within `shared_credentials_file`) is used.
         """
         return pulumi.get(self, "secret_key")
 
@@ -699,6 +730,15 @@ class _StorageBucketState:
     @server_side_encryption_configuration.setter
     def server_side_encryption_configuration(self, value: Optional[pulumi.Input['StorageBucketServerSideEncryptionConfigurationArgs']]):
         pulumi.set(self, "server_side_encryption_configuration", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter
@@ -772,6 +812,7 @@ class StorageBucket(pulumi.CustomResource):
                  policy: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  server_side_encryption_configuration: Optional[pulumi.Input[pulumi.InputType['StorageBucketServerSideEncryptionConfigurationArgs']]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  versioning: Optional[pulumi.Input[pulumi.InputType['StorageBucketVersioningArgs']]] = None,
                  website: Optional[pulumi.Input[pulumi.InputType['StorageBucketWebsiteArgs']]] = None,
                  website_domain: Optional[pulumi.Input[str]] = None,
@@ -1036,6 +1077,19 @@ class StorageBucket(pulumi.CustomResource):
 
         \"\"\")
         ```
+        ### Bucket Tagging
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-policy-bucket",
+            tags={
+                "other_key": "other_value",
+                "test_key": "test_value",
+            })
+        ```
         ### Bucket Max Size
 
         ```python
@@ -1200,7 +1254,10 @@ class StorageBucket(pulumi.CustomResource):
             ),
             https=yandex.StorageBucketHttpsArgs(
                 certificate_id="<certificate_id>",
-            ))
+            ),
+            tags={
+                "some_key": "some_value",
+            })
         ```
 
         ## Import
@@ -1215,15 +1272,18 @@ class StorageBucket(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] access_key: The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
-        :param pulumi.Input[str] acl: The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        :param pulumi.Input[str] access_key: The access key to use when applying changes. If omitted, `storage_access_key` specified in
+               provider config (explicitly or within `shared_credentials_file`) is used.
+        :param pulumi.Input[str] acl: The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+               Defaults to `private`. Conflicts with `grant`.
         :param pulumi.Input[pulumi.InputType['StorageBucketAnonymousAccessFlagsArgs']] anonymous_access_flags: Provides various access to objects.
                See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
                for more infomation.
-        :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix.
+               Conflicts with `bucket`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         :param pulumi.Input[str] default_storage_class: Storage class which is used for storing objects by default.
-               Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+               Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
                See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
         :param pulumi.Input[str] folder_id: Allow to create bucket in different folder.
         :param pulumi.Input[bool] force_destroy: A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
@@ -1233,7 +1293,8 @@ class StorageBucket(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLoggingArgs']]]] loggings: A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
         :param pulumi.Input[int] max_size: The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
         :param pulumi.Input[pulumi.InputType['StorageBucketObjectLockConfigurationArgs']] object_lock_configuration: A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
-        :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in
+               provider config (explicitly or within `shared_credentials_file`) is used.
         :param pulumi.Input[pulumi.InputType['StorageBucketServerSideEncryptionConfigurationArgs']] server_side_encryption_configuration: A configuration of server-side encryption for the bucket (documented below)
         :param pulumi.Input[pulumi.InputType['StorageBucketVersioningArgs']] versioning: A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
         :param pulumi.Input[pulumi.InputType['StorageBucketWebsiteArgs']] website: A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
@@ -1505,6 +1566,19 @@ class StorageBucket(pulumi.CustomResource):
 
         \"\"\")
         ```
+        ### Bucket Tagging
+
+        ```python
+        import pulumi
+        import pulumi_yandex_unofficial as yandex
+
+        storage_bucket = yandex.StorageBucket("storageBucket",
+            bucket="my-policy-bucket",
+            tags={
+                "other_key": "other_value",
+                "test_key": "test_value",
+            })
+        ```
         ### Bucket Max Size
 
         ```python
@@ -1669,7 +1743,10 @@ class StorageBucket(pulumi.CustomResource):
             ),
             https=yandex.StorageBucketHttpsArgs(
                 certificate_id="<certificate_id>",
-            ))
+            ),
+            tags={
+                "some_key": "some_value",
+            })
         ```
 
         ## Import
@@ -1715,6 +1792,7 @@ class StorageBucket(pulumi.CustomResource):
                  policy: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  server_side_encryption_configuration: Optional[pulumi.Input[pulumi.InputType['StorageBucketServerSideEncryptionConfigurationArgs']]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  versioning: Optional[pulumi.Input[pulumi.InputType['StorageBucketVersioningArgs']]] = None,
                  website: Optional[pulumi.Input[pulumi.InputType['StorageBucketWebsiteArgs']]] = None,
                  website_domain: Optional[pulumi.Input[str]] = None,
@@ -1746,6 +1824,7 @@ class StorageBucket(pulumi.CustomResource):
             __props__.__dict__["policy"] = policy
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["server_side_encryption_configuration"] = server_side_encryption_configuration
+            __props__.__dict__["tags"] = tags
             __props__.__dict__["versioning"] = versioning
             __props__.__dict__["website"] = website
             __props__.__dict__["website_domain"] = website_domain
@@ -1782,6 +1861,7 @@ class StorageBucket(pulumi.CustomResource):
             policy: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
             server_side_encryption_configuration: Optional[pulumi.Input[pulumi.InputType['StorageBucketServerSideEncryptionConfigurationArgs']]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             versioning: Optional[pulumi.Input[pulumi.InputType['StorageBucketVersioningArgs']]] = None,
             website: Optional[pulumi.Input[pulumi.InputType['StorageBucketWebsiteArgs']]] = None,
             website_domain: Optional[pulumi.Input[str]] = None,
@@ -1793,16 +1873,19 @@ class StorageBucket(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] access_key: The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
-        :param pulumi.Input[str] acl: The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        :param pulumi.Input[str] access_key: The access key to use when applying changes. If omitted, `storage_access_key` specified in
+               provider config (explicitly or within `shared_credentials_file`) is used.
+        :param pulumi.Input[str] acl: The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+               Defaults to `private`. Conflicts with `grant`.
         :param pulumi.Input[pulumi.InputType['StorageBucketAnonymousAccessFlagsArgs']] anonymous_access_flags: Provides various access to objects.
                See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
                for more infomation.
         :param pulumi.Input[str] bucket_domain_name: The bucket domain name.
-        :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        :param pulumi.Input[str] bucket_prefix: Creates a unique bucket name beginning with the specified prefix.
+               Conflicts with `bucket`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketCorsRuleArgs']]]] cors_rules: A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
         :param pulumi.Input[str] default_storage_class: Storage class which is used for storing objects by default.
-               Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+               Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
                See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
         :param pulumi.Input[str] folder_id: Allow to create bucket in different folder.
         :param pulumi.Input[bool] force_destroy: A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are *not* recoverable.
@@ -1812,7 +1895,8 @@ class StorageBucket(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['StorageBucketLoggingArgs']]]] loggings: A settings of [bucket logging](https://cloud.yandex.com/docs/storage/concepts/server-logs) (documented below).
         :param pulumi.Input[int] max_size: The size of bucket, in bytes. See [size limiting](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/limit-max-volume) for more information.
         :param pulumi.Input[pulumi.InputType['StorageBucketObjectLockConfigurationArgs']] object_lock_configuration: A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
-        :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in
+               provider config (explicitly or within `shared_credentials_file`) is used.
         :param pulumi.Input[pulumi.InputType['StorageBucketServerSideEncryptionConfigurationArgs']] server_side_encryption_configuration: A configuration of server-side encryption for the bucket (documented below)
         :param pulumi.Input[pulumi.InputType['StorageBucketVersioningArgs']] versioning: A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
         :param pulumi.Input[pulumi.InputType['StorageBucketWebsiteArgs']] website: A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
@@ -1842,6 +1926,7 @@ class StorageBucket(pulumi.CustomResource):
         __props__.__dict__["policy"] = policy
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["server_side_encryption_configuration"] = server_side_encryption_configuration
+        __props__.__dict__["tags"] = tags
         __props__.__dict__["versioning"] = versioning
         __props__.__dict__["website"] = website
         __props__.__dict__["website_domain"] = website_domain
@@ -1852,7 +1937,8 @@ class StorageBucket(pulumi.CustomResource):
     @pulumi.getter(name="accessKey")
     def access_key(self) -> pulumi.Output[Optional[str]]:
         """
-        The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        The access key to use when applying changes. If omitted, `storage_access_key` specified in
+        provider config (explicitly or within `shared_credentials_file`) is used.
         """
         return pulumi.get(self, "access_key")
 
@@ -1860,7 +1946,8 @@ class StorageBucket(pulumi.CustomResource):
     @pulumi.getter
     def acl(self) -> pulumi.Output[str]:
         """
-        The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+        Defaults to `private`. Conflicts with `grant`.
         """
         return pulumi.get(self, "acl")
 
@@ -1891,7 +1978,8 @@ class StorageBucket(pulumi.CustomResource):
     @pulumi.getter(name="bucketPrefix")
     def bucket_prefix(self) -> pulumi.Output[Optional[str]]:
         """
-        Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        Creates a unique bucket name beginning with the specified prefix.
+        Conflicts with `bucket`.
         """
         return pulumi.get(self, "bucket_prefix")
 
@@ -1908,7 +1996,7 @@ class StorageBucket(pulumi.CustomResource):
     def default_storage_class(self) -> pulumi.Output[str]:
         """
         Storage class which is used for storing objects by default.
-        Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+        Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
         See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
         """
         return pulumi.get(self, "default_storage_class")
@@ -1986,7 +2074,8 @@ class StorageBucket(pulumi.CustomResource):
     @pulumi.getter(name="secretKey")
     def secret_key(self) -> pulumi.Output[Optional[str]]:
         """
-        The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        The secret key to use when applying changes. If omitted, `storage_secret_key` specified in
+        provider config (explicitly or within `shared_credentials_file`) is used.
         """
         return pulumi.get(self, "secret_key")
 
@@ -1997,6 +2086,11 @@ class StorageBucket(pulumi.CustomResource):
         A configuration of server-side encryption for the bucket (documented below)
         """
         return pulumi.get(self, "server_side_encryption_configuration")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter

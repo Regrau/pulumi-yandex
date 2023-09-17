@@ -45,6 +45,9 @@ namespace Pulumi.Yandex
         [Output("createdAt")]
         public Output<string> CreatedAt { get; private set; } = null!;
 
+        [Output("dataStream")]
+        public Output<string?> DataStream { get; private set; } = null!;
+
         /// <summary>
         /// A description for the Yandex Cloud Logging group.
         /// </summary>
@@ -129,6 +132,9 @@ namespace Pulumi.Yandex
 
     public sealed class LoggingGroupArgs : global::Pulumi.ResourceArgs
     {
+        [Input("dataStream")]
+        public Input<string>? DataStream { get; set; }
+
         /// <summary>
         /// A description for the Yandex Cloud Logging group.
         /// </summary>
@@ -185,6 +191,9 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("createdAt")]
         public Input<string>? CreatedAt { get; set; }
+
+        [Input("dataStream")]
+        public Input<string>? DataStream { get; set; }
 
         /// <summary>
         /// A description for the Yandex Cloud Logging group.

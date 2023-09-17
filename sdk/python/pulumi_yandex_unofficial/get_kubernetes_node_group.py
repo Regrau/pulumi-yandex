@@ -163,7 +163,6 @@ class GetKubernetesNodeGroupResult:
     def labels(self) -> Mapping[str, str]:
         """
         Labels assigned to compute nodes (instances), created by the Node Group.
-        ---
         """
         return pulumi.get(self, "labels")
 

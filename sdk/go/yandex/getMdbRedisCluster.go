@@ -62,7 +62,9 @@ type LookupMdbRedisClusterArgs struct {
 
 // A collection of values returned by getMdbRedisCluster.
 type LookupMdbRedisClusterResult struct {
-	ClusterId string `pulumi:"clusterId"`
+	// Announce fqdn instead of ip address.
+	AnnounceHostnames bool   `pulumi:"announceHostnames"`
+	ClusterId         string `pulumi:"clusterId"`
 	// Configuration of the Redis cluster. The structure is documented below.
 	Configs []GetMdbRedisClusterConfig `pulumi:"configs"`
 	// Creation timestamp of the key.
@@ -140,6 +142,11 @@ func (o LookupMdbRedisClusterResultOutput) ToLookupMdbRedisClusterResultOutput()
 
 func (o LookupMdbRedisClusterResultOutput) ToLookupMdbRedisClusterResultOutputWithContext(ctx context.Context) LookupMdbRedisClusterResultOutput {
 	return o
+}
+
+// Announce fqdn instead of ip address.
+func (o LookupMdbRedisClusterResultOutput) AnnounceHostnames() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupMdbRedisClusterResult) bool { return v.AnnounceHostnames }).(pulumi.BoolOutput)
 }
 
 func (o LookupMdbRedisClusterResultOutput) ClusterId() pulumi.StringOutput {

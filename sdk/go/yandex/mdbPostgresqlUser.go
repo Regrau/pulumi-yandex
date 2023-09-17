@@ -96,6 +96,8 @@ type MdbPostgresqlUser struct {
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// The maximum number of connections per user. (Default 50)
 	ConnLimit pulumi.IntOutput `pulumi:"connLimit"`
+	// Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+	DeletionProtection pulumi.StringPtrOutput `pulumi:"deletionProtection"`
 	// List of the user's grants.
 	Grants pulumi.StringArrayOutput `pulumi:"grants"`
 	// User's ability to login.
@@ -156,6 +158,8 @@ type mdbPostgresqlUserState struct {
 	ClusterId *string `pulumi:"clusterId"`
 	// The maximum number of connections per user. (Default 50)
 	ConnLimit *int `pulumi:"connLimit"`
+	// Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+	DeletionProtection *string `pulumi:"deletionProtection"`
 	// List of the user's grants.
 	Grants []string `pulumi:"grants"`
 	// User's ability to login.
@@ -174,6 +178,8 @@ type MdbPostgresqlUserState struct {
 	ClusterId pulumi.StringPtrInput
 	// The maximum number of connections per user. (Default 50)
 	ConnLimit pulumi.IntPtrInput
+	// Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+	DeletionProtection pulumi.StringPtrInput
 	// List of the user's grants.
 	Grants pulumi.StringArrayInput
 	// User's ability to login.
@@ -196,6 +202,8 @@ type mdbPostgresqlUserArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	// The maximum number of connections per user. (Default 50)
 	ConnLimit *int `pulumi:"connLimit"`
+	// Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+	DeletionProtection *string `pulumi:"deletionProtection"`
 	// List of the user's grants.
 	Grants []string `pulumi:"grants"`
 	// User's ability to login.
@@ -215,6 +223,8 @@ type MdbPostgresqlUserArgs struct {
 	ClusterId pulumi.StringInput
 	// The maximum number of connections per user. (Default 50)
 	ConnLimit pulumi.IntPtrInput
+	// Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+	DeletionProtection pulumi.StringPtrInput
 	// List of the user's grants.
 	Grants pulumi.StringArrayInput
 	// User's ability to login.
@@ -323,6 +333,11 @@ func (o MdbPostgresqlUserOutput) ClusterId() pulumi.StringOutput {
 // The maximum number of connections per user. (Default 50)
 func (o MdbPostgresqlUserOutput) ConnLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v *MdbPostgresqlUser) pulumi.IntOutput { return v.ConnLimit }).(pulumi.IntOutput)
+}
+
+// Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+func (o MdbPostgresqlUserOutput) DeletionProtection() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MdbPostgresqlUser) pulumi.StringPtrOutput { return v.DeletionProtection }).(pulumi.StringPtrOutput)
 }
 
 // List of the user's grants.

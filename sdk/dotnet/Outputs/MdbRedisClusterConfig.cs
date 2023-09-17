@@ -28,6 +28,10 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly int? Databases;
         /// <summary>
+        /// Redis maxmemory usage in percent
+        /// </summary>
+        public readonly int? MaxmemoryPercent;
+        /// <summary>
         /// Redis key eviction policy for a dataset that reaches maximum memory.
         /// Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/).
         /// </summary>
@@ -65,6 +69,8 @@ namespace Pulumi.Yandex.Outputs
 
             int? databases,
 
+            int? maxmemoryPercent,
+
             string? maxmemoryPolicy,
 
             string? notifyKeyspaceEvents,
@@ -82,6 +88,7 @@ namespace Pulumi.Yandex.Outputs
             ClientOutputBufferLimitNormal = clientOutputBufferLimitNormal;
             ClientOutputBufferLimitPubsub = clientOutputBufferLimitPubsub;
             Databases = databases;
+            MaxmemoryPercent = maxmemoryPercent;
             MaxmemoryPolicy = maxmemoryPolicy;
             NotifyKeyspaceEvents = notifyKeyspaceEvents;
             Password = password;

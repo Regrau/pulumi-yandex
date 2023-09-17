@@ -139,6 +139,10 @@ namespace Pulumi.Yandex
     [OutputType]
     public sealed class GetMdbRedisClusterResult
     {
+        /// <summary>
+        /// Announce fqdn instead of ip address.
+        /// </summary>
+        public readonly bool AnnounceHostnames;
         public readonly string ClusterId;
         /// <summary>
         /// Configuration of the Redis cluster. The structure is documented below.
@@ -207,6 +211,8 @@ namespace Pulumi.Yandex
 
         [OutputConstructor]
         private GetMdbRedisClusterResult(
+            bool announceHostnames,
+
             string clusterId,
 
             ImmutableArray<Outputs.GetMdbRedisClusterConfigResult> configs,
@@ -247,6 +253,7 @@ namespace Pulumi.Yandex
 
             bool tlsEnabled)
         {
+            AnnounceHostnames = announceHostnames;
             ClusterId = clusterId;
             Configs = configs;
             CreatedAt = createdAt;

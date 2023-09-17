@@ -58,7 +58,7 @@ import * as utilities from "./utilities";
  *         http_headers:
  *           'Content-Type': "text/plain"
  *         content:
- *           'text/plain': "Hello again, {user}!\n"
+ *           'text/plain': "Hello again, {user}!\\n"
  * `,
  * });
  * ```

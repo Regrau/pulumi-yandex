@@ -10,9 +10,6 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Get information about a user of Yandex SAML Federation. For more information, see
-// [the official documentation](https://cloud.yandex.com/docs/organization/operations/federations/integration-common).
-//
 // ## Example Usage
 //
 // ```go
@@ -27,7 +24,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			account, err := yandex.GetOrganizationmanagerSamlFederationUserAccount(ctx, &GetOrganizationmanagerSamlFederationUserAccountArgs{
+//			account, err := yandex.LookupOrganizationmanagerSamlFederationUserAccount(ctx, &GetOrganizationmanagerSamlFederationUserAccountArgs{
 //				FederationId: "some_federation_id",
 //				NameId:       "example@example.org",
 //			}, nil)
@@ -40,9 +37,9 @@ import (
 //	}
 //
 // ```
-func GetOrganizationmanagerSamlFederationUserAccount(ctx *pulumi.Context, args *GetOrganizationmanagerSamlFederationUserAccountArgs, opts ...pulumi.InvokeOption) (*GetOrganizationmanagerSamlFederationUserAccountResult, error) {
+func LookupOrganizationmanagerSamlFederationUserAccount(ctx *pulumi.Context, args *LookupOrganizationmanagerSamlFederationUserAccountArgs, opts ...pulumi.InvokeOption) (*LookupOrganizationmanagerSamlFederationUserAccountResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
-	var rv GetOrganizationmanagerSamlFederationUserAccountResult
+	var rv LookupOrganizationmanagerSamlFederationUserAccountResult
 	err := ctx.Invoke("yandex:index/getOrganizationmanagerSamlFederationUserAccount:getOrganizationmanagerSamlFederationUserAccount", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -51,7 +48,7 @@ func GetOrganizationmanagerSamlFederationUserAccount(ctx *pulumi.Context, args *
 }
 
 // A collection of arguments for invoking getOrganizationmanagerSamlFederationUserAccount.
-type GetOrganizationmanagerSamlFederationUserAccountArgs struct {
+type LookupOrganizationmanagerSamlFederationUserAccountArgs struct {
 	// ID of a SAML Federation.
 	FederationId string `pulumi:"federationId"`
 	// Name Id of the SAML federated user.
@@ -59,66 +56,66 @@ type GetOrganizationmanagerSamlFederationUserAccountArgs struct {
 }
 
 // A collection of values returned by getOrganizationmanagerSamlFederationUserAccount.
-type GetOrganizationmanagerSamlFederationUserAccountResult struct {
+type LookupOrganizationmanagerSamlFederationUserAccountResult struct {
 	FederationId string `pulumi:"federationId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id     string `pulumi:"id"`
 	NameId string `pulumi:"nameId"`
 }
 
-func GetOrganizationmanagerSamlFederationUserAccountOutput(ctx *pulumi.Context, args GetOrganizationmanagerSamlFederationUserAccountOutputArgs, opts ...pulumi.InvokeOption) GetOrganizationmanagerSamlFederationUserAccountResultOutput {
+func LookupOrganizationmanagerSamlFederationUserAccountOutput(ctx *pulumi.Context, args LookupOrganizationmanagerSamlFederationUserAccountOutputArgs, opts ...pulumi.InvokeOption) LookupOrganizationmanagerSamlFederationUserAccountResultOutput {
 	return pulumi.ToOutputWithContext(context.Background(), args).
-		ApplyT(func(v interface{}) (GetOrganizationmanagerSamlFederationUserAccountResult, error) {
-			args := v.(GetOrganizationmanagerSamlFederationUserAccountArgs)
-			r, err := GetOrganizationmanagerSamlFederationUserAccount(ctx, &args, opts...)
-			var s GetOrganizationmanagerSamlFederationUserAccountResult
+		ApplyT(func(v interface{}) (LookupOrganizationmanagerSamlFederationUserAccountResult, error) {
+			args := v.(LookupOrganizationmanagerSamlFederationUserAccountArgs)
+			r, err := LookupOrganizationmanagerSamlFederationUserAccount(ctx, &args, opts...)
+			var s LookupOrganizationmanagerSamlFederationUserAccountResult
 			if r != nil {
 				s = *r
 			}
 			return s, err
-		}).(GetOrganizationmanagerSamlFederationUserAccountResultOutput)
+		}).(LookupOrganizationmanagerSamlFederationUserAccountResultOutput)
 }
 
 // A collection of arguments for invoking getOrganizationmanagerSamlFederationUserAccount.
-type GetOrganizationmanagerSamlFederationUserAccountOutputArgs struct {
+type LookupOrganizationmanagerSamlFederationUserAccountOutputArgs struct {
 	// ID of a SAML Federation.
 	FederationId pulumi.StringInput `pulumi:"federationId"`
 	// Name Id of the SAML federated user.
 	NameId pulumi.StringInput `pulumi:"nameId"`
 }
 
-func (GetOrganizationmanagerSamlFederationUserAccountOutputArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetOrganizationmanagerSamlFederationUserAccountArgs)(nil)).Elem()
+func (LookupOrganizationmanagerSamlFederationUserAccountOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupOrganizationmanagerSamlFederationUserAccountArgs)(nil)).Elem()
 }
 
 // A collection of values returned by getOrganizationmanagerSamlFederationUserAccount.
-type GetOrganizationmanagerSamlFederationUserAccountResultOutput struct{ *pulumi.OutputState }
+type LookupOrganizationmanagerSamlFederationUserAccountResultOutput struct{ *pulumi.OutputState }
 
-func (GetOrganizationmanagerSamlFederationUserAccountResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetOrganizationmanagerSamlFederationUserAccountResult)(nil)).Elem()
+func (LookupOrganizationmanagerSamlFederationUserAccountResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupOrganizationmanagerSamlFederationUserAccountResult)(nil)).Elem()
 }
 
-func (o GetOrganizationmanagerSamlFederationUserAccountResultOutput) ToGetOrganizationmanagerSamlFederationUserAccountResultOutput() GetOrganizationmanagerSamlFederationUserAccountResultOutput {
+func (o LookupOrganizationmanagerSamlFederationUserAccountResultOutput) ToLookupOrganizationmanagerSamlFederationUserAccountResultOutput() LookupOrganizationmanagerSamlFederationUserAccountResultOutput {
 	return o
 }
 
-func (o GetOrganizationmanagerSamlFederationUserAccountResultOutput) ToGetOrganizationmanagerSamlFederationUserAccountResultOutputWithContext(ctx context.Context) GetOrganizationmanagerSamlFederationUserAccountResultOutput {
+func (o LookupOrganizationmanagerSamlFederationUserAccountResultOutput) ToLookupOrganizationmanagerSamlFederationUserAccountResultOutputWithContext(ctx context.Context) LookupOrganizationmanagerSamlFederationUserAccountResultOutput {
 	return o
 }
 
-func (o GetOrganizationmanagerSamlFederationUserAccountResultOutput) FederationId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOrganizationmanagerSamlFederationUserAccountResult) string { return v.FederationId }).(pulumi.StringOutput)
+func (o LookupOrganizationmanagerSamlFederationUserAccountResultOutput) FederationId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationmanagerSamlFederationUserAccountResult) string { return v.FederationId }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
-func (o GetOrganizationmanagerSamlFederationUserAccountResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOrganizationmanagerSamlFederationUserAccountResult) string { return v.Id }).(pulumi.StringOutput)
+func (o LookupOrganizationmanagerSamlFederationUserAccountResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationmanagerSamlFederationUserAccountResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-func (o GetOrganizationmanagerSamlFederationUserAccountResultOutput) NameId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetOrganizationmanagerSamlFederationUserAccountResult) string { return v.NameId }).(pulumi.StringOutput)
+func (o LookupOrganizationmanagerSamlFederationUserAccountResultOutput) NameId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationmanagerSamlFederationUserAccountResult) string { return v.NameId }).(pulumi.StringOutput)
 }
 
 func init() {
-	pulumi.RegisterOutputType(GetOrganizationmanagerSamlFederationUserAccountResultOutput{})
+	pulumi.RegisterOutputType(LookupOrganizationmanagerSamlFederationUserAccountResultOutput{})
 }

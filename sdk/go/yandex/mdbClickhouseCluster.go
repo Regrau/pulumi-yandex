@@ -35,6 +35,7 @@ type MdbClickhouseCluster struct {
 	// Configuration of the ClickHouse subcluster. The structure is documented below.
 	Clickhouse   MdbClickhouseClusterClickhouseOutput   `pulumi:"clickhouse"`
 	CloudStorage MdbClickhouseClusterCloudStorageOutput `pulumi:"cloudStorage"`
+	ClusterId    pulumi.StringOutput                    `pulumi:"clusterId"`
 	// Whether to copy schema on new ClickHouse hosts.
 	CopySchemaOnNewHosts pulumi.BoolPtrOutput `pulumi:"copySchemaOnNewHosts"`
 	// Timestamp of cluster creation.
@@ -145,6 +146,7 @@ type mdbClickhouseClusterState struct {
 	// Configuration of the ClickHouse subcluster. The structure is documented below.
 	Clickhouse   *MdbClickhouseClusterClickhouse   `pulumi:"clickhouse"`
 	CloudStorage *MdbClickhouseClusterCloudStorage `pulumi:"cloudStorage"`
+	ClusterId    *string                           `pulumi:"clusterId"`
 	// Whether to copy schema on new ClickHouse hosts.
 	CopySchemaOnNewHosts *bool `pulumi:"copySchemaOnNewHosts"`
 	// Timestamp of cluster creation.
@@ -210,6 +212,7 @@ type MdbClickhouseClusterState struct {
 	// Configuration of the ClickHouse subcluster. The structure is documented below.
 	Clickhouse   MdbClickhouseClusterClickhousePtrInput
 	CloudStorage MdbClickhouseClusterCloudStoragePtrInput
+	ClusterId    pulumi.StringPtrInput
 	// Whether to copy schema on new ClickHouse hosts.
 	CopySchemaOnNewHosts pulumi.BoolPtrInput
 	// Timestamp of cluster creation.
@@ -279,6 +282,7 @@ type mdbClickhouseClusterArgs struct {
 	// Configuration of the ClickHouse subcluster. The structure is documented below.
 	Clickhouse   *MdbClickhouseClusterClickhouse   `pulumi:"clickhouse"`
 	CloudStorage *MdbClickhouseClusterCloudStorage `pulumi:"cloudStorage"`
+	ClusterId    *string                           `pulumi:"clusterId"`
 	// Whether to copy schema on new ClickHouse hosts.
 	CopySchemaOnNewHosts *bool `pulumi:"copySchemaOnNewHosts"`
 	// A database of the ClickHouse cluster. The structure is documented below.
@@ -337,6 +341,7 @@ type MdbClickhouseClusterArgs struct {
 	// Configuration of the ClickHouse subcluster. The structure is documented below.
 	Clickhouse   MdbClickhouseClusterClickhousePtrInput
 	CloudStorage MdbClickhouseClusterCloudStoragePtrInput
+	ClusterId    pulumi.StringPtrInput
 	// Whether to copy schema on new ClickHouse hosts.
 	CopySchemaOnNewHosts pulumi.BoolPtrInput
 	// A database of the ClickHouse cluster. The structure is documented below.
@@ -493,6 +498,10 @@ func (o MdbClickhouseClusterOutput) Clickhouse() MdbClickhouseClusterClickhouseO
 
 func (o MdbClickhouseClusterOutput) CloudStorage() MdbClickhouseClusterCloudStorageOutput {
 	return o.ApplyT(func(v *MdbClickhouseCluster) MdbClickhouseClusterCloudStorageOutput { return v.CloudStorage }).(MdbClickhouseClusterCloudStorageOutput)
+}
+
+func (o MdbClickhouseClusterOutput) ClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v *MdbClickhouseCluster) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
 }
 
 // Whether to copy schema on new ClickHouse hosts.

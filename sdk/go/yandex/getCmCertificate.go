@@ -32,12 +32,13 @@ type LookupCmCertificateArgs struct {
 
 // A collection of values returned by getCmCertificate.
 type LookupCmCertificateResult struct {
-	CertificateId string                      `pulumi:"certificateId"`
-	Challenges    []GetCmCertificateChallenge `pulumi:"challenges"`
-	CreatedAt     string                      `pulumi:"createdAt"`
-	Description   string                      `pulumi:"description"`
-	Domains       []string                    `pulumi:"domains"`
-	FolderId      string                      `pulumi:"folderId"`
+	CertificateId      string                      `pulumi:"certificateId"`
+	Challenges         []GetCmCertificateChallenge `pulumi:"challenges"`
+	CreatedAt          string                      `pulumi:"createdAt"`
+	DeletionProtection bool                        `pulumi:"deletionProtection"`
+	Description        string                      `pulumi:"description"`
+	Domains            []string                    `pulumi:"domains"`
+	FolderId           string                      `pulumi:"folderId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id             string            `pulumi:"id"`
 	IssuedAt       string            `pulumi:"issuedAt"`
@@ -106,6 +107,10 @@ func (o LookupCmCertificateResultOutput) Challenges() GetCmCertificateChallengeA
 
 func (o LookupCmCertificateResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCmCertificateResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupCmCertificateResultOutput) DeletionProtection() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupCmCertificateResult) bool { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
 
 func (o LookupCmCertificateResultOutput) Description() pulumi.StringOutput {

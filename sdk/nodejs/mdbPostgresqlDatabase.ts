@@ -96,6 +96,10 @@ export class MdbPostgresqlDatabase extends pulumi.CustomResource {
 
     public readonly clusterId!: pulumi.Output<string>;
     /**
+     * Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+     */
+    public readonly deletionProtection!: pulumi.Output<string | undefined>;
+    /**
      * Set of database extensions. The structure is documented below
      */
     public readonly extensions!: pulumi.Output<outputs.MdbPostgresqlDatabaseExtension[] | undefined>;
@@ -134,6 +138,7 @@ export class MdbPostgresqlDatabase extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as MdbPostgresqlDatabaseState | undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
+            resourceInputs["deletionProtection"] = state ? state.deletionProtection : undefined;
             resourceInputs["extensions"] = state ? state.extensions : undefined;
             resourceInputs["lcCollate"] = state ? state.lcCollate : undefined;
             resourceInputs["lcType"] = state ? state.lcType : undefined;
@@ -149,6 +154,7 @@ export class MdbPostgresqlDatabase extends pulumi.CustomResource {
                 throw new Error("Missing required property 'owner'");
             }
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
+            resourceInputs["deletionProtection"] = args ? args.deletionProtection : undefined;
             resourceInputs["extensions"] = args ? args.extensions : undefined;
             resourceInputs["lcCollate"] = args ? args.lcCollate : undefined;
             resourceInputs["lcType"] = args ? args.lcType : undefined;
@@ -166,6 +172,10 @@ export class MdbPostgresqlDatabase extends pulumi.CustomResource {
  */
 export interface MdbPostgresqlDatabaseState {
     clusterId?: pulumi.Input<string>;
+    /**
+     * Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+     */
+    deletionProtection?: pulumi.Input<string>;
     /**
      * Set of database extensions. The structure is documented below
      */
@@ -197,6 +207,10 @@ export interface MdbPostgresqlDatabaseState {
  */
 export interface MdbPostgresqlDatabaseArgs {
     clusterId: pulumi.Input<string>;
+    /**
+     * Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+     */
+    deletionProtection?: pulumi.Input<string>;
     /**
      * Set of database extensions. The structure is documented below
      */

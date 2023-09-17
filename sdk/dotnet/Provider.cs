@@ -39,6 +39,15 @@ namespace Pulumi.Yandex
         [Output("organizationId")]
         public Output<string?> OrganizationId { get; private set; } = null!;
 
+        /// <summary>
+        /// Profile to use in the shared credentials file. Default value is `default`.
+        /// </summary>
+        [Output("profile")]
+        public Output<string?> Profile { get; private set; } = null!;
+
+        /// <summary>
+        /// The region where operations will take place. Examples are ru-central1
+        /// </summary>
         [Output("regionId")]
         public Output<string?> RegionId { get; private set; } = null!;
 
@@ -47,6 +56,12 @@ namespace Pulumi.Yandex
         /// </summary>
         [Output("serviceAccountKeyFile")]
         public Output<string?> ServiceAccountKeyFile { get; private set; } = null!;
+
+        /// <summary>
+        /// Path to shared credentials file.
+        /// </summary>
+        [Output("sharedCredentialsFile")]
+        public Output<string?> SharedCredentialsFile { get; private set; } = null!;
 
         /// <summary>
         /// Yandex.Cloud storage service access key. Used when a storage data/resource doesn't have an access key explicitly
@@ -174,6 +189,15 @@ namespace Pulumi.Yandex
         [Input("plaintext", json: true)]
         public Input<bool>? Plaintext { get; set; }
 
+        /// <summary>
+        /// Profile to use in the shared credentials file. Default value is `default`.
+        /// </summary>
+        [Input("profile")]
+        public Input<string>? Profile { get; set; }
+
+        /// <summary>
+        /// The region where operations will take place. Examples are ru-central1
+        /// </summary>
         [Input("regionId")]
         public Input<string>? RegionId { get; set; }
 
@@ -182,6 +206,12 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("serviceAccountKeyFile")]
         public Input<string>? ServiceAccountKeyFile { get; set; }
+
+        /// <summary>
+        /// Path to shared credentials file.
+        /// </summary>
+        [Input("sharedCredentialsFile")]
+        public Input<string>? SharedCredentialsFile { get; set; }
 
         /// <summary>
         /// Yandex.Cloud storage service access key. Used when a storage data/resource doesn't have an access key explicitly

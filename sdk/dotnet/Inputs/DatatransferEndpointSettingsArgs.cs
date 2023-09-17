@@ -12,15 +12,39 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class DatatransferEndpointSettingsArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Settings specific to the ClickHouse source endpoint.
+        /// </summary>
         [Input("clickhouseSource")]
         public Input<Inputs.DatatransferEndpointSettingsClickhouseSourceArgs>? ClickhouseSource { get; set; }
 
+        /// <summary>
+        /// Settings specific to the ClickHouse target endpoint.
+        /// </summary>
         [Input("clickhouseTarget")]
         public Input<Inputs.DatatransferEndpointSettingsClickhouseTargetArgs>? ClickhouseTarget { get; set; }
 
+        /// <summary>
+        /// Settings specific to the Kafka source endpoint.
+        /// </summary>
+        [Input("kafkaSource")]
+        public Input<Inputs.DatatransferEndpointSettingsKafkaSourceArgs>? KafkaSource { get; set; }
+
+        /// <summary>
+        /// Settings specific to the Kafka target endpoint.
+        /// </summary>
+        [Input("kafkaTarget")]
+        public Input<Inputs.DatatransferEndpointSettingsKafkaTargetArgs>? KafkaTarget { get; set; }
+
+        /// <summary>
+        /// Settings specific to the MongoDB source endpoint.
+        /// </summary>
         [Input("mongoSource")]
         public Input<Inputs.DatatransferEndpointSettingsMongoSourceArgs>? MongoSource { get; set; }
 
+        /// <summary>
+        /// Settings specific to the MongoDB target endpoint.
+        /// </summary>
         [Input("mongoTarget")]
         public Input<Inputs.DatatransferEndpointSettingsMongoTargetArgs>? MongoTarget { get; set; }
 
@@ -47,6 +71,18 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("postgresTarget")]
         public Input<Inputs.DatatransferEndpointSettingsPostgresTargetArgs>? PostgresTarget { get; set; }
+
+        /// <summary>
+        /// Settings specific to the YDB source endpoint.
+        /// </summary>
+        [Input("ydbSource")]
+        public Input<Inputs.DatatransferEndpointSettingsYdbSourceArgs>? YdbSource { get; set; }
+
+        /// <summary>
+        /// Settings specific to the YDB target endpoint.
+        /// </summary>
+        [Input("ydbTarget")]
+        public Input<Inputs.DatatransferEndpointSettingsYdbTargetArgs>? YdbTarget { get; set; }
 
         public DatatransferEndpointSettingsArgs()
         {

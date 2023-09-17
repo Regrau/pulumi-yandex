@@ -81,7 +81,6 @@ type LookupKubernetesNodeGroupResult struct {
 	// Template used to create compute instances in this Kubernetes node group. The structure is documented below.
 	InstanceTemplates []GetKubernetesNodeGroupInstanceTemplate `pulumi:"instanceTemplates"`
 	// Labels assigned to compute nodes (instances), created by the Node Group.
-	// ---
 	Labels map[string]string `pulumi:"labels"`
 	// Information about maintenance policy for this Kubernetes node group. The structure is documented below.
 	MaintenancePolicies []GetKubernetesNodeGroupMaintenancePolicy `pulumi:"maintenancePolicies"`
@@ -196,7 +195,6 @@ func (o LookupKubernetesNodeGroupResultOutput) InstanceTemplates() GetKubernetes
 }
 
 // Labels assigned to compute nodes (instances), created by the Node Group.
-// ---
 func (o LookupKubernetesNodeGroupResultOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v LookupKubernetesNodeGroupResult) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }

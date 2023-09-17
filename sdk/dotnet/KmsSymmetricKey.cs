@@ -54,6 +54,9 @@ namespace Pulumi.Yandex
         [Output("defaultAlgorithm")]
         public Output<string?> DefaultAlgorithm { get; private set; } = null!;
 
+        [Output("deletionProtection")]
+        public Output<bool?> DeletionProtection { get; private set; } = null!;
+
         /// <summary>
         /// An optional description of the key.
         /// </summary>
@@ -151,6 +154,9 @@ namespace Pulumi.Yandex
         [Input("defaultAlgorithm")]
         public Input<string>? DefaultAlgorithm { get; set; }
 
+        [Input("deletionProtection")]
+        public Input<bool>? DeletionProtection { get; set; }
+
         /// <summary>
         /// An optional description of the key.
         /// </summary>
@@ -208,6 +214,9 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("defaultAlgorithm")]
         public Input<string>? DefaultAlgorithm { get; set; }
+
+        [Input("deletionProtection")]
+        public Input<bool>? DeletionProtection { get; set; }
 
         /// <summary>
         /// An optional description of the key.

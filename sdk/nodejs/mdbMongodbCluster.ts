@@ -43,10 +43,20 @@ import * as utilities from "./utilities";
  *         type: "ANYTIME",
  *     },
  *     networkId: fooVpcNetwork.id,
- *     resources: {
+ *     resourcesMongocfg: {
+ *         diskSize: 14,
+ *         diskTypeId: "network-hdd",
+ *         resourcePresetId: "s2.small",
+ *     },
+ *     resourcesMongod: {
  *         diskSize: 16,
  *         diskTypeId: "network-hdd",
- *         resourcePresetId: "b1.nano",
+ *         resourcePresetId: "s2.small",
+ *     },
+ *     resourcesMongos: {
+ *         diskSize: 14,
+ *         diskTypeId: "network-hdd",
+ *         resourcePresetId: "s2.small",
  *     },
  *     users: [{
  *         name: "john",
@@ -140,6 +150,9 @@ export class MdbMongodbCluster extends pulumi.CustomResource {
      * A set of key/value label pairs to assign to the MongoDB cluster.
      */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
+    /**
+     * Maintenance window settings of the MongoDB cluster. The structure is documented below.
+     */
     public readonly maintenanceWindow!: pulumi.Output<outputs.MdbMongodbClusterMaintenanceWindow>;
     /**
      * The fully qualified domain name of the host. Computed on server side.
@@ -151,8 +164,26 @@ export class MdbMongodbCluster extends pulumi.CustomResource {
     public readonly networkId!: pulumi.Output<string>;
     /**
      * Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+     *
+     * @deprecated to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
      */
-    public readonly resources!: pulumi.Output<outputs.MdbMongodbClusterResources>;
+    public readonly resources!: pulumi.Output<outputs.MdbMongodbClusterResources | undefined>;
+    /**
+     * Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+     */
+    public readonly resourcesMongocfg!: pulumi.Output<outputs.MdbMongodbClusterResourcesMongocfg | undefined>;
+    /**
+     * Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+     */
+    public readonly resourcesMongod!: pulumi.Output<outputs.MdbMongodbClusterResourcesMongod | undefined>;
+    /**
+     * Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+     */
+    public readonly resourcesMongoinfra!: pulumi.Output<outputs.MdbMongodbClusterResourcesMongoinfra | undefined>;
+    /**
+     * Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+     */
+    public readonly resourcesMongos!: pulumi.Output<outputs.MdbMongodbClusterResourcesMongos | undefined>;
     /**
      * The cluster will be created from the specified backup. The structure is documented below.
      */
@@ -203,6 +234,10 @@ export class MdbMongodbCluster extends pulumi.CustomResource {
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["networkId"] = state ? state.networkId : undefined;
             resourceInputs["resources"] = state ? state.resources : undefined;
+            resourceInputs["resourcesMongocfg"] = state ? state.resourcesMongocfg : undefined;
+            resourceInputs["resourcesMongod"] = state ? state.resourcesMongod : undefined;
+            resourceInputs["resourcesMongoinfra"] = state ? state.resourcesMongoinfra : undefined;
+            resourceInputs["resourcesMongos"] = state ? state.resourcesMongos : undefined;
             resourceInputs["restore"] = state ? state.restore : undefined;
             resourceInputs["securityGroupIds"] = state ? state.securityGroupIds : undefined;
             resourceInputs["sharded"] = state ? state.sharded : undefined;
@@ -225,9 +260,6 @@ export class MdbMongodbCluster extends pulumi.CustomResource {
             if ((!args || args.networkId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'networkId'");
             }
-            if ((!args || args.resources === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'resources'");
-            }
             if ((!args || args.users === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'users'");
             }
@@ -244,6 +276,10 @@ export class MdbMongodbCluster extends pulumi.CustomResource {
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["networkId"] = args ? args.networkId : undefined;
             resourceInputs["resources"] = args ? args.resources : undefined;
+            resourceInputs["resourcesMongocfg"] = args ? args.resourcesMongocfg : undefined;
+            resourceInputs["resourcesMongod"] = args ? args.resourcesMongod : undefined;
+            resourceInputs["resourcesMongoinfra"] = args ? args.resourcesMongoinfra : undefined;
+            resourceInputs["resourcesMongos"] = args ? args.resourcesMongos : undefined;
             resourceInputs["restore"] = args ? args.restore : undefined;
             resourceInputs["securityGroupIds"] = args ? args.securityGroupIds : undefined;
             resourceInputs["users"] = args ? args.users : undefined;
@@ -307,6 +343,9 @@ export interface MdbMongodbClusterState {
      * A set of key/value label pairs to assign to the MongoDB cluster.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Maintenance window settings of the MongoDB cluster. The structure is documented below.
+     */
     maintenanceWindow?: pulumi.Input<inputs.MdbMongodbClusterMaintenanceWindow>;
     /**
      * The fully qualified domain name of the host. Computed on server side.
@@ -318,8 +357,26 @@ export interface MdbMongodbClusterState {
     networkId?: pulumi.Input<string>;
     /**
      * Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+     *
+     * @deprecated to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
      */
     resources?: pulumi.Input<inputs.MdbMongodbClusterResources>;
+    /**
+     * Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+     */
+    resourcesMongocfg?: pulumi.Input<inputs.MdbMongodbClusterResourcesMongocfg>;
+    /**
+     * Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+     */
+    resourcesMongod?: pulumi.Input<inputs.MdbMongodbClusterResourcesMongod>;
+    /**
+     * Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+     */
+    resourcesMongoinfra?: pulumi.Input<inputs.MdbMongodbClusterResourcesMongoinfra>;
+    /**
+     * Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+     */
+    resourcesMongos?: pulumi.Input<inputs.MdbMongodbClusterResourcesMongos>;
     /**
      * The cluster will be created from the specified backup. The structure is documented below.
      */
@@ -385,6 +442,9 @@ export interface MdbMongodbClusterArgs {
      * A set of key/value label pairs to assign to the MongoDB cluster.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * Maintenance window settings of the MongoDB cluster. The structure is documented below.
+     */
     maintenanceWindow?: pulumi.Input<inputs.MdbMongodbClusterMaintenanceWindow>;
     /**
      * The fully qualified domain name of the host. Computed on server side.
@@ -396,8 +456,26 @@ export interface MdbMongodbClusterArgs {
     networkId: pulumi.Input<string>;
     /**
      * Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+     *
+     * @deprecated to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
      */
-    resources: pulumi.Input<inputs.MdbMongodbClusterResources>;
+    resources?: pulumi.Input<inputs.MdbMongodbClusterResources>;
+    /**
+     * Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+     */
+    resourcesMongocfg?: pulumi.Input<inputs.MdbMongodbClusterResourcesMongocfg>;
+    /**
+     * Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+     */
+    resourcesMongod?: pulumi.Input<inputs.MdbMongodbClusterResourcesMongod>;
+    /**
+     * Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+     */
+    resourcesMongoinfra?: pulumi.Input<inputs.MdbMongodbClusterResourcesMongoinfra>;
+    /**
+     * Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+     */
+    resourcesMongos?: pulumi.Input<inputs.MdbMongodbClusterResourcesMongos>;
     /**
      * The cluster will be created from the specified backup. The structure is documented below.
      */

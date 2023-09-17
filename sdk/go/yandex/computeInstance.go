@@ -111,6 +111,8 @@ type ComputeInstance struct {
 	FolderId pulumi.StringOutput `pulumi:"folderId"`
 	// DNS record FQDN (must have a dot at the end).
 	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
+	// ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+	GpuClusterId pulumi.StringOutput `pulumi:"gpuClusterId"`
 	// Host name for the instance. This field is used to generate the instance `fqdn` value.
 	// The host name must be unique within the network and region. If not specified, the host name will be equal
 	// to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
@@ -206,6 +208,8 @@ type computeInstanceState struct {
 	FolderId *string `pulumi:"folderId"`
 	// DNS record FQDN (must have a dot at the end).
 	Fqdn *string `pulumi:"fqdn"`
+	// ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+	GpuClusterId *string `pulumi:"gpuClusterId"`
 	// Host name for the instance. This field is used to generate the instance `fqdn` value.
 	// The host name must be unique within the network and region. If not specified, the host name will be equal
 	// to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
@@ -263,6 +267,8 @@ type ComputeInstanceState struct {
 	FolderId pulumi.StringPtrInput
 	// DNS record FQDN (must have a dot at the end).
 	Fqdn pulumi.StringPtrInput
+	// ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+	GpuClusterId pulumi.StringPtrInput
 	// Host name for the instance. This field is used to generate the instance `fqdn` value.
 	// The host name must be unique within the network and region. If not specified, the host name will be equal
 	// to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
@@ -320,6 +326,8 @@ type computeInstanceArgs struct {
 	// The ID of the folder that the resource belongs to. If it
 	// is not provided, the default provider folder is used.
 	FolderId *string `pulumi:"folderId"`
+	// ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+	GpuClusterId *string `pulumi:"gpuClusterId"`
 	// Host name for the instance. This field is used to generate the instance `fqdn` value.
 	// The host name must be unique within the network and region. If not specified, the host name will be equal
 	// to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
@@ -372,6 +380,8 @@ type ComputeInstanceArgs struct {
 	// The ID of the folder that the resource belongs to. If it
 	// is not provided, the default provider folder is used.
 	FolderId pulumi.StringPtrInput
+	// ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+	GpuClusterId pulumi.StringPtrInput
 	// Host name for the instance. This field is used to generate the instance `fqdn` value.
 	// The host name must be unique within the network and region. If not specified, the host name will be equal
 	// to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
@@ -535,6 +545,11 @@ func (o ComputeInstanceOutput) FolderId() pulumi.StringOutput {
 // DNS record FQDN (must have a dot at the end).
 func (o ComputeInstanceOutput) Fqdn() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeInstance) pulumi.StringOutput { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+// ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+func (o ComputeInstanceOutput) GpuClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v *ComputeInstance) pulumi.StringOutput { return v.GpuClusterId }).(pulumi.StringOutput)
 }
 
 // Host name for the instance. This field is used to generate the instance `fqdn` value.

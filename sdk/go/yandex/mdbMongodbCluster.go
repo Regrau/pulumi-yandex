@@ -67,10 +67,20 @@ import (
 //					Type: pulumi.String("ANYTIME"),
 //				},
 //				NetworkId: fooVpcNetwork.ID(),
-//				Resources: &MdbMongodbClusterResourcesArgs{
+//				ResourcesMongocfg: &MdbMongodbClusterResourcesMongocfgArgs{
+//					DiskSize:         pulumi.Int(14),
+//					DiskTypeId:       pulumi.String("network-hdd"),
+//					ResourcePresetId: pulumi.String("s2.small"),
+//				},
+//				ResourcesMongod: &MdbMongodbClusterResourcesMongodArgs{
 //					DiskSize:         pulumi.Int(16),
 //					DiskTypeId:       pulumi.String("network-hdd"),
-//					ResourcePresetId: pulumi.String("b1.nano"),
+//					ResourcePresetId: pulumi.String("s2.small"),
+//				},
+//				ResourcesMongos: &MdbMongodbClusterResourcesMongosArgs{
+//					DiskSize:         pulumi.Int(14),
+//					DiskTypeId:       pulumi.String("network-hdd"),
+//					ResourcePresetId: pulumi.String("s2.small"),
 //				},
 //				Users: MdbMongodbClusterUserArray{
 //					&MdbMongodbClusterUserArgs{
@@ -128,14 +138,25 @@ type MdbMongodbCluster struct {
 	// A host of the MongoDB cluster. The structure is documented below.
 	Hosts MdbMongodbClusterHostArrayOutput `pulumi:"hosts"`
 	// A set of key/value label pairs to assign to the MongoDB cluster.
-	Labels            pulumi.StringMapOutput                   `pulumi:"labels"`
+	Labels pulumi.StringMapOutput `pulumi:"labels"`
+	// Maintenance window settings of the MongoDB cluster. The structure is documented below.
 	MaintenanceWindow MdbMongodbClusterMaintenanceWindowOutput `pulumi:"maintenanceWindow"`
 	// The fully qualified domain name of the host. Computed on server side.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// ID of the network, to which the MongoDB cluster belongs.
 	NetworkId pulumi.StringOutput `pulumi:"networkId"`
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
-	Resources MdbMongodbClusterResourcesOutput `pulumi:"resources"`
+	//
+	// Deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
+	Resources MdbMongodbClusterResourcesPtrOutput `pulumi:"resources"`
+	// Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongocfg MdbMongodbClusterResourcesMongocfgPtrOutput `pulumi:"resourcesMongocfg"`
+	// Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongod MdbMongodbClusterResourcesMongodPtrOutput `pulumi:"resourcesMongod"`
+	// Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongoinfra MdbMongodbClusterResourcesMongoinfraPtrOutput `pulumi:"resourcesMongoinfra"`
+	// Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongos MdbMongodbClusterResourcesMongosPtrOutput `pulumi:"resourcesMongos"`
 	// The cluster will be created from the specified backup. The structure is documented below.
 	Restore MdbMongodbClusterRestorePtrOutput `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
@@ -170,9 +191,6 @@ func NewMdbMongodbCluster(ctx *pulumi.Context,
 	}
 	if args.NetworkId == nil {
 		return nil, errors.New("invalid value for required argument 'NetworkId'")
-	}
-	if args.Resources == nil {
-		return nil, errors.New("invalid value for required argument 'Resources'")
 	}
 	if args.Users == nil {
 		return nil, errors.New("invalid value for required argument 'Users'")
@@ -223,14 +241,25 @@ type mdbMongodbClusterState struct {
 	// A host of the MongoDB cluster. The structure is documented below.
 	Hosts []MdbMongodbClusterHost `pulumi:"hosts"`
 	// A set of key/value label pairs to assign to the MongoDB cluster.
-	Labels            map[string]string                   `pulumi:"labels"`
+	Labels map[string]string `pulumi:"labels"`
+	// Maintenance window settings of the MongoDB cluster. The structure is documented below.
 	MaintenanceWindow *MdbMongodbClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// The fully qualified domain name of the host. Computed on server side.
 	Name *string `pulumi:"name"`
 	// ID of the network, to which the MongoDB cluster belongs.
 	NetworkId *string `pulumi:"networkId"`
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+	//
+	// Deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
 	Resources *MdbMongodbClusterResources `pulumi:"resources"`
+	// Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongocfg *MdbMongodbClusterResourcesMongocfg `pulumi:"resourcesMongocfg"`
+	// Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongod *MdbMongodbClusterResourcesMongod `pulumi:"resourcesMongod"`
+	// Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongoinfra *MdbMongodbClusterResourcesMongoinfra `pulumi:"resourcesMongoinfra"`
+	// Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongos *MdbMongodbClusterResourcesMongos `pulumi:"resourcesMongos"`
 	// The cluster will be created from the specified backup. The structure is documented below.
 	Restore *MdbMongodbClusterRestore `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
@@ -268,14 +297,25 @@ type MdbMongodbClusterState struct {
 	// A host of the MongoDB cluster. The structure is documented below.
 	Hosts MdbMongodbClusterHostArrayInput
 	// A set of key/value label pairs to assign to the MongoDB cluster.
-	Labels            pulumi.StringMapInput
+	Labels pulumi.StringMapInput
+	// Maintenance window settings of the MongoDB cluster. The structure is documented below.
 	MaintenanceWindow MdbMongodbClusterMaintenanceWindowPtrInput
 	// The fully qualified domain name of the host. Computed on server side.
 	Name pulumi.StringPtrInput
 	// ID of the network, to which the MongoDB cluster belongs.
 	NetworkId pulumi.StringPtrInput
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+	//
+	// Deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
 	Resources MdbMongodbClusterResourcesPtrInput
+	// Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongocfg MdbMongodbClusterResourcesMongocfgPtrInput
+	// Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongod MdbMongodbClusterResourcesMongodPtrInput
+	// Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongoinfra MdbMongodbClusterResourcesMongoinfraPtrInput
+	// Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongos MdbMongodbClusterResourcesMongosPtrInput
 	// The cluster will be created from the specified backup. The structure is documented below.
 	Restore MdbMongodbClusterRestorePtrInput
 	// A set of ids of security groups assigned to hosts of the cluster.
@@ -313,14 +353,25 @@ type mdbMongodbClusterArgs struct {
 	// A host of the MongoDB cluster. The structure is documented below.
 	Hosts []MdbMongodbClusterHost `pulumi:"hosts"`
 	// A set of key/value label pairs to assign to the MongoDB cluster.
-	Labels            map[string]string                   `pulumi:"labels"`
+	Labels map[string]string `pulumi:"labels"`
+	// Maintenance window settings of the MongoDB cluster. The structure is documented below.
 	MaintenanceWindow *MdbMongodbClusterMaintenanceWindow `pulumi:"maintenanceWindow"`
 	// The fully qualified domain name of the host. Computed on server side.
 	Name *string `pulumi:"name"`
 	// ID of the network, to which the MongoDB cluster belongs.
 	NetworkId string `pulumi:"networkId"`
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
-	Resources MdbMongodbClusterResources `pulumi:"resources"`
+	//
+	// Deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
+	Resources *MdbMongodbClusterResources `pulumi:"resources"`
+	// Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongocfg *MdbMongodbClusterResourcesMongocfg `pulumi:"resourcesMongocfg"`
+	// Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongod *MdbMongodbClusterResourcesMongod `pulumi:"resourcesMongod"`
+	// Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongoinfra *MdbMongodbClusterResourcesMongoinfra `pulumi:"resourcesMongoinfra"`
+	// Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongos *MdbMongodbClusterResourcesMongos `pulumi:"resourcesMongos"`
 	// The cluster will be created from the specified backup. The structure is documented below.
 	Restore *MdbMongodbClusterRestore `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
@@ -350,14 +401,25 @@ type MdbMongodbClusterArgs struct {
 	// A host of the MongoDB cluster. The structure is documented below.
 	Hosts MdbMongodbClusterHostArrayInput
 	// A set of key/value label pairs to assign to the MongoDB cluster.
-	Labels            pulumi.StringMapInput
+	Labels pulumi.StringMapInput
+	// Maintenance window settings of the MongoDB cluster. The structure is documented below.
 	MaintenanceWindow MdbMongodbClusterMaintenanceWindowPtrInput
 	// The fully qualified domain name of the host. Computed on server side.
 	Name pulumi.StringPtrInput
 	// ID of the network, to which the MongoDB cluster belongs.
 	NetworkId pulumi.StringInput
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
-	Resources MdbMongodbClusterResourcesInput
+	//
+	// Deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
+	Resources MdbMongodbClusterResourcesPtrInput
+	// Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongocfg MdbMongodbClusterResourcesMongocfgPtrInput
+	// Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongod MdbMongodbClusterResourcesMongodPtrInput
+	// Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongoinfra MdbMongodbClusterResourcesMongoinfraPtrInput
+	// Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+	ResourcesMongos MdbMongodbClusterResourcesMongosPtrInput
 	// The cluster will be created from the specified backup. The structure is documented below.
 	Restore MdbMongodbClusterRestorePtrInput
 	// A set of ids of security groups assigned to hosts of the cluster.
@@ -510,6 +572,7 @@ func (o MdbMongodbClusterOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
 
+// Maintenance window settings of the MongoDB cluster. The structure is documented below.
 func (o MdbMongodbClusterOutput) MaintenanceWindow() MdbMongodbClusterMaintenanceWindowOutput {
 	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterMaintenanceWindowOutput { return v.MaintenanceWindow }).(MdbMongodbClusterMaintenanceWindowOutput)
 }
@@ -525,8 +588,30 @@ func (o MdbMongodbClusterOutput) NetworkId() pulumi.StringOutput {
 }
 
 // Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
-func (o MdbMongodbClusterOutput) Resources() MdbMongodbClusterResourcesOutput {
-	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterResourcesOutput { return v.Resources }).(MdbMongodbClusterResourcesOutput)
+//
+// Deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
+func (o MdbMongodbClusterOutput) Resources() MdbMongodbClusterResourcesPtrOutput {
+	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterResourcesPtrOutput { return v.Resources }).(MdbMongodbClusterResourcesPtrOutput)
+}
+
+// Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+func (o MdbMongodbClusterOutput) ResourcesMongocfg() MdbMongodbClusterResourcesMongocfgPtrOutput {
+	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterResourcesMongocfgPtrOutput { return v.ResourcesMongocfg }).(MdbMongodbClusterResourcesMongocfgPtrOutput)
+}
+
+// Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+func (o MdbMongodbClusterOutput) ResourcesMongod() MdbMongodbClusterResourcesMongodPtrOutput {
+	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterResourcesMongodPtrOutput { return v.ResourcesMongod }).(MdbMongodbClusterResourcesMongodPtrOutput)
+}
+
+// Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+func (o MdbMongodbClusterOutput) ResourcesMongoinfra() MdbMongodbClusterResourcesMongoinfraPtrOutput {
+	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterResourcesMongoinfraPtrOutput { return v.ResourcesMongoinfra }).(MdbMongodbClusterResourcesMongoinfraPtrOutput)
+}
+
+// Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+func (o MdbMongodbClusterOutput) ResourcesMongos() MdbMongodbClusterResourcesMongosPtrOutput {
+	return o.ApplyT(func(v *MdbMongodbCluster) MdbMongodbClusterResourcesMongosPtrOutput { return v.ResourcesMongos }).(MdbMongodbClusterResourcesMongosPtrOutput)
 }
 
 // The cluster will be created from the specified backup. The structure is documented below.

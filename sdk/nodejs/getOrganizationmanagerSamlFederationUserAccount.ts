@@ -5,9 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Get information about a user of Yandex SAML Federation. For more information, see
- * [the official documentation](https://cloud.yandex.com/docs/organization/operations/federations/integration-common).
- *
  * ## Example Usage
  *
  * ```typescript

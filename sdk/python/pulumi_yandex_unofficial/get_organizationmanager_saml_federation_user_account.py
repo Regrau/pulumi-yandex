@@ -66,9 +66,6 @@ def get_organizationmanager_saml_federation_user_account(federation_id: Optional
                                                          name_id: Optional[str] = None,
                                                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOrganizationmanagerSamlFederationUserAccountResult:
     """
-    Get information about a user of Yandex SAML Federation. For more information, see
-    [the official documentation](https://cloud.yandex.com/docs/organization/operations/federations/integration-common).
-
     ## Example Usage
 
     ```python
@@ -101,9 +98,6 @@ def get_organizationmanager_saml_federation_user_account_output(federation_id: O
                                                                 name_id: Optional[pulumi.Input[str]] = None,
                                                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetOrganizationmanagerSamlFederationUserAccountResult]:
     """
-    Get information about a user of Yandex SAML Federation. For more information, see
-    [the official documentation](https://cloud.yandex.com/docs/organization/operations/federations/integration-common).
-
     ## Example Usage
 
     ```python

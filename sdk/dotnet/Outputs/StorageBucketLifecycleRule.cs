@@ -41,6 +41,7 @@ namespace Pulumi.Yandex.Outputs
         /// Object key prefix identifying one or more objects to which the rule applies.
         /// </summary>
         public readonly string? Prefix;
+        public readonly ImmutableDictionary<string, string>? Tags;
         /// <summary>
         /// Specifies a period in the object's transitions (documented below).
         /// </summary>
@@ -62,6 +63,8 @@ namespace Pulumi.Yandex.Outputs
 
             string? prefix,
 
+            ImmutableDictionary<string, string>? tags,
+
             ImmutableArray<Outputs.StorageBucketLifecycleRuleTransition> transitions)
         {
             AbortIncompleteMultipartUploadDays = abortIncompleteMultipartUploadDays;
@@ -71,6 +74,7 @@ namespace Pulumi.Yandex.Outputs
             NoncurrentVersionExpiration = noncurrentVersionExpiration;
             NoncurrentVersionTransitions = noncurrentVersionTransitions;
             Prefix = prefix;
+            Tags = tags;
             Transitions = transitions;
         }
     }

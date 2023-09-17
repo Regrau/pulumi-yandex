@@ -19,6 +19,8 @@ namespace Pulumi.Yandex.Outputs
         /// The structure is documented below. Available only in enterprise edition.
         /// </summary>
         public readonly Outputs.GetMdbMongodbClusterClusterConfigMongodAuditLogResult AuditLog;
+        public readonly Outputs.GetMdbMongodbClusterClusterConfigMongodNetResult? Net;
+        public readonly Outputs.GetMdbMongodbClusterClusterConfigMongodOperationProfilingResult? OperationProfiling;
         /// <summary>
         /// (Optional) A set of MongoDB Security settings
         /// (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
@@ -31,18 +33,28 @@ namespace Pulumi.Yandex.Outputs
         /// The structure is documented below.
         /// </summary>
         public readonly Outputs.GetMdbMongodbClusterClusterConfigMongodSetParameterResult SetParameter;
+        public readonly Outputs.GetMdbMongodbClusterClusterConfigMongodStorageResult? Storage;
 
         [OutputConstructor]
         private GetMdbMongodbClusterClusterConfigMongodResult(
             Outputs.GetMdbMongodbClusterClusterConfigMongodAuditLogResult auditLog,
 
+            Outputs.GetMdbMongodbClusterClusterConfigMongodNetResult? net,
+
+            Outputs.GetMdbMongodbClusterClusterConfigMongodOperationProfilingResult? operationProfiling,
+
             Outputs.GetMdbMongodbClusterClusterConfigMongodSecurityResult security,
 
-            Outputs.GetMdbMongodbClusterClusterConfigMongodSetParameterResult setParameter)
+            Outputs.GetMdbMongodbClusterClusterConfigMongodSetParameterResult setParameter,
+
+            Outputs.GetMdbMongodbClusterClusterConfigMongodStorageResult? storage)
         {
             AuditLog = auditLog;
+            Net = net;
+            OperationProfiling = operationProfiling;
             Security = security;
             SetParameter = setParameter;
+            Storage = storage;
         }
     }
 }

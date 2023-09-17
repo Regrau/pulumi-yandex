@@ -41,11 +41,24 @@ plaintext: Optional[bool]
 Disable use of TLS. Default value is `false`.
 """
 
+profile: Optional[str]
+"""
+Profile to use in the shared credentials file. Default value is `default`.
+"""
+
 regionId: Optional[str]
+"""
+The region where operations will take place. Examples are ru-central1
+"""
 
 serviceAccountKeyFile: Optional[str]
 """
 Either the path to or the contents of a Service Account key file in JSON format.
+"""
+
+sharedCredentialsFile: Optional[str]
+"""
+Path to shared credentials file.
 """
 
 storageAccessKey: Optional[str]

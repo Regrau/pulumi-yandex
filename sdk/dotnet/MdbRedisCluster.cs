@@ -161,6 +161,12 @@ namespace Pulumi.Yandex
     public partial class MdbRedisCluster : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Announce fqdn instead of ip address.
+        /// </summary>
+        [Output("announceHostnames")]
+        public Output<bool?> AnnounceHostnames { get; private set; } = null!;
+
+        /// <summary>
         /// Configuration of the Redis cluster. The structure is documented below.
         /// </summary>
         [Output("config")]
@@ -316,6 +322,12 @@ namespace Pulumi.Yandex
     public sealed class MdbRedisClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Announce fqdn instead of ip address.
+        /// </summary>
+        [Input("announceHostnames")]
+        public Input<bool>? AnnounceHostnames { get; set; }
+
+        /// <summary>
         /// Configuration of the Redis cluster. The structure is documented below.
         /// </summary>
         [Input("config", required: true)]
@@ -429,6 +441,12 @@ namespace Pulumi.Yandex
 
     public sealed class MdbRedisClusterState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Announce fqdn instead of ip address.
+        /// </summary>
+        [Input("announceHostnames")]
+        public Input<bool>? AnnounceHostnames { get; set; }
+
         /// <summary>
         /// Configuration of the Redis cluster. The structure is documented below.
         /// </summary>

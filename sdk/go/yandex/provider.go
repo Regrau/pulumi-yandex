@@ -24,9 +24,14 @@ type Provider struct {
 	// The default folder ID where resources will be placed.
 	FolderId       pulumi.StringPtrOutput `pulumi:"folderId"`
 	OrganizationId pulumi.StringPtrOutput `pulumi:"organizationId"`
-	RegionId       pulumi.StringPtrOutput `pulumi:"regionId"`
+	// Profile to use in the shared credentials file. Default value is `default`.
+	Profile pulumi.StringPtrOutput `pulumi:"profile"`
+	// The region where operations will take place. Examples are ru-central1
+	RegionId pulumi.StringPtrOutput `pulumi:"regionId"`
 	// Either the path to or the contents of a Service Account key file in JSON format.
 	ServiceAccountKeyFile pulumi.StringPtrOutput `pulumi:"serviceAccountKeyFile"`
+	// Path to shared credentials file.
+	SharedCredentialsFile pulumi.StringPtrOutput `pulumi:"sharedCredentialsFile"`
 	// Yandex.Cloud storage service access key. Used when a storage data/resource doesn't have an access key explicitly
 	// specified.
 	StorageAccessKey pulumi.StringPtrOutput `pulumi:"storageAccessKey"`
@@ -93,10 +98,15 @@ type providerArgs struct {
 	MaxRetries     *int    `pulumi:"maxRetries"`
 	OrganizationId *string `pulumi:"organizationId"`
 	// Disable use of TLS. Default value is `false`.
-	Plaintext *bool   `pulumi:"plaintext"`
-	RegionId  *string `pulumi:"regionId"`
+	Plaintext *bool `pulumi:"plaintext"`
+	// Profile to use in the shared credentials file. Default value is `default`.
+	Profile *string `pulumi:"profile"`
+	// The region where operations will take place. Examples are ru-central1
+	RegionId *string `pulumi:"regionId"`
 	// Either the path to or the contents of a Service Account key file in JSON format.
 	ServiceAccountKeyFile *string `pulumi:"serviceAccountKeyFile"`
+	// Path to shared credentials file.
+	SharedCredentialsFile *string `pulumi:"sharedCredentialsFile"`
 	// Yandex.Cloud storage service access key. Used when a storage data/resource doesn't have an access key explicitly
 	// specified.
 	StorageAccessKey *string `pulumi:"storageAccessKey"`
@@ -134,9 +144,14 @@ type ProviderArgs struct {
 	OrganizationId pulumi.StringPtrInput
 	// Disable use of TLS. Default value is `false`.
 	Plaintext pulumi.BoolPtrInput
-	RegionId  pulumi.StringPtrInput
+	// Profile to use in the shared credentials file. Default value is `default`.
+	Profile pulumi.StringPtrInput
+	// The region where operations will take place. Examples are ru-central1
+	RegionId pulumi.StringPtrInput
 	// Either the path to or the contents of a Service Account key file in JSON format.
 	ServiceAccountKeyFile pulumi.StringPtrInput
+	// Path to shared credentials file.
+	SharedCredentialsFile pulumi.StringPtrInput
 	// Yandex.Cloud storage service access key. Used when a storage data/resource doesn't have an access key explicitly
 	// specified.
 	StorageAccessKey pulumi.StringPtrInput
@@ -215,6 +230,12 @@ func (o ProviderOutput) OrganizationId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.OrganizationId }).(pulumi.StringPtrOutput)
 }
 
+// Profile to use in the shared credentials file. Default value is `default`.
+func (o ProviderOutput) Profile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Profile }).(pulumi.StringPtrOutput)
+}
+
+// The region where operations will take place. Examples are ru-central1
 func (o ProviderOutput) RegionId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.RegionId }).(pulumi.StringPtrOutput)
 }
@@ -222,6 +243,11 @@ func (o ProviderOutput) RegionId() pulumi.StringPtrOutput {
 // Either the path to or the contents of a Service Account key file in JSON format.
 func (o ProviderOutput) ServiceAccountKeyFile() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.ServiceAccountKeyFile }).(pulumi.StringPtrOutput)
+}
+
+// Path to shared credentials file.
+func (o ProviderOutput) SharedCredentialsFile() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.SharedCredentialsFile }).(pulumi.StringPtrOutput)
 }
 
 // Yandex.Cloud storage service access key. Used when a storage data/resource doesn't have an access key explicitly

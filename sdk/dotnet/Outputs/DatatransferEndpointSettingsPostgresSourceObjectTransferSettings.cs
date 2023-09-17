@@ -26,8 +26,12 @@ namespace Pulumi.Yandex.Outputs
         public readonly string? Rule;
         public readonly string? Sequence;
         public readonly string? SequenceOwnedBy;
+        public readonly string? SequenceSet;
         public readonly string? Table;
         public readonly string? Trigger;
+        /// <summary>
+        /// Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        /// </summary>
         public readonly string? Type;
         public readonly string? View;
 
@@ -59,6 +63,8 @@ namespace Pulumi.Yandex.Outputs
 
             string? sequenceOwnedBy,
 
+            string? sequenceSet,
+
             string? table,
 
             string? trigger,
@@ -80,6 +86,7 @@ namespace Pulumi.Yandex.Outputs
             Rule = rule;
             Sequence = sequence;
             SequenceOwnedBy = sequenceOwnedBy;
+            SequenceSet = sequenceSet;
             Table = table;
             Trigger = trigger;
             Type = type;

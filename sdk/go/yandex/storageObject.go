@@ -33,6 +33,9 @@ import (
 //				Bucket: pulumi.String("cat-pictures"),
 //				Key:    pulumi.String("cute-cat"),
 //				Source: pulumi.String("/images/cats/cute-cat.jpg"),
+//				Tags: pulumi.StringMap{
+//					"test": pulumi.String("value"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -69,6 +72,10 @@ type StorageObject struct {
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
 	// The path to a file that will be read and uploaded as raw bytes for the object content.
 	Source pulumi.StringPtrOutput `pulumi:"source"`
+	// Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+	SourceHash pulumi.StringPtrOutput `pulumi:"sourceHash"`
+	// Specifies an object tags.
+	Tags pulumi.StringMapOutput `pulumi:"tags"`
 }
 
 // NewStorageObject registers a new resource with the given unique name, arguments, and options.
@@ -138,6 +145,10 @@ type storageObjectState struct {
 	SecretKey *string `pulumi:"secretKey"`
 	// The path to a file that will be read and uploaded as raw bytes for the object content.
 	Source *string `pulumi:"source"`
+	// Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+	SourceHash *string `pulumi:"sourceHash"`
+	// Specifies an object tags.
+	Tags map[string]string `pulumi:"tags"`
 }
 
 type StorageObjectState struct {
@@ -165,6 +176,10 @@ type StorageObjectState struct {
 	SecretKey pulumi.StringPtrInput
 	// The path to a file that will be read and uploaded as raw bytes for the object content.
 	Source pulumi.StringPtrInput
+	// Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+	SourceHash pulumi.StringPtrInput
+	// Specifies an object tags.
+	Tags pulumi.StringMapInput
 }
 
 func (StorageObjectState) ElementType() reflect.Type {
@@ -196,6 +211,10 @@ type storageObjectArgs struct {
 	SecretKey *string `pulumi:"secretKey"`
 	// The path to a file that will be read and uploaded as raw bytes for the object content.
 	Source *string `pulumi:"source"`
+	// Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+	SourceHash *string `pulumi:"sourceHash"`
+	// Specifies an object tags.
+	Tags map[string]string `pulumi:"tags"`
 }
 
 // The set of arguments for constructing a StorageObject resource.
@@ -224,6 +243,10 @@ type StorageObjectArgs struct {
 	SecretKey pulumi.StringPtrInput
 	// The path to a file that will be read and uploaded as raw bytes for the object content.
 	Source pulumi.StringPtrInput
+	// Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+	SourceHash pulumi.StringPtrInput
+	// Specifies an object tags.
+	Tags pulumi.StringMapInput
 }
 
 func (StorageObjectArgs) ElementType() reflect.Type {
@@ -371,6 +394,16 @@ func (o StorageObjectOutput) SecretKey() pulumi.StringPtrOutput {
 // The path to a file that will be read and uploaded as raw bytes for the object content.
 func (o StorageObjectOutput) Source() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageObject) pulumi.StringPtrOutput { return v.Source }).(pulumi.StringPtrOutput)
+}
+
+// Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+func (o StorageObjectOutput) SourceHash() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StorageObject) pulumi.StringPtrOutput { return v.SourceHash }).(pulumi.StringPtrOutput)
+}
+
+// Specifies an object tags.
+func (o StorageObjectOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *StorageObject) pulumi.StringMapOutput { return v.Tags }).(pulumi.StringMapOutput)
 }
 
 type StorageObjectArrayOutput struct{ *pulumi.OutputState }

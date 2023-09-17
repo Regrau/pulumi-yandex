@@ -123,6 +123,12 @@ namespace Pulumi.Yandex
         public Output<string> Fqdn { get; private set; } = null!;
 
         /// <summary>
+        /// ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+        /// </summary>
+        [Output("gpuClusterId")]
+        public Output<string> GpuClusterId { get; private set; } = null!;
+
+        /// <summary>
         /// Host name for the instance. This field is used to generate the instance `fqdn` value. 
         /// The host name must be unique within the network and region. If not specified, the host name will be equal
         /// to `id` of the instance and `fqdn` will be `&lt;id&gt;.auto.internal`.
@@ -310,6 +316,12 @@ namespace Pulumi.Yandex
         public Input<string>? FolderId { get; set; }
 
         /// <summary>
+        /// ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+        /// </summary>
+        [Input("gpuClusterId")]
+        public Input<string>? GpuClusterId { get; set; }
+
+        /// <summary>
         /// Host name for the instance. This field is used to generate the instance `fqdn` value. 
         /// The host name must be unique within the network and region. If not specified, the host name will be equal
         /// to `id` of the instance and `fqdn` will be `&lt;id&gt;.auto.internal`.
@@ -492,6 +504,12 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("fqdn")]
         public Input<string>? Fqdn { get; set; }
+
+        /// <summary>
+        /// ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+        /// </summary>
+        [Input("gpuClusterId")]
+        public Input<string>? GpuClusterId { get; set; }
 
         /// <summary>
         /// Host name for the instance. This field is used to generate the instance `fqdn` value. 

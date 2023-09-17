@@ -27,8 +27,8 @@ namespace Pulumi.Yandex.Inputs
         /// <summary>
         /// (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
         /// </summary>
-        [Input("enabled", required: true)]
-        public Input<bool> Enabled { get; set; } = null!;
+        [Input("enabled")]
+        public Input<bool>? Enabled { get; set; }
 
         /// <summary>
         /// Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.

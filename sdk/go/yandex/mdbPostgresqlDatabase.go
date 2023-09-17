@@ -106,6 +106,8 @@ type MdbPostgresqlDatabase struct {
 	pulumi.CustomResourceState
 
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
+	// Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+	DeletionProtection pulumi.StringPtrOutput `pulumi:"deletionProtection"`
 	// Set of database extensions. The structure is documented below
 	Extensions MdbPostgresqlDatabaseExtensionArrayOutput `pulumi:"extensions"`
 	// POSIX locale for string sorting order. Forbidden to change in an existing database.
@@ -157,6 +159,8 @@ func GetMdbPostgresqlDatabase(ctx *pulumi.Context,
 // Input properties used for looking up and filtering MdbPostgresqlDatabase resources.
 type mdbPostgresqlDatabaseState struct {
 	ClusterId *string `pulumi:"clusterId"`
+	// Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+	DeletionProtection *string `pulumi:"deletionProtection"`
 	// Set of database extensions. The structure is documented below
 	Extensions []MdbPostgresqlDatabaseExtension `pulumi:"extensions"`
 	// POSIX locale for string sorting order. Forbidden to change in an existing database.
@@ -173,6 +177,8 @@ type mdbPostgresqlDatabaseState struct {
 
 type MdbPostgresqlDatabaseState struct {
 	ClusterId pulumi.StringPtrInput
+	// Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+	DeletionProtection pulumi.StringPtrInput
 	// Set of database extensions. The structure is documented below
 	Extensions MdbPostgresqlDatabaseExtensionArrayInput
 	// POSIX locale for string sorting order. Forbidden to change in an existing database.
@@ -193,6 +199,8 @@ func (MdbPostgresqlDatabaseState) ElementType() reflect.Type {
 
 type mdbPostgresqlDatabaseArgs struct {
 	ClusterId string `pulumi:"clusterId"`
+	// Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+	DeletionProtection *string `pulumi:"deletionProtection"`
 	// Set of database extensions. The structure is documented below
 	Extensions []MdbPostgresqlDatabaseExtension `pulumi:"extensions"`
 	// POSIX locale for string sorting order. Forbidden to change in an existing database.
@@ -210,6 +218,8 @@ type mdbPostgresqlDatabaseArgs struct {
 // The set of arguments for constructing a MdbPostgresqlDatabase resource.
 type MdbPostgresqlDatabaseArgs struct {
 	ClusterId pulumi.StringInput
+	// Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+	DeletionProtection pulumi.StringPtrInput
 	// Set of database extensions. The structure is documented below
 	Extensions MdbPostgresqlDatabaseExtensionArrayInput
 	// POSIX locale for string sorting order. Forbidden to change in an existing database.
@@ -313,6 +323,11 @@ func (o MdbPostgresqlDatabaseOutput) ToMdbPostgresqlDatabaseOutputWithContext(ct
 
 func (o MdbPostgresqlDatabaseOutput) ClusterId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MdbPostgresqlDatabase) pulumi.StringOutput { return v.ClusterId }).(pulumi.StringOutput)
+}
+
+// Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+func (o MdbPostgresqlDatabaseOutput) DeletionProtection() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MdbPostgresqlDatabase) pulumi.StringPtrOutput { return v.DeletionProtection }).(pulumi.StringPtrOutput)
 }
 
 // Set of database extensions. The structure is documented below

@@ -21,13 +21,16 @@ class GetLoggingGroupResult:
     """
     A collection of values returned by getLoggingGroup.
     """
-    def __init__(__self__, cloud_id=None, created_at=None, description=None, folder_id=None, group_id=None, id=None, labels=None, name=None, retention_period=None, status=None):
+    def __init__(__self__, cloud_id=None, created_at=None, data_stream=None, description=None, folder_id=None, group_id=None, id=None, labels=None, name=None, retention_period=None, status=None):
         if cloud_id and not isinstance(cloud_id, str):
             raise TypeError("Expected argument 'cloud_id' to be a str")
         pulumi.set(__self__, "cloud_id", cloud_id)
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if data_stream and not isinstance(data_stream, str):
+            raise TypeError("Expected argument 'data_stream' to be a str")
+        pulumi.set(__self__, "data_stream", data_stream)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -62,6 +65,11 @@ class GetLoggingGroupResult:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="dataStream")
+    def data_stream(self) -> str:
+        return pulumi.get(self, "data_stream")
 
     @property
     @pulumi.getter
@@ -115,6 +123,7 @@ class AwaitableGetLoggingGroupResult(GetLoggingGroupResult):
         return GetLoggingGroupResult(
             cloud_id=self.cloud_id,
             created_at=self.created_at,
+            data_stream=self.data_stream,
             description=self.description,
             folder_id=self.folder_id,
             group_id=self.group_id,
@@ -142,6 +151,7 @@ def get_logging_group(folder_id: Optional[str] = None,
     return AwaitableGetLoggingGroupResult(
         cloud_id=__ret__.cloud_id,
         created_at=__ret__.created_at,
+        data_stream=__ret__.data_stream,
         description=__ret__.description,
         folder_id=__ret__.folder_id,
         group_id=__ret__.group_id,

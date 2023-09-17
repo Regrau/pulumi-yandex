@@ -13,12 +13,6 @@ namespace Pulumi.Yandex.Inputs
     public sealed class GetMdbKafkaClusterTopicInputArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The ID of the Kafka cluster.
-        /// </summary>
-        [Input("clusterId", required: true)]
-        public Input<string> ClusterId { get; set; } = null!;
-
-        /// <summary>
         /// The name of the Kafka cluster.
         /// </summary>
         [Input("name", required: true)]

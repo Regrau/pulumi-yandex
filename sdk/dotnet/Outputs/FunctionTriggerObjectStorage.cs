@@ -13,6 +13,8 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class FunctionTriggerObjectStorage
     {
+        public readonly string BatchCutoff;
+        public readonly string? BatchSize;
         public readonly string BucketId;
         public readonly bool? Create;
         public readonly bool? Delete;
@@ -22,6 +24,10 @@ namespace Pulumi.Yandex.Outputs
 
         [OutputConstructor]
         private FunctionTriggerObjectStorage(
+            string batchCutoff,
+
+            string? batchSize,
+
             string bucketId,
 
             bool? create,
@@ -34,6 +40,8 @@ namespace Pulumi.Yandex.Outputs
 
             bool? update)
         {
+            BatchCutoff = batchCutoff;
+            BatchSize = batchSize;
             BucketId = bucketId;
             Create = create;
             Delete = delete;

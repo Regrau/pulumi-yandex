@@ -14,139 +14,139 @@ namespace Pulumi.Yandex.Outputs
     public sealed class GetMdbClickhouseClusterClickhouseConfigResult
     {
         public readonly int BackgroundFetchesPoolSize;
-        public readonly int? BackgroundPoolSize;
-        public readonly int? BackgroundSchedulePoolSize;
+        public readonly int BackgroundPoolSize;
+        public readonly int BackgroundSchedulePoolSize;
         /// <summary>
         /// Data compression configuration. The structure is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigCompressionResult> Compressions;
         public readonly string DefaultDatabase;
-        public readonly string? GeobaseUri;
+        public readonly string GeobaseUri;
         /// <summary>
         /// Graphite rollup configuration. The structure is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupResult> GraphiteRollups;
         /// <summary>
+        /// Kafka connection configuration. The structure is documented below.
+        /// </summary>
+        public readonly Outputs.GetMdbClickhouseClusterClickhouseConfigKafkaResult Kafka;
+        /// <summary>
         /// Kafka topic connection configuration. The structure is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopicResult> KafkaTopics;
-        /// <summary>
-        /// Kafka connection configuration. The structure is documented below.
-        /// </summary>
-        public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigKafkaResult> Kafkas;
-        public readonly int? KeepAliveTimeout;
-        public readonly string? LogLevel;
-        public readonly int? MarkCacheSize;
-        public readonly int? MaxConcurrentQueries;
-        public readonly int? MaxConnections;
-        public readonly int? MaxPartitionSizeToDrop;
-        public readonly int? MaxTableSizeToDrop;
+        public readonly int KeepAliveTimeout;
+        public readonly string LogLevel;
+        public readonly int MarkCacheSize;
+        public readonly int MaxConcurrentQueries;
+        public readonly int MaxConnections;
+        public readonly int MaxPartitionSizeToDrop;
+        public readonly int MaxTableSizeToDrop;
         /// <summary>
         /// MergeTree engine configuration. The structure is documented below.
         /// </summary>
         public readonly Outputs.GetMdbClickhouseClusterClickhouseConfigMergeTreeResult MergeTree;
-        public readonly bool? MetricLogEnabled;
-        public readonly int? MetricLogRetentionSize;
-        public readonly int? MetricLogRetentionTime;
-        public readonly int? PartLogRetentionSize;
-        public readonly int? PartLogRetentionTime;
-        public readonly int? QueryLogRetentionSize;
-        public readonly int? QueryLogRetentionTime;
-        public readonly bool? QueryThreadLogEnabled;
-        public readonly int? QueryThreadLogRetentionSize;
-        public readonly int? QueryThreadLogRetentionTime;
+        public readonly bool MetricLogEnabled;
+        public readonly int MetricLogRetentionSize;
+        public readonly int MetricLogRetentionTime;
+        public readonly int PartLogRetentionSize;
+        public readonly int PartLogRetentionTime;
+        public readonly int QueryLogRetentionSize;
+        public readonly int QueryLogRetentionTime;
+        public readonly bool QueryThreadLogEnabled;
+        public readonly int QueryThreadLogRetentionSize;
+        public readonly int QueryThreadLogRetentionTime;
         /// <summary>
         /// RabbitMQ connection configuration. The structure is documented below.
         /// </summary>
         public readonly Outputs.GetMdbClickhouseClusterClickhouseConfigRabbitmqResult Rabbitmq;
-        public readonly bool? TextLogEnabled;
-        public readonly string? TextLogLevel;
-        public readonly int? TextLogRetentionSize;
-        public readonly int? TextLogRetentionTime;
-        public readonly string? Timezone;
+        public readonly bool TextLogEnabled;
+        public readonly string TextLogLevel;
+        public readonly int TextLogRetentionSize;
+        public readonly int TextLogRetentionTime;
+        public readonly string Timezone;
         public readonly int TotalMemoryProfilerStep;
-        public readonly bool? TraceLogEnabled;
-        public readonly int? TraceLogRetentionSize;
-        public readonly int? TraceLogRetentionTime;
-        public readonly int? UncompressedCacheSize;
+        public readonly bool TraceLogEnabled;
+        public readonly int TraceLogRetentionSize;
+        public readonly int TraceLogRetentionTime;
+        public readonly int UncompressedCacheSize;
 
         [OutputConstructor]
         private GetMdbClickhouseClusterClickhouseConfigResult(
             int backgroundFetchesPoolSize,
 
-            int? backgroundPoolSize,
+            int backgroundPoolSize,
 
-            int? backgroundSchedulePoolSize,
+            int backgroundSchedulePoolSize,
 
             ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigCompressionResult> compressions,
 
             string defaultDatabase,
 
-            string? geobaseUri,
+            string geobaseUri,
 
             ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupResult> graphiteRollups,
 
+            Outputs.GetMdbClickhouseClusterClickhouseConfigKafkaResult kafka,
+
             ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopicResult> kafkaTopics,
 
-            ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigKafkaResult> kafkas,
+            int keepAliveTimeout,
 
-            int? keepAliveTimeout,
+            string logLevel,
 
-            string? logLevel,
+            int markCacheSize,
 
-            int? markCacheSize,
+            int maxConcurrentQueries,
 
-            int? maxConcurrentQueries,
+            int maxConnections,
 
-            int? maxConnections,
+            int maxPartitionSizeToDrop,
 
-            int? maxPartitionSizeToDrop,
-
-            int? maxTableSizeToDrop,
+            int maxTableSizeToDrop,
 
             Outputs.GetMdbClickhouseClusterClickhouseConfigMergeTreeResult mergeTree,
 
-            bool? metricLogEnabled,
+            bool metricLogEnabled,
 
-            int? metricLogRetentionSize,
+            int metricLogRetentionSize,
 
-            int? metricLogRetentionTime,
+            int metricLogRetentionTime,
 
-            int? partLogRetentionSize,
+            int partLogRetentionSize,
 
-            int? partLogRetentionTime,
+            int partLogRetentionTime,
 
-            int? queryLogRetentionSize,
+            int queryLogRetentionSize,
 
-            int? queryLogRetentionTime,
+            int queryLogRetentionTime,
 
-            bool? queryThreadLogEnabled,
+            bool queryThreadLogEnabled,
 
-            int? queryThreadLogRetentionSize,
+            int queryThreadLogRetentionSize,
 
-            int? queryThreadLogRetentionTime,
+            int queryThreadLogRetentionTime,
 
             Outputs.GetMdbClickhouseClusterClickhouseConfigRabbitmqResult rabbitmq,
 
-            bool? textLogEnabled,
+            bool textLogEnabled,
 
-            string? textLogLevel,
+            string textLogLevel,
 
-            int? textLogRetentionSize,
+            int textLogRetentionSize,
 
-            int? textLogRetentionTime,
+            int textLogRetentionTime,
 
-            string? timezone,
+            string timezone,
 
             int totalMemoryProfilerStep,
 
-            bool? traceLogEnabled,
+            bool traceLogEnabled,
 
-            int? traceLogRetentionSize,
+            int traceLogRetentionSize,
 
-            int? traceLogRetentionTime,
+            int traceLogRetentionTime,
 
-            int? uncompressedCacheSize)
+            int uncompressedCacheSize)
         {
             BackgroundFetchesPoolSize = backgroundFetchesPoolSize;
             BackgroundPoolSize = backgroundPoolSize;
@@ -155,8 +155,8 @@ namespace Pulumi.Yandex.Outputs
             DefaultDatabase = defaultDatabase;
             GeobaseUri = geobaseUri;
             GraphiteRollups = graphiteRollups;
+            Kafka = kafka;
             KafkaTopics = kafkaTopics;
-            Kafkas = kafkas;
             KeepAliveTimeout = keepAliveTimeout;
             LogLevel = logLevel;
             MarkCacheSize = markCacheSize;

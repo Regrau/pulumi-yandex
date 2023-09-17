@@ -20,8 +20,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -31,8 +29,8 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := yandex.NewIotCoreDevice(ctx, "myDevice", &yandex.IotCoreDeviceArgs{
 //				Aliases: pulumi.StringMap{
-//					"some_alias1/subtopic": pulumi.String(fmt.Sprintf("$devices/{id}/events/somesubtopic")),
-//					"some_alias2/subtopic": pulumi.String(fmt.Sprintf("$devices/{id}/events/aaa/bbb")),
+//					"some_alias1/subtopic": pulumi.String("$devices/{id}/events/somesubtopic"),
+//					"some_alias2/subtopic": pulumi.String("$devices/{id}/events/aaa/bbb"),
 //				},
 //				Certificates: pulumi.StringArray{
 //					pulumi.String("public part of certificate1"),

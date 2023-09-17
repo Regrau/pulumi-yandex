@@ -172,7 +172,6 @@ namespace Pulumi.Yandex
         public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateResult> InstanceTemplates;
         /// <summary>
         /// Labels assigned to compute nodes (instances), created by the Node Group.
-        /// ---
         /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
         /// <summary>

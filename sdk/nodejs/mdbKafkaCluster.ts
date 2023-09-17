@@ -312,7 +312,9 @@ export class MdbKafkaCluster extends pulumi.CustomResource {
      */
     public readonly topics!: pulumi.Output<outputs.MdbKafkaClusterTopic[] | undefined>;
     /**
-     * A user of the Kafka cluster. The structure is documented below.
+     * To manage users, please switch to using a separate resource type `yandex.mdbKafkaUser`.
+     *
+     * @deprecated to manage users, please switch to using a separate resource type yandex_mdb_kafka_user
      */
     public readonly users!: pulumi.Output<outputs.MdbKafkaClusterUser[] | undefined>;
 
@@ -456,7 +458,9 @@ export interface MdbKafkaClusterState {
      */
     topics?: pulumi.Input<pulumi.Input<inputs.MdbKafkaClusterTopic>[]>;
     /**
-     * A user of the Kafka cluster. The structure is documented below.
+     * To manage users, please switch to using a separate resource type `yandex.mdbKafkaUser`.
+     *
+     * @deprecated to manage users, please switch to using a separate resource type yandex_mdb_kafka_user
      */
     users?: pulumi.Input<pulumi.Input<inputs.MdbKafkaClusterUser>[]>;
 }
@@ -521,7 +525,9 @@ export interface MdbKafkaClusterArgs {
      */
     topics?: pulumi.Input<pulumi.Input<inputs.MdbKafkaClusterTopic>[]>;
     /**
-     * A user of the Kafka cluster. The structure is documented below.
+     * To manage users, please switch to using a separate resource type `yandex.mdbKafkaUser`.
+     *
+     * @deprecated to manage users, please switch to using a separate resource type yandex_mdb_kafka_user
      */
     users?: pulumi.Input<pulumi.Input<inputs.MdbKafkaClusterUser>[]>;
 }

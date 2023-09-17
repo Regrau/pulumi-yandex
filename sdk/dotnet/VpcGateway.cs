@@ -11,7 +11,7 @@ namespace Pulumi.Yandex
 {
     /// <summary>
     /// Manages a gateway within the Yandex.Cloud. For more information, see
-    /// [the official documentation](https://cloud.yandex.com/docs/vpc/concepts/gateway#gateway).
+    /// [the official documentation](https://cloud.yandex.com/en/docs/vpc/concepts/gateways).
     /// 
     /// * How-to Guides
     ///     * [Cloud Networking](https://cloud.yandex.com/docs/vpc/)

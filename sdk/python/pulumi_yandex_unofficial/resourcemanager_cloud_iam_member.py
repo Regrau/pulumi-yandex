@@ -25,6 +25,9 @@ class ResourcemanagerCloudIamMemberArgs:
                This field can have one of the following values:
                * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
                * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+               * **group:{group_id}**: A unique group ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         :param pulumi.Input[str] role: The role that should be assigned.
         """
         pulumi.set(__self__, "cloud_id", cloud_id)
@@ -53,6 +56,9 @@ class ResourcemanagerCloudIamMemberArgs:
         This field can have one of the following values:
         * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
         * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+        * **group:{group_id}**: A unique group ID.
+        * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         """
         return pulumi.get(self, "member")
 
@@ -96,6 +102,9 @@ class _ResourcemanagerCloudIamMemberState:
                This field can have one of the following values:
                * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
                * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+               * **group:{group_id}**: A unique group ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         :param pulumi.Input[str] role: The role that should be assigned.
         """
         if cloud_id is not None:
@@ -127,6 +136,9 @@ class _ResourcemanagerCloudIamMemberState:
         This field can have one of the following values:
         * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
         * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+        * **group:{group_id}**: A unique group ID.
+        * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         """
         return pulumi.get(self, "member")
 
@@ -205,6 +217,9 @@ class ResourcemanagerCloudIamMember(pulumi.CustomResource):
                This field can have one of the following values:
                * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
                * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+               * **group:{group_id}**: A unique group ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         :param pulumi.Input[str] role: The role that should be assigned.
         """
         ...
@@ -309,6 +324,9 @@ class ResourcemanagerCloudIamMember(pulumi.CustomResource):
                This field can have one of the following values:
                * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
                * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+               * **group:{group_id}**: A unique group ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         :param pulumi.Input[str] role: The role that should be assigned.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -337,6 +355,9 @@ class ResourcemanagerCloudIamMember(pulumi.CustomResource):
         This field can have one of the following values:
         * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
         * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+        * **group:{group_id}**: A unique group ID.
+        * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         """
         return pulumi.get(self, "member")
 

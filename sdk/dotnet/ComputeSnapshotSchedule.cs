@@ -29,22 +29,14 @@ namespace Pulumi.Yandex
     ///             "test_disk_id",
     ///             "another_test_disk_id",
     ///         },
-    ///         Labels = 
-    ///         {
-    ///             { "my-label", "my-label-value" },
-    ///         },
+    ///         RetentionPeriod = "12h",
     ///         SchedulePolicy = new Yandex.Inputs.ComputeSnapshotScheduleSchedulePolicyArgs
     ///         {
     ///             Expression = "0 0 * * *",
     ///         },
-    ///         SnapshotCount = 1,
     ///         SnapshotSpec = new Yandex.Inputs.ComputeSnapshotScheduleSnapshotSpecArgs
     ///         {
-    ///             Description = "snapshot-description",
-    ///             Labels = 
-    ///             {
-    ///                 { "snapshot-label", "my-snapshot-label-value" },
-    ///             },
+    ///             Description = "retention-snapshot",
     ///         },
     ///     });
     /// 
@@ -69,7 +61,7 @@ namespace Pulumi.Yandex
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Description of the resource.
+        /// Description to assign to snapshots created by this snapshot schedule.
         /// </summary>
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
@@ -88,7 +80,7 @@ namespace Pulumi.Yandex
         public Output<string> FolderId { get; private set; } = null!;
 
         /// <summary>
-        /// A set of key/value label pairs to assign to the snapshot schedule.
+        /// A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>?> Labels { get; private set; } = null!;
@@ -100,7 +92,7 @@ namespace Pulumi.Yandex
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Retention period applied to snapshots created by this snapshot schedule.
+        /// Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
         /// </summary>
         [Output("retentionPeriod")]
         public Output<string?> RetentionPeriod { get; private set; } = null!;
@@ -177,7 +169,7 @@ namespace Pulumi.Yandex
     public sealed class ComputeSnapshotScheduleArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Description of the resource.
+        /// Description to assign to snapshots created by this snapshot schedule.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -205,7 +197,7 @@ namespace Pulumi.Yandex
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// A set of key/value label pairs to assign to the snapshot schedule.
+        /// A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -220,7 +212,7 @@ namespace Pulumi.Yandex
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Retention period applied to snapshots created by this snapshot schedule.
+        /// Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
         /// </summary>
         [Input("retentionPeriod")]
         public Input<string>? RetentionPeriod { get; set; }
@@ -258,7 +250,7 @@ namespace Pulumi.Yandex
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Description of the resource.
+        /// Description to assign to snapshots created by this snapshot schedule.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -286,7 +278,7 @@ namespace Pulumi.Yandex
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// A set of key/value label pairs to assign to the snapshot schedule.
+        /// A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         /// </summary>
         public InputMap<string> Labels
         {
@@ -301,7 +293,7 @@ namespace Pulumi.Yandex
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Retention period applied to snapshots created by this snapshot schedule.
+        /// Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
         /// </summary>
         [Input("retentionPeriod")]
         public Input<string>? RetentionPeriod { get; set; }

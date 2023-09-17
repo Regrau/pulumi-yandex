@@ -30,14 +30,23 @@ namespace Pulumi.Yandex.Inputs
         [Input("featureCompatibilityVersion", required: true)]
         public string FeatureCompatibilityVersion { get; set; } = null!;
 
+        [Input("mongocfg", required: true)]
+        public Inputs.GetMdbMongodbClusterClusterConfigMongocfgArgs Mongocfg { get; set; } = null!;
+
         /// <summary>
         /// (Optional) Configuration of the mongod service. The structure is documented below.
         /// </summary>
         [Input("mongod", required: true)]
         public Inputs.GetMdbMongodbClusterClusterConfigMongodArgs Mongod { get; set; } = null!;
 
+        [Input("mongos", required: true)]
+        public Inputs.GetMdbMongodbClusterClusterConfigMongosArgs Mongos { get; set; } = null!;
+
+        [Input("performanceDiagnostics", required: true)]
+        public Inputs.GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs PerformanceDiagnostics { get; set; } = null!;
+
         /// <summary>
-        /// Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+        /// Version of MongoDB (either 6.0, 6.0-enterprise, 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2).
         /// </summary>
         [Input("version")]
         public string? Version { get; set; }

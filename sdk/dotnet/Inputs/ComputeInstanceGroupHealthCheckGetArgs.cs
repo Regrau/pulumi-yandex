@@ -18,17 +18,11 @@ namespace Pulumi.Yandex.Inputs
         [Input("healthyThreshold")]
         public Input<int>? HealthyThreshold { get; set; }
 
-        [Input("httpOptions")]
-        private InputList<Inputs.ComputeInstanceGroupHealthCheckHttpOptionGetArgs>? _httpOptions;
-
         /// <summary>
         /// HTTP check options. The structure is documented below.
         /// </summary>
-        public InputList<Inputs.ComputeInstanceGroupHealthCheckHttpOptionGetArgs> HttpOptions
-        {
-            get => _httpOptions ?? (_httpOptions = new InputList<Inputs.ComputeInstanceGroupHealthCheckHttpOptionGetArgs>());
-            set => _httpOptions = value;
-        }
+        [Input("httpOptions")]
+        public Input<Inputs.ComputeInstanceGroupHealthCheckHttpOptionsGetArgs>? HttpOptions { get; set; }
 
         /// <summary>
         /// The interval to wait between health checks in seconds.

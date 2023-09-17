@@ -14,6 +14,7 @@ __all__ = ['LoggingGroupArgs', 'LoggingGroup']
 @pulumi.input_type
 class LoggingGroupArgs:
     def __init__(__self__, *,
+                 data_stream: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -28,6 +29,8 @@ class LoggingGroupArgs:
         :param pulumi.Input[str] name: Name for the Yandex Cloud Logging group.
         :param pulumi.Input[str] retention_period: Log entries retention period for the Yandex Cloud Logging group.
         """
+        if data_stream is not None:
+            pulumi.set(__self__, "data_stream", data_stream)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if folder_id is not None:
@@ -38,6 +41,15 @@ class LoggingGroupArgs:
             pulumi.set(__self__, "name", name)
         if retention_period is not None:
             pulumi.set(__self__, "retention_period", retention_period)
+
+    @property
+    @pulumi.getter(name="dataStream")
+    def data_stream(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "data_stream")
+
+    @data_stream.setter
+    def data_stream(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "data_stream", value)
 
     @property
     @pulumi.getter
@@ -106,6 +118,7 @@ class _LoggingGroupState:
     def __init__(__self__, *,
                  cloud_id: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
+                 data_stream: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -128,6 +141,8 @@ class _LoggingGroupState:
             pulumi.set(__self__, "cloud_id", cloud_id)
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
+        if data_stream is not None:
+            pulumi.set(__self__, "data_stream", data_stream)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if folder_id is not None:
@@ -164,6 +179,15 @@ class _LoggingGroupState:
     @created_at.setter
     def created_at(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "created_at", value)
+
+    @property
+    @pulumi.getter(name="dataStream")
+    def data_stream(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "data_stream")
+
+    @data_stream.setter
+    def data_stream(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "data_stream", value)
 
     @property
     @pulumi.getter
@@ -244,6 +268,7 @@ class LoggingGroup(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 data_stream: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -306,6 +331,7 @@ class LoggingGroup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 data_stream: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -320,6 +346,7 @@ class LoggingGroup(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LoggingGroupArgs.__new__(LoggingGroupArgs)
 
+            __props__.__dict__["data_stream"] = data_stream
             __props__.__dict__["description"] = description
             __props__.__dict__["folder_id"] = folder_id
             __props__.__dict__["labels"] = labels
@@ -340,6 +367,7 @@ class LoggingGroup(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cloud_id: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
+            data_stream: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             folder_id: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -369,6 +397,7 @@ class LoggingGroup(pulumi.CustomResource):
 
         __props__.__dict__["cloud_id"] = cloud_id
         __props__.__dict__["created_at"] = created_at
+        __props__.__dict__["data_stream"] = data_stream
         __props__.__dict__["description"] = description
         __props__.__dict__["folder_id"] = folder_id
         __props__.__dict__["labels"] = labels
@@ -392,6 +421,11 @@ class LoggingGroup(pulumi.CustomResource):
         The Yandex Cloud Logging group creation timestamp.
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="dataStream")
+    def data_stream(self) -> pulumi.Output[Optional[str]]:
+        return pulumi.get(self, "data_stream")
 
     @property
     @pulumi.getter

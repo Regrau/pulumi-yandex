@@ -69,8 +69,10 @@ type LookupMdbPostgresqlClusterResult struct {
 	// Configuration of the PostgreSQL cluster. The structure is documented below.
 	Configs []GetMdbPostgresqlClusterConfig `pulumi:"configs"`
 	// Timestamp of cluster creation.
-	CreatedAt          string `pulumi:"createdAt"`
-	DeletionProtection bool   `pulumi:"deletionProtection"`
+	CreatedAt string `pulumi:"createdAt"`
+	// List of all databases of the PostgreSQL cluster. The structure is documented below.
+	Databases          []GetMdbPostgresqlClusterDatabase `pulumi:"databases"`
+	DeletionProtection bool                              `pulumi:"deletionProtection"`
 	// Description of the PostgreSQL cluster.
 	Description *string `pulumi:"description"`
 	// Deployment environment of the PostgreSQL cluster.
@@ -79,7 +81,7 @@ type LookupMdbPostgresqlClusterResult struct {
 	// Aggregated health of the cluster.
 	Health       string   `pulumi:"health"`
 	HostGroupIds []string `pulumi:"hostGroupIds"`
-	// A host of the PostgreSQL cluster. The structure is documented below.
+	// List of all hosts of the PostgreSQL cluster. The structure is documented below.
 	Hosts []GetMdbPostgresqlClusterHost `pulumi:"hosts"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
@@ -87,13 +89,16 @@ type LookupMdbPostgresqlClusterResult struct {
 	Labels map[string]string `pulumi:"labels"`
 	// Maintenance window settings of the PostgreSQL cluster. The structure is documented below.
 	MaintenanceWindows []GetMdbPostgresqlClusterMaintenanceWindow `pulumi:"maintenanceWindows"`
-	Name               string                                     `pulumi:"name"`
+	// Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).
+	Name string `pulumi:"name"`
 	// ID of the network, to which the PostgreSQL cluster belongs.
 	NetworkId string `pulumi:"networkId"`
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// Status of the cluster.
 	Status string `pulumi:"status"`
+	// List of all users of the PostgreSQL cluster. The structure is documented below.
+	Users []GetMdbPostgresqlClusterUser `pulumi:"users"`
 }
 
 func LookupMdbPostgresqlClusterOutput(ctx *pulumi.Context, args LookupMdbPostgresqlClusterOutputArgs, opts ...pulumi.InvokeOption) LookupMdbPostgresqlClusterResultOutput {
@@ -155,6 +160,11 @@ func (o LookupMdbPostgresqlClusterResultOutput) CreatedAt() pulumi.StringOutput 
 	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// List of all databases of the PostgreSQL cluster. The structure is documented below.
+func (o LookupMdbPostgresqlClusterResultOutput) Databases() GetMdbPostgresqlClusterDatabaseArrayOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) []GetMdbPostgresqlClusterDatabase { return v.Databases }).(GetMdbPostgresqlClusterDatabaseArrayOutput)
+}
+
 func (o LookupMdbPostgresqlClusterResultOutput) DeletionProtection() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) bool { return v.DeletionProtection }).(pulumi.BoolOutput)
 }
@@ -182,7 +192,7 @@ func (o LookupMdbPostgresqlClusterResultOutput) HostGroupIds() pulumi.StringArra
 	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) []string { return v.HostGroupIds }).(pulumi.StringArrayOutput)
 }
 
-// A host of the PostgreSQL cluster. The structure is documented below.
+// List of all hosts of the PostgreSQL cluster. The structure is documented below.
 func (o LookupMdbPostgresqlClusterResultOutput) Hosts() GetMdbPostgresqlClusterHostArrayOutput {
 	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) []GetMdbPostgresqlClusterHost { return v.Hosts }).(GetMdbPostgresqlClusterHostArrayOutput)
 }
@@ -204,6 +214,7 @@ func (o LookupMdbPostgresqlClusterResultOutput) MaintenanceWindows() GetMdbPostg
 	}).(GetMdbPostgresqlClusterMaintenanceWindowArrayOutput)
 }
 
+// Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).
 func (o LookupMdbPostgresqlClusterResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -221,6 +232,11 @@ func (o LookupMdbPostgresqlClusterResultOutput) SecurityGroupIds() pulumi.String
 // Status of the cluster.
 func (o LookupMdbPostgresqlClusterResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// List of all users of the PostgreSQL cluster. The structure is documented below.
+func (o LookupMdbPostgresqlClusterResultOutput) Users() GetMdbPostgresqlClusterUserArrayOutput {
+	return o.ApplyT(func(v LookupMdbPostgresqlClusterResult) []GetMdbPostgresqlClusterUser { return v.Users }).(GetMdbPostgresqlClusterUserArrayOutput)
 }
 
 func init() {

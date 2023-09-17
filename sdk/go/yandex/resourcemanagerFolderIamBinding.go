@@ -77,6 +77,9 @@ type ResourcemanagerFolderIamBinding struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members pulumi.StringArrayOutput `pulumi:"members"`
 	// The role that should be assigned. Only one
 	// `ResourcemanagerFolderIamBinding` can be used per role.
@@ -129,6 +132,9 @@ type resourcemanagerFolderIamBindingState struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members []string `pulumi:"members"`
 	// The role that should be assigned. Only one
 	// `ResourcemanagerFolderIamBinding` can be used per role.
@@ -143,6 +149,9 @@ type ResourcemanagerFolderIamBindingState struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members pulumi.StringArrayInput
 	// The role that should be assigned. Only one
 	// `ResourcemanagerFolderIamBinding` can be used per role.
@@ -161,6 +170,9 @@ type resourcemanagerFolderIamBindingArgs struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members []string `pulumi:"members"`
 	// The role that should be assigned. Only one
 	// `ResourcemanagerFolderIamBinding` can be used per role.
@@ -176,6 +188,9 @@ type ResourcemanagerFolderIamBindingArgs struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members pulumi.StringArrayInput
 	// The role that should be assigned. Only one
 	// `ResourcemanagerFolderIamBinding` can be used per role.
@@ -279,6 +294,9 @@ func (o ResourcemanagerFolderIamBindingOutput) FolderId() pulumi.StringOutput {
 // Each entry can have one of the following values:
 // * **userAccount:{user_id}**: An email address that represents a specific Yandex account. For example, ivan@yandex.ru or joe@example.com.
 // * **serviceAccount:{service_account_id}**: A unique service account ID.
+// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+// * **group:{group_id}**: A unique group ID.
+// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 func (o ResourcemanagerFolderIamBindingOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ResourcemanagerFolderIamBinding) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
 }

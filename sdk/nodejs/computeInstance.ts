@@ -109,6 +109,10 @@ export class ComputeInstance extends pulumi.CustomResource {
      */
     public /*out*/ readonly fqdn!: pulumi.Output<string>;
     /**
+     * ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+     */
+    public readonly gpuClusterId!: pulumi.Output<string>;
+    /**
      * Host name for the instance. This field is used to generate the instance `fqdn` value. 
      * The host name must be unique within the network and region. If not specified, the host name will be equal
      * to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
@@ -201,6 +205,7 @@ export class ComputeInstance extends pulumi.CustomResource {
             resourceInputs["filesystems"] = state ? state.filesystems : undefined;
             resourceInputs["folderId"] = state ? state.folderId : undefined;
             resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["gpuClusterId"] = state ? state.gpuClusterId : undefined;
             resourceInputs["hostname"] = state ? state.hostname : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
             resourceInputs["localDisks"] = state ? state.localDisks : undefined;
@@ -234,6 +239,7 @@ export class ComputeInstance extends pulumi.CustomResource {
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["filesystems"] = args ? args.filesystems : undefined;
             resourceInputs["folderId"] = args ? args.folderId : undefined;
+            resourceInputs["gpuClusterId"] = args ? args.gpuClusterId : undefined;
             resourceInputs["hostname"] = args ? args.hostname : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["localDisks"] = args ? args.localDisks : undefined;
@@ -289,6 +295,10 @@ export interface ComputeInstanceState {
      * DNS record FQDN (must have a dot at the end).
      */
     fqdn?: pulumi.Input<string>;
+    /**
+     * ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+     */
+    gpuClusterId?: pulumi.Input<string>;
     /**
      * Host name for the instance. This field is used to generate the instance `fqdn` value. 
      * The host name must be unique within the network and region. If not specified, the host name will be equal
@@ -385,6 +395,10 @@ export interface ComputeInstanceArgs {
      * is not provided, the default provider folder is used.
      */
     folderId?: pulumi.Input<string>;
+    /**
+     * ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+     */
+    gpuClusterId?: pulumi.Input<string>;
     /**
      * Host name for the instance. This field is used to generate the instance `fqdn` value. 
      * The host name must be unique within the network and region. If not specified, the host name will be equal

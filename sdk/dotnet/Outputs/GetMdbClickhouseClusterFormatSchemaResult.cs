@@ -16,23 +16,23 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// The name of the ClickHouse cluster.
         /// </summary>
-        public readonly string Name;
+        public readonly string? Name;
         /// <summary>
         /// Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         /// </summary>
-        public readonly string Type;
+        public readonly string? Type;
         /// <summary>
         /// Model file URL. You can only use models stored in Yandex Object Storage.
         /// </summary>
-        public readonly string Uri;
+        public readonly string? Uri;
 
         [OutputConstructor]
         private GetMdbClickhouseClusterFormatSchemaResult(
-            string name,
+            string? name,
 
-            string type,
+            string? type,
 
-            string uri)
+            string? uri)
         {
             Name = name;
             Type = type;

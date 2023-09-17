@@ -33,6 +33,7 @@ import * as utilities from "./utilities";
  *             }],
  *         },
  *         masterLogging: {
+ *             auditEnabled: true,
  *             clusterAutoscalerEnabled: true,
  *             enabled: true,
  *             eventsEnabled: true,
@@ -82,6 +83,7 @@ import * as utilities from "./utilities";
  *             ],
  *         },
  *         masterLogging: {
+ *             auditEnabled: true,
  *             clusterAutoscalerEnabled: true,
  *             enabled: true,
  *             eventsEnabled: true,

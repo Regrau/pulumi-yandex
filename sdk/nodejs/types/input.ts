@@ -1234,9 +1234,12 @@ export interface CdnResourceOptions {
      */
     slice?: pulumi.Input<boolean>;
     /**
-     * set up custom headers that CDN servers send in requests to origins.
+     * set up custom headers that CDN servers will send in requests to origins.
      */
-    staticRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    staticRequestHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    /**
+     * set up custom headers that CDN servers will send in response to clients.
+     */
     staticResponseHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
@@ -1322,9 +1325,12 @@ export interface CmCertificateSelfManaged {
 
 export interface CmCertificateSelfManagedPrivateKeyLockboxSecret {
     /**
-     * Certificate Id.
+     * Lockbox secret Id.
      */
     id: pulumi.Input<string>;
+    /**
+     * Key of the Lockbox secret, the value of which contains the private key of the certificate.
+     */
     key: pulumi.Input<string>;
 }
 
@@ -1480,7 +1486,7 @@ export interface ComputeInstanceGroupHealthCheck {
     /**
      * HTTP check options. The structure is documented below.
      */
-    httpOptions?: pulumi.Input<pulumi.Input<inputs.ComputeInstanceGroupHealthCheckHttpOption>[]>;
+    httpOptions?: pulumi.Input<inputs.ComputeInstanceGroupHealthCheckHttpOptions>;
     /**
      * The interval to wait between health checks in seconds.
      */
@@ -1499,7 +1505,7 @@ export interface ComputeInstanceGroupHealthCheck {
     unhealthyThreshold?: pulumi.Input<number>;
 }
 
-export interface ComputeInstanceGroupHealthCheckHttpOption {
+export interface ComputeInstanceGroupHealthCheckHttpOptions {
     /**
      * The URL path used for health check requests.
      */
@@ -2292,17 +2298,23 @@ export interface ComputeInstanceSecondaryDisk {
 }
 
 export interface ComputeSnapshotScheduleSchedulePolicy {
+    /**
+     * Cron expression to schedule snapshots (in cron format "* * * * *").
+     */
     expression?: pulumi.Input<string>;
+    /**
+     * Time to start the snapshot schedule (in format RFC3339 "2006-01-02T15:04:05Z07:00"). If empty current time will be used. Unlike an `expression` that specifies regularity rules, the `startAt` parameter determines from what point these rules will be applied.
+     */
     startAt?: pulumi.Input<string>;
 }
 
 export interface ComputeSnapshotScheduleSnapshotSpec {
     /**
-     * Description of the resource.
+     * Description to assign to snapshots created by this snapshot schedule.
      */
     description?: pulumi.Input<string>;
     /**
-     * A set of key/value label pairs to assign to the snapshot schedule.
+     * A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
@@ -2442,9 +2454,29 @@ export interface DataprocClusterClusterConfigSubclusterSpecResources {
 }
 
 export interface DatatransferEndpointSettings {
+    /**
+     * Settings specific to the ClickHouse source endpoint.
+     */
     clickhouseSource?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseSource>;
+    /**
+     * Settings specific to the ClickHouse target endpoint.
+     */
     clickhouseTarget?: pulumi.Input<inputs.DatatransferEndpointSettingsClickhouseTarget>;
+    /**
+     * Settings specific to the Kafka source endpoint.
+     */
+    kafkaSource?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSource>;
+    /**
+     * Settings specific to the Kafka target endpoint.
+     */
+    kafkaTarget?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTarget>;
+    /**
+     * Settings specific to the MongoDB source endpoint.
+     */
     mongoSource?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoSource>;
+    /**
+     * Settings specific to the MongoDB target endpoint.
+     */
     mongoTarget?: pulumi.Input<inputs.DatatransferEndpointSettingsMongoTarget>;
     /**
      * Settings specific to the MySQL source endpoint.
@@ -2462,6 +2494,14 @@ export interface DatatransferEndpointSettings {
      * Settings specific to the PostgreSQL target endpoint.
      */
     postgresTarget?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresTarget>;
+    /**
+     * Settings specific to the YDB source endpoint.
+     */
+    ydbSource?: pulumi.Input<inputs.DatatransferEndpointSettingsYdbSource>;
+    /**
+     * Settings specific to the YDB target endpoint.
+     */
+    ydbTarget?: pulumi.Input<inputs.DatatransferEndpointSettingsYdbTarget>;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSource {
@@ -2712,6 +2752,414 @@ export interface DatatransferEndpointSettingsClickhouseTargetShardingColumnValue
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetShardingTransferId {
+}
+
+export interface DatatransferEndpointSettingsKafkaSource {
+    /**
+     * Authentication data.
+     */
+    auth?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceAuth>;
+    /**
+     * Connection settings. The structure is documented below.
+     */
+    connection?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceConnection>;
+    /**
+     * Data parsing parameters. If not set, the source messages are read in raw.
+     */
+    parser?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceParser>;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
+    securityGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Full source topic name.
+     */
+    topicName?: pulumi.Input<string>;
+    /**
+     * Transform data with a custom Cloud Function.
+     */
+    transformer?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceTransformer>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceAuth {
+    /**
+     * Connection without authentication data.
+     */
+    noAuth?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceAuthNoAuth>;
+    /**
+     * Authentication using sasl.
+     */
+    sasl?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceAuthSasl>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceAuthNoAuth {
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceAuthSasl {
+    mechanism?: pulumi.Input<string>;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
+    password?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceAuthSaslPassword>;
+    /**
+     * User for the database access.
+     */
+    user?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceAuthSaslPassword {
+    raw?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceConnection {
+    /**
+     * Identifier of the Managed Kafka cluster.
+     */
+    clusterId?: pulumi.Input<string>;
+    /**
+     * Connection settings of the on-premise Kafka server.
+     */
+    onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremise>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceConnectionOnPremise {
+    /**
+     * List of Kafka broker URLs.
+     */
+    brokerUrls?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
+    subnetId?: pulumi.Input<string>;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
+    tlsMode?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsMode>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
+    disabled?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabled>;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
+    enabled?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabled>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabled {
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
+    caCertificate?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParser {
+    /**
+     * Parse Audit Trails data. Empty struct.
+     */
+    auditTrailsV1Parser?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1Parser>;
+    /**
+     * Parse Cloud Logging data. Empty struct.
+     */
+    cloudLoggingParser?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParser>;
+    /**
+     * Parse data in json format.
+     */
+    jsonParser?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceParserJsonParser>;
+    /**
+     * Parse data if tskv format.
+     */
+    tskvParser?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceParserTskvParser>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1Parser {
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParser {
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserJsonParser {
+    /**
+     * Add fields, that are not in the schema, into the _rest column.
+     */
+    addRestColumn?: pulumi.Input<boolean>;
+    /**
+     * Data parsing scheme.The structure is documented below.
+     */
+    dataSchema?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchema>;
+    /**
+     * Allow null keys. If `false` - null keys will be putted to unparsed data
+     */
+    nullKeysAllowed?: pulumi.Input<boolean>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchema {
+    /**
+     * Description of the data schema in the array of `fields` structure (documented below).
+     */
+    fields?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFields>;
+    /**
+     * Description of the data schema as JSON specification.
+     */
+    jsonFields?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFields {
+    /**
+     * Description of the data schema in the array of `fields` structure (documented below).
+     */
+    fields?: pulumi.Input<pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsField>[]>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsField {
+    /**
+     * -Mark field as Primary Key.
+     */
+    key?: pulumi.Input<boolean>;
+    /**
+     * Name of the endpoint.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Path to the field.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * Mark field as required.
+     */
+    required?: pulumi.Input<boolean>;
+    /**
+     * Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+     */
+    type?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserTskvParser {
+    /**
+     * Add fields, that are not in the schema, into the _rest column.
+     */
+    addRestColumn?: pulumi.Input<boolean>;
+    /**
+     * Data parsing scheme.The structure is documented below.
+     */
+    dataSchema?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchema>;
+    /**
+     * Allow null keys. If `false` - null keys will be putted to unparsed data
+     */
+    nullKeysAllowed?: pulumi.Input<boolean>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchema {
+    /**
+     * Description of the data schema in the array of `fields` structure (documented below).
+     */
+    fields?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFields>;
+    /**
+     * Description of the data schema as JSON specification.
+     */
+    jsonFields?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFields {
+    /**
+     * Description of the data schema in the array of `fields` structure (documented below).
+     */
+    fields?: pulumi.Input<pulumi.Input<inputs.DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsField>[]>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsField {
+    /**
+     * -Mark field as Primary Key.
+     */
+    key?: pulumi.Input<boolean>;
+    /**
+     * Name of the endpoint.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Path to the field.
+     */
+    path?: pulumi.Input<string>;
+    /**
+     * Mark field as required.
+     */
+    required?: pulumi.Input<boolean>;
+    /**
+     * Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+     */
+    type?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceTransformer {
+    bufferFlushInterval?: pulumi.Input<string>;
+    bufferSize?: pulumi.Input<string>;
+    cloudFunction?: pulumi.Input<string>;
+    invocationTimeout?: pulumi.Input<string>;
+    numberOfRetries?: pulumi.Input<number>;
+    serviceAccountId?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsKafkaTarget {
+    /**
+     * Authentication data.
+     */
+    auth?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetAuth>;
+    /**
+     * Connection settings. The structure is documented below.
+     */
+    connection?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetConnection>;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
+    securityGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Data serialization settings.
+     */
+    serializer?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetSerializer>;
+    /**
+     * Target topic settings.
+     */
+    topicSettings?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetTopicSettings>;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetAuth {
+    /**
+     * Connection without authentication data.
+     */
+    noAuth?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetAuthNoAuth>;
+    /**
+     * Authentication using sasl.
+     */
+    sasl?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetAuthSasl>;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetAuthNoAuth {
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetAuthSasl {
+    mechanism?: pulumi.Input<string>;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
+    password?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetAuthSaslPassword>;
+    /**
+     * User for the database access.
+     */
+    user?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetAuthSaslPassword {
+    raw?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetConnection {
+    /**
+     * Identifier of the Managed Kafka cluster.
+     */
+    clusterId?: pulumi.Input<string>;
+    /**
+     * Connection settings of the on-premise Kafka server.
+     */
+    onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremise>;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetConnectionOnPremise {
+    /**
+     * List of Kafka broker URLs.
+     */
+    brokerUrls?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
+    subnetId?: pulumi.Input<string>;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
+    tlsMode?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsMode>;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
+    disabled?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabled>;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
+    enabled?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabled>;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabled {
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
+    caCertificate?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetSerializer {
+    /**
+     * Empty block. Select data serialization format automatically.
+     */
+    serializerAuto?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerAuto>;
+    /**
+     * Serialize data in json format. The structure is documented below.
+     */
+    serializerDebezium?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebezium>;
+    /**
+     * Empty block. Serialize data in json format.
+     */
+    serializerJson?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerJson>;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetSerializerSerializerAuto {
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebezium {
+    /**
+     * A list of debezium parameters set by the structure of the `key` and `value` string fields.
+     */
+    serializerParameters?: pulumi.Input<pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameter>[]>;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameter {
+    /**
+     * -Mark field as Primary Key.
+     */
+    key?: pulumi.Input<string>;
+    value?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetSerializerSerializerJson {
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetTopicSettings {
+    /**
+     * All messages will be sent to one topic. The structure is documented below.
+     */
+    topic?: pulumi.Input<inputs.DatatransferEndpointSettingsKafkaTargetTopicSettingsTopic>;
+    /**
+     * Topic name prefix. Messages will be sent to topic with name <topic_prefix>.<schema>.<table_name>.
+     */
+    topicPrefix?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetTopicSettingsTopic {
+    /**
+     * Not to split events queue into separate per-table queues.
+     */
+    saveTxOrder?: pulumi.Input<boolean>;
+    /**
+     * Full source topic name.
+     */
+    topicName?: pulumi.Input<string>;
 }
 
 export interface DatatransferEndpointSettingsMongoSource {
@@ -2980,7 +3428,7 @@ export interface DatatransferEndpointSettingsMysqlSourceConnection {
      */
     mdbClusterId?: pulumi.Input<string>;
     /**
-     * Connection settings of the on-premise MySQL server.
+     * Connection settings of the on-premise Kafka server.
      */
     onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlSourceConnectionOnPremise>;
 }
@@ -3027,6 +3475,7 @@ export interface DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsMo
 
 export interface DatatransferEndpointSettingsMysqlSourceObjectTransferSettings {
     routine?: pulumi.Input<string>;
+    tables?: pulumi.Input<string>;
     trigger?: pulumi.Input<string>;
     view?: pulumi.Input<string>;
 }
@@ -3076,7 +3525,7 @@ export interface DatatransferEndpointSettingsMysqlTargetConnection {
      */
     mdbClusterId?: pulumi.Input<string>;
     /**
-     * Connection settings of the on-premise MySQL server.
+     * Connection settings of the on-premise Kafka server.
      */
     onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremise>;
 }
@@ -3174,7 +3623,7 @@ export interface DatatransferEndpointSettingsPostgresSourceConnection {
      */
     mdbClusterId?: pulumi.Input<string>;
     /**
-     * Connection settings of the on-premise MySQL server.
+     * Connection settings of the on-premise Kafka server.
      */
     onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremise>;
 }
@@ -3233,8 +3682,12 @@ export interface DatatransferEndpointSettingsPostgresSourceObjectTransferSetting
     rule?: pulumi.Input<string>;
     sequence?: pulumi.Input<string>;
     sequenceOwnedBy?: pulumi.Input<string>;
+    sequenceSet?: pulumi.Input<string>;
     table?: pulumi.Input<string>;
     trigger?: pulumi.Input<string>;
+    /**
+     * Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+     */
     type?: pulumi.Input<string>;
     view?: pulumi.Input<string>;
 }
@@ -3272,7 +3725,7 @@ export interface DatatransferEndpointSettingsPostgresTargetConnection {
      */
     mdbClusterId?: pulumi.Input<string>;
     /**
-     * Connection settings of the on-premise MySQL server.
+     * Connection settings of the on-premise Kafka server.
      */
     onPremise?: pulumi.Input<inputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremise>;
 }
@@ -3319,6 +3772,51 @@ export interface DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTl
 
 export interface DatatransferEndpointSettingsPostgresTargetPassword {
     raw?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsYdbSource {
+    /**
+     * Name of the database to transfer.
+     */
+    database?: pulumi.Input<string>;
+    instance?: pulumi.Input<string>;
+    paths?: pulumi.Input<pulumi.Input<string>[]>;
+    saKeyContent?: pulumi.Input<string>;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
+    securityGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    serviceAccountId?: pulumi.Input<string>;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
+    subnetId?: pulumi.Input<string>;
+}
+
+export interface DatatransferEndpointSettingsYdbTarget {
+    /**
+     * How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+     */
+    cleanupPolicy?: pulumi.Input<string>;
+    /**
+     * Name of the database to transfer.
+     */
+    database?: pulumi.Input<string>;
+    instance?: pulumi.Input<string>;
+    /**
+     * Path to the field.
+     */
+    path?: pulumi.Input<string>;
+    saKeyContent?: pulumi.Input<string>;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
+    securityGroups?: pulumi.Input<pulumi.Input<string>[]>;
+    serviceAccountId?: pulumi.Input<string>;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
+    subnetId?: pulumi.Input<string>;
 }
 
 export interface FunctionConnectivity {
@@ -3382,6 +3880,8 @@ export interface FunctionTriggerFunction {
 }
 
 export interface FunctionTriggerIot {
+    batchCutoff: pulumi.Input<string>;
+    batchSize?: pulumi.Input<string>;
     deviceId?: pulumi.Input<string>;
     registryId: pulumi.Input<string>;
     topic?: pulumi.Input<string>;
@@ -3397,9 +3897,10 @@ export interface FunctionTriggerLogging {
     batchCutoff: pulumi.Input<string>;
     batchSize?: pulumi.Input<string>;
     groupId: pulumi.Input<string>;
-    levels: pulumi.Input<pulumi.Input<string>[]>;
-    resourceIds: pulumi.Input<pulumi.Input<string>[]>;
-    resourceTypes: pulumi.Input<pulumi.Input<string>[]>;
+    levels?: pulumi.Input<pulumi.Input<string>[]>;
+    resourceIds?: pulumi.Input<pulumi.Input<string>[]>;
+    resourceTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    streamNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface FunctionTriggerMessageQueue {
@@ -3411,6 +3912,8 @@ export interface FunctionTriggerMessageQueue {
 }
 
 export interface FunctionTriggerObjectStorage {
+    batchCutoff: pulumi.Input<string>;
+    batchSize?: pulumi.Input<string>;
     bucketId: pulumi.Input<string>;
     create?: pulumi.Input<boolean>;
     delete?: pulumi.Input<boolean>;
@@ -3421,6 +3924,7 @@ export interface FunctionTriggerObjectStorage {
 
 export interface FunctionTriggerTimer {
     cronExpression: pulumi.Input<string>;
+    payload?: pulumi.Input<string>;
 }
 
 export interface GetAlbBackendGroupGrpcBackend {
@@ -4405,7 +4909,7 @@ export interface GetCdnResourceOptions {
     /**
      * set up custom headers that CDN servers send in requests to origins.
      */
-    staticRequestHeaders?: string[];
+    staticRequestHeaders?: {[key: string]: string};
     staticResponseHeaders?: {[key: string]: string};
 }
 
@@ -4493,7 +4997,7 @@ export interface GetCdnResourceOptionsArgs {
     /**
      * set up custom headers that CDN servers send in requests to origins.
      */
-    staticRequestHeaders?: pulumi.Input<pulumi.Input<string>[]>;
+    staticRequestHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     staticResponseHeaders?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
@@ -4623,6 +5127,38 @@ export interface GetComputeInstancePlacementPolicyHostAffinityRuleArgs {
     values: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface GetComputeSnapshotScheduleSchedulePolicy {
+    expression?: string;
+    startAt?: string;
+}
+
+export interface GetComputeSnapshotScheduleSchedulePolicyArgs {
+    expression?: pulumi.Input<string>;
+    startAt?: pulumi.Input<string>;
+}
+
+export interface GetComputeSnapshotScheduleSnapshotSpec {
+    /**
+     * An optional description of this snapshot schedule.
+     */
+    description?: string;
+    /**
+     * A map of labels applied to this snapshot schedule.
+     */
+    labels?: {[key: string]: string};
+}
+
+export interface GetComputeSnapshotScheduleSnapshotSpecArgs {
+    /**
+     * An optional description of this snapshot schedule.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * A map of labels applied to this snapshot schedule.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+}
+
 export interface GetFunctionConnectivity {
     networkId: string;
 }
@@ -4663,6 +5199,8 @@ export interface GetIamPolicyBinding {
      * Each entry can have one of the following values:
      * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
      * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+     * * **group:{group_id}**: A unique group ID.
      */
     members: string[];
     /**
@@ -4678,6 +5216,8 @@ export interface GetIamPolicyBindingArgs {
      * Each entry can have one of the following values:
      * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
      * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+     * * **group:{group_id}**: A unique group ID.
      */
     members: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -4685,6 +5225,564 @@ export interface GetIamPolicyBindingArgs {
      * See the [IAM Roles] documentation for a complete list of roles.
      */
     role: pulumi.Input<string>;
+}
+
+export interface GetMdbClickhouseClusterAccess {
+    /**
+     * Allow access for Web SQL.
+     */
+    dataLens?: boolean;
+    /**
+     * Allow access for DataTransfer
+     */
+    dataTransfer?: boolean;
+    /**
+     * Allow access for Yandex.Metrika.
+     */
+    metrika?: boolean;
+    /**
+     * Allow access for Serverless.
+     */
+    serverless?: boolean;
+    /**
+     * Allow access for DataLens.
+     */
+    webSql?: boolean;
+    /**
+     * Allow access for YandexQuery
+     */
+    yandexQuery?: boolean;
+}
+
+export interface GetMdbClickhouseClusterAccessArgs {
+    /**
+     * Allow access for Web SQL.
+     */
+    dataLens?: pulumi.Input<boolean>;
+    /**
+     * Allow access for DataTransfer
+     */
+    dataTransfer?: pulumi.Input<boolean>;
+    /**
+     * Allow access for Yandex.Metrika.
+     */
+    metrika?: pulumi.Input<boolean>;
+    /**
+     * Allow access for Serverless.
+     */
+    serverless?: pulumi.Input<boolean>;
+    /**
+     * Allow access for DataLens.
+     */
+    webSql?: pulumi.Input<boolean>;
+    /**
+     * Allow access for YandexQuery
+     */
+    yandexQuery?: pulumi.Input<boolean>;
+}
+
+export interface GetMdbClickhouseClusterBackupWindowStart {
+    /**
+     * The hour at which backup will be started.
+     */
+    hours?: number;
+    /**
+     * The minute at which backup will be started.
+     */
+    minutes?: number;
+}
+
+export interface GetMdbClickhouseClusterBackupWindowStartArgs {
+    /**
+     * The hour at which backup will be started.
+     */
+    hours?: pulumi.Input<number>;
+    /**
+     * The minute at which backup will be started.
+     */
+    minutes?: pulumi.Input<number>;
+}
+
+export interface GetMdbClickhouseClusterClickhouse {
+    /**
+     * Main ClickHouse cluster configuration. The structure is documented below.
+     */
+    config?: inputs.GetMdbClickhouseClusterClickhouseConfig;
+    /**
+     * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+     */
+    resources?: inputs.GetMdbClickhouseClusterClickhouseResources;
+}
+
+export interface GetMdbClickhouseClusterClickhouseArgs {
+    /**
+     * Main ClickHouse cluster configuration. The structure is documented below.
+     */
+    config?: pulumi.Input<inputs.GetMdbClickhouseClusterClickhouseConfigArgs>;
+    /**
+     * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+     */
+    resources?: pulumi.Input<inputs.GetMdbClickhouseClusterClickhouseResourcesArgs>;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfig {
+    backgroundFetchesPoolSize?: number;
+    backgroundPoolSize?: number;
+    backgroundSchedulePoolSize?: number;
+    /**
+     * Data compression configuration. The structure is documented below.
+     */
+    compressions?: inputs.GetMdbClickhouseClusterClickhouseConfigCompression[];
+    defaultDatabase?: string;
+    geobaseUri?: string;
+    /**
+     * Graphite rollup configuration. The structure is documented below.
+     */
+    graphiteRollups?: inputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollup[];
+    /**
+     * Kafka connection configuration. The structure is documented below.
+     */
+    kafka?: inputs.GetMdbClickhouseClusterClickhouseConfigKafka;
+    /**
+     * Kafka topic connection configuration. The structure is documented below.
+     */
+    kafkaTopics?: inputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopic[];
+    keepAliveTimeout?: number;
+    logLevel?: string;
+    markCacheSize?: number;
+    maxConcurrentQueries?: number;
+    maxConnections?: number;
+    maxPartitionSizeToDrop?: number;
+    maxTableSizeToDrop?: number;
+    /**
+     * MergeTree engine configuration. The structure is documented below.
+     */
+    mergeTree?: inputs.GetMdbClickhouseClusterClickhouseConfigMergeTree;
+    metricLogEnabled?: boolean;
+    metricLogRetentionSize?: number;
+    metricLogRetentionTime?: number;
+    partLogRetentionSize?: number;
+    partLogRetentionTime?: number;
+    queryLogRetentionSize?: number;
+    queryLogRetentionTime?: number;
+    queryThreadLogEnabled?: boolean;
+    queryThreadLogRetentionSize?: number;
+    queryThreadLogRetentionTime?: number;
+    /**
+     * RabbitMQ connection configuration. The structure is documented below.
+     */
+    rabbitmq?: inputs.GetMdbClickhouseClusterClickhouseConfigRabbitmq;
+    textLogEnabled?: boolean;
+    textLogLevel?: string;
+    textLogRetentionSize?: number;
+    textLogRetentionTime?: number;
+    timezone?: string;
+    totalMemoryProfilerStep?: number;
+    traceLogEnabled?: boolean;
+    traceLogRetentionSize?: number;
+    traceLogRetentionTime?: number;
+    uncompressedCacheSize?: number;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigArgs {
+    backgroundFetchesPoolSize?: pulumi.Input<number>;
+    backgroundPoolSize?: pulumi.Input<number>;
+    backgroundSchedulePoolSize?: pulumi.Input<number>;
+    /**
+     * Data compression configuration. The structure is documented below.
+     */
+    compressions?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterClickhouseConfigCompressionArgs>[]>;
+    defaultDatabase?: pulumi.Input<string>;
+    geobaseUri?: pulumi.Input<string>;
+    /**
+     * Graphite rollup configuration. The structure is documented below.
+     */
+    graphiteRollups?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs>[]>;
+    /**
+     * Kafka connection configuration. The structure is documented below.
+     */
+    kafka?: pulumi.Input<inputs.GetMdbClickhouseClusterClickhouseConfigKafkaArgs>;
+    /**
+     * Kafka topic connection configuration. The structure is documented below.
+     */
+    kafkaTopics?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs>[]>;
+    keepAliveTimeout?: pulumi.Input<number>;
+    logLevel?: pulumi.Input<string>;
+    markCacheSize?: pulumi.Input<number>;
+    maxConcurrentQueries?: pulumi.Input<number>;
+    maxConnections?: pulumi.Input<number>;
+    maxPartitionSizeToDrop?: pulumi.Input<number>;
+    maxTableSizeToDrop?: pulumi.Input<number>;
+    /**
+     * MergeTree engine configuration. The structure is documented below.
+     */
+    mergeTree?: pulumi.Input<inputs.GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs>;
+    metricLogEnabled?: pulumi.Input<boolean>;
+    metricLogRetentionSize?: pulumi.Input<number>;
+    metricLogRetentionTime?: pulumi.Input<number>;
+    partLogRetentionSize?: pulumi.Input<number>;
+    partLogRetentionTime?: pulumi.Input<number>;
+    queryLogRetentionSize?: pulumi.Input<number>;
+    queryLogRetentionTime?: pulumi.Input<number>;
+    queryThreadLogEnabled?: pulumi.Input<boolean>;
+    queryThreadLogRetentionSize?: pulumi.Input<number>;
+    queryThreadLogRetentionTime?: pulumi.Input<number>;
+    /**
+     * RabbitMQ connection configuration. The structure is documented below.
+     */
+    rabbitmq?: pulumi.Input<inputs.GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs>;
+    textLogEnabled?: pulumi.Input<boolean>;
+    textLogLevel?: pulumi.Input<string>;
+    textLogRetentionSize?: pulumi.Input<number>;
+    textLogRetentionTime?: pulumi.Input<number>;
+    timezone?: pulumi.Input<string>;
+    totalMemoryProfilerStep?: pulumi.Input<number>;
+    traceLogEnabled?: pulumi.Input<boolean>;
+    traceLogRetentionSize?: pulumi.Input<number>;
+    traceLogRetentionTime?: pulumi.Input<number>;
+    uncompressedCacheSize?: pulumi.Input<number>;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigCompression {
+    /**
+     * Method: Compression method. Two methods are available: LZ4 and zstd.
+     */
+    method?: string;
+    /**
+     * Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
+     */
+    minPartSize?: number;
+    /**
+     * Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
+     */
+    minPartSizeRatio?: number;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigCompressionArgs {
+    /**
+     * Method: Compression method. Two methods are available: LZ4 and zstd.
+     */
+    method?: pulumi.Input<string>;
+    /**
+     * Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
+     */
+    minPartSize?: pulumi.Input<number>;
+    /**
+     * Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
+     */
+    minPartSizeRatio?: pulumi.Input<number>;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigGraphiteRollup {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: string;
+    /**
+     * Set of thinning rules.
+     */
+    patterns?: inputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPattern[];
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Set of thinning rules.
+     */
+    patterns?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs>[]>;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPattern {
+    /**
+     * Aggregation function name.
+     */
+    function?: string;
+    /**
+     * Regular expression that the metric name must match.
+     */
+    regexp?: string;
+    /**
+     * Retain parameters.
+     */
+    retentions?: inputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetention[];
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs {
+    /**
+     * Aggregation function name.
+     */
+    function?: pulumi.Input<string>;
+    /**
+     * Regular expression that the metric name must match.
+     */
+    regexp?: pulumi.Input<string>;
+    /**
+     * Retain parameters.
+     */
+    retentions?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs>[]>;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetention {
+    /**
+     * Minimum data age in seconds.
+     */
+    age?: number;
+    /**
+     * Accuracy of determining the age of the data in seconds.
+     */
+    precision?: number;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs {
+    /**
+     * Minimum data age in seconds.
+     */
+    age?: pulumi.Input<number>;
+    /**
+     * Accuracy of determining the age of the data in seconds.
+     */
+    precision?: pulumi.Input<number>;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigKafka {
+    /**
+     * SASL mechanism used in kafka authentication.
+     */
+    saslMechanism?: string;
+    /**
+     * User password on kafka server.
+     */
+    saslPassword?: string;
+    /**
+     * Username on kafka server.
+     */
+    saslUsername?: string;
+    /**
+     * Security protocol used to connect to kafka server.
+     */
+    securityProtocol?: string;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigKafkaArgs {
+    /**
+     * SASL mechanism used in kafka authentication.
+     */
+    saslMechanism?: pulumi.Input<string>;
+    /**
+     * User password on kafka server.
+     */
+    saslPassword?: pulumi.Input<string>;
+    /**
+     * Username on kafka server.
+     */
+    saslUsername?: pulumi.Input<string>;
+    /**
+     * Security protocol used to connect to kafka server.
+     */
+    securityProtocol?: pulumi.Input<string>;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigKafkaTopic {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: string;
+    /**
+     * Kafka connection settngs sanem as `kafka` block.
+     */
+    settings?: inputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettings;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Kafka connection settngs sanem as `kafka` block.
+     */
+    settings?: pulumi.Input<inputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs>;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettings {
+    /**
+     * SASL mechanism used in kafka authentication.
+     */
+    saslMechanism?: string;
+    /**
+     * User password on kafka server.
+     */
+    saslPassword?: string;
+    /**
+     * Username on kafka server.
+     */
+    saslUsername?: string;
+    /**
+     * Security protocol used to connect to kafka server.
+     */
+    securityProtocol?: string;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs {
+    /**
+     * SASL mechanism used in kafka authentication.
+     */
+    saslMechanism?: pulumi.Input<string>;
+    /**
+     * User password on kafka server.
+     */
+    saslPassword?: pulumi.Input<string>;
+    /**
+     * Username on kafka server.
+     */
+    saslUsername?: pulumi.Input<string>;
+    /**
+     * Security protocol used to connect to kafka server.
+     */
+    securityProtocol?: pulumi.Input<string>;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigMergeTree {
+    /**
+     * Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
+     */
+    maxBytesToMergeAtMinSpaceInPool?: number;
+    /**
+     * Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
+     */
+    maxReplicatedMergesInQueue?: number;
+    /**
+     * (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+     */
+    minBytesForWidePart?: number;
+    /**
+     * (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+     */
+    minRowsForWidePart?: number;
+    /**
+     * Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
+     */
+    numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge?: number;
+    /**
+     * Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
+     */
+    partsToDelayInsert?: number;
+    /**
+     * Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
+     */
+    partsToThrowInsert?: number;
+    /**
+     * Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
+     */
+    replicatedDeduplicationWindow?: number;
+    /**
+     * Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
+     */
+    replicatedDeduplicationWindowSeconds?: number;
+    /**
+     * (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+     */
+    ttlOnlyDropParts?: boolean;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs {
+    /**
+     * Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
+     */
+    maxBytesToMergeAtMinSpaceInPool?: pulumi.Input<number>;
+    /**
+     * Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
+     */
+    maxReplicatedMergesInQueue?: pulumi.Input<number>;
+    /**
+     * (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+     */
+    minBytesForWidePart?: pulumi.Input<number>;
+    /**
+     * (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+     */
+    minRowsForWidePart?: pulumi.Input<number>;
+    /**
+     * Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
+     */
+    numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge?: pulumi.Input<number>;
+    /**
+     * Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
+     */
+    partsToDelayInsert?: pulumi.Input<number>;
+    /**
+     * Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
+     */
+    partsToThrowInsert?: pulumi.Input<number>;
+    /**
+     * Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
+     */
+    replicatedDeduplicationWindow?: pulumi.Input<number>;
+    /**
+     * Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
+     */
+    replicatedDeduplicationWindowSeconds?: pulumi.Input<number>;
+    /**
+     * (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+     */
+    ttlOnlyDropParts?: pulumi.Input<boolean>;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigRabbitmq {
+    /**
+     * RabbitMQ user password.
+     */
+    password?: string;
+    /**
+     * RabbitMQ username.
+     */
+    username?: string;
+    /**
+     * (Optional) RabbitMQ vhost. Default: '\'.
+     */
+    vhost?: string;
+}
+
+export interface GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs {
+    /**
+     * RabbitMQ user password.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * RabbitMQ username.
+     */
+    username?: pulumi.Input<string>;
+    /**
+     * (Optional) RabbitMQ vhost. Default: '\'.
+     */
+    vhost?: pulumi.Input<string>;
+}
+
+export interface GetMdbClickhouseClusterClickhouseResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: number;
+    /**
+     * Type of the storage of hosts.
+     */
+    diskTypeId?: string;
+    resourcePresetId?: string;
+}
+
+export interface GetMdbClickhouseClusterClickhouseResourcesArgs {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: pulumi.Input<number>;
+    /**
+     * Type of the storage of hosts.
+     */
+    diskTypeId?: pulumi.Input<string>;
+    resourcePresetId?: pulumi.Input<string>;
 }
 
 export interface GetMdbClickhouseClusterCloudStorage {
@@ -4699,7 +5797,7 @@ export interface GetMdbClickhouseClusterCloudStorage {
     /**
      * (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
      */
@@ -4718,18 +5816,176 @@ export interface GetMdbClickhouseClusterCloudStorageArgs {
     /**
      * (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
      */
-    enabled: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean>;
     /**
      * Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
      */
     moveFactor?: pulumi.Input<number>;
 }
 
+export interface GetMdbClickhouseClusterDatabase {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: string;
+}
+
+export interface GetMdbClickhouseClusterDatabaseArgs {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: pulumi.Input<string>;
+}
+
+export interface GetMdbClickhouseClusterFormatSchema {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: string;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
+    type?: string;
+    /**
+     * Model file URL. You can only use models stored in Yandex Object Storage.
+     */
+    uri?: string;
+}
+
+export interface GetMdbClickhouseClusterFormatSchemaArgs {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * Model file URL. You can only use models stored in Yandex Object Storage.
+     */
+    uri?: pulumi.Input<string>;
+}
+
+export interface GetMdbClickhouseClusterHost {
+    /**
+     * Sets whether the host should get a public IP address on creation.
+     */
+    assignPublicIp?: boolean;
+    /**
+     * The fully qualified domain name of the host.
+     */
+    fqdn?: string;
+    /**
+     * The name of the shard to which the host belongs.
+     */
+    shardName?: string;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
+    subnetId?: string;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
+    type?: string;
+    /**
+     * The availability zone where the ClickHouse host will be created.
+     */
+    zone?: string;
+}
+
+export interface GetMdbClickhouseClusterHostArgs {
+    /**
+     * Sets whether the host should get a public IP address on creation.
+     */
+    assignPublicIp?: pulumi.Input<boolean>;
+    /**
+     * The fully qualified domain name of the host.
+     */
+    fqdn?: pulumi.Input<string>;
+    /**
+     * The name of the shard to which the host belongs.
+     */
+    shardName?: pulumi.Input<string>;
+    /**
+     * The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+     */
+    subnetId?: pulumi.Input<string>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * The availability zone where the ClickHouse host will be created.
+     */
+    zone?: pulumi.Input<string>;
+}
+
+export interface GetMdbClickhouseClusterMaintenanceWindow {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
+    day?: string;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
+    hour?: number;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
+    type?: string;
+}
+
+export interface GetMdbClickhouseClusterMaintenanceWindowArgs {
+    /**
+     * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+     */
+    day?: pulumi.Input<string>;
+    /**
+     * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+     */
+    hour?: pulumi.Input<number>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
+    type?: pulumi.Input<string>;
+}
+
+export interface GetMdbClickhouseClusterMlModel {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: string;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
+    type?: string;
+    /**
+     * Model file URL. You can only use models stored in Yandex Object Storage.
+     */
+    uri?: string;
+}
+
+export interface GetMdbClickhouseClusterMlModelArgs {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * Model file URL. You can only use models stored in Yandex Object Storage.
+     */
+    uri?: pulumi.Input<string>;
+}
+
 export interface GetMdbClickhouseClusterShard {
     /**
      * The name of the ClickHouse cluster.
      */
-    name: string;
+    name?: string;
     /**
      * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
      */
@@ -4744,7 +6000,7 @@ export interface GetMdbClickhouseClusterShardArgs {
     /**
      * The name of the ClickHouse cluster.
      */
-    name: pulumi.Input<string>;
+    name?: pulumi.Input<string>;
     /**
      * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
      */
@@ -4753,6 +6009,36 @@ export interface GetMdbClickhouseClusterShardArgs {
      * The weight of the shard.
      */
     weight?: pulumi.Input<number>;
+}
+
+export interface GetMdbClickhouseClusterShardGroup {
+    /**
+     * Description of the shard group.
+     */
+    description?: string;
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: string;
+    /**
+     * List of shards names that belong to the shard group.
+     */
+    shardNames?: string[];
+}
+
+export interface GetMdbClickhouseClusterShardGroupArgs {
+    /**
+     * Description of the shard group.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * List of shards names that belong to the shard group.
+     */
+    shardNames?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
 export interface GetMdbClickhouseClusterShardResources {
@@ -4768,6 +6054,1058 @@ export interface GetMdbClickhouseClusterShardResources {
 }
 
 export interface GetMdbClickhouseClusterShardResourcesArgs {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: pulumi.Input<number>;
+    /**
+     * Type of the storage of hosts.
+     */
+    diskTypeId?: pulumi.Input<string>;
+    resourcePresetId?: pulumi.Input<string>;
+}
+
+export interface GetMdbClickhouseClusterUser {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: string;
+    /**
+     * RabbitMQ user password.
+     */
+    password?: string;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
+    permissions?: inputs.GetMdbClickhouseClusterUserPermission[];
+    /**
+     * Set of user quotas. The structure is documented below.
+     */
+    quotas?: inputs.GetMdbClickhouseClusterUserQuota[];
+    /**
+     * Kafka connection settngs sanem as `kafka` block.
+     */
+    settings?: inputs.GetMdbClickhouseClusterUserSettings;
+}
+
+export interface GetMdbClickhouseClusterUserArgs {
+    /**
+     * The name of the ClickHouse cluster.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * RabbitMQ user password.
+     */
+    password?: pulumi.Input<string>;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
+    permissions?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterUserPermissionArgs>[]>;
+    /**
+     * Set of user quotas. The structure is documented below.
+     */
+    quotas?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterUserQuotaArgs>[]>;
+    /**
+     * Kafka connection settngs sanem as `kafka` block.
+     */
+    settings?: pulumi.Input<inputs.GetMdbClickhouseClusterUserSettingsArgs>;
+}
+
+export interface GetMdbClickhouseClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
+    databaseName?: string;
+}
+
+export interface GetMdbClickhouseClusterUserPermissionArgs {
+    /**
+     * The name of the database that the permission grants access to.
+     */
+    databaseName?: pulumi.Input<string>;
+}
+
+export interface GetMdbClickhouseClusterUserQuota {
+    /**
+     * The number of queries that threw exception.
+     */
+    errors?: number;
+    /**
+     * The total query execution time, in milliseconds (wall time).
+     */
+    executionTime?: number;
+    /**
+     * Duration of interval for quota in milliseconds.
+     */
+    intervalDuration?: number;
+    /**
+     * The total number of queries.
+     */
+    queries?: number;
+    /**
+     * The total number of source rows read from tables for running the query, on all remote servers.
+     */
+    readRows?: number;
+    /**
+     * The total number of rows given as the result.
+     */
+    resultRows?: number;
+}
+
+export interface GetMdbClickhouseClusterUserQuotaArgs {
+    /**
+     * The number of queries that threw exception.
+     */
+    errors?: pulumi.Input<number>;
+    /**
+     * The total query execution time, in milliseconds (wall time).
+     */
+    executionTime?: pulumi.Input<number>;
+    /**
+     * Duration of interval for quota in milliseconds.
+     */
+    intervalDuration?: pulumi.Input<number>;
+    /**
+     * The total number of queries.
+     */
+    queries?: pulumi.Input<number>;
+    /**
+     * The total number of source rows read from tables for running the query, on all remote servers.
+     */
+    readRows?: pulumi.Input<number>;
+    /**
+     * The total number of rows given as the result.
+     */
+    resultRows?: pulumi.Input<number>;
+}
+
+export interface GetMdbClickhouseClusterUserSettings {
+    /**
+     * Include CORS headers in HTTP responces.
+     */
+    addHttpCorsHeader?: boolean;
+    /**
+     * Allows or denies DDL queries.
+     */
+    allowDdl?: boolean;
+    /**
+     * (Optional) Enables introspections functions for query profiling.
+     */
+    allowIntrospectionFunctions?: boolean;
+    /**
+     * (Optional) Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+     */
+    allowSuspiciousLowCardinalityTypes?: boolean;
+    /**
+     * (Optional) Enables asynchronous inserts. Disabled by default.
+     */
+    asyncInsert?: boolean;
+    /**
+     * (Optional) The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+     */
+    asyncInsertBusyTimeout?: number;
+    /**
+     * (Optional) The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+     */
+    asyncInsertMaxDataSize?: number;
+    /**
+     * (Optional) The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the asyncInsertBusyTimeout with every INSERT query as long as asyncInsertMaxDataSize is not exceeded.
+     */
+    asyncInsertStaleTimeout?: number;
+    /**
+     * (Optional) The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+     */
+    asyncInsertThreads?: number;
+    /**
+     * (Optional) Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+     * Default value: false.
+     */
+    cancelHttpReadonlyQueriesOnClientClose?: boolean;
+    /**
+     * Enable compilation of queries.
+     */
+    compile?: boolean;
+    /**
+     * Turn on expression compilation.
+     */
+    compileExpressions?: boolean;
+    /**
+     * Connect timeout in milliseconds on the socket used for communicating with the client.
+     */
+    connectTimeout?: number;
+    /**
+     * (Optional) The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+     */
+    connectTimeoutWithFailover?: number;
+    /**
+     * Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
+     */
+    countDistinctImplementation?: string;
+    /**
+     * Sets behaviour on overflow when using DISTINCT. Possible values:
+     */
+    distinctOverflowMode?: string;
+    /**
+     * Determine the behavior of distributed subqueries.
+     */
+    distributedAggregationMemoryEfficient?: boolean;
+    /**
+     * Timeout for DDL queries, in milliseconds.
+     */
+    distributedDdlTaskTimeout?: number;
+    /**
+     * Changes the behaviour of distributed subqueries.
+     */
+    distributedProductMode?: string;
+    /**
+     * Allows to retunr empty result.
+     */
+    emptyResultForAggregationByEmptySet?: boolean;
+    /**
+     * Enables or disables data compression in the response to an HTTP request.
+     */
+    enableHttpCompression?: boolean;
+    /**
+     * Forces a query to an out-of-date replica if updated data is not available.
+     */
+    fallbackToStaleReplicasForDistributedQueries?: boolean;
+    /**
+     * (Optional) Sets the data format of a nested columns.
+     */
+    flattenNested?: boolean;
+    /**
+     * Disables query execution if the index can’t be used by date.
+     */
+    forceIndexByDate?: boolean;
+    /**
+     * Disables query execution if indexing by the primary key is not possible.
+     */
+    forcePrimaryKey?: boolean;
+    /**
+     * Sets behaviour on overflow while GROUP BY operation. Possible values:
+     */
+    groupByOverflowMode?: string;
+    /**
+     * Sets the threshold of the number of keys, after that the two-level aggregation should be used.
+     */
+    groupByTwoLevelThreshold?: number;
+    /**
+     * Sets the threshold of the number of bytes, after that the two-level aggregation should be used.
+     */
+    groupByTwoLevelThresholdBytes?: number;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
+    httpConnectionTimeout?: number;
+    /**
+     * Sets minimal interval between notifications about request process in HTTP header X-ClickHouse-Progress.
+     */
+    httpHeadersProgressInterval?: number;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
+    httpReceiveTimeout?: number;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
+    httpSendTimeout?: number;
+    /**
+     * When performing INSERT queries, replace omitted input column values with default values of the respective columns.
+     */
+    inputFormatDefaultsForOmittedFields?: boolean;
+    /**
+     * Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
+     */
+    inputFormatValuesInterpretExpressions?: boolean;
+    /**
+     * (Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+     */
+    insertNullAsDefault?: boolean;
+    /**
+     * Enables the quorum writes.
+     */
+    insertQuorum?: number;
+    /**
+     * Write to a quorum timeout in milliseconds.
+     */
+    insertQuorumTimeout?: number;
+    /**
+     * Sets behaviour on overflow in JOIN. Possible values:
+     */
+    joinOverflowMode?: string;
+    /**
+     * Sets the type of JOIN behaviour. When merging tables, empty cells may appear. ClickHouse fills them differently based on this setting.
+     */
+    joinUseNulls?: boolean;
+    /**
+     * Require aliases for subselects and table functions in FROM that more than one table is present.
+     */
+    joinedSubqueryRequiresAlias?: boolean;
+    /**
+     * Allows or restricts using the LowCardinality data type with the Native format.
+     */
+    lowCardinalityAllowInNativeFormat?: boolean;
+    /**
+     * Maximum abstract syntax tree depth.
+     */
+    maxAstDepth?: number;
+    /**
+     * Maximum abstract syntax tree elements.
+     */
+    maxAstElements?: number;
+    /**
+     * A recommendation for what size of the block (in a count of rows) to load from tables.
+     */
+    maxBlockSize?: number;
+    /**
+     * Limit in bytes for using memoru for GROUP BY before using swap on disk.
+     */
+    maxBytesBeforeExternalGroupBy?: number;
+    /**
+     * This setting is equivalent of the maxBytesBeforeExternalGroupBy setting, except for it is for sort operation (ORDER BY), not aggregation.
+     */
+    maxBytesBeforeExternalSort?: number;
+    /**
+     * Limits the maximum size of a hash table in bytes (uncompressed data) when using DISTINCT.
+     */
+    maxBytesInDistinct?: number;
+    /**
+     * Limit on maximum size of the hash table for JOIN, in bytes.
+     */
+    maxBytesInJoin?: number;
+    /**
+     * Limit on the number of bytes in the set resulting from the execution of the IN section.
+     */
+    maxBytesInSet?: number;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be read from a table when running a query.
+     */
+    maxBytesToRead?: number;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be read from a table for sorting.
+     */
+    maxBytesToSort?: number;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+     */
+    maxBytesToTransfer?: number;
+    /**
+     * Limits the maximum number of columns that can be read from a table in a single query.
+     */
+    maxColumnsToRead?: number;
+    /**
+     * (Optional) The maximum number of concurrent requests per user. Default value: 0 (no limit).
+     */
+    maxConcurrentQueriesForUser?: number;
+    /**
+     * Limits the maximum query execution time in milliseconds.
+     */
+    maxExecutionTime?: number;
+    /**
+     * Maximum abstract syntax tree depth after after expansion of aliases.
+     */
+    maxExpandedAstElements?: number;
+    /**
+     * (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+     * If the parameter is set to 0 (default), no hops is allowed.
+     */
+    maxHttpGetRedirects?: number;
+    /**
+     * The size of blocks (in a count of rows) to form for insertion into a table.
+     */
+    maxInsertBlockSize?: number;
+    /**
+     * Limits the maximum memory usage (in bytes) for processing queries on a single server.
+     */
+    maxMemoryUsage?: number;
+    /**
+     * Limits the maximum memory usage (in bytes) for processing of user's queries on a single server.
+     */
+    maxMemoryUsageForUser?: number;
+    /**
+     * Limits the speed of the data exchange over the network in bytes per second.
+     */
+    maxNetworkBandwidth?: number;
+    /**
+     * Limits the speed of the data exchange over the network in bytes per second.
+     */
+    maxNetworkBandwidthForUser?: number;
+    /**
+     * The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
+     */
+    maxQuerySize?: number;
+    /**
+     * Disables lagging replicas for distributed queries.
+     */
+    maxReplicaDelayForDistributedQueries?: number;
+    /**
+     * Limits the number of bytes in the result.
+     */
+    maxResultBytes?: number;
+    /**
+     * Limits the number of rows in the result.
+     */
+    maxResultRows?: number;
+    /**
+     * Limits the maximum number of different rows when using DISTINCT.
+     */
+    maxRowsInDistinct?: number;
+    /**
+     * Limit on maximum size of the hash table for JOIN, in rows.
+     */
+    maxRowsInJoin?: number;
+    /**
+     * Limit on the number of rows in the set resulting from the execution of the IN section.
+     */
+    maxRowsInSet?: number;
+    /**
+     * Limits the maximum number of unique keys received from aggregation function.
+     */
+    maxRowsToGroupBy?: number;
+    /**
+     * Limits the maximum number of rows that can be read from a table when running a query.
+     */
+    maxRowsToRead?: number;
+    /**
+     * Limits the maximum number of rows that can be read from a table for sorting.
+     */
+    maxRowsToSort?: number;
+    /**
+     * Limits the maximum number of rows that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+     */
+    maxRowsToTransfer?: number;
+    /**
+     * Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, including constant columns.
+     */
+    maxTemporaryColumns?: number;
+    /**
+     * Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, excluding constant columns.
+     */
+    maxTemporaryNonConstColumns?: number;
+    /**
+     * The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
+     */
+    maxThreads?: number;
+    /**
+     * (Optional) Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+     */
+    memoryProfilerSampleProbability?: number;
+    /**
+     * (Optional) Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+     */
+    memoryProfilerStep?: number;
+    /**
+     * If ClickHouse should read more than mergeTreeMaxBytesToUseCache bytes in one query, it doesn’t use the cache of uncompressed blocks.
+     */
+    mergeTreeMaxBytesToUseCache?: number;
+    /**
+     * If ClickHouse should read more than mergeTreeMaxRowsToUseCache rows in one query, it doesn’t use the cache of uncompressed blocks.
+     */
+    mergeTreeMaxRowsToUseCache?: number;
+    /**
+     * If the number of bytes to read from one file of a MergeTree-engine table exceeds merge_tree_min_bytes_for_concurrent_read, then ClickHouse tries to concurrently read from this file in several threads.
+     */
+    mergeTreeMinBytesForConcurrentRead?: number;
+    /**
+     * If the number of rows to be read from a file of a MergeTree table exceeds mergeTreeMinRowsForConcurrentRead then ClickHouse tries to perform a concurrent reading from this file on several threads.
+     */
+    mergeTreeMinRowsForConcurrentRead?: number;
+    /**
+     * The minimum data volume required for using direct I/O access to the storage disk.
+     */
+    minBytesToUseDirectIo?: number;
+    /**
+     * How many times to potentially use a compiled chunk of code before running compilation.
+     */
+    minCountToCompile?: number;
+    /**
+     * A query waits for expression compilation process to complete prior to continuing execution.
+     */
+    minCountToCompileExpression?: number;
+    /**
+     * Minimal execution speed in rows per second.
+     */
+    minExecutionSpeed?: number;
+    /**
+     * Minimal execution speed in bytes per second.
+     */
+    minExecutionSpeedBytes?: number;
+    /**
+     * Sets the minimum number of bytes in the block which can be inserted into a table by an INSERT query.
+     */
+    minInsertBlockSizeBytes?: number;
+    /**
+     * Sets the minimum number of rows in the block which can be inserted into a table by an INSERT query.
+     */
+    minInsertBlockSizeRows?: number;
+    /**
+     * If the value is true, integers appear in quotes when using JSON* Int64 and UInt64 formats (for compatibility with most JavaScript implementations); otherwise, integers are output without the quotes.
+     */
+    outputFormatJsonQuote64bitIntegers?: boolean;
+    /**
+     * Enables +nan, -nan, +inf, -inf outputs in JSON output format.
+     */
+    outputFormatJsonQuoteDenormals?: boolean;
+    /**
+     * Query priority.
+     */
+    priority?: number;
+    /**
+     * Quota accounting mode.
+     */
+    quotaMode?: string;
+    /**
+     * Sets behaviour on overflow while read. Possible values:
+     */
+    readOverflowMode?: string;
+    /**
+     * Restricts permissions for reading data, write data and change settings queries.
+     */
+    readonly?: number;
+    /**
+     * Receive timeout in milliseconds on the socket used for communicating with the client.
+     */
+    receiveTimeout?: number;
+    /**
+     * For ALTER ... ATTACH|DETACH|DROP queries, you can use the replicationAlterPartitionsSync setting to set up waiting.
+     */
+    replicationAlterPartitionsSync?: number;
+    /**
+     * Sets behaviour on overflow in result. Possible values:
+     */
+    resultOverflowMode?: string;
+    /**
+     * Enables or disables sequential consistency for SELECT queries.
+     */
+    selectSequentialConsistency?: boolean;
+    /**
+     * Enables or disables X-ClickHouse-Progress HTTP response headers in clickhouse-server responses.
+     */
+    sendProgressInHttpHeaders?: boolean;
+    /**
+     * Send timeout in milliseconds on the socket used for communicating with the client.
+     */
+    sendTimeout?: number;
+    /**
+     * Sets behaviour on overflow in the set resulting. Possible values:
+     */
+    setOverflowMode?: string;
+    /**
+     * Enables or disables silently skipping of unavailable shards.
+     */
+    skipUnavailableShards?: boolean;
+    /**
+     * Sets behaviour on overflow while sort. Possible values:
+     */
+    sortOverflowMode?: string;
+    /**
+     * (Optional) Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in minExecutionSpeed parameter.
+     * Must be at least 1000.
+     */
+    timeoutBeforeCheckingExecutionSpeed?: number;
+    /**
+     * Sets behaviour on overflow. Possible values:
+     */
+    timeoutOverflowMode?: string;
+    /**
+     * Sets behaviour on overflow. Possible values:
+     */
+    transferOverflowMode?: string;
+    /**
+     * Enables equality of NULL values for IN operator.
+     */
+    transformNullIn?: boolean;
+    /**
+     * Whether to use a cache of uncompressed blocks.
+     */
+    useUncompressedCache?: boolean;
+    /**
+     * (Optional) Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+     */
+    waitForAsyncInsert?: boolean;
+    /**
+     * (Optional) The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+     */
+    waitForAsyncInsertTimeout?: number;
+}
+
+export interface GetMdbClickhouseClusterUserSettingsArgs {
+    /**
+     * Include CORS headers in HTTP responces.
+     */
+    addHttpCorsHeader?: pulumi.Input<boolean>;
+    /**
+     * Allows or denies DDL queries.
+     */
+    allowDdl?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Enables introspections functions for query profiling.
+     */
+    allowIntrospectionFunctions?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+     */
+    allowSuspiciousLowCardinalityTypes?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Enables asynchronous inserts. Disabled by default.
+     */
+    asyncInsert?: pulumi.Input<boolean>;
+    /**
+     * (Optional) The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+     */
+    asyncInsertBusyTimeout?: pulumi.Input<number>;
+    /**
+     * (Optional) The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+     */
+    asyncInsertMaxDataSize?: pulumi.Input<number>;
+    /**
+     * (Optional) The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the asyncInsertBusyTimeout with every INSERT query as long as asyncInsertMaxDataSize is not exceeded.
+     */
+    asyncInsertStaleTimeout?: pulumi.Input<number>;
+    /**
+     * (Optional) The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+     */
+    asyncInsertThreads?: pulumi.Input<number>;
+    /**
+     * (Optional) Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+     * Default value: false.
+     */
+    cancelHttpReadonlyQueriesOnClientClose?: pulumi.Input<boolean>;
+    /**
+     * Enable compilation of queries.
+     */
+    compile?: pulumi.Input<boolean>;
+    /**
+     * Turn on expression compilation.
+     */
+    compileExpressions?: pulumi.Input<boolean>;
+    /**
+     * Connect timeout in milliseconds on the socket used for communicating with the client.
+     */
+    connectTimeout?: pulumi.Input<number>;
+    /**
+     * (Optional) The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+     */
+    connectTimeoutWithFailover?: pulumi.Input<number>;
+    /**
+     * Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
+     */
+    countDistinctImplementation?: pulumi.Input<string>;
+    /**
+     * Sets behaviour on overflow when using DISTINCT. Possible values:
+     */
+    distinctOverflowMode?: pulumi.Input<string>;
+    /**
+     * Determine the behavior of distributed subqueries.
+     */
+    distributedAggregationMemoryEfficient?: pulumi.Input<boolean>;
+    /**
+     * Timeout for DDL queries, in milliseconds.
+     */
+    distributedDdlTaskTimeout?: pulumi.Input<number>;
+    /**
+     * Changes the behaviour of distributed subqueries.
+     */
+    distributedProductMode?: pulumi.Input<string>;
+    /**
+     * Allows to retunr empty result.
+     */
+    emptyResultForAggregationByEmptySet?: pulumi.Input<boolean>;
+    /**
+     * Enables or disables data compression in the response to an HTTP request.
+     */
+    enableHttpCompression?: pulumi.Input<boolean>;
+    /**
+     * Forces a query to an out-of-date replica if updated data is not available.
+     */
+    fallbackToStaleReplicasForDistributedQueries?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Sets the data format of a nested columns.
+     */
+    flattenNested?: pulumi.Input<boolean>;
+    /**
+     * Disables query execution if the index can’t be used by date.
+     */
+    forceIndexByDate?: pulumi.Input<boolean>;
+    /**
+     * Disables query execution if indexing by the primary key is not possible.
+     */
+    forcePrimaryKey?: pulumi.Input<boolean>;
+    /**
+     * Sets behaviour on overflow while GROUP BY operation. Possible values:
+     */
+    groupByOverflowMode?: pulumi.Input<string>;
+    /**
+     * Sets the threshold of the number of keys, after that the two-level aggregation should be used.
+     */
+    groupByTwoLevelThreshold?: pulumi.Input<number>;
+    /**
+     * Sets the threshold of the number of bytes, after that the two-level aggregation should be used.
+     */
+    groupByTwoLevelThresholdBytes?: pulumi.Input<number>;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
+    httpConnectionTimeout?: pulumi.Input<number>;
+    /**
+     * Sets minimal interval between notifications about request process in HTTP header X-ClickHouse-Progress.
+     */
+    httpHeadersProgressInterval?: pulumi.Input<number>;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
+    httpReceiveTimeout?: pulumi.Input<number>;
+    /**
+     * Timeout for HTTP connection in milliseconds.
+     */
+    httpSendTimeout?: pulumi.Input<number>;
+    /**
+     * When performing INSERT queries, replace omitted input column values with default values of the respective columns.
+     */
+    inputFormatDefaultsForOmittedFields?: pulumi.Input<boolean>;
+    /**
+     * Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
+     */
+    inputFormatValuesInterpretExpressions?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+     */
+    insertNullAsDefault?: pulumi.Input<boolean>;
+    /**
+     * Enables the quorum writes.
+     */
+    insertQuorum?: pulumi.Input<number>;
+    /**
+     * Write to a quorum timeout in milliseconds.
+     */
+    insertQuorumTimeout?: pulumi.Input<number>;
+    /**
+     * Sets behaviour on overflow in JOIN. Possible values:
+     */
+    joinOverflowMode?: pulumi.Input<string>;
+    /**
+     * Sets the type of JOIN behaviour. When merging tables, empty cells may appear. ClickHouse fills them differently based on this setting.
+     */
+    joinUseNulls?: pulumi.Input<boolean>;
+    /**
+     * Require aliases for subselects and table functions in FROM that more than one table is present.
+     */
+    joinedSubqueryRequiresAlias?: pulumi.Input<boolean>;
+    /**
+     * Allows or restricts using the LowCardinality data type with the Native format.
+     */
+    lowCardinalityAllowInNativeFormat?: pulumi.Input<boolean>;
+    /**
+     * Maximum abstract syntax tree depth.
+     */
+    maxAstDepth?: pulumi.Input<number>;
+    /**
+     * Maximum abstract syntax tree elements.
+     */
+    maxAstElements?: pulumi.Input<number>;
+    /**
+     * A recommendation for what size of the block (in a count of rows) to load from tables.
+     */
+    maxBlockSize?: pulumi.Input<number>;
+    /**
+     * Limit in bytes for using memoru for GROUP BY before using swap on disk.
+     */
+    maxBytesBeforeExternalGroupBy?: pulumi.Input<number>;
+    /**
+     * This setting is equivalent of the maxBytesBeforeExternalGroupBy setting, except for it is for sort operation (ORDER BY), not aggregation.
+     */
+    maxBytesBeforeExternalSort?: pulumi.Input<number>;
+    /**
+     * Limits the maximum size of a hash table in bytes (uncompressed data) when using DISTINCT.
+     */
+    maxBytesInDistinct?: pulumi.Input<number>;
+    /**
+     * Limit on maximum size of the hash table for JOIN, in bytes.
+     */
+    maxBytesInJoin?: pulumi.Input<number>;
+    /**
+     * Limit on the number of bytes in the set resulting from the execution of the IN section.
+     */
+    maxBytesInSet?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be read from a table when running a query.
+     */
+    maxBytesToRead?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be read from a table for sorting.
+     */
+    maxBytesToSort?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of bytes (uncompressed data) that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+     */
+    maxBytesToTransfer?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of columns that can be read from a table in a single query.
+     */
+    maxColumnsToRead?: pulumi.Input<number>;
+    /**
+     * (Optional) The maximum number of concurrent requests per user. Default value: 0 (no limit).
+     */
+    maxConcurrentQueriesForUser?: pulumi.Input<number>;
+    /**
+     * Limits the maximum query execution time in milliseconds.
+     */
+    maxExecutionTime?: pulumi.Input<number>;
+    /**
+     * Maximum abstract syntax tree depth after after expansion of aliases.
+     */
+    maxExpandedAstElements?: pulumi.Input<number>;
+    /**
+     * (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+     * If the parameter is set to 0 (default), no hops is allowed.
+     */
+    maxHttpGetRedirects?: pulumi.Input<number>;
+    /**
+     * The size of blocks (in a count of rows) to form for insertion into a table.
+     */
+    maxInsertBlockSize?: pulumi.Input<number>;
+    /**
+     * Limits the maximum memory usage (in bytes) for processing queries on a single server.
+     */
+    maxMemoryUsage?: pulumi.Input<number>;
+    /**
+     * Limits the maximum memory usage (in bytes) for processing of user's queries on a single server.
+     */
+    maxMemoryUsageForUser?: pulumi.Input<number>;
+    /**
+     * Limits the speed of the data exchange over the network in bytes per second.
+     */
+    maxNetworkBandwidth?: pulumi.Input<number>;
+    /**
+     * Limits the speed of the data exchange over the network in bytes per second.
+     */
+    maxNetworkBandwidthForUser?: pulumi.Input<number>;
+    /**
+     * The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
+     */
+    maxQuerySize?: pulumi.Input<number>;
+    /**
+     * Disables lagging replicas for distributed queries.
+     */
+    maxReplicaDelayForDistributedQueries?: pulumi.Input<number>;
+    /**
+     * Limits the number of bytes in the result.
+     */
+    maxResultBytes?: pulumi.Input<number>;
+    /**
+     * Limits the number of rows in the result.
+     */
+    maxResultRows?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of different rows when using DISTINCT.
+     */
+    maxRowsInDistinct?: pulumi.Input<number>;
+    /**
+     * Limit on maximum size of the hash table for JOIN, in rows.
+     */
+    maxRowsInJoin?: pulumi.Input<number>;
+    /**
+     * Limit on the number of rows in the set resulting from the execution of the IN section.
+     */
+    maxRowsInSet?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of unique keys received from aggregation function.
+     */
+    maxRowsToGroupBy?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of rows that can be read from a table when running a query.
+     */
+    maxRowsToRead?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of rows that can be read from a table for sorting.
+     */
+    maxRowsToSort?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of rows that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+     */
+    maxRowsToTransfer?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, including constant columns.
+     */
+    maxTemporaryColumns?: pulumi.Input<number>;
+    /**
+     * Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, excluding constant columns.
+     */
+    maxTemporaryNonConstColumns?: pulumi.Input<number>;
+    /**
+     * The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
+     */
+    maxThreads?: pulumi.Input<number>;
+    /**
+     * (Optional) Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+     */
+    memoryProfilerSampleProbability?: pulumi.Input<number>;
+    /**
+     * (Optional) Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+     */
+    memoryProfilerStep?: pulumi.Input<number>;
+    /**
+     * If ClickHouse should read more than mergeTreeMaxBytesToUseCache bytes in one query, it doesn’t use the cache of uncompressed blocks.
+     */
+    mergeTreeMaxBytesToUseCache?: pulumi.Input<number>;
+    /**
+     * If ClickHouse should read more than mergeTreeMaxRowsToUseCache rows in one query, it doesn’t use the cache of uncompressed blocks.
+     */
+    mergeTreeMaxRowsToUseCache?: pulumi.Input<number>;
+    /**
+     * If the number of bytes to read from one file of a MergeTree-engine table exceeds merge_tree_min_bytes_for_concurrent_read, then ClickHouse tries to concurrently read from this file in several threads.
+     */
+    mergeTreeMinBytesForConcurrentRead?: pulumi.Input<number>;
+    /**
+     * If the number of rows to be read from a file of a MergeTree table exceeds mergeTreeMinRowsForConcurrentRead then ClickHouse tries to perform a concurrent reading from this file on several threads.
+     */
+    mergeTreeMinRowsForConcurrentRead?: pulumi.Input<number>;
+    /**
+     * The minimum data volume required for using direct I/O access to the storage disk.
+     */
+    minBytesToUseDirectIo?: pulumi.Input<number>;
+    /**
+     * How many times to potentially use a compiled chunk of code before running compilation.
+     */
+    minCountToCompile?: pulumi.Input<number>;
+    /**
+     * A query waits for expression compilation process to complete prior to continuing execution.
+     */
+    minCountToCompileExpression?: pulumi.Input<number>;
+    /**
+     * Minimal execution speed in rows per second.
+     */
+    minExecutionSpeed?: pulumi.Input<number>;
+    /**
+     * Minimal execution speed in bytes per second.
+     */
+    minExecutionSpeedBytes?: pulumi.Input<number>;
+    /**
+     * Sets the minimum number of bytes in the block which can be inserted into a table by an INSERT query.
+     */
+    minInsertBlockSizeBytes?: pulumi.Input<number>;
+    /**
+     * Sets the minimum number of rows in the block which can be inserted into a table by an INSERT query.
+     */
+    minInsertBlockSizeRows?: pulumi.Input<number>;
+    /**
+     * If the value is true, integers appear in quotes when using JSON* Int64 and UInt64 formats (for compatibility with most JavaScript implementations); otherwise, integers are output without the quotes.
+     */
+    outputFormatJsonQuote64bitIntegers?: pulumi.Input<boolean>;
+    /**
+     * Enables +nan, -nan, +inf, -inf outputs in JSON output format.
+     */
+    outputFormatJsonQuoteDenormals?: pulumi.Input<boolean>;
+    /**
+     * Query priority.
+     */
+    priority?: pulumi.Input<number>;
+    /**
+     * Quota accounting mode.
+     */
+    quotaMode?: pulumi.Input<string>;
+    /**
+     * Sets behaviour on overflow while read. Possible values:
+     */
+    readOverflowMode?: pulumi.Input<string>;
+    /**
+     * Restricts permissions for reading data, write data and change settings queries.
+     */
+    readonly?: pulumi.Input<number>;
+    /**
+     * Receive timeout in milliseconds on the socket used for communicating with the client.
+     */
+    receiveTimeout?: pulumi.Input<number>;
+    /**
+     * For ALTER ... ATTACH|DETACH|DROP queries, you can use the replicationAlterPartitionsSync setting to set up waiting.
+     */
+    replicationAlterPartitionsSync?: pulumi.Input<number>;
+    /**
+     * Sets behaviour on overflow in result. Possible values:
+     */
+    resultOverflowMode?: pulumi.Input<string>;
+    /**
+     * Enables or disables sequential consistency for SELECT queries.
+     */
+    selectSequentialConsistency?: pulumi.Input<boolean>;
+    /**
+     * Enables or disables X-ClickHouse-Progress HTTP response headers in clickhouse-server responses.
+     */
+    sendProgressInHttpHeaders?: pulumi.Input<boolean>;
+    /**
+     * Send timeout in milliseconds on the socket used for communicating with the client.
+     */
+    sendTimeout?: pulumi.Input<number>;
+    /**
+     * Sets behaviour on overflow in the set resulting. Possible values:
+     */
+    setOverflowMode?: pulumi.Input<string>;
+    /**
+     * Enables or disables silently skipping of unavailable shards.
+     */
+    skipUnavailableShards?: pulumi.Input<boolean>;
+    /**
+     * Sets behaviour on overflow while sort. Possible values:
+     */
+    sortOverflowMode?: pulumi.Input<string>;
+    /**
+     * (Optional) Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in minExecutionSpeed parameter.
+     * Must be at least 1000.
+     */
+    timeoutBeforeCheckingExecutionSpeed?: pulumi.Input<number>;
+    /**
+     * Sets behaviour on overflow. Possible values:
+     */
+    timeoutOverflowMode?: pulumi.Input<string>;
+    /**
+     * Sets behaviour on overflow. Possible values:
+     */
+    transferOverflowMode?: pulumi.Input<string>;
+    /**
+     * Enables equality of NULL values for IN operator.
+     */
+    transformNullIn?: pulumi.Input<boolean>;
+    /**
+     * Whether to use a cache of uncompressed blocks.
+     */
+    useUncompressedCache?: pulumi.Input<boolean>;
+    /**
+     * (Optional) Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+     */
+    waitForAsyncInsert?: pulumi.Input<boolean>;
+    /**
+     * (Optional) The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+     */
+    waitForAsyncInsertTimeout?: pulumi.Input<number>;
+}
+
+export interface GetMdbClickhouseClusterZookeeper {
+    /**
+     * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+     */
+    resources?: inputs.GetMdbClickhouseClusterZookeeperResources;
+}
+
+export interface GetMdbClickhouseClusterZookeeperArgs {
+    /**
+     * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+     */
+    resources?: pulumi.Input<inputs.GetMdbClickhouseClusterZookeeperResourcesArgs>;
+}
+
+export interface GetMdbClickhouseClusterZookeeperResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: number;
+    /**
+     * Type of the storage of hosts.
+     */
+    diskTypeId?: string;
+    resourcePresetId?: string;
+}
+
+export interface GetMdbClickhouseClusterZookeeperResourcesArgs {
     /**
      * Volume of the storage available to a host, in gigabytes.
      */
@@ -5019,10 +7357,6 @@ export interface GetMdbKafkaClusterConfigZookeeperResourcesArgs {
 
 export interface GetMdbKafkaClusterTopic {
     /**
-     * The ID of the Kafka cluster.
-     */
-    clusterId: string;
-    /**
      * The name of the Kafka cluster.
      */
     name: string;
@@ -5041,10 +7375,6 @@ export interface GetMdbKafkaClusterTopic {
 }
 
 export interface GetMdbKafkaClusterTopicArgs {
-    /**
-     * The ID of the Kafka cluster.
-     */
-    clusterId: pulumi.Input<string>;
     /**
      * The name of the Kafka cluster.
      */
@@ -5160,12 +7490,15 @@ export interface GetMdbMongodbClusterClusterConfig {
      * Feature compatibility version of MongoDB.
      */
     featureCompatibilityVersion?: string;
+    mongocfg?: inputs.GetMdbMongodbClusterClusterConfigMongocfg;
     /**
      * (Optional) Configuration of the mongod service. The structure is documented below.
      */
     mongod?: inputs.GetMdbMongodbClusterClusterConfigMongod;
+    mongos?: inputs.GetMdbMongodbClusterClusterConfigMongos;
+    performanceDiagnostics?: inputs.GetMdbMongodbClusterClusterConfigPerformanceDiagnostics;
     /**
-     * Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+     * Version of MongoDB (either 6.0, 6.0-enterprise, 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2).
      */
     version?: string;
 }
@@ -5183,12 +7516,15 @@ export interface GetMdbMongodbClusterClusterConfigArgs {
      * Feature compatibility version of MongoDB.
      */
     featureCompatibilityVersion?: pulumi.Input<string>;
+    mongocfg?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongocfgArgs>;
     /**
      * (Optional) Configuration of the mongod service. The structure is documented below.
      */
     mongod?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodArgs>;
+    mongos?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongosArgs>;
+    performanceDiagnostics?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs>;
     /**
-     * Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+     * Version of MongoDB (either 6.0, 6.0-enterprise, 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2).
      */
     version?: pulumi.Input<string>;
 }
@@ -5237,6 +7573,52 @@ export interface GetMdbMongodbClusterClusterConfigBackupWindowStartArgs {
     minutes?: pulumi.Input<number>;
 }
 
+export interface GetMdbMongodbClusterClusterConfigMongocfg {
+    net?: inputs.GetMdbMongodbClusterClusterConfigMongocfgNet;
+    operationProfiling?: inputs.GetMdbMongodbClusterClusterConfigMongocfgOperationProfiling;
+    storage?: inputs.GetMdbMongodbClusterClusterConfigMongocfgStorage;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongocfgArgs {
+    net?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongocfgNetArgs>;
+    operationProfiling?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs>;
+    storage?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongocfgStorageArgs>;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongocfgNet {
+    maxIncomingConnections?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongocfgNetArgs {
+    maxIncomingConnections?: pulumi.Input<number>;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongocfgOperationProfiling {
+    mode?: string;
+    slowOpThreshold?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs {
+    mode?: pulumi.Input<string>;
+    slowOpThreshold?: pulumi.Input<number>;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongocfgStorage {
+    wiredTiger?: inputs.GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTiger;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongocfgStorageArgs {
+    wiredTiger?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs>;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTiger {
+    cacheSizeGb?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs {
+    cacheSizeGb?: pulumi.Input<number>;
+}
+
 export interface GetMdbMongodbClusterClusterConfigMongod {
     /**
      * (Optional) A set of audit log settings
@@ -5244,6 +7626,8 @@ export interface GetMdbMongodbClusterClusterConfigMongod {
      * The structure is documented below. Available only in enterprise edition.
      */
     auditLog?: inputs.GetMdbMongodbClusterClusterConfigMongodAuditLog;
+    net?: inputs.GetMdbMongodbClusterClusterConfigMongodNet;
+    operationProfiling?: inputs.GetMdbMongodbClusterClusterConfigMongodOperationProfiling;
     /**
      * (Optional) A set of MongoDB Security settings
      * (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
@@ -5256,6 +7640,7 @@ export interface GetMdbMongodbClusterClusterConfigMongod {
      * The structure is documented below.
      */
     setParameter?: inputs.GetMdbMongodbClusterClusterConfigMongodSetParameter;
+    storage?: inputs.GetMdbMongodbClusterClusterConfigMongodStorage;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodArgs {
@@ -5265,6 +7650,8 @@ export interface GetMdbMongodbClusterClusterConfigMongodArgs {
      * The structure is documented below. Available only in enterprise edition.
      */
     auditLog?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodAuditLogArgs>;
+    net?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodNetArgs>;
+    operationProfiling?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodOperationProfilingArgs>;
     /**
      * (Optional) A set of MongoDB Security settings
      * (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
@@ -5277,6 +7664,7 @@ export interface GetMdbMongodbClusterClusterConfigMongodArgs {
      * The structure is documented below.
      */
     setParameter?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodSetParameterArgs>;
+    storage?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodStorageArgs>;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodAuditLog {
@@ -5297,6 +7685,24 @@ export interface GetMdbMongodbClusterClusterConfigMongodAuditLogArgs {
      */
     filter?: pulumi.Input<string>;
     runtimeConfiguration?: pulumi.Input<boolean>;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodNet {
+    maxIncomingConnections?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodNetArgs {
+    maxIncomingConnections?: pulumi.Input<number>;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodOperationProfiling {
+    mode?: string;
+    slowOpThreshold?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodOperationProfilingArgs {
+    mode?: pulumi.Input<string>;
+    slowOpThreshold?: pulumi.Input<number>;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodSecurity {
@@ -5411,6 +7817,58 @@ export interface GetMdbMongodbClusterClusterConfigMongodSetParameterArgs {
      * description in the official documentation. Available only in enterprise edition.
      */
     auditAuthorizationSuccess?: pulumi.Input<boolean>;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodStorage {
+    journal?: inputs.GetMdbMongodbClusterClusterConfigMongodStorageJournal;
+    wiredTiger?: inputs.GetMdbMongodbClusterClusterConfigMongodStorageWiredTiger;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodStorageArgs {
+    journal?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodStorageJournalArgs>;
+    wiredTiger?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs>;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodStorageJournal {
+    commitInterval?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodStorageJournalArgs {
+    commitInterval?: pulumi.Input<number>;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodStorageWiredTiger {
+    blockCompressor?: string;
+    cacheSizeGb?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs {
+    blockCompressor?: pulumi.Input<string>;
+    cacheSizeGb?: pulumi.Input<number>;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongos {
+    net?: inputs.GetMdbMongodbClusterClusterConfigMongosNet;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongosArgs {
+    net?: pulumi.Input<inputs.GetMdbMongodbClusterClusterConfigMongosNetArgs>;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongosNet {
+    maxIncomingConnections?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongosNetArgs {
+    maxIncomingConnections?: pulumi.Input<number>;
+}
+
+export interface GetMdbMongodbClusterClusterConfigPerformanceDiagnostics {
+    enabled?: boolean;
+}
+
+export interface GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs {
+    enabled?: pulumi.Input<boolean>;
 }
 
 export interface GetMdbMongodbClusterDatabase {
@@ -5553,6 +8011,102 @@ export interface GetMdbMongodbClusterResourcesArgs {
     resourcePresetId?: pulumi.Input<string>;
 }
 
+export interface GetMdbMongodbClusterResourcesMongocfg {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: number;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
+    diskTypeId?: string;
+    resourcePresetId?: string;
+}
+
+export interface GetMdbMongodbClusterResourcesMongocfgArgs {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: pulumi.Input<number>;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
+    diskTypeId?: pulumi.Input<string>;
+    resourcePresetId?: pulumi.Input<string>;
+}
+
+export interface GetMdbMongodbClusterResourcesMongod {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: number;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
+    diskTypeId?: string;
+    resourcePresetId?: string;
+}
+
+export interface GetMdbMongodbClusterResourcesMongodArgs {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: pulumi.Input<number>;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
+    diskTypeId?: pulumi.Input<string>;
+    resourcePresetId?: pulumi.Input<string>;
+}
+
+export interface GetMdbMongodbClusterResourcesMongoinfra {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: number;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
+    diskTypeId?: string;
+    resourcePresetId?: string;
+}
+
+export interface GetMdbMongodbClusterResourcesMongoinfraArgs {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: pulumi.Input<number>;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
+    diskTypeId?: pulumi.Input<string>;
+    resourcePresetId?: pulumi.Input<string>;
+}
+
+export interface GetMdbMongodbClusterResourcesMongos {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: number;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
+    diskTypeId?: string;
+    resourcePresetId?: string;
+}
+
+export interface GetMdbMongodbClusterResourcesMongosArgs {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: pulumi.Input<number>;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
+    diskTypeId?: pulumi.Input<string>;
+    resourcePresetId?: pulumi.Input<string>;
+}
+
 export interface GetMdbMongodbClusterRestore {
     backupId?: string;
     time?: string;
@@ -5639,6 +8193,54 @@ export interface GetMdbMysqlClusterAccessArgs {
     webSql?: pulumi.Input<boolean>;
 }
 
+export interface GetMdbMysqlUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
+    databaseName?: string;
+    /**
+     * List user's roles in the database.
+     * Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+     * `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+     */
+    roles?: string[];
+}
+
+export interface GetMdbMysqlUserPermissionArgs {
+    /**
+     * The name of the database that the permission grants access to.
+     */
+    databaseName?: pulumi.Input<string>;
+    /**
+     * List user's roles in the database.
+     * Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+     * `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+     */
+    roles?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface GetMdbPostgresqlDatabaseExtension {
+    /**
+     * The name of the PostgreSQL cluster.
+     */
+    name: string;
+    /**
+     * Version of the extension.
+     */
+    version?: string;
+}
+
+export interface GetMdbPostgresqlDatabaseExtensionArgs {
+    /**
+     * The name of the PostgreSQL cluster.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Version of the extension.
+     */
+    version?: pulumi.Input<string>;
+}
+
 export interface GetServerlessContainerConnectivity {
     networkId: string;
 }
@@ -5659,6 +8261,12 @@ export interface GetServerlessContainerSecretArgs {
     id: pulumi.Input<string>;
     key: pulumi.Input<string>;
     versionId: pulumi.Input<string>;
+}
+
+export interface GetVpcGatewaySharedEgressGateway {
+}
+
+export interface GetVpcGatewaySharedEgressGatewayArgs {
 }
 
 export interface GetYdbDatabaseServerlessServerlessDatabase {
@@ -5762,6 +8370,10 @@ export interface KubernetesClusterMasterMaintenancePolicyMaintenanceWindow {
 }
 
 export interface KubernetesClusterMasterMasterLogging {
+    /**
+     * (Optional) Boolean flag that specifies if kube-apiserver audit logs should be sent to Yandex Cloud Logging.
+     */
+    auditEnabled?: pulumi.Input<boolean>;
     /**
      * (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
      */
@@ -5893,12 +8505,20 @@ export interface KubernetesNodeGroupInstanceTemplate {
      */
     bootDisk?: pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplateBootDisk>;
     /**
+     * Container network configuration. The structure is documented below.
+     */
+    containerNetwork?: pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplateContainerNetwork>;
+    /**
      * Container runtime configuration. The structure is documented below.
      */
     containerRuntime?: pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplateContainerRuntime>;
     /**
-     * Labels that will be assigned to compute nodes (instances), created by the Node Group.
+     * GPU settings. The structure is documented below.
      * ---
+     */
+    gpuSettings?: pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplateGpuSettings>;
+    /**
+     * Labels that will be assigned to compute nodes (instances), created by the Node Group.
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -5956,11 +8576,29 @@ export interface KubernetesNodeGroupInstanceTemplateBootDisk {
     type?: pulumi.Input<string>;
 }
 
+export interface KubernetesNodeGroupInstanceTemplateContainerNetwork {
+    /**
+     * MTU for pods.
+     */
+    podMtu?: pulumi.Input<number>;
+}
+
 export interface KubernetesNodeGroupInstanceTemplateContainerRuntime {
     /**
      * Type of container runtime. Values: `docker`, `containerd`.
      */
     type: pulumi.Input<string>;
+}
+
+export interface KubernetesNodeGroupInstanceTemplateGpuSettings {
+    /**
+     * GPU cluster id.
+     */
+    gpuClusterId?: pulumi.Input<string>;
+    /**
+     * GPU environment. Values: `runc`, `runcDriversCuda`.
+     */
+    gpuEnvironment?: pulumi.Input<string>;
 }
 
 export interface KubernetesNodeGroupInstanceTemplateNetworkInterface {
@@ -7734,6 +10372,17 @@ export interface MdbKafkaTopicTopicConfig {
     segmentBytes?: pulumi.Input<string>;
 }
 
+export interface MdbKafkaUserPermission {
+    /**
+     * The role type to grant to the topic.
+     */
+    role: pulumi.Input<string>;
+    /**
+     * The name of the topic that the permission grants access to.
+     */
+    topicName: pulumi.Input<string>;
+}
+
 export interface MdbMongodbClusterClusterConfig {
     /**
      * Access policy to the MongoDB cluster. The structure is documented below.
@@ -7744,15 +10393,24 @@ export interface MdbMongodbClusterClusterConfig {
      */
     backupWindowStart?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigBackupWindowStart>;
     /**
-     * Feature compatibility version of MongoDB. If not provided version is taken. Can be either `5.0`, `4.4`, `4.2` and `4.0`.
+     * Feature compatibility version of MongoDB. If not provided version is taken. Can be either `6.0`, `5.0`, `4.4` and `4.2`.
      */
     featureCompatibilityVersion?: pulumi.Input<string>;
+    /**
+     * Configuration of the mongocfg service. The structure is documented below.
+     */
+    mongocfg?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongocfg>;
     /**
      * Configuration of the mongod service. The structure is documented below.
      */
     mongod?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongod>;
     /**
-     * Version of MongoDB (either 5.0, 4.4, 4.2 or 4.0).
+     * Configuration of the mongos service. The structure is documented below.
+     */
+    mongos?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongos>;
+    performanceDiagnostics?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigPerformanceDiagnostics>;
+    /**
+     * Version of the MongoDB server software. Can be either `4.2`, `4.4`, `4.4-enterprise`, `5.0`, `5.0-enterprise`, `6.0` and `6.0-enterprise`.
      */
     version: pulumi.Input<string>;
 }
@@ -7779,6 +10437,69 @@ export interface MdbMongodbClusterClusterConfigBackupWindowStart {
     minutes?: pulumi.Input<number>;
 }
 
+export interface MdbMongodbClusterClusterConfigMongocfg {
+    /**
+     * A set of network settings
+     * (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+     * The structure is documented below.
+     */
+    net?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongocfgNet>;
+    /**
+     * A set of profiling settings
+     * (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+     * The structure is documented below.
+     */
+    operationProfiling?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongocfgOperationProfiling>;
+    /**
+     * A set of storage settings
+     * (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+     * The structure is documented below.
+     */
+    storage?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongocfgStorage>;
+}
+
+export interface MdbMongodbClusterClusterConfigMongocfgNet {
+    /**
+     * The maximum number of simultaneous connections that host will accept.
+     * For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+     * description in the official documentation.
+     */
+    maxIncomingConnections?: pulumi.Input<number>;
+}
+
+export interface MdbMongodbClusterClusterConfigMongocfgOperationProfiling {
+    /**
+     * Specifies which operations should be profiled. The following profiler levels are available: off, slow_op, all.
+     * For more information, see the [operationProfiling.mode](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.mode)
+     * description in the official documentation.
+     */
+    mode?: pulumi.Input<string>;
+    /**
+     * The slow operation time threshold, in milliseconds. Operations that run for longer than this threshold are considered slow.
+     * For more information, see the [operationProfiling.slowOpThresholdMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.slowOpThresholdMs)
+     * description in the official documentation.
+     */
+    slowOpThreshold?: pulumi.Input<number>;
+}
+
+export interface MdbMongodbClusterClusterConfigMongocfgStorage {
+    /**
+     * The WiredTiger engine settings.
+     * (see the [storage.wiredTiger](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage.wiredtiger-options) option).
+     * These settings available only on `mongod` hosts. The structure is documented below.
+     */
+    wiredTiger?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongocfgStorageWiredTiger>;
+}
+
+export interface MdbMongodbClusterClusterConfigMongocfgStorageWiredTiger {
+    /**
+     * Defines the maximum size of the internal cache that WiredTiger will use for all data.
+     * For more information, see the [storage.wiredTiger.engineConfig.cacheSizeGB](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.engineConfig.cacheSizeGB)
+     * description in the official documentation.
+     */
+    cacheSizeGb?: pulumi.Input<number>;
+}
+
 export interface MdbMongodbClusterClusterConfigMongod {
     /**
      * A set of audit log settings 
@@ -7786,6 +10507,18 @@ export interface MdbMongodbClusterClusterConfigMongod {
      * The structure is documented below. Available only in enterprise edition.
      */
     auditLog?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongodAuditLog>;
+    /**
+     * A set of network settings
+     * (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+     * The structure is documented below.
+     */
+    net?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongodNet>;
+    /**
+     * A set of profiling settings
+     * (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+     * The structure is documented below.
+     */
+    operationProfiling?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongodOperationProfiling>;
     /**
      * A set of MongoDB Security settings
      * (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
@@ -7798,6 +10531,12 @@ export interface MdbMongodbClusterClusterConfigMongod {
      * The structure is documented below.
      */
     setParameter?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongodSetParameter>;
+    /**
+     * A set of storage settings
+     * (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+     * The structure is documented below.
+     */
+    storage?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongodStorage>;
 }
 
 export interface MdbMongodbClusterClusterConfigMongodAuditLog {
@@ -7807,7 +10546,36 @@ export interface MdbMongodbClusterClusterConfigMongodAuditLog {
      * description in the official documentation. Available only in enterprise edition.
      */
     filter?: pulumi.Input<string>;
+    /**
+     * Specifies if a node allows runtime configuration of audit filters and the auditAuthorizationSuccess variable.
+     * For more information see [auditLog.runtimeConfiguration](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.runtimeConfiguration)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     runtimeConfiguration?: pulumi.Input<boolean>;
+}
+
+export interface MdbMongodbClusterClusterConfigMongodNet {
+    /**
+     * The maximum number of simultaneous connections that host will accept.
+     * For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+     * description in the official documentation.
+     */
+    maxIncomingConnections?: pulumi.Input<number>;
+}
+
+export interface MdbMongodbClusterClusterConfigMongodOperationProfiling {
+    /**
+     * Specifies which operations should be profiled. The following profiler levels are available: off, slow_op, all.
+     * For more information, see the [operationProfiling.mode](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.mode)
+     * description in the official documentation.
+     */
+    mode?: pulumi.Input<string>;
+    /**
+     * The slow operation time threshold, in milliseconds. Operations that run for longer than this threshold are considered slow.
+     * For more information, see the [operationProfiling.slowOpThresholdMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.slowOpThresholdMs)
+     * description in the official documentation.
+     */
+    slowOpThreshold?: pulumi.Input<number>;
 }
 
 export interface MdbMongodbClusterClusterConfigMongodSecurity {
@@ -7867,6 +10635,67 @@ export interface MdbMongodbClusterClusterConfigMongodSetParameter {
     auditAuthorizationSuccess?: pulumi.Input<boolean>;
 }
 
+export interface MdbMongodbClusterClusterConfigMongodStorage {
+    /**
+     * The durability journal to ensure data files remain valid and recoverable.
+     * The structure is documented below.
+     */
+    journal?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongodStorageJournal>;
+    /**
+     * The WiredTiger engine settings.
+     * (see the [storage.wiredTiger](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage.wiredtiger-options) option).
+     * These settings available only on `mongod` hosts. The structure is documented below.
+     */
+    wiredTiger?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongodStorageWiredTiger>;
+}
+
+export interface MdbMongodbClusterClusterConfigMongodStorageJournal {
+    /**
+     * The maximum amount of time in milliseconds that the mongod process allows between journal operations.
+     * For more information, see the [storage.journal.commitIntervalMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.journal.commitIntervalMs)
+     * description in the official documentation.
+     */
+    commitInterval?: pulumi.Input<number>;
+}
+
+export interface MdbMongodbClusterClusterConfigMongodStorageWiredTiger {
+    /**
+     * Specifies the default compression for collection data. You can override this on a per-collection basis when creating collections.
+     * Available compressors are: none, snappy, zlib, zstd. This setting available only on `mongod` hosts.
+     * For more information, see the [storage.wiredTiger.collectionConfig.blockCompressor](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.collectionConfig.blockCompressor)
+     * description in the official documentation.
+     */
+    blockCompressor?: pulumi.Input<string>;
+    /**
+     * Defines the maximum size of the internal cache that WiredTiger will use for all data.
+     * For more information, see the [storage.wiredTiger.engineConfig.cacheSizeGB](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.engineConfig.cacheSizeGB)
+     * description in the official documentation.
+     */
+    cacheSizeGb?: pulumi.Input<number>;
+}
+
+export interface MdbMongodbClusterClusterConfigMongos {
+    /**
+     * A set of network settings
+     * (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+     * The structure is documented below.
+     */
+    net?: pulumi.Input<inputs.MdbMongodbClusterClusterConfigMongosNet>;
+}
+
+export interface MdbMongodbClusterClusterConfigMongosNet {
+    /**
+     * The maximum number of simultaneous connections that host will accept.
+     * For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+     * description in the official documentation.
+     */
+    maxIncomingConnections?: pulumi.Input<number>;
+}
+
+export interface MdbMongodbClusterClusterConfigPerformanceDiagnostics {
+    enabled?: pulumi.Input<boolean>;
+}
+
 export interface MdbMongodbClusterDatabase {
     /**
      * The fully qualified domain name of the host. Computed on server side.
@@ -7892,7 +10721,7 @@ export interface MdbMongodbClusterHost {
      */
     role?: pulumi.Input<string>;
     /**
-     * The name of the shard to which the host belongs.
+     * The name of the shard to which the host belongs. Only for sharded cluster.
      */
     shardName?: pulumi.Input<string>;
     /**
@@ -7927,6 +10756,58 @@ export interface MdbMongodbClusterMaintenanceWindow {
 }
 
 export interface MdbMongodbClusterResources {
+    /**
+     * Volume of the storage available to a MongoDB host, in gigabytes.
+     */
+    diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of MongoDB hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
+    diskTypeId: pulumi.Input<string>;
+    resourcePresetId: pulumi.Input<string>;
+}
+
+export interface MdbMongodbClusterResourcesMongocfg {
+    /**
+     * Volume of the storage available to a MongoDB host, in gigabytes.
+     */
+    diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of MongoDB hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
+    diskTypeId: pulumi.Input<string>;
+    resourcePresetId: pulumi.Input<string>;
+}
+
+export interface MdbMongodbClusterResourcesMongod {
+    /**
+     * Volume of the storage available to a MongoDB host, in gigabytes.
+     */
+    diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of MongoDB hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
+    diskTypeId: pulumi.Input<string>;
+    resourcePresetId: pulumi.Input<string>;
+}
+
+export interface MdbMongodbClusterResourcesMongoinfra {
+    /**
+     * Volume of the storage available to a MongoDB host, in gigabytes.
+     */
+    diskSize: pulumi.Input<number>;
+    /**
+     * Type of the storage of MongoDB hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
+    diskTypeId: pulumi.Input<string>;
+    resourcePresetId: pulumi.Input<string>;
+}
+
+export interface MdbMongodbClusterResourcesMongos {
     /**
      * Volume of the storage available to a MongoDB host, in gigabytes.
      */
@@ -8322,6 +11203,10 @@ export interface MdbRedisClusterConfig {
      */
     databases?: pulumi.Input<number>;
     /**
+     * Redis maxmemory usage in percent
+     */
+    maxmemoryPercent?: pulumi.Input<number>;
+    /**
      * Redis key eviction policy for a dataset that reaches maximum memory.
      * Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/).
      */
@@ -8484,6 +11369,471 @@ export interface MdbSqlServerClusterUserPermission {
     roles?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface MonitoringDashboardParametrization {
+    /**
+     * parameters list.
+     */
+    parameters?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardParametrizationParameter>[]>;
+    /**
+     * Selectors to select metric label values.
+     */
+    selectors?: pulumi.Input<string>;
+}
+
+export interface MonitoringDashboardParametrizationParameter {
+    /**
+     * Custom values parameter. Oneof: label_values, custom, text.
+     */
+    customs?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardParametrizationParameterCustom>[]>;
+    /**
+     * Chart description in dashboard (not enabled in UI).
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * Checks that target is visible or invisible.
+     */
+    hidden?: pulumi.Input<boolean>;
+    /**
+     * Parameter identifier
+     */
+    id: pulumi.Input<string>;
+    /**
+     * Label values parameter. Oneof: label_values, custom, text.
+     */
+    labelValues?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardParametrizationParameterLabelValue>[]>;
+    /**
+     * Title text.
+     */
+    texts?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardParametrizationParameterText>[]>;
+    /**
+     * -Title or empty.
+     */
+    title?: pulumi.Input<string>;
+}
+
+export interface MonitoringDashboardParametrizationParameterCustom {
+    /**
+     * Default value.
+     */
+    defaultValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Specifies the multiselectable values of parameter.
+     */
+    multiselectable?: pulumi.Input<boolean>;
+    /**
+     * Parameter values.
+     */
+    values?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface MonitoringDashboardParametrizationParameterLabelValue {
+    /**
+     * Default value.
+     */
+    defaultValues?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * Labels folder ID.
+     */
+    folderId?: pulumi.Input<string>;
+    /**
+     * Label key to list label values.
+     */
+    labelKey: pulumi.Input<string>;
+    /**
+     * Specifies the multiselectable values of parameter.
+     */
+    multiselectable?: pulumi.Input<boolean>;
+    /**
+     * Selectors to select metric label values.
+     */
+    selectors?: pulumi.Input<string>;
+}
+
+export interface MonitoringDashboardParametrizationParameterText {
+    /**
+     * Default value.
+     */
+    defaultValue?: pulumi.Input<string>;
+}
+
+export interface MonitoringDashboardWidget {
+    /**
+     * Chart widget settings. Oneof: text, title or chart.
+     */
+    charts?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChart>[]>;
+    /**
+     * Widget position.
+     */
+    positions?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetPosition>[]>;
+    /**
+     * Title text.
+     */
+    texts?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetText>[]>;
+    /**
+     * -Title or empty.
+     */
+    titles?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetTitle>[]>;
+}
+
+export interface MonitoringDashboardWidgetChart {
+    /**
+     * Chart ID.
+     */
+    chartId?: pulumi.Input<string>;
+    /**
+     * Chart description in dashboard (not enabled in UI).
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * Enable legend under chart.
+     */
+    displayLegend?: pulumi.Input<boolean>;
+    /**
+     * Fixed time interval for chart. Values:
+     * - FREEZE_DURATION_HOUR: Last hour.
+     * - FREEZE_DURATION_DAY: Last day = last 24 hours.
+     * - FREEZE_DURATION_WEEK: Last 7 days.
+     * - FREEZE_DURATION_MONTH: Last 31 days.
+     */
+    freeze?: pulumi.Input<string>;
+    /**
+     * Names settings.
+     */
+    nameHidingSettings?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartNameHidingSetting>[]>;
+    /**
+     * Queries settings.
+     */
+    queries?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartQuery>[]>;
+    /**
+     * Time series settings.
+     */
+    seriesOverrides?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartSeriesOverride>[]>;
+    /**
+     * -Title or empty.
+     */
+    title?: pulumi.Input<string>;
+    /**
+     * Visualization settings.
+     */
+    visualizationSettings?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartVisualizationSetting>[]>;
+}
+
+export interface MonitoringDashboardWidgetChartNameHidingSetting {
+    /**
+     * Series name.
+     */
+    names?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * True if we want to show concrete series names only, false if we want to hide concrete series names.
+     */
+    positive?: pulumi.Input<boolean>;
+}
+
+export interface MonitoringDashboardWidgetChartQuery {
+    /**
+     * Downsamplang settings.
+     */
+    downsamplings?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartQueryDownsampling>[]>;
+    /**
+     * Query targets.
+     */
+    targets?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartQueryTarget>[]>;
+}
+
+export interface MonitoringDashboardWidgetChartQueryDownsampling {
+    /**
+     * Disable downsampling.
+     */
+    disabled?: pulumi.Input<boolean>;
+    /**
+     * Parameters for filling gaps in data.
+     */
+    gapFilling?: pulumi.Input<string>;
+    /**
+     * Function that is used for downsampling.
+     */
+    gridAggregation?: pulumi.Input<string>;
+    /**
+     * Time interval (grid) for downsampling in milliseconds. Points in the specified range are aggregated into one time point
+     */
+    gridInterval?: pulumi.Input<number>;
+    /**
+     * Maximum number of points to be returned.
+     */
+    maxPoints?: pulumi.Input<number>;
+}
+
+export interface MonitoringDashboardWidgetChartQueryTarget {
+    /**
+     * Checks that target is visible or invisible.
+     */
+    hidden?: pulumi.Input<boolean>;
+    /**
+     * Query.
+     */
+    query?: pulumi.Input<string>;
+    /**
+     * Text mode enabled.
+     */
+    textMode?: pulumi.Input<boolean>;
+}
+
+export interface MonitoringDashboardWidgetChartSeriesOverride {
+    /**
+     * Series name or empty.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Override settings.
+     */
+    settings?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartSeriesOverrideSetting>[]>;
+    /**
+     * Series index. Oneof: name or target_index.
+     */
+    targetIndex?: pulumi.Input<string>;
+}
+
+export interface MonitoringDashboardWidgetChartSeriesOverrideSetting {
+    /**
+     * Series color or empty.
+     */
+    color?: pulumi.Input<string>;
+    /**
+     * Stack grow down.
+     */
+    growDown?: pulumi.Input<boolean>;
+    /**
+     * Series name or empty.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Stack name or empty.
+     */
+    stackName?: pulumi.Input<string>;
+    /**
+     * Type.
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * Yaxis position.
+     */
+    yaxisPosition?: pulumi.Input<string>;
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSetting {
+    /**
+     * Aggregation. Values:
+     * - SERIES_AGGREGATION_UNSPECIFIED: Not specified (avg by default).
+     * - SERIES_AGGREGATION_AVG: Average.
+     * - SERIES_AGGREGATION_MIN: Minimum.
+     * - SERIES_AGGREGATION_MAX: Maximum.
+     * - SERIES_AGGREGATION_LAST: Last non-NaN value.
+     * - SERIES_AGGREGATION_SUM: Sum.
+     */
+    aggregation?: pulumi.Input<string>;
+    /**
+     * Color settings.
+     */
+    colorSchemeSettings?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSetting>[]>;
+    /**
+     * Heatmap settings.
+     */
+    heatmapSettings?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartVisualizationSettingHeatmapSetting>[]>;
+    /**
+     * Interpolate values. Values:
+     * - INTERPOLATE_UNSPECIFIED: Not specified (linear by default).
+     * - INTERPOLATE_LINEAR: Linear.
+     * - INTERPOLATE_LEFT: Left.
+     * - INTERPOLATE_RIGHT: Right.
+     */
+    interpolate?: pulumi.Input<string>;
+    /**
+     * Normalize values.
+     */
+    normalize?: pulumi.Input<boolean>;
+    /**
+     * Show chart labels.
+     */
+    showLabels?: pulumi.Input<boolean>;
+    /**
+     * -Title or empty.
+     */
+    title?: pulumi.Input<string>;
+    /**
+     * Type.
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * Y axis settings.
+     */
+    yaxisSettings?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartVisualizationSettingYaxisSetting>[]>;
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSetting {
+    /**
+     * Automatic color scheme. Oneof: automatic, standard or gradient.
+     */
+    automatics?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomatic>[]>;
+    /**
+     * Gradient color scheme. Oneof: automatic, standard or gradient.
+     */
+    gradients?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradient>[]>;
+    /**
+     * Standard color scheme. Oneof: automatic, standard or gradient.
+     */
+    standards?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandard>[]>;
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomatic {
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradient {
+    /**
+     * Heatmap green value.
+     */
+    greenValue?: pulumi.Input<string>;
+    /**
+     * Heatmap red value.
+     */
+    redValue?: pulumi.Input<string>;
+    /**
+     * Heatmap violet value.
+     */
+    violetValue?: pulumi.Input<string>;
+    /**
+     * Heatmap yellow value.
+     */
+    yellowValue?: pulumi.Input<string>;
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandard {
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingHeatmapSetting {
+    /**
+     * Heatmap green value.
+     */
+    greenValue?: pulumi.Input<string>;
+    /**
+     * Heatmap red value.
+     */
+    redValue?: pulumi.Input<string>;
+    /**
+     * Heatmap violet value.
+     */
+    violetValue?: pulumi.Input<string>;
+    /**
+     * Heatmap yellow value.
+     */
+    yellowValue?: pulumi.Input<string>;
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingYaxisSetting {
+    /**
+     * Left yaxis config.
+     */
+    lefts?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeft>[]>;
+    /**
+     * Right yaxis config.
+     */
+    rights?: pulumi.Input<pulumi.Input<inputs.MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRight>[]>;
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeft {
+    /**
+     * Max value in extended number format or empty.
+     */
+    max?: pulumi.Input<string>;
+    /**
+     * Min value in extended number format or empty.
+     */
+    min?: pulumi.Input<string>;
+    /**
+     * Tick value precision (null as default, 0-7 in other cases).
+     */
+    precision?: pulumi.Input<number>;
+    /**
+     * -Title or empty.
+     */
+    title?: pulumi.Input<string>;
+    /**
+     * Type.
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * Unit format.
+     */
+    unitFormat?: pulumi.Input<string>;
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRight {
+    /**
+     * Max value in extended number format or empty.
+     */
+    max?: pulumi.Input<string>;
+    /**
+     * Min value in extended number format or empty.
+     */
+    min?: pulumi.Input<string>;
+    /**
+     * Tick value precision (null as default, 0-7 in other cases).
+     */
+    precision?: pulumi.Input<number>;
+    /**
+     * -Title or empty.
+     */
+    title?: pulumi.Input<string>;
+    /**
+     * Type.
+     */
+    type?: pulumi.Input<string>;
+    /**
+     * Unit format.
+     */
+    unitFormat?: pulumi.Input<string>;
+}
+
+export interface MonitoringDashboardWidgetPosition {
+    /**
+     * Height.
+     */
+    h?: pulumi.Input<number>;
+    /**
+     * Width.
+     */
+    w?: pulumi.Input<number>;
+    /**
+     * X-axis top-left corner coordinate.
+     */
+    x?: pulumi.Input<number>;
+    /**
+     * Y-axis top-left corner coordinate.
+     */
+    y?: pulumi.Input<number>;
+}
+
+export interface MonitoringDashboardWidgetText {
+    /**
+     * Title text.
+     */
+    text?: pulumi.Input<string>;
+}
+
+export interface MonitoringDashboardWidgetTitle {
+    /**
+     * Title size. Values: 
+     * - TITLE_SIZE_XS: Extra small size.
+     * - TITLE_SIZE_S: Small size.
+     * - TITLE_SIZE_M: Middle size.
+     * - TITLE_SIZE_L: Large size.
+     */
+    size?: pulumi.Input<string>;
+    /**
+     * Title text.
+     */
+    text: pulumi.Input<string>;
+}
+
 export interface OrganizationmanagerSamlFederationSecuritySettings {
     /**
      * Enable encrypted assertions.
@@ -8607,6 +11957,7 @@ export interface StorageBucketLifecycleRule {
      * Object key prefix identifying one or more objects to which the rule applies.
      */
     prefix?: pulumi.Input<string>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Specifies a period in the object's transitions (documented below).
      */
@@ -8641,7 +11992,7 @@ export interface StorageBucketLifecycleRuleNoncurrentVersionTransition {
      */
     days?: pulumi.Input<number>;
     /**
-     * Specifies the storage class to which you want the noncurrent object versions to transition. Can only be `COLD` or `STANDARD_IA`.
+     * Specifies the storage class to which you want the noncurrent object versions to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
      */
     storageClass: pulumi.Input<string>;
 }
@@ -8656,7 +12007,7 @@ export interface StorageBucketLifecycleRuleTransition {
      */
     days?: pulumi.Input<number>;
     /**
-     * Specifies the storage class to which you want the object to transition. Can only be `COLD` or `STANDARD_IA`.
+     * Specifies the storage class to which you want the object to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
      */
     storageClass: pulumi.Input<string>;
 }
@@ -8897,12 +12248,50 @@ export interface VpcSubnetDhcpOptions {
     ntpServers?: pulumi.Input<pulumi.Input<string>[]>;
 }
 
+export interface YandexYdbTableColumn {
+    family?: pulumi.Input<string>;
+    name: pulumi.Input<string>;
+    notNull?: pulumi.Input<boolean>;
+    type: pulumi.Input<string>;
+}
+
+export interface YandexYdbTableFamily {
+    compression: pulumi.Input<string>;
+    data: pulumi.Input<string>;
+    name: pulumi.Input<string>;
+}
+
+export interface YandexYdbTablePartitioningSettings {
+    autoPartitioningByLoad?: pulumi.Input<boolean>;
+    autoPartitioningBySizeEnabled?: pulumi.Input<boolean>;
+    autoPartitioningMaxPartitionsCount?: pulumi.Input<number>;
+    autoPartitioningMinPartitionsCount?: pulumi.Input<number>;
+    autoPartitioningPartitionSizeMb?: pulumi.Input<number>;
+    partitionAtKeys?: pulumi.Input<pulumi.Input<inputs.YandexYdbTablePartitioningSettingsPartitionAtKey>[]>;
+    uniformPartitions?: pulumi.Input<number>;
+}
+
+export interface YandexYdbTablePartitioningSettingsPartitionAtKey {
+    keys: pulumi.Input<pulumi.Input<string>[]>;
+}
+
+export interface YandexYdbTableTtl {
+    columnName: pulumi.Input<string>;
+    expireInterval: pulumi.Input<string>;
+    unit?: pulumi.Input<string>;
+}
+
+export interface YandexYdbTopicChangefeedConsumer {
+    name: pulumi.Input<string>;
+    startingMessageTimestampMs?: pulumi.Input<number>;
+    supportedCodecs?: pulumi.Input<pulumi.Input<string>[]>;
+}
+
 export interface YandexYdbTopicConsumer {
     /**
      * Topic name. Type: string, required. Default value: "".
      */
     name: pulumi.Input<string>;
-    serviceType?: pulumi.Input<string>;
     startingMessageTimestampMs?: pulumi.Input<number>;
     /**
      * Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].

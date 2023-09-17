@@ -13,11 +13,14 @@ namespace Pulumi.Yandex.Inputs
     public sealed class CmCertificateSelfManagedPrivateKeyLockboxSecretGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Certificate Id.
+        /// Lockbox secret Id.
         /// </summary>
         [Input("id", required: true)]
         public Input<string> Id { get; set; } = null!;
 
+        /// <summary>
+        /// Key of the Lockbox secret, the value of which contains the private key of the certificate.
+        /// </summary>
         [Input("key", required: true)]
         public Input<string> Key { get; set; } = null!;
 

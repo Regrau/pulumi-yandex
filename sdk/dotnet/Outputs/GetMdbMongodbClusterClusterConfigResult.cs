@@ -25,12 +25,15 @@ namespace Pulumi.Yandex.Outputs
         /// Feature compatibility version of MongoDB.
         /// </summary>
         public readonly string FeatureCompatibilityVersion;
+        public readonly Outputs.GetMdbMongodbClusterClusterConfigMongocfgResult Mongocfg;
         /// <summary>
         /// (Optional) Configuration of the mongod service. The structure is documented below.
         /// </summary>
         public readonly Outputs.GetMdbMongodbClusterClusterConfigMongodResult Mongod;
+        public readonly Outputs.GetMdbMongodbClusterClusterConfigMongosResult Mongos;
+        public readonly Outputs.GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsResult PerformanceDiagnostics;
         /// <summary>
-        /// Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+        /// Version of MongoDB (either 6.0, 6.0-enterprise, 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2).
         /// </summary>
         public readonly string? Version;
 
@@ -42,14 +45,23 @@ namespace Pulumi.Yandex.Outputs
 
             string featureCompatibilityVersion,
 
+            Outputs.GetMdbMongodbClusterClusterConfigMongocfgResult mongocfg,
+
             Outputs.GetMdbMongodbClusterClusterConfigMongodResult mongod,
+
+            Outputs.GetMdbMongodbClusterClusterConfigMongosResult mongos,
+
+            Outputs.GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsResult performanceDiagnostics,
 
             string? version)
         {
             Access = access;
             BackupWindowStart = backupWindowStart;
             FeatureCompatibilityVersion = featureCompatibilityVersion;
+            Mongocfg = mongocfg;
             Mongod = mongod;
+            Mongos = mongos;
+            PerformanceDiagnostics = performanceDiagnostics;
             Version = version;
         }
     }

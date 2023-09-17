@@ -54,7 +54,8 @@ type KmsSymmetricKey struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Encryption algorithm to be used with a new key version,
 	// generated with the next rotation. The default value is `AES_128`.
-	DefaultAlgorithm pulumi.StringPtrOutput `pulumi:"defaultAlgorithm"`
+	DefaultAlgorithm   pulumi.StringPtrOutput `pulumi:"defaultAlgorithm"`
+	DeletionProtection pulumi.BoolPtrOutput   `pulumi:"deletionProtection"`
 	// An optional description of the key.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// The ID of the folder that the resource belongs to. If it
@@ -106,7 +107,8 @@ type kmsSymmetricKeyState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Encryption algorithm to be used with a new key version,
 	// generated with the next rotation. The default value is `AES_128`.
-	DefaultAlgorithm *string `pulumi:"defaultAlgorithm"`
+	DefaultAlgorithm   *string `pulumi:"defaultAlgorithm"`
+	DeletionProtection *bool   `pulumi:"deletionProtection"`
 	// An optional description of the key.
 	Description *string `pulumi:"description"`
 	// The ID of the folder that the resource belongs to. If it
@@ -129,7 +131,8 @@ type KmsSymmetricKeyState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Encryption algorithm to be used with a new key version,
 	// generated with the next rotation. The default value is `AES_128`.
-	DefaultAlgorithm pulumi.StringPtrInput
+	DefaultAlgorithm   pulumi.StringPtrInput
+	DeletionProtection pulumi.BoolPtrInput
 	// An optional description of the key.
 	Description pulumi.StringPtrInput
 	// The ID of the folder that the resource belongs to. If it
@@ -154,7 +157,8 @@ func (KmsSymmetricKeyState) ElementType() reflect.Type {
 type kmsSymmetricKeyArgs struct {
 	// Encryption algorithm to be used with a new key version,
 	// generated with the next rotation. The default value is `AES_128`.
-	DefaultAlgorithm *string `pulumi:"defaultAlgorithm"`
+	DefaultAlgorithm   *string `pulumi:"defaultAlgorithm"`
+	DeletionProtection *bool   `pulumi:"deletionProtection"`
 	// An optional description of the key.
 	Description *string `pulumi:"description"`
 	// The ID of the folder that the resource belongs to. If it
@@ -172,7 +176,8 @@ type kmsSymmetricKeyArgs struct {
 type KmsSymmetricKeyArgs struct {
 	// Encryption algorithm to be used with a new key version,
 	// generated with the next rotation. The default value is `AES_128`.
-	DefaultAlgorithm pulumi.StringPtrInput
+	DefaultAlgorithm   pulumi.StringPtrInput
+	DeletionProtection pulumi.BoolPtrInput
 	// An optional description of the key.
 	Description pulumi.StringPtrInput
 	// The ID of the folder that the resource belongs to. If it
@@ -282,6 +287,10 @@ func (o KmsSymmetricKeyOutput) CreatedAt() pulumi.StringOutput {
 // generated with the next rotation. The default value is `AES_128`.
 func (o KmsSymmetricKeyOutput) DefaultAlgorithm() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KmsSymmetricKey) pulumi.StringPtrOutput { return v.DefaultAlgorithm }).(pulumi.StringPtrOutput)
+}
+
+func (o KmsSymmetricKeyOutput) DeletionProtection() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *KmsSymmetricKey) pulumi.BoolPtrOutput { return v.DeletionProtection }).(pulumi.BoolPtrOutput)
 }
 
 // An optional description of the key.

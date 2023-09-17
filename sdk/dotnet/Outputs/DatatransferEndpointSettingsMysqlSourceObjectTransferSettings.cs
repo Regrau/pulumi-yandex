@@ -14,6 +14,7 @@ namespace Pulumi.Yandex.Outputs
     public sealed class DatatransferEndpointSettingsMysqlSourceObjectTransferSettings
     {
         public readonly string? Routine;
+        public readonly string? Tables;
         public readonly string? Trigger;
         public readonly string? View;
 
@@ -21,11 +22,14 @@ namespace Pulumi.Yandex.Outputs
         private DatatransferEndpointSettingsMysqlSourceObjectTransferSettings(
             string? routine,
 
+            string? tables,
+
             string? trigger,
 
             string? view)
         {
             Routine = routine;
+            Tables = tables;
             Trigger = trigger;
             View = view;
         }

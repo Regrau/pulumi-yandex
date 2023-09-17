@@ -15,6 +15,7 @@ __all__ = ['KmsSymmetricKeyArgs', 'KmsSymmetricKey']
 class KmsSymmetricKeyArgs:
     def __init__(__self__, *,
                  default_algorithm: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -33,6 +34,8 @@ class KmsSymmetricKeyArgs:
         """
         if default_algorithm is not None:
             pulumi.set(__self__, "default_algorithm", default_algorithm)
+        if deletion_protection is not None:
+            pulumi.set(__self__, "deletion_protection", deletion_protection)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if folder_id is not None:
@@ -56,6 +59,15 @@ class KmsSymmetricKeyArgs:
     @default_algorithm.setter
     def default_algorithm(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "default_algorithm", value)
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "deletion_protection")
+
+    @deletion_protection.setter
+    def deletion_protection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "deletion_protection", value)
 
     @property
     @pulumi.getter
@@ -124,6 +136,7 @@ class _KmsSymmetricKeyState:
     def __init__(__self__, *,
                  created_at: Optional[pulumi.Input[str]] = None,
                  default_algorithm: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -149,6 +162,8 @@ class _KmsSymmetricKeyState:
             pulumi.set(__self__, "created_at", created_at)
         if default_algorithm is not None:
             pulumi.set(__self__, "default_algorithm", default_algorithm)
+        if deletion_protection is not None:
+            pulumi.set(__self__, "deletion_protection", deletion_protection)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if folder_id is not None:
@@ -188,6 +203,15 @@ class _KmsSymmetricKeyState:
     @default_algorithm.setter
     def default_algorithm(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "default_algorithm", value)
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "deletion_protection")
+
+    @deletion_protection.setter
+    def deletion_protection(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "deletion_protection", value)
 
     @property
     @pulumi.getter
@@ -281,6 +305,7 @@ class KmsSymmetricKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  default_algorithm: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -364,6 +389,7 @@ class KmsSymmetricKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  default_algorithm: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -379,6 +405,7 @@ class KmsSymmetricKey(pulumi.CustomResource):
             __props__ = KmsSymmetricKeyArgs.__new__(KmsSymmetricKeyArgs)
 
             __props__.__dict__["default_algorithm"] = default_algorithm
+            __props__.__dict__["deletion_protection"] = deletion_protection
             __props__.__dict__["description"] = description
             __props__.__dict__["folder_id"] = folder_id
             __props__.__dict__["labels"] = labels
@@ -399,6 +426,7 @@ class KmsSymmetricKey(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             default_algorithm: Optional[pulumi.Input[str]] = None,
+            deletion_protection: Optional[pulumi.Input[bool]] = None,
             description: Optional[pulumi.Input[str]] = None,
             folder_id: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
@@ -431,6 +459,7 @@ class KmsSymmetricKey(pulumi.CustomResource):
 
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["default_algorithm"] = default_algorithm
+        __props__.__dict__["deletion_protection"] = deletion_protection
         __props__.__dict__["description"] = description
         __props__.__dict__["folder_id"] = folder_id
         __props__.__dict__["labels"] = labels
@@ -456,6 +485,11 @@ class KmsSymmetricKey(pulumi.CustomResource):
         generated with the next rotation. The default value is `AES_128`.
         """
         return pulumi.get(self, "default_algorithm")
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> pulumi.Output[Optional[bool]]:
+        return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter

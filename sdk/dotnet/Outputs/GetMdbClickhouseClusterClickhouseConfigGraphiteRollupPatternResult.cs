@@ -16,11 +16,11 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// Aggregation function name.
         /// </summary>
-        public readonly string Function;
+        public readonly string? Function;
         /// <summary>
         /// Regular expression that the metric name must match.
         /// </summary>
-        public readonly string? Regexp;
+        public readonly string Regexp;
         /// <summary>
         /// Retain parameters.
         /// </summary>
@@ -28,9 +28,9 @@ namespace Pulumi.Yandex.Outputs
 
         [OutputConstructor]
         private GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternResult(
-            string function,
+            string? function,
 
-            string? regexp,
+            string regexp,
 
             ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionResult> retentions)
         {

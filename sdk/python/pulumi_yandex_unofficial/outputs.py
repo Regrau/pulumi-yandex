@@ -111,7 +111,7 @@ __all__ = [
     'ComputeInstanceGroupApplicationLoadBalancer',
     'ComputeInstanceGroupDeployPolicy',
     'ComputeInstanceGroupHealthCheck',
-    'ComputeInstanceGroupHealthCheckHttpOption',
+    'ComputeInstanceGroupHealthCheckHttpOptions',
     'ComputeInstanceGroupHealthCheckTcpOptions',
     'ComputeInstanceGroupInstance',
     'ComputeInstanceGroupInstanceNetworkInterface',
@@ -174,6 +174,45 @@ __all__ = [
     'DatatransferEndpointSettingsClickhouseTargetSharding',
     'DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHash',
     'DatatransferEndpointSettingsClickhouseTargetShardingTransferId',
+    'DatatransferEndpointSettingsKafkaSource',
+    'DatatransferEndpointSettingsKafkaSourceAuth',
+    'DatatransferEndpointSettingsKafkaSourceAuthNoAuth',
+    'DatatransferEndpointSettingsKafkaSourceAuthSasl',
+    'DatatransferEndpointSettingsKafkaSourceAuthSaslPassword',
+    'DatatransferEndpointSettingsKafkaSourceConnection',
+    'DatatransferEndpointSettingsKafkaSourceConnectionOnPremise',
+    'DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsMode',
+    'DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabled',
+    'DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabled',
+    'DatatransferEndpointSettingsKafkaSourceParser',
+    'DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1Parser',
+    'DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParser',
+    'DatatransferEndpointSettingsKafkaSourceParserJsonParser',
+    'DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchema',
+    'DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFields',
+    'DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsField',
+    'DatatransferEndpointSettingsKafkaSourceParserTskvParser',
+    'DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchema',
+    'DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFields',
+    'DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsField',
+    'DatatransferEndpointSettingsKafkaSourceTransformer',
+    'DatatransferEndpointSettingsKafkaTarget',
+    'DatatransferEndpointSettingsKafkaTargetAuth',
+    'DatatransferEndpointSettingsKafkaTargetAuthNoAuth',
+    'DatatransferEndpointSettingsKafkaTargetAuthSasl',
+    'DatatransferEndpointSettingsKafkaTargetAuthSaslPassword',
+    'DatatransferEndpointSettingsKafkaTargetConnection',
+    'DatatransferEndpointSettingsKafkaTargetConnectionOnPremise',
+    'DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsMode',
+    'DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabled',
+    'DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabled',
+    'DatatransferEndpointSettingsKafkaTargetSerializer',
+    'DatatransferEndpointSettingsKafkaTargetSerializerSerializerAuto',
+    'DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebezium',
+    'DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameter',
+    'DatatransferEndpointSettingsKafkaTargetSerializerSerializerJson',
+    'DatatransferEndpointSettingsKafkaTargetTopicSettings',
+    'DatatransferEndpointSettingsKafkaTargetTopicSettingsTopic',
     'DatatransferEndpointSettingsMongoSource',
     'DatatransferEndpointSettingsMongoSourceCollection',
     'DatatransferEndpointSettingsMongoSourceConnection',
@@ -222,6 +261,8 @@ __all__ = [
     'DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeDisabled',
     'DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeEnabled',
     'DatatransferEndpointSettingsPostgresTargetPassword',
+    'DatatransferEndpointSettingsYdbSource',
+    'DatatransferEndpointSettingsYdbTarget',
     'FunctionConnectivity',
     'FunctionContent',
     'FunctionPackage',
@@ -252,7 +293,9 @@ __all__ = [
     'KubernetesNodeGroupDeployPolicy',
     'KubernetesNodeGroupInstanceTemplate',
     'KubernetesNodeGroupInstanceTemplateBootDisk',
+    'KubernetesNodeGroupInstanceTemplateContainerNetwork',
     'KubernetesNodeGroupInstanceTemplateContainerRuntime',
+    'KubernetesNodeGroupInstanceTemplateGpuSettings',
     'KubernetesNodeGroupInstanceTemplateNetworkInterface',
     'KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecord',
     'KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecord',
@@ -336,15 +379,32 @@ __all__ = [
     'MdbMongodbClusterClusterConfig',
     'MdbMongodbClusterClusterConfigAccess',
     'MdbMongodbClusterClusterConfigBackupWindowStart',
+    'MdbMongodbClusterClusterConfigMongocfg',
+    'MdbMongodbClusterClusterConfigMongocfgNet',
+    'MdbMongodbClusterClusterConfigMongocfgOperationProfiling',
+    'MdbMongodbClusterClusterConfigMongocfgStorage',
+    'MdbMongodbClusterClusterConfigMongocfgStorageWiredTiger',
     'MdbMongodbClusterClusterConfigMongod',
     'MdbMongodbClusterClusterConfigMongodAuditLog',
+    'MdbMongodbClusterClusterConfigMongodNet',
+    'MdbMongodbClusterClusterConfigMongodOperationProfiling',
     'MdbMongodbClusterClusterConfigMongodSecurity',
     'MdbMongodbClusterClusterConfigMongodSecurityKmip',
     'MdbMongodbClusterClusterConfigMongodSetParameter',
+    'MdbMongodbClusterClusterConfigMongodStorage',
+    'MdbMongodbClusterClusterConfigMongodStorageJournal',
+    'MdbMongodbClusterClusterConfigMongodStorageWiredTiger',
+    'MdbMongodbClusterClusterConfigMongos',
+    'MdbMongodbClusterClusterConfigMongosNet',
+    'MdbMongodbClusterClusterConfigPerformanceDiagnostics',
     'MdbMongodbClusterDatabase',
     'MdbMongodbClusterHost',
     'MdbMongodbClusterMaintenanceWindow',
     'MdbMongodbClusterResources',
+    'MdbMongodbClusterResourcesMongocfg',
+    'MdbMongodbClusterResourcesMongod',
+    'MdbMongodbClusterResourcesMongoinfra',
+    'MdbMongodbClusterResourcesMongos',
     'MdbMongodbClusterRestore',
     'MdbMongodbClusterUser',
     'MdbMongodbClusterUserPermission',
@@ -562,6 +622,9 @@ __all__ = [
     'GetComputeInstanceResourceResult',
     'GetComputeInstanceSchedulingPolicyResult',
     'GetComputeInstanceSecondaryDiskResult',
+    'GetComputeSnapshotScheduleSchedulePolicyResult',
+    'GetComputeSnapshotScheduleSnapshotSpecResult',
+    'GetContainerRepositoryLifecyclePolicyRuleResult',
     'GetDataprocClusterClusterConfigResult',
     'GetDataprocClusterClusterConfigHadoopResult',
     'GetDataprocClusterClusterConfigSubclusterSpecResult',
@@ -595,7 +658,9 @@ __all__ = [
     'GetKubernetesNodeGroupDeployPolicyResult',
     'GetKubernetesNodeGroupInstanceTemplateResult',
     'GetKubernetesNodeGroupInstanceTemplateBootDiskResult',
+    'GetKubernetesNodeGroupInstanceTemplateContainerNetworkResult',
     'GetKubernetesNodeGroupInstanceTemplateContainerRuntimeResult',
+    'GetKubernetesNodeGroupInstanceTemplateGpuSettingResult',
     'GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceResult',
     'GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordResult',
     'GetKubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordResult',
@@ -616,6 +681,8 @@ __all__ = [
     'GetLbNetworkLoadBalancerListenerExternalAddressSpecResult',
     'GetLbNetworkLoadBalancerListenerInternalAddressSpecResult',
     'GetLbTargetGroupTargetResult',
+    'GetLockBoxSecretCurrentVersionResult',
+    'GetLockBoxSecretVersionEntryResult',
     'GetMdbClickhouseClusterAccessResult',
     'GetMdbClickhouseClusterBackupWindowStartResult',
     'GetMdbClickhouseClusterClickhouseResult',
@@ -629,7 +696,7 @@ __all__ = [
     'GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsResult',
     'GetMdbClickhouseClusterClickhouseConfigMergeTreeResult',
     'GetMdbClickhouseClusterClickhouseConfigRabbitmqResult',
-    'GetMdbClickhouseClusterClickhouseResourceResult',
+    'GetMdbClickhouseClusterClickhouseResourcesResult',
     'GetMdbClickhouseClusterCloudStorageResult',
     'GetMdbClickhouseClusterDatabaseResult',
     'GetMdbClickhouseClusterFormatSchemaResult',
@@ -644,7 +711,7 @@ __all__ = [
     'GetMdbClickhouseClusterUserQuotaResult',
     'GetMdbClickhouseClusterUserSettingsResult',
     'GetMdbClickhouseClusterZookeeperResult',
-    'GetMdbClickhouseClusterZookeeperResourceResult',
+    'GetMdbClickhouseClusterZookeeperResourcesResult',
     'GetMdbElasticSearchClusterConfigResult',
     'GetMdbElasticSearchClusterConfigDataNodeResult',
     'GetMdbElasticSearchClusterConfigDataNodeResourceResult',
@@ -676,19 +743,47 @@ __all__ = [
     'GetMdbKafkaClusterTopicTopicConfigResult',
     'GetMdbKafkaClusterUserResult',
     'GetMdbKafkaClusterUserPermissionResult',
+    'GetMdbKafkaConnectorConnectorConfigMirrormakerResult',
+    'GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterResult',
+    'GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterResult',
+    'GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterResult',
+    'GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterResult',
+    'GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterResult',
+    'GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterResult',
+    'GetMdbKafkaConnectorConnectorConfigS3SinkResult',
+    'GetMdbKafkaConnectorConnectorConfigS3SinkS3ConnectionResult',
+    'GetMdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Result',
     'GetMdbKafkaTopicTopicConfigResult',
+    'GetMdbKafkaUserPermissionResult',
     'GetMdbMongodbClusterClusterConfigResult',
     'GetMdbMongodbClusterClusterConfigAccessResult',
     'GetMdbMongodbClusterClusterConfigBackupWindowStartResult',
+    'GetMdbMongodbClusterClusterConfigMongocfgResult',
+    'GetMdbMongodbClusterClusterConfigMongocfgNetResult',
+    'GetMdbMongodbClusterClusterConfigMongocfgOperationProfilingResult',
+    'GetMdbMongodbClusterClusterConfigMongocfgStorageResult',
+    'GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTigerResult',
     'GetMdbMongodbClusterClusterConfigMongodResult',
     'GetMdbMongodbClusterClusterConfigMongodAuditLogResult',
+    'GetMdbMongodbClusterClusterConfigMongodNetResult',
+    'GetMdbMongodbClusterClusterConfigMongodOperationProfilingResult',
     'GetMdbMongodbClusterClusterConfigMongodSecurityResult',
     'GetMdbMongodbClusterClusterConfigMongodSecurityKmipResult',
     'GetMdbMongodbClusterClusterConfigMongodSetParameterResult',
+    'GetMdbMongodbClusterClusterConfigMongodStorageResult',
+    'GetMdbMongodbClusterClusterConfigMongodStorageJournalResult',
+    'GetMdbMongodbClusterClusterConfigMongodStorageWiredTigerResult',
+    'GetMdbMongodbClusterClusterConfigMongosResult',
+    'GetMdbMongodbClusterClusterConfigMongosNetResult',
+    'GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsResult',
     'GetMdbMongodbClusterDatabaseResult',
     'GetMdbMongodbClusterHostResult',
     'GetMdbMongodbClusterMaintenanceWindowResult',
     'GetMdbMongodbClusterResourcesResult',
+    'GetMdbMongodbClusterResourcesMongocfgResult',
+    'GetMdbMongodbClusterResourcesMongodResult',
+    'GetMdbMongodbClusterResourcesMongoinfraResult',
+    'GetMdbMongodbClusterResourcesMongosResult',
     'GetMdbMongodbClusterRestoreResult',
     'GetMdbMongodbClusterUserResult',
     'GetMdbMongodbClusterUserPermissionResult',
@@ -702,14 +797,22 @@ __all__ = [
     'GetMdbMysqlClusterUserResult',
     'GetMdbMysqlClusterUserConnectionLimitResult',
     'GetMdbMysqlClusterUserPermissionResult',
+    'GetMdbMysqlUserConnectionLimitResult',
+    'GetMdbMysqlUserPermissionResult',
     'GetMdbPostgresqlClusterConfigResult',
     'GetMdbPostgresqlClusterConfigAccessResult',
     'GetMdbPostgresqlClusterConfigBackupWindowStartResult',
     'GetMdbPostgresqlClusterConfigPerformanceDiagnosticResult',
     'GetMdbPostgresqlClusterConfigPoolerConfigResult',
     'GetMdbPostgresqlClusterConfigResourceResult',
+    'GetMdbPostgresqlClusterDatabaseResult',
+    'GetMdbPostgresqlClusterDatabaseExtensionResult',
     'GetMdbPostgresqlClusterHostResult',
     'GetMdbPostgresqlClusterMaintenanceWindowResult',
+    'GetMdbPostgresqlClusterUserResult',
+    'GetMdbPostgresqlClusterUserPermissionResult',
+    'GetMdbPostgresqlDatabaseExtensionResult',
+    'GetMdbPostgresqlUserPermissionResult',
     'GetMdbRedisClusterConfigResult',
     'GetMdbRedisClusterHostResult',
     'GetMdbRedisClusterMaintenanceWindowResult',
@@ -720,11 +823,38 @@ __all__ = [
     'GetMdbSqlserverClusterResourceResult',
     'GetMdbSqlserverClusterUserResult',
     'GetMdbSqlserverClusterUserPermissionResult',
+    'GetMonitoringDashboardParametrizationResult',
+    'GetMonitoringDashboardParametrizationParameterResult',
+    'GetMonitoringDashboardParametrizationParameterCustomResult',
+    'GetMonitoringDashboardParametrizationParameterLabelValueResult',
+    'GetMonitoringDashboardParametrizationParameterTextResult',
+    'GetMonitoringDashboardWidgetResult',
+    'GetMonitoringDashboardWidgetChartResult',
+    'GetMonitoringDashboardWidgetChartNameHidingSettingResult',
+    'GetMonitoringDashboardWidgetChartQueryResult',
+    'GetMonitoringDashboardWidgetChartQueryDownsamplingResult',
+    'GetMonitoringDashboardWidgetChartQueryTargetResult',
+    'GetMonitoringDashboardWidgetChartSeriesOverrideResult',
+    'GetMonitoringDashboardWidgetChartSeriesOverrideSettingResult',
+    'GetMonitoringDashboardWidgetChartVisualizationSettingResult',
+    'GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingResult',
+    'GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomaticResult',
+    'GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradientResult',
+    'GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandardResult',
+    'GetMonitoringDashboardWidgetChartVisualizationSettingHeatmapSettingResult',
+    'GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingResult',
+    'GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeftResult',
+    'GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRightResult',
+    'GetMonitoringDashboardWidgetPositionResult',
+    'GetMonitoringDashboardWidgetTextResult',
+    'GetMonitoringDashboardWidgetTitleResult',
+    'GetOrganizationmanagerGroupMemberResult',
     'GetOrganizationmanagerSamlFederationSecuritySettingResult',
     'GetServerlessContainerConnectivityResult',
     'GetServerlessContainerImageResult',
     'GetServerlessContainerSecretResult',
     'GetVpcAddressExternalIpv4AddressResult',
+    'GetVpcGatewaySharedEgressGatewayResult',
     'GetVpcRouteTableStaticRouteResult',
     'GetVpcSecurityGroupEgressResult',
     'GetVpcSecurityGroupIngressResult',
@@ -748,11 +878,43 @@ __all__ = [
     'MdbKafkaConnectorConnectorConfigS3Sink',
     'MdbKafkaConnectorConnectorConfigS3SinkS3Connection',
     'MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3',
+    'MdbKafkaUserPermission',
     'MdbMysqlUserConnectionLimits',
     'MdbMysqlUserPermission',
     'MdbPostgresqlDatabaseExtension',
     'MdbPostgresqlUserPermission',
+    'MonitoringDashboardParametrization',
+    'MonitoringDashboardParametrizationParameter',
+    'MonitoringDashboardParametrizationParameterCustom',
+    'MonitoringDashboardParametrizationParameterLabelValue',
+    'MonitoringDashboardParametrizationParameterText',
+    'MonitoringDashboardWidget',
+    'MonitoringDashboardWidgetChart',
+    'MonitoringDashboardWidgetChartNameHidingSetting',
+    'MonitoringDashboardWidgetChartQuery',
+    'MonitoringDashboardWidgetChartQueryDownsampling',
+    'MonitoringDashboardWidgetChartQueryTarget',
+    'MonitoringDashboardWidgetChartSeriesOverride',
+    'MonitoringDashboardWidgetChartSeriesOverrideSetting',
+    'MonitoringDashboardWidgetChartVisualizationSetting',
+    'MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSetting',
+    'MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomatic',
+    'MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradient',
+    'MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandard',
+    'MonitoringDashboardWidgetChartVisualizationSettingHeatmapSetting',
+    'MonitoringDashboardWidgetChartVisualizationSettingYaxisSetting',
+    'MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeft',
+    'MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRight',
+    'MonitoringDashboardWidgetPosition',
+    'MonitoringDashboardWidgetText',
+    'MonitoringDashboardWidgetTitle',
     'VpcGatewaySharedEgressGateway',
+    'YandexYdbTableColumn',
+    'YandexYdbTableFamily',
+    'YandexYdbTablePartitioningSettings',
+    'YandexYdbTablePartitioningSettingsPartitionAtKey',
+    'YandexYdbTableTtl',
+    'YandexYdbTopicChangefeedConsumer',
     'YandexYdbTopicConsumer',
 ]
 
@@ -5370,7 +5532,7 @@ class CdnResourceOptions(dict):
                  redirect_http_to_https: Optional[bool] = None,
                  redirect_https_to_http: Optional[bool] = None,
                  slice: Optional[bool] = None,
-                 static_request_headers: Optional[Sequence[str]] = None,
+                 static_request_headers: Optional[Mapping[str, str]] = None,
                  static_response_headers: Optional[Mapping[str, str]] = None):
         """
         :param Sequence[str] allowed_http_methods: HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
@@ -5393,7 +5555,8 @@ class CdnResourceOptions(dict):
         :param bool redirect_http_to_https: set up a redirect from HTTP to HTTPS.
         :param bool redirect_https_to_http: set up a redirect from HTTPS to HTTP.
         :param bool slice: files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
-        :param Sequence[str] static_request_headers: set up custom headers that CDN servers send in requests to origins.
+        :param Mapping[str, str] static_request_headers: set up custom headers that CDN servers will send in requests to origins.
+        :param Mapping[str, str] static_response_headers: set up custom headers that CDN servers will send in response to clients.
         """
         if allowed_http_methods is not None:
             pulumi.set(__self__, "allowed_http_methods", allowed_http_methods)
@@ -5602,15 +5765,18 @@ class CdnResourceOptions(dict):
 
     @property
     @pulumi.getter(name="staticRequestHeaders")
-    def static_request_headers(self) -> Optional[Sequence[str]]:
+    def static_request_headers(self) -> Optional[Mapping[str, str]]:
         """
-        set up custom headers that CDN servers send in requests to origins.
+        set up custom headers that CDN servers will send in requests to origins.
         """
         return pulumi.get(self, "static_request_headers")
 
     @property
     @pulumi.getter(name="staticResponseHeaders")
     def static_response_headers(self) -> Optional[Mapping[str, str]]:
+        """
+        set up custom headers that CDN servers will send in response to clients.
+        """
         return pulumi.get(self, "static_response_headers")
 
 
@@ -6226,14 +6392,14 @@ class ComputeInstanceGroupHealthCheck(dict):
 
     def __init__(__self__, *,
                  healthy_threshold: Optional[int] = None,
-                 http_options: Optional[Sequence['outputs.ComputeInstanceGroupHealthCheckHttpOption']] = None,
+                 http_options: Optional['outputs.ComputeInstanceGroupHealthCheckHttpOptions'] = None,
                  interval: Optional[int] = None,
                  tcp_options: Optional['outputs.ComputeInstanceGroupHealthCheckTcpOptions'] = None,
                  timeout: Optional[int] = None,
                  unhealthy_threshold: Optional[int] = None):
         """
         :param int healthy_threshold: The number of successful health checks before the managed instance is declared healthy.
-        :param Sequence['ComputeInstanceGroupHealthCheckHttpOptionArgs'] http_options: HTTP check options. The structure is documented below.
+        :param 'ComputeInstanceGroupHealthCheckHttpOptionsArgs' http_options: HTTP check options. The structure is documented below.
         :param int interval: The interval to wait between health checks in seconds.
         :param 'ComputeInstanceGroupHealthCheckTcpOptionsArgs' tcp_options: TCP check options. The structure is documented below.
         :param int timeout: The length of time to wait for a response before the health check times out in seconds.
@@ -6262,7 +6428,7 @@ class ComputeInstanceGroupHealthCheck(dict):
 
     @property
     @pulumi.getter(name="httpOptions")
-    def http_options(self) -> Optional[Sequence['outputs.ComputeInstanceGroupHealthCheckHttpOption']]:
+    def http_options(self) -> Optional['outputs.ComputeInstanceGroupHealthCheckHttpOptions']:
         """
         HTTP check options. The structure is documented below.
         """
@@ -6302,7 +6468,7 @@ class ComputeInstanceGroupHealthCheck(dict):
 
 
 @pulumi.output_type
-class ComputeInstanceGroupHealthCheckHttpOption(dict):
+class ComputeInstanceGroupHealthCheckHttpOptions(dict):
     def __init__(__self__, *,
                  path: str,
                  port: int):
@@ -9642,6 +9808,10 @@ class DatatransferEndpointSettings(dict):
             suggest = "clickhouse_source"
         elif key == "clickhouseTarget":
             suggest = "clickhouse_target"
+        elif key == "kafkaSource":
+            suggest = "kafka_source"
+        elif key == "kafkaTarget":
+            suggest = "kafka_target"
         elif key == "mongoSource":
             suggest = "mongo_source"
         elif key == "mongoTarget":
@@ -9654,6 +9824,10 @@ class DatatransferEndpointSettings(dict):
             suggest = "postgres_source"
         elif key == "postgresTarget":
             suggest = "postgres_target"
+        elif key == "ydbSource":
+            suggest = "ydb_source"
+        elif key == "ydbTarget":
+            suggest = "ydb_target"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettings. Access the value via the '{suggest}' property getter instead.")
@@ -9669,22 +9843,38 @@ class DatatransferEndpointSettings(dict):
     def __init__(__self__, *,
                  clickhouse_source: Optional['outputs.DatatransferEndpointSettingsClickhouseSource'] = None,
                  clickhouse_target: Optional['outputs.DatatransferEndpointSettingsClickhouseTarget'] = None,
+                 kafka_source: Optional['outputs.DatatransferEndpointSettingsKafkaSource'] = None,
+                 kafka_target: Optional['outputs.DatatransferEndpointSettingsKafkaTarget'] = None,
                  mongo_source: Optional['outputs.DatatransferEndpointSettingsMongoSource'] = None,
                  mongo_target: Optional['outputs.DatatransferEndpointSettingsMongoTarget'] = None,
                  mysql_source: Optional['outputs.DatatransferEndpointSettingsMysqlSource'] = None,
                  mysql_target: Optional['outputs.DatatransferEndpointSettingsMysqlTarget'] = None,
                  postgres_source: Optional['outputs.DatatransferEndpointSettingsPostgresSource'] = None,
-                 postgres_target: Optional['outputs.DatatransferEndpointSettingsPostgresTarget'] = None):
+                 postgres_target: Optional['outputs.DatatransferEndpointSettingsPostgresTarget'] = None,
+                 ydb_source: Optional['outputs.DatatransferEndpointSettingsYdbSource'] = None,
+                 ydb_target: Optional['outputs.DatatransferEndpointSettingsYdbTarget'] = None):
         """
+        :param 'DatatransferEndpointSettingsClickhouseSourceArgs' clickhouse_source: Settings specific to the ClickHouse source endpoint.
+        :param 'DatatransferEndpointSettingsClickhouseTargetArgs' clickhouse_target: Settings specific to the ClickHouse target endpoint.
+        :param 'DatatransferEndpointSettingsKafkaSourceArgs' kafka_source: Settings specific to the Kafka source endpoint.
+        :param 'DatatransferEndpointSettingsKafkaTargetArgs' kafka_target: Settings specific to the Kafka target endpoint.
+        :param 'DatatransferEndpointSettingsMongoSourceArgs' mongo_source: Settings specific to the MongoDB source endpoint.
+        :param 'DatatransferEndpointSettingsMongoTargetArgs' mongo_target: Settings specific to the MongoDB target endpoint.
         :param 'DatatransferEndpointSettingsMysqlSourceArgs' mysql_source: Settings specific to the MySQL source endpoint.
         :param 'DatatransferEndpointSettingsMysqlTargetArgs' mysql_target: Settings specific to the MySQL target endpoint.
         :param 'DatatransferEndpointSettingsPostgresSourceArgs' postgres_source: Settings specific to the PostgreSQL source endpoint.
         :param 'DatatransferEndpointSettingsPostgresTargetArgs' postgres_target: Settings specific to the PostgreSQL target endpoint.
+        :param 'DatatransferEndpointSettingsYdbSourceArgs' ydb_source: Settings specific to the YDB source endpoint.
+        :param 'DatatransferEndpointSettingsYdbTargetArgs' ydb_target: Settings specific to the YDB target endpoint.
         """
         if clickhouse_source is not None:
             pulumi.set(__self__, "clickhouse_source", clickhouse_source)
         if clickhouse_target is not None:
             pulumi.set(__self__, "clickhouse_target", clickhouse_target)
+        if kafka_source is not None:
+            pulumi.set(__self__, "kafka_source", kafka_source)
+        if kafka_target is not None:
+            pulumi.set(__self__, "kafka_target", kafka_target)
         if mongo_source is not None:
             pulumi.set(__self__, "mongo_source", mongo_source)
         if mongo_target is not None:
@@ -9697,25 +9887,57 @@ class DatatransferEndpointSettings(dict):
             pulumi.set(__self__, "postgres_source", postgres_source)
         if postgres_target is not None:
             pulumi.set(__self__, "postgres_target", postgres_target)
+        if ydb_source is not None:
+            pulumi.set(__self__, "ydb_source", ydb_source)
+        if ydb_target is not None:
+            pulumi.set(__self__, "ydb_target", ydb_target)
 
     @property
     @pulumi.getter(name="clickhouseSource")
     def clickhouse_source(self) -> Optional['outputs.DatatransferEndpointSettingsClickhouseSource']:
+        """
+        Settings specific to the ClickHouse source endpoint.
+        """
         return pulumi.get(self, "clickhouse_source")
 
     @property
     @pulumi.getter(name="clickhouseTarget")
     def clickhouse_target(self) -> Optional['outputs.DatatransferEndpointSettingsClickhouseTarget']:
+        """
+        Settings specific to the ClickHouse target endpoint.
+        """
         return pulumi.get(self, "clickhouse_target")
+
+    @property
+    @pulumi.getter(name="kafkaSource")
+    def kafka_source(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSource']:
+        """
+        Settings specific to the Kafka source endpoint.
+        """
+        return pulumi.get(self, "kafka_source")
+
+    @property
+    @pulumi.getter(name="kafkaTarget")
+    def kafka_target(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTarget']:
+        """
+        Settings specific to the Kafka target endpoint.
+        """
+        return pulumi.get(self, "kafka_target")
 
     @property
     @pulumi.getter(name="mongoSource")
     def mongo_source(self) -> Optional['outputs.DatatransferEndpointSettingsMongoSource']:
+        """
+        Settings specific to the MongoDB source endpoint.
+        """
         return pulumi.get(self, "mongo_source")
 
     @property
     @pulumi.getter(name="mongoTarget")
     def mongo_target(self) -> Optional['outputs.DatatransferEndpointSettingsMongoTarget']:
+        """
+        Settings specific to the MongoDB target endpoint.
+        """
         return pulumi.get(self, "mongo_target")
 
     @property
@@ -9749,6 +9971,22 @@ class DatatransferEndpointSettings(dict):
         Settings specific to the PostgreSQL target endpoint.
         """
         return pulumi.get(self, "postgres_target")
+
+    @property
+    @pulumi.getter(name="ydbSource")
+    def ydb_source(self) -> Optional['outputs.DatatransferEndpointSettingsYdbSource']:
+        """
+        Settings specific to the YDB source endpoint.
+        """
+        return pulumi.get(self, "ydb_source")
+
+    @property
+    @pulumi.getter(name="ydbTarget")
+    def ydb_target(self) -> Optional['outputs.DatatransferEndpointSettingsYdbTarget']:
+        """
+        Settings specific to the YDB target endpoint.
+        """
+        return pulumi.get(self, "ydb_target")
 
 
 @pulumi.output_type
@@ -10717,6 +10955,1579 @@ class DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHash(dict):
 class DatatransferEndpointSettingsClickhouseTargetShardingTransferId(dict):
     def __init__(__self__):
         pass
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSource(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "securityGroups":
+            suggest = "security_groups"
+        elif key == "topicName":
+            suggest = "topic_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaSource. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaSource.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaSource.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auth: Optional['outputs.DatatransferEndpointSettingsKafkaSourceAuth'] = None,
+                 connection: Optional['outputs.DatatransferEndpointSettingsKafkaSourceConnection'] = None,
+                 parser: Optional['outputs.DatatransferEndpointSettingsKafkaSourceParser'] = None,
+                 security_groups: Optional[Sequence[str]] = None,
+                 topic_name: Optional[str] = None,
+                 transformer: Optional['outputs.DatatransferEndpointSettingsKafkaSourceTransformer'] = None):
+        """
+        :param 'DatatransferEndpointSettingsKafkaSourceAuthArgs' auth: Authentication data.
+        :param 'DatatransferEndpointSettingsKafkaSourceConnectionArgs' connection: Connection settings. The structure is documented below.
+        :param 'DatatransferEndpointSettingsKafkaSourceParserArgs' parser: Data parsing parameters. If not set, the source messages are read in raw.
+        :param Sequence[str] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param str topic_name: Full source topic name.
+        :param 'DatatransferEndpointSettingsKafkaSourceTransformerArgs' transformer: Transform data with a custom Cloud Function.
+        """
+        if auth is not None:
+            pulumi.set(__self__, "auth", auth)
+        if connection is not None:
+            pulumi.set(__self__, "connection", connection)
+        if parser is not None:
+            pulumi.set(__self__, "parser", parser)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if topic_name is not None:
+            pulumi.set(__self__, "topic_name", topic_name)
+        if transformer is not None:
+            pulumi.set(__self__, "transformer", transformer)
+
+    @property
+    @pulumi.getter
+    def auth(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceAuth']:
+        """
+        Authentication data.
+        """
+        return pulumi.get(self, "auth")
+
+    @property
+    @pulumi.getter
+    def connection(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceConnection']:
+        """
+        Connection settings. The structure is documented below.
+        """
+        return pulumi.get(self, "connection")
+
+    @property
+    @pulumi.getter
+    def parser(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceParser']:
+        """
+        Data parsing parameters. If not set, the source messages are read in raw.
+        """
+        return pulumi.get(self, "parser")
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> Optional[Sequence[str]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> Optional[str]:
+        """
+        Full source topic name.
+        """
+        return pulumi.get(self, "topic_name")
+
+    @property
+    @pulumi.getter
+    def transformer(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceTransformer']:
+        """
+        Transform data with a custom Cloud Function.
+        """
+        return pulumi.get(self, "transformer")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceAuth(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "noAuth":
+            suggest = "no_auth"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaSourceAuth. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaSourceAuth.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaSourceAuth.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 no_auth: Optional['outputs.DatatransferEndpointSettingsKafkaSourceAuthNoAuth'] = None,
+                 sasl: Optional['outputs.DatatransferEndpointSettingsKafkaSourceAuthSasl'] = None):
+        """
+        :param 'DatatransferEndpointSettingsKafkaSourceAuthNoAuthArgs' no_auth: Connection without authentication data.
+        :param 'DatatransferEndpointSettingsKafkaSourceAuthSaslArgs' sasl: Authentication using sasl.
+        """
+        if no_auth is not None:
+            pulumi.set(__self__, "no_auth", no_auth)
+        if sasl is not None:
+            pulumi.set(__self__, "sasl", sasl)
+
+    @property
+    @pulumi.getter(name="noAuth")
+    def no_auth(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceAuthNoAuth']:
+        """
+        Connection without authentication data.
+        """
+        return pulumi.get(self, "no_auth")
+
+    @property
+    @pulumi.getter
+    def sasl(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceAuthSasl']:
+        """
+        Authentication using sasl.
+        """
+        return pulumi.get(self, "sasl")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceAuthNoAuth(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceAuthSasl(dict):
+    def __init__(__self__, *,
+                 mechanism: Optional[str] = None,
+                 password: Optional['outputs.DatatransferEndpointSettingsKafkaSourceAuthSaslPassword'] = None,
+                 user: Optional[str] = None):
+        """
+        :param 'DatatransferEndpointSettingsKafkaSourceAuthSaslPasswordArgs' password: Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        :param str user: User for the database access.
+        """
+        if mechanism is not None:
+            pulumi.set(__self__, "mechanism", mechanism)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
+
+    @property
+    @pulumi.getter
+    def mechanism(self) -> Optional[str]:
+        return pulumi.get(self, "mechanism")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceAuthSaslPassword']:
+        """
+        Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[str]:
+        """
+        User for the database access.
+        """
+        return pulumi.get(self, "user")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceAuthSaslPassword(dict):
+    def __init__(__self__, *,
+                 raw: Optional[str] = None):
+        if raw is not None:
+            pulumi.set(__self__, "raw", raw)
+
+    @property
+    @pulumi.getter
+    def raw(self) -> Optional[str]:
+        return pulumi.get(self, "raw")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceConnection(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clusterId":
+            suggest = "cluster_id"
+        elif key == "onPremise":
+            suggest = "on_premise"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaSourceConnection. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaSourceConnection.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaSourceConnection.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cluster_id: Optional[str] = None,
+                 on_premise: Optional['outputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremise'] = None):
+        """
+        :param str cluster_id: Identifier of the Managed Kafka cluster.
+        :param 'DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseArgs' on_premise: Connection settings of the on-premise Kafka server.
+        """
+        if cluster_id is not None:
+            pulumi.set(__self__, "cluster_id", cluster_id)
+        if on_premise is not None:
+            pulumi.set(__self__, "on_premise", on_premise)
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> Optional[str]:
+        """
+        Identifier of the Managed Kafka cluster.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter(name="onPremise")
+    def on_premise(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremise']:
+        """
+        Connection settings of the on-premise Kafka server.
+        """
+        return pulumi.get(self, "on_premise")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceConnectionOnPremise(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "brokerUrls":
+            suggest = "broker_urls"
+        elif key == "subnetId":
+            suggest = "subnet_id"
+        elif key == "tlsMode":
+            suggest = "tls_mode"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaSourceConnectionOnPremise. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaSourceConnectionOnPremise.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaSourceConnectionOnPremise.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 broker_urls: Optional[Sequence[str]] = None,
+                 subnet_id: Optional[str] = None,
+                 tls_mode: Optional['outputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsMode'] = None):
+        """
+        :param Sequence[str] broker_urls: List of Kafka broker URLs.
+        :param str subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        :param 'DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeArgs' tls_mode: TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
+        if broker_urls is not None:
+            pulumi.set(__self__, "broker_urls", broker_urls)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+        if tls_mode is not None:
+            pulumi.set(__self__, "tls_mode", tls_mode)
+
+    @property
+    @pulumi.getter(name="brokerUrls")
+    def broker_urls(self) -> Optional[Sequence[str]]:
+        """
+        List of Kafka broker URLs.
+        """
+        return pulumi.get(self, "broker_urls")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[str]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter(name="tlsMode")
+    def tls_mode(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsMode']:
+        """
+        TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
+        return pulumi.get(self, "tls_mode")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsMode(dict):
+    def __init__(__self__, *,
+                 disabled: Optional['outputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabled'] = None,
+                 enabled: Optional['outputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabled'] = None):
+        """
+        :param 'DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabledArgs' disabled: Empty block designating that the connection is not secured, i.e. plaintext connection.
+        :param 'DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabledArgs' enabled: If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
+        if disabled is not None:
+            pulumi.set(__self__, "disabled", disabled)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabled']:
+        """
+        Empty block designating that the connection is not secured, i.e. plaintext connection.
+        """
+        return pulumi.get(self, "disabled")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabled']:
+        """
+        If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
+        return pulumi.get(self, "enabled")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabled(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabled(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "caCertificate":
+            suggest = "ca_certificate"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabled. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabled.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabled.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ca_certificate: Optional[str] = None):
+        """
+        :param str ca_certificate: X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
+        if ca_certificate is not None:
+            pulumi.set(__self__, "ca_certificate", ca_certificate)
+
+    @property
+    @pulumi.getter(name="caCertificate")
+    def ca_certificate(self) -> Optional[str]:
+        """
+        X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
+        return pulumi.get(self, "ca_certificate")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceParser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "auditTrailsV1Parser":
+            suggest = "audit_trails_v1_parser"
+        elif key == "cloudLoggingParser":
+            suggest = "cloud_logging_parser"
+        elif key == "jsonParser":
+            suggest = "json_parser"
+        elif key == "tskvParser":
+            suggest = "tskv_parser"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaSourceParser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaSourceParser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaSourceParser.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 audit_trails_v1_parser: Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1Parser'] = None,
+                 cloud_logging_parser: Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParser'] = None,
+                 json_parser: Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserJsonParser'] = None,
+                 tskv_parser: Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserTskvParser'] = None):
+        """
+        :param 'DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1ParserArgs' audit_trails_v1_parser: Parse Audit Trails data. Empty struct.
+        :param 'DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParserArgs' cloud_logging_parser: Parse Cloud Logging data. Empty struct.
+        :param 'DatatransferEndpointSettingsKafkaSourceParserJsonParserArgs' json_parser: Parse data in json format.
+        :param 'DatatransferEndpointSettingsKafkaSourceParserTskvParserArgs' tskv_parser: Parse data if tskv format.
+        """
+        if audit_trails_v1_parser is not None:
+            pulumi.set(__self__, "audit_trails_v1_parser", audit_trails_v1_parser)
+        if cloud_logging_parser is not None:
+            pulumi.set(__self__, "cloud_logging_parser", cloud_logging_parser)
+        if json_parser is not None:
+            pulumi.set(__self__, "json_parser", json_parser)
+        if tskv_parser is not None:
+            pulumi.set(__self__, "tskv_parser", tskv_parser)
+
+    @property
+    @pulumi.getter(name="auditTrailsV1Parser")
+    def audit_trails_v1_parser(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1Parser']:
+        """
+        Parse Audit Trails data. Empty struct.
+        """
+        return pulumi.get(self, "audit_trails_v1_parser")
+
+    @property
+    @pulumi.getter(name="cloudLoggingParser")
+    def cloud_logging_parser(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParser']:
+        """
+        Parse Cloud Logging data. Empty struct.
+        """
+        return pulumi.get(self, "cloud_logging_parser")
+
+    @property
+    @pulumi.getter(name="jsonParser")
+    def json_parser(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserJsonParser']:
+        """
+        Parse data in json format.
+        """
+        return pulumi.get(self, "json_parser")
+
+    @property
+    @pulumi.getter(name="tskvParser")
+    def tskv_parser(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserTskvParser']:
+        """
+        Parse data if tskv format.
+        """
+        return pulumi.get(self, "tskv_parser")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1Parser(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParser(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceParserJsonParser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "addRestColumn":
+            suggest = "add_rest_column"
+        elif key == "dataSchema":
+            suggest = "data_schema"
+        elif key == "nullKeysAllowed":
+            suggest = "null_keys_allowed"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaSourceParserJsonParser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaSourceParserJsonParser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaSourceParserJsonParser.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 add_rest_column: Optional[bool] = None,
+                 data_schema: Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchema'] = None,
+                 null_keys_allowed: Optional[bool] = None):
+        """
+        :param bool add_rest_column: Add fields, that are not in the schema, into the _rest column.
+        :param 'DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaArgs' data_schema: Data parsing scheme.The structure is documented below.
+        :param bool null_keys_allowed: Allow null keys. If `false` - null keys will be putted to unparsed data
+        """
+        if add_rest_column is not None:
+            pulumi.set(__self__, "add_rest_column", add_rest_column)
+        if data_schema is not None:
+            pulumi.set(__self__, "data_schema", data_schema)
+        if null_keys_allowed is not None:
+            pulumi.set(__self__, "null_keys_allowed", null_keys_allowed)
+
+    @property
+    @pulumi.getter(name="addRestColumn")
+    def add_rest_column(self) -> Optional[bool]:
+        """
+        Add fields, that are not in the schema, into the _rest column.
+        """
+        return pulumi.get(self, "add_rest_column")
+
+    @property
+    @pulumi.getter(name="dataSchema")
+    def data_schema(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchema']:
+        """
+        Data parsing scheme.The structure is documented below.
+        """
+        return pulumi.get(self, "data_schema")
+
+    @property
+    @pulumi.getter(name="nullKeysAllowed")
+    def null_keys_allowed(self) -> Optional[bool]:
+        """
+        Allow null keys. If `false` - null keys will be putted to unparsed data
+        """
+        return pulumi.get(self, "null_keys_allowed")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchema(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "jsonFields":
+            suggest = "json_fields"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchema. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchema.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchema.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fields: Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFields'] = None,
+                 json_fields: Optional[str] = None):
+        """
+        :param 'DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsArgs' fields: Description of the data schema in the array of `fields` structure (documented below).
+        :param str json_fields: Description of the data schema as JSON specification.
+        """
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+        if json_fields is not None:
+            pulumi.set(__self__, "json_fields", json_fields)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFields']:
+        """
+        Description of the data schema in the array of `fields` structure (documented below).
+        """
+        return pulumi.get(self, "fields")
+
+    @property
+    @pulumi.getter(name="jsonFields")
+    def json_fields(self) -> Optional[str]:
+        """
+        Description of the data schema as JSON specification.
+        """
+        return pulumi.get(self, "json_fields")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFields(dict):
+    def __init__(__self__, *,
+                 fields: Optional[Sequence['outputs.DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsField']] = None):
+        """
+        :param Sequence['DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsFieldArgs'] fields: Description of the data schema in the array of `fields` structure (documented below).
+        """
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[Sequence['outputs.DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsField']]:
+        """
+        Description of the data schema in the array of `fields` structure (documented below).
+        """
+        return pulumi.get(self, "fields")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsField(dict):
+    def __init__(__self__, *,
+                 key: Optional[bool] = None,
+                 name: Optional[str] = None,
+                 path: Optional[str] = None,
+                 required: Optional[bool] = None,
+                 type: Optional[str] = None):
+        """
+        :param bool key: -Mark field as Primary Key.
+        :param str name: Name of the endpoint.
+        :param str path: Path to the field.
+        :param bool required: Mark field as required.
+        :param str type: Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if required is not None:
+            pulumi.set(__self__, "required", required)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[bool]:
+        """
+        -Mark field as Primary Key.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name of the endpoint.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        Path to the field.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def required(self) -> Optional[bool]:
+        """
+        Mark field as required.
+        """
+        return pulumi.get(self, "required")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceParserTskvParser(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "addRestColumn":
+            suggest = "add_rest_column"
+        elif key == "dataSchema":
+            suggest = "data_schema"
+        elif key == "nullKeysAllowed":
+            suggest = "null_keys_allowed"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaSourceParserTskvParser. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaSourceParserTskvParser.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaSourceParserTskvParser.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 add_rest_column: Optional[bool] = None,
+                 data_schema: Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchema'] = None,
+                 null_keys_allowed: Optional[bool] = None):
+        """
+        :param bool add_rest_column: Add fields, that are not in the schema, into the _rest column.
+        :param 'DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaArgs' data_schema: Data parsing scheme.The structure is documented below.
+        :param bool null_keys_allowed: Allow null keys. If `false` - null keys will be putted to unparsed data
+        """
+        if add_rest_column is not None:
+            pulumi.set(__self__, "add_rest_column", add_rest_column)
+        if data_schema is not None:
+            pulumi.set(__self__, "data_schema", data_schema)
+        if null_keys_allowed is not None:
+            pulumi.set(__self__, "null_keys_allowed", null_keys_allowed)
+
+    @property
+    @pulumi.getter(name="addRestColumn")
+    def add_rest_column(self) -> Optional[bool]:
+        """
+        Add fields, that are not in the schema, into the _rest column.
+        """
+        return pulumi.get(self, "add_rest_column")
+
+    @property
+    @pulumi.getter(name="dataSchema")
+    def data_schema(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchema']:
+        """
+        Data parsing scheme.The structure is documented below.
+        """
+        return pulumi.get(self, "data_schema")
+
+    @property
+    @pulumi.getter(name="nullKeysAllowed")
+    def null_keys_allowed(self) -> Optional[bool]:
+        """
+        Allow null keys. If `false` - null keys will be putted to unparsed data
+        """
+        return pulumi.get(self, "null_keys_allowed")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchema(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "jsonFields":
+            suggest = "json_fields"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchema. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchema.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchema.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 fields: Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFields'] = None,
+                 json_fields: Optional[str] = None):
+        """
+        :param 'DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsArgs' fields: Description of the data schema in the array of `fields` structure (documented below).
+        :param str json_fields: Description of the data schema as JSON specification.
+        """
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+        if json_fields is not None:
+            pulumi.set(__self__, "json_fields", json_fields)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFields']:
+        """
+        Description of the data schema in the array of `fields` structure (documented below).
+        """
+        return pulumi.get(self, "fields")
+
+    @property
+    @pulumi.getter(name="jsonFields")
+    def json_fields(self) -> Optional[str]:
+        """
+        Description of the data schema as JSON specification.
+        """
+        return pulumi.get(self, "json_fields")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFields(dict):
+    def __init__(__self__, *,
+                 fields: Optional[Sequence['outputs.DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsField']] = None):
+        """
+        :param Sequence['DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsFieldArgs'] fields: Description of the data schema in the array of `fields` structure (documented below).
+        """
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[Sequence['outputs.DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsField']]:
+        """
+        Description of the data schema in the array of `fields` structure (documented below).
+        """
+        return pulumi.get(self, "fields")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsField(dict):
+    def __init__(__self__, *,
+                 key: Optional[bool] = None,
+                 name: Optional[str] = None,
+                 path: Optional[str] = None,
+                 required: Optional[bool] = None,
+                 type: Optional[str] = None):
+        """
+        :param bool key: -Mark field as Primary Key.
+        :param str name: Name of the endpoint.
+        :param str path: Path to the field.
+        :param bool required: Mark field as required.
+        :param str type: Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if required is not None:
+            pulumi.set(__self__, "required", required)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[bool]:
+        """
+        -Mark field as Primary Key.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name of the endpoint.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        Path to the field.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter
+    def required(self) -> Optional[bool]:
+        """
+        Mark field as required.
+        """
+        return pulumi.get(self, "required")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaSourceTransformer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bufferFlushInterval":
+            suggest = "buffer_flush_interval"
+        elif key == "bufferSize":
+            suggest = "buffer_size"
+        elif key == "cloudFunction":
+            suggest = "cloud_function"
+        elif key == "invocationTimeout":
+            suggest = "invocation_timeout"
+        elif key == "numberOfRetries":
+            suggest = "number_of_retries"
+        elif key == "serviceAccountId":
+            suggest = "service_account_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaSourceTransformer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaSourceTransformer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaSourceTransformer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 buffer_flush_interval: Optional[str] = None,
+                 buffer_size: Optional[str] = None,
+                 cloud_function: Optional[str] = None,
+                 invocation_timeout: Optional[str] = None,
+                 number_of_retries: Optional[int] = None,
+                 service_account_id: Optional[str] = None):
+        if buffer_flush_interval is not None:
+            pulumi.set(__self__, "buffer_flush_interval", buffer_flush_interval)
+        if buffer_size is not None:
+            pulumi.set(__self__, "buffer_size", buffer_size)
+        if cloud_function is not None:
+            pulumi.set(__self__, "cloud_function", cloud_function)
+        if invocation_timeout is not None:
+            pulumi.set(__self__, "invocation_timeout", invocation_timeout)
+        if number_of_retries is not None:
+            pulumi.set(__self__, "number_of_retries", number_of_retries)
+        if service_account_id is not None:
+            pulumi.set(__self__, "service_account_id", service_account_id)
+
+    @property
+    @pulumi.getter(name="bufferFlushInterval")
+    def buffer_flush_interval(self) -> Optional[str]:
+        return pulumi.get(self, "buffer_flush_interval")
+
+    @property
+    @pulumi.getter(name="bufferSize")
+    def buffer_size(self) -> Optional[str]:
+        return pulumi.get(self, "buffer_size")
+
+    @property
+    @pulumi.getter(name="cloudFunction")
+    def cloud_function(self) -> Optional[str]:
+        return pulumi.get(self, "cloud_function")
+
+    @property
+    @pulumi.getter(name="invocationTimeout")
+    def invocation_timeout(self) -> Optional[str]:
+        return pulumi.get(self, "invocation_timeout")
+
+    @property
+    @pulumi.getter(name="numberOfRetries")
+    def number_of_retries(self) -> Optional[int]:
+        return pulumi.get(self, "number_of_retries")
+
+    @property
+    @pulumi.getter(name="serviceAccountId")
+    def service_account_id(self) -> Optional[str]:
+        return pulumi.get(self, "service_account_id")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTarget(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "securityGroups":
+            suggest = "security_groups"
+        elif key == "topicSettings":
+            suggest = "topic_settings"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaTarget. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaTarget.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaTarget.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auth: Optional['outputs.DatatransferEndpointSettingsKafkaTargetAuth'] = None,
+                 connection: Optional['outputs.DatatransferEndpointSettingsKafkaTargetConnection'] = None,
+                 security_groups: Optional[Sequence[str]] = None,
+                 serializer: Optional['outputs.DatatransferEndpointSettingsKafkaTargetSerializer'] = None,
+                 topic_settings: Optional['outputs.DatatransferEndpointSettingsKafkaTargetTopicSettings'] = None):
+        """
+        :param 'DatatransferEndpointSettingsKafkaTargetAuthArgs' auth: Authentication data.
+        :param 'DatatransferEndpointSettingsKafkaTargetConnectionArgs' connection: Connection settings. The structure is documented below.
+        :param Sequence[str] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param 'DatatransferEndpointSettingsKafkaTargetSerializerArgs' serializer: Data serialization settings.
+        :param 'DatatransferEndpointSettingsKafkaTargetTopicSettingsArgs' topic_settings: Target topic settings.
+        """
+        if auth is not None:
+            pulumi.set(__self__, "auth", auth)
+        if connection is not None:
+            pulumi.set(__self__, "connection", connection)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if serializer is not None:
+            pulumi.set(__self__, "serializer", serializer)
+        if topic_settings is not None:
+            pulumi.set(__self__, "topic_settings", topic_settings)
+
+    @property
+    @pulumi.getter
+    def auth(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetAuth']:
+        """
+        Authentication data.
+        """
+        return pulumi.get(self, "auth")
+
+    @property
+    @pulumi.getter
+    def connection(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetConnection']:
+        """
+        Connection settings. The structure is documented below.
+        """
+        return pulumi.get(self, "connection")
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> Optional[Sequence[str]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @property
+    @pulumi.getter
+    def serializer(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetSerializer']:
+        """
+        Data serialization settings.
+        """
+        return pulumi.get(self, "serializer")
+
+    @property
+    @pulumi.getter(name="topicSettings")
+    def topic_settings(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetTopicSettings']:
+        """
+        Target topic settings.
+        """
+        return pulumi.get(self, "topic_settings")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetAuth(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "noAuth":
+            suggest = "no_auth"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaTargetAuth. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaTargetAuth.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaTargetAuth.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 no_auth: Optional['outputs.DatatransferEndpointSettingsKafkaTargetAuthNoAuth'] = None,
+                 sasl: Optional['outputs.DatatransferEndpointSettingsKafkaTargetAuthSasl'] = None):
+        """
+        :param 'DatatransferEndpointSettingsKafkaTargetAuthNoAuthArgs' no_auth: Connection without authentication data.
+        :param 'DatatransferEndpointSettingsKafkaTargetAuthSaslArgs' sasl: Authentication using sasl.
+        """
+        if no_auth is not None:
+            pulumi.set(__self__, "no_auth", no_auth)
+        if sasl is not None:
+            pulumi.set(__self__, "sasl", sasl)
+
+    @property
+    @pulumi.getter(name="noAuth")
+    def no_auth(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetAuthNoAuth']:
+        """
+        Connection without authentication data.
+        """
+        return pulumi.get(self, "no_auth")
+
+    @property
+    @pulumi.getter
+    def sasl(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetAuthSasl']:
+        """
+        Authentication using sasl.
+        """
+        return pulumi.get(self, "sasl")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetAuthNoAuth(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetAuthSasl(dict):
+    def __init__(__self__, *,
+                 mechanism: Optional[str] = None,
+                 password: Optional['outputs.DatatransferEndpointSettingsKafkaTargetAuthSaslPassword'] = None,
+                 user: Optional[str] = None):
+        """
+        :param 'DatatransferEndpointSettingsKafkaTargetAuthSaslPasswordArgs' password: Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        :param str user: User for the database access.
+        """
+        if mechanism is not None:
+            pulumi.set(__self__, "mechanism", mechanism)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
+
+    @property
+    @pulumi.getter
+    def mechanism(self) -> Optional[str]:
+        return pulumi.get(self, "mechanism")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetAuthSaslPassword']:
+        """
+        Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[str]:
+        """
+        User for the database access.
+        """
+        return pulumi.get(self, "user")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetAuthSaslPassword(dict):
+    def __init__(__self__, *,
+                 raw: Optional[str] = None):
+        if raw is not None:
+            pulumi.set(__self__, "raw", raw)
+
+    @property
+    @pulumi.getter
+    def raw(self) -> Optional[str]:
+        return pulumi.get(self, "raw")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetConnection(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clusterId":
+            suggest = "cluster_id"
+        elif key == "onPremise":
+            suggest = "on_premise"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaTargetConnection. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaTargetConnection.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaTargetConnection.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cluster_id: Optional[str] = None,
+                 on_premise: Optional['outputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremise'] = None):
+        """
+        :param str cluster_id: Identifier of the Managed Kafka cluster.
+        :param 'DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseArgs' on_premise: Connection settings of the on-premise Kafka server.
+        """
+        if cluster_id is not None:
+            pulumi.set(__self__, "cluster_id", cluster_id)
+        if on_premise is not None:
+            pulumi.set(__self__, "on_premise", on_premise)
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> Optional[str]:
+        """
+        Identifier of the Managed Kafka cluster.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter(name="onPremise")
+    def on_premise(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremise']:
+        """
+        Connection settings of the on-premise Kafka server.
+        """
+        return pulumi.get(self, "on_premise")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetConnectionOnPremise(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "brokerUrls":
+            suggest = "broker_urls"
+        elif key == "subnetId":
+            suggest = "subnet_id"
+        elif key == "tlsMode":
+            suggest = "tls_mode"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaTargetConnectionOnPremise. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaTargetConnectionOnPremise.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaTargetConnectionOnPremise.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 broker_urls: Optional[Sequence[str]] = None,
+                 subnet_id: Optional[str] = None,
+                 tls_mode: Optional['outputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsMode'] = None):
+        """
+        :param Sequence[str] broker_urls: List of Kafka broker URLs.
+        :param str subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        :param 'DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeArgs' tls_mode: TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
+        if broker_urls is not None:
+            pulumi.set(__self__, "broker_urls", broker_urls)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+        if tls_mode is not None:
+            pulumi.set(__self__, "tls_mode", tls_mode)
+
+    @property
+    @pulumi.getter(name="brokerUrls")
+    def broker_urls(self) -> Optional[Sequence[str]]:
+        """
+        List of Kafka broker URLs.
+        """
+        return pulumi.get(self, "broker_urls")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[str]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter(name="tlsMode")
+    def tls_mode(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsMode']:
+        """
+        TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
+        return pulumi.get(self, "tls_mode")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsMode(dict):
+    def __init__(__self__, *,
+                 disabled: Optional['outputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabled'] = None,
+                 enabled: Optional['outputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabled'] = None):
+        """
+        :param 'DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabledArgs' disabled: Empty block designating that the connection is not secured, i.e. plaintext connection.
+        :param 'DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabledArgs' enabled: If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
+        if disabled is not None:
+            pulumi.set(__self__, "disabled", disabled)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabled']:
+        """
+        Empty block designating that the connection is not secured, i.e. plaintext connection.
+        """
+        return pulumi.get(self, "disabled")
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabled']:
+        """
+        If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
+        return pulumi.get(self, "enabled")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabled(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabled(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "caCertificate":
+            suggest = "ca_certificate"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabled. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabled.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabled.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ca_certificate: Optional[str] = None):
+        """
+        :param str ca_certificate: X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
+        if ca_certificate is not None:
+            pulumi.set(__self__, "ca_certificate", ca_certificate)
+
+    @property
+    @pulumi.getter(name="caCertificate")
+    def ca_certificate(self) -> Optional[str]:
+        """
+        X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
+        return pulumi.get(self, "ca_certificate")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetSerializer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "serializerAuto":
+            suggest = "serializer_auto"
+        elif key == "serializerDebezium":
+            suggest = "serializer_debezium"
+        elif key == "serializerJson":
+            suggest = "serializer_json"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaTargetSerializer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaTargetSerializer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaTargetSerializer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 serializer_auto: Optional['outputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerAuto'] = None,
+                 serializer_debezium: Optional['outputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebezium'] = None,
+                 serializer_json: Optional['outputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerJson'] = None):
+        """
+        :param 'DatatransferEndpointSettingsKafkaTargetSerializerSerializerAutoArgs' serializer_auto: Empty block. Select data serialization format automatically.
+        :param 'DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumArgs' serializer_debezium: Serialize data in json format. The structure is documented below.
+        :param 'DatatransferEndpointSettingsKafkaTargetSerializerSerializerJsonArgs' serializer_json: Empty block. Serialize data in json format.
+        """
+        if serializer_auto is not None:
+            pulumi.set(__self__, "serializer_auto", serializer_auto)
+        if serializer_debezium is not None:
+            pulumi.set(__self__, "serializer_debezium", serializer_debezium)
+        if serializer_json is not None:
+            pulumi.set(__self__, "serializer_json", serializer_json)
+
+    @property
+    @pulumi.getter(name="serializerAuto")
+    def serializer_auto(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerAuto']:
+        """
+        Empty block. Select data serialization format automatically.
+        """
+        return pulumi.get(self, "serializer_auto")
+
+    @property
+    @pulumi.getter(name="serializerDebezium")
+    def serializer_debezium(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebezium']:
+        """
+        Serialize data in json format. The structure is documented below.
+        """
+        return pulumi.get(self, "serializer_debezium")
+
+    @property
+    @pulumi.getter(name="serializerJson")
+    def serializer_json(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerJson']:
+        """
+        Empty block. Serialize data in json format.
+        """
+        return pulumi.get(self, "serializer_json")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetSerializerSerializerAuto(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebezium(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "serializerParameters":
+            suggest = "serializer_parameters"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebezium. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebezium.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebezium.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 serializer_parameters: Optional[Sequence['outputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameter']] = None):
+        """
+        :param Sequence['DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameterArgs'] serializer_parameters: A list of debezium parameters set by the structure of the `key` and `value` string fields.
+        """
+        if serializer_parameters is not None:
+            pulumi.set(__self__, "serializer_parameters", serializer_parameters)
+
+    @property
+    @pulumi.getter(name="serializerParameters")
+    def serializer_parameters(self) -> Optional[Sequence['outputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameter']]:
+        """
+        A list of debezium parameters set by the structure of the `key` and `value` string fields.
+        """
+        return pulumi.get(self, "serializer_parameters")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameter(dict):
+    def __init__(__self__, *,
+                 key: Optional[str] = None,
+                 value: Optional[str] = None):
+        """
+        :param str key: -Mark field as Primary Key.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[str]:
+        """
+        -Mark field as Primary Key.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetSerializerSerializerJson(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetTopicSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "topicPrefix":
+            suggest = "topic_prefix"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaTargetTopicSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaTargetTopicSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaTargetTopicSettings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 topic: Optional['outputs.DatatransferEndpointSettingsKafkaTargetTopicSettingsTopic'] = None,
+                 topic_prefix: Optional[str] = None):
+        """
+        :param 'DatatransferEndpointSettingsKafkaTargetTopicSettingsTopicArgs' topic: All messages will be sent to one topic. The structure is documented below.
+        :param str topic_prefix: Topic name prefix. Messages will be sent to topic with name <topic_prefix>.<schema>.<table_name>.
+        """
+        if topic is not None:
+            pulumi.set(__self__, "topic", topic)
+        if topic_prefix is not None:
+            pulumi.set(__self__, "topic_prefix", topic_prefix)
+
+    @property
+    @pulumi.getter
+    def topic(self) -> Optional['outputs.DatatransferEndpointSettingsKafkaTargetTopicSettingsTopic']:
+        """
+        All messages will be sent to one topic. The structure is documented below.
+        """
+        return pulumi.get(self, "topic")
+
+    @property
+    @pulumi.getter(name="topicPrefix")
+    def topic_prefix(self) -> Optional[str]:
+        """
+        Topic name prefix. Messages will be sent to topic with name <topic_prefix>.<schema>.<table_name>.
+        """
+        return pulumi.get(self, "topic_prefix")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsKafkaTargetTopicSettingsTopic(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "saveTxOrder":
+            suggest = "save_tx_order"
+        elif key == "topicName":
+            suggest = "topic_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsKafkaTargetTopicSettingsTopic. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsKafkaTargetTopicSettingsTopic.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsKafkaTargetTopicSettingsTopic.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 save_tx_order: Optional[bool] = None,
+                 topic_name: Optional[str] = None):
+        """
+        :param bool save_tx_order: Not to split events queue into separate per-table queues.
+        :param str topic_name: Full source topic name.
+        """
+        if save_tx_order is not None:
+            pulumi.set(__self__, "save_tx_order", save_tx_order)
+        if topic_name is not None:
+            pulumi.set(__self__, "topic_name", topic_name)
+
+    @property
+    @pulumi.getter(name="saveTxOrder")
+    def save_tx_order(self) -> Optional[bool]:
+        """
+        Not to split events queue into separate per-table queues.
+        """
+        return pulumi.get(self, "save_tx_order")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> Optional[str]:
+        """
+        Full source topic name.
+        """
+        return pulumi.get(self, "topic_name")
 
 
 @pulumi.output_type
@@ -11751,7 +13562,7 @@ class DatatransferEndpointSettingsMysqlSourceConnection(dict):
                  on_premise: Optional['outputs.DatatransferEndpointSettingsMysqlSourceConnectionOnPremise'] = None):
         """
         :param str mdb_cluster_id: Identifier of the Managed MySQL cluster.
-        :param 'DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs' on_premise: Connection settings of the on-premise MySQL server.
+        :param 'DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs' on_premise: Connection settings of the on-premise Kafka server.
         """
         if mdb_cluster_id is not None:
             pulumi.set(__self__, "mdb_cluster_id", mdb_cluster_id)
@@ -11770,7 +13581,7 @@ class DatatransferEndpointSettingsMysqlSourceConnection(dict):
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional['outputs.DatatransferEndpointSettingsMysqlSourceConnectionOnPremise']:
         """
-        Connection settings of the on-premise MySQL server.
+        Connection settings of the on-premise Kafka server.
         """
         return pulumi.get(self, "on_premise")
 
@@ -11926,10 +13737,13 @@ class DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeEnabled(d
 class DatatransferEndpointSettingsMysqlSourceObjectTransferSettings(dict):
     def __init__(__self__, *,
                  routine: Optional[str] = None,
+                 tables: Optional[str] = None,
                  trigger: Optional[str] = None,
                  view: Optional[str] = None):
         if routine is not None:
             pulumi.set(__self__, "routine", routine)
+        if tables is not None:
+            pulumi.set(__self__, "tables", tables)
         if trigger is not None:
             pulumi.set(__self__, "trigger", trigger)
         if view is not None:
@@ -11939,6 +13753,11 @@ class DatatransferEndpointSettingsMysqlSourceObjectTransferSettings(dict):
     @pulumi.getter
     def routine(self) -> Optional[str]:
         return pulumi.get(self, "routine")
+
+    @property
+    @pulumi.getter
+    def tables(self) -> Optional[str]:
+        return pulumi.get(self, "tables")
 
     @property
     @pulumi.getter
@@ -12114,7 +13933,7 @@ class DatatransferEndpointSettingsMysqlTargetConnection(dict):
                  on_premise: Optional['outputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremise'] = None):
         """
         :param str mdb_cluster_id: Identifier of the Managed MySQL cluster.
-        :param 'DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs' on_premise: Connection settings of the on-premise MySQL server.
+        :param 'DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs' on_premise: Connection settings of the on-premise Kafka server.
         """
         if mdb_cluster_id is not None:
             pulumi.set(__self__, "mdb_cluster_id", mdb_cluster_id)
@@ -12133,7 +13952,7 @@ class DatatransferEndpointSettingsMysqlTargetConnection(dict):
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional['outputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremise']:
         """
-        Connection settings of the on-premise MySQL server.
+        Connection settings of the on-premise Kafka server.
         """
         return pulumi.get(self, "on_premise")
 
@@ -12478,7 +14297,7 @@ class DatatransferEndpointSettingsPostgresSourceConnection(dict):
                  on_premise: Optional['outputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremise'] = None):
         """
         :param str mdb_cluster_id: Identifier of the Managed MySQL cluster.
-        :param 'DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs' on_premise: Connection settings of the on-premise MySQL server.
+        :param 'DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs' on_premise: Connection settings of the on-premise Kafka server.
         """
         if mdb_cluster_id is not None:
             pulumi.set(__self__, "mdb_cluster_id", mdb_cluster_id)
@@ -12497,7 +14316,7 @@ class DatatransferEndpointSettingsPostgresSourceConnection(dict):
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional['outputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremise']:
         """
-        Connection settings of the on-premise MySQL server.
+        Connection settings of the on-premise Kafka server.
         """
         return pulumi.get(self, "on_premise")
 
@@ -12664,6 +14483,8 @@ class DatatransferEndpointSettingsPostgresSourceObjectTransferSettings(dict):
             suggest = "primary_key"
         elif key == "sequenceOwnedBy":
             suggest = "sequence_owned_by"
+        elif key == "sequenceSet":
+            suggest = "sequence_set"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsPostgresSourceObjectTransferSettings. Access the value via the '{suggest}' property getter instead.")
@@ -12690,10 +14511,14 @@ class DatatransferEndpointSettingsPostgresSourceObjectTransferSettings(dict):
                  rule: Optional[str] = None,
                  sequence: Optional[str] = None,
                  sequence_owned_by: Optional[str] = None,
+                 sequence_set: Optional[str] = None,
                  table: Optional[str] = None,
                  trigger: Optional[str] = None,
                  type: Optional[str] = None,
                  view: Optional[str] = None):
+        """
+        :param str type: Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        """
         if cast is not None:
             pulumi.set(__self__, "cast", cast)
         if collation is not None:
@@ -12720,6 +14545,8 @@ class DatatransferEndpointSettingsPostgresSourceObjectTransferSettings(dict):
             pulumi.set(__self__, "sequence", sequence)
         if sequence_owned_by is not None:
             pulumi.set(__self__, "sequence_owned_by", sequence_owned_by)
+        if sequence_set is not None:
+            pulumi.set(__self__, "sequence_set", sequence_set)
         if table is not None:
             pulumi.set(__self__, "table", table)
         if trigger is not None:
@@ -12795,6 +14622,11 @@ class DatatransferEndpointSettingsPostgresSourceObjectTransferSettings(dict):
         return pulumi.get(self, "sequence_owned_by")
 
     @property
+    @pulumi.getter(name="sequenceSet")
+    def sequence_set(self) -> Optional[str]:
+        return pulumi.get(self, "sequence_set")
+
+    @property
     @pulumi.getter
     def table(self) -> Optional[str]:
         return pulumi.get(self, "table")
@@ -12807,6 +14639,9 @@ class DatatransferEndpointSettingsPostgresSourceObjectTransferSettings(dict):
     @property
     @pulumi.getter
     def type(self) -> Optional[str]:
+        """
+        Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        """
         return pulumi.get(self, "type")
 
     @property
@@ -12938,7 +14773,7 @@ class DatatransferEndpointSettingsPostgresTargetConnection(dict):
                  on_premise: Optional['outputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremise'] = None):
         """
         :param str mdb_cluster_id: Identifier of the Managed MySQL cluster.
-        :param 'DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs' on_premise: Connection settings of the on-premise MySQL server.
+        :param 'DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs' on_premise: Connection settings of the on-premise Kafka server.
         """
         if mdb_cluster_id is not None:
             pulumi.set(__self__, "mdb_cluster_id", mdb_cluster_id)
@@ -12957,7 +14792,7 @@ class DatatransferEndpointSettingsPostgresTargetConnection(dict):
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional['outputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremise']:
         """
-        Connection settings of the on-premise MySQL server.
+        Connection settings of the on-premise Kafka server.
         """
         return pulumi.get(self, "on_premise")
 
@@ -13120,6 +14955,220 @@ class DatatransferEndpointSettingsPostgresTargetPassword(dict):
     @pulumi.getter
     def raw(self) -> Optional[str]:
         return pulumi.get(self, "raw")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsYdbSource(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "saKeyContent":
+            suggest = "sa_key_content"
+        elif key == "securityGroups":
+            suggest = "security_groups"
+        elif key == "serviceAccountId":
+            suggest = "service_account_id"
+        elif key == "subnetId":
+            suggest = "subnet_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsYdbSource. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsYdbSource.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsYdbSource.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 database: Optional[str] = None,
+                 instance: Optional[str] = None,
+                 paths: Optional[Sequence[str]] = None,
+                 sa_key_content: Optional[str] = None,
+                 security_groups: Optional[Sequence[str]] = None,
+                 service_account_id: Optional[str] = None,
+                 subnet_id: Optional[str] = None):
+        """
+        :param str database: Name of the database to transfer.
+        :param Sequence[str] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param str subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
+        if database is not None:
+            pulumi.set(__self__, "database", database)
+        if instance is not None:
+            pulumi.set(__self__, "instance", instance)
+        if paths is not None:
+            pulumi.set(__self__, "paths", paths)
+        if sa_key_content is not None:
+            pulumi.set(__self__, "sa_key_content", sa_key_content)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if service_account_id is not None:
+            pulumi.set(__self__, "service_account_id", service_account_id)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @property
+    @pulumi.getter
+    def database(self) -> Optional[str]:
+        """
+        Name of the database to transfer.
+        """
+        return pulumi.get(self, "database")
+
+    @property
+    @pulumi.getter
+    def instance(self) -> Optional[str]:
+        return pulumi.get(self, "instance")
+
+    @property
+    @pulumi.getter
+    def paths(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "paths")
+
+    @property
+    @pulumi.getter(name="saKeyContent")
+    def sa_key_content(self) -> Optional[str]:
+        return pulumi.get(self, "sa_key_content")
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> Optional[Sequence[str]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @property
+    @pulumi.getter(name="serviceAccountId")
+    def service_account_id(self) -> Optional[str]:
+        return pulumi.get(self, "service_account_id")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[str]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
+        return pulumi.get(self, "subnet_id")
+
+
+@pulumi.output_type
+class DatatransferEndpointSettingsYdbTarget(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cleanupPolicy":
+            suggest = "cleanup_policy"
+        elif key == "saKeyContent":
+            suggest = "sa_key_content"
+        elif key == "securityGroups":
+            suggest = "security_groups"
+        elif key == "serviceAccountId":
+            suggest = "service_account_id"
+        elif key == "subnetId":
+            suggest = "subnet_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in DatatransferEndpointSettingsYdbTarget. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        DatatransferEndpointSettingsYdbTarget.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        DatatransferEndpointSettingsYdbTarget.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cleanup_policy: Optional[str] = None,
+                 database: Optional[str] = None,
+                 instance: Optional[str] = None,
+                 path: Optional[str] = None,
+                 sa_key_content: Optional[str] = None,
+                 security_groups: Optional[Sequence[str]] = None,
+                 service_account_id: Optional[str] = None,
+                 subnet_id: Optional[str] = None):
+        """
+        :param str cleanup_policy: How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+        :param str database: Name of the database to transfer.
+        :param str path: Path to the field.
+        :param Sequence[str] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param str subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
+        if cleanup_policy is not None:
+            pulumi.set(__self__, "cleanup_policy", cleanup_policy)
+        if database is not None:
+            pulumi.set(__self__, "database", database)
+        if instance is not None:
+            pulumi.set(__self__, "instance", instance)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if sa_key_content is not None:
+            pulumi.set(__self__, "sa_key_content", sa_key_content)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if service_account_id is not None:
+            pulumi.set(__self__, "service_account_id", service_account_id)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @property
+    @pulumi.getter(name="cleanupPolicy")
+    def cleanup_policy(self) -> Optional[str]:
+        """
+        How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+        """
+        return pulumi.get(self, "cleanup_policy")
+
+    @property
+    @pulumi.getter
+    def database(self) -> Optional[str]:
+        """
+        Name of the database to transfer.
+        """
+        return pulumi.get(self, "database")
+
+    @property
+    @pulumi.getter
+    def instance(self) -> Optional[str]:
+        return pulumi.get(self, "instance")
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[str]:
+        """
+        Path to the field.
+        """
+        return pulumi.get(self, "path")
+
+    @property
+    @pulumi.getter(name="saKeyContent")
+    def sa_key_content(self) -> Optional[str]:
+        return pulumi.get(self, "sa_key_content")
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> Optional[Sequence[str]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @property
+    @pulumi.getter(name="serviceAccountId")
+    def service_account_id(self) -> Optional[str]:
+        return pulumi.get(self, "service_account_id")
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[str]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
+        return pulumi.get(self, "subnet_id")
 
 
 @pulumi.output_type
@@ -13516,8 +15565,12 @@ class FunctionTriggerIot(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "registryId":
+        if key == "batchCutoff":
+            suggest = "batch_cutoff"
+        elif key == "registryId":
             suggest = "registry_id"
+        elif key == "batchSize":
+            suggest = "batch_size"
         elif key == "deviceId":
             suggest = "device_id"
 
@@ -13533,19 +15586,34 @@ class FunctionTriggerIot(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 batch_cutoff: str,
                  registry_id: str,
+                 batch_size: Optional[str] = None,
                  device_id: Optional[str] = None,
                  topic: Optional[str] = None):
+        pulumi.set(__self__, "batch_cutoff", batch_cutoff)
         pulumi.set(__self__, "registry_id", registry_id)
+        if batch_size is not None:
+            pulumi.set(__self__, "batch_size", batch_size)
         if device_id is not None:
             pulumi.set(__self__, "device_id", device_id)
         if topic is not None:
             pulumi.set(__self__, "topic", topic)
 
     @property
+    @pulumi.getter(name="batchCutoff")
+    def batch_cutoff(self) -> str:
+        return pulumi.get(self, "batch_cutoff")
+
+    @property
     @pulumi.getter(name="registryId")
     def registry_id(self) -> str:
         return pulumi.get(self, "registry_id")
+
+    @property
+    @pulumi.getter(name="batchSize")
+    def batch_size(self) -> Optional[str]:
+        return pulumi.get(self, "batch_size")
 
     @property
     @pulumi.getter(name="deviceId")
@@ -13615,12 +15683,14 @@ class FunctionTriggerLogging(dict):
             suggest = "batch_cutoff"
         elif key == "groupId":
             suggest = "group_id"
+        elif key == "batchSize":
+            suggest = "batch_size"
         elif key == "resourceIds":
             suggest = "resource_ids"
         elif key == "resourceTypes":
             suggest = "resource_types"
-        elif key == "batchSize":
-            suggest = "batch_size"
+        elif key == "streamNames":
+            suggest = "stream_names"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in FunctionTriggerLogging. Access the value via the '{suggest}' property getter instead.")
@@ -13636,17 +15706,23 @@ class FunctionTriggerLogging(dict):
     def __init__(__self__, *,
                  batch_cutoff: str,
                  group_id: str,
-                 levels: Sequence[str],
-                 resource_ids: Sequence[str],
-                 resource_types: Sequence[str],
-                 batch_size: Optional[str] = None):
+                 batch_size: Optional[str] = None,
+                 levels: Optional[Sequence[str]] = None,
+                 resource_ids: Optional[Sequence[str]] = None,
+                 resource_types: Optional[Sequence[str]] = None,
+                 stream_names: Optional[Sequence[str]] = None):
         pulumi.set(__self__, "batch_cutoff", batch_cutoff)
         pulumi.set(__self__, "group_id", group_id)
-        pulumi.set(__self__, "levels", levels)
-        pulumi.set(__self__, "resource_ids", resource_ids)
-        pulumi.set(__self__, "resource_types", resource_types)
         if batch_size is not None:
             pulumi.set(__self__, "batch_size", batch_size)
+        if levels is not None:
+            pulumi.set(__self__, "levels", levels)
+        if resource_ids is not None:
+            pulumi.set(__self__, "resource_ids", resource_ids)
+        if resource_types is not None:
+            pulumi.set(__self__, "resource_types", resource_types)
+        if stream_names is not None:
+            pulumi.set(__self__, "stream_names", stream_names)
 
     @property
     @pulumi.getter(name="batchCutoff")
@@ -13659,24 +15735,29 @@ class FunctionTriggerLogging(dict):
         return pulumi.get(self, "group_id")
 
     @property
+    @pulumi.getter(name="batchSize")
+    def batch_size(self) -> Optional[str]:
+        return pulumi.get(self, "batch_size")
+
+    @property
     @pulumi.getter
-    def levels(self) -> Sequence[str]:
+    def levels(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "levels")
 
     @property
     @pulumi.getter(name="resourceIds")
-    def resource_ids(self) -> Sequence[str]:
+    def resource_ids(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "resource_ids")
 
     @property
     @pulumi.getter(name="resourceTypes")
-    def resource_types(self) -> Sequence[str]:
+    def resource_types(self) -> Optional[Sequence[str]]:
         return pulumi.get(self, "resource_types")
 
     @property
-    @pulumi.getter(name="batchSize")
-    def batch_size(self) -> Optional[str]:
-        return pulumi.get(self, "batch_size")
+    @pulumi.getter(name="streamNames")
+    def stream_names(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "stream_names")
 
 
 @pulumi.output_type
@@ -13751,8 +15832,12 @@ class FunctionTriggerObjectStorage(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "bucketId":
+        if key == "batchCutoff":
+            suggest = "batch_cutoff"
+        elif key == "bucketId":
             suggest = "bucket_id"
+        elif key == "batchSize":
+            suggest = "batch_size"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in FunctionTriggerObjectStorage. Access the value via the '{suggest}' property getter instead.")
@@ -13766,13 +15851,18 @@ class FunctionTriggerObjectStorage(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 batch_cutoff: str,
                  bucket_id: str,
+                 batch_size: Optional[str] = None,
                  create: Optional[bool] = None,
                  delete: Optional[bool] = None,
                  prefix: Optional[str] = None,
                  suffix: Optional[str] = None,
                  update: Optional[bool] = None):
+        pulumi.set(__self__, "batch_cutoff", batch_cutoff)
         pulumi.set(__self__, "bucket_id", bucket_id)
+        if batch_size is not None:
+            pulumi.set(__self__, "batch_size", batch_size)
         if create is not None:
             pulumi.set(__self__, "create", create)
         if delete is not None:
@@ -13785,9 +15875,19 @@ class FunctionTriggerObjectStorage(dict):
             pulumi.set(__self__, "update", update)
 
     @property
+    @pulumi.getter(name="batchCutoff")
+    def batch_cutoff(self) -> str:
+        return pulumi.get(self, "batch_cutoff")
+
+    @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> str:
         return pulumi.get(self, "bucket_id")
+
+    @property
+    @pulumi.getter(name="batchSize")
+    def batch_size(self) -> Optional[str]:
+        return pulumi.get(self, "batch_size")
 
     @property
     @pulumi.getter
@@ -13835,13 +15935,21 @@ class FunctionTriggerTimer(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
-                 cron_expression: str):
+                 cron_expression: str,
+                 payload: Optional[str] = None):
         pulumi.set(__self__, "cron_expression", cron_expression)
+        if payload is not None:
+            pulumi.set(__self__, "payload", payload)
 
     @property
     @pulumi.getter(name="cronExpression")
     def cron_expression(self) -> str:
         return pulumi.get(self, "cron_expression")
+
+    @property
+    @pulumi.getter
+    def payload(self) -> Optional[str]:
+        return pulumi.get(self, "payload")
 
 
 @pulumi.output_type
@@ -14206,7 +16314,9 @@ class KubernetesClusterMasterMasterLogging(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "clusterAutoscalerEnabled":
+        if key == "auditEnabled":
+            suggest = "audit_enabled"
+        elif key == "clusterAutoscalerEnabled":
             suggest = "cluster_autoscaler_enabled"
         elif key == "eventsEnabled":
             suggest = "events_enabled"
@@ -14229,6 +16339,7 @@ class KubernetesClusterMasterMasterLogging(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 audit_enabled: Optional[bool] = None,
                  cluster_autoscaler_enabled: Optional[bool] = None,
                  enabled: Optional[bool] = None,
                  events_enabled: Optional[bool] = None,
@@ -14236,6 +16347,7 @@ class KubernetesClusterMasterMasterLogging(dict):
                  kube_apiserver_enabled: Optional[bool] = None,
                  log_group_id: Optional[str] = None):
         """
+        :param bool audit_enabled: (Optional) Boolean flag that specifies if kube-apiserver audit logs should be sent to Yandex Cloud Logging.
         :param bool cluster_autoscaler_enabled: (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
         :param bool enabled: (Optional) Boolean flag that specifies if master components logs should be sent to [Yandex Cloud Logging](https://cloud.yandex.com/docs/logging/). The exact components that will send their logs must be configured via the options described below.
         :param bool events_enabled: (Optional) Boolean flag that specifies if kubernetes cluster events should be sent to Yandex Cloud Logging.
@@ -14244,6 +16356,8 @@ class KubernetesClusterMasterMasterLogging(dict):
         :param bool kube_apiserver_enabled: (Optional) Boolean flag that specifies if kube-apiserver logs should be sent to Yandex Cloud Logging.
         :param str log_group_id: (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
         """
+        if audit_enabled is not None:
+            pulumi.set(__self__, "audit_enabled", audit_enabled)
         if cluster_autoscaler_enabled is not None:
             pulumi.set(__self__, "cluster_autoscaler_enabled", cluster_autoscaler_enabled)
         if enabled is not None:
@@ -14256,6 +16370,14 @@ class KubernetesClusterMasterMasterLogging(dict):
             pulumi.set(__self__, "kube_apiserver_enabled", kube_apiserver_enabled)
         if log_group_id is not None:
             pulumi.set(__self__, "log_group_id", log_group_id)
+
+    @property
+    @pulumi.getter(name="auditEnabled")
+    def audit_enabled(self) -> Optional[bool]:
+        """
+        (Optional) Boolean flag that specifies if kube-apiserver audit logs should be sent to Yandex Cloud Logging.
+        """
+        return pulumi.get(self, "audit_enabled")
 
     @property
     @pulumi.getter(name="clusterAutoscalerEnabled")
@@ -14668,8 +16790,12 @@ class KubernetesNodeGroupInstanceTemplate(dict):
         suggest = None
         if key == "bootDisk":
             suggest = "boot_disk"
+        elif key == "containerNetwork":
+            suggest = "container_network"
         elif key == "containerRuntime":
             suggest = "container_runtime"
+        elif key == "gpuSettings":
+            suggest = "gpu_settings"
         elif key == "networkAccelerationType":
             suggest = "network_acceleration_type"
         elif key == "networkInterfaces":
@@ -14694,7 +16820,9 @@ class KubernetesNodeGroupInstanceTemplate(dict):
 
     def __init__(__self__, *,
                  boot_disk: Optional['outputs.KubernetesNodeGroupInstanceTemplateBootDisk'] = None,
+                 container_network: Optional['outputs.KubernetesNodeGroupInstanceTemplateContainerNetwork'] = None,
                  container_runtime: Optional['outputs.KubernetesNodeGroupInstanceTemplateContainerRuntime'] = None,
+                 gpu_settings: Optional['outputs.KubernetesNodeGroupInstanceTemplateGpuSettings'] = None,
                  labels: Optional[Mapping[str, str]] = None,
                  metadata: Optional[Mapping[str, str]] = None,
                  name: Optional[str] = None,
@@ -14707,9 +16835,11 @@ class KubernetesNodeGroupInstanceTemplate(dict):
                  scheduling_policy: Optional['outputs.KubernetesNodeGroupInstanceTemplateSchedulingPolicy'] = None):
         """
         :param 'KubernetesNodeGroupInstanceTemplateBootDiskArgs' boot_disk: The specifications for boot disks that will be attached to the instance. The structure is documented below.
+        :param 'KubernetesNodeGroupInstanceTemplateContainerNetworkArgs' container_network: Container network configuration. The structure is documented below.
         :param 'KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs' container_runtime: Container runtime configuration. The structure is documented below.
-        :param Mapping[str, str] labels: Labels that will be assigned to compute nodes (instances), created by the Node Group.
+        :param 'KubernetesNodeGroupInstanceTemplateGpuSettingsArgs' gpu_settings: GPU settings. The structure is documented below.
                ---
+        :param Mapping[str, str] labels: Labels that will be assigned to compute nodes (instances), created by the Node Group.
         :param Mapping[str, str] metadata: The set of metadata `key:value` pairs assigned to this instance template. This includes custom metadata and predefined keys. **Note**: key "user-data" won't be provided into instances. It reserved for internal activity in `kubernetes_node_group` resource.
         :param str name: Name template of the instance.
                In order to be unique it must contain at least one of instance unique placeholders:
@@ -14728,8 +16858,12 @@ class KubernetesNodeGroupInstanceTemplate(dict):
         """
         if boot_disk is not None:
             pulumi.set(__self__, "boot_disk", boot_disk)
+        if container_network is not None:
+            pulumi.set(__self__, "container_network", container_network)
         if container_runtime is not None:
             pulumi.set(__self__, "container_runtime", container_runtime)
+        if gpu_settings is not None:
+            pulumi.set(__self__, "gpu_settings", gpu_settings)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if metadata is not None:
@@ -14760,6 +16894,14 @@ class KubernetesNodeGroupInstanceTemplate(dict):
         return pulumi.get(self, "boot_disk")
 
     @property
+    @pulumi.getter(name="containerNetwork")
+    def container_network(self) -> Optional['outputs.KubernetesNodeGroupInstanceTemplateContainerNetwork']:
+        """
+        Container network configuration. The structure is documented below.
+        """
+        return pulumi.get(self, "container_network")
+
+    @property
     @pulumi.getter(name="containerRuntime")
     def container_runtime(self) -> Optional['outputs.KubernetesNodeGroupInstanceTemplateContainerRuntime']:
         """
@@ -14768,11 +16910,19 @@ class KubernetesNodeGroupInstanceTemplate(dict):
         return pulumi.get(self, "container_runtime")
 
     @property
+    @pulumi.getter(name="gpuSettings")
+    def gpu_settings(self) -> Optional['outputs.KubernetesNodeGroupInstanceTemplateGpuSettings']:
+        """
+        GPU settings. The structure is documented below.
+        ---
+        """
+        return pulumi.get(self, "gpu_settings")
+
+    @property
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
         """
         Labels that will be assigned to compute nodes (instances), created by the Node Group.
-        ---
         """
         return pulumi.get(self, "labels")
 
@@ -14885,6 +17035,42 @@ class KubernetesNodeGroupInstanceTemplateBootDisk(dict):
 
 
 @pulumi.output_type
+class KubernetesNodeGroupInstanceTemplateContainerNetwork(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "podMtu":
+            suggest = "pod_mtu"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubernetesNodeGroupInstanceTemplateContainerNetwork. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KubernetesNodeGroupInstanceTemplateContainerNetwork.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KubernetesNodeGroupInstanceTemplateContainerNetwork.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 pod_mtu: Optional[int] = None):
+        """
+        :param int pod_mtu: MTU for pods.
+        """
+        if pod_mtu is not None:
+            pulumi.set(__self__, "pod_mtu", pod_mtu)
+
+    @property
+    @pulumi.getter(name="podMtu")
+    def pod_mtu(self) -> Optional[int]:
+        """
+        MTU for pods.
+        """
+        return pulumi.get(self, "pod_mtu")
+
+
+@pulumi.output_type
 class KubernetesNodeGroupInstanceTemplateContainerRuntime(dict):
     def __init__(__self__, *,
                  type: str):
@@ -14900,6 +17086,56 @@ class KubernetesNodeGroupInstanceTemplateContainerRuntime(dict):
         Type of container runtime. Values: `docker`, `containerd`.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class KubernetesNodeGroupInstanceTemplateGpuSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "gpuClusterId":
+            suggest = "gpu_cluster_id"
+        elif key == "gpuEnvironment":
+            suggest = "gpu_environment"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubernetesNodeGroupInstanceTemplateGpuSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KubernetesNodeGroupInstanceTemplateGpuSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KubernetesNodeGroupInstanceTemplateGpuSettings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 gpu_cluster_id: Optional[str] = None,
+                 gpu_environment: Optional[str] = None):
+        """
+        :param str gpu_cluster_id: GPU cluster id.
+        :param str gpu_environment: GPU environment. Values: `runc`, `runc_drivers_cuda`.
+        """
+        if gpu_cluster_id is not None:
+            pulumi.set(__self__, "gpu_cluster_id", gpu_cluster_id)
+        if gpu_environment is not None:
+            pulumi.set(__self__, "gpu_environment", gpu_environment)
+
+    @property
+    @pulumi.getter(name="gpuClusterId")
+    def gpu_cluster_id(self) -> Optional[str]:
+        """
+        GPU cluster id.
+        """
+        return pulumi.get(self, "gpu_cluster_id")
+
+    @property
+    @pulumi.getter(name="gpuEnvironment")
+    def gpu_environment(self) -> Optional[str]:
+        """
+        GPU environment. Values: `runc`, `runc_drivers_cuda`.
+        """
+        return pulumi.get(self, "gpu_environment")
 
 
 @pulumi.output_type
@@ -21526,6 +23762,8 @@ class MdbMongodbClusterClusterConfig(dict):
             suggest = "backup_window_start"
         elif key == "featureCompatibilityVersion":
             suggest = "feature_compatibility_version"
+        elif key == "performanceDiagnostics":
+            suggest = "performance_diagnostics"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterClusterConfig. Access the value via the '{suggest}' property getter instead.")
@@ -21543,13 +23781,18 @@ class MdbMongodbClusterClusterConfig(dict):
                  access: Optional['outputs.MdbMongodbClusterClusterConfigAccess'] = None,
                  backup_window_start: Optional['outputs.MdbMongodbClusterClusterConfigBackupWindowStart'] = None,
                  feature_compatibility_version: Optional[str] = None,
-                 mongod: Optional['outputs.MdbMongodbClusterClusterConfigMongod'] = None):
+                 mongocfg: Optional['outputs.MdbMongodbClusterClusterConfigMongocfg'] = None,
+                 mongod: Optional['outputs.MdbMongodbClusterClusterConfigMongod'] = None,
+                 mongos: Optional['outputs.MdbMongodbClusterClusterConfigMongos'] = None,
+                 performance_diagnostics: Optional['outputs.MdbMongodbClusterClusterConfigPerformanceDiagnostics'] = None):
         """
-        :param str version: Version of MongoDB (either 5.0, 4.4, 4.2 or 4.0).
+        :param str version: Version of the MongoDB server software. Can be either `4.2`, `4.4`, `4.4-enterprise`, `5.0`, `5.0-enterprise`, `6.0` and `6.0-enterprise`.
         :param 'MdbMongodbClusterClusterConfigAccessArgs' access: Access policy to the MongoDB cluster. The structure is documented below.
         :param 'MdbMongodbClusterClusterConfigBackupWindowStartArgs' backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
-        :param str feature_compatibility_version: Feature compatibility version of MongoDB. If not provided version is taken. Can be either `5.0`, `4.4`, `4.2` and `4.0`.
+        :param str feature_compatibility_version: Feature compatibility version of MongoDB. If not provided version is taken. Can be either `6.0`, `5.0`, `4.4` and `4.2`.
+        :param 'MdbMongodbClusterClusterConfigMongocfgArgs' mongocfg: Configuration of the mongocfg service. The structure is documented below.
         :param 'MdbMongodbClusterClusterConfigMongodArgs' mongod: Configuration of the mongod service. The structure is documented below.
+        :param 'MdbMongodbClusterClusterConfigMongosArgs' mongos: Configuration of the mongos service. The structure is documented below.
         """
         pulumi.set(__self__, "version", version)
         if access is not None:
@@ -21558,14 +23801,20 @@ class MdbMongodbClusterClusterConfig(dict):
             pulumi.set(__self__, "backup_window_start", backup_window_start)
         if feature_compatibility_version is not None:
             pulumi.set(__self__, "feature_compatibility_version", feature_compatibility_version)
+        if mongocfg is not None:
+            pulumi.set(__self__, "mongocfg", mongocfg)
         if mongod is not None:
             pulumi.set(__self__, "mongod", mongod)
+        if mongos is not None:
+            pulumi.set(__self__, "mongos", mongos)
+        if performance_diagnostics is not None:
+            pulumi.set(__self__, "performance_diagnostics", performance_diagnostics)
 
     @property
     @pulumi.getter
     def version(self) -> str:
         """
-        Version of MongoDB (either 5.0, 4.4, 4.2 or 4.0).
+        Version of the MongoDB server software. Can be either `4.2`, `4.4`, `4.4-enterprise`, `5.0`, `5.0-enterprise`, `6.0` and `6.0-enterprise`.
         """
         return pulumi.get(self, "version")
 
@@ -21589,9 +23838,17 @@ class MdbMongodbClusterClusterConfig(dict):
     @pulumi.getter(name="featureCompatibilityVersion")
     def feature_compatibility_version(self) -> Optional[str]:
         """
-        Feature compatibility version of MongoDB. If not provided version is taken. Can be either `5.0`, `4.4`, `4.2` and `4.0`.
+        Feature compatibility version of MongoDB. If not provided version is taken. Can be either `6.0`, `5.0`, `4.4` and `4.2`.
         """
         return pulumi.get(self, "feature_compatibility_version")
+
+    @property
+    @pulumi.getter
+    def mongocfg(self) -> Optional['outputs.MdbMongodbClusterClusterConfigMongocfg']:
+        """
+        Configuration of the mongocfg service. The structure is documented below.
+        """
+        return pulumi.get(self, "mongocfg")
 
     @property
     @pulumi.getter
@@ -21600,6 +23857,19 @@ class MdbMongodbClusterClusterConfig(dict):
         Configuration of the mongod service. The structure is documented below.
         """
         return pulumi.get(self, "mongod")
+
+    @property
+    @pulumi.getter
+    def mongos(self) -> Optional['outputs.MdbMongodbClusterClusterConfigMongos']:
+        """
+        Configuration of the mongos service. The structure is documented below.
+        """
+        return pulumi.get(self, "mongos")
+
+    @property
+    @pulumi.getter(name="performanceDiagnostics")
+    def performance_diagnostics(self) -> Optional['outputs.MdbMongodbClusterClusterConfigPerformanceDiagnostics']:
+        return pulumi.get(self, "performance_diagnostics")
 
 
 @pulumi.output_type
@@ -21684,12 +23954,262 @@ class MdbMongodbClusterClusterConfigBackupWindowStart(dict):
 
 
 @pulumi.output_type
+class MdbMongodbClusterClusterConfigMongocfg(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "operationProfiling":
+            suggest = "operation_profiling"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterClusterConfigMongocfg. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterClusterConfigMongocfg.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterClusterConfigMongocfg.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 net: Optional['outputs.MdbMongodbClusterClusterConfigMongocfgNet'] = None,
+                 operation_profiling: Optional['outputs.MdbMongodbClusterClusterConfigMongocfgOperationProfiling'] = None,
+                 storage: Optional['outputs.MdbMongodbClusterClusterConfigMongocfgStorage'] = None):
+        """
+        :param 'MdbMongodbClusterClusterConfigMongocfgNetArgs' net: A set of network settings
+               (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+               The structure is documented below.
+        :param 'MdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs' operation_profiling: A set of profiling settings
+               (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+               The structure is documented below.
+        :param 'MdbMongodbClusterClusterConfigMongocfgStorageArgs' storage: A set of storage settings
+               (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+               The structure is documented below.
+        """
+        if net is not None:
+            pulumi.set(__self__, "net", net)
+        if operation_profiling is not None:
+            pulumi.set(__self__, "operation_profiling", operation_profiling)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
+
+    @property
+    @pulumi.getter
+    def net(self) -> Optional['outputs.MdbMongodbClusterClusterConfigMongocfgNet']:
+        """
+        A set of network settings
+        (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "net")
+
+    @property
+    @pulumi.getter(name="operationProfiling")
+    def operation_profiling(self) -> Optional['outputs.MdbMongodbClusterClusterConfigMongocfgOperationProfiling']:
+        """
+        A set of profiling settings
+        (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "operation_profiling")
+
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional['outputs.MdbMongodbClusterClusterConfigMongocfgStorage']:
+        """
+        A set of storage settings
+        (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "storage")
+
+
+@pulumi.output_type
+class MdbMongodbClusterClusterConfigMongocfgNet(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxIncomingConnections":
+            suggest = "max_incoming_connections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterClusterConfigMongocfgNet. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterClusterConfigMongocfgNet.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterClusterConfigMongocfgNet.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_incoming_connections: Optional[int] = None):
+        """
+        :param int max_incoming_connections: The maximum number of simultaneous connections that host will accept.
+               For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+               description in the official documentation.
+        """
+        if max_incoming_connections is not None:
+            pulumi.set(__self__, "max_incoming_connections", max_incoming_connections)
+
+    @property
+    @pulumi.getter(name="maxIncomingConnections")
+    def max_incoming_connections(self) -> Optional[int]:
+        """
+        The maximum number of simultaneous connections that host will accept.
+        For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "max_incoming_connections")
+
+
+@pulumi.output_type
+class MdbMongodbClusterClusterConfigMongocfgOperationProfiling(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "slowOpThreshold":
+            suggest = "slow_op_threshold"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterClusterConfigMongocfgOperationProfiling. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterClusterConfigMongocfgOperationProfiling.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterClusterConfigMongocfgOperationProfiling.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 mode: Optional[str] = None,
+                 slow_op_threshold: Optional[int] = None):
+        """
+        :param str mode: Specifies which operations should be profiled. The following profiler levels are available: off, slow_op, all.
+               For more information, see the [operationProfiling.mode](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.mode)
+               description in the official documentation.
+        :param int slow_op_threshold: The slow operation time threshold, in milliseconds. Operations that run for longer than this threshold are considered slow.
+               For more information, see the [operationProfiling.slowOpThresholdMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.slowOpThresholdMs)
+               description in the official documentation.
+        """
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if slow_op_threshold is not None:
+            pulumi.set(__self__, "slow_op_threshold", slow_op_threshold)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Specifies which operations should be profiled. The following profiler levels are available: off, slow_op, all.
+        For more information, see the [operationProfiling.mode](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.mode)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "mode")
+
+    @property
+    @pulumi.getter(name="slowOpThreshold")
+    def slow_op_threshold(self) -> Optional[int]:
+        """
+        The slow operation time threshold, in milliseconds. Operations that run for longer than this threshold are considered slow.
+        For more information, see the [operationProfiling.slowOpThresholdMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.slowOpThresholdMs)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "slow_op_threshold")
+
+
+@pulumi.output_type
+class MdbMongodbClusterClusterConfigMongocfgStorage(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "wiredTiger":
+            suggest = "wired_tiger"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterClusterConfigMongocfgStorage. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterClusterConfigMongocfgStorage.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterClusterConfigMongocfgStorage.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 wired_tiger: Optional['outputs.MdbMongodbClusterClusterConfigMongocfgStorageWiredTiger'] = None):
+        """
+        :param 'MdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs' wired_tiger: The WiredTiger engine settings.
+               (see the [storage.wiredTiger](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage.wiredtiger-options) option).
+               These settings available only on `mongod` hosts. The structure is documented below.
+        """
+        if wired_tiger is not None:
+            pulumi.set(__self__, "wired_tiger", wired_tiger)
+
+    @property
+    @pulumi.getter(name="wiredTiger")
+    def wired_tiger(self) -> Optional['outputs.MdbMongodbClusterClusterConfigMongocfgStorageWiredTiger']:
+        """
+        The WiredTiger engine settings.
+        (see the [storage.wiredTiger](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage.wiredtiger-options) option).
+        These settings available only on `mongod` hosts. The structure is documented below.
+        """
+        return pulumi.get(self, "wired_tiger")
+
+
+@pulumi.output_type
+class MdbMongodbClusterClusterConfigMongocfgStorageWiredTiger(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cacheSizeGb":
+            suggest = "cache_size_gb"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterClusterConfigMongocfgStorageWiredTiger. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterClusterConfigMongocfgStorageWiredTiger.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterClusterConfigMongocfgStorageWiredTiger.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cache_size_gb: Optional[float] = None):
+        """
+        :param float cache_size_gb: Defines the maximum size of the internal cache that WiredTiger will use for all data.
+               For more information, see the [storage.wiredTiger.engineConfig.cacheSizeGB](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.engineConfig.cacheSizeGB)
+               description in the official documentation.
+        """
+        if cache_size_gb is not None:
+            pulumi.set(__self__, "cache_size_gb", cache_size_gb)
+
+    @property
+    @pulumi.getter(name="cacheSizeGb")
+    def cache_size_gb(self) -> Optional[float]:
+        """
+        Defines the maximum size of the internal cache that WiredTiger will use for all data.
+        For more information, see the [storage.wiredTiger.engineConfig.cacheSizeGB](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.engineConfig.cacheSizeGB)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "cache_size_gb")
+
+
+@pulumi.output_type
 class MdbMongodbClusterClusterConfigMongod(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
         if key == "auditLog":
             suggest = "audit_log"
+        elif key == "operationProfiling":
+            suggest = "operation_profiling"
         elif key == "setParameter":
             suggest = "set_parameter"
 
@@ -21706,25 +24226,43 @@ class MdbMongodbClusterClusterConfigMongod(dict):
 
     def __init__(__self__, *,
                  audit_log: Optional['outputs.MdbMongodbClusterClusterConfigMongodAuditLog'] = None,
+                 net: Optional['outputs.MdbMongodbClusterClusterConfigMongodNet'] = None,
+                 operation_profiling: Optional['outputs.MdbMongodbClusterClusterConfigMongodOperationProfiling'] = None,
                  security: Optional['outputs.MdbMongodbClusterClusterConfigMongodSecurity'] = None,
-                 set_parameter: Optional['outputs.MdbMongodbClusterClusterConfigMongodSetParameter'] = None):
+                 set_parameter: Optional['outputs.MdbMongodbClusterClusterConfigMongodSetParameter'] = None,
+                 storage: Optional['outputs.MdbMongodbClusterClusterConfigMongodStorage'] = None):
         """
         :param 'MdbMongodbClusterClusterConfigMongodAuditLogArgs' audit_log: A set of audit log settings 
                (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
                The structure is documented below. Available only in enterprise edition.
+        :param 'MdbMongodbClusterClusterConfigMongodNetArgs' net: A set of network settings
+               (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+               The structure is documented below.
+        :param 'MdbMongodbClusterClusterConfigMongodOperationProfilingArgs' operation_profiling: A set of profiling settings
+               (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+               The structure is documented below.
         :param 'MdbMongodbClusterClusterConfigMongodSecurityArgs' security: A set of MongoDB Security settings
                (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
                The structure is documented below. Available only in enterprise edition.
         :param 'MdbMongodbClusterClusterConfigMongodSetParameterArgs' set_parameter: A set of MongoDB Server Parameters 
                (see the [setParameter](https://www.mongodb.com/docs/manual/reference/configuration-options/#setparameter-option) option).
                The structure is documented below.
+        :param 'MdbMongodbClusterClusterConfigMongodStorageArgs' storage: A set of storage settings
+               (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+               The structure is documented below.
         """
         if audit_log is not None:
             pulumi.set(__self__, "audit_log", audit_log)
+        if net is not None:
+            pulumi.set(__self__, "net", net)
+        if operation_profiling is not None:
+            pulumi.set(__self__, "operation_profiling", operation_profiling)
         if security is not None:
             pulumi.set(__self__, "security", security)
         if set_parameter is not None:
             pulumi.set(__self__, "set_parameter", set_parameter)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
 
     @property
     @pulumi.getter(name="auditLog")
@@ -21735,6 +24273,26 @@ class MdbMongodbClusterClusterConfigMongod(dict):
         The structure is documented below. Available only in enterprise edition.
         """
         return pulumi.get(self, "audit_log")
+
+    @property
+    @pulumi.getter
+    def net(self) -> Optional['outputs.MdbMongodbClusterClusterConfigMongodNet']:
+        """
+        A set of network settings
+        (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "net")
+
+    @property
+    @pulumi.getter(name="operationProfiling")
+    def operation_profiling(self) -> Optional['outputs.MdbMongodbClusterClusterConfigMongodOperationProfiling']:
+        """
+        A set of profiling settings
+        (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "operation_profiling")
 
     @property
     @pulumi.getter
@@ -21755,6 +24313,16 @@ class MdbMongodbClusterClusterConfigMongod(dict):
         The structure is documented below.
         """
         return pulumi.get(self, "set_parameter")
+
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional['outputs.MdbMongodbClusterClusterConfigMongodStorage']:
+        """
+        A set of storage settings
+        (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "storage")
 
 
 @pulumi.output_type
@@ -21783,6 +24351,9 @@ class MdbMongodbClusterClusterConfigMongodAuditLog(dict):
         :param str filter: Configuration of the audit log filter in JSON format.
                For more information see [auditLog.filter](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.filter)
                description in the official documentation. Available only in enterprise edition.
+        :param bool runtime_configuration: Specifies if a node allows runtime configuration of audit filters and the auditAuthorizationSuccess variable.
+               For more information see [auditLog.runtimeConfiguration](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.runtimeConfiguration)
+               description in the official documentation. Available only in enterprise edition.
         """
         if filter is not None:
             pulumi.set(__self__, "filter", filter)
@@ -21802,7 +24373,108 @@ class MdbMongodbClusterClusterConfigMongodAuditLog(dict):
     @property
     @pulumi.getter(name="runtimeConfiguration")
     def runtime_configuration(self) -> Optional[bool]:
+        """
+        Specifies if a node allows runtime configuration of audit filters and the auditAuthorizationSuccess variable.
+        For more information see [auditLog.runtimeConfiguration](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.runtimeConfiguration)
+        description in the official documentation. Available only in enterprise edition.
+        """
         return pulumi.get(self, "runtime_configuration")
+
+
+@pulumi.output_type
+class MdbMongodbClusterClusterConfigMongodNet(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxIncomingConnections":
+            suggest = "max_incoming_connections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterClusterConfigMongodNet. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterClusterConfigMongodNet.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterClusterConfigMongodNet.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_incoming_connections: Optional[int] = None):
+        """
+        :param int max_incoming_connections: The maximum number of simultaneous connections that host will accept.
+               For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+               description in the official documentation.
+        """
+        if max_incoming_connections is not None:
+            pulumi.set(__self__, "max_incoming_connections", max_incoming_connections)
+
+    @property
+    @pulumi.getter(name="maxIncomingConnections")
+    def max_incoming_connections(self) -> Optional[int]:
+        """
+        The maximum number of simultaneous connections that host will accept.
+        For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "max_incoming_connections")
+
+
+@pulumi.output_type
+class MdbMongodbClusterClusterConfigMongodOperationProfiling(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "slowOpThreshold":
+            suggest = "slow_op_threshold"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterClusterConfigMongodOperationProfiling. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterClusterConfigMongodOperationProfiling.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterClusterConfigMongodOperationProfiling.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 mode: Optional[str] = None,
+                 slow_op_threshold: Optional[int] = None):
+        """
+        :param str mode: Specifies which operations should be profiled. The following profiler levels are available: off, slow_op, all.
+               For more information, see the [operationProfiling.mode](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.mode)
+               description in the official documentation.
+        :param int slow_op_threshold: The slow operation time threshold, in milliseconds. Operations that run for longer than this threshold are considered slow.
+               For more information, see the [operationProfiling.slowOpThresholdMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.slowOpThresholdMs)
+               description in the official documentation.
+        """
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if slow_op_threshold is not None:
+            pulumi.set(__self__, "slow_op_threshold", slow_op_threshold)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Specifies which operations should be profiled. The following profiler levels are available: off, slow_op, all.
+        For more information, see the [operationProfiling.mode](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.mode)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "mode")
+
+    @property
+    @pulumi.getter(name="slowOpThreshold")
+    def slow_op_threshold(self) -> Optional[int]:
+        """
+        The slow operation time threshold, in milliseconds. Operations that run for longer than this threshold are considered slow.
+        For more information, see the [operationProfiling.slowOpThresholdMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.slowOpThresholdMs)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "slow_op_threshold")
 
 
 @pulumi.output_type
@@ -22012,6 +24684,236 @@ class MdbMongodbClusterClusterConfigMongodSetParameter(dict):
 
 
 @pulumi.output_type
+class MdbMongodbClusterClusterConfigMongodStorage(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "wiredTiger":
+            suggest = "wired_tiger"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterClusterConfigMongodStorage. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterClusterConfigMongodStorage.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterClusterConfigMongodStorage.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 journal: Optional['outputs.MdbMongodbClusterClusterConfigMongodStorageJournal'] = None,
+                 wired_tiger: Optional['outputs.MdbMongodbClusterClusterConfigMongodStorageWiredTiger'] = None):
+        """
+        :param 'MdbMongodbClusterClusterConfigMongodStorageJournalArgs' journal: The durability journal to ensure data files remain valid and recoverable.
+               The structure is documented below.
+        :param 'MdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs' wired_tiger: The WiredTiger engine settings.
+               (see the [storage.wiredTiger](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage.wiredtiger-options) option).
+               These settings available only on `mongod` hosts. The structure is documented below.
+        """
+        if journal is not None:
+            pulumi.set(__self__, "journal", journal)
+        if wired_tiger is not None:
+            pulumi.set(__self__, "wired_tiger", wired_tiger)
+
+    @property
+    @pulumi.getter
+    def journal(self) -> Optional['outputs.MdbMongodbClusterClusterConfigMongodStorageJournal']:
+        """
+        The durability journal to ensure data files remain valid and recoverable.
+        The structure is documented below.
+        """
+        return pulumi.get(self, "journal")
+
+    @property
+    @pulumi.getter(name="wiredTiger")
+    def wired_tiger(self) -> Optional['outputs.MdbMongodbClusterClusterConfigMongodStorageWiredTiger']:
+        """
+        The WiredTiger engine settings.
+        (see the [storage.wiredTiger](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage.wiredtiger-options) option).
+        These settings available only on `mongod` hosts. The structure is documented below.
+        """
+        return pulumi.get(self, "wired_tiger")
+
+
+@pulumi.output_type
+class MdbMongodbClusterClusterConfigMongodStorageJournal(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "commitInterval":
+            suggest = "commit_interval"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterClusterConfigMongodStorageJournal. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterClusterConfigMongodStorageJournal.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterClusterConfigMongodStorageJournal.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 commit_interval: Optional[int] = None):
+        """
+        :param int commit_interval: The maximum amount of time in milliseconds that the mongod process allows between journal operations.
+               For more information, see the [storage.journal.commitIntervalMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.journal.commitIntervalMs)
+               description in the official documentation.
+        """
+        if commit_interval is not None:
+            pulumi.set(__self__, "commit_interval", commit_interval)
+
+    @property
+    @pulumi.getter(name="commitInterval")
+    def commit_interval(self) -> Optional[int]:
+        """
+        The maximum amount of time in milliseconds that the mongod process allows between journal operations.
+        For more information, see the [storage.journal.commitIntervalMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.journal.commitIntervalMs)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "commit_interval")
+
+
+@pulumi.output_type
+class MdbMongodbClusterClusterConfigMongodStorageWiredTiger(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "blockCompressor":
+            suggest = "block_compressor"
+        elif key == "cacheSizeGb":
+            suggest = "cache_size_gb"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterClusterConfigMongodStorageWiredTiger. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterClusterConfigMongodStorageWiredTiger.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterClusterConfigMongodStorageWiredTiger.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 block_compressor: Optional[str] = None,
+                 cache_size_gb: Optional[float] = None):
+        """
+        :param str block_compressor: Specifies the default compression for collection data. You can override this on a per-collection basis when creating collections.
+               Available compressors are: none, snappy, zlib, zstd. This setting available only on `mongod` hosts.
+               For more information, see the [storage.wiredTiger.collectionConfig.blockCompressor](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.collectionConfig.blockCompressor)
+               description in the official documentation.
+        :param float cache_size_gb: Defines the maximum size of the internal cache that WiredTiger will use for all data.
+               For more information, see the [storage.wiredTiger.engineConfig.cacheSizeGB](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.engineConfig.cacheSizeGB)
+               description in the official documentation.
+        """
+        if block_compressor is not None:
+            pulumi.set(__self__, "block_compressor", block_compressor)
+        if cache_size_gb is not None:
+            pulumi.set(__self__, "cache_size_gb", cache_size_gb)
+
+    @property
+    @pulumi.getter(name="blockCompressor")
+    def block_compressor(self) -> Optional[str]:
+        """
+        Specifies the default compression for collection data. You can override this on a per-collection basis when creating collections.
+        Available compressors are: none, snappy, zlib, zstd. This setting available only on `mongod` hosts.
+        For more information, see the [storage.wiredTiger.collectionConfig.blockCompressor](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.collectionConfig.blockCompressor)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "block_compressor")
+
+    @property
+    @pulumi.getter(name="cacheSizeGb")
+    def cache_size_gb(self) -> Optional[float]:
+        """
+        Defines the maximum size of the internal cache that WiredTiger will use for all data.
+        For more information, see the [storage.wiredTiger.engineConfig.cacheSizeGB](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.engineConfig.cacheSizeGB)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "cache_size_gb")
+
+
+@pulumi.output_type
+class MdbMongodbClusterClusterConfigMongos(dict):
+    def __init__(__self__, *,
+                 net: Optional['outputs.MdbMongodbClusterClusterConfigMongosNet'] = None):
+        """
+        :param 'MdbMongodbClusterClusterConfigMongosNetArgs' net: A set of network settings
+               (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+               The structure is documented below.
+        """
+        if net is not None:
+            pulumi.set(__self__, "net", net)
+
+    @property
+    @pulumi.getter
+    def net(self) -> Optional['outputs.MdbMongodbClusterClusterConfigMongosNet']:
+        """
+        A set of network settings
+        (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "net")
+
+
+@pulumi.output_type
+class MdbMongodbClusterClusterConfigMongosNet(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxIncomingConnections":
+            suggest = "max_incoming_connections"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterClusterConfigMongosNet. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterClusterConfigMongosNet.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterClusterConfigMongosNet.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_incoming_connections: Optional[int] = None):
+        """
+        :param int max_incoming_connections: The maximum number of simultaneous connections that host will accept.
+               For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+               description in the official documentation.
+        """
+        if max_incoming_connections is not None:
+            pulumi.set(__self__, "max_incoming_connections", max_incoming_connections)
+
+    @property
+    @pulumi.getter(name="maxIncomingConnections")
+    def max_incoming_connections(self) -> Optional[int]:
+        """
+        The maximum number of simultaneous connections that host will accept.
+        For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "max_incoming_connections")
+
+
+@pulumi.output_type
+class MdbMongodbClusterClusterConfigPerformanceDiagnostics(dict):
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "enabled")
+
+
+@pulumi.output_type
 class MdbMongodbClusterDatabase(dict):
     def __init__(__self__, *,
                  name: str):
@@ -22072,7 +24974,7 @@ class MdbMongodbClusterHost(dict):
         :param str health: The health of the host.
         :param str name: The fully qualified domain name of the host. Computed on server side.
         :param str role: The role of the cluster (either PRIMARY or SECONDARY).
-        :param str shard_name: The name of the shard to which the host belongs.
+        :param str shard_name: The name of the shard to which the host belongs. Only for sharded cluster.
         :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         """
         pulumi.set(__self__, "subnet_id", subnet_id)
@@ -22144,7 +25046,7 @@ class MdbMongodbClusterHost(dict):
     @pulumi.getter(name="shardName")
     def shard_name(self) -> Optional[str]:
         """
-        The name of the shard to which the host belongs.
+        The name of the shard to which the host belongs. Only for sharded cluster.
         """
         return pulumi.get(self, "shard_name")
 
@@ -22220,6 +25122,242 @@ class MdbMongodbClusterResources(dict):
 
     def get(self, key: str, default = None) -> Any:
         MdbMongodbClusterResources.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disk_size: int,
+                 disk_type_id: str,
+                 resource_preset_id: str):
+        """
+        :param int disk_size: Volume of the storage available to a MongoDB host, in gigabytes.
+        :param str disk_type_id: Type of the storage of MongoDB hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        pulumi.set(__self__, "disk_size", disk_size)
+        pulumi.set(__self__, "disk_type_id", disk_type_id)
+        pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> int:
+        """
+        Volume of the storage available to a MongoDB host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> str:
+        """
+        Type of the storage of MongoDB hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> str:
+        return pulumi.get(self, "resource_preset_id")
+
+
+@pulumi.output_type
+class MdbMongodbClusterResourcesMongocfg(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "diskSize":
+            suggest = "disk_size"
+        elif key == "diskTypeId":
+            suggest = "disk_type_id"
+        elif key == "resourcePresetId":
+            suggest = "resource_preset_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterResourcesMongocfg. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterResourcesMongocfg.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterResourcesMongocfg.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disk_size: int,
+                 disk_type_id: str,
+                 resource_preset_id: str):
+        """
+        :param int disk_size: Volume of the storage available to a MongoDB host, in gigabytes.
+        :param str disk_type_id: Type of the storage of MongoDB hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        pulumi.set(__self__, "disk_size", disk_size)
+        pulumi.set(__self__, "disk_type_id", disk_type_id)
+        pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> int:
+        """
+        Volume of the storage available to a MongoDB host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> str:
+        """
+        Type of the storage of MongoDB hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> str:
+        return pulumi.get(self, "resource_preset_id")
+
+
+@pulumi.output_type
+class MdbMongodbClusterResourcesMongod(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "diskSize":
+            suggest = "disk_size"
+        elif key == "diskTypeId":
+            suggest = "disk_type_id"
+        elif key == "resourcePresetId":
+            suggest = "resource_preset_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterResourcesMongod. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterResourcesMongod.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterResourcesMongod.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disk_size: int,
+                 disk_type_id: str,
+                 resource_preset_id: str):
+        """
+        :param int disk_size: Volume of the storage available to a MongoDB host, in gigabytes.
+        :param str disk_type_id: Type of the storage of MongoDB hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        pulumi.set(__self__, "disk_size", disk_size)
+        pulumi.set(__self__, "disk_type_id", disk_type_id)
+        pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> int:
+        """
+        Volume of the storage available to a MongoDB host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> str:
+        """
+        Type of the storage of MongoDB hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> str:
+        return pulumi.get(self, "resource_preset_id")
+
+
+@pulumi.output_type
+class MdbMongodbClusterResourcesMongoinfra(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "diskSize":
+            suggest = "disk_size"
+        elif key == "diskTypeId":
+            suggest = "disk_type_id"
+        elif key == "resourcePresetId":
+            suggest = "resource_preset_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterResourcesMongoinfra. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterResourcesMongoinfra.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterResourcesMongoinfra.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disk_size: int,
+                 disk_type_id: str,
+                 resource_preset_id: str):
+        """
+        :param int disk_size: Volume of the storage available to a MongoDB host, in gigabytes.
+        :param str disk_type_id: Type of the storage of MongoDB hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        pulumi.set(__self__, "disk_size", disk_size)
+        pulumi.set(__self__, "disk_type_id", disk_type_id)
+        pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> int:
+        """
+        Volume of the storage available to a MongoDB host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> str:
+        """
+        Type of the storage of MongoDB hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> str:
+        return pulumi.get(self, "resource_preset_id")
+
+
+@pulumi.output_type
+class MdbMongodbClusterResourcesMongos(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "diskSize":
+            suggest = "disk_size"
+        elif key == "diskTypeId":
+            suggest = "disk_type_id"
+        elif key == "resourcePresetId":
+            suggest = "resource_preset_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbMongodbClusterResourcesMongos. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbMongodbClusterResourcesMongos.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbMongodbClusterResourcesMongos.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -23777,6 +26915,8 @@ class MdbRedisClusterConfig(dict):
             suggest = "client_output_buffer_limit_normal"
         elif key == "clientOutputBufferLimitPubsub":
             suggest = "client_output_buffer_limit_pubsub"
+        elif key == "maxmemoryPercent":
+            suggest = "maxmemory_percent"
         elif key == "maxmemoryPolicy":
             suggest = "maxmemory_policy"
         elif key == "notifyKeyspaceEvents":
@@ -23803,6 +26943,7 @@ class MdbRedisClusterConfig(dict):
                  client_output_buffer_limit_normal: Optional[str] = None,
                  client_output_buffer_limit_pubsub: Optional[str] = None,
                  databases: Optional[int] = None,
+                 maxmemory_percent: Optional[int] = None,
                  maxmemory_policy: Optional[str] = None,
                  notify_keyspace_events: Optional[str] = None,
                  slowlog_log_slower_than: Optional[int] = None,
@@ -23816,6 +26957,7 @@ class MdbRedisClusterConfig(dict):
         :param str client_output_buffer_limit_pubsub: Pubsub clients output buffer limits.
                See [redis config file](https://github.com/redis/redis/blob/6.2/redis.conf#L1843).
         :param int databases: Number of databases (changing requires redis-server restart).
+        :param int maxmemory_percent: Redis maxmemory usage in percent
         :param str maxmemory_policy: Redis key eviction policy for a dataset that reaches maximum memory.
                Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/).
         :param str notify_keyspace_events: Select the events that Redis will notify among a set of classes.
@@ -23831,6 +26973,8 @@ class MdbRedisClusterConfig(dict):
             pulumi.set(__self__, "client_output_buffer_limit_pubsub", client_output_buffer_limit_pubsub)
         if databases is not None:
             pulumi.set(__self__, "databases", databases)
+        if maxmemory_percent is not None:
+            pulumi.set(__self__, "maxmemory_percent", maxmemory_percent)
         if maxmemory_policy is not None:
             pulumi.set(__self__, "maxmemory_policy", maxmemory_policy)
         if notify_keyspace_events is not None:
@@ -23883,6 +27027,14 @@ class MdbRedisClusterConfig(dict):
         Number of databases (changing requires redis-server restart).
         """
         return pulumi.get(self, "databases")
+
+    @property
+    @pulumi.getter(name="maxmemoryPercent")
+    def maxmemory_percent(self) -> Optional[int]:
+        """
+        Redis maxmemory usage in percent
+        """
+        return pulumi.get(self, "maxmemory_percent")
 
     @property
     @pulumi.getter(name="maxmemoryPolicy")
@@ -24862,6 +28014,7 @@ class StorageBucketLifecycleRule(dict):
                  noncurrent_version_expiration: Optional['outputs.StorageBucketLifecycleRuleNoncurrentVersionExpiration'] = None,
                  noncurrent_version_transitions: Optional[Sequence['outputs.StorageBucketLifecycleRuleNoncurrentVersionTransition']] = None,
                  prefix: Optional[str] = None,
+                 tags: Optional[Mapping[str, str]] = None,
                  transitions: Optional[Sequence['outputs.StorageBucketLifecycleRuleTransition']] = None):
         """
         :param bool enabled: Specifies lifecycle rule status.
@@ -24886,6 +28039,8 @@ class StorageBucketLifecycleRule(dict):
             pulumi.set(__self__, "noncurrent_version_transitions", noncurrent_version_transitions)
         if prefix is not None:
             pulumi.set(__self__, "prefix", prefix)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transitions is not None:
             pulumi.set(__self__, "transitions", transitions)
 
@@ -24944,6 +28099,11 @@ class StorageBucketLifecycleRule(dict):
         Object key prefix identifying one or more objects to which the rule applies.
         """
         return pulumi.get(self, "prefix")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "tags")
 
     @property
     @pulumi.getter
@@ -25056,7 +28216,7 @@ class StorageBucketLifecycleRuleNoncurrentVersionTransition(dict):
                  storage_class: str,
                  days: Optional[int] = None):
         """
-        :param str storage_class: Specifies the storage class to which you want the noncurrent object versions to transition. Can only be `COLD` or `STANDARD_IA`.
+        :param str storage_class: Specifies the storage class to which you want the noncurrent object versions to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
         :param int days: Specifies the number of days noncurrent object versions transition.
         """
         pulumi.set(__self__, "storage_class", storage_class)
@@ -25067,7 +28227,7 @@ class StorageBucketLifecycleRuleNoncurrentVersionTransition(dict):
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> str:
         """
-        Specifies the storage class to which you want the noncurrent object versions to transition. Can only be `COLD` or `STANDARD_IA`.
+        Specifies the storage class to which you want the noncurrent object versions to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
         """
         return pulumi.get(self, "storage_class")
 
@@ -25104,7 +28264,7 @@ class StorageBucketLifecycleRuleTransition(dict):
                  date: Optional[str] = None,
                  days: Optional[int] = None):
         """
-        :param str storage_class: Specifies the storage class to which you want the object to transition. Can only be `COLD` or `STANDARD_IA`.
+        :param str storage_class: Specifies the storage class to which you want the object to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
         :param str date: Specifies the date after which you want the corresponding action to take effect.
         :param int days: Specifies the number of days after object creation when the specific rule action takes effect.
         """
@@ -25118,7 +28278,7 @@ class StorageBucketLifecycleRuleTransition(dict):
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> str:
         """
-        Specifies the storage class to which you want the object to transition. Can only be `COLD` or `STANDARD_IA`.
+        Specifies the storage class to which you want the object to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
         """
         return pulumi.get(self, "storage_class")
 
@@ -26727,7 +29887,8 @@ class CmCertificateSelfManagedPrivateKeyLockboxSecret(dict):
                  id: str,
                  key: str):
         """
-        :param str id: Certificate Id.
+        :param str id: Lockbox secret Id.
+        :param str key: Key of the Lockbox secret, the value of which contains the private key of the certificate.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "key", key)
@@ -26736,13 +29897,16 @@ class CmCertificateSelfManagedPrivateKeyLockboxSecret(dict):
     @pulumi.getter
     def id(self) -> str:
         """
-        Certificate Id.
+        Lockbox secret Id.
         """
         return pulumi.get(self, "id")
 
     @property
     @pulumi.getter
     def key(self) -> str:
+        """
+        Key of the Lockbox secret, the value of which contains the private key of the certificate.
+        """
         return pulumi.get(self, "key")
 
 
@@ -26768,6 +29932,10 @@ class ComputeSnapshotScheduleSchedulePolicy(dict):
     def __init__(__self__, *,
                  expression: Optional[str] = None,
                  start_at: Optional[str] = None):
+        """
+        :param str expression: Cron expression to schedule snapshots (in cron format "* * * * *").
+        :param str start_at: Time to start the snapshot schedule (in format RFC3339 "2006-01-02T15:04:05Z07:00"). If empty current time will be used. Unlike an `expression` that specifies regularity rules, the `start_at` parameter determines from what point these rules will be applied.
+        """
         if expression is not None:
             pulumi.set(__self__, "expression", expression)
         if start_at is not None:
@@ -26776,11 +29944,17 @@ class ComputeSnapshotScheduleSchedulePolicy(dict):
     @property
     @pulumi.getter
     def expression(self) -> Optional[str]:
+        """
+        Cron expression to schedule snapshots (in cron format "* * * * *").
+        """
         return pulumi.get(self, "expression")
 
     @property
     @pulumi.getter(name="startAt")
     def start_at(self) -> Optional[str]:
+        """
+        Time to start the snapshot schedule (in format RFC3339 "2006-01-02T15:04:05Z07:00"). If empty current time will be used. Unlike an `expression` that specifies regularity rules, the `start_at` parameter determines from what point these rules will be applied.
+        """
         return pulumi.get(self, "start_at")
 
 
@@ -26790,8 +29964,8 @@ class ComputeSnapshotScheduleSnapshotSpec(dict):
                  description: Optional[str] = None,
                  labels: Optional[Mapping[str, str]] = None):
         """
-        :param str description: Description of the resource.
-        :param Mapping[str, str] labels: A set of key/value label pairs to assign to the snapshot schedule.
+        :param str description: Description to assign to snapshots created by this snapshot schedule.
+        :param Mapping[str, str] labels: A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -26802,7 +29976,7 @@ class ComputeSnapshotScheduleSnapshotSpec(dict):
     @pulumi.getter
     def description(self) -> Optional[str]:
         """
-        Description of the resource.
+        Description to assign to snapshots created by this snapshot schedule.
         """
         return pulumi.get(self, "description")
 
@@ -26810,7 +29984,7 @@ class ComputeSnapshotScheduleSnapshotSpec(dict):
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
         """
-        A set of key/value label pairs to assign to the snapshot schedule.
+        A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         """
         return pulumi.get(self, "labels")
 
@@ -29822,7 +32996,7 @@ class GetCdnResourceOptionsResult(dict):
                  redirect_http_to_https: bool,
                  redirect_https_to_http: bool,
                  slice: bool,
-                 static_request_headers: Sequence[str],
+                 static_request_headers: Mapping[str, str],
                  static_response_headers: Mapping[str, str]):
         """
         :param Sequence[str] allowed_http_methods: HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
@@ -29845,7 +33019,7 @@ class GetCdnResourceOptionsResult(dict):
         :param bool redirect_http_to_https: set up a redirect from HTTPS to HTTP.
         :param bool redirect_https_to_http: set up a redirect from HTTP to HTTPS.
         :param bool slice: files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
-        :param Sequence[str] static_request_headers: set up custom headers that CDN servers send in requests to origins.
+        :param Mapping[str, str] static_request_headers: set up custom headers that CDN servers send in requests to origins.
         """
         pulumi.set(__self__, "allowed_http_methods", allowed_http_methods)
         pulumi.set(__self__, "browser_cache_settings", browser_cache_settings)
@@ -30032,7 +33206,7 @@ class GetCdnResourceOptionsResult(dict):
 
     @property
     @pulumi.getter(name="staticRequestHeaders")
-    def static_request_headers(self) -> Sequence[str]:
+    def static_request_headers(self) -> Mapping[str, str]:
         """
         set up custom headers that CDN servers send in requests to origins.
         """
@@ -32732,6 +35906,116 @@ class GetComputeInstanceSecondaryDiskResult(dict):
 
 
 @pulumi.output_type
+class GetComputeSnapshotScheduleSchedulePolicyResult(dict):
+    def __init__(__self__, *,
+                 expression: str,
+                 start_at: str):
+        pulumi.set(__self__, "expression", expression)
+        pulumi.set(__self__, "start_at", start_at)
+
+    @property
+    @pulumi.getter
+    def expression(self) -> str:
+        return pulumi.get(self, "expression")
+
+    @property
+    @pulumi.getter(name="startAt")
+    def start_at(self) -> str:
+        return pulumi.get(self, "start_at")
+
+
+@pulumi.output_type
+class GetComputeSnapshotScheduleSnapshotSpecResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 labels: Mapping[str, str]):
+        """
+        :param str description: An optional description of this snapshot schedule.
+        :param Mapping[str, str] labels: A map of labels applied to this snapshot schedule.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        An optional description of this snapshot schedule.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Mapping[str, str]:
+        """
+        A map of labels applied to this snapshot schedule.
+        """
+        return pulumi.get(self, "labels")
+
+
+@pulumi.output_type
+class GetContainerRepositoryLifecyclePolicyRuleResult(dict):
+    def __init__(__self__, *,
+                 description: str,
+                 expire_period: str,
+                 retained_top: int,
+                 tag_regexp: str,
+                 untagged: bool):
+        """
+        :param str description: Description of the lifecycle policy.
+        :param str expire_period: The period of time that must pass after creating a image for it to suit the automatic deletion criteria. It must be a multiple of 24 hours.
+        :param int retained_top: The number of images to be retained even if the expire_period already expired.
+        :param str tag_regexp: Tag to specify a filter as a regular expression. For example `.*` - all images with tags.
+        :param bool untagged: If enabled, rules apply to untagged Docker images.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "expire_period", expire_period)
+        pulumi.set(__self__, "retained_top", retained_top)
+        pulumi.set(__self__, "tag_regexp", tag_regexp)
+        pulumi.set(__self__, "untagged", untagged)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description of the lifecycle policy.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="expirePeriod")
+    def expire_period(self) -> str:
+        """
+        The period of time that must pass after creating a image for it to suit the automatic deletion criteria. It must be a multiple of 24 hours.
+        """
+        return pulumi.get(self, "expire_period")
+
+    @property
+    @pulumi.getter(name="retainedTop")
+    def retained_top(self) -> int:
+        """
+        The number of images to be retained even if the expire_period already expired.
+        """
+        return pulumi.get(self, "retained_top")
+
+    @property
+    @pulumi.getter(name="tagRegexp")
+    def tag_regexp(self) -> str:
+        """
+        Tag to specify a filter as a regular expression. For example `.*` - all images with tags.
+        """
+        return pulumi.get(self, "tag_regexp")
+
+    @property
+    @pulumi.getter
+    def untagged(self) -> bool:
+        """
+        If enabled, rules apply to untagged Docker images.
+        """
+        return pulumi.get(self, "untagged")
+
+
+@pulumi.output_type
 class GetDataprocClusterClusterConfigResult(dict):
     def __init__(__self__, *,
                  hadoops: Sequence['outputs.GetDataprocClusterClusterConfigHadoopResult'],
@@ -33205,12 +36489,26 @@ class GetFunctionTriggerFunctionResult(dict):
 @pulumi.output_type
 class GetFunctionTriggerIotResult(dict):
     def __init__(__self__, *,
+                 batch_cutoff: str,
+                 batch_size: str,
                  device_id: str,
                  registry_id: str,
                  topic: str):
+        pulumi.set(__self__, "batch_cutoff", batch_cutoff)
+        pulumi.set(__self__, "batch_size", batch_size)
         pulumi.set(__self__, "device_id", device_id)
         pulumi.set(__self__, "registry_id", registry_id)
         pulumi.set(__self__, "topic", topic)
+
+    @property
+    @pulumi.getter(name="batchCutoff")
+    def batch_cutoff(self) -> str:
+        return pulumi.get(self, "batch_cutoff")
+
+    @property
+    @pulumi.getter(name="batchSize")
+    def batch_size(self) -> str:
+        return pulumi.get(self, "batch_size")
 
     @property
     @pulumi.getter(name="deviceId")
@@ -33262,13 +36560,15 @@ class GetFunctionTriggerLoggingResult(dict):
                  group_id: str,
                  levels: Sequence[str],
                  resource_ids: Sequence[str],
-                 resource_types: Sequence[str]):
+                 resource_types: Sequence[str],
+                 stream_names: Sequence[str]):
         pulumi.set(__self__, "batch_cutoff", batch_cutoff)
         pulumi.set(__self__, "batch_size", batch_size)
         pulumi.set(__self__, "group_id", group_id)
         pulumi.set(__self__, "levels", levels)
         pulumi.set(__self__, "resource_ids", resource_ids)
         pulumi.set(__self__, "resource_types", resource_types)
+        pulumi.set(__self__, "stream_names", stream_names)
 
     @property
     @pulumi.getter(name="batchCutoff")
@@ -33299,6 +36599,11 @@ class GetFunctionTriggerLoggingResult(dict):
     @pulumi.getter(name="resourceTypes")
     def resource_types(self) -> Sequence[str]:
         return pulumi.get(self, "resource_types")
+
+    @property
+    @pulumi.getter(name="streamNames")
+    def stream_names(self) -> Sequence[str]:
+        return pulumi.get(self, "stream_names")
 
 
 @pulumi.output_type
@@ -33344,18 +36649,32 @@ class GetFunctionTriggerMessageQueueResult(dict):
 @pulumi.output_type
 class GetFunctionTriggerObjectStorageResult(dict):
     def __init__(__self__, *,
+                 batch_cutoff: str,
+                 batch_size: str,
                  bucket_id: str,
                  create: bool,
                  delete: bool,
                  prefix: str,
                  suffix: str,
                  update: bool):
+        pulumi.set(__self__, "batch_cutoff", batch_cutoff)
+        pulumi.set(__self__, "batch_size", batch_size)
         pulumi.set(__self__, "bucket_id", bucket_id)
         pulumi.set(__self__, "create", create)
         pulumi.set(__self__, "delete", delete)
         pulumi.set(__self__, "prefix", prefix)
         pulumi.set(__self__, "suffix", suffix)
         pulumi.set(__self__, "update", update)
+
+    @property
+    @pulumi.getter(name="batchCutoff")
+    def batch_cutoff(self) -> str:
+        return pulumi.get(self, "batch_cutoff")
+
+    @property
+    @pulumi.getter(name="batchSize")
+    def batch_size(self) -> str:
+        return pulumi.get(self, "batch_size")
 
     @property
     @pulumi.getter(name="bucketId")
@@ -33391,13 +36710,20 @@ class GetFunctionTriggerObjectStorageResult(dict):
 @pulumi.output_type
 class GetFunctionTriggerTimerResult(dict):
     def __init__(__self__, *,
-                 cron_expression: str):
+                 cron_expression: str,
+                 payload: str):
         pulumi.set(__self__, "cron_expression", cron_expression)
+        pulumi.set(__self__, "payload", payload)
 
     @property
     @pulumi.getter(name="cronExpression")
     def cron_expression(self) -> str:
         return pulumi.get(self, "cron_expression")
+
+    @property
+    @pulumi.getter
+    def payload(self) -> str:
+        return pulumi.get(self, "payload")
 
 
 @pulumi.output_type
@@ -33410,6 +36736,8 @@ class GetIamPolicyBindingResult(dict):
                Each entry can have one of the following values:
                * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
                * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+               * **group:{group_id}**: A unique group ID.
         :param str role: The role/permission that will be granted to the members.
                See the [IAM Roles] documentation for a complete list of roles.
         """
@@ -33424,6 +36752,8 @@ class GetIamPolicyBindingResult(dict):
         Each entry can have one of the following values:
         * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
         * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+        * **group:{group_id}**: A unique group ID.
         """
         return pulumi.get(self, "members")
 
@@ -33679,6 +37009,7 @@ class GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindowResult(dict):
 @pulumi.output_type
 class GetKubernetesClusterMasterMasterLoggingResult(dict):
     def __init__(__self__, *,
+                 audit_enabled: bool,
                  cluster_autoscaler_enabled: bool,
                  enabled: bool,
                  events_enabled: bool,
@@ -33686,6 +37017,7 @@ class GetKubernetesClusterMasterMasterLoggingResult(dict):
                  kube_apiserver_enabled: bool,
                  log_group_id: str):
         """
+        :param bool audit_enabled: (Optional) Boolean flag that specifies if kube-apiserver audit logs should be sent to Yandex Cloud Logging.
         :param bool cluster_autoscaler_enabled: (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
         :param bool enabled: (Optional) Boolean flag that specifies if master components logs should be sent to [Yandex Cloud Logging](https://cloud.yandex.com/docs/logging/). The exact components that will send their logs must be configured via the options described below.
         :param bool events_enabled: (Optional) Boolean flag that specifies if kubernetes cluster events should be sent to Yandex Cloud Logging.
@@ -33693,12 +37025,21 @@ class GetKubernetesClusterMasterMasterLoggingResult(dict):
         :param bool kube_apiserver_enabled: (Optional) Boolean flag that specifies if kube-apiserver logs should be sent to Yandex Cloud Logging.
         :param str log_group_id: (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
         """
+        pulumi.set(__self__, "audit_enabled", audit_enabled)
         pulumi.set(__self__, "cluster_autoscaler_enabled", cluster_autoscaler_enabled)
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "events_enabled", events_enabled)
         pulumi.set(__self__, "folder_id", folder_id)
         pulumi.set(__self__, "kube_apiserver_enabled", kube_apiserver_enabled)
         pulumi.set(__self__, "log_group_id", log_group_id)
+
+    @property
+    @pulumi.getter(name="auditEnabled")
+    def audit_enabled(self) -> bool:
+        """
+        (Optional) Boolean flag that specifies if kube-apiserver audit logs should be sent to Yandex Cloud Logging.
+        """
+        return pulumi.get(self, "audit_enabled")
 
     @property
     @pulumi.getter(name="clusterAutoscalerEnabled")
@@ -33956,7 +37297,9 @@ class GetKubernetesNodeGroupDeployPolicyResult(dict):
 class GetKubernetesNodeGroupInstanceTemplateResult(dict):
     def __init__(__self__, *,
                  boot_disks: Sequence['outputs.GetKubernetesNodeGroupInstanceTemplateBootDiskResult'],
+                 container_networks: Sequence['outputs.GetKubernetesNodeGroupInstanceTemplateContainerNetworkResult'],
                  container_runtime: 'outputs.GetKubernetesNodeGroupInstanceTemplateContainerRuntimeResult',
+                 gpu_settings: Sequence['outputs.GetKubernetesNodeGroupInstanceTemplateGpuSettingResult'],
                  labels: Mapping[str, str],
                  metadata: Mapping[str, str],
                  name: str,
@@ -33969,9 +37312,11 @@ class GetKubernetesNodeGroupInstanceTemplateResult(dict):
                  placement_policies: Optional[Sequence['outputs.GetKubernetesNodeGroupInstanceTemplatePlacementPolicyResult']] = None):
         """
         :param Sequence['GetKubernetesNodeGroupInstanceTemplateBootDiskArgs'] boot_disks: The specifications for boot disks that will be attached to the instance. The structure is documented below.
+        :param Sequence['GetKubernetesNodeGroupInstanceTemplateContainerNetworkArgs'] container_networks: Container network configuration. The structure is documented below.
         :param 'GetKubernetesNodeGroupInstanceTemplateContainerRuntimeArgs' container_runtime: Container runtime configuration. The structure is documented below.
-        :param Mapping[str, str] labels: Labels assigned to compute nodes (instances), created by the Node Group.
+        :param Sequence['GetKubernetesNodeGroupInstanceTemplateGpuSettingArgs'] gpu_settings: GPU settings. The structure is documented below.
                ---
+        :param Mapping[str, str] labels: Labels assigned to compute nodes (instances), created by the Node Group.
         :param Mapping[str, str] metadata: The set of metadata `key:value` pairs assigned to this instance template. This includes custom metadata and predefined keys.
         :param str name: Name of a specific Kubernetes node group.
         :param bool nat: A public address that can be used to access the internet over NAT.
@@ -33982,7 +37327,9 @@ class GetKubernetesNodeGroupInstanceTemplateResult(dict):
         :param Sequence['GetKubernetesNodeGroupInstanceTemplatePlacementPolicyArgs'] placement_policies: (Optional) The placement policy configuration. The structure is documented below.
         """
         pulumi.set(__self__, "boot_disks", boot_disks)
+        pulumi.set(__self__, "container_networks", container_networks)
         pulumi.set(__self__, "container_runtime", container_runtime)
+        pulumi.set(__self__, "gpu_settings", gpu_settings)
         pulumi.set(__self__, "labels", labels)
         pulumi.set(__self__, "metadata", metadata)
         pulumi.set(__self__, "name", name)
@@ -34004,6 +37351,14 @@ class GetKubernetesNodeGroupInstanceTemplateResult(dict):
         return pulumi.get(self, "boot_disks")
 
     @property
+    @pulumi.getter(name="containerNetworks")
+    def container_networks(self) -> Sequence['outputs.GetKubernetesNodeGroupInstanceTemplateContainerNetworkResult']:
+        """
+        Container network configuration. The structure is documented below.
+        """
+        return pulumi.get(self, "container_networks")
+
+    @property
     @pulumi.getter(name="containerRuntime")
     def container_runtime(self) -> 'outputs.GetKubernetesNodeGroupInstanceTemplateContainerRuntimeResult':
         """
@@ -34012,11 +37367,19 @@ class GetKubernetesNodeGroupInstanceTemplateResult(dict):
         return pulumi.get(self, "container_runtime")
 
     @property
+    @pulumi.getter(name="gpuSettings")
+    def gpu_settings(self) -> Sequence['outputs.GetKubernetesNodeGroupInstanceTemplateGpuSettingResult']:
+        """
+        GPU settings. The structure is documented below.
+        ---
+        """
+        return pulumi.get(self, "gpu_settings")
+
+    @property
     @pulumi.getter
     def labels(self) -> Mapping[str, str]:
         """
         Labels assigned to compute nodes (instances), created by the Node Group.
-        ---
         """
         return pulumi.get(self, "labels")
 
@@ -34120,6 +37483,24 @@ class GetKubernetesNodeGroupInstanceTemplateBootDiskResult(dict):
 
 
 @pulumi.output_type
+class GetKubernetesNodeGroupInstanceTemplateContainerNetworkResult(dict):
+    def __init__(__self__, *,
+                 pod_mtu: int):
+        """
+        :param int pod_mtu: MTU for pods.
+        """
+        pulumi.set(__self__, "pod_mtu", pod_mtu)
+
+    @property
+    @pulumi.getter(name="podMtu")
+    def pod_mtu(self) -> int:
+        """
+        MTU for pods.
+        """
+        return pulumi.get(self, "pod_mtu")
+
+
+@pulumi.output_type
 class GetKubernetesNodeGroupInstanceTemplateContainerRuntimeResult(dict):
     def __init__(__self__, *,
                  type: str):
@@ -34135,6 +37516,35 @@ class GetKubernetesNodeGroupInstanceTemplateContainerRuntimeResult(dict):
         Type of container runtime. Values: `docker`, `containerd`.
         """
         return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetKubernetesNodeGroupInstanceTemplateGpuSettingResult(dict):
+    def __init__(__self__, *,
+                 gpu_cluster_id: str,
+                 gpu_environment: str):
+        """
+        :param str gpu_cluster_id: GPU cluster id.
+        :param str gpu_environment: GPU environment. Values: `runc`, `runc_drivers_cuda`.
+        """
+        pulumi.set(__self__, "gpu_cluster_id", gpu_cluster_id)
+        pulumi.set(__self__, "gpu_environment", gpu_environment)
+
+    @property
+    @pulumi.getter(name="gpuClusterId")
+    def gpu_cluster_id(self) -> str:
+        """
+        GPU cluster id.
+        """
+        return pulumi.get(self, "gpu_cluster_id")
+
+    @property
+    @pulumi.getter(name="gpuEnvironment")
+    def gpu_environment(self) -> str:
+        """
+        GPU environment. Values: `runc`, `runc_drivers_cuda`.
+        """
+        return pulumi.get(self, "gpu_environment")
 
 
 @pulumi.output_type
@@ -34894,14 +38304,127 @@ class GetLbTargetGroupTargetResult(dict):
 
 
 @pulumi.output_type
+class GetLockBoxSecretCurrentVersionResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 description: str,
+                 destroy_at: str,
+                 id: str,
+                 payload_entry_keys: Sequence[str],
+                 secret_id: str,
+                 status: str):
+        """
+        :param str created_at: The version creation timestamp.
+        :param str description: The version description.
+        :param str destroy_at: The version destroy timestamp.
+        :param str id: The version ID.
+        :param Sequence[str] payload_entry_keys: List of keys that the version contains (doesn't include the values).
+        :param str secret_id: The Yandex Cloud Lockbox secret ID.
+        :param str status: The version status.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "destroy_at", destroy_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "payload_entry_keys", payload_entry_keys)
+        pulumi.set(__self__, "secret_id", secret_id)
+        pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        The version creation timestamp.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        The version description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="destroyAt")
+    def destroy_at(self) -> str:
+        """
+        The version destroy timestamp.
+        """
+        return pulumi.get(self, "destroy_at")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The version ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="payloadEntryKeys")
+    def payload_entry_keys(self) -> Sequence[str]:
+        """
+        List of keys that the version contains (doesn't include the values).
+        """
+        return pulumi.get(self, "payload_entry_keys")
+
+    @property
+    @pulumi.getter(name="secretId")
+    def secret_id(self) -> str:
+        """
+        The Yandex Cloud Lockbox secret ID.
+        """
+        return pulumi.get(self, "secret_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        The version status.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetLockBoxSecretVersionEntryResult(dict):
+    def __init__(__self__, *,
+                 key: str,
+                 text_value: str):
+        """
+        :param str key: The key of the entry.
+        :param str text_value: The text value of the entry.
+        """
+        pulumi.set(__self__, "key", key)
+        pulumi.set(__self__, "text_value", text_value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> str:
+        """
+        The key of the entry.
+        """
+        return pulumi.get(self, "key")
+
+    @property
+    @pulumi.getter(name="textValue")
+    def text_value(self) -> str:
+        """
+        The text value of the entry.
+        """
+        return pulumi.get(self, "text_value")
+
+
+@pulumi.output_type
 class GetMdbClickhouseClusterAccessResult(dict):
     def __init__(__self__, *,
-                 data_lens: bool,
-                 data_transfer: bool,
-                 metrika: bool,
-                 serverless: bool,
-                 web_sql: bool,
-                 yandex_query: bool):
+                 data_lens: Optional[bool] = None,
+                 data_transfer: Optional[bool] = None,
+                 metrika: Optional[bool] = None,
+                 serverless: Optional[bool] = None,
+                 web_sql: Optional[bool] = None,
+                 yandex_query: Optional[bool] = None):
         """
         :param bool data_lens: Allow access for Web SQL.
         :param bool data_transfer: Allow access for DataTransfer
@@ -34910,16 +38433,22 @@ class GetMdbClickhouseClusterAccessResult(dict):
         :param bool web_sql: Allow access for DataLens.
         :param bool yandex_query: Allow access for YandexQuery
         """
-        pulumi.set(__self__, "data_lens", data_lens)
-        pulumi.set(__self__, "data_transfer", data_transfer)
-        pulumi.set(__self__, "metrika", metrika)
-        pulumi.set(__self__, "serverless", serverless)
-        pulumi.set(__self__, "web_sql", web_sql)
-        pulumi.set(__self__, "yandex_query", yandex_query)
+        if data_lens is not None:
+            pulumi.set(__self__, "data_lens", data_lens)
+        if data_transfer is not None:
+            pulumi.set(__self__, "data_transfer", data_transfer)
+        if metrika is not None:
+            pulumi.set(__self__, "metrika", metrika)
+        if serverless is not None:
+            pulumi.set(__self__, "serverless", serverless)
+        if web_sql is not None:
+            pulumi.set(__self__, "web_sql", web_sql)
+        if yandex_query is not None:
+            pulumi.set(__self__, "yandex_query", yandex_query)
 
     @property
     @pulumi.getter(name="dataLens")
-    def data_lens(self) -> bool:
+    def data_lens(self) -> Optional[bool]:
         """
         Allow access for Web SQL.
         """
@@ -34927,7 +38456,7 @@ class GetMdbClickhouseClusterAccessResult(dict):
 
     @property
     @pulumi.getter(name="dataTransfer")
-    def data_transfer(self) -> bool:
+    def data_transfer(self) -> Optional[bool]:
         """
         Allow access for DataTransfer
         """
@@ -34935,7 +38464,7 @@ class GetMdbClickhouseClusterAccessResult(dict):
 
     @property
     @pulumi.getter
-    def metrika(self) -> bool:
+    def metrika(self) -> Optional[bool]:
         """
         Allow access for Yandex.Metrika.
         """
@@ -34943,7 +38472,7 @@ class GetMdbClickhouseClusterAccessResult(dict):
 
     @property
     @pulumi.getter
-    def serverless(self) -> bool:
+    def serverless(self) -> Optional[bool]:
         """
         Allow access for Serverless.
         """
@@ -34951,7 +38480,7 @@ class GetMdbClickhouseClusterAccessResult(dict):
 
     @property
     @pulumi.getter(name="webSql")
-    def web_sql(self) -> bool:
+    def web_sql(self) -> Optional[bool]:
         """
         Allow access for DataLens.
         """
@@ -34959,7 +38488,7 @@ class GetMdbClickhouseClusterAccessResult(dict):
 
     @property
     @pulumi.getter(name="yandexQuery")
-    def yandex_query(self) -> bool:
+    def yandex_query(self) -> Optional[bool]:
         """
         Allow access for YandexQuery
         """
@@ -34969,18 +38498,20 @@ class GetMdbClickhouseClusterAccessResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterBackupWindowStartResult(dict):
     def __init__(__self__, *,
-                 hours: int,
-                 minutes: int):
+                 hours: Optional[int] = None,
+                 minutes: Optional[int] = None):
         """
         :param int hours: The hour at which backup will be started.
         :param int minutes: The minute at which backup will be started.
         """
-        pulumi.set(__self__, "hours", hours)
-        pulumi.set(__self__, "minutes", minutes)
+        if hours is not None:
+            pulumi.set(__self__, "hours", hours)
+        if minutes is not None:
+            pulumi.set(__self__, "minutes", minutes)
 
     @property
     @pulumi.getter
-    def hours(self) -> int:
+    def hours(self) -> Optional[int]:
         """
         The hour at which backup will be started.
         """
@@ -34988,7 +38519,7 @@ class GetMdbClickhouseClusterBackupWindowStartResult(dict):
 
     @property
     @pulumi.getter
-    def minutes(self) -> int:
+    def minutes(self) -> Optional[int]:
         """
         The minute at which backup will be started.
         """
@@ -34999,10 +38530,10 @@ class GetMdbClickhouseClusterBackupWindowStartResult(dict):
 class GetMdbClickhouseClusterClickhouseResult(dict):
     def __init__(__self__, *,
                  config: 'outputs.GetMdbClickhouseClusterClickhouseConfigResult',
-                 resources: Sequence['outputs.GetMdbClickhouseClusterClickhouseResourceResult']):
+                 resources: 'outputs.GetMdbClickhouseClusterClickhouseResourcesResult'):
         """
         :param 'GetMdbClickhouseClusterClickhouseConfigArgs' config: Main ClickHouse cluster configuration. The structure is documented below.
-        :param Sequence['GetMdbClickhouseClusterClickhouseResourceArgs'] resources: Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+        :param 'GetMdbClickhouseClusterClickhouseResourcesArgs' resources: Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "resources", resources)
@@ -35017,7 +38548,7 @@ class GetMdbClickhouseClusterClickhouseResult(dict):
 
     @property
     @pulumi.getter
-    def resources(self) -> Sequence['outputs.GetMdbClickhouseClusterClickhouseResourceResult']:
+    def resources(self) -> 'outputs.GetMdbClickhouseClusterClickhouseResourcesResult':
         """
         Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         """
@@ -35028,45 +38559,45 @@ class GetMdbClickhouseClusterClickhouseResult(dict):
 class GetMdbClickhouseClusterClickhouseConfigResult(dict):
     def __init__(__self__, *,
                  background_fetches_pool_size: int,
+                 background_pool_size: int,
+                 background_schedule_pool_size: int,
                  default_database: str,
-                 kafkas: Sequence['outputs.GetMdbClickhouseClusterClickhouseConfigKafkaResult'],
+                 geobase_uri: str,
+                 kafka: 'outputs.GetMdbClickhouseClusterClickhouseConfigKafkaResult',
+                 keep_alive_timeout: int,
+                 log_level: str,
+                 mark_cache_size: int,
+                 max_concurrent_queries: int,
+                 max_connections: int,
+                 max_partition_size_to_drop: int,
+                 max_table_size_to_drop: int,
                  merge_tree: 'outputs.GetMdbClickhouseClusterClickhouseConfigMergeTreeResult',
+                 metric_log_enabled: bool,
+                 metric_log_retention_size: int,
+                 metric_log_retention_time: int,
+                 part_log_retention_size: int,
+                 part_log_retention_time: int,
+                 query_log_retention_size: int,
+                 query_log_retention_time: int,
+                 query_thread_log_enabled: bool,
+                 query_thread_log_retention_size: int,
+                 query_thread_log_retention_time: int,
                  rabbitmq: 'outputs.GetMdbClickhouseClusterClickhouseConfigRabbitmqResult',
+                 text_log_enabled: bool,
+                 text_log_level: str,
+                 text_log_retention_size: int,
+                 text_log_retention_time: int,
+                 timezone: str,
                  total_memory_profiler_step: int,
-                 background_pool_size: Optional[int] = None,
-                 background_schedule_pool_size: Optional[int] = None,
+                 trace_log_enabled: bool,
+                 trace_log_retention_size: int,
+                 trace_log_retention_time: int,
+                 uncompressed_cache_size: int,
                  compressions: Optional[Sequence['outputs.GetMdbClickhouseClusterClickhouseConfigCompressionResult']] = None,
-                 geobase_uri: Optional[str] = None,
                  graphite_rollups: Optional[Sequence['outputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupResult']] = None,
-                 kafka_topics: Optional[Sequence['outputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopicResult']] = None,
-                 keep_alive_timeout: Optional[int] = None,
-                 log_level: Optional[str] = None,
-                 mark_cache_size: Optional[int] = None,
-                 max_concurrent_queries: Optional[int] = None,
-                 max_connections: Optional[int] = None,
-                 max_partition_size_to_drop: Optional[int] = None,
-                 max_table_size_to_drop: Optional[int] = None,
-                 metric_log_enabled: Optional[bool] = None,
-                 metric_log_retention_size: Optional[int] = None,
-                 metric_log_retention_time: Optional[int] = None,
-                 part_log_retention_size: Optional[int] = None,
-                 part_log_retention_time: Optional[int] = None,
-                 query_log_retention_size: Optional[int] = None,
-                 query_log_retention_time: Optional[int] = None,
-                 query_thread_log_enabled: Optional[bool] = None,
-                 query_thread_log_retention_size: Optional[int] = None,
-                 query_thread_log_retention_time: Optional[int] = None,
-                 text_log_enabled: Optional[bool] = None,
-                 text_log_level: Optional[str] = None,
-                 text_log_retention_size: Optional[int] = None,
-                 text_log_retention_time: Optional[int] = None,
-                 timezone: Optional[str] = None,
-                 trace_log_enabled: Optional[bool] = None,
-                 trace_log_retention_size: Optional[int] = None,
-                 trace_log_retention_time: Optional[int] = None,
-                 uncompressed_cache_size: Optional[int] = None):
+                 kafka_topics: Optional[Sequence['outputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopicResult']] = None):
         """
-        :param Sequence['GetMdbClickhouseClusterClickhouseConfigKafkaArgs'] kafkas: Kafka connection configuration. The structure is documented below.
+        :param 'GetMdbClickhouseClusterClickhouseConfigKafkaArgs' kafka: Kafka connection configuration. The structure is documented below.
         :param 'GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs' merge_tree: MergeTree engine configuration. The structure is documented below.
         :param 'GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs' rabbitmq: RabbitMQ connection configuration. The structure is documented below.
         :param Sequence['GetMdbClickhouseClusterClickhouseConfigCompressionArgs'] compressions: Data compression configuration. The structure is documented below.
@@ -35074,75 +38605,46 @@ class GetMdbClickhouseClusterClickhouseConfigResult(dict):
         :param Sequence['GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs'] kafka_topics: Kafka topic connection configuration. The structure is documented below.
         """
         pulumi.set(__self__, "background_fetches_pool_size", background_fetches_pool_size)
+        pulumi.set(__self__, "background_pool_size", background_pool_size)
+        pulumi.set(__self__, "background_schedule_pool_size", background_schedule_pool_size)
         pulumi.set(__self__, "default_database", default_database)
-        pulumi.set(__self__, "kafkas", kafkas)
+        pulumi.set(__self__, "geobase_uri", geobase_uri)
+        pulumi.set(__self__, "kafka", kafka)
+        pulumi.set(__self__, "keep_alive_timeout", keep_alive_timeout)
+        pulumi.set(__self__, "log_level", log_level)
+        pulumi.set(__self__, "mark_cache_size", mark_cache_size)
+        pulumi.set(__self__, "max_concurrent_queries", max_concurrent_queries)
+        pulumi.set(__self__, "max_connections", max_connections)
+        pulumi.set(__self__, "max_partition_size_to_drop", max_partition_size_to_drop)
+        pulumi.set(__self__, "max_table_size_to_drop", max_table_size_to_drop)
         pulumi.set(__self__, "merge_tree", merge_tree)
+        pulumi.set(__self__, "metric_log_enabled", metric_log_enabled)
+        pulumi.set(__self__, "metric_log_retention_size", metric_log_retention_size)
+        pulumi.set(__self__, "metric_log_retention_time", metric_log_retention_time)
+        pulumi.set(__self__, "part_log_retention_size", part_log_retention_size)
+        pulumi.set(__self__, "part_log_retention_time", part_log_retention_time)
+        pulumi.set(__self__, "query_log_retention_size", query_log_retention_size)
+        pulumi.set(__self__, "query_log_retention_time", query_log_retention_time)
+        pulumi.set(__self__, "query_thread_log_enabled", query_thread_log_enabled)
+        pulumi.set(__self__, "query_thread_log_retention_size", query_thread_log_retention_size)
+        pulumi.set(__self__, "query_thread_log_retention_time", query_thread_log_retention_time)
         pulumi.set(__self__, "rabbitmq", rabbitmq)
+        pulumi.set(__self__, "text_log_enabled", text_log_enabled)
+        pulumi.set(__self__, "text_log_level", text_log_level)
+        pulumi.set(__self__, "text_log_retention_size", text_log_retention_size)
+        pulumi.set(__self__, "text_log_retention_time", text_log_retention_time)
+        pulumi.set(__self__, "timezone", timezone)
         pulumi.set(__self__, "total_memory_profiler_step", total_memory_profiler_step)
-        if background_pool_size is not None:
-            pulumi.set(__self__, "background_pool_size", background_pool_size)
-        if background_schedule_pool_size is not None:
-            pulumi.set(__self__, "background_schedule_pool_size", background_schedule_pool_size)
+        pulumi.set(__self__, "trace_log_enabled", trace_log_enabled)
+        pulumi.set(__self__, "trace_log_retention_size", trace_log_retention_size)
+        pulumi.set(__self__, "trace_log_retention_time", trace_log_retention_time)
+        pulumi.set(__self__, "uncompressed_cache_size", uncompressed_cache_size)
         if compressions is not None:
             pulumi.set(__self__, "compressions", compressions)
-        if geobase_uri is not None:
-            pulumi.set(__self__, "geobase_uri", geobase_uri)
         if graphite_rollups is not None:
             pulumi.set(__self__, "graphite_rollups", graphite_rollups)
         if kafka_topics is not None:
             pulumi.set(__self__, "kafka_topics", kafka_topics)
-        if keep_alive_timeout is not None:
-            pulumi.set(__self__, "keep_alive_timeout", keep_alive_timeout)
-        if log_level is not None:
-            pulumi.set(__self__, "log_level", log_level)
-        if mark_cache_size is not None:
-            pulumi.set(__self__, "mark_cache_size", mark_cache_size)
-        if max_concurrent_queries is not None:
-            pulumi.set(__self__, "max_concurrent_queries", max_concurrent_queries)
-        if max_connections is not None:
-            pulumi.set(__self__, "max_connections", max_connections)
-        if max_partition_size_to_drop is not None:
-            pulumi.set(__self__, "max_partition_size_to_drop", max_partition_size_to_drop)
-        if max_table_size_to_drop is not None:
-            pulumi.set(__self__, "max_table_size_to_drop", max_table_size_to_drop)
-        if metric_log_enabled is not None:
-            pulumi.set(__self__, "metric_log_enabled", metric_log_enabled)
-        if metric_log_retention_size is not None:
-            pulumi.set(__self__, "metric_log_retention_size", metric_log_retention_size)
-        if metric_log_retention_time is not None:
-            pulumi.set(__self__, "metric_log_retention_time", metric_log_retention_time)
-        if part_log_retention_size is not None:
-            pulumi.set(__self__, "part_log_retention_size", part_log_retention_size)
-        if part_log_retention_time is not None:
-            pulumi.set(__self__, "part_log_retention_time", part_log_retention_time)
-        if query_log_retention_size is not None:
-            pulumi.set(__self__, "query_log_retention_size", query_log_retention_size)
-        if query_log_retention_time is not None:
-            pulumi.set(__self__, "query_log_retention_time", query_log_retention_time)
-        if query_thread_log_enabled is not None:
-            pulumi.set(__self__, "query_thread_log_enabled", query_thread_log_enabled)
-        if query_thread_log_retention_size is not None:
-            pulumi.set(__self__, "query_thread_log_retention_size", query_thread_log_retention_size)
-        if query_thread_log_retention_time is not None:
-            pulumi.set(__self__, "query_thread_log_retention_time", query_thread_log_retention_time)
-        if text_log_enabled is not None:
-            pulumi.set(__self__, "text_log_enabled", text_log_enabled)
-        if text_log_level is not None:
-            pulumi.set(__self__, "text_log_level", text_log_level)
-        if text_log_retention_size is not None:
-            pulumi.set(__self__, "text_log_retention_size", text_log_retention_size)
-        if text_log_retention_time is not None:
-            pulumi.set(__self__, "text_log_retention_time", text_log_retention_time)
-        if timezone is not None:
-            pulumi.set(__self__, "timezone", timezone)
-        if trace_log_enabled is not None:
-            pulumi.set(__self__, "trace_log_enabled", trace_log_enabled)
-        if trace_log_retention_size is not None:
-            pulumi.set(__self__, "trace_log_retention_size", trace_log_retention_size)
-        if trace_log_retention_time is not None:
-            pulumi.set(__self__, "trace_log_retention_time", trace_log_retention_time)
-        if uncompressed_cache_size is not None:
-            pulumi.set(__self__, "uncompressed_cache_size", uncompressed_cache_size)
 
     @property
     @pulumi.getter(name="backgroundFetchesPoolSize")
@@ -35150,17 +38652,67 @@ class GetMdbClickhouseClusterClickhouseConfigResult(dict):
         return pulumi.get(self, "background_fetches_pool_size")
 
     @property
+    @pulumi.getter(name="backgroundPoolSize")
+    def background_pool_size(self) -> int:
+        return pulumi.get(self, "background_pool_size")
+
+    @property
+    @pulumi.getter(name="backgroundSchedulePoolSize")
+    def background_schedule_pool_size(self) -> int:
+        return pulumi.get(self, "background_schedule_pool_size")
+
+    @property
     @pulumi.getter(name="defaultDatabase")
     def default_database(self) -> str:
         return pulumi.get(self, "default_database")
 
     @property
+    @pulumi.getter(name="geobaseUri")
+    def geobase_uri(self) -> str:
+        return pulumi.get(self, "geobase_uri")
+
+    @property
     @pulumi.getter
-    def kafkas(self) -> Sequence['outputs.GetMdbClickhouseClusterClickhouseConfigKafkaResult']:
+    def kafka(self) -> 'outputs.GetMdbClickhouseClusterClickhouseConfigKafkaResult':
         """
         Kafka connection configuration. The structure is documented below.
         """
-        return pulumi.get(self, "kafkas")
+        return pulumi.get(self, "kafka")
+
+    @property
+    @pulumi.getter(name="keepAliveTimeout")
+    def keep_alive_timeout(self) -> int:
+        return pulumi.get(self, "keep_alive_timeout")
+
+    @property
+    @pulumi.getter(name="logLevel")
+    def log_level(self) -> str:
+        return pulumi.get(self, "log_level")
+
+    @property
+    @pulumi.getter(name="markCacheSize")
+    def mark_cache_size(self) -> int:
+        return pulumi.get(self, "mark_cache_size")
+
+    @property
+    @pulumi.getter(name="maxConcurrentQueries")
+    def max_concurrent_queries(self) -> int:
+        return pulumi.get(self, "max_concurrent_queries")
+
+    @property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> int:
+        return pulumi.get(self, "max_connections")
+
+    @property
+    @pulumi.getter(name="maxPartitionSizeToDrop")
+    def max_partition_size_to_drop(self) -> int:
+        return pulumi.get(self, "max_partition_size_to_drop")
+
+    @property
+    @pulumi.getter(name="maxTableSizeToDrop")
+    def max_table_size_to_drop(self) -> int:
+        return pulumi.get(self, "max_table_size_to_drop")
 
     @property
     @pulumi.getter(name="mergeTree")
@@ -35171,6 +38723,56 @@ class GetMdbClickhouseClusterClickhouseConfigResult(dict):
         return pulumi.get(self, "merge_tree")
 
     @property
+    @pulumi.getter(name="metricLogEnabled")
+    def metric_log_enabled(self) -> bool:
+        return pulumi.get(self, "metric_log_enabled")
+
+    @property
+    @pulumi.getter(name="metricLogRetentionSize")
+    def metric_log_retention_size(self) -> int:
+        return pulumi.get(self, "metric_log_retention_size")
+
+    @property
+    @pulumi.getter(name="metricLogRetentionTime")
+    def metric_log_retention_time(self) -> int:
+        return pulumi.get(self, "metric_log_retention_time")
+
+    @property
+    @pulumi.getter(name="partLogRetentionSize")
+    def part_log_retention_size(self) -> int:
+        return pulumi.get(self, "part_log_retention_size")
+
+    @property
+    @pulumi.getter(name="partLogRetentionTime")
+    def part_log_retention_time(self) -> int:
+        return pulumi.get(self, "part_log_retention_time")
+
+    @property
+    @pulumi.getter(name="queryLogRetentionSize")
+    def query_log_retention_size(self) -> int:
+        return pulumi.get(self, "query_log_retention_size")
+
+    @property
+    @pulumi.getter(name="queryLogRetentionTime")
+    def query_log_retention_time(self) -> int:
+        return pulumi.get(self, "query_log_retention_time")
+
+    @property
+    @pulumi.getter(name="queryThreadLogEnabled")
+    def query_thread_log_enabled(self) -> bool:
+        return pulumi.get(self, "query_thread_log_enabled")
+
+    @property
+    @pulumi.getter(name="queryThreadLogRetentionSize")
+    def query_thread_log_retention_size(self) -> int:
+        return pulumi.get(self, "query_thread_log_retention_size")
+
+    @property
+    @pulumi.getter(name="queryThreadLogRetentionTime")
+    def query_thread_log_retention_time(self) -> int:
+        return pulumi.get(self, "query_thread_log_retention_time")
+
+    @property
     @pulumi.getter
     def rabbitmq(self) -> 'outputs.GetMdbClickhouseClusterClickhouseConfigRabbitmqResult':
         """
@@ -35179,19 +38781,54 @@ class GetMdbClickhouseClusterClickhouseConfigResult(dict):
         return pulumi.get(self, "rabbitmq")
 
     @property
+    @pulumi.getter(name="textLogEnabled")
+    def text_log_enabled(self) -> bool:
+        return pulumi.get(self, "text_log_enabled")
+
+    @property
+    @pulumi.getter(name="textLogLevel")
+    def text_log_level(self) -> str:
+        return pulumi.get(self, "text_log_level")
+
+    @property
+    @pulumi.getter(name="textLogRetentionSize")
+    def text_log_retention_size(self) -> int:
+        return pulumi.get(self, "text_log_retention_size")
+
+    @property
+    @pulumi.getter(name="textLogRetentionTime")
+    def text_log_retention_time(self) -> int:
+        return pulumi.get(self, "text_log_retention_time")
+
+    @property
+    @pulumi.getter
+    def timezone(self) -> str:
+        return pulumi.get(self, "timezone")
+
+    @property
     @pulumi.getter(name="totalMemoryProfilerStep")
     def total_memory_profiler_step(self) -> int:
         return pulumi.get(self, "total_memory_profiler_step")
 
     @property
-    @pulumi.getter(name="backgroundPoolSize")
-    def background_pool_size(self) -> Optional[int]:
-        return pulumi.get(self, "background_pool_size")
+    @pulumi.getter(name="traceLogEnabled")
+    def trace_log_enabled(self) -> bool:
+        return pulumi.get(self, "trace_log_enabled")
 
     @property
-    @pulumi.getter(name="backgroundSchedulePoolSize")
-    def background_schedule_pool_size(self) -> Optional[int]:
-        return pulumi.get(self, "background_schedule_pool_size")
+    @pulumi.getter(name="traceLogRetentionSize")
+    def trace_log_retention_size(self) -> int:
+        return pulumi.get(self, "trace_log_retention_size")
+
+    @property
+    @pulumi.getter(name="traceLogRetentionTime")
+    def trace_log_retention_time(self) -> int:
+        return pulumi.get(self, "trace_log_retention_time")
+
+    @property
+    @pulumi.getter(name="uncompressedCacheSize")
+    def uncompressed_cache_size(self) -> int:
+        return pulumi.get(self, "uncompressed_cache_size")
 
     @property
     @pulumi.getter
@@ -35200,11 +38837,6 @@ class GetMdbClickhouseClusterClickhouseConfigResult(dict):
         Data compression configuration. The structure is documented below.
         """
         return pulumi.get(self, "compressions")
-
-    @property
-    @pulumi.getter(name="geobaseUri")
-    def geobase_uri(self) -> Optional[str]:
-        return pulumi.get(self, "geobase_uri")
 
     @property
     @pulumi.getter(name="graphiteRollups")
@@ -35222,155 +38854,28 @@ class GetMdbClickhouseClusterClickhouseConfigResult(dict):
         """
         return pulumi.get(self, "kafka_topics")
 
-    @property
-    @pulumi.getter(name="keepAliveTimeout")
-    def keep_alive_timeout(self) -> Optional[int]:
-        return pulumi.get(self, "keep_alive_timeout")
-
-    @property
-    @pulumi.getter(name="logLevel")
-    def log_level(self) -> Optional[str]:
-        return pulumi.get(self, "log_level")
-
-    @property
-    @pulumi.getter(name="markCacheSize")
-    def mark_cache_size(self) -> Optional[int]:
-        return pulumi.get(self, "mark_cache_size")
-
-    @property
-    @pulumi.getter(name="maxConcurrentQueries")
-    def max_concurrent_queries(self) -> Optional[int]:
-        return pulumi.get(self, "max_concurrent_queries")
-
-    @property
-    @pulumi.getter(name="maxConnections")
-    def max_connections(self) -> Optional[int]:
-        return pulumi.get(self, "max_connections")
-
-    @property
-    @pulumi.getter(name="maxPartitionSizeToDrop")
-    def max_partition_size_to_drop(self) -> Optional[int]:
-        return pulumi.get(self, "max_partition_size_to_drop")
-
-    @property
-    @pulumi.getter(name="maxTableSizeToDrop")
-    def max_table_size_to_drop(self) -> Optional[int]:
-        return pulumi.get(self, "max_table_size_to_drop")
-
-    @property
-    @pulumi.getter(name="metricLogEnabled")
-    def metric_log_enabled(self) -> Optional[bool]:
-        return pulumi.get(self, "metric_log_enabled")
-
-    @property
-    @pulumi.getter(name="metricLogRetentionSize")
-    def metric_log_retention_size(self) -> Optional[int]:
-        return pulumi.get(self, "metric_log_retention_size")
-
-    @property
-    @pulumi.getter(name="metricLogRetentionTime")
-    def metric_log_retention_time(self) -> Optional[int]:
-        return pulumi.get(self, "metric_log_retention_time")
-
-    @property
-    @pulumi.getter(name="partLogRetentionSize")
-    def part_log_retention_size(self) -> Optional[int]:
-        return pulumi.get(self, "part_log_retention_size")
-
-    @property
-    @pulumi.getter(name="partLogRetentionTime")
-    def part_log_retention_time(self) -> Optional[int]:
-        return pulumi.get(self, "part_log_retention_time")
-
-    @property
-    @pulumi.getter(name="queryLogRetentionSize")
-    def query_log_retention_size(self) -> Optional[int]:
-        return pulumi.get(self, "query_log_retention_size")
-
-    @property
-    @pulumi.getter(name="queryLogRetentionTime")
-    def query_log_retention_time(self) -> Optional[int]:
-        return pulumi.get(self, "query_log_retention_time")
-
-    @property
-    @pulumi.getter(name="queryThreadLogEnabled")
-    def query_thread_log_enabled(self) -> Optional[bool]:
-        return pulumi.get(self, "query_thread_log_enabled")
-
-    @property
-    @pulumi.getter(name="queryThreadLogRetentionSize")
-    def query_thread_log_retention_size(self) -> Optional[int]:
-        return pulumi.get(self, "query_thread_log_retention_size")
-
-    @property
-    @pulumi.getter(name="queryThreadLogRetentionTime")
-    def query_thread_log_retention_time(self) -> Optional[int]:
-        return pulumi.get(self, "query_thread_log_retention_time")
-
-    @property
-    @pulumi.getter(name="textLogEnabled")
-    def text_log_enabled(self) -> Optional[bool]:
-        return pulumi.get(self, "text_log_enabled")
-
-    @property
-    @pulumi.getter(name="textLogLevel")
-    def text_log_level(self) -> Optional[str]:
-        return pulumi.get(self, "text_log_level")
-
-    @property
-    @pulumi.getter(name="textLogRetentionSize")
-    def text_log_retention_size(self) -> Optional[int]:
-        return pulumi.get(self, "text_log_retention_size")
-
-    @property
-    @pulumi.getter(name="textLogRetentionTime")
-    def text_log_retention_time(self) -> Optional[int]:
-        return pulumi.get(self, "text_log_retention_time")
-
-    @property
-    @pulumi.getter
-    def timezone(self) -> Optional[str]:
-        return pulumi.get(self, "timezone")
-
-    @property
-    @pulumi.getter(name="traceLogEnabled")
-    def trace_log_enabled(self) -> Optional[bool]:
-        return pulumi.get(self, "trace_log_enabled")
-
-    @property
-    @pulumi.getter(name="traceLogRetentionSize")
-    def trace_log_retention_size(self) -> Optional[int]:
-        return pulumi.get(self, "trace_log_retention_size")
-
-    @property
-    @pulumi.getter(name="traceLogRetentionTime")
-    def trace_log_retention_time(self) -> Optional[int]:
-        return pulumi.get(self, "trace_log_retention_time")
-
-    @property
-    @pulumi.getter(name="uncompressedCacheSize")
-    def uncompressed_cache_size(self) -> Optional[int]:
-        return pulumi.get(self, "uncompressed_cache_size")
-
 
 @pulumi.output_type
 class GetMdbClickhouseClusterClickhouseConfigCompressionResult(dict):
     def __init__(__self__, *,
-                 method: str,
-                 min_part_size: int,
-                 min_part_size_ratio: float):
+                 method: Optional[str] = None,
+                 min_part_size: Optional[int] = None,
+                 min_part_size_ratio: Optional[float] = None):
         """
         :param str method: Method: Compression method. Two methods are available: LZ4 and zstd.
         :param int min_part_size: Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
         :param float min_part_size_ratio: Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
         """
-        pulumi.set(__self__, "method", method)
-        pulumi.set(__self__, "min_part_size", min_part_size)
-        pulumi.set(__self__, "min_part_size_ratio", min_part_size_ratio)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
+        if min_part_size is not None:
+            pulumi.set(__self__, "min_part_size", min_part_size)
+        if min_part_size_ratio is not None:
+            pulumi.set(__self__, "min_part_size_ratio", min_part_size_ratio)
 
     @property
     @pulumi.getter
-    def method(self) -> str:
+    def method(self) -> Optional[str]:
         """
         Method: Compression method. Two methods are available: LZ4 and zstd.
         """
@@ -35378,7 +38883,7 @@ class GetMdbClickhouseClusterClickhouseConfigCompressionResult(dict):
 
     @property
     @pulumi.getter(name="minPartSize")
-    def min_part_size(self) -> int:
+    def min_part_size(self) -> Optional[int]:
         """
         Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
         """
@@ -35386,7 +38891,7 @@ class GetMdbClickhouseClusterClickhouseConfigCompressionResult(dict):
 
     @property
     @pulumi.getter(name="minPartSizeRatio")
-    def min_part_size_ratio(self) -> float:
+    def min_part_size_ratio(self) -> Optional[float]:
         """
         Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
         """
@@ -35396,19 +38901,20 @@ class GetMdbClickhouseClusterClickhouseConfigCompressionResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterClickhouseConfigGraphiteRollupResult(dict):
     def __init__(__self__, *,
-                 name: str,
+                 name: Optional[str] = None,
                  patterns: Optional[Sequence['outputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternResult']] = None):
         """
         :param str name: The name of the ClickHouse cluster.
         :param Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs'] patterns: Set of thinning rules.
         """
-        pulumi.set(__self__, "name", name)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
         if patterns is not None:
             pulumi.set(__self__, "patterns", patterns)
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> Optional[str]:
         """
         The name of the ClickHouse cluster.
         """
@@ -35426,35 +38932,35 @@ class GetMdbClickhouseClusterClickhouseConfigGraphiteRollupResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternResult(dict):
     def __init__(__self__, *,
-                 function: str,
-                 regexp: Optional[str] = None,
+                 regexp: str,
+                 function: Optional[str] = None,
                  retentions: Optional[Sequence['outputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionResult']] = None):
         """
-        :param str function: Aggregation function name.
         :param str regexp: Regular expression that the metric name must match.
+        :param str function: Aggregation function name.
         :param Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs'] retentions: Retain parameters.
         """
-        pulumi.set(__self__, "function", function)
-        if regexp is not None:
-            pulumi.set(__self__, "regexp", regexp)
+        pulumi.set(__self__, "regexp", regexp)
+        if function is not None:
+            pulumi.set(__self__, "function", function)
         if retentions is not None:
             pulumi.set(__self__, "retentions", retentions)
 
     @property
     @pulumi.getter
-    def function(self) -> str:
-        """
-        Aggregation function name.
-        """
-        return pulumi.get(self, "function")
-
-    @property
-    @pulumi.getter
-    def regexp(self) -> Optional[str]:
+    def regexp(self) -> str:
         """
         Regular expression that the metric name must match.
         """
         return pulumi.get(self, "regexp")
+
+    @property
+    @pulumi.getter
+    def function(self) -> Optional[str]:
+        """
+        Aggregation function name.
+        """
+        return pulumi.get(self, "function")
 
     @property
     @pulumi.getter
@@ -35468,18 +38974,20 @@ class GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionResult(dict):
     def __init__(__self__, *,
-                 age: int,
-                 precision: int):
+                 age: Optional[int] = None,
+                 precision: Optional[int] = None):
         """
         :param int age: Minimum data age in seconds.
         :param int precision: Accuracy of determining the age of the data in seconds.
         """
-        pulumi.set(__self__, "age", age)
-        pulumi.set(__self__, "precision", precision)
+        if age is not None:
+            pulumi.set(__self__, "age", age)
+        if precision is not None:
+            pulumi.set(__self__, "precision", precision)
 
     @property
     @pulumi.getter
-    def age(self) -> int:
+    def age(self) -> Optional[int]:
         """
         Minimum data age in seconds.
         """
@@ -35487,7 +38995,7 @@ class GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionResul
 
     @property
     @pulumi.getter
-    def precision(self) -> int:
+    def precision(self) -> Optional[int]:
         """
         Accuracy of determining the age of the data in seconds.
         """
@@ -35497,28 +39005,24 @@ class GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionResul
 @pulumi.output_type
 class GetMdbClickhouseClusterClickhouseConfigKafkaResult(dict):
     def __init__(__self__, *,
-                 sasl_mechanism: Optional[str] = None,
-                 sasl_password: Optional[str] = None,
-                 sasl_username: Optional[str] = None,
-                 security_protocol: Optional[str] = None):
+                 sasl_mechanism: str,
+                 sasl_password: str,
+                 sasl_username: str,
+                 security_protocol: str):
         """
         :param str sasl_mechanism: SASL mechanism used in kafka authentication.
         :param str sasl_password: User password on kafka server.
         :param str sasl_username: Username on kafka server.
         :param str security_protocol: Security protocol used to connect to kafka server.
         """
-        if sasl_mechanism is not None:
-            pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
-        if sasl_password is not None:
-            pulumi.set(__self__, "sasl_password", sasl_password)
-        if sasl_username is not None:
-            pulumi.set(__self__, "sasl_username", sasl_username)
-        if security_protocol is not None:
-            pulumi.set(__self__, "security_protocol", security_protocol)
+        pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
+        pulumi.set(__self__, "sasl_password", sasl_password)
+        pulumi.set(__self__, "sasl_username", sasl_username)
+        pulumi.set(__self__, "security_protocol", security_protocol)
 
     @property
     @pulumi.getter(name="saslMechanism")
-    def sasl_mechanism(self) -> Optional[str]:
+    def sasl_mechanism(self) -> str:
         """
         SASL mechanism used in kafka authentication.
         """
@@ -35526,7 +39030,7 @@ class GetMdbClickhouseClusterClickhouseConfigKafkaResult(dict):
 
     @property
     @pulumi.getter(name="saslPassword")
-    def sasl_password(self) -> Optional[str]:
+    def sasl_password(self) -> str:
         """
         User password on kafka server.
         """
@@ -35534,7 +39038,7 @@ class GetMdbClickhouseClusterClickhouseConfigKafkaResult(dict):
 
     @property
     @pulumi.getter(name="saslUsername")
-    def sasl_username(self) -> Optional[str]:
+    def sasl_username(self) -> str:
         """
         Username on kafka server.
         """
@@ -35542,7 +39046,7 @@ class GetMdbClickhouseClusterClickhouseConfigKafkaResult(dict):
 
     @property
     @pulumi.getter(name="securityProtocol")
-    def security_protocol(self) -> Optional[str]:
+    def security_protocol(self) -> str:
         """
         Security protocol used to connect to kafka server.
         """
@@ -35552,19 +39056,20 @@ class GetMdbClickhouseClusterClickhouseConfigKafkaResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterClickhouseConfigKafkaTopicResult(dict):
     def __init__(__self__, *,
-                 name: str,
+                 name: Optional[str] = None,
                  settings: Optional['outputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsResult'] = None):
         """
         :param str name: The name of the ClickHouse cluster.
         :param 'GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs' settings: Kafka connection settngs sanem as `kafka` block.
         """
-        pulumi.set(__self__, "name", name)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
         if settings is not None:
             pulumi.set(__self__, "settings", settings)
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> Optional[str]:
         """
         The name of the ClickHouse cluster.
         """
@@ -35637,45 +39142,54 @@ class GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterClickhouseConfigMergeTreeResult(dict):
     def __init__(__self__, *,
+                 max_bytes_to_merge_at_min_space_in_pool: int,
+                 max_replicated_merges_in_queue: int,
                  min_bytes_for_wide_part: int,
                  min_rows_for_wide_part: int,
-                 ttl_only_drop_parts: bool,
-                 max_bytes_to_merge_at_min_space_in_pool: Optional[int] = None,
-                 max_replicated_merges_in_queue: Optional[int] = None,
-                 number_of_free_entries_in_pool_to_lower_max_size_of_merge: Optional[int] = None,
-                 parts_to_delay_insert: Optional[int] = None,
-                 parts_to_throw_insert: Optional[int] = None,
-                 replicated_deduplication_window: Optional[int] = None,
-                 replicated_deduplication_window_seconds: Optional[int] = None):
+                 number_of_free_entries_in_pool_to_lower_max_size_of_merge: int,
+                 parts_to_delay_insert: int,
+                 parts_to_throw_insert: int,
+                 replicated_deduplication_window: int,
+                 replicated_deduplication_window_seconds: int,
+                 ttl_only_drop_parts: bool):
         """
-        :param int min_bytes_for_wide_part: (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
-        :param int min_rows_for_wide_part: (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
-        :param bool ttl_only_drop_parts: (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
         :param int max_bytes_to_merge_at_min_space_in_pool: Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
         :param int max_replicated_merges_in_queue: Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
+        :param int min_bytes_for_wide_part: (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        :param int min_rows_for_wide_part: (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
         :param int number_of_free_entries_in_pool_to_lower_max_size_of_merge: Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
         :param int parts_to_delay_insert: Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
         :param int parts_to_throw_insert: Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
         :param int replicated_deduplication_window: Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
         :param int replicated_deduplication_window_seconds: Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
+        :param bool ttl_only_drop_parts: (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
         """
+        pulumi.set(__self__, "max_bytes_to_merge_at_min_space_in_pool", max_bytes_to_merge_at_min_space_in_pool)
+        pulumi.set(__self__, "max_replicated_merges_in_queue", max_replicated_merges_in_queue)
         pulumi.set(__self__, "min_bytes_for_wide_part", min_bytes_for_wide_part)
         pulumi.set(__self__, "min_rows_for_wide_part", min_rows_for_wide_part)
+        pulumi.set(__self__, "number_of_free_entries_in_pool_to_lower_max_size_of_merge", number_of_free_entries_in_pool_to_lower_max_size_of_merge)
+        pulumi.set(__self__, "parts_to_delay_insert", parts_to_delay_insert)
+        pulumi.set(__self__, "parts_to_throw_insert", parts_to_throw_insert)
+        pulumi.set(__self__, "replicated_deduplication_window", replicated_deduplication_window)
+        pulumi.set(__self__, "replicated_deduplication_window_seconds", replicated_deduplication_window_seconds)
         pulumi.set(__self__, "ttl_only_drop_parts", ttl_only_drop_parts)
-        if max_bytes_to_merge_at_min_space_in_pool is not None:
-            pulumi.set(__self__, "max_bytes_to_merge_at_min_space_in_pool", max_bytes_to_merge_at_min_space_in_pool)
-        if max_replicated_merges_in_queue is not None:
-            pulumi.set(__self__, "max_replicated_merges_in_queue", max_replicated_merges_in_queue)
-        if number_of_free_entries_in_pool_to_lower_max_size_of_merge is not None:
-            pulumi.set(__self__, "number_of_free_entries_in_pool_to_lower_max_size_of_merge", number_of_free_entries_in_pool_to_lower_max_size_of_merge)
-        if parts_to_delay_insert is not None:
-            pulumi.set(__self__, "parts_to_delay_insert", parts_to_delay_insert)
-        if parts_to_throw_insert is not None:
-            pulumi.set(__self__, "parts_to_throw_insert", parts_to_throw_insert)
-        if replicated_deduplication_window is not None:
-            pulumi.set(__self__, "replicated_deduplication_window", replicated_deduplication_window)
-        if replicated_deduplication_window_seconds is not None:
-            pulumi.set(__self__, "replicated_deduplication_window_seconds", replicated_deduplication_window_seconds)
+
+    @property
+    @pulumi.getter(name="maxBytesToMergeAtMinSpaceInPool")
+    def max_bytes_to_merge_at_min_space_in_pool(self) -> int:
+        """
+        Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
+        """
+        return pulumi.get(self, "max_bytes_to_merge_at_min_space_in_pool")
+
+    @property
+    @pulumi.getter(name="maxReplicatedMergesInQueue")
+    def max_replicated_merges_in_queue(self) -> int:
+        """
+        Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
+        """
+        return pulumi.get(self, "max_replicated_merges_in_queue")
 
     @property
     @pulumi.getter(name="minBytesForWidePart")
@@ -35694,32 +39208,8 @@ class GetMdbClickhouseClusterClickhouseConfigMergeTreeResult(dict):
         return pulumi.get(self, "min_rows_for_wide_part")
 
     @property
-    @pulumi.getter(name="ttlOnlyDropParts")
-    def ttl_only_drop_parts(self) -> bool:
-        """
-        (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
-        """
-        return pulumi.get(self, "ttl_only_drop_parts")
-
-    @property
-    @pulumi.getter(name="maxBytesToMergeAtMinSpaceInPool")
-    def max_bytes_to_merge_at_min_space_in_pool(self) -> Optional[int]:
-        """
-        Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
-        """
-        return pulumi.get(self, "max_bytes_to_merge_at_min_space_in_pool")
-
-    @property
-    @pulumi.getter(name="maxReplicatedMergesInQueue")
-    def max_replicated_merges_in_queue(self) -> Optional[int]:
-        """
-        Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
-        """
-        return pulumi.get(self, "max_replicated_merges_in_queue")
-
-    @property
     @pulumi.getter(name="numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge")
-    def number_of_free_entries_in_pool_to_lower_max_size_of_merge(self) -> Optional[int]:
+    def number_of_free_entries_in_pool_to_lower_max_size_of_merge(self) -> int:
         """
         Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
         """
@@ -35727,7 +39217,7 @@ class GetMdbClickhouseClusterClickhouseConfigMergeTreeResult(dict):
 
     @property
     @pulumi.getter(name="partsToDelayInsert")
-    def parts_to_delay_insert(self) -> Optional[int]:
+    def parts_to_delay_insert(self) -> int:
         """
         Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
         """
@@ -35735,7 +39225,7 @@ class GetMdbClickhouseClusterClickhouseConfigMergeTreeResult(dict):
 
     @property
     @pulumi.getter(name="partsToThrowInsert")
-    def parts_to_throw_insert(self) -> Optional[int]:
+    def parts_to_throw_insert(self) -> int:
         """
         Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
         """
@@ -35743,7 +39233,7 @@ class GetMdbClickhouseClusterClickhouseConfigMergeTreeResult(dict):
 
     @property
     @pulumi.getter(name="replicatedDeduplicationWindow")
-    def replicated_deduplication_window(self) -> Optional[int]:
+    def replicated_deduplication_window(self) -> int:
         """
         Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
         """
@@ -35751,29 +39241,51 @@ class GetMdbClickhouseClusterClickhouseConfigMergeTreeResult(dict):
 
     @property
     @pulumi.getter(name="replicatedDeduplicationWindowSeconds")
-    def replicated_deduplication_window_seconds(self) -> Optional[int]:
+    def replicated_deduplication_window_seconds(self) -> int:
         """
         Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
         """
         return pulumi.get(self, "replicated_deduplication_window_seconds")
 
+    @property
+    @pulumi.getter(name="ttlOnlyDropParts")
+    def ttl_only_drop_parts(self) -> bool:
+        """
+        (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+        """
+        return pulumi.get(self, "ttl_only_drop_parts")
+
 
 @pulumi.output_type
 class GetMdbClickhouseClusterClickhouseConfigRabbitmqResult(dict):
     def __init__(__self__, *,
-                 vhost: str,
-                 password: Optional[str] = None,
-                 username: Optional[str] = None):
+                 password: str,
+                 username: str,
+                 vhost: str):
         """
-        :param str vhost: (Optional) RabbitMQ vhost. Default: '\\'.
         :param str password: RabbitMQ user password.
         :param str username: RabbitMQ username.
+        :param str vhost: (Optional) RabbitMQ vhost. Default: '\\'.
         """
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
         pulumi.set(__self__, "vhost", vhost)
-        if password is not None:
-            pulumi.set(__self__, "password", password)
-        if username is not None:
-            pulumi.set(__self__, "username", username)
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        """
+        RabbitMQ user password.
+        """
+        return pulumi.get(self, "password")
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        RabbitMQ username.
+        """
+        return pulumi.get(self, "username")
 
     @property
     @pulumi.getter
@@ -35783,25 +39295,9 @@ class GetMdbClickhouseClusterClickhouseConfigRabbitmqResult(dict):
         """
         return pulumi.get(self, "vhost")
 
-    @property
-    @pulumi.getter
-    def password(self) -> Optional[str]:
-        """
-        RabbitMQ user password.
-        """
-        return pulumi.get(self, "password")
-
-    @property
-    @pulumi.getter
-    def username(self) -> Optional[str]:
-        """
-        RabbitMQ username.
-        """
-        return pulumi.get(self, "username")
-
 
 @pulumi.output_type
-class GetMdbClickhouseClusterClickhouseResourceResult(dict):
+class GetMdbClickhouseClusterClickhouseResourcesResult(dict):
     def __init__(__self__, *,
                  disk_size: int,
                  disk_type_id: str,
@@ -35841,18 +39337,19 @@ class GetMdbClickhouseClusterCloudStorageResult(dict):
     def __init__(__self__, *,
                  data_cache_enabled: bool,
                  data_cache_max_size: int,
-                 enabled: bool,
-                 move_factor: float):
+                 move_factor: float,
+                 enabled: Optional[bool] = None):
         """
         :param bool data_cache_enabled: Enables temporary storage in the cluster repository of data requested from the object repository.
         :param int data_cache_max_size: Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
-        :param bool enabled: (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
         :param float move_factor: Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+        :param bool enabled: (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
         """
         pulumi.set(__self__, "data_cache_enabled", data_cache_enabled)
         pulumi.set(__self__, "data_cache_max_size", data_cache_max_size)
-        pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "move_factor", move_factor)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter(name="dataCacheEnabled")
@@ -35871,14 +39368,6 @@ class GetMdbClickhouseClusterCloudStorageResult(dict):
         return pulumi.get(self, "data_cache_max_size")
 
     @property
-    @pulumi.getter
-    def enabled(self) -> bool:
-        """
-        (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
-        """
-        return pulumi.get(self, "enabled")
-
-    @property
     @pulumi.getter(name="moveFactor")
     def move_factor(self) -> float:
         """
@@ -35886,19 +39375,28 @@ class GetMdbClickhouseClusterCloudStorageResult(dict):
         """
         return pulumi.get(self, "move_factor")
 
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+        """
+        return pulumi.get(self, "enabled")
+
 
 @pulumi.output_type
 class GetMdbClickhouseClusterDatabaseResult(dict):
     def __init__(__self__, *,
-                 name: str):
+                 name: Optional[str] = None):
         """
         :param str name: The name of the ClickHouse cluster.
         """
-        pulumi.set(__self__, "name", name)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> Optional[str]:
         """
         The name of the ClickHouse cluster.
         """
@@ -35908,21 +39406,24 @@ class GetMdbClickhouseClusterDatabaseResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterFormatSchemaResult(dict):
     def __init__(__self__, *,
-                 name: str,
-                 type: str,
-                 uri: str):
+                 name: Optional[str] = None,
+                 type: Optional[str] = None,
+                 uri: Optional[str] = None):
         """
         :param str name: The name of the ClickHouse cluster.
         :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         :param str uri: Model file URL. You can only use models stored in Yandex Object Storage.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "uri", uri)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if uri is not None:
+            pulumi.set(__self__, "uri", uri)
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> Optional[str]:
         """
         The name of the ClickHouse cluster.
         """
@@ -35930,7 +39431,7 @@ class GetMdbClickhouseClusterFormatSchemaResult(dict):
 
     @property
     @pulumi.getter
-    def type(self) -> str:
+    def type(self) -> Optional[str]:
         """
         Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         """
@@ -35938,7 +39439,7 @@ class GetMdbClickhouseClusterFormatSchemaResult(dict):
 
     @property
     @pulumi.getter
-    def uri(self) -> str:
+    def uri(self) -> Optional[str]:
         """
         Model file URL. You can only use models stored in Yandex Object Storage.
         """
@@ -35948,34 +39449,29 @@ class GetMdbClickhouseClusterFormatSchemaResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterHostResult(dict):
     def __init__(__self__, *,
-                 assign_public_ip: bool,
                  fqdn: str,
                  shard_name: str,
                  subnet_id: str,
-                 type: str,
-                 zone: str):
+                 assign_public_ip: Optional[bool] = None,
+                 type: Optional[str] = None,
+                 zone: Optional[str] = None):
         """
-        :param bool assign_public_ip: Sets whether the host should get a public IP address on creation.
         :param str fqdn: The fully qualified domain name of the host.
         :param str shard_name: The name of the shard to which the host belongs.
         :param str subnet_id: The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        :param bool assign_public_ip: Sets whether the host should get a public IP address on creation.
         :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         :param str zone: The availability zone where the ClickHouse host will be created.
         """
-        pulumi.set(__self__, "assign_public_ip", assign_public_ip)
         pulumi.set(__self__, "fqdn", fqdn)
         pulumi.set(__self__, "shard_name", shard_name)
         pulumi.set(__self__, "subnet_id", subnet_id)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "zone", zone)
-
-    @property
-    @pulumi.getter(name="assignPublicIp")
-    def assign_public_ip(self) -> bool:
-        """
-        Sets whether the host should get a public IP address on creation.
-        """
-        return pulumi.get(self, "assign_public_ip")
+        if assign_public_ip is not None:
+            pulumi.set(__self__, "assign_public_ip", assign_public_ip)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if zone is not None:
+            pulumi.set(__self__, "zone", zone)
 
     @property
     @pulumi.getter
@@ -36002,8 +39498,16 @@ class GetMdbClickhouseClusterHostResult(dict):
         return pulumi.get(self, "subnet_id")
 
     @property
+    @pulumi.getter(name="assignPublicIp")
+    def assign_public_ip(self) -> Optional[bool]:
+        """
+        Sets whether the host should get a public IP address on creation.
+        """
+        return pulumi.get(self, "assign_public_ip")
+
+    @property
     @pulumi.getter
-    def type(self) -> str:
+    def type(self) -> Optional[str]:
         """
         Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         """
@@ -36011,7 +39515,7 @@ class GetMdbClickhouseClusterHostResult(dict):
 
     @property
     @pulumi.getter
-    def zone(self) -> str:
+    def zone(self) -> Optional[str]:
         """
         The availability zone where the ClickHouse host will be created.
         """
@@ -36021,21 +39525,24 @@ class GetMdbClickhouseClusterHostResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterMaintenanceWindowResult(dict):
     def __init__(__self__, *,
-                 day: str,
-                 hour: int,
-                 type: str):
+                 day: Optional[str] = None,
+                 hour: Optional[int] = None,
+                 type: Optional[str] = None):
         """
         :param str day: Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
         :param int hour: Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
         :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         """
-        pulumi.set(__self__, "day", day)
-        pulumi.set(__self__, "hour", hour)
-        pulumi.set(__self__, "type", type)
+        if day is not None:
+            pulumi.set(__self__, "day", day)
+        if hour is not None:
+            pulumi.set(__self__, "hour", hour)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
-    def day(self) -> str:
+    def day(self) -> Optional[str]:
         """
         Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
         """
@@ -36043,7 +39550,7 @@ class GetMdbClickhouseClusterMaintenanceWindowResult(dict):
 
     @property
     @pulumi.getter
-    def hour(self) -> int:
+    def hour(self) -> Optional[int]:
         """
         Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
         """
@@ -36051,7 +39558,7 @@ class GetMdbClickhouseClusterMaintenanceWindowResult(dict):
 
     @property
     @pulumi.getter
-    def type(self) -> str:
+    def type(self) -> Optional[str]:
         """
         Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         """
@@ -36061,21 +39568,24 @@ class GetMdbClickhouseClusterMaintenanceWindowResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterMlModelResult(dict):
     def __init__(__self__, *,
-                 name: str,
-                 type: str,
-                 uri: str):
+                 name: Optional[str] = None,
+                 type: Optional[str] = None,
+                 uri: Optional[str] = None):
         """
         :param str name: The name of the ClickHouse cluster.
         :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         :param str uri: Model file URL. You can only use models stored in Yandex Object Storage.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "type", type)
-        pulumi.set(__self__, "uri", uri)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if uri is not None:
+            pulumi.set(__self__, "uri", uri)
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> Optional[str]:
         """
         The name of the ClickHouse cluster.
         """
@@ -36083,7 +39593,7 @@ class GetMdbClickhouseClusterMlModelResult(dict):
 
     @property
     @pulumi.getter
-    def type(self) -> str:
+    def type(self) -> Optional[str]:
         """
         Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         """
@@ -36091,7 +39601,7 @@ class GetMdbClickhouseClusterMlModelResult(dict):
 
     @property
     @pulumi.getter
-    def uri(self) -> str:
+    def uri(self) -> Optional[str]:
         """
         Model file URL. You can only use models stored in Yandex Object Storage.
         """
@@ -36101,25 +39611,18 @@ class GetMdbClickhouseClusterMlModelResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterShardResult(dict):
     def __init__(__self__, *,
-                 name: str,
                  resources: 'outputs.GetMdbClickhouseClusterShardResourcesResult',
-                 weight: int):
+                 weight: int,
+                 name: Optional[str] = None):
         """
-        :param str name: The name of the ClickHouse cluster.
         :param 'GetMdbClickhouseClusterShardResourcesArgs' resources: Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         :param int weight: The weight of the shard.
+        :param str name: The name of the ClickHouse cluster.
         """
-        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "resources", resources)
         pulumi.set(__self__, "weight", weight)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The name of the ClickHouse cluster.
-        """
-        return pulumi.get(self, "name")
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -36137,25 +39640,36 @@ class GetMdbClickhouseClusterShardResult(dict):
         """
         return pulumi.get(self, "weight")
 
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the ClickHouse cluster.
+        """
+        return pulumi.get(self, "name")
+
 
 @pulumi.output_type
 class GetMdbClickhouseClusterShardGroupResult(dict):
     def __init__(__self__, *,
-                 description: str,
-                 name: str,
-                 shard_names: Sequence[str]):
+                 description: Optional[str] = None,
+                 name: Optional[str] = None,
+                 shard_names: Optional[Sequence[str]] = None):
         """
         :param str description: Description of the shard group.
         :param str name: The name of the ClickHouse cluster.
         :param Sequence[str] shard_names: List of shards names that belong to the shard group.
         """
-        pulumi.set(__self__, "description", description)
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "shard_names", shard_names)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if shard_names is not None:
+            pulumi.set(__self__, "shard_names", shard_names)
 
     @property
     @pulumi.getter
-    def description(self) -> str:
+    def description(self) -> Optional[str]:
         """
         Description of the shard group.
         """
@@ -36163,7 +39677,7 @@ class GetMdbClickhouseClusterShardGroupResult(dict):
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> Optional[str]:
         """
         The name of the ClickHouse cluster.
         """
@@ -36171,7 +39685,7 @@ class GetMdbClickhouseClusterShardGroupResult(dict):
 
     @property
     @pulumi.getter(name="shardNames")
-    def shard_names(self) -> Sequence[str]:
+    def shard_names(self) -> Optional[Sequence[str]]:
         """
         List of shards names that belong to the shard group.
         """
@@ -36217,28 +39731,25 @@ class GetMdbClickhouseClusterShardResourcesResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterUserResult(dict):
     def __init__(__self__, *,
-                 name: str,
                  permissions: Sequence['outputs.GetMdbClickhouseClusterUserPermissionResult'],
                  quotas: Sequence['outputs.GetMdbClickhouseClusterUserQuotaResult'],
-                 settings: 'outputs.GetMdbClickhouseClusterUserSettingsResult'):
+                 settings: 'outputs.GetMdbClickhouseClusterUserSettingsResult',
+                 name: Optional[str] = None,
+                 password: Optional[str] = None):
         """
-        :param str name: The name of the ClickHouse cluster.
         :param Sequence['GetMdbClickhouseClusterUserPermissionArgs'] permissions: Set of permissions granted to the user. The structure is documented below.
         :param Sequence['GetMdbClickhouseClusterUserQuotaArgs'] quotas: Set of user quotas. The structure is documented below.
         :param 'GetMdbClickhouseClusterUserSettingsArgs' settings: Kafka connection settngs sanem as `kafka` block.
+        :param str name: The name of the ClickHouse cluster.
+        :param str password: RabbitMQ user password.
         """
-        pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "permissions", permissions)
         pulumi.set(__self__, "quotas", quotas)
         pulumi.set(__self__, "settings", settings)
-
-    @property
-    @pulumi.getter
-    def name(self) -> str:
-        """
-        The name of the ClickHouse cluster.
-        """
-        return pulumi.get(self, "name")
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
 
     @property
     @pulumi.getter
@@ -36264,19 +39775,36 @@ class GetMdbClickhouseClusterUserResult(dict):
         """
         return pulumi.get(self, "settings")
 
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the ClickHouse cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        RabbitMQ user password.
+        """
+        return pulumi.get(self, "password")
+
 
 @pulumi.output_type
 class GetMdbClickhouseClusterUserPermissionResult(dict):
     def __init__(__self__, *,
-                 database_name: str):
+                 database_name: Optional[str] = None):
         """
         :param str database_name: The name of the database that the permission grants access to.
         """
-        pulumi.set(__self__, "database_name", database_name)
+        if database_name is not None:
+            pulumi.set(__self__, "database_name", database_name)
 
     @property
     @pulumi.getter(name="databaseName")
-    def database_name(self) -> str:
+    def database_name(self) -> Optional[str]:
         """
         The name of the database that the permission grants access to.
         """
@@ -36288,24 +39816,25 @@ class GetMdbClickhouseClusterUserQuotaResult(dict):
     def __init__(__self__, *,
                  errors: int,
                  execution_time: int,
-                 interval_duration: int,
                  queries: int,
                  read_rows: int,
-                 result_rows: int):
+                 result_rows: int,
+                 interval_duration: Optional[int] = None):
         """
         :param int errors: The number of queries that threw exception.
         :param int execution_time: The total query execution time, in milliseconds (wall time).
-        :param int interval_duration: Duration of interval for quota in milliseconds.
         :param int queries: The total number of queries.
         :param int read_rows: The total number of source rows read from tables for running the query, on all remote servers.
         :param int result_rows: The total number of rows given as the result.
+        :param int interval_duration: Duration of interval for quota in milliseconds.
         """
         pulumi.set(__self__, "errors", errors)
         pulumi.set(__self__, "execution_time", execution_time)
-        pulumi.set(__self__, "interval_duration", interval_duration)
         pulumi.set(__self__, "queries", queries)
         pulumi.set(__self__, "read_rows", read_rows)
         pulumi.set(__self__, "result_rows", result_rows)
+        if interval_duration is not None:
+            pulumi.set(__self__, "interval_duration", interval_duration)
 
     @property
     @pulumi.getter
@@ -36322,14 +39851,6 @@ class GetMdbClickhouseClusterUserQuotaResult(dict):
         The total query execution time, in milliseconds (wall time).
         """
         return pulumi.get(self, "execution_time")
-
-    @property
-    @pulumi.getter(name="intervalDuration")
-    def interval_duration(self) -> int:
-        """
-        Duration of interval for quota in milliseconds.
-        """
-        return pulumi.get(self, "interval_duration")
 
     @property
     @pulumi.getter
@@ -36354,6 +39875,14 @@ class GetMdbClickhouseClusterUserQuotaResult(dict):
         The total number of rows given as the result.
         """
         return pulumi.get(self, "result_rows")
+
+    @property
+    @pulumi.getter(name="intervalDuration")
+    def interval_duration(self) -> Optional[int]:
+        """
+        Duration of interval for quota in milliseconds.
+        """
+        return pulumi.get(self, "interval_duration")
 
 
 @pulumi.output_type
@@ -37593,15 +41122,15 @@ class GetMdbClickhouseClusterUserSettingsResult(dict):
 @pulumi.output_type
 class GetMdbClickhouseClusterZookeeperResult(dict):
     def __init__(__self__, *,
-                 resources: Sequence['outputs.GetMdbClickhouseClusterZookeeperResourceResult']):
+                 resources: 'outputs.GetMdbClickhouseClusterZookeeperResourcesResult'):
         """
-        :param Sequence['GetMdbClickhouseClusterZookeeperResourceArgs'] resources: Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+        :param 'GetMdbClickhouseClusterZookeeperResourcesArgs' resources: Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         """
         pulumi.set(__self__, "resources", resources)
 
     @property
     @pulumi.getter
-    def resources(self) -> Sequence['outputs.GetMdbClickhouseClusterZookeeperResourceResult']:
+    def resources(self) -> 'outputs.GetMdbClickhouseClusterZookeeperResourcesResult':
         """
         Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
         """
@@ -37609,7 +41138,7 @@ class GetMdbClickhouseClusterZookeeperResult(dict):
 
 
 @pulumi.output_type
-class GetMdbClickhouseClusterZookeeperResourceResult(dict):
+class GetMdbClickhouseClusterZookeeperResourcesResult(dict):
     def __init__(__self__, *,
                  disk_size: int,
                  disk_type_id: str,
@@ -38693,32 +42222,21 @@ class GetMdbKafkaClusterMaintenanceWindowResult(dict):
 @pulumi.output_type
 class GetMdbKafkaClusterTopicResult(dict):
     def __init__(__self__, *,
-                 cluster_id: str,
                  name: str,
                  partitions: int,
                  replication_factor: int,
                  topic_config: Optional['outputs.GetMdbKafkaClusterTopicTopicConfigResult'] = None):
         """
-        :param str cluster_id: The ID of the Kafka cluster.
         :param str name: The name of the Kafka cluster.
         :param int partitions: (Required) The number of the topic's partitions.
         :param int replication_factor: (Required) Amount of data copies (replicas) for the topic in the cluster.
         :param 'GetMdbKafkaClusterTopicTopicConfigArgs' topic_config: (Required) User-defined settings for the topic. The structure is documented below.
         """
-        pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "partitions", partitions)
         pulumi.set(__self__, "replication_factor", replication_factor)
         if topic_config is not None:
             pulumi.set(__self__, "topic_config", topic_config)
-
-    @property
-    @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> str:
-        """
-        The ID of the Kafka cluster.
-        """
-        return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter
@@ -38933,6 +42451,404 @@ class GetMdbKafkaClusterUserPermissionResult(dict):
 
 
 @pulumi.output_type
+class GetMdbKafkaConnectorConnectorConfigMirrormakerResult(dict):
+    def __init__(__self__, *,
+                 replication_factor: int,
+                 source_clusters: Sequence['outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterResult'],
+                 target_clusters: Sequence['outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterResult'],
+                 topics: str):
+        """
+        :param int replication_factor: Replication factor for topics created in target cluster
+        :param Sequence['GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterArgs'] source_clusters: Settings for source cluster. The structure is documented below.
+        :param Sequence['GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterArgs'] target_clusters: Settings for target cluster. The structure is documented below.
+        :param str topics: The pattern for topic names to be copied to s3 bucket.
+        """
+        pulumi.set(__self__, "replication_factor", replication_factor)
+        pulumi.set(__self__, "source_clusters", source_clusters)
+        pulumi.set(__self__, "target_clusters", target_clusters)
+        pulumi.set(__self__, "topics", topics)
+
+    @property
+    @pulumi.getter(name="replicationFactor")
+    def replication_factor(self) -> int:
+        """
+        Replication factor for topics created in target cluster
+        """
+        return pulumi.get(self, "replication_factor")
+
+    @property
+    @pulumi.getter(name="sourceClusters")
+    def source_clusters(self) -> Sequence['outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterResult']:
+        """
+        Settings for source cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "source_clusters")
+
+    @property
+    @pulumi.getter(name="targetClusters")
+    def target_clusters(self) -> Sequence['outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterResult']:
+        """
+        Settings for target cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "target_clusters")
+
+    @property
+    @pulumi.getter
+    def topics(self) -> str:
+        """
+        The pattern for topic names to be copied to s3 bucket.
+        """
+        return pulumi.get(self, "topics")
+
+
+@pulumi.output_type
+class GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterResult(dict):
+    def __init__(__self__, *,
+                 alias: str,
+                 external_clusters: Sequence['outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterResult'],
+                 this_clusters: Sequence['outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterResult']):
+        """
+        :param str alias: Name of the cluster. Used also as a topic prefix
+        :param Sequence['GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterArgs'] external_clusters: Connection params for external cluster
+        :param Sequence['GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterArgs'] this_clusters: Using this section in the cluster definition (source or target) means it's this cluster
+        """
+        pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "external_clusters", external_clusters)
+        pulumi.set(__self__, "this_clusters", this_clusters)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> str:
+        """
+        Name of the cluster. Used also as a topic prefix
+        """
+        return pulumi.get(self, "alias")
+
+    @property
+    @pulumi.getter(name="externalClusters")
+    def external_clusters(self) -> Sequence['outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterResult']:
+        """
+        Connection params for external cluster
+        """
+        return pulumi.get(self, "external_clusters")
+
+    @property
+    @pulumi.getter(name="thisClusters")
+    def this_clusters(self) -> Sequence['outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterResult']:
+        """
+        Using this section in the cluster definition (source or target) means it's this cluster
+        """
+        return pulumi.get(self, "this_clusters")
+
+
+@pulumi.output_type
+class GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalClusterResult(dict):
+    def __init__(__self__, *,
+                 bootstrap_servers: str,
+                 sasl_mechanism: str,
+                 sasl_password: str,
+                 sasl_username: str,
+                 security_protocol: str):
+        """
+        :param str bootstrap_servers: List of bootstrap servers to connect to cluster
+        :param str sasl_mechanism: Type of SASL authentification mechanism to use
+        :param str sasl_password: Password to use in SASL authentification mechanism
+        :param str sasl_username: Username to use in SASL authentification mechanism
+        :param str security_protocol: Security protocol to use
+        """
+        pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
+        pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
+        pulumi.set(__self__, "sasl_password", sasl_password)
+        pulumi.set(__self__, "sasl_username", sasl_username)
+        pulumi.set(__self__, "security_protocol", security_protocol)
+
+    @property
+    @pulumi.getter(name="bootstrapServers")
+    def bootstrap_servers(self) -> str:
+        """
+        List of bootstrap servers to connect to cluster
+        """
+        return pulumi.get(self, "bootstrap_servers")
+
+    @property
+    @pulumi.getter(name="saslMechanism")
+    def sasl_mechanism(self) -> str:
+        """
+        Type of SASL authentification mechanism to use
+        """
+        return pulumi.get(self, "sasl_mechanism")
+
+    @property
+    @pulumi.getter(name="saslPassword")
+    def sasl_password(self) -> str:
+        """
+        Password to use in SASL authentification mechanism
+        """
+        return pulumi.get(self, "sasl_password")
+
+    @property
+    @pulumi.getter(name="saslUsername")
+    def sasl_username(self) -> str:
+        """
+        Username to use in SASL authentification mechanism
+        """
+        return pulumi.get(self, "sasl_username")
+
+    @property
+    @pulumi.getter(name="securityProtocol")
+    def security_protocol(self) -> str:
+        """
+        Security protocol to use
+        """
+        return pulumi.get(self, "security_protocol")
+
+
+@pulumi.output_type
+class GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisClusterResult(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterResult(dict):
+    def __init__(__self__, *,
+                 alias: str,
+                 external_clusters: Sequence['outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterResult'],
+                 this_clusters: Sequence['outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterResult']):
+        """
+        :param str alias: Name of the cluster. Used also as a topic prefix
+        :param Sequence['GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterArgs'] external_clusters: Connection params for external cluster
+        :param Sequence['GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterArgs'] this_clusters: Using this section in the cluster definition (source or target) means it's this cluster
+        """
+        pulumi.set(__self__, "alias", alias)
+        pulumi.set(__self__, "external_clusters", external_clusters)
+        pulumi.set(__self__, "this_clusters", this_clusters)
+
+    @property
+    @pulumi.getter
+    def alias(self) -> str:
+        """
+        Name of the cluster. Used also as a topic prefix
+        """
+        return pulumi.get(self, "alias")
+
+    @property
+    @pulumi.getter(name="externalClusters")
+    def external_clusters(self) -> Sequence['outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterResult']:
+        """
+        Connection params for external cluster
+        """
+        return pulumi.get(self, "external_clusters")
+
+    @property
+    @pulumi.getter(name="thisClusters")
+    def this_clusters(self) -> Sequence['outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterResult']:
+        """
+        Using this section in the cluster definition (source or target) means it's this cluster
+        """
+        return pulumi.get(self, "this_clusters")
+
+
+@pulumi.output_type
+class GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalClusterResult(dict):
+    def __init__(__self__, *,
+                 bootstrap_servers: str,
+                 sasl_mechanism: str,
+                 sasl_password: str,
+                 sasl_username: str,
+                 security_protocol: str):
+        """
+        :param str bootstrap_servers: List of bootstrap servers to connect to cluster
+        :param str sasl_mechanism: Type of SASL authentification mechanism to use
+        :param str sasl_password: Password to use in SASL authentification mechanism
+        :param str sasl_username: Username to use in SASL authentification mechanism
+        :param str security_protocol: Security protocol to use
+        """
+        pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
+        pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
+        pulumi.set(__self__, "sasl_password", sasl_password)
+        pulumi.set(__self__, "sasl_username", sasl_username)
+        pulumi.set(__self__, "security_protocol", security_protocol)
+
+    @property
+    @pulumi.getter(name="bootstrapServers")
+    def bootstrap_servers(self) -> str:
+        """
+        List of bootstrap servers to connect to cluster
+        """
+        return pulumi.get(self, "bootstrap_servers")
+
+    @property
+    @pulumi.getter(name="saslMechanism")
+    def sasl_mechanism(self) -> str:
+        """
+        Type of SASL authentification mechanism to use
+        """
+        return pulumi.get(self, "sasl_mechanism")
+
+    @property
+    @pulumi.getter(name="saslPassword")
+    def sasl_password(self) -> str:
+        """
+        Password to use in SASL authentification mechanism
+        """
+        return pulumi.get(self, "sasl_password")
+
+    @property
+    @pulumi.getter(name="saslUsername")
+    def sasl_username(self) -> str:
+        """
+        Username to use in SASL authentification mechanism
+        """
+        return pulumi.get(self, "sasl_username")
+
+    @property
+    @pulumi.getter(name="securityProtocol")
+    def security_protocol(self) -> str:
+        """
+        Security protocol to use
+        """
+        return pulumi.get(self, "security_protocol")
+
+
+@pulumi.output_type
+class GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisClusterResult(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class GetMdbKafkaConnectorConnectorConfigS3SinkResult(dict):
+    def __init__(__self__, *,
+                 file_compression_type: str,
+                 file_max_records: int,
+                 s3_connections: Sequence['outputs.GetMdbKafkaConnectorConnectorConfigS3SinkS3ConnectionResult'],
+                 topics: str):
+        """
+        :param str file_compression_type: Сompression type for messages. Cannot be changed.
+        :param int file_max_records: Max records per file.
+        :param Sequence['GetMdbKafkaConnectorConnectorConfigS3SinkS3ConnectionArgs'] s3_connections: Settings for connection to s3-compatible storage. The structure is documented below.
+        :param str topics: The pattern for topic names to be copied to s3 bucket.
+        """
+        pulumi.set(__self__, "file_compression_type", file_compression_type)
+        pulumi.set(__self__, "file_max_records", file_max_records)
+        pulumi.set(__self__, "s3_connections", s3_connections)
+        pulumi.set(__self__, "topics", topics)
+
+    @property
+    @pulumi.getter(name="fileCompressionType")
+    def file_compression_type(self) -> str:
+        """
+        Сompression type for messages. Cannot be changed.
+        """
+        return pulumi.get(self, "file_compression_type")
+
+    @property
+    @pulumi.getter(name="fileMaxRecords")
+    def file_max_records(self) -> int:
+        """
+        Max records per file.
+        """
+        return pulumi.get(self, "file_max_records")
+
+    @property
+    @pulumi.getter(name="s3Connections")
+    def s3_connections(self) -> Sequence['outputs.GetMdbKafkaConnectorConnectorConfigS3SinkS3ConnectionResult']:
+        """
+        Settings for connection to s3-compatible storage. The structure is documented below.
+        """
+        return pulumi.get(self, "s3_connections")
+
+    @property
+    @pulumi.getter
+    def topics(self) -> str:
+        """
+        The pattern for topic names to be copied to s3 bucket.
+        """
+        return pulumi.get(self, "topics")
+
+
+@pulumi.output_type
+class GetMdbKafkaConnectorConnectorConfigS3SinkS3ConnectionResult(dict):
+    def __init__(__self__, *,
+                 bucket_name: str,
+                 external_s3s: Sequence['outputs.GetMdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Result']):
+        """
+        :param str bucket_name: Name of the bucket in s3-compatible storage.
+        :param Sequence['GetMdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args'] external_s3s: Connection params for external s3-compatible storage. The structure is documented below.
+        """
+        pulumi.set(__self__, "bucket_name", bucket_name)
+        pulumi.set(__self__, "external_s3s", external_s3s)
+
+    @property
+    @pulumi.getter(name="bucketName")
+    def bucket_name(self) -> str:
+        """
+        Name of the bucket in s3-compatible storage.
+        """
+        return pulumi.get(self, "bucket_name")
+
+    @property
+    @pulumi.getter(name="externalS3s")
+    def external_s3s(self) -> Sequence['outputs.GetMdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Result']:
+        """
+        Connection params for external s3-compatible storage. The structure is documented below.
+        """
+        return pulumi.get(self, "external_s3s")
+
+
+@pulumi.output_type
+class GetMdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Result(dict):
+    def __init__(__self__, *,
+                 access_key_id: str,
+                 endpoint: str,
+                 region: str,
+                 secret_access_key: str):
+        """
+        :param str access_key_id: ID of aws-compatible static key.
+        :param str endpoint: URL of s3-compatible storage.
+        :param str region: region of s3-compatible storage. [Available region list](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/regions/Regions.html).
+        :param str secret_access_key: Secret key of aws-compatible static key.
+        """
+        pulumi.set(__self__, "access_key_id", access_key_id)
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "secret_access_key", secret_access_key)
+
+    @property
+    @pulumi.getter(name="accessKeyId")
+    def access_key_id(self) -> str:
+        """
+        ID of aws-compatible static key.
+        """
+        return pulumi.get(self, "access_key_id")
+
+    @property
+    @pulumi.getter
+    def endpoint(self) -> str:
+        """
+        URL of s3-compatible storage.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        region of s3-compatible storage. [Available region list](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/regions/Regions.html).
+        """
+        return pulumi.get(self, "region")
+
+    @property
+    @pulumi.getter(name="secretAccessKey")
+    def secret_access_key(self) -> str:
+        """
+        Secret key of aws-compatible static key.
+        """
+        return pulumi.get(self, "secret_access_key")
+
+
+@pulumi.output_type
 class GetMdbKafkaTopicTopicConfigResult(dict):
     def __init__(__self__, *,
                  cleanup_policy: str,
@@ -39029,24 +42945,49 @@ class GetMdbKafkaTopicTopicConfigResult(dict):
 
 
 @pulumi.output_type
+class GetMdbKafkaUserPermissionResult(dict):
+    def __init__(__self__, *,
+                 role: str,
+                 topic_name: str):
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "topic_name", topic_name)
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> str:
+        return pulumi.get(self, "topic_name")
+
+
+@pulumi.output_type
 class GetMdbMongodbClusterClusterConfigResult(dict):
     def __init__(__self__, *,
                  access: 'outputs.GetMdbMongodbClusterClusterConfigAccessResult',
                  backup_window_start: 'outputs.GetMdbMongodbClusterClusterConfigBackupWindowStartResult',
                  feature_compatibility_version: str,
+                 mongocfg: 'outputs.GetMdbMongodbClusterClusterConfigMongocfgResult',
                  mongod: 'outputs.GetMdbMongodbClusterClusterConfigMongodResult',
+                 mongos: 'outputs.GetMdbMongodbClusterClusterConfigMongosResult',
+                 performance_diagnostics: 'outputs.GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsResult',
                  version: Optional[str] = None):
         """
         :param 'GetMdbMongodbClusterClusterConfigAccessArgs' access: Access policy to MongoDB cluster. The structure is documented below.
         :param 'GetMdbMongodbClusterClusterConfigBackupWindowStartArgs' backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
         :param str feature_compatibility_version: Feature compatibility version of MongoDB.
         :param 'GetMdbMongodbClusterClusterConfigMongodArgs' mongod: (Optional) Configuration of the mongod service. The structure is documented below.
-        :param str version: Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+        :param str version: Version of MongoDB (either 6.0, 6.0-enterprise, 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2).
         """
         pulumi.set(__self__, "access", access)
         pulumi.set(__self__, "backup_window_start", backup_window_start)
         pulumi.set(__self__, "feature_compatibility_version", feature_compatibility_version)
+        pulumi.set(__self__, "mongocfg", mongocfg)
         pulumi.set(__self__, "mongod", mongod)
+        pulumi.set(__self__, "mongos", mongos)
+        pulumi.set(__self__, "performance_diagnostics", performance_diagnostics)
         if version is not None:
             pulumi.set(__self__, "version", version)
 
@@ -39076,6 +43017,11 @@ class GetMdbMongodbClusterClusterConfigResult(dict):
 
     @property
     @pulumi.getter
+    def mongocfg(self) -> 'outputs.GetMdbMongodbClusterClusterConfigMongocfgResult':
+        return pulumi.get(self, "mongocfg")
+
+    @property
+    @pulumi.getter
     def mongod(self) -> 'outputs.GetMdbMongodbClusterClusterConfigMongodResult':
         """
         (Optional) Configuration of the mongod service. The structure is documented below.
@@ -39084,9 +43030,19 @@ class GetMdbMongodbClusterClusterConfigResult(dict):
 
     @property
     @pulumi.getter
+    def mongos(self) -> 'outputs.GetMdbMongodbClusterClusterConfigMongosResult':
+        return pulumi.get(self, "mongos")
+
+    @property
+    @pulumi.getter(name="performanceDiagnostics")
+    def performance_diagnostics(self) -> 'outputs.GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsResult':
+        return pulumi.get(self, "performance_diagnostics")
+
+    @property
+    @pulumi.getter
     def version(self) -> Optional[str]:
         """
-        Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+        Version of MongoDB (either 6.0, 6.0-enterprise, 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2).
         """
         return pulumi.get(self, "version")
 
@@ -39154,11 +43110,103 @@ class GetMdbMongodbClusterClusterConfigBackupWindowStartResult(dict):
 
 
 @pulumi.output_type
+class GetMdbMongodbClusterClusterConfigMongocfgResult(dict):
+    def __init__(__self__, *,
+                 net: Optional['outputs.GetMdbMongodbClusterClusterConfigMongocfgNetResult'] = None,
+                 operation_profiling: Optional['outputs.GetMdbMongodbClusterClusterConfigMongocfgOperationProfilingResult'] = None,
+                 storage: Optional['outputs.GetMdbMongodbClusterClusterConfigMongocfgStorageResult'] = None):
+        if net is not None:
+            pulumi.set(__self__, "net", net)
+        if operation_profiling is not None:
+            pulumi.set(__self__, "operation_profiling", operation_profiling)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
+
+    @property
+    @pulumi.getter
+    def net(self) -> Optional['outputs.GetMdbMongodbClusterClusterConfigMongocfgNetResult']:
+        return pulumi.get(self, "net")
+
+    @property
+    @pulumi.getter(name="operationProfiling")
+    def operation_profiling(self) -> Optional['outputs.GetMdbMongodbClusterClusterConfigMongocfgOperationProfilingResult']:
+        return pulumi.get(self, "operation_profiling")
+
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional['outputs.GetMdbMongodbClusterClusterConfigMongocfgStorageResult']:
+        return pulumi.get(self, "storage")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterClusterConfigMongocfgNetResult(dict):
+    def __init__(__self__, *,
+                 max_incoming_connections: Optional[int] = None):
+        if max_incoming_connections is not None:
+            pulumi.set(__self__, "max_incoming_connections", max_incoming_connections)
+
+    @property
+    @pulumi.getter(name="maxIncomingConnections")
+    def max_incoming_connections(self) -> Optional[int]:
+        return pulumi.get(self, "max_incoming_connections")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterClusterConfigMongocfgOperationProfilingResult(dict):
+    def __init__(__self__, *,
+                 mode: Optional[str] = None,
+                 slow_op_threshold: Optional[int] = None):
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if slow_op_threshold is not None:
+            pulumi.set(__self__, "slow_op_threshold", slow_op_threshold)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        return pulumi.get(self, "mode")
+
+    @property
+    @pulumi.getter(name="slowOpThreshold")
+    def slow_op_threshold(self) -> Optional[int]:
+        return pulumi.get(self, "slow_op_threshold")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterClusterConfigMongocfgStorageResult(dict):
+    def __init__(__self__, *,
+                 wired_tiger: Optional['outputs.GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTigerResult'] = None):
+        if wired_tiger is not None:
+            pulumi.set(__self__, "wired_tiger", wired_tiger)
+
+    @property
+    @pulumi.getter(name="wiredTiger")
+    def wired_tiger(self) -> Optional['outputs.GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTigerResult']:
+        return pulumi.get(self, "wired_tiger")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTigerResult(dict):
+    def __init__(__self__, *,
+                 cache_size_gb: Optional[float] = None):
+        if cache_size_gb is not None:
+            pulumi.set(__self__, "cache_size_gb", cache_size_gb)
+
+    @property
+    @pulumi.getter(name="cacheSizeGb")
+    def cache_size_gb(self) -> Optional[float]:
+        return pulumi.get(self, "cache_size_gb")
+
+
+@pulumi.output_type
 class GetMdbMongodbClusterClusterConfigMongodResult(dict):
     def __init__(__self__, *,
                  audit_log: 'outputs.GetMdbMongodbClusterClusterConfigMongodAuditLogResult',
                  security: 'outputs.GetMdbMongodbClusterClusterConfigMongodSecurityResult',
-                 set_parameter: 'outputs.GetMdbMongodbClusterClusterConfigMongodSetParameterResult'):
+                 set_parameter: 'outputs.GetMdbMongodbClusterClusterConfigMongodSetParameterResult',
+                 net: Optional['outputs.GetMdbMongodbClusterClusterConfigMongodNetResult'] = None,
+                 operation_profiling: Optional['outputs.GetMdbMongodbClusterClusterConfigMongodOperationProfilingResult'] = None,
+                 storage: Optional['outputs.GetMdbMongodbClusterClusterConfigMongodStorageResult'] = None):
         """
         :param 'GetMdbMongodbClusterClusterConfigMongodAuditLogArgs' audit_log: (Optional) A set of audit log settings
                (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
@@ -39173,6 +43221,12 @@ class GetMdbMongodbClusterClusterConfigMongodResult(dict):
         pulumi.set(__self__, "audit_log", audit_log)
         pulumi.set(__self__, "security", security)
         pulumi.set(__self__, "set_parameter", set_parameter)
+        if net is not None:
+            pulumi.set(__self__, "net", net)
+        if operation_profiling is not None:
+            pulumi.set(__self__, "operation_profiling", operation_profiling)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
 
     @property
     @pulumi.getter(name="auditLog")
@@ -39204,6 +43258,21 @@ class GetMdbMongodbClusterClusterConfigMongodResult(dict):
         """
         return pulumi.get(self, "set_parameter")
 
+    @property
+    @pulumi.getter
+    def net(self) -> Optional['outputs.GetMdbMongodbClusterClusterConfigMongodNetResult']:
+        return pulumi.get(self, "net")
+
+    @property
+    @pulumi.getter(name="operationProfiling")
+    def operation_profiling(self) -> Optional['outputs.GetMdbMongodbClusterClusterConfigMongodOperationProfilingResult']:
+        return pulumi.get(self, "operation_profiling")
+
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional['outputs.GetMdbMongodbClusterClusterConfigMongodStorageResult']:
+        return pulumi.get(self, "storage")
+
 
 @pulumi.output_type
 class GetMdbMongodbClusterClusterConfigMongodAuditLogResult(dict):
@@ -39234,6 +43303,40 @@ class GetMdbMongodbClusterClusterConfigMongodAuditLogResult(dict):
     @pulumi.getter(name="runtimeConfiguration")
     def runtime_configuration(self) -> Optional[bool]:
         return pulumi.get(self, "runtime_configuration")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterClusterConfigMongodNetResult(dict):
+    def __init__(__self__, *,
+                 max_incoming_connections: Optional[int] = None):
+        if max_incoming_connections is not None:
+            pulumi.set(__self__, "max_incoming_connections", max_incoming_connections)
+
+    @property
+    @pulumi.getter(name="maxIncomingConnections")
+    def max_incoming_connections(self) -> Optional[int]:
+        return pulumi.get(self, "max_incoming_connections")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterClusterConfigMongodOperationProfilingResult(dict):
+    def __init__(__self__, *,
+                 mode: Optional[str] = None,
+                 slow_op_threshold: Optional[int] = None):
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if slow_op_threshold is not None:
+            pulumi.set(__self__, "slow_op_threshold", slow_op_threshold)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        return pulumi.get(self, "mode")
+
+    @property
+    @pulumi.getter(name="slowOpThreshold")
+    def slow_op_threshold(self) -> Optional[int]:
+        return pulumi.get(self, "slow_op_threshold")
 
 
 @pulumi.output_type
@@ -39385,6 +43488,100 @@ class GetMdbMongodbClusterClusterConfigMongodSetParameterResult(dict):
 
 
 @pulumi.output_type
+class GetMdbMongodbClusterClusterConfigMongodStorageResult(dict):
+    def __init__(__self__, *,
+                 journal: Optional['outputs.GetMdbMongodbClusterClusterConfigMongodStorageJournalResult'] = None,
+                 wired_tiger: Optional['outputs.GetMdbMongodbClusterClusterConfigMongodStorageWiredTigerResult'] = None):
+        if journal is not None:
+            pulumi.set(__self__, "journal", journal)
+        if wired_tiger is not None:
+            pulumi.set(__self__, "wired_tiger", wired_tiger)
+
+    @property
+    @pulumi.getter
+    def journal(self) -> Optional['outputs.GetMdbMongodbClusterClusterConfigMongodStorageJournalResult']:
+        return pulumi.get(self, "journal")
+
+    @property
+    @pulumi.getter(name="wiredTiger")
+    def wired_tiger(self) -> Optional['outputs.GetMdbMongodbClusterClusterConfigMongodStorageWiredTigerResult']:
+        return pulumi.get(self, "wired_tiger")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterClusterConfigMongodStorageJournalResult(dict):
+    def __init__(__self__, *,
+                 commit_interval: Optional[int] = None):
+        if commit_interval is not None:
+            pulumi.set(__self__, "commit_interval", commit_interval)
+
+    @property
+    @pulumi.getter(name="commitInterval")
+    def commit_interval(self) -> Optional[int]:
+        return pulumi.get(self, "commit_interval")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterClusterConfigMongodStorageWiredTigerResult(dict):
+    def __init__(__self__, *,
+                 block_compressor: Optional[str] = None,
+                 cache_size_gb: Optional[float] = None):
+        if block_compressor is not None:
+            pulumi.set(__self__, "block_compressor", block_compressor)
+        if cache_size_gb is not None:
+            pulumi.set(__self__, "cache_size_gb", cache_size_gb)
+
+    @property
+    @pulumi.getter(name="blockCompressor")
+    def block_compressor(self) -> Optional[str]:
+        return pulumi.get(self, "block_compressor")
+
+    @property
+    @pulumi.getter(name="cacheSizeGb")
+    def cache_size_gb(self) -> Optional[float]:
+        return pulumi.get(self, "cache_size_gb")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterClusterConfigMongosResult(dict):
+    def __init__(__self__, *,
+                 net: Optional['outputs.GetMdbMongodbClusterClusterConfigMongosNetResult'] = None):
+        if net is not None:
+            pulumi.set(__self__, "net", net)
+
+    @property
+    @pulumi.getter
+    def net(self) -> Optional['outputs.GetMdbMongodbClusterClusterConfigMongosNetResult']:
+        return pulumi.get(self, "net")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterClusterConfigMongosNetResult(dict):
+    def __init__(__self__, *,
+                 max_incoming_connections: Optional[int] = None):
+        if max_incoming_connections is not None:
+            pulumi.set(__self__, "max_incoming_connections", max_incoming_connections)
+
+    @property
+    @pulumi.getter(name="maxIncomingConnections")
+    def max_incoming_connections(self) -> Optional[int]:
+        return pulumi.get(self, "max_incoming_connections")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsResult(dict):
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "enabled")
+
+
+@pulumi.output_type
 class GetMdbMongodbClusterDatabaseResult(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
@@ -39411,8 +43608,8 @@ class GetMdbMongodbClusterHostResult(dict):
                  name: str,
                  role: str,
                  shard_name: str,
-                 type: str,
                  subnet_id: Optional[str] = None,
+                 type: Optional[str] = None,
                  zone_id: Optional[str] = None):
         """
         :param bool assign_public_ip: Has assigned public IP.
@@ -39420,9 +43617,9 @@ class GetMdbMongodbClusterHostResult(dict):
         :param str name: The name of the MongoDB cluster.
         :param str role: The role of the cluster (either PRIMARY or SECONDARY).
         :param str shard_name: The name of the shard to which the host belongs.
-        :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         :param str subnet_id: The ID of the subnet, to which the host belongs. The subnet must
                be a part of the network to which the cluster belongs.
+        :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         :param str zone_id: The availability zone where the MongoDB host will be created.
         """
         pulumi.set(__self__, "assign_public_ip", assign_public_ip)
@@ -39430,9 +43627,10 @@ class GetMdbMongodbClusterHostResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "shard_name", shard_name)
-        pulumi.set(__self__, "type", type)
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if zone_id is not None:
             pulumi.set(__self__, "zone_id", zone_id)
 
@@ -39477,14 +43675,6 @@ class GetMdbMongodbClusterHostResult(dict):
         return pulumi.get(self, "shard_name")
 
     @property
-    @pulumi.getter
-    def type(self) -> str:
-        """
-        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
-        """
-        return pulumi.get(self, "type")
-
-    @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[str]:
         """
@@ -39492,6 +43682,14 @@ class GetMdbMongodbClusterHostResult(dict):
         be a part of the network to which the cluster belongs.
         """
         return pulumi.get(self, "subnet_id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
+        return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="zoneId")
@@ -39547,6 +43745,162 @@ class GetMdbMongodbClusterMaintenanceWindowResult(dict):
 
 @pulumi.output_type
 class GetMdbMongodbClusterResourcesResult(dict):
+    def __init__(__self__, *,
+                 disk_size: Optional[int] = None,
+                 disk_type_id: Optional[str] = None,
+                 resource_preset_id: Optional[str] = None):
+        """
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
+        if disk_type_id is not None:
+            pulumi.set(__self__, "disk_type_id", disk_type_id)
+        if resource_preset_id is not None:
+            pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> Optional[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> Optional[str]:
+        """
+        The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> Optional[str]:
+        return pulumi.get(self, "resource_preset_id")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterResourcesMongocfgResult(dict):
+    def __init__(__self__, *,
+                 disk_size: Optional[int] = None,
+                 disk_type_id: Optional[str] = None,
+                 resource_preset_id: Optional[str] = None):
+        """
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
+        if disk_type_id is not None:
+            pulumi.set(__self__, "disk_type_id", disk_type_id)
+        if resource_preset_id is not None:
+            pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> Optional[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> Optional[str]:
+        """
+        The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> Optional[str]:
+        return pulumi.get(self, "resource_preset_id")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterResourcesMongodResult(dict):
+    def __init__(__self__, *,
+                 disk_size: Optional[int] = None,
+                 disk_type_id: Optional[str] = None,
+                 resource_preset_id: Optional[str] = None):
+        """
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
+        if disk_type_id is not None:
+            pulumi.set(__self__, "disk_type_id", disk_type_id)
+        if resource_preset_id is not None:
+            pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> Optional[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> Optional[str]:
+        """
+        The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> Optional[str]:
+        return pulumi.get(self, "resource_preset_id")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterResourcesMongoinfraResult(dict):
+    def __init__(__self__, *,
+                 disk_size: Optional[int] = None,
+                 disk_type_id: Optional[str] = None,
+                 resource_preset_id: Optional[str] = None):
+        """
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
+        if disk_type_id is not None:
+            pulumi.set(__self__, "disk_type_id", disk_type_id)
+        if resource_preset_id is not None:
+            pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> Optional[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> Optional[str]:
+        """
+        The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> Optional[str]:
+        return pulumi.get(self, "resource_preset_id")
+
+
+@pulumi.output_type
+class GetMdbMongodbClusterResourcesMongosResult(dict):
     def __init__(__self__, *,
                  disk_size: Optional[int] = None,
                  disk_type_id: Optional[str] = None,
@@ -40125,6 +44479,91 @@ class GetMdbMysqlClusterUserPermissionResult(dict):
 
 
 @pulumi.output_type
+class GetMdbMysqlUserConnectionLimitResult(dict):
+    def __init__(__self__, *,
+                 max_connections_per_hour: int,
+                 max_questions_per_hour: int,
+                 max_updates_per_hour: int,
+                 max_user_connections: int):
+        """
+        :param int max_connections_per_hour: Max connections per hour.
+        :param int max_questions_per_hour: Max questions per hour.
+        :param int max_updates_per_hour: Max updates per hour.
+        :param int max_user_connections: Max user connections.
+        """
+        pulumi.set(__self__, "max_connections_per_hour", max_connections_per_hour)
+        pulumi.set(__self__, "max_questions_per_hour", max_questions_per_hour)
+        pulumi.set(__self__, "max_updates_per_hour", max_updates_per_hour)
+        pulumi.set(__self__, "max_user_connections", max_user_connections)
+
+    @property
+    @pulumi.getter(name="maxConnectionsPerHour")
+    def max_connections_per_hour(self) -> int:
+        """
+        Max connections per hour.
+        """
+        return pulumi.get(self, "max_connections_per_hour")
+
+    @property
+    @pulumi.getter(name="maxQuestionsPerHour")
+    def max_questions_per_hour(self) -> int:
+        """
+        Max questions per hour.
+        """
+        return pulumi.get(self, "max_questions_per_hour")
+
+    @property
+    @pulumi.getter(name="maxUpdatesPerHour")
+    def max_updates_per_hour(self) -> int:
+        """
+        Max updates per hour.
+        """
+        return pulumi.get(self, "max_updates_per_hour")
+
+    @property
+    @pulumi.getter(name="maxUserConnections")
+    def max_user_connections(self) -> int:
+        """
+        Max user connections.
+        """
+        return pulumi.get(self, "max_user_connections")
+
+
+@pulumi.output_type
+class GetMdbMysqlUserPermissionResult(dict):
+    def __init__(__self__, *,
+                 database_name: str,
+                 roles: Optional[Sequence[str]] = None):
+        """
+        :param str database_name: The name of the database that the permission grants access to.
+        :param Sequence[str] roles: List user's roles in the database.
+               Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+               `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+        """
+        pulumi.set(__self__, "database_name", database_name)
+        if roles is not None:
+            pulumi.set(__self__, "roles", roles)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> str:
+        """
+        The name of the database that the permission grants access to.
+        """
+        return pulumi.get(self, "database_name")
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Optional[Sequence[str]]:
+        """
+        List user's roles in the database.
+        Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+        `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+        """
+        return pulumi.get(self, "roles")
+
+
+@pulumi.output_type
 class GetMdbPostgresqlClusterConfigResult(dict):
     def __init__(__self__, *,
                  accesses: Sequence['outputs.GetMdbPostgresqlClusterConfigAccessResult'],
@@ -40145,7 +44584,7 @@ class GetMdbPostgresqlClusterConfigResult(dict):
         :param Sequence['GetMdbPostgresqlClusterConfigPoolerConfigArgs'] pooler_configs: Configuration of the connection pooler. The structure is documented below.
         :param Mapping[str, str] postgresql_config: PostgreSQL cluster config.
         :param Sequence['GetMdbPostgresqlClusterConfigResourceArgs'] resources: Resources allocated to hosts of the PostgreSQL cluster. The structure is documented below.
-        :param str version: Version of the PostgreSQL cluster.
+        :param str version: Version of the extension.
         """
         pulumi.set(__self__, "accesses", accesses)
         pulumi.set(__self__, "autofailover", autofailover)
@@ -40225,7 +44664,7 @@ class GetMdbPostgresqlClusterConfigResult(dict):
     @pulumi.getter
     def version(self) -> str:
         """
-        Version of the PostgreSQL cluster.
+        Version of the extension.
         """
         return pulumi.get(self, "version")
 
@@ -40416,6 +44855,113 @@ class GetMdbPostgresqlClusterConfigResourceResult(dict):
 
 
 @pulumi.output_type
+class GetMdbPostgresqlClusterDatabaseResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 owner: str,
+                 extensions: Optional[Sequence['outputs.GetMdbPostgresqlClusterDatabaseExtensionResult']] = None,
+                 lc_collate: Optional[str] = None,
+                 lc_type: Optional[str] = None,
+                 template_db: Optional[str] = None):
+        """
+        :param str name: The name of the PostgreSQL cluster.
+        :param str owner: Name of the user assigned as the owner of the database.
+        :param Sequence['GetMdbPostgresqlClusterDatabaseExtensionArgs'] extensions: Set of database extensions. The structure is documented below
+        :param str lc_collate: POSIX locale for string sorting order. Forbidden to change in an existing database.
+        :param str lc_type: POSIX locale for character classification. Forbidden to change in an existing database.
+        :param str template_db: Name of the template database.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "owner", owner)
+        if extensions is not None:
+            pulumi.set(__self__, "extensions", extensions)
+        if lc_collate is not None:
+            pulumi.set(__self__, "lc_collate", lc_collate)
+        if lc_type is not None:
+            pulumi.set(__self__, "lc_type", lc_type)
+        if template_db is not None:
+            pulumi.set(__self__, "template_db", template_db)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the PostgreSQL cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def owner(self) -> str:
+        """
+        Name of the user assigned as the owner of the database.
+        """
+        return pulumi.get(self, "owner")
+
+    @property
+    @pulumi.getter
+    def extensions(self) -> Optional[Sequence['outputs.GetMdbPostgresqlClusterDatabaseExtensionResult']]:
+        """
+        Set of database extensions. The structure is documented below
+        """
+        return pulumi.get(self, "extensions")
+
+    @property
+    @pulumi.getter(name="lcCollate")
+    def lc_collate(self) -> Optional[str]:
+        """
+        POSIX locale for string sorting order. Forbidden to change in an existing database.
+        """
+        return pulumi.get(self, "lc_collate")
+
+    @property
+    @pulumi.getter(name="lcType")
+    def lc_type(self) -> Optional[str]:
+        """
+        POSIX locale for character classification. Forbidden to change in an existing database.
+        """
+        return pulumi.get(self, "lc_type")
+
+    @property
+    @pulumi.getter(name="templateDb")
+    def template_db(self) -> Optional[str]:
+        """
+        Name of the template database.
+        """
+        return pulumi.get(self, "template_db")
+
+
+@pulumi.output_type
+class GetMdbPostgresqlClusterDatabaseExtensionResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 version: Optional[str] = None):
+        """
+        :param str name: The name of the PostgreSQL cluster.
+        :param str version: Version of the extension.
+        """
+        pulumi.set(__self__, "name", name)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the PostgreSQL cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[str]:
+        """
+        Version of the extension.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
 class GetMdbPostgresqlClusterHostResult(dict):
     def __init__(__self__, *,
                  assign_public_ip: bool,
@@ -40540,11 +45086,152 @@ class GetMdbPostgresqlClusterMaintenanceWindowResult(dict):
 
 
 @pulumi.output_type
+class GetMdbPostgresqlClusterUserResult(dict):
+    def __init__(__self__, *,
+                 conn_limit: int,
+                 grants: Sequence[str],
+                 name: str,
+                 permissions: Sequence['outputs.GetMdbPostgresqlClusterUserPermissionResult'],
+                 settings: Mapping[str, str],
+                 login: Optional[bool] = None):
+        """
+        :param int conn_limit: The maximum number of connections per user.
+        :param Sequence[str] grants: List of the user's grants.
+        :param str name: The name of the PostgreSQL cluster.
+        :param Sequence['GetMdbPostgresqlClusterUserPermissionArgs'] permissions: Set of permissions granted to the user. The structure is documented below.
+        :param Mapping[str, str] settings: Map of user settings. The structure is documented below.
+        :param bool login: User's ability to login.
+        """
+        pulumi.set(__self__, "conn_limit", conn_limit)
+        pulumi.set(__self__, "grants", grants)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "permissions", permissions)
+        pulumi.set(__self__, "settings", settings)
+        if login is not None:
+            pulumi.set(__self__, "login", login)
+
+    @property
+    @pulumi.getter(name="connLimit")
+    def conn_limit(self) -> int:
+        """
+        The maximum number of connections per user.
+        """
+        return pulumi.get(self, "conn_limit")
+
+    @property
+    @pulumi.getter
+    def grants(self) -> Sequence[str]:
+        """
+        List of the user's grants.
+        """
+        return pulumi.get(self, "grants")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the PostgreSQL cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def permissions(self) -> Sequence['outputs.GetMdbPostgresqlClusterUserPermissionResult']:
+        """
+        Set of permissions granted to the user. The structure is documented below.
+        """
+        return pulumi.get(self, "permissions")
+
+    @property
+    @pulumi.getter
+    def settings(self) -> Mapping[str, str]:
+        """
+        Map of user settings. The structure is documented below.
+        """
+        return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter
+    def login(self) -> Optional[bool]:
+        """
+        User's ability to login.
+        """
+        return pulumi.get(self, "login")
+
+
+@pulumi.output_type
+class GetMdbPostgresqlClusterUserPermissionResult(dict):
+    def __init__(__self__, *,
+                 database_name: str):
+        """
+        :param str database_name: The name of the database that the permission grants access to.
+        """
+        pulumi.set(__self__, "database_name", database_name)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> str:
+        """
+        The name of the database that the permission grants access to.
+        """
+        return pulumi.get(self, "database_name")
+
+
+@pulumi.output_type
+class GetMdbPostgresqlDatabaseExtensionResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 version: Optional[str] = None):
+        """
+        :param str name: The name of the PostgreSQL cluster.
+        :param str version: Version of the extension.
+        """
+        pulumi.set(__self__, "name", name)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the PostgreSQL cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[str]:
+        """
+        Version of the extension.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetMdbPostgresqlUserPermissionResult(dict):
+    def __init__(__self__, *,
+                 database_name: str):
+        """
+        :param str database_name: The name of the database that the permission grants access to.
+        """
+        pulumi.set(__self__, "database_name", database_name)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> str:
+        """
+        The name of the database that the permission grants access to.
+        """
+        return pulumi.get(self, "database_name")
+
+
+@pulumi.output_type
 class GetMdbRedisClusterConfigResult(dict):
     def __init__(__self__, *,
                  client_output_buffer_limit_normal: str,
                  client_output_buffer_limit_pubsub: str,
                  databases: int,
+                 maxmemory_percent: int,
                  maxmemory_policy: str,
                  notify_keyspace_events: str,
                  slowlog_log_slower_than: int,
@@ -40555,6 +45242,7 @@ class GetMdbRedisClusterConfigResult(dict):
         :param str client_output_buffer_limit_normal: Normal clients output buffer limits.
         :param str client_output_buffer_limit_pubsub: Pubsub clients output buffer limits.
         :param int databases: Number of databases (changing requires redis-server restart).
+        :param int maxmemory_percent: Redis maxmemory usage in percent
         :param str maxmemory_policy: Redis key eviction policy for a dataset that reaches maximum memory.
         :param str notify_keyspace_events: Select the events that Redis will notify among a set of classes.
         :param int slowlog_log_slower_than: Log slow queries below this number in microseconds.
@@ -40565,6 +45253,7 @@ class GetMdbRedisClusterConfigResult(dict):
         pulumi.set(__self__, "client_output_buffer_limit_normal", client_output_buffer_limit_normal)
         pulumi.set(__self__, "client_output_buffer_limit_pubsub", client_output_buffer_limit_pubsub)
         pulumi.set(__self__, "databases", databases)
+        pulumi.set(__self__, "maxmemory_percent", maxmemory_percent)
         pulumi.set(__self__, "maxmemory_policy", maxmemory_policy)
         pulumi.set(__self__, "notify_keyspace_events", notify_keyspace_events)
         pulumi.set(__self__, "slowlog_log_slower_than", slowlog_log_slower_than)
@@ -40595,6 +45284,14 @@ class GetMdbRedisClusterConfigResult(dict):
         Number of databases (changing requires redis-server restart).
         """
         return pulumi.get(self, "databases")
+
+    @property
+    @pulumi.getter(name="maxmemoryPercent")
+    def maxmemory_percent(self) -> int:
+        """
+        Redis maxmemory usage in percent
+        """
+        return pulumi.get(self, "maxmemory_percent")
 
     @property
     @pulumi.getter(name="maxmemoryPolicy")
@@ -41004,6 +45701,1231 @@ class GetMdbSqlserverClusterUserPermissionResult(dict):
 
 
 @pulumi.output_type
+class GetMonitoringDashboardParametrizationResult(dict):
+    def __init__(__self__, *,
+                 parameters: Sequence['outputs.GetMonitoringDashboardParametrizationParameterResult'],
+                 selectors: str):
+        """
+        :param Sequence['GetMonitoringDashboardParametrizationParameterArgs'] parameters: parameters list.
+        :param str selectors: Selectors to select metric label values.
+        """
+        pulumi.set(__self__, "parameters", parameters)
+        pulumi.set(__self__, "selectors", selectors)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Sequence['outputs.GetMonitoringDashboardParametrizationParameterResult']:
+        """
+        parameters list.
+        """
+        return pulumi.get(self, "parameters")
+
+    @property
+    @pulumi.getter
+    def selectors(self) -> str:
+        """
+        Selectors to select metric label values.
+        """
+        return pulumi.get(self, "selectors")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardParametrizationParameterResult(dict):
+    def __init__(__self__, *,
+                 customs: Sequence['outputs.GetMonitoringDashboardParametrizationParameterCustomResult'],
+                 description: str,
+                 hidden: bool,
+                 id: str,
+                 label_values: Sequence['outputs.GetMonitoringDashboardParametrizationParameterLabelValueResult'],
+                 texts: Sequence['outputs.GetMonitoringDashboardParametrizationParameterTextResult'],
+                 title: str):
+        """
+        :param Sequence['GetMonitoringDashboardParametrizationParameterCustomArgs'] customs: Custom values parameter.
+        :param str description: Chart description in dashboard (not enabled in UI).
+        :param bool hidden: Checks that target is visible or invisible.
+        :param str id: Parameter identifier
+        :param Sequence['GetMonitoringDashboardParametrizationParameterLabelValueArgs'] label_values: Label values parameter.
+        :param Sequence['GetMonitoringDashboardParametrizationParameterTextArgs'] texts: Title text.
+        :param str title: Inside chart title.
+        """
+        pulumi.set(__self__, "customs", customs)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "hidden", hidden)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "label_values", label_values)
+        pulumi.set(__self__, "texts", texts)
+        pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def customs(self) -> Sequence['outputs.GetMonitoringDashboardParametrizationParameterCustomResult']:
+        """
+        Custom values parameter.
+        """
+        return pulumi.get(self, "customs")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Chart description in dashboard (not enabled in UI).
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def hidden(self) -> bool:
+        """
+        Checks that target is visible or invisible.
+        """
+        return pulumi.get(self, "hidden")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Parameter identifier
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="labelValues")
+    def label_values(self) -> Sequence['outputs.GetMonitoringDashboardParametrizationParameterLabelValueResult']:
+        """
+        Label values parameter.
+        """
+        return pulumi.get(self, "label_values")
+
+    @property
+    @pulumi.getter
+    def texts(self) -> Sequence['outputs.GetMonitoringDashboardParametrizationParameterTextResult']:
+        """
+        Title text.
+        """
+        return pulumi.get(self, "texts")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        Inside chart title.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardParametrizationParameterCustomResult(dict):
+    def __init__(__self__, *,
+                 default_values: Sequence[str],
+                 multiselectable: bool,
+                 values: Sequence[str]):
+        """
+        :param Sequence[str] default_values: Default value.
+        :param bool multiselectable: Specifies the multiselectable values of parameter.
+        :param Sequence[str] values: Parameter values.
+        """
+        pulumi.set(__self__, "default_values", default_values)
+        pulumi.set(__self__, "multiselectable", multiselectable)
+        pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter(name="defaultValues")
+    def default_values(self) -> Sequence[str]:
+        """
+        Default value.
+        """
+        return pulumi.get(self, "default_values")
+
+    @property
+    @pulumi.getter
+    def multiselectable(self) -> bool:
+        """
+        Specifies the multiselectable values of parameter.
+        """
+        return pulumi.get(self, "multiselectable")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Sequence[str]:
+        """
+        Parameter values.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardParametrizationParameterLabelValueResult(dict):
+    def __init__(__self__, *,
+                 default_values: Sequence[str],
+                 folder_id: str,
+                 label_key: str,
+                 multiselectable: bool,
+                 selectors: str):
+        """
+        :param Sequence[str] default_values: Default value.
+        :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        :param str label_key: Label key to list label values.
+        :param bool multiselectable: Specifies the multiselectable values of parameter.
+        :param str selectors: Selectors to select metric label values.
+        """
+        pulumi.set(__self__, "default_values", default_values)
+        pulumi.set(__self__, "folder_id", folder_id)
+        pulumi.set(__self__, "label_key", label_key)
+        pulumi.set(__self__, "multiselectable", multiselectable)
+        pulumi.set(__self__, "selectors", selectors)
+
+    @property
+    @pulumi.getter(name="defaultValues")
+    def default_values(self) -> Sequence[str]:
+        """
+        Default value.
+        """
+        return pulumi.get(self, "default_values")
+
+    @property
+    @pulumi.getter(name="folderId")
+    def folder_id(self) -> str:
+        """
+        Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+        """
+        return pulumi.get(self, "folder_id")
+
+    @property
+    @pulumi.getter(name="labelKey")
+    def label_key(self) -> str:
+        """
+        Label key to list label values.
+        """
+        return pulumi.get(self, "label_key")
+
+    @property
+    @pulumi.getter
+    def multiselectable(self) -> bool:
+        """
+        Specifies the multiselectable values of parameter.
+        """
+        return pulumi.get(self, "multiselectable")
+
+    @property
+    @pulumi.getter
+    def selectors(self) -> str:
+        """
+        Selectors to select metric label values.
+        """
+        return pulumi.get(self, "selectors")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardParametrizationParameterTextResult(dict):
+    def __init__(__self__, *,
+                 default_value: str):
+        """
+        :param str default_value: Default value.
+        """
+        pulumi.set(__self__, "default_value", default_value)
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> str:
+        """
+        Default value.
+        """
+        return pulumi.get(self, "default_value")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetResult(dict):
+    def __init__(__self__, *,
+                 charts: Sequence['outputs.GetMonitoringDashboardWidgetChartResult'],
+                 positions: Sequence['outputs.GetMonitoringDashboardWidgetPositionResult'],
+                 texts: Sequence['outputs.GetMonitoringDashboardWidgetTextResult'],
+                 titles: Sequence['outputs.GetMonitoringDashboardWidgetTitleResult']):
+        """
+        :param Sequence['GetMonitoringDashboardWidgetChartArgs'] charts: Chart widget settings.
+        :param Sequence['GetMonitoringDashboardWidgetPositionArgs'] positions: Widget position.
+        :param Sequence['GetMonitoringDashboardWidgetTextArgs'] texts: Title text.
+        :param Sequence['GetMonitoringDashboardWidgetTitleArgs'] titles: Inside chart title.
+        """
+        pulumi.set(__self__, "charts", charts)
+        pulumi.set(__self__, "positions", positions)
+        pulumi.set(__self__, "texts", texts)
+        pulumi.set(__self__, "titles", titles)
+
+    @property
+    @pulumi.getter
+    def charts(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartResult']:
+        """
+        Chart widget settings.
+        """
+        return pulumi.get(self, "charts")
+
+    @property
+    @pulumi.getter
+    def positions(self) -> Sequence['outputs.GetMonitoringDashboardWidgetPositionResult']:
+        """
+        Widget position.
+        """
+        return pulumi.get(self, "positions")
+
+    @property
+    @pulumi.getter
+    def texts(self) -> Sequence['outputs.GetMonitoringDashboardWidgetTextResult']:
+        """
+        Title text.
+        """
+        return pulumi.get(self, "texts")
+
+    @property
+    @pulumi.getter
+    def titles(self) -> Sequence['outputs.GetMonitoringDashboardWidgetTitleResult']:
+        """
+        Inside chart title.
+        """
+        return pulumi.get(self, "titles")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartResult(dict):
+    def __init__(__self__, *,
+                 chart_id: str,
+                 description: str,
+                 display_legend: bool,
+                 freeze: str,
+                 name_hiding_settings: Sequence['outputs.GetMonitoringDashboardWidgetChartNameHidingSettingResult'],
+                 queries: Sequence['outputs.GetMonitoringDashboardWidgetChartQueryResult'],
+                 series_overrides: Sequence['outputs.GetMonitoringDashboardWidgetChartSeriesOverrideResult'],
+                 title: str,
+                 visualization_settings: Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingResult']):
+        """
+        :param str chart_id: Chart ID.
+        :param str description: Chart description in dashboard (not enabled in UI).
+        :param bool display_legend: Enable legend under chart.
+        :param str freeze: Fixed time interval for chart.
+        :param Sequence['GetMonitoringDashboardWidgetChartNameHidingSettingArgs'] name_hiding_settings: Names settings.
+        :param Sequence['GetMonitoringDashboardWidgetChartQueryArgs'] queries: Queries settings.
+               * `series_overrides` Time series settings.
+        :param str title: Inside chart title.
+        :param Sequence['GetMonitoringDashboardWidgetChartVisualizationSettingArgs'] visualization_settings: Visualization settings.
+        """
+        pulumi.set(__self__, "chart_id", chart_id)
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "display_legend", display_legend)
+        pulumi.set(__self__, "freeze", freeze)
+        pulumi.set(__self__, "name_hiding_settings", name_hiding_settings)
+        pulumi.set(__self__, "queries", queries)
+        pulumi.set(__self__, "series_overrides", series_overrides)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "visualization_settings", visualization_settings)
+
+    @property
+    @pulumi.getter(name="chartId")
+    def chart_id(self) -> str:
+        """
+        Chart ID.
+        """
+        return pulumi.get(self, "chart_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Chart description in dashboard (not enabled in UI).
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayLegend")
+    def display_legend(self) -> bool:
+        """
+        Enable legend under chart.
+        """
+        return pulumi.get(self, "display_legend")
+
+    @property
+    @pulumi.getter
+    def freeze(self) -> str:
+        """
+        Fixed time interval for chart.
+        """
+        return pulumi.get(self, "freeze")
+
+    @property
+    @pulumi.getter(name="nameHidingSettings")
+    def name_hiding_settings(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartNameHidingSettingResult']:
+        """
+        Names settings.
+        """
+        return pulumi.get(self, "name_hiding_settings")
+
+    @property
+    @pulumi.getter
+    def queries(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartQueryResult']:
+        """
+        Queries settings.
+        * `series_overrides` Time series settings.
+        """
+        return pulumi.get(self, "queries")
+
+    @property
+    @pulumi.getter(name="seriesOverrides")
+    def series_overrides(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartSeriesOverrideResult']:
+        return pulumi.get(self, "series_overrides")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        Inside chart title.
+        """
+        return pulumi.get(self, "title")
+
+    @property
+    @pulumi.getter(name="visualizationSettings")
+    def visualization_settings(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingResult']:
+        """
+        Visualization settings.
+        """
+        return pulumi.get(self, "visualization_settings")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartNameHidingSettingResult(dict):
+    def __init__(__self__, *,
+                 names: Sequence[str],
+                 positive: bool):
+        """
+        :param Sequence[str] names: Series name.
+        :param bool positive: True if we want to show concrete series names only, false if we want to hide concrete series names.
+        """
+        pulumi.set(__self__, "names", names)
+        pulumi.set(__self__, "positive", positive)
+
+    @property
+    @pulumi.getter
+    def names(self) -> Sequence[str]:
+        """
+        Series name.
+        """
+        return pulumi.get(self, "names")
+
+    @property
+    @pulumi.getter
+    def positive(self) -> bool:
+        """
+        True if we want to show concrete series names only, false if we want to hide concrete series names.
+        """
+        return pulumi.get(self, "positive")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartQueryResult(dict):
+    def __init__(__self__, *,
+                 downsamplings: Sequence['outputs.GetMonitoringDashboardWidgetChartQueryDownsamplingResult'],
+                 targets: Sequence['outputs.GetMonitoringDashboardWidgetChartQueryTargetResult']):
+        """
+        :param Sequence['GetMonitoringDashboardWidgetChartQueryDownsamplingArgs'] downsamplings: Downsamplang settings.
+        :param Sequence['GetMonitoringDashboardWidgetChartQueryTargetArgs'] targets: Query targets.
+        """
+        pulumi.set(__self__, "downsamplings", downsamplings)
+        pulumi.set(__self__, "targets", targets)
+
+    @property
+    @pulumi.getter
+    def downsamplings(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartQueryDownsamplingResult']:
+        """
+        Downsamplang settings.
+        """
+        return pulumi.get(self, "downsamplings")
+
+    @property
+    @pulumi.getter
+    def targets(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartQueryTargetResult']:
+        """
+        Query targets.
+        """
+        return pulumi.get(self, "targets")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartQueryDownsamplingResult(dict):
+    def __init__(__self__, *,
+                 disabled: bool,
+                 gap_filling: str,
+                 grid_aggregation: str,
+                 grid_interval: int,
+                 max_points: int):
+        """
+        :param bool disabled: Disable downsampling.
+        :param str gap_filling: Parameters for filling gaps in data.
+        :param str grid_aggregation: Function that is used for downsampling.
+        :param int grid_interval: Time interval (grid) for downsampling in milliseconds. Points in the specified range are aggregated into one time point
+        :param int max_points: Maximum number of points to be returned.
+        """
+        pulumi.set(__self__, "disabled", disabled)
+        pulumi.set(__self__, "gap_filling", gap_filling)
+        pulumi.set(__self__, "grid_aggregation", grid_aggregation)
+        pulumi.set(__self__, "grid_interval", grid_interval)
+        pulumi.set(__self__, "max_points", max_points)
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> bool:
+        """
+        Disable downsampling.
+        """
+        return pulumi.get(self, "disabled")
+
+    @property
+    @pulumi.getter(name="gapFilling")
+    def gap_filling(self) -> str:
+        """
+        Parameters for filling gaps in data.
+        """
+        return pulumi.get(self, "gap_filling")
+
+    @property
+    @pulumi.getter(name="gridAggregation")
+    def grid_aggregation(self) -> str:
+        """
+        Function that is used for downsampling.
+        """
+        return pulumi.get(self, "grid_aggregation")
+
+    @property
+    @pulumi.getter(name="gridInterval")
+    def grid_interval(self) -> int:
+        """
+        Time interval (grid) for downsampling in milliseconds. Points in the specified range are aggregated into one time point
+        """
+        return pulumi.get(self, "grid_interval")
+
+    @property
+    @pulumi.getter(name="maxPoints")
+    def max_points(self) -> int:
+        """
+        Maximum number of points to be returned.
+        """
+        return pulumi.get(self, "max_points")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartQueryTargetResult(dict):
+    def __init__(__self__, *,
+                 hidden: bool,
+                 query: str,
+                 text_mode: bool):
+        """
+        :param bool hidden: Checks that target is visible or invisible.
+        :param str query: Query.
+        :param bool text_mode: Text mode enabled.
+        """
+        pulumi.set(__self__, "hidden", hidden)
+        pulumi.set(__self__, "query", query)
+        pulumi.set(__self__, "text_mode", text_mode)
+
+    @property
+    @pulumi.getter
+    def hidden(self) -> bool:
+        """
+        Checks that target is visible or invisible.
+        """
+        return pulumi.get(self, "hidden")
+
+    @property
+    @pulumi.getter
+    def query(self) -> str:
+        """
+        Query.
+        """
+        return pulumi.get(self, "query")
+
+    @property
+    @pulumi.getter(name="textMode")
+    def text_mode(self) -> bool:
+        """
+        Text mode enabled.
+        """
+        return pulumi.get(self, "text_mode")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartSeriesOverrideResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 settings: Sequence['outputs.GetMonitoringDashboardWidgetChartSeriesOverrideSettingResult'],
+                 target_index: str):
+        """
+        :param str name: - Name of the Dashboard.
+        :param Sequence['GetMonitoringDashboardWidgetChartSeriesOverrideSettingArgs'] settings: Override settings.
+        :param str target_index: Series index.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "settings", settings)
+        pulumi.set(__self__, "target_index", target_index)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        - Name of the Dashboard.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def settings(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartSeriesOverrideSettingResult']:
+        """
+        Override settings.
+        """
+        return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter(name="targetIndex")
+    def target_index(self) -> str:
+        """
+        Series index.
+        """
+        return pulumi.get(self, "target_index")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartSeriesOverrideSettingResult(dict):
+    def __init__(__self__, *,
+                 color: str,
+                 grow_down: bool,
+                 name: str,
+                 stack_name: str,
+                 type: str,
+                 yaxis_position: str):
+        """
+        :param str color: Series color or empty.
+        :param bool grow_down: Stack grow down.
+        :param str name: - Name of the Dashboard.
+        :param str stack_name: Stack name or empty.
+        :param str type: Type.
+        :param str yaxis_position: Yaxis positio
+        """
+        pulumi.set(__self__, "color", color)
+        pulumi.set(__self__, "grow_down", grow_down)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "stack_name", stack_name)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "yaxis_position", yaxis_position)
+
+    @property
+    @pulumi.getter
+    def color(self) -> str:
+        """
+        Series color or empty.
+        """
+        return pulumi.get(self, "color")
+
+    @property
+    @pulumi.getter(name="growDown")
+    def grow_down(self) -> bool:
+        """
+        Stack grow down.
+        """
+        return pulumi.get(self, "grow_down")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        - Name of the Dashboard.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="stackName")
+    def stack_name(self) -> str:
+        """
+        Stack name or empty.
+        """
+        return pulumi.get(self, "stack_name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Type.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="yaxisPosition")
+    def yaxis_position(self) -> str:
+        """
+        Yaxis positio
+        """
+        return pulumi.get(self, "yaxis_position")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartVisualizationSettingResult(dict):
+    def __init__(__self__, *,
+                 aggregation: str,
+                 color_scheme_settings: Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingResult'],
+                 heatmap_settings: Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingHeatmapSettingResult'],
+                 interpolate: str,
+                 normalize: bool,
+                 show_labels: bool,
+                 title: str,
+                 type: str,
+                 yaxis_settings: Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingResult']):
+        """
+        :param str aggregation: Aggregation.
+        :param Sequence['GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingArgs'] color_scheme_settings: Color settings.
+        :param Sequence['GetMonitoringDashboardWidgetChartVisualizationSettingHeatmapSettingArgs'] heatmap_settings: Heatmap settings.
+        :param str interpolate: Interpolate values.
+        :param bool normalize: Normalize values.
+        :param bool show_labels: Show chart labels.
+        :param str title: Inside chart title.
+        :param str type: Type.
+        :param Sequence['GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingArgs'] yaxis_settings: Y axis settings.
+        """
+        pulumi.set(__self__, "aggregation", aggregation)
+        pulumi.set(__self__, "color_scheme_settings", color_scheme_settings)
+        pulumi.set(__self__, "heatmap_settings", heatmap_settings)
+        pulumi.set(__self__, "interpolate", interpolate)
+        pulumi.set(__self__, "normalize", normalize)
+        pulumi.set(__self__, "show_labels", show_labels)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "yaxis_settings", yaxis_settings)
+
+    @property
+    @pulumi.getter
+    def aggregation(self) -> str:
+        """
+        Aggregation.
+        """
+        return pulumi.get(self, "aggregation")
+
+    @property
+    @pulumi.getter(name="colorSchemeSettings")
+    def color_scheme_settings(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingResult']:
+        """
+        Color settings.
+        """
+        return pulumi.get(self, "color_scheme_settings")
+
+    @property
+    @pulumi.getter(name="heatmapSettings")
+    def heatmap_settings(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingHeatmapSettingResult']:
+        """
+        Heatmap settings.
+        """
+        return pulumi.get(self, "heatmap_settings")
+
+    @property
+    @pulumi.getter
+    def interpolate(self) -> str:
+        """
+        Interpolate values.
+        """
+        return pulumi.get(self, "interpolate")
+
+    @property
+    @pulumi.getter
+    def normalize(self) -> bool:
+        """
+        Normalize values.
+        """
+        return pulumi.get(self, "normalize")
+
+    @property
+    @pulumi.getter(name="showLabels")
+    def show_labels(self) -> bool:
+        """
+        Show chart labels.
+        """
+        return pulumi.get(self, "show_labels")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        Inside chart title.
+        """
+        return pulumi.get(self, "title")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Type.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="yaxisSettings")
+    def yaxis_settings(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingResult']:
+        """
+        Y axis settings.
+        """
+        return pulumi.get(self, "yaxis_settings")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingResult(dict):
+    def __init__(__self__, *,
+                 automatics: Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomaticResult'],
+                 gradients: Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradientResult'],
+                 standards: Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandardResult']):
+        """
+        :param Sequence['GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomaticArgs'] automatics: Automatic color scheme.
+        :param Sequence['GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradientArgs'] gradients: Gradient color scheme.
+        :param Sequence['GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandardArgs'] standards: Standard color scheme.
+        """
+        pulumi.set(__self__, "automatics", automatics)
+        pulumi.set(__self__, "gradients", gradients)
+        pulumi.set(__self__, "standards", standards)
+
+    @property
+    @pulumi.getter
+    def automatics(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomaticResult']:
+        """
+        Automatic color scheme.
+        """
+        return pulumi.get(self, "automatics")
+
+    @property
+    @pulumi.getter
+    def gradients(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradientResult']:
+        """
+        Gradient color scheme.
+        """
+        return pulumi.get(self, "gradients")
+
+    @property
+    @pulumi.getter
+    def standards(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandardResult']:
+        """
+        Standard color scheme.
+        """
+        return pulumi.get(self, "standards")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomaticResult(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradientResult(dict):
+    def __init__(__self__, *,
+                 green_value: str,
+                 red_value: str,
+                 violet_value: str,
+                 yellow_value: str):
+        """
+        :param str green_value: Heatmap green value.
+        :param str red_value: Heatmap red value.
+        :param str violet_value: Heatmap violet value.
+        :param str yellow_value: Heatmap yellow value.
+        """
+        pulumi.set(__self__, "green_value", green_value)
+        pulumi.set(__self__, "red_value", red_value)
+        pulumi.set(__self__, "violet_value", violet_value)
+        pulumi.set(__self__, "yellow_value", yellow_value)
+
+    @property
+    @pulumi.getter(name="greenValue")
+    def green_value(self) -> str:
+        """
+        Heatmap green value.
+        """
+        return pulumi.get(self, "green_value")
+
+    @property
+    @pulumi.getter(name="redValue")
+    def red_value(self) -> str:
+        """
+        Heatmap red value.
+        """
+        return pulumi.get(self, "red_value")
+
+    @property
+    @pulumi.getter(name="violetValue")
+    def violet_value(self) -> str:
+        """
+        Heatmap violet value.
+        """
+        return pulumi.get(self, "violet_value")
+
+    @property
+    @pulumi.getter(name="yellowValue")
+    def yellow_value(self) -> str:
+        """
+        Heatmap yellow value.
+        """
+        return pulumi.get(self, "yellow_value")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandardResult(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartVisualizationSettingHeatmapSettingResult(dict):
+    def __init__(__self__, *,
+                 green_value: str,
+                 red_value: str,
+                 violet_value: str,
+                 yellow_value: str):
+        """
+        :param str green_value: Heatmap green value.
+        :param str red_value: Heatmap red value.
+        :param str violet_value: Heatmap violet value.
+        :param str yellow_value: Heatmap yellow value.
+        """
+        pulumi.set(__self__, "green_value", green_value)
+        pulumi.set(__self__, "red_value", red_value)
+        pulumi.set(__self__, "violet_value", violet_value)
+        pulumi.set(__self__, "yellow_value", yellow_value)
+
+    @property
+    @pulumi.getter(name="greenValue")
+    def green_value(self) -> str:
+        """
+        Heatmap green value.
+        """
+        return pulumi.get(self, "green_value")
+
+    @property
+    @pulumi.getter(name="redValue")
+    def red_value(self) -> str:
+        """
+        Heatmap red value.
+        """
+        return pulumi.get(self, "red_value")
+
+    @property
+    @pulumi.getter(name="violetValue")
+    def violet_value(self) -> str:
+        """
+        Heatmap violet value.
+        """
+        return pulumi.get(self, "violet_value")
+
+    @property
+    @pulumi.getter(name="yellowValue")
+    def yellow_value(self) -> str:
+        """
+        Heatmap yellow value.
+        """
+        return pulumi.get(self, "yellow_value")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingResult(dict):
+    def __init__(__self__, *,
+                 lefts: Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeftResult'],
+                 rights: Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRightResult']):
+        """
+        :param Sequence['GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeftArgs'] lefts: Left yaxis config.
+               * `right` Right yaxis config.
+        """
+        pulumi.set(__self__, "lefts", lefts)
+        pulumi.set(__self__, "rights", rights)
+
+    @property
+    @pulumi.getter
+    def lefts(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeftResult']:
+        """
+        Left yaxis config.
+        * `right` Right yaxis config.
+        """
+        return pulumi.get(self, "lefts")
+
+    @property
+    @pulumi.getter
+    def rights(self) -> Sequence['outputs.GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRightResult']:
+        return pulumi.get(self, "rights")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeftResult(dict):
+    def __init__(__self__, *,
+                 max: str,
+                 min: str,
+                 precision: int,
+                 title: str,
+                 type: str,
+                 unit_format: str):
+        """
+        :param str max: Max value in extended number format or empty.
+        :param str min: Min value in extended number format or empty.
+        :param int precision: Tick value precision (null as default, 0-7 in other cases).
+               * `title` -Title or empty.
+        :param str title: Inside chart title.
+        :param str type: Type.
+        :param str unit_format: Unit format.
+        """
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+        pulumi.set(__self__, "precision", precision)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "unit_format", unit_format)
+
+    @property
+    @pulumi.getter
+    def max(self) -> str:
+        """
+        Max value in extended number format or empty.
+        """
+        return pulumi.get(self, "max")
+
+    @property
+    @pulumi.getter
+    def min(self) -> str:
+        """
+        Min value in extended number format or empty.
+        """
+        return pulumi.get(self, "min")
+
+    @property
+    @pulumi.getter
+    def precision(self) -> int:
+        """
+        Tick value precision (null as default, 0-7 in other cases).
+        * `title` -Title or empty.
+        """
+        return pulumi.get(self, "precision")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        Inside chart title.
+        """
+        return pulumi.get(self, "title")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Type.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="unitFormat")
+    def unit_format(self) -> str:
+        """
+        Unit format.
+        """
+        return pulumi.get(self, "unit_format")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRightResult(dict):
+    def __init__(__self__, *,
+                 max: str,
+                 min: str,
+                 precision: int,
+                 title: str,
+                 type: str,
+                 unit_format: str):
+        """
+        :param str max: Max value in extended number format or empty.
+        :param str min: Min value in extended number format or empty.
+        :param int precision: Tick value precision (null as default, 0-7 in other cases).
+               * `title` -Title or empty.
+        :param str title: Inside chart title.
+        :param str type: Type.
+        :param str unit_format: Unit format.
+        """
+        pulumi.set(__self__, "max", max)
+        pulumi.set(__self__, "min", min)
+        pulumi.set(__self__, "precision", precision)
+        pulumi.set(__self__, "title", title)
+        pulumi.set(__self__, "type", type)
+        pulumi.set(__self__, "unit_format", unit_format)
+
+    @property
+    @pulumi.getter
+    def max(self) -> str:
+        """
+        Max value in extended number format or empty.
+        """
+        return pulumi.get(self, "max")
+
+    @property
+    @pulumi.getter
+    def min(self) -> str:
+        """
+        Min value in extended number format or empty.
+        """
+        return pulumi.get(self, "min")
+
+    @property
+    @pulumi.getter
+    def precision(self) -> int:
+        """
+        Tick value precision (null as default, 0-7 in other cases).
+        * `title` -Title or empty.
+        """
+        return pulumi.get(self, "precision")
+
+    @property
+    @pulumi.getter
+    def title(self) -> str:
+        """
+        Inside chart title.
+        """
+        return pulumi.get(self, "title")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Type.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="unitFormat")
+    def unit_format(self) -> str:
+        """
+        Unit format.
+        """
+        return pulumi.get(self, "unit_format")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetPositionResult(dict):
+    def __init__(__self__, *,
+                 h: int,
+                 w: int,
+                 x: int,
+                 y: int):
+        """
+        :param int h: Height.
+        :param int w: Width.
+        :param int x: X-axis top-left corner coordinate.
+        :param int y: Y-axis top-left corner coordinate.
+        """
+        pulumi.set(__self__, "h", h)
+        pulumi.set(__self__, "w", w)
+        pulumi.set(__self__, "x", x)
+        pulumi.set(__self__, "y", y)
+
+    @property
+    @pulumi.getter
+    def h(self) -> int:
+        """
+        Height.
+        """
+        return pulumi.get(self, "h")
+
+    @property
+    @pulumi.getter
+    def w(self) -> int:
+        """
+        Width.
+        """
+        return pulumi.get(self, "w")
+
+    @property
+    @pulumi.getter
+    def x(self) -> int:
+        """
+        X-axis top-left corner coordinate.
+        """
+        return pulumi.get(self, "x")
+
+    @property
+    @pulumi.getter
+    def y(self) -> int:
+        """
+        Y-axis top-left corner coordinate.
+        """
+        return pulumi.get(self, "y")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetTextResult(dict):
+    def __init__(__self__, *,
+                 text: str):
+        """
+        :param str text: Title text.
+        """
+        pulumi.set(__self__, "text", text)
+
+    @property
+    @pulumi.getter
+    def text(self) -> str:
+        """
+        Title text.
+        """
+        return pulumi.get(self, "text")
+
+
+@pulumi.output_type
+class GetMonitoringDashboardWidgetTitleResult(dict):
+    def __init__(__self__, *,
+                 size: str,
+                 text: str):
+        """
+        :param str size: Title size.
+        :param str text: Title text.
+        """
+        pulumi.set(__self__, "size", size)
+        pulumi.set(__self__, "text", text)
+
+    @property
+    @pulumi.getter
+    def size(self) -> str:
+        """
+        Title size.
+        """
+        return pulumi.get(self, "size")
+
+    @property
+    @pulumi.getter
+    def text(self) -> str:
+        """
+        Title text.
+        """
+        return pulumi.get(self, "text")
+
+
+@pulumi.output_type
+class GetOrganizationmanagerGroupMemberResult(dict):
+    def __init__(__self__, *,
+                 id: str,
+                 type: str):
+        """
+        :param str id: The ID of the member.
+        :param str type: The type of the member.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        The ID of the member.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        The type of the member.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class GetOrganizationmanagerSamlFederationSecuritySettingResult(dict):
     def __init__(__self__, *,
                  encrypted_assertions: bool):
@@ -41168,6 +47090,12 @@ class GetVpcAddressExternalIpv4AddressResult(dict):
         Zone for allocating address.
         """
         return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class GetVpcGatewaySharedEgressGatewayResult(dict):
+    def __init__(__self__):
+        pass
 
 
 @pulumi.output_type
@@ -42219,6 +48147,52 @@ class MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3(dict):
 
 
 @pulumi.output_type
+class MdbKafkaUserPermission(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "topicName":
+            suggest = "topic_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MdbKafkaUserPermission. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MdbKafkaUserPermission.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MdbKafkaUserPermission.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 role: str,
+                 topic_name: str):
+        """
+        :param str role: The role type to grant to the topic.
+        :param str topic_name: The name of the topic that the permission grants access to.
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "topic_name", topic_name)
+
+    @property
+    @pulumi.getter
+    def role(self) -> str:
+        """
+        The role type to grant to the topic.
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> str:
+        """
+        The name of the topic that the permission grants access to.
+        """
+        return pulumi.get(self, "topic_name")
+
+
+@pulumi.output_type
 class MdbMysqlUserConnectionLimits(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -42413,9 +48387,1882 @@ class MdbPostgresqlUserPermission(dict):
 
 
 @pulumi.output_type
+class MonitoringDashboardParametrization(dict):
+    def __init__(__self__, *,
+                 parameters: Optional[Sequence['outputs.MonitoringDashboardParametrizationParameter']] = None,
+                 selectors: Optional[str] = None):
+        """
+        :param Sequence['MonitoringDashboardParametrizationParameterArgs'] parameters: parameters list.
+        :param str selectors: Selectors to select metric label values.
+        """
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if selectors is not None:
+            pulumi.set(__self__, "selectors", selectors)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[Sequence['outputs.MonitoringDashboardParametrizationParameter']]:
+        """
+        parameters list.
+        """
+        return pulumi.get(self, "parameters")
+
+    @property
+    @pulumi.getter
+    def selectors(self) -> Optional[str]:
+        """
+        Selectors to select metric label values.
+        """
+        return pulumi.get(self, "selectors")
+
+
+@pulumi.output_type
+class MonitoringDashboardParametrizationParameter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "labelValues":
+            suggest = "label_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardParametrizationParameter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardParametrizationParameter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardParametrizationParameter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: str,
+                 customs: Optional[Sequence['outputs.MonitoringDashboardParametrizationParameterCustom']] = None,
+                 description: Optional[str] = None,
+                 hidden: Optional[bool] = None,
+                 label_values: Optional[Sequence['outputs.MonitoringDashboardParametrizationParameterLabelValue']] = None,
+                 texts: Optional[Sequence['outputs.MonitoringDashboardParametrizationParameterText']] = None,
+                 title: Optional[str] = None):
+        """
+        :param str id: Parameter identifier
+        :param Sequence['MonitoringDashboardParametrizationParameterCustomArgs'] customs: Custom values parameter. Oneof: label_values, custom, text.
+        :param str description: Chart description in dashboard (not enabled in UI).
+        :param bool hidden: Checks that target is visible or invisible.
+        :param Sequence['MonitoringDashboardParametrizationParameterLabelValueArgs'] label_values: Label values parameter. Oneof: label_values, custom, text.
+        :param Sequence['MonitoringDashboardParametrizationParameterTextArgs'] texts: Title text.
+        :param str title: -Title or empty.
+        """
+        pulumi.set(__self__, "id", id)
+        if customs is not None:
+            pulumi.set(__self__, "customs", customs)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if hidden is not None:
+            pulumi.set(__self__, "hidden", hidden)
+        if label_values is not None:
+            pulumi.set(__self__, "label_values", label_values)
+        if texts is not None:
+            pulumi.set(__self__, "texts", texts)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        Parameter identifier
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def customs(self) -> Optional[Sequence['outputs.MonitoringDashboardParametrizationParameterCustom']]:
+        """
+        Custom values parameter. Oneof: label_values, custom, text.
+        """
+        return pulumi.get(self, "customs")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Chart description in dashboard (not enabled in UI).
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def hidden(self) -> Optional[bool]:
+        """
+        Checks that target is visible or invisible.
+        """
+        return pulumi.get(self, "hidden")
+
+    @property
+    @pulumi.getter(name="labelValues")
+    def label_values(self) -> Optional[Sequence['outputs.MonitoringDashboardParametrizationParameterLabelValue']]:
+        """
+        Label values parameter. Oneof: label_values, custom, text.
+        """
+        return pulumi.get(self, "label_values")
+
+    @property
+    @pulumi.getter
+    def texts(self) -> Optional[Sequence['outputs.MonitoringDashboardParametrizationParameterText']]:
+        """
+        Title text.
+        """
+        return pulumi.get(self, "texts")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        """
+        -Title or empty.
+        """
+        return pulumi.get(self, "title")
+
+
+@pulumi.output_type
+class MonitoringDashboardParametrizationParameterCustom(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultValues":
+            suggest = "default_values"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardParametrizationParameterCustom. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardParametrizationParameterCustom.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardParametrizationParameterCustom.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 default_values: Optional[Sequence[str]] = None,
+                 multiselectable: Optional[bool] = None,
+                 values: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] default_values: Default value.
+        :param bool multiselectable: Specifies the multiselectable values of parameter.
+        :param Sequence[str] values: Parameter values.
+        """
+        if default_values is not None:
+            pulumi.set(__self__, "default_values", default_values)
+        if multiselectable is not None:
+            pulumi.set(__self__, "multiselectable", multiselectable)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter(name="defaultValues")
+    def default_values(self) -> Optional[Sequence[str]]:
+        """
+        Default value.
+        """
+        return pulumi.get(self, "default_values")
+
+    @property
+    @pulumi.getter
+    def multiselectable(self) -> Optional[bool]:
+        """
+        Specifies the multiselectable values of parameter.
+        """
+        return pulumi.get(self, "multiselectable")
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[Sequence[str]]:
+        """
+        Parameter values.
+        """
+        return pulumi.get(self, "values")
+
+
+@pulumi.output_type
+class MonitoringDashboardParametrizationParameterLabelValue(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "labelKey":
+            suggest = "label_key"
+        elif key == "defaultValues":
+            suggest = "default_values"
+        elif key == "folderId":
+            suggest = "folder_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardParametrizationParameterLabelValue. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardParametrizationParameterLabelValue.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardParametrizationParameterLabelValue.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 label_key: str,
+                 default_values: Optional[Sequence[str]] = None,
+                 folder_id: Optional[str] = None,
+                 multiselectable: Optional[bool] = None,
+                 selectors: Optional[str] = None):
+        """
+        :param str label_key: Label key to list label values.
+        :param Sequence[str] default_values: Default value.
+        :param str folder_id: Labels folder ID.
+        :param bool multiselectable: Specifies the multiselectable values of parameter.
+        :param str selectors: Selectors to select metric label values.
+        """
+        pulumi.set(__self__, "label_key", label_key)
+        if default_values is not None:
+            pulumi.set(__self__, "default_values", default_values)
+        if folder_id is not None:
+            pulumi.set(__self__, "folder_id", folder_id)
+        if multiselectable is not None:
+            pulumi.set(__self__, "multiselectable", multiselectable)
+        if selectors is not None:
+            pulumi.set(__self__, "selectors", selectors)
+
+    @property
+    @pulumi.getter(name="labelKey")
+    def label_key(self) -> str:
+        """
+        Label key to list label values.
+        """
+        return pulumi.get(self, "label_key")
+
+    @property
+    @pulumi.getter(name="defaultValues")
+    def default_values(self) -> Optional[Sequence[str]]:
+        """
+        Default value.
+        """
+        return pulumi.get(self, "default_values")
+
+    @property
+    @pulumi.getter(name="folderId")
+    def folder_id(self) -> Optional[str]:
+        """
+        Labels folder ID.
+        """
+        return pulumi.get(self, "folder_id")
+
+    @property
+    @pulumi.getter
+    def multiselectable(self) -> Optional[bool]:
+        """
+        Specifies the multiselectable values of parameter.
+        """
+        return pulumi.get(self, "multiselectable")
+
+    @property
+    @pulumi.getter
+    def selectors(self) -> Optional[str]:
+        """
+        Selectors to select metric label values.
+        """
+        return pulumi.get(self, "selectors")
+
+
+@pulumi.output_type
+class MonitoringDashboardParametrizationParameterText(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "defaultValue":
+            suggest = "default_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardParametrizationParameterText. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardParametrizationParameterText.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardParametrizationParameterText.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 default_value: Optional[str] = None):
+        """
+        :param str default_value: Default value.
+        """
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[str]:
+        """
+        Default value.
+        """
+        return pulumi.get(self, "default_value")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidget(dict):
+    def __init__(__self__, *,
+                 charts: Optional[Sequence['outputs.MonitoringDashboardWidgetChart']] = None,
+                 positions: Optional[Sequence['outputs.MonitoringDashboardWidgetPosition']] = None,
+                 texts: Optional[Sequence['outputs.MonitoringDashboardWidgetText']] = None,
+                 titles: Optional[Sequence['outputs.MonitoringDashboardWidgetTitle']] = None):
+        """
+        :param Sequence['MonitoringDashboardWidgetChartArgs'] charts: Chart widget settings. Oneof: text, title or chart.
+        :param Sequence['MonitoringDashboardWidgetPositionArgs'] positions: Widget position.
+        :param Sequence['MonitoringDashboardWidgetTextArgs'] texts: Title text.
+        :param Sequence['MonitoringDashboardWidgetTitleArgs'] titles: -Title or empty.
+        """
+        if charts is not None:
+            pulumi.set(__self__, "charts", charts)
+        if positions is not None:
+            pulumi.set(__self__, "positions", positions)
+        if texts is not None:
+            pulumi.set(__self__, "texts", texts)
+        if titles is not None:
+            pulumi.set(__self__, "titles", titles)
+
+    @property
+    @pulumi.getter
+    def charts(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChart']]:
+        """
+        Chart widget settings. Oneof: text, title or chart.
+        """
+        return pulumi.get(self, "charts")
+
+    @property
+    @pulumi.getter
+    def positions(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetPosition']]:
+        """
+        Widget position.
+        """
+        return pulumi.get(self, "positions")
+
+    @property
+    @pulumi.getter
+    def texts(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetText']]:
+        """
+        Title text.
+        """
+        return pulumi.get(self, "texts")
+
+    @property
+    @pulumi.getter
+    def titles(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetTitle']]:
+        """
+        -Title or empty.
+        """
+        return pulumi.get(self, "titles")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChart(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "chartId":
+            suggest = "chart_id"
+        elif key == "displayLegend":
+            suggest = "display_legend"
+        elif key == "nameHidingSettings":
+            suggest = "name_hiding_settings"
+        elif key == "seriesOverrides":
+            suggest = "series_overrides"
+        elif key == "visualizationSettings":
+            suggest = "visualization_settings"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardWidgetChart. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardWidgetChart.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardWidgetChart.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 chart_id: Optional[str] = None,
+                 description: Optional[str] = None,
+                 display_legend: Optional[bool] = None,
+                 freeze: Optional[str] = None,
+                 name_hiding_settings: Optional[Sequence['outputs.MonitoringDashboardWidgetChartNameHidingSetting']] = None,
+                 queries: Optional[Sequence['outputs.MonitoringDashboardWidgetChartQuery']] = None,
+                 series_overrides: Optional[Sequence['outputs.MonitoringDashboardWidgetChartSeriesOverride']] = None,
+                 title: Optional[str] = None,
+                 visualization_settings: Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSetting']] = None):
+        """
+        :param str chart_id: Chart ID.
+        :param str description: Chart description in dashboard (not enabled in UI).
+        :param bool display_legend: Enable legend under chart.
+        :param str freeze: Fixed time interval for chart. Values:
+               - FREEZE_DURATION_HOUR: Last hour.
+               - FREEZE_DURATION_DAY: Last day = last 24 hours.
+               - FREEZE_DURATION_WEEK: Last 7 days.
+               - FREEZE_DURATION_MONTH: Last 31 days.
+        :param Sequence['MonitoringDashboardWidgetChartNameHidingSettingArgs'] name_hiding_settings: Names settings.
+        :param Sequence['MonitoringDashboardWidgetChartQueryArgs'] queries: Queries settings.
+        :param Sequence['MonitoringDashboardWidgetChartSeriesOverrideArgs'] series_overrides: Time series settings.
+        :param str title: -Title or empty.
+        :param Sequence['MonitoringDashboardWidgetChartVisualizationSettingArgs'] visualization_settings: Visualization settings.
+        """
+        if chart_id is not None:
+            pulumi.set(__self__, "chart_id", chart_id)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if display_legend is not None:
+            pulumi.set(__self__, "display_legend", display_legend)
+        if freeze is not None:
+            pulumi.set(__self__, "freeze", freeze)
+        if name_hiding_settings is not None:
+            pulumi.set(__self__, "name_hiding_settings", name_hiding_settings)
+        if queries is not None:
+            pulumi.set(__self__, "queries", queries)
+        if series_overrides is not None:
+            pulumi.set(__self__, "series_overrides", series_overrides)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+        if visualization_settings is not None:
+            pulumi.set(__self__, "visualization_settings", visualization_settings)
+
+    @property
+    @pulumi.getter(name="chartId")
+    def chart_id(self) -> Optional[str]:
+        """
+        Chart ID.
+        """
+        return pulumi.get(self, "chart_id")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Chart description in dashboard (not enabled in UI).
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="displayLegend")
+    def display_legend(self) -> Optional[bool]:
+        """
+        Enable legend under chart.
+        """
+        return pulumi.get(self, "display_legend")
+
+    @property
+    @pulumi.getter
+    def freeze(self) -> Optional[str]:
+        """
+        Fixed time interval for chart. Values:
+        - FREEZE_DURATION_HOUR: Last hour.
+        - FREEZE_DURATION_DAY: Last day = last 24 hours.
+        - FREEZE_DURATION_WEEK: Last 7 days.
+        - FREEZE_DURATION_MONTH: Last 31 days.
+        """
+        return pulumi.get(self, "freeze")
+
+    @property
+    @pulumi.getter(name="nameHidingSettings")
+    def name_hiding_settings(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartNameHidingSetting']]:
+        """
+        Names settings.
+        """
+        return pulumi.get(self, "name_hiding_settings")
+
+    @property
+    @pulumi.getter
+    def queries(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartQuery']]:
+        """
+        Queries settings.
+        """
+        return pulumi.get(self, "queries")
+
+    @property
+    @pulumi.getter(name="seriesOverrides")
+    def series_overrides(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartSeriesOverride']]:
+        """
+        Time series settings.
+        """
+        return pulumi.get(self, "series_overrides")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        """
+        -Title or empty.
+        """
+        return pulumi.get(self, "title")
+
+    @property
+    @pulumi.getter(name="visualizationSettings")
+    def visualization_settings(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSetting']]:
+        """
+        Visualization settings.
+        """
+        return pulumi.get(self, "visualization_settings")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartNameHidingSetting(dict):
+    def __init__(__self__, *,
+                 names: Optional[Sequence[str]] = None,
+                 positive: Optional[bool] = None):
+        """
+        :param Sequence[str] names: Series name.
+        :param bool positive: True if we want to show concrete series names only, false if we want to hide concrete series names.
+        """
+        if names is not None:
+            pulumi.set(__self__, "names", names)
+        if positive is not None:
+            pulumi.set(__self__, "positive", positive)
+
+    @property
+    @pulumi.getter
+    def names(self) -> Optional[Sequence[str]]:
+        """
+        Series name.
+        """
+        return pulumi.get(self, "names")
+
+    @property
+    @pulumi.getter
+    def positive(self) -> Optional[bool]:
+        """
+        True if we want to show concrete series names only, false if we want to hide concrete series names.
+        """
+        return pulumi.get(self, "positive")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartQuery(dict):
+    def __init__(__self__, *,
+                 downsamplings: Optional[Sequence['outputs.MonitoringDashboardWidgetChartQueryDownsampling']] = None,
+                 targets: Optional[Sequence['outputs.MonitoringDashboardWidgetChartQueryTarget']] = None):
+        """
+        :param Sequence['MonitoringDashboardWidgetChartQueryDownsamplingArgs'] downsamplings: Downsamplang settings.
+        :param Sequence['MonitoringDashboardWidgetChartQueryTargetArgs'] targets: Query targets.
+        """
+        if downsamplings is not None:
+            pulumi.set(__self__, "downsamplings", downsamplings)
+        if targets is not None:
+            pulumi.set(__self__, "targets", targets)
+
+    @property
+    @pulumi.getter
+    def downsamplings(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartQueryDownsampling']]:
+        """
+        Downsamplang settings.
+        """
+        return pulumi.get(self, "downsamplings")
+
+    @property
+    @pulumi.getter
+    def targets(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartQueryTarget']]:
+        """
+        Query targets.
+        """
+        return pulumi.get(self, "targets")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartQueryDownsampling(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "gapFilling":
+            suggest = "gap_filling"
+        elif key == "gridAggregation":
+            suggest = "grid_aggregation"
+        elif key == "gridInterval":
+            suggest = "grid_interval"
+        elif key == "maxPoints":
+            suggest = "max_points"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardWidgetChartQueryDownsampling. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardWidgetChartQueryDownsampling.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardWidgetChartQueryDownsampling.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 disabled: Optional[bool] = None,
+                 gap_filling: Optional[str] = None,
+                 grid_aggregation: Optional[str] = None,
+                 grid_interval: Optional[int] = None,
+                 max_points: Optional[int] = None):
+        """
+        :param bool disabled: Disable downsampling.
+        :param str gap_filling: Parameters for filling gaps in data.
+        :param str grid_aggregation: Function that is used for downsampling.
+        :param int grid_interval: Time interval (grid) for downsampling in milliseconds. Points in the specified range are aggregated into one time point
+        :param int max_points: Maximum number of points to be returned.
+        """
+        if disabled is not None:
+            pulumi.set(__self__, "disabled", disabled)
+        if gap_filling is not None:
+            pulumi.set(__self__, "gap_filling", gap_filling)
+        if grid_aggregation is not None:
+            pulumi.set(__self__, "grid_aggregation", grid_aggregation)
+        if grid_interval is not None:
+            pulumi.set(__self__, "grid_interval", grid_interval)
+        if max_points is not None:
+            pulumi.set(__self__, "max_points", max_points)
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> Optional[bool]:
+        """
+        Disable downsampling.
+        """
+        return pulumi.get(self, "disabled")
+
+    @property
+    @pulumi.getter(name="gapFilling")
+    def gap_filling(self) -> Optional[str]:
+        """
+        Parameters for filling gaps in data.
+        """
+        return pulumi.get(self, "gap_filling")
+
+    @property
+    @pulumi.getter(name="gridAggregation")
+    def grid_aggregation(self) -> Optional[str]:
+        """
+        Function that is used for downsampling.
+        """
+        return pulumi.get(self, "grid_aggregation")
+
+    @property
+    @pulumi.getter(name="gridInterval")
+    def grid_interval(self) -> Optional[int]:
+        """
+        Time interval (grid) for downsampling in milliseconds. Points in the specified range are aggregated into one time point
+        """
+        return pulumi.get(self, "grid_interval")
+
+    @property
+    @pulumi.getter(name="maxPoints")
+    def max_points(self) -> Optional[int]:
+        """
+        Maximum number of points to be returned.
+        """
+        return pulumi.get(self, "max_points")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartQueryTarget(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "textMode":
+            suggest = "text_mode"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardWidgetChartQueryTarget. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardWidgetChartQueryTarget.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardWidgetChartQueryTarget.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 hidden: Optional[bool] = None,
+                 query: Optional[str] = None,
+                 text_mode: Optional[bool] = None):
+        """
+        :param bool hidden: Checks that target is visible or invisible.
+        :param str query: Query.
+        :param bool text_mode: Text mode enabled.
+        """
+        if hidden is not None:
+            pulumi.set(__self__, "hidden", hidden)
+        if query is not None:
+            pulumi.set(__self__, "query", query)
+        if text_mode is not None:
+            pulumi.set(__self__, "text_mode", text_mode)
+
+    @property
+    @pulumi.getter
+    def hidden(self) -> Optional[bool]:
+        """
+        Checks that target is visible or invisible.
+        """
+        return pulumi.get(self, "hidden")
+
+    @property
+    @pulumi.getter
+    def query(self) -> Optional[str]:
+        """
+        Query.
+        """
+        return pulumi.get(self, "query")
+
+    @property
+    @pulumi.getter(name="textMode")
+    def text_mode(self) -> Optional[bool]:
+        """
+        Text mode enabled.
+        """
+        return pulumi.get(self, "text_mode")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartSeriesOverride(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "targetIndex":
+            suggest = "target_index"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardWidgetChartSeriesOverride. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardWidgetChartSeriesOverride.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardWidgetChartSeriesOverride.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 settings: Optional[Sequence['outputs.MonitoringDashboardWidgetChartSeriesOverrideSetting']] = None,
+                 target_index: Optional[str] = None):
+        """
+        :param str name: Series name or empty.
+        :param Sequence['MonitoringDashboardWidgetChartSeriesOverrideSettingArgs'] settings: Override settings.
+        :param str target_index: Series index. Oneof: name or target_index.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if settings is not None:
+            pulumi.set(__self__, "settings", settings)
+        if target_index is not None:
+            pulumi.set(__self__, "target_index", target_index)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Series name or empty.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def settings(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartSeriesOverrideSetting']]:
+        """
+        Override settings.
+        """
+        return pulumi.get(self, "settings")
+
+    @property
+    @pulumi.getter(name="targetIndex")
+    def target_index(self) -> Optional[str]:
+        """
+        Series index. Oneof: name or target_index.
+        """
+        return pulumi.get(self, "target_index")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartSeriesOverrideSetting(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "growDown":
+            suggest = "grow_down"
+        elif key == "stackName":
+            suggest = "stack_name"
+        elif key == "yaxisPosition":
+            suggest = "yaxis_position"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardWidgetChartSeriesOverrideSetting. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardWidgetChartSeriesOverrideSetting.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardWidgetChartSeriesOverrideSetting.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 color: Optional[str] = None,
+                 grow_down: Optional[bool] = None,
+                 name: Optional[str] = None,
+                 stack_name: Optional[str] = None,
+                 type: Optional[str] = None,
+                 yaxis_position: Optional[str] = None):
+        """
+        :param str color: Series color or empty.
+        :param bool grow_down: Stack grow down.
+        :param str name: Series name or empty.
+        :param str stack_name: Stack name or empty.
+        :param str type: Type.
+        :param str yaxis_position: Yaxis position.
+        """
+        if color is not None:
+            pulumi.set(__self__, "color", color)
+        if grow_down is not None:
+            pulumi.set(__self__, "grow_down", grow_down)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if stack_name is not None:
+            pulumi.set(__self__, "stack_name", stack_name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if yaxis_position is not None:
+            pulumi.set(__self__, "yaxis_position", yaxis_position)
+
+    @property
+    @pulumi.getter
+    def color(self) -> Optional[str]:
+        """
+        Series color or empty.
+        """
+        return pulumi.get(self, "color")
+
+    @property
+    @pulumi.getter(name="growDown")
+    def grow_down(self) -> Optional[bool]:
+        """
+        Stack grow down.
+        """
+        return pulumi.get(self, "grow_down")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Series name or empty.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="stackName")
+    def stack_name(self) -> Optional[str]:
+        """
+        Stack name or empty.
+        """
+        return pulumi.get(self, "stack_name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="yaxisPosition")
+    def yaxis_position(self) -> Optional[str]:
+        """
+        Yaxis position.
+        """
+        return pulumi.get(self, "yaxis_position")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartVisualizationSetting(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "colorSchemeSettings":
+            suggest = "color_scheme_settings"
+        elif key == "heatmapSettings":
+            suggest = "heatmap_settings"
+        elif key == "showLabels":
+            suggest = "show_labels"
+        elif key == "yaxisSettings":
+            suggest = "yaxis_settings"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardWidgetChartVisualizationSetting. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardWidgetChartVisualizationSetting.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardWidgetChartVisualizationSetting.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 aggregation: Optional[str] = None,
+                 color_scheme_settings: Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSetting']] = None,
+                 heatmap_settings: Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingHeatmapSetting']] = None,
+                 interpolate: Optional[str] = None,
+                 normalize: Optional[bool] = None,
+                 show_labels: Optional[bool] = None,
+                 title: Optional[str] = None,
+                 type: Optional[str] = None,
+                 yaxis_settings: Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingYaxisSetting']] = None):
+        """
+        :param str aggregation: Aggregation. Values:
+               - SERIES_AGGREGATION_UNSPECIFIED: Not specified (avg by default).
+               - SERIES_AGGREGATION_AVG: Average.
+               - SERIES_AGGREGATION_MIN: Minimum.
+               - SERIES_AGGREGATION_MAX: Maximum.
+               - SERIES_AGGREGATION_LAST: Last non-NaN value.
+               - SERIES_AGGREGATION_SUM: Sum.
+        :param Sequence['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingArgs'] color_scheme_settings: Color settings.
+        :param Sequence['MonitoringDashboardWidgetChartVisualizationSettingHeatmapSettingArgs'] heatmap_settings: Heatmap settings.
+        :param str interpolate: Interpolate values. Values:
+               - INTERPOLATE_UNSPECIFIED: Not specified (linear by default).
+               - INTERPOLATE_LINEAR: Linear.
+               - INTERPOLATE_LEFT: Left.
+               - INTERPOLATE_RIGHT: Right.
+        :param bool normalize: Normalize values.
+        :param bool show_labels: Show chart labels.
+        :param str title: -Title or empty.
+        :param str type: Type.
+        :param Sequence['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingArgs'] yaxis_settings: Y axis settings.
+        """
+        if aggregation is not None:
+            pulumi.set(__self__, "aggregation", aggregation)
+        if color_scheme_settings is not None:
+            pulumi.set(__self__, "color_scheme_settings", color_scheme_settings)
+        if heatmap_settings is not None:
+            pulumi.set(__self__, "heatmap_settings", heatmap_settings)
+        if interpolate is not None:
+            pulumi.set(__self__, "interpolate", interpolate)
+        if normalize is not None:
+            pulumi.set(__self__, "normalize", normalize)
+        if show_labels is not None:
+            pulumi.set(__self__, "show_labels", show_labels)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if yaxis_settings is not None:
+            pulumi.set(__self__, "yaxis_settings", yaxis_settings)
+
+    @property
+    @pulumi.getter
+    def aggregation(self) -> Optional[str]:
+        """
+        Aggregation. Values:
+        - SERIES_AGGREGATION_UNSPECIFIED: Not specified (avg by default).
+        - SERIES_AGGREGATION_AVG: Average.
+        - SERIES_AGGREGATION_MIN: Minimum.
+        - SERIES_AGGREGATION_MAX: Maximum.
+        - SERIES_AGGREGATION_LAST: Last non-NaN value.
+        - SERIES_AGGREGATION_SUM: Sum.
+        """
+        return pulumi.get(self, "aggregation")
+
+    @property
+    @pulumi.getter(name="colorSchemeSettings")
+    def color_scheme_settings(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSetting']]:
+        """
+        Color settings.
+        """
+        return pulumi.get(self, "color_scheme_settings")
+
+    @property
+    @pulumi.getter(name="heatmapSettings")
+    def heatmap_settings(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingHeatmapSetting']]:
+        """
+        Heatmap settings.
+        """
+        return pulumi.get(self, "heatmap_settings")
+
+    @property
+    @pulumi.getter
+    def interpolate(self) -> Optional[str]:
+        """
+        Interpolate values. Values:
+        - INTERPOLATE_UNSPECIFIED: Not specified (linear by default).
+        - INTERPOLATE_LINEAR: Linear.
+        - INTERPOLATE_LEFT: Left.
+        - INTERPOLATE_RIGHT: Right.
+        """
+        return pulumi.get(self, "interpolate")
+
+    @property
+    @pulumi.getter
+    def normalize(self) -> Optional[bool]:
+        """
+        Normalize values.
+        """
+        return pulumi.get(self, "normalize")
+
+    @property
+    @pulumi.getter(name="showLabels")
+    def show_labels(self) -> Optional[bool]:
+        """
+        Show chart labels.
+        """
+        return pulumi.get(self, "show_labels")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        """
+        -Title or empty.
+        """
+        return pulumi.get(self, "title")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="yaxisSettings")
+    def yaxis_settings(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingYaxisSetting']]:
+        """
+        Y axis settings.
+        """
+        return pulumi.get(self, "yaxis_settings")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSetting(dict):
+    def __init__(__self__, *,
+                 automatics: Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomatic']] = None,
+                 gradients: Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradient']] = None,
+                 standards: Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandard']] = None):
+        """
+        :param Sequence['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomaticArgs'] automatics: Automatic color scheme. Oneof: automatic, standard or gradient.
+        :param Sequence['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradientArgs'] gradients: Gradient color scheme. Oneof: automatic, standard or gradient.
+        :param Sequence['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandardArgs'] standards: Standard color scheme. Oneof: automatic, standard or gradient.
+        """
+        if automatics is not None:
+            pulumi.set(__self__, "automatics", automatics)
+        if gradients is not None:
+            pulumi.set(__self__, "gradients", gradients)
+        if standards is not None:
+            pulumi.set(__self__, "standards", standards)
+
+    @property
+    @pulumi.getter
+    def automatics(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomatic']]:
+        """
+        Automatic color scheme. Oneof: automatic, standard or gradient.
+        """
+        return pulumi.get(self, "automatics")
+
+    @property
+    @pulumi.getter
+    def gradients(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradient']]:
+        """
+        Gradient color scheme. Oneof: automatic, standard or gradient.
+        """
+        return pulumi.get(self, "gradients")
+
+    @property
+    @pulumi.getter
+    def standards(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandard']]:
+        """
+        Standard color scheme. Oneof: automatic, standard or gradient.
+        """
+        return pulumi.get(self, "standards")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomatic(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradient(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "greenValue":
+            suggest = "green_value"
+        elif key == "redValue":
+            suggest = "red_value"
+        elif key == "violetValue":
+            suggest = "violet_value"
+        elif key == "yellowValue":
+            suggest = "yellow_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradient. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradient.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradient.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 green_value: Optional[str] = None,
+                 red_value: Optional[str] = None,
+                 violet_value: Optional[str] = None,
+                 yellow_value: Optional[str] = None):
+        """
+        :param str green_value: Heatmap green value.
+        :param str red_value: Heatmap red value.
+        :param str violet_value: Heatmap violet value.
+        :param str yellow_value: Heatmap yellow value.
+        """
+        if green_value is not None:
+            pulumi.set(__self__, "green_value", green_value)
+        if red_value is not None:
+            pulumi.set(__self__, "red_value", red_value)
+        if violet_value is not None:
+            pulumi.set(__self__, "violet_value", violet_value)
+        if yellow_value is not None:
+            pulumi.set(__self__, "yellow_value", yellow_value)
+
+    @property
+    @pulumi.getter(name="greenValue")
+    def green_value(self) -> Optional[str]:
+        """
+        Heatmap green value.
+        """
+        return pulumi.get(self, "green_value")
+
+    @property
+    @pulumi.getter(name="redValue")
+    def red_value(self) -> Optional[str]:
+        """
+        Heatmap red value.
+        """
+        return pulumi.get(self, "red_value")
+
+    @property
+    @pulumi.getter(name="violetValue")
+    def violet_value(self) -> Optional[str]:
+        """
+        Heatmap violet value.
+        """
+        return pulumi.get(self, "violet_value")
+
+    @property
+    @pulumi.getter(name="yellowValue")
+    def yellow_value(self) -> Optional[str]:
+        """
+        Heatmap yellow value.
+        """
+        return pulumi.get(self, "yellow_value")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandard(dict):
+    def __init__(__self__):
+        pass
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartVisualizationSettingHeatmapSetting(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "greenValue":
+            suggest = "green_value"
+        elif key == "redValue":
+            suggest = "red_value"
+        elif key == "violetValue":
+            suggest = "violet_value"
+        elif key == "yellowValue":
+            suggest = "yellow_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardWidgetChartVisualizationSettingHeatmapSetting. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardWidgetChartVisualizationSettingHeatmapSetting.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardWidgetChartVisualizationSettingHeatmapSetting.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 green_value: Optional[str] = None,
+                 red_value: Optional[str] = None,
+                 violet_value: Optional[str] = None,
+                 yellow_value: Optional[str] = None):
+        """
+        :param str green_value: Heatmap green value.
+        :param str red_value: Heatmap red value.
+        :param str violet_value: Heatmap violet value.
+        :param str yellow_value: Heatmap yellow value.
+        """
+        if green_value is not None:
+            pulumi.set(__self__, "green_value", green_value)
+        if red_value is not None:
+            pulumi.set(__self__, "red_value", red_value)
+        if violet_value is not None:
+            pulumi.set(__self__, "violet_value", violet_value)
+        if yellow_value is not None:
+            pulumi.set(__self__, "yellow_value", yellow_value)
+
+    @property
+    @pulumi.getter(name="greenValue")
+    def green_value(self) -> Optional[str]:
+        """
+        Heatmap green value.
+        """
+        return pulumi.get(self, "green_value")
+
+    @property
+    @pulumi.getter(name="redValue")
+    def red_value(self) -> Optional[str]:
+        """
+        Heatmap red value.
+        """
+        return pulumi.get(self, "red_value")
+
+    @property
+    @pulumi.getter(name="violetValue")
+    def violet_value(self) -> Optional[str]:
+        """
+        Heatmap violet value.
+        """
+        return pulumi.get(self, "violet_value")
+
+    @property
+    @pulumi.getter(name="yellowValue")
+    def yellow_value(self) -> Optional[str]:
+        """
+        Heatmap yellow value.
+        """
+        return pulumi.get(self, "yellow_value")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartVisualizationSettingYaxisSetting(dict):
+    def __init__(__self__, *,
+                 lefts: Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeft']] = None,
+                 rights: Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRight']] = None):
+        """
+        :param Sequence['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeftArgs'] lefts: Left yaxis config.
+        :param Sequence['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRightArgs'] rights: Right yaxis config.
+        """
+        if lefts is not None:
+            pulumi.set(__self__, "lefts", lefts)
+        if rights is not None:
+            pulumi.set(__self__, "rights", rights)
+
+    @property
+    @pulumi.getter
+    def lefts(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeft']]:
+        """
+        Left yaxis config.
+        """
+        return pulumi.get(self, "lefts")
+
+    @property
+    @pulumi.getter
+    def rights(self) -> Optional[Sequence['outputs.MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRight']]:
+        """
+        Right yaxis config.
+        """
+        return pulumi.get(self, "rights")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeft(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "unitFormat":
+            suggest = "unit_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeft. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeft.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeft.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max: Optional[str] = None,
+                 min: Optional[str] = None,
+                 precision: Optional[int] = None,
+                 title: Optional[str] = None,
+                 type: Optional[str] = None,
+                 unit_format: Optional[str] = None):
+        """
+        :param str max: Max value in extended number format or empty.
+        :param str min: Min value in extended number format or empty.
+        :param int precision: Tick value precision (null as default, 0-7 in other cases).
+        :param str title: -Title or empty.
+        :param str type: Type.
+        :param str unit_format: Unit format.
+        """
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+        if precision is not None:
+            pulumi.set(__self__, "precision", precision)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if unit_format is not None:
+            pulumi.set(__self__, "unit_format", unit_format)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[str]:
+        """
+        Max value in extended number format or empty.
+        """
+        return pulumi.get(self, "max")
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[str]:
+        """
+        Min value in extended number format or empty.
+        """
+        return pulumi.get(self, "min")
+
+    @property
+    @pulumi.getter
+    def precision(self) -> Optional[int]:
+        """
+        Tick value precision (null as default, 0-7 in other cases).
+        """
+        return pulumi.get(self, "precision")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        """
+        -Title or empty.
+        """
+        return pulumi.get(self, "title")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="unitFormat")
+    def unit_format(self) -> Optional[str]:
+        """
+        Unit format.
+        """
+        return pulumi.get(self, "unit_format")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRight(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "unitFormat":
+            suggest = "unit_format"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRight. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRight.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRight.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max: Optional[str] = None,
+                 min: Optional[str] = None,
+                 precision: Optional[int] = None,
+                 title: Optional[str] = None,
+                 type: Optional[str] = None,
+                 unit_format: Optional[str] = None):
+        """
+        :param str max: Max value in extended number format or empty.
+        :param str min: Min value in extended number format or empty.
+        :param int precision: Tick value precision (null as default, 0-7 in other cases).
+        :param str title: -Title or empty.
+        :param str type: Type.
+        :param str unit_format: Unit format.
+        """
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+        if precision is not None:
+            pulumi.set(__self__, "precision", precision)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if unit_format is not None:
+            pulumi.set(__self__, "unit_format", unit_format)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[str]:
+        """
+        Max value in extended number format or empty.
+        """
+        return pulumi.get(self, "max")
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[str]:
+        """
+        Min value in extended number format or empty.
+        """
+        return pulumi.get(self, "min")
+
+    @property
+    @pulumi.getter
+    def precision(self) -> Optional[int]:
+        """
+        Tick value precision (null as default, 0-7 in other cases).
+        """
+        return pulumi.get(self, "precision")
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[str]:
+        """
+        -Title or empty.
+        """
+        return pulumi.get(self, "title")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="unitFormat")
+    def unit_format(self) -> Optional[str]:
+        """
+        Unit format.
+        """
+        return pulumi.get(self, "unit_format")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetPosition(dict):
+    def __init__(__self__, *,
+                 h: Optional[int] = None,
+                 w: Optional[int] = None,
+                 x: Optional[int] = None,
+                 y: Optional[int] = None):
+        """
+        :param int h: Height.
+        :param int w: Width.
+        :param int x: X-axis top-left corner coordinate.
+        :param int y: Y-axis top-left corner coordinate.
+        """
+        if h is not None:
+            pulumi.set(__self__, "h", h)
+        if w is not None:
+            pulumi.set(__self__, "w", w)
+        if x is not None:
+            pulumi.set(__self__, "x", x)
+        if y is not None:
+            pulumi.set(__self__, "y", y)
+
+    @property
+    @pulumi.getter
+    def h(self) -> Optional[int]:
+        """
+        Height.
+        """
+        return pulumi.get(self, "h")
+
+    @property
+    @pulumi.getter
+    def w(self) -> Optional[int]:
+        """
+        Width.
+        """
+        return pulumi.get(self, "w")
+
+    @property
+    @pulumi.getter
+    def x(self) -> Optional[int]:
+        """
+        X-axis top-left corner coordinate.
+        """
+        return pulumi.get(self, "x")
+
+    @property
+    @pulumi.getter
+    def y(self) -> Optional[int]:
+        """
+        Y-axis top-left corner coordinate.
+        """
+        return pulumi.get(self, "y")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetText(dict):
+    def __init__(__self__, *,
+                 text: Optional[str] = None):
+        """
+        :param str text: Title text.
+        """
+        if text is not None:
+            pulumi.set(__self__, "text", text)
+
+    @property
+    @pulumi.getter
+    def text(self) -> Optional[str]:
+        """
+        Title text.
+        """
+        return pulumi.get(self, "text")
+
+
+@pulumi.output_type
+class MonitoringDashboardWidgetTitle(dict):
+    def __init__(__self__, *,
+                 text: str,
+                 size: Optional[str] = None):
+        """
+        :param str text: Title text.
+        :param str size: Title size. Values: 
+               - TITLE_SIZE_XS: Extra small size.
+               - TITLE_SIZE_S: Small size.
+               - TITLE_SIZE_M: Middle size.
+               - TITLE_SIZE_L: Large size.
+        """
+        pulumi.set(__self__, "text", text)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter
+    def text(self) -> str:
+        """
+        Title text.
+        """
+        return pulumi.get(self, "text")
+
+    @property
+    @pulumi.getter
+    def size(self) -> Optional[str]:
+        """
+        Title size. Values: 
+        - TITLE_SIZE_XS: Extra small size.
+        - TITLE_SIZE_S: Small size.
+        - TITLE_SIZE_M: Middle size.
+        - TITLE_SIZE_L: Large size.
+        """
+        return pulumi.get(self, "size")
+
+
+@pulumi.output_type
 class VpcGatewaySharedEgressGateway(dict):
     def __init__(__self__):
         pass
+
+
+@pulumi.output_type
+class YandexYdbTableColumn(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "notNull":
+            suggest = "not_null"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in YandexYdbTableColumn. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        YandexYdbTableColumn.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        YandexYdbTableColumn.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 type: str,
+                 family: Optional[str] = None,
+                 not_null: Optional[bool] = None):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        if family is not None:
+            pulumi.set(__self__, "family", family)
+        if not_null is not None:
+            pulumi.set(__self__, "not_null", not_null)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def family(self) -> Optional[str]:
+        return pulumi.get(self, "family")
+
+    @property
+    @pulumi.getter(name="notNull")
+    def not_null(self) -> Optional[bool]:
+        return pulumi.get(self, "not_null")
+
+
+@pulumi.output_type
+class YandexYdbTableFamily(dict):
+    def __init__(__self__, *,
+                 compression: str,
+                 data: str,
+                 name: str):
+        pulumi.set(__self__, "compression", compression)
+        pulumi.set(__self__, "data", data)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def compression(self) -> str:
+        return pulumi.get(self, "compression")
+
+    @property
+    @pulumi.getter
+    def data(self) -> str:
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class YandexYdbTablePartitioningSettings(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "autoPartitioningByLoad":
+            suggest = "auto_partitioning_by_load"
+        elif key == "autoPartitioningBySizeEnabled":
+            suggest = "auto_partitioning_by_size_enabled"
+        elif key == "autoPartitioningMaxPartitionsCount":
+            suggest = "auto_partitioning_max_partitions_count"
+        elif key == "autoPartitioningMinPartitionsCount":
+            suggest = "auto_partitioning_min_partitions_count"
+        elif key == "autoPartitioningPartitionSizeMb":
+            suggest = "auto_partitioning_partition_size_mb"
+        elif key == "partitionAtKeys":
+            suggest = "partition_at_keys"
+        elif key == "uniformPartitions":
+            suggest = "uniform_partitions"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in YandexYdbTablePartitioningSettings. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        YandexYdbTablePartitioningSettings.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        YandexYdbTablePartitioningSettings.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auto_partitioning_by_load: Optional[bool] = None,
+                 auto_partitioning_by_size_enabled: Optional[bool] = None,
+                 auto_partitioning_max_partitions_count: Optional[int] = None,
+                 auto_partitioning_min_partitions_count: Optional[int] = None,
+                 auto_partitioning_partition_size_mb: Optional[int] = None,
+                 partition_at_keys: Optional[Sequence['outputs.YandexYdbTablePartitioningSettingsPartitionAtKey']] = None,
+                 uniform_partitions: Optional[int] = None):
+        if auto_partitioning_by_load is not None:
+            pulumi.set(__self__, "auto_partitioning_by_load", auto_partitioning_by_load)
+        if auto_partitioning_by_size_enabled is not None:
+            pulumi.set(__self__, "auto_partitioning_by_size_enabled", auto_partitioning_by_size_enabled)
+        if auto_partitioning_max_partitions_count is not None:
+            pulumi.set(__self__, "auto_partitioning_max_partitions_count", auto_partitioning_max_partitions_count)
+        if auto_partitioning_min_partitions_count is not None:
+            pulumi.set(__self__, "auto_partitioning_min_partitions_count", auto_partitioning_min_partitions_count)
+        if auto_partitioning_partition_size_mb is not None:
+            pulumi.set(__self__, "auto_partitioning_partition_size_mb", auto_partitioning_partition_size_mb)
+        if partition_at_keys is not None:
+            pulumi.set(__self__, "partition_at_keys", partition_at_keys)
+        if uniform_partitions is not None:
+            pulumi.set(__self__, "uniform_partitions", uniform_partitions)
+
+    @property
+    @pulumi.getter(name="autoPartitioningByLoad")
+    def auto_partitioning_by_load(self) -> Optional[bool]:
+        return pulumi.get(self, "auto_partitioning_by_load")
+
+    @property
+    @pulumi.getter(name="autoPartitioningBySizeEnabled")
+    def auto_partitioning_by_size_enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "auto_partitioning_by_size_enabled")
+
+    @property
+    @pulumi.getter(name="autoPartitioningMaxPartitionsCount")
+    def auto_partitioning_max_partitions_count(self) -> Optional[int]:
+        return pulumi.get(self, "auto_partitioning_max_partitions_count")
+
+    @property
+    @pulumi.getter(name="autoPartitioningMinPartitionsCount")
+    def auto_partitioning_min_partitions_count(self) -> Optional[int]:
+        return pulumi.get(self, "auto_partitioning_min_partitions_count")
+
+    @property
+    @pulumi.getter(name="autoPartitioningPartitionSizeMb")
+    def auto_partitioning_partition_size_mb(self) -> Optional[int]:
+        return pulumi.get(self, "auto_partitioning_partition_size_mb")
+
+    @property
+    @pulumi.getter(name="partitionAtKeys")
+    def partition_at_keys(self) -> Optional[Sequence['outputs.YandexYdbTablePartitioningSettingsPartitionAtKey']]:
+        return pulumi.get(self, "partition_at_keys")
+
+    @property
+    @pulumi.getter(name="uniformPartitions")
+    def uniform_partitions(self) -> Optional[int]:
+        return pulumi.get(self, "uniform_partitions")
+
+
+@pulumi.output_type
+class YandexYdbTablePartitioningSettingsPartitionAtKey(dict):
+    def __init__(__self__, *,
+                 keys: Sequence[str]):
+        pulumi.set(__self__, "keys", keys)
+
+    @property
+    @pulumi.getter
+    def keys(self) -> Sequence[str]:
+        return pulumi.get(self, "keys")
+
+
+@pulumi.output_type
+class YandexYdbTableTtl(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "columnName":
+            suggest = "column_name"
+        elif key == "expireInterval":
+            suggest = "expire_interval"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in YandexYdbTableTtl. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        YandexYdbTableTtl.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        YandexYdbTableTtl.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 column_name: str,
+                 expire_interval: str,
+                 unit: Optional[str] = None):
+        pulumi.set(__self__, "column_name", column_name)
+        pulumi.set(__self__, "expire_interval", expire_interval)
+        if unit is not None:
+            pulumi.set(__self__, "unit", unit)
+
+    @property
+    @pulumi.getter(name="columnName")
+    def column_name(self) -> str:
+        return pulumi.get(self, "column_name")
+
+    @property
+    @pulumi.getter(name="expireInterval")
+    def expire_interval(self) -> str:
+        return pulumi.get(self, "expire_interval")
+
+    @property
+    @pulumi.getter
+    def unit(self) -> Optional[str]:
+        return pulumi.get(self, "unit")
+
+
+@pulumi.output_type
+class YandexYdbTopicChangefeedConsumer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "startingMessageTimestampMs":
+            suggest = "starting_message_timestamp_ms"
+        elif key == "supportedCodecs":
+            suggest = "supported_codecs"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in YandexYdbTopicChangefeedConsumer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        YandexYdbTopicChangefeedConsumer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        YandexYdbTopicChangefeedConsumer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: str,
+                 starting_message_timestamp_ms: Optional[int] = None,
+                 supported_codecs: Optional[Sequence[str]] = None):
+        pulumi.set(__self__, "name", name)
+        if starting_message_timestamp_ms is not None:
+            pulumi.set(__self__, "starting_message_timestamp_ms", starting_message_timestamp_ms)
+        if supported_codecs is not None:
+            pulumi.set(__self__, "supported_codecs", supported_codecs)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="startingMessageTimestampMs")
+    def starting_message_timestamp_ms(self) -> Optional[int]:
+        return pulumi.get(self, "starting_message_timestamp_ms")
+
+    @property
+    @pulumi.getter(name="supportedCodecs")
+    def supported_codecs(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "supported_codecs")
 
 
 @pulumi.output_type
@@ -42423,9 +50270,7 @@ class YandexYdbTopicConsumer(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "serviceType":
-            suggest = "service_type"
-        elif key == "startingMessageTimestampMs":
+        if key == "startingMessageTimestampMs":
             suggest = "starting_message_timestamp_ms"
         elif key == "supportedCodecs":
             suggest = "supported_codecs"
@@ -42443,7 +50288,6 @@ class YandexYdbTopicConsumer(dict):
 
     def __init__(__self__, *,
                  name: str,
-                 service_type: Optional[str] = None,
                  starting_message_timestamp_ms: Optional[int] = None,
                  supported_codecs: Optional[Sequence[str]] = None):
         """
@@ -42451,8 +50295,6 @@ class YandexYdbTopicConsumer(dict):
         :param Sequence[str] supported_codecs: Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
         """
         pulumi.set(__self__, "name", name)
-        if service_type is not None:
-            pulumi.set(__self__, "service_type", service_type)
         if starting_message_timestamp_ms is not None:
             pulumi.set(__self__, "starting_message_timestamp_ms", starting_message_timestamp_ms)
         if supported_codecs is not None:
@@ -42465,11 +50307,6 @@ class YandexYdbTopicConsumer(dict):
         Topic name. Type: string, required. Default value: "".
         """
         return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter(name="serviceType")
-    def service_type(self) -> Optional[str]:
-        return pulumi.get(self, "service_type")
 
     @property
     @pulumi.getter(name="startingMessageTimestampMs")

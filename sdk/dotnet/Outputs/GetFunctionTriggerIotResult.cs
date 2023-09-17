@@ -13,18 +13,26 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetFunctionTriggerIotResult
     {
+        public readonly string BatchCutoff;
+        public readonly string BatchSize;
         public readonly string DeviceId;
         public readonly string RegistryId;
         public readonly string Topic;
 
         [OutputConstructor]
         private GetFunctionTriggerIotResult(
+            string batchCutoff,
+
+            string batchSize,
+
             string deviceId,
 
             string registryId,
 
             string topic)
         {
+            BatchCutoff = batchCutoff;
+            BatchSize = batchSize;
             DeviceId = deviceId;
             RegistryId = registryId;
             Topic = topic;

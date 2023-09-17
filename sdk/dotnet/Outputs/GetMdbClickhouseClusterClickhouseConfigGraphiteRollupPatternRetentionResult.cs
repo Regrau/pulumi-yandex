@@ -16,17 +16,17 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// Minimum data age in seconds.
         /// </summary>
-        public readonly int Age;
+        public readonly int? Age;
         /// <summary>
         /// Accuracy of determining the age of the data in seconds.
         /// </summary>
-        public readonly int Precision;
+        public readonly int? Precision;
 
         [OutputConstructor]
         private GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionResult(
-            int age,
+            int? age,
 
-            int precision)
+            int? precision)
         {
             Age = age;
             Precision = precision;

@@ -277,6 +277,20 @@ import * as utilities from "./utilities";
  * `,
  * });
  * ```
+ * ### Bucket Tagging
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as yandex from "@pulumi/yandex";
+ *
+ * const storageBucket = new yandex.StorageBucket("b", {
+ *     bucket: "my-policy-bucket",
+ *     tags: {
+ *         other_key: "other_value",
+ *         test_key: "test_value",
+ *     },
+ * });
+ * ```
  * ### Bucket Max Size
  *
  * ```typescript
@@ -449,6 +463,9 @@ import * as utilities from "./utilities";
  *     https: {
  *         certificateId: "<certificate_id>",
  *     },
+ *     tags: {
+ *         some_key: "some_value",
+ *     },
  * });
  * ```
  *
@@ -491,11 +508,13 @@ export class StorageBucket extends pulumi.CustomResource {
     }
 
     /**
-     * The access key to use when applying changes. If omitted, `storageAccessKey` specified in provider config is used.
+     * The access key to use when applying changes. If omitted, `storageAccessKey` specified in
+     * provider config (explicitly or within `sharedCredentialsFile`) is used.
      */
     public readonly accessKey!: pulumi.Output<string | undefined>;
     /**
-     * The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+     * The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+     * Defaults to `private`. Conflicts with `grant`.
      */
     public readonly acl!: pulumi.Output<string>;
     /**
@@ -510,7 +529,8 @@ export class StorageBucket extends pulumi.CustomResource {
      */
     public /*out*/ readonly bucketDomainName!: pulumi.Output<string>;
     /**
-     * Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+     * Creates a unique bucket name beginning with the specified prefix.
+     * Conflicts with `bucket`.
      */
     public readonly bucketPrefix!: pulumi.Output<string | undefined>;
     /**
@@ -519,7 +539,7 @@ export class StorageBucket extends pulumi.CustomResource {
     public readonly corsRules!: pulumi.Output<outputs.StorageBucketCorsRule[] | undefined>;
     /**
      * Storage class which is used for storing objects by default.
-     * Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+     * Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
      * See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
      */
     public readonly defaultStorageClass!: pulumi.Output<string>;
@@ -557,13 +577,15 @@ export class StorageBucket extends pulumi.CustomResource {
     public readonly objectLockConfiguration!: pulumi.Output<outputs.StorageBucketObjectLockConfiguration | undefined>;
     public readonly policy!: pulumi.Output<string | undefined>;
     /**
-     * The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
+     * The secret key to use when applying changes. If omitted, `storageSecretKey` specified in
+     * provider config (explicitly or within `sharedCredentialsFile`) is used.
      */
     public readonly secretKey!: pulumi.Output<string | undefined>;
     /**
      * A configuration of server-side encryption for the bucket (documented below)
      */
     public readonly serverSideEncryptionConfiguration!: pulumi.Output<outputs.StorageBucketServerSideEncryptionConfiguration | undefined>;
+    public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
     /**
      * A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
      */
@@ -613,6 +635,7 @@ export class StorageBucket extends pulumi.CustomResource {
             resourceInputs["policy"] = state ? state.policy : undefined;
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
             resourceInputs["serverSideEncryptionConfiguration"] = state ? state.serverSideEncryptionConfiguration : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
             resourceInputs["versioning"] = state ? state.versioning : undefined;
             resourceInputs["website"] = state ? state.website : undefined;
             resourceInputs["websiteDomain"] = state ? state.websiteDomain : undefined;
@@ -637,6 +660,7 @@ export class StorageBucket extends pulumi.CustomResource {
             resourceInputs["policy"] = args ? args.policy : undefined;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["serverSideEncryptionConfiguration"] = args ? args.serverSideEncryptionConfiguration : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
             resourceInputs["versioning"] = args ? args.versioning : undefined;
             resourceInputs["website"] = args ? args.website : undefined;
             resourceInputs["websiteDomain"] = args ? args.websiteDomain : undefined;
@@ -655,11 +679,13 @@ export class StorageBucket extends pulumi.CustomResource {
  */
 export interface StorageBucketState {
     /**
-     * The access key to use when applying changes. If omitted, `storageAccessKey` specified in provider config is used.
+     * The access key to use when applying changes. If omitted, `storageAccessKey` specified in
+     * provider config (explicitly or within `sharedCredentialsFile`) is used.
      */
     accessKey?: pulumi.Input<string>;
     /**
-     * The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+     * The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+     * Defaults to `private`. Conflicts with `grant`.
      */
     acl?: pulumi.Input<string>;
     /**
@@ -674,7 +700,8 @@ export interface StorageBucketState {
      */
     bucketDomainName?: pulumi.Input<string>;
     /**
-     * Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+     * Creates a unique bucket name beginning with the specified prefix.
+     * Conflicts with `bucket`.
      */
     bucketPrefix?: pulumi.Input<string>;
     /**
@@ -683,7 +710,7 @@ export interface StorageBucketState {
     corsRules?: pulumi.Input<pulumi.Input<inputs.StorageBucketCorsRule>[]>;
     /**
      * Storage class which is used for storing objects by default.
-     * Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+     * Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
      * See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
      */
     defaultStorageClass?: pulumi.Input<string>;
@@ -721,13 +748,15 @@ export interface StorageBucketState {
     objectLockConfiguration?: pulumi.Input<inputs.StorageBucketObjectLockConfiguration>;
     policy?: pulumi.Input<string>;
     /**
-     * The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
+     * The secret key to use when applying changes. If omitted, `storageSecretKey` specified in
+     * provider config (explicitly or within `sharedCredentialsFile`) is used.
      */
     secretKey?: pulumi.Input<string>;
     /**
      * A configuration of server-side encryption for the bucket (documented below)
      */
     serverSideEncryptionConfiguration?: pulumi.Input<inputs.StorageBucketServerSideEncryptionConfiguration>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
      */
@@ -751,11 +780,13 @@ export interface StorageBucketState {
  */
 export interface StorageBucketArgs {
     /**
-     * The access key to use when applying changes. If omitted, `storageAccessKey` specified in provider config is used.
+     * The access key to use when applying changes. If omitted, `storageAccessKey` specified in
+     * provider config (explicitly or within `sharedCredentialsFile`) is used.
      */
     accessKey?: pulumi.Input<string>;
     /**
-     * The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+     * The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+     * Defaults to `private`. Conflicts with `grant`.
      */
     acl?: pulumi.Input<string>;
     /**
@@ -766,7 +797,8 @@ export interface StorageBucketArgs {
     anonymousAccessFlags?: pulumi.Input<inputs.StorageBucketAnonymousAccessFlags>;
     bucket?: pulumi.Input<string>;
     /**
-     * Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+     * Creates a unique bucket name beginning with the specified prefix.
+     * Conflicts with `bucket`.
      */
     bucketPrefix?: pulumi.Input<string>;
     /**
@@ -775,7 +807,7 @@ export interface StorageBucketArgs {
     corsRules?: pulumi.Input<pulumi.Input<inputs.StorageBucketCorsRule>[]>;
     /**
      * Storage class which is used for storing objects by default.
-     * Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+     * Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
      * See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
      */
     defaultStorageClass?: pulumi.Input<string>;
@@ -813,13 +845,15 @@ export interface StorageBucketArgs {
     objectLockConfiguration?: pulumi.Input<inputs.StorageBucketObjectLockConfiguration>;
     policy?: pulumi.Input<string>;
     /**
-     * The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
+     * The secret key to use when applying changes. If omitted, `storageSecretKey` specified in
+     * provider config (explicitly or within `sharedCredentialsFile`) is used.
      */
     secretKey?: pulumi.Input<string>;
     /**
      * A configuration of server-side encryption for the bucket (documented below)
      */
     serverSideEncryptionConfiguration?: pulumi.Input<inputs.StorageBucketServerSideEncryptionConfiguration>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
      */

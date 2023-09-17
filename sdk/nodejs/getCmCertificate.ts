@@ -42,6 +42,7 @@ export interface GetCmCertificateResult {
     readonly certificateId: string;
     readonly challenges: outputs.GetCmCertificateChallenge[];
     readonly createdAt: string;
+    readonly deletionProtection: boolean;
     readonly description: string;
     readonly domains: string[];
     readonly folderId: string;

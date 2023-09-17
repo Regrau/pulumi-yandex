@@ -126,7 +126,6 @@ type KubernetesNodeGroup struct {
 	// Template used to create compute instances in this Kubernetes node group. The structure is documented below.
 	InstanceTemplate KubernetesNodeGroupInstanceTemplateOutput `pulumi:"instanceTemplate"`
 	// Labels that will be assigned to compute nodes (instances), created by the Node Group.
-	// ---
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// (Computed) Maintenance policy for this Kubernetes node group.
 	// If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
@@ -212,7 +211,6 @@ type kubernetesNodeGroupState struct {
 	// Template used to create compute instances in this Kubernetes node group. The structure is documented below.
 	InstanceTemplate *KubernetesNodeGroupInstanceTemplate `pulumi:"instanceTemplate"`
 	// Labels that will be assigned to compute nodes (instances), created by the Node Group.
-	// ---
 	Labels map[string]string `pulumi:"labels"`
 	// (Computed) Maintenance policy for this Kubernetes node group.
 	// If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
@@ -260,7 +258,6 @@ type KubernetesNodeGroupState struct {
 	// Template used to create compute instances in this Kubernetes node group. The structure is documented below.
 	InstanceTemplate KubernetesNodeGroupInstanceTemplatePtrInput
 	// Labels that will be assigned to compute nodes (instances), created by the Node Group.
-	// ---
 	Labels pulumi.StringMapInput
 	// (Computed) Maintenance policy for this Kubernetes node group.
 	// If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
@@ -308,7 +305,6 @@ type kubernetesNodeGroupArgs struct {
 	// Template used to create compute instances in this Kubernetes node group. The structure is documented below.
 	InstanceTemplate KubernetesNodeGroupInstanceTemplate `pulumi:"instanceTemplate"`
 	// Labels that will be assigned to compute nodes (instances), created by the Node Group.
-	// ---
 	Labels map[string]string `pulumi:"labels"`
 	// (Computed) Maintenance policy for this Kubernetes node group.
 	// If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
@@ -349,7 +345,6 @@ type KubernetesNodeGroupArgs struct {
 	// Template used to create compute instances in this Kubernetes node group. The structure is documented below.
 	InstanceTemplate KubernetesNodeGroupInstanceTemplateInput
 	// Labels that will be assigned to compute nodes (instances), created by the Node Group.
-	// ---
 	Labels pulumi.StringMapInput
 	// (Computed) Maintenance policy for this Kubernetes node group.
 	// If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
@@ -503,7 +498,6 @@ func (o KubernetesNodeGroupOutput) InstanceTemplate() KubernetesNodeGroupInstanc
 }
 
 // Labels that will be assigned to compute nodes (instances), created by the Node Group.
-// ---
 func (o KubernetesNodeGroupOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *KubernetesNodeGroup) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }

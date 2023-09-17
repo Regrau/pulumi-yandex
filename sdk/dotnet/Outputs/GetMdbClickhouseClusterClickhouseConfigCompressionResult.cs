@@ -16,23 +16,23 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// Method: Compression method. Two methods are available: LZ4 and zstd.
         /// </summary>
-        public readonly string Method;
+        public readonly string? Method;
         /// <summary>
         /// Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
         /// </summary>
-        public readonly int MinPartSize;
+        public readonly int? MinPartSize;
         /// <summary>
         /// Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
         /// </summary>
-        public readonly double MinPartSizeRatio;
+        public readonly double? MinPartSizeRatio;
 
         [OutputConstructor]
         private GetMdbClickhouseClusterClickhouseConfigCompressionResult(
-            string method,
+            string? method,
 
-            int minPartSize,
+            int? minPartSize,
 
-            double minPartSizeRatio)
+            double? minPartSizeRatio)
         {
             Method = method;
             MinPartSize = minPartSize;

@@ -15,6 +15,9 @@ namespace Pulumi.Yandex.Inputs
         [Input("cronExpression", required: true)]
         public Input<string> CronExpression { get; set; } = null!;
 
+        [Input("payload")]
+        public Input<string>? Payload { get; set; }
+
         public FunctionTriggerTimerArgs()
         {
         }

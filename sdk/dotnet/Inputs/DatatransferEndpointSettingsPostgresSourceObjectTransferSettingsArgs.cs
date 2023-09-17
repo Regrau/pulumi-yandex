@@ -51,12 +51,18 @@ namespace Pulumi.Yandex.Inputs
         [Input("sequenceOwnedBy")]
         public Input<string>? SequenceOwnedBy { get; set; }
 
+        [Input("sequenceSet")]
+        public Input<string>? SequenceSet { get; set; }
+
         [Input("table")]
         public Input<string>? Table { get; set; }
 
         [Input("trigger")]
         public Input<string>? Trigger { get; set; }
 
+        /// <summary>
+        /// Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
 

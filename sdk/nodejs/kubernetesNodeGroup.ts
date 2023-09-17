@@ -142,7 +142,6 @@ export class KubernetesNodeGroup extends pulumi.CustomResource {
     public readonly instanceTemplate!: pulumi.Output<outputs.KubernetesNodeGroupInstanceTemplate>;
     /**
      * Labels that will be assigned to compute nodes (instances), created by the Node Group.
-     * ---
      */
     public readonly labels!: pulumi.Output<{[key: string]: string}>;
     /**
@@ -290,7 +289,6 @@ export interface KubernetesNodeGroupState {
     instanceTemplate?: pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplate>;
     /**
      * Labels that will be assigned to compute nodes (instances), created by the Node Group.
-     * ---
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
@@ -367,7 +365,6 @@ export interface KubernetesNodeGroupArgs {
     instanceTemplate: pulumi.Input<inputs.KubernetesNodeGroupInstanceTemplate>;
     /**
      * Labels that will be assigned to compute nodes (instances), created by the Node Group.
-     * ---
      */
     labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**

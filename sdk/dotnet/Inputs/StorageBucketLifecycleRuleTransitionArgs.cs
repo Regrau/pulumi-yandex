@@ -25,7 +25,7 @@ namespace Pulumi.Yandex.Inputs
         public Input<int>? Days { get; set; }
 
         /// <summary>
-        /// Specifies the storage class to which you want the object to transition. Can only be `COLD` or `STANDARD_IA`.
+        /// Specifies the storage class to which you want the object to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
         /// </summary>
         [Input("storageClass", required: true)]
         public Input<string> StorageClass { get; set; } = null!;

@@ -16,29 +16,29 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// SASL mechanism used in kafka authentication.
         /// </summary>
-        public readonly string? SaslMechanism;
+        public readonly string SaslMechanism;
         /// <summary>
         /// User password on kafka server.
         /// </summary>
-        public readonly string? SaslPassword;
+        public readonly string SaslPassword;
         /// <summary>
         /// Username on kafka server.
         /// </summary>
-        public readonly string? SaslUsername;
+        public readonly string SaslUsername;
         /// <summary>
         /// Security protocol used to connect to kafka server.
         /// </summary>
-        public readonly string? SecurityProtocol;
+        public readonly string SecurityProtocol;
 
         [OutputConstructor]
         private GetMdbClickhouseClusterClickhouseConfigKafkaResult(
-            string? saslMechanism,
+            string saslMechanism,
 
-            string? saslPassword,
+            string saslPassword,
 
-            string? saslUsername,
+            string saslUsername,
 
-            string? securityProtocol)
+            string securityProtocol)
         {
             SaslMechanism = saslMechanism;
             SaslPassword = saslPassword;

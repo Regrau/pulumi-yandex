@@ -14,11 +14,11 @@ namespace Pulumi.Yandex.Outputs
     public sealed class ComputeSnapshotScheduleSnapshotSpec
     {
         /// <summary>
-        /// Description of the resource.
+        /// Description to assign to snapshots created by this snapshot schedule.
         /// </summary>
         public readonly string? Description;
         /// <summary>
-        /// A set of key/value label pairs to assign to the snapshot schedule.
+        /// A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
 

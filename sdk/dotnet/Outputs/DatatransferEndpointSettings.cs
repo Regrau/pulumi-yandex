@@ -13,9 +13,29 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class DatatransferEndpointSettings
     {
+        /// <summary>
+        /// Settings specific to the ClickHouse source endpoint.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsClickhouseSource? ClickhouseSource;
+        /// <summary>
+        /// Settings specific to the ClickHouse target endpoint.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsClickhouseTarget? ClickhouseTarget;
+        /// <summary>
+        /// Settings specific to the Kafka source endpoint.
+        /// </summary>
+        public readonly Outputs.DatatransferEndpointSettingsKafkaSource? KafkaSource;
+        /// <summary>
+        /// Settings specific to the Kafka target endpoint.
+        /// </summary>
+        public readonly Outputs.DatatransferEndpointSettingsKafkaTarget? KafkaTarget;
+        /// <summary>
+        /// Settings specific to the MongoDB source endpoint.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsMongoSource? MongoSource;
+        /// <summary>
+        /// Settings specific to the MongoDB target endpoint.
+        /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsMongoTarget? MongoTarget;
         /// <summary>
         /// Settings specific to the MySQL source endpoint.
@@ -33,12 +53,24 @@ namespace Pulumi.Yandex.Outputs
         /// Settings specific to the PostgreSQL target endpoint.
         /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsPostgresTarget? PostgresTarget;
+        /// <summary>
+        /// Settings specific to the YDB source endpoint.
+        /// </summary>
+        public readonly Outputs.DatatransferEndpointSettingsYdbSource? YdbSource;
+        /// <summary>
+        /// Settings specific to the YDB target endpoint.
+        /// </summary>
+        public readonly Outputs.DatatransferEndpointSettingsYdbTarget? YdbTarget;
 
         [OutputConstructor]
         private DatatransferEndpointSettings(
             Outputs.DatatransferEndpointSettingsClickhouseSource? clickhouseSource,
 
             Outputs.DatatransferEndpointSettingsClickhouseTarget? clickhouseTarget,
+
+            Outputs.DatatransferEndpointSettingsKafkaSource? kafkaSource,
+
+            Outputs.DatatransferEndpointSettingsKafkaTarget? kafkaTarget,
 
             Outputs.DatatransferEndpointSettingsMongoSource? mongoSource,
 
@@ -50,16 +82,24 @@ namespace Pulumi.Yandex.Outputs
 
             Outputs.DatatransferEndpointSettingsPostgresSource? postgresSource,
 
-            Outputs.DatatransferEndpointSettingsPostgresTarget? postgresTarget)
+            Outputs.DatatransferEndpointSettingsPostgresTarget? postgresTarget,
+
+            Outputs.DatatransferEndpointSettingsYdbSource? ydbSource,
+
+            Outputs.DatatransferEndpointSettingsYdbTarget? ydbTarget)
         {
             ClickhouseSource = clickhouseSource;
             ClickhouseTarget = clickhouseTarget;
+            KafkaSource = kafkaSource;
+            KafkaTarget = kafkaTarget;
             MongoSource = mongoSource;
             MongoTarget = mongoTarget;
             MysqlSource = mysqlSource;
             MysqlTarget = mysqlTarget;
             PostgresSource = postgresSource;
             PostgresTarget = postgresTarget;
+            YdbSource = ydbSource;
+            YdbTarget = ydbTarget;
         }
     }
 }

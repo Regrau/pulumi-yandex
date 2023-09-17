@@ -1234,9 +1234,12 @@ export interface CdnResourceOptions {
      */
     slice: boolean;
     /**
-     * set up custom headers that CDN servers send in requests to origins.
+     * set up custom headers that CDN servers will send in requests to origins.
      */
-    staticRequestHeaders: string[];
+    staticRequestHeaders: {[key: string]: string};
+    /**
+     * set up custom headers that CDN servers will send in response to clients.
+     */
     staticResponseHeaders: {[key: string]: string};
 }
 
@@ -1322,9 +1325,12 @@ export interface CmCertificateSelfManaged {
 
 export interface CmCertificateSelfManagedPrivateKeyLockboxSecret {
     /**
-     * Certificate Id.
+     * Lockbox secret Id.
      */
     id: string;
+    /**
+     * Key of the Lockbox secret, the value of which contains the private key of the certificate.
+     */
     key: string;
 }
 
@@ -1480,7 +1486,7 @@ export interface ComputeInstanceGroupHealthCheck {
     /**
      * HTTP check options. The structure is documented below.
      */
-    httpOptions?: outputs.ComputeInstanceGroupHealthCheckHttpOption[];
+    httpOptions?: outputs.ComputeInstanceGroupHealthCheckHttpOptions;
     /**
      * The interval to wait between health checks in seconds.
      */
@@ -1488,7 +1494,7 @@ export interface ComputeInstanceGroupHealthCheck {
     /**
      * TCP check options. The structure is documented below.
      */
-    tcpOptions: outputs.ComputeInstanceGroupHealthCheckTcpOptions;
+    tcpOptions?: outputs.ComputeInstanceGroupHealthCheckTcpOptions;
     /**
      * The length of time to wait for a response before the health check times out in seconds.
      */
@@ -1499,7 +1505,7 @@ export interface ComputeInstanceGroupHealthCheck {
     unhealthyThreshold?: number;
 }
 
-export interface ComputeInstanceGroupHealthCheckHttpOption {
+export interface ComputeInstanceGroupHealthCheckHttpOptions {
     /**
      * The URL path used for health check requests.
      */
@@ -2145,7 +2151,7 @@ export interface ComputeInstanceNetworkInterface {
     /**
      * Provide a public address, for instance, to access the internet over NAT.
      */
-    nat: boolean;
+    nat?: boolean;
     /**
      * List of configurations for creating ipv4 NAT DNS records. The structure is documented below.
      */
@@ -2292,17 +2298,23 @@ export interface ComputeInstanceSecondaryDisk {
 }
 
 export interface ComputeSnapshotScheduleSchedulePolicy {
+    /**
+     * Cron expression to schedule snapshots (in cron format "* * * * *").
+     */
     expression?: string;
+    /**
+     * Time to start the snapshot schedule (in format RFC3339 "2006-01-02T15:04:05Z07:00"). If empty current time will be used. Unlike an `expression` that specifies regularity rules, the `startAt` parameter determines from what point these rules will be applied.
+     */
     startAt: string;
 }
 
 export interface ComputeSnapshotScheduleSnapshotSpec {
     /**
-     * Description of the resource.
+     * Description to assign to snapshots created by this snapshot schedule.
      */
     description?: string;
     /**
-     * A set of key/value label pairs to assign to the snapshot schedule.
+     * A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
      */
     labels?: {[key: string]: string};
 }
@@ -2442,9 +2454,29 @@ export interface DataprocClusterClusterConfigSubclusterSpecResources {
 }
 
 export interface DatatransferEndpointSettings {
+    /**
+     * Settings specific to the ClickHouse source endpoint.
+     */
     clickhouseSource?: outputs.DatatransferEndpointSettingsClickhouseSource;
+    /**
+     * Settings specific to the ClickHouse target endpoint.
+     */
     clickhouseTarget?: outputs.DatatransferEndpointSettingsClickhouseTarget;
+    /**
+     * Settings specific to the Kafka source endpoint.
+     */
+    kafkaSource?: outputs.DatatransferEndpointSettingsKafkaSource;
+    /**
+     * Settings specific to the Kafka target endpoint.
+     */
+    kafkaTarget?: outputs.DatatransferEndpointSettingsKafkaTarget;
+    /**
+     * Settings specific to the MongoDB source endpoint.
+     */
     mongoSource?: outputs.DatatransferEndpointSettingsMongoSource;
+    /**
+     * Settings specific to the MongoDB target endpoint.
+     */
     mongoTarget?: outputs.DatatransferEndpointSettingsMongoTarget;
     /**
      * Settings specific to the MySQL source endpoint.
@@ -2462,6 +2494,14 @@ export interface DatatransferEndpointSettings {
      * Settings specific to the PostgreSQL target endpoint.
      */
     postgresTarget?: outputs.DatatransferEndpointSettingsPostgresTarget;
+    /**
+     * Settings specific to the YDB source endpoint.
+     */
+    ydbSource?: outputs.DatatransferEndpointSettingsYdbSource;
+    /**
+     * Settings specific to the YDB target endpoint.
+     */
+    ydbTarget?: outputs.DatatransferEndpointSettingsYdbTarget;
 }
 
 export interface DatatransferEndpointSettingsClickhouseSource {
@@ -2712,6 +2752,414 @@ export interface DatatransferEndpointSettingsClickhouseTargetShardingColumnValue
 }
 
 export interface DatatransferEndpointSettingsClickhouseTargetShardingTransferId {
+}
+
+export interface DatatransferEndpointSettingsKafkaSource {
+    /**
+     * Authentication data.
+     */
+    auth: outputs.DatatransferEndpointSettingsKafkaSourceAuth;
+    /**
+     * Connection settings. The structure is documented below.
+     */
+    connection: outputs.DatatransferEndpointSettingsKafkaSourceConnection;
+    /**
+     * Data parsing parameters. If not set, the source messages are read in raw.
+     */
+    parser: outputs.DatatransferEndpointSettingsKafkaSourceParser;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
+    securityGroups: string[];
+    /**
+     * Full source topic name.
+     */
+    topicName: string;
+    /**
+     * Transform data with a custom Cloud Function.
+     */
+    transformer: outputs.DatatransferEndpointSettingsKafkaSourceTransformer;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceAuth {
+    /**
+     * Connection without authentication data.
+     */
+    noAuth?: outputs.DatatransferEndpointSettingsKafkaSourceAuthNoAuth;
+    /**
+     * Authentication using sasl.
+     */
+    sasl?: outputs.DatatransferEndpointSettingsKafkaSourceAuthSasl;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceAuthNoAuth {
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceAuthSasl {
+    mechanism: string;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
+    password: outputs.DatatransferEndpointSettingsKafkaSourceAuthSaslPassword;
+    /**
+     * User for the database access.
+     */
+    user: string;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceAuthSaslPassword {
+    raw: string;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceConnection {
+    /**
+     * Identifier of the Managed Kafka cluster.
+     */
+    clusterId?: string;
+    /**
+     * Connection settings of the on-premise Kafka server.
+     */
+    onPremise?: outputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremise;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceConnectionOnPremise {
+    /**
+     * List of Kafka broker URLs.
+     */
+    brokerUrls: string[];
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
+    subnetId: string;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
+    tlsMode: outputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsMode;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
+    disabled?: outputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabled;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
+    enabled?: outputs.DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabled;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabled {
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
+    caCertificate: string;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParser {
+    /**
+     * Parse Audit Trails data. Empty struct.
+     */
+    auditTrailsV1Parser?: outputs.DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1Parser;
+    /**
+     * Parse Cloud Logging data. Empty struct.
+     */
+    cloudLoggingParser?: outputs.DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParser;
+    /**
+     * Parse data in json format.
+     */
+    jsonParser?: outputs.DatatransferEndpointSettingsKafkaSourceParserJsonParser;
+    /**
+     * Parse data if tskv format.
+     */
+    tskvParser?: outputs.DatatransferEndpointSettingsKafkaSourceParserTskvParser;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1Parser {
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParser {
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserJsonParser {
+    /**
+     * Add fields, that are not in the schema, into the _rest column.
+     */
+    addRestColumn: boolean;
+    /**
+     * Data parsing scheme.The structure is documented below.
+     */
+    dataSchema: outputs.DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchema;
+    /**
+     * Allow null keys. If `false` - null keys will be putted to unparsed data
+     */
+    nullKeysAllowed: boolean;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchema {
+    /**
+     * Description of the data schema in the array of `fields` structure (documented below).
+     */
+    fields?: outputs.DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFields;
+    /**
+     * Description of the data schema as JSON specification.
+     */
+    jsonFields?: string;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFields {
+    /**
+     * Description of the data schema in the array of `fields` structure (documented below).
+     */
+    fields: outputs.DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsField[];
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsField {
+    /**
+     * -Mark field as Primary Key.
+     */
+    key: boolean;
+    /**
+     * Name of the endpoint.
+     */
+    name: string;
+    /**
+     * Path to the field.
+     */
+    path: string;
+    /**
+     * Mark field as required.
+     */
+    required: boolean;
+    /**
+     * Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+     */
+    type: string;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserTskvParser {
+    /**
+     * Add fields, that are not in the schema, into the _rest column.
+     */
+    addRestColumn: boolean;
+    /**
+     * Data parsing scheme.The structure is documented below.
+     */
+    dataSchema: outputs.DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchema;
+    /**
+     * Allow null keys. If `false` - null keys will be putted to unparsed data
+     */
+    nullKeysAllowed: boolean;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchema {
+    /**
+     * Description of the data schema in the array of `fields` structure (documented below).
+     */
+    fields?: outputs.DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFields;
+    /**
+     * Description of the data schema as JSON specification.
+     */
+    jsonFields?: string;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFields {
+    /**
+     * Description of the data schema in the array of `fields` structure (documented below).
+     */
+    fields: outputs.DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsField[];
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsField {
+    /**
+     * -Mark field as Primary Key.
+     */
+    key: boolean;
+    /**
+     * Name of the endpoint.
+     */
+    name: string;
+    /**
+     * Path to the field.
+     */
+    path: string;
+    /**
+     * Mark field as required.
+     */
+    required: boolean;
+    /**
+     * Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+     */
+    type: string;
+}
+
+export interface DatatransferEndpointSettingsKafkaSourceTransformer {
+    bufferFlushInterval: string;
+    bufferSize: string;
+    cloudFunction: string;
+    invocationTimeout: string;
+    numberOfRetries: number;
+    serviceAccountId: string;
+}
+
+export interface DatatransferEndpointSettingsKafkaTarget {
+    /**
+     * Authentication data.
+     */
+    auth: outputs.DatatransferEndpointSettingsKafkaTargetAuth;
+    /**
+     * Connection settings. The structure is documented below.
+     */
+    connection: outputs.DatatransferEndpointSettingsKafkaTargetConnection;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
+    securityGroups: string[];
+    /**
+     * Data serialization settings.
+     */
+    serializer: outputs.DatatransferEndpointSettingsKafkaTargetSerializer;
+    /**
+     * Target topic settings.
+     */
+    topicSettings: outputs.DatatransferEndpointSettingsKafkaTargetTopicSettings;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetAuth {
+    /**
+     * Connection without authentication data.
+     */
+    noAuth?: outputs.DatatransferEndpointSettingsKafkaTargetAuthNoAuth;
+    /**
+     * Authentication using sasl.
+     */
+    sasl?: outputs.DatatransferEndpointSettingsKafkaTargetAuthSasl;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetAuthNoAuth {
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetAuthSasl {
+    mechanism: string;
+    /**
+     * Password for the database access. This is a block with a single field named `raw` which should contain the password.
+     */
+    password: outputs.DatatransferEndpointSettingsKafkaTargetAuthSaslPassword;
+    /**
+     * User for the database access.
+     */
+    user: string;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetAuthSaslPassword {
+    raw: string;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetConnection {
+    /**
+     * Identifier of the Managed Kafka cluster.
+     */
+    clusterId?: string;
+    /**
+     * Connection settings of the on-premise Kafka server.
+     */
+    onPremise?: outputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremise;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetConnectionOnPremise {
+    /**
+     * List of Kafka broker URLs.
+     */
+    brokerUrls: string[];
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
+    subnetId: string;
+    /**
+     * TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+     */
+    tlsMode: outputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsMode;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsMode {
+    /**
+     * Empty block designating that the connection is not secured, i.e. plaintext connection.
+     */
+    disabled?: outputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabled;
+    /**
+     * If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+     */
+    enabled?: outputs.DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabled;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabled {
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabled {
+    /**
+     * X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+     */
+    caCertificate: string;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetSerializer {
+    /**
+     * Empty block. Select data serialization format automatically.
+     */
+    serializerAuto?: outputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerAuto;
+    /**
+     * Serialize data in json format. The structure is documented below.
+     */
+    serializerDebezium?: outputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebezium;
+    /**
+     * Empty block. Serialize data in json format.
+     */
+    serializerJson?: outputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerJson;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetSerializerSerializerAuto {
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebezium {
+    /**
+     * A list of debezium parameters set by the structure of the `key` and `value` string fields.
+     */
+    serializerParameters: outputs.DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameter[];
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameter {
+    /**
+     * -Mark field as Primary Key.
+     */
+    key: string;
+    value: string;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetSerializerSerializerJson {
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetTopicSettings {
+    /**
+     * All messages will be sent to one topic. The structure is documented below.
+     */
+    topic?: outputs.DatatransferEndpointSettingsKafkaTargetTopicSettingsTopic;
+    /**
+     * Topic name prefix. Messages will be sent to topic with name <topic_prefix>.<schema>.<table_name>.
+     */
+    topicPrefix?: string;
+}
+
+export interface DatatransferEndpointSettingsKafkaTargetTopicSettingsTopic {
+    /**
+     * Not to split events queue into separate per-table queues.
+     */
+    saveTxOrder: boolean;
+    /**
+     * Full source topic name.
+     */
+    topicName: string;
 }
 
 export interface DatatransferEndpointSettingsMongoSource {
@@ -2980,7 +3428,7 @@ export interface DatatransferEndpointSettingsMysqlSourceConnection {
      */
     mdbClusterId?: string;
     /**
-     * Connection settings of the on-premise MySQL server.
+     * Connection settings of the on-premise Kafka server.
      */
     onPremise?: outputs.DatatransferEndpointSettingsMysqlSourceConnectionOnPremise;
 }
@@ -3027,6 +3475,7 @@ export interface DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsMo
 
 export interface DatatransferEndpointSettingsMysqlSourceObjectTransferSettings {
     routine: string;
+    tables: string;
     trigger: string;
     view: string;
 }
@@ -3076,7 +3525,7 @@ export interface DatatransferEndpointSettingsMysqlTargetConnection {
      */
     mdbClusterId?: string;
     /**
-     * Connection settings of the on-premise MySQL server.
+     * Connection settings of the on-premise Kafka server.
      */
     onPremise?: outputs.DatatransferEndpointSettingsMysqlTargetConnectionOnPremise;
 }
@@ -3174,7 +3623,7 @@ export interface DatatransferEndpointSettingsPostgresSourceConnection {
      */
     mdbClusterId?: string;
     /**
-     * Connection settings of the on-premise MySQL server.
+     * Connection settings of the on-premise Kafka server.
      */
     onPremise?: outputs.DatatransferEndpointSettingsPostgresSourceConnectionOnPremise;
 }
@@ -3233,8 +3682,12 @@ export interface DatatransferEndpointSettingsPostgresSourceObjectTransferSetting
     rule: string;
     sequence: string;
     sequenceOwnedBy: string;
+    sequenceSet: string;
     table: string;
     trigger: string;
+    /**
+     * Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+     */
     type: string;
     view: string;
 }
@@ -3272,7 +3725,7 @@ export interface DatatransferEndpointSettingsPostgresTargetConnection {
      */
     mdbClusterId?: string;
     /**
-     * Connection settings of the on-premise MySQL server.
+     * Connection settings of the on-premise Kafka server.
      */
     onPremise?: outputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremise;
 }
@@ -3319,6 +3772,51 @@ export interface DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTl
 
 export interface DatatransferEndpointSettingsPostgresTargetPassword {
     raw: string;
+}
+
+export interface DatatransferEndpointSettingsYdbSource {
+    /**
+     * Name of the database to transfer.
+     */
+    database: string;
+    instance: string;
+    paths: string[];
+    saKeyContent: string;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
+    securityGroups: string[];
+    serviceAccountId: string;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
+    subnetId: string;
+}
+
+export interface DatatransferEndpointSettingsYdbTarget {
+    /**
+     * How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+     */
+    cleanupPolicy: string;
+    /**
+     * Name of the database to transfer.
+     */
+    database: string;
+    instance: string;
+    /**
+     * Path to the field.
+     */
+    path: string;
+    saKeyContent: string;
+    /**
+     * List of security groups that the transfer associated with this endpoint should use.
+     */
+    securityGroups: string[];
+    serviceAccountId: string;
+    /**
+     * Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+     */
+    subnetId: string;
 }
 
 export interface FunctionConnectivity {
@@ -3382,6 +3880,8 @@ export interface FunctionTriggerFunction {
 }
 
 export interface FunctionTriggerIot {
+    batchCutoff: string;
+    batchSize?: string;
     deviceId?: string;
     registryId: string;
     topic?: string;
@@ -3397,9 +3897,10 @@ export interface FunctionTriggerLogging {
     batchCutoff: string;
     batchSize?: string;
     groupId: string;
-    levels: string[];
-    resourceIds: string[];
-    resourceTypes: string[];
+    levels?: string[];
+    resourceIds?: string[];
+    resourceTypes?: string[];
+    streamNames?: string[];
 }
 
 export interface FunctionTriggerMessageQueue {
@@ -3411,6 +3912,8 @@ export interface FunctionTriggerMessageQueue {
 }
 
 export interface FunctionTriggerObjectStorage {
+    batchCutoff: string;
+    batchSize?: string;
     bucketId: string;
     create?: boolean;
     delete?: boolean;
@@ -3421,6 +3924,7 @@ export interface FunctionTriggerObjectStorage {
 
 export interface FunctionTriggerTimer {
     cronExpression: string;
+    payload?: string;
 }
 
 export interface GetAlbBackendGroupGrpcBackend {
@@ -4448,7 +4952,7 @@ export interface GetCdnResourceOptions {
     /**
      * set up custom headers that CDN servers send in requests to origins.
      */
-    staticRequestHeaders: string[];
+    staticRequestHeaders: {[key: string]: string};
     staticResponseHeaders: {[key: string]: string};
 }
 
@@ -5408,6 +5912,45 @@ export interface GetComputeInstanceSecondaryDisk {
     mode: string;
 }
 
+export interface GetComputeSnapshotScheduleSchedulePolicy {
+    expression: string;
+    startAt: string;
+}
+
+export interface GetComputeSnapshotScheduleSnapshotSpec {
+    /**
+     * An optional description of this snapshot schedule.
+     */
+    description: string;
+    /**
+     * A map of labels applied to this snapshot schedule.
+     */
+    labels: {[key: string]: string};
+}
+
+export interface GetContainerRepositoryLifecyclePolicyRule {
+    /**
+     * Description of the lifecycle policy.
+     */
+    description: string;
+    /**
+     * The period of time that must pass after creating a image for it to suit the automatic deletion criteria. It must be a multiple of 24 hours.
+     */
+    expirePeriod: string;
+    /**
+     * The number of images to be retained even if the expirePeriod already expired.
+     */
+    retainedTop: number;
+    /**
+     * Tag to specify a filter as a regular expression. For example `.*` - all images with tags.
+     */
+    tagRegexp: string;
+    /**
+     * If enabled, rules apply to untagged Docker images.
+     */
+    untagged: boolean;
+}
+
 export interface GetDataprocClusterClusterConfig {
     /**
      * Data Proc specific options. The structure is documented below.
@@ -5558,6 +6101,8 @@ export interface GetFunctionTriggerFunction {
 }
 
 export interface GetFunctionTriggerIot {
+    batchCutoff: string;
+    batchSize: string;
     deviceId: string;
     registryId: string;
     topic: string;
@@ -5576,6 +6121,7 @@ export interface GetFunctionTriggerLogging {
     levels: string[];
     resourceIds: string[];
     resourceTypes: string[];
+    streamNames: string[];
 }
 
 export interface GetFunctionTriggerMessageQueue {
@@ -5587,6 +6133,8 @@ export interface GetFunctionTriggerMessageQueue {
 }
 
 export interface GetFunctionTriggerObjectStorage {
+    batchCutoff: string;
+    batchSize: string;
     bucketId: string;
     create: boolean;
     delete: boolean;
@@ -5597,6 +6145,7 @@ export interface GetFunctionTriggerObjectStorage {
 
 export interface GetFunctionTriggerTimer {
     cronExpression: string;
+    payload: string;
 }
 
 export interface GetIamPolicyBinding {
@@ -5605,6 +6154,8 @@ export interface GetIamPolicyBinding {
      * Each entry can have one of the following values:
      * * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
      * * **serviceAccount:{service_account_id}**: A unique service account ID.
+     * * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+     * * **group:{group_id}**: A unique group ID.
      */
     members: string[];
     /**
@@ -5697,6 +6248,10 @@ export interface GetKubernetesClusterMasterMaintenancePolicyMaintenanceWindow {
 }
 
 export interface GetKubernetesClusterMasterMasterLogging {
+    /**
+     * (Optional) Boolean flag that specifies if kube-apiserver audit logs should be sent to Yandex Cloud Logging.
+     */
+    auditEnabled: boolean;
     /**
      * (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
      */
@@ -5807,12 +6362,20 @@ export interface GetKubernetesNodeGroupInstanceTemplate {
      */
     bootDisks: outputs.GetKubernetesNodeGroupInstanceTemplateBootDisk[];
     /**
+     * Container network configuration. The structure is documented below.
+     */
+    containerNetworks: outputs.GetKubernetesNodeGroupInstanceTemplateContainerNetwork[];
+    /**
      * Container runtime configuration. The structure is documented below.
      */
     containerRuntime: outputs.GetKubernetesNodeGroupInstanceTemplateContainerRuntime;
     /**
-     * Labels assigned to compute nodes (instances), created by the Node Group.
+     * GPU settings. The structure is documented below.
      * ---
+     */
+    gpuSettings: outputs.GetKubernetesNodeGroupInstanceTemplateGpuSetting[];
+    /**
+     * Labels assigned to compute nodes (instances), created by the Node Group.
      */
     labels: {[key: string]: string};
     /**
@@ -5861,11 +6424,29 @@ export interface GetKubernetesNodeGroupInstanceTemplateBootDisk {
     type: string;
 }
 
+export interface GetKubernetesNodeGroupInstanceTemplateContainerNetwork {
+    /**
+     * MTU for pods.
+     */
+    podMtu: number;
+}
+
 export interface GetKubernetesNodeGroupInstanceTemplateContainerRuntime {
     /**
      * Type of container runtime. Values: `docker`, `containerd`.
      */
     type: string;
+}
+
+export interface GetKubernetesNodeGroupInstanceTemplateGpuSetting {
+    /**
+     * GPU cluster id.
+     */
+    gpuClusterId: string;
+    /**
+     * GPU environment. Values: `runc`, `runcDriversCuda`.
+     */
+    gpuEnvironment: string;
 }
 
 export interface GetKubernetesNodeGroupInstanceTemplateNetworkInterface {
@@ -6124,42 +6705,84 @@ export interface GetLbTargetGroupTarget {
     subnetId: string;
 }
 
+export interface GetLockBoxSecretCurrentVersion {
+    /**
+     * The version creation timestamp.
+     */
+    createdAt: string;
+    /**
+     * The version description.
+     */
+    description: string;
+    /**
+     * The version destroy timestamp.
+     */
+    destroyAt: string;
+    /**
+     * The version ID.
+     */
+    id: string;
+    /**
+     * List of keys that the version contains (doesn't include the values).
+     */
+    payloadEntryKeys: string[];
+    /**
+     * The Yandex Cloud Lockbox secret ID.
+     */
+    secretId: string;
+    /**
+     * The version status.
+     */
+    status: string;
+}
+
+export interface GetLockBoxSecretVersionEntry {
+    /**
+     * The key of the entry.
+     */
+    key: string;
+    /**
+     * The text value of the entry.
+     */
+    textValue: string;
+}
+
 export interface GetMdbClickhouseClusterAccess {
     /**
      * Allow access for Web SQL.
      */
-    dataLens: boolean;
+    dataLens?: boolean;
     /**
      * Allow access for DataTransfer
      */
-    dataTransfer: boolean;
+    dataTransfer?: boolean;
     /**
      * Allow access for Yandex.Metrika.
      */
-    metrika: boolean;
+    metrika?: boolean;
     /**
      * Allow access for Serverless.
      */
-    serverless: boolean;
+    serverless?: boolean;
     /**
      * Allow access for DataLens.
      */
-    webSql: boolean;
+    webSql?: boolean;
     /**
      * Allow access for YandexQuery
      */
-    yandexQuery: boolean;
+    yandexQuery?: boolean;
 }
 
 export interface GetMdbClickhouseClusterBackupWindowStart {
     /**
      * The hour at which backup will be started.
      */
-    hours: number;
+    hours?: number;
     /**
      * The minute at which backup will be started.
      */
-    minutes: number;
+    minutes?: number;
 }
 
 export interface GetMdbClickhouseClusterClickhouse {
@@ -6170,88 +6793,88 @@ export interface GetMdbClickhouseClusterClickhouse {
     /**
      * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
      */
-    resources: outputs.GetMdbClickhouseClusterClickhouseResource[];
+    resources: outputs.GetMdbClickhouseClusterClickhouseResources;
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfig {
     backgroundFetchesPoolSize: number;
-    backgroundPoolSize?: number;
-    backgroundSchedulePoolSize?: number;
+    backgroundPoolSize: number;
+    backgroundSchedulePoolSize: number;
     /**
      * Data compression configuration. The structure is documented below.
      */
     compressions?: outputs.GetMdbClickhouseClusterClickhouseConfigCompression[];
     defaultDatabase: string;
-    geobaseUri?: string;
+    geobaseUri: string;
     /**
      * Graphite rollup configuration. The structure is documented below.
      */
     graphiteRollups?: outputs.GetMdbClickhouseClusterClickhouseConfigGraphiteRollup[];
     /**
+     * Kafka connection configuration. The structure is documented below.
+     */
+    kafka: outputs.GetMdbClickhouseClusterClickhouseConfigKafka;
+    /**
      * Kafka topic connection configuration. The structure is documented below.
      */
     kafkaTopics?: outputs.GetMdbClickhouseClusterClickhouseConfigKafkaTopic[];
-    /**
-     * Kafka connection configuration. The structure is documented below.
-     */
-    kafkas: outputs.GetMdbClickhouseClusterClickhouseConfigKafka[];
-    keepAliveTimeout?: number;
-    logLevel?: string;
-    markCacheSize?: number;
-    maxConcurrentQueries?: number;
-    maxConnections?: number;
-    maxPartitionSizeToDrop?: number;
-    maxTableSizeToDrop?: number;
+    keepAliveTimeout: number;
+    logLevel: string;
+    markCacheSize: number;
+    maxConcurrentQueries: number;
+    maxConnections: number;
+    maxPartitionSizeToDrop: number;
+    maxTableSizeToDrop: number;
     /**
      * MergeTree engine configuration. The structure is documented below.
      */
     mergeTree: outputs.GetMdbClickhouseClusterClickhouseConfigMergeTree;
-    metricLogEnabled?: boolean;
-    metricLogRetentionSize?: number;
-    metricLogRetentionTime?: number;
-    partLogRetentionSize?: number;
-    partLogRetentionTime?: number;
-    queryLogRetentionSize?: number;
-    queryLogRetentionTime?: number;
-    queryThreadLogEnabled?: boolean;
-    queryThreadLogRetentionSize?: number;
-    queryThreadLogRetentionTime?: number;
+    metricLogEnabled: boolean;
+    metricLogRetentionSize: number;
+    metricLogRetentionTime: number;
+    partLogRetentionSize: number;
+    partLogRetentionTime: number;
+    queryLogRetentionSize: number;
+    queryLogRetentionTime: number;
+    queryThreadLogEnabled: boolean;
+    queryThreadLogRetentionSize: number;
+    queryThreadLogRetentionTime: number;
     /**
      * RabbitMQ connection configuration. The structure is documented below.
      */
     rabbitmq: outputs.GetMdbClickhouseClusterClickhouseConfigRabbitmq;
-    textLogEnabled?: boolean;
-    textLogLevel?: string;
-    textLogRetentionSize?: number;
-    textLogRetentionTime?: number;
-    timezone?: string;
+    textLogEnabled: boolean;
+    textLogLevel: string;
+    textLogRetentionSize: number;
+    textLogRetentionTime: number;
+    timezone: string;
     totalMemoryProfilerStep: number;
-    traceLogEnabled?: boolean;
-    traceLogRetentionSize?: number;
-    traceLogRetentionTime?: number;
-    uncompressedCacheSize?: number;
+    traceLogEnabled: boolean;
+    traceLogRetentionSize: number;
+    traceLogRetentionTime: number;
+    uncompressedCacheSize: number;
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigCompression {
     /**
      * Method: Compression method. Two methods are available: LZ4 and zstd.
      */
-    method: string;
+    method?: string;
     /**
      * Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
      */
-    minPartSize: number;
+    minPartSize?: number;
     /**
      * Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
      */
-    minPartSizeRatio: number;
+    minPartSizeRatio?: number;
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigGraphiteRollup {
     /**
      * The name of the ClickHouse cluster.
      */
-    name: string;
+    name?: string;
     /**
      * Set of thinning rules.
      */
@@ -6262,11 +6885,11 @@ export interface GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPattern {
     /**
      * Aggregation function name.
      */
-    function: string;
+    function?: string;
     /**
      * Regular expression that the metric name must match.
      */
-    regexp?: string;
+    regexp: string;
     /**
      * Retain parameters.
      */
@@ -6277,37 +6900,37 @@ export interface GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRet
     /**
      * Minimum data age in seconds.
      */
-    age: number;
+    age?: number;
     /**
      * Accuracy of determining the age of the data in seconds.
      */
-    precision: number;
+    precision?: number;
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigKafka {
     /**
      * SASL mechanism used in kafka authentication.
      */
-    saslMechanism?: string;
+    saslMechanism: string;
     /**
      * User password on kafka server.
      */
-    saslPassword?: string;
+    saslPassword: string;
     /**
      * Username on kafka server.
      */
-    saslUsername?: string;
+    saslUsername: string;
     /**
      * Security protocol used to connect to kafka server.
      */
-    securityProtocol?: string;
+    securityProtocol: string;
 }
 
 export interface GetMdbClickhouseClusterClickhouseConfigKafkaTopic {
     /**
      * The name of the ClickHouse cluster.
      */
-    name: string;
+    name?: string;
     /**
      * Kafka connection settngs sanem as `kafka` block.
      */
@@ -6337,11 +6960,11 @@ export interface GetMdbClickhouseClusterClickhouseConfigMergeTree {
     /**
      * Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
      */
-    maxBytesToMergeAtMinSpaceInPool?: number;
+    maxBytesToMergeAtMinSpaceInPool: number;
     /**
      * Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
      */
-    maxReplicatedMergesInQueue?: number;
+    maxReplicatedMergesInQueue: number;
     /**
      * (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
      */
@@ -6353,23 +6976,23 @@ export interface GetMdbClickhouseClusterClickhouseConfigMergeTree {
     /**
      * Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
      */
-    numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge?: number;
+    numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge: number;
     /**
      * Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
      */
-    partsToDelayInsert?: number;
+    partsToDelayInsert: number;
     /**
      * Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
      */
-    partsToThrowInsert?: number;
+    partsToThrowInsert: number;
     /**
      * Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
      */
-    replicatedDeduplicationWindow?: number;
+    replicatedDeduplicationWindow: number;
     /**
      * Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
      */
-    replicatedDeduplicationWindowSeconds?: number;
+    replicatedDeduplicationWindowSeconds: number;
     /**
      * (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
      */
@@ -6380,18 +7003,18 @@ export interface GetMdbClickhouseClusterClickhouseConfigRabbitmq {
     /**
      * RabbitMQ user password.
      */
-    password?: string;
+    password: string;
     /**
      * RabbitMQ username.
      */
-    username?: string;
+    username: string;
     /**
      * (Optional) RabbitMQ vhost. Default: '\'.
      */
     vhost: string;
 }
 
-export interface GetMdbClickhouseClusterClickhouseResource {
+export interface GetMdbClickhouseClusterClickhouseResources {
     /**
      * Volume of the storage available to a host, in gigabytes.
      */
@@ -6415,7 +7038,7 @@ export interface GetMdbClickhouseClusterCloudStorage {
     /**
      * (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
      */
-    enabled: boolean;
+    enabled?: boolean;
     /**
      * Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
      */
@@ -6426,29 +7049,29 @@ export interface GetMdbClickhouseClusterDatabase {
     /**
      * The name of the ClickHouse cluster.
      */
-    name: string;
+    name?: string;
 }
 
 export interface GetMdbClickhouseClusterFormatSchema {
     /**
      * The name of the ClickHouse cluster.
      */
-    name: string;
+    name?: string;
     /**
      * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
      */
-    type: string;
+    type?: string;
     /**
      * Model file URL. You can only use models stored in Yandex Object Storage.
      */
-    uri: string;
+    uri?: string;
 }
 
 export interface GetMdbClickhouseClusterHost {
     /**
      * Sets whether the host should get a public IP address on creation.
      */
-    assignPublicIp: boolean;
+    assignPublicIp?: boolean;
     /**
      * The fully qualified domain name of the host.
      */
@@ -6464,48 +7087,48 @@ export interface GetMdbClickhouseClusterHost {
     /**
      * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
      */
-    type: string;
+    type?: string;
     /**
      * The availability zone where the ClickHouse host will be created.
      */
-    zone: string;
+    zone?: string;
 }
 
 export interface GetMdbClickhouseClusterMaintenanceWindow {
     /**
      * Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
      */
-    day: string;
+    day?: string;
     /**
      * Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
      */
-    hour: number;
+    hour?: number;
     /**
      * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
      */
-    type: string;
+    type?: string;
 }
 
 export interface GetMdbClickhouseClusterMlModel {
     /**
      * The name of the ClickHouse cluster.
      */
-    name: string;
+    name?: string;
     /**
      * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
      */
-    type: string;
+    type?: string;
     /**
      * Model file URL. You can only use models stored in Yandex Object Storage.
      */
-    uri: string;
+    uri?: string;
 }
 
 export interface GetMdbClickhouseClusterShard {
     /**
      * The name of the ClickHouse cluster.
      */
-    name: string;
+    name?: string;
     /**
      * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
      */
@@ -6520,15 +7143,15 @@ export interface GetMdbClickhouseClusterShardGroup {
     /**
      * Description of the shard group.
      */
-    description: string;
+    description?: string;
     /**
      * The name of the ClickHouse cluster.
      */
-    name: string;
+    name?: string;
     /**
      * List of shards names that belong to the shard group.
      */
-    shardNames: string[];
+    shardNames?: string[];
 }
 
 export interface GetMdbClickhouseClusterShardResources {
@@ -6547,7 +7170,11 @@ export interface GetMdbClickhouseClusterUser {
     /**
      * The name of the ClickHouse cluster.
      */
-    name: string;
+    name?: string;
+    /**
+     * RabbitMQ user password.
+     */
+    password?: string;
     /**
      * Set of permissions granted to the user. The structure is documented below.
      */
@@ -6566,7 +7193,7 @@ export interface GetMdbClickhouseClusterUserPermission {
     /**
      * The name of the database that the permission grants access to.
      */
-    databaseName: string;
+    databaseName?: string;
 }
 
 export interface GetMdbClickhouseClusterUserQuota {
@@ -6581,7 +7208,7 @@ export interface GetMdbClickhouseClusterUserQuota {
     /**
      * Duration of interval for quota in milliseconds.
      */
-    intervalDuration: number;
+    intervalDuration?: number;
     /**
      * The total number of queries.
      */
@@ -7050,10 +7677,10 @@ export interface GetMdbClickhouseClusterZookeeper {
     /**
      * Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
      */
-    resources: outputs.GetMdbClickhouseClusterZookeeperResource[];
+    resources: outputs.GetMdbClickhouseClusterZookeeperResources;
 }
 
-export interface GetMdbClickhouseClusterZookeeperResource {
+export interface GetMdbClickhouseClusterZookeeperResources {
     /**
      * Volume of the storage available to a host, in gigabytes.
      */
@@ -7385,10 +8012,6 @@ export interface GetMdbKafkaClusterMaintenanceWindow {
 
 export interface GetMdbKafkaClusterTopic {
     /**
-     * The ID of the Kafka cluster.
-     */
-    clusterId: string;
-    /**
      * The name of the Kafka cluster.
      */
     name: string;
@@ -7448,6 +8071,156 @@ export interface GetMdbKafkaClusterUserPermission {
     topicName: string;
 }
 
+export interface GetMdbKafkaConnectorConnectorConfigMirrormaker {
+    /**
+     * Replication factor for topics created in target cluster
+     */
+    replicationFactor: number;
+    /**
+     * Settings for source cluster. The structure is documented below.
+     */
+    sourceClusters: outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerSourceCluster[];
+    /**
+     * Settings for target cluster. The structure is documented below.
+     */
+    targetClusters: outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerTargetCluster[];
+    /**
+     * The pattern for topic names to be copied to s3 bucket.
+     */
+    topics: string;
+}
+
+export interface GetMdbKafkaConnectorConnectorConfigMirrormakerSourceCluster {
+    /**
+     * Name of the cluster. Used also as a topic prefix
+     */
+    alias: string;
+    /**
+     * Connection params for external cluster
+     */
+    externalClusters: outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster[];
+    /**
+     * Using this section in the cluster definition (source or target) means it's this cluster
+     */
+    thisClusters: outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisCluster[];
+}
+
+export interface GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterExternalCluster {
+    /**
+     * List of bootstrap servers to connect to cluster
+     */
+    bootstrapServers: string;
+    /**
+     * Type of SASL authentification mechanism to use
+     */
+    saslMechanism: string;
+    /**
+     * Password to use in SASL authentification mechanism
+     */
+    saslPassword: string;
+    /**
+     * Username to use in SASL authentification mechanism
+     */
+    saslUsername: string;
+    /**
+     * Security protocol to use
+     */
+    securityProtocol: string;
+}
+
+export interface GetMdbKafkaConnectorConnectorConfigMirrormakerSourceClusterThisCluster {
+}
+
+export interface GetMdbKafkaConnectorConnectorConfigMirrormakerTargetCluster {
+    /**
+     * Name of the cluster. Used also as a topic prefix
+     */
+    alias: string;
+    /**
+     * Connection params for external cluster
+     */
+    externalClusters: outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster[];
+    /**
+     * Using this section in the cluster definition (source or target) means it's this cluster
+     */
+    thisClusters: outputs.GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisCluster[];
+}
+
+export interface GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterExternalCluster {
+    /**
+     * List of bootstrap servers to connect to cluster
+     */
+    bootstrapServers: string;
+    /**
+     * Type of SASL authentification mechanism to use
+     */
+    saslMechanism: string;
+    /**
+     * Password to use in SASL authentification mechanism
+     */
+    saslPassword: string;
+    /**
+     * Username to use in SASL authentification mechanism
+     */
+    saslUsername: string;
+    /**
+     * Security protocol to use
+     */
+    securityProtocol: string;
+}
+
+export interface GetMdbKafkaConnectorConnectorConfigMirrormakerTargetClusterThisCluster {
+}
+
+export interface GetMdbKafkaConnectorConnectorConfigS3Sink {
+    /**
+     * Сompression type for messages. Cannot be changed.
+     */
+    fileCompressionType: string;
+    /**
+     * Max records per file.
+     */
+    fileMaxRecords: number;
+    /**
+     * Settings for connection to s3-compatible storage. The structure is documented below.
+     */
+    s3Connections: outputs.GetMdbKafkaConnectorConnectorConfigS3SinkS3Connection[];
+    /**
+     * The pattern for topic names to be copied to s3 bucket.
+     */
+    topics: string;
+}
+
+export interface GetMdbKafkaConnectorConnectorConfigS3SinkS3Connection {
+    /**
+     * Name of the bucket in s3-compatible storage.
+     */
+    bucketName: string;
+    /**
+     * Connection params for external s3-compatible storage. The structure is documented below.
+     */
+    externalS3s: outputs.GetMdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3[];
+}
+
+export interface GetMdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3 {
+    /**
+     * ID of aws-compatible static key.
+     */
+    accessKeyId: string;
+    /**
+     * URL of s3-compatible storage.
+     */
+    endpoint: string;
+    /**
+     * region of s3-compatible storage. [Available region list](https://docs.aws.amazon.com/AWSJavaSDK/latest/javadoc/com/amazonaws/regions/Regions.html).
+     */
+    region: string;
+    /**
+     * Secret key of aws-compatible static key.
+     */
+    secretAccessKey: string;
+}
+
 export interface GetMdbKafkaTopicTopicConfig {
     cleanupPolicy: string;
     compressionType: string;
@@ -7464,6 +8237,11 @@ export interface GetMdbKafkaTopicTopicConfig {
     segmentBytes: string;
 }
 
+export interface GetMdbKafkaUserPermission {
+    role: string;
+    topicName: string;
+}
+
 export interface GetMdbMongodbClusterClusterConfig {
     /**
      * Access policy to MongoDB cluster. The structure is documented below.
@@ -7477,12 +8255,15 @@ export interface GetMdbMongodbClusterClusterConfig {
      * Feature compatibility version of MongoDB.
      */
     featureCompatibilityVersion: string;
+    mongocfg: outputs.GetMdbMongodbClusterClusterConfigMongocfg;
     /**
      * (Optional) Configuration of the mongod service. The structure is documented below.
      */
     mongod: outputs.GetMdbMongodbClusterClusterConfigMongod;
+    mongos: outputs.GetMdbMongodbClusterClusterConfigMongos;
+    performanceDiagnostics: outputs.GetMdbMongodbClusterClusterConfigPerformanceDiagnostics;
     /**
-     * Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+     * Version of MongoDB (either 6.0, 6.0-enterprise, 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2).
      */
     version?: string;
 }
@@ -7509,6 +8290,29 @@ export interface GetMdbMongodbClusterClusterConfigBackupWindowStart {
     minutes?: number;
 }
 
+export interface GetMdbMongodbClusterClusterConfigMongocfg {
+    net?: outputs.GetMdbMongodbClusterClusterConfigMongocfgNet;
+    operationProfiling?: outputs.GetMdbMongodbClusterClusterConfigMongocfgOperationProfiling;
+    storage?: outputs.GetMdbMongodbClusterClusterConfigMongocfgStorage;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongocfgNet {
+    maxIncomingConnections?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongocfgOperationProfiling {
+    mode?: string;
+    slowOpThreshold?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongocfgStorage {
+    wiredTiger?: outputs.GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTiger;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTiger {
+    cacheSizeGb?: number;
+}
+
 export interface GetMdbMongodbClusterClusterConfigMongod {
     /**
      * (Optional) A set of audit log settings
@@ -7516,6 +8320,8 @@ export interface GetMdbMongodbClusterClusterConfigMongod {
      * The structure is documented below. Available only in enterprise edition.
      */
     auditLog: outputs.GetMdbMongodbClusterClusterConfigMongodAuditLog;
+    net?: outputs.GetMdbMongodbClusterClusterConfigMongodNet;
+    operationProfiling?: outputs.GetMdbMongodbClusterClusterConfigMongodOperationProfiling;
     /**
      * (Optional) A set of MongoDB Security settings
      * (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
@@ -7528,6 +8334,7 @@ export interface GetMdbMongodbClusterClusterConfigMongod {
      * The structure is documented below.
      */
     setParameter: outputs.GetMdbMongodbClusterClusterConfigMongodSetParameter;
+    storage?: outputs.GetMdbMongodbClusterClusterConfigMongodStorage;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodAuditLog {
@@ -7538,6 +8345,15 @@ export interface GetMdbMongodbClusterClusterConfigMongodAuditLog {
      */
     filter?: string;
     runtimeConfiguration?: boolean;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodNet {
+    maxIncomingConnections?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodOperationProfiling {
+    mode?: string;
+    slowOpThreshold?: number;
 }
 
 export interface GetMdbMongodbClusterClusterConfigMongodSecurity {
@@ -7597,6 +8413,32 @@ export interface GetMdbMongodbClusterClusterConfigMongodSetParameter {
     auditAuthorizationSuccess?: boolean;
 }
 
+export interface GetMdbMongodbClusterClusterConfigMongodStorage {
+    journal?: outputs.GetMdbMongodbClusterClusterConfigMongodStorageJournal;
+    wiredTiger?: outputs.GetMdbMongodbClusterClusterConfigMongodStorageWiredTiger;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodStorageJournal {
+    commitInterval?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongodStorageWiredTiger {
+    blockCompressor?: string;
+    cacheSizeGb?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongos {
+    net?: outputs.GetMdbMongodbClusterClusterConfigMongosNet;
+}
+
+export interface GetMdbMongodbClusterClusterConfigMongosNet {
+    maxIncomingConnections?: number;
+}
+
+export interface GetMdbMongodbClusterClusterConfigPerformanceDiagnostics {
+    enabled?: boolean;
+}
+
 export interface GetMdbMongodbClusterDatabase {
     /**
      * The name of the MongoDB cluster.
@@ -7633,7 +8475,7 @@ export interface GetMdbMongodbClusterHost {
     /**
      * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
      */
-    type: string;
+    type?: string;
     /**
      * The availability zone where the MongoDB host will be created.
      */
@@ -7656,6 +8498,54 @@ export interface GetMdbMongodbClusterMaintenanceWindow {
 }
 
 export interface GetMdbMongodbClusterResources {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: number;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
+    diskTypeId?: string;
+    resourcePresetId?: string;
+}
+
+export interface GetMdbMongodbClusterResourcesMongocfg {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: number;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
+    diskTypeId?: string;
+    resourcePresetId?: string;
+}
+
+export interface GetMdbMongodbClusterResourcesMongod {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: number;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
+    diskTypeId?: string;
+    resourcePresetId?: string;
+}
+
+export interface GetMdbMongodbClusterResourcesMongoinfra {
+    /**
+     * Volume of the storage available to a host, in gigabytes.
+     */
+    diskSize?: number;
+    /**
+     * The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+     */
+    diskTypeId?: string;
+    resourcePresetId?: string;
+}
+
+export interface GetMdbMongodbClusterResourcesMongos {
     /**
      * Volume of the storage available to a host, in gigabytes.
      */
@@ -7860,6 +8750,38 @@ export interface GetMdbMysqlClusterUserPermission {
     roles?: string[];
 }
 
+export interface GetMdbMysqlUserConnectionLimit {
+    /**
+     * Max connections per hour.
+     */
+    maxConnectionsPerHour: number;
+    /**
+     * Max questions per hour.
+     */
+    maxQuestionsPerHour: number;
+    /**
+     * Max updates per hour.
+     */
+    maxUpdatesPerHour: number;
+    /**
+     * Max user connections.
+     */
+    maxUserConnections: number;
+}
+
+export interface GetMdbMysqlUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
+    databaseName: string;
+    /**
+     * List user's roles in the database.
+     * Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+     * `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+     */
+    roles?: string[];
+}
+
 export interface GetMdbPostgresqlClusterConfig {
     /**
      * Access policy to the PostgreSQL cluster. The structure is documented below.
@@ -7894,7 +8816,7 @@ export interface GetMdbPostgresqlClusterConfig {
      */
     resources: outputs.GetMdbPostgresqlClusterConfigResource[];
     /**
-     * Version of the PostgreSQL cluster.
+     * Version of the extension.
      */
     version: string;
 }
@@ -7967,6 +8889,44 @@ export interface GetMdbPostgresqlClusterConfigResource {
     resourcePresetId: string;
 }
 
+export interface GetMdbPostgresqlClusterDatabase {
+    /**
+     * Set of database extensions. The structure is documented below
+     */
+    extensions?: outputs.GetMdbPostgresqlClusterDatabaseExtension[];
+    /**
+     * POSIX locale for string sorting order. Forbidden to change in an existing database.
+     */
+    lcCollate?: string;
+    /**
+     * POSIX locale for character classification. Forbidden to change in an existing database.
+     */
+    lcType?: string;
+    /**
+     * The name of the PostgreSQL cluster.
+     */
+    name: string;
+    /**
+     * Name of the user assigned as the owner of the database.
+     */
+    owner: string;
+    /**
+     * Name of the template database.
+     */
+    templateDb?: string;
+}
+
+export interface GetMdbPostgresqlClusterDatabaseExtension {
+    /**
+     * The name of the PostgreSQL cluster.
+     */
+    name: string;
+    /**
+     * Version of the extension.
+     */
+    version?: string;
+}
+
 export interface GetMdbPostgresqlClusterHost {
     /**
      * Sets whether the host should get a public IP address on creation. Changing this parameter for an existing host is not supported at the moment.
@@ -8013,6 +8973,58 @@ export interface GetMdbPostgresqlClusterMaintenanceWindow {
     type: string;
 }
 
+export interface GetMdbPostgresqlClusterUser {
+    /**
+     * The maximum number of connections per user.
+     */
+    connLimit: number;
+    /**
+     * List of the user's grants.
+     */
+    grants: string[];
+    /**
+     * User's ability to login.
+     */
+    login?: boolean;
+    /**
+     * The name of the PostgreSQL cluster.
+     */
+    name: string;
+    /**
+     * Set of permissions granted to the user. The structure is documented below.
+     */
+    permissions: outputs.GetMdbPostgresqlClusterUserPermission[];
+    /**
+     * Map of user settings. The structure is documented below.
+     */
+    settings: {[key: string]: string};
+}
+
+export interface GetMdbPostgresqlClusterUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
+    databaseName: string;
+}
+
+export interface GetMdbPostgresqlDatabaseExtension {
+    /**
+     * The name of the PostgreSQL cluster.
+     */
+    name: string;
+    /**
+     * Version of the extension.
+     */
+    version?: string;
+}
+
+export interface GetMdbPostgresqlUserPermission {
+    /**
+     * The name of the database that the permission grants access to.
+     */
+    databaseName: string;
+}
+
 export interface GetMdbRedisClusterConfig {
     /**
      * Normal clients output buffer limits.
@@ -8026,6 +9038,10 @@ export interface GetMdbRedisClusterConfig {
      * Number of databases (changing requires redis-server restart).
      */
     databases: number;
+    /**
+     * Redis maxmemory usage in percent
+     */
+    maxmemoryPercent: number;
     /**
      * Redis key eviction policy for a dataset that reaches maximum memory.
      */
@@ -8183,6 +9199,462 @@ export interface GetMdbSqlserverClusterUserPermission {
     roles: string[];
 }
 
+export interface GetMonitoringDashboardParametrization {
+    /**
+     * parameters list.
+     */
+    parameters: outputs.GetMonitoringDashboardParametrizationParameter[];
+    /**
+     * Selectors to select metric label values.
+     */
+    selectors: string;
+}
+
+export interface GetMonitoringDashboardParametrizationParameter {
+    /**
+     * Custom values parameter.
+     */
+    customs: outputs.GetMonitoringDashboardParametrizationParameterCustom[];
+    /**
+     * Chart description in dashboard (not enabled in UI).
+     */
+    description: string;
+    /**
+     * Checks that target is visible or invisible.
+     */
+    hidden: boolean;
+    /**
+     * Parameter identifier
+     */
+    id: string;
+    /**
+     * Label values parameter.
+     */
+    labelValues: outputs.GetMonitoringDashboardParametrizationParameterLabelValue[];
+    /**
+     * Title text.
+     */
+    texts: outputs.GetMonitoringDashboardParametrizationParameterText[];
+    /**
+     * Inside chart title.
+     */
+    title: string;
+}
+
+export interface GetMonitoringDashboardParametrizationParameterCustom {
+    /**
+     * Default value.
+     */
+    defaultValues: string[];
+    /**
+     * Specifies the multiselectable values of parameter.
+     */
+    multiselectable: boolean;
+    /**
+     * Parameter values.
+     */
+    values: string[];
+}
+
+export interface GetMonitoringDashboardParametrizationParameterLabelValue {
+    /**
+     * Default value.
+     */
+    defaultValues: string[];
+    /**
+     * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+     */
+    folderId: string;
+    /**
+     * Label key to list label values.
+     */
+    labelKey: string;
+    /**
+     * Specifies the multiselectable values of parameter.
+     */
+    multiselectable: boolean;
+    /**
+     * Selectors to select metric label values.
+     */
+    selectors: string;
+}
+
+export interface GetMonitoringDashboardParametrizationParameterText {
+    /**
+     * Default value.
+     */
+    defaultValue: string;
+}
+
+export interface GetMonitoringDashboardWidget {
+    /**
+     * Chart widget settings.
+     */
+    charts: outputs.GetMonitoringDashboardWidgetChart[];
+    /**
+     * Widget position.
+     */
+    positions: outputs.GetMonitoringDashboardWidgetPosition[];
+    /**
+     * Title text.
+     */
+    texts: outputs.GetMonitoringDashboardWidgetText[];
+    /**
+     * Inside chart title.
+     */
+    titles: outputs.GetMonitoringDashboardWidgetTitle[];
+}
+
+export interface GetMonitoringDashboardWidgetChart {
+    /**
+     * Chart ID.
+     */
+    chartId: string;
+    /**
+     * Chart description in dashboard (not enabled in UI).
+     */
+    description: string;
+    /**
+     * Enable legend under chart.
+     */
+    displayLegend: boolean;
+    /**
+     * Fixed time interval for chart.
+     */
+    freeze: string;
+    /**
+     * Names settings.
+     */
+    nameHidingSettings: outputs.GetMonitoringDashboardWidgetChartNameHidingSetting[];
+    /**
+     * Queries settings.
+     * * `seriesOverrides` Time series settings.
+     */
+    queries: outputs.GetMonitoringDashboardWidgetChartQuery[];
+    seriesOverrides: outputs.GetMonitoringDashboardWidgetChartSeriesOverride[];
+    /**
+     * Inside chart title.
+     */
+    title: string;
+    /**
+     * Visualization settings.
+     */
+    visualizationSettings: outputs.GetMonitoringDashboardWidgetChartVisualizationSetting[];
+}
+
+export interface GetMonitoringDashboardWidgetChartNameHidingSetting {
+    /**
+     * Series name.
+     */
+    names: string[];
+    /**
+     * True if we want to show concrete series names only, false if we want to hide concrete series names.
+     */
+    positive: boolean;
+}
+
+export interface GetMonitoringDashboardWidgetChartQuery {
+    /**
+     * Downsamplang settings.
+     */
+    downsamplings: outputs.GetMonitoringDashboardWidgetChartQueryDownsampling[];
+    /**
+     * Query targets.
+     */
+    targets: outputs.GetMonitoringDashboardWidgetChartQueryTarget[];
+}
+
+export interface GetMonitoringDashboardWidgetChartQueryDownsampling {
+    /**
+     * Disable downsampling.
+     */
+    disabled: boolean;
+    /**
+     * Parameters for filling gaps in data.
+     */
+    gapFilling: string;
+    /**
+     * Function that is used for downsampling.
+     */
+    gridAggregation: string;
+    /**
+     * Time interval (grid) for downsampling in milliseconds. Points in the specified range are aggregated into one time point
+     */
+    gridInterval: number;
+    /**
+     * Maximum number of points to be returned.
+     */
+    maxPoints: number;
+}
+
+export interface GetMonitoringDashboardWidgetChartQueryTarget {
+    /**
+     * Checks that target is visible or invisible.
+     */
+    hidden: boolean;
+    /**
+     * Query.
+     */
+    query: string;
+    /**
+     * Text mode enabled.
+     */
+    textMode: boolean;
+}
+
+export interface GetMonitoringDashboardWidgetChartSeriesOverride {
+    /**
+     * - Name of the Dashboard.
+     */
+    name: string;
+    /**
+     * Override settings.
+     */
+    settings: outputs.GetMonitoringDashboardWidgetChartSeriesOverrideSetting[];
+    /**
+     * Series index.
+     */
+    targetIndex: string;
+}
+
+export interface GetMonitoringDashboardWidgetChartSeriesOverrideSetting {
+    /**
+     * Series color or empty.
+     */
+    color: string;
+    /**
+     * Stack grow down.
+     */
+    growDown: boolean;
+    /**
+     * - Name of the Dashboard.
+     */
+    name: string;
+    /**
+     * Stack name or empty.
+     */
+    stackName: string;
+    /**
+     * Type.
+     */
+    type: string;
+    /**
+     * Yaxis positio
+     */
+    yaxisPosition: string;
+}
+
+export interface GetMonitoringDashboardWidgetChartVisualizationSetting {
+    /**
+     * Aggregation.
+     */
+    aggregation: string;
+    /**
+     * Color settings.
+     */
+    colorSchemeSettings: outputs.GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSetting[];
+    /**
+     * Heatmap settings.
+     */
+    heatmapSettings: outputs.GetMonitoringDashboardWidgetChartVisualizationSettingHeatmapSetting[];
+    /**
+     * Interpolate values.
+     */
+    interpolate: string;
+    /**
+     * Normalize values.
+     */
+    normalize: boolean;
+    /**
+     * Show chart labels.
+     */
+    showLabels: boolean;
+    /**
+     * Inside chart title.
+     */
+    title: string;
+    /**
+     * Type.
+     */
+    type: string;
+    /**
+     * Y axis settings.
+     */
+    yaxisSettings: outputs.GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSetting[];
+}
+
+export interface GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSetting {
+    /**
+     * Automatic color scheme.
+     */
+    automatics: outputs.GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomatic[];
+    /**
+     * Gradient color scheme.
+     */
+    gradients: outputs.GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradient[];
+    /**
+     * Standard color scheme.
+     */
+    standards: outputs.GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandard[];
+}
+
+export interface GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomatic {
+}
+
+export interface GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradient {
+    /**
+     * Heatmap green value.
+     */
+    greenValue: string;
+    /**
+     * Heatmap red value.
+     */
+    redValue: string;
+    /**
+     * Heatmap violet value.
+     */
+    violetValue: string;
+    /**
+     * Heatmap yellow value.
+     */
+    yellowValue: string;
+}
+
+export interface GetMonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandard {
+}
+
+export interface GetMonitoringDashboardWidgetChartVisualizationSettingHeatmapSetting {
+    /**
+     * Heatmap green value.
+     */
+    greenValue: string;
+    /**
+     * Heatmap red value.
+     */
+    redValue: string;
+    /**
+     * Heatmap violet value.
+     */
+    violetValue: string;
+    /**
+     * Heatmap yellow value.
+     */
+    yellowValue: string;
+}
+
+export interface GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSetting {
+    /**
+     * Left yaxis config.
+     * * `right` Right yaxis config.
+     */
+    lefts: outputs.GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeft[];
+    rights: outputs.GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRight[];
+}
+
+export interface GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeft {
+    /**
+     * Max value in extended number format or empty.
+     */
+    max: string;
+    /**
+     * Min value in extended number format or empty.
+     */
+    min: string;
+    /**
+     * Tick value precision (null as default, 0-7 in other cases).
+     * * `title` -Title or empty.
+     */
+    precision: number;
+    /**
+     * Inside chart title.
+     */
+    title: string;
+    /**
+     * Type.
+     */
+    type: string;
+    /**
+     * Unit format.
+     */
+    unitFormat: string;
+}
+
+export interface GetMonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRight {
+    /**
+     * Max value in extended number format or empty.
+     */
+    max: string;
+    /**
+     * Min value in extended number format or empty.
+     */
+    min: string;
+    /**
+     * Tick value precision (null as default, 0-7 in other cases).
+     * * `title` -Title or empty.
+     */
+    precision: number;
+    /**
+     * Inside chart title.
+     */
+    title: string;
+    /**
+     * Type.
+     */
+    type: string;
+    /**
+     * Unit format.
+     */
+    unitFormat: string;
+}
+
+export interface GetMonitoringDashboardWidgetPosition {
+    /**
+     * Height.
+     */
+    h: number;
+    /**
+     * Width.
+     */
+    w: number;
+    /**
+     * X-axis top-left corner coordinate.
+     */
+    x: number;
+    /**
+     * Y-axis top-left corner coordinate.
+     */
+    y: number;
+}
+
+export interface GetMonitoringDashboardWidgetText {
+    /**
+     * Title text.
+     */
+    text: string;
+}
+
+export interface GetMonitoringDashboardWidgetTitle {
+    /**
+     * Title size.
+     */
+    size: string;
+    /**
+     * Title text.
+     */
+    text: string;
+}
+
+export interface GetOrganizationmanagerGroupMember {
+    /**
+     * The ID of the member.
+     */
+    id: string;
+    /**
+     * The type of the member.
+     */
+    type: string;
+}
+
 export interface GetOrganizationmanagerSamlFederationSecuritySetting {
     /**
      * Indicates whether encrypted assertions are enabled.
@@ -8230,6 +9702,9 @@ export interface GetVpcAddressExternalIpv4Address {
      * Zone for allocating address.
      */
     zoneId: string;
+}
+
+export interface GetVpcGatewaySharedEgressGateway {
 }
 
 export interface GetVpcRouteTableStaticRoute {
@@ -8500,6 +9975,10 @@ export interface KubernetesClusterMasterMaintenancePolicyMaintenanceWindow {
 
 export interface KubernetesClusterMasterMasterLogging {
     /**
+     * (Optional) Boolean flag that specifies if kube-apiserver audit logs should be sent to Yandex Cloud Logging.
+     */
+    auditEnabled?: boolean;
+    /**
      * (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
      */
     clusterAutoscalerEnabled?: boolean;
@@ -8630,12 +10109,20 @@ export interface KubernetesNodeGroupInstanceTemplate {
      */
     bootDisk: outputs.KubernetesNodeGroupInstanceTemplateBootDisk;
     /**
+     * Container network configuration. The structure is documented below.
+     */
+    containerNetwork: outputs.KubernetesNodeGroupInstanceTemplateContainerNetwork;
+    /**
      * Container runtime configuration. The structure is documented below.
      */
     containerRuntime: outputs.KubernetesNodeGroupInstanceTemplateContainerRuntime;
     /**
-     * Labels that will be assigned to compute nodes (instances), created by the Node Group.
+     * GPU settings. The structure is documented below.
      * ---
+     */
+    gpuSettings: outputs.KubernetesNodeGroupInstanceTemplateGpuSettings;
+    /**
+     * Labels that will be assigned to compute nodes (instances), created by the Node Group.
      */
     labels?: {[key: string]: string};
     /**
@@ -8693,11 +10180,29 @@ export interface KubernetesNodeGroupInstanceTemplateBootDisk {
     type: string;
 }
 
+export interface KubernetesNodeGroupInstanceTemplateContainerNetwork {
+    /**
+     * MTU for pods.
+     */
+    podMtu: number;
+}
+
 export interface KubernetesNodeGroupInstanceTemplateContainerRuntime {
     /**
      * Type of container runtime. Values: `docker`, `containerd`.
      */
     type: string;
+}
+
+export interface KubernetesNodeGroupInstanceTemplateGpuSettings {
+    /**
+     * GPU cluster id.
+     */
+    gpuClusterId?: string;
+    /**
+     * GPU environment. Values: `runc`, `runcDriversCuda`.
+     */
+    gpuEnvironment: string;
 }
 
 export interface KubernetesNodeGroupInstanceTemplateNetworkInterface {
@@ -10471,6 +11976,17 @@ export interface MdbKafkaTopicTopicConfig {
     segmentBytes?: string;
 }
 
+export interface MdbKafkaUserPermission {
+    /**
+     * The role type to grant to the topic.
+     */
+    role: string;
+    /**
+     * The name of the topic that the permission grants access to.
+     */
+    topicName: string;
+}
+
 export interface MdbMongodbClusterClusterConfig {
     /**
      * Access policy to the MongoDB cluster. The structure is documented below.
@@ -10481,15 +11997,24 @@ export interface MdbMongodbClusterClusterConfig {
      */
     backupWindowStart: outputs.MdbMongodbClusterClusterConfigBackupWindowStart;
     /**
-     * Feature compatibility version of MongoDB. If not provided version is taken. Can be either `5.0`, `4.4`, `4.2` and `4.0`.
+     * Feature compatibility version of MongoDB. If not provided version is taken. Can be either `6.0`, `5.0`, `4.4` and `4.2`.
      */
     featureCompatibilityVersion: string;
+    /**
+     * Configuration of the mongocfg service. The structure is documented below.
+     */
+    mongocfg: outputs.MdbMongodbClusterClusterConfigMongocfg;
     /**
      * Configuration of the mongod service. The structure is documented below.
      */
     mongod: outputs.MdbMongodbClusterClusterConfigMongod;
     /**
-     * Version of MongoDB (either 5.0, 4.4, 4.2 or 4.0).
+     * Configuration of the mongos service. The structure is documented below.
+     */
+    mongos: outputs.MdbMongodbClusterClusterConfigMongos;
+    performanceDiagnostics: outputs.MdbMongodbClusterClusterConfigPerformanceDiagnostics;
+    /**
+     * Version of the MongoDB server software. Can be either `4.2`, `4.4`, `4.4-enterprise`, `5.0`, `5.0-enterprise`, `6.0` and `6.0-enterprise`.
      */
     version: string;
 }
@@ -10516,6 +12041,69 @@ export interface MdbMongodbClusterClusterConfigBackupWindowStart {
     minutes?: number;
 }
 
+export interface MdbMongodbClusterClusterConfigMongocfg {
+    /**
+     * A set of network settings
+     * (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+     * The structure is documented below.
+     */
+    net?: outputs.MdbMongodbClusterClusterConfigMongocfgNet;
+    /**
+     * A set of profiling settings
+     * (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+     * The structure is documented below.
+     */
+    operationProfiling?: outputs.MdbMongodbClusterClusterConfigMongocfgOperationProfiling;
+    /**
+     * A set of storage settings
+     * (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+     * The structure is documented below.
+     */
+    storage?: outputs.MdbMongodbClusterClusterConfigMongocfgStorage;
+}
+
+export interface MdbMongodbClusterClusterConfigMongocfgNet {
+    /**
+     * The maximum number of simultaneous connections that host will accept.
+     * For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+     * description in the official documentation.
+     */
+    maxIncomingConnections?: number;
+}
+
+export interface MdbMongodbClusterClusterConfigMongocfgOperationProfiling {
+    /**
+     * Specifies which operations should be profiled. The following profiler levels are available: off, slow_op, all.
+     * For more information, see the [operationProfiling.mode](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.mode)
+     * description in the official documentation.
+     */
+    mode?: string;
+    /**
+     * The slow operation time threshold, in milliseconds. Operations that run for longer than this threshold are considered slow.
+     * For more information, see the [operationProfiling.slowOpThresholdMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.slowOpThresholdMs)
+     * description in the official documentation.
+     */
+    slowOpThreshold?: number;
+}
+
+export interface MdbMongodbClusterClusterConfigMongocfgStorage {
+    /**
+     * The WiredTiger engine settings.
+     * (see the [storage.wiredTiger](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage.wiredtiger-options) option).
+     * These settings available only on `mongod` hosts. The structure is documented below.
+     */
+    wiredTiger?: outputs.MdbMongodbClusterClusterConfigMongocfgStorageWiredTiger;
+}
+
+export interface MdbMongodbClusterClusterConfigMongocfgStorageWiredTiger {
+    /**
+     * Defines the maximum size of the internal cache that WiredTiger will use for all data.
+     * For more information, see the [storage.wiredTiger.engineConfig.cacheSizeGB](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.engineConfig.cacheSizeGB)
+     * description in the official documentation.
+     */
+    cacheSizeGb?: number;
+}
+
 export interface MdbMongodbClusterClusterConfigMongod {
     /**
      * A set of audit log settings 
@@ -10523,6 +12111,18 @@ export interface MdbMongodbClusterClusterConfigMongod {
      * The structure is documented below. Available only in enterprise edition.
      */
     auditLog: outputs.MdbMongodbClusterClusterConfigMongodAuditLog;
+    /**
+     * A set of network settings
+     * (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+     * The structure is documented below.
+     */
+    net?: outputs.MdbMongodbClusterClusterConfigMongodNet;
+    /**
+     * A set of profiling settings
+     * (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+     * The structure is documented below.
+     */
+    operationProfiling?: outputs.MdbMongodbClusterClusterConfigMongodOperationProfiling;
     /**
      * A set of MongoDB Security settings
      * (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
@@ -10535,6 +12135,12 @@ export interface MdbMongodbClusterClusterConfigMongod {
      * The structure is documented below.
      */
     setParameter: outputs.MdbMongodbClusterClusterConfigMongodSetParameter;
+    /**
+     * A set of storage settings
+     * (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+     * The structure is documented below.
+     */
+    storage?: outputs.MdbMongodbClusterClusterConfigMongodStorage;
 }
 
 export interface MdbMongodbClusterClusterConfigMongodAuditLog {
@@ -10544,7 +12150,36 @@ export interface MdbMongodbClusterClusterConfigMongodAuditLog {
      * description in the official documentation. Available only in enterprise edition.
      */
     filter?: string;
+    /**
+     * Specifies if a node allows runtime configuration of audit filters and the auditAuthorizationSuccess variable.
+     * For more information see [auditLog.runtimeConfiguration](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.runtimeConfiguration)
+     * description in the official documentation. Available only in enterprise edition.
+     */
     runtimeConfiguration?: boolean;
+}
+
+export interface MdbMongodbClusterClusterConfigMongodNet {
+    /**
+     * The maximum number of simultaneous connections that host will accept.
+     * For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+     * description in the official documentation.
+     */
+    maxIncomingConnections?: number;
+}
+
+export interface MdbMongodbClusterClusterConfigMongodOperationProfiling {
+    /**
+     * Specifies which operations should be profiled. The following profiler levels are available: off, slow_op, all.
+     * For more information, see the [operationProfiling.mode](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.mode)
+     * description in the official documentation.
+     */
+    mode?: string;
+    /**
+     * The slow operation time threshold, in milliseconds. Operations that run for longer than this threshold are considered slow.
+     * For more information, see the [operationProfiling.slowOpThresholdMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.slowOpThresholdMs)
+     * description in the official documentation.
+     */
+    slowOpThreshold?: number;
 }
 
 export interface MdbMongodbClusterClusterConfigMongodSecurity {
@@ -10604,6 +12239,67 @@ export interface MdbMongodbClusterClusterConfigMongodSetParameter {
     auditAuthorizationSuccess?: boolean;
 }
 
+export interface MdbMongodbClusterClusterConfigMongodStorage {
+    /**
+     * The durability journal to ensure data files remain valid and recoverable.
+     * The structure is documented below.
+     */
+    journal?: outputs.MdbMongodbClusterClusterConfigMongodStorageJournal;
+    /**
+     * The WiredTiger engine settings.
+     * (see the [storage.wiredTiger](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage.wiredtiger-options) option).
+     * These settings available only on `mongod` hosts. The structure is documented below.
+     */
+    wiredTiger?: outputs.MdbMongodbClusterClusterConfigMongodStorageWiredTiger;
+}
+
+export interface MdbMongodbClusterClusterConfigMongodStorageJournal {
+    /**
+     * The maximum amount of time in milliseconds that the mongod process allows between journal operations.
+     * For more information, see the [storage.journal.commitIntervalMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.journal.commitIntervalMs)
+     * description in the official documentation.
+     */
+    commitInterval?: number;
+}
+
+export interface MdbMongodbClusterClusterConfigMongodStorageWiredTiger {
+    /**
+     * Specifies the default compression for collection data. You can override this on a per-collection basis when creating collections.
+     * Available compressors are: none, snappy, zlib, zstd. This setting available only on `mongod` hosts.
+     * For more information, see the [storage.wiredTiger.collectionConfig.blockCompressor](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.collectionConfig.blockCompressor)
+     * description in the official documentation.
+     */
+    blockCompressor?: string;
+    /**
+     * Defines the maximum size of the internal cache that WiredTiger will use for all data.
+     * For more information, see the [storage.wiredTiger.engineConfig.cacheSizeGB](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.engineConfig.cacheSizeGB)
+     * description in the official documentation.
+     */
+    cacheSizeGb?: number;
+}
+
+export interface MdbMongodbClusterClusterConfigMongos {
+    /**
+     * A set of network settings
+     * (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+     * The structure is documented below.
+     */
+    net?: outputs.MdbMongodbClusterClusterConfigMongosNet;
+}
+
+export interface MdbMongodbClusterClusterConfigMongosNet {
+    /**
+     * The maximum number of simultaneous connections that host will accept.
+     * For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+     * description in the official documentation.
+     */
+    maxIncomingConnections?: number;
+}
+
+export interface MdbMongodbClusterClusterConfigPerformanceDiagnostics {
+    enabled?: boolean;
+}
+
 export interface MdbMongodbClusterDatabase {
     /**
      * The fully qualified domain name of the host. Computed on server side.
@@ -10629,7 +12325,7 @@ export interface MdbMongodbClusterHost {
      */
     role: string;
     /**
-     * The name of the shard to which the host belongs.
+     * The name of the shard to which the host belongs. Only for sharded cluster.
      */
     shardName: string;
     /**
@@ -10640,7 +12336,7 @@ export interface MdbMongodbClusterHost {
     /**
      * Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
      */
-    type: string;
+    type?: string;
     /**
      * The availability zone where the MongoDB host will be created.
      * For more information see [the official documentation](https://cloud.yandex.com/docs/overview/concepts/geo-scope).
@@ -10664,6 +12360,58 @@ export interface MdbMongodbClusterMaintenanceWindow {
 }
 
 export interface MdbMongodbClusterResources {
+    /**
+     * Volume of the storage available to a MongoDB host, in gigabytes.
+     */
+    diskSize: number;
+    /**
+     * Type of the storage of MongoDB hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
+    diskTypeId: string;
+    resourcePresetId: string;
+}
+
+export interface MdbMongodbClusterResourcesMongocfg {
+    /**
+     * Volume of the storage available to a MongoDB host, in gigabytes.
+     */
+    diskSize: number;
+    /**
+     * Type of the storage of MongoDB hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
+    diskTypeId: string;
+    resourcePresetId: string;
+}
+
+export interface MdbMongodbClusterResourcesMongod {
+    /**
+     * Volume of the storage available to a MongoDB host, in gigabytes.
+     */
+    diskSize: number;
+    /**
+     * Type of the storage of MongoDB hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
+    diskTypeId: string;
+    resourcePresetId: string;
+}
+
+export interface MdbMongodbClusterResourcesMongoinfra {
+    /**
+     * Volume of the storage available to a MongoDB host, in gigabytes.
+     */
+    diskSize: number;
+    /**
+     * Type of the storage of MongoDB hosts.
+     * For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+     */
+    diskTypeId: string;
+    resourcePresetId: string;
+}
+
+export interface MdbMongodbClusterResourcesMongos {
     /**
      * Volume of the storage available to a MongoDB host, in gigabytes.
      */
@@ -11059,6 +12807,10 @@ export interface MdbRedisClusterConfig {
      */
     databases: number;
     /**
+     * Redis maxmemory usage in percent
+     */
+    maxmemoryPercent?: number;
+    /**
      * Redis key eviction policy for a dataset that reaches maximum memory.
      * Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/).
      */
@@ -11221,6 +12973,471 @@ export interface MdbSqlServerClusterUserPermission {
     roles?: string[];
 }
 
+export interface MonitoringDashboardParametrization {
+    /**
+     * parameters list.
+     */
+    parameters?: outputs.MonitoringDashboardParametrizationParameter[];
+    /**
+     * Selectors to select metric label values.
+     */
+    selectors?: string;
+}
+
+export interface MonitoringDashboardParametrizationParameter {
+    /**
+     * Custom values parameter. Oneof: label_values, custom, text.
+     */
+    customs?: outputs.MonitoringDashboardParametrizationParameterCustom[];
+    /**
+     * Chart description in dashboard (not enabled in UI).
+     */
+    description?: string;
+    /**
+     * Checks that target is visible or invisible.
+     */
+    hidden?: boolean;
+    /**
+     * Parameter identifier
+     */
+    id: string;
+    /**
+     * Label values parameter. Oneof: label_values, custom, text.
+     */
+    labelValues?: outputs.MonitoringDashboardParametrizationParameterLabelValue[];
+    /**
+     * Title text.
+     */
+    texts?: outputs.MonitoringDashboardParametrizationParameterText[];
+    /**
+     * -Title or empty.
+     */
+    title?: string;
+}
+
+export interface MonitoringDashboardParametrizationParameterCustom {
+    /**
+     * Default value.
+     */
+    defaultValues?: string[];
+    /**
+     * Specifies the multiselectable values of parameter.
+     */
+    multiselectable?: boolean;
+    /**
+     * Parameter values.
+     */
+    values?: string[];
+}
+
+export interface MonitoringDashboardParametrizationParameterLabelValue {
+    /**
+     * Default value.
+     */
+    defaultValues?: string[];
+    /**
+     * Labels folder ID.
+     */
+    folderId?: string;
+    /**
+     * Label key to list label values.
+     */
+    labelKey: string;
+    /**
+     * Specifies the multiselectable values of parameter.
+     */
+    multiselectable?: boolean;
+    /**
+     * Selectors to select metric label values.
+     */
+    selectors?: string;
+}
+
+export interface MonitoringDashboardParametrizationParameterText {
+    /**
+     * Default value.
+     */
+    defaultValue?: string;
+}
+
+export interface MonitoringDashboardWidget {
+    /**
+     * Chart widget settings. Oneof: text, title or chart.
+     */
+    charts?: outputs.MonitoringDashboardWidgetChart[];
+    /**
+     * Widget position.
+     */
+    positions?: outputs.MonitoringDashboardWidgetPosition[];
+    /**
+     * Title text.
+     */
+    texts?: outputs.MonitoringDashboardWidgetText[];
+    /**
+     * -Title or empty.
+     */
+    titles?: outputs.MonitoringDashboardWidgetTitle[];
+}
+
+export interface MonitoringDashboardWidgetChart {
+    /**
+     * Chart ID.
+     */
+    chartId?: string;
+    /**
+     * Chart description in dashboard (not enabled in UI).
+     */
+    description?: string;
+    /**
+     * Enable legend under chart.
+     */
+    displayLegend?: boolean;
+    /**
+     * Fixed time interval for chart. Values:
+     * - FREEZE_DURATION_HOUR: Last hour.
+     * - FREEZE_DURATION_DAY: Last day = last 24 hours.
+     * - FREEZE_DURATION_WEEK: Last 7 days.
+     * - FREEZE_DURATION_MONTH: Last 31 days.
+     */
+    freeze: string;
+    /**
+     * Names settings.
+     */
+    nameHidingSettings?: outputs.MonitoringDashboardWidgetChartNameHidingSetting[];
+    /**
+     * Queries settings.
+     */
+    queries?: outputs.MonitoringDashboardWidgetChartQuery[];
+    /**
+     * Time series settings.
+     */
+    seriesOverrides?: outputs.MonitoringDashboardWidgetChartSeriesOverride[];
+    /**
+     * -Title or empty.
+     */
+    title?: string;
+    /**
+     * Visualization settings.
+     */
+    visualizationSettings?: outputs.MonitoringDashboardWidgetChartVisualizationSetting[];
+}
+
+export interface MonitoringDashboardWidgetChartNameHidingSetting {
+    /**
+     * Series name.
+     */
+    names?: string[];
+    /**
+     * True if we want to show concrete series names only, false if we want to hide concrete series names.
+     */
+    positive?: boolean;
+}
+
+export interface MonitoringDashboardWidgetChartQuery {
+    /**
+     * Downsamplang settings.
+     */
+    downsamplings?: outputs.MonitoringDashboardWidgetChartQueryDownsampling[];
+    /**
+     * Query targets.
+     */
+    targets?: outputs.MonitoringDashboardWidgetChartQueryTarget[];
+}
+
+export interface MonitoringDashboardWidgetChartQueryDownsampling {
+    /**
+     * Disable downsampling.
+     */
+    disabled?: boolean;
+    /**
+     * Parameters for filling gaps in data.
+     */
+    gapFilling?: string;
+    /**
+     * Function that is used for downsampling.
+     */
+    gridAggregation?: string;
+    /**
+     * Time interval (grid) for downsampling in milliseconds. Points in the specified range are aggregated into one time point
+     */
+    gridInterval?: number;
+    /**
+     * Maximum number of points to be returned.
+     */
+    maxPoints?: number;
+}
+
+export interface MonitoringDashboardWidgetChartQueryTarget {
+    /**
+     * Checks that target is visible or invisible.
+     */
+    hidden?: boolean;
+    /**
+     * Query.
+     */
+    query?: string;
+    /**
+     * Text mode enabled.
+     */
+    textMode?: boolean;
+}
+
+export interface MonitoringDashboardWidgetChartSeriesOverride {
+    /**
+     * Series name or empty.
+     */
+    name?: string;
+    /**
+     * Override settings.
+     */
+    settings?: outputs.MonitoringDashboardWidgetChartSeriesOverrideSetting[];
+    /**
+     * Series index. Oneof: name or target_index.
+     */
+    targetIndex?: string;
+}
+
+export interface MonitoringDashboardWidgetChartSeriesOverrideSetting {
+    /**
+     * Series color or empty.
+     */
+    color?: string;
+    /**
+     * Stack grow down.
+     */
+    growDown?: boolean;
+    /**
+     * Series name or empty.
+     */
+    name?: string;
+    /**
+     * Stack name or empty.
+     */
+    stackName?: string;
+    /**
+     * Type.
+     */
+    type: string;
+    /**
+     * Yaxis position.
+     */
+    yaxisPosition: string;
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSetting {
+    /**
+     * Aggregation. Values:
+     * - SERIES_AGGREGATION_UNSPECIFIED: Not specified (avg by default).
+     * - SERIES_AGGREGATION_AVG: Average.
+     * - SERIES_AGGREGATION_MIN: Minimum.
+     * - SERIES_AGGREGATION_MAX: Maximum.
+     * - SERIES_AGGREGATION_LAST: Last non-NaN value.
+     * - SERIES_AGGREGATION_SUM: Sum.
+     */
+    aggregation: string;
+    /**
+     * Color settings.
+     */
+    colorSchemeSettings?: outputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSetting[];
+    /**
+     * Heatmap settings.
+     */
+    heatmapSettings?: outputs.MonitoringDashboardWidgetChartVisualizationSettingHeatmapSetting[];
+    /**
+     * Interpolate values. Values:
+     * - INTERPOLATE_UNSPECIFIED: Not specified (linear by default).
+     * - INTERPOLATE_LINEAR: Linear.
+     * - INTERPOLATE_LEFT: Left.
+     * - INTERPOLATE_RIGHT: Right.
+     */
+    interpolate: string;
+    /**
+     * Normalize values.
+     */
+    normalize?: boolean;
+    /**
+     * Show chart labels.
+     */
+    showLabels?: boolean;
+    /**
+     * -Title or empty.
+     */
+    title?: string;
+    /**
+     * Type.
+     */
+    type: string;
+    /**
+     * Y axis settings.
+     */
+    yaxisSettings?: outputs.MonitoringDashboardWidgetChartVisualizationSettingYaxisSetting[];
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSetting {
+    /**
+     * Automatic color scheme. Oneof: automatic, standard or gradient.
+     */
+    automatics?: outputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomatic[];
+    /**
+     * Gradient color scheme. Oneof: automatic, standard or gradient.
+     */
+    gradients?: outputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradient[];
+    /**
+     * Standard color scheme. Oneof: automatic, standard or gradient.
+     */
+    standards?: outputs.MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandard[];
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomatic {
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradient {
+    /**
+     * Heatmap green value.
+     */
+    greenValue?: string;
+    /**
+     * Heatmap red value.
+     */
+    redValue?: string;
+    /**
+     * Heatmap violet value.
+     */
+    violetValue?: string;
+    /**
+     * Heatmap yellow value.
+     */
+    yellowValue?: string;
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandard {
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingHeatmapSetting {
+    /**
+     * Heatmap green value.
+     */
+    greenValue?: string;
+    /**
+     * Heatmap red value.
+     */
+    redValue?: string;
+    /**
+     * Heatmap violet value.
+     */
+    violetValue?: string;
+    /**
+     * Heatmap yellow value.
+     */
+    yellowValue?: string;
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingYaxisSetting {
+    /**
+     * Left yaxis config.
+     */
+    lefts?: outputs.MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeft[];
+    /**
+     * Right yaxis config.
+     */
+    rights?: outputs.MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRight[];
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeft {
+    /**
+     * Max value in extended number format or empty.
+     */
+    max?: string;
+    /**
+     * Min value in extended number format or empty.
+     */
+    min?: string;
+    /**
+     * Tick value precision (null as default, 0-7 in other cases).
+     */
+    precision?: number;
+    /**
+     * -Title or empty.
+     */
+    title?: string;
+    /**
+     * Type.
+     */
+    type: string;
+    /**
+     * Unit format.
+     */
+    unitFormat: string;
+}
+
+export interface MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRight {
+    /**
+     * Max value in extended number format or empty.
+     */
+    max?: string;
+    /**
+     * Min value in extended number format or empty.
+     */
+    min?: string;
+    /**
+     * Tick value precision (null as default, 0-7 in other cases).
+     */
+    precision?: number;
+    /**
+     * -Title or empty.
+     */
+    title?: string;
+    /**
+     * Type.
+     */
+    type?: string;
+    /**
+     * Unit format.
+     */
+    unitFormat?: string;
+}
+
+export interface MonitoringDashboardWidgetPosition {
+    /**
+     * Height.
+     */
+    h?: number;
+    /**
+     * Width.
+     */
+    w?: number;
+    /**
+     * X-axis top-left corner coordinate.
+     */
+    x?: number;
+    /**
+     * Y-axis top-left corner coordinate.
+     */
+    y?: number;
+}
+
+export interface MonitoringDashboardWidgetText {
+    /**
+     * Title text.
+     */
+    text?: string;
+}
+
+export interface MonitoringDashboardWidgetTitle {
+    /**
+     * Title size. Values: 
+     * - TITLE_SIZE_XS: Extra small size.
+     * - TITLE_SIZE_S: Small size.
+     * - TITLE_SIZE_M: Middle size.
+     * - TITLE_SIZE_L: Large size.
+     */
+    size: string;
+    /**
+     * Title text.
+     */
+    text: string;
+}
+
 export interface OrganizationmanagerSamlFederationSecuritySettings {
     /**
      * Enable encrypted assertions.
@@ -11344,6 +13561,7 @@ export interface StorageBucketLifecycleRule {
      * Object key prefix identifying one or more objects to which the rule applies.
      */
     prefix?: string;
+    tags?: {[key: string]: string};
     /**
      * Specifies a period in the object's transitions (documented below).
      */
@@ -11378,7 +13596,7 @@ export interface StorageBucketLifecycleRuleNoncurrentVersionTransition {
      */
     days?: number;
     /**
-     * Specifies the storage class to which you want the noncurrent object versions to transition. Can only be `COLD` or `STANDARD_IA`.
+     * Specifies the storage class to which you want the noncurrent object versions to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
      */
     storageClass: string;
 }
@@ -11393,7 +13611,7 @@ export interface StorageBucketLifecycleRuleTransition {
      */
     days?: number;
     /**
-     * Specifies the storage class to which you want the object to transition. Can only be `COLD` or `STANDARD_IA`.
+     * Specifies the storage class to which you want the object to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
      */
     storageClass: string;
 }
@@ -11634,12 +13852,50 @@ export interface VpcSubnetDhcpOptions {
     ntpServers?: string[];
 }
 
+export interface YandexYdbTableColumn {
+    family: string;
+    name: string;
+    notNull: boolean;
+    type: string;
+}
+
+export interface YandexYdbTableFamily {
+    compression: string;
+    data: string;
+    name: string;
+}
+
+export interface YandexYdbTablePartitioningSettings {
+    autoPartitioningByLoad?: boolean;
+    autoPartitioningBySizeEnabled?: boolean;
+    autoPartitioningMaxPartitionsCount: number;
+    autoPartitioningMinPartitionsCount: number;
+    autoPartitioningPartitionSizeMb: number;
+    partitionAtKeys: outputs.YandexYdbTablePartitioningSettingsPartitionAtKey[];
+    uniformPartitions: number;
+}
+
+export interface YandexYdbTablePartitioningSettingsPartitionAtKey {
+    keys: string[];
+}
+
+export interface YandexYdbTableTtl {
+    columnName: string;
+    expireInterval: string;
+    unit: string;
+}
+
+export interface YandexYdbTopicChangefeedConsumer {
+    name: string;
+    startingMessageTimestampMs: number;
+    supportedCodecs: string[];
+}
+
 export interface YandexYdbTopicConsumer {
     /**
      * Topic name. Type: string, required. Default value: "".
      */
     name: string;
-    serviceType: string;
     startingMessageTimestampMs: number;
     /**
      * Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].

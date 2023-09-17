@@ -16,7 +16,7 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// Sets whether the host should get a public IP address on creation.
         /// </summary>
-        public readonly bool AssignPublicIp;
+        public readonly bool? AssignPublicIp;
         /// <summary>
         /// The fully qualified domain name of the host.
         /// </summary>
@@ -32,15 +32,15 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         /// </summary>
-        public readonly string Type;
+        public readonly string? Type;
         /// <summary>
         /// The availability zone where the ClickHouse host will be created.
         /// </summary>
-        public readonly string Zone;
+        public readonly string? Zone;
 
         [OutputConstructor]
         private GetMdbClickhouseClusterHostResult(
-            bool assignPublicIp,
+            bool? assignPublicIp,
 
             string fqdn,
 
@@ -48,9 +48,9 @@ namespace Pulumi.Yandex.Outputs
 
             string subnetId,
 
-            string type,
+            string? type,
 
-            string zone)
+            string? zone)
         {
             AssignPublicIp = assignPublicIp;
             Fqdn = fqdn;

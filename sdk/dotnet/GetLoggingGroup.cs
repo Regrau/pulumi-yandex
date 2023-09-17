@@ -59,6 +59,7 @@ namespace Pulumi.Yandex
     {
         public readonly string CloudId;
         public readonly string CreatedAt;
+        public readonly string DataStream;
         public readonly string Description;
         public readonly string FolderId;
         public readonly string GroupId;
@@ -76,6 +77,8 @@ namespace Pulumi.Yandex
             string cloudId,
 
             string createdAt,
+
+            string dataStream,
 
             string description,
 
@@ -95,6 +98,7 @@ namespace Pulumi.Yandex
         {
             CloudId = cloudId;
             CreatedAt = createdAt;
+            DataStream = dataStream;
             Description = description;
             FolderId = folderId;
             GroupId = groupId;

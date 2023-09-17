@@ -24,6 +24,7 @@ class ComputeInstanceArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  filesystems: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceFilesystemArgs']]]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
+                 gpu_cluster_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  local_disks: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceLocalDiskArgs']]]] = None,
@@ -47,6 +48,7 @@ class ComputeInstanceArgs:
         :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceFilesystemArgs']]] filesystems: List of filesystems that are attached to the instance. Structure is documented below.
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
                is not provided, the default provider folder is used.
+        :param pulumi.Input[str] gpu_cluster_id: ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
         :param pulumi.Input[str] hostname: Host name for the instance. This field is used to generate the instance `fqdn` value. 
                The host name must be unique within the network and region. If not specified, the host name will be equal
                to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
@@ -80,6 +82,8 @@ class ComputeInstanceArgs:
             pulumi.set(__self__, "filesystems", filesystems)
         if folder_id is not None:
             pulumi.set(__self__, "folder_id", folder_id)
+        if gpu_cluster_id is not None:
+            pulumi.set(__self__, "gpu_cluster_id", gpu_cluster_id)
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
         if labels is not None:
@@ -198,6 +202,18 @@ class ComputeInstanceArgs:
     @folder_id.setter
     def folder_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "folder_id", value)
+
+    @property
+    @pulumi.getter(name="gpuClusterId")
+    def gpu_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+        """
+        return pulumi.get(self, "gpu_cluster_id")
+
+    @gpu_cluster_id.setter
+    def gpu_cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gpu_cluster_id", value)
 
     @property
     @pulumi.getter
@@ -373,6 +389,7 @@ class _ComputeInstanceState:
                  filesystems: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceFilesystemArgs']]]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
+                 gpu_cluster_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  local_disks: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceLocalDiskArgs']]]] = None,
@@ -398,6 +415,7 @@ class _ComputeInstanceState:
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
                is not provided, the default provider folder is used.
         :param pulumi.Input[str] fqdn: DNS record FQDN (must have a dot at the end).
+        :param pulumi.Input[str] gpu_cluster_id: ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
         :param pulumi.Input[str] hostname: Host name for the instance. This field is used to generate the instance `fqdn` value. 
                The host name must be unique within the network and region. If not specified, the host name will be equal
                to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
@@ -438,6 +456,8 @@ class _ComputeInstanceState:
             pulumi.set(__self__, "folder_id", folder_id)
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
+        if gpu_cluster_id is not None:
+            pulumi.set(__self__, "gpu_cluster_id", gpu_cluster_id)
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
         if labels is not None:
@@ -561,6 +581,18 @@ class _ComputeInstanceState:
     @fqdn.setter
     def fqdn(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fqdn", value)
+
+    @property
+    @pulumi.getter(name="gpuClusterId")
+    def gpu_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+        """
+        return pulumi.get(self, "gpu_cluster_id")
+
+    @gpu_cluster_id.setter
+    def gpu_cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gpu_cluster_id", value)
 
     @property
     @pulumi.getter
@@ -773,6 +805,7 @@ class ComputeInstance(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceFilesystemArgs']]]]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
+                 gpu_cluster_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  local_disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceLocalDiskArgs']]]]] = None,
@@ -840,6 +873,7 @@ class ComputeInstance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceFilesystemArgs']]]] filesystems: List of filesystems that are attached to the instance. Structure is documented below.
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
                is not provided, the default provider folder is used.
+        :param pulumi.Input[str] gpu_cluster_id: ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
         :param pulumi.Input[str] hostname: Host name for the instance. This field is used to generate the instance `fqdn` value. 
                The host name must be unique within the network and region. If not specified, the host name will be equal
                to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
@@ -934,6 +968,7 @@ class ComputeInstance(pulumi.CustomResource):
                  description: Optional[pulumi.Input[str]] = None,
                  filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceFilesystemArgs']]]]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
+                 gpu_cluster_id: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  local_disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceLocalDiskArgs']]]]] = None,
@@ -966,6 +1001,7 @@ class ComputeInstance(pulumi.CustomResource):
             __props__.__dict__["description"] = description
             __props__.__dict__["filesystems"] = filesystems
             __props__.__dict__["folder_id"] = folder_id
+            __props__.__dict__["gpu_cluster_id"] = gpu_cluster_id
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["labels"] = labels
             __props__.__dict__["local_disks"] = local_disks
@@ -1006,6 +1042,7 @@ class ComputeInstance(pulumi.CustomResource):
             filesystems: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceFilesystemArgs']]]]] = None,
             folder_id: Optional[pulumi.Input[str]] = None,
             fqdn: Optional[pulumi.Input[str]] = None,
+            gpu_cluster_id: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
             labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             local_disks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ComputeInstanceLocalDiskArgs']]]]] = None,
@@ -1036,6 +1073,7 @@ class ComputeInstance(pulumi.CustomResource):
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
                is not provided, the default provider folder is used.
         :param pulumi.Input[str] fqdn: DNS record FQDN (must have a dot at the end).
+        :param pulumi.Input[str] gpu_cluster_id: ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
         :param pulumi.Input[str] hostname: Host name for the instance. This field is used to generate the instance `fqdn` value. 
                The host name must be unique within the network and region. If not specified, the host name will be equal
                to `id` of the instance and `fqdn` will be `<id>.auto.internal`.
@@ -1072,6 +1110,7 @@ class ComputeInstance(pulumi.CustomResource):
         __props__.__dict__["filesystems"] = filesystems
         __props__.__dict__["folder_id"] = folder_id
         __props__.__dict__["fqdn"] = fqdn
+        __props__.__dict__["gpu_cluster_id"] = gpu_cluster_id
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["labels"] = labels
         __props__.__dict__["local_disks"] = local_disks
@@ -1148,6 +1187,14 @@ class ComputeInstance(pulumi.CustomResource):
         DNS record FQDN (must have a dot at the end).
         """
         return pulumi.get(self, "fqdn")
+
+    @property
+    @pulumi.getter(name="gpuClusterId")
+    def gpu_cluster_id(self) -> pulumi.Output[str]:
+        """
+        ID of the GPU cluster to attach this instance to. The GPU cluster must exist in the same zone as the instance.
+        """
+        return pulumi.get(self, "gpu_cluster_id")
 
     @property
     @pulumi.getter

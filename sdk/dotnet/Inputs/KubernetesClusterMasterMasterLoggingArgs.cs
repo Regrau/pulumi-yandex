@@ -13,6 +13,12 @@ namespace Pulumi.Yandex.Inputs
     public sealed class KubernetesClusterMasterMasterLoggingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// (Optional) Boolean flag that specifies if kube-apiserver audit logs should be sent to Yandex Cloud Logging.
+        /// </summary>
+        [Input("auditEnabled")]
+        public Input<bool>? AuditEnabled { get; set; }
+
+        /// <summary>
         /// (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
         /// </summary>
         [Input("clusterAutoscalerEnabled")]

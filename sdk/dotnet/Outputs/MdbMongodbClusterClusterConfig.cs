@@ -22,15 +22,24 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly Outputs.MdbMongodbClusterClusterConfigBackupWindowStart? BackupWindowStart;
         /// <summary>
-        /// Feature compatibility version of MongoDB. If not provided version is taken. Can be either `5.0`, `4.4`, `4.2` and `4.0`.
+        /// Feature compatibility version of MongoDB. If not provided version is taken. Can be either `6.0`, `5.0`, `4.4` and `4.2`.
         /// </summary>
         public readonly string? FeatureCompatibilityVersion;
+        /// <summary>
+        /// Configuration of the mongocfg service. The structure is documented below.
+        /// </summary>
+        public readonly Outputs.MdbMongodbClusterClusterConfigMongocfg? Mongocfg;
         /// <summary>
         /// Configuration of the mongod service. The structure is documented below.
         /// </summary>
         public readonly Outputs.MdbMongodbClusterClusterConfigMongod? Mongod;
         /// <summary>
-        /// Version of MongoDB (either 5.0, 4.4, 4.2 or 4.0).
+        /// Configuration of the mongos service. The structure is documented below.
+        /// </summary>
+        public readonly Outputs.MdbMongodbClusterClusterConfigMongos? Mongos;
+        public readonly Outputs.MdbMongodbClusterClusterConfigPerformanceDiagnostics? PerformanceDiagnostics;
+        /// <summary>
+        /// Version of the MongoDB server software. Can be either `4.2`, `4.4`, `4.4-enterprise`, `5.0`, `5.0-enterprise`, `6.0` and `6.0-enterprise`.
         /// </summary>
         public readonly string Version;
 
@@ -42,14 +51,23 @@ namespace Pulumi.Yandex.Outputs
 
             string? featureCompatibilityVersion,
 
+            Outputs.MdbMongodbClusterClusterConfigMongocfg? mongocfg,
+
             Outputs.MdbMongodbClusterClusterConfigMongod? mongod,
+
+            Outputs.MdbMongodbClusterClusterConfigMongos? mongos,
+
+            Outputs.MdbMongodbClusterClusterConfigPerformanceDiagnostics? performanceDiagnostics,
 
             string version)
         {
             Access = access;
             BackupWindowStart = backupWindowStart;
             FeatureCompatibilityVersion = featureCompatibilityVersion;
+            Mongocfg = mongocfg;
             Mongod = mongod;
+            Mongos = mongos;
+            PerformanceDiagnostics = performanceDiagnostics;
             Version = version;
         }
     }

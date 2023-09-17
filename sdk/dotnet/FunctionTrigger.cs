@@ -85,6 +85,8 @@ namespace Pulumi.Yandex
         /// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
         /// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
         /// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+        /// * `iot.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+        /// * `iot.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
         /// </summary>
         [Output("iot")]
         public Output<Outputs.FunctionTriggerIot?> Iot { get; private set; } = null!;
@@ -104,6 +106,7 @@ namespace Pulumi.Yandex
         /// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
         /// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
         /// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+        /// * `logging.0.stream_names` - Logging stream name filter setting for Yandex Cloud Functions Trigger
         /// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
         /// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
         /// </summary>
@@ -135,6 +138,8 @@ namespace Pulumi.Yandex
         /// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
         /// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
         /// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
+        /// * `object_storage.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+        /// * `object_storage.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
         /// </summary>
         [Output("objectStorage")]
         public Output<Outputs.FunctionTriggerObjectStorage?> ObjectStorage { get; private set; } = null!;
@@ -142,6 +147,7 @@ namespace Pulumi.Yandex
         /// <summary>
         /// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
         /// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+        /// * `timer.0.payload` - Payload to be passed to function
         /// </summary>
         [Output("timer")]
         public Output<Outputs.FunctionTriggerTimer?> Timer { get; private set; } = null!;
@@ -232,6 +238,8 @@ namespace Pulumi.Yandex
         /// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
         /// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
         /// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+        /// * `iot.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+        /// * `iot.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
         /// </summary>
         [Input("iot")]
         public Input<Inputs.FunctionTriggerIotArgs>? Iot { get; set; }
@@ -257,6 +265,7 @@ namespace Pulumi.Yandex
         /// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
         /// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
         /// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+        /// * `logging.0.stream_names` - Logging stream name filter setting for Yandex Cloud Functions Trigger
         /// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
         /// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
         /// </summary>
@@ -288,6 +297,8 @@ namespace Pulumi.Yandex
         /// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
         /// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
         /// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
+        /// * `object_storage.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+        /// * `object_storage.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
         /// </summary>
         [Input("objectStorage")]
         public Input<Inputs.FunctionTriggerObjectStorageArgs>? ObjectStorage { get; set; }
@@ -295,6 +306,7 @@ namespace Pulumi.Yandex
         /// <summary>
         /// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
         /// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+        /// * `timer.0.payload` - Payload to be passed to function
         /// </summary>
         [Input("timer")]
         public Input<Inputs.FunctionTriggerTimerArgs>? Timer { get; set; }
@@ -352,6 +364,8 @@ namespace Pulumi.Yandex
         /// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
         /// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
         /// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+        /// * `iot.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+        /// * `iot.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
         /// </summary>
         [Input("iot")]
         public Input<Inputs.FunctionTriggerIotGetArgs>? Iot { get; set; }
@@ -377,6 +391,7 @@ namespace Pulumi.Yandex
         /// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
         /// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
         /// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+        /// * `logging.0.stream_names` - Logging stream name filter setting for Yandex Cloud Functions Trigger
         /// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
         /// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
         /// </summary>
@@ -408,6 +423,8 @@ namespace Pulumi.Yandex
         /// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
         /// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
         /// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
+        /// * `object_storage.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+        /// * `object_storage.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
         /// </summary>
         [Input("objectStorage")]
         public Input<Inputs.FunctionTriggerObjectStorageGetArgs>? ObjectStorage { get; set; }
@@ -415,6 +432,7 @@ namespace Pulumi.Yandex
         /// <summary>
         /// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
         /// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+        /// * `timer.0.payload` - Payload to be passed to function
         /// </summary>
         [Input("timer")]
         public Input<Inputs.FunctionTriggerTimerGetArgs>? Timer { get; set; }

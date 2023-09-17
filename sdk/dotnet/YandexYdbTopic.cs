@@ -13,47 +13,6 @@ namespace Pulumi.Yandex
     /// Get information about a Yandex YDB Topics. For more information, see
     /// [the official documentation](https://cloud.yandex.ru/docs/ydb/concepts/#ydb).
     /// 
-    /// ## Example Usage
-    /// 
-    /// ```csharp
-    /// using System.Collections.Generic;
-    /// using Pulumi;
-    /// using Yandex = Pulumi.Yandex;
-    /// 
-    /// return await Deployment.RunAsync(() =&gt; 
-    /// {
-    ///     var databaseName = new Yandex.YdbDatabaseServerless("databaseName", new()
-    ///     {
-    ///         LocationId = "ru-central1",
-    ///     });
-    /// 
-    ///     var topic = new Yandex.YandexYdbTopic("topic", new()
-    ///     {
-    ///         Consumers = new[]
-    ///         {
-    ///             new Yandex.Inputs.YandexYdbTopicConsumerArgs
-    ///             {
-    ///                 Name = "consumer-name",
-    ///                 StartingMessageTimestampMs = 0,
-    ///                 SupportedCodecs = new[]
-    ///                 {
-    ///                     "raw",
-    ///                     "gzip",
-    ///                 },
-    ///             },
-    ///         },
-    ///         DatabaseEndpoint = databaseName.YdbFullEndpoint,
-    ///         PartitionsCount = 1,
-    ///         RetentionPeriodMs = 2000000,
-    ///         SupportedCodecs = new[]
-    ///         {
-    ///             "raw",
-    ///             "gzip",
-    ///         },
-    ///     });
-    /// 
-    /// });
-    /// ```
     /// ## Consumer data type description
     /// 
     /// * `name` - Reader's name. Type: string, required. Default value: "".
@@ -78,23 +37,29 @@ namespace Pulumi.Yandex
         [Output("description")]
         public Output<string?> Description { get; private set; } = null!;
 
+        [Output("meteringMode")]
+        public Output<string> MeteringMode { get; private set; } = null!;
+
         /// <summary>
         /// Topic name. Type: string, required. Default value: "".
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        [Output("partitionWriteSpeedKbps")]
+        public Output<int> PartitionWriteSpeedKbps { get; private set; } = null!;
+
         /// <summary>
         /// Number of partitions. Types: integer, optional. Default value: 2.
         /// </summary>
         [Output("partitionsCount")]
-        public Output<int?> PartitionsCount { get; private set; } = null!;
+        public Output<int> PartitionsCount { get; private set; } = null!;
 
-        /// <summary>
-        /// Data retention time. Types: integer, required. Default value: 86400000
-        /// </summary>
-        [Output("retentionPeriodMs")]
-        public Output<int?> RetentionPeriodMs { get; private set; } = null!;
+        [Output("retentionPeriodHours")]
+        public Output<int> RetentionPeriodHours { get; private set; } = null!;
+
+        [Output("retentionStorageMb")]
+        public Output<int> RetentionStorageMb { get; private set; } = null!;
 
         /// <summary>
         /// Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
@@ -170,11 +135,17 @@ namespace Pulumi.Yandex
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        [Input("meteringMode")]
+        public Input<string>? MeteringMode { get; set; }
+
         /// <summary>
         /// Topic name. Type: string, required. Default value: "".
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("partitionWriteSpeedKbps")]
+        public Input<int>? PartitionWriteSpeedKbps { get; set; }
 
         /// <summary>
         /// Number of partitions. Types: integer, optional. Default value: 2.
@@ -182,11 +153,11 @@ namespace Pulumi.Yandex
         [Input("partitionsCount")]
         public Input<int>? PartitionsCount { get; set; }
 
-        /// <summary>
-        /// Data retention time. Types: integer, required. Default value: 86400000
-        /// </summary>
-        [Input("retentionPeriodMs")]
-        public Input<int>? RetentionPeriodMs { get; set; }
+        [Input("retentionPeriodHours")]
+        public Input<int>? RetentionPeriodHours { get; set; }
+
+        [Input("retentionStorageMb")]
+        public Input<int>? RetentionStorageMb { get; set; }
 
         [Input("supportedCodecs")]
         private InputList<string>? _supportedCodecs;
@@ -229,11 +200,17 @@ namespace Pulumi.Yandex
         [Input("description")]
         public Input<string>? Description { get; set; }
 
+        [Input("meteringMode")]
+        public Input<string>? MeteringMode { get; set; }
+
         /// <summary>
         /// Topic name. Type: string, required. Default value: "".
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        [Input("partitionWriteSpeedKbps")]
+        public Input<int>? PartitionWriteSpeedKbps { get; set; }
 
         /// <summary>
         /// Number of partitions. Types: integer, optional. Default value: 2.
@@ -241,11 +218,11 @@ namespace Pulumi.Yandex
         [Input("partitionsCount")]
         public Input<int>? PartitionsCount { get; set; }
 
-        /// <summary>
-        /// Data retention time. Types: integer, required. Default value: 86400000
-        /// </summary>
-        [Input("retentionPeriodMs")]
-        public Input<int>? RetentionPeriodMs { get; set; }
+        [Input("retentionPeriodHours")]
+        public Input<int>? RetentionPeriodHours { get; set; }
+
+        [Input("retentionStorageMb")]
+        public Input<int>? RetentionStorageMb { get; set; }
 
         [Input("supportedCodecs")]
         private InputList<string>? _supportedCodecs;

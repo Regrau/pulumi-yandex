@@ -94,6 +94,12 @@ namespace Pulumi.Yandex
         public Output<int> ConnLimit { get; private set; } = null!;
 
         /// <summary>
+        /// Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+        /// </summary>
+        [Output("deletionProtection")]
+        public Output<string?> DeletionProtection { get; private set; } = null!;
+
+        /// <summary>
         /// List of the user's grants.
         /// </summary>
         [Output("grants")]
@@ -189,6 +195,12 @@ namespace Pulumi.Yandex
         [Input("connLimit")]
         public Input<int>? ConnLimit { get; set; }
 
+        /// <summary>
+        /// Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+        /// </summary>
+        [Input("deletionProtection")]
+        public Input<string>? DeletionProtection { get; set; }
+
         [Input("grants")]
         private InputList<string>? _grants;
 
@@ -269,6 +281,12 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("connLimit")]
         public Input<int>? ConnLimit { get; set; }
+
+        /// <summary>
+        /// Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+        /// </summary>
+        [Input("deletionProtection")]
+        public Input<string>? DeletionProtection { get; set; }
 
         [Input("grants")]
         private InputList<string>? _grants;

@@ -166,7 +166,6 @@ namespace Pulumi.Yandex
 
         /// <summary>
         /// Labels that will be assigned to compute nodes (instances), created by the Node Group.
-        /// ---
         /// </summary>
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
@@ -323,7 +322,6 @@ namespace Pulumi.Yandex
 
         /// <summary>
         /// Labels that will be assigned to compute nodes (instances), created by the Node Group.
-        /// ---
         /// </summary>
         public InputMap<string> Labels
         {
@@ -456,7 +454,6 @@ namespace Pulumi.Yandex
 
         /// <summary>
         /// Labels that will be assigned to compute nodes (instances), created by the Node Group.
-        /// ---
         /// </summary>
         public InputMap<string> Labels
         {

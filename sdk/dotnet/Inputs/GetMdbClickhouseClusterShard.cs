@@ -15,8 +15,8 @@ namespace Pulumi.Yandex.Inputs
         /// <summary>
         /// The name of the ClickHouse cluster.
         /// </summary>
-        [Input("name", required: true)]
-        public string Name { get; set; } = null!;
+        [Input("name")]
+        public string? Name { get; set; }
 
         /// <summary>
         /// Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.

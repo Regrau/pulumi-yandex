@@ -181,6 +181,18 @@ namespace Pulumi.Yandex
         [Input("resources")]
         public Inputs.GetMdbMongodbClusterResourcesArgs? Resources { get; set; }
 
+        [Input("resourcesMongocfg")]
+        public Inputs.GetMdbMongodbClusterResourcesMongocfgArgs? ResourcesMongocfg { get; set; }
+
+        [Input("resourcesMongod")]
+        public Inputs.GetMdbMongodbClusterResourcesMongodArgs? ResourcesMongod { get; set; }
+
+        [Input("resourcesMongoinfra")]
+        public Inputs.GetMdbMongodbClusterResourcesMongoinfraArgs? ResourcesMongoinfra { get; set; }
+
+        [Input("resourcesMongos")]
+        public Inputs.GetMdbMongodbClusterResourcesMongosArgs? ResourcesMongos { get; set; }
+
         [Input("restore")]
         public Inputs.GetMdbMongodbClusterRestoreArgs? Restore { get; set; }
 
@@ -330,6 +342,18 @@ namespace Pulumi.Yandex
         [Input("resources")]
         public Input<Inputs.GetMdbMongodbClusterResourcesInputArgs>? Resources { get; set; }
 
+        [Input("resourcesMongocfg")]
+        public Input<Inputs.GetMdbMongodbClusterResourcesMongocfgInputArgs>? ResourcesMongocfg { get; set; }
+
+        [Input("resourcesMongod")]
+        public Input<Inputs.GetMdbMongodbClusterResourcesMongodInputArgs>? ResourcesMongod { get; set; }
+
+        [Input("resourcesMongoinfra")]
+        public Input<Inputs.GetMdbMongodbClusterResourcesMongoinfraInputArgs>? ResourcesMongoinfra { get; set; }
+
+        [Input("resourcesMongos")]
+        public Input<Inputs.GetMdbMongodbClusterResourcesMongosInputArgs>? ResourcesMongos { get; set; }
+
         [Input("restore")]
         public Input<Inputs.GetMdbMongodbClusterRestoreInputArgs>? Restore { get; set; }
 
@@ -431,6 +455,10 @@ namespace Pulumi.Yandex
         /// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
         /// </summary>
         public readonly Outputs.GetMdbMongodbClusterResourcesResult? Resources;
+        public readonly Outputs.GetMdbMongodbClusterResourcesMongocfgResult? ResourcesMongocfg;
+        public readonly Outputs.GetMdbMongodbClusterResourcesMongodResult? ResourcesMongod;
+        public readonly Outputs.GetMdbMongodbClusterResourcesMongoinfraResult? ResourcesMongoinfra;
+        public readonly Outputs.GetMdbMongodbClusterResourcesMongosResult? ResourcesMongos;
         public readonly Outputs.GetMdbMongodbClusterRestoreResult? Restore;
         /// <summary>
         /// A set of ids of security groups assigned to hosts of the cluster.
@@ -483,6 +511,14 @@ namespace Pulumi.Yandex
 
             Outputs.GetMdbMongodbClusterResourcesResult? resources,
 
+            Outputs.GetMdbMongodbClusterResourcesMongocfgResult? resourcesMongocfg,
+
+            Outputs.GetMdbMongodbClusterResourcesMongodResult? resourcesMongod,
+
+            Outputs.GetMdbMongodbClusterResourcesMongoinfraResult? resourcesMongoinfra,
+
+            Outputs.GetMdbMongodbClusterResourcesMongosResult? resourcesMongos,
+
             Outputs.GetMdbMongodbClusterRestoreResult? restore,
 
             ImmutableArray<string> securityGroupIds,
@@ -509,6 +545,10 @@ namespace Pulumi.Yandex
             Name = name;
             NetworkId = networkId;
             Resources = resources;
+            ResourcesMongocfg = resourcesMongocfg;
+            ResourcesMongod = resourcesMongod;
+            ResourcesMongoinfra = resourcesMongoinfra;
+            ResourcesMongos = resourcesMongos;
             Restore = restore;
             SecurityGroupIds = securityGroupIds;
             Sharded = sharded;

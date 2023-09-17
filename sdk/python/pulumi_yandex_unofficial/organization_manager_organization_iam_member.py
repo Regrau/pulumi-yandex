@@ -24,7 +24,9 @@ class OrganizationManagerOrganizationIamMemberArgs:
                This field can have one of the following values:
                * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
                * **serviceAccount:{service_account_id}**: A unique service account ID.
-               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+               * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+               * **group:{group_id}**: A unique group ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         :param pulumi.Input[str] organization_id: ID of the organization to attach a policy to.
         :param pulumi.Input[str] role: The role that should be assigned.
         """
@@ -42,7 +44,9 @@ class OrganizationManagerOrganizationIamMemberArgs:
         This field can have one of the following values:
         * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
         * **serviceAccount:{service_account_id}**: A unique service account ID.
-        * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+        * **group:{group_id}**: A unique group ID.
+        * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         """
         return pulumi.get(self, "member")
 
@@ -97,7 +101,9 @@ class _OrganizationManagerOrganizationIamMemberState:
                This field can have one of the following values:
                * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
                * **serviceAccount:{service_account_id}**: A unique service account ID.
-               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+               * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+               * **group:{group_id}**: A unique group ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         :param pulumi.Input[str] organization_id: ID of the organization to attach a policy to.
         :param pulumi.Input[str] role: The role that should be assigned.
         """
@@ -118,7 +124,9 @@ class _OrganizationManagerOrganizationIamMemberState:
         This field can have one of the following values:
         * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
         * **serviceAccount:{service_account_id}**: A unique service account ID.
-        * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+        * **group:{group_id}**: A unique group ID.
+        * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         """
         return pulumi.get(self, "member")
 
@@ -206,7 +214,9 @@ class OrganizationManagerOrganizationIamMember(pulumi.CustomResource):
                This field can have one of the following values:
                * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
                * **serviceAccount:{service_account_id}**: A unique service account ID.
-               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+               * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+               * **group:{group_id}**: A unique group ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         :param pulumi.Input[str] organization_id: ID of the organization to attach a policy to.
         :param pulumi.Input[str] role: The role that should be assigned.
         """
@@ -309,7 +319,9 @@ class OrganizationManagerOrganizationIamMember(pulumi.CustomResource):
                This field can have one of the following values:
                * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
                * **serviceAccount:{service_account_id}**: A unique service account ID.
-               * **federatedUser:{federated_user_id}**: A unique federated user ID.
+               * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+               * **group:{group_id}**: A unique group ID.
+               * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         :param pulumi.Input[str] organization_id: ID of the organization to attach a policy to.
         :param pulumi.Input[str] role: The role that should be assigned.
         """
@@ -331,7 +343,9 @@ class OrganizationManagerOrganizationIamMember(pulumi.CustomResource):
         This field can have one of the following values:
         * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
         * **serviceAccount:{service_account_id}**: A unique service account ID.
-        * **federatedUser:{federated_user_id}**: A unique federated user ID.
+        * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+        * **group:{group_id}**: A unique group ID.
+        * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
         """
         return pulumi.get(self, "member")
 

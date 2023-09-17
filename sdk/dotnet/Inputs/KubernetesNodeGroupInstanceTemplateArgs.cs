@@ -19,17 +19,29 @@ namespace Pulumi.Yandex.Inputs
         public Input<Inputs.KubernetesNodeGroupInstanceTemplateBootDiskArgs>? BootDisk { get; set; }
 
         /// <summary>
+        /// Container network configuration. The structure is documented below.
+        /// </summary>
+        [Input("containerNetwork")]
+        public Input<Inputs.KubernetesNodeGroupInstanceTemplateContainerNetworkArgs>? ContainerNetwork { get; set; }
+
+        /// <summary>
         /// Container runtime configuration. The structure is documented below.
         /// </summary>
         [Input("containerRuntime")]
         public Input<Inputs.KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs>? ContainerRuntime { get; set; }
+
+        /// <summary>
+        /// GPU settings. The structure is documented below.
+        /// ---
+        /// </summary>
+        [Input("gpuSettings")]
+        public Input<Inputs.KubernetesNodeGroupInstanceTemplateGpuSettingsArgs>? GpuSettings { get; set; }
 
         [Input("labels")]
         private InputMap<string>? _labels;
 
         /// <summary>
         /// Labels that will be assigned to compute nodes (instances), created by the Node Group.
-        /// ---
         /// </summary>
         public InputMap<string> Labels
         {

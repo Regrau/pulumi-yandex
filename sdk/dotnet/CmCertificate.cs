@@ -69,7 +69,7 @@ namespace Pulumi.Yandex
     /// A certificate can be imported using the `id` of the resource, e.g.
     /// 
     /// ```sh
-    ///  $ pulumi import yandex:index/cmCertificate:cmCertificate default &lt;certificate_id&gt;
+    ///  $ pulumi import yandex:index/cmCertificate:cmCertificate default certificate_id
     /// ```
     /// </summary>
     [YandexResourceType("yandex:index/cmCertificate:cmCertificate")]

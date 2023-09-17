@@ -14,11 +14,16 @@ namespace Pulumi.Yandex.Outputs
     public sealed class GetFunctionTriggerTimerResult
     {
         public readonly string CronExpression;
+        public readonly string Payload;
 
         [OutputConstructor]
-        private GetFunctionTriggerTimerResult(string cronExpression)
+        private GetFunctionTriggerTimerResult(
+            string cronExpression,
+
+            string payload)
         {
             CronExpression = cronExpression;
+            Payload = payload;
         }
     }
 }

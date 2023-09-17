@@ -22,7 +22,10 @@ class GetMdbRedisClusterResult:
     """
     A collection of values returned by getMdbRedisCluster.
     """
-    def __init__(__self__, cluster_id=None, configs=None, created_at=None, deletion_protection=None, description=None, environment=None, folder_id=None, health=None, hosts=None, id=None, labels=None, maintenance_windows=None, name=None, network_id=None, persistence_mode=None, resources=None, security_group_ids=None, sharded=None, status=None, tls_enabled=None):
+    def __init__(__self__, announce_hostnames=None, cluster_id=None, configs=None, created_at=None, deletion_protection=None, description=None, environment=None, folder_id=None, health=None, hosts=None, id=None, labels=None, maintenance_windows=None, name=None, network_id=None, persistence_mode=None, resources=None, security_group_ids=None, sharded=None, status=None, tls_enabled=None):
+        if announce_hostnames and not isinstance(announce_hostnames, bool):
+            raise TypeError("Expected argument 'announce_hostnames' to be a bool")
+        pulumi.set(__self__, "announce_hostnames", announce_hostnames)
         if cluster_id and not isinstance(cluster_id, str):
             raise TypeError("Expected argument 'cluster_id' to be a str")
         pulumi.set(__self__, "cluster_id", cluster_id)
@@ -83,6 +86,14 @@ class GetMdbRedisClusterResult:
         if tls_enabled and not isinstance(tls_enabled, bool):
             raise TypeError("Expected argument 'tls_enabled' to be a bool")
         pulumi.set(__self__, "tls_enabled", tls_enabled)
+
+    @property
+    @pulumi.getter(name="announceHostnames")
+    def announce_hostnames(self) -> bool:
+        """
+        Announce fqdn instead of ip address.
+        """
+        return pulumi.get(self, "announce_hostnames")
 
     @property
     @pulumi.getter(name="clusterId")
@@ -236,6 +247,7 @@ class AwaitableGetMdbRedisClusterResult(GetMdbRedisClusterResult):
         if False:
             yield self
         return GetMdbRedisClusterResult(
+            announce_hostnames=self.announce_hostnames,
             cluster_id=self.cluster_id,
             configs=self.configs,
             created_at=self.created_at,
@@ -291,6 +303,7 @@ def get_mdb_redis_cluster(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('yandex:index/getMdbRedisCluster:getMdbRedisCluster', __args__, opts=opts, typ=GetMdbRedisClusterResult).value
 
     return AwaitableGetMdbRedisClusterResult(
+        announce_hostnames=__ret__.announce_hostnames,
         cluster_id=__ret__.cluster_id,
         configs=__ret__.configs,
         created_at=__ret__.created_at,

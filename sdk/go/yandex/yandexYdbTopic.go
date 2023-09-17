@@ -14,53 +14,6 @@ import (
 // Get information about a Yandex YDB Topics. For more information, see
 // [the official documentation](https://cloud.yandex.ru/docs/ydb/concepts/#ydb).
 //
-// ## Example Usage
-//
-// ```go
-// package main
-//
-// import (
-//
-//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
-//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//
-// )
-//
-//	func main() {
-//		pulumi.Run(func(ctx *pulumi.Context) error {
-//			databaseName, err := yandex.NewYdbDatabaseServerless(ctx, "databaseName", &yandex.YdbDatabaseServerlessArgs{
-//				LocationId: pulumi.String("ru-central1"),
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			_, err = yandex.NewyandexYdbTopic(ctx, "topic", &yandex.yandexYdbTopicArgs{
-//				Consumers: YandexYdbTopicConsumerArray{
-//					&YandexYdbTopicConsumerArgs{
-//						Name:                       pulumi.String("consumer-name"),
-//						StartingMessageTimestampMs: pulumi.Int(0),
-//						SupportedCodecs: pulumi.StringArray{
-//							pulumi.String("raw"),
-//							pulumi.String("gzip"),
-//						},
-//					},
-//				},
-//				DatabaseEndpoint:  databaseName.YdbFullEndpoint,
-//				PartitionsCount:   pulumi.Int(1),
-//				RetentionPeriodMs: pulumi.Int(2000000),
-//				SupportedCodecs: pulumi.StringArray{
-//					pulumi.String("raw"),
-//					pulumi.String("gzip"),
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			return nil
-//		})
-//	}
-//
-// ```
 // ## Consumer data type description
 //
 // * `name` - Reader's name. Type: string, required. Default value: "".
@@ -74,12 +27,14 @@ type YandexYdbTopic struct {
 	// YDB database endpoint. Types: string, required. Default value: "".
 	DatabaseEndpoint pulumi.StringOutput    `pulumi:"databaseEndpoint"`
 	Description      pulumi.StringPtrOutput `pulumi:"description"`
+	MeteringMode     pulumi.StringOutput    `pulumi:"meteringMode"`
 	// Topic name. Type: string, required. Default value: "".
-	Name pulumi.StringOutput `pulumi:"name"`
+	Name                    pulumi.StringOutput `pulumi:"name"`
+	PartitionWriteSpeedKbps pulumi.IntOutput    `pulumi:"partitionWriteSpeedKbps"`
 	// Number of partitions. Types: integer, optional. Default value: 2.
-	PartitionsCount pulumi.IntPtrOutput `pulumi:"partitionsCount"`
-	// Data retention time. Types: integer, required. Default value: 86400000
-	RetentionPeriodMs pulumi.IntPtrOutput `pulumi:"retentionPeriodMs"`
+	PartitionsCount      pulumi.IntOutput `pulumi:"partitionsCount"`
+	RetentionPeriodHours pulumi.IntOutput `pulumi:"retentionPeriodHours"`
+	RetentionStorageMb   pulumi.IntOutput `pulumi:"retentionStorageMb"`
 	// Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
 	SupportedCodecs pulumi.StringArrayOutput `pulumi:"supportedCodecs"`
 }
@@ -122,12 +77,14 @@ type yandexYdbTopicState struct {
 	// YDB database endpoint. Types: string, required. Default value: "".
 	DatabaseEndpoint *string `pulumi:"databaseEndpoint"`
 	Description      *string `pulumi:"description"`
+	MeteringMode     *string `pulumi:"meteringMode"`
 	// Topic name. Type: string, required. Default value: "".
-	Name *string `pulumi:"name"`
+	Name                    *string `pulumi:"name"`
+	PartitionWriteSpeedKbps *int    `pulumi:"partitionWriteSpeedKbps"`
 	// Number of partitions. Types: integer, optional. Default value: 2.
-	PartitionsCount *int `pulumi:"partitionsCount"`
-	// Data retention time. Types: integer, required. Default value: 86400000
-	RetentionPeriodMs *int `pulumi:"retentionPeriodMs"`
+	PartitionsCount      *int `pulumi:"partitionsCount"`
+	RetentionPeriodHours *int `pulumi:"retentionPeriodHours"`
+	RetentionStorageMb   *int `pulumi:"retentionStorageMb"`
 	// Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
 	SupportedCodecs []string `pulumi:"supportedCodecs"`
 }
@@ -138,12 +95,14 @@ type YandexYdbTopicState struct {
 	// YDB database endpoint. Types: string, required. Default value: "".
 	DatabaseEndpoint pulumi.StringPtrInput
 	Description      pulumi.StringPtrInput
+	MeteringMode     pulumi.StringPtrInput
 	// Topic name. Type: string, required. Default value: "".
-	Name pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	PartitionWriteSpeedKbps pulumi.IntPtrInput
 	// Number of partitions. Types: integer, optional. Default value: 2.
-	PartitionsCount pulumi.IntPtrInput
-	// Data retention time. Types: integer, required. Default value: 86400000
-	RetentionPeriodMs pulumi.IntPtrInput
+	PartitionsCount      pulumi.IntPtrInput
+	RetentionPeriodHours pulumi.IntPtrInput
+	RetentionStorageMb   pulumi.IntPtrInput
 	// Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
 	SupportedCodecs pulumi.StringArrayInput
 }
@@ -158,12 +117,14 @@ type yandexYdbTopicArgs struct {
 	// YDB database endpoint. Types: string, required. Default value: "".
 	DatabaseEndpoint string  `pulumi:"databaseEndpoint"`
 	Description      *string `pulumi:"description"`
+	MeteringMode     *string `pulumi:"meteringMode"`
 	// Topic name. Type: string, required. Default value: "".
-	Name *string `pulumi:"name"`
+	Name                    *string `pulumi:"name"`
+	PartitionWriteSpeedKbps *int    `pulumi:"partitionWriteSpeedKbps"`
 	// Number of partitions. Types: integer, optional. Default value: 2.
-	PartitionsCount *int `pulumi:"partitionsCount"`
-	// Data retention time. Types: integer, required. Default value: 86400000
-	RetentionPeriodMs *int `pulumi:"retentionPeriodMs"`
+	PartitionsCount      *int `pulumi:"partitionsCount"`
+	RetentionPeriodHours *int `pulumi:"retentionPeriodHours"`
+	RetentionStorageMb   *int `pulumi:"retentionStorageMb"`
 	// Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
 	SupportedCodecs []string `pulumi:"supportedCodecs"`
 }
@@ -175,12 +136,14 @@ type YandexYdbTopicArgs struct {
 	// YDB database endpoint. Types: string, required. Default value: "".
 	DatabaseEndpoint pulumi.StringInput
 	Description      pulumi.StringPtrInput
+	MeteringMode     pulumi.StringPtrInput
 	// Topic name. Type: string, required. Default value: "".
-	Name pulumi.StringPtrInput
+	Name                    pulumi.StringPtrInput
+	PartitionWriteSpeedKbps pulumi.IntPtrInput
 	// Number of partitions. Types: integer, optional. Default value: 2.
-	PartitionsCount pulumi.IntPtrInput
-	// Data retention time. Types: integer, required. Default value: 86400000
-	RetentionPeriodMs pulumi.IntPtrInput
+	PartitionsCount      pulumi.IntPtrInput
+	RetentionPeriodHours pulumi.IntPtrInput
+	RetentionStorageMb   pulumi.IntPtrInput
 	// Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
 	SupportedCodecs pulumi.StringArrayInput
 }
@@ -286,19 +249,30 @@ func (o YandexYdbTopicOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *YandexYdbTopic) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
 
+func (o YandexYdbTopicOutput) MeteringMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *YandexYdbTopic) pulumi.StringOutput { return v.MeteringMode }).(pulumi.StringOutput)
+}
+
 // Topic name. Type: string, required. Default value: "".
 func (o YandexYdbTopicOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *YandexYdbTopic) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Number of partitions. Types: integer, optional. Default value: 2.
-func (o YandexYdbTopicOutput) PartitionsCount() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *YandexYdbTopic) pulumi.IntPtrOutput { return v.PartitionsCount }).(pulumi.IntPtrOutput)
+func (o YandexYdbTopicOutput) PartitionWriteSpeedKbps() pulumi.IntOutput {
+	return o.ApplyT(func(v *YandexYdbTopic) pulumi.IntOutput { return v.PartitionWriteSpeedKbps }).(pulumi.IntOutput)
 }
 
-// Data retention time. Types: integer, required. Default value: 86400000
-func (o YandexYdbTopicOutput) RetentionPeriodMs() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *YandexYdbTopic) pulumi.IntPtrOutput { return v.RetentionPeriodMs }).(pulumi.IntPtrOutput)
+// Number of partitions. Types: integer, optional. Default value: 2.
+func (o YandexYdbTopicOutput) PartitionsCount() pulumi.IntOutput {
+	return o.ApplyT(func(v *YandexYdbTopic) pulumi.IntOutput { return v.PartitionsCount }).(pulumi.IntOutput)
+}
+
+func (o YandexYdbTopicOutput) RetentionPeriodHours() pulumi.IntOutput {
+	return o.ApplyT(func(v *YandexYdbTopic) pulumi.IntOutput { return v.RetentionPeriodHours }).(pulumi.IntOutput)
+}
+
+func (o YandexYdbTopicOutput) RetentionStorageMb() pulumi.IntOutput {
+	return o.ApplyT(func(v *YandexYdbTopic) pulumi.IntOutput { return v.RetentionStorageMb }).(pulumi.IntOutput)
 }
 
 // Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].

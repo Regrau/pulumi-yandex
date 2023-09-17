@@ -25,7 +25,9 @@ class StorageObjectArgs:
                  object_lock_mode: Optional[pulumi.Input[str]] = None,
                  object_lock_retain_until_date: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
-                 source: Optional[pulumi.Input[str]] = None):
+                 source: Optional[pulumi.Input[str]] = None,
+                 source_hash: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a StorageObject resource.
         :param pulumi.Input[str] bucket: The name of the containing bucket.
@@ -40,6 +42,8 @@ class StorageObjectArgs:
         :param pulumi.Input[str] object_lock_retain_until_date: Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
         :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
         :param pulumi.Input[str] source: The path to a file that will be read and uploaded as raw bytes for the object content.
+        :param pulumi.Input[str] source_hash: Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Specifies an object tags.
         """
         pulumi.set(__self__, "bucket", bucket)
         pulumi.set(__self__, "key", key)
@@ -63,6 +67,10 @@ class StorageObjectArgs:
             pulumi.set(__self__, "secret_key", secret_key)
         if source is not None:
             pulumi.set(__self__, "source", source)
+        if source_hash is not None:
+            pulumi.set(__self__, "source_hash", source_hash)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter
@@ -208,6 +216,30 @@ class StorageObjectArgs:
     def source(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "source", value)
 
+    @property
+    @pulumi.getter(name="sourceHash")
+    def source_hash(self) -> Optional[pulumi.Input[str]]:
+        """
+        Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+        """
+        return pulumi.get(self, "source_hash")
+
+    @source_hash.setter
+    def source_hash(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_hash", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Specifies an object tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
 
 @pulumi.input_type
 class _StorageObjectState:
@@ -223,7 +255,9 @@ class _StorageObjectState:
                  object_lock_mode: Optional[pulumi.Input[str]] = None,
                  object_lock_retain_until_date: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
-                 source: Optional[pulumi.Input[str]] = None):
+                 source: Optional[pulumi.Input[str]] = None,
+                 source_hash: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering StorageObject resources.
         :param pulumi.Input[str] access_key: The access key to use when applying changes. If omitted, `storage_access_key` specified in config is used.
@@ -238,6 +272,8 @@ class _StorageObjectState:
         :param pulumi.Input[str] object_lock_retain_until_date: Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
         :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
         :param pulumi.Input[str] source: The path to a file that will be read and uploaded as raw bytes for the object content.
+        :param pulumi.Input[str] source_hash: Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Specifies an object tags.
         """
         if access_key is not None:
             pulumi.set(__self__, "access_key", access_key)
@@ -263,6 +299,10 @@ class _StorageObjectState:
             pulumi.set(__self__, "secret_key", secret_key)
         if source is not None:
             pulumi.set(__self__, "source", source)
+        if source_hash is not None:
+            pulumi.set(__self__, "source_hash", source_hash)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
 
     @property
     @pulumi.getter(name="accessKey")
@@ -408,6 +448,30 @@ class _StorageObjectState:
     def source(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "source", value)
 
+    @property
+    @pulumi.getter(name="sourceHash")
+    def source_hash(self) -> Optional[pulumi.Input[str]]:
+        """
+        Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+        """
+        return pulumi.get(self, "source_hash")
+
+    @source_hash.setter
+    def source_hash(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "source_hash", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Specifies an object tags.
+        """
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
+
 
 class StorageObject(pulumi.CustomResource):
     @overload
@@ -426,6 +490,8 @@ class StorageObject(pulumi.CustomResource):
                  object_lock_retain_until_date: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  source: Optional[pulumi.Input[str]] = None,
+                 source_hash: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         Allows management of [Yandex.Cloud Storage Object](https://cloud.yandex.com/docs/storage/concepts/object).
@@ -441,7 +507,10 @@ class StorageObject(pulumi.CustomResource):
         cute_cat_picture = yandex.StorageObject("cute-cat-picture",
             bucket="cat-pictures",
             key="cute-cat",
-            source="/images/cats/cute-cat.jpg")
+            source="/images/cats/cute-cat.jpg",
+            tags={
+                "test": "value",
+            })
         ```
 
         :param str resource_name: The name of the resource.
@@ -458,6 +527,8 @@ class StorageObject(pulumi.CustomResource):
         :param pulumi.Input[str] object_lock_retain_until_date: Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
         :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
         :param pulumi.Input[str] source: The path to a file that will be read and uploaded as raw bytes for the object content.
+        :param pulumi.Input[str] source_hash: Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Specifies an object tags.
         """
         ...
     @overload
@@ -479,7 +550,10 @@ class StorageObject(pulumi.CustomResource):
         cute_cat_picture = yandex.StorageObject("cute-cat-picture",
             bucket="cat-pictures",
             key="cute-cat",
-            source="/images/cats/cute-cat.jpg")
+            source="/images/cats/cute-cat.jpg",
+            tags={
+                "test": "value",
+            })
         ```
 
         :param str resource_name: The name of the resource.
@@ -509,6 +583,8 @@ class StorageObject(pulumi.CustomResource):
                  object_lock_retain_until_date: Optional[pulumi.Input[str]] = None,
                  secret_key: Optional[pulumi.Input[str]] = None,
                  source: Optional[pulumi.Input[str]] = None,
+                 source_hash: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -534,6 +610,8 @@ class StorageObject(pulumi.CustomResource):
             __props__.__dict__["object_lock_retain_until_date"] = object_lock_retain_until_date
             __props__.__dict__["secret_key"] = None if secret_key is None else pulumi.Output.secret(secret_key)
             __props__.__dict__["source"] = source
+            __props__.__dict__["source_hash"] = source_hash
+            __props__.__dict__["tags"] = tags
         secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["secretKey"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(StorageObject, __self__).__init__(
@@ -557,7 +635,9 @@ class StorageObject(pulumi.CustomResource):
             object_lock_mode: Optional[pulumi.Input[str]] = None,
             object_lock_retain_until_date: Optional[pulumi.Input[str]] = None,
             secret_key: Optional[pulumi.Input[str]] = None,
-            source: Optional[pulumi.Input[str]] = None) -> 'StorageObject':
+            source: Optional[pulumi.Input[str]] = None,
+            source_hash: Optional[pulumi.Input[str]] = None,
+            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'StorageObject':
         """
         Get an existing StorageObject resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -577,6 +657,8 @@ class StorageObject(pulumi.CustomResource):
         :param pulumi.Input[str] object_lock_retain_until_date: Specifies date and time in RTC3339 format until which an object is to be locked. It must be set simultaneously with `object_lock_mode`. Requires `object_lock_configuration` to be enabled on a bucket.
         :param pulumi.Input[str] secret_key: The secret key to use when applying changes. If omitted, `storage_secret_key` specified in config is used.
         :param pulumi.Input[str] source: The path to a file that will be read and uploaded as raw bytes for the object content.
+        :param pulumi.Input[str] source_hash: Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] tags: Specifies an object tags.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -594,6 +676,8 @@ class StorageObject(pulumi.CustomResource):
         __props__.__dict__["object_lock_retain_until_date"] = object_lock_retain_until_date
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["source"] = source
+        __props__.__dict__["source_hash"] = source_hash
+        __props__.__dict__["tags"] = tags
         return StorageObject(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -691,4 +775,20 @@ class StorageObject(pulumi.CustomResource):
         The path to a file that will be read and uploaded as raw bytes for the object content.
         """
         return pulumi.get(self, "source")
+
+    @property
+    @pulumi.getter(name="sourceHash")
+    def source_hash(self) -> pulumi.Output[Optional[str]]:
+        """
+        Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+        """
+        return pulumi.get(self, "source_hash")
+
+    @property
+    @pulumi.getter
+    def tags(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        Specifies an object tags.
+        """
+        return pulumi.get(self, "tags")
 

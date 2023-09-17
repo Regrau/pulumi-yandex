@@ -76,6 +76,10 @@ export interface GetMdbPostgresqlClusterResult {
      * Timestamp of cluster creation.
      */
     readonly createdAt: string;
+    /**
+     * List of all databases of the PostgreSQL cluster. The structure is documented below.
+     */
+    readonly databases: outputs.GetMdbPostgresqlClusterDatabase[];
     readonly deletionProtection: boolean;
     /**
      * Description of the PostgreSQL cluster.
@@ -92,7 +96,7 @@ export interface GetMdbPostgresqlClusterResult {
     readonly health: string;
     readonly hostGroupIds: string[];
     /**
-     * A host of the PostgreSQL cluster. The structure is documented below.
+     * List of all hosts of the PostgreSQL cluster. The structure is documented below.
      */
     readonly hosts: outputs.GetMdbPostgresqlClusterHost[];
     /**
@@ -107,6 +111,9 @@ export interface GetMdbPostgresqlClusterResult {
      * Maintenance window settings of the PostgreSQL cluster. The structure is documented below.
      */
     readonly maintenanceWindows: outputs.GetMdbPostgresqlClusterMaintenanceWindow[];
+    /**
+     * Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).
+     */
     readonly name: string;
     /**
      * ID of the network, to which the PostgreSQL cluster belongs.
@@ -120,6 +127,10 @@ export interface GetMdbPostgresqlClusterResult {
      * Status of the cluster.
      */
     readonly status: string;
+    /**
+     * List of all users of the PostgreSQL cluster. The structure is documented below.
+     */
+    readonly users: outputs.GetMdbPostgresqlClusterUser[];
 }
 
 export function getMdbPostgresqlClusterOutput(args?: GetMdbPostgresqlClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMdbPostgresqlClusterResult> {

@@ -13,7 +13,13 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class ComputeSnapshotScheduleSchedulePolicy
     {
+        /// <summary>
+        /// Cron expression to schedule snapshots (in cron format "* * * * *").
+        /// </summary>
         public readonly string? Expression;
+        /// <summary>
+        /// Time to start the snapshot schedule (in format RFC3339 "2006-01-02T15:04:05Z07:00"). If empty current time will be used. Unlike an `expression` that specifies regularity rules, the `start_at` parameter determines from what point these rules will be applied.
+        /// </summary>
         public readonly string? StartAt;
 
         [OutputConstructor]

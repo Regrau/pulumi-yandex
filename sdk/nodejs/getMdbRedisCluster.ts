@@ -61,6 +61,10 @@ export interface GetMdbRedisClusterArgs {
  * A collection of values returned by getMdbRedisCluster.
  */
 export interface GetMdbRedisClusterResult {
+    /**
+     * Announce fqdn instead of ip address.
+     */
+    readonly announceHostnames: boolean;
     readonly clusterId: string;
     /**
      * Configuration of the Redis cluster. The structure is documented below.

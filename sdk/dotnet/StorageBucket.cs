@@ -412,6 +412,27 @@ namespace Pulumi.Yandex
     /// 
     /// });
     /// ```
+    /// ### Bucket Tagging
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Yandex = Pulumi.Yandex;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var storageBucket = new Yandex.StorageBucket("storageBucket", new()
+    ///     {
+    ///         Bucket = "my-policy-bucket",
+    ///         Tags = 
+    ///         {
+    ///             { "other_key", "other_value" },
+    ///             { "test_key", "test_value" },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// ### Bucket Max Size
     /// 
     /// ```csharp
@@ -672,6 +693,10 @@ namespace Pulumi.Yandex
     ///         {
     ///             CertificateId = "&lt;certificate_id&gt;",
     ///         },
+    ///         Tags = 
+    ///         {
+    ///             { "some_key", "some_value" },
+    ///         },
     ///     });
     /// 
     /// });
@@ -691,13 +716,15 @@ namespace Pulumi.Yandex
     public partial class StorageBucket : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        /// The access key to use when applying changes. If omitted, `storage_access_key` specified in
+        /// provider config (explicitly or within `shared_credentials_file`) is used.
         /// </summary>
         [Output("accessKey")]
         public Output<string?> AccessKey { get; private set; } = null!;
 
         /// <summary>
-        /// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        /// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+        /// Defaults to `private`. Conflicts with `grant`.
         /// </summary>
         [Output("acl")]
         public Output<string> Acl { get; private set; } = null!;
@@ -720,7 +747,8 @@ namespace Pulumi.Yandex
         public Output<string> BucketDomainName { get; private set; } = null!;
 
         /// <summary>
-        /// Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        /// Creates a unique bucket name beginning with the specified prefix.
+        /// Conflicts with `bucket`.
         /// </summary>
         [Output("bucketPrefix")]
         public Output<string?> BucketPrefix { get; private set; } = null!;
@@ -733,7 +761,7 @@ namespace Pulumi.Yandex
 
         /// <summary>
         /// Storage class which is used for storing objects by default.
-        /// Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+        /// Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
         /// See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
         /// </summary>
         [Output("defaultStorageClass")]
@@ -791,7 +819,8 @@ namespace Pulumi.Yandex
         public Output<string?> Policy { get; private set; } = null!;
 
         /// <summary>
-        /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in
+        /// provider config (explicitly or within `shared_credentials_file`) is used.
         /// </summary>
         [Output("secretKey")]
         public Output<string?> SecretKey { get; private set; } = null!;
@@ -801,6 +830,9 @@ namespace Pulumi.Yandex
         /// </summary>
         [Output("serverSideEncryptionConfiguration")]
         public Output<Outputs.StorageBucketServerSideEncryptionConfiguration?> ServerSideEncryptionConfiguration { get; private set; } = null!;
+
+        [Output("tags")]
+        public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
 
         /// <summary>
         /// A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
@@ -878,13 +910,15 @@ namespace Pulumi.Yandex
     public sealed class StorageBucketArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        /// The access key to use when applying changes. If omitted, `storage_access_key` specified in
+        /// provider config (explicitly or within `shared_credentials_file`) is used.
         /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
         /// <summary>
-        /// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        /// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+        /// Defaults to `private`. Conflicts with `grant`.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
@@ -901,7 +935,8 @@ namespace Pulumi.Yandex
         public Input<string>? Bucket { get; set; }
 
         /// <summary>
-        /// Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        /// Creates a unique bucket name beginning with the specified prefix.
+        /// Conflicts with `bucket`.
         /// </summary>
         [Input("bucketPrefix")]
         public Input<string>? BucketPrefix { get; set; }
@@ -920,7 +955,7 @@ namespace Pulumi.Yandex
 
         /// <summary>
         /// Storage class which is used for storing objects by default.
-        /// Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+        /// Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
         /// See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
         /// </summary>
         [Input("defaultStorageClass")]
@@ -999,7 +1034,8 @@ namespace Pulumi.Yandex
         private Input<string>? _secretKey;
 
         /// <summary>
-        /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in
+        /// provider config (explicitly or within `shared_credentials_file`) is used.
         /// </summary>
         public Input<string>? SecretKey
         {
@@ -1016,6 +1052,14 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("serverSideEncryptionConfiguration")]
         public Input<Inputs.StorageBucketServerSideEncryptionConfigurationArgs>? ServerSideEncryptionConfiguration { get; set; }
+
+        [Input("tags")]
+        private InputMap<string>? _tags;
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
@@ -1050,13 +1094,15 @@ namespace Pulumi.Yandex
     public sealed class StorageBucketState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The access key to use when applying changes. If omitted, `storage_access_key` specified in provider config is used.
+        /// The access key to use when applying changes. If omitted, `storage_access_key` specified in
+        /// provider config (explicitly or within `shared_credentials_file`) is used.
         /// </summary>
         [Input("accessKey")]
         public Input<string>? AccessKey { get; set; }
 
         /// <summary>
-        /// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+        /// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+        /// Defaults to `private`. Conflicts with `grant`.
         /// </summary>
         [Input("acl")]
         public Input<string>? Acl { get; set; }
@@ -1079,7 +1125,8 @@ namespace Pulumi.Yandex
         public Input<string>? BucketDomainName { get; set; }
 
         /// <summary>
-        /// Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+        /// Creates a unique bucket name beginning with the specified prefix.
+        /// Conflicts with `bucket`.
         /// </summary>
         [Input("bucketPrefix")]
         public Input<string>? BucketPrefix { get; set; }
@@ -1098,7 +1145,7 @@ namespace Pulumi.Yandex
 
         /// <summary>
         /// Storage class which is used for storing objects by default.
-        /// Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+        /// Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
         /// See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
         /// </summary>
         [Input("defaultStorageClass")]
@@ -1177,7 +1224,8 @@ namespace Pulumi.Yandex
         private Input<string>? _secretKey;
 
         /// <summary>
-        /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in provider config is used.
+        /// The secret key to use when applying changes. If omitted, `storage_secret_key` specified in
+        /// provider config (explicitly or within `shared_credentials_file`) is used.
         /// </summary>
         public Input<string>? SecretKey
         {
@@ -1194,6 +1242,14 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("serverSideEncryptionConfiguration")]
         public Input<Inputs.StorageBucketServerSideEncryptionConfigurationGetArgs>? ServerSideEncryptionConfiguration { get; set; }
+
+        [Input("tags")]
+        private InputMap<string>? _tags;
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
 
         /// <summary>
         /// A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)

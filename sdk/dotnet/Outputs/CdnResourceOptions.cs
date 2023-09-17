@@ -94,9 +94,12 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly bool? Slice;
         /// <summary>
-        /// set up custom headers that CDN servers send in requests to origins.
+        /// set up custom headers that CDN servers will send in requests to origins.
         /// </summary>
-        public readonly ImmutableArray<string> StaticRequestHeaders;
+        public readonly ImmutableDictionary<string, string>? StaticRequestHeaders;
+        /// <summary>
+        /// set up custom headers that CDN servers will send in response to clients.
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? StaticResponseHeaders;
 
         [OutputConstructor]
@@ -141,7 +144,7 @@ namespace Pulumi.Yandex.Outputs
 
             bool? slice,
 
-            ImmutableArray<string> staticRequestHeaders,
+            ImmutableDictionary<string, string>? staticRequestHeaders,
 
             ImmutableDictionary<string, string>? staticResponseHeaders)
         {

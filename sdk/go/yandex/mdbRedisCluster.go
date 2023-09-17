@@ -173,6 +173,8 @@ import (
 type MdbRedisCluster struct {
 	pulumi.CustomResourceState
 
+	// Announce fqdn instead of ip address.
+	AnnounceHostnames pulumi.BoolPtrOutput `pulumi:"announceHostnames"`
 	// Configuration of the Redis cluster. The structure is documented below.
 	Config MdbRedisClusterConfigOutput `pulumi:"config"`
 	// Creation timestamp of the key.
@@ -258,6 +260,8 @@ func GetMdbRedisCluster(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering MdbRedisCluster resources.
 type mdbRedisClusterState struct {
+	// Announce fqdn instead of ip address.
+	AnnounceHostnames *bool `pulumi:"announceHostnames"`
 	// Configuration of the Redis cluster. The structure is documented below.
 	Config *MdbRedisClusterConfig `pulumi:"config"`
 	// Creation timestamp of the key.
@@ -299,6 +303,8 @@ type mdbRedisClusterState struct {
 }
 
 type MdbRedisClusterState struct {
+	// Announce fqdn instead of ip address.
+	AnnounceHostnames pulumi.BoolPtrInput
 	// Configuration of the Redis cluster. The structure is documented below.
 	Config MdbRedisClusterConfigPtrInput
 	// Creation timestamp of the key.
@@ -344,6 +350,8 @@ func (MdbRedisClusterState) ElementType() reflect.Type {
 }
 
 type mdbRedisClusterArgs struct {
+	// Announce fqdn instead of ip address.
+	AnnounceHostnames *bool `pulumi:"announceHostnames"`
 	// Configuration of the Redis cluster. The structure is documented below.
 	Config MdbRedisClusterConfig `pulumi:"config"`
 	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
@@ -378,6 +386,8 @@ type mdbRedisClusterArgs struct {
 
 // The set of arguments for constructing a MdbRedisCluster resource.
 type MdbRedisClusterArgs struct {
+	// Announce fqdn instead of ip address.
+	AnnounceHostnames pulumi.BoolPtrInput
 	// Configuration of the Redis cluster. The structure is documented below.
 	Config MdbRedisClusterConfigInput
 	// Inhibits deletion of the cluster.  Can be either `true` or `false`.
@@ -495,6 +505,11 @@ func (o MdbRedisClusterOutput) ToMdbRedisClusterOutput() MdbRedisClusterOutput {
 
 func (o MdbRedisClusterOutput) ToMdbRedisClusterOutputWithContext(ctx context.Context) MdbRedisClusterOutput {
 	return o
+}
+
+// Announce fqdn instead of ip address.
+func (o MdbRedisClusterOutput) AnnounceHostnames() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *MdbRedisCluster) pulumi.BoolPtrOutput { return v.AnnounceHostnames }).(pulumi.BoolPtrOutput)
 }
 
 // Configuration of the Redis cluster. The structure is documented below.

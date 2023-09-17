@@ -321,7 +321,9 @@ type MdbKafkaCluster struct {
 	//
 	// Deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
 	Topics MdbKafkaClusterTopicArrayOutput `pulumi:"topics"`
-	// A user of the Kafka cluster. The structure is documented below.
+	// To manage users, please switch to using a separate resource type `mdbKafkaUser`.
+	//
+	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_kafka_user
 	Users MdbKafkaClusterUserArrayOutput `pulumi:"users"`
 }
 
@@ -399,7 +401,9 @@ type mdbKafkaClusterState struct {
 	//
 	// Deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
 	Topics []MdbKafkaClusterTopic `pulumi:"topics"`
-	// A user of the Kafka cluster. The structure is documented below.
+	// To manage users, please switch to using a separate resource type `mdbKafkaUser`.
+	//
+	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_kafka_user
 	Users []MdbKafkaClusterUser `pulumi:"users"`
 }
 
@@ -442,7 +446,9 @@ type MdbKafkaClusterState struct {
 	//
 	// Deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
 	Topics MdbKafkaClusterTopicArrayInput
-	// A user of the Kafka cluster. The structure is documented below.
+	// To manage users, please switch to using a separate resource type `mdbKafkaUser`.
+	//
+	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_kafka_user
 	Users MdbKafkaClusterUserArrayInput
 }
 
@@ -480,7 +486,9 @@ type mdbKafkaClusterArgs struct {
 	//
 	// Deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
 	Topics []MdbKafkaClusterTopic `pulumi:"topics"`
-	// A user of the Kafka cluster. The structure is documented below.
+	// To manage users, please switch to using a separate resource type `mdbKafkaUser`.
+	//
+	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_kafka_user
 	Users []MdbKafkaClusterUser `pulumi:"users"`
 }
 
@@ -515,7 +523,9 @@ type MdbKafkaClusterArgs struct {
 	//
 	// Deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic
 	Topics MdbKafkaClusterTopicArrayInput
-	// A user of the Kafka cluster. The structure is documented below.
+	// To manage users, please switch to using a separate resource type `mdbKafkaUser`.
+	//
+	// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_kafka_user
 	Users MdbKafkaClusterUserArrayInput
 }
 
@@ -695,7 +705,9 @@ func (o MdbKafkaClusterOutput) Topics() MdbKafkaClusterTopicArrayOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) MdbKafkaClusterTopicArrayOutput { return v.Topics }).(MdbKafkaClusterTopicArrayOutput)
 }
 
-// A user of the Kafka cluster. The structure is documented below.
+// To manage users, please switch to using a separate resource type `mdbKafkaUser`.
+//
+// Deprecated: to manage users, please switch to using a separate resource type yandex_mdb_kafka_user
 func (o MdbKafkaClusterOutput) Users() MdbKafkaClusterUserArrayOutput {
 	return o.ApplyT(func(v *MdbKafkaCluster) MdbKafkaClusterUserArrayOutput { return v.Users }).(MdbKafkaClusterUserArrayOutput)
 }

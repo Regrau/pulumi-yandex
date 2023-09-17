@@ -79,6 +79,32 @@ namespace Pulumi.Yandex
 
     public sealed class GetMdbClickhouseClusterArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Access policy to the ClickHouse cluster. The structure is documented below.
+        /// </summary>
+        [Input("access")]
+        public Inputs.GetMdbClickhouseClusterAccessArgs? Access { get; set; }
+
+        [Input("adminPassword")]
+        private string? _adminPassword;
+        public string? AdminPassword
+        {
+            get => _adminPassword;
+            set => _adminPassword = value;
+        }
+
+        /// <summary>
+        /// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        /// </summary>
+        [Input("backupWindowStart")]
+        public Inputs.GetMdbClickhouseClusterBackupWindowStartArgs? BackupWindowStart { get; set; }
+
+        /// <summary>
+        /// Configuration of the ClickHouse subcluster. The structure is documented below.
+        /// </summary>
+        [Input("clickhouse")]
+        public Inputs.GetMdbClickhouseClusterClickhouseArgs? Clickhouse { get; set; }
+
         [Input("cloudStorage")]
         public Inputs.GetMdbClickhouseClusterCloudStorageArgs? CloudStorage { get; set; }
 
@@ -88,8 +114,47 @@ namespace Pulumi.Yandex
         [Input("clusterId")]
         public string? ClusterId { get; set; }
 
+        [Input("copySchemaOnNewHosts")]
+        public bool? CopySchemaOnNewHosts { get; set; }
+
+        /// <summary>
+        /// Creation timestamp of the key.
+        /// </summary>
+        [Input("createdAt")]
+        public string? CreatedAt { get; set; }
+
+        [Input("databases")]
+        private List<Inputs.GetMdbClickhouseClusterDatabaseArgs>? _databases;
+
+        /// <summary>
+        /// A database of the ClickHouse cluster. The structure is documented below.
+        /// </summary>
+        public List<Inputs.GetMdbClickhouseClusterDatabaseArgs> Databases
+        {
+            get => _databases ?? (_databases = new List<Inputs.GetMdbClickhouseClusterDatabaseArgs>());
+            set => _databases = value;
+        }
+
         [Input("deletionProtection")]
         public bool? DeletionProtection { get; set; }
+
+        /// <summary>
+        /// Description of the shard group.
+        /// </summary>
+        [Input("description")]
+        public string? Description { get; set; }
+
+        /// <summary>
+        /// Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+        /// </summary>
+        [Input("embeddedKeeper")]
+        public bool? EmbeddedKeeper { get; set; }
+
+        /// <summary>
+        /// Deployment environment of the ClickHouse cluster.
+        /// </summary>
+        [Input("environment")]
+        public string? Environment { get; set; }
 
         /// <summary>
         /// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
@@ -97,14 +162,101 @@ namespace Pulumi.Yandex
         [Input("folderId")]
         public string? FolderId { get; set; }
 
+        [Input("formatSchemas")]
+        private List<Inputs.GetMdbClickhouseClusterFormatSchemaArgs>? _formatSchemas;
+
+        /// <summary>
+        /// A set of protobuf or cap'n proto format schemas. The structure is documented below.
+        /// </summary>
+        public List<Inputs.GetMdbClickhouseClusterFormatSchemaArgs> FormatSchemas
+        {
+            get => _formatSchemas ?? (_formatSchemas = new List<Inputs.GetMdbClickhouseClusterFormatSchemaArgs>());
+            set => _formatSchemas = value;
+        }
+
+        /// <summary>
+        /// Aggregated health of the cluster.
+        /// </summary>
+        [Input("health")]
+        public string? Health { get; set; }
+
+        [Input("hosts")]
+        private List<Inputs.GetMdbClickhouseClusterHostArgs>? _hosts;
+
+        /// <summary>
+        /// A host of the ClickHouse cluster. The structure is documented below.
+        /// </summary>
+        public List<Inputs.GetMdbClickhouseClusterHostArgs> Hosts
+        {
+            get => _hosts ?? (_hosts = new List<Inputs.GetMdbClickhouseClusterHostArgs>());
+            set => _hosts = value;
+        }
+
+        [Input("labels")]
+        private Dictionary<string, string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the ClickHouse cluster.
+        /// </summary>
+        public Dictionary<string, string> Labels
+        {
+            get => _labels ?? (_labels = new Dictionary<string, string>());
+            set => _labels = value;
+        }
+
+        [Input("maintenanceWindow")]
+        public Inputs.GetMdbClickhouseClusterMaintenanceWindowArgs? MaintenanceWindow { get; set; }
+
+        [Input("mlModels")]
+        private List<Inputs.GetMdbClickhouseClusterMlModelArgs>? _mlModels;
+
+        /// <summary>
+        /// A group of machine learning models. The structure is documented below.
+        /// </summary>
+        public List<Inputs.GetMdbClickhouseClusterMlModelArgs> MlModels
+        {
+            get => _mlModels ?? (_mlModels = new List<Inputs.GetMdbClickhouseClusterMlModelArgs>());
+            set => _mlModels = value;
+        }
+
         /// <summary>
         /// The name of the ClickHouse cluster.
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
 
+        /// <summary>
+        /// ID of the network, to which the ClickHouse cluster belongs.
+        /// </summary>
+        [Input("networkId")]
+        public string? NetworkId { get; set; }
+
+        [Input("securityGroupIds")]
+        private List<string>? _securityGroupIds;
+
+        /// <summary>
+        /// A set of ids of security groups assigned to hosts of the cluster.
+        /// </summary>
+        public List<string> SecurityGroupIds
+        {
+            get => _securityGroupIds ?? (_securityGroupIds = new List<string>());
+            set => _securityGroupIds = value;
+        }
+
         [Input("serviceAccountId")]
         public string? ServiceAccountId { get; set; }
+
+        [Input("shardGroups")]
+        private List<Inputs.GetMdbClickhouseClusterShardGroupArgs>? _shardGroups;
+
+        /// <summary>
+        /// A group of clickhouse shards. The structure is documented below.
+        /// </summary>
+        public List<Inputs.GetMdbClickhouseClusterShardGroupArgs> ShardGroups
+        {
+            get => _shardGroups ?? (_shardGroups = new List<Inputs.GetMdbClickhouseClusterShardGroupArgs>());
+            set => _shardGroups = value;
+        }
 
         [Input("shards")]
         private List<Inputs.GetMdbClickhouseClusterShardArgs>? _shards;
@@ -118,6 +270,45 @@ namespace Pulumi.Yandex
             set => _shards = value;
         }
 
+        /// <summary>
+        /// Grants `admin` user database management permission.
+        /// </summary>
+        [Input("sqlDatabaseManagement")]
+        public bool? SqlDatabaseManagement { get; set; }
+
+        /// <summary>
+        /// Enables `admin` user with user management permission.
+        /// </summary>
+        [Input("sqlUserManagement")]
+        public bool? SqlUserManagement { get; set; }
+
+        /// <summary>
+        /// Status of the cluster.
+        /// </summary>
+        [Input("status")]
+        public string? Status { get; set; }
+
+        [Input("users")]
+        private List<Inputs.GetMdbClickhouseClusterUserArgs>? _users;
+
+        /// <summary>
+        /// A user of the ClickHouse cluster. The structure is documented below.
+        /// </summary>
+        public List<Inputs.GetMdbClickhouseClusterUserArgs> Users
+        {
+            get => _users ?? (_users = new List<Inputs.GetMdbClickhouseClusterUserArgs>());
+            set => _users = value;
+        }
+
+        [Input("version")]
+        public string? Version { get; set; }
+
+        /// <summary>
+        /// Configuration of the ZooKeeper subcluster. The structure is documented below.
+        /// </summary>
+        [Input("zookeeper")]
+        public Inputs.GetMdbClickhouseClusterZookeeperArgs? Zookeeper { get; set; }
+
         public GetMdbClickhouseClusterArgs()
         {
         }
@@ -126,6 +317,36 @@ namespace Pulumi.Yandex
 
     public sealed class GetMdbClickhouseClusterInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Access policy to the ClickHouse cluster. The structure is documented below.
+        /// </summary>
+        [Input("access")]
+        public Input<Inputs.GetMdbClickhouseClusterAccessInputArgs>? Access { get; set; }
+
+        [Input("adminPassword")]
+        private Input<string>? _adminPassword;
+        public Input<string>? AdminPassword
+        {
+            get => _adminPassword;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _adminPassword = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Time to start the daily backup, in the UTC timezone. The structure is documented below.
+        /// </summary>
+        [Input("backupWindowStart")]
+        public Input<Inputs.GetMdbClickhouseClusterBackupWindowStartInputArgs>? BackupWindowStart { get; set; }
+
+        /// <summary>
+        /// Configuration of the ClickHouse subcluster. The structure is documented below.
+        /// </summary>
+        [Input("clickhouse")]
+        public Input<Inputs.GetMdbClickhouseClusterClickhouseInputArgs>? Clickhouse { get; set; }
+
         [Input("cloudStorage")]
         public Input<Inputs.GetMdbClickhouseClusterCloudStorageInputArgs>? CloudStorage { get; set; }
 
@@ -135,8 +356,47 @@ namespace Pulumi.Yandex
         [Input("clusterId")]
         public Input<string>? ClusterId { get; set; }
 
+        [Input("copySchemaOnNewHosts")]
+        public Input<bool>? CopySchemaOnNewHosts { get; set; }
+
+        /// <summary>
+        /// Creation timestamp of the key.
+        /// </summary>
+        [Input("createdAt")]
+        public Input<string>? CreatedAt { get; set; }
+
+        [Input("databases")]
+        private InputList<Inputs.GetMdbClickhouseClusterDatabaseInputArgs>? _databases;
+
+        /// <summary>
+        /// A database of the ClickHouse cluster. The structure is documented below.
+        /// </summary>
+        public InputList<Inputs.GetMdbClickhouseClusterDatabaseInputArgs> Databases
+        {
+            get => _databases ?? (_databases = new InputList<Inputs.GetMdbClickhouseClusterDatabaseInputArgs>());
+            set => _databases = value;
+        }
+
         [Input("deletionProtection")]
         public Input<bool>? DeletionProtection { get; set; }
+
+        /// <summary>
+        /// Description of the shard group.
+        /// </summary>
+        [Input("description")]
+        public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+        /// </summary>
+        [Input("embeddedKeeper")]
+        public Input<bool>? EmbeddedKeeper { get; set; }
+
+        /// <summary>
+        /// Deployment environment of the ClickHouse cluster.
+        /// </summary>
+        [Input("environment")]
+        public Input<string>? Environment { get; set; }
 
         /// <summary>
         /// The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
@@ -144,14 +404,101 @@ namespace Pulumi.Yandex
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
 
+        [Input("formatSchemas")]
+        private InputList<Inputs.GetMdbClickhouseClusterFormatSchemaInputArgs>? _formatSchemas;
+
+        /// <summary>
+        /// A set of protobuf or cap'n proto format schemas. The structure is documented below.
+        /// </summary>
+        public InputList<Inputs.GetMdbClickhouseClusterFormatSchemaInputArgs> FormatSchemas
+        {
+            get => _formatSchemas ?? (_formatSchemas = new InputList<Inputs.GetMdbClickhouseClusterFormatSchemaInputArgs>());
+            set => _formatSchemas = value;
+        }
+
+        /// <summary>
+        /// Aggregated health of the cluster.
+        /// </summary>
+        [Input("health")]
+        public Input<string>? Health { get; set; }
+
+        [Input("hosts")]
+        private InputList<Inputs.GetMdbClickhouseClusterHostInputArgs>? _hosts;
+
+        /// <summary>
+        /// A host of the ClickHouse cluster. The structure is documented below.
+        /// </summary>
+        public InputList<Inputs.GetMdbClickhouseClusterHostInputArgs> Hosts
+        {
+            get => _hosts ?? (_hosts = new InputList<Inputs.GetMdbClickhouseClusterHostInputArgs>());
+            set => _hosts = value;
+        }
+
+        [Input("labels")]
+        private InputMap<string>? _labels;
+
+        /// <summary>
+        /// A set of key/value label pairs to assign to the ClickHouse cluster.
+        /// </summary>
+        public InputMap<string> Labels
+        {
+            get => _labels ?? (_labels = new InputMap<string>());
+            set => _labels = value;
+        }
+
+        [Input("maintenanceWindow")]
+        public Input<Inputs.GetMdbClickhouseClusterMaintenanceWindowInputArgs>? MaintenanceWindow { get; set; }
+
+        [Input("mlModels")]
+        private InputList<Inputs.GetMdbClickhouseClusterMlModelInputArgs>? _mlModels;
+
+        /// <summary>
+        /// A group of machine learning models. The structure is documented below.
+        /// </summary>
+        public InputList<Inputs.GetMdbClickhouseClusterMlModelInputArgs> MlModels
+        {
+            get => _mlModels ?? (_mlModels = new InputList<Inputs.GetMdbClickhouseClusterMlModelInputArgs>());
+            set => _mlModels = value;
+        }
+
         /// <summary>
         /// The name of the ClickHouse cluster.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        /// <summary>
+        /// ID of the network, to which the ClickHouse cluster belongs.
+        /// </summary>
+        [Input("networkId")]
+        public Input<string>? NetworkId { get; set; }
+
+        [Input("securityGroupIds")]
+        private InputList<string>? _securityGroupIds;
+
+        /// <summary>
+        /// A set of ids of security groups assigned to hosts of the cluster.
+        /// </summary>
+        public InputList<string> SecurityGroupIds
+        {
+            get => _securityGroupIds ?? (_securityGroupIds = new InputList<string>());
+            set => _securityGroupIds = value;
+        }
+
         [Input("serviceAccountId")]
         public Input<string>? ServiceAccountId { get; set; }
+
+        [Input("shardGroups")]
+        private InputList<Inputs.GetMdbClickhouseClusterShardGroupInputArgs>? _shardGroups;
+
+        /// <summary>
+        /// A group of clickhouse shards. The structure is documented below.
+        /// </summary>
+        public InputList<Inputs.GetMdbClickhouseClusterShardGroupInputArgs> ShardGroups
+        {
+            get => _shardGroups ?? (_shardGroups = new InputList<Inputs.GetMdbClickhouseClusterShardGroupInputArgs>());
+            set => _shardGroups = value;
+        }
 
         [Input("shards")]
         private InputList<Inputs.GetMdbClickhouseClusterShardInputArgs>? _shards;
@@ -164,6 +511,45 @@ namespace Pulumi.Yandex
             get => _shards ?? (_shards = new InputList<Inputs.GetMdbClickhouseClusterShardInputArgs>());
             set => _shards = value;
         }
+
+        /// <summary>
+        /// Grants `admin` user database management permission.
+        /// </summary>
+        [Input("sqlDatabaseManagement")]
+        public Input<bool>? SqlDatabaseManagement { get; set; }
+
+        /// <summary>
+        /// Enables `admin` user with user management permission.
+        /// </summary>
+        [Input("sqlUserManagement")]
+        public Input<bool>? SqlUserManagement { get; set; }
+
+        /// <summary>
+        /// Status of the cluster.
+        /// </summary>
+        [Input("status")]
+        public Input<string>? Status { get; set; }
+
+        [Input("users")]
+        private InputList<Inputs.GetMdbClickhouseClusterUserInputArgs>? _users;
+
+        /// <summary>
+        /// A user of the ClickHouse cluster. The structure is documented below.
+        /// </summary>
+        public InputList<Inputs.GetMdbClickhouseClusterUserInputArgs> Users
+        {
+            get => _users ?? (_users = new InputList<Inputs.GetMdbClickhouseClusterUserInputArgs>());
+            set => _users = value;
+        }
+
+        [Input("version")]
+        public Input<string>? Version { get; set; }
+
+        /// <summary>
+        /// Configuration of the ZooKeeper subcluster. The structure is documented below.
+        /// </summary>
+        [Input("zookeeper")]
+        public Input<Inputs.GetMdbClickhouseClusterZookeeperInputArgs>? Zookeeper { get; set; }
 
         public GetMdbClickhouseClusterInvokeArgs()
         {
@@ -178,17 +564,19 @@ namespace Pulumi.Yandex
         /// <summary>
         /// Access policy to the ClickHouse cluster. The structure is documented below.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterAccessResult> Accesses;
+        public readonly Outputs.GetMdbClickhouseClusterAccessResult Access;
+        public readonly string? AdminPassword;
         /// <summary>
         /// Time to start the daily backup, in the UTC timezone. The structure is documented below.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterBackupWindowStartResult> BackupWindowStarts;
+        public readonly Outputs.GetMdbClickhouseClusterBackupWindowStartResult BackupWindowStart;
         /// <summary>
         /// Configuration of the ClickHouse subcluster. The structure is documented below.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseResult> Clickhouses;
+        public readonly Outputs.GetMdbClickhouseClusterClickhouseResult Clickhouse;
         public readonly Outputs.GetMdbClickhouseClusterCloudStorageResult CloudStorage;
         public readonly string ClusterId;
+        public readonly bool? CopySchemaOnNewHosts;
         /// <summary>
         /// Creation timestamp of the key.
         /// </summary>
@@ -201,7 +589,7 @@ namespace Pulumi.Yandex
         /// <summary>
         /// Description of the shard group.
         /// </summary>
-        public readonly string Description;
+        public readonly string? Description;
         /// <summary>
         /// Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
         /// </summary>
@@ -209,7 +597,7 @@ namespace Pulumi.Yandex
         /// <summary>
         /// Deployment environment of the ClickHouse cluster.
         /// </summary>
-        public readonly string Environment;
+        public readonly string? Environment;
         public readonly string FolderId;
         /// <summary>
         /// A set of protobuf or cap'n proto format schemas. The structure is documented below.
@@ -231,7 +619,7 @@ namespace Pulumi.Yandex
         /// A set of key/value label pairs to assign to the ClickHouse cluster.
         /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
-        public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterMaintenanceWindowResult> MaintenanceWindows;
+        public readonly Outputs.GetMdbClickhouseClusterMaintenanceWindowResult MaintenanceWindow;
         /// <summary>
         /// A group of machine learning models. The structure is documented below.
         /// </summary>
@@ -239,11 +627,11 @@ namespace Pulumi.Yandex
         /// <summary>
         /// Graphite rollup configuration name.
         /// </summary>
-        public readonly string Name;
+        public readonly string? Name;
         /// <summary>
         /// ID of the network, to which the ClickHouse cluster belongs.
         /// </summary>
-        public readonly string NetworkId;
+        public readonly string? NetworkId;
         /// <summary>
         /// A set of ids of security groups assigned to hosts of the cluster.
         /// </summary>
@@ -277,19 +665,23 @@ namespace Pulumi.Yandex
         /// <summary>
         /// Configuration of the ZooKeeper subcluster. The structure is documented below.
         /// </summary>
-        public readonly ImmutableArray<Outputs.GetMdbClickhouseClusterZookeeperResult> Zookeepers;
+        public readonly Outputs.GetMdbClickhouseClusterZookeeperResult Zookeeper;
 
         [OutputConstructor]
         private GetMdbClickhouseClusterResult(
-            ImmutableArray<Outputs.GetMdbClickhouseClusterAccessResult> accesses,
+            Outputs.GetMdbClickhouseClusterAccessResult access,
 
-            ImmutableArray<Outputs.GetMdbClickhouseClusterBackupWindowStartResult> backupWindowStarts,
+            string? adminPassword,
 
-            ImmutableArray<Outputs.GetMdbClickhouseClusterClickhouseResult> clickhouses,
+            Outputs.GetMdbClickhouseClusterBackupWindowStartResult backupWindowStart,
+
+            Outputs.GetMdbClickhouseClusterClickhouseResult clickhouse,
 
             Outputs.GetMdbClickhouseClusterCloudStorageResult cloudStorage,
 
             string clusterId,
+
+            bool? copySchemaOnNewHosts,
 
             string createdAt,
 
@@ -297,11 +689,11 @@ namespace Pulumi.Yandex
 
             bool deletionProtection,
 
-            string description,
+            string? description,
 
             bool embeddedKeeper,
 
-            string environment,
+            string? environment,
 
             string folderId,
 
@@ -315,13 +707,13 @@ namespace Pulumi.Yandex
 
             ImmutableDictionary<string, string> labels,
 
-            ImmutableArray<Outputs.GetMdbClickhouseClusterMaintenanceWindowResult> maintenanceWindows,
+            Outputs.GetMdbClickhouseClusterMaintenanceWindowResult maintenanceWindow,
 
             ImmutableArray<Outputs.GetMdbClickhouseClusterMlModelResult> mlModels,
 
-            string name,
+            string? name,
 
-            string networkId,
+            string? networkId,
 
             ImmutableArray<string> securityGroupIds,
 
@@ -341,13 +733,15 @@ namespace Pulumi.Yandex
 
             string version,
 
-            ImmutableArray<Outputs.GetMdbClickhouseClusterZookeeperResult> zookeepers)
+            Outputs.GetMdbClickhouseClusterZookeeperResult zookeeper)
         {
-            Accesses = accesses;
-            BackupWindowStarts = backupWindowStarts;
-            Clickhouses = clickhouses;
+            Access = access;
+            AdminPassword = adminPassword;
+            BackupWindowStart = backupWindowStart;
+            Clickhouse = clickhouse;
             CloudStorage = cloudStorage;
             ClusterId = clusterId;
+            CopySchemaOnNewHosts = copySchemaOnNewHosts;
             CreatedAt = createdAt;
             Databases = databases;
             DeletionProtection = deletionProtection;
@@ -360,7 +754,7 @@ namespace Pulumi.Yandex
             Hosts = hosts;
             Id = id;
             Labels = labels;
-            MaintenanceWindows = maintenanceWindows;
+            MaintenanceWindow = maintenanceWindow;
             MlModels = mlModels;
             Name = name;
             NetworkId = networkId;
@@ -373,7 +767,7 @@ namespace Pulumi.Yandex
             Status = status;
             Users = users;
             Version = version;
-            Zookeepers = zookeepers;
+            Zookeeper = zookeeper;
         }
     }
 }

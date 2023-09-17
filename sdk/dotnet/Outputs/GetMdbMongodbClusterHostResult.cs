@@ -41,7 +41,7 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         /// </summary>
-        public readonly string Type;
+        public readonly string? Type;
         /// <summary>
         /// The availability zone where the MongoDB host will be created.
         /// </summary>
@@ -61,7 +61,7 @@ namespace Pulumi.Yandex.Outputs
 
             string? subnetId,
 
-            string type,
+            string? type,
 
             string? zoneId)
         {

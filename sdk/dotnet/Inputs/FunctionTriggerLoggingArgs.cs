@@ -21,7 +21,7 @@ namespace Pulumi.Yandex.Inputs
         [Input("groupId", required: true)]
         public Input<string> GroupId { get; set; } = null!;
 
-        [Input("levels", required: true)]
+        [Input("levels")]
         private InputList<string>? _levels;
         public InputList<string> Levels
         {
@@ -29,7 +29,7 @@ namespace Pulumi.Yandex.Inputs
             set => _levels = value;
         }
 
-        [Input("resourceIds", required: true)]
+        [Input("resourceIds")]
         private InputList<string>? _resourceIds;
         public InputList<string> ResourceIds
         {
@@ -37,12 +37,20 @@ namespace Pulumi.Yandex.Inputs
             set => _resourceIds = value;
         }
 
-        [Input("resourceTypes", required: true)]
+        [Input("resourceTypes")]
         private InputList<string>? _resourceTypes;
         public InputList<string> ResourceTypes
         {
             get => _resourceTypes ?? (_resourceTypes = new InputList<string>());
             set => _resourceTypes = value;
+        }
+
+        [Input("streamNames")]
+        private InputList<string>? _streamNames;
+        public InputList<string> StreamNames
+        {
+            get => _streamNames ?? (_streamNames = new InputList<string>());
+            set => _streamNames = value;
         }
 
         public FunctionTriggerLoggingArgs()

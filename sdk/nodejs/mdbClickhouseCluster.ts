@@ -454,6 +454,7 @@ export class MdbClickhouseCluster extends pulumi.CustomResource {
      */
     public readonly clickhouse!: pulumi.Output<outputs.MdbClickhouseClusterClickhouse>;
     public readonly cloudStorage!: pulumi.Output<outputs.MdbClickhouseClusterCloudStorage>;
+    public readonly clusterId!: pulumi.Output<string>;
     /**
      * Whether to copy schema on new ClickHouse hosts.
      */
@@ -574,6 +575,7 @@ export class MdbClickhouseCluster extends pulumi.CustomResource {
             resourceInputs["backupWindowStart"] = state ? state.backupWindowStart : undefined;
             resourceInputs["clickhouse"] = state ? state.clickhouse : undefined;
             resourceInputs["cloudStorage"] = state ? state.cloudStorage : undefined;
+            resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["copySchemaOnNewHosts"] = state ? state.copySchemaOnNewHosts : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["databases"] = state ? state.databases : undefined;
@@ -616,6 +618,7 @@ export class MdbClickhouseCluster extends pulumi.CustomResource {
             resourceInputs["backupWindowStart"] = args ? args.backupWindowStart : undefined;
             resourceInputs["clickhouse"] = args ? args.clickhouse : undefined;
             resourceInputs["cloudStorage"] = args ? args.cloudStorage : undefined;
+            resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["copySchemaOnNewHosts"] = args ? args.copySchemaOnNewHosts : undefined;
             resourceInputs["databases"] = args ? args.databases : undefined;
             resourceInputs["deletionProtection"] = args ? args.deletionProtection : undefined;
@@ -671,6 +674,7 @@ export interface MdbClickhouseClusterState {
      */
     clickhouse?: pulumi.Input<inputs.MdbClickhouseClusterClickhouse>;
     cloudStorage?: pulumi.Input<inputs.MdbClickhouseClusterCloudStorage>;
+    clusterId?: pulumi.Input<string>;
     /**
      * Whether to copy schema on new ClickHouse hosts.
      */
@@ -795,6 +799,7 @@ export interface MdbClickhouseClusterArgs {
      */
     clickhouse?: pulumi.Input<inputs.MdbClickhouseClusterClickhouse>;
     cloudStorage?: pulumi.Input<inputs.MdbClickhouseClusterCloudStorage>;
+    clusterId?: pulumi.Input<string>;
     /**
      * Whether to copy schema on new ClickHouse hosts.
      */

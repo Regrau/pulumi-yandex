@@ -24,6 +24,7 @@ class MdbClickhouseClusterArgs:
                  backup_window_start: Optional[pulumi.Input['MdbClickhouseClusterBackupWindowStartArgs']] = None,
                  clickhouse: Optional[pulumi.Input['MdbClickhouseClusterClickhouseArgs']] = None,
                  cloud_storage: Optional[pulumi.Input['MdbClickhouseClusterCloudStorageArgs']] = None,
+                 cluster_id: Optional[pulumi.Input[str]] = None,
                  copy_schema_on_new_hosts: Optional[pulumi.Input[bool]] = None,
                  databases: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterDatabaseArgs']]]] = None,
                  deletion_protection: Optional[pulumi.Input[bool]] = None,
@@ -86,6 +87,8 @@ class MdbClickhouseClusterArgs:
             pulumi.set(__self__, "clickhouse", clickhouse)
         if cloud_storage is not None:
             pulumi.set(__self__, "cloud_storage", cloud_storage)
+        if cluster_id is not None:
+            pulumi.set(__self__, "cluster_id", cluster_id)
         if copy_schema_on_new_hosts is not None:
             pulumi.set(__self__, "copy_schema_on_new_hosts", copy_schema_on_new_hosts)
         if databases is not None:
@@ -219,6 +222,15 @@ class MdbClickhouseClusterArgs:
     @cloud_storage.setter
     def cloud_storage(self, value: Optional[pulumi.Input['MdbClickhouseClusterCloudStorageArgs']]):
         pulumi.set(self, "cloud_storage", value)
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cluster_id")
+
+    @cluster_id.setter
+    def cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_id", value)
 
     @property
     @pulumi.getter(name="copySchemaOnNewHosts")
@@ -464,6 +476,7 @@ class _MdbClickhouseClusterState:
                  backup_window_start: Optional[pulumi.Input['MdbClickhouseClusterBackupWindowStartArgs']] = None,
                  clickhouse: Optional[pulumi.Input['MdbClickhouseClusterClickhouseArgs']] = None,
                  cloud_storage: Optional[pulumi.Input['MdbClickhouseClusterCloudStorageArgs']] = None,
+                 cluster_id: Optional[pulumi.Input[str]] = None,
                  copy_schema_on_new_hosts: Optional[pulumi.Input[bool]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  databases: Optional[pulumi.Input[Sequence[pulumi.Input['MdbClickhouseClusterDatabaseArgs']]]] = None,
@@ -534,6 +547,8 @@ class _MdbClickhouseClusterState:
             pulumi.set(__self__, "clickhouse", clickhouse)
         if cloud_storage is not None:
             pulumi.set(__self__, "cloud_storage", cloud_storage)
+        if cluster_id is not None:
+            pulumi.set(__self__, "cluster_id", cluster_id)
         if copy_schema_on_new_hosts is not None:
             pulumi.set(__self__, "copy_schema_on_new_hosts", copy_schema_on_new_hosts)
         if created_at is not None:
@@ -643,6 +658,15 @@ class _MdbClickhouseClusterState:
     @cloud_storage.setter
     def cloud_storage(self, value: Optional[pulumi.Input['MdbClickhouseClusterCloudStorageArgs']]):
         pulumi.set(self, "cloud_storage", value)
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cluster_id")
+
+    @cluster_id.setter
+    def cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_id", value)
 
     @property
     @pulumi.getter(name="copySchemaOnNewHosts")
@@ -964,6 +988,7 @@ class MdbClickhouseCluster(pulumi.CustomResource):
                  backup_window_start: Optional[pulumi.Input[pulumi.InputType['MdbClickhouseClusterBackupWindowStartArgs']]] = None,
                  clickhouse: Optional[pulumi.Input[pulumi.InputType['MdbClickhouseClusterClickhouseArgs']]] = None,
                  cloud_storage: Optional[pulumi.Input[pulumi.InputType['MdbClickhouseClusterCloudStorageArgs']]] = None,
+                 cluster_id: Optional[pulumi.Input[str]] = None,
                  copy_schema_on_new_hosts: Optional[pulumi.Input[bool]] = None,
                  databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterDatabaseArgs']]]]] = None,
                  deletion_protection: Optional[pulumi.Input[bool]] = None,
@@ -1067,6 +1092,7 @@ class MdbClickhouseCluster(pulumi.CustomResource):
                  backup_window_start: Optional[pulumi.Input[pulumi.InputType['MdbClickhouseClusterBackupWindowStartArgs']]] = None,
                  clickhouse: Optional[pulumi.Input[pulumi.InputType['MdbClickhouseClusterClickhouseArgs']]] = None,
                  cloud_storage: Optional[pulumi.Input[pulumi.InputType['MdbClickhouseClusterCloudStorageArgs']]] = None,
+                 cluster_id: Optional[pulumi.Input[str]] = None,
                  copy_schema_on_new_hosts: Optional[pulumi.Input[bool]] = None,
                  databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterDatabaseArgs']]]]] = None,
                  deletion_protection: Optional[pulumi.Input[bool]] = None,
@@ -1104,6 +1130,7 @@ class MdbClickhouseCluster(pulumi.CustomResource):
             __props__.__dict__["backup_window_start"] = backup_window_start
             __props__.__dict__["clickhouse"] = clickhouse
             __props__.__dict__["cloud_storage"] = cloud_storage
+            __props__.__dict__["cluster_id"] = cluster_id
             __props__.__dict__["copy_schema_on_new_hosts"] = copy_schema_on_new_hosts
             __props__.__dict__["databases"] = databases
             __props__.__dict__["deletion_protection"] = deletion_protection
@@ -1153,6 +1180,7 @@ class MdbClickhouseCluster(pulumi.CustomResource):
             backup_window_start: Optional[pulumi.Input[pulumi.InputType['MdbClickhouseClusterBackupWindowStartArgs']]] = None,
             clickhouse: Optional[pulumi.Input[pulumi.InputType['MdbClickhouseClusterClickhouseArgs']]] = None,
             cloud_storage: Optional[pulumi.Input[pulumi.InputType['MdbClickhouseClusterCloudStorageArgs']]] = None,
+            cluster_id: Optional[pulumi.Input[str]] = None,
             copy_schema_on_new_hosts: Optional[pulumi.Input[bool]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbClickhouseClusterDatabaseArgs']]]]] = None,
@@ -1227,6 +1255,7 @@ class MdbClickhouseCluster(pulumi.CustomResource):
         __props__.__dict__["backup_window_start"] = backup_window_start
         __props__.__dict__["clickhouse"] = clickhouse
         __props__.__dict__["cloud_storage"] = cloud_storage
+        __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["copy_schema_on_new_hosts"] = copy_schema_on_new_hosts
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["databases"] = databases
@@ -1291,6 +1320,11 @@ class MdbClickhouseCluster(pulumi.CustomResource):
     @pulumi.getter(name="cloudStorage")
     def cloud_storage(self) -> pulumi.Output['outputs.MdbClickhouseClusterCloudStorage']:
         return pulumi.get(self, "cloud_storage")
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "cluster_id")
 
     @property
     @pulumi.getter(name="copySchemaOnNewHosts")

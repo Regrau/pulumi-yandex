@@ -60,6 +60,11 @@ export type ComputeDiskPlacementGroup = import("./computeDiskPlacementGroup").Co
 export const ComputeDiskPlacementGroup: typeof import("./computeDiskPlacementGroup").ComputeDiskPlacementGroup = null as any;
 utilities.lazyLoad(exports, ["ComputeDiskPlacementGroup"], () => require("./computeDiskPlacementGroup"));
 
+export { ComputeGpuClusterArgs, ComputeGpuClusterState } from "./computeGpuCluster";
+export type ComputeGpuCluster = import("./computeGpuCluster").ComputeGpuCluster;
+export const ComputeGpuCluster: typeof import("./computeGpuCluster").ComputeGpuCluster = null as any;
+utilities.lazyLoad(exports, ["ComputeGpuCluster"], () => require("./computeGpuCluster"));
+
 export { ComputeImageArgs, ComputeImageState } from "./computeImage";
 export type ComputeImage = import("./computeImage").ComputeImage;
 export const ComputeImage: typeof import("./computeImage").ComputeImage = null as any;
@@ -195,11 +200,6 @@ export const getApiGateway: typeof import("./getApiGateway").getApiGateway = nul
 export const getApiGatewayOutput: typeof import("./getApiGateway").getApiGatewayOutput = null as any;
 utilities.lazyLoad(exports, ["getApiGateway","getApiGatewayOutput"], () => require("./getApiGateway"));
 
-export { GetBillingCloudBindingArgs, GetBillingCloudBindingResult, GetBillingCloudBindingOutputArgs } from "./getBillingCloudBinding";
-export const getBillingCloudBinding: typeof import("./getBillingCloudBinding").getBillingCloudBinding = null as any;
-export const getBillingCloudBindingOutput: typeof import("./getBillingCloudBinding").getBillingCloudBindingOutput = null as any;
-utilities.lazyLoad(exports, ["getBillingCloudBinding","getBillingCloudBindingOutput"], () => require("./getBillingCloudBinding"));
-
 export { GetCdnOriginGroupArgs, GetCdnOriginGroupResult, GetCdnOriginGroupOutputArgs } from "./getCdnOriginGroup";
 export const getCdnOriginGroup: typeof import("./getCdnOriginGroup").getCdnOriginGroup = null as any;
 export const getCdnOriginGroupOutput: typeof import("./getCdnOriginGroup").getCdnOriginGroupOutput = null as any;
@@ -239,6 +239,11 @@ export const getComputeFilesystem: typeof import("./getComputeFilesystem").getCo
 export const getComputeFilesystemOutput: typeof import("./getComputeFilesystem").getComputeFilesystemOutput = null as any;
 utilities.lazyLoad(exports, ["getComputeFilesystem","getComputeFilesystemOutput"], () => require("./getComputeFilesystem"));
 
+export { GetComputeGpuClusterArgs, GetComputeGpuClusterResult, GetComputeGpuClusterOutputArgs } from "./getComputeGpuCluster";
+export const getComputeGpuCluster: typeof import("./getComputeGpuCluster").getComputeGpuCluster = null as any;
+export const getComputeGpuClusterOutput: typeof import("./getComputeGpuCluster").getComputeGpuClusterOutput = null as any;
+utilities.lazyLoad(exports, ["getComputeGpuCluster","getComputeGpuClusterOutput"], () => require("./getComputeGpuCluster"));
+
 export { GetComputeImageArgs, GetComputeImageResult, GetComputeImageOutputArgs } from "./getComputeImage";
 export const getComputeImage: typeof import("./getComputeImage").getComputeImage = null as any;
 export const getComputeImageOutput: typeof import("./getComputeImage").getComputeImageOutput = null as any;
@@ -264,6 +269,11 @@ export const getComputeSnapshot: typeof import("./getComputeSnapshot").getComput
 export const getComputeSnapshotOutput: typeof import("./getComputeSnapshot").getComputeSnapshotOutput = null as any;
 utilities.lazyLoad(exports, ["getComputeSnapshot","getComputeSnapshotOutput"], () => require("./getComputeSnapshot"));
 
+export { GetComputeSnapshotScheduleArgs, GetComputeSnapshotScheduleResult, GetComputeSnapshotScheduleOutputArgs } from "./getComputeSnapshotSchedule";
+export const getComputeSnapshotSchedule: typeof import("./getComputeSnapshotSchedule").getComputeSnapshotSchedule = null as any;
+export const getComputeSnapshotScheduleOutput: typeof import("./getComputeSnapshotSchedule").getComputeSnapshotScheduleOutput = null as any;
+utilities.lazyLoad(exports, ["getComputeSnapshotSchedule","getComputeSnapshotScheduleOutput"], () => require("./getComputeSnapshotSchedule"));
+
 export { GetContainerRegistryArgs, GetContainerRegistryResult, GetContainerRegistryOutputArgs } from "./getContainerRegistry";
 export const getContainerRegistry: typeof import("./getContainerRegistry").getContainerRegistry = null as any;
 export const getContainerRegistryOutput: typeof import("./getContainerRegistry").getContainerRegistryOutput = null as any;
@@ -278,6 +288,11 @@ export { GetContainerRepositoryArgs, GetContainerRepositoryResult, GetContainerR
 export const getContainerRepository: typeof import("./getContainerRepository").getContainerRepository = null as any;
 export const getContainerRepositoryOutput: typeof import("./getContainerRepository").getContainerRepositoryOutput = null as any;
 utilities.lazyLoad(exports, ["getContainerRepository","getContainerRepositoryOutput"], () => require("./getContainerRepository"));
+
+export { GetContainerRepositoryLifecyclePolicyArgs, GetContainerRepositoryLifecyclePolicyResult, GetContainerRepositoryLifecyclePolicyOutputArgs } from "./getContainerRepositoryLifecyclePolicy";
+export const getContainerRepositoryLifecyclePolicy: typeof import("./getContainerRepositoryLifecyclePolicy").getContainerRepositoryLifecyclePolicy = null as any;
+export const getContainerRepositoryLifecyclePolicyOutput: typeof import("./getContainerRepositoryLifecyclePolicy").getContainerRepositoryLifecyclePolicyOutput = null as any;
+utilities.lazyLoad(exports, ["getContainerRepositoryLifecyclePolicy","getContainerRepositoryLifecyclePolicyOutput"], () => require("./getContainerRepositoryLifecyclePolicy"));
 
 export { GetDataprocClusterArgs, GetDataprocClusterResult, GetDataprocClusterOutputArgs } from "./getDataprocCluster";
 export const getDataprocCluster: typeof import("./getDataprocCluster").getDataprocCluster = null as any;
@@ -324,6 +339,11 @@ export const getIamUser: typeof import("./getIamUser").getIamUser = null as any;
 export const getIamUserOutput: typeof import("./getIamUser").getIamUserOutput = null as any;
 utilities.lazyLoad(exports, ["getIamUser","getIamUserOutput"], () => require("./getIamUser"));
 
+export { GetIotCoreBrokerArgs, GetIotCoreBrokerResult, GetIotCoreBrokerOutputArgs } from "./getIotCoreBroker";
+export const getIotCoreBroker: typeof import("./getIotCoreBroker").getIotCoreBroker = null as any;
+export const getIotCoreBrokerOutput: typeof import("./getIotCoreBroker").getIotCoreBrokerOutput = null as any;
+utilities.lazyLoad(exports, ["getIotCoreBroker","getIotCoreBrokerOutput"], () => require("./getIotCoreBroker"));
+
 export { GetIotCoreDeviceArgs, GetIotCoreDeviceResult, GetIotCoreDeviceOutputArgs } from "./getIotCoreDevice";
 export const getIotCoreDevice: typeof import("./getIotCoreDevice").getIotCoreDevice = null as any;
 export const getIotCoreDeviceOutput: typeof import("./getIotCoreDevice").getIotCoreDeviceOutput = null as any;
@@ -333,6 +353,21 @@ export { GetIotCoreRegistryArgs, GetIotCoreRegistryResult, GetIotCoreRegistryOut
 export const getIotCoreRegistry: typeof import("./getIotCoreRegistry").getIotCoreRegistry = null as any;
 export const getIotCoreRegistryOutput: typeof import("./getIotCoreRegistry").getIotCoreRegistryOutput = null as any;
 utilities.lazyLoad(exports, ["getIotCoreRegistry","getIotCoreRegistryOutput"], () => require("./getIotCoreRegistry"));
+
+export { GetKmsAsymmetricEncryptionKeyArgs, GetKmsAsymmetricEncryptionKeyResult, GetKmsAsymmetricEncryptionKeyOutputArgs } from "./getKmsAsymmetricEncryptionKey";
+export const getKmsAsymmetricEncryptionKey: typeof import("./getKmsAsymmetricEncryptionKey").getKmsAsymmetricEncryptionKey = null as any;
+export const getKmsAsymmetricEncryptionKeyOutput: typeof import("./getKmsAsymmetricEncryptionKey").getKmsAsymmetricEncryptionKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getKmsAsymmetricEncryptionKey","getKmsAsymmetricEncryptionKeyOutput"], () => require("./getKmsAsymmetricEncryptionKey"));
+
+export { GetKmsAsymmetricSignatureKeyArgs, GetKmsAsymmetricSignatureKeyResult, GetKmsAsymmetricSignatureKeyOutputArgs } from "./getKmsAsymmetricSignatureKey";
+export const getKmsAsymmetricSignatureKey: typeof import("./getKmsAsymmetricSignatureKey").getKmsAsymmetricSignatureKey = null as any;
+export const getKmsAsymmetricSignatureKeyOutput: typeof import("./getKmsAsymmetricSignatureKey").getKmsAsymmetricSignatureKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getKmsAsymmetricSignatureKey","getKmsAsymmetricSignatureKeyOutput"], () => require("./getKmsAsymmetricSignatureKey"));
+
+export { GetKmsSymmetricKeyArgs, GetKmsSymmetricKeyResult, GetKmsSymmetricKeyOutputArgs } from "./getKmsSymmetricKey";
+export const getKmsSymmetricKey: typeof import("./getKmsSymmetricKey").getKmsSymmetricKey = null as any;
+export const getKmsSymmetricKeyOutput: typeof import("./getKmsSymmetricKey").getKmsSymmetricKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getKmsSymmetricKey","getKmsSymmetricKeyOutput"], () => require("./getKmsSymmetricKey"));
 
 export { GetKubernetesClusterArgs, GetKubernetesClusterResult, GetKubernetesClusterOutputArgs } from "./getKubernetesCluster";
 export const getKubernetesCluster: typeof import("./getKubernetesCluster").getKubernetesCluster = null as any;
@@ -353,6 +388,16 @@ export { GetLbTargetGroupArgs, GetLbTargetGroupResult, GetLbTargetGroupOutputArg
 export const getLbTargetGroup: typeof import("./getLbTargetGroup").getLbTargetGroup = null as any;
 export const getLbTargetGroupOutput: typeof import("./getLbTargetGroup").getLbTargetGroupOutput = null as any;
 utilities.lazyLoad(exports, ["getLbTargetGroup","getLbTargetGroupOutput"], () => require("./getLbTargetGroup"));
+
+export { GetLockBoxSecretArgs, GetLockBoxSecretResult, GetLockBoxSecretOutputArgs } from "./getLockBoxSecret";
+export const getLockBoxSecret: typeof import("./getLockBoxSecret").getLockBoxSecret = null as any;
+export const getLockBoxSecretOutput: typeof import("./getLockBoxSecret").getLockBoxSecretOutput = null as any;
+utilities.lazyLoad(exports, ["getLockBoxSecret","getLockBoxSecretOutput"], () => require("./getLockBoxSecret"));
+
+export { GetLockBoxSecretVersionArgs, GetLockBoxSecretVersionResult, GetLockBoxSecretVersionOutputArgs } from "./getLockBoxSecretVersion";
+export const getLockBoxSecretVersion: typeof import("./getLockBoxSecretVersion").getLockBoxSecretVersion = null as any;
+export const getLockBoxSecretVersionOutput: typeof import("./getLockBoxSecretVersion").getLockBoxSecretVersionOutput = null as any;
+utilities.lazyLoad(exports, ["getLockBoxSecretVersion","getLockBoxSecretVersionOutput"], () => require("./getLockBoxSecretVersion"));
 
 export { GetLoggingGroupArgs, GetLoggingGroupResult, GetLoggingGroupOutputArgs } from "./getLoggingGroup";
 export const getLoggingGroup: typeof import("./getLoggingGroup").getLoggingGroup = null as any;
@@ -379,10 +424,20 @@ export const getMdbKafkaCluster: typeof import("./getMdbKafkaCluster").getMdbKaf
 export const getMdbKafkaClusterOutput: typeof import("./getMdbKafkaCluster").getMdbKafkaClusterOutput = null as any;
 utilities.lazyLoad(exports, ["getMdbKafkaCluster","getMdbKafkaClusterOutput"], () => require("./getMdbKafkaCluster"));
 
+export { GetMdbKafkaConnectorArgs, GetMdbKafkaConnectorResult, GetMdbKafkaConnectorOutputArgs } from "./getMdbKafkaConnector";
+export const getMdbKafkaConnector: typeof import("./getMdbKafkaConnector").getMdbKafkaConnector = null as any;
+export const getMdbKafkaConnectorOutput: typeof import("./getMdbKafkaConnector").getMdbKafkaConnectorOutput = null as any;
+utilities.lazyLoad(exports, ["getMdbKafkaConnector","getMdbKafkaConnectorOutput"], () => require("./getMdbKafkaConnector"));
+
 export { GetMdbKafkaTopicArgs, GetMdbKafkaTopicResult, GetMdbKafkaTopicOutputArgs } from "./getMdbKafkaTopic";
 export const getMdbKafkaTopic: typeof import("./getMdbKafkaTopic").getMdbKafkaTopic = null as any;
 export const getMdbKafkaTopicOutput: typeof import("./getMdbKafkaTopic").getMdbKafkaTopicOutput = null as any;
 utilities.lazyLoad(exports, ["getMdbKafkaTopic","getMdbKafkaTopicOutput"], () => require("./getMdbKafkaTopic"));
+
+export { GetMdbKafkaUserArgs, GetMdbKafkaUserResult, GetMdbKafkaUserOutputArgs } from "./getMdbKafkaUser";
+export const getMdbKafkaUser: typeof import("./getMdbKafkaUser").getMdbKafkaUser = null as any;
+export const getMdbKafkaUserOutput: typeof import("./getMdbKafkaUser").getMdbKafkaUserOutput = null as any;
+utilities.lazyLoad(exports, ["getMdbKafkaUser","getMdbKafkaUserOutput"], () => require("./getMdbKafkaUser"));
 
 export { GetMdbMongodbClusterArgs, GetMdbMongodbClusterResult, GetMdbMongodbClusterOutputArgs } from "./getMdbMongodbCluster";
 export const getMdbMongodbCluster: typeof import("./getMdbMongodbCluster").getMdbMongodbCluster = null as any;
@@ -394,10 +449,30 @@ export const getMdbMysqlCluster: typeof import("./getMdbMysqlCluster").getMdbMys
 export const getMdbMysqlClusterOutput: typeof import("./getMdbMysqlCluster").getMdbMysqlClusterOutput = null as any;
 utilities.lazyLoad(exports, ["getMdbMysqlCluster","getMdbMysqlClusterOutput"], () => require("./getMdbMysqlCluster"));
 
+export { GetMdbMysqlDatabaseArgs, GetMdbMysqlDatabaseResult, GetMdbMysqlDatabaseOutputArgs } from "./getMdbMysqlDatabase";
+export const getMdbMysqlDatabase: typeof import("./getMdbMysqlDatabase").getMdbMysqlDatabase = null as any;
+export const getMdbMysqlDatabaseOutput: typeof import("./getMdbMysqlDatabase").getMdbMysqlDatabaseOutput = null as any;
+utilities.lazyLoad(exports, ["getMdbMysqlDatabase","getMdbMysqlDatabaseOutput"], () => require("./getMdbMysqlDatabase"));
+
+export { GetMdbMysqlUserArgs, GetMdbMysqlUserResult, GetMdbMysqlUserOutputArgs } from "./getMdbMysqlUser";
+export const getMdbMysqlUser: typeof import("./getMdbMysqlUser").getMdbMysqlUser = null as any;
+export const getMdbMysqlUserOutput: typeof import("./getMdbMysqlUser").getMdbMysqlUserOutput = null as any;
+utilities.lazyLoad(exports, ["getMdbMysqlUser","getMdbMysqlUserOutput"], () => require("./getMdbMysqlUser"));
+
 export { GetMdbPostgresqlClusterArgs, GetMdbPostgresqlClusterResult, GetMdbPostgresqlClusterOutputArgs } from "./getMdbPostgresqlCluster";
 export const getMdbPostgresqlCluster: typeof import("./getMdbPostgresqlCluster").getMdbPostgresqlCluster = null as any;
 export const getMdbPostgresqlClusterOutput: typeof import("./getMdbPostgresqlCluster").getMdbPostgresqlClusterOutput = null as any;
 utilities.lazyLoad(exports, ["getMdbPostgresqlCluster","getMdbPostgresqlClusterOutput"], () => require("./getMdbPostgresqlCluster"));
+
+export { GetMdbPostgresqlDatabaseArgs, GetMdbPostgresqlDatabaseResult, GetMdbPostgresqlDatabaseOutputArgs } from "./getMdbPostgresqlDatabase";
+export const getMdbPostgresqlDatabase: typeof import("./getMdbPostgresqlDatabase").getMdbPostgresqlDatabase = null as any;
+export const getMdbPostgresqlDatabaseOutput: typeof import("./getMdbPostgresqlDatabase").getMdbPostgresqlDatabaseOutput = null as any;
+utilities.lazyLoad(exports, ["getMdbPostgresqlDatabase","getMdbPostgresqlDatabaseOutput"], () => require("./getMdbPostgresqlDatabase"));
+
+export { GetMdbPostgresqlUserArgs, GetMdbPostgresqlUserResult, GetMdbPostgresqlUserOutputArgs } from "./getMdbPostgresqlUser";
+export const getMdbPostgresqlUser: typeof import("./getMdbPostgresqlUser").getMdbPostgresqlUser = null as any;
+export const getMdbPostgresqlUserOutput: typeof import("./getMdbPostgresqlUser").getMdbPostgresqlUserOutput = null as any;
+utilities.lazyLoad(exports, ["getMdbPostgresqlUser","getMdbPostgresqlUserOutput"], () => require("./getMdbPostgresqlUser"));
 
 export { GetMdbRedisClusterArgs, GetMdbRedisClusterResult, GetMdbRedisClusterOutputArgs } from "./getMdbRedisCluster";
 export const getMdbRedisCluster: typeof import("./getMdbRedisCluster").getMdbRedisCluster = null as any;
@@ -413,6 +488,16 @@ export { GetMessageQueueArgs, GetMessageQueueResult, GetMessageQueueOutputArgs }
 export const getMessageQueue: typeof import("./getMessageQueue").getMessageQueue = null as any;
 export const getMessageQueueOutput: typeof import("./getMessageQueue").getMessageQueueOutput = null as any;
 utilities.lazyLoad(exports, ["getMessageQueue","getMessageQueueOutput"], () => require("./getMessageQueue"));
+
+export { GetMonitoringDashboardArgs, GetMonitoringDashboardResult, GetMonitoringDashboardOutputArgs } from "./getMonitoringDashboard";
+export const getMonitoringDashboard: typeof import("./getMonitoringDashboard").getMonitoringDashboard = null as any;
+export const getMonitoringDashboardOutput: typeof import("./getMonitoringDashboard").getMonitoringDashboardOutput = null as any;
+utilities.lazyLoad(exports, ["getMonitoringDashboard","getMonitoringDashboardOutput"], () => require("./getMonitoringDashboard"));
+
+export { GetOrganizationmanagerGroupArgs, GetOrganizationmanagerGroupResult, GetOrganizationmanagerGroupOutputArgs } from "./getOrganizationmanagerGroup";
+export const getOrganizationmanagerGroup: typeof import("./getOrganizationmanagerGroup").getOrganizationmanagerGroup = null as any;
+export const getOrganizationmanagerGroupOutput: typeof import("./getOrganizationmanagerGroup").getOrganizationmanagerGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getOrganizationmanagerGroup","getOrganizationmanagerGroupOutput"], () => require("./getOrganizationmanagerGroup"));
 
 export { GetOrganizationmanagerSamlFederationArgs, GetOrganizationmanagerSamlFederationResult, GetOrganizationmanagerSamlFederationOutputArgs } from "./getOrganizationmanagerSamlFederation";
 export const getOrganizationmanagerSamlFederation: typeof import("./getOrganizationmanagerSamlFederation").getOrganizationmanagerSamlFederation = null as any;
@@ -443,6 +528,11 @@ export { GetVpcAddressArgs, GetVpcAddressResult, GetVpcAddressOutputArgs } from 
 export const getVpcAddress: typeof import("./getVpcAddress").getVpcAddress = null as any;
 export const getVpcAddressOutput: typeof import("./getVpcAddress").getVpcAddressOutput = null as any;
 utilities.lazyLoad(exports, ["getVpcAddress","getVpcAddressOutput"], () => require("./getVpcAddress"));
+
+export { GetVpcGatewayArgs, GetVpcGatewayResult, GetVpcGatewayOutputArgs } from "./getVpcGateway";
+export const getVpcGateway: typeof import("./getVpcGateway").getVpcGateway = null as any;
+export const getVpcGatewayOutput: typeof import("./getVpcGateway").getVpcGatewayOutput = null as any;
+utilities.lazyLoad(exports, ["getVpcGateway","getVpcGatewayOutput"], () => require("./getVpcGateway"));
 
 export { GetVpcNetworkArgs, GetVpcNetworkResult, GetVpcNetworkOutputArgs } from "./getVpcNetwork";
 export const getVpcNetwork: typeof import("./getVpcNetwork").getVpcNetwork = null as any;
@@ -529,6 +619,26 @@ export type IotCoreRegistry = import("./iotCoreRegistry").IotCoreRegistry;
 export const IotCoreRegistry: typeof import("./iotCoreRegistry").IotCoreRegistry = null as any;
 utilities.lazyLoad(exports, ["IotCoreRegistry"], () => require("./iotCoreRegistry"));
 
+export { KmsAsymetricEncryptionKeyArgs, KmsAsymetricEncryptionKeyState } from "./kmsAsymetricEncryptionKey";
+export type KmsAsymetricEncryptionKey = import("./kmsAsymetricEncryptionKey").KmsAsymetricEncryptionKey;
+export const KmsAsymetricEncryptionKey: typeof import("./kmsAsymetricEncryptionKey").KmsAsymetricEncryptionKey = null as any;
+utilities.lazyLoad(exports, ["KmsAsymetricEncryptionKey"], () => require("./kmsAsymetricEncryptionKey"));
+
+export { KmsAsymetricEncryptionKeyIamBindingArgs, KmsAsymetricEncryptionKeyIamBindingState } from "./kmsAsymetricEncryptionKeyIamBinding";
+export type KmsAsymetricEncryptionKeyIamBinding = import("./kmsAsymetricEncryptionKeyIamBinding").KmsAsymetricEncryptionKeyIamBinding;
+export const KmsAsymetricEncryptionKeyIamBinding: typeof import("./kmsAsymetricEncryptionKeyIamBinding").KmsAsymetricEncryptionKeyIamBinding = null as any;
+utilities.lazyLoad(exports, ["KmsAsymetricEncryptionKeyIamBinding"], () => require("./kmsAsymetricEncryptionKeyIamBinding"));
+
+export { KmsAsymetricSignatureKeyArgs, KmsAsymetricSignatureKeyState } from "./kmsAsymetricSignatureKey";
+export type KmsAsymetricSignatureKey = import("./kmsAsymetricSignatureKey").KmsAsymetricSignatureKey;
+export const KmsAsymetricSignatureKey: typeof import("./kmsAsymetricSignatureKey").KmsAsymetricSignatureKey = null as any;
+utilities.lazyLoad(exports, ["KmsAsymetricSignatureKey"], () => require("./kmsAsymetricSignatureKey"));
+
+export { KmsAsymetricSignatureKeyBindingArgs, KmsAsymetricSignatureKeyBindingState } from "./kmsAsymetricSignatureKeyBinding";
+export type KmsAsymetricSignatureKeyBinding = import("./kmsAsymetricSignatureKeyBinding").KmsAsymetricSignatureKeyBinding;
+export const KmsAsymetricSignatureKeyBinding: typeof import("./kmsAsymetricSignatureKeyBinding").KmsAsymetricSignatureKeyBinding = null as any;
+utilities.lazyLoad(exports, ["KmsAsymetricSignatureKeyBinding"], () => require("./kmsAsymetricSignatureKeyBinding"));
+
 export { KmsSecretCiphertextArgs, KmsSecretCiphertextState } from "./kmsSecretCiphertext";
 export type KmsSecretCiphertext = import("./kmsSecretCiphertext").KmsSecretCiphertext;
 export const KmsSecretCiphertext: typeof import("./kmsSecretCiphertext").KmsSecretCiphertext = null as any;
@@ -569,6 +679,11 @@ export type LockboxSecret = import("./lockboxSecret").LockboxSecret;
 export const LockboxSecret: typeof import("./lockboxSecret").LockboxSecret = null as any;
 utilities.lazyLoad(exports, ["LockboxSecret"], () => require("./lockboxSecret"));
 
+export { LockboxSecretIamBindingArgs, LockboxSecretIamBindingState } from "./lockboxSecretIamBinding";
+export type LockboxSecretIamBinding = import("./lockboxSecretIamBinding").LockboxSecretIamBinding;
+export const LockboxSecretIamBinding: typeof import("./lockboxSecretIamBinding").LockboxSecretIamBinding = null as any;
+utilities.lazyLoad(exports, ["LockboxSecretIamBinding"], () => require("./lockboxSecretIamBinding"));
+
 export { LockboxSecretVersionArgs, LockboxSecretVersionState } from "./lockboxSecretVersion";
 export type LockboxSecretVersion = import("./lockboxSecretVersion").LockboxSecretVersion;
 export const LockboxSecretVersion: typeof import("./lockboxSecretVersion").LockboxSecretVersion = null as any;
@@ -608,6 +723,11 @@ export { MdbKafkaTopicArgs, MdbKafkaTopicState } from "./mdbKafkaTopic";
 export type MdbKafkaTopic = import("./mdbKafkaTopic").MdbKafkaTopic;
 export const MdbKafkaTopic: typeof import("./mdbKafkaTopic").MdbKafkaTopic = null as any;
 utilities.lazyLoad(exports, ["MdbKafkaTopic"], () => require("./mdbKafkaTopic"));
+
+export { MdbKafkaUserArgs, MdbKafkaUserState } from "./mdbKafkaUser";
+export type MdbKafkaUser = import("./mdbKafkaUser").MdbKafkaUser;
+export const MdbKafkaUser: typeof import("./mdbKafkaUser").MdbKafkaUser = null as any;
+utilities.lazyLoad(exports, ["MdbKafkaUser"], () => require("./mdbKafkaUser"));
 
 export { MdbMongodbClusterArgs, MdbMongodbClusterState } from "./mdbMongodbCluster";
 export type MdbMongodbCluster = import("./mdbMongodbCluster").MdbMongodbCluster;
@@ -659,6 +779,11 @@ export type MessageQueue = import("./messageQueue").MessageQueue;
 export const MessageQueue: typeof import("./messageQueue").MessageQueue = null as any;
 utilities.lazyLoad(exports, ["MessageQueue"], () => require("./messageQueue"));
 
+export { MonitoringDashboardArgs, MonitoringDashboardState } from "./monitoringDashboard";
+export type MonitoringDashboard = import("./monitoringDashboard").MonitoringDashboard;
+export const MonitoringDashboard: typeof import("./monitoringDashboard").MonitoringDashboard = null as any;
+utilities.lazyLoad(exports, ["MonitoringDashboard"], () => require("./monitoringDashboard"));
+
 export { OrganizationManagerOrganizationIamBindingArgs, OrganizationManagerOrganizationIamBindingState } from "./organizationManagerOrganizationIamBinding";
 export type OrganizationManagerOrganizationIamBinding = import("./organizationManagerOrganizationIamBinding").OrganizationManagerOrganizationIamBinding;
 export const OrganizationManagerOrganizationIamBinding: typeof import("./organizationManagerOrganizationIamBinding").OrganizationManagerOrganizationIamBinding = null as any;
@@ -688,6 +813,11 @@ export { OrganizationmanagerSamlFederationArgs, OrganizationmanagerSamlFederatio
 export type OrganizationmanagerSamlFederation = import("./organizationmanagerSamlFederation").OrganizationmanagerSamlFederation;
 export const OrganizationmanagerSamlFederation: typeof import("./organizationmanagerSamlFederation").OrganizationmanagerSamlFederation = null as any;
 utilities.lazyLoad(exports, ["OrganizationmanagerSamlFederation"], () => require("./organizationmanagerSamlFederation"));
+
+export { OrganizationmanagerSamlFederationUserAccountArgs, OrganizationmanagerSamlFederationUserAccountState } from "./organizationmanagerSamlFederationUserAccount";
+export type OrganizationmanagerSamlFederationUserAccount = import("./organizationmanagerSamlFederationUserAccount").OrganizationmanagerSamlFederationUserAccount;
+export const OrganizationmanagerSamlFederationUserAccount: typeof import("./organizationmanagerSamlFederationUserAccount").OrganizationmanagerSamlFederationUserAccount = null as any;
+utilities.lazyLoad(exports, ["OrganizationmanagerSamlFederationUserAccount"], () => require("./organizationmanagerSamlFederationUserAccount"));
 
 export { ProviderArgs } from "./provider";
 export type Provider = import("./provider").Provider;
@@ -789,20 +919,30 @@ export type VpcSubnet = import("./vpcSubnet").VpcSubnet;
 export const VpcSubnet: typeof import("./vpcSubnet").VpcSubnet = null as any;
 utilities.lazyLoad(exports, ["VpcSubnet"], () => require("./vpcSubnet"));
 
-export { YandexBillingCloudBindingArgs, YandexBillingCloudBindingState } from "./yandexBillingCloudBinding";
-export type YandexBillingCloudBinding = import("./yandexBillingCloudBinding").YandexBillingCloudBinding;
-export const YandexBillingCloudBinding: typeof import("./yandexBillingCloudBinding").YandexBillingCloudBinding = null as any;
-utilities.lazyLoad(exports, ["YandexBillingCloudBinding"], () => require("./yandexBillingCloudBinding"));
-
 export { YandexComputeFilesystemArgs, YandexComputeFilesystemState } from "./yandexComputeFilesystem";
 export type YandexComputeFilesystem = import("./yandexComputeFilesystem").YandexComputeFilesystem;
 export const YandexComputeFilesystem: typeof import("./yandexComputeFilesystem").YandexComputeFilesystem = null as any;
 utilities.lazyLoad(exports, ["YandexComputeFilesystem"], () => require("./yandexComputeFilesystem"));
 
+export { YandexYdbTableArgs, YandexYdbTableState } from "./yandexYdbTable";
+export type YandexYdbTable = import("./yandexYdbTable").YandexYdbTable;
+export const YandexYdbTable: typeof import("./yandexYdbTable").YandexYdbTable = null as any;
+utilities.lazyLoad(exports, ["YandexYdbTable"], () => require("./yandexYdbTable"));
+
 export { YandexYdbTopicArgs, YandexYdbTopicState } from "./yandexYdbTopic";
 export type YandexYdbTopic = import("./yandexYdbTopic").YandexYdbTopic;
 export const YandexYdbTopic: typeof import("./yandexYdbTopic").YandexYdbTopic = null as any;
 utilities.lazyLoad(exports, ["YandexYdbTopic"], () => require("./yandexYdbTopic"));
+
+export { YandexYdbTopicChangefeedArgs, YandexYdbTopicChangefeedState } from "./yandexYdbTopicChangefeed";
+export type YandexYdbTopicChangefeed = import("./yandexYdbTopicChangefeed").YandexYdbTopicChangefeed;
+export const YandexYdbTopicChangefeed: typeof import("./yandexYdbTopicChangefeed").YandexYdbTopicChangefeed = null as any;
+utilities.lazyLoad(exports, ["YandexYdbTopicChangefeed"], () => require("./yandexYdbTopicChangefeed"));
+
+export { YandexYdbTopicIndexArgs, YandexYdbTopicIndexState } from "./yandexYdbTopicIndex";
+export type YandexYdbTopicIndex = import("./yandexYdbTopicIndex").YandexYdbTopicIndex;
+export const YandexYdbTopicIndex: typeof import("./yandexYdbTopicIndex").YandexYdbTopicIndex = null as any;
+utilities.lazyLoad(exports, ["YandexYdbTopicIndex"], () => require("./yandexYdbTopicIndex"));
 
 export { YdbDatabaseDedicatedArgs, YdbDatabaseDedicatedState } from "./ydbDatabaseDedicated";
 export type YdbDatabaseDedicated = import("./ydbDatabaseDedicated").YdbDatabaseDedicated;
@@ -855,6 +995,8 @@ const _module = {
                 return new ComputeDisk(name, <any>undefined, { urn })
             case "yandex:index/computeDiskPlacementGroup:ComputeDiskPlacementGroup":
                 return new ComputeDiskPlacementGroup(name, <any>undefined, { urn })
+            case "yandex:index/computeGpuCluster:ComputeGpuCluster":
+                return new ComputeGpuCluster(name, <any>undefined, { urn })
             case "yandex:index/computeImage:ComputeImage":
                 return new ComputeImage(name, <any>undefined, { urn })
             case "yandex:index/computeInstance:ComputeInstance":
@@ -917,6 +1059,14 @@ const _module = {
                 return new IotCoreDevice(name, <any>undefined, { urn })
             case "yandex:index/iotCoreRegistry:IotCoreRegistry":
                 return new IotCoreRegistry(name, <any>undefined, { urn })
+            case "yandex:index/kmsAsymetricEncryptionKey:KmsAsymetricEncryptionKey":
+                return new KmsAsymetricEncryptionKey(name, <any>undefined, { urn })
+            case "yandex:index/kmsAsymetricEncryptionKeyIamBinding:KmsAsymetricEncryptionKeyIamBinding":
+                return new KmsAsymetricEncryptionKeyIamBinding(name, <any>undefined, { urn })
+            case "yandex:index/kmsAsymetricSignatureKey:KmsAsymetricSignatureKey":
+                return new KmsAsymetricSignatureKey(name, <any>undefined, { urn })
+            case "yandex:index/kmsAsymetricSignatureKeyBinding:KmsAsymetricSignatureKeyBinding":
+                return new KmsAsymetricSignatureKeyBinding(name, <any>undefined, { urn })
             case "yandex:index/kmsSecretCiphertext:KmsSecretCiphertext":
                 return new KmsSecretCiphertext(name, <any>undefined, { urn })
             case "yandex:index/kmsSymmetricKey:KmsSymmetricKey":
@@ -933,6 +1083,8 @@ const _module = {
                 return new LbTargetGroup(name, <any>undefined, { urn })
             case "yandex:index/lockboxSecret:lockboxSecret":
                 return new LockboxSecret(name, <any>undefined, { urn })
+            case "yandex:index/lockboxSecretIamBinding:lockboxSecretIamBinding":
+                return new LockboxSecretIamBinding(name, <any>undefined, { urn })
             case "yandex:index/lockboxSecretVersion:lockboxSecretVersion":
                 return new LockboxSecretVersion(name, <any>undefined, { urn })
             case "yandex:index/loggingGroup:LoggingGroup":
@@ -949,6 +1101,8 @@ const _module = {
                 return new MdbKafkaConnector(name, <any>undefined, { urn })
             case "yandex:index/mdbKafkaTopic:MdbKafkaTopic":
                 return new MdbKafkaTopic(name, <any>undefined, { urn })
+            case "yandex:index/mdbKafkaUser:mdbKafkaUser":
+                return new MdbKafkaUser(name, <any>undefined, { urn })
             case "yandex:index/mdbMongodbCluster:MdbMongodbCluster":
                 return new MdbMongodbCluster(name, <any>undefined, { urn })
             case "yandex:index/mdbMysqlCluster:MdbMysqlCluster":
@@ -969,6 +1123,8 @@ const _module = {
                 return new MdbSqlServerCluster(name, <any>undefined, { urn })
             case "yandex:index/messageQueue:MessageQueue":
                 return new MessageQueue(name, <any>undefined, { urn })
+            case "yandex:index/monitoringDashboard:monitoringDashboard":
+                return new MonitoringDashboard(name, <any>undefined, { urn })
             case "yandex:index/organizationManagerOrganizationIamBinding:OrganizationManagerOrganizationIamBinding":
                 return new OrganizationManagerOrganizationIamBinding(name, <any>undefined, { urn })
             case "yandex:index/organizationManagerOrganizationIamMember:OrganizationManagerOrganizationIamMember":
@@ -981,6 +1137,8 @@ const _module = {
                 return new OrganizationmanagerGroupMembership(name, <any>undefined, { urn })
             case "yandex:index/organizationmanagerSamlFederation:OrganizationmanagerSamlFederation":
                 return new OrganizationmanagerSamlFederation(name, <any>undefined, { urn })
+            case "yandex:index/organizationmanagerSamlFederationUserAccount:organizationmanagerSamlFederationUserAccount":
+                return new OrganizationmanagerSamlFederationUserAccount(name, <any>undefined, { urn })
             case "yandex:index/resourcemanagerCloud:resourcemanagerCloud":
                 return new ResourcemanagerCloud(name, <any>undefined, { urn })
             case "yandex:index/resourcemanagerCloudIamBinding:ResourcemanagerCloudIamBinding":
@@ -1019,12 +1177,16 @@ const _module = {
                 return new VpcSecurityGroupRule(name, <any>undefined, { urn })
             case "yandex:index/vpcSubnet:VpcSubnet":
                 return new VpcSubnet(name, <any>undefined, { urn })
-            case "yandex:index/yandexBillingCloudBinding:yandexBillingCloudBinding":
-                return new YandexBillingCloudBinding(name, <any>undefined, { urn })
             case "yandex:index/yandexComputeFilesystem:yandexComputeFilesystem":
                 return new YandexComputeFilesystem(name, <any>undefined, { urn })
+            case "yandex:index/yandexYdbTable:yandexYdbTable":
+                return new YandexYdbTable(name, <any>undefined, { urn })
             case "yandex:index/yandexYdbTopic:yandexYdbTopic":
                 return new YandexYdbTopic(name, <any>undefined, { urn })
+            case "yandex:index/yandexYdbTopicChangefeed:yandexYdbTopicChangefeed":
+                return new YandexYdbTopicChangefeed(name, <any>undefined, { urn })
+            case "yandex:index/yandexYdbTopicIndex:yandexYdbTopicIndex":
+                return new YandexYdbTopicIndex(name, <any>undefined, { urn })
             case "yandex:index/ydbDatabaseDedicated:YdbDatabaseDedicated":
                 return new YdbDatabaseDedicated(name, <any>undefined, { urn })
             case "yandex:index/ydbDatabaseIamBinding:ydbDatabaseIamBinding":
@@ -1047,6 +1209,7 @@ pulumi.runtime.registerResourceModule("yandex", "index/cdnResource", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/cmCertificate", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/computeDisk", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/computeDiskPlacementGroup", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/computeGpuCluster", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/computeImage", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/computeInstance", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/computeInstanceGroup", _module)
@@ -1078,6 +1241,10 @@ pulumi.runtime.registerResourceModule("yandex", "index/iamServiceAccountStaticAc
 pulumi.runtime.registerResourceModule("yandex", "index/iotCoreBroker", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/iotCoreDevice", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/iotCoreRegistry", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/kmsAsymetricEncryptionKey", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/kmsAsymetricEncryptionKeyIamBinding", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/kmsAsymetricSignatureKey", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/kmsAsymetricSignatureKeyBinding", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/kmsSecretCiphertext", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/kmsSymmetricKey", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/kmsSymmetricKeyIamBinding", _module)
@@ -1086,6 +1253,7 @@ pulumi.runtime.registerResourceModule("yandex", "index/kubernetesNodeGroup", _mo
 pulumi.runtime.registerResourceModule("yandex", "index/lbNetworkLoadBalancer", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/lbTargetGroup", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/lockboxSecret", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/lockboxSecretIamBinding", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/lockboxSecretVersion", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/loggingGroup", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/mdbClickhouseCluster", _module)
@@ -1094,6 +1262,7 @@ pulumi.runtime.registerResourceModule("yandex", "index/mdbGreenplumCluster", _mo
 pulumi.runtime.registerResourceModule("yandex", "index/mdbKafkaCluster", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/mdbKafkaConnector", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/mdbKafkaTopic", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/mdbKafkaUser", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/mdbMongodbCluster", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/mdbMysqlCluster", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/mdbMysqlDatabase", _module)
@@ -1104,12 +1273,14 @@ pulumi.runtime.registerResourceModule("yandex", "index/mdbPostgresqlUser", _modu
 pulumi.runtime.registerResourceModule("yandex", "index/mdbRedisCluster", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/mdbSqlServerCluster", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/messageQueue", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/monitoringDashboard", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/organizationManagerOrganizationIamBinding", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/organizationManagerOrganizationIamMember", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/organizationmanagerGroup", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/organizationmanagerGroupIamMember", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/organizationmanagerGroupMembership", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/organizationmanagerSamlFederation", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/organizationmanagerSamlFederationUserAccount", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/resourcemanagerCloud", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/resourcemanagerCloudIamBinding", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/resourcemanagerCloudIamMember", _module)
@@ -1129,9 +1300,11 @@ pulumi.runtime.registerResourceModule("yandex", "index/vpcRouteTable", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/vpcSecurityGroup", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/vpcSecurityGroupRule", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/vpcSubnet", _module)
-pulumi.runtime.registerResourceModule("yandex", "index/yandexBillingCloudBinding", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/yandexComputeFilesystem", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/yandexYdbTable", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/yandexYdbTopic", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/yandexYdbTopicChangefeed", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/yandexYdbTopicIndex", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/ydbDatabaseDedicated", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/ydbDatabaseIamBinding", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/ydbDatabaseServerless", _module)

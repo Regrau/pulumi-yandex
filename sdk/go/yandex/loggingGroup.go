@@ -44,7 +44,8 @@ type LoggingGroup struct {
 	// ID of the cloud that the Yandex Cloud Logging group belong to.
 	CloudId pulumi.StringOutput `pulumi:"cloudId"`
 	// The Yandex Cloud Logging group creation timestamp.
-	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
+	CreatedAt  pulumi.StringOutput    `pulumi:"createdAt"`
+	DataStream pulumi.StringPtrOutput `pulumi:"dataStream"`
 	// A description for the Yandex Cloud Logging group.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// ID of the folder that the Yandex Cloud Logging group belongs to.
@@ -93,7 +94,8 @@ type loggingGroupState struct {
 	// ID of the cloud that the Yandex Cloud Logging group belong to.
 	CloudId *string `pulumi:"cloudId"`
 	// The Yandex Cloud Logging group creation timestamp.
-	CreatedAt *string `pulumi:"createdAt"`
+	CreatedAt  *string `pulumi:"createdAt"`
+	DataStream *string `pulumi:"dataStream"`
 	// A description for the Yandex Cloud Logging group.
 	Description *string `pulumi:"description"`
 	// ID of the folder that the Yandex Cloud Logging group belongs to.
@@ -113,7 +115,8 @@ type LoggingGroupState struct {
 	// ID of the cloud that the Yandex Cloud Logging group belong to.
 	CloudId pulumi.StringPtrInput
 	// The Yandex Cloud Logging group creation timestamp.
-	CreatedAt pulumi.StringPtrInput
+	CreatedAt  pulumi.StringPtrInput
+	DataStream pulumi.StringPtrInput
 	// A description for the Yandex Cloud Logging group.
 	Description pulumi.StringPtrInput
 	// ID of the folder that the Yandex Cloud Logging group belongs to.
@@ -134,6 +137,7 @@ func (LoggingGroupState) ElementType() reflect.Type {
 }
 
 type loggingGroupArgs struct {
+	DataStream *string `pulumi:"dataStream"`
 	// A description for the Yandex Cloud Logging group.
 	Description *string `pulumi:"description"`
 	// ID of the folder that the Yandex Cloud Logging group belongs to.
@@ -149,6 +153,7 @@ type loggingGroupArgs struct {
 
 // The set of arguments for constructing a LoggingGroup resource.
 type LoggingGroupArgs struct {
+	DataStream pulumi.StringPtrInput
 	// A description for the Yandex Cloud Logging group.
 	Description pulumi.StringPtrInput
 	// ID of the folder that the Yandex Cloud Logging group belongs to.
@@ -257,6 +262,10 @@ func (o LoggingGroupOutput) CloudId() pulumi.StringOutput {
 // The Yandex Cloud Logging group creation timestamp.
 func (o LoggingGroupOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoggingGroup) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LoggingGroupOutput) DataStream() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *LoggingGroup) pulumi.StringPtrOutput { return v.DataStream }).(pulumi.StringPtrOutput)
 }
 
 // A description for the Yandex Cloud Logging group.

@@ -80,18 +80,18 @@ export class YandexYdbTopic extends pulumi.CustomResource {
      */
     public readonly databaseEndpoint!: pulumi.Output<string>;
     public readonly description!: pulumi.Output<string | undefined>;
+    public readonly meteringMode!: pulumi.Output<string>;
     /**
      * Topic name. Type: string, required. Default value: "".
      */
     public readonly name!: pulumi.Output<string>;
+    public readonly partitionWriteSpeedKbps!: pulumi.Output<number>;
     /**
      * Number of partitions. Types: integer, optional. Default value: 2.
      */
-    public readonly partitionsCount!: pulumi.Output<number | undefined>;
-    /**
-     * Data retention time. Types: integer, required. Default value: 86400000
-     */
-    public readonly retentionPeriodMs!: pulumi.Output<number | undefined>;
+    public readonly partitionsCount!: pulumi.Output<number>;
+    public readonly retentionPeriodHours!: pulumi.Output<number>;
+    public readonly retentionStorageMb!: pulumi.Output<number>;
     /**
      * Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
      */
@@ -113,9 +113,12 @@ export class YandexYdbTopic extends pulumi.CustomResource {
             resourceInputs["consumers"] = state ? state.consumers : undefined;
             resourceInputs["databaseEndpoint"] = state ? state.databaseEndpoint : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["meteringMode"] = state ? state.meteringMode : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["partitionWriteSpeedKbps"] = state ? state.partitionWriteSpeedKbps : undefined;
             resourceInputs["partitionsCount"] = state ? state.partitionsCount : undefined;
-            resourceInputs["retentionPeriodMs"] = state ? state.retentionPeriodMs : undefined;
+            resourceInputs["retentionPeriodHours"] = state ? state.retentionPeriodHours : undefined;
+            resourceInputs["retentionStorageMb"] = state ? state.retentionStorageMb : undefined;
             resourceInputs["supportedCodecs"] = state ? state.supportedCodecs : undefined;
         } else {
             const args = argsOrState as YandexYdbTopicArgs | undefined;
@@ -125,9 +128,12 @@ export class YandexYdbTopic extends pulumi.CustomResource {
             resourceInputs["consumers"] = args ? args.consumers : undefined;
             resourceInputs["databaseEndpoint"] = args ? args.databaseEndpoint : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["meteringMode"] = args ? args.meteringMode : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["partitionWriteSpeedKbps"] = args ? args.partitionWriteSpeedKbps : undefined;
             resourceInputs["partitionsCount"] = args ? args.partitionsCount : undefined;
-            resourceInputs["retentionPeriodMs"] = args ? args.retentionPeriodMs : undefined;
+            resourceInputs["retentionPeriodHours"] = args ? args.retentionPeriodHours : undefined;
+            resourceInputs["retentionStorageMb"] = args ? args.retentionStorageMb : undefined;
             resourceInputs["supportedCodecs"] = args ? args.supportedCodecs : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -148,18 +154,18 @@ export interface YandexYdbTopicState {
      */
     databaseEndpoint?: pulumi.Input<string>;
     description?: pulumi.Input<string>;
+    meteringMode?: pulumi.Input<string>;
     /**
      * Topic name. Type: string, required. Default value: "".
      */
     name?: pulumi.Input<string>;
+    partitionWriteSpeedKbps?: pulumi.Input<number>;
     /**
      * Number of partitions. Types: integer, optional. Default value: 2.
      */
     partitionsCount?: pulumi.Input<number>;
-    /**
-     * Data retention time. Types: integer, required. Default value: 86400000
-     */
-    retentionPeriodMs?: pulumi.Input<number>;
+    retentionPeriodHours?: pulumi.Input<number>;
+    retentionStorageMb?: pulumi.Input<number>;
     /**
      * Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
      */
@@ -179,18 +185,18 @@ export interface YandexYdbTopicArgs {
      */
     databaseEndpoint: pulumi.Input<string>;
     description?: pulumi.Input<string>;
+    meteringMode?: pulumi.Input<string>;
     /**
      * Topic name. Type: string, required. Default value: "".
      */
     name?: pulumi.Input<string>;
+    partitionWriteSpeedKbps?: pulumi.Input<number>;
     /**
      * Number of partitions. Types: integer, optional. Default value: 2.
      */
     partitionsCount?: pulumi.Input<number>;
-    /**
-     * Data retention time. Types: integer, required. Default value: 86400000
-     */
-    retentionPeriodMs?: pulumi.Input<number>;
+    retentionPeriodHours?: pulumi.Input<number>;
+    retentionStorageMb?: pulumi.Input<number>;
     /**
      * Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
      */

@@ -81,6 +81,20 @@ Object.defineProperty(exports, "plaintext", {
     enumerable: true,
 });
 
+/**
+ * Profile to use in the shared credentials file. Default value is `default`.
+ */
+export declare const profile: string | undefined;
+Object.defineProperty(exports, "profile", {
+    get() {
+        return __config.get("profile");
+    },
+    enumerable: true,
+});
+
+/**
+ * The region where operations will take place. Examples are ru-central1
+ */
 export declare const regionId: string | undefined;
 Object.defineProperty(exports, "regionId", {
     get() {
@@ -96,6 +110,17 @@ export declare const serviceAccountKeyFile: string | undefined;
 Object.defineProperty(exports, "serviceAccountKeyFile", {
     get() {
         return __config.get("serviceAccountKeyFile");
+    },
+    enumerable: true,
+});
+
+/**
+ * Path to shared credentials file.
+ */
+export declare const sharedCredentialsFile: string | undefined;
+Object.defineProperty(exports, "sharedCredentialsFile", {
+    get() {
+        return __config.get("sharedCredentialsFile");
     },
     enumerable: true,
 });

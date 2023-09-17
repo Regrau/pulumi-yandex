@@ -20,6 +20,18 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly Outputs.MdbMongodbClusterClusterConfigMongodAuditLog? AuditLog;
         /// <summary>
+        /// A set of network settings
+        /// (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+        /// The structure is documented below.
+        /// </summary>
+        public readonly Outputs.MdbMongodbClusterClusterConfigMongodNet? Net;
+        /// <summary>
+        /// A set of profiling settings
+        /// (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+        /// The structure is documented below.
+        /// </summary>
+        public readonly Outputs.MdbMongodbClusterClusterConfigMongodOperationProfiling? OperationProfiling;
+        /// <summary>
         /// A set of MongoDB Security settings
         /// (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
         /// The structure is documented below. Available only in enterprise edition.
@@ -31,18 +43,33 @@ namespace Pulumi.Yandex.Outputs
         /// The structure is documented below.
         /// </summary>
         public readonly Outputs.MdbMongodbClusterClusterConfigMongodSetParameter? SetParameter;
+        /// <summary>
+        /// A set of storage settings
+        /// (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+        /// The structure is documented below.
+        /// </summary>
+        public readonly Outputs.MdbMongodbClusterClusterConfigMongodStorage? Storage;
 
         [OutputConstructor]
         private MdbMongodbClusterClusterConfigMongod(
             Outputs.MdbMongodbClusterClusterConfigMongodAuditLog? auditLog,
 
+            Outputs.MdbMongodbClusterClusterConfigMongodNet? net,
+
+            Outputs.MdbMongodbClusterClusterConfigMongodOperationProfiling? operationProfiling,
+
             Outputs.MdbMongodbClusterClusterConfigMongodSecurity? security,
 
-            Outputs.MdbMongodbClusterClusterConfigMongodSetParameter? setParameter)
+            Outputs.MdbMongodbClusterClusterConfigMongodSetParameter? setParameter,
+
+            Outputs.MdbMongodbClusterClusterConfigMongodStorage? storage)
         {
             AuditLog = auditLog;
+            Net = net;
+            OperationProfiling = operationProfiling;
             Security = security;
             SetParameter = setParameter;
+            Storage = storage;
         }
     }
 }

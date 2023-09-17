@@ -63,6 +63,7 @@ export class KmsSymmetricKey extends pulumi.CustomResource {
      * generated with the next rotation. The default value is `AES_128`.
      */
     public readonly defaultAlgorithm!: pulumi.Output<string | undefined>;
+    public readonly deletionProtection!: pulumi.Output<boolean | undefined>;
     /**
      * An optional description of the key.
      */
@@ -108,6 +109,7 @@ export class KmsSymmetricKey extends pulumi.CustomResource {
             const state = argsOrState as KmsSymmetricKeyState | undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["defaultAlgorithm"] = state ? state.defaultAlgorithm : undefined;
+            resourceInputs["deletionProtection"] = state ? state.deletionProtection : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["folderId"] = state ? state.folderId : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
@@ -118,6 +120,7 @@ export class KmsSymmetricKey extends pulumi.CustomResource {
         } else {
             const args = argsOrState as KmsSymmetricKeyArgs | undefined;
             resourceInputs["defaultAlgorithm"] = args ? args.defaultAlgorithm : undefined;
+            resourceInputs["deletionProtection"] = args ? args.deletionProtection : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["folderId"] = args ? args.folderId : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
@@ -145,6 +148,7 @@ export interface KmsSymmetricKeyState {
      * generated with the next rotation. The default value is `AES_128`.
      */
     defaultAlgorithm?: pulumi.Input<string>;
+    deletionProtection?: pulumi.Input<boolean>;
     /**
      * An optional description of the key.
      */
@@ -185,6 +189,7 @@ export interface KmsSymmetricKeyArgs {
      * generated with the next rotation. The default value is `AES_128`.
      */
     defaultAlgorithm?: pulumi.Input<string>;
+    deletionProtection?: pulumi.Input<boolean>;
     /**
      * An optional description of the key.
      */

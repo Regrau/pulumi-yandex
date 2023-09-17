@@ -38,11 +38,22 @@ export class Provider extends pulumi.ProviderResource {
      */
     public readonly folderId!: pulumi.Output<string | undefined>;
     public readonly organizationId!: pulumi.Output<string | undefined>;
+    /**
+     * Profile to use in the shared credentials file. Default value is `default`.
+     */
+    public readonly profile!: pulumi.Output<string | undefined>;
+    /**
+     * The region where operations will take place. Examples are ru-central1
+     */
     public readonly regionId!: pulumi.Output<string | undefined>;
     /**
      * Either the path to or the contents of a Service Account key file in JSON format.
      */
     public readonly serviceAccountKeyFile!: pulumi.Output<string | undefined>;
+    /**
+     * Path to shared credentials file.
+     */
+    public readonly sharedCredentialsFile!: pulumi.Output<string | undefined>;
     /**
      * Yandex.Cloud storage service access key. Used when a storage data/resource doesn't have an access key explicitly
      * specified.
@@ -98,8 +109,10 @@ export class Provider extends pulumi.ProviderResource {
             resourceInputs["maxRetries"] = pulumi.output(args ? args.maxRetries : undefined).apply(JSON.stringify);
             resourceInputs["organizationId"] = args ? args.organizationId : undefined;
             resourceInputs["plaintext"] = pulumi.output(args ? args.plaintext : undefined).apply(JSON.stringify);
+            resourceInputs["profile"] = args ? args.profile : undefined;
             resourceInputs["regionId"] = args ? args.regionId : undefined;
             resourceInputs["serviceAccountKeyFile"] = args ? args.serviceAccountKeyFile : undefined;
+            resourceInputs["sharedCredentialsFile"] = args ? args.sharedCredentialsFile : undefined;
             resourceInputs["storageAccessKey"] = args ? args.storageAccessKey : undefined;
             resourceInputs["storageEndpoint"] = args ? args.storageEndpoint : undefined;
             resourceInputs["storageSecretKey"] = args?.storageSecretKey ? pulumi.secret(args.storageSecretKey) : undefined;
@@ -145,11 +158,22 @@ export interface ProviderArgs {
      * Disable use of TLS. Default value is `false`.
      */
     plaintext?: pulumi.Input<boolean>;
+    /**
+     * Profile to use in the shared credentials file. Default value is `default`.
+     */
+    profile?: pulumi.Input<string>;
+    /**
+     * The region where operations will take place. Examples are ru-central1
+     */
     regionId?: pulumi.Input<string>;
     /**
      * Either the path to or the contents of a Service Account key file in JSON format.
      */
     serviceAccountKeyFile?: pulumi.Input<string>;
+    /**
+     * Path to shared credentials file.
+     */
+    sharedCredentialsFile?: pulumi.Input<string>;
     /**
      * Yandex.Cloud storage service access key. Used when a storage data/resource doesn't have an access key explicitly
      * specified.

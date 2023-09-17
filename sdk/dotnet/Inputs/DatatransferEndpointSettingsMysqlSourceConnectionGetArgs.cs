@@ -19,7 +19,7 @@ namespace Pulumi.Yandex.Inputs
         public Input<string>? MdbClusterId { get; set; }
 
         /// <summary>
-        /// Connection settings of the on-premise MySQL server.
+        /// Connection settings of the on-premise Kafka server.
         /// </summary>
         [Input("onPremise")]
         public Input<Inputs.DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseGetArgs>? OnPremise { get; set; }

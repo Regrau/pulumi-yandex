@@ -16,17 +16,17 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// The hour at which backup will be started.
         /// </summary>
-        public readonly int Hours;
+        public readonly int? Hours;
         /// <summary>
         /// The minute at which backup will be started.
         /// </summary>
-        public readonly int Minutes;
+        public readonly int? Minutes;
 
         [OutputConstructor]
         private GetMdbClickhouseClusterBackupWindowStartResult(
-            int hours,
+            int? hours,
 
-            int minutes)
+            int? minutes)
         {
             Hours = hours;
             Minutes = minutes;

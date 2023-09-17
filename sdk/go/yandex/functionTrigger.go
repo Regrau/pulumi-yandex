@@ -68,6 +68,8 @@ type FunctionTrigger struct {
 	// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
 	// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
 	// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+	// * `iot.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `iot.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	Iot FunctionTriggerIotPtrOutput `pulumi:"iot"`
 	// A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger
 	Labels   pulumi.StringMapOutput           `pulumi:"labels"`
@@ -77,6 +79,7 @@ type FunctionTrigger struct {
 	// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.stream_names` - Logging stream name filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
 	// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	Logging FunctionTriggerLoggingPtrOutput `pulumi:"logging"`
@@ -96,9 +99,12 @@ type FunctionTrigger struct {
 	// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
 	// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
 	// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `object_storage.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	ObjectStorage FunctionTriggerObjectStoragePtrOutput `pulumi:"objectStorage"`
 	// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
 	// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+	// * `timer.0.payload` - Payload to be passed to function
 	Timer FunctionTriggerTimerPtrOutput `pulumi:"timer"`
 }
 
@@ -154,6 +160,8 @@ type functionTriggerState struct {
 	// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
 	// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
 	// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+	// * `iot.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `iot.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	Iot *FunctionTriggerIot `pulumi:"iot"`
 	// A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger
 	Labels   map[string]string        `pulumi:"labels"`
@@ -163,6 +171,7 @@ type functionTriggerState struct {
 	// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.stream_names` - Logging stream name filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
 	// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	Logging *FunctionTriggerLogging `pulumi:"logging"`
@@ -182,9 +191,12 @@ type functionTriggerState struct {
 	// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
 	// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
 	// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `object_storage.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	ObjectStorage *FunctionTriggerObjectStorage `pulumi:"objectStorage"`
 	// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
 	// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+	// * `timer.0.payload` - Payload to be passed to function
 	Timer *FunctionTriggerTimer `pulumi:"timer"`
 }
 
@@ -211,6 +223,8 @@ type FunctionTriggerState struct {
 	// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
 	// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
 	// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+	// * `iot.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `iot.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	Iot FunctionTriggerIotPtrInput
 	// A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger
 	Labels   pulumi.StringMapInput
@@ -220,6 +234,7 @@ type FunctionTriggerState struct {
 	// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.stream_names` - Logging stream name filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
 	// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	Logging FunctionTriggerLoggingPtrInput
@@ -239,9 +254,12 @@ type FunctionTriggerState struct {
 	// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
 	// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
 	// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `object_storage.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	ObjectStorage FunctionTriggerObjectStoragePtrInput
 	// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
 	// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+	// * `timer.0.payload` - Payload to be passed to function
 	Timer FunctionTriggerTimerPtrInput
 }
 
@@ -270,6 +288,8 @@ type functionTriggerArgs struct {
 	// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
 	// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
 	// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+	// * `iot.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `iot.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	Iot *FunctionTriggerIot `pulumi:"iot"`
 	// A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger
 	Labels   map[string]string        `pulumi:"labels"`
@@ -279,6 +299,7 @@ type functionTriggerArgs struct {
 	// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.stream_names` - Logging stream name filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
 	// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	Logging *FunctionTriggerLogging `pulumi:"logging"`
@@ -298,9 +319,12 @@ type functionTriggerArgs struct {
 	// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
 	// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
 	// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `object_storage.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	ObjectStorage *FunctionTriggerObjectStorage `pulumi:"objectStorage"`
 	// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
 	// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+	// * `timer.0.payload` - Payload to be passed to function
 	Timer *FunctionTriggerTimer `pulumi:"timer"`
 }
 
@@ -326,6 +350,8 @@ type FunctionTriggerArgs struct {
 	// * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
 	// * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
 	// * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+	// * `iot.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `iot.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	Iot FunctionTriggerIotPtrInput
 	// A set of key/value label pairs to assign to the Yandex Cloud Functions Trigger
 	Labels   pulumi.StringMapInput
@@ -335,6 +361,7 @@ type FunctionTriggerArgs struct {
 	// * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+	// * `logging.0.stream_names` - Logging stream name filter setting for Yandex Cloud Functions Trigger
 	// * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
 	// * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	Logging FunctionTriggerLoggingPtrInput
@@ -354,9 +381,12 @@ type FunctionTriggerArgs struct {
 	// * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
 	// * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
 	// * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
+	// * `object_storage.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+	// * `object_storage.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 	ObjectStorage FunctionTriggerObjectStoragePtrInput
 	// [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
 	// * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+	// * `timer.0.payload` - Payload to be passed to function
 	Timer FunctionTriggerTimerPtrInput
 }
 
@@ -487,6 +517,8 @@ func (o FunctionTriggerOutput) Function() FunctionTriggerFunctionPtrOutput {
 // * `iot.0.registry_id` - IoT Registry ID for Yandex Cloud Functions Trigger
 // * `iot.0.device_id` - IoT Device ID for Yandex Cloud Functions Trigger
 // * `iot.0.topic` - IoT Topic for Yandex Cloud Functions Trigger
+// * `iot.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+// * `iot.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) Iot() FunctionTriggerIotPtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerIotPtrOutput { return v.Iot }).(FunctionTriggerIotPtrOutput)
 }
@@ -505,6 +537,7 @@ func (o FunctionTriggerOutput) LogGroup() FunctionTriggerLogGroupPtrOutput {
 // * `logging.0.resource_ids` - Resource ID filter setting for Yandex Cloud Functions Trigger
 // * `logging.0.resource_types` - Resource type filter setting for Yandex Cloud Functions Trigger
 // * `logging.0.levels` - Logging level filter setting for Yandex Cloud Functions Trigger
+// * `logging.0.stream_names` - Logging stream name filter setting for Yandex Cloud Functions Trigger
 // * `logging.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
 // * `logging.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) Logging() FunctionTriggerLoggingPtrOutput {
@@ -533,12 +566,15 @@ func (o FunctionTriggerOutput) Name() pulumi.StringOutput {
 // * `object_storage.0.create` - Boolean flag for setting create event for Yandex Cloud Functions Trigger
 // * `object_storage.0.update` - Boolean flag for setting update event for Yandex Cloud Functions Trigger
 // * `object_storage.0.delete` - Boolean flag for setting delete event for Yandex Cloud Functions Trigger
+// * `object_storage.0.batch_cutoff` - Batch Duration in seconds for Yandex Cloud Functions Trigger
+// * `object_storage.0.batch_size` - Batch Size for Yandex Cloud Functions Trigger
 func (o FunctionTriggerOutput) ObjectStorage() FunctionTriggerObjectStoragePtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerObjectStoragePtrOutput { return v.ObjectStorage }).(FunctionTriggerObjectStoragePtrOutput)
 }
 
 // [Timer](https://cloud.yandex.com/docs/functions/concepts/trigger/timer) settings definition for Yandex Cloud Functions Trigger, if present
 // * `timer.0.cron_expression` - Cron expression for timer for Yandex Cloud Functions Trigger
+// * `timer.0.payload` - Payload to be passed to function
 func (o FunctionTriggerOutput) Timer() FunctionTriggerTimerPtrOutput {
 	return o.ApplyT(func(v *FunctionTrigger) FunctionTriggerTimerPtrOutput { return v.Timer }).(FunctionTriggerTimerPtrOutput)
 }

@@ -31,6 +31,7 @@ type LookupLoggingGroupArgs struct {
 type LookupLoggingGroupResult struct {
 	CloudId     string `pulumi:"cloudId"`
 	CreatedAt   string `pulumi:"createdAt"`
+	DataStream  string `pulumi:"dataStream"`
 	Description string `pulumi:"description"`
 	FolderId    string `pulumi:"folderId"`
 	GroupId     string `pulumi:"groupId"`
@@ -87,6 +88,10 @@ func (o LookupLoggingGroupResultOutput) CloudId() pulumi.StringOutput {
 
 func (o LookupLoggingGroupResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLoggingGroupResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+func (o LookupLoggingGroupResultOutput) DataStream() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLoggingGroupResult) string { return v.DataStream }).(pulumi.StringOutput)
 }
 
 func (o LookupLoggingGroupResultOutput) Description() pulumi.StringOutput {

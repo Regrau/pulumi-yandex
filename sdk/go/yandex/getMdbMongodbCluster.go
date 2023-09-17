@@ -78,8 +78,14 @@ type LookupMdbMongodbClusterArgs struct {
 	// ID of the network, to which the MongoDB cluster belongs.
 	NetworkId *string `pulumi:"networkId"`
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
-	Resources *GetMdbMongodbClusterResources `pulumi:"resources"`
-	Restore   *GetMdbMongodbClusterRestore   `pulumi:"restore"`
+	//
+	// Deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
+	Resources           *GetMdbMongodbClusterResources           `pulumi:"resources"`
+	ResourcesMongocfg   *GetMdbMongodbClusterResourcesMongocfg   `pulumi:"resourcesMongocfg"`
+	ResourcesMongod     *GetMdbMongodbClusterResourcesMongod     `pulumi:"resourcesMongod"`
+	ResourcesMongoinfra *GetMdbMongodbClusterResourcesMongoinfra `pulumi:"resourcesMongoinfra"`
+	ResourcesMongos     *GetMdbMongodbClusterResourcesMongos     `pulumi:"resourcesMongos"`
+	Restore             *GetMdbMongodbClusterRestore             `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// MongoDB Cluster mode enabled/disabled.
@@ -119,8 +125,14 @@ type LookupMdbMongodbClusterResult struct {
 	// ID of the network, to which the MongoDB cluster belongs.
 	NetworkId *string `pulumi:"networkId"`
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
-	Resources *GetMdbMongodbClusterResources `pulumi:"resources"`
-	Restore   *GetMdbMongodbClusterRestore   `pulumi:"restore"`
+	//
+	// Deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
+	Resources           *GetMdbMongodbClusterResources           `pulumi:"resources"`
+	ResourcesMongocfg   *GetMdbMongodbClusterResourcesMongocfg   `pulumi:"resourcesMongocfg"`
+	ResourcesMongod     *GetMdbMongodbClusterResourcesMongod     `pulumi:"resourcesMongod"`
+	ResourcesMongoinfra *GetMdbMongodbClusterResourcesMongoinfra `pulumi:"resourcesMongoinfra"`
+	ResourcesMongos     *GetMdbMongodbClusterResourcesMongos     `pulumi:"resourcesMongos"`
+	Restore             *GetMdbMongodbClusterRestore             `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds []string `pulumi:"securityGroupIds"`
 	// MongoDB Cluster mode enabled/disabled.
@@ -173,8 +185,14 @@ type LookupMdbMongodbClusterOutputArgs struct {
 	// ID of the network, to which the MongoDB cluster belongs.
 	NetworkId pulumi.StringPtrInput `pulumi:"networkId"`
 	// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
-	Resources GetMdbMongodbClusterResourcesPtrInput `pulumi:"resources"`
-	Restore   GetMdbMongodbClusterRestorePtrInput   `pulumi:"restore"`
+	//
+	// Deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
+	Resources           GetMdbMongodbClusterResourcesPtrInput           `pulumi:"resources"`
+	ResourcesMongocfg   GetMdbMongodbClusterResourcesMongocfgPtrInput   `pulumi:"resourcesMongocfg"`
+	ResourcesMongod     GetMdbMongodbClusterResourcesMongodPtrInput     `pulumi:"resourcesMongod"`
+	ResourcesMongoinfra GetMdbMongodbClusterResourcesMongoinfraPtrInput `pulumi:"resourcesMongoinfra"`
+	ResourcesMongos     GetMdbMongodbClusterResourcesMongosPtrInput     `pulumi:"resourcesMongos"`
+	Restore             GetMdbMongodbClusterRestorePtrInput             `pulumi:"restore"`
 	// A set of ids of security groups assigned to hosts of the cluster.
 	SecurityGroupIds pulumi.StringArrayInput `pulumi:"securityGroupIds"`
 	// MongoDB Cluster mode enabled/disabled.
@@ -278,8 +296,30 @@ func (o LookupMdbMongodbClusterResultOutput) NetworkId() pulumi.StringPtrOutput 
 }
 
 // Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+//
+// Deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
 func (o LookupMdbMongodbClusterResultOutput) Resources() GetMdbMongodbClusterResourcesPtrOutput {
 	return o.ApplyT(func(v LookupMdbMongodbClusterResult) *GetMdbMongodbClusterResources { return v.Resources }).(GetMdbMongodbClusterResourcesPtrOutput)
+}
+
+func (o LookupMdbMongodbClusterResultOutput) ResourcesMongocfg() GetMdbMongodbClusterResourcesMongocfgPtrOutput {
+	return o.ApplyT(func(v LookupMdbMongodbClusterResult) *GetMdbMongodbClusterResourcesMongocfg {
+		return v.ResourcesMongocfg
+	}).(GetMdbMongodbClusterResourcesMongocfgPtrOutput)
+}
+
+func (o LookupMdbMongodbClusterResultOutput) ResourcesMongod() GetMdbMongodbClusterResourcesMongodPtrOutput {
+	return o.ApplyT(func(v LookupMdbMongodbClusterResult) *GetMdbMongodbClusterResourcesMongod { return v.ResourcesMongod }).(GetMdbMongodbClusterResourcesMongodPtrOutput)
+}
+
+func (o LookupMdbMongodbClusterResultOutput) ResourcesMongoinfra() GetMdbMongodbClusterResourcesMongoinfraPtrOutput {
+	return o.ApplyT(func(v LookupMdbMongodbClusterResult) *GetMdbMongodbClusterResourcesMongoinfra {
+		return v.ResourcesMongoinfra
+	}).(GetMdbMongodbClusterResourcesMongoinfraPtrOutput)
+}
+
+func (o LookupMdbMongodbClusterResultOutput) ResourcesMongos() GetMdbMongodbClusterResourcesMongosPtrOutput {
+	return o.ApplyT(func(v LookupMdbMongodbClusterResult) *GetMdbMongodbClusterResourcesMongos { return v.ResourcesMongos }).(GetMdbMongodbClusterResourcesMongosPtrOutput)
 }
 
 func (o LookupMdbMongodbClusterResultOutput) Restore() GetMdbMongodbClusterRestorePtrOutput {

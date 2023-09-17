@@ -19,6 +19,9 @@ import * as utilities from "./utilities";
  *     bucket: "cat-pictures",
  *     key: "cute-cat",
  *     source: "/images/cats/cute-cat.jpg",
+ *     tags: {
+ *         test: "value",
+ *     },
  * });
  * ```
  */
@@ -98,6 +101,14 @@ export class StorageObject extends pulumi.CustomResource {
      * The path to a file that will be read and uploaded as raw bytes for the object content.
      */
     public readonly source!: pulumi.Output<string | undefined>;
+    /**
+     * Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+     */
+    public readonly sourceHash!: pulumi.Output<string | undefined>;
+    /**
+     * Specifies an object tags.
+     */
+    public readonly tags!: pulumi.Output<{[key: string]: string} | undefined>;
 
     /**
      * Create a StorageObject resource with the given unique name, arguments, and options.
@@ -124,6 +135,8 @@ export class StorageObject extends pulumi.CustomResource {
             resourceInputs["objectLockRetainUntilDate"] = state ? state.objectLockRetainUntilDate : undefined;
             resourceInputs["secretKey"] = state ? state.secretKey : undefined;
             resourceInputs["source"] = state ? state.source : undefined;
+            resourceInputs["sourceHash"] = state ? state.sourceHash : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
         } else {
             const args = argsOrState as StorageObjectArgs | undefined;
             if ((!args || args.bucket === undefined) && !opts.urn) {
@@ -144,6 +157,8 @@ export class StorageObject extends pulumi.CustomResource {
             resourceInputs["objectLockRetainUntilDate"] = args ? args.objectLockRetainUntilDate : undefined;
             resourceInputs["secretKey"] = args?.secretKey ? pulumi.secret(args.secretKey) : undefined;
             resourceInputs["source"] = args ? args.source : undefined;
+            resourceInputs["sourceHash"] = args ? args.sourceHash : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         const secretOpts = { additionalSecretOutputs: ["secretKey"] };
@@ -204,6 +219,14 @@ export interface StorageObjectState {
      * The path to a file that will be read and uploaded as raw bytes for the object content.
      */
     source?: pulumi.Input<string>;
+    /**
+     * Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+     */
+    sourceHash?: pulumi.Input<string>;
+    /**
+     * Specifies an object tags.
+     */
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 /**
@@ -258,4 +281,12 @@ export interface StorageObjectArgs {
      * The path to a file that will be read and uploaded as raw bytes for the object content.
      */
     source?: pulumi.Input<string>;
+    /**
+     * Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+     */
+    sourceHash?: pulumi.Input<string>;
+    /**
+     * Specifies an object tags.
+     */
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

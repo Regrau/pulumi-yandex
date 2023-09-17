@@ -18,12 +18,20 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly Outputs.KubernetesNodeGroupInstanceTemplateBootDisk? BootDisk;
         /// <summary>
+        /// Container network configuration. The structure is documented below.
+        /// </summary>
+        public readonly Outputs.KubernetesNodeGroupInstanceTemplateContainerNetwork? ContainerNetwork;
+        /// <summary>
         /// Container runtime configuration. The structure is documented below.
         /// </summary>
         public readonly Outputs.KubernetesNodeGroupInstanceTemplateContainerRuntime? ContainerRuntime;
         /// <summary>
-        /// Labels that will be assigned to compute nodes (instances), created by the Node Group.
+        /// GPU settings. The structure is documented below.
         /// ---
+        /// </summary>
+        public readonly Outputs.KubernetesNodeGroupInstanceTemplateGpuSettings? GpuSettings;
+        /// <summary>
+        /// Labels that will be assigned to compute nodes (instances), created by the Node Group.
         /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
         /// <summary>
@@ -71,7 +79,11 @@ namespace Pulumi.Yandex.Outputs
         private KubernetesNodeGroupInstanceTemplate(
             Outputs.KubernetesNodeGroupInstanceTemplateBootDisk? bootDisk,
 
+            Outputs.KubernetesNodeGroupInstanceTemplateContainerNetwork? containerNetwork,
+
             Outputs.KubernetesNodeGroupInstanceTemplateContainerRuntime? containerRuntime,
+
+            Outputs.KubernetesNodeGroupInstanceTemplateGpuSettings? gpuSettings,
 
             ImmutableDictionary<string, string>? labels,
 
@@ -94,7 +106,9 @@ namespace Pulumi.Yandex.Outputs
             Outputs.KubernetesNodeGroupInstanceTemplateSchedulingPolicy? schedulingPolicy)
         {
             BootDisk = bootDisk;
+            ContainerNetwork = containerNetwork;
             ContainerRuntime = containerRuntime;
+            GpuSettings = gpuSettings;
             Labels = labels;
             Metadata = metadata;
             Name = name;

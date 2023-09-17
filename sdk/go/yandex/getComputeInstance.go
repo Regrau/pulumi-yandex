@@ -54,6 +54,8 @@ type LookupComputeInstanceArgs struct {
 	Filesystems []GetComputeInstanceFilesystem `pulumi:"filesystems"`
 	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
 	FolderId *string `pulumi:"folderId"`
+	// ID of GPU cluster if instance is part of it.
+	GpuClusterId *string `pulumi:"gpuClusterId"`
 	// The ID of a specific instance.
 	InstanceId *string `pulumi:"instanceId"`
 	// List of local disks that are attached to the instance. Structure is documented below.
@@ -78,6 +80,8 @@ type LookupComputeInstanceResult struct {
 	FolderId    string                         `pulumi:"folderId"`
 	// DNS record FQDN.
 	Fqdn string `pulumi:"fqdn"`
+	// ID of GPU cluster if instance is part of it.
+	GpuClusterId string `pulumi:"gpuClusterId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id         string `pulumi:"id"`
 	InstanceId string `pulumi:"instanceId"`
@@ -137,6 +141,8 @@ type LookupComputeInstanceOutputArgs struct {
 	Filesystems GetComputeInstanceFilesystemArrayInput `pulumi:"filesystems"`
 	// Folder that the resource belongs to. If value is omitted, the default provider folder is used.
 	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// ID of GPU cluster if instance is part of it.
+	GpuClusterId pulumi.StringPtrInput `pulumi:"gpuClusterId"`
 	// The ID of a specific instance.
 	InstanceId pulumi.StringPtrInput `pulumi:"instanceId"`
 	// List of local disks that are attached to the instance. Structure is documented below.
@@ -194,6 +200,11 @@ func (o LookupComputeInstanceResultOutput) FolderId() pulumi.StringOutput {
 // DNS record FQDN.
 func (o LookupComputeInstanceResultOutput) Fqdn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupComputeInstanceResult) string { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+// ID of GPU cluster if instance is part of it.
+func (o LookupComputeInstanceResultOutput) GpuClusterId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupComputeInstanceResult) string { return v.GpuClusterId }).(pulumi.StringOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.

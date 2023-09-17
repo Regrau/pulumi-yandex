@@ -20,17 +20,18 @@ import (
 //
 // ## Greenplum cluster settings
 //
-// | Setting name and type \ Greenplum version | 6.17 | 6.19 |
-// | ------------------------------------------| ---- | ---- |
-// | maxConnections : integer | supported | supported |
-// | maxPreparedTransactions : integer | supported | supported |
-// | gpWorkfileLimitPerQuery : integer | supported | supported |
-// | gpWorkfileLimitFilesPerQuery : integer | supported | supported |
-// | maxSlotWalKeepSize : integer | supported | supported |
-// | gpWorkfileLimitPerSegment : integer | supported | supported |
-// | gpWorkfileCompression : boolean | supported | supported |
-// | maxStatementMem : integer | - | supported |
-// | logStatement : one of<br>  - 0: " LOG_STATEMENT_UNSPECIFIED"<br>  - 1: " LOG_STATEMENT_NONE"<br>  - 2: " LOG_STATEMENT_DDL"<er>  - 3: " LOG_STATEMENT_MOD"<br>  - 4: " LOG_STATEMENT_ALL"  | - | supported |
+// | Setting name and type \ Greenplum version      | 6.19      | 6.22      |
+// | -----------------------------------------------| --------- | --------- |
+// | gpAddColumnInheritsTableSetting : boolean | -         | supported |
+// | gpWorkfileCompression : boolean              | supported | supported |
+// | gpWorkfileLimitFilesPerQuery : integer    | supported | supported |
+// | gpWorkfileLimitPerSegment : integer        | supported | supported |
+// | gpWorkfileLimitPerQuery : integer          | supported | supported |
+// | logStatement : one of<br>  - 0: " LOG_STATEMENT_UNSPECIFIED"<br>  - 1: " LOG_STATEMENT_NONE"<br>  - 2: " LOG_STATEMENT_DDL"<er>  - 3: " LOG_STATEMENT_MOD"<br>  - 4: " LOG_STATEMENT_ALL"  | supported | supported |
+// | maxConnections : integer             | supported | supported |
+// | maxPreparedTransactions : integer   | supported | supported |
+// | maxSlotWalKeepSize : integer      | supported | supported |
+// | maxStatementMem : integer           | supported | supported |
 //
 // ## Import
 //

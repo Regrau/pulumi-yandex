@@ -14,9 +14,12 @@ namespace Pulumi.Yandex.Outputs
     public sealed class CmCertificateSelfManagedPrivateKeyLockboxSecret
     {
         /// <summary>
-        /// Certificate Id.
+        /// Lockbox secret Id.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Key of the Lockbox secret, the value of which contains the private key of the certificate.
+        /// </summary>
         public readonly string Key;
 
         [OutputConstructor]

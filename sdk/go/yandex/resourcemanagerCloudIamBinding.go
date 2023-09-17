@@ -69,6 +69,9 @@ type ResourcemanagerCloudIamBinding struct {
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
 	// * **federatedUser:{federated_user_id}**: A unique federated user ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members pulumi.StringArrayOutput `pulumi:"members"`
 	// The role that should be assigned. Only one
 	// `ResourcemanagerCloudIamBinding` can be used per role.
@@ -122,6 +125,9 @@ type resourcemanagerCloudIamBindingState struct {
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
 	// * **federatedUser:{federated_user_id}**: A unique federated user ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members []string `pulumi:"members"`
 	// The role that should be assigned. Only one
 	// `ResourcemanagerCloudIamBinding` can be used per role.
@@ -137,6 +143,9 @@ type ResourcemanagerCloudIamBindingState struct {
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
 	// * **federatedUser:{federated_user_id}**: A unique federated user ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members pulumi.StringArrayInput
 	// The role that should be assigned. Only one
 	// `ResourcemanagerCloudIamBinding` can be used per role.
@@ -156,6 +165,9 @@ type resourcemanagerCloudIamBindingArgs struct {
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
 	// * **federatedUser:{federated_user_id}**: A unique federated user ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members []string `pulumi:"members"`
 	// The role that should be assigned. Only one
 	// `ResourcemanagerCloudIamBinding` can be used per role.
@@ -172,6 +184,9 @@ type ResourcemanagerCloudIamBindingArgs struct {
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
 	// * **federatedUser:{federated_user_id}**: A unique federated user ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members pulumi.StringArrayInput
 	// The role that should be assigned. Only one
 	// `ResourcemanagerCloudIamBinding` can be used per role.
@@ -276,6 +291,9 @@ func (o ResourcemanagerCloudIamBindingOutput) CloudId() pulumi.StringOutput {
 // * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 // * **serviceAccount:{service_account_id}**: A unique service account ID.
 // * **federatedUser:{federated_user_id}**: A unique federated user ID.
+// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+// * **group:{group_id}**: A unique group ID.
+// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 func (o ResourcemanagerCloudIamBindingOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ResourcemanagerCloudIamBinding) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
 }

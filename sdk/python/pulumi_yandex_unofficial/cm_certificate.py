@@ -505,7 +505,7 @@ class CmCertificate(pulumi.CustomResource):
         A certificate can be imported using the `id` of the resource, e.g.
 
         ```sh
-         $ pulumi import yandex:index/cmCertificate:cmCertificate default <certificate_id>
+         $ pulumi import yandex:index/cmCertificate:cmCertificate default certificate_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -562,7 +562,7 @@ class CmCertificate(pulumi.CustomResource):
         A certificate can be imported using the `id` of the resource, e.g.
 
         ```sh
-         $ pulumi import yandex:index/cmCertificate:cmCertificate default <certificate_id>
+         $ pulumi import yandex:index/cmCertificate:cmCertificate default certificate_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -727,7 +727,7 @@ class CmCertificate(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def domains(self) -> pulumi.Output[Sequence[str]]:
+    def domains(self) -> pulumi.Output[Optional[Sequence[str]]]:
         """
         Domains for this certificate. Should be specified for managed certificates.
         """

@@ -55,6 +55,7 @@ export class LoggingGroup extends pulumi.CustomResource {
      * The Yandex Cloud Logging group creation timestamp.
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
+    public readonly dataStream!: pulumi.Output<string | undefined>;
     /**
      * A description for the Yandex Cloud Logging group.
      */
@@ -96,6 +97,7 @@ export class LoggingGroup extends pulumi.CustomResource {
             const state = argsOrState as LoggingGroupState | undefined;
             resourceInputs["cloudId"] = state ? state.cloudId : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
+            resourceInputs["dataStream"] = state ? state.dataStream : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
             resourceInputs["folderId"] = state ? state.folderId : undefined;
             resourceInputs["labels"] = state ? state.labels : undefined;
@@ -104,6 +106,7 @@ export class LoggingGroup extends pulumi.CustomResource {
             resourceInputs["status"] = state ? state.status : undefined;
         } else {
             const args = argsOrState as LoggingGroupArgs | undefined;
+            resourceInputs["dataStream"] = args ? args.dataStream : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["folderId"] = args ? args.folderId : undefined;
             resourceInputs["labels"] = args ? args.labels : undefined;
@@ -130,6 +133,7 @@ export interface LoggingGroupState {
      * The Yandex Cloud Logging group creation timestamp.
      */
     createdAt?: pulumi.Input<string>;
+    dataStream?: pulumi.Input<string>;
     /**
      * A description for the Yandex Cloud Logging group.
      */
@@ -161,6 +165,7 @@ export interface LoggingGroupState {
  * The set of arguments for constructing a LoggingGroup resource.
  */
 export interface LoggingGroupArgs {
+    dataStream?: pulumi.Input<string>;
     /**
      * A description for the Yandex Cloud Logging group.
      */

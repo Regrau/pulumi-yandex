@@ -24,7 +24,7 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// Duration of interval for quota in milliseconds.
         /// </summary>
-        public readonly int IntervalDuration;
+        public readonly int? IntervalDuration;
         /// <summary>
         /// The total number of queries.
         /// </summary>
@@ -44,7 +44,7 @@ namespace Pulumi.Yandex.Outputs
 
             int executionTime,
 
-            int intervalDuration,
+            int? intervalDuration,
 
             int queries,
 

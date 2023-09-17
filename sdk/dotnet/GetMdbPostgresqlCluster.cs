@@ -162,6 +162,10 @@ namespace Pulumi.Yandex
         /// Timestamp of cluster creation.
         /// </summary>
         public readonly string CreatedAt;
+        /// <summary>
+        /// List of all databases of the PostgreSQL cluster. The structure is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetMdbPostgresqlClusterDatabaseResult> Databases;
         public readonly bool DeletionProtection;
         /// <summary>
         /// Description of the PostgreSQL cluster.
@@ -178,7 +182,7 @@ namespace Pulumi.Yandex
         public readonly string Health;
         public readonly ImmutableArray<string> HostGroupIds;
         /// <summary>
-        /// A host of the PostgreSQL cluster. The structure is documented below.
+        /// List of all hosts of the PostgreSQL cluster. The structure is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbPostgresqlClusterHostResult> Hosts;
         /// <summary>
@@ -193,6 +197,9 @@ namespace Pulumi.Yandex
         /// Maintenance window settings of the PostgreSQL cluster. The structure is documented below.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbPostgresqlClusterMaintenanceWindowResult> MaintenanceWindows;
+        /// <summary>
+        /// Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).
+        /// </summary>
         public readonly string Name;
         /// <summary>
         /// ID of the network, to which the PostgreSQL cluster belongs.
@@ -206,6 +213,10 @@ namespace Pulumi.Yandex
         /// Status of the cluster.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// List of all users of the PostgreSQL cluster. The structure is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetMdbPostgresqlClusterUserResult> Users;
 
         [OutputConstructor]
         private GetMdbPostgresqlClusterResult(
@@ -214,6 +225,8 @@ namespace Pulumi.Yandex
             ImmutableArray<Outputs.GetMdbPostgresqlClusterConfigResult> configs,
 
             string createdAt,
+
+            ImmutableArray<Outputs.GetMdbPostgresqlClusterDatabaseResult> databases,
 
             bool deletionProtection,
 
@@ -241,11 +254,14 @@ namespace Pulumi.Yandex
 
             ImmutableArray<string> securityGroupIds,
 
-            string status)
+            string status,
+
+            ImmutableArray<Outputs.GetMdbPostgresqlClusterUserResult> users)
         {
             ClusterId = clusterId;
             Configs = configs;
             CreatedAt = createdAt;
+            Databases = databases;
             DeletionProtection = deletionProtection;
             Description = description;
             Environment = environment;
@@ -260,6 +276,7 @@ namespace Pulumi.Yandex
             NetworkId = networkId;
             SecurityGroupIds = securityGroupIds;
             Status = status;
+            Users = users;
         }
     }
 }

@@ -20,6 +20,11 @@ namespace Pulumi.Yandex.Inputs
         [Input("filter")]
         public Input<string>? Filter { get; set; }
 
+        /// <summary>
+        /// Specifies if a node allows runtime configuration of audit filters and the auditAuthorizationSuccess variable.
+        /// For more information see [auditLog.runtimeConfiguration](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.runtimeConfiguration)
+        /// description in the official documentation. Available only in enterprise edition.
+        /// </summary>
         [Input("runtimeConfiguration")]
         public Input<bool>? RuntimeConfiguration { get; set; }
 

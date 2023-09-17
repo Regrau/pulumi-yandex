@@ -51,8 +51,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -65,7 +63,7 @@ import (
 //					pulumi.String("example.com"),
 //				},
 //				SelfManaged: &CmCertificateSelfManagedArgs{
-//					Certificate: pulumi.String(fmt.Sprintf("-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----- \n -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----\n")),
+//					Certificate: pulumi.String("-----BEGIN CERTIFICATE----- ... -----END CERTIFICATE----- \n -----BEGIN CERTIFICATE----- ... -----END CERTIFICATE-----\n"),
 //					PrivateKey:  pulumi.String("-----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY-----"),
 //				},
 //			})
@@ -84,7 +82,7 @@ import (
 //
 // ```sh
 //
-//	$ pulumi import yandex:index/cmCertificate:cmCertificate default <certificate_id>
+//	$ pulumi import yandex:index/cmCertificate:cmCertificate default certificate_id
 //
 // ```
 type CmCertificate struct {

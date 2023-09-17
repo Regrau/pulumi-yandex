@@ -94,6 +94,12 @@ namespace Pulumi.Yandex
         public string? FolderId { get; set; }
 
         /// <summary>
+        /// ID of GPU cluster if instance is part of it.
+        /// </summary>
+        [Input("gpuClusterId")]
+        public string? GpuClusterId { get; set; }
+
+        /// <summary>
         /// The ID of a specific instance.
         /// </summary>
         [Input("instanceId")]
@@ -150,6 +156,12 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("folderId")]
         public Input<string>? FolderId { get; set; }
+
+        /// <summary>
+        /// ID of GPU cluster if instance is part of it.
+        /// </summary>
+        [Input("gpuClusterId")]
+        public Input<string>? GpuClusterId { get; set; }
 
         /// <summary>
         /// The ID of a specific instance.
@@ -215,6 +227,10 @@ namespace Pulumi.Yandex
         /// DNS record FQDN.
         /// </summary>
         public readonly string Fqdn;
+        /// <summary>
+        /// ID of GPU cluster if instance is part of it.
+        /// </summary>
+        public readonly string GpuClusterId;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
@@ -299,6 +315,8 @@ namespace Pulumi.Yandex
 
             string fqdn,
 
+            string gpuClusterId,
+
             string id,
 
             string instanceId,
@@ -339,6 +357,7 @@ namespace Pulumi.Yandex
             Filesystems = filesystems;
             FolderId = folderId;
             Fqdn = fqdn;
+            GpuClusterId = gpuClusterId;
             Id = id;
             InstanceId = instanceId;
             Labels = labels;

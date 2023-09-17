@@ -40,6 +40,13 @@ func GetOrganizationId(ctx *pulumi.Context) string {
 func GetPlaintext(ctx *pulumi.Context) bool {
 	return config.GetBool(ctx, "yandex:plaintext")
 }
+
+// Profile to use in the shared credentials file. Default value is `default`.
+func GetProfile(ctx *pulumi.Context) string {
+	return config.Get(ctx, "yandex:profile")
+}
+
+// The region where operations will take place. Examples are ru-central1
 func GetRegionId(ctx *pulumi.Context) string {
 	return config.Get(ctx, "yandex:regionId")
 }
@@ -47,6 +54,11 @@ func GetRegionId(ctx *pulumi.Context) string {
 // Either the path to or the contents of a Service Account key file in JSON format.
 func GetServiceAccountKeyFile(ctx *pulumi.Context) string {
 	return config.Get(ctx, "yandex:serviceAccountKeyFile")
+}
+
+// Path to shared credentials file.
+func GetSharedCredentialsFile(ctx *pulumi.Context) string {
+	return config.Get(ctx, "yandex:sharedCredentialsFile")
 }
 
 // Yandex.Cloud storage service access key. Used when a storage data/resource doesn't have an access key explicitly

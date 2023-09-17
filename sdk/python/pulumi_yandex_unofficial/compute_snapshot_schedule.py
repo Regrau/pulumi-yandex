@@ -27,13 +27,13 @@ class ComputeSnapshotScheduleArgs:
                  snapshot_spec: Optional[pulumi.Input['ComputeSnapshotScheduleSnapshotSpecArgs']] = None):
         """
         The set of arguments for constructing a ComputeSnapshotSchedule resource.
-        :param pulumi.Input[str] description: Description of the resource.
+        :param pulumi.Input[str] description: Description to assign to snapshots created by this snapshot schedule.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disk_ids: IDs of the disk for snapshot schedule.
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
                is not provided, the default provider folder is used.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the snapshot schedule.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         :param pulumi.Input[str] name: A name for the resource.
-        :param pulumi.Input[str] retention_period: Retention period applied to snapshots created by this snapshot schedule.
+        :param pulumi.Input[str] retention_period: Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
         :param pulumi.Input['ComputeSnapshotScheduleSchedulePolicyArgs'] schedule_policy: Schedule policy of the snapshot schedule.
         :param pulumi.Input[int] snapshot_count: Maximum number of snapshots for every disk of the snapshot schedule.
         :param pulumi.Input['ComputeSnapshotScheduleSnapshotSpecArgs'] snapshot_spec: Additional attributes for snapshots created by this snapshot schedule.
@@ -61,7 +61,7 @@ class ComputeSnapshotScheduleArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Description of the resource.
+        Description to assign to snapshots created by this snapshot schedule.
         """
         return pulumi.get(self, "description")
 
@@ -98,7 +98,7 @@ class ComputeSnapshotScheduleArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        A set of key/value label pairs to assign to the snapshot schedule.
+        A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         """
         return pulumi.get(self, "labels")
 
@@ -122,7 +122,7 @@ class ComputeSnapshotScheduleArgs:
     @pulumi.getter(name="retentionPeriod")
     def retention_period(self) -> Optional[pulumi.Input[str]]:
         """
-        Retention period applied to snapshots created by this snapshot schedule.
+        Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
         """
         return pulumi.get(self, "retention_period")
 
@@ -184,13 +184,13 @@ class _ComputeSnapshotScheduleState:
         """
         Input properties used for looking up and filtering ComputeSnapshotSchedule resources.
         :param pulumi.Input[str] created_at: Creation timestamp of the snapshot schedule.
-        :param pulumi.Input[str] description: Description of the resource.
+        :param pulumi.Input[str] description: Description to assign to snapshots created by this snapshot schedule.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disk_ids: IDs of the disk for snapshot schedule.
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
                is not provided, the default provider folder is used.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the snapshot schedule.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         :param pulumi.Input[str] name: A name for the resource.
-        :param pulumi.Input[str] retention_period: Retention period applied to snapshots created by this snapshot schedule.
+        :param pulumi.Input[str] retention_period: Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
         :param pulumi.Input['ComputeSnapshotScheduleSchedulePolicyArgs'] schedule_policy: Schedule policy of the snapshot schedule.
         :param pulumi.Input[int] snapshot_count: Maximum number of snapshots for every disk of the snapshot schedule.
         :param pulumi.Input['ComputeSnapshotScheduleSnapshotSpecArgs'] snapshot_spec: Additional attributes for snapshots created by this snapshot schedule.
@@ -235,7 +235,7 @@ class _ComputeSnapshotScheduleState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Description of the resource.
+        Description to assign to snapshots created by this snapshot schedule.
         """
         return pulumi.get(self, "description")
 
@@ -272,7 +272,7 @@ class _ComputeSnapshotScheduleState:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        A set of key/value label pairs to assign to the snapshot schedule.
+        A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         """
         return pulumi.get(self, "labels")
 
@@ -296,7 +296,7 @@ class _ComputeSnapshotScheduleState:
     @pulumi.getter(name="retentionPeriod")
     def retention_period(self) -> Optional[pulumi.Input[str]]:
         """
-        Retention period applied to snapshots created by this snapshot schedule.
+        Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
         """
         return pulumi.get(self, "retention_period")
 
@@ -383,18 +383,12 @@ class ComputeSnapshotSchedule(pulumi.CustomResource):
                 "test_disk_id",
                 "another_test_disk_id",
             ],
-            labels={
-                "my-label": "my-label-value",
-            },
+            retention_period="12h",
             schedule_policy=yandex.ComputeSnapshotScheduleSchedulePolicyArgs(
                 expression="0 0 * * *",
             ),
-            snapshot_count=1,
             snapshot_spec=yandex.ComputeSnapshotScheduleSnapshotSpecArgs(
-                description="snapshot-description",
-                labels={
-                    "snapshot-label": "my-snapshot-label-value",
-                },
+                description="retention-snapshot",
             ))
         ```
 
@@ -408,13 +402,13 @@ class ComputeSnapshotSchedule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] description: Description of the resource.
+        :param pulumi.Input[str] description: Description to assign to snapshots created by this snapshot schedule.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disk_ids: IDs of the disk for snapshot schedule.
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
                is not provided, the default provider folder is used.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the snapshot schedule.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         :param pulumi.Input[str] name: A name for the resource.
-        :param pulumi.Input[str] retention_period: Retention period applied to snapshots created by this snapshot schedule.
+        :param pulumi.Input[str] retention_period: Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
         :param pulumi.Input[pulumi.InputType['ComputeSnapshotScheduleSchedulePolicyArgs']] schedule_policy: Schedule policy of the snapshot schedule.
         :param pulumi.Input[int] snapshot_count: Maximum number of snapshots for every disk of the snapshot schedule.
         :param pulumi.Input[pulumi.InputType['ComputeSnapshotScheduleSnapshotSpecArgs']] snapshot_spec: Additional attributes for snapshots created by this snapshot schedule.
@@ -440,18 +434,12 @@ class ComputeSnapshotSchedule(pulumi.CustomResource):
                 "test_disk_id",
                 "another_test_disk_id",
             ],
-            labels={
-                "my-label": "my-label-value",
-            },
+            retention_period="12h",
             schedule_policy=yandex.ComputeSnapshotScheduleSchedulePolicyArgs(
                 expression="0 0 * * *",
             ),
-            snapshot_count=1,
             snapshot_spec=yandex.ComputeSnapshotScheduleSnapshotSpecArgs(
-                description="snapshot-description",
-                labels={
-                    "snapshot-label": "my-snapshot-label-value",
-                },
+                description="retention-snapshot",
             ))
         ```
 
@@ -536,13 +524,13 @@ class ComputeSnapshotSchedule(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] created_at: Creation timestamp of the snapshot schedule.
-        :param pulumi.Input[str] description: Description of the resource.
+        :param pulumi.Input[str] description: Description to assign to snapshots created by this snapshot schedule.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] disk_ids: IDs of the disk for snapshot schedule.
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
                is not provided, the default provider folder is used.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the snapshot schedule.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         :param pulumi.Input[str] name: A name for the resource.
-        :param pulumi.Input[str] retention_period: Retention period applied to snapshots created by this snapshot schedule.
+        :param pulumi.Input[str] retention_period: Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
         :param pulumi.Input[pulumi.InputType['ComputeSnapshotScheduleSchedulePolicyArgs']] schedule_policy: Schedule policy of the snapshot schedule.
         :param pulumi.Input[int] snapshot_count: Maximum number of snapshots for every disk of the snapshot schedule.
         :param pulumi.Input[pulumi.InputType['ComputeSnapshotScheduleSnapshotSpecArgs']] snapshot_spec: Additional attributes for snapshots created by this snapshot schedule.
@@ -577,7 +565,7 @@ class ComputeSnapshotSchedule(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[Optional[str]]:
         """
-        Description of the resource.
+        Description to assign to snapshots created by this snapshot schedule.
         """
         return pulumi.get(self, "description")
 
@@ -602,7 +590,7 @@ class ComputeSnapshotSchedule(pulumi.CustomResource):
     @pulumi.getter
     def labels(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
         """
-        A set of key/value label pairs to assign to the snapshot schedule.
+        A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         """
         return pulumi.get(self, "labels")
 
@@ -618,7 +606,7 @@ class ComputeSnapshotSchedule(pulumi.CustomResource):
     @pulumi.getter(name="retentionPeriod")
     def retention_period(self) -> pulumi.Output[Optional[str]]:
         """
-        Retention period applied to snapshots created by this snapshot schedule.
+        Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
         """
         return pulumi.get(self, "retention_period")
 

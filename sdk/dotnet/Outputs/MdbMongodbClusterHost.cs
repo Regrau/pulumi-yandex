@@ -30,7 +30,7 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly string? Role;
         /// <summary>
-        /// The name of the shard to which the host belongs.
+        /// The name of the shard to which the host belongs. Only for sharded cluster.
         /// </summary>
         public readonly string? ShardName;
         /// <summary>

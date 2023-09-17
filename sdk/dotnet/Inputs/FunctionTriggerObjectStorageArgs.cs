@@ -12,6 +12,12 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class FunctionTriggerObjectStorageArgs : global::Pulumi.ResourceArgs
     {
+        [Input("batchCutoff", required: true)]
+        public Input<string> BatchCutoff { get; set; } = null!;
+
+        [Input("batchSize")]
+        public Input<string>? BatchSize { get; set; }
+
         [Input("bucketId", required: true)]
         public Input<string> BucketId { get; set; } = null!;
 

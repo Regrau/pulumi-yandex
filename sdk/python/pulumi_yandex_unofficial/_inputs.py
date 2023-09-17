@@ -110,7 +110,7 @@ __all__ = [
     'ComputeInstanceGroupApplicationLoadBalancerArgs',
     'ComputeInstanceGroupDeployPolicyArgs',
     'ComputeInstanceGroupHealthCheckArgs',
-    'ComputeInstanceGroupHealthCheckHttpOptionArgs',
+    'ComputeInstanceGroupHealthCheckHttpOptionsArgs',
     'ComputeInstanceGroupHealthCheckTcpOptionsArgs',
     'ComputeInstanceGroupInstanceArgs',
     'ComputeInstanceGroupInstanceNetworkInterfaceArgs',
@@ -173,6 +173,45 @@ __all__ = [
     'DatatransferEndpointSettingsClickhouseTargetShardingArgs',
     'DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHashArgs',
     'DatatransferEndpointSettingsClickhouseTargetShardingTransferIdArgs',
+    'DatatransferEndpointSettingsKafkaSourceArgs',
+    'DatatransferEndpointSettingsKafkaSourceAuthArgs',
+    'DatatransferEndpointSettingsKafkaSourceAuthNoAuthArgs',
+    'DatatransferEndpointSettingsKafkaSourceAuthSaslArgs',
+    'DatatransferEndpointSettingsKafkaSourceAuthSaslPasswordArgs',
+    'DatatransferEndpointSettingsKafkaSourceConnectionArgs',
+    'DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseArgs',
+    'DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeArgs',
+    'DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabledArgs',
+    'DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabledArgs',
+    'DatatransferEndpointSettingsKafkaSourceParserArgs',
+    'DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1ParserArgs',
+    'DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParserArgs',
+    'DatatransferEndpointSettingsKafkaSourceParserJsonParserArgs',
+    'DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaArgs',
+    'DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsArgs',
+    'DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsFieldArgs',
+    'DatatransferEndpointSettingsKafkaSourceParserTskvParserArgs',
+    'DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaArgs',
+    'DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsArgs',
+    'DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsFieldArgs',
+    'DatatransferEndpointSettingsKafkaSourceTransformerArgs',
+    'DatatransferEndpointSettingsKafkaTargetArgs',
+    'DatatransferEndpointSettingsKafkaTargetAuthArgs',
+    'DatatransferEndpointSettingsKafkaTargetAuthNoAuthArgs',
+    'DatatransferEndpointSettingsKafkaTargetAuthSaslArgs',
+    'DatatransferEndpointSettingsKafkaTargetAuthSaslPasswordArgs',
+    'DatatransferEndpointSettingsKafkaTargetConnectionArgs',
+    'DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseArgs',
+    'DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeArgs',
+    'DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabledArgs',
+    'DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabledArgs',
+    'DatatransferEndpointSettingsKafkaTargetSerializerArgs',
+    'DatatransferEndpointSettingsKafkaTargetSerializerSerializerAutoArgs',
+    'DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumArgs',
+    'DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameterArgs',
+    'DatatransferEndpointSettingsKafkaTargetSerializerSerializerJsonArgs',
+    'DatatransferEndpointSettingsKafkaTargetTopicSettingsArgs',
+    'DatatransferEndpointSettingsKafkaTargetTopicSettingsTopicArgs',
     'DatatransferEndpointSettingsMongoSourceArgs',
     'DatatransferEndpointSettingsMongoSourceCollectionArgs',
     'DatatransferEndpointSettingsMongoSourceConnectionArgs',
@@ -221,6 +260,8 @@ __all__ = [
     'DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeDisabledArgs',
     'DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseTlsModeEnabledArgs',
     'DatatransferEndpointSettingsPostgresTargetPasswordArgs',
+    'DatatransferEndpointSettingsYdbSourceArgs',
+    'DatatransferEndpointSettingsYdbTargetArgs',
     'FunctionConnectivityArgs',
     'FunctionContentArgs',
     'FunctionPackageArgs',
@@ -251,7 +292,9 @@ __all__ = [
     'KubernetesNodeGroupDeployPolicyArgs',
     'KubernetesNodeGroupInstanceTemplateArgs',
     'KubernetesNodeGroupInstanceTemplateBootDiskArgs',
+    'KubernetesNodeGroupInstanceTemplateContainerNetworkArgs',
     'KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs',
+    'KubernetesNodeGroupInstanceTemplateGpuSettingsArgs',
     'KubernetesNodeGroupInstanceTemplateNetworkInterfaceArgs',
     'KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv4DnsRecordArgs',
     'KubernetesNodeGroupInstanceTemplateNetworkInterfaceIpv6DnsRecordArgs',
@@ -335,15 +378,32 @@ __all__ = [
     'MdbMongodbClusterClusterConfigArgs',
     'MdbMongodbClusterClusterConfigAccessArgs',
     'MdbMongodbClusterClusterConfigBackupWindowStartArgs',
+    'MdbMongodbClusterClusterConfigMongocfgArgs',
+    'MdbMongodbClusterClusterConfigMongocfgNetArgs',
+    'MdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs',
+    'MdbMongodbClusterClusterConfigMongocfgStorageArgs',
+    'MdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs',
     'MdbMongodbClusterClusterConfigMongodArgs',
     'MdbMongodbClusterClusterConfigMongodAuditLogArgs',
+    'MdbMongodbClusterClusterConfigMongodNetArgs',
+    'MdbMongodbClusterClusterConfigMongodOperationProfilingArgs',
     'MdbMongodbClusterClusterConfigMongodSecurityArgs',
     'MdbMongodbClusterClusterConfigMongodSecurityKmipArgs',
     'MdbMongodbClusterClusterConfigMongodSetParameterArgs',
+    'MdbMongodbClusterClusterConfigMongodStorageArgs',
+    'MdbMongodbClusterClusterConfigMongodStorageJournalArgs',
+    'MdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs',
+    'MdbMongodbClusterClusterConfigMongosArgs',
+    'MdbMongodbClusterClusterConfigMongosNetArgs',
+    'MdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs',
     'MdbMongodbClusterDatabaseArgs',
     'MdbMongodbClusterHostArgs',
     'MdbMongodbClusterMaintenanceWindowArgs',
     'MdbMongodbClusterResourcesArgs',
+    'MdbMongodbClusterResourcesMongocfgArgs',
+    'MdbMongodbClusterResourcesMongodArgs',
+    'MdbMongodbClusterResourcesMongoinfraArgs',
+    'MdbMongodbClusterResourcesMongosArgs',
     'MdbMongodbClusterRestoreArgs',
     'MdbMongodbClusterUserArgs',
     'MdbMongodbClusterUserPermissionArgs',
@@ -461,13 +521,41 @@ __all__ = [
     'GetComputeInstanceMetadataOptionsArgs',
     'GetComputeInstancePlacementPolicyArgs',
     'GetComputeInstancePlacementPolicyHostAffinityRuleArgs',
+    'GetComputeSnapshotScheduleSchedulePolicyArgs',
+    'GetComputeSnapshotScheduleSnapshotSpecArgs',
     'GetFunctionConnectivityArgs',
     'GetFunctionScalingPolicyPolicyArgs',
     'GetFunctionSecretArgs',
     'GetIamPolicyBindingArgs',
+    'GetMdbClickhouseClusterAccessArgs',
+    'GetMdbClickhouseClusterBackupWindowStartArgs',
+    'GetMdbClickhouseClusterClickhouseArgs',
+    'GetMdbClickhouseClusterClickhouseConfigArgs',
+    'GetMdbClickhouseClusterClickhouseConfigCompressionArgs',
+    'GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs',
+    'GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs',
+    'GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs',
+    'GetMdbClickhouseClusterClickhouseConfigKafkaArgs',
+    'GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs',
+    'GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs',
+    'GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs',
+    'GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs',
+    'GetMdbClickhouseClusterClickhouseResourcesArgs',
     'GetMdbClickhouseClusterCloudStorageArgs',
+    'GetMdbClickhouseClusterDatabaseArgs',
+    'GetMdbClickhouseClusterFormatSchemaArgs',
+    'GetMdbClickhouseClusterHostArgs',
+    'GetMdbClickhouseClusterMaintenanceWindowArgs',
+    'GetMdbClickhouseClusterMlModelArgs',
     'GetMdbClickhouseClusterShardArgs',
+    'GetMdbClickhouseClusterShardGroupArgs',
     'GetMdbClickhouseClusterShardResourcesArgs',
+    'GetMdbClickhouseClusterUserArgs',
+    'GetMdbClickhouseClusterUserPermissionArgs',
+    'GetMdbClickhouseClusterUserQuotaArgs',
+    'GetMdbClickhouseClusterUserSettingsArgs',
+    'GetMdbClickhouseClusterZookeeperArgs',
+    'GetMdbClickhouseClusterZookeeperResourcesArgs',
     'GetMdbGreenplumClusterPoolerConfigArgs',
     'GetMdbKafkaClusterConfigArgs',
     'GetMdbKafkaClusterConfigAccessArgs',
@@ -483,21 +571,41 @@ __all__ = [
     'GetMdbMongodbClusterClusterConfigArgs',
     'GetMdbMongodbClusterClusterConfigAccessArgs',
     'GetMdbMongodbClusterClusterConfigBackupWindowStartArgs',
+    'GetMdbMongodbClusterClusterConfigMongocfgArgs',
+    'GetMdbMongodbClusterClusterConfigMongocfgNetArgs',
+    'GetMdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs',
+    'GetMdbMongodbClusterClusterConfigMongocfgStorageArgs',
+    'GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs',
     'GetMdbMongodbClusterClusterConfigMongodArgs',
     'GetMdbMongodbClusterClusterConfigMongodAuditLogArgs',
+    'GetMdbMongodbClusterClusterConfigMongodNetArgs',
+    'GetMdbMongodbClusterClusterConfigMongodOperationProfilingArgs',
     'GetMdbMongodbClusterClusterConfigMongodSecurityArgs',
     'GetMdbMongodbClusterClusterConfigMongodSecurityKmipArgs',
     'GetMdbMongodbClusterClusterConfigMongodSetParameterArgs',
+    'GetMdbMongodbClusterClusterConfigMongodStorageArgs',
+    'GetMdbMongodbClusterClusterConfigMongodStorageJournalArgs',
+    'GetMdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs',
+    'GetMdbMongodbClusterClusterConfigMongosArgs',
+    'GetMdbMongodbClusterClusterConfigMongosNetArgs',
+    'GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs',
     'GetMdbMongodbClusterDatabaseArgs',
     'GetMdbMongodbClusterHostArgs',
     'GetMdbMongodbClusterMaintenanceWindowArgs',
     'GetMdbMongodbClusterResourcesArgs',
+    'GetMdbMongodbClusterResourcesMongocfgArgs',
+    'GetMdbMongodbClusterResourcesMongodArgs',
+    'GetMdbMongodbClusterResourcesMongoinfraArgs',
+    'GetMdbMongodbClusterResourcesMongosArgs',
     'GetMdbMongodbClusterRestoreArgs',
     'GetMdbMongodbClusterUserArgs',
     'GetMdbMongodbClusterUserPermissionArgs',
     'GetMdbMysqlClusterAccessArgs',
+    'GetMdbMysqlUserPermissionArgs',
+    'GetMdbPostgresqlDatabaseExtensionArgs',
     'GetServerlessContainerConnectivityArgs',
     'GetServerlessContainerSecretArgs',
+    'GetVpcGatewaySharedEgressGatewayArgs',
     'GetYdbDatabaseServerlessServerlessDatabaseArgs',
     'LockboxSecretVersionEntryArgs',
     'LockboxSecretVersionEntryCommandArgs',
@@ -511,11 +619,43 @@ __all__ = [
     'MdbKafkaConnectorConnectorConfigS3SinkArgs',
     'MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionArgs',
     'MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args',
+    'MdbKafkaUserPermissionArgs',
     'MdbMysqlUserConnectionLimitsArgs',
     'MdbMysqlUserPermissionArgs',
     'MdbPostgresqlDatabaseExtensionArgs',
     'MdbPostgresqlUserPermissionArgs',
+    'MonitoringDashboardParametrizationArgs',
+    'MonitoringDashboardParametrizationParameterArgs',
+    'MonitoringDashboardParametrizationParameterCustomArgs',
+    'MonitoringDashboardParametrizationParameterLabelValueArgs',
+    'MonitoringDashboardParametrizationParameterTextArgs',
+    'MonitoringDashboardWidgetArgs',
+    'MonitoringDashboardWidgetChartArgs',
+    'MonitoringDashboardWidgetChartNameHidingSettingArgs',
+    'MonitoringDashboardWidgetChartQueryArgs',
+    'MonitoringDashboardWidgetChartQueryDownsamplingArgs',
+    'MonitoringDashboardWidgetChartQueryTargetArgs',
+    'MonitoringDashboardWidgetChartSeriesOverrideArgs',
+    'MonitoringDashboardWidgetChartSeriesOverrideSettingArgs',
+    'MonitoringDashboardWidgetChartVisualizationSettingArgs',
+    'MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingArgs',
+    'MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomaticArgs',
+    'MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradientArgs',
+    'MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandardArgs',
+    'MonitoringDashboardWidgetChartVisualizationSettingHeatmapSettingArgs',
+    'MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingArgs',
+    'MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeftArgs',
+    'MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRightArgs',
+    'MonitoringDashboardWidgetPositionArgs',
+    'MonitoringDashboardWidgetTextArgs',
+    'MonitoringDashboardWidgetTitleArgs',
     'VpcGatewaySharedEgressGatewayArgs',
+    'YandexYdbTableColumnArgs',
+    'YandexYdbTableFamilyArgs',
+    'YandexYdbTablePartitioningSettingsArgs',
+    'YandexYdbTablePartitioningSettingsPartitionAtKeyArgs',
+    'YandexYdbTableTtlArgs',
+    'YandexYdbTopicChangefeedConsumerArgs',
     'YandexYdbTopicConsumerArgs',
 ]
 
@@ -4988,7 +5128,7 @@ class CdnResourceOptionsArgs:
                  redirect_http_to_https: Optional[pulumi.Input[bool]] = None,
                  redirect_https_to_http: Optional[pulumi.Input[bool]] = None,
                  slice: Optional[pulumi.Input[bool]] = None,
-                 static_request_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 static_request_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  static_response_headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[str]]] allowed_http_methods: HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
@@ -5011,7 +5151,8 @@ class CdnResourceOptionsArgs:
         :param pulumi.Input[bool] redirect_http_to_https: set up a redirect from HTTP to HTTPS.
         :param pulumi.Input[bool] redirect_https_to_http: set up a redirect from HTTPS to HTTP.
         :param pulumi.Input[bool] slice: files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] static_request_headers: set up custom headers that CDN servers send in requests to origins.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] static_request_headers: set up custom headers that CDN servers will send in requests to origins.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] static_response_headers: set up custom headers that CDN servers will send in response to clients.
         """
         if allowed_http_methods is not None:
             pulumi.set(__self__, "allowed_http_methods", allowed_http_methods)
@@ -5300,19 +5441,22 @@ class CdnResourceOptionsArgs:
 
     @property
     @pulumi.getter(name="staticRequestHeaders")
-    def static_request_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+    def static_request_headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        set up custom headers that CDN servers send in requests to origins.
+        set up custom headers that CDN servers will send in requests to origins.
         """
         return pulumi.get(self, "static_request_headers")
 
     @static_request_headers.setter
-    def static_request_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+    def static_request_headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
         pulumi.set(self, "static_request_headers", value)
 
     @property
     @pulumi.getter(name="staticResponseHeaders")
     def static_response_headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        set up custom headers that CDN servers will send in response to clients.
+        """
         return pulumi.get(self, "static_response_headers")
 
     @static_response_headers.setter
@@ -5888,14 +6032,14 @@ class ComputeInstanceGroupDeployPolicyArgs:
 class ComputeInstanceGroupHealthCheckArgs:
     def __init__(__self__, *,
                  healthy_threshold: Optional[pulumi.Input[int]] = None,
-                 http_options: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupHealthCheckHttpOptionArgs']]]] = None,
+                 http_options: Optional[pulumi.Input['ComputeInstanceGroupHealthCheckHttpOptionsArgs']] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  tcp_options: Optional[pulumi.Input['ComputeInstanceGroupHealthCheckTcpOptionsArgs']] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  unhealthy_threshold: Optional[pulumi.Input[int]] = None):
         """
         :param pulumi.Input[int] healthy_threshold: The number of successful health checks before the managed instance is declared healthy.
-        :param pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupHealthCheckHttpOptionArgs']]] http_options: HTTP check options. The structure is documented below.
+        :param pulumi.Input['ComputeInstanceGroupHealthCheckHttpOptionsArgs'] http_options: HTTP check options. The structure is documented below.
         :param pulumi.Input[int] interval: The interval to wait between health checks in seconds.
         :param pulumi.Input['ComputeInstanceGroupHealthCheckTcpOptionsArgs'] tcp_options: TCP check options. The structure is documented below.
         :param pulumi.Input[int] timeout: The length of time to wait for a response before the health check times out in seconds.
@@ -5928,14 +6072,14 @@ class ComputeInstanceGroupHealthCheckArgs:
 
     @property
     @pulumi.getter(name="httpOptions")
-    def http_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupHealthCheckHttpOptionArgs']]]]:
+    def http_options(self) -> Optional[pulumi.Input['ComputeInstanceGroupHealthCheckHttpOptionsArgs']]:
         """
         HTTP check options. The structure is documented below.
         """
         return pulumi.get(self, "http_options")
 
     @http_options.setter
-    def http_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ComputeInstanceGroupHealthCheckHttpOptionArgs']]]]):
+    def http_options(self, value: Optional[pulumi.Input['ComputeInstanceGroupHealthCheckHttpOptionsArgs']]):
         pulumi.set(self, "http_options", value)
 
     @property
@@ -5988,7 +6132,7 @@ class ComputeInstanceGroupHealthCheckArgs:
 
 
 @pulumi.input_type
-class ComputeInstanceGroupHealthCheckHttpOptionArgs:
+class ComputeInstanceGroupHealthCheckHttpOptionsArgs:
     def __init__(__self__, *,
                  path: pulumi.Input[str],
                  port: pulumi.Input[int]):
@@ -9371,22 +9515,38 @@ class DatatransferEndpointSettingsArgs:
     def __init__(__self__, *,
                  clickhouse_source: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceArgs']] = None,
                  clickhouse_target: Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetArgs']] = None,
+                 kafka_source: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceArgs']] = None,
+                 kafka_target: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetArgs']] = None,
                  mongo_source: Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceArgs']] = None,
                  mongo_target: Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetArgs']] = None,
                  mysql_source: Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceArgs']] = None,
                  mysql_target: Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetArgs']] = None,
                  postgres_source: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceArgs']] = None,
-                 postgres_target: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetArgs']] = None):
+                 postgres_target: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetArgs']] = None,
+                 ydb_source: Optional[pulumi.Input['DatatransferEndpointSettingsYdbSourceArgs']] = None,
+                 ydb_target: Optional[pulumi.Input['DatatransferEndpointSettingsYdbTargetArgs']] = None):
         """
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseSourceArgs'] clickhouse_source: Settings specific to the ClickHouse source endpoint.
+        :param pulumi.Input['DatatransferEndpointSettingsClickhouseTargetArgs'] clickhouse_target: Settings specific to the ClickHouse target endpoint.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceArgs'] kafka_source: Settings specific to the Kafka source endpoint.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetArgs'] kafka_target: Settings specific to the Kafka target endpoint.
+        :param pulumi.Input['DatatransferEndpointSettingsMongoSourceArgs'] mongo_source: Settings specific to the MongoDB source endpoint.
+        :param pulumi.Input['DatatransferEndpointSettingsMongoTargetArgs'] mongo_target: Settings specific to the MongoDB target endpoint.
         :param pulumi.Input['DatatransferEndpointSettingsMysqlSourceArgs'] mysql_source: Settings specific to the MySQL source endpoint.
         :param pulumi.Input['DatatransferEndpointSettingsMysqlTargetArgs'] mysql_target: Settings specific to the MySQL target endpoint.
         :param pulumi.Input['DatatransferEndpointSettingsPostgresSourceArgs'] postgres_source: Settings specific to the PostgreSQL source endpoint.
         :param pulumi.Input['DatatransferEndpointSettingsPostgresTargetArgs'] postgres_target: Settings specific to the PostgreSQL target endpoint.
+        :param pulumi.Input['DatatransferEndpointSettingsYdbSourceArgs'] ydb_source: Settings specific to the YDB source endpoint.
+        :param pulumi.Input['DatatransferEndpointSettingsYdbTargetArgs'] ydb_target: Settings specific to the YDB target endpoint.
         """
         if clickhouse_source is not None:
             pulumi.set(__self__, "clickhouse_source", clickhouse_source)
         if clickhouse_target is not None:
             pulumi.set(__self__, "clickhouse_target", clickhouse_target)
+        if kafka_source is not None:
+            pulumi.set(__self__, "kafka_source", kafka_source)
+        if kafka_target is not None:
+            pulumi.set(__self__, "kafka_target", kafka_target)
         if mongo_source is not None:
             pulumi.set(__self__, "mongo_source", mongo_source)
         if mongo_target is not None:
@@ -9399,10 +9559,17 @@ class DatatransferEndpointSettingsArgs:
             pulumi.set(__self__, "postgres_source", postgres_source)
         if postgres_target is not None:
             pulumi.set(__self__, "postgres_target", postgres_target)
+        if ydb_source is not None:
+            pulumi.set(__self__, "ydb_source", ydb_source)
+        if ydb_target is not None:
+            pulumi.set(__self__, "ydb_target", ydb_target)
 
     @property
     @pulumi.getter(name="clickhouseSource")
     def clickhouse_source(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseSourceArgs']]:
+        """
+        Settings specific to the ClickHouse source endpoint.
+        """
         return pulumi.get(self, "clickhouse_source")
 
     @clickhouse_source.setter
@@ -9412,6 +9579,9 @@ class DatatransferEndpointSettingsArgs:
     @property
     @pulumi.getter(name="clickhouseTarget")
     def clickhouse_target(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsClickhouseTargetArgs']]:
+        """
+        Settings specific to the ClickHouse target endpoint.
+        """
         return pulumi.get(self, "clickhouse_target")
 
     @clickhouse_target.setter
@@ -9419,8 +9589,35 @@ class DatatransferEndpointSettingsArgs:
         pulumi.set(self, "clickhouse_target", value)
 
     @property
+    @pulumi.getter(name="kafkaSource")
+    def kafka_source(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceArgs']]:
+        """
+        Settings specific to the Kafka source endpoint.
+        """
+        return pulumi.get(self, "kafka_source")
+
+    @kafka_source.setter
+    def kafka_source(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceArgs']]):
+        pulumi.set(self, "kafka_source", value)
+
+    @property
+    @pulumi.getter(name="kafkaTarget")
+    def kafka_target(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetArgs']]:
+        """
+        Settings specific to the Kafka target endpoint.
+        """
+        return pulumi.get(self, "kafka_target")
+
+    @kafka_target.setter
+    def kafka_target(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetArgs']]):
+        pulumi.set(self, "kafka_target", value)
+
+    @property
     @pulumi.getter(name="mongoSource")
     def mongo_source(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoSourceArgs']]:
+        """
+        Settings specific to the MongoDB source endpoint.
+        """
         return pulumi.get(self, "mongo_source")
 
     @mongo_source.setter
@@ -9430,6 +9627,9 @@ class DatatransferEndpointSettingsArgs:
     @property
     @pulumi.getter(name="mongoTarget")
     def mongo_target(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMongoTargetArgs']]:
+        """
+        Settings specific to the MongoDB target endpoint.
+        """
         return pulumi.get(self, "mongo_target")
 
     @mongo_target.setter
@@ -9483,6 +9683,30 @@ class DatatransferEndpointSettingsArgs:
     @postgres_target.setter
     def postgres_target(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetArgs']]):
         pulumi.set(self, "postgres_target", value)
+
+    @property
+    @pulumi.getter(name="ydbSource")
+    def ydb_source(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsYdbSourceArgs']]:
+        """
+        Settings specific to the YDB source endpoint.
+        """
+        return pulumi.get(self, "ydb_source")
+
+    @ydb_source.setter
+    def ydb_source(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsYdbSourceArgs']]):
+        pulumi.set(self, "ydb_source", value)
+
+    @property
+    @pulumi.getter(name="ydbTarget")
+    def ydb_target(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsYdbTargetArgs']]:
+        """
+        Settings specific to the YDB target endpoint.
+        """
+        return pulumi.get(self, "ydb_target")
+
+    @ydb_target.setter
+    def ydb_target(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsYdbTargetArgs']]):
+        pulumi.set(self, "ydb_target", value)
 
 
 @pulumi.input_type
@@ -10396,6 +10620,1517 @@ class DatatransferEndpointSettingsClickhouseTargetShardingColumnValueHashArgs:
 class DatatransferEndpointSettingsClickhouseTargetShardingTransferIdArgs:
     def __init__(__self__):
         pass
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceArgs:
+    def __init__(__self__, *,
+                 auth: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthArgs']] = None,
+                 connection: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionArgs']] = None,
+                 parser: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserArgs']] = None,
+                 security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 topic_name: Optional[pulumi.Input[str]] = None,
+                 transformer: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceTransformerArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthArgs'] auth: Authentication data.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionArgs'] connection: Connection settings. The structure is documented below.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserArgs'] parser: Data parsing parameters. If not set, the source messages are read in raw.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param pulumi.Input[str] topic_name: Full source topic name.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceTransformerArgs'] transformer: Transform data with a custom Cloud Function.
+        """
+        if auth is not None:
+            pulumi.set(__self__, "auth", auth)
+        if connection is not None:
+            pulumi.set(__self__, "connection", connection)
+        if parser is not None:
+            pulumi.set(__self__, "parser", parser)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if topic_name is not None:
+            pulumi.set(__self__, "topic_name", topic_name)
+        if transformer is not None:
+            pulumi.set(__self__, "transformer", transformer)
+
+    @property
+    @pulumi.getter
+    def auth(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthArgs']]:
+        """
+        Authentication data.
+        """
+        return pulumi.get(self, "auth")
+
+    @auth.setter
+    def auth(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthArgs']]):
+        pulumi.set(self, "auth", value)
+
+    @property
+    @pulumi.getter
+    def connection(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionArgs']]:
+        """
+        Connection settings. The structure is documented below.
+        """
+        return pulumi.get(self, "connection")
+
+    @connection.setter
+    def connection(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionArgs']]):
+        pulumi.set(self, "connection", value)
+
+    @property
+    @pulumi.getter
+    def parser(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserArgs']]:
+        """
+        Data parsing parameters. If not set, the source messages are read in raw.
+        """
+        return pulumi.get(self, "parser")
+
+    @parser.setter
+    def parser(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserArgs']]):
+        pulumi.set(self, "parser", value)
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @security_groups.setter
+    def security_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_groups", value)
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Full source topic name.
+        """
+        return pulumi.get(self, "topic_name")
+
+    @topic_name.setter
+    def topic_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "topic_name", value)
+
+    @property
+    @pulumi.getter
+    def transformer(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceTransformerArgs']]:
+        """
+        Transform data with a custom Cloud Function.
+        """
+        return pulumi.get(self, "transformer")
+
+    @transformer.setter
+    def transformer(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceTransformerArgs']]):
+        pulumi.set(self, "transformer", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceAuthArgs:
+    def __init__(__self__, *,
+                 no_auth: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthNoAuthArgs']] = None,
+                 sasl: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthSaslArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthNoAuthArgs'] no_auth: Connection without authentication data.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthSaslArgs'] sasl: Authentication using sasl.
+        """
+        if no_auth is not None:
+            pulumi.set(__self__, "no_auth", no_auth)
+        if sasl is not None:
+            pulumi.set(__self__, "sasl", sasl)
+
+    @property
+    @pulumi.getter(name="noAuth")
+    def no_auth(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthNoAuthArgs']]:
+        """
+        Connection without authentication data.
+        """
+        return pulumi.get(self, "no_auth")
+
+    @no_auth.setter
+    def no_auth(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthNoAuthArgs']]):
+        pulumi.set(self, "no_auth", value)
+
+    @property
+    @pulumi.getter
+    def sasl(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthSaslArgs']]:
+        """
+        Authentication using sasl.
+        """
+        return pulumi.get(self, "sasl")
+
+    @sasl.setter
+    def sasl(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthSaslArgs']]):
+        pulumi.set(self, "sasl", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceAuthNoAuthArgs:
+    def __init__(__self__):
+        pass
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceAuthSaslArgs:
+    def __init__(__self__, *,
+                 mechanism: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthSaslPasswordArgs']] = None,
+                 user: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthSaslPasswordArgs'] password: Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        :param pulumi.Input[str] user: User for the database access.
+        """
+        if mechanism is not None:
+            pulumi.set(__self__, "mechanism", mechanism)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
+
+    @property
+    @pulumi.getter
+    def mechanism(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mechanism")
+
+    @mechanism.setter
+    def mechanism(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mechanism", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthSaslPasswordArgs']]:
+        """
+        Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceAuthSaslPasswordArgs']]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User for the database access.
+        """
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceAuthSaslPasswordArgs:
+    def __init__(__self__, *,
+                 raw: Optional[pulumi.Input[str]] = None):
+        if raw is not None:
+            pulumi.set(__self__, "raw", raw)
+
+    @property
+    @pulumi.getter
+    def raw(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "raw")
+
+    @raw.setter
+    def raw(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "raw", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceConnectionArgs:
+    def __init__(__self__, *,
+                 cluster_id: Optional[pulumi.Input[str]] = None,
+                 on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseArgs']] = None):
+        """
+        :param pulumi.Input[str] cluster_id: Identifier of the Managed Kafka cluster.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise Kafka server.
+        """
+        if cluster_id is not None:
+            pulumi.set(__self__, "cluster_id", cluster_id)
+        if on_premise is not None:
+            pulumi.set(__self__, "on_premise", on_premise)
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Managed Kafka cluster.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @cluster_id.setter
+    def cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_id", value)
+
+    @property
+    @pulumi.getter(name="onPremise")
+    def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseArgs']]:
+        """
+        Connection settings of the on-premise Kafka server.
+        """
+        return pulumi.get(self, "on_premise")
+
+    @on_premise.setter
+    def on_premise(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseArgs']]):
+        pulumi.set(self, "on_premise", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseArgs:
+    def __init__(__self__, *,
+                 broker_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 subnet_id: Optional[pulumi.Input[str]] = None,
+                 tls_mode: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] broker_urls: List of Kafka broker URLs.
+        :param pulumi.Input[str] subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeArgs'] tls_mode: TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
+        if broker_urls is not None:
+            pulumi.set(__self__, "broker_urls", broker_urls)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+        if tls_mode is not None:
+            pulumi.set(__self__, "tls_mode", tls_mode)
+
+    @property
+    @pulumi.getter(name="brokerUrls")
+    def broker_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of Kafka broker URLs.
+        """
+        return pulumi.get(self, "broker_urls")
+
+    @broker_urls.setter
+    def broker_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "broker_urls", value)
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @subnet_id.setter
+    def subnet_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_id", value)
+
+    @property
+    @pulumi.getter(name="tlsMode")
+    def tls_mode(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeArgs']]:
+        """
+        TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
+        return pulumi.get(self, "tls_mode")
+
+    @tls_mode.setter
+    def tls_mode(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeArgs']]):
+        pulumi.set(self, "tls_mode", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeArgs:
+    def __init__(__self__, *,
+                 disabled: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabledArgs']] = None,
+                 enabled: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabledArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabledArgs'] disabled: Empty block designating that the connection is not secured, i.e. plaintext connection.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabledArgs'] enabled: If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
+        if disabled is not None:
+            pulumi.set(__self__, "disabled", disabled)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabledArgs']]:
+        """
+        Empty block designating that the connection is not secured, i.e. plaintext connection.
+        """
+        return pulumi.get(self, "disabled")
+
+    @disabled.setter
+    def disabled(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabledArgs']]):
+        pulumi.set(self, "disabled", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabledArgs']]:
+        """
+        If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabledArgs']]):
+        pulumi.set(self, "enabled", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeDisabledArgs:
+    def __init__(__self__):
+        pass
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceConnectionOnPremiseTlsModeEnabledArgs:
+    def __init__(__self__, *,
+                 ca_certificate: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ca_certificate: X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
+        if ca_certificate is not None:
+            pulumi.set(__self__, "ca_certificate", ca_certificate)
+
+    @property
+    @pulumi.getter(name="caCertificate")
+    def ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
+        return pulumi.get(self, "ca_certificate")
+
+    @ca_certificate.setter
+    def ca_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_certificate", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceParserArgs:
+    def __init__(__self__, *,
+                 audit_trails_v1_parser: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1ParserArgs']] = None,
+                 cloud_logging_parser: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParserArgs']] = None,
+                 json_parser: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserArgs']] = None,
+                 tskv_parser: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1ParserArgs'] audit_trails_v1_parser: Parse Audit Trails data. Empty struct.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParserArgs'] cloud_logging_parser: Parse Cloud Logging data. Empty struct.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserArgs'] json_parser: Parse data in json format.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserArgs'] tskv_parser: Parse data if tskv format.
+        """
+        if audit_trails_v1_parser is not None:
+            pulumi.set(__self__, "audit_trails_v1_parser", audit_trails_v1_parser)
+        if cloud_logging_parser is not None:
+            pulumi.set(__self__, "cloud_logging_parser", cloud_logging_parser)
+        if json_parser is not None:
+            pulumi.set(__self__, "json_parser", json_parser)
+        if tskv_parser is not None:
+            pulumi.set(__self__, "tskv_parser", tskv_parser)
+
+    @property
+    @pulumi.getter(name="auditTrailsV1Parser")
+    def audit_trails_v1_parser(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1ParserArgs']]:
+        """
+        Parse Audit Trails data. Empty struct.
+        """
+        return pulumi.get(self, "audit_trails_v1_parser")
+
+    @audit_trails_v1_parser.setter
+    def audit_trails_v1_parser(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1ParserArgs']]):
+        pulumi.set(self, "audit_trails_v1_parser", value)
+
+    @property
+    @pulumi.getter(name="cloudLoggingParser")
+    def cloud_logging_parser(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParserArgs']]:
+        """
+        Parse Cloud Logging data. Empty struct.
+        """
+        return pulumi.get(self, "cloud_logging_parser")
+
+    @cloud_logging_parser.setter
+    def cloud_logging_parser(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParserArgs']]):
+        pulumi.set(self, "cloud_logging_parser", value)
+
+    @property
+    @pulumi.getter(name="jsonParser")
+    def json_parser(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserArgs']]:
+        """
+        Parse data in json format.
+        """
+        return pulumi.get(self, "json_parser")
+
+    @json_parser.setter
+    def json_parser(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserArgs']]):
+        pulumi.set(self, "json_parser", value)
+
+    @property
+    @pulumi.getter(name="tskvParser")
+    def tskv_parser(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserArgs']]:
+        """
+        Parse data if tskv format.
+        """
+        return pulumi.get(self, "tskv_parser")
+
+    @tskv_parser.setter
+    def tskv_parser(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserArgs']]):
+        pulumi.set(self, "tskv_parser", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceParserAuditTrailsV1ParserArgs:
+    def __init__(__self__):
+        pass
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceParserCloudLoggingParserArgs:
+    def __init__(__self__):
+        pass
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceParserJsonParserArgs:
+    def __init__(__self__, *,
+                 add_rest_column: Optional[pulumi.Input[bool]] = None,
+                 data_schema: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaArgs']] = None,
+                 null_keys_allowed: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] add_rest_column: Add fields, that are not in the schema, into the _rest column.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaArgs'] data_schema: Data parsing scheme.The structure is documented below.
+        :param pulumi.Input[bool] null_keys_allowed: Allow null keys. If `false` - null keys will be putted to unparsed data
+        """
+        if add_rest_column is not None:
+            pulumi.set(__self__, "add_rest_column", add_rest_column)
+        if data_schema is not None:
+            pulumi.set(__self__, "data_schema", data_schema)
+        if null_keys_allowed is not None:
+            pulumi.set(__self__, "null_keys_allowed", null_keys_allowed)
+
+    @property
+    @pulumi.getter(name="addRestColumn")
+    def add_rest_column(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Add fields, that are not in the schema, into the _rest column.
+        """
+        return pulumi.get(self, "add_rest_column")
+
+    @add_rest_column.setter
+    def add_rest_column(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "add_rest_column", value)
+
+    @property
+    @pulumi.getter(name="dataSchema")
+    def data_schema(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaArgs']]:
+        """
+        Data parsing scheme.The structure is documented below.
+        """
+        return pulumi.get(self, "data_schema")
+
+    @data_schema.setter
+    def data_schema(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaArgs']]):
+        pulumi.set(self, "data_schema", value)
+
+    @property
+    @pulumi.getter(name="nullKeysAllowed")
+    def null_keys_allowed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow null keys. If `false` - null keys will be putted to unparsed data
+        """
+        return pulumi.get(self, "null_keys_allowed")
+
+    @null_keys_allowed.setter
+    def null_keys_allowed(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "null_keys_allowed", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaArgs:
+    def __init__(__self__, *,
+                 fields: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsArgs']] = None,
+                 json_fields: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsArgs'] fields: Description of the data schema in the array of `fields` structure (documented below).
+        :param pulumi.Input[str] json_fields: Description of the data schema as JSON specification.
+        """
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+        if json_fields is not None:
+            pulumi.set(__self__, "json_fields", json_fields)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsArgs']]:
+        """
+        Description of the data schema in the array of `fields` structure (documented below).
+        """
+        return pulumi.get(self, "fields")
+
+    @fields.setter
+    def fields(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsArgs']]):
+        pulumi.set(self, "fields", value)
+
+    @property
+    @pulumi.getter(name="jsonFields")
+    def json_fields(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the data schema as JSON specification.
+        """
+        return pulumi.get(self, "json_fields")
+
+    @json_fields.setter
+    def json_fields(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "json_fields", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsArgs:
+    def __init__(__self__, *,
+                 fields: Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsFieldArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsFieldArgs']]] fields: Description of the data schema in the array of `fields` structure (documented below).
+        """
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsFieldArgs']]]]:
+        """
+        Description of the data schema in the array of `fields` structure (documented below).
+        """
+        return pulumi.get(self, "fields")
+
+    @fields.setter
+    def fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsFieldArgs']]]]):
+        pulumi.set(self, "fields", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceParserJsonParserDataSchemaFieldsFieldArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 required: Optional[pulumi.Input[bool]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] key: -Mark field as Primary Key.
+        :param pulumi.Input[str] name: Name of the endpoint.
+        :param pulumi.Input[str] path: Path to the field.
+        :param pulumi.Input[bool] required: Mark field as required.
+        :param pulumi.Input[str] type: Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if required is not None:
+            pulumi.set(__self__, "required", required)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[bool]]:
+        """
+        -Mark field as Primary Key.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the endpoint.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to the field.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def required(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Mark field as required.
+        """
+        return pulumi.get(self, "required")
+
+    @required.setter
+    def required(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "required", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceParserTskvParserArgs:
+    def __init__(__self__, *,
+                 add_rest_column: Optional[pulumi.Input[bool]] = None,
+                 data_schema: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaArgs']] = None,
+                 null_keys_allowed: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] add_rest_column: Add fields, that are not in the schema, into the _rest column.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaArgs'] data_schema: Data parsing scheme.The structure is documented below.
+        :param pulumi.Input[bool] null_keys_allowed: Allow null keys. If `false` - null keys will be putted to unparsed data
+        """
+        if add_rest_column is not None:
+            pulumi.set(__self__, "add_rest_column", add_rest_column)
+        if data_schema is not None:
+            pulumi.set(__self__, "data_schema", data_schema)
+        if null_keys_allowed is not None:
+            pulumi.set(__self__, "null_keys_allowed", null_keys_allowed)
+
+    @property
+    @pulumi.getter(name="addRestColumn")
+    def add_rest_column(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Add fields, that are not in the schema, into the _rest column.
+        """
+        return pulumi.get(self, "add_rest_column")
+
+    @add_rest_column.setter
+    def add_rest_column(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "add_rest_column", value)
+
+    @property
+    @pulumi.getter(name="dataSchema")
+    def data_schema(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaArgs']]:
+        """
+        Data parsing scheme.The structure is documented below.
+        """
+        return pulumi.get(self, "data_schema")
+
+    @data_schema.setter
+    def data_schema(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaArgs']]):
+        pulumi.set(self, "data_schema", value)
+
+    @property
+    @pulumi.getter(name="nullKeysAllowed")
+    def null_keys_allowed(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Allow null keys. If `false` - null keys will be putted to unparsed data
+        """
+        return pulumi.get(self, "null_keys_allowed")
+
+    @null_keys_allowed.setter
+    def null_keys_allowed(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "null_keys_allowed", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaArgs:
+    def __init__(__self__, *,
+                 fields: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsArgs']] = None,
+                 json_fields: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsArgs'] fields: Description of the data schema in the array of `fields` structure (documented below).
+        :param pulumi.Input[str] json_fields: Description of the data schema as JSON specification.
+        """
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+        if json_fields is not None:
+            pulumi.set(__self__, "json_fields", json_fields)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsArgs']]:
+        """
+        Description of the data schema in the array of `fields` structure (documented below).
+        """
+        return pulumi.get(self, "fields")
+
+    @fields.setter
+    def fields(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsArgs']]):
+        pulumi.set(self, "fields", value)
+
+    @property
+    @pulumi.getter(name="jsonFields")
+    def json_fields(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description of the data schema as JSON specification.
+        """
+        return pulumi.get(self, "json_fields")
+
+    @json_fields.setter
+    def json_fields(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "json_fields", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsArgs:
+    def __init__(__self__, *,
+                 fields: Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsFieldArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsFieldArgs']]] fields: Description of the data schema in the array of `fields` structure (documented below).
+        """
+        if fields is not None:
+            pulumi.set(__self__, "fields", fields)
+
+    @property
+    @pulumi.getter
+    def fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsFieldArgs']]]]:
+        """
+        Description of the data schema in the array of `fields` structure (documented below).
+        """
+        return pulumi.get(self, "fields")
+
+    @fields.setter
+    def fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsFieldArgs']]]]):
+        pulumi.set(self, "fields", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceParserTskvParserDataSchemaFieldsFieldArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 required: Optional[pulumi.Input[bool]] = None,
+                 type: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] key: -Mark field as Primary Key.
+        :param pulumi.Input[str] name: Name of the endpoint.
+        :param pulumi.Input[str] path: Path to the field.
+        :param pulumi.Input[bool] required: Mark field as required.
+        :param pulumi.Input[str] type: Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if required is not None:
+            pulumi.set(__self__, "required", required)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[bool]]:
+        """
+        -Mark field as Primary Key.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the endpoint.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to the field.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter
+    def required(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Mark field as required.
+        """
+        return pulumi.get(self, "required")
+
+    @required.setter
+    def required(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "required", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaSourceTransformerArgs:
+    def __init__(__self__, *,
+                 buffer_flush_interval: Optional[pulumi.Input[str]] = None,
+                 buffer_size: Optional[pulumi.Input[str]] = None,
+                 cloud_function: Optional[pulumi.Input[str]] = None,
+                 invocation_timeout: Optional[pulumi.Input[str]] = None,
+                 number_of_retries: Optional[pulumi.Input[int]] = None,
+                 service_account_id: Optional[pulumi.Input[str]] = None):
+        if buffer_flush_interval is not None:
+            pulumi.set(__self__, "buffer_flush_interval", buffer_flush_interval)
+        if buffer_size is not None:
+            pulumi.set(__self__, "buffer_size", buffer_size)
+        if cloud_function is not None:
+            pulumi.set(__self__, "cloud_function", cloud_function)
+        if invocation_timeout is not None:
+            pulumi.set(__self__, "invocation_timeout", invocation_timeout)
+        if number_of_retries is not None:
+            pulumi.set(__self__, "number_of_retries", number_of_retries)
+        if service_account_id is not None:
+            pulumi.set(__self__, "service_account_id", service_account_id)
+
+    @property
+    @pulumi.getter(name="bufferFlushInterval")
+    def buffer_flush_interval(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "buffer_flush_interval")
+
+    @buffer_flush_interval.setter
+    def buffer_flush_interval(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "buffer_flush_interval", value)
+
+    @property
+    @pulumi.getter(name="bufferSize")
+    def buffer_size(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "buffer_size")
+
+    @buffer_size.setter
+    def buffer_size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "buffer_size", value)
+
+    @property
+    @pulumi.getter(name="cloudFunction")
+    def cloud_function(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "cloud_function")
+
+    @cloud_function.setter
+    def cloud_function(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cloud_function", value)
+
+    @property
+    @pulumi.getter(name="invocationTimeout")
+    def invocation_timeout(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "invocation_timeout")
+
+    @invocation_timeout.setter
+    def invocation_timeout(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "invocation_timeout", value)
+
+    @property
+    @pulumi.getter(name="numberOfRetries")
+    def number_of_retries(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "number_of_retries")
+
+    @number_of_retries.setter
+    def number_of_retries(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "number_of_retries", value)
+
+    @property
+    @pulumi.getter(name="serviceAccountId")
+    def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "service_account_id")
+
+    @service_account_id.setter
+    def service_account_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_account_id", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetArgs:
+    def __init__(__self__, *,
+                 auth: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthArgs']] = None,
+                 connection: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionArgs']] = None,
+                 security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 serializer: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerArgs']] = None,
+                 topic_settings: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetTopicSettingsArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthArgs'] auth: Authentication data.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionArgs'] connection: Connection settings. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerArgs'] serializer: Data serialization settings.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetTopicSettingsArgs'] topic_settings: Target topic settings.
+        """
+        if auth is not None:
+            pulumi.set(__self__, "auth", auth)
+        if connection is not None:
+            pulumi.set(__self__, "connection", connection)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if serializer is not None:
+            pulumi.set(__self__, "serializer", serializer)
+        if topic_settings is not None:
+            pulumi.set(__self__, "topic_settings", topic_settings)
+
+    @property
+    @pulumi.getter
+    def auth(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthArgs']]:
+        """
+        Authentication data.
+        """
+        return pulumi.get(self, "auth")
+
+    @auth.setter
+    def auth(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthArgs']]):
+        pulumi.set(self, "auth", value)
+
+    @property
+    @pulumi.getter
+    def connection(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionArgs']]:
+        """
+        Connection settings. The structure is documented below.
+        """
+        return pulumi.get(self, "connection")
+
+    @connection.setter
+    def connection(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionArgs']]):
+        pulumi.set(self, "connection", value)
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @security_groups.setter
+    def security_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_groups", value)
+
+    @property
+    @pulumi.getter
+    def serializer(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerArgs']]:
+        """
+        Data serialization settings.
+        """
+        return pulumi.get(self, "serializer")
+
+    @serializer.setter
+    def serializer(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerArgs']]):
+        pulumi.set(self, "serializer", value)
+
+    @property
+    @pulumi.getter(name="topicSettings")
+    def topic_settings(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetTopicSettingsArgs']]:
+        """
+        Target topic settings.
+        """
+        return pulumi.get(self, "topic_settings")
+
+    @topic_settings.setter
+    def topic_settings(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetTopicSettingsArgs']]):
+        pulumi.set(self, "topic_settings", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetAuthArgs:
+    def __init__(__self__, *,
+                 no_auth: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthNoAuthArgs']] = None,
+                 sasl: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthSaslArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthNoAuthArgs'] no_auth: Connection without authentication data.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthSaslArgs'] sasl: Authentication using sasl.
+        """
+        if no_auth is not None:
+            pulumi.set(__self__, "no_auth", no_auth)
+        if sasl is not None:
+            pulumi.set(__self__, "sasl", sasl)
+
+    @property
+    @pulumi.getter(name="noAuth")
+    def no_auth(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthNoAuthArgs']]:
+        """
+        Connection without authentication data.
+        """
+        return pulumi.get(self, "no_auth")
+
+    @no_auth.setter
+    def no_auth(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthNoAuthArgs']]):
+        pulumi.set(self, "no_auth", value)
+
+    @property
+    @pulumi.getter
+    def sasl(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthSaslArgs']]:
+        """
+        Authentication using sasl.
+        """
+        return pulumi.get(self, "sasl")
+
+    @sasl.setter
+    def sasl(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthSaslArgs']]):
+        pulumi.set(self, "sasl", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetAuthNoAuthArgs:
+    def __init__(__self__):
+        pass
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetAuthSaslArgs:
+    def __init__(__self__, *,
+                 mechanism: Optional[pulumi.Input[str]] = None,
+                 password: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthSaslPasswordArgs']] = None,
+                 user: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthSaslPasswordArgs'] password: Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        :param pulumi.Input[str] user: User for the database access.
+        """
+        if mechanism is not None:
+            pulumi.set(__self__, "mechanism", mechanism)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
+
+    @property
+    @pulumi.getter
+    def mechanism(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "mechanism")
+
+    @mechanism.setter
+    def mechanism(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mechanism", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthSaslPasswordArgs']]:
+        """
+        Password for the database access. This is a block with a single field named `raw` which should contain the password.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetAuthSaslPasswordArgs']]):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def user(self) -> Optional[pulumi.Input[str]]:
+        """
+        User for the database access.
+        """
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetAuthSaslPasswordArgs:
+    def __init__(__self__, *,
+                 raw: Optional[pulumi.Input[str]] = None):
+        if raw is not None:
+            pulumi.set(__self__, "raw", raw)
+
+    @property
+    @pulumi.getter
+    def raw(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "raw")
+
+    @raw.setter
+    def raw(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "raw", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetConnectionArgs:
+    def __init__(__self__, *,
+                 cluster_id: Optional[pulumi.Input[str]] = None,
+                 on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseArgs']] = None):
+        """
+        :param pulumi.Input[str] cluster_id: Identifier of the Managed Kafka cluster.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise Kafka server.
+        """
+        if cluster_id is not None:
+            pulumi.set(__self__, "cluster_id", cluster_id)
+        if on_premise is not None:
+            pulumi.set(__self__, "on_premise", on_premise)
+
+    @property
+    @pulumi.getter(name="clusterId")
+    def cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Managed Kafka cluster.
+        """
+        return pulumi.get(self, "cluster_id")
+
+    @cluster_id.setter
+    def cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cluster_id", value)
+
+    @property
+    @pulumi.getter(name="onPremise")
+    def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseArgs']]:
+        """
+        Connection settings of the on-premise Kafka server.
+        """
+        return pulumi.get(self, "on_premise")
+
+    @on_premise.setter
+    def on_premise(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseArgs']]):
+        pulumi.set(self, "on_premise", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseArgs:
+    def __init__(__self__, *,
+                 broker_urls: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 subnet_id: Optional[pulumi.Input[str]] = None,
+                 tls_mode: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeArgs']] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] broker_urls: List of Kafka broker URLs.
+        :param pulumi.Input[str] subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeArgs'] tls_mode: TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
+        if broker_urls is not None:
+            pulumi.set(__self__, "broker_urls", broker_urls)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+        if tls_mode is not None:
+            pulumi.set(__self__, "tls_mode", tls_mode)
+
+    @property
+    @pulumi.getter(name="brokerUrls")
+    def broker_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of Kafka broker URLs.
+        """
+        return pulumi.get(self, "broker_urls")
+
+    @broker_urls.setter
+    def broker_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "broker_urls", value)
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @subnet_id.setter
+    def subnet_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_id", value)
+
+    @property
+    @pulumi.getter(name="tlsMode")
+    def tls_mode(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeArgs']]:
+        """
+        TLS settings for the server connection. Empty implies plaintext connection. The structure is documented below.
+        """
+        return pulumi.get(self, "tls_mode")
+
+    @tls_mode.setter
+    def tls_mode(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeArgs']]):
+        pulumi.set(self, "tls_mode", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeArgs:
+    def __init__(__self__, *,
+                 disabled: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabledArgs']] = None,
+                 enabled: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabledArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabledArgs'] disabled: Empty block designating that the connection is not secured, i.e. plaintext connection.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabledArgs'] enabled: If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
+        if disabled is not None:
+            pulumi.set(__self__, "disabled", disabled)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabledArgs']]:
+        """
+        Empty block designating that the connection is not secured, i.e. plaintext connection.
+        """
+        return pulumi.get(self, "disabled")
+
+    @disabled.setter
+    def disabled(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabledArgs']]):
+        pulumi.set(self, "disabled", value)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabledArgs']]:
+        """
+        If this attribute is not an empty block, then TLS is used for the server connection. The structure is documented below.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabledArgs']]):
+        pulumi.set(self, "enabled", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeDisabledArgs:
+    def __init__(__self__):
+        pass
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetConnectionOnPremiseTlsModeEnabledArgs:
+    def __init__(__self__, *,
+                 ca_certificate: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] ca_certificate: X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
+        if ca_certificate is not None:
+            pulumi.set(__self__, "ca_certificate", ca_certificate)
+
+    @property
+    @pulumi.getter(name="caCertificate")
+    def ca_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        X.509 certificate of the certificate authority which issued the server's certificate, in PEM format. If empty, the server's certificate must be signed by a well-known CA.
+        """
+        return pulumi.get(self, "ca_certificate")
+
+    @ca_certificate.setter
+    def ca_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_certificate", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetSerializerArgs:
+    def __init__(__self__, *,
+                 serializer_auto: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerAutoArgs']] = None,
+                 serializer_debezium: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumArgs']] = None,
+                 serializer_json: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerJsonArgs']] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerAutoArgs'] serializer_auto: Empty block. Select data serialization format automatically.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumArgs'] serializer_debezium: Serialize data in json format. The structure is documented below.
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerJsonArgs'] serializer_json: Empty block. Serialize data in json format.
+        """
+        if serializer_auto is not None:
+            pulumi.set(__self__, "serializer_auto", serializer_auto)
+        if serializer_debezium is not None:
+            pulumi.set(__self__, "serializer_debezium", serializer_debezium)
+        if serializer_json is not None:
+            pulumi.set(__self__, "serializer_json", serializer_json)
+
+    @property
+    @pulumi.getter(name="serializerAuto")
+    def serializer_auto(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerAutoArgs']]:
+        """
+        Empty block. Select data serialization format automatically.
+        """
+        return pulumi.get(self, "serializer_auto")
+
+    @serializer_auto.setter
+    def serializer_auto(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerAutoArgs']]):
+        pulumi.set(self, "serializer_auto", value)
+
+    @property
+    @pulumi.getter(name="serializerDebezium")
+    def serializer_debezium(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumArgs']]:
+        """
+        Serialize data in json format. The structure is documented below.
+        """
+        return pulumi.get(self, "serializer_debezium")
+
+    @serializer_debezium.setter
+    def serializer_debezium(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumArgs']]):
+        pulumi.set(self, "serializer_debezium", value)
+
+    @property
+    @pulumi.getter(name="serializerJson")
+    def serializer_json(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerJsonArgs']]:
+        """
+        Empty block. Serialize data in json format.
+        """
+        return pulumi.get(self, "serializer_json")
+
+    @serializer_json.setter
+    def serializer_json(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerJsonArgs']]):
+        pulumi.set(self, "serializer_json", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetSerializerSerializerAutoArgs:
+    def __init__(__self__):
+        pass
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumArgs:
+    def __init__(__self__, *,
+                 serializer_parameters: Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameterArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameterArgs']]] serializer_parameters: A list of debezium parameters set by the structure of the `key` and `value` string fields.
+        """
+        if serializer_parameters is not None:
+            pulumi.set(__self__, "serializer_parameters", serializer_parameters)
+
+    @property
+    @pulumi.getter(name="serializerParameters")
+    def serializer_parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameterArgs']]]]:
+        """
+        A list of debezium parameters set by the structure of the `key` and `value` string fields.
+        """
+        return pulumi.get(self, "serializer_parameters")
+
+    @serializer_parameters.setter
+    def serializer_parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameterArgs']]]]):
+        pulumi.set(self, "serializer_parameters", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetSerializerSerializerDebeziumSerializerParameterArgs:
+    def __init__(__self__, *,
+                 key: Optional[pulumi.Input[str]] = None,
+                 value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] key: -Mark field as Primary Key.
+        """
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def key(self) -> Optional[pulumi.Input[str]]:
+        """
+        -Mark field as Primary Key.
+        """
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "key", value)
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "value", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetSerializerSerializerJsonArgs:
+    def __init__(__self__):
+        pass
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetTopicSettingsArgs:
+    def __init__(__self__, *,
+                 topic: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetTopicSettingsTopicArgs']] = None,
+                 topic_prefix: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input['DatatransferEndpointSettingsKafkaTargetTopicSettingsTopicArgs'] topic: All messages will be sent to one topic. The structure is documented below.
+        :param pulumi.Input[str] topic_prefix: Topic name prefix. Messages will be sent to topic with name <topic_prefix>.<schema>.<table_name>.
+        """
+        if topic is not None:
+            pulumi.set(__self__, "topic", topic)
+        if topic_prefix is not None:
+            pulumi.set(__self__, "topic_prefix", topic_prefix)
+
+    @property
+    @pulumi.getter
+    def topic(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetTopicSettingsTopicArgs']]:
+        """
+        All messages will be sent to one topic. The structure is documented below.
+        """
+        return pulumi.get(self, "topic")
+
+    @topic.setter
+    def topic(self, value: Optional[pulumi.Input['DatatransferEndpointSettingsKafkaTargetTopicSettingsTopicArgs']]):
+        pulumi.set(self, "topic", value)
+
+    @property
+    @pulumi.getter(name="topicPrefix")
+    def topic_prefix(self) -> Optional[pulumi.Input[str]]:
+        """
+        Topic name prefix. Messages will be sent to topic with name <topic_prefix>.<schema>.<table_name>.
+        """
+        return pulumi.get(self, "topic_prefix")
+
+    @topic_prefix.setter
+    def topic_prefix(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "topic_prefix", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsKafkaTargetTopicSettingsTopicArgs:
+    def __init__(__self__, *,
+                 save_tx_order: Optional[pulumi.Input[bool]] = None,
+                 topic_name: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[bool] save_tx_order: Not to split events queue into separate per-table queues.
+        :param pulumi.Input[str] topic_name: Full source topic name.
+        """
+        if save_tx_order is not None:
+            pulumi.set(__self__, "save_tx_order", save_tx_order)
+        if topic_name is not None:
+            pulumi.set(__self__, "topic_name", topic_name)
+
+    @property
+    @pulumi.getter(name="saveTxOrder")
+    def save_tx_order(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Not to split events queue into separate per-table queues.
+        """
+        return pulumi.get(self, "save_tx_order")
+
+    @save_tx_order.setter
+    def save_tx_order(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "save_tx_order", value)
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Full source topic name.
+        """
+        return pulumi.get(self, "topic_name")
+
+    @topic_name.setter
+    def topic_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "topic_name", value)
 
 
 @pulumi.input_type
@@ -11368,7 +13103,7 @@ class DatatransferEndpointSettingsMysqlSourceConnectionArgs:
                  on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs']] = None):
         """
         :param pulumi.Input[str] mdb_cluster_id: Identifier of the Managed MySQL cluster.
-        :param pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise MySQL server.
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise Kafka server.
         """
         if mdb_cluster_id is not None:
             pulumi.set(__self__, "mdb_cluster_id", mdb_cluster_id)
@@ -11391,7 +13126,7 @@ class DatatransferEndpointSettingsMysqlSourceConnectionArgs:
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseArgs']]:
         """
-        Connection settings of the on-premise MySQL server.
+        Connection settings of the on-premise Kafka server.
         """
         return pulumi.get(self, "on_premise")
 
@@ -11543,10 +13278,13 @@ class DatatransferEndpointSettingsMysqlSourceConnectionOnPremiseTlsModeEnabledAr
 class DatatransferEndpointSettingsMysqlSourceObjectTransferSettingsArgs:
     def __init__(__self__, *,
                  routine: Optional[pulumi.Input[str]] = None,
+                 tables: Optional[pulumi.Input[str]] = None,
                  trigger: Optional[pulumi.Input[str]] = None,
                  view: Optional[pulumi.Input[str]] = None):
         if routine is not None:
             pulumi.set(__self__, "routine", routine)
+        if tables is not None:
+            pulumi.set(__self__, "tables", tables)
         if trigger is not None:
             pulumi.set(__self__, "trigger", trigger)
         if view is not None:
@@ -11560,6 +13298,15 @@ class DatatransferEndpointSettingsMysqlSourceObjectTransferSettingsArgs:
     @routine.setter
     def routine(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "routine", value)
+
+    @property
+    @pulumi.getter
+    def tables(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "tables")
+
+    @tables.setter
+    def tables(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tables", value)
 
     @property
     @pulumi.getter
@@ -11739,7 +13486,7 @@ class DatatransferEndpointSettingsMysqlTargetConnectionArgs:
                  on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs']] = None):
         """
         :param pulumi.Input[str] mdb_cluster_id: Identifier of the Managed MySQL cluster.
-        :param pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise MySQL server.
+        :param pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise Kafka server.
         """
         if mdb_cluster_id is not None:
             pulumi.set(__self__, "mdb_cluster_id", mdb_cluster_id)
@@ -11762,7 +13509,7 @@ class DatatransferEndpointSettingsMysqlTargetConnectionArgs:
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsMysqlTargetConnectionOnPremiseArgs']]:
         """
-        Connection settings of the on-premise MySQL server.
+        Connection settings of the on-premise Kafka server.
         """
         return pulumi.get(self, "on_premise")
 
@@ -12101,7 +13848,7 @@ class DatatransferEndpointSettingsPostgresSourceConnectionArgs:
                  on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs']] = None):
         """
         :param pulumi.Input[str] mdb_cluster_id: Identifier of the Managed MySQL cluster.
-        :param pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise MySQL server.
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise Kafka server.
         """
         if mdb_cluster_id is not None:
             pulumi.set(__self__, "mdb_cluster_id", mdb_cluster_id)
@@ -12124,7 +13871,7 @@ class DatatransferEndpointSettingsPostgresSourceConnectionArgs:
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresSourceConnectionOnPremiseArgs']]:
         """
-        Connection settings of the on-premise MySQL server.
+        Connection settings of the on-premise Kafka server.
         """
         return pulumi.get(self, "on_premise")
 
@@ -12288,10 +14035,14 @@ class DatatransferEndpointSettingsPostgresSourceObjectTransferSettingsArgs:
                  rule: Optional[pulumi.Input[str]] = None,
                  sequence: Optional[pulumi.Input[str]] = None,
                  sequence_owned_by: Optional[pulumi.Input[str]] = None,
+                 sequence_set: Optional[pulumi.Input[str]] = None,
                  table: Optional[pulumi.Input[str]] = None,
                  trigger: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  view: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] type: Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        """
         if cast is not None:
             pulumi.set(__self__, "cast", cast)
         if collation is not None:
@@ -12318,6 +14069,8 @@ class DatatransferEndpointSettingsPostgresSourceObjectTransferSettingsArgs:
             pulumi.set(__self__, "sequence", sequence)
         if sequence_owned_by is not None:
             pulumi.set(__self__, "sequence_owned_by", sequence_owned_by)
+        if sequence_set is not None:
+            pulumi.set(__self__, "sequence_set", sequence_set)
         if table is not None:
             pulumi.set(__self__, "table", table)
         if trigger is not None:
@@ -12445,6 +14198,15 @@ class DatatransferEndpointSettingsPostgresSourceObjectTransferSettingsArgs:
         pulumi.set(self, "sequence_owned_by", value)
 
     @property
+    @pulumi.getter(name="sequenceSet")
+    def sequence_set(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sequence_set")
+
+    @sequence_set.setter
+    def sequence_set(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sequence_set", value)
+
+    @property
     @pulumi.getter
     def table(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "table")
@@ -12465,6 +14227,9 @@ class DatatransferEndpointSettingsPostgresSourceObjectTransferSettingsArgs:
     @property
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Field type, one of: `INT64`, `INT32`, `INT16`, `INT8`, `UINT64`, `UINT32`, `UINT16`, `UINT8`, `DOUBLE`, `BOOLEAN`, `STRING`, `UTF8`, `ANY`, `DATETIME`.
+        """
         return pulumi.get(self, "type")
 
     @type.setter
@@ -12592,7 +14357,7 @@ class DatatransferEndpointSettingsPostgresTargetConnectionArgs:
                  on_premise: Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs']] = None):
         """
         :param pulumi.Input[str] mdb_cluster_id: Identifier of the Managed MySQL cluster.
-        :param pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise MySQL server.
+        :param pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs'] on_premise: Connection settings of the on-premise Kafka server.
         """
         if mdb_cluster_id is not None:
             pulumi.set(__self__, "mdb_cluster_id", mdb_cluster_id)
@@ -12615,7 +14380,7 @@ class DatatransferEndpointSettingsPostgresTargetConnectionArgs:
     @pulumi.getter(name="onPremise")
     def on_premise(self) -> Optional[pulumi.Input['DatatransferEndpointSettingsPostgresTargetConnectionOnPremiseArgs']]:
         """
-        Connection settings of the on-premise MySQL server.
+        Connection settings of the on-premise Kafka server.
         """
         return pulumi.get(self, "on_premise")
 
@@ -12778,6 +14543,232 @@ class DatatransferEndpointSettingsPostgresTargetPasswordArgs:
     @raw.setter
     def raw(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "raw", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsYdbSourceArgs:
+    def __init__(__self__, *,
+                 database: Optional[pulumi.Input[str]] = None,
+                 instance: Optional[pulumi.Input[str]] = None,
+                 paths: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 sa_key_content: Optional[pulumi.Input[str]] = None,
+                 security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 service_account_id: Optional[pulumi.Input[str]] = None,
+                 subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] database: Name of the database to transfer.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param pulumi.Input[str] subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
+        if database is not None:
+            pulumi.set(__self__, "database", database)
+        if instance is not None:
+            pulumi.set(__self__, "instance", instance)
+        if paths is not None:
+            pulumi.set(__self__, "paths", paths)
+        if sa_key_content is not None:
+            pulumi.set(__self__, "sa_key_content", sa_key_content)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if service_account_id is not None:
+            pulumi.set(__self__, "service_account_id", service_account_id)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @property
+    @pulumi.getter
+    def database(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the database to transfer.
+        """
+        return pulumi.get(self, "database")
+
+    @database.setter
+    def database(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "database", value)
+
+    @property
+    @pulumi.getter
+    def instance(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "instance")
+
+    @instance.setter
+    def instance(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance", value)
+
+    @property
+    @pulumi.getter
+    def paths(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "paths")
+
+    @paths.setter
+    def paths(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "paths", value)
+
+    @property
+    @pulumi.getter(name="saKeyContent")
+    def sa_key_content(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sa_key_content")
+
+    @sa_key_content.setter
+    def sa_key_content(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sa_key_content", value)
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @security_groups.setter
+    def security_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_groups", value)
+
+    @property
+    @pulumi.getter(name="serviceAccountId")
+    def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "service_account_id")
+
+    @service_account_id.setter
+    def service_account_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_account_id", value)
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @subnet_id.setter
+    def subnet_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_id", value)
+
+
+@pulumi.input_type
+class DatatransferEndpointSettingsYdbTargetArgs:
+    def __init__(__self__, *,
+                 cleanup_policy: Optional[pulumi.Input[str]] = None,
+                 database: Optional[pulumi.Input[str]] = None,
+                 instance: Optional[pulumi.Input[str]] = None,
+                 path: Optional[pulumi.Input[str]] = None,
+                 sa_key_content: Optional[pulumi.Input[str]] = None,
+                 security_groups: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 service_account_id: Optional[pulumi.Input[str]] = None,
+                 subnet_id: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] cleanup_policy: How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+        :param pulumi.Input[str] database: Name of the database to transfer.
+        :param pulumi.Input[str] path: Path to the field.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] security_groups: List of security groups that the transfer associated with this endpoint should use.
+        :param pulumi.Input[str] subnet_id: Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
+        if cleanup_policy is not None:
+            pulumi.set(__self__, "cleanup_policy", cleanup_policy)
+        if database is not None:
+            pulumi.set(__self__, "database", database)
+        if instance is not None:
+            pulumi.set(__self__, "instance", instance)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if sa_key_content is not None:
+            pulumi.set(__self__, "sa_key_content", sa_key_content)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if service_account_id is not None:
+            pulumi.set(__self__, "service_account_id", service_account_id)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @property
+    @pulumi.getter(name="cleanupPolicy")
+    def cleanup_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        How to clean collections when activating the transfer. One of "DISABLED", "DROP" or "TRUNCATE".
+        """
+        return pulumi.get(self, "cleanup_policy")
+
+    @cleanup_policy.setter
+    def cleanup_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cleanup_policy", value)
+
+    @property
+    @pulumi.getter
+    def database(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the database to transfer.
+        """
+        return pulumi.get(self, "database")
+
+    @database.setter
+    def database(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "database", value)
+
+    @property
+    @pulumi.getter
+    def instance(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "instance")
+
+    @instance.setter
+    def instance(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "instance", value)
+
+    @property
+    @pulumi.getter
+    def path(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to the field.
+        """
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "path", value)
+
+    @property
+    @pulumi.getter(name="saKeyContent")
+    def sa_key_content(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "sa_key_content")
+
+    @sa_key_content.setter
+    def sa_key_content(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sa_key_content", value)
+
+    @property
+    @pulumi.getter(name="securityGroups")
+    def security_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        List of security groups that the transfer associated with this endpoint should use.
+        """
+        return pulumi.get(self, "security_groups")
+
+    @security_groups.setter
+    def security_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "security_groups", value)
+
+    @property
+    @pulumi.getter(name="serviceAccountId")
+    def service_account_id(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "service_account_id")
+
+    @service_account_id.setter
+    def service_account_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_account_id", value)
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Identifier of the Yandex Cloud VPC subnetwork to user for accessing the database. If omitted, the server has to be accessible via Internet.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @subnet_id.setter
+    def subnet_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subnet_id", value)
 
 
 @pulumi.input_type
@@ -13116,14 +15107,28 @@ class FunctionTriggerFunctionArgs:
 @pulumi.input_type
 class FunctionTriggerIotArgs:
     def __init__(__self__, *,
+                 batch_cutoff: pulumi.Input[str],
                  registry_id: pulumi.Input[str],
+                 batch_size: Optional[pulumi.Input[str]] = None,
                  device_id: Optional[pulumi.Input[str]] = None,
                  topic: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "batch_cutoff", batch_cutoff)
         pulumi.set(__self__, "registry_id", registry_id)
+        if batch_size is not None:
+            pulumi.set(__self__, "batch_size", batch_size)
         if device_id is not None:
             pulumi.set(__self__, "device_id", device_id)
         if topic is not None:
             pulumi.set(__self__, "topic", topic)
+
+    @property
+    @pulumi.getter(name="batchCutoff")
+    def batch_cutoff(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "batch_cutoff")
+
+    @batch_cutoff.setter
+    def batch_cutoff(self, value: pulumi.Input[str]):
+        pulumi.set(self, "batch_cutoff", value)
 
     @property
     @pulumi.getter(name="registryId")
@@ -13133,6 +15138,15 @@ class FunctionTriggerIotArgs:
     @registry_id.setter
     def registry_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "registry_id", value)
+
+    @property
+    @pulumi.getter(name="batchSize")
+    def batch_size(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "batch_size")
+
+    @batch_size.setter
+    def batch_size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "batch_size", value)
 
     @property
     @pulumi.getter(name="deviceId")
@@ -13197,17 +15211,23 @@ class FunctionTriggerLoggingArgs:
     def __init__(__self__, *,
                  batch_cutoff: pulumi.Input[str],
                  group_id: pulumi.Input[str],
-                 levels: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 resource_ids: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 resource_types: pulumi.Input[Sequence[pulumi.Input[str]]],
-                 batch_size: Optional[pulumi.Input[str]] = None):
+                 batch_size: Optional[pulumi.Input[str]] = None,
+                 levels: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 resource_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 resource_types: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 stream_names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         pulumi.set(__self__, "batch_cutoff", batch_cutoff)
         pulumi.set(__self__, "group_id", group_id)
-        pulumi.set(__self__, "levels", levels)
-        pulumi.set(__self__, "resource_ids", resource_ids)
-        pulumi.set(__self__, "resource_types", resource_types)
         if batch_size is not None:
             pulumi.set(__self__, "batch_size", batch_size)
+        if levels is not None:
+            pulumi.set(__self__, "levels", levels)
+        if resource_ids is not None:
+            pulumi.set(__self__, "resource_ids", resource_ids)
+        if resource_types is not None:
+            pulumi.set(__self__, "resource_types", resource_types)
+        if stream_names is not None:
+            pulumi.set(__self__, "stream_names", stream_names)
 
     @property
     @pulumi.getter(name="batchCutoff")
@@ -13228,33 +15248,6 @@ class FunctionTriggerLoggingArgs:
         pulumi.set(self, "group_id", value)
 
     @property
-    @pulumi.getter
-    def levels(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        return pulumi.get(self, "levels")
-
-    @levels.setter
-    def levels(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "levels", value)
-
-    @property
-    @pulumi.getter(name="resourceIds")
-    def resource_ids(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        return pulumi.get(self, "resource_ids")
-
-    @resource_ids.setter
-    def resource_ids(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "resource_ids", value)
-
-    @property
-    @pulumi.getter(name="resourceTypes")
-    def resource_types(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
-        return pulumi.get(self, "resource_types")
-
-    @resource_types.setter
-    def resource_types(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
-        pulumi.set(self, "resource_types", value)
-
-    @property
     @pulumi.getter(name="batchSize")
     def batch_size(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "batch_size")
@@ -13262,6 +15255,42 @@ class FunctionTriggerLoggingArgs:
     @batch_size.setter
     def batch_size(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "batch_size", value)
+
+    @property
+    @pulumi.getter
+    def levels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "levels")
+
+    @levels.setter
+    def levels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "levels", value)
+
+    @property
+    @pulumi.getter(name="resourceIds")
+    def resource_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "resource_ids")
+
+    @resource_ids.setter
+    def resource_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "resource_ids", value)
+
+    @property
+    @pulumi.getter(name="resourceTypes")
+    def resource_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "resource_types")
+
+    @resource_types.setter
+    def resource_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "resource_types", value)
+
+    @property
+    @pulumi.getter(name="streamNames")
+    def stream_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "stream_names")
+
+    @stream_names.setter
+    def stream_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "stream_names", value)
 
 
 @pulumi.input_type
@@ -13329,13 +15358,18 @@ class FunctionTriggerMessageQueueArgs:
 @pulumi.input_type
 class FunctionTriggerObjectStorageArgs:
     def __init__(__self__, *,
+                 batch_cutoff: pulumi.Input[str],
                  bucket_id: pulumi.Input[str],
+                 batch_size: Optional[pulumi.Input[str]] = None,
                  create: Optional[pulumi.Input[bool]] = None,
                  delete: Optional[pulumi.Input[bool]] = None,
                  prefix: Optional[pulumi.Input[str]] = None,
                  suffix: Optional[pulumi.Input[str]] = None,
                  update: Optional[pulumi.Input[bool]] = None):
+        pulumi.set(__self__, "batch_cutoff", batch_cutoff)
         pulumi.set(__self__, "bucket_id", bucket_id)
+        if batch_size is not None:
+            pulumi.set(__self__, "batch_size", batch_size)
         if create is not None:
             pulumi.set(__self__, "create", create)
         if delete is not None:
@@ -13348,6 +15382,15 @@ class FunctionTriggerObjectStorageArgs:
             pulumi.set(__self__, "update", update)
 
     @property
+    @pulumi.getter(name="batchCutoff")
+    def batch_cutoff(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "batch_cutoff")
+
+    @batch_cutoff.setter
+    def batch_cutoff(self, value: pulumi.Input[str]):
+        pulumi.set(self, "batch_cutoff", value)
+
+    @property
     @pulumi.getter(name="bucketId")
     def bucket_id(self) -> pulumi.Input[str]:
         return pulumi.get(self, "bucket_id")
@@ -13355,6 +15398,15 @@ class FunctionTriggerObjectStorageArgs:
     @bucket_id.setter
     def bucket_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "bucket_id", value)
+
+    @property
+    @pulumi.getter(name="batchSize")
+    def batch_size(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "batch_size")
+
+    @batch_size.setter
+    def batch_size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "batch_size", value)
 
     @property
     @pulumi.getter
@@ -13405,8 +15457,11 @@ class FunctionTriggerObjectStorageArgs:
 @pulumi.input_type
 class FunctionTriggerTimerArgs:
     def __init__(__self__, *,
-                 cron_expression: pulumi.Input[str]):
+                 cron_expression: pulumi.Input[str],
+                 payload: Optional[pulumi.Input[str]] = None):
         pulumi.set(__self__, "cron_expression", cron_expression)
+        if payload is not None:
+            pulumi.set(__self__, "payload", payload)
 
     @property
     @pulumi.getter(name="cronExpression")
@@ -13416,6 +15471,15 @@ class FunctionTriggerTimerArgs:
     @cron_expression.setter
     def cron_expression(self, value: pulumi.Input[str]):
         pulumi.set(self, "cron_expression", value)
+
+    @property
+    @pulumi.getter
+    def payload(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "payload")
+
+    @payload.setter
+    def payload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "payload", value)
 
 
 @pulumi.input_type
@@ -13770,6 +15834,7 @@ class KubernetesClusterMasterMaintenancePolicyMaintenanceWindowArgs:
 @pulumi.input_type
 class KubernetesClusterMasterMasterLoggingArgs:
     def __init__(__self__, *,
+                 audit_enabled: Optional[pulumi.Input[bool]] = None,
                  cluster_autoscaler_enabled: Optional[pulumi.Input[bool]] = None,
                  enabled: Optional[pulumi.Input[bool]] = None,
                  events_enabled: Optional[pulumi.Input[bool]] = None,
@@ -13777,6 +15842,7 @@ class KubernetesClusterMasterMasterLoggingArgs:
                  kube_apiserver_enabled: Optional[pulumi.Input[bool]] = None,
                  log_group_id: Optional[pulumi.Input[str]] = None):
         """
+        :param pulumi.Input[bool] audit_enabled: (Optional) Boolean flag that specifies if kube-apiserver audit logs should be sent to Yandex Cloud Logging.
         :param pulumi.Input[bool] cluster_autoscaler_enabled: (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
         :param pulumi.Input[bool] enabled: (Optional) Boolean flag that specifies if master components logs should be sent to [Yandex Cloud Logging](https://cloud.yandex.com/docs/logging/). The exact components that will send their logs must be configured via the options described below.
         :param pulumi.Input[bool] events_enabled: (Optional) Boolean flag that specifies if kubernetes cluster events should be sent to Yandex Cloud Logging.
@@ -13785,6 +15851,8 @@ class KubernetesClusterMasterMasterLoggingArgs:
         :param pulumi.Input[bool] kube_apiserver_enabled: (Optional) Boolean flag that specifies if kube-apiserver logs should be sent to Yandex Cloud Logging.
         :param pulumi.Input[str] log_group_id: (Optional) ID of the Yandex Cloud Logging [Log group](https://cloud.yandex.com/docs/logging/concepts/log-group).
         """
+        if audit_enabled is not None:
+            pulumi.set(__self__, "audit_enabled", audit_enabled)
         if cluster_autoscaler_enabled is not None:
             pulumi.set(__self__, "cluster_autoscaler_enabled", cluster_autoscaler_enabled)
         if enabled is not None:
@@ -13797,6 +15865,18 @@ class KubernetesClusterMasterMasterLoggingArgs:
             pulumi.set(__self__, "kube_apiserver_enabled", kube_apiserver_enabled)
         if log_group_id is not None:
             pulumi.set(__self__, "log_group_id", log_group_id)
+
+    @property
+    @pulumi.getter(name="auditEnabled")
+    def audit_enabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        (Optional) Boolean flag that specifies if kube-apiserver audit logs should be sent to Yandex Cloud Logging.
+        """
+        return pulumi.get(self, "audit_enabled")
+
+    @audit_enabled.setter
+    def audit_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "audit_enabled", value)
 
     @property
     @pulumi.getter(name="clusterAutoscalerEnabled")
@@ -14204,7 +16284,9 @@ class KubernetesNodeGroupDeployPolicyArgs:
 class KubernetesNodeGroupInstanceTemplateArgs:
     def __init__(__self__, *,
                  boot_disk: Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateBootDiskArgs']] = None,
+                 container_network: Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateContainerNetworkArgs']] = None,
                  container_runtime: Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs']] = None,
+                 gpu_settings: Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateGpuSettingsArgs']] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  metadata: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -14217,9 +16299,11 @@ class KubernetesNodeGroupInstanceTemplateArgs:
                  scheduling_policy: Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateSchedulingPolicyArgs']] = None):
         """
         :param pulumi.Input['KubernetesNodeGroupInstanceTemplateBootDiskArgs'] boot_disk: The specifications for boot disks that will be attached to the instance. The structure is documented below.
+        :param pulumi.Input['KubernetesNodeGroupInstanceTemplateContainerNetworkArgs'] container_network: Container network configuration. The structure is documented below.
         :param pulumi.Input['KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs'] container_runtime: Container runtime configuration. The structure is documented below.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels that will be assigned to compute nodes (instances), created by the Node Group.
+        :param pulumi.Input['KubernetesNodeGroupInstanceTemplateGpuSettingsArgs'] gpu_settings: GPU settings. The structure is documented below.
                ---
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels that will be assigned to compute nodes (instances), created by the Node Group.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] metadata: The set of metadata `key:value` pairs assigned to this instance template. This includes custom metadata and predefined keys. **Note**: key "user-data" won't be provided into instances. It reserved for internal activity in `kubernetes_node_group` resource.
         :param pulumi.Input[str] name: Name template of the instance.
                In order to be unique it must contain at least one of instance unique placeholders:
@@ -14238,8 +16322,12 @@ class KubernetesNodeGroupInstanceTemplateArgs:
         """
         if boot_disk is not None:
             pulumi.set(__self__, "boot_disk", boot_disk)
+        if container_network is not None:
+            pulumi.set(__self__, "container_network", container_network)
         if container_runtime is not None:
             pulumi.set(__self__, "container_runtime", container_runtime)
+        if gpu_settings is not None:
+            pulumi.set(__self__, "gpu_settings", gpu_settings)
         if labels is not None:
             pulumi.set(__self__, "labels", labels)
         if metadata is not None:
@@ -14277,6 +16365,18 @@ class KubernetesNodeGroupInstanceTemplateArgs:
         pulumi.set(self, "boot_disk", value)
 
     @property
+    @pulumi.getter(name="containerNetwork")
+    def container_network(self) -> Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateContainerNetworkArgs']]:
+        """
+        Container network configuration. The structure is documented below.
+        """
+        return pulumi.get(self, "container_network")
+
+    @container_network.setter
+    def container_network(self, value: Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateContainerNetworkArgs']]):
+        pulumi.set(self, "container_network", value)
+
+    @property
     @pulumi.getter(name="containerRuntime")
     def container_runtime(self) -> Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs']]:
         """
@@ -14289,11 +16389,23 @@ class KubernetesNodeGroupInstanceTemplateArgs:
         pulumi.set(self, "container_runtime", value)
 
     @property
+    @pulumi.getter(name="gpuSettings")
+    def gpu_settings(self) -> Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateGpuSettingsArgs']]:
+        """
+        GPU settings. The structure is documented below.
+        ---
+        """
+        return pulumi.get(self, "gpu_settings")
+
+    @gpu_settings.setter
+    def gpu_settings(self, value: Optional[pulumi.Input['KubernetesNodeGroupInstanceTemplateGpuSettingsArgs']]):
+        pulumi.set(self, "gpu_settings", value)
+
+    @property
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Labels that will be assigned to compute nodes (instances), created by the Node Group.
-        ---
         """
         return pulumi.get(self, "labels")
 
@@ -14454,6 +16566,29 @@ class KubernetesNodeGroupInstanceTemplateBootDiskArgs:
 
 
 @pulumi.input_type
+class KubernetesNodeGroupInstanceTemplateContainerNetworkArgs:
+    def __init__(__self__, *,
+                 pod_mtu: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] pod_mtu: MTU for pods.
+        """
+        if pod_mtu is not None:
+            pulumi.set(__self__, "pod_mtu", pod_mtu)
+
+    @property
+    @pulumi.getter(name="podMtu")
+    def pod_mtu(self) -> Optional[pulumi.Input[int]]:
+        """
+        MTU for pods.
+        """
+        return pulumi.get(self, "pod_mtu")
+
+    @pod_mtu.setter
+    def pod_mtu(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "pod_mtu", value)
+
+
+@pulumi.input_type
 class KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str]):
@@ -14473,6 +16608,45 @@ class KubernetesNodeGroupInstanceTemplateContainerRuntimeArgs:
     @type.setter
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class KubernetesNodeGroupInstanceTemplateGpuSettingsArgs:
+    def __init__(__self__, *,
+                 gpu_cluster_id: Optional[pulumi.Input[str]] = None,
+                 gpu_environment: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] gpu_cluster_id: GPU cluster id.
+        :param pulumi.Input[str] gpu_environment: GPU environment. Values: `runc`, `runc_drivers_cuda`.
+        """
+        if gpu_cluster_id is not None:
+            pulumi.set(__self__, "gpu_cluster_id", gpu_cluster_id)
+        if gpu_environment is not None:
+            pulumi.set(__self__, "gpu_environment", gpu_environment)
+
+    @property
+    @pulumi.getter(name="gpuClusterId")
+    def gpu_cluster_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        GPU cluster id.
+        """
+        return pulumi.get(self, "gpu_cluster_id")
+
+    @gpu_cluster_id.setter
+    def gpu_cluster_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gpu_cluster_id", value)
+
+    @property
+    @pulumi.getter(name="gpuEnvironment")
+    def gpu_environment(self) -> Optional[pulumi.Input[str]]:
+        """
+        GPU environment. Values: `runc`, `runc_drivers_cuda`.
+        """
+        return pulumi.get(self, "gpu_environment")
+
+    @gpu_environment.setter
+    def gpu_environment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gpu_environment", value)
 
 
 @pulumi.input_type
@@ -21461,13 +23635,18 @@ class MdbMongodbClusterClusterConfigArgs:
                  access: Optional[pulumi.Input['MdbMongodbClusterClusterConfigAccessArgs']] = None,
                  backup_window_start: Optional[pulumi.Input['MdbMongodbClusterClusterConfigBackupWindowStartArgs']] = None,
                  feature_compatibility_version: Optional[pulumi.Input[str]] = None,
-                 mongod: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodArgs']] = None):
+                 mongocfg: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgArgs']] = None,
+                 mongod: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodArgs']] = None,
+                 mongos: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongosArgs']] = None,
+                 performance_diagnostics: Optional[pulumi.Input['MdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs']] = None):
         """
-        :param pulumi.Input[str] version: Version of MongoDB (either 5.0, 4.4, 4.2 or 4.0).
+        :param pulumi.Input[str] version: Version of the MongoDB server software. Can be either `4.2`, `4.4`, `4.4-enterprise`, `5.0`, `5.0-enterprise`, `6.0` and `6.0-enterprise`.
         :param pulumi.Input['MdbMongodbClusterClusterConfigAccessArgs'] access: Access policy to the MongoDB cluster. The structure is documented below.
         :param pulumi.Input['MdbMongodbClusterClusterConfigBackupWindowStartArgs'] backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
-        :param pulumi.Input[str] feature_compatibility_version: Feature compatibility version of MongoDB. If not provided version is taken. Can be either `5.0`, `4.4`, `4.2` and `4.0`.
+        :param pulumi.Input[str] feature_compatibility_version: Feature compatibility version of MongoDB. If not provided version is taken. Can be either `6.0`, `5.0`, `4.4` and `4.2`.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongocfgArgs'] mongocfg: Configuration of the mongocfg service. The structure is documented below.
         :param pulumi.Input['MdbMongodbClusterClusterConfigMongodArgs'] mongod: Configuration of the mongod service. The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongosArgs'] mongos: Configuration of the mongos service. The structure is documented below.
         """
         pulumi.set(__self__, "version", version)
         if access is not None:
@@ -21476,14 +23655,20 @@ class MdbMongodbClusterClusterConfigArgs:
             pulumi.set(__self__, "backup_window_start", backup_window_start)
         if feature_compatibility_version is not None:
             pulumi.set(__self__, "feature_compatibility_version", feature_compatibility_version)
+        if mongocfg is not None:
+            pulumi.set(__self__, "mongocfg", mongocfg)
         if mongod is not None:
             pulumi.set(__self__, "mongod", mongod)
+        if mongos is not None:
+            pulumi.set(__self__, "mongos", mongos)
+        if performance_diagnostics is not None:
+            pulumi.set(__self__, "performance_diagnostics", performance_diagnostics)
 
     @property
     @pulumi.getter
     def version(self) -> pulumi.Input[str]:
         """
-        Version of MongoDB (either 5.0, 4.4, 4.2 or 4.0).
+        Version of the MongoDB server software. Can be either `4.2`, `4.4`, `4.4-enterprise`, `5.0`, `5.0-enterprise`, `6.0` and `6.0-enterprise`.
         """
         return pulumi.get(self, "version")
 
@@ -21519,13 +23704,25 @@ class MdbMongodbClusterClusterConfigArgs:
     @pulumi.getter(name="featureCompatibilityVersion")
     def feature_compatibility_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Feature compatibility version of MongoDB. If not provided version is taken. Can be either `5.0`, `4.4`, `4.2` and `4.0`.
+        Feature compatibility version of MongoDB. If not provided version is taken. Can be either `6.0`, `5.0`, `4.4` and `4.2`.
         """
         return pulumi.get(self, "feature_compatibility_version")
 
     @feature_compatibility_version.setter
     def feature_compatibility_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "feature_compatibility_version", value)
+
+    @property
+    @pulumi.getter
+    def mongocfg(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgArgs']]:
+        """
+        Configuration of the mongocfg service. The structure is documented below.
+        """
+        return pulumi.get(self, "mongocfg")
+
+    @mongocfg.setter
+    def mongocfg(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgArgs']]):
+        pulumi.set(self, "mongocfg", value)
 
     @property
     @pulumi.getter
@@ -21538,6 +23735,27 @@ class MdbMongodbClusterClusterConfigArgs:
     @mongod.setter
     def mongod(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodArgs']]):
         pulumi.set(self, "mongod", value)
+
+    @property
+    @pulumi.getter
+    def mongos(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongosArgs']]:
+        """
+        Configuration of the mongos service. The structure is documented below.
+        """
+        return pulumi.get(self, "mongos")
+
+    @mongos.setter
+    def mongos(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongosArgs']]):
+        pulumi.set(self, "mongos", value)
+
+    @property
+    @pulumi.getter(name="performanceDiagnostics")
+    def performance_diagnostics(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs']]:
+        return pulumi.get(self, "performance_diagnostics")
+
+    @performance_diagnostics.setter
+    def performance_diagnostics(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs']]):
+        pulumi.set(self, "performance_diagnostics", value)
 
 
 @pulumi.input_type
@@ -21619,28 +23837,241 @@ class MdbMongodbClusterClusterConfigBackupWindowStartArgs:
 
 
 @pulumi.input_type
+class MdbMongodbClusterClusterConfigMongocfgArgs:
+    def __init__(__self__, *,
+                 net: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgNetArgs']] = None,
+                 operation_profiling: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs']] = None,
+                 storage: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgStorageArgs']] = None):
+        """
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongocfgNetArgs'] net: A set of network settings
+               (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+               The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs'] operation_profiling: A set of profiling settings
+               (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+               The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongocfgStorageArgs'] storage: A set of storage settings
+               (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+               The structure is documented below.
+        """
+        if net is not None:
+            pulumi.set(__self__, "net", net)
+        if operation_profiling is not None:
+            pulumi.set(__self__, "operation_profiling", operation_profiling)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
+
+    @property
+    @pulumi.getter
+    def net(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgNetArgs']]:
+        """
+        A set of network settings
+        (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "net")
+
+    @net.setter
+    def net(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgNetArgs']]):
+        pulumi.set(self, "net", value)
+
+    @property
+    @pulumi.getter(name="operationProfiling")
+    def operation_profiling(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs']]:
+        """
+        A set of profiling settings
+        (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "operation_profiling")
+
+    @operation_profiling.setter
+    def operation_profiling(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs']]):
+        pulumi.set(self, "operation_profiling", value)
+
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgStorageArgs']]:
+        """
+        A set of storage settings
+        (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "storage")
+
+    @storage.setter
+    def storage(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgStorageArgs']]):
+        pulumi.set(self, "storage", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterClusterConfigMongocfgNetArgs:
+    def __init__(__self__, *,
+                 max_incoming_connections: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] max_incoming_connections: The maximum number of simultaneous connections that host will accept.
+               For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+               description in the official documentation.
+        """
+        if max_incoming_connections is not None:
+            pulumi.set(__self__, "max_incoming_connections", max_incoming_connections)
+
+    @property
+    @pulumi.getter(name="maxIncomingConnections")
+    def max_incoming_connections(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of simultaneous connections that host will accept.
+        For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "max_incoming_connections")
+
+    @max_incoming_connections.setter
+    def max_incoming_connections(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_incoming_connections", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs:
+    def __init__(__self__, *,
+                 mode: Optional[pulumi.Input[str]] = None,
+                 slow_op_threshold: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] mode: Specifies which operations should be profiled. The following profiler levels are available: off, slow_op, all.
+               For more information, see the [operationProfiling.mode](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.mode)
+               description in the official documentation.
+        :param pulumi.Input[int] slow_op_threshold: The slow operation time threshold, in milliseconds. Operations that run for longer than this threshold are considered slow.
+               For more information, see the [operationProfiling.slowOpThresholdMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.slowOpThresholdMs)
+               description in the official documentation.
+        """
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if slow_op_threshold is not None:
+            pulumi.set(__self__, "slow_op_threshold", slow_op_threshold)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies which operations should be profiled. The following profiler levels are available: off, slow_op, all.
+        For more information, see the [operationProfiling.mode](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.mode)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter(name="slowOpThreshold")
+    def slow_op_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        The slow operation time threshold, in milliseconds. Operations that run for longer than this threshold are considered slow.
+        For more information, see the [operationProfiling.slowOpThresholdMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.slowOpThresholdMs)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "slow_op_threshold")
+
+    @slow_op_threshold.setter
+    def slow_op_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "slow_op_threshold", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterClusterConfigMongocfgStorageArgs:
+    def __init__(__self__, *,
+                 wired_tiger: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs']] = None):
+        """
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs'] wired_tiger: The WiredTiger engine settings.
+               (see the [storage.wiredTiger](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage.wiredtiger-options) option).
+               These settings available only on `mongod` hosts. The structure is documented below.
+        """
+        if wired_tiger is not None:
+            pulumi.set(__self__, "wired_tiger", wired_tiger)
+
+    @property
+    @pulumi.getter(name="wiredTiger")
+    def wired_tiger(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs']]:
+        """
+        The WiredTiger engine settings.
+        (see the [storage.wiredTiger](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage.wiredtiger-options) option).
+        These settings available only on `mongod` hosts. The structure is documented below.
+        """
+        return pulumi.get(self, "wired_tiger")
+
+    @wired_tiger.setter
+    def wired_tiger(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs']]):
+        pulumi.set(self, "wired_tiger", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs:
+    def __init__(__self__, *,
+                 cache_size_gb: Optional[pulumi.Input[float]] = None):
+        """
+        :param pulumi.Input[float] cache_size_gb: Defines the maximum size of the internal cache that WiredTiger will use for all data.
+               For more information, see the [storage.wiredTiger.engineConfig.cacheSizeGB](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.engineConfig.cacheSizeGB)
+               description in the official documentation.
+        """
+        if cache_size_gb is not None:
+            pulumi.set(__self__, "cache_size_gb", cache_size_gb)
+
+    @property
+    @pulumi.getter(name="cacheSizeGb")
+    def cache_size_gb(self) -> Optional[pulumi.Input[float]]:
+        """
+        Defines the maximum size of the internal cache that WiredTiger will use for all data.
+        For more information, see the [storage.wiredTiger.engineConfig.cacheSizeGB](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.engineConfig.cacheSizeGB)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "cache_size_gb")
+
+    @cache_size_gb.setter
+    def cache_size_gb(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "cache_size_gb", value)
+
+
+@pulumi.input_type
 class MdbMongodbClusterClusterConfigMongodArgs:
     def __init__(__self__, *,
                  audit_log: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodAuditLogArgs']] = None,
+                 net: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodNetArgs']] = None,
+                 operation_profiling: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodOperationProfilingArgs']] = None,
                  security: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodSecurityArgs']] = None,
-                 set_parameter: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodSetParameterArgs']] = None):
+                 set_parameter: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodSetParameterArgs']] = None,
+                 storage: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodStorageArgs']] = None):
         """
         :param pulumi.Input['MdbMongodbClusterClusterConfigMongodAuditLogArgs'] audit_log: A set of audit log settings 
                (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
                The structure is documented below. Available only in enterprise edition.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongodNetArgs'] net: A set of network settings
+               (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+               The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongodOperationProfilingArgs'] operation_profiling: A set of profiling settings
+               (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+               The structure is documented below.
         :param pulumi.Input['MdbMongodbClusterClusterConfigMongodSecurityArgs'] security: A set of MongoDB Security settings
                (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
                The structure is documented below. Available only in enterprise edition.
         :param pulumi.Input['MdbMongodbClusterClusterConfigMongodSetParameterArgs'] set_parameter: A set of MongoDB Server Parameters 
                (see the [setParameter](https://www.mongodb.com/docs/manual/reference/configuration-options/#setparameter-option) option).
                The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongodStorageArgs'] storage: A set of storage settings
+               (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+               The structure is documented below.
         """
         if audit_log is not None:
             pulumi.set(__self__, "audit_log", audit_log)
+        if net is not None:
+            pulumi.set(__self__, "net", net)
+        if operation_profiling is not None:
+            pulumi.set(__self__, "operation_profiling", operation_profiling)
         if security is not None:
             pulumi.set(__self__, "security", security)
         if set_parameter is not None:
             pulumi.set(__self__, "set_parameter", set_parameter)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
 
     @property
     @pulumi.getter(name="auditLog")
@@ -21655,6 +24086,34 @@ class MdbMongodbClusterClusterConfigMongodArgs:
     @audit_log.setter
     def audit_log(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodAuditLogArgs']]):
         pulumi.set(self, "audit_log", value)
+
+    @property
+    @pulumi.getter
+    def net(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodNetArgs']]:
+        """
+        A set of network settings
+        (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "net")
+
+    @net.setter
+    def net(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodNetArgs']]):
+        pulumi.set(self, "net", value)
+
+    @property
+    @pulumi.getter(name="operationProfiling")
+    def operation_profiling(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodOperationProfilingArgs']]:
+        """
+        A set of profiling settings
+        (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "operation_profiling")
+
+    @operation_profiling.setter
+    def operation_profiling(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodOperationProfilingArgs']]):
+        pulumi.set(self, "operation_profiling", value)
 
     @property
     @pulumi.getter
@@ -21684,6 +24143,20 @@ class MdbMongodbClusterClusterConfigMongodArgs:
     def set_parameter(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodSetParameterArgs']]):
         pulumi.set(self, "set_parameter", value)
 
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodStorageArgs']]:
+        """
+        A set of storage settings
+        (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "storage")
+
+    @storage.setter
+    def storage(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodStorageArgs']]):
+        pulumi.set(self, "storage", value)
+
 
 @pulumi.input_type
 class MdbMongodbClusterClusterConfigMongodAuditLogArgs:
@@ -21693,6 +24166,9 @@ class MdbMongodbClusterClusterConfigMongodAuditLogArgs:
         """
         :param pulumi.Input[str] filter: Configuration of the audit log filter in JSON format.
                For more information see [auditLog.filter](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.filter)
+               description in the official documentation. Available only in enterprise edition.
+        :param pulumi.Input[bool] runtime_configuration: Specifies if a node allows runtime configuration of audit filters and the auditAuthorizationSuccess variable.
+               For more information see [auditLog.runtimeConfiguration](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.runtimeConfiguration)
                description in the official documentation. Available only in enterprise edition.
         """
         if filter is not None:
@@ -21717,11 +24193,90 @@ class MdbMongodbClusterClusterConfigMongodAuditLogArgs:
     @property
     @pulumi.getter(name="runtimeConfiguration")
     def runtime_configuration(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies if a node allows runtime configuration of audit filters and the auditAuthorizationSuccess variable.
+        For more information see [auditLog.runtimeConfiguration](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-auditLog.runtimeConfiguration)
+        description in the official documentation. Available only in enterprise edition.
+        """
         return pulumi.get(self, "runtime_configuration")
 
     @runtime_configuration.setter
     def runtime_configuration(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "runtime_configuration", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterClusterConfigMongodNetArgs:
+    def __init__(__self__, *,
+                 max_incoming_connections: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] max_incoming_connections: The maximum number of simultaneous connections that host will accept.
+               For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+               description in the official documentation.
+        """
+        if max_incoming_connections is not None:
+            pulumi.set(__self__, "max_incoming_connections", max_incoming_connections)
+
+    @property
+    @pulumi.getter(name="maxIncomingConnections")
+    def max_incoming_connections(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of simultaneous connections that host will accept.
+        For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "max_incoming_connections")
+
+    @max_incoming_connections.setter
+    def max_incoming_connections(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_incoming_connections", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterClusterConfigMongodOperationProfilingArgs:
+    def __init__(__self__, *,
+                 mode: Optional[pulumi.Input[str]] = None,
+                 slow_op_threshold: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[str] mode: Specifies which operations should be profiled. The following profiler levels are available: off, slow_op, all.
+               For more information, see the [operationProfiling.mode](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.mode)
+               description in the official documentation.
+        :param pulumi.Input[int] slow_op_threshold: The slow operation time threshold, in milliseconds. Operations that run for longer than this threshold are considered slow.
+               For more information, see the [operationProfiling.slowOpThresholdMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.slowOpThresholdMs)
+               description in the official documentation.
+        """
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if slow_op_threshold is not None:
+            pulumi.set(__self__, "slow_op_threshold", slow_op_threshold)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies which operations should be profiled. The following profiler levels are available: off, slow_op, all.
+        For more information, see the [operationProfiling.mode](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.mode)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter(name="slowOpThreshold")
+    def slow_op_threshold(self) -> Optional[pulumi.Input[int]]:
+        """
+        The slow operation time threshold, in milliseconds. Operations that run for longer than this threshold are considered slow.
+        For more information, see the [operationProfiling.slowOpThresholdMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-operationProfiling.slowOpThresholdMs)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "slow_op_threshold")
+
+    @slow_op_threshold.setter
+    def slow_op_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "slow_op_threshold", value)
 
 
 @pulumi.input_type
@@ -21906,6 +24461,198 @@ class MdbMongodbClusterClusterConfigMongodSetParameterArgs:
 
 
 @pulumi.input_type
+class MdbMongodbClusterClusterConfigMongodStorageArgs:
+    def __init__(__self__, *,
+                 journal: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodStorageJournalArgs']] = None,
+                 wired_tiger: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs']] = None):
+        """
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongodStorageJournalArgs'] journal: The durability journal to ensure data files remain valid and recoverable.
+               The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs'] wired_tiger: The WiredTiger engine settings.
+               (see the [storage.wiredTiger](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage.wiredtiger-options) option).
+               These settings available only on `mongod` hosts. The structure is documented below.
+        """
+        if journal is not None:
+            pulumi.set(__self__, "journal", journal)
+        if wired_tiger is not None:
+            pulumi.set(__self__, "wired_tiger", wired_tiger)
+
+    @property
+    @pulumi.getter
+    def journal(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodStorageJournalArgs']]:
+        """
+        The durability journal to ensure data files remain valid and recoverable.
+        The structure is documented below.
+        """
+        return pulumi.get(self, "journal")
+
+    @journal.setter
+    def journal(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodStorageJournalArgs']]):
+        pulumi.set(self, "journal", value)
+
+    @property
+    @pulumi.getter(name="wiredTiger")
+    def wired_tiger(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs']]:
+        """
+        The WiredTiger engine settings.
+        (see the [storage.wiredTiger](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage.wiredtiger-options) option).
+        These settings available only on `mongod` hosts. The structure is documented below.
+        """
+        return pulumi.get(self, "wired_tiger")
+
+    @wired_tiger.setter
+    def wired_tiger(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs']]):
+        pulumi.set(self, "wired_tiger", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterClusterConfigMongodStorageJournalArgs:
+    def __init__(__self__, *,
+                 commit_interval: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] commit_interval: The maximum amount of time in milliseconds that the mongod process allows between journal operations.
+               For more information, see the [storage.journal.commitIntervalMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.journal.commitIntervalMs)
+               description in the official documentation.
+        """
+        if commit_interval is not None:
+            pulumi.set(__self__, "commit_interval", commit_interval)
+
+    @property
+    @pulumi.getter(name="commitInterval")
+    def commit_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum amount of time in milliseconds that the mongod process allows between journal operations.
+        For more information, see the [storage.journal.commitIntervalMs](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.journal.commitIntervalMs)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "commit_interval")
+
+    @commit_interval.setter
+    def commit_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "commit_interval", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs:
+    def __init__(__self__, *,
+                 block_compressor: Optional[pulumi.Input[str]] = None,
+                 cache_size_gb: Optional[pulumi.Input[float]] = None):
+        """
+        :param pulumi.Input[str] block_compressor: Specifies the default compression for collection data. You can override this on a per-collection basis when creating collections.
+               Available compressors are: none, snappy, zlib, zstd. This setting available only on `mongod` hosts.
+               For more information, see the [storage.wiredTiger.collectionConfig.blockCompressor](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.collectionConfig.blockCompressor)
+               description in the official documentation.
+        :param pulumi.Input[float] cache_size_gb: Defines the maximum size of the internal cache that WiredTiger will use for all data.
+               For more information, see the [storage.wiredTiger.engineConfig.cacheSizeGB](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.engineConfig.cacheSizeGB)
+               description in the official documentation.
+        """
+        if block_compressor is not None:
+            pulumi.set(__self__, "block_compressor", block_compressor)
+        if cache_size_gb is not None:
+            pulumi.set(__self__, "cache_size_gb", cache_size_gb)
+
+    @property
+    @pulumi.getter(name="blockCompressor")
+    def block_compressor(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specifies the default compression for collection data. You can override this on a per-collection basis when creating collections.
+        Available compressors are: none, snappy, zlib, zstd. This setting available only on `mongod` hosts.
+        For more information, see the [storage.wiredTiger.collectionConfig.blockCompressor](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.collectionConfig.blockCompressor)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "block_compressor")
+
+    @block_compressor.setter
+    def block_compressor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "block_compressor", value)
+
+    @property
+    @pulumi.getter(name="cacheSizeGb")
+    def cache_size_gb(self) -> Optional[pulumi.Input[float]]:
+        """
+        Defines the maximum size of the internal cache that WiredTiger will use for all data.
+        For more information, see the [storage.wiredTiger.engineConfig.cacheSizeGB](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.wiredTiger.engineConfig.cacheSizeGB)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "cache_size_gb")
+
+    @cache_size_gb.setter
+    def cache_size_gb(self, value: Optional[pulumi.Input[float]]):
+        pulumi.set(self, "cache_size_gb", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterClusterConfigMongosArgs:
+    def __init__(__self__, *,
+                 net: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongosNetArgs']] = None):
+        """
+        :param pulumi.Input['MdbMongodbClusterClusterConfigMongosNetArgs'] net: A set of network settings
+               (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+               The structure is documented below.
+        """
+        if net is not None:
+            pulumi.set(__self__, "net", net)
+
+    @property
+    @pulumi.getter
+    def net(self) -> Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongosNetArgs']]:
+        """
+        A set of network settings
+        (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+        The structure is documented below.
+        """
+        return pulumi.get(self, "net")
+
+    @net.setter
+    def net(self, value: Optional[pulumi.Input['MdbMongodbClusterClusterConfigMongosNetArgs']]):
+        pulumi.set(self, "net", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterClusterConfigMongosNetArgs:
+    def __init__(__self__, *,
+                 max_incoming_connections: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] max_incoming_connections: The maximum number of simultaneous connections that host will accept.
+               For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+               description in the official documentation.
+        """
+        if max_incoming_connections is not None:
+            pulumi.set(__self__, "max_incoming_connections", max_incoming_connections)
+
+    @property
+    @pulumi.getter(name="maxIncomingConnections")
+    def max_incoming_connections(self) -> Optional[pulumi.Input[int]]:
+        """
+        The maximum number of simultaneous connections that host will accept.
+        For more information, see the [net.maxIncomingConnections](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-net.maxIncomingConnections)
+        description in the official documentation.
+        """
+        return pulumi.get(self, "max_incoming_connections")
+
+    @max_incoming_connections.setter
+    def max_incoming_connections(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_incoming_connections", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[pulumi.Input[bool]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+@pulumi.input_type
 class MdbMongodbClusterDatabaseArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str]):
@@ -21947,7 +24694,7 @@ class MdbMongodbClusterHostArgs:
         :param pulumi.Input[str] health: The health of the host.
         :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
         :param pulumi.Input[str] role: The role of the cluster (either PRIMARY or SECONDARY).
-        :param pulumi.Input[str] shard_name: The name of the shard to which the host belongs.
+        :param pulumi.Input[str] shard_name: The name of the shard to which the host belongs. Only for sharded cluster.
         :param pulumi.Input[str] type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         """
         pulumi.set(__self__, "subnet_id", subnet_id)
@@ -22043,7 +24790,7 @@ class MdbMongodbClusterHostArgs:
     @pulumi.getter(name="shardName")
     def shard_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of the shard to which the host belongs.
+        The name of the shard to which the host belongs. Only for sharded cluster.
         """
         return pulumi.get(self, "shard_name")
 
@@ -22120,6 +24867,206 @@ class MdbMongodbClusterMaintenanceWindowArgs:
 
 @pulumi.input_type
 class MdbMongodbClusterResourcesArgs:
+    def __init__(__self__, *,
+                 disk_size: pulumi.Input[int],
+                 disk_type_id: pulumi.Input[str],
+                 resource_preset_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a MongoDB host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of MongoDB hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        pulumi.set(__self__, "disk_size", disk_size)
+        pulumi.set(__self__, "disk_type_id", disk_type_id)
+        pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a MongoDB host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: pulumi.Input[int]):
+        pulumi.set(self, "disk_size", value)
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> pulumi.Input[str]:
+        """
+        Type of the storage of MongoDB hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @disk_type_id.setter
+    def disk_type_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "disk_type_id", value)
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "resource_preset_id")
+
+    @resource_preset_id.setter
+    def resource_preset_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "resource_preset_id", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterResourcesMongocfgArgs:
+    def __init__(__self__, *,
+                 disk_size: pulumi.Input[int],
+                 disk_type_id: pulumi.Input[str],
+                 resource_preset_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a MongoDB host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of MongoDB hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        pulumi.set(__self__, "disk_size", disk_size)
+        pulumi.set(__self__, "disk_type_id", disk_type_id)
+        pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a MongoDB host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: pulumi.Input[int]):
+        pulumi.set(self, "disk_size", value)
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> pulumi.Input[str]:
+        """
+        Type of the storage of MongoDB hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @disk_type_id.setter
+    def disk_type_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "disk_type_id", value)
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "resource_preset_id")
+
+    @resource_preset_id.setter
+    def resource_preset_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "resource_preset_id", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterResourcesMongodArgs:
+    def __init__(__self__, *,
+                 disk_size: pulumi.Input[int],
+                 disk_type_id: pulumi.Input[str],
+                 resource_preset_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a MongoDB host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of MongoDB hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        pulumi.set(__self__, "disk_size", disk_size)
+        pulumi.set(__self__, "disk_type_id", disk_type_id)
+        pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a MongoDB host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: pulumi.Input[int]):
+        pulumi.set(self, "disk_size", value)
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> pulumi.Input[str]:
+        """
+        Type of the storage of MongoDB hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @disk_type_id.setter
+    def disk_type_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "disk_type_id", value)
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "resource_preset_id")
+
+    @resource_preset_id.setter
+    def resource_preset_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "resource_preset_id", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterResourcesMongoinfraArgs:
+    def __init__(__self__, *,
+                 disk_size: pulumi.Input[int],
+                 disk_type_id: pulumi.Input[str],
+                 resource_preset_id: pulumi.Input[str]):
+        """
+        :param pulumi.Input[int] disk_size: Volume of the storage available to a MongoDB host, in gigabytes.
+        :param pulumi.Input[str] disk_type_id: Type of the storage of MongoDB hosts.
+               For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        pulumi.set(__self__, "disk_size", disk_size)
+        pulumi.set(__self__, "disk_type_id", disk_type_id)
+        pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> pulumi.Input[int]:
+        """
+        Volume of the storage available to a MongoDB host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: pulumi.Input[int]):
+        pulumi.set(self, "disk_size", value)
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> pulumi.Input[str]:
+        """
+        Type of the storage of MongoDB hosts.
+        For more information see [the official documentation](https://cloud.yandex.com/docs/managed-clickhouse/concepts/storage).
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @disk_type_id.setter
+    def disk_type_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "disk_type_id", value)
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "resource_preset_id")
+
+    @resource_preset_id.setter
+    def resource_preset_id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "resource_preset_id", value)
+
+
+@pulumi.input_type
+class MdbMongodbClusterResourcesMongosArgs:
     def __init__(__self__, *,
                  disk_size: pulumi.Input[int],
                  disk_type_id: pulumi.Input[str],
@@ -23682,6 +26629,7 @@ class MdbRedisClusterConfigArgs:
                  client_output_buffer_limit_normal: Optional[pulumi.Input[str]] = None,
                  client_output_buffer_limit_pubsub: Optional[pulumi.Input[str]] = None,
                  databases: Optional[pulumi.Input[int]] = None,
+                 maxmemory_percent: Optional[pulumi.Input[int]] = None,
                  maxmemory_policy: Optional[pulumi.Input[str]] = None,
                  notify_keyspace_events: Optional[pulumi.Input[str]] = None,
                  slowlog_log_slower_than: Optional[pulumi.Input[int]] = None,
@@ -23695,6 +26643,7 @@ class MdbRedisClusterConfigArgs:
         :param pulumi.Input[str] client_output_buffer_limit_pubsub: Pubsub clients output buffer limits.
                See [redis config file](https://github.com/redis/redis/blob/6.2/redis.conf#L1843).
         :param pulumi.Input[int] databases: Number of databases (changing requires redis-server restart).
+        :param pulumi.Input[int] maxmemory_percent: Redis maxmemory usage in percent
         :param pulumi.Input[str] maxmemory_policy: Redis key eviction policy for a dataset that reaches maximum memory.
                Can be any of the listed in [the official RedisDB documentation](https://docs.redislabs.com/latest/rs/administering/database-operations/eviction-policy/).
         :param pulumi.Input[str] notify_keyspace_events: Select the events that Redis will notify among a set of classes.
@@ -23710,6 +26659,8 @@ class MdbRedisClusterConfigArgs:
             pulumi.set(__self__, "client_output_buffer_limit_pubsub", client_output_buffer_limit_pubsub)
         if databases is not None:
             pulumi.set(__self__, "databases", databases)
+        if maxmemory_percent is not None:
+            pulumi.set(__self__, "maxmemory_percent", maxmemory_percent)
         if maxmemory_policy is not None:
             pulumi.set(__self__, "maxmemory_policy", maxmemory_policy)
         if notify_keyspace_events is not None:
@@ -23782,6 +26733,18 @@ class MdbRedisClusterConfigArgs:
     @databases.setter
     def databases(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "databases", value)
+
+    @property
+    @pulumi.getter(name="maxmemoryPercent")
+    def maxmemory_percent(self) -> Optional[pulumi.Input[int]]:
+        """
+        Redis maxmemory usage in percent
+        """
+        return pulumi.get(self, "maxmemory_percent")
+
+    @maxmemory_percent.setter
+    def maxmemory_percent(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "maxmemory_percent", value)
 
     @property
     @pulumi.getter(name="maxmemoryPolicy")
@@ -24738,6 +27701,7 @@ class StorageBucketLifecycleRuleArgs:
                  noncurrent_version_expiration: Optional[pulumi.Input['StorageBucketLifecycleRuleNoncurrentVersionExpirationArgs']] = None,
                  noncurrent_version_transitions: Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs']]]] = None,
                  prefix: Optional[pulumi.Input[str]] = None,
+                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  transitions: Optional[pulumi.Input[Sequence[pulumi.Input['StorageBucketLifecycleRuleTransitionArgs']]]] = None):
         """
         :param pulumi.Input[bool] enabled: Specifies lifecycle rule status.
@@ -24762,6 +27726,8 @@ class StorageBucketLifecycleRuleArgs:
             pulumi.set(__self__, "noncurrent_version_transitions", noncurrent_version_transitions)
         if prefix is not None:
             pulumi.set(__self__, "prefix", prefix)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
         if transitions is not None:
             pulumi.set(__self__, "transitions", transitions)
 
@@ -24848,6 +27814,15 @@ class StorageBucketLifecycleRuleArgs:
     @prefix.setter
     def prefix(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "prefix", value)
+
+    @property
+    @pulumi.getter
+    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "tags", value)
 
     @property
     @pulumi.getter
@@ -24946,7 +27921,7 @@ class StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs:
                  storage_class: pulumi.Input[str],
                  days: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] storage_class: Specifies the storage class to which you want the noncurrent object versions to transition. Can only be `COLD` or `STANDARD_IA`.
+        :param pulumi.Input[str] storage_class: Specifies the storage class to which you want the noncurrent object versions to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
         :param pulumi.Input[int] days: Specifies the number of days noncurrent object versions transition.
         """
         pulumi.set(__self__, "storage_class", storage_class)
@@ -24957,7 +27932,7 @@ class StorageBucketLifecycleRuleNoncurrentVersionTransitionArgs:
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> pulumi.Input[str]:
         """
-        Specifies the storage class to which you want the noncurrent object versions to transition. Can only be `COLD` or `STANDARD_IA`.
+        Specifies the storage class to which you want the noncurrent object versions to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
         """
         return pulumi.get(self, "storage_class")
 
@@ -24985,7 +27960,7 @@ class StorageBucketLifecycleRuleTransitionArgs:
                  date: Optional[pulumi.Input[str]] = None,
                  days: Optional[pulumi.Input[int]] = None):
         """
-        :param pulumi.Input[str] storage_class: Specifies the storage class to which you want the object to transition. Can only be `COLD` or `STANDARD_IA`.
+        :param pulumi.Input[str] storage_class: Specifies the storage class to which you want the object to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
         :param pulumi.Input[str] date: Specifies the date after which you want the corresponding action to take effect.
         :param pulumi.Input[int] days: Specifies the number of days after object creation when the specific rule action takes effect.
         """
@@ -24999,7 +27974,7 @@ class StorageBucketLifecycleRuleTransitionArgs:
     @pulumi.getter(name="storageClass")
     def storage_class(self) -> pulumi.Input[str]:
         """
-        Specifies the storage class to which you want the object to transition. Can only be `COLD` or `STANDARD_IA`.
+        Specifies the storage class to which you want the object to transition. Supported values: [`STANDARD_IA`, `COLD`, `ICE`].
         """
         return pulumi.get(self, "storage_class")
 
@@ -26595,7 +29570,8 @@ class CmCertificateSelfManagedPrivateKeyLockboxSecretArgs:
                  id: pulumi.Input[str],
                  key: pulumi.Input[str]):
         """
-        :param pulumi.Input[str] id: Certificate Id.
+        :param pulumi.Input[str] id: Lockbox secret Id.
+        :param pulumi.Input[str] key: Key of the Lockbox secret, the value of which contains the private key of the certificate.
         """
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "key", key)
@@ -26604,7 +29580,7 @@ class CmCertificateSelfManagedPrivateKeyLockboxSecretArgs:
     @pulumi.getter
     def id(self) -> pulumi.Input[str]:
         """
-        Certificate Id.
+        Lockbox secret Id.
         """
         return pulumi.get(self, "id")
 
@@ -26615,6 +29591,9 @@ class CmCertificateSelfManagedPrivateKeyLockboxSecretArgs:
     @property
     @pulumi.getter
     def key(self) -> pulumi.Input[str]:
+        """
+        Key of the Lockbox secret, the value of which contains the private key of the certificate.
+        """
         return pulumi.get(self, "key")
 
     @key.setter
@@ -26627,6 +29606,10 @@ class ComputeSnapshotScheduleSchedulePolicyArgs:
     def __init__(__self__, *,
                  expression: Optional[pulumi.Input[str]] = None,
                  start_at: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] expression: Cron expression to schedule snapshots (in cron format "* * * * *").
+        :param pulumi.Input[str] start_at: Time to start the snapshot schedule (in format RFC3339 "2006-01-02T15:04:05Z07:00"). If empty current time will be used. Unlike an `expression` that specifies regularity rules, the `start_at` parameter determines from what point these rules will be applied.
+        """
         if expression is not None:
             pulumi.set(__self__, "expression", expression)
         if start_at is not None:
@@ -26635,6 +29618,9 @@ class ComputeSnapshotScheduleSchedulePolicyArgs:
     @property
     @pulumi.getter
     def expression(self) -> Optional[pulumi.Input[str]]:
+        """
+        Cron expression to schedule snapshots (in cron format "* * * * *").
+        """
         return pulumi.get(self, "expression")
 
     @expression.setter
@@ -26644,6 +29630,9 @@ class ComputeSnapshotScheduleSchedulePolicyArgs:
     @property
     @pulumi.getter(name="startAt")
     def start_at(self) -> Optional[pulumi.Input[str]]:
+        """
+        Time to start the snapshot schedule (in format RFC3339 "2006-01-02T15:04:05Z07:00"). If empty current time will be used. Unlike an `expression` that specifies regularity rules, the `start_at` parameter determines from what point these rules will be applied.
+        """
         return pulumi.get(self, "start_at")
 
     @start_at.setter
@@ -26657,8 +29646,8 @@ class ComputeSnapshotScheduleSnapshotSpecArgs:
                  description: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
-        :param pulumi.Input[str] description: Description of the resource.
-        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the snapshot schedule.
+        :param pulumi.Input[str] description: Description to assign to snapshots created by this snapshot schedule.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -26669,7 +29658,7 @@ class ComputeSnapshotScheduleSnapshotSpecArgs:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        Description of the resource.
+        Description to assign to snapshots created by this snapshot schedule.
         """
         return pulumi.get(self, "description")
 
@@ -26681,7 +29670,7 @@ class ComputeSnapshotScheduleSnapshotSpecArgs:
     @pulumi.getter
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
-        A set of key/value label pairs to assign to the snapshot schedule.
+        A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         """
         return pulumi.get(self, "labels")
 
@@ -28482,7 +31471,7 @@ class GetCdnResourceOptionsArgs:
                  redirect_http_to_https: bool,
                  redirect_https_to_http: bool,
                  slice: bool,
-                 static_request_headers: Sequence[str],
+                 static_request_headers: Mapping[str, str],
                  static_response_headers: Mapping[str, str]):
         """
         :param Sequence[str] allowed_http_methods: HTTP methods for your CDN content. By default the following methods are allowed: GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS. In case some methods are not allowed to the user, they will get the 405 (Method Not Allowed) response. If the method is not supported, the user gets the 501 (Not Implemented) response.
@@ -28505,7 +31494,7 @@ class GetCdnResourceOptionsArgs:
         :param bool redirect_http_to_https: set up a redirect from HTTPS to HTTP.
         :param bool redirect_https_to_http: set up a redirect from HTTP to HTTPS.
         :param bool slice: files larger than 10 MB will be requested and cached in parts (no larger than 10 MB each part). It reduces time to first byte. The origin must support HTTP Range requests.
-        :param Sequence[str] static_request_headers: set up custom headers that CDN servers send in requests to origins.
+        :param Mapping[str, str] static_request_headers: set up custom headers that CDN servers send in requests to origins.
         """
         pulumi.set(__self__, "allowed_http_methods", allowed_http_methods)
         pulumi.set(__self__, "browser_cache_settings", browser_cache_settings)
@@ -28772,14 +31761,14 @@ class GetCdnResourceOptionsArgs:
 
     @property
     @pulumi.getter(name="staticRequestHeaders")
-    def static_request_headers(self) -> Sequence[str]:
+    def static_request_headers(self) -> Mapping[str, str]:
         """
         set up custom headers that CDN servers send in requests to origins.
         """
         return pulumi.get(self, "static_request_headers")
 
     @static_request_headers.setter
-    def static_request_headers(self, value: Sequence[str]):
+    def static_request_headers(self, value: Mapping[str, str]):
         pulumi.set(self, "static_request_headers", value)
 
     @property
@@ -29068,6 +32057,70 @@ class GetComputeInstancePlacementPolicyHostAffinityRuleArgs:
 
 
 @pulumi.input_type
+class GetComputeSnapshotScheduleSchedulePolicyArgs:
+    def __init__(__self__, *,
+                 expression: str,
+                 start_at: str):
+        pulumi.set(__self__, "expression", expression)
+        pulumi.set(__self__, "start_at", start_at)
+
+    @property
+    @pulumi.getter
+    def expression(self) -> str:
+        return pulumi.get(self, "expression")
+
+    @expression.setter
+    def expression(self, value: str):
+        pulumi.set(self, "expression", value)
+
+    @property
+    @pulumi.getter(name="startAt")
+    def start_at(self) -> str:
+        return pulumi.get(self, "start_at")
+
+    @start_at.setter
+    def start_at(self, value: str):
+        pulumi.set(self, "start_at", value)
+
+
+@pulumi.input_type
+class GetComputeSnapshotScheduleSnapshotSpecArgs:
+    def __init__(__self__, *,
+                 description: str,
+                 labels: Mapping[str, str]):
+        """
+        :param str description: An optional description of this snapshot schedule.
+        :param Mapping[str, str] labels: A map of labels applied to this snapshot schedule.
+        """
+        pulumi.set(__self__, "description", description)
+        pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        An optional description of this snapshot schedule.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: str):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Mapping[str, str]:
+        """
+        A map of labels applied to this snapshot schedule.
+        """
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Mapping[str, str]):
+        pulumi.set(self, "labels", value)
+
+
+@pulumi.input_type
 class GetFunctionConnectivityArgs:
     def __init__(__self__, *,
                  network_id: str):
@@ -29182,6 +32235,8 @@ class GetIamPolicyBindingArgs:
                Each entry can have one of the following values:
                * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
                * **serviceAccount:{service_account_id}**: A unique service account ID.
+               * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+               * **group:{group_id}**: A unique group ID.
         :param str role: The role/permission that will be granted to the members.
                See the [IAM Roles] documentation for a complete list of roles.
         """
@@ -29196,6 +32251,8 @@ class GetIamPolicyBindingArgs:
         Each entry can have one of the following values:
         * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
         * **serviceAccount:{service_account_id}**: A unique service account ID.
+        * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+        * **group:{group_id}**: A unique group ID.
         """
         return pulumi.get(self, "members")
 
@@ -29218,22 +32275,1275 @@ class GetIamPolicyBindingArgs:
 
 
 @pulumi.input_type
+class GetMdbClickhouseClusterAccessArgs:
+    def __init__(__self__, *,
+                 data_lens: Optional[bool] = None,
+                 data_transfer: Optional[bool] = None,
+                 metrika: Optional[bool] = None,
+                 serverless: Optional[bool] = None,
+                 web_sql: Optional[bool] = None,
+                 yandex_query: Optional[bool] = None):
+        """
+        :param bool data_lens: Allow access for Web SQL.
+        :param bool data_transfer: Allow access for DataTransfer
+        :param bool metrika: Allow access for Yandex.Metrika.
+        :param bool serverless: Allow access for Serverless.
+        :param bool web_sql: Allow access for DataLens.
+        :param bool yandex_query: Allow access for YandexQuery
+        """
+        if data_lens is not None:
+            pulumi.set(__self__, "data_lens", data_lens)
+        if data_transfer is not None:
+            pulumi.set(__self__, "data_transfer", data_transfer)
+        if metrika is not None:
+            pulumi.set(__self__, "metrika", metrika)
+        if serverless is not None:
+            pulumi.set(__self__, "serverless", serverless)
+        if web_sql is not None:
+            pulumi.set(__self__, "web_sql", web_sql)
+        if yandex_query is not None:
+            pulumi.set(__self__, "yandex_query", yandex_query)
+
+    @property
+    @pulumi.getter(name="dataLens")
+    def data_lens(self) -> Optional[bool]:
+        """
+        Allow access for Web SQL.
+        """
+        return pulumi.get(self, "data_lens")
+
+    @data_lens.setter
+    def data_lens(self, value: Optional[bool]):
+        pulumi.set(self, "data_lens", value)
+
+    @property
+    @pulumi.getter(name="dataTransfer")
+    def data_transfer(self) -> Optional[bool]:
+        """
+        Allow access for DataTransfer
+        """
+        return pulumi.get(self, "data_transfer")
+
+    @data_transfer.setter
+    def data_transfer(self, value: Optional[bool]):
+        pulumi.set(self, "data_transfer", value)
+
+    @property
+    @pulumi.getter
+    def metrika(self) -> Optional[bool]:
+        """
+        Allow access for Yandex.Metrika.
+        """
+        return pulumi.get(self, "metrika")
+
+    @metrika.setter
+    def metrika(self, value: Optional[bool]):
+        pulumi.set(self, "metrika", value)
+
+    @property
+    @pulumi.getter
+    def serverless(self) -> Optional[bool]:
+        """
+        Allow access for Serverless.
+        """
+        return pulumi.get(self, "serverless")
+
+    @serverless.setter
+    def serverless(self, value: Optional[bool]):
+        pulumi.set(self, "serverless", value)
+
+    @property
+    @pulumi.getter(name="webSql")
+    def web_sql(self) -> Optional[bool]:
+        """
+        Allow access for DataLens.
+        """
+        return pulumi.get(self, "web_sql")
+
+    @web_sql.setter
+    def web_sql(self, value: Optional[bool]):
+        pulumi.set(self, "web_sql", value)
+
+    @property
+    @pulumi.getter(name="yandexQuery")
+    def yandex_query(self) -> Optional[bool]:
+        """
+        Allow access for YandexQuery
+        """
+        return pulumi.get(self, "yandex_query")
+
+    @yandex_query.setter
+    def yandex_query(self, value: Optional[bool]):
+        pulumi.set(self, "yandex_query", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterBackupWindowStartArgs:
+    def __init__(__self__, *,
+                 hours: Optional[int] = None,
+                 minutes: Optional[int] = None):
+        """
+        :param int hours: The hour at which backup will be started.
+        :param int minutes: The minute at which backup will be started.
+        """
+        if hours is not None:
+            pulumi.set(__self__, "hours", hours)
+        if minutes is not None:
+            pulumi.set(__self__, "minutes", minutes)
+
+    @property
+    @pulumi.getter
+    def hours(self) -> Optional[int]:
+        """
+        The hour at which backup will be started.
+        """
+        return pulumi.get(self, "hours")
+
+    @hours.setter
+    def hours(self, value: Optional[int]):
+        pulumi.set(self, "hours", value)
+
+    @property
+    @pulumi.getter
+    def minutes(self) -> Optional[int]:
+        """
+        The minute at which backup will be started.
+        """
+        return pulumi.get(self, "minutes")
+
+    @minutes.setter
+    def minutes(self, value: Optional[int]):
+        pulumi.set(self, "minutes", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterClickhouseArgs:
+    def __init__(__self__, *,
+                 config: 'GetMdbClickhouseClusterClickhouseConfigArgs',
+                 resources: 'GetMdbClickhouseClusterClickhouseResourcesArgs'):
+        """
+        :param 'GetMdbClickhouseClusterClickhouseConfigArgs' config: Main ClickHouse cluster configuration. The structure is documented below.
+        :param 'GetMdbClickhouseClusterClickhouseResourcesArgs' resources: Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+        """
+        pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "resources", resources)
+
+    @property
+    @pulumi.getter
+    def config(self) -> 'GetMdbClickhouseClusterClickhouseConfigArgs':
+        """
+        Main ClickHouse cluster configuration. The structure is documented below.
+        """
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: 'GetMdbClickhouseClusterClickhouseConfigArgs'):
+        pulumi.set(self, "config", value)
+
+    @property
+    @pulumi.getter
+    def resources(self) -> 'GetMdbClickhouseClusterClickhouseResourcesArgs':
+        """
+        Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources")
+
+    @resources.setter
+    def resources(self, value: 'GetMdbClickhouseClusterClickhouseResourcesArgs'):
+        pulumi.set(self, "resources", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterClickhouseConfigArgs:
+    def __init__(__self__, *,
+                 background_fetches_pool_size: int,
+                 background_pool_size: int,
+                 background_schedule_pool_size: int,
+                 default_database: str,
+                 geobase_uri: str,
+                 kafka: 'GetMdbClickhouseClusterClickhouseConfigKafkaArgs',
+                 keep_alive_timeout: int,
+                 log_level: str,
+                 mark_cache_size: int,
+                 max_concurrent_queries: int,
+                 max_connections: int,
+                 max_partition_size_to_drop: int,
+                 max_table_size_to_drop: int,
+                 merge_tree: 'GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs',
+                 metric_log_enabled: bool,
+                 metric_log_retention_size: int,
+                 metric_log_retention_time: int,
+                 part_log_retention_size: int,
+                 part_log_retention_time: int,
+                 query_log_retention_size: int,
+                 query_log_retention_time: int,
+                 query_thread_log_enabled: bool,
+                 query_thread_log_retention_size: int,
+                 query_thread_log_retention_time: int,
+                 rabbitmq: 'GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs',
+                 text_log_enabled: bool,
+                 text_log_level: str,
+                 text_log_retention_size: int,
+                 text_log_retention_time: int,
+                 timezone: str,
+                 total_memory_profiler_step: int,
+                 trace_log_enabled: bool,
+                 trace_log_retention_size: int,
+                 trace_log_retention_time: int,
+                 uncompressed_cache_size: int,
+                 compressions: Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigCompressionArgs']] = None,
+                 graphite_rollups: Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs']] = None,
+                 kafka_topics: Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs']] = None):
+        """
+        :param 'GetMdbClickhouseClusterClickhouseConfigKafkaArgs' kafka: Kafka connection configuration. The structure is documented below.
+        :param 'GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs' merge_tree: MergeTree engine configuration. The structure is documented below.
+        :param 'GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs' rabbitmq: RabbitMQ connection configuration. The structure is documented below.
+        :param Sequence['GetMdbClickhouseClusterClickhouseConfigCompressionArgs'] compressions: Data compression configuration. The structure is documented below.
+        :param Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs'] graphite_rollups: Graphite rollup configuration. The structure is documented below.
+        :param Sequence['GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs'] kafka_topics: Kafka topic connection configuration. The structure is documented below.
+        """
+        pulumi.set(__self__, "background_fetches_pool_size", background_fetches_pool_size)
+        pulumi.set(__self__, "background_pool_size", background_pool_size)
+        pulumi.set(__self__, "background_schedule_pool_size", background_schedule_pool_size)
+        pulumi.set(__self__, "default_database", default_database)
+        pulumi.set(__self__, "geobase_uri", geobase_uri)
+        pulumi.set(__self__, "kafka", kafka)
+        pulumi.set(__self__, "keep_alive_timeout", keep_alive_timeout)
+        pulumi.set(__self__, "log_level", log_level)
+        pulumi.set(__self__, "mark_cache_size", mark_cache_size)
+        pulumi.set(__self__, "max_concurrent_queries", max_concurrent_queries)
+        pulumi.set(__self__, "max_connections", max_connections)
+        pulumi.set(__self__, "max_partition_size_to_drop", max_partition_size_to_drop)
+        pulumi.set(__self__, "max_table_size_to_drop", max_table_size_to_drop)
+        pulumi.set(__self__, "merge_tree", merge_tree)
+        pulumi.set(__self__, "metric_log_enabled", metric_log_enabled)
+        pulumi.set(__self__, "metric_log_retention_size", metric_log_retention_size)
+        pulumi.set(__self__, "metric_log_retention_time", metric_log_retention_time)
+        pulumi.set(__self__, "part_log_retention_size", part_log_retention_size)
+        pulumi.set(__self__, "part_log_retention_time", part_log_retention_time)
+        pulumi.set(__self__, "query_log_retention_size", query_log_retention_size)
+        pulumi.set(__self__, "query_log_retention_time", query_log_retention_time)
+        pulumi.set(__self__, "query_thread_log_enabled", query_thread_log_enabled)
+        pulumi.set(__self__, "query_thread_log_retention_size", query_thread_log_retention_size)
+        pulumi.set(__self__, "query_thread_log_retention_time", query_thread_log_retention_time)
+        pulumi.set(__self__, "rabbitmq", rabbitmq)
+        pulumi.set(__self__, "text_log_enabled", text_log_enabled)
+        pulumi.set(__self__, "text_log_level", text_log_level)
+        pulumi.set(__self__, "text_log_retention_size", text_log_retention_size)
+        pulumi.set(__self__, "text_log_retention_time", text_log_retention_time)
+        pulumi.set(__self__, "timezone", timezone)
+        pulumi.set(__self__, "total_memory_profiler_step", total_memory_profiler_step)
+        pulumi.set(__self__, "trace_log_enabled", trace_log_enabled)
+        pulumi.set(__self__, "trace_log_retention_size", trace_log_retention_size)
+        pulumi.set(__self__, "trace_log_retention_time", trace_log_retention_time)
+        pulumi.set(__self__, "uncompressed_cache_size", uncompressed_cache_size)
+        if compressions is not None:
+            pulumi.set(__self__, "compressions", compressions)
+        if graphite_rollups is not None:
+            pulumi.set(__self__, "graphite_rollups", graphite_rollups)
+        if kafka_topics is not None:
+            pulumi.set(__self__, "kafka_topics", kafka_topics)
+
+    @property
+    @pulumi.getter(name="backgroundFetchesPoolSize")
+    def background_fetches_pool_size(self) -> int:
+        return pulumi.get(self, "background_fetches_pool_size")
+
+    @background_fetches_pool_size.setter
+    def background_fetches_pool_size(self, value: int):
+        pulumi.set(self, "background_fetches_pool_size", value)
+
+    @property
+    @pulumi.getter(name="backgroundPoolSize")
+    def background_pool_size(self) -> int:
+        return pulumi.get(self, "background_pool_size")
+
+    @background_pool_size.setter
+    def background_pool_size(self, value: int):
+        pulumi.set(self, "background_pool_size", value)
+
+    @property
+    @pulumi.getter(name="backgroundSchedulePoolSize")
+    def background_schedule_pool_size(self) -> int:
+        return pulumi.get(self, "background_schedule_pool_size")
+
+    @background_schedule_pool_size.setter
+    def background_schedule_pool_size(self, value: int):
+        pulumi.set(self, "background_schedule_pool_size", value)
+
+    @property
+    @pulumi.getter(name="defaultDatabase")
+    def default_database(self) -> str:
+        return pulumi.get(self, "default_database")
+
+    @default_database.setter
+    def default_database(self, value: str):
+        pulumi.set(self, "default_database", value)
+
+    @property
+    @pulumi.getter(name="geobaseUri")
+    def geobase_uri(self) -> str:
+        return pulumi.get(self, "geobase_uri")
+
+    @geobase_uri.setter
+    def geobase_uri(self, value: str):
+        pulumi.set(self, "geobase_uri", value)
+
+    @property
+    @pulumi.getter
+    def kafka(self) -> 'GetMdbClickhouseClusterClickhouseConfigKafkaArgs':
+        """
+        Kafka connection configuration. The structure is documented below.
+        """
+        return pulumi.get(self, "kafka")
+
+    @kafka.setter
+    def kafka(self, value: 'GetMdbClickhouseClusterClickhouseConfigKafkaArgs'):
+        pulumi.set(self, "kafka", value)
+
+    @property
+    @pulumi.getter(name="keepAliveTimeout")
+    def keep_alive_timeout(self) -> int:
+        return pulumi.get(self, "keep_alive_timeout")
+
+    @keep_alive_timeout.setter
+    def keep_alive_timeout(self, value: int):
+        pulumi.set(self, "keep_alive_timeout", value)
+
+    @property
+    @pulumi.getter(name="logLevel")
+    def log_level(self) -> str:
+        return pulumi.get(self, "log_level")
+
+    @log_level.setter
+    def log_level(self, value: str):
+        pulumi.set(self, "log_level", value)
+
+    @property
+    @pulumi.getter(name="markCacheSize")
+    def mark_cache_size(self) -> int:
+        return pulumi.get(self, "mark_cache_size")
+
+    @mark_cache_size.setter
+    def mark_cache_size(self, value: int):
+        pulumi.set(self, "mark_cache_size", value)
+
+    @property
+    @pulumi.getter(name="maxConcurrentQueries")
+    def max_concurrent_queries(self) -> int:
+        return pulumi.get(self, "max_concurrent_queries")
+
+    @max_concurrent_queries.setter
+    def max_concurrent_queries(self, value: int):
+        pulumi.set(self, "max_concurrent_queries", value)
+
+    @property
+    @pulumi.getter(name="maxConnections")
+    def max_connections(self) -> int:
+        return pulumi.get(self, "max_connections")
+
+    @max_connections.setter
+    def max_connections(self, value: int):
+        pulumi.set(self, "max_connections", value)
+
+    @property
+    @pulumi.getter(name="maxPartitionSizeToDrop")
+    def max_partition_size_to_drop(self) -> int:
+        return pulumi.get(self, "max_partition_size_to_drop")
+
+    @max_partition_size_to_drop.setter
+    def max_partition_size_to_drop(self, value: int):
+        pulumi.set(self, "max_partition_size_to_drop", value)
+
+    @property
+    @pulumi.getter(name="maxTableSizeToDrop")
+    def max_table_size_to_drop(self) -> int:
+        return pulumi.get(self, "max_table_size_to_drop")
+
+    @max_table_size_to_drop.setter
+    def max_table_size_to_drop(self, value: int):
+        pulumi.set(self, "max_table_size_to_drop", value)
+
+    @property
+    @pulumi.getter(name="mergeTree")
+    def merge_tree(self) -> 'GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs':
+        """
+        MergeTree engine configuration. The structure is documented below.
+        """
+        return pulumi.get(self, "merge_tree")
+
+    @merge_tree.setter
+    def merge_tree(self, value: 'GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs'):
+        pulumi.set(self, "merge_tree", value)
+
+    @property
+    @pulumi.getter(name="metricLogEnabled")
+    def metric_log_enabled(self) -> bool:
+        return pulumi.get(self, "metric_log_enabled")
+
+    @metric_log_enabled.setter
+    def metric_log_enabled(self, value: bool):
+        pulumi.set(self, "metric_log_enabled", value)
+
+    @property
+    @pulumi.getter(name="metricLogRetentionSize")
+    def metric_log_retention_size(self) -> int:
+        return pulumi.get(self, "metric_log_retention_size")
+
+    @metric_log_retention_size.setter
+    def metric_log_retention_size(self, value: int):
+        pulumi.set(self, "metric_log_retention_size", value)
+
+    @property
+    @pulumi.getter(name="metricLogRetentionTime")
+    def metric_log_retention_time(self) -> int:
+        return pulumi.get(self, "metric_log_retention_time")
+
+    @metric_log_retention_time.setter
+    def metric_log_retention_time(self, value: int):
+        pulumi.set(self, "metric_log_retention_time", value)
+
+    @property
+    @pulumi.getter(name="partLogRetentionSize")
+    def part_log_retention_size(self) -> int:
+        return pulumi.get(self, "part_log_retention_size")
+
+    @part_log_retention_size.setter
+    def part_log_retention_size(self, value: int):
+        pulumi.set(self, "part_log_retention_size", value)
+
+    @property
+    @pulumi.getter(name="partLogRetentionTime")
+    def part_log_retention_time(self) -> int:
+        return pulumi.get(self, "part_log_retention_time")
+
+    @part_log_retention_time.setter
+    def part_log_retention_time(self, value: int):
+        pulumi.set(self, "part_log_retention_time", value)
+
+    @property
+    @pulumi.getter(name="queryLogRetentionSize")
+    def query_log_retention_size(self) -> int:
+        return pulumi.get(self, "query_log_retention_size")
+
+    @query_log_retention_size.setter
+    def query_log_retention_size(self, value: int):
+        pulumi.set(self, "query_log_retention_size", value)
+
+    @property
+    @pulumi.getter(name="queryLogRetentionTime")
+    def query_log_retention_time(self) -> int:
+        return pulumi.get(self, "query_log_retention_time")
+
+    @query_log_retention_time.setter
+    def query_log_retention_time(self, value: int):
+        pulumi.set(self, "query_log_retention_time", value)
+
+    @property
+    @pulumi.getter(name="queryThreadLogEnabled")
+    def query_thread_log_enabled(self) -> bool:
+        return pulumi.get(self, "query_thread_log_enabled")
+
+    @query_thread_log_enabled.setter
+    def query_thread_log_enabled(self, value: bool):
+        pulumi.set(self, "query_thread_log_enabled", value)
+
+    @property
+    @pulumi.getter(name="queryThreadLogRetentionSize")
+    def query_thread_log_retention_size(self) -> int:
+        return pulumi.get(self, "query_thread_log_retention_size")
+
+    @query_thread_log_retention_size.setter
+    def query_thread_log_retention_size(self, value: int):
+        pulumi.set(self, "query_thread_log_retention_size", value)
+
+    @property
+    @pulumi.getter(name="queryThreadLogRetentionTime")
+    def query_thread_log_retention_time(self) -> int:
+        return pulumi.get(self, "query_thread_log_retention_time")
+
+    @query_thread_log_retention_time.setter
+    def query_thread_log_retention_time(self, value: int):
+        pulumi.set(self, "query_thread_log_retention_time", value)
+
+    @property
+    @pulumi.getter
+    def rabbitmq(self) -> 'GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs':
+        """
+        RabbitMQ connection configuration. The structure is documented below.
+        """
+        return pulumi.get(self, "rabbitmq")
+
+    @rabbitmq.setter
+    def rabbitmq(self, value: 'GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs'):
+        pulumi.set(self, "rabbitmq", value)
+
+    @property
+    @pulumi.getter(name="textLogEnabled")
+    def text_log_enabled(self) -> bool:
+        return pulumi.get(self, "text_log_enabled")
+
+    @text_log_enabled.setter
+    def text_log_enabled(self, value: bool):
+        pulumi.set(self, "text_log_enabled", value)
+
+    @property
+    @pulumi.getter(name="textLogLevel")
+    def text_log_level(self) -> str:
+        return pulumi.get(self, "text_log_level")
+
+    @text_log_level.setter
+    def text_log_level(self, value: str):
+        pulumi.set(self, "text_log_level", value)
+
+    @property
+    @pulumi.getter(name="textLogRetentionSize")
+    def text_log_retention_size(self) -> int:
+        return pulumi.get(self, "text_log_retention_size")
+
+    @text_log_retention_size.setter
+    def text_log_retention_size(self, value: int):
+        pulumi.set(self, "text_log_retention_size", value)
+
+    @property
+    @pulumi.getter(name="textLogRetentionTime")
+    def text_log_retention_time(self) -> int:
+        return pulumi.get(self, "text_log_retention_time")
+
+    @text_log_retention_time.setter
+    def text_log_retention_time(self, value: int):
+        pulumi.set(self, "text_log_retention_time", value)
+
+    @property
+    @pulumi.getter
+    def timezone(self) -> str:
+        return pulumi.get(self, "timezone")
+
+    @timezone.setter
+    def timezone(self, value: str):
+        pulumi.set(self, "timezone", value)
+
+    @property
+    @pulumi.getter(name="totalMemoryProfilerStep")
+    def total_memory_profiler_step(self) -> int:
+        return pulumi.get(self, "total_memory_profiler_step")
+
+    @total_memory_profiler_step.setter
+    def total_memory_profiler_step(self, value: int):
+        pulumi.set(self, "total_memory_profiler_step", value)
+
+    @property
+    @pulumi.getter(name="traceLogEnabled")
+    def trace_log_enabled(self) -> bool:
+        return pulumi.get(self, "trace_log_enabled")
+
+    @trace_log_enabled.setter
+    def trace_log_enabled(self, value: bool):
+        pulumi.set(self, "trace_log_enabled", value)
+
+    @property
+    @pulumi.getter(name="traceLogRetentionSize")
+    def trace_log_retention_size(self) -> int:
+        return pulumi.get(self, "trace_log_retention_size")
+
+    @trace_log_retention_size.setter
+    def trace_log_retention_size(self, value: int):
+        pulumi.set(self, "trace_log_retention_size", value)
+
+    @property
+    @pulumi.getter(name="traceLogRetentionTime")
+    def trace_log_retention_time(self) -> int:
+        return pulumi.get(self, "trace_log_retention_time")
+
+    @trace_log_retention_time.setter
+    def trace_log_retention_time(self, value: int):
+        pulumi.set(self, "trace_log_retention_time", value)
+
+    @property
+    @pulumi.getter(name="uncompressedCacheSize")
+    def uncompressed_cache_size(self) -> int:
+        return pulumi.get(self, "uncompressed_cache_size")
+
+    @uncompressed_cache_size.setter
+    def uncompressed_cache_size(self, value: int):
+        pulumi.set(self, "uncompressed_cache_size", value)
+
+    @property
+    @pulumi.getter
+    def compressions(self) -> Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigCompressionArgs']]:
+        """
+        Data compression configuration. The structure is documented below.
+        """
+        return pulumi.get(self, "compressions")
+
+    @compressions.setter
+    def compressions(self, value: Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigCompressionArgs']]):
+        pulumi.set(self, "compressions", value)
+
+    @property
+    @pulumi.getter(name="graphiteRollups")
+    def graphite_rollups(self) -> Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs']]:
+        """
+        Graphite rollup configuration. The structure is documented below.
+        """
+        return pulumi.get(self, "graphite_rollups")
+
+    @graphite_rollups.setter
+    def graphite_rollups(self, value: Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs']]):
+        pulumi.set(self, "graphite_rollups", value)
+
+    @property
+    @pulumi.getter(name="kafkaTopics")
+    def kafka_topics(self) -> Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs']]:
+        """
+        Kafka topic connection configuration. The structure is documented below.
+        """
+        return pulumi.get(self, "kafka_topics")
+
+    @kafka_topics.setter
+    def kafka_topics(self, value: Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs']]):
+        pulumi.set(self, "kafka_topics", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterClickhouseConfigCompressionArgs:
+    def __init__(__self__, *,
+                 method: Optional[str] = None,
+                 min_part_size: Optional[int] = None,
+                 min_part_size_ratio: Optional[float] = None):
+        """
+        :param str method: Method: Compression method. Two methods are available: LZ4 and zstd.
+        :param int min_part_size: Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
+        :param float min_part_size_ratio: Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
+        """
+        if method is not None:
+            pulumi.set(__self__, "method", method)
+        if min_part_size is not None:
+            pulumi.set(__self__, "min_part_size", min_part_size)
+        if min_part_size_ratio is not None:
+            pulumi.set(__self__, "min_part_size_ratio", min_part_size_ratio)
+
+    @property
+    @pulumi.getter
+    def method(self) -> Optional[str]:
+        """
+        Method: Compression method. Two methods are available: LZ4 and zstd.
+        """
+        return pulumi.get(self, "method")
+
+    @method.setter
+    def method(self, value: Optional[str]):
+        pulumi.set(self, "method", value)
+
+    @property
+    @pulumi.getter(name="minPartSize")
+    def min_part_size(self) -> Optional[int]:
+        """
+        Min part size: Minimum size (in bytes) of a data part in a table. ClickHouse only applies the rule to tables with data parts greater than or equal to the Min part size value.
+        """
+        return pulumi.get(self, "min_part_size")
+
+    @min_part_size.setter
+    def min_part_size(self, value: Optional[int]):
+        pulumi.set(self, "min_part_size", value)
+
+    @property
+    @pulumi.getter(name="minPartSizeRatio")
+    def min_part_size_ratio(self) -> Optional[float]:
+        """
+        Min part size ratio: Minimum table part size to total table size ratio. ClickHouse only applies the rule to tables in which this ratio is greater than or equal to the Min part size ratio value.
+        """
+        return pulumi.get(self, "min_part_size_ratio")
+
+    @min_part_size_ratio.setter
+    def min_part_size_ratio(self, value: Optional[float]):
+        pulumi.set(self, "min_part_size_ratio", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterClickhouseConfigGraphiteRollupArgs:
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 patterns: Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs']] = None):
+        """
+        :param str name: The name of the ClickHouse cluster.
+        :param Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs'] patterns: Set of thinning rules.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if patterns is not None:
+            pulumi.set(__self__, "patterns", patterns)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the ClickHouse cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def patterns(self) -> Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs']]:
+        """
+        Set of thinning rules.
+        """
+        return pulumi.get(self, "patterns")
+
+    @patterns.setter
+    def patterns(self, value: Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs']]):
+        pulumi.set(self, "patterns", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternArgs:
+    def __init__(__self__, *,
+                 regexp: str,
+                 function: Optional[str] = None,
+                 retentions: Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs']] = None):
+        """
+        :param str regexp: Regular expression that the metric name must match.
+        :param str function: Aggregation function name.
+        :param Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs'] retentions: Retain parameters.
+        """
+        pulumi.set(__self__, "regexp", regexp)
+        if function is not None:
+            pulumi.set(__self__, "function", function)
+        if retentions is not None:
+            pulumi.set(__self__, "retentions", retentions)
+
+    @property
+    @pulumi.getter
+    def regexp(self) -> str:
+        """
+        Regular expression that the metric name must match.
+        """
+        return pulumi.get(self, "regexp")
+
+    @regexp.setter
+    def regexp(self, value: str):
+        pulumi.set(self, "regexp", value)
+
+    @property
+    @pulumi.getter
+    def function(self) -> Optional[str]:
+        """
+        Aggregation function name.
+        """
+        return pulumi.get(self, "function")
+
+    @function.setter
+    def function(self, value: Optional[str]):
+        pulumi.set(self, "function", value)
+
+    @property
+    @pulumi.getter
+    def retentions(self) -> Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs']]:
+        """
+        Retain parameters.
+        """
+        return pulumi.get(self, "retentions")
+
+    @retentions.setter
+    def retentions(self, value: Optional[Sequence['GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs']]):
+        pulumi.set(self, "retentions", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterClickhouseConfigGraphiteRollupPatternRetentionArgs:
+    def __init__(__self__, *,
+                 age: Optional[int] = None,
+                 precision: Optional[int] = None):
+        """
+        :param int age: Minimum data age in seconds.
+        :param int precision: Accuracy of determining the age of the data in seconds.
+        """
+        if age is not None:
+            pulumi.set(__self__, "age", age)
+        if precision is not None:
+            pulumi.set(__self__, "precision", precision)
+
+    @property
+    @pulumi.getter
+    def age(self) -> Optional[int]:
+        """
+        Minimum data age in seconds.
+        """
+        return pulumi.get(self, "age")
+
+    @age.setter
+    def age(self, value: Optional[int]):
+        pulumi.set(self, "age", value)
+
+    @property
+    @pulumi.getter
+    def precision(self) -> Optional[int]:
+        """
+        Accuracy of determining the age of the data in seconds.
+        """
+        return pulumi.get(self, "precision")
+
+    @precision.setter
+    def precision(self, value: Optional[int]):
+        pulumi.set(self, "precision", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterClickhouseConfigKafkaArgs:
+    def __init__(__self__, *,
+                 sasl_mechanism: str,
+                 sasl_password: str,
+                 sasl_username: str,
+                 security_protocol: str):
+        """
+        :param str sasl_mechanism: SASL mechanism used in kafka authentication.
+        :param str sasl_password: User password on kafka server.
+        :param str sasl_username: Username on kafka server.
+        :param str security_protocol: Security protocol used to connect to kafka server.
+        """
+        pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
+        pulumi.set(__self__, "sasl_password", sasl_password)
+        pulumi.set(__self__, "sasl_username", sasl_username)
+        pulumi.set(__self__, "security_protocol", security_protocol)
+
+    @property
+    @pulumi.getter(name="saslMechanism")
+    def sasl_mechanism(self) -> str:
+        """
+        SASL mechanism used in kafka authentication.
+        """
+        return pulumi.get(self, "sasl_mechanism")
+
+    @sasl_mechanism.setter
+    def sasl_mechanism(self, value: str):
+        pulumi.set(self, "sasl_mechanism", value)
+
+    @property
+    @pulumi.getter(name="saslPassword")
+    def sasl_password(self) -> str:
+        """
+        User password on kafka server.
+        """
+        return pulumi.get(self, "sasl_password")
+
+    @sasl_password.setter
+    def sasl_password(self, value: str):
+        pulumi.set(self, "sasl_password", value)
+
+    @property
+    @pulumi.getter(name="saslUsername")
+    def sasl_username(self) -> str:
+        """
+        Username on kafka server.
+        """
+        return pulumi.get(self, "sasl_username")
+
+    @sasl_username.setter
+    def sasl_username(self, value: str):
+        pulumi.set(self, "sasl_username", value)
+
+    @property
+    @pulumi.getter(name="securityProtocol")
+    def security_protocol(self) -> str:
+        """
+        Security protocol used to connect to kafka server.
+        """
+        return pulumi.get(self, "security_protocol")
+
+    @security_protocol.setter
+    def security_protocol(self, value: str):
+        pulumi.set(self, "security_protocol", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterClickhouseConfigKafkaTopicArgs:
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 settings: Optional['GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs'] = None):
+        """
+        :param str name: The name of the ClickHouse cluster.
+        :param 'GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs' settings: Kafka connection settngs sanem as `kafka` block.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if settings is not None:
+            pulumi.set(__self__, "settings", settings)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the ClickHouse cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def settings(self) -> Optional['GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs']:
+        """
+        Kafka connection settngs sanem as `kafka` block.
+        """
+        return pulumi.get(self, "settings")
+
+    @settings.setter
+    def settings(self, value: Optional['GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs']):
+        pulumi.set(self, "settings", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsArgs:
+    def __init__(__self__, *,
+                 sasl_mechanism: Optional[str] = None,
+                 sasl_password: Optional[str] = None,
+                 sasl_username: Optional[str] = None,
+                 security_protocol: Optional[str] = None):
+        """
+        :param str sasl_mechanism: SASL mechanism used in kafka authentication.
+        :param str sasl_password: User password on kafka server.
+        :param str sasl_username: Username on kafka server.
+        :param str security_protocol: Security protocol used to connect to kafka server.
+        """
+        if sasl_mechanism is not None:
+            pulumi.set(__self__, "sasl_mechanism", sasl_mechanism)
+        if sasl_password is not None:
+            pulumi.set(__self__, "sasl_password", sasl_password)
+        if sasl_username is not None:
+            pulumi.set(__self__, "sasl_username", sasl_username)
+        if security_protocol is not None:
+            pulumi.set(__self__, "security_protocol", security_protocol)
+
+    @property
+    @pulumi.getter(name="saslMechanism")
+    def sasl_mechanism(self) -> Optional[str]:
+        """
+        SASL mechanism used in kafka authentication.
+        """
+        return pulumi.get(self, "sasl_mechanism")
+
+    @sasl_mechanism.setter
+    def sasl_mechanism(self, value: Optional[str]):
+        pulumi.set(self, "sasl_mechanism", value)
+
+    @property
+    @pulumi.getter(name="saslPassword")
+    def sasl_password(self) -> Optional[str]:
+        """
+        User password on kafka server.
+        """
+        return pulumi.get(self, "sasl_password")
+
+    @sasl_password.setter
+    def sasl_password(self, value: Optional[str]):
+        pulumi.set(self, "sasl_password", value)
+
+    @property
+    @pulumi.getter(name="saslUsername")
+    def sasl_username(self) -> Optional[str]:
+        """
+        Username on kafka server.
+        """
+        return pulumi.get(self, "sasl_username")
+
+    @sasl_username.setter
+    def sasl_username(self, value: Optional[str]):
+        pulumi.set(self, "sasl_username", value)
+
+    @property
+    @pulumi.getter(name="securityProtocol")
+    def security_protocol(self) -> Optional[str]:
+        """
+        Security protocol used to connect to kafka server.
+        """
+        return pulumi.get(self, "security_protocol")
+
+    @security_protocol.setter
+    def security_protocol(self, value: Optional[str]):
+        pulumi.set(self, "security_protocol", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs:
+    def __init__(__self__, *,
+                 max_bytes_to_merge_at_min_space_in_pool: int,
+                 max_replicated_merges_in_queue: int,
+                 min_bytes_for_wide_part: int,
+                 min_rows_for_wide_part: int,
+                 number_of_free_entries_in_pool_to_lower_max_size_of_merge: int,
+                 parts_to_delay_insert: int,
+                 parts_to_throw_insert: int,
+                 replicated_deduplication_window: int,
+                 replicated_deduplication_window_seconds: int,
+                 ttl_only_drop_parts: bool):
+        """
+        :param int max_bytes_to_merge_at_min_space_in_pool: Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
+        :param int max_replicated_merges_in_queue: Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
+        :param int min_bytes_for_wide_part: (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        :param int min_rows_for_wide_part: (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        :param int number_of_free_entries_in_pool_to_lower_max_size_of_merge: Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
+        :param int parts_to_delay_insert: Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
+        :param int parts_to_throw_insert: Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
+        :param int replicated_deduplication_window: Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
+        :param int replicated_deduplication_window_seconds: Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
+        :param bool ttl_only_drop_parts: (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+        """
+        pulumi.set(__self__, "max_bytes_to_merge_at_min_space_in_pool", max_bytes_to_merge_at_min_space_in_pool)
+        pulumi.set(__self__, "max_replicated_merges_in_queue", max_replicated_merges_in_queue)
+        pulumi.set(__self__, "min_bytes_for_wide_part", min_bytes_for_wide_part)
+        pulumi.set(__self__, "min_rows_for_wide_part", min_rows_for_wide_part)
+        pulumi.set(__self__, "number_of_free_entries_in_pool_to_lower_max_size_of_merge", number_of_free_entries_in_pool_to_lower_max_size_of_merge)
+        pulumi.set(__self__, "parts_to_delay_insert", parts_to_delay_insert)
+        pulumi.set(__self__, "parts_to_throw_insert", parts_to_throw_insert)
+        pulumi.set(__self__, "replicated_deduplication_window", replicated_deduplication_window)
+        pulumi.set(__self__, "replicated_deduplication_window_seconds", replicated_deduplication_window_seconds)
+        pulumi.set(__self__, "ttl_only_drop_parts", ttl_only_drop_parts)
+
+    @property
+    @pulumi.getter(name="maxBytesToMergeAtMinSpaceInPool")
+    def max_bytes_to_merge_at_min_space_in_pool(self) -> int:
+        """
+        Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
+        """
+        return pulumi.get(self, "max_bytes_to_merge_at_min_space_in_pool")
+
+    @max_bytes_to_merge_at_min_space_in_pool.setter
+    def max_bytes_to_merge_at_min_space_in_pool(self, value: int):
+        pulumi.set(self, "max_bytes_to_merge_at_min_space_in_pool", value)
+
+    @property
+    @pulumi.getter(name="maxReplicatedMergesInQueue")
+    def max_replicated_merges_in_queue(self) -> int:
+        """
+        Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
+        """
+        return pulumi.get(self, "max_replicated_merges_in_queue")
+
+    @max_replicated_merges_in_queue.setter
+    def max_replicated_merges_in_queue(self, value: int):
+        pulumi.set(self, "max_replicated_merges_in_queue", value)
+
+    @property
+    @pulumi.getter(name="minBytesForWidePart")
+    def min_bytes_for_wide_part(self) -> int:
+        """
+        (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        """
+        return pulumi.get(self, "min_bytes_for_wide_part")
+
+    @min_bytes_for_wide_part.setter
+    def min_bytes_for_wide_part(self, value: int):
+        pulumi.set(self, "min_bytes_for_wide_part", value)
+
+    @property
+    @pulumi.getter(name="minRowsForWidePart")
+    def min_rows_for_wide_part(self) -> int:
+        """
+        (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
+        """
+        return pulumi.get(self, "min_rows_for_wide_part")
+
+    @min_rows_for_wide_part.setter
+    def min_rows_for_wide_part(self, value: int):
+        pulumi.set(self, "min_rows_for_wide_part", value)
+
+    @property
+    @pulumi.getter(name="numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge")
+    def number_of_free_entries_in_pool_to_lower_max_size_of_merge(self) -> int:
+        """
+        Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
+        """
+        return pulumi.get(self, "number_of_free_entries_in_pool_to_lower_max_size_of_merge")
+
+    @number_of_free_entries_in_pool_to_lower_max_size_of_merge.setter
+    def number_of_free_entries_in_pool_to_lower_max_size_of_merge(self, value: int):
+        pulumi.set(self, "number_of_free_entries_in_pool_to_lower_max_size_of_merge", value)
+
+    @property
+    @pulumi.getter(name="partsToDelayInsert")
+    def parts_to_delay_insert(self) -> int:
+        """
+        Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
+        """
+        return pulumi.get(self, "parts_to_delay_insert")
+
+    @parts_to_delay_insert.setter
+    def parts_to_delay_insert(self, value: int):
+        pulumi.set(self, "parts_to_delay_insert", value)
+
+    @property
+    @pulumi.getter(name="partsToThrowInsert")
+    def parts_to_throw_insert(self) -> int:
+        """
+        Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
+        """
+        return pulumi.get(self, "parts_to_throw_insert")
+
+    @parts_to_throw_insert.setter
+    def parts_to_throw_insert(self, value: int):
+        pulumi.set(self, "parts_to_throw_insert", value)
+
+    @property
+    @pulumi.getter(name="replicatedDeduplicationWindow")
+    def replicated_deduplication_window(self) -> int:
+        """
+        Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
+        """
+        return pulumi.get(self, "replicated_deduplication_window")
+
+    @replicated_deduplication_window.setter
+    def replicated_deduplication_window(self, value: int):
+        pulumi.set(self, "replicated_deduplication_window", value)
+
+    @property
+    @pulumi.getter(name="replicatedDeduplicationWindowSeconds")
+    def replicated_deduplication_window_seconds(self) -> int:
+        """
+        Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
+        """
+        return pulumi.get(self, "replicated_deduplication_window_seconds")
+
+    @replicated_deduplication_window_seconds.setter
+    def replicated_deduplication_window_seconds(self, value: int):
+        pulumi.set(self, "replicated_deduplication_window_seconds", value)
+
+    @property
+    @pulumi.getter(name="ttlOnlyDropParts")
+    def ttl_only_drop_parts(self) -> bool:
+        """
+        (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
+        """
+        return pulumi.get(self, "ttl_only_drop_parts")
+
+    @ttl_only_drop_parts.setter
+    def ttl_only_drop_parts(self, value: bool):
+        pulumi.set(self, "ttl_only_drop_parts", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterClickhouseConfigRabbitmqArgs:
+    def __init__(__self__, *,
+                 password: str,
+                 username: str,
+                 vhost: str):
+        """
+        :param str password: RabbitMQ user password.
+        :param str username: RabbitMQ username.
+        :param str vhost: (Optional) RabbitMQ vhost. Default: '\\'.
+        """
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "username", username)
+        pulumi.set(__self__, "vhost", vhost)
+
+    @property
+    @pulumi.getter
+    def password(self) -> str:
+        """
+        RabbitMQ user password.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: str):
+        pulumi.set(self, "password", value)
+
+    @property
+    @pulumi.getter
+    def username(self) -> str:
+        """
+        RabbitMQ username.
+        """
+        return pulumi.get(self, "username")
+
+    @username.setter
+    def username(self, value: str):
+        pulumi.set(self, "username", value)
+
+    @property
+    @pulumi.getter
+    def vhost(self) -> str:
+        """
+        (Optional) RabbitMQ vhost. Default: '\\'.
+        """
+        return pulumi.get(self, "vhost")
+
+    @vhost.setter
+    def vhost(self, value: str):
+        pulumi.set(self, "vhost", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterClickhouseResourcesArgs:
+    def __init__(__self__, *,
+                 disk_size: int,
+                 disk_type_id: str,
+                 resource_preset_id: str):
+        """
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: Type of the storage of hosts.
+        """
+        pulumi.set(__self__, "disk_size", disk_size)
+        pulumi.set(__self__, "disk_type_id", disk_type_id)
+        pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> int:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: int):
+        pulumi.set(self, "disk_size", value)
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> str:
+        """
+        Type of the storage of hosts.
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @disk_type_id.setter
+    def disk_type_id(self, value: str):
+        pulumi.set(self, "disk_type_id", value)
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> str:
+        return pulumi.get(self, "resource_preset_id")
+
+    @resource_preset_id.setter
+    def resource_preset_id(self, value: str):
+        pulumi.set(self, "resource_preset_id", value)
+
+
+@pulumi.input_type
 class GetMdbClickhouseClusterCloudStorageArgs:
     def __init__(__self__, *,
                  data_cache_enabled: bool,
                  data_cache_max_size: int,
-                 enabled: bool,
-                 move_factor: float):
+                 move_factor: float,
+                 enabled: Optional[bool] = None):
         """
         :param bool data_cache_enabled: Enables temporary storage in the cluster repository of data requested from the object repository.
         :param int data_cache_max_size: Defines the maximum amount of memory (in bytes) allocated in the cluster storage for temporary storage of data requested from the object storage.
-        :param bool enabled: (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
         :param float move_factor: Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
+        :param bool enabled: (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
         """
         pulumi.set(__self__, "data_cache_enabled", data_cache_enabled)
         pulumi.set(__self__, "data_cache_max_size", data_cache_max_size)
-        pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "move_factor", move_factor)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
 
     @property
     @pulumi.getter(name="dataCacheEnabled")
@@ -29260,18 +33570,6 @@ class GetMdbClickhouseClusterCloudStorageArgs:
         pulumi.set(self, "data_cache_max_size", value)
 
     @property
-    @pulumi.getter
-    def enabled(self) -> bool:
-        """
-        (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
-        """
-        return pulumi.get(self, "enabled")
-
-    @enabled.setter
-    def enabled(self, value: bool):
-        pulumi.set(self, "enabled", value)
-
-    @property
     @pulumi.getter(name="moveFactor")
     def move_factor(self) -> float:
         """
@@ -29283,33 +33581,322 @@ class GetMdbClickhouseClusterCloudStorageArgs:
     def move_factor(self, value: float):
         pulumi.set(self, "move_factor", value)
 
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        """
+        (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
+        """
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[bool]):
+        pulumi.set(self, "enabled", value)
+
 
 @pulumi.input_type
-class GetMdbClickhouseClusterShardArgs:
+class GetMdbClickhouseClusterDatabaseArgs:
     def __init__(__self__, *,
-                 name: str,
-                 resources: 'GetMdbClickhouseClusterShardResourcesArgs',
-                 weight: int):
+                 name: Optional[str] = None):
         """
         :param str name: The name of the ClickHouse cluster.
-        :param 'GetMdbClickhouseClusterShardResourcesArgs' resources: Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
-        :param int weight: The weight of the shard.
         """
-        pulumi.set(__self__, "name", name)
-        pulumi.set(__self__, "resources", resources)
-        pulumi.set(__self__, "weight", weight)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
-    def name(self) -> str:
+    def name(self) -> Optional[str]:
         """
         The name of the ClickHouse cluster.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: str):
+    def name(self, value: Optional[str]):
         pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterFormatSchemaArgs:
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 type: Optional[str] = None,
+                 uri: Optional[str] = None):
+        """
+        :param str name: The name of the ClickHouse cluster.
+        :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param str uri: Model file URL. You can only use models stored in Yandex Object Storage.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if uri is not None:
+            pulumi.set(__self__, "uri", uri)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the ClickHouse cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def uri(self) -> Optional[str]:
+        """
+        Model file URL. You can only use models stored in Yandex Object Storage.
+        """
+        return pulumi.get(self, "uri")
+
+    @uri.setter
+    def uri(self, value: Optional[str]):
+        pulumi.set(self, "uri", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterHostArgs:
+    def __init__(__self__, *,
+                 fqdn: str,
+                 shard_name: str,
+                 subnet_id: str,
+                 assign_public_ip: Optional[bool] = None,
+                 type: Optional[str] = None,
+                 zone: Optional[str] = None):
+        """
+        :param str fqdn: The fully qualified domain name of the host.
+        :param str shard_name: The name of the shard to which the host belongs.
+        :param str subnet_id: The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        :param bool assign_public_ip: Sets whether the host should get a public IP address on creation.
+        :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param str zone: The availability zone where the ClickHouse host will be created.
+        """
+        pulumi.set(__self__, "fqdn", fqdn)
+        pulumi.set(__self__, "shard_name", shard_name)
+        pulumi.set(__self__, "subnet_id", subnet_id)
+        if assign_public_ip is not None:
+            pulumi.set(__self__, "assign_public_ip", assign_public_ip)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if zone is not None:
+            pulumi.set(__self__, "zone", zone)
+
+    @property
+    @pulumi.getter
+    def fqdn(self) -> str:
+        """
+        The fully qualified domain name of the host.
+        """
+        return pulumi.get(self, "fqdn")
+
+    @fqdn.setter
+    def fqdn(self, value: str):
+        pulumi.set(self, "fqdn", value)
+
+    @property
+    @pulumi.getter(name="shardName")
+    def shard_name(self) -> str:
+        """
+        The name of the shard to which the host belongs.
+        """
+        return pulumi.get(self, "shard_name")
+
+    @shard_name.setter
+    def shard_name(self, value: str):
+        pulumi.set(self, "shard_name", value)
+
+    @property
+    @pulumi.getter(name="subnetId")
+    def subnet_id(self) -> str:
+        """
+        The ID of the subnet, to which the host belongs. The subnet must be a part of the network to which the cluster belongs.
+        """
+        return pulumi.get(self, "subnet_id")
+
+    @subnet_id.setter
+    def subnet_id(self, value: str):
+        pulumi.set(self, "subnet_id", value)
+
+    @property
+    @pulumi.getter(name="assignPublicIp")
+    def assign_public_ip(self) -> Optional[bool]:
+        """
+        Sets whether the host should get a public IP address on creation.
+        """
+        return pulumi.get(self, "assign_public_ip")
+
+    @assign_public_ip.setter
+    def assign_public_ip(self, value: Optional[bool]):
+        pulumi.set(self, "assign_public_ip", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def zone(self) -> Optional[str]:
+        """
+        The availability zone where the ClickHouse host will be created.
+        """
+        return pulumi.get(self, "zone")
+
+    @zone.setter
+    def zone(self, value: Optional[str]):
+        pulumi.set(self, "zone", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterMaintenanceWindowArgs:
+    def __init__(__self__, *,
+                 day: Optional[str] = None,
+                 hour: Optional[int] = None,
+                 type: Optional[str] = None):
+        """
+        :param str day: Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        :param int hour: Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+        :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
+        if day is not None:
+            pulumi.set(__self__, "day", day)
+        if hour is not None:
+            pulumi.set(__self__, "hour", hour)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def day(self) -> Optional[str]:
+        """
+        Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
+        """
+        return pulumi.get(self, "day")
+
+    @day.setter
+    def day(self, value: Optional[str]):
+        pulumi.set(self, "day", value)
+
+    @property
+    @pulumi.getter
+    def hour(self) -> Optional[int]:
+        """
+        Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
+        """
+        return pulumi.get(self, "hour")
+
+    @hour.setter
+    def hour(self, value: Optional[int]):
+        pulumi.set(self, "hour", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[str]):
+        pulumi.set(self, "type", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterMlModelArgs:
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 type: Optional[str] = None,
+                 uri: Optional[str] = None):
+        """
+        :param str name: The name of the ClickHouse cluster.
+        :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        :param str uri: Model file URL. You can only use models stored in Yandex Object Storage.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if uri is not None:
+            pulumi.set(__self__, "uri", uri)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the ClickHouse cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def uri(self) -> Optional[str]:
+        """
+        Model file URL. You can only use models stored in Yandex Object Storage.
+        """
+        return pulumi.get(self, "uri")
+
+    @uri.setter
+    def uri(self, value: Optional[str]):
+        pulumi.set(self, "uri", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterShardArgs:
+    def __init__(__self__, *,
+                 resources: 'GetMdbClickhouseClusterShardResourcesArgs',
+                 weight: int,
+                 name: Optional[str] = None):
+        """
+        :param 'GetMdbClickhouseClusterShardResourcesArgs' resources: Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+        :param int weight: The weight of the shard.
+        :param str name: The name of the ClickHouse cluster.
+        """
+        pulumi.set(__self__, "resources", resources)
+        pulumi.set(__self__, "weight", weight)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
 
     @property
     @pulumi.getter
@@ -29335,9 +33922,2029 @@ class GetMdbClickhouseClusterShardArgs:
     def weight(self, value: int):
         pulumi.set(self, "weight", value)
 
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the ClickHouse cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[str]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterShardGroupArgs:
+    def __init__(__self__, *,
+                 description: Optional[str] = None,
+                 name: Optional[str] = None,
+                 shard_names: Optional[Sequence[str]] = None):
+        """
+        :param str description: Description of the shard group.
+        :param str name: The name of the ClickHouse cluster.
+        :param Sequence[str] shard_names: List of shards names that belong to the shard group.
+        """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if shard_names is not None:
+            pulumi.set(__self__, "shard_names", shard_names)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description of the shard group.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[str]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the ClickHouse cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="shardNames")
+    def shard_names(self) -> Optional[Sequence[str]]:
+        """
+        List of shards names that belong to the shard group.
+        """
+        return pulumi.get(self, "shard_names")
+
+    @shard_names.setter
+    def shard_names(self, value: Optional[Sequence[str]]):
+        pulumi.set(self, "shard_names", value)
+
 
 @pulumi.input_type
 class GetMdbClickhouseClusterShardResourcesArgs:
+    def __init__(__self__, *,
+                 disk_size: int,
+                 disk_type_id: str,
+                 resource_preset_id: str):
+        """
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: Type of the storage of hosts.
+        """
+        pulumi.set(__self__, "disk_size", disk_size)
+        pulumi.set(__self__, "disk_type_id", disk_type_id)
+        pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> int:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: int):
+        pulumi.set(self, "disk_size", value)
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> str:
+        """
+        Type of the storage of hosts.
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @disk_type_id.setter
+    def disk_type_id(self, value: str):
+        pulumi.set(self, "disk_type_id", value)
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> str:
+        return pulumi.get(self, "resource_preset_id")
+
+    @resource_preset_id.setter
+    def resource_preset_id(self, value: str):
+        pulumi.set(self, "resource_preset_id", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterUserArgs:
+    def __init__(__self__, *,
+                 permissions: Sequence['GetMdbClickhouseClusterUserPermissionArgs'],
+                 quotas: Sequence['GetMdbClickhouseClusterUserQuotaArgs'],
+                 settings: 'GetMdbClickhouseClusterUserSettingsArgs',
+                 name: Optional[str] = None,
+                 password: Optional[str] = None):
+        """
+        :param Sequence['GetMdbClickhouseClusterUserPermissionArgs'] permissions: Set of permissions granted to the user. The structure is documented below.
+        :param Sequence['GetMdbClickhouseClusterUserQuotaArgs'] quotas: Set of user quotas. The structure is documented below.
+        :param 'GetMdbClickhouseClusterUserSettingsArgs' settings: Kafka connection settngs sanem as `kafka` block.
+        :param str name: The name of the ClickHouse cluster.
+        :param str password: RabbitMQ user password.
+        """
+        pulumi.set(__self__, "permissions", permissions)
+        pulumi.set(__self__, "quotas", quotas)
+        pulumi.set(__self__, "settings", settings)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+
+    @property
+    @pulumi.getter
+    def permissions(self) -> Sequence['GetMdbClickhouseClusterUserPermissionArgs']:
+        """
+        Set of permissions granted to the user. The structure is documented below.
+        """
+        return pulumi.get(self, "permissions")
+
+    @permissions.setter
+    def permissions(self, value: Sequence['GetMdbClickhouseClusterUserPermissionArgs']):
+        pulumi.set(self, "permissions", value)
+
+    @property
+    @pulumi.getter
+    def quotas(self) -> Sequence['GetMdbClickhouseClusterUserQuotaArgs']:
+        """
+        Set of user quotas. The structure is documented below.
+        """
+        return pulumi.get(self, "quotas")
+
+    @quotas.setter
+    def quotas(self, value: Sequence['GetMdbClickhouseClusterUserQuotaArgs']):
+        pulumi.set(self, "quotas", value)
+
+    @property
+    @pulumi.getter
+    def settings(self) -> 'GetMdbClickhouseClusterUserSettingsArgs':
+        """
+        Kafka connection settngs sanem as `kafka` block.
+        """
+        return pulumi.get(self, "settings")
+
+    @settings.setter
+    def settings(self, value: 'GetMdbClickhouseClusterUserSettingsArgs'):
+        pulumi.set(self, "settings", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        The name of the ClickHouse cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def password(self) -> Optional[str]:
+        """
+        RabbitMQ user password.
+        """
+        return pulumi.get(self, "password")
+
+    @password.setter
+    def password(self, value: Optional[str]):
+        pulumi.set(self, "password", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterUserPermissionArgs:
+    def __init__(__self__, *,
+                 database_name: Optional[str] = None):
+        """
+        :param str database_name: The name of the database that the permission grants access to.
+        """
+        if database_name is not None:
+            pulumi.set(__self__, "database_name", database_name)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> Optional[str]:
+        """
+        The name of the database that the permission grants access to.
+        """
+        return pulumi.get(self, "database_name")
+
+    @database_name.setter
+    def database_name(self, value: Optional[str]):
+        pulumi.set(self, "database_name", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterUserQuotaArgs:
+    def __init__(__self__, *,
+                 errors: int,
+                 execution_time: int,
+                 queries: int,
+                 read_rows: int,
+                 result_rows: int,
+                 interval_duration: Optional[int] = None):
+        """
+        :param int errors: The number of queries that threw exception.
+        :param int execution_time: The total query execution time, in milliseconds (wall time).
+        :param int queries: The total number of queries.
+        :param int read_rows: The total number of source rows read from tables for running the query, on all remote servers.
+        :param int result_rows: The total number of rows given as the result.
+        :param int interval_duration: Duration of interval for quota in milliseconds.
+        """
+        pulumi.set(__self__, "errors", errors)
+        pulumi.set(__self__, "execution_time", execution_time)
+        pulumi.set(__self__, "queries", queries)
+        pulumi.set(__self__, "read_rows", read_rows)
+        pulumi.set(__self__, "result_rows", result_rows)
+        if interval_duration is not None:
+            pulumi.set(__self__, "interval_duration", interval_duration)
+
+    @property
+    @pulumi.getter
+    def errors(self) -> int:
+        """
+        The number of queries that threw exception.
+        """
+        return pulumi.get(self, "errors")
+
+    @errors.setter
+    def errors(self, value: int):
+        pulumi.set(self, "errors", value)
+
+    @property
+    @pulumi.getter(name="executionTime")
+    def execution_time(self) -> int:
+        """
+        The total query execution time, in milliseconds (wall time).
+        """
+        return pulumi.get(self, "execution_time")
+
+    @execution_time.setter
+    def execution_time(self, value: int):
+        pulumi.set(self, "execution_time", value)
+
+    @property
+    @pulumi.getter
+    def queries(self) -> int:
+        """
+        The total number of queries.
+        """
+        return pulumi.get(self, "queries")
+
+    @queries.setter
+    def queries(self, value: int):
+        pulumi.set(self, "queries", value)
+
+    @property
+    @pulumi.getter(name="readRows")
+    def read_rows(self) -> int:
+        """
+        The total number of source rows read from tables for running the query, on all remote servers.
+        """
+        return pulumi.get(self, "read_rows")
+
+    @read_rows.setter
+    def read_rows(self, value: int):
+        pulumi.set(self, "read_rows", value)
+
+    @property
+    @pulumi.getter(name="resultRows")
+    def result_rows(self) -> int:
+        """
+        The total number of rows given as the result.
+        """
+        return pulumi.get(self, "result_rows")
+
+    @result_rows.setter
+    def result_rows(self, value: int):
+        pulumi.set(self, "result_rows", value)
+
+    @property
+    @pulumi.getter(name="intervalDuration")
+    def interval_duration(self) -> Optional[int]:
+        """
+        Duration of interval for quota in milliseconds.
+        """
+        return pulumi.get(self, "interval_duration")
+
+    @interval_duration.setter
+    def interval_duration(self, value: Optional[int]):
+        pulumi.set(self, "interval_duration", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterUserSettingsArgs:
+    def __init__(__self__, *,
+                 add_http_cors_header: bool,
+                 allow_ddl: bool,
+                 allow_introspection_functions: bool,
+                 allow_suspicious_low_cardinality_types: bool,
+                 async_insert: bool,
+                 async_insert_busy_timeout: int,
+                 async_insert_max_data_size: int,
+                 async_insert_stale_timeout: int,
+                 async_insert_threads: int,
+                 cancel_http_readonly_queries_on_client_close: bool,
+                 compile: bool,
+                 compile_expressions: bool,
+                 connect_timeout: int,
+                 connect_timeout_with_failover: int,
+                 count_distinct_implementation: str,
+                 distinct_overflow_mode: str,
+                 distributed_aggregation_memory_efficient: bool,
+                 distributed_ddl_task_timeout: int,
+                 distributed_product_mode: str,
+                 empty_result_for_aggregation_by_empty_set: bool,
+                 enable_http_compression: bool,
+                 fallback_to_stale_replicas_for_distributed_queries: bool,
+                 flatten_nested: bool,
+                 force_index_by_date: bool,
+                 force_primary_key: bool,
+                 group_by_overflow_mode: str,
+                 group_by_two_level_threshold: int,
+                 group_by_two_level_threshold_bytes: int,
+                 http_connection_timeout: int,
+                 http_headers_progress_interval: int,
+                 http_receive_timeout: int,
+                 http_send_timeout: int,
+                 input_format_defaults_for_omitted_fields: bool,
+                 input_format_values_interpret_expressions: bool,
+                 insert_null_as_default: bool,
+                 insert_quorum: int,
+                 insert_quorum_timeout: int,
+                 join_overflow_mode: str,
+                 join_use_nulls: bool,
+                 joined_subquery_requires_alias: bool,
+                 low_cardinality_allow_in_native_format: bool,
+                 max_ast_depth: int,
+                 max_ast_elements: int,
+                 max_block_size: int,
+                 max_bytes_before_external_group_by: int,
+                 max_bytes_before_external_sort: int,
+                 max_bytes_in_distinct: int,
+                 max_bytes_in_join: int,
+                 max_bytes_in_set: int,
+                 max_bytes_to_read: int,
+                 max_bytes_to_sort: int,
+                 max_bytes_to_transfer: int,
+                 max_columns_to_read: int,
+                 max_concurrent_queries_for_user: int,
+                 max_execution_time: int,
+                 max_expanded_ast_elements: int,
+                 max_http_get_redirects: int,
+                 max_insert_block_size: int,
+                 max_memory_usage: int,
+                 max_memory_usage_for_user: int,
+                 max_network_bandwidth: int,
+                 max_network_bandwidth_for_user: int,
+                 max_query_size: int,
+                 max_replica_delay_for_distributed_queries: int,
+                 max_result_bytes: int,
+                 max_result_rows: int,
+                 max_rows_in_distinct: int,
+                 max_rows_in_join: int,
+                 max_rows_in_set: int,
+                 max_rows_to_group_by: int,
+                 max_rows_to_read: int,
+                 max_rows_to_sort: int,
+                 max_rows_to_transfer: int,
+                 max_temporary_columns: int,
+                 max_temporary_non_const_columns: int,
+                 max_threads: int,
+                 memory_profiler_sample_probability: float,
+                 memory_profiler_step: int,
+                 merge_tree_max_bytes_to_use_cache: int,
+                 merge_tree_max_rows_to_use_cache: int,
+                 merge_tree_min_bytes_for_concurrent_read: int,
+                 merge_tree_min_rows_for_concurrent_read: int,
+                 min_bytes_to_use_direct_io: int,
+                 min_count_to_compile: int,
+                 min_count_to_compile_expression: int,
+                 min_execution_speed: int,
+                 min_execution_speed_bytes: int,
+                 min_insert_block_size_bytes: int,
+                 min_insert_block_size_rows: int,
+                 output_format_json_quote64bit_integers: bool,
+                 output_format_json_quote_denormals: bool,
+                 priority: int,
+                 quota_mode: str,
+                 read_overflow_mode: str,
+                 readonly: int,
+                 receive_timeout: int,
+                 replication_alter_partitions_sync: int,
+                 result_overflow_mode: str,
+                 select_sequential_consistency: bool,
+                 send_progress_in_http_headers: bool,
+                 send_timeout: int,
+                 set_overflow_mode: str,
+                 skip_unavailable_shards: bool,
+                 sort_overflow_mode: str,
+                 timeout_before_checking_execution_speed: int,
+                 timeout_overflow_mode: str,
+                 transfer_overflow_mode: str,
+                 transform_null_in: bool,
+                 use_uncompressed_cache: bool,
+                 wait_for_async_insert: bool,
+                 wait_for_async_insert_timeout: int):
+        """
+        :param bool add_http_cors_header: Include CORS headers in HTTP responces.
+        :param bool allow_ddl: Allows or denies DDL queries.
+        :param bool allow_introspection_functions: (Optional) Enables introspections functions for query profiling.
+        :param bool allow_suspicious_low_cardinality_types: (Optional) Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+        :param bool async_insert: (Optional) Enables asynchronous inserts. Disabled by default.
+        :param int async_insert_busy_timeout: (Optional) The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+        :param int async_insert_max_data_size: (Optional) The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+        :param int async_insert_stale_timeout: (Optional) The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the async_insert_busy_timeout with every INSERT query as long as async_insert_max_data_size is not exceeded.
+        :param int async_insert_threads: (Optional) The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+        :param bool cancel_http_readonly_queries_on_client_close: (Optional) Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+               Default value: false.
+        :param bool compile: Enable compilation of queries.
+        :param bool compile_expressions: Turn on expression compilation.
+        :param int connect_timeout: Connect timeout in milliseconds on the socket used for communicating with the client.
+        :param int connect_timeout_with_failover: (Optional) The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+        :param str count_distinct_implementation: Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
+        :param str distinct_overflow_mode: Sets behaviour on overflow when using DISTINCT. Possible values:
+        :param bool distributed_aggregation_memory_efficient: Determine the behavior of distributed subqueries.
+        :param int distributed_ddl_task_timeout: Timeout for DDL queries, in milliseconds.
+        :param str distributed_product_mode: Changes the behaviour of distributed subqueries.
+        :param bool empty_result_for_aggregation_by_empty_set: Allows to retunr empty result.
+        :param bool enable_http_compression: Enables or disables data compression in the response to an HTTP request.
+        :param bool fallback_to_stale_replicas_for_distributed_queries: Forces a query to an out-of-date replica if updated data is not available.
+        :param bool flatten_nested: (Optional) Sets the data format of a nested columns.
+        :param bool force_index_by_date: Disables query execution if the index can’t be used by date.
+        :param bool force_primary_key: Disables query execution if indexing by the primary key is not possible.
+        :param str group_by_overflow_mode: Sets behaviour on overflow while GROUP BY operation. Possible values:
+        :param int group_by_two_level_threshold: Sets the threshold of the number of keys, after that the two-level aggregation should be used.
+        :param int group_by_two_level_threshold_bytes: Sets the threshold of the number of bytes, after that the two-level aggregation should be used.
+        :param int http_connection_timeout: Timeout for HTTP connection in milliseconds.
+        :param int http_headers_progress_interval: Sets minimal interval between notifications about request process in HTTP header X-ClickHouse-Progress.
+        :param int http_receive_timeout: Timeout for HTTP connection in milliseconds.
+        :param int http_send_timeout: Timeout for HTTP connection in milliseconds.
+        :param bool input_format_defaults_for_omitted_fields: When performing INSERT queries, replace omitted input column values with default values of the respective columns.
+        :param bool input_format_values_interpret_expressions: Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
+        :param bool insert_null_as_default: (Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+        :param int insert_quorum: Enables the quorum writes.
+        :param int insert_quorum_timeout: Write to a quorum timeout in milliseconds.
+        :param str join_overflow_mode: Sets behaviour on overflow in JOIN. Possible values:
+        :param bool join_use_nulls: Sets the type of JOIN behaviour. When merging tables, empty cells may appear. ClickHouse fills them differently based on this setting.
+        :param bool joined_subquery_requires_alias: Require aliases for subselects and table functions in FROM that more than one table is present.
+        :param bool low_cardinality_allow_in_native_format: Allows or restricts using the LowCardinality data type with the Native format.
+        :param int max_ast_depth: Maximum abstract syntax tree depth.
+        :param int max_ast_elements: Maximum abstract syntax tree elements.
+        :param int max_block_size: A recommendation for what size of the block (in a count of rows) to load from tables.
+        :param int max_bytes_before_external_group_by: Limit in bytes for using memoru for GROUP BY before using swap on disk.
+        :param int max_bytes_before_external_sort: This setting is equivalent of the max_bytes_before_external_group_by setting, except for it is for sort operation (ORDER BY), not aggregation.
+        :param int max_bytes_in_distinct: Limits the maximum size of a hash table in bytes (uncompressed data) when using DISTINCT.
+        :param int max_bytes_in_join: Limit on maximum size of the hash table for JOIN, in bytes.
+        :param int max_bytes_in_set: Limit on the number of bytes in the set resulting from the execution of the IN section.
+        :param int max_bytes_to_read: Limits the maximum number of bytes (uncompressed data) that can be read from a table when running a query.
+        :param int max_bytes_to_sort: Limits the maximum number of bytes (uncompressed data) that can be read from a table for sorting.
+        :param int max_bytes_to_transfer: Limits the maximum number of bytes (uncompressed data) that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+        :param int max_columns_to_read: Limits the maximum number of columns that can be read from a table in a single query.
+        :param int max_concurrent_queries_for_user: (Optional) The maximum number of concurrent requests per user. Default value: 0 (no limit).
+        :param int max_execution_time: Limits the maximum query execution time in milliseconds.
+        :param int max_expanded_ast_elements: Maximum abstract syntax tree depth after after expansion of aliases.
+        :param int max_http_get_redirects: (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+               If the parameter is set to 0 (default), no hops is allowed.
+        :param int max_insert_block_size: The size of blocks (in a count of rows) to form for insertion into a table.
+        :param int max_memory_usage: Limits the maximum memory usage (in bytes) for processing queries on a single server.
+        :param int max_memory_usage_for_user: Limits the maximum memory usage (in bytes) for processing of user's queries on a single server.
+        :param int max_network_bandwidth: Limits the speed of the data exchange over the network in bytes per second.
+        :param int max_network_bandwidth_for_user: Limits the speed of the data exchange over the network in bytes per second.
+        :param int max_query_size: The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
+        :param int max_replica_delay_for_distributed_queries: Disables lagging replicas for distributed queries.
+        :param int max_result_bytes: Limits the number of bytes in the result.
+        :param int max_result_rows: Limits the number of rows in the result.
+        :param int max_rows_in_distinct: Limits the maximum number of different rows when using DISTINCT.
+        :param int max_rows_in_join: Limit on maximum size of the hash table for JOIN, in rows.
+        :param int max_rows_in_set: Limit on the number of rows in the set resulting from the execution of the IN section.
+        :param int max_rows_to_group_by: Limits the maximum number of unique keys received from aggregation function.
+        :param int max_rows_to_read: Limits the maximum number of rows that can be read from a table when running a query.
+        :param int max_rows_to_sort: Limits the maximum number of rows that can be read from a table for sorting.
+        :param int max_rows_to_transfer: Limits the maximum number of rows that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+        :param int max_temporary_columns: Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, including constant columns.
+        :param int max_temporary_non_const_columns: Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, excluding constant columns.
+        :param int max_threads: The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
+        :param float memory_profiler_sample_probability: (Optional) Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+        :param int memory_profiler_step: (Optional) Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+        :param int merge_tree_max_bytes_to_use_cache: If ClickHouse should read more than merge_tree_max_bytes_to_use_cache bytes in one query, it doesn’t use the cache of uncompressed blocks.
+        :param int merge_tree_max_rows_to_use_cache: If ClickHouse should read more than merge_tree_max_rows_to_use_cache rows in one query, it doesn’t use the cache of uncompressed blocks.
+        :param int merge_tree_min_bytes_for_concurrent_read: If the number of bytes to read from one file of a MergeTree-engine table exceeds merge_tree_min_bytes_for_concurrent_read, then ClickHouse tries to concurrently read from this file in several threads.
+        :param int merge_tree_min_rows_for_concurrent_read: If the number of rows to be read from a file of a MergeTree table exceeds merge_tree_min_rows_for_concurrent_read then ClickHouse tries to perform a concurrent reading from this file on several threads.
+        :param int min_bytes_to_use_direct_io: The minimum data volume required for using direct I/O access to the storage disk.
+        :param int min_count_to_compile: How many times to potentially use a compiled chunk of code before running compilation.
+        :param int min_count_to_compile_expression: A query waits for expression compilation process to complete prior to continuing execution.
+        :param int min_execution_speed: Minimal execution speed in rows per second.
+        :param int min_execution_speed_bytes: Minimal execution speed in bytes per second.
+        :param int min_insert_block_size_bytes: Sets the minimum number of bytes in the block which can be inserted into a table by an INSERT query.
+        :param int min_insert_block_size_rows: Sets the minimum number of rows in the block which can be inserted into a table by an INSERT query.
+        :param bool output_format_json_quote64bit_integers: If the value is true, integers appear in quotes when using JSON* Int64 and UInt64 formats (for compatibility with most JavaScript implementations); otherwise, integers are output without the quotes.
+        :param bool output_format_json_quote_denormals: Enables +nan, -nan, +inf, -inf outputs in JSON output format.
+        :param int priority: Query priority.
+        :param str quota_mode: Quota accounting mode.
+        :param str read_overflow_mode: Sets behaviour on overflow while read. Possible values:
+        :param int readonly: Restricts permissions for reading data, write data and change settings queries.
+        :param int receive_timeout: Receive timeout in milliseconds on the socket used for communicating with the client.
+        :param int replication_alter_partitions_sync: For ALTER ... ATTACH|DETACH|DROP queries, you can use the replication_alter_partitions_sync setting to set up waiting.
+        :param str result_overflow_mode: Sets behaviour on overflow in result. Possible values:
+        :param bool select_sequential_consistency: Enables or disables sequential consistency for SELECT queries.
+        :param bool send_progress_in_http_headers: Enables or disables X-ClickHouse-Progress HTTP response headers in clickhouse-server responses.
+        :param int send_timeout: Send timeout in milliseconds on the socket used for communicating with the client.
+        :param str set_overflow_mode: Sets behaviour on overflow in the set resulting. Possible values:
+        :param bool skip_unavailable_shards: Enables or disables silently skipping of unavailable shards.
+        :param str sort_overflow_mode: Sets behaviour on overflow while sort. Possible values:
+        :param int timeout_before_checking_execution_speed: (Optional) Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in min_execution_speed parameter.
+               Must be at least 1000.
+        :param str timeout_overflow_mode: Sets behaviour on overflow. Possible values:
+        :param str transfer_overflow_mode: Sets behaviour on overflow. Possible values:
+        :param bool transform_null_in: Enables equality of NULL values for IN operator.
+        :param bool use_uncompressed_cache: Whether to use a cache of uncompressed blocks.
+        :param bool wait_for_async_insert: (Optional) Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+        :param int wait_for_async_insert_timeout: (Optional) The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+        """
+        pulumi.set(__self__, "add_http_cors_header", add_http_cors_header)
+        pulumi.set(__self__, "allow_ddl", allow_ddl)
+        pulumi.set(__self__, "allow_introspection_functions", allow_introspection_functions)
+        pulumi.set(__self__, "allow_suspicious_low_cardinality_types", allow_suspicious_low_cardinality_types)
+        pulumi.set(__self__, "async_insert", async_insert)
+        pulumi.set(__self__, "async_insert_busy_timeout", async_insert_busy_timeout)
+        pulumi.set(__self__, "async_insert_max_data_size", async_insert_max_data_size)
+        pulumi.set(__self__, "async_insert_stale_timeout", async_insert_stale_timeout)
+        pulumi.set(__self__, "async_insert_threads", async_insert_threads)
+        pulumi.set(__self__, "cancel_http_readonly_queries_on_client_close", cancel_http_readonly_queries_on_client_close)
+        pulumi.set(__self__, "compile", compile)
+        pulumi.set(__self__, "compile_expressions", compile_expressions)
+        pulumi.set(__self__, "connect_timeout", connect_timeout)
+        pulumi.set(__self__, "connect_timeout_with_failover", connect_timeout_with_failover)
+        pulumi.set(__self__, "count_distinct_implementation", count_distinct_implementation)
+        pulumi.set(__self__, "distinct_overflow_mode", distinct_overflow_mode)
+        pulumi.set(__self__, "distributed_aggregation_memory_efficient", distributed_aggregation_memory_efficient)
+        pulumi.set(__self__, "distributed_ddl_task_timeout", distributed_ddl_task_timeout)
+        pulumi.set(__self__, "distributed_product_mode", distributed_product_mode)
+        pulumi.set(__self__, "empty_result_for_aggregation_by_empty_set", empty_result_for_aggregation_by_empty_set)
+        pulumi.set(__self__, "enable_http_compression", enable_http_compression)
+        pulumi.set(__self__, "fallback_to_stale_replicas_for_distributed_queries", fallback_to_stale_replicas_for_distributed_queries)
+        pulumi.set(__self__, "flatten_nested", flatten_nested)
+        pulumi.set(__self__, "force_index_by_date", force_index_by_date)
+        pulumi.set(__self__, "force_primary_key", force_primary_key)
+        pulumi.set(__self__, "group_by_overflow_mode", group_by_overflow_mode)
+        pulumi.set(__self__, "group_by_two_level_threshold", group_by_two_level_threshold)
+        pulumi.set(__self__, "group_by_two_level_threshold_bytes", group_by_two_level_threshold_bytes)
+        pulumi.set(__self__, "http_connection_timeout", http_connection_timeout)
+        pulumi.set(__self__, "http_headers_progress_interval", http_headers_progress_interval)
+        pulumi.set(__self__, "http_receive_timeout", http_receive_timeout)
+        pulumi.set(__self__, "http_send_timeout", http_send_timeout)
+        pulumi.set(__self__, "input_format_defaults_for_omitted_fields", input_format_defaults_for_omitted_fields)
+        pulumi.set(__self__, "input_format_values_interpret_expressions", input_format_values_interpret_expressions)
+        pulumi.set(__self__, "insert_null_as_default", insert_null_as_default)
+        pulumi.set(__self__, "insert_quorum", insert_quorum)
+        pulumi.set(__self__, "insert_quorum_timeout", insert_quorum_timeout)
+        pulumi.set(__self__, "join_overflow_mode", join_overflow_mode)
+        pulumi.set(__self__, "join_use_nulls", join_use_nulls)
+        pulumi.set(__self__, "joined_subquery_requires_alias", joined_subquery_requires_alias)
+        pulumi.set(__self__, "low_cardinality_allow_in_native_format", low_cardinality_allow_in_native_format)
+        pulumi.set(__self__, "max_ast_depth", max_ast_depth)
+        pulumi.set(__self__, "max_ast_elements", max_ast_elements)
+        pulumi.set(__self__, "max_block_size", max_block_size)
+        pulumi.set(__self__, "max_bytes_before_external_group_by", max_bytes_before_external_group_by)
+        pulumi.set(__self__, "max_bytes_before_external_sort", max_bytes_before_external_sort)
+        pulumi.set(__self__, "max_bytes_in_distinct", max_bytes_in_distinct)
+        pulumi.set(__self__, "max_bytes_in_join", max_bytes_in_join)
+        pulumi.set(__self__, "max_bytes_in_set", max_bytes_in_set)
+        pulumi.set(__self__, "max_bytes_to_read", max_bytes_to_read)
+        pulumi.set(__self__, "max_bytes_to_sort", max_bytes_to_sort)
+        pulumi.set(__self__, "max_bytes_to_transfer", max_bytes_to_transfer)
+        pulumi.set(__self__, "max_columns_to_read", max_columns_to_read)
+        pulumi.set(__self__, "max_concurrent_queries_for_user", max_concurrent_queries_for_user)
+        pulumi.set(__self__, "max_execution_time", max_execution_time)
+        pulumi.set(__self__, "max_expanded_ast_elements", max_expanded_ast_elements)
+        pulumi.set(__self__, "max_http_get_redirects", max_http_get_redirects)
+        pulumi.set(__self__, "max_insert_block_size", max_insert_block_size)
+        pulumi.set(__self__, "max_memory_usage", max_memory_usage)
+        pulumi.set(__self__, "max_memory_usage_for_user", max_memory_usage_for_user)
+        pulumi.set(__self__, "max_network_bandwidth", max_network_bandwidth)
+        pulumi.set(__self__, "max_network_bandwidth_for_user", max_network_bandwidth_for_user)
+        pulumi.set(__self__, "max_query_size", max_query_size)
+        pulumi.set(__self__, "max_replica_delay_for_distributed_queries", max_replica_delay_for_distributed_queries)
+        pulumi.set(__self__, "max_result_bytes", max_result_bytes)
+        pulumi.set(__self__, "max_result_rows", max_result_rows)
+        pulumi.set(__self__, "max_rows_in_distinct", max_rows_in_distinct)
+        pulumi.set(__self__, "max_rows_in_join", max_rows_in_join)
+        pulumi.set(__self__, "max_rows_in_set", max_rows_in_set)
+        pulumi.set(__self__, "max_rows_to_group_by", max_rows_to_group_by)
+        pulumi.set(__self__, "max_rows_to_read", max_rows_to_read)
+        pulumi.set(__self__, "max_rows_to_sort", max_rows_to_sort)
+        pulumi.set(__self__, "max_rows_to_transfer", max_rows_to_transfer)
+        pulumi.set(__self__, "max_temporary_columns", max_temporary_columns)
+        pulumi.set(__self__, "max_temporary_non_const_columns", max_temporary_non_const_columns)
+        pulumi.set(__self__, "max_threads", max_threads)
+        pulumi.set(__self__, "memory_profiler_sample_probability", memory_profiler_sample_probability)
+        pulumi.set(__self__, "memory_profiler_step", memory_profiler_step)
+        pulumi.set(__self__, "merge_tree_max_bytes_to_use_cache", merge_tree_max_bytes_to_use_cache)
+        pulumi.set(__self__, "merge_tree_max_rows_to_use_cache", merge_tree_max_rows_to_use_cache)
+        pulumi.set(__self__, "merge_tree_min_bytes_for_concurrent_read", merge_tree_min_bytes_for_concurrent_read)
+        pulumi.set(__self__, "merge_tree_min_rows_for_concurrent_read", merge_tree_min_rows_for_concurrent_read)
+        pulumi.set(__self__, "min_bytes_to_use_direct_io", min_bytes_to_use_direct_io)
+        pulumi.set(__self__, "min_count_to_compile", min_count_to_compile)
+        pulumi.set(__self__, "min_count_to_compile_expression", min_count_to_compile_expression)
+        pulumi.set(__self__, "min_execution_speed", min_execution_speed)
+        pulumi.set(__self__, "min_execution_speed_bytes", min_execution_speed_bytes)
+        pulumi.set(__self__, "min_insert_block_size_bytes", min_insert_block_size_bytes)
+        pulumi.set(__self__, "min_insert_block_size_rows", min_insert_block_size_rows)
+        pulumi.set(__self__, "output_format_json_quote64bit_integers", output_format_json_quote64bit_integers)
+        pulumi.set(__self__, "output_format_json_quote_denormals", output_format_json_quote_denormals)
+        pulumi.set(__self__, "priority", priority)
+        pulumi.set(__self__, "quota_mode", quota_mode)
+        pulumi.set(__self__, "read_overflow_mode", read_overflow_mode)
+        pulumi.set(__self__, "readonly", readonly)
+        pulumi.set(__self__, "receive_timeout", receive_timeout)
+        pulumi.set(__self__, "replication_alter_partitions_sync", replication_alter_partitions_sync)
+        pulumi.set(__self__, "result_overflow_mode", result_overflow_mode)
+        pulumi.set(__self__, "select_sequential_consistency", select_sequential_consistency)
+        pulumi.set(__self__, "send_progress_in_http_headers", send_progress_in_http_headers)
+        pulumi.set(__self__, "send_timeout", send_timeout)
+        pulumi.set(__self__, "set_overflow_mode", set_overflow_mode)
+        pulumi.set(__self__, "skip_unavailable_shards", skip_unavailable_shards)
+        pulumi.set(__self__, "sort_overflow_mode", sort_overflow_mode)
+        pulumi.set(__self__, "timeout_before_checking_execution_speed", timeout_before_checking_execution_speed)
+        pulumi.set(__self__, "timeout_overflow_mode", timeout_overflow_mode)
+        pulumi.set(__self__, "transfer_overflow_mode", transfer_overflow_mode)
+        pulumi.set(__self__, "transform_null_in", transform_null_in)
+        pulumi.set(__self__, "use_uncompressed_cache", use_uncompressed_cache)
+        pulumi.set(__self__, "wait_for_async_insert", wait_for_async_insert)
+        pulumi.set(__self__, "wait_for_async_insert_timeout", wait_for_async_insert_timeout)
+
+    @property
+    @pulumi.getter(name="addHttpCorsHeader")
+    def add_http_cors_header(self) -> bool:
+        """
+        Include CORS headers in HTTP responces.
+        """
+        return pulumi.get(self, "add_http_cors_header")
+
+    @add_http_cors_header.setter
+    def add_http_cors_header(self, value: bool):
+        pulumi.set(self, "add_http_cors_header", value)
+
+    @property
+    @pulumi.getter(name="allowDdl")
+    def allow_ddl(self) -> bool:
+        """
+        Allows or denies DDL queries.
+        """
+        return pulumi.get(self, "allow_ddl")
+
+    @allow_ddl.setter
+    def allow_ddl(self, value: bool):
+        pulumi.set(self, "allow_ddl", value)
+
+    @property
+    @pulumi.getter(name="allowIntrospectionFunctions")
+    def allow_introspection_functions(self) -> bool:
+        """
+        (Optional) Enables introspections functions for query profiling.
+        """
+        return pulumi.get(self, "allow_introspection_functions")
+
+    @allow_introspection_functions.setter
+    def allow_introspection_functions(self, value: bool):
+        pulumi.set(self, "allow_introspection_functions", value)
+
+    @property
+    @pulumi.getter(name="allowSuspiciousLowCardinalityTypes")
+    def allow_suspicious_low_cardinality_types(self) -> bool:
+        """
+        (Optional) Allows specifying LowCardinality modifier for types of small fixed size (8 or less) in CREATE TABLE statements. Enabling this may increase merge times and memory consumption.
+        """
+        return pulumi.get(self, "allow_suspicious_low_cardinality_types")
+
+    @allow_suspicious_low_cardinality_types.setter
+    def allow_suspicious_low_cardinality_types(self, value: bool):
+        pulumi.set(self, "allow_suspicious_low_cardinality_types", value)
+
+    @property
+    @pulumi.getter(name="asyncInsert")
+    def async_insert(self) -> bool:
+        """
+        (Optional) Enables asynchronous inserts. Disabled by default.
+        """
+        return pulumi.get(self, "async_insert")
+
+    @async_insert.setter
+    def async_insert(self, value: bool):
+        pulumi.set(self, "async_insert", value)
+
+    @property
+    @pulumi.getter(name="asyncInsertBusyTimeout")
+    def async_insert_busy_timeout(self) -> int:
+        """
+        (Optional) The maximum timeout in milliseconds since the first INSERT query before inserting collected data. If the parameter is set to 0, the timeout is disabled. Default value: 200.
+        """
+        return pulumi.get(self, "async_insert_busy_timeout")
+
+    @async_insert_busy_timeout.setter
+    def async_insert_busy_timeout(self, value: int):
+        pulumi.set(self, "async_insert_busy_timeout", value)
+
+    @property
+    @pulumi.getter(name="asyncInsertMaxDataSize")
+    def async_insert_max_data_size(self) -> int:
+        """
+        (Optional) The maximum size of the unparsed data in bytes collected per query before being inserted. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 100000.
+        """
+        return pulumi.get(self, "async_insert_max_data_size")
+
+    @async_insert_max_data_size.setter
+    def async_insert_max_data_size(self, value: int):
+        pulumi.set(self, "async_insert_max_data_size", value)
+
+    @property
+    @pulumi.getter(name="asyncInsertStaleTimeout")
+    def async_insert_stale_timeout(self) -> int:
+        """
+        (Optional) The maximum timeout in milliseconds since the last INSERT query before dumping collected data. If enabled, the settings prolongs the async_insert_busy_timeout with every INSERT query as long as async_insert_max_data_size is not exceeded.
+        """
+        return pulumi.get(self, "async_insert_stale_timeout")
+
+    @async_insert_stale_timeout.setter
+    def async_insert_stale_timeout(self, value: int):
+        pulumi.set(self, "async_insert_stale_timeout", value)
+
+    @property
+    @pulumi.getter(name="asyncInsertThreads")
+    def async_insert_threads(self) -> int:
+        """
+        (Optional) The maximum number of threads for background data parsing and insertion. If the parameter is set to 0, asynchronous insertions are disabled. Default value: 16.
+        """
+        return pulumi.get(self, "async_insert_threads")
+
+    @async_insert_threads.setter
+    def async_insert_threads(self, value: int):
+        pulumi.set(self, "async_insert_threads", value)
+
+    @property
+    @pulumi.getter(name="cancelHttpReadonlyQueriesOnClientClose")
+    def cancel_http_readonly_queries_on_client_close(self) -> bool:
+        """
+        (Optional) Cancels HTTP read-only queries (e.g. SELECT) when a client closes the connection without waiting for the response.
+        Default value: false.
+        """
+        return pulumi.get(self, "cancel_http_readonly_queries_on_client_close")
+
+    @cancel_http_readonly_queries_on_client_close.setter
+    def cancel_http_readonly_queries_on_client_close(self, value: bool):
+        pulumi.set(self, "cancel_http_readonly_queries_on_client_close", value)
+
+    @property
+    @pulumi.getter
+    def compile(self) -> bool:
+        """
+        Enable compilation of queries.
+        """
+        return pulumi.get(self, "compile")
+
+    @compile.setter
+    def compile(self, value: bool):
+        pulumi.set(self, "compile", value)
+
+    @property
+    @pulumi.getter(name="compileExpressions")
+    def compile_expressions(self) -> bool:
+        """
+        Turn on expression compilation.
+        """
+        return pulumi.get(self, "compile_expressions")
+
+    @compile_expressions.setter
+    def compile_expressions(self, value: bool):
+        pulumi.set(self, "compile_expressions", value)
+
+    @property
+    @pulumi.getter(name="connectTimeout")
+    def connect_timeout(self) -> int:
+        """
+        Connect timeout in milliseconds on the socket used for communicating with the client.
+        """
+        return pulumi.get(self, "connect_timeout")
+
+    @connect_timeout.setter
+    def connect_timeout(self, value: int):
+        pulumi.set(self, "connect_timeout", value)
+
+    @property
+    @pulumi.getter(name="connectTimeoutWithFailover")
+    def connect_timeout_with_failover(self) -> int:
+        """
+        (Optional) The timeout in milliseconds for connecting to a remote server for a Distributed table engine, if the ‘shard’ and ‘replica’ sections are used in the cluster definition. If unsuccessful, several attempts are made to connect to various replicas. Default value: 50.
+        """
+        return pulumi.get(self, "connect_timeout_with_failover")
+
+    @connect_timeout_with_failover.setter
+    def connect_timeout_with_failover(self, value: int):
+        pulumi.set(self, "connect_timeout_with_failover", value)
+
+    @property
+    @pulumi.getter(name="countDistinctImplementation")
+    def count_distinct_implementation(self) -> str:
+        """
+        Specifies which of the uniq* functions should be used to perform the COUNT(DISTINCT …) construction.
+        """
+        return pulumi.get(self, "count_distinct_implementation")
+
+    @count_distinct_implementation.setter
+    def count_distinct_implementation(self, value: str):
+        pulumi.set(self, "count_distinct_implementation", value)
+
+    @property
+    @pulumi.getter(name="distinctOverflowMode")
+    def distinct_overflow_mode(self) -> str:
+        """
+        Sets behaviour on overflow when using DISTINCT. Possible values:
+        """
+        return pulumi.get(self, "distinct_overflow_mode")
+
+    @distinct_overflow_mode.setter
+    def distinct_overflow_mode(self, value: str):
+        pulumi.set(self, "distinct_overflow_mode", value)
+
+    @property
+    @pulumi.getter(name="distributedAggregationMemoryEfficient")
+    def distributed_aggregation_memory_efficient(self) -> bool:
+        """
+        Determine the behavior of distributed subqueries.
+        """
+        return pulumi.get(self, "distributed_aggregation_memory_efficient")
+
+    @distributed_aggregation_memory_efficient.setter
+    def distributed_aggregation_memory_efficient(self, value: bool):
+        pulumi.set(self, "distributed_aggregation_memory_efficient", value)
+
+    @property
+    @pulumi.getter(name="distributedDdlTaskTimeout")
+    def distributed_ddl_task_timeout(self) -> int:
+        """
+        Timeout for DDL queries, in milliseconds.
+        """
+        return pulumi.get(self, "distributed_ddl_task_timeout")
+
+    @distributed_ddl_task_timeout.setter
+    def distributed_ddl_task_timeout(self, value: int):
+        pulumi.set(self, "distributed_ddl_task_timeout", value)
+
+    @property
+    @pulumi.getter(name="distributedProductMode")
+    def distributed_product_mode(self) -> str:
+        """
+        Changes the behaviour of distributed subqueries.
+        """
+        return pulumi.get(self, "distributed_product_mode")
+
+    @distributed_product_mode.setter
+    def distributed_product_mode(self, value: str):
+        pulumi.set(self, "distributed_product_mode", value)
+
+    @property
+    @pulumi.getter(name="emptyResultForAggregationByEmptySet")
+    def empty_result_for_aggregation_by_empty_set(self) -> bool:
+        """
+        Allows to retunr empty result.
+        """
+        return pulumi.get(self, "empty_result_for_aggregation_by_empty_set")
+
+    @empty_result_for_aggregation_by_empty_set.setter
+    def empty_result_for_aggregation_by_empty_set(self, value: bool):
+        pulumi.set(self, "empty_result_for_aggregation_by_empty_set", value)
+
+    @property
+    @pulumi.getter(name="enableHttpCompression")
+    def enable_http_compression(self) -> bool:
+        """
+        Enables or disables data compression in the response to an HTTP request.
+        """
+        return pulumi.get(self, "enable_http_compression")
+
+    @enable_http_compression.setter
+    def enable_http_compression(self, value: bool):
+        pulumi.set(self, "enable_http_compression", value)
+
+    @property
+    @pulumi.getter(name="fallbackToStaleReplicasForDistributedQueries")
+    def fallback_to_stale_replicas_for_distributed_queries(self) -> bool:
+        """
+        Forces a query to an out-of-date replica if updated data is not available.
+        """
+        return pulumi.get(self, "fallback_to_stale_replicas_for_distributed_queries")
+
+    @fallback_to_stale_replicas_for_distributed_queries.setter
+    def fallback_to_stale_replicas_for_distributed_queries(self, value: bool):
+        pulumi.set(self, "fallback_to_stale_replicas_for_distributed_queries", value)
+
+    @property
+    @pulumi.getter(name="flattenNested")
+    def flatten_nested(self) -> bool:
+        """
+        (Optional) Sets the data format of a nested columns.
+        """
+        return pulumi.get(self, "flatten_nested")
+
+    @flatten_nested.setter
+    def flatten_nested(self, value: bool):
+        pulumi.set(self, "flatten_nested", value)
+
+    @property
+    @pulumi.getter(name="forceIndexByDate")
+    def force_index_by_date(self) -> bool:
+        """
+        Disables query execution if the index can’t be used by date.
+        """
+        return pulumi.get(self, "force_index_by_date")
+
+    @force_index_by_date.setter
+    def force_index_by_date(self, value: bool):
+        pulumi.set(self, "force_index_by_date", value)
+
+    @property
+    @pulumi.getter(name="forcePrimaryKey")
+    def force_primary_key(self) -> bool:
+        """
+        Disables query execution if indexing by the primary key is not possible.
+        """
+        return pulumi.get(self, "force_primary_key")
+
+    @force_primary_key.setter
+    def force_primary_key(self, value: bool):
+        pulumi.set(self, "force_primary_key", value)
+
+    @property
+    @pulumi.getter(name="groupByOverflowMode")
+    def group_by_overflow_mode(self) -> str:
+        """
+        Sets behaviour on overflow while GROUP BY operation. Possible values:
+        """
+        return pulumi.get(self, "group_by_overflow_mode")
+
+    @group_by_overflow_mode.setter
+    def group_by_overflow_mode(self, value: str):
+        pulumi.set(self, "group_by_overflow_mode", value)
+
+    @property
+    @pulumi.getter(name="groupByTwoLevelThreshold")
+    def group_by_two_level_threshold(self) -> int:
+        """
+        Sets the threshold of the number of keys, after that the two-level aggregation should be used.
+        """
+        return pulumi.get(self, "group_by_two_level_threshold")
+
+    @group_by_two_level_threshold.setter
+    def group_by_two_level_threshold(self, value: int):
+        pulumi.set(self, "group_by_two_level_threshold", value)
+
+    @property
+    @pulumi.getter(name="groupByTwoLevelThresholdBytes")
+    def group_by_two_level_threshold_bytes(self) -> int:
+        """
+        Sets the threshold of the number of bytes, after that the two-level aggregation should be used.
+        """
+        return pulumi.get(self, "group_by_two_level_threshold_bytes")
+
+    @group_by_two_level_threshold_bytes.setter
+    def group_by_two_level_threshold_bytes(self, value: int):
+        pulumi.set(self, "group_by_two_level_threshold_bytes", value)
+
+    @property
+    @pulumi.getter(name="httpConnectionTimeout")
+    def http_connection_timeout(self) -> int:
+        """
+        Timeout for HTTP connection in milliseconds.
+        """
+        return pulumi.get(self, "http_connection_timeout")
+
+    @http_connection_timeout.setter
+    def http_connection_timeout(self, value: int):
+        pulumi.set(self, "http_connection_timeout", value)
+
+    @property
+    @pulumi.getter(name="httpHeadersProgressInterval")
+    def http_headers_progress_interval(self) -> int:
+        """
+        Sets minimal interval between notifications about request process in HTTP header X-ClickHouse-Progress.
+        """
+        return pulumi.get(self, "http_headers_progress_interval")
+
+    @http_headers_progress_interval.setter
+    def http_headers_progress_interval(self, value: int):
+        pulumi.set(self, "http_headers_progress_interval", value)
+
+    @property
+    @pulumi.getter(name="httpReceiveTimeout")
+    def http_receive_timeout(self) -> int:
+        """
+        Timeout for HTTP connection in milliseconds.
+        """
+        return pulumi.get(self, "http_receive_timeout")
+
+    @http_receive_timeout.setter
+    def http_receive_timeout(self, value: int):
+        pulumi.set(self, "http_receive_timeout", value)
+
+    @property
+    @pulumi.getter(name="httpSendTimeout")
+    def http_send_timeout(self) -> int:
+        """
+        Timeout for HTTP connection in milliseconds.
+        """
+        return pulumi.get(self, "http_send_timeout")
+
+    @http_send_timeout.setter
+    def http_send_timeout(self, value: int):
+        pulumi.set(self, "http_send_timeout", value)
+
+    @property
+    @pulumi.getter(name="inputFormatDefaultsForOmittedFields")
+    def input_format_defaults_for_omitted_fields(self) -> bool:
+        """
+        When performing INSERT queries, replace omitted input column values with default values of the respective columns.
+        """
+        return pulumi.get(self, "input_format_defaults_for_omitted_fields")
+
+    @input_format_defaults_for_omitted_fields.setter
+    def input_format_defaults_for_omitted_fields(self, value: bool):
+        pulumi.set(self, "input_format_defaults_for_omitted_fields", value)
+
+    @property
+    @pulumi.getter(name="inputFormatValuesInterpretExpressions")
+    def input_format_values_interpret_expressions(self) -> bool:
+        """
+        Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
+        """
+        return pulumi.get(self, "input_format_values_interpret_expressions")
+
+    @input_format_values_interpret_expressions.setter
+    def input_format_values_interpret_expressions(self, value: bool):
+        pulumi.set(self, "input_format_values_interpret_expressions", value)
+
+    @property
+    @pulumi.getter(name="insertNullAsDefault")
+    def insert_null_as_default(self) -> bool:
+        """
+        (Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
+        """
+        return pulumi.get(self, "insert_null_as_default")
+
+    @insert_null_as_default.setter
+    def insert_null_as_default(self, value: bool):
+        pulumi.set(self, "insert_null_as_default", value)
+
+    @property
+    @pulumi.getter(name="insertQuorum")
+    def insert_quorum(self) -> int:
+        """
+        Enables the quorum writes.
+        """
+        return pulumi.get(self, "insert_quorum")
+
+    @insert_quorum.setter
+    def insert_quorum(self, value: int):
+        pulumi.set(self, "insert_quorum", value)
+
+    @property
+    @pulumi.getter(name="insertQuorumTimeout")
+    def insert_quorum_timeout(self) -> int:
+        """
+        Write to a quorum timeout in milliseconds.
+        """
+        return pulumi.get(self, "insert_quorum_timeout")
+
+    @insert_quorum_timeout.setter
+    def insert_quorum_timeout(self, value: int):
+        pulumi.set(self, "insert_quorum_timeout", value)
+
+    @property
+    @pulumi.getter(name="joinOverflowMode")
+    def join_overflow_mode(self) -> str:
+        """
+        Sets behaviour on overflow in JOIN. Possible values:
+        """
+        return pulumi.get(self, "join_overflow_mode")
+
+    @join_overflow_mode.setter
+    def join_overflow_mode(self, value: str):
+        pulumi.set(self, "join_overflow_mode", value)
+
+    @property
+    @pulumi.getter(name="joinUseNulls")
+    def join_use_nulls(self) -> bool:
+        """
+        Sets the type of JOIN behaviour. When merging tables, empty cells may appear. ClickHouse fills them differently based on this setting.
+        """
+        return pulumi.get(self, "join_use_nulls")
+
+    @join_use_nulls.setter
+    def join_use_nulls(self, value: bool):
+        pulumi.set(self, "join_use_nulls", value)
+
+    @property
+    @pulumi.getter(name="joinedSubqueryRequiresAlias")
+    def joined_subquery_requires_alias(self) -> bool:
+        """
+        Require aliases for subselects and table functions in FROM that more than one table is present.
+        """
+        return pulumi.get(self, "joined_subquery_requires_alias")
+
+    @joined_subquery_requires_alias.setter
+    def joined_subquery_requires_alias(self, value: bool):
+        pulumi.set(self, "joined_subquery_requires_alias", value)
+
+    @property
+    @pulumi.getter(name="lowCardinalityAllowInNativeFormat")
+    def low_cardinality_allow_in_native_format(self) -> bool:
+        """
+        Allows or restricts using the LowCardinality data type with the Native format.
+        """
+        return pulumi.get(self, "low_cardinality_allow_in_native_format")
+
+    @low_cardinality_allow_in_native_format.setter
+    def low_cardinality_allow_in_native_format(self, value: bool):
+        pulumi.set(self, "low_cardinality_allow_in_native_format", value)
+
+    @property
+    @pulumi.getter(name="maxAstDepth")
+    def max_ast_depth(self) -> int:
+        """
+        Maximum abstract syntax tree depth.
+        """
+        return pulumi.get(self, "max_ast_depth")
+
+    @max_ast_depth.setter
+    def max_ast_depth(self, value: int):
+        pulumi.set(self, "max_ast_depth", value)
+
+    @property
+    @pulumi.getter(name="maxAstElements")
+    def max_ast_elements(self) -> int:
+        """
+        Maximum abstract syntax tree elements.
+        """
+        return pulumi.get(self, "max_ast_elements")
+
+    @max_ast_elements.setter
+    def max_ast_elements(self, value: int):
+        pulumi.set(self, "max_ast_elements", value)
+
+    @property
+    @pulumi.getter(name="maxBlockSize")
+    def max_block_size(self) -> int:
+        """
+        A recommendation for what size of the block (in a count of rows) to load from tables.
+        """
+        return pulumi.get(self, "max_block_size")
+
+    @max_block_size.setter
+    def max_block_size(self, value: int):
+        pulumi.set(self, "max_block_size", value)
+
+    @property
+    @pulumi.getter(name="maxBytesBeforeExternalGroupBy")
+    def max_bytes_before_external_group_by(self) -> int:
+        """
+        Limit in bytes for using memoru for GROUP BY before using swap on disk.
+        """
+        return pulumi.get(self, "max_bytes_before_external_group_by")
+
+    @max_bytes_before_external_group_by.setter
+    def max_bytes_before_external_group_by(self, value: int):
+        pulumi.set(self, "max_bytes_before_external_group_by", value)
+
+    @property
+    @pulumi.getter(name="maxBytesBeforeExternalSort")
+    def max_bytes_before_external_sort(self) -> int:
+        """
+        This setting is equivalent of the max_bytes_before_external_group_by setting, except for it is for sort operation (ORDER BY), not aggregation.
+        """
+        return pulumi.get(self, "max_bytes_before_external_sort")
+
+    @max_bytes_before_external_sort.setter
+    def max_bytes_before_external_sort(self, value: int):
+        pulumi.set(self, "max_bytes_before_external_sort", value)
+
+    @property
+    @pulumi.getter(name="maxBytesInDistinct")
+    def max_bytes_in_distinct(self) -> int:
+        """
+        Limits the maximum size of a hash table in bytes (uncompressed data) when using DISTINCT.
+        """
+        return pulumi.get(self, "max_bytes_in_distinct")
+
+    @max_bytes_in_distinct.setter
+    def max_bytes_in_distinct(self, value: int):
+        pulumi.set(self, "max_bytes_in_distinct", value)
+
+    @property
+    @pulumi.getter(name="maxBytesInJoin")
+    def max_bytes_in_join(self) -> int:
+        """
+        Limit on maximum size of the hash table for JOIN, in bytes.
+        """
+        return pulumi.get(self, "max_bytes_in_join")
+
+    @max_bytes_in_join.setter
+    def max_bytes_in_join(self, value: int):
+        pulumi.set(self, "max_bytes_in_join", value)
+
+    @property
+    @pulumi.getter(name="maxBytesInSet")
+    def max_bytes_in_set(self) -> int:
+        """
+        Limit on the number of bytes in the set resulting from the execution of the IN section.
+        """
+        return pulumi.get(self, "max_bytes_in_set")
+
+    @max_bytes_in_set.setter
+    def max_bytes_in_set(self, value: int):
+        pulumi.set(self, "max_bytes_in_set", value)
+
+    @property
+    @pulumi.getter(name="maxBytesToRead")
+    def max_bytes_to_read(self) -> int:
+        """
+        Limits the maximum number of bytes (uncompressed data) that can be read from a table when running a query.
+        """
+        return pulumi.get(self, "max_bytes_to_read")
+
+    @max_bytes_to_read.setter
+    def max_bytes_to_read(self, value: int):
+        pulumi.set(self, "max_bytes_to_read", value)
+
+    @property
+    @pulumi.getter(name="maxBytesToSort")
+    def max_bytes_to_sort(self) -> int:
+        """
+        Limits the maximum number of bytes (uncompressed data) that can be read from a table for sorting.
+        """
+        return pulumi.get(self, "max_bytes_to_sort")
+
+    @max_bytes_to_sort.setter
+    def max_bytes_to_sort(self, value: int):
+        pulumi.set(self, "max_bytes_to_sort", value)
+
+    @property
+    @pulumi.getter(name="maxBytesToTransfer")
+    def max_bytes_to_transfer(self) -> int:
+        """
+        Limits the maximum number of bytes (uncompressed data) that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+        """
+        return pulumi.get(self, "max_bytes_to_transfer")
+
+    @max_bytes_to_transfer.setter
+    def max_bytes_to_transfer(self, value: int):
+        pulumi.set(self, "max_bytes_to_transfer", value)
+
+    @property
+    @pulumi.getter(name="maxColumnsToRead")
+    def max_columns_to_read(self) -> int:
+        """
+        Limits the maximum number of columns that can be read from a table in a single query.
+        """
+        return pulumi.get(self, "max_columns_to_read")
+
+    @max_columns_to_read.setter
+    def max_columns_to_read(self, value: int):
+        pulumi.set(self, "max_columns_to_read", value)
+
+    @property
+    @pulumi.getter(name="maxConcurrentQueriesForUser")
+    def max_concurrent_queries_for_user(self) -> int:
+        """
+        (Optional) The maximum number of concurrent requests per user. Default value: 0 (no limit).
+        """
+        return pulumi.get(self, "max_concurrent_queries_for_user")
+
+    @max_concurrent_queries_for_user.setter
+    def max_concurrent_queries_for_user(self, value: int):
+        pulumi.set(self, "max_concurrent_queries_for_user", value)
+
+    @property
+    @pulumi.getter(name="maxExecutionTime")
+    def max_execution_time(self) -> int:
+        """
+        Limits the maximum query execution time in milliseconds.
+        """
+        return pulumi.get(self, "max_execution_time")
+
+    @max_execution_time.setter
+    def max_execution_time(self, value: int):
+        pulumi.set(self, "max_execution_time", value)
+
+    @property
+    @pulumi.getter(name="maxExpandedAstElements")
+    def max_expanded_ast_elements(self) -> int:
+        """
+        Maximum abstract syntax tree depth after after expansion of aliases.
+        """
+        return pulumi.get(self, "max_expanded_ast_elements")
+
+    @max_expanded_ast_elements.setter
+    def max_expanded_ast_elements(self, value: int):
+        pulumi.set(self, "max_expanded_ast_elements", value)
+
+    @property
+    @pulumi.getter(name="maxHttpGetRedirects")
+    def max_http_get_redirects(self) -> int:
+        """
+        (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
+        If the parameter is set to 0 (default), no hops is allowed.
+        """
+        return pulumi.get(self, "max_http_get_redirects")
+
+    @max_http_get_redirects.setter
+    def max_http_get_redirects(self, value: int):
+        pulumi.set(self, "max_http_get_redirects", value)
+
+    @property
+    @pulumi.getter(name="maxInsertBlockSize")
+    def max_insert_block_size(self) -> int:
+        """
+        The size of blocks (in a count of rows) to form for insertion into a table.
+        """
+        return pulumi.get(self, "max_insert_block_size")
+
+    @max_insert_block_size.setter
+    def max_insert_block_size(self, value: int):
+        pulumi.set(self, "max_insert_block_size", value)
+
+    @property
+    @pulumi.getter(name="maxMemoryUsage")
+    def max_memory_usage(self) -> int:
+        """
+        Limits the maximum memory usage (in bytes) for processing queries on a single server.
+        """
+        return pulumi.get(self, "max_memory_usage")
+
+    @max_memory_usage.setter
+    def max_memory_usage(self, value: int):
+        pulumi.set(self, "max_memory_usage", value)
+
+    @property
+    @pulumi.getter(name="maxMemoryUsageForUser")
+    def max_memory_usage_for_user(self) -> int:
+        """
+        Limits the maximum memory usage (in bytes) for processing of user's queries on a single server.
+        """
+        return pulumi.get(self, "max_memory_usage_for_user")
+
+    @max_memory_usage_for_user.setter
+    def max_memory_usage_for_user(self, value: int):
+        pulumi.set(self, "max_memory_usage_for_user", value)
+
+    @property
+    @pulumi.getter(name="maxNetworkBandwidth")
+    def max_network_bandwidth(self) -> int:
+        """
+        Limits the speed of the data exchange over the network in bytes per second.
+        """
+        return pulumi.get(self, "max_network_bandwidth")
+
+    @max_network_bandwidth.setter
+    def max_network_bandwidth(self, value: int):
+        pulumi.set(self, "max_network_bandwidth", value)
+
+    @property
+    @pulumi.getter(name="maxNetworkBandwidthForUser")
+    def max_network_bandwidth_for_user(self) -> int:
+        """
+        Limits the speed of the data exchange over the network in bytes per second.
+        """
+        return pulumi.get(self, "max_network_bandwidth_for_user")
+
+    @max_network_bandwidth_for_user.setter
+    def max_network_bandwidth_for_user(self, value: int):
+        pulumi.set(self, "max_network_bandwidth_for_user", value)
+
+    @property
+    @pulumi.getter(name="maxQuerySize")
+    def max_query_size(self) -> int:
+        """
+        The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
+        """
+        return pulumi.get(self, "max_query_size")
+
+    @max_query_size.setter
+    def max_query_size(self, value: int):
+        pulumi.set(self, "max_query_size", value)
+
+    @property
+    @pulumi.getter(name="maxReplicaDelayForDistributedQueries")
+    def max_replica_delay_for_distributed_queries(self) -> int:
+        """
+        Disables lagging replicas for distributed queries.
+        """
+        return pulumi.get(self, "max_replica_delay_for_distributed_queries")
+
+    @max_replica_delay_for_distributed_queries.setter
+    def max_replica_delay_for_distributed_queries(self, value: int):
+        pulumi.set(self, "max_replica_delay_for_distributed_queries", value)
+
+    @property
+    @pulumi.getter(name="maxResultBytes")
+    def max_result_bytes(self) -> int:
+        """
+        Limits the number of bytes in the result.
+        """
+        return pulumi.get(self, "max_result_bytes")
+
+    @max_result_bytes.setter
+    def max_result_bytes(self, value: int):
+        pulumi.set(self, "max_result_bytes", value)
+
+    @property
+    @pulumi.getter(name="maxResultRows")
+    def max_result_rows(self) -> int:
+        """
+        Limits the number of rows in the result.
+        """
+        return pulumi.get(self, "max_result_rows")
+
+    @max_result_rows.setter
+    def max_result_rows(self, value: int):
+        pulumi.set(self, "max_result_rows", value)
+
+    @property
+    @pulumi.getter(name="maxRowsInDistinct")
+    def max_rows_in_distinct(self) -> int:
+        """
+        Limits the maximum number of different rows when using DISTINCT.
+        """
+        return pulumi.get(self, "max_rows_in_distinct")
+
+    @max_rows_in_distinct.setter
+    def max_rows_in_distinct(self, value: int):
+        pulumi.set(self, "max_rows_in_distinct", value)
+
+    @property
+    @pulumi.getter(name="maxRowsInJoin")
+    def max_rows_in_join(self) -> int:
+        """
+        Limit on maximum size of the hash table for JOIN, in rows.
+        """
+        return pulumi.get(self, "max_rows_in_join")
+
+    @max_rows_in_join.setter
+    def max_rows_in_join(self, value: int):
+        pulumi.set(self, "max_rows_in_join", value)
+
+    @property
+    @pulumi.getter(name="maxRowsInSet")
+    def max_rows_in_set(self) -> int:
+        """
+        Limit on the number of rows in the set resulting from the execution of the IN section.
+        """
+        return pulumi.get(self, "max_rows_in_set")
+
+    @max_rows_in_set.setter
+    def max_rows_in_set(self, value: int):
+        pulumi.set(self, "max_rows_in_set", value)
+
+    @property
+    @pulumi.getter(name="maxRowsToGroupBy")
+    def max_rows_to_group_by(self) -> int:
+        """
+        Limits the maximum number of unique keys received from aggregation function.
+        """
+        return pulumi.get(self, "max_rows_to_group_by")
+
+    @max_rows_to_group_by.setter
+    def max_rows_to_group_by(self, value: int):
+        pulumi.set(self, "max_rows_to_group_by", value)
+
+    @property
+    @pulumi.getter(name="maxRowsToRead")
+    def max_rows_to_read(self) -> int:
+        """
+        Limits the maximum number of rows that can be read from a table when running a query.
+        """
+        return pulumi.get(self, "max_rows_to_read")
+
+    @max_rows_to_read.setter
+    def max_rows_to_read(self, value: int):
+        pulumi.set(self, "max_rows_to_read", value)
+
+    @property
+    @pulumi.getter(name="maxRowsToSort")
+    def max_rows_to_sort(self) -> int:
+        """
+        Limits the maximum number of rows that can be read from a table for sorting.
+        """
+        return pulumi.get(self, "max_rows_to_sort")
+
+    @max_rows_to_sort.setter
+    def max_rows_to_sort(self, value: int):
+        pulumi.set(self, "max_rows_to_sort", value)
+
+    @property
+    @pulumi.getter(name="maxRowsToTransfer")
+    def max_rows_to_transfer(self) -> int:
+        """
+        Limits the maximum number of rows that can be passed to a remote server or saved in a temporary table when using GLOBAL IN.
+        """
+        return pulumi.get(self, "max_rows_to_transfer")
+
+    @max_rows_to_transfer.setter
+    def max_rows_to_transfer(self, value: int):
+        pulumi.set(self, "max_rows_to_transfer", value)
+
+    @property
+    @pulumi.getter(name="maxTemporaryColumns")
+    def max_temporary_columns(self) -> int:
+        """
+        Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, including constant columns.
+        """
+        return pulumi.get(self, "max_temporary_columns")
+
+    @max_temporary_columns.setter
+    def max_temporary_columns(self, value: int):
+        pulumi.set(self, "max_temporary_columns", value)
+
+    @property
+    @pulumi.getter(name="maxTemporaryNonConstColumns")
+    def max_temporary_non_const_columns(self) -> int:
+        """
+        Limits the maximum number of temporary columns that must be kept in RAM at the same time when running a query, excluding constant columns.
+        """
+        return pulumi.get(self, "max_temporary_non_const_columns")
+
+    @max_temporary_non_const_columns.setter
+    def max_temporary_non_const_columns(self, value: int):
+        pulumi.set(self, "max_temporary_non_const_columns", value)
+
+    @property
+    @pulumi.getter(name="maxThreads")
+    def max_threads(self) -> int:
+        """
+        The maximum number of query processing threads, excluding threads for retrieving data from remote servers.
+        """
+        return pulumi.get(self, "max_threads")
+
+    @max_threads.setter
+    def max_threads(self, value: int):
+        pulumi.set(self, "max_threads", value)
+
+    @property
+    @pulumi.getter(name="memoryProfilerSampleProbability")
+    def memory_profiler_sample_probability(self) -> float:
+        """
+        (Optional) Collect random allocations and deallocations and write them into system.trace_log with 'MemorySample' trace_type. The probability is for every alloc/free regardless to the size of the allocation. Possible values: from 0 to 1. Default: 0.
+        """
+        return pulumi.get(self, "memory_profiler_sample_probability")
+
+    @memory_profiler_sample_probability.setter
+    def memory_profiler_sample_probability(self, value: float):
+        pulumi.set(self, "memory_profiler_sample_probability", value)
+
+    @property
+    @pulumi.getter(name="memoryProfilerStep")
+    def memory_profiler_step(self) -> int:
+        """
+        (Optional) Memory profiler step (in bytes).  If the next query step requires more memory than this parameter specifies, the memory profiler collects the allocating stack trace. Values lower than a few megabytes slow down query processing. Default value: 4194304 (4 MB). Zero means disabled memory profiler.
+        """
+        return pulumi.get(self, "memory_profiler_step")
+
+    @memory_profiler_step.setter
+    def memory_profiler_step(self, value: int):
+        pulumi.set(self, "memory_profiler_step", value)
+
+    @property
+    @pulumi.getter(name="mergeTreeMaxBytesToUseCache")
+    def merge_tree_max_bytes_to_use_cache(self) -> int:
+        """
+        If ClickHouse should read more than merge_tree_max_bytes_to_use_cache bytes in one query, it doesn’t use the cache of uncompressed blocks.
+        """
+        return pulumi.get(self, "merge_tree_max_bytes_to_use_cache")
+
+    @merge_tree_max_bytes_to_use_cache.setter
+    def merge_tree_max_bytes_to_use_cache(self, value: int):
+        pulumi.set(self, "merge_tree_max_bytes_to_use_cache", value)
+
+    @property
+    @pulumi.getter(name="mergeTreeMaxRowsToUseCache")
+    def merge_tree_max_rows_to_use_cache(self) -> int:
+        """
+        If ClickHouse should read more than merge_tree_max_rows_to_use_cache rows in one query, it doesn’t use the cache of uncompressed blocks.
+        """
+        return pulumi.get(self, "merge_tree_max_rows_to_use_cache")
+
+    @merge_tree_max_rows_to_use_cache.setter
+    def merge_tree_max_rows_to_use_cache(self, value: int):
+        pulumi.set(self, "merge_tree_max_rows_to_use_cache", value)
+
+    @property
+    @pulumi.getter(name="mergeTreeMinBytesForConcurrentRead")
+    def merge_tree_min_bytes_for_concurrent_read(self) -> int:
+        """
+        If the number of bytes to read from one file of a MergeTree-engine table exceeds merge_tree_min_bytes_for_concurrent_read, then ClickHouse tries to concurrently read from this file in several threads.
+        """
+        return pulumi.get(self, "merge_tree_min_bytes_for_concurrent_read")
+
+    @merge_tree_min_bytes_for_concurrent_read.setter
+    def merge_tree_min_bytes_for_concurrent_read(self, value: int):
+        pulumi.set(self, "merge_tree_min_bytes_for_concurrent_read", value)
+
+    @property
+    @pulumi.getter(name="mergeTreeMinRowsForConcurrentRead")
+    def merge_tree_min_rows_for_concurrent_read(self) -> int:
+        """
+        If the number of rows to be read from a file of a MergeTree table exceeds merge_tree_min_rows_for_concurrent_read then ClickHouse tries to perform a concurrent reading from this file on several threads.
+        """
+        return pulumi.get(self, "merge_tree_min_rows_for_concurrent_read")
+
+    @merge_tree_min_rows_for_concurrent_read.setter
+    def merge_tree_min_rows_for_concurrent_read(self, value: int):
+        pulumi.set(self, "merge_tree_min_rows_for_concurrent_read", value)
+
+    @property
+    @pulumi.getter(name="minBytesToUseDirectIo")
+    def min_bytes_to_use_direct_io(self) -> int:
+        """
+        The minimum data volume required for using direct I/O access to the storage disk.
+        """
+        return pulumi.get(self, "min_bytes_to_use_direct_io")
+
+    @min_bytes_to_use_direct_io.setter
+    def min_bytes_to_use_direct_io(self, value: int):
+        pulumi.set(self, "min_bytes_to_use_direct_io", value)
+
+    @property
+    @pulumi.getter(name="minCountToCompile")
+    def min_count_to_compile(self) -> int:
+        """
+        How many times to potentially use a compiled chunk of code before running compilation.
+        """
+        return pulumi.get(self, "min_count_to_compile")
+
+    @min_count_to_compile.setter
+    def min_count_to_compile(self, value: int):
+        pulumi.set(self, "min_count_to_compile", value)
+
+    @property
+    @pulumi.getter(name="minCountToCompileExpression")
+    def min_count_to_compile_expression(self) -> int:
+        """
+        A query waits for expression compilation process to complete prior to continuing execution.
+        """
+        return pulumi.get(self, "min_count_to_compile_expression")
+
+    @min_count_to_compile_expression.setter
+    def min_count_to_compile_expression(self, value: int):
+        pulumi.set(self, "min_count_to_compile_expression", value)
+
+    @property
+    @pulumi.getter(name="minExecutionSpeed")
+    def min_execution_speed(self) -> int:
+        """
+        Minimal execution speed in rows per second.
+        """
+        return pulumi.get(self, "min_execution_speed")
+
+    @min_execution_speed.setter
+    def min_execution_speed(self, value: int):
+        pulumi.set(self, "min_execution_speed", value)
+
+    @property
+    @pulumi.getter(name="minExecutionSpeedBytes")
+    def min_execution_speed_bytes(self) -> int:
+        """
+        Minimal execution speed in bytes per second.
+        """
+        return pulumi.get(self, "min_execution_speed_bytes")
+
+    @min_execution_speed_bytes.setter
+    def min_execution_speed_bytes(self, value: int):
+        pulumi.set(self, "min_execution_speed_bytes", value)
+
+    @property
+    @pulumi.getter(name="minInsertBlockSizeBytes")
+    def min_insert_block_size_bytes(self) -> int:
+        """
+        Sets the minimum number of bytes in the block which can be inserted into a table by an INSERT query.
+        """
+        return pulumi.get(self, "min_insert_block_size_bytes")
+
+    @min_insert_block_size_bytes.setter
+    def min_insert_block_size_bytes(self, value: int):
+        pulumi.set(self, "min_insert_block_size_bytes", value)
+
+    @property
+    @pulumi.getter(name="minInsertBlockSizeRows")
+    def min_insert_block_size_rows(self) -> int:
+        """
+        Sets the minimum number of rows in the block which can be inserted into a table by an INSERT query.
+        """
+        return pulumi.get(self, "min_insert_block_size_rows")
+
+    @min_insert_block_size_rows.setter
+    def min_insert_block_size_rows(self, value: int):
+        pulumi.set(self, "min_insert_block_size_rows", value)
+
+    @property
+    @pulumi.getter(name="outputFormatJsonQuote64bitIntegers")
+    def output_format_json_quote64bit_integers(self) -> bool:
+        """
+        If the value is true, integers appear in quotes when using JSON* Int64 and UInt64 formats (for compatibility with most JavaScript implementations); otherwise, integers are output without the quotes.
+        """
+        return pulumi.get(self, "output_format_json_quote64bit_integers")
+
+    @output_format_json_quote64bit_integers.setter
+    def output_format_json_quote64bit_integers(self, value: bool):
+        pulumi.set(self, "output_format_json_quote64bit_integers", value)
+
+    @property
+    @pulumi.getter(name="outputFormatJsonQuoteDenormals")
+    def output_format_json_quote_denormals(self) -> bool:
+        """
+        Enables +nan, -nan, +inf, -inf outputs in JSON output format.
+        """
+        return pulumi.get(self, "output_format_json_quote_denormals")
+
+    @output_format_json_quote_denormals.setter
+    def output_format_json_quote_denormals(self, value: bool):
+        pulumi.set(self, "output_format_json_quote_denormals", value)
+
+    @property
+    @pulumi.getter
+    def priority(self) -> int:
+        """
+        Query priority.
+        """
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: int):
+        pulumi.set(self, "priority", value)
+
+    @property
+    @pulumi.getter(name="quotaMode")
+    def quota_mode(self) -> str:
+        """
+        Quota accounting mode.
+        """
+        return pulumi.get(self, "quota_mode")
+
+    @quota_mode.setter
+    def quota_mode(self, value: str):
+        pulumi.set(self, "quota_mode", value)
+
+    @property
+    @pulumi.getter(name="readOverflowMode")
+    def read_overflow_mode(self) -> str:
+        """
+        Sets behaviour on overflow while read. Possible values:
+        """
+        return pulumi.get(self, "read_overflow_mode")
+
+    @read_overflow_mode.setter
+    def read_overflow_mode(self, value: str):
+        pulumi.set(self, "read_overflow_mode", value)
+
+    @property
+    @pulumi.getter
+    def readonly(self) -> int:
+        """
+        Restricts permissions for reading data, write data and change settings queries.
+        """
+        return pulumi.get(self, "readonly")
+
+    @readonly.setter
+    def readonly(self, value: int):
+        pulumi.set(self, "readonly", value)
+
+    @property
+    @pulumi.getter(name="receiveTimeout")
+    def receive_timeout(self) -> int:
+        """
+        Receive timeout in milliseconds on the socket used for communicating with the client.
+        """
+        return pulumi.get(self, "receive_timeout")
+
+    @receive_timeout.setter
+    def receive_timeout(self, value: int):
+        pulumi.set(self, "receive_timeout", value)
+
+    @property
+    @pulumi.getter(name="replicationAlterPartitionsSync")
+    def replication_alter_partitions_sync(self) -> int:
+        """
+        For ALTER ... ATTACH|DETACH|DROP queries, you can use the replication_alter_partitions_sync setting to set up waiting.
+        """
+        return pulumi.get(self, "replication_alter_partitions_sync")
+
+    @replication_alter_partitions_sync.setter
+    def replication_alter_partitions_sync(self, value: int):
+        pulumi.set(self, "replication_alter_partitions_sync", value)
+
+    @property
+    @pulumi.getter(name="resultOverflowMode")
+    def result_overflow_mode(self) -> str:
+        """
+        Sets behaviour on overflow in result. Possible values:
+        """
+        return pulumi.get(self, "result_overflow_mode")
+
+    @result_overflow_mode.setter
+    def result_overflow_mode(self, value: str):
+        pulumi.set(self, "result_overflow_mode", value)
+
+    @property
+    @pulumi.getter(name="selectSequentialConsistency")
+    def select_sequential_consistency(self) -> bool:
+        """
+        Enables or disables sequential consistency for SELECT queries.
+        """
+        return pulumi.get(self, "select_sequential_consistency")
+
+    @select_sequential_consistency.setter
+    def select_sequential_consistency(self, value: bool):
+        pulumi.set(self, "select_sequential_consistency", value)
+
+    @property
+    @pulumi.getter(name="sendProgressInHttpHeaders")
+    def send_progress_in_http_headers(self) -> bool:
+        """
+        Enables or disables X-ClickHouse-Progress HTTP response headers in clickhouse-server responses.
+        """
+        return pulumi.get(self, "send_progress_in_http_headers")
+
+    @send_progress_in_http_headers.setter
+    def send_progress_in_http_headers(self, value: bool):
+        pulumi.set(self, "send_progress_in_http_headers", value)
+
+    @property
+    @pulumi.getter(name="sendTimeout")
+    def send_timeout(self) -> int:
+        """
+        Send timeout in milliseconds on the socket used for communicating with the client.
+        """
+        return pulumi.get(self, "send_timeout")
+
+    @send_timeout.setter
+    def send_timeout(self, value: int):
+        pulumi.set(self, "send_timeout", value)
+
+    @property
+    @pulumi.getter(name="setOverflowMode")
+    def set_overflow_mode(self) -> str:
+        """
+        Sets behaviour on overflow in the set resulting. Possible values:
+        """
+        return pulumi.get(self, "set_overflow_mode")
+
+    @set_overflow_mode.setter
+    def set_overflow_mode(self, value: str):
+        pulumi.set(self, "set_overflow_mode", value)
+
+    @property
+    @pulumi.getter(name="skipUnavailableShards")
+    def skip_unavailable_shards(self) -> bool:
+        """
+        Enables or disables silently skipping of unavailable shards.
+        """
+        return pulumi.get(self, "skip_unavailable_shards")
+
+    @skip_unavailable_shards.setter
+    def skip_unavailable_shards(self, value: bool):
+        pulumi.set(self, "skip_unavailable_shards", value)
+
+    @property
+    @pulumi.getter(name="sortOverflowMode")
+    def sort_overflow_mode(self) -> str:
+        """
+        Sets behaviour on overflow while sort. Possible values:
+        """
+        return pulumi.get(self, "sort_overflow_mode")
+
+    @sort_overflow_mode.setter
+    def sort_overflow_mode(self, value: str):
+        pulumi.set(self, "sort_overflow_mode", value)
+
+    @property
+    @pulumi.getter(name="timeoutBeforeCheckingExecutionSpeed")
+    def timeout_before_checking_execution_speed(self) -> int:
+        """
+        (Optional) Timeout (in seconds) between checks of execution speed. It is checked that execution speed is not less that specified in min_execution_speed parameter.
+        Must be at least 1000.
+        """
+        return pulumi.get(self, "timeout_before_checking_execution_speed")
+
+    @timeout_before_checking_execution_speed.setter
+    def timeout_before_checking_execution_speed(self, value: int):
+        pulumi.set(self, "timeout_before_checking_execution_speed", value)
+
+    @property
+    @pulumi.getter(name="timeoutOverflowMode")
+    def timeout_overflow_mode(self) -> str:
+        """
+        Sets behaviour on overflow. Possible values:
+        """
+        return pulumi.get(self, "timeout_overflow_mode")
+
+    @timeout_overflow_mode.setter
+    def timeout_overflow_mode(self, value: str):
+        pulumi.set(self, "timeout_overflow_mode", value)
+
+    @property
+    @pulumi.getter(name="transferOverflowMode")
+    def transfer_overflow_mode(self) -> str:
+        """
+        Sets behaviour on overflow. Possible values:
+        """
+        return pulumi.get(self, "transfer_overflow_mode")
+
+    @transfer_overflow_mode.setter
+    def transfer_overflow_mode(self, value: str):
+        pulumi.set(self, "transfer_overflow_mode", value)
+
+    @property
+    @pulumi.getter(name="transformNullIn")
+    def transform_null_in(self) -> bool:
+        """
+        Enables equality of NULL values for IN operator.
+        """
+        return pulumi.get(self, "transform_null_in")
+
+    @transform_null_in.setter
+    def transform_null_in(self, value: bool):
+        pulumi.set(self, "transform_null_in", value)
+
+    @property
+    @pulumi.getter(name="useUncompressedCache")
+    def use_uncompressed_cache(self) -> bool:
+        """
+        Whether to use a cache of uncompressed blocks.
+        """
+        return pulumi.get(self, "use_uncompressed_cache")
+
+    @use_uncompressed_cache.setter
+    def use_uncompressed_cache(self, value: bool):
+        pulumi.set(self, "use_uncompressed_cache", value)
+
+    @property
+    @pulumi.getter(name="waitForAsyncInsert")
+    def wait_for_async_insert(self) -> bool:
+        """
+        (Optional) Enables waiting for processing of asynchronous insertion. If enabled, server returns OK only after the data is inserted.
+        """
+        return pulumi.get(self, "wait_for_async_insert")
+
+    @wait_for_async_insert.setter
+    def wait_for_async_insert(self, value: bool):
+        pulumi.set(self, "wait_for_async_insert", value)
+
+    @property
+    @pulumi.getter(name="waitForAsyncInsertTimeout")
+    def wait_for_async_insert_timeout(self) -> int:
+        """
+        (Optional) The timeout (in seconds) for waiting for processing of asynchronous insertion. Value must be at least 1000 (1 second).
+        """
+        return pulumi.get(self, "wait_for_async_insert_timeout")
+
+    @wait_for_async_insert_timeout.setter
+    def wait_for_async_insert_timeout(self, value: int):
+        pulumi.set(self, "wait_for_async_insert_timeout", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterZookeeperArgs:
+    def __init__(__self__, *,
+                 resources: 'GetMdbClickhouseClusterZookeeperResourcesArgs'):
+        """
+        :param 'GetMdbClickhouseClusterZookeeperResourcesArgs' resources: Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+        """
+        pulumi.set(__self__, "resources", resources)
+
+    @property
+    @pulumi.getter
+    def resources(self) -> 'GetMdbClickhouseClusterZookeeperResourcesArgs':
+        """
+        Resources allocated to hosts of the shard. The resources specified for the shard takes precedence over the resources specified for the cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources")
+
+    @resources.setter
+    def resources(self, value: 'GetMdbClickhouseClusterZookeeperResourcesArgs'):
+        pulumi.set(self, "resources", value)
+
+
+@pulumi.input_type
+class GetMdbClickhouseClusterZookeeperResourcesArgs:
     def __init__(__self__, *,
                  disk_size: int,
                  disk_type_id: str,
@@ -30002,36 +36609,21 @@ class GetMdbKafkaClusterConfigZookeeperResourcesArgs:
 @pulumi.input_type
 class GetMdbKafkaClusterTopicArgs:
     def __init__(__self__, *,
-                 cluster_id: str,
                  name: str,
                  partitions: int,
                  replication_factor: int,
                  topic_config: Optional['GetMdbKafkaClusterTopicTopicConfigArgs'] = None):
         """
-        :param str cluster_id: The ID of the Kafka cluster.
         :param str name: The name of the Kafka cluster.
         :param int partitions: (Required) The number of the topic's partitions.
         :param int replication_factor: (Required) Amount of data copies (replicas) for the topic in the cluster.
         :param 'GetMdbKafkaClusterTopicTopicConfigArgs' topic_config: (Required) User-defined settings for the topic. The structure is documented below.
         """
-        pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "partitions", partitions)
         pulumi.set(__self__, "replication_factor", replication_factor)
         if topic_config is not None:
             pulumi.set(__self__, "topic_config", topic_config)
-
-    @property
-    @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> str:
-        """
-        The ID of the Kafka cluster.
-        """
-        return pulumi.get(self, "cluster_id")
-
-    @cluster_id.setter
-    def cluster_id(self, value: str):
-        pulumi.set(self, "cluster_id", value)
 
     @property
     @pulumi.getter
@@ -30339,19 +36931,25 @@ class GetMdbMongodbClusterClusterConfigArgs:
                  access: 'GetMdbMongodbClusterClusterConfigAccessArgs',
                  backup_window_start: 'GetMdbMongodbClusterClusterConfigBackupWindowStartArgs',
                  feature_compatibility_version: str,
+                 mongocfg: 'GetMdbMongodbClusterClusterConfigMongocfgArgs',
                  mongod: 'GetMdbMongodbClusterClusterConfigMongodArgs',
+                 mongos: 'GetMdbMongodbClusterClusterConfigMongosArgs',
+                 performance_diagnostics: 'GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs',
                  version: Optional[str] = None):
         """
         :param 'GetMdbMongodbClusterClusterConfigAccessArgs' access: Access policy to MongoDB cluster. The structure is documented below.
         :param 'GetMdbMongodbClusterClusterConfigBackupWindowStartArgs' backup_window_start: Time to start the daily backup, in the UTC timezone. The structure is documented below.
         :param str feature_compatibility_version: Feature compatibility version of MongoDB.
         :param 'GetMdbMongodbClusterClusterConfigMongodArgs' mongod: (Optional) Configuration of the mongod service. The structure is documented below.
-        :param str version: Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+        :param str version: Version of MongoDB (either 6.0, 6.0-enterprise, 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2).
         """
         pulumi.set(__self__, "access", access)
         pulumi.set(__self__, "backup_window_start", backup_window_start)
         pulumi.set(__self__, "feature_compatibility_version", feature_compatibility_version)
+        pulumi.set(__self__, "mongocfg", mongocfg)
         pulumi.set(__self__, "mongod", mongod)
+        pulumi.set(__self__, "mongos", mongos)
+        pulumi.set(__self__, "performance_diagnostics", performance_diagnostics)
         if version is not None:
             pulumi.set(__self__, "version", version)
 
@@ -30393,6 +36991,15 @@ class GetMdbMongodbClusterClusterConfigArgs:
 
     @property
     @pulumi.getter
+    def mongocfg(self) -> 'GetMdbMongodbClusterClusterConfigMongocfgArgs':
+        return pulumi.get(self, "mongocfg")
+
+    @mongocfg.setter
+    def mongocfg(self, value: 'GetMdbMongodbClusterClusterConfigMongocfgArgs'):
+        pulumi.set(self, "mongocfg", value)
+
+    @property
+    @pulumi.getter
     def mongod(self) -> 'GetMdbMongodbClusterClusterConfigMongodArgs':
         """
         (Optional) Configuration of the mongod service. The structure is documented below.
@@ -30405,9 +37012,27 @@ class GetMdbMongodbClusterClusterConfigArgs:
 
     @property
     @pulumi.getter
+    def mongos(self) -> 'GetMdbMongodbClusterClusterConfigMongosArgs':
+        return pulumi.get(self, "mongos")
+
+    @mongos.setter
+    def mongos(self, value: 'GetMdbMongodbClusterClusterConfigMongosArgs'):
+        pulumi.set(self, "mongos", value)
+
+    @property
+    @pulumi.getter(name="performanceDiagnostics")
+    def performance_diagnostics(self) -> 'GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs':
+        return pulumi.get(self, "performance_diagnostics")
+
+    @performance_diagnostics.setter
+    def performance_diagnostics(self, value: 'GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs'):
+        pulumi.set(self, "performance_diagnostics", value)
+
+    @property
+    @pulumi.getter
     def version(self) -> Optional[str]:
         """
-        Version of MongoDB (either 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2, 4.0 or 3.6).
+        Version of MongoDB (either 6.0, 6.0-enterprise, 5.0, 5.0-enterprise, 4.4, 4.4-enterprise, 4.2).
         """
         return pulumi.get(self, "version")
 
@@ -30495,11 +37120,135 @@ class GetMdbMongodbClusterClusterConfigBackupWindowStartArgs:
 
 
 @pulumi.input_type
+class GetMdbMongodbClusterClusterConfigMongocfgArgs:
+    def __init__(__self__, *,
+                 net: Optional['GetMdbMongodbClusterClusterConfigMongocfgNetArgs'] = None,
+                 operation_profiling: Optional['GetMdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs'] = None,
+                 storage: Optional['GetMdbMongodbClusterClusterConfigMongocfgStorageArgs'] = None):
+        if net is not None:
+            pulumi.set(__self__, "net", net)
+        if operation_profiling is not None:
+            pulumi.set(__self__, "operation_profiling", operation_profiling)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
+
+    @property
+    @pulumi.getter
+    def net(self) -> Optional['GetMdbMongodbClusterClusterConfigMongocfgNetArgs']:
+        return pulumi.get(self, "net")
+
+    @net.setter
+    def net(self, value: Optional['GetMdbMongodbClusterClusterConfigMongocfgNetArgs']):
+        pulumi.set(self, "net", value)
+
+    @property
+    @pulumi.getter(name="operationProfiling")
+    def operation_profiling(self) -> Optional['GetMdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs']:
+        return pulumi.get(self, "operation_profiling")
+
+    @operation_profiling.setter
+    def operation_profiling(self, value: Optional['GetMdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs']):
+        pulumi.set(self, "operation_profiling", value)
+
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional['GetMdbMongodbClusterClusterConfigMongocfgStorageArgs']:
+        return pulumi.get(self, "storage")
+
+    @storage.setter
+    def storage(self, value: Optional['GetMdbMongodbClusterClusterConfigMongocfgStorageArgs']):
+        pulumi.set(self, "storage", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterClusterConfigMongocfgNetArgs:
+    def __init__(__self__, *,
+                 max_incoming_connections: Optional[int] = None):
+        if max_incoming_connections is not None:
+            pulumi.set(__self__, "max_incoming_connections", max_incoming_connections)
+
+    @property
+    @pulumi.getter(name="maxIncomingConnections")
+    def max_incoming_connections(self) -> Optional[int]:
+        return pulumi.get(self, "max_incoming_connections")
+
+    @max_incoming_connections.setter
+    def max_incoming_connections(self, value: Optional[int]):
+        pulumi.set(self, "max_incoming_connections", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterClusterConfigMongocfgOperationProfilingArgs:
+    def __init__(__self__, *,
+                 mode: Optional[str] = None,
+                 slow_op_threshold: Optional[int] = None):
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if slow_op_threshold is not None:
+            pulumi.set(__self__, "slow_op_threshold", slow_op_threshold)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[str]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter(name="slowOpThreshold")
+    def slow_op_threshold(self) -> Optional[int]:
+        return pulumi.get(self, "slow_op_threshold")
+
+    @slow_op_threshold.setter
+    def slow_op_threshold(self, value: Optional[int]):
+        pulumi.set(self, "slow_op_threshold", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterClusterConfigMongocfgStorageArgs:
+    def __init__(__self__, *,
+                 wired_tiger: Optional['GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs'] = None):
+        if wired_tiger is not None:
+            pulumi.set(__self__, "wired_tiger", wired_tiger)
+
+    @property
+    @pulumi.getter(name="wiredTiger")
+    def wired_tiger(self) -> Optional['GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs']:
+        return pulumi.get(self, "wired_tiger")
+
+    @wired_tiger.setter
+    def wired_tiger(self, value: Optional['GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs']):
+        pulumi.set(self, "wired_tiger", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterClusterConfigMongocfgStorageWiredTigerArgs:
+    def __init__(__self__, *,
+                 cache_size_gb: Optional[float] = None):
+        if cache_size_gb is not None:
+            pulumi.set(__self__, "cache_size_gb", cache_size_gb)
+
+    @property
+    @pulumi.getter(name="cacheSizeGb")
+    def cache_size_gb(self) -> Optional[float]:
+        return pulumi.get(self, "cache_size_gb")
+
+    @cache_size_gb.setter
+    def cache_size_gb(self, value: Optional[float]):
+        pulumi.set(self, "cache_size_gb", value)
+
+
+@pulumi.input_type
 class GetMdbMongodbClusterClusterConfigMongodArgs:
     def __init__(__self__, *,
                  audit_log: 'GetMdbMongodbClusterClusterConfigMongodAuditLogArgs',
                  security: 'GetMdbMongodbClusterClusterConfigMongodSecurityArgs',
-                 set_parameter: 'GetMdbMongodbClusterClusterConfigMongodSetParameterArgs'):
+                 set_parameter: 'GetMdbMongodbClusterClusterConfigMongodSetParameterArgs',
+                 net: Optional['GetMdbMongodbClusterClusterConfigMongodNetArgs'] = None,
+                 operation_profiling: Optional['GetMdbMongodbClusterClusterConfigMongodOperationProfilingArgs'] = None,
+                 storage: Optional['GetMdbMongodbClusterClusterConfigMongodStorageArgs'] = None):
         """
         :param 'GetMdbMongodbClusterClusterConfigMongodAuditLogArgs' audit_log: (Optional) A set of audit log settings
                (see the [auditLog](https://www.mongodb.com/docs/manual/reference/configuration-options/#auditlog-options) option).
@@ -30514,6 +37263,12 @@ class GetMdbMongodbClusterClusterConfigMongodArgs:
         pulumi.set(__self__, "audit_log", audit_log)
         pulumi.set(__self__, "security", security)
         pulumi.set(__self__, "set_parameter", set_parameter)
+        if net is not None:
+            pulumi.set(__self__, "net", net)
+        if operation_profiling is not None:
+            pulumi.set(__self__, "operation_profiling", operation_profiling)
+        if storage is not None:
+            pulumi.set(__self__, "storage", storage)
 
     @property
     @pulumi.getter(name="auditLog")
@@ -30557,6 +37312,33 @@ class GetMdbMongodbClusterClusterConfigMongodArgs:
     def set_parameter(self, value: 'GetMdbMongodbClusterClusterConfigMongodSetParameterArgs'):
         pulumi.set(self, "set_parameter", value)
 
+    @property
+    @pulumi.getter
+    def net(self) -> Optional['GetMdbMongodbClusterClusterConfigMongodNetArgs']:
+        return pulumi.get(self, "net")
+
+    @net.setter
+    def net(self, value: Optional['GetMdbMongodbClusterClusterConfigMongodNetArgs']):
+        pulumi.set(self, "net", value)
+
+    @property
+    @pulumi.getter(name="operationProfiling")
+    def operation_profiling(self) -> Optional['GetMdbMongodbClusterClusterConfigMongodOperationProfilingArgs']:
+        return pulumi.get(self, "operation_profiling")
+
+    @operation_profiling.setter
+    def operation_profiling(self, value: Optional['GetMdbMongodbClusterClusterConfigMongodOperationProfilingArgs']):
+        pulumi.set(self, "operation_profiling", value)
+
+    @property
+    @pulumi.getter
+    def storage(self) -> Optional['GetMdbMongodbClusterClusterConfigMongodStorageArgs']:
+        return pulumi.get(self, "storage")
+
+    @storage.setter
+    def storage(self, value: Optional['GetMdbMongodbClusterClusterConfigMongodStorageArgs']):
+        pulumi.set(self, "storage", value)
+
 
 @pulumi.input_type
 class GetMdbMongodbClusterClusterConfigMongodAuditLogArgs:
@@ -30595,6 +37377,52 @@ class GetMdbMongodbClusterClusterConfigMongodAuditLogArgs:
     @runtime_configuration.setter
     def runtime_configuration(self, value: Optional[bool]):
         pulumi.set(self, "runtime_configuration", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterClusterConfigMongodNetArgs:
+    def __init__(__self__, *,
+                 max_incoming_connections: Optional[int] = None):
+        if max_incoming_connections is not None:
+            pulumi.set(__self__, "max_incoming_connections", max_incoming_connections)
+
+    @property
+    @pulumi.getter(name="maxIncomingConnections")
+    def max_incoming_connections(self) -> Optional[int]:
+        return pulumi.get(self, "max_incoming_connections")
+
+    @max_incoming_connections.setter
+    def max_incoming_connections(self, value: Optional[int]):
+        pulumi.set(self, "max_incoming_connections", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterClusterConfigMongodOperationProfilingArgs:
+    def __init__(__self__, *,
+                 mode: Optional[str] = None,
+                 slow_op_threshold: Optional[int] = None):
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if slow_op_threshold is not None:
+            pulumi.set(__self__, "slow_op_threshold", slow_op_threshold)
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: Optional[str]):
+        pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter(name="slowOpThreshold")
+    def slow_op_threshold(self) -> Optional[int]:
+        return pulumi.get(self, "slow_op_threshold")
+
+    @slow_op_threshold.setter
+    def slow_op_threshold(self, value: Optional[int]):
+        pulumi.set(self, "slow_op_threshold", value)
 
 
 @pulumi.input_type
@@ -30778,6 +37606,132 @@ class GetMdbMongodbClusterClusterConfigMongodSetParameterArgs:
 
 
 @pulumi.input_type
+class GetMdbMongodbClusterClusterConfigMongodStorageArgs:
+    def __init__(__self__, *,
+                 journal: Optional['GetMdbMongodbClusterClusterConfigMongodStorageJournalArgs'] = None,
+                 wired_tiger: Optional['GetMdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs'] = None):
+        if journal is not None:
+            pulumi.set(__self__, "journal", journal)
+        if wired_tiger is not None:
+            pulumi.set(__self__, "wired_tiger", wired_tiger)
+
+    @property
+    @pulumi.getter
+    def journal(self) -> Optional['GetMdbMongodbClusterClusterConfigMongodStorageJournalArgs']:
+        return pulumi.get(self, "journal")
+
+    @journal.setter
+    def journal(self, value: Optional['GetMdbMongodbClusterClusterConfigMongodStorageJournalArgs']):
+        pulumi.set(self, "journal", value)
+
+    @property
+    @pulumi.getter(name="wiredTiger")
+    def wired_tiger(self) -> Optional['GetMdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs']:
+        return pulumi.get(self, "wired_tiger")
+
+    @wired_tiger.setter
+    def wired_tiger(self, value: Optional['GetMdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs']):
+        pulumi.set(self, "wired_tiger", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterClusterConfigMongodStorageJournalArgs:
+    def __init__(__self__, *,
+                 commit_interval: Optional[int] = None):
+        if commit_interval is not None:
+            pulumi.set(__self__, "commit_interval", commit_interval)
+
+    @property
+    @pulumi.getter(name="commitInterval")
+    def commit_interval(self) -> Optional[int]:
+        return pulumi.get(self, "commit_interval")
+
+    @commit_interval.setter
+    def commit_interval(self, value: Optional[int]):
+        pulumi.set(self, "commit_interval", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterClusterConfigMongodStorageWiredTigerArgs:
+    def __init__(__self__, *,
+                 block_compressor: Optional[str] = None,
+                 cache_size_gb: Optional[float] = None):
+        if block_compressor is not None:
+            pulumi.set(__self__, "block_compressor", block_compressor)
+        if cache_size_gb is not None:
+            pulumi.set(__self__, "cache_size_gb", cache_size_gb)
+
+    @property
+    @pulumi.getter(name="blockCompressor")
+    def block_compressor(self) -> Optional[str]:
+        return pulumi.get(self, "block_compressor")
+
+    @block_compressor.setter
+    def block_compressor(self, value: Optional[str]):
+        pulumi.set(self, "block_compressor", value)
+
+    @property
+    @pulumi.getter(name="cacheSizeGb")
+    def cache_size_gb(self) -> Optional[float]:
+        return pulumi.get(self, "cache_size_gb")
+
+    @cache_size_gb.setter
+    def cache_size_gb(self, value: Optional[float]):
+        pulumi.set(self, "cache_size_gb", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterClusterConfigMongosArgs:
+    def __init__(__self__, *,
+                 net: Optional['GetMdbMongodbClusterClusterConfigMongosNetArgs'] = None):
+        if net is not None:
+            pulumi.set(__self__, "net", net)
+
+    @property
+    @pulumi.getter
+    def net(self) -> Optional['GetMdbMongodbClusterClusterConfigMongosNetArgs']:
+        return pulumi.get(self, "net")
+
+    @net.setter
+    def net(self, value: Optional['GetMdbMongodbClusterClusterConfigMongosNetArgs']):
+        pulumi.set(self, "net", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterClusterConfigMongosNetArgs:
+    def __init__(__self__, *,
+                 max_incoming_connections: Optional[int] = None):
+        if max_incoming_connections is not None:
+            pulumi.set(__self__, "max_incoming_connections", max_incoming_connections)
+
+    @property
+    @pulumi.getter(name="maxIncomingConnections")
+    def max_incoming_connections(self) -> Optional[int]:
+        return pulumi.get(self, "max_incoming_connections")
+
+    @max_incoming_connections.setter
+    def max_incoming_connections(self, value: Optional[int]):
+        pulumi.set(self, "max_incoming_connections", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs:
+    def __init__(__self__, *,
+                 enabled: Optional[bool] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @property
+    @pulumi.getter
+    def enabled(self) -> Optional[bool]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: Optional[bool]):
+        pulumi.set(self, "enabled", value)
+
+
+@pulumi.input_type
 class GetMdbMongodbClusterDatabaseArgs:
     def __init__(__self__, *,
                  name: Optional[str] = None):
@@ -30808,8 +37762,8 @@ class GetMdbMongodbClusterHostArgs:
                  name: str,
                  role: str,
                  shard_name: str,
-                 type: str,
                  subnet_id: Optional[str] = None,
+                 type: Optional[str] = None,
                  zone_id: Optional[str] = None):
         """
         :param bool assign_public_ip: Has assigned public IP.
@@ -30817,9 +37771,9 @@ class GetMdbMongodbClusterHostArgs:
         :param str name: The name of the MongoDB cluster.
         :param str role: The role of the cluster (either PRIMARY or SECONDARY).
         :param str shard_name: The name of the shard to which the host belongs.
-        :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         :param str subnet_id: The ID of the subnet, to which the host belongs. The subnet must
                be a part of the network to which the cluster belongs.
+        :param str type: Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         :param str zone_id: The availability zone where the MongoDB host will be created.
         """
         pulumi.set(__self__, "assign_public_ip", assign_public_ip)
@@ -30827,9 +37781,10 @@ class GetMdbMongodbClusterHostArgs:
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "role", role)
         pulumi.set(__self__, "shard_name", shard_name)
-        pulumi.set(__self__, "type", type)
         if subnet_id is not None:
             pulumi.set(__self__, "subnet_id", subnet_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
         if zone_id is not None:
             pulumi.set(__self__, "zone_id", zone_id)
 
@@ -30894,18 +37849,6 @@ class GetMdbMongodbClusterHostArgs:
         pulumi.set(self, "shard_name", value)
 
     @property
-    @pulumi.getter
-    def type(self) -> str:
-        """
-        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
-        """
-        return pulumi.get(self, "type")
-
-    @type.setter
-    def type(self, value: str):
-        pulumi.set(self, "type", value)
-
-    @property
     @pulumi.getter(name="subnetId")
     def subnet_id(self) -> Optional[str]:
         """
@@ -30917,6 +37860,18 @@ class GetMdbMongodbClusterHostArgs:
     @subnet_id.setter
     def subnet_id(self, value: Optional[str]):
         pulumi.set(self, "subnet_id", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[str]):
+        pulumi.set(self, "type", value)
 
     @property
     @pulumi.getter(name="zoneId")
@@ -30988,6 +37943,210 @@ class GetMdbMongodbClusterMaintenanceWindowArgs:
 
 @pulumi.input_type
 class GetMdbMongodbClusterResourcesArgs:
+    def __init__(__self__, *,
+                 disk_size: Optional[int] = None,
+                 disk_type_id: Optional[str] = None,
+                 resource_preset_id: Optional[str] = None):
+        """
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
+        if disk_type_id is not None:
+            pulumi.set(__self__, "disk_type_id", disk_type_id)
+        if resource_preset_id is not None:
+            pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> Optional[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: Optional[int]):
+        pulumi.set(self, "disk_size", value)
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> Optional[str]:
+        """
+        The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @disk_type_id.setter
+    def disk_type_id(self, value: Optional[str]):
+        pulumi.set(self, "disk_type_id", value)
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> Optional[str]:
+        return pulumi.get(self, "resource_preset_id")
+
+    @resource_preset_id.setter
+    def resource_preset_id(self, value: Optional[str]):
+        pulumi.set(self, "resource_preset_id", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterResourcesMongocfgArgs:
+    def __init__(__self__, *,
+                 disk_size: Optional[int] = None,
+                 disk_type_id: Optional[str] = None,
+                 resource_preset_id: Optional[str] = None):
+        """
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
+        if disk_type_id is not None:
+            pulumi.set(__self__, "disk_type_id", disk_type_id)
+        if resource_preset_id is not None:
+            pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> Optional[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: Optional[int]):
+        pulumi.set(self, "disk_size", value)
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> Optional[str]:
+        """
+        The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @disk_type_id.setter
+    def disk_type_id(self, value: Optional[str]):
+        pulumi.set(self, "disk_type_id", value)
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> Optional[str]:
+        return pulumi.get(self, "resource_preset_id")
+
+    @resource_preset_id.setter
+    def resource_preset_id(self, value: Optional[str]):
+        pulumi.set(self, "resource_preset_id", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterResourcesMongodArgs:
+    def __init__(__self__, *,
+                 disk_size: Optional[int] = None,
+                 disk_type_id: Optional[str] = None,
+                 resource_preset_id: Optional[str] = None):
+        """
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
+        if disk_type_id is not None:
+            pulumi.set(__self__, "disk_type_id", disk_type_id)
+        if resource_preset_id is not None:
+            pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> Optional[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: Optional[int]):
+        pulumi.set(self, "disk_size", value)
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> Optional[str]:
+        """
+        The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @disk_type_id.setter
+    def disk_type_id(self, value: Optional[str]):
+        pulumi.set(self, "disk_type_id", value)
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> Optional[str]:
+        return pulumi.get(self, "resource_preset_id")
+
+    @resource_preset_id.setter
+    def resource_preset_id(self, value: Optional[str]):
+        pulumi.set(self, "resource_preset_id", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterResourcesMongoinfraArgs:
+    def __init__(__self__, *,
+                 disk_size: Optional[int] = None,
+                 disk_type_id: Optional[str] = None,
+                 resource_preset_id: Optional[str] = None):
+        """
+        :param int disk_size: Volume of the storage available to a host, in gigabytes.
+        :param str disk_type_id: The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
+        if disk_type_id is not None:
+            pulumi.set(__self__, "disk_type_id", disk_type_id)
+        if resource_preset_id is not None:
+            pulumi.set(__self__, "resource_preset_id", resource_preset_id)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> Optional[int]:
+        """
+        Volume of the storage available to a host, in gigabytes.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: Optional[int]):
+        pulumi.set(self, "disk_size", value)
+
+    @property
+    @pulumi.getter(name="diskTypeId")
+    def disk_type_id(self) -> Optional[str]:
+        """
+        The ID of the storage type. For more information, see [the official documentation](https://cloud.yandex.com/docs/managed-mongodb/concepts/storage)
+        """
+        return pulumi.get(self, "disk_type_id")
+
+    @disk_type_id.setter
+    def disk_type_id(self, value: Optional[str]):
+        pulumi.set(self, "disk_type_id", value)
+
+    @property
+    @pulumi.getter(name="resourcePresetId")
+    def resource_preset_id(self) -> Optional[str]:
+        return pulumi.get(self, "resource_preset_id")
+
+    @resource_preset_id.setter
+    def resource_preset_id(self, value: Optional[str]):
+        pulumi.set(self, "resource_preset_id", value)
+
+
+@pulumi.input_type
+class GetMdbMongodbClusterResourcesMongosArgs:
     def __init__(__self__, *,
                  disk_size: Optional[int] = None,
                  disk_type_id: Optional[str] = None,
@@ -31208,6 +38367,86 @@ class GetMdbMysqlClusterAccessArgs:
 
 
 @pulumi.input_type
+class GetMdbMysqlUserPermissionArgs:
+    def __init__(__self__, *,
+                 database_name: str,
+                 roles: Optional[Sequence[str]] = None):
+        """
+        :param str database_name: The name of the database that the permission grants access to.
+        :param Sequence[str] roles: List user's roles in the database.
+               Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+               `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+        """
+        pulumi.set(__self__, "database_name", database_name)
+        if roles is not None:
+            pulumi.set(__self__, "roles", roles)
+
+    @property
+    @pulumi.getter(name="databaseName")
+    def database_name(self) -> str:
+        """
+        The name of the database that the permission grants access to.
+        """
+        return pulumi.get(self, "database_name")
+
+    @database_name.setter
+    def database_name(self, value: str):
+        pulumi.set(self, "database_name", value)
+
+    @property
+    @pulumi.getter
+    def roles(self) -> Optional[Sequence[str]]:
+        """
+        List user's roles in the database.
+        Allowed roles: `ALL`,`ALTER`,`ALTER_ROUTINE`,`CREATE`,`CREATE_ROUTINE`,`CREATE_TEMPORARY_TABLES`,
+        `CREATE_VIEW`,`DELETE`,`DROP`,`EVENT`,`EXECUTE`,`INDEX`,`INSERT`,`LOCK_TABLES`,`SELECT`,`SHOW_VIEW`,`TRIGGER`,`UPDATE`.
+        """
+        return pulumi.get(self, "roles")
+
+    @roles.setter
+    def roles(self, value: Optional[Sequence[str]]):
+        pulumi.set(self, "roles", value)
+
+
+@pulumi.input_type
+class GetMdbPostgresqlDatabaseExtensionArgs:
+    def __init__(__self__, *,
+                 name: str,
+                 version: Optional[str] = None):
+        """
+        :param str name: The name of the PostgreSQL cluster.
+        :param str version: Version of the extension.
+        """
+        pulumi.set(__self__, "name", name)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        The name of the PostgreSQL cluster.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: str):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[str]:
+        """
+        Version of the extension.
+        """
+        return pulumi.get(self, "version")
+
+    @version.setter
+    def version(self, value: Optional[str]):
+        pulumi.set(self, "version", value)
+
+
+@pulumi.input_type
 class GetServerlessContainerConnectivityArgs:
     def __init__(__self__, *,
                  network_id: str):
@@ -31270,6 +38509,12 @@ class GetServerlessContainerSecretArgs:
     @version_id.setter
     def version_id(self, value: str):
         pulumi.set(self, "version_id", value)
+
+
+@pulumi.input_type
+class GetVpcGatewaySharedEgressGatewayArgs:
+    def __init__(__self__):
+        pass
 
 
 @pulumi.input_type
@@ -31830,6 +39075,43 @@ class MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3Args:
 
 
 @pulumi.input_type
+class MdbKafkaUserPermissionArgs:
+    def __init__(__self__, *,
+                 role: pulumi.Input[str],
+                 topic_name: pulumi.Input[str]):
+        """
+        :param pulumi.Input[str] role: The role type to grant to the topic.
+        :param pulumi.Input[str] topic_name: The name of the topic that the permission grants access to.
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "topic_name", topic_name)
+
+    @property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[str]:
+        """
+        The role type to grant to the topic.
+        """
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[str]):
+        pulumi.set(self, "role", value)
+
+    @property
+    @pulumi.getter(name="topicName")
+    def topic_name(self) -> pulumi.Input[str]:
+        """
+        The name of the topic that the permission grants access to.
+        """
+        return pulumi.get(self, "topic_name")
+
+    @topic_name.setter
+    def topic_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "topic_name", value)
+
+
+@pulumi.input_type
 class MdbMysqlUserConnectionLimitsArgs:
     def __init__(__self__, *,
                  max_connections_per_hour: Optional[pulumi.Input[int]] = None,
@@ -32003,16 +39285,1982 @@ class MdbPostgresqlUserPermissionArgs:
 
 
 @pulumi.input_type
+class MonitoringDashboardParametrizationArgs:
+    def __init__(__self__, *,
+                 parameters: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterArgs']]]] = None,
+                 selectors: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterArgs']]] parameters: parameters list.
+        :param pulumi.Input[str] selectors: Selectors to select metric label values.
+        """
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if selectors is not None:
+            pulumi.set(__self__, "selectors", selectors)
+
+    @property
+    @pulumi.getter
+    def parameters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterArgs']]]]:
+        """
+        parameters list.
+        """
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterArgs']]]]):
+        pulumi.set(self, "parameters", value)
+
+    @property
+    @pulumi.getter
+    def selectors(self) -> Optional[pulumi.Input[str]]:
+        """
+        Selectors to select metric label values.
+        """
+        return pulumi.get(self, "selectors")
+
+    @selectors.setter
+    def selectors(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "selectors", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardParametrizationParameterArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[str],
+                 customs: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterCustomArgs']]]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 hidden: Optional[pulumi.Input[bool]] = None,
+                 label_values: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterLabelValueArgs']]]] = None,
+                 texts: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterTextArgs']]]] = None,
+                 title: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] id: Parameter identifier
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterCustomArgs']]] customs: Custom values parameter. Oneof: label_values, custom, text.
+        :param pulumi.Input[str] description: Chart description in dashboard (not enabled in UI).
+        :param pulumi.Input[bool] hidden: Checks that target is visible or invisible.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterLabelValueArgs']]] label_values: Label values parameter. Oneof: label_values, custom, text.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterTextArgs']]] texts: Title text.
+        :param pulumi.Input[str] title: -Title or empty.
+        """
+        pulumi.set(__self__, "id", id)
+        if customs is not None:
+            pulumi.set(__self__, "customs", customs)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if hidden is not None:
+            pulumi.set(__self__, "hidden", hidden)
+        if label_values is not None:
+            pulumi.set(__self__, "label_values", label_values)
+        if texts is not None:
+            pulumi.set(__self__, "texts", texts)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+
+    @property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[str]:
+        """
+        Parameter identifier
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[str]):
+        pulumi.set(self, "id", value)
+
+    @property
+    @pulumi.getter
+    def customs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterCustomArgs']]]]:
+        """
+        Custom values parameter. Oneof: label_values, custom, text.
+        """
+        return pulumi.get(self, "customs")
+
+    @customs.setter
+    def customs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterCustomArgs']]]]):
+        pulumi.set(self, "customs", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Chart description in dashboard (not enabled in UI).
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter
+    def hidden(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Checks that target is visible or invisible.
+        """
+        return pulumi.get(self, "hidden")
+
+    @hidden.setter
+    def hidden(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "hidden", value)
+
+    @property
+    @pulumi.getter(name="labelValues")
+    def label_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterLabelValueArgs']]]]:
+        """
+        Label values parameter. Oneof: label_values, custom, text.
+        """
+        return pulumi.get(self, "label_values")
+
+    @label_values.setter
+    def label_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterLabelValueArgs']]]]):
+        pulumi.set(self, "label_values", value)
+
+    @property
+    @pulumi.getter
+    def texts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterTextArgs']]]]:
+        """
+        Title text.
+        """
+        return pulumi.get(self, "texts")
+
+    @texts.setter
+    def texts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardParametrizationParameterTextArgs']]]]):
+        pulumi.set(self, "texts", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        -Title or empty.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardParametrizationParameterCustomArgs:
+    def __init__(__self__, *,
+                 default_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 multiselectable: Optional[pulumi.Input[bool]] = None,
+                 values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] default_values: Default value.
+        :param pulumi.Input[bool] multiselectable: Specifies the multiselectable values of parameter.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] values: Parameter values.
+        """
+        if default_values is not None:
+            pulumi.set(__self__, "default_values", default_values)
+        if multiselectable is not None:
+            pulumi.set(__self__, "multiselectable", multiselectable)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @property
+    @pulumi.getter(name="defaultValues")
+    def default_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Default value.
+        """
+        return pulumi.get(self, "default_values")
+
+    @default_values.setter
+    def default_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "default_values", value)
+
+    @property
+    @pulumi.getter
+    def multiselectable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies the multiselectable values of parameter.
+        """
+        return pulumi.get(self, "multiselectable")
+
+    @multiselectable.setter
+    def multiselectable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "multiselectable", value)
+
+    @property
+    @pulumi.getter
+    def values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Parameter values.
+        """
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "values", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardParametrizationParameterLabelValueArgs:
+    def __init__(__self__, *,
+                 label_key: pulumi.Input[str],
+                 default_values: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 folder_id: Optional[pulumi.Input[str]] = None,
+                 multiselectable: Optional[pulumi.Input[bool]] = None,
+                 selectors: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] label_key: Label key to list label values.
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] default_values: Default value.
+        :param pulumi.Input[str] folder_id: Labels folder ID.
+        :param pulumi.Input[bool] multiselectable: Specifies the multiselectable values of parameter.
+        :param pulumi.Input[str] selectors: Selectors to select metric label values.
+        """
+        pulumi.set(__self__, "label_key", label_key)
+        if default_values is not None:
+            pulumi.set(__self__, "default_values", default_values)
+        if folder_id is not None:
+            pulumi.set(__self__, "folder_id", folder_id)
+        if multiselectable is not None:
+            pulumi.set(__self__, "multiselectable", multiselectable)
+        if selectors is not None:
+            pulumi.set(__self__, "selectors", selectors)
+
+    @property
+    @pulumi.getter(name="labelKey")
+    def label_key(self) -> pulumi.Input[str]:
+        """
+        Label key to list label values.
+        """
+        return pulumi.get(self, "label_key")
+
+    @label_key.setter
+    def label_key(self, value: pulumi.Input[str]):
+        pulumi.set(self, "label_key", value)
+
+    @property
+    @pulumi.getter(name="defaultValues")
+    def default_values(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Default value.
+        """
+        return pulumi.get(self, "default_values")
+
+    @default_values.setter
+    def default_values(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "default_values", value)
+
+    @property
+    @pulumi.getter(name="folderId")
+    def folder_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Labels folder ID.
+        """
+        return pulumi.get(self, "folder_id")
+
+    @folder_id.setter
+    def folder_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "folder_id", value)
+
+    @property
+    @pulumi.getter
+    def multiselectable(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Specifies the multiselectable values of parameter.
+        """
+        return pulumi.get(self, "multiselectable")
+
+    @multiselectable.setter
+    def multiselectable(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "multiselectable", value)
+
+    @property
+    @pulumi.getter
+    def selectors(self) -> Optional[pulumi.Input[str]]:
+        """
+        Selectors to select metric label values.
+        """
+        return pulumi.get(self, "selectors")
+
+    @selectors.setter
+    def selectors(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "selectors", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardParametrizationParameterTextArgs:
+    def __init__(__self__, *,
+                 default_value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] default_value: Default value.
+        """
+        if default_value is not None:
+            pulumi.set(__self__, "default_value", default_value)
+
+    @property
+    @pulumi.getter(name="defaultValue")
+    def default_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Default value.
+        """
+        return pulumi.get(self, "default_value")
+
+    @default_value.setter
+    def default_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "default_value", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetArgs:
+    def __init__(__self__, *,
+                 charts: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartArgs']]]] = None,
+                 positions: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetPositionArgs']]]] = None,
+                 texts: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetTextArgs']]]] = None,
+                 titles: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetTitleArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartArgs']]] charts: Chart widget settings. Oneof: text, title or chart.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetPositionArgs']]] positions: Widget position.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetTextArgs']]] texts: Title text.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetTitleArgs']]] titles: -Title or empty.
+        """
+        if charts is not None:
+            pulumi.set(__self__, "charts", charts)
+        if positions is not None:
+            pulumi.set(__self__, "positions", positions)
+        if texts is not None:
+            pulumi.set(__self__, "texts", texts)
+        if titles is not None:
+            pulumi.set(__self__, "titles", titles)
+
+    @property
+    @pulumi.getter
+    def charts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartArgs']]]]:
+        """
+        Chart widget settings. Oneof: text, title or chart.
+        """
+        return pulumi.get(self, "charts")
+
+    @charts.setter
+    def charts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartArgs']]]]):
+        pulumi.set(self, "charts", value)
+
+    @property
+    @pulumi.getter
+    def positions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetPositionArgs']]]]:
+        """
+        Widget position.
+        """
+        return pulumi.get(self, "positions")
+
+    @positions.setter
+    def positions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetPositionArgs']]]]):
+        pulumi.set(self, "positions", value)
+
+    @property
+    @pulumi.getter
+    def texts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetTextArgs']]]]:
+        """
+        Title text.
+        """
+        return pulumi.get(self, "texts")
+
+    @texts.setter
+    def texts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetTextArgs']]]]):
+        pulumi.set(self, "texts", value)
+
+    @property
+    @pulumi.getter
+    def titles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetTitleArgs']]]]:
+        """
+        -Title or empty.
+        """
+        return pulumi.get(self, "titles")
+
+    @titles.setter
+    def titles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetTitleArgs']]]]):
+        pulumi.set(self, "titles", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartArgs:
+    def __init__(__self__, *,
+                 chart_id: Optional[pulumi.Input[str]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
+                 display_legend: Optional[pulumi.Input[bool]] = None,
+                 freeze: Optional[pulumi.Input[str]] = None,
+                 name_hiding_settings: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartNameHidingSettingArgs']]]] = None,
+                 queries: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartQueryArgs']]]] = None,
+                 series_overrides: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartSeriesOverrideArgs']]]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
+                 visualization_settings: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingArgs']]]] = None):
+        """
+        :param pulumi.Input[str] chart_id: Chart ID.
+        :param pulumi.Input[str] description: Chart description in dashboard (not enabled in UI).
+        :param pulumi.Input[bool] display_legend: Enable legend under chart.
+        :param pulumi.Input[str] freeze: Fixed time interval for chart. Values:
+               - FREEZE_DURATION_HOUR: Last hour.
+               - FREEZE_DURATION_DAY: Last day = last 24 hours.
+               - FREEZE_DURATION_WEEK: Last 7 days.
+               - FREEZE_DURATION_MONTH: Last 31 days.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartNameHidingSettingArgs']]] name_hiding_settings: Names settings.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartQueryArgs']]] queries: Queries settings.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartSeriesOverrideArgs']]] series_overrides: Time series settings.
+        :param pulumi.Input[str] title: -Title or empty.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingArgs']]] visualization_settings: Visualization settings.
+        """
+        if chart_id is not None:
+            pulumi.set(__self__, "chart_id", chart_id)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if display_legend is not None:
+            pulumi.set(__self__, "display_legend", display_legend)
+        if freeze is not None:
+            pulumi.set(__self__, "freeze", freeze)
+        if name_hiding_settings is not None:
+            pulumi.set(__self__, "name_hiding_settings", name_hiding_settings)
+        if queries is not None:
+            pulumi.set(__self__, "queries", queries)
+        if series_overrides is not None:
+            pulumi.set(__self__, "series_overrides", series_overrides)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+        if visualization_settings is not None:
+            pulumi.set(__self__, "visualization_settings", visualization_settings)
+
+    @property
+    @pulumi.getter(name="chartId")
+    def chart_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Chart ID.
+        """
+        return pulumi.get(self, "chart_id")
+
+    @chart_id.setter
+    def chart_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "chart_id", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Chart description in dashboard (not enabled in UI).
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="displayLegend")
+    def display_legend(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Enable legend under chart.
+        """
+        return pulumi.get(self, "display_legend")
+
+    @display_legend.setter
+    def display_legend(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "display_legend", value)
+
+    @property
+    @pulumi.getter
+    def freeze(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fixed time interval for chart. Values:
+        - FREEZE_DURATION_HOUR: Last hour.
+        - FREEZE_DURATION_DAY: Last day = last 24 hours.
+        - FREEZE_DURATION_WEEK: Last 7 days.
+        - FREEZE_DURATION_MONTH: Last 31 days.
+        """
+        return pulumi.get(self, "freeze")
+
+    @freeze.setter
+    def freeze(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "freeze", value)
+
+    @property
+    @pulumi.getter(name="nameHidingSettings")
+    def name_hiding_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartNameHidingSettingArgs']]]]:
+        """
+        Names settings.
+        """
+        return pulumi.get(self, "name_hiding_settings")
+
+    @name_hiding_settings.setter
+    def name_hiding_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartNameHidingSettingArgs']]]]):
+        pulumi.set(self, "name_hiding_settings", value)
+
+    @property
+    @pulumi.getter
+    def queries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartQueryArgs']]]]:
+        """
+        Queries settings.
+        """
+        return pulumi.get(self, "queries")
+
+    @queries.setter
+    def queries(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartQueryArgs']]]]):
+        pulumi.set(self, "queries", value)
+
+    @property
+    @pulumi.getter(name="seriesOverrides")
+    def series_overrides(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartSeriesOverrideArgs']]]]:
+        """
+        Time series settings.
+        """
+        return pulumi.get(self, "series_overrides")
+
+    @series_overrides.setter
+    def series_overrides(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartSeriesOverrideArgs']]]]):
+        pulumi.set(self, "series_overrides", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        -Title or empty.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+    @property
+    @pulumi.getter(name="visualizationSettings")
+    def visualization_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingArgs']]]]:
+        """
+        Visualization settings.
+        """
+        return pulumi.get(self, "visualization_settings")
+
+    @visualization_settings.setter
+    def visualization_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingArgs']]]]):
+        pulumi.set(self, "visualization_settings", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartNameHidingSettingArgs:
+    def __init__(__self__, *,
+                 names: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 positive: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] names: Series name.
+        :param pulumi.Input[bool] positive: True if we want to show concrete series names only, false if we want to hide concrete series names.
+        """
+        if names is not None:
+            pulumi.set(__self__, "names", names)
+        if positive is not None:
+            pulumi.set(__self__, "positive", positive)
+
+    @property
+    @pulumi.getter
+    def names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        Series name.
+        """
+        return pulumi.get(self, "names")
+
+    @names.setter
+    def names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "names", value)
+
+    @property
+    @pulumi.getter
+    def positive(self) -> Optional[pulumi.Input[bool]]:
+        """
+        True if we want to show concrete series names only, false if we want to hide concrete series names.
+        """
+        return pulumi.get(self, "positive")
+
+    @positive.setter
+    def positive(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "positive", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartQueryArgs:
+    def __init__(__self__, *,
+                 downsamplings: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartQueryDownsamplingArgs']]]] = None,
+                 targets: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartQueryTargetArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartQueryDownsamplingArgs']]] downsamplings: Downsamplang settings.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartQueryTargetArgs']]] targets: Query targets.
+        """
+        if downsamplings is not None:
+            pulumi.set(__self__, "downsamplings", downsamplings)
+        if targets is not None:
+            pulumi.set(__self__, "targets", targets)
+
+    @property
+    @pulumi.getter
+    def downsamplings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartQueryDownsamplingArgs']]]]:
+        """
+        Downsamplang settings.
+        """
+        return pulumi.get(self, "downsamplings")
+
+    @downsamplings.setter
+    def downsamplings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartQueryDownsamplingArgs']]]]):
+        pulumi.set(self, "downsamplings", value)
+
+    @property
+    @pulumi.getter
+    def targets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartQueryTargetArgs']]]]:
+        """
+        Query targets.
+        """
+        return pulumi.get(self, "targets")
+
+    @targets.setter
+    def targets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartQueryTargetArgs']]]]):
+        pulumi.set(self, "targets", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartQueryDownsamplingArgs:
+    def __init__(__self__, *,
+                 disabled: Optional[pulumi.Input[bool]] = None,
+                 gap_filling: Optional[pulumi.Input[str]] = None,
+                 grid_aggregation: Optional[pulumi.Input[str]] = None,
+                 grid_interval: Optional[pulumi.Input[int]] = None,
+                 max_points: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[bool] disabled: Disable downsampling.
+        :param pulumi.Input[str] gap_filling: Parameters for filling gaps in data.
+        :param pulumi.Input[str] grid_aggregation: Function that is used for downsampling.
+        :param pulumi.Input[int] grid_interval: Time interval (grid) for downsampling in milliseconds. Points in the specified range are aggregated into one time point
+        :param pulumi.Input[int] max_points: Maximum number of points to be returned.
+        """
+        if disabled is not None:
+            pulumi.set(__self__, "disabled", disabled)
+        if gap_filling is not None:
+            pulumi.set(__self__, "gap_filling", gap_filling)
+        if grid_aggregation is not None:
+            pulumi.set(__self__, "grid_aggregation", grid_aggregation)
+        if grid_interval is not None:
+            pulumi.set(__self__, "grid_interval", grid_interval)
+        if max_points is not None:
+            pulumi.set(__self__, "max_points", max_points)
+
+    @property
+    @pulumi.getter
+    def disabled(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Disable downsampling.
+        """
+        return pulumi.get(self, "disabled")
+
+    @disabled.setter
+    def disabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "disabled", value)
+
+    @property
+    @pulumi.getter(name="gapFilling")
+    def gap_filling(self) -> Optional[pulumi.Input[str]]:
+        """
+        Parameters for filling gaps in data.
+        """
+        return pulumi.get(self, "gap_filling")
+
+    @gap_filling.setter
+    def gap_filling(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gap_filling", value)
+
+    @property
+    @pulumi.getter(name="gridAggregation")
+    def grid_aggregation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Function that is used for downsampling.
+        """
+        return pulumi.get(self, "grid_aggregation")
+
+    @grid_aggregation.setter
+    def grid_aggregation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "grid_aggregation", value)
+
+    @property
+    @pulumi.getter(name="gridInterval")
+    def grid_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time interval (grid) for downsampling in milliseconds. Points in the specified range are aggregated into one time point
+        """
+        return pulumi.get(self, "grid_interval")
+
+    @grid_interval.setter
+    def grid_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "grid_interval", value)
+
+    @property
+    @pulumi.getter(name="maxPoints")
+    def max_points(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum number of points to be returned.
+        """
+        return pulumi.get(self, "max_points")
+
+    @max_points.setter
+    def max_points(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "max_points", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartQueryTargetArgs:
+    def __init__(__self__, *,
+                 hidden: Optional[pulumi.Input[bool]] = None,
+                 query: Optional[pulumi.Input[str]] = None,
+                 text_mode: Optional[pulumi.Input[bool]] = None):
+        """
+        :param pulumi.Input[bool] hidden: Checks that target is visible or invisible.
+        :param pulumi.Input[str] query: Query.
+        :param pulumi.Input[bool] text_mode: Text mode enabled.
+        """
+        if hidden is not None:
+            pulumi.set(__self__, "hidden", hidden)
+        if query is not None:
+            pulumi.set(__self__, "query", query)
+        if text_mode is not None:
+            pulumi.set(__self__, "text_mode", text_mode)
+
+    @property
+    @pulumi.getter
+    def hidden(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Checks that target is visible or invisible.
+        """
+        return pulumi.get(self, "hidden")
+
+    @hidden.setter
+    def hidden(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "hidden", value)
+
+    @property
+    @pulumi.getter
+    def query(self) -> Optional[pulumi.Input[str]]:
+        """
+        Query.
+        """
+        return pulumi.get(self, "query")
+
+    @query.setter
+    def query(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "query", value)
+
+    @property
+    @pulumi.getter(name="textMode")
+    def text_mode(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Text mode enabled.
+        """
+        return pulumi.get(self, "text_mode")
+
+    @text_mode.setter
+    def text_mode(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "text_mode", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartSeriesOverrideArgs:
+    def __init__(__self__, *,
+                 name: Optional[pulumi.Input[str]] = None,
+                 settings: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartSeriesOverrideSettingArgs']]]] = None,
+                 target_index: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] name: Series name or empty.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartSeriesOverrideSettingArgs']]] settings: Override settings.
+        :param pulumi.Input[str] target_index: Series index. Oneof: name or target_index.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if settings is not None:
+            pulumi.set(__self__, "settings", settings)
+        if target_index is not None:
+            pulumi.set(__self__, "target_index", target_index)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Series name or empty.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartSeriesOverrideSettingArgs']]]]:
+        """
+        Override settings.
+        """
+        return pulumi.get(self, "settings")
+
+    @settings.setter
+    def settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartSeriesOverrideSettingArgs']]]]):
+        pulumi.set(self, "settings", value)
+
+    @property
+    @pulumi.getter(name="targetIndex")
+    def target_index(self) -> Optional[pulumi.Input[str]]:
+        """
+        Series index. Oneof: name or target_index.
+        """
+        return pulumi.get(self, "target_index")
+
+    @target_index.setter
+    def target_index(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "target_index", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartSeriesOverrideSettingArgs:
+    def __init__(__self__, *,
+                 color: Optional[pulumi.Input[str]] = None,
+                 grow_down: Optional[pulumi.Input[bool]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 stack_name: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 yaxis_position: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] color: Series color or empty.
+        :param pulumi.Input[bool] grow_down: Stack grow down.
+        :param pulumi.Input[str] name: Series name or empty.
+        :param pulumi.Input[str] stack_name: Stack name or empty.
+        :param pulumi.Input[str] type: Type.
+        :param pulumi.Input[str] yaxis_position: Yaxis position.
+        """
+        if color is not None:
+            pulumi.set(__self__, "color", color)
+        if grow_down is not None:
+            pulumi.set(__self__, "grow_down", grow_down)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if stack_name is not None:
+            pulumi.set(__self__, "stack_name", stack_name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if yaxis_position is not None:
+            pulumi.set(__self__, "yaxis_position", yaxis_position)
+
+    @property
+    @pulumi.getter
+    def color(self) -> Optional[pulumi.Input[str]]:
+        """
+        Series color or empty.
+        """
+        return pulumi.get(self, "color")
+
+    @color.setter
+    def color(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "color", value)
+
+    @property
+    @pulumi.getter(name="growDown")
+    def grow_down(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Stack grow down.
+        """
+        return pulumi.get(self, "grow_down")
+
+    @grow_down.setter
+    def grow_down(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "grow_down", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Series name or empty.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="stackName")
+    def stack_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Stack name or empty.
+        """
+        return pulumi.get(self, "stack_name")
+
+    @stack_name.setter
+    def stack_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "stack_name", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="yaxisPosition")
+    def yaxis_position(self) -> Optional[pulumi.Input[str]]:
+        """
+        Yaxis position.
+        """
+        return pulumi.get(self, "yaxis_position")
+
+    @yaxis_position.setter
+    def yaxis_position(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "yaxis_position", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartVisualizationSettingArgs:
+    def __init__(__self__, *,
+                 aggregation: Optional[pulumi.Input[str]] = None,
+                 color_scheme_settings: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingArgs']]]] = None,
+                 heatmap_settings: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingHeatmapSettingArgs']]]] = None,
+                 interpolate: Optional[pulumi.Input[str]] = None,
+                 normalize: Optional[pulumi.Input[bool]] = None,
+                 show_labels: Optional[pulumi.Input[bool]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 yaxis_settings: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingArgs']]]] = None):
+        """
+        :param pulumi.Input[str] aggregation: Aggregation. Values:
+               - SERIES_AGGREGATION_UNSPECIFIED: Not specified (avg by default).
+               - SERIES_AGGREGATION_AVG: Average.
+               - SERIES_AGGREGATION_MIN: Minimum.
+               - SERIES_AGGREGATION_MAX: Maximum.
+               - SERIES_AGGREGATION_LAST: Last non-NaN value.
+               - SERIES_AGGREGATION_SUM: Sum.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingArgs']]] color_scheme_settings: Color settings.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingHeatmapSettingArgs']]] heatmap_settings: Heatmap settings.
+        :param pulumi.Input[str] interpolate: Interpolate values. Values:
+               - INTERPOLATE_UNSPECIFIED: Not specified (linear by default).
+               - INTERPOLATE_LINEAR: Linear.
+               - INTERPOLATE_LEFT: Left.
+               - INTERPOLATE_RIGHT: Right.
+        :param pulumi.Input[bool] normalize: Normalize values.
+        :param pulumi.Input[bool] show_labels: Show chart labels.
+        :param pulumi.Input[str] title: -Title or empty.
+        :param pulumi.Input[str] type: Type.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingArgs']]] yaxis_settings: Y axis settings.
+        """
+        if aggregation is not None:
+            pulumi.set(__self__, "aggregation", aggregation)
+        if color_scheme_settings is not None:
+            pulumi.set(__self__, "color_scheme_settings", color_scheme_settings)
+        if heatmap_settings is not None:
+            pulumi.set(__self__, "heatmap_settings", heatmap_settings)
+        if interpolate is not None:
+            pulumi.set(__self__, "interpolate", interpolate)
+        if normalize is not None:
+            pulumi.set(__self__, "normalize", normalize)
+        if show_labels is not None:
+            pulumi.set(__self__, "show_labels", show_labels)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if yaxis_settings is not None:
+            pulumi.set(__self__, "yaxis_settings", yaxis_settings)
+
+    @property
+    @pulumi.getter
+    def aggregation(self) -> Optional[pulumi.Input[str]]:
+        """
+        Aggregation. Values:
+        - SERIES_AGGREGATION_UNSPECIFIED: Not specified (avg by default).
+        - SERIES_AGGREGATION_AVG: Average.
+        - SERIES_AGGREGATION_MIN: Minimum.
+        - SERIES_AGGREGATION_MAX: Maximum.
+        - SERIES_AGGREGATION_LAST: Last non-NaN value.
+        - SERIES_AGGREGATION_SUM: Sum.
+        """
+        return pulumi.get(self, "aggregation")
+
+    @aggregation.setter
+    def aggregation(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "aggregation", value)
+
+    @property
+    @pulumi.getter(name="colorSchemeSettings")
+    def color_scheme_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingArgs']]]]:
+        """
+        Color settings.
+        """
+        return pulumi.get(self, "color_scheme_settings")
+
+    @color_scheme_settings.setter
+    def color_scheme_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingArgs']]]]):
+        pulumi.set(self, "color_scheme_settings", value)
+
+    @property
+    @pulumi.getter(name="heatmapSettings")
+    def heatmap_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingHeatmapSettingArgs']]]]:
+        """
+        Heatmap settings.
+        """
+        return pulumi.get(self, "heatmap_settings")
+
+    @heatmap_settings.setter
+    def heatmap_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingHeatmapSettingArgs']]]]):
+        pulumi.set(self, "heatmap_settings", value)
+
+    @property
+    @pulumi.getter
+    def interpolate(self) -> Optional[pulumi.Input[str]]:
+        """
+        Interpolate values. Values:
+        - INTERPOLATE_UNSPECIFIED: Not specified (linear by default).
+        - INTERPOLATE_LINEAR: Linear.
+        - INTERPOLATE_LEFT: Left.
+        - INTERPOLATE_RIGHT: Right.
+        """
+        return pulumi.get(self, "interpolate")
+
+    @interpolate.setter
+    def interpolate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interpolate", value)
+
+    @property
+    @pulumi.getter
+    def normalize(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Normalize values.
+        """
+        return pulumi.get(self, "normalize")
+
+    @normalize.setter
+    def normalize(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "normalize", value)
+
+    @property
+    @pulumi.getter(name="showLabels")
+    def show_labels(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Show chart labels.
+        """
+        return pulumi.get(self, "show_labels")
+
+    @show_labels.setter
+    def show_labels(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "show_labels", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        -Title or empty.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="yaxisSettings")
+    def yaxis_settings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingArgs']]]]:
+        """
+        Y axis settings.
+        """
+        return pulumi.get(self, "yaxis_settings")
+
+    @yaxis_settings.setter
+    def yaxis_settings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingArgs']]]]):
+        pulumi.set(self, "yaxis_settings", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingArgs:
+    def __init__(__self__, *,
+                 automatics: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomaticArgs']]]] = None,
+                 gradients: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradientArgs']]]] = None,
+                 standards: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandardArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomaticArgs']]] automatics: Automatic color scheme. Oneof: automatic, standard or gradient.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradientArgs']]] gradients: Gradient color scheme. Oneof: automatic, standard or gradient.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandardArgs']]] standards: Standard color scheme. Oneof: automatic, standard or gradient.
+        """
+        if automatics is not None:
+            pulumi.set(__self__, "automatics", automatics)
+        if gradients is not None:
+            pulumi.set(__self__, "gradients", gradients)
+        if standards is not None:
+            pulumi.set(__self__, "standards", standards)
+
+    @property
+    @pulumi.getter
+    def automatics(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomaticArgs']]]]:
+        """
+        Automatic color scheme. Oneof: automatic, standard or gradient.
+        """
+        return pulumi.get(self, "automatics")
+
+    @automatics.setter
+    def automatics(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomaticArgs']]]]):
+        pulumi.set(self, "automatics", value)
+
+    @property
+    @pulumi.getter
+    def gradients(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradientArgs']]]]:
+        """
+        Gradient color scheme. Oneof: automatic, standard or gradient.
+        """
+        return pulumi.get(self, "gradients")
+
+    @gradients.setter
+    def gradients(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradientArgs']]]]):
+        pulumi.set(self, "gradients", value)
+
+    @property
+    @pulumi.getter
+    def standards(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandardArgs']]]]:
+        """
+        Standard color scheme. Oneof: automatic, standard or gradient.
+        """
+        return pulumi.get(self, "standards")
+
+    @standards.setter
+    def standards(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandardArgs']]]]):
+        pulumi.set(self, "standards", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingAutomaticArgs:
+    def __init__(__self__):
+        pass
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingGradientArgs:
+    def __init__(__self__, *,
+                 green_value: Optional[pulumi.Input[str]] = None,
+                 red_value: Optional[pulumi.Input[str]] = None,
+                 violet_value: Optional[pulumi.Input[str]] = None,
+                 yellow_value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] green_value: Heatmap green value.
+        :param pulumi.Input[str] red_value: Heatmap red value.
+        :param pulumi.Input[str] violet_value: Heatmap violet value.
+        :param pulumi.Input[str] yellow_value: Heatmap yellow value.
+        """
+        if green_value is not None:
+            pulumi.set(__self__, "green_value", green_value)
+        if red_value is not None:
+            pulumi.set(__self__, "red_value", red_value)
+        if violet_value is not None:
+            pulumi.set(__self__, "violet_value", violet_value)
+        if yellow_value is not None:
+            pulumi.set(__self__, "yellow_value", yellow_value)
+
+    @property
+    @pulumi.getter(name="greenValue")
+    def green_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Heatmap green value.
+        """
+        return pulumi.get(self, "green_value")
+
+    @green_value.setter
+    def green_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "green_value", value)
+
+    @property
+    @pulumi.getter(name="redValue")
+    def red_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Heatmap red value.
+        """
+        return pulumi.get(self, "red_value")
+
+    @red_value.setter
+    def red_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "red_value", value)
+
+    @property
+    @pulumi.getter(name="violetValue")
+    def violet_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Heatmap violet value.
+        """
+        return pulumi.get(self, "violet_value")
+
+    @violet_value.setter
+    def violet_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "violet_value", value)
+
+    @property
+    @pulumi.getter(name="yellowValue")
+    def yellow_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Heatmap yellow value.
+        """
+        return pulumi.get(self, "yellow_value")
+
+    @yellow_value.setter
+    def yellow_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "yellow_value", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartVisualizationSettingColorSchemeSettingStandardArgs:
+    def __init__(__self__):
+        pass
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartVisualizationSettingHeatmapSettingArgs:
+    def __init__(__self__, *,
+                 green_value: Optional[pulumi.Input[str]] = None,
+                 red_value: Optional[pulumi.Input[str]] = None,
+                 violet_value: Optional[pulumi.Input[str]] = None,
+                 yellow_value: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] green_value: Heatmap green value.
+        :param pulumi.Input[str] red_value: Heatmap red value.
+        :param pulumi.Input[str] violet_value: Heatmap violet value.
+        :param pulumi.Input[str] yellow_value: Heatmap yellow value.
+        """
+        if green_value is not None:
+            pulumi.set(__self__, "green_value", green_value)
+        if red_value is not None:
+            pulumi.set(__self__, "red_value", red_value)
+        if violet_value is not None:
+            pulumi.set(__self__, "violet_value", violet_value)
+        if yellow_value is not None:
+            pulumi.set(__self__, "yellow_value", yellow_value)
+
+    @property
+    @pulumi.getter(name="greenValue")
+    def green_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Heatmap green value.
+        """
+        return pulumi.get(self, "green_value")
+
+    @green_value.setter
+    def green_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "green_value", value)
+
+    @property
+    @pulumi.getter(name="redValue")
+    def red_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Heatmap red value.
+        """
+        return pulumi.get(self, "red_value")
+
+    @red_value.setter
+    def red_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "red_value", value)
+
+    @property
+    @pulumi.getter(name="violetValue")
+    def violet_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Heatmap violet value.
+        """
+        return pulumi.get(self, "violet_value")
+
+    @violet_value.setter
+    def violet_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "violet_value", value)
+
+    @property
+    @pulumi.getter(name="yellowValue")
+    def yellow_value(self) -> Optional[pulumi.Input[str]]:
+        """
+        Heatmap yellow value.
+        """
+        return pulumi.get(self, "yellow_value")
+
+    @yellow_value.setter
+    def yellow_value(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "yellow_value", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingArgs:
+    def __init__(__self__, *,
+                 lefts: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeftArgs']]]] = None,
+                 rights: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRightArgs']]]] = None):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeftArgs']]] lefts: Left yaxis config.
+        :param pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRightArgs']]] rights: Right yaxis config.
+        """
+        if lefts is not None:
+            pulumi.set(__self__, "lefts", lefts)
+        if rights is not None:
+            pulumi.set(__self__, "rights", rights)
+
+    @property
+    @pulumi.getter
+    def lefts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeftArgs']]]]:
+        """
+        Left yaxis config.
+        """
+        return pulumi.get(self, "lefts")
+
+    @lefts.setter
+    def lefts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeftArgs']]]]):
+        pulumi.set(self, "lefts", value)
+
+    @property
+    @pulumi.getter
+    def rights(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRightArgs']]]]:
+        """
+        Right yaxis config.
+        """
+        return pulumi.get(self, "rights")
+
+    @rights.setter
+    def rights(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRightArgs']]]]):
+        pulumi.set(self, "rights", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingLeftArgs:
+    def __init__(__self__, *,
+                 max: Optional[pulumi.Input[str]] = None,
+                 min: Optional[pulumi.Input[str]] = None,
+                 precision: Optional[pulumi.Input[int]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 unit_format: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] max: Max value in extended number format or empty.
+        :param pulumi.Input[str] min: Min value in extended number format or empty.
+        :param pulumi.Input[int] precision: Tick value precision (null as default, 0-7 in other cases).
+        :param pulumi.Input[str] title: -Title or empty.
+        :param pulumi.Input[str] type: Type.
+        :param pulumi.Input[str] unit_format: Unit format.
+        """
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+        if precision is not None:
+            pulumi.set(__self__, "precision", precision)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if unit_format is not None:
+            pulumi.set(__self__, "unit_format", unit_format)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[pulumi.Input[str]]:
+        """
+        Max value in extended number format or empty.
+        """
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[pulumi.Input[str]]:
+        """
+        Min value in extended number format or empty.
+        """
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "min", value)
+
+    @property
+    @pulumi.getter
+    def precision(self) -> Optional[pulumi.Input[int]]:
+        """
+        Tick value precision (null as default, 0-7 in other cases).
+        """
+        return pulumi.get(self, "precision")
+
+    @precision.setter
+    def precision(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "precision", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        -Title or empty.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="unitFormat")
+    def unit_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unit format.
+        """
+        return pulumi.get(self, "unit_format")
+
+    @unit_format.setter
+    def unit_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "unit_format", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetChartVisualizationSettingYaxisSettingRightArgs:
+    def __init__(__self__, *,
+                 max: Optional[pulumi.Input[str]] = None,
+                 min: Optional[pulumi.Input[str]] = None,
+                 precision: Optional[pulumi.Input[int]] = None,
+                 title: Optional[pulumi.Input[str]] = None,
+                 type: Optional[pulumi.Input[str]] = None,
+                 unit_format: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] max: Max value in extended number format or empty.
+        :param pulumi.Input[str] min: Min value in extended number format or empty.
+        :param pulumi.Input[int] precision: Tick value precision (null as default, 0-7 in other cases).
+        :param pulumi.Input[str] title: -Title or empty.
+        :param pulumi.Input[str] type: Type.
+        :param pulumi.Input[str] unit_format: Unit format.
+        """
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+        if min is not None:
+            pulumi.set(__self__, "min", min)
+        if precision is not None:
+            pulumi.set(__self__, "precision", precision)
+        if title is not None:
+            pulumi.set(__self__, "title", title)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if unit_format is not None:
+            pulumi.set(__self__, "unit_format", unit_format)
+
+    @property
+    @pulumi.getter
+    def max(self) -> Optional[pulumi.Input[str]]:
+        """
+        Max value in extended number format or empty.
+        """
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "max", value)
+
+    @property
+    @pulumi.getter
+    def min(self) -> Optional[pulumi.Input[str]]:
+        """
+        Min value in extended number format or empty.
+        """
+        return pulumi.get(self, "min")
+
+    @min.setter
+    def min(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "min", value)
+
+    @property
+    @pulumi.getter
+    def precision(self) -> Optional[pulumi.Input[int]]:
+        """
+        Tick value precision (null as default, 0-7 in other cases).
+        """
+        return pulumi.get(self, "precision")
+
+    @precision.setter
+    def precision(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "precision", value)
+
+    @property
+    @pulumi.getter
+    def title(self) -> Optional[pulumi.Input[str]]:
+        """
+        -Title or empty.
+        """
+        return pulumi.get(self, "title")
+
+    @title.setter
+    def title(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "title", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Type.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="unitFormat")
+    def unit_format(self) -> Optional[pulumi.Input[str]]:
+        """
+        Unit format.
+        """
+        return pulumi.get(self, "unit_format")
+
+    @unit_format.setter
+    def unit_format(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "unit_format", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetPositionArgs:
+    def __init__(__self__, *,
+                 h: Optional[pulumi.Input[int]] = None,
+                 w: Optional[pulumi.Input[int]] = None,
+                 x: Optional[pulumi.Input[int]] = None,
+                 y: Optional[pulumi.Input[int]] = None):
+        """
+        :param pulumi.Input[int] h: Height.
+        :param pulumi.Input[int] w: Width.
+        :param pulumi.Input[int] x: X-axis top-left corner coordinate.
+        :param pulumi.Input[int] y: Y-axis top-left corner coordinate.
+        """
+        if h is not None:
+            pulumi.set(__self__, "h", h)
+        if w is not None:
+            pulumi.set(__self__, "w", w)
+        if x is not None:
+            pulumi.set(__self__, "x", x)
+        if y is not None:
+            pulumi.set(__self__, "y", y)
+
+    @property
+    @pulumi.getter
+    def h(self) -> Optional[pulumi.Input[int]]:
+        """
+        Height.
+        """
+        return pulumi.get(self, "h")
+
+    @h.setter
+    def h(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "h", value)
+
+    @property
+    @pulumi.getter
+    def w(self) -> Optional[pulumi.Input[int]]:
+        """
+        Width.
+        """
+        return pulumi.get(self, "w")
+
+    @w.setter
+    def w(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "w", value)
+
+    @property
+    @pulumi.getter
+    def x(self) -> Optional[pulumi.Input[int]]:
+        """
+        X-axis top-left corner coordinate.
+        """
+        return pulumi.get(self, "x")
+
+    @x.setter
+    def x(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "x", value)
+
+    @property
+    @pulumi.getter
+    def y(self) -> Optional[pulumi.Input[int]]:
+        """
+        Y-axis top-left corner coordinate.
+        """
+        return pulumi.get(self, "y")
+
+    @y.setter
+    def y(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "y", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetTextArgs:
+    def __init__(__self__, *,
+                 text: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] text: Title text.
+        """
+        if text is not None:
+            pulumi.set(__self__, "text", text)
+
+    @property
+    @pulumi.getter
+    def text(self) -> Optional[pulumi.Input[str]]:
+        """
+        Title text.
+        """
+        return pulumi.get(self, "text")
+
+    @text.setter
+    def text(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "text", value)
+
+
+@pulumi.input_type
+class MonitoringDashboardWidgetTitleArgs:
+    def __init__(__self__, *,
+                 text: pulumi.Input[str],
+                 size: Optional[pulumi.Input[str]] = None):
+        """
+        :param pulumi.Input[str] text: Title text.
+        :param pulumi.Input[str] size: Title size. Values: 
+               - TITLE_SIZE_XS: Extra small size.
+               - TITLE_SIZE_S: Small size.
+               - TITLE_SIZE_M: Middle size.
+               - TITLE_SIZE_L: Large size.
+        """
+        pulumi.set(__self__, "text", text)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @property
+    @pulumi.getter
+    def text(self) -> pulumi.Input[str]:
+        """
+        Title text.
+        """
+        return pulumi.get(self, "text")
+
+    @text.setter
+    def text(self, value: pulumi.Input[str]):
+        pulumi.set(self, "text", value)
+
+    @property
+    @pulumi.getter
+    def size(self) -> Optional[pulumi.Input[str]]:
+        """
+        Title size. Values: 
+        - TITLE_SIZE_XS: Extra small size.
+        - TITLE_SIZE_S: Small size.
+        - TITLE_SIZE_M: Middle size.
+        - TITLE_SIZE_L: Large size.
+        """
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "size", value)
+
+
+@pulumi.input_type
 class VpcGatewaySharedEgressGatewayArgs:
     def __init__(__self__):
         pass
 
 
 @pulumi.input_type
+class YandexYdbTableColumnArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 type: pulumi.Input[str],
+                 family: Optional[pulumi.Input[str]] = None,
+                 not_null: Optional[pulumi.Input[bool]] = None):
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "type", type)
+        if family is not None:
+            pulumi.set(__self__, "family", family)
+        if not_null is not None:
+            pulumi.set(__self__, "not_null", not_null)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def family(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "family")
+
+    @family.setter
+    def family(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "family", value)
+
+    @property
+    @pulumi.getter(name="notNull")
+    def not_null(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "not_null")
+
+    @not_null.setter
+    def not_null(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "not_null", value)
+
+
+@pulumi.input_type
+class YandexYdbTableFamilyArgs:
+    def __init__(__self__, *,
+                 compression: pulumi.Input[str],
+                 data: pulumi.Input[str],
+                 name: pulumi.Input[str]):
+        pulumi.set(__self__, "compression", compression)
+        pulumi.set(__self__, "data", data)
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def compression(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "compression")
+
+    @compression.setter
+    def compression(self, value: pulumi.Input[str]):
+        pulumi.set(self, "compression", value)
+
+    @property
+    @pulumi.getter
+    def data(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "data")
+
+    @data.setter
+    def data(self, value: pulumi.Input[str]):
+        pulumi.set(self, "data", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+
+@pulumi.input_type
+class YandexYdbTablePartitioningSettingsArgs:
+    def __init__(__self__, *,
+                 auto_partitioning_by_load: Optional[pulumi.Input[bool]] = None,
+                 auto_partitioning_by_size_enabled: Optional[pulumi.Input[bool]] = None,
+                 auto_partitioning_max_partitions_count: Optional[pulumi.Input[int]] = None,
+                 auto_partitioning_min_partitions_count: Optional[pulumi.Input[int]] = None,
+                 auto_partitioning_partition_size_mb: Optional[pulumi.Input[int]] = None,
+                 partition_at_keys: Optional[pulumi.Input[Sequence[pulumi.Input['YandexYdbTablePartitioningSettingsPartitionAtKeyArgs']]]] = None,
+                 uniform_partitions: Optional[pulumi.Input[int]] = None):
+        if auto_partitioning_by_load is not None:
+            pulumi.set(__self__, "auto_partitioning_by_load", auto_partitioning_by_load)
+        if auto_partitioning_by_size_enabled is not None:
+            pulumi.set(__self__, "auto_partitioning_by_size_enabled", auto_partitioning_by_size_enabled)
+        if auto_partitioning_max_partitions_count is not None:
+            pulumi.set(__self__, "auto_partitioning_max_partitions_count", auto_partitioning_max_partitions_count)
+        if auto_partitioning_min_partitions_count is not None:
+            pulumi.set(__self__, "auto_partitioning_min_partitions_count", auto_partitioning_min_partitions_count)
+        if auto_partitioning_partition_size_mb is not None:
+            pulumi.set(__self__, "auto_partitioning_partition_size_mb", auto_partitioning_partition_size_mb)
+        if partition_at_keys is not None:
+            pulumi.set(__self__, "partition_at_keys", partition_at_keys)
+        if uniform_partitions is not None:
+            pulumi.set(__self__, "uniform_partitions", uniform_partitions)
+
+    @property
+    @pulumi.getter(name="autoPartitioningByLoad")
+    def auto_partitioning_by_load(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "auto_partitioning_by_load")
+
+    @auto_partitioning_by_load.setter
+    def auto_partitioning_by_load(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_partitioning_by_load", value)
+
+    @property
+    @pulumi.getter(name="autoPartitioningBySizeEnabled")
+    def auto_partitioning_by_size_enabled(self) -> Optional[pulumi.Input[bool]]:
+        return pulumi.get(self, "auto_partitioning_by_size_enabled")
+
+    @auto_partitioning_by_size_enabled.setter
+    def auto_partitioning_by_size_enabled(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "auto_partitioning_by_size_enabled", value)
+
+    @property
+    @pulumi.getter(name="autoPartitioningMaxPartitionsCount")
+    def auto_partitioning_max_partitions_count(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "auto_partitioning_max_partitions_count")
+
+    @auto_partitioning_max_partitions_count.setter
+    def auto_partitioning_max_partitions_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_partitioning_max_partitions_count", value)
+
+    @property
+    @pulumi.getter(name="autoPartitioningMinPartitionsCount")
+    def auto_partitioning_min_partitions_count(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "auto_partitioning_min_partitions_count")
+
+    @auto_partitioning_min_partitions_count.setter
+    def auto_partitioning_min_partitions_count(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_partitioning_min_partitions_count", value)
+
+    @property
+    @pulumi.getter(name="autoPartitioningPartitionSizeMb")
+    def auto_partitioning_partition_size_mb(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "auto_partitioning_partition_size_mb")
+
+    @auto_partitioning_partition_size_mb.setter
+    def auto_partitioning_partition_size_mb(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "auto_partitioning_partition_size_mb", value)
+
+    @property
+    @pulumi.getter(name="partitionAtKeys")
+    def partition_at_keys(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['YandexYdbTablePartitioningSettingsPartitionAtKeyArgs']]]]:
+        return pulumi.get(self, "partition_at_keys")
+
+    @partition_at_keys.setter
+    def partition_at_keys(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['YandexYdbTablePartitioningSettingsPartitionAtKeyArgs']]]]):
+        pulumi.set(self, "partition_at_keys", value)
+
+    @property
+    @pulumi.getter(name="uniformPartitions")
+    def uniform_partitions(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "uniform_partitions")
+
+    @uniform_partitions.setter
+    def uniform_partitions(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "uniform_partitions", value)
+
+
+@pulumi.input_type
+class YandexYdbTablePartitioningSettingsPartitionAtKeyArgs:
+    def __init__(__self__, *,
+                 keys: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(__self__, "keys", keys)
+
+    @property
+    @pulumi.getter
+    def keys(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        return pulumi.get(self, "keys")
+
+    @keys.setter
+    def keys(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "keys", value)
+
+
+@pulumi.input_type
+class YandexYdbTableTtlArgs:
+    def __init__(__self__, *,
+                 column_name: pulumi.Input[str],
+                 expire_interval: pulumi.Input[str],
+                 unit: Optional[pulumi.Input[str]] = None):
+        pulumi.set(__self__, "column_name", column_name)
+        pulumi.set(__self__, "expire_interval", expire_interval)
+        if unit is not None:
+            pulumi.set(__self__, "unit", unit)
+
+    @property
+    @pulumi.getter(name="columnName")
+    def column_name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "column_name")
+
+    @column_name.setter
+    def column_name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "column_name", value)
+
+    @property
+    @pulumi.getter(name="expireInterval")
+    def expire_interval(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "expire_interval")
+
+    @expire_interval.setter
+    def expire_interval(self, value: pulumi.Input[str]):
+        pulumi.set(self, "expire_interval", value)
+
+    @property
+    @pulumi.getter
+    def unit(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "unit")
+
+    @unit.setter
+    def unit(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "unit", value)
+
+
+@pulumi.input_type
+class YandexYdbTopicChangefeedConsumerArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[str],
+                 starting_message_timestamp_ms: Optional[pulumi.Input[int]] = None,
+                 supported_codecs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+        pulumi.set(__self__, "name", name)
+        if starting_message_timestamp_ms is not None:
+            pulumi.set(__self__, "starting_message_timestamp_ms", starting_message_timestamp_ms)
+        if supported_codecs is not None:
+            pulumi.set(__self__, "supported_codecs", supported_codecs)
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[str]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[str]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="startingMessageTimestampMs")
+    def starting_message_timestamp_ms(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "starting_message_timestamp_ms")
+
+    @starting_message_timestamp_ms.setter
+    def starting_message_timestamp_ms(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "starting_message_timestamp_ms", value)
+
+    @property
+    @pulumi.getter(name="supportedCodecs")
+    def supported_codecs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        return pulumi.get(self, "supported_codecs")
+
+    @supported_codecs.setter
+    def supported_codecs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "supported_codecs", value)
+
+
+@pulumi.input_type
 class YandexYdbTopicConsumerArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[str],
-                 service_type: Optional[pulumi.Input[str]] = None,
                  starting_message_timestamp_ms: Optional[pulumi.Input[int]] = None,
                  supported_codecs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -32020,8 +41268,6 @@ class YandexYdbTopicConsumerArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] supported_codecs: Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
         """
         pulumi.set(__self__, "name", name)
-        if service_type is not None:
-            pulumi.set(__self__, "service_type", service_type)
         if starting_message_timestamp_ms is not None:
             pulumi.set(__self__, "starting_message_timestamp_ms", starting_message_timestamp_ms)
         if supported_codecs is not None:
@@ -32038,15 +41284,6 @@ class YandexYdbTopicConsumerArgs:
     @name.setter
     def name(self, value: pulumi.Input[str]):
         pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter(name="serviceType")
-    def service_type(self) -> Optional[pulumi.Input[str]]:
-        return pulumi.get(self, "service_type")
-
-    @service_type.setter
-    def service_type(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "service_type", value)
 
     @property
     @pulumi.getter(name="startingMessageTimestampMs")

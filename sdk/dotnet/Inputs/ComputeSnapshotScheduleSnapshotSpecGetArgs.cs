@@ -13,7 +13,7 @@ namespace Pulumi.Yandex.Inputs
     public sealed class ComputeSnapshotScheduleSnapshotSpecGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Description of the resource.
+        /// Description to assign to snapshots created by this snapshot schedule.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
@@ -22,7 +22,7 @@ namespace Pulumi.Yandex.Inputs
         private InputMap<string>? _labels;
 
         /// <summary>
-        /// A set of key/value label pairs to assign to the snapshot schedule.
+        /// A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
         /// </summary>
         public InputMap<string> Labels
         {

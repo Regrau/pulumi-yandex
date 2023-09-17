@@ -25,10 +25,16 @@ namespace Pulumi.Yandex.Inputs
         public Input<Inputs.MdbMongodbClusterClusterConfigBackupWindowStartArgs>? BackupWindowStart { get; set; }
 
         /// <summary>
-        /// Feature compatibility version of MongoDB. If not provided version is taken. Can be either `5.0`, `4.4`, `4.2` and `4.0`.
+        /// Feature compatibility version of MongoDB. If not provided version is taken. Can be either `6.0`, `5.0`, `4.4` and `4.2`.
         /// </summary>
         [Input("featureCompatibilityVersion")]
         public Input<string>? FeatureCompatibilityVersion { get; set; }
+
+        /// <summary>
+        /// Configuration of the mongocfg service. The structure is documented below.
+        /// </summary>
+        [Input("mongocfg")]
+        public Input<Inputs.MdbMongodbClusterClusterConfigMongocfgArgs>? Mongocfg { get; set; }
 
         /// <summary>
         /// Configuration of the mongod service. The structure is documented below.
@@ -37,7 +43,16 @@ namespace Pulumi.Yandex.Inputs
         public Input<Inputs.MdbMongodbClusterClusterConfigMongodArgs>? Mongod { get; set; }
 
         /// <summary>
-        /// Version of MongoDB (either 5.0, 4.4, 4.2 or 4.0).
+        /// Configuration of the mongos service. The structure is documented below.
+        /// </summary>
+        [Input("mongos")]
+        public Input<Inputs.MdbMongodbClusterClusterConfigMongosArgs>? Mongos { get; set; }
+
+        [Input("performanceDiagnostics")]
+        public Input<Inputs.MdbMongodbClusterClusterConfigPerformanceDiagnosticsArgs>? PerformanceDiagnostics { get; set; }
+
+        /// <summary>
+        /// Version of the MongoDB server software. Can be either `4.2`, `4.4`, `4.4-enterprise`, `5.0`, `5.0-enterprise`, `6.0` and `6.0-enterprise`.
         /// </summary>
         [Input("version", required: true)]
         public Input<string> Version { get; set; } = null!;

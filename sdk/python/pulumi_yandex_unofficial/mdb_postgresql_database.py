@@ -18,6 +18,7 @@ class MdbPostgresqlDatabaseArgs:
     def __init__(__self__, *,
                  cluster_id: pulumi.Input[str],
                  owner: pulumi.Input[str],
+                 deletion_protection: Optional[pulumi.Input[str]] = None,
                  extensions: Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlDatabaseExtensionArgs']]]] = None,
                  lc_collate: Optional[pulumi.Input[str]] = None,
                  lc_type: Optional[pulumi.Input[str]] = None,
@@ -26,6 +27,7 @@ class MdbPostgresqlDatabaseArgs:
         """
         The set of arguments for constructing a MdbPostgresqlDatabase resource.
         :param pulumi.Input[str] owner: Name of the user assigned as the owner of the database. Forbidden to change in an existing database.
+        :param pulumi.Input[str] deletion_protection: Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
         :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlDatabaseExtensionArgs']]] extensions: Set of database extensions. The structure is documented below
         :param pulumi.Input[str] lc_collate: POSIX locale for string sorting order. Forbidden to change in an existing database.
         :param pulumi.Input[str] lc_type: POSIX locale for character classification. Forbidden to change in an existing database.
@@ -34,6 +36,8 @@ class MdbPostgresqlDatabaseArgs:
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "owner", owner)
+        if deletion_protection is not None:
+            pulumi.set(__self__, "deletion_protection", deletion_protection)
         if extensions is not None:
             pulumi.set(__self__, "extensions", extensions)
         if lc_collate is not None:
@@ -65,6 +69,18 @@ class MdbPostgresqlDatabaseArgs:
     @owner.setter
     def owner(self, value: pulumi.Input[str]):
         pulumi.set(self, "owner", value)
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @deletion_protection.setter
+    def deletion_protection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deletion_protection", value)
 
     @property
     @pulumi.getter
@@ -131,6 +147,7 @@ class MdbPostgresqlDatabaseArgs:
 class _MdbPostgresqlDatabaseState:
     def __init__(__self__, *,
                  cluster_id: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[str]] = None,
                  extensions: Optional[pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlDatabaseExtensionArgs']]]] = None,
                  lc_collate: Optional[pulumi.Input[str]] = None,
                  lc_type: Optional[pulumi.Input[str]] = None,
@@ -139,6 +156,7 @@ class _MdbPostgresqlDatabaseState:
                  template_db: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering MdbPostgresqlDatabase resources.
+        :param pulumi.Input[str] deletion_protection: Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
         :param pulumi.Input[Sequence[pulumi.Input['MdbPostgresqlDatabaseExtensionArgs']]] extensions: Set of database extensions. The structure is documented below
         :param pulumi.Input[str] lc_collate: POSIX locale for string sorting order. Forbidden to change in an existing database.
         :param pulumi.Input[str] lc_type: POSIX locale for character classification. Forbidden to change in an existing database.
@@ -148,6 +166,8 @@ class _MdbPostgresqlDatabaseState:
         """
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
+        if deletion_protection is not None:
+            pulumi.set(__self__, "deletion_protection", deletion_protection)
         if extensions is not None:
             pulumi.set(__self__, "extensions", extensions)
         if lc_collate is not None:
@@ -169,6 +189,18 @@ class _MdbPostgresqlDatabaseState:
     @cluster_id.setter
     def cluster_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cluster_id", value)
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @deletion_protection.setter
+    def deletion_protection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deletion_protection", value)
 
     @property
     @pulumi.getter
@@ -249,6 +281,7 @@ class MdbPostgresqlDatabase(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[str]] = None,
                  extensions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlDatabaseExtensionArgs']]]]] = None,
                  lc_collate: Optional[pulumi.Input[str]] = None,
                  lc_type: Optional[pulumi.Input[str]] = None,
@@ -314,6 +347,7 @@ class MdbPostgresqlDatabase(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] deletion_protection: Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlDatabaseExtensionArgs']]]] extensions: Set of database extensions. The structure is documented below
         :param pulumi.Input[str] lc_collate: POSIX locale for string sorting order. Forbidden to change in an existing database.
         :param pulumi.Input[str] lc_type: POSIX locale for character classification. Forbidden to change in an existing database.
@@ -399,6 +433,7 @@ class MdbPostgresqlDatabase(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
+                 deletion_protection: Optional[pulumi.Input[str]] = None,
                  extensions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlDatabaseExtensionArgs']]]]] = None,
                  lc_collate: Optional[pulumi.Input[str]] = None,
                  lc_type: Optional[pulumi.Input[str]] = None,
@@ -417,6 +452,7 @@ class MdbPostgresqlDatabase(pulumi.CustomResource):
             if cluster_id is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_id'")
             __props__.__dict__["cluster_id"] = cluster_id
+            __props__.__dict__["deletion_protection"] = deletion_protection
             __props__.__dict__["extensions"] = extensions
             __props__.__dict__["lc_collate"] = lc_collate
             __props__.__dict__["lc_type"] = lc_type
@@ -436,6 +472,7 @@ class MdbPostgresqlDatabase(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
+            deletion_protection: Optional[pulumi.Input[str]] = None,
             extensions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlDatabaseExtensionArgs']]]]] = None,
             lc_collate: Optional[pulumi.Input[str]] = None,
             lc_type: Optional[pulumi.Input[str]] = None,
@@ -449,6 +486,7 @@ class MdbPostgresqlDatabase(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] deletion_protection: Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbPostgresqlDatabaseExtensionArgs']]]] extensions: Set of database extensions. The structure is documented below
         :param pulumi.Input[str] lc_collate: POSIX locale for string sorting order. Forbidden to change in an existing database.
         :param pulumi.Input[str] lc_type: POSIX locale for character classification. Forbidden to change in an existing database.
@@ -461,6 +499,7 @@ class MdbPostgresqlDatabase(pulumi.CustomResource):
         __props__ = _MdbPostgresqlDatabaseState.__new__(_MdbPostgresqlDatabaseState)
 
         __props__.__dict__["cluster_id"] = cluster_id
+        __props__.__dict__["deletion_protection"] = deletion_protection
         __props__.__dict__["extensions"] = extensions
         __props__.__dict__["lc_collate"] = lc_collate
         __props__.__dict__["lc_type"] = lc_type
@@ -473,6 +512,14 @@ class MdbPostgresqlDatabase(pulumi.CustomResource):
     @pulumi.getter(name="clusterId")
     def cluster_id(self) -> pulumi.Output[str]:
         return pulumi.get(self, "cluster_id")
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> pulumi.Output[Optional[str]]:
+        """
+        Inhibits deletion of the database. Can either be `true`, `false` or `unspecified`.
+        """
+        return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter

@@ -33,6 +33,7 @@ export function getComputeInstance(args?: GetComputeInstanceArgs, opts?: pulumi.
     return pulumi.runtime.invoke("yandex:index/getComputeInstance:getComputeInstance", {
         "filesystems": args.filesystems,
         "folderId": args.folderId,
+        "gpuClusterId": args.gpuClusterId,
         "instanceId": args.instanceId,
         "localDisks": args.localDisks,
         "metadataOptions": args.metadataOptions,
@@ -50,6 +51,10 @@ export interface GetComputeInstanceArgs {
      * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
      */
     folderId?: string;
+    /**
+     * ID of GPU cluster if instance is part of it.
+     */
+    gpuClusterId?: string;
     /**
      * The ID of a specific instance.
      */
@@ -94,6 +99,10 @@ export interface GetComputeInstanceResult {
      * DNS record FQDN.
      */
     readonly fqdn: string;
+    /**
+     * ID of GPU cluster if instance is part of it.
+     */
+    readonly gpuClusterId: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -178,6 +187,10 @@ export interface GetComputeInstanceOutputArgs {
      * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
      */
     folderId?: pulumi.Input<string>;
+    /**
+     * ID of GPU cluster if instance is part of it.
+     */
+    gpuClusterId?: pulumi.Input<string>;
     /**
      * The ID of a specific instance.
      */

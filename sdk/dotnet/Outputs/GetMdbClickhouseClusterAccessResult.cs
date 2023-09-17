@@ -16,41 +16,41 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// Allow access for Web SQL.
         /// </summary>
-        public readonly bool DataLens;
+        public readonly bool? DataLens;
         /// <summary>
         /// Allow access for DataTransfer
         /// </summary>
-        public readonly bool DataTransfer;
+        public readonly bool? DataTransfer;
         /// <summary>
         /// Allow access for Yandex.Metrika.
         /// </summary>
-        public readonly bool Metrika;
+        public readonly bool? Metrika;
         /// <summary>
         /// Allow access for Serverless.
         /// </summary>
-        public readonly bool Serverless;
+        public readonly bool? Serverless;
         /// <summary>
         /// Allow access for DataLens.
         /// </summary>
-        public readonly bool WebSql;
+        public readonly bool? WebSql;
         /// <summary>
         /// Allow access for YandexQuery
         /// </summary>
-        public readonly bool YandexQuery;
+        public readonly bool? YandexQuery;
 
         [OutputConstructor]
         private GetMdbClickhouseClusterAccessResult(
-            bool dataLens,
+            bool? dataLens,
 
-            bool dataTransfer,
+            bool? dataTransfer,
 
-            bool metrika,
+            bool? metrika,
 
-            bool serverless,
+            bool? serverless,
 
-            bool webSql,
+            bool? webSql,
 
-            bool yandexQuery)
+            bool? yandexQuery)
         {
             DataLens = dataLens;
             DataTransfer = dataTransfer;

@@ -16,23 +16,23 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// Day of week for maintenance window if window type is weekly. Possible values: `MON`, `TUE`, `WED`, `THU`, `FRI`, `SAT`, `SUN`.
         /// </summary>
-        public readonly string Day;
+        public readonly string? Day;
         /// <summary>
         /// Hour of day in UTC time zone (1-24) for maintenance window if window type is weekly.
         /// </summary>
-        public readonly int Hour;
+        public readonly int? Hour;
         /// <summary>
         /// Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         /// </summary>
-        public readonly string Type;
+        public readonly string? Type;
 
         [OutputConstructor]
         private GetMdbClickhouseClusterMaintenanceWindowResult(
-            string day,
+            string? day,
 
-            int hour,
+            int? hour,
 
-            string type)
+            string? type)
         {
             Day = day;
             Hour = hour;

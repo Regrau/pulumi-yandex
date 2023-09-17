@@ -37,7 +37,7 @@ namespace Pulumi.Yandex.Inputs
         public Input<string>? Role { get; set; }
 
         /// <summary>
-        /// The name of the shard to which the host belongs.
+        /// The name of the shard to which the host belongs. Only for sharded cluster.
         /// </summary>
         [Input("shardName")]
         public Input<string>? ShardName { get; set; }

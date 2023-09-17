@@ -21,6 +21,22 @@ namespace Pulumi.Yandex.Inputs
         public Input<Inputs.MdbMongodbClusterClusterConfigMongodAuditLogArgs>? AuditLog { get; set; }
 
         /// <summary>
+        /// A set of network settings
+        /// (see the [net](https://www.mongodb.com/docs/manual/reference/configuration-options/#net-options) option).
+        /// The structure is documented below.
+        /// </summary>
+        [Input("net")]
+        public Input<Inputs.MdbMongodbClusterClusterConfigMongodNetArgs>? Net { get; set; }
+
+        /// <summary>
+        /// A set of profiling settings
+        /// (see the [operationProfiling](https://www.mongodb.com/docs/manual/reference/configuration-options/#operationprofiling-options) option).
+        /// The structure is documented below.
+        /// </summary>
+        [Input("operationProfiling")]
+        public Input<Inputs.MdbMongodbClusterClusterConfigMongodOperationProfilingArgs>? OperationProfiling { get; set; }
+
+        /// <summary>
         /// A set of MongoDB Security settings
         /// (see the [security](https://www.mongodb.com/docs/manual/reference/configuration-options/#security-options) option).
         /// The structure is documented below. Available only in enterprise edition.
@@ -35,6 +51,14 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("setParameter")]
         public Input<Inputs.MdbMongodbClusterClusterConfigMongodSetParameterArgs>? SetParameter { get; set; }
+
+        /// <summary>
+        /// A set of storage settings
+        /// (see the [storage](https://www.mongodb.com/docs/manual/reference/configuration-options/#storage-options) option).
+        /// The structure is documented below.
+        /// </summary>
+        [Input("storage")]
+        public Input<Inputs.MdbMongodbClusterClusterConfigMongodStorageArgs>? Storage { get; set; }
 
         public MdbMongodbClusterClusterConfigMongodArgs()
         {

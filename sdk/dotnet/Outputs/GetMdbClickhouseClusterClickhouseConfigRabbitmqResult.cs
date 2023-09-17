@@ -16,11 +16,11 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// RabbitMQ user password.
         /// </summary>
-        public readonly string? Password;
+        public readonly string Password;
         /// <summary>
         /// RabbitMQ username.
         /// </summary>
-        public readonly string? Username;
+        public readonly string Username;
         /// <summary>
         /// (Optional) RabbitMQ vhost. Default: '\'.
         /// </summary>
@@ -28,9 +28,9 @@ namespace Pulumi.Yandex.Outputs
 
         [OutputConstructor]
         private GetMdbClickhouseClusterClickhouseConfigRabbitmqResult(
-            string? password,
+            string password,
 
-            string? username,
+            string username,
 
             string vhost)
         {

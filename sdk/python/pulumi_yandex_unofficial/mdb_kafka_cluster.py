@@ -46,7 +46,7 @@ class MdbKafkaClusterArgs:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: Security group ids, to which the Kafka cluster belongs.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: IDs of the subnets, to which the Kafka cluster belongs.
         :param pulumi.Input[Sequence[pulumi.Input['MdbKafkaClusterTopicArgs']]] topics: To manage topics, please switch to using a separate resource type `MdbKafkaTopic`.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbKafkaClusterUserArgs']]] users: A user of the Kafka cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbKafkaClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `mdbKafkaUser`.
         """
         pulumi.set(__self__, "config", config)
         pulumi.set(__self__, "network_id", network_id)
@@ -75,6 +75,9 @@ class MdbKafkaClusterArgs:
             pulumi.log.warn("""topics is deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic""")
         if topics is not None:
             pulumi.set(__self__, "topics", topics)
+        if users is not None:
+            warnings.warn("""to manage users, please switch to using a separate resource type yandex_mdb_kafka_user""", DeprecationWarning)
+            pulumi.log.warn("""users is deprecated: to manage users, please switch to using a separate resource type yandex_mdb_kafka_user""")
         if users is not None:
             pulumi.set(__self__, "users", users)
 
@@ -239,7 +242,7 @@ class MdbKafkaClusterArgs:
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaClusterUserArgs']]]]:
         """
-        A user of the Kafka cluster. The structure is documented below.
+        To manage users, please switch to using a separate resource type `mdbKafkaUser`.
         """
         return pulumi.get(self, "users")
 
@@ -290,7 +293,7 @@ class _MdbKafkaClusterState:
                For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-kafka/api-ref/Cluster/).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: IDs of the subnets, to which the Kafka cluster belongs.
         :param pulumi.Input[Sequence[pulumi.Input['MdbKafkaClusterTopicArgs']]] topics: To manage topics, please switch to using a separate resource type `MdbKafkaTopic`.
-        :param pulumi.Input[Sequence[pulumi.Input['MdbKafkaClusterUserArgs']]] users: A user of the Kafka cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['MdbKafkaClusterUserArgs']]] users: To manage users, please switch to using a separate resource type `mdbKafkaUser`.
         """
         if config is not None:
             pulumi.set(__self__, "config", config)
@@ -329,6 +332,9 @@ class _MdbKafkaClusterState:
             pulumi.log.warn("""topics is deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic""")
         if topics is not None:
             pulumi.set(__self__, "topics", topics)
+        if users is not None:
+            warnings.warn("""to manage users, please switch to using a separate resource type yandex_mdb_kafka_user""", DeprecationWarning)
+            pulumi.log.warn("""users is deprecated: to manage users, please switch to using a separate resource type yandex_mdb_kafka_user""")
         if users is not None:
             pulumi.set(__self__, "users", users)
 
@@ -542,7 +548,7 @@ class _MdbKafkaClusterState:
     @pulumi.getter
     def users(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['MdbKafkaClusterUserArgs']]]]:
         """
-        A user of the Kafka cluster. The structure is documented below.
+        To manage users, please switch to using a separate resource type `mdbKafkaUser`.
         """
         return pulumi.get(self, "users")
 
@@ -786,7 +792,7 @@ class MdbKafkaCluster(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: Security group ids, to which the Kafka cluster belongs.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: IDs of the subnets, to which the Kafka cluster belongs.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbKafkaClusterTopicArgs']]]] topics: To manage topics, please switch to using a separate resource type `MdbKafkaTopic`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbKafkaClusterUserArgs']]]] users: A user of the Kafka cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbKafkaClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `mdbKafkaUser`.
         """
         ...
     @overload
@@ -1051,6 +1057,9 @@ class MdbKafkaCluster(pulumi.CustomResource):
                 warnings.warn("""to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic""", DeprecationWarning)
                 pulumi.log.warn("""topics is deprecated: to manage topics, please switch to using a separate resource type yandex_mdb_kafka_topic""")
             __props__.__dict__["topics"] = topics
+            if users is not None and not opts.urn:
+                warnings.warn("""to manage users, please switch to using a separate resource type yandex_mdb_kafka_user""", DeprecationWarning)
+                pulumi.log.warn("""users is deprecated: to manage users, please switch to using a separate resource type yandex_mdb_kafka_user""")
             __props__.__dict__["users"] = users
             __props__.__dict__["created_at"] = None
             __props__.__dict__["health"] = None
@@ -1110,7 +1119,7 @@ class MdbKafkaCluster(pulumi.CustomResource):
                For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-kafka/api-ref/Cluster/).
         :param pulumi.Input[Sequence[pulumi.Input[str]]] subnet_ids: IDs of the subnets, to which the Kafka cluster belongs.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbKafkaClusterTopicArgs']]]] topics: To manage topics, please switch to using a separate resource type `MdbKafkaTopic`.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbKafkaClusterUserArgs']]]] users: A user of the Kafka cluster. The structure is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbKafkaClusterUserArgs']]]] users: To manage users, please switch to using a separate resource type `mdbKafkaUser`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1278,7 +1287,7 @@ class MdbKafkaCluster(pulumi.CustomResource):
     @pulumi.getter
     def users(self) -> pulumi.Output[Optional[Sequence['outputs.MdbKafkaClusterUser']]]:
         """
-        A user of the Kafka cluster. The structure is documented below.
+        To manage users, please switch to using a separate resource type `mdbKafkaUser`.
         """
         return pulumi.get(self, "users")
 

@@ -45,7 +45,7 @@ import * as utilities from "./utilities";
  * A certificate can be imported using the `id` of the resource, e.g.
  *
  * ```sh
- *  $ pulumi import yandex:index/cmCertificate:cmCertificate default <certificate_id>
+ *  $ pulumi import yandex:index/cmCertificate:cmCertificate default certificate_id
  * ```
  */
 export class CmCertificate extends pulumi.CustomResource {
@@ -92,7 +92,7 @@ export class CmCertificate extends pulumi.CustomResource {
     /**
      * Domains for this certificate. Should be specified for managed certificates.
      */
-    public readonly domains!: pulumi.Output<string[]>;
+    public readonly domains!: pulumi.Output<string[] | undefined>;
     /**
      * Folder that the resource belongs to. If value is omitted, the default provider folder is used.
      */

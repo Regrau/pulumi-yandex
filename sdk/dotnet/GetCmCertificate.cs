@@ -88,6 +88,7 @@ namespace Pulumi.Yandex
         public readonly string CertificateId;
         public readonly ImmutableArray<Outputs.GetCmCertificateChallengeResult> Challenges;
         public readonly string CreatedAt;
+        public readonly bool DeletionProtection;
         public readonly string Description;
         public readonly ImmutableArray<string> Domains;
         public readonly string FolderId;
@@ -115,6 +116,8 @@ namespace Pulumi.Yandex
             ImmutableArray<Outputs.GetCmCertificateChallengeResult> challenges,
 
             string createdAt,
+
+            bool deletionProtection,
 
             string description,
 
@@ -151,6 +154,7 @@ namespace Pulumi.Yandex
             CertificateId = certificateId;
             Challenges = challenges;
             CreatedAt = createdAt;
+            DeletionProtection = deletionProtection;
             Description = description;
             Domains = domains;
             FolderId = folderId;

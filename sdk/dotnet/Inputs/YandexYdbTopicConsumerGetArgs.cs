@@ -18,9 +18,6 @@ namespace Pulumi.Yandex.Inputs
         [Input("name", required: true)]
         public Input<string> Name { get; set; } = null!;
 
-        [Input("serviceType")]
-        public Input<string>? ServiceType { get; set; }
-
         [Input("startingMessageTimestampMs")]
         public Input<int>? StartingMessageTimestampMs { get; set; }
 

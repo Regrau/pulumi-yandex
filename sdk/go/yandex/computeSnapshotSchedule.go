@@ -32,18 +32,12 @@ import (
 //					pulumi.String("test_disk_id"),
 //					pulumi.String("another_test_disk_id"),
 //				},
-//				Labels: pulumi.StringMap{
-//					"my-label": pulumi.String("my-label-value"),
-//				},
+//				RetentionPeriod: pulumi.String("12h"),
 //				SchedulePolicy: &ComputeSnapshotScheduleSchedulePolicyArgs{
 //					Expression: pulumi.String("0 0 * * *"),
 //				},
-//				SnapshotCount: pulumi.Int(1),
 //				SnapshotSpec: &ComputeSnapshotScheduleSnapshotSpecArgs{
-//					Description: pulumi.String("snapshot-description"),
-//					Labels: pulumi.StringMap{
-//						"snapshot-label": pulumi.String("my-snapshot-label-value"),
-//					},
+//					Description: pulumi.String("retention-snapshot"),
 //				},
 //			})
 //			if err != nil {
@@ -69,18 +63,18 @@ type ComputeSnapshotSchedule struct {
 
 	// Creation timestamp of the snapshot schedule.
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
-	// Description of the resource.
+	// Description to assign to snapshots created by this snapshot schedule.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// IDs of the disk for snapshot schedule.
 	DiskIds pulumi.StringArrayOutput `pulumi:"diskIds"`
 	// The ID of the folder that the resource belongs to. If it
 	// is not provided, the default provider folder is used.
 	FolderId pulumi.StringOutput `pulumi:"folderId"`
-	// A set of key/value label pairs to assign to the snapshot schedule.
+	// A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
 	Labels pulumi.StringMapOutput `pulumi:"labels"`
 	// A name for the resource.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Retention period applied to snapshots created by this snapshot schedule.
+	// Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
 	RetentionPeriod pulumi.StringPtrOutput `pulumi:"retentionPeriod"`
 	// Schedule policy of the snapshot schedule.
 	SchedulePolicy ComputeSnapshotScheduleSchedulePolicyOutput `pulumi:"schedulePolicy"`
@@ -124,18 +118,18 @@ func GetComputeSnapshotSchedule(ctx *pulumi.Context,
 type computeSnapshotScheduleState struct {
 	// Creation timestamp of the snapshot schedule.
 	CreatedAt *string `pulumi:"createdAt"`
-	// Description of the resource.
+	// Description to assign to snapshots created by this snapshot schedule.
 	Description *string `pulumi:"description"`
 	// IDs of the disk for snapshot schedule.
 	DiskIds []string `pulumi:"diskIds"`
 	// The ID of the folder that the resource belongs to. If it
 	// is not provided, the default provider folder is used.
 	FolderId *string `pulumi:"folderId"`
-	// A set of key/value label pairs to assign to the snapshot schedule.
+	// A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
 	Labels map[string]string `pulumi:"labels"`
 	// A name for the resource.
 	Name *string `pulumi:"name"`
-	// Retention period applied to snapshots created by this snapshot schedule.
+	// Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
 	RetentionPeriod *string `pulumi:"retentionPeriod"`
 	// Schedule policy of the snapshot schedule.
 	SchedulePolicy *ComputeSnapshotScheduleSchedulePolicy `pulumi:"schedulePolicy"`
@@ -150,18 +144,18 @@ type computeSnapshotScheduleState struct {
 type ComputeSnapshotScheduleState struct {
 	// Creation timestamp of the snapshot schedule.
 	CreatedAt pulumi.StringPtrInput
-	// Description of the resource.
+	// Description to assign to snapshots created by this snapshot schedule.
 	Description pulumi.StringPtrInput
 	// IDs of the disk for snapshot schedule.
 	DiskIds pulumi.StringArrayInput
 	// The ID of the folder that the resource belongs to. If it
 	// is not provided, the default provider folder is used.
 	FolderId pulumi.StringPtrInput
-	// A set of key/value label pairs to assign to the snapshot schedule.
+	// A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
 	Labels pulumi.StringMapInput
 	// A name for the resource.
 	Name pulumi.StringPtrInput
-	// Retention period applied to snapshots created by this snapshot schedule.
+	// Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
 	RetentionPeriod pulumi.StringPtrInput
 	// Schedule policy of the snapshot schedule.
 	SchedulePolicy ComputeSnapshotScheduleSchedulePolicyPtrInput
@@ -178,18 +172,18 @@ func (ComputeSnapshotScheduleState) ElementType() reflect.Type {
 }
 
 type computeSnapshotScheduleArgs struct {
-	// Description of the resource.
+	// Description to assign to snapshots created by this snapshot schedule.
 	Description *string `pulumi:"description"`
 	// IDs of the disk for snapshot schedule.
 	DiskIds []string `pulumi:"diskIds"`
 	// The ID of the folder that the resource belongs to. If it
 	// is not provided, the default provider folder is used.
 	FolderId *string `pulumi:"folderId"`
-	// A set of key/value label pairs to assign to the snapshot schedule.
+	// A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
 	Labels map[string]string `pulumi:"labels"`
 	// A name for the resource.
 	Name *string `pulumi:"name"`
-	// Retention period applied to snapshots created by this snapshot schedule.
+	// Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
 	RetentionPeriod *string `pulumi:"retentionPeriod"`
 	// Schedule policy of the snapshot schedule.
 	SchedulePolicy *ComputeSnapshotScheduleSchedulePolicy `pulumi:"schedulePolicy"`
@@ -201,18 +195,18 @@ type computeSnapshotScheduleArgs struct {
 
 // The set of arguments for constructing a ComputeSnapshotSchedule resource.
 type ComputeSnapshotScheduleArgs struct {
-	// Description of the resource.
+	// Description to assign to snapshots created by this snapshot schedule.
 	Description pulumi.StringPtrInput
 	// IDs of the disk for snapshot schedule.
 	DiskIds pulumi.StringArrayInput
 	// The ID of the folder that the resource belongs to. If it
 	// is not provided, the default provider folder is used.
 	FolderId pulumi.StringPtrInput
-	// A set of key/value label pairs to assign to the snapshot schedule.
+	// A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
 	Labels pulumi.StringMapInput
 	// A name for the resource.
 	Name pulumi.StringPtrInput
-	// Retention period applied to snapshots created by this snapshot schedule.
+	// Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
 	RetentionPeriod pulumi.StringPtrInput
 	// Schedule policy of the snapshot schedule.
 	SchedulePolicy ComputeSnapshotScheduleSchedulePolicyPtrInput
@@ -314,7 +308,7 @@ func (o ComputeSnapshotScheduleOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeSnapshotSchedule) pulumi.StringOutput { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
-// Description of the resource.
+// Description to assign to snapshots created by this snapshot schedule.
 func (o ComputeSnapshotScheduleOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputeSnapshotSchedule) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
 }
@@ -330,7 +324,7 @@ func (o ComputeSnapshotScheduleOutput) FolderId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeSnapshotSchedule) pulumi.StringOutput { return v.FolderId }).(pulumi.StringOutput)
 }
 
-// A set of key/value label pairs to assign to the snapshot schedule.
+// A set of key/value label pairs to assign to snapshots created by this snapshot schedule.
 func (o ComputeSnapshotScheduleOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *ComputeSnapshotSchedule) pulumi.StringMapOutput { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -340,7 +334,7 @@ func (o ComputeSnapshotScheduleOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ComputeSnapshotSchedule) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Retention period applied to snapshots created by this snapshot schedule.
+// Time duration applied to snapshots created by this snapshot schedule. This is a signed sequence of decimal numbers, each with optional fraction and a unit suffix. Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". Examples: "300ms", "1.5h" or "2h45m".
 func (o ComputeSnapshotScheduleOutput) RetentionPeriod() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ComputeSnapshotSchedule) pulumi.StringPtrOutput { return v.RetentionPeriod }).(pulumi.StringPtrOutput)
 }

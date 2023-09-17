@@ -23,7 +23,7 @@ class GetComputeInstanceResult:
     """
     A collection of values returned by getComputeInstance.
     """
-    def __init__(__self__, boot_disks=None, created_at=None, description=None, filesystems=None, folder_id=None, fqdn=None, id=None, instance_id=None, labels=None, local_disks=None, metadata=None, metadata_options=None, name=None, network_acceleration_type=None, network_interfaces=None, placement_policy=None, platform_id=None, resources=None, scheduling_policies=None, secondary_disks=None, service_account_id=None, status=None, zone=None):
+    def __init__(__self__, boot_disks=None, created_at=None, description=None, filesystems=None, folder_id=None, fqdn=None, gpu_cluster_id=None, id=None, instance_id=None, labels=None, local_disks=None, metadata=None, metadata_options=None, name=None, network_acceleration_type=None, network_interfaces=None, placement_policy=None, platform_id=None, resources=None, scheduling_policies=None, secondary_disks=None, service_account_id=None, status=None, zone=None):
         if boot_disks and not isinstance(boot_disks, list):
             raise TypeError("Expected argument 'boot_disks' to be a list")
         pulumi.set(__self__, "boot_disks", boot_disks)
@@ -42,6 +42,9 @@ class GetComputeInstanceResult:
         if fqdn and not isinstance(fqdn, str):
             raise TypeError("Expected argument 'fqdn' to be a str")
         pulumi.set(__self__, "fqdn", fqdn)
+        if gpu_cluster_id and not isinstance(gpu_cluster_id, str):
+            raise TypeError("Expected argument 'gpu_cluster_id' to be a str")
+        pulumi.set(__self__, "gpu_cluster_id", gpu_cluster_id)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -135,6 +138,14 @@ class GetComputeInstanceResult:
         DNS record FQDN.
         """
         return pulumi.get(self, "fqdn")
+
+    @property
+    @pulumi.getter(name="gpuClusterId")
+    def gpu_cluster_id(self) -> str:
+        """
+        ID of GPU cluster if instance is part of it.
+        """
+        return pulumi.get(self, "gpu_cluster_id")
 
     @property
     @pulumi.getter
@@ -286,6 +297,7 @@ class AwaitableGetComputeInstanceResult(GetComputeInstanceResult):
             filesystems=self.filesystems,
             folder_id=self.folder_id,
             fqdn=self.fqdn,
+            gpu_cluster_id=self.gpu_cluster_id,
             id=self.id,
             instance_id=self.instance_id,
             labels=self.labels,
@@ -307,6 +319,7 @@ class AwaitableGetComputeInstanceResult(GetComputeInstanceResult):
 
 def get_compute_instance(filesystems: Optional[Sequence[pulumi.InputType['GetComputeInstanceFilesystemArgs']]] = None,
                          folder_id: Optional[str] = None,
+                         gpu_cluster_id: Optional[str] = None,
                          instance_id: Optional[str] = None,
                          local_disks: Optional[Sequence[pulumi.InputType['GetComputeInstanceLocalDiskArgs']]] = None,
                          metadata_options: Optional[pulumi.InputType['GetComputeInstanceMetadataOptionsArgs']] = None,
@@ -329,6 +342,7 @@ def get_compute_instance(filesystems: Optional[Sequence[pulumi.InputType['GetCom
 
 
     :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str gpu_cluster_id: ID of GPU cluster if instance is part of it.
     :param str instance_id: The ID of a specific instance.
     :param Sequence[pulumi.InputType['GetComputeInstanceLocalDiskArgs']] local_disks: List of local disks that are attached to the instance. Structure is documented below.
     :param pulumi.InputType['GetComputeInstanceMetadataOptionsArgs'] metadata_options: Options allow user to configure access to instance's metadata
@@ -338,6 +352,7 @@ def get_compute_instance(filesystems: Optional[Sequence[pulumi.InputType['GetCom
     __args__ = dict()
     __args__['filesystems'] = filesystems
     __args__['folderId'] = folder_id
+    __args__['gpuClusterId'] = gpu_cluster_id
     __args__['instanceId'] = instance_id
     __args__['localDisks'] = local_disks
     __args__['metadataOptions'] = metadata_options
@@ -353,6 +368,7 @@ def get_compute_instance(filesystems: Optional[Sequence[pulumi.InputType['GetCom
         filesystems=__ret__.filesystems,
         folder_id=__ret__.folder_id,
         fqdn=__ret__.fqdn,
+        gpu_cluster_id=__ret__.gpu_cluster_id,
         id=__ret__.id,
         instance_id=__ret__.instance_id,
         labels=__ret__.labels,
@@ -375,6 +391,7 @@ def get_compute_instance(filesystems: Optional[Sequence[pulumi.InputType['GetCom
 @_utilities.lift_output_func(get_compute_instance)
 def get_compute_instance_output(filesystems: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetComputeInstanceFilesystemArgs']]]]] = None,
                                 folder_id: Optional[pulumi.Input[Optional[str]]] = None,
+                                gpu_cluster_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 instance_id: Optional[pulumi.Input[Optional[str]]] = None,
                                 local_disks: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetComputeInstanceLocalDiskArgs']]]]] = None,
                                 metadata_options: Optional[pulumi.Input[Optional[pulumi.InputType['GetComputeInstanceMetadataOptionsArgs']]]] = None,
@@ -397,6 +414,7 @@ def get_compute_instance_output(filesystems: Optional[pulumi.Input[Optional[Sequ
 
 
     :param str folder_id: Folder that the resource belongs to. If value is omitted, the default provider folder is used.
+    :param str gpu_cluster_id: ID of GPU cluster if instance is part of it.
     :param str instance_id: The ID of a specific instance.
     :param Sequence[pulumi.InputType['GetComputeInstanceLocalDiskArgs']] local_disks: List of local disks that are attached to the instance. Structure is documented below.
     :param pulumi.InputType['GetComputeInstanceMetadataOptionsArgs'] metadata_options: Options allow user to configure access to instance's metadata

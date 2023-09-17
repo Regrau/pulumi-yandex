@@ -99,7 +99,20 @@ namespace Pulumi.Yandex
             set => _plaintext.Set(value);
         }
 
+        private static readonly __Value<string?> _profile = new __Value<string?>(() => __config.Get("profile"));
+        /// <summary>
+        /// Profile to use in the shared credentials file. Default value is `default`.
+        /// </summary>
+        public static string? Profile
+        {
+            get => _profile.Get();
+            set => _profile.Set(value);
+        }
+
         private static readonly __Value<string?> _regionId = new __Value<string?>(() => __config.Get("regionId"));
+        /// <summary>
+        /// The region where operations will take place. Examples are ru-central1
+        /// </summary>
         public static string? RegionId
         {
             get => _regionId.Get();
@@ -114,6 +127,16 @@ namespace Pulumi.Yandex
         {
             get => _serviceAccountKeyFile.Get();
             set => _serviceAccountKeyFile.Set(value);
+        }
+
+        private static readonly __Value<string?> _sharedCredentialsFile = new __Value<string?>(() => __config.Get("sharedCredentialsFile"));
+        /// <summary>
+        /// Path to shared credentials file.
+        /// </summary>
+        public static string? SharedCredentialsFile
+        {
+            get => _sharedCredentialsFile.Get();
+            set => _sharedCredentialsFile.Set(value);
         }
 
         private static readonly __Value<string?> _storageAccessKey = new __Value<string?>(() => __config.Get("storageAccessKey"));

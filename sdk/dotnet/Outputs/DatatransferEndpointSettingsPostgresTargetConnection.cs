@@ -18,7 +18,7 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly string? MdbClusterId;
         /// <summary>
-        /// Connection settings of the on-premise MySQL server.
+        /// Connection settings of the on-premise Kafka server.
         /// </summary>
         public readonly Outputs.DatatransferEndpointSettingsPostgresTargetConnectionOnPremise? OnPremise;
 

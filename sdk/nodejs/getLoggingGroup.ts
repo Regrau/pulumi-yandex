@@ -33,6 +33,7 @@ export interface GetLoggingGroupArgs {
 export interface GetLoggingGroupResult {
     readonly cloudId: string;
     readonly createdAt: string;
+    readonly dataStream: string;
     readonly description: string;
     readonly folderId: string;
     readonly groupId: string;

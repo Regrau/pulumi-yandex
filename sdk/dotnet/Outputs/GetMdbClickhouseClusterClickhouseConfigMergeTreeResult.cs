@@ -16,11 +16,11 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
         /// </summary>
-        public readonly int? MaxBytesToMergeAtMinSpaceInPool;
+        public readonly int MaxBytesToMergeAtMinSpaceInPool;
         /// <summary>
         /// Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
         /// </summary>
-        public readonly int? MaxReplicatedMergesInQueue;
+        public readonly int MaxReplicatedMergesInQueue;
         /// <summary>
         /// (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
         /// </summary>
@@ -32,23 +32,23 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// Number of free entries in pool to lower max size of merge: Threshold value of free entries in the pool. If the number of entries in the pool falls below this value, ClickHouse reduces the maximum size of a data part to merge. This helps handle small merges faster, rather than filling the pool with lengthy merges.
         /// </summary>
-        public readonly int? NumberOfFreeEntriesInPoolToLowerMaxSizeOfMerge;
+        public readonly int NumberOfFreeEntriesInPoolToLowerMaxSizeOfMerge;
         /// <summary>
         /// Parts to delay insert: Number of active data parts in a table, on exceeding which ClickHouse starts artificially reduce the rate of inserting data into the table.
         /// </summary>
-        public readonly int? PartsToDelayInsert;
+        public readonly int PartsToDelayInsert;
         /// <summary>
         /// Parts to throw insert: Threshold value of active data parts in a table, on exceeding which ClickHouse throws the 'Too many parts ...' exception.
         /// </summary>
-        public readonly int? PartsToThrowInsert;
+        public readonly int PartsToThrowInsert;
         /// <summary>
         /// Replicated deduplication window: Number of recent hash blocks that ZooKeeper will store (the old ones will be deleted).
         /// </summary>
-        public readonly int? ReplicatedDeduplicationWindow;
+        public readonly int ReplicatedDeduplicationWindow;
         /// <summary>
         /// Replicated deduplication window seconds: Time during which ZooKeeper stores the hash blocks (the old ones wil be deleted).
         /// </summary>
-        public readonly int? ReplicatedDeduplicationWindowSeconds;
+        public readonly int ReplicatedDeduplicationWindowSeconds;
         /// <summary>
         /// (Optional) Enables or disables complete dropping of data parts where all rows are expired in MergeTree tables.
         /// </summary>
@@ -56,23 +56,23 @@ namespace Pulumi.Yandex.Outputs
 
         [OutputConstructor]
         private GetMdbClickhouseClusterClickhouseConfigMergeTreeResult(
-            int? maxBytesToMergeAtMinSpaceInPool,
+            int maxBytesToMergeAtMinSpaceInPool,
 
-            int? maxReplicatedMergesInQueue,
+            int maxReplicatedMergesInQueue,
 
             int minBytesForWidePart,
 
             int minRowsForWidePart,
 
-            int? numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge,
+            int numberOfFreeEntriesInPoolToLowerMaxSizeOfMerge,
 
-            int? partsToDelayInsert,
+            int partsToDelayInsert,
 
-            int? partsToThrowInsert,
+            int partsToThrowInsert,
 
-            int? replicatedDeduplicationWindow,
+            int replicatedDeduplicationWindow,
 
-            int? replicatedDeduplicationWindowSeconds,
+            int replicatedDeduplicationWindowSeconds,
 
             bool ttlOnlyDropParts)
         {

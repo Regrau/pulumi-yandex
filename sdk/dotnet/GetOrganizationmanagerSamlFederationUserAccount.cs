@@ -12,9 +12,6 @@ namespace Pulumi.Yandex
     public static class GetOrganizationmanagerSamlFederationUserAccount
     {
         /// <summary>
-        /// Get information about a user of Yandex SAML Federation. For more information, see
-        /// [the official documentation](https://cloud.yandex.com/docs/organization/operations/federations/integration-common).
-        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}
@@ -45,9 +42,6 @@ namespace Pulumi.Yandex
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOrganizationmanagerSamlFederationUserAccountResult>("yandex:index/getOrganizationmanagerSamlFederationUserAccount:getOrganizationmanagerSamlFederationUserAccount", args ?? new GetOrganizationmanagerSamlFederationUserAccountArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Get information about a user of Yandex SAML Federation. For more information, see
-        /// [the official documentation](https://cloud.yandex.com/docs/organization/operations/federations/integration-common).
-        /// 
         /// {{% examples %}}
         /// ## Example Usage
         /// {{% example %}}

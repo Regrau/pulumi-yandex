@@ -16,7 +16,11 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// The name of the ClickHouse cluster.
         /// </summary>
-        public readonly string Name;
+        public readonly string? Name;
+        /// <summary>
+        /// RabbitMQ user password.
+        /// </summary>
+        public readonly string? Password;
         /// <summary>
         /// Set of permissions granted to the user. The structure is documented below.
         /// </summary>
@@ -32,7 +36,9 @@ namespace Pulumi.Yandex.Outputs
 
         [OutputConstructor]
         private GetMdbClickhouseClusterUserResult(
-            string name,
+            string? name,
+
+            string? password,
 
             ImmutableArray<Outputs.GetMdbClickhouseClusterUserPermissionResult> permissions,
 
@@ -41,6 +47,7 @@ namespace Pulumi.Yandex.Outputs
             Outputs.GetMdbClickhouseClusterUserSettingsResult settings)
         {
             Name = name;
+            Password = password;
             Permissions = permissions;
             Quotas = quotas;
             Settings = settings;

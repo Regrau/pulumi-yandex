@@ -18,12 +18,20 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateBootDiskResult> BootDisks;
         /// <summary>
+        /// Container network configuration. The structure is documented below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateContainerNetworkResult> ContainerNetworks;
+        /// <summary>
         /// Container runtime configuration. The structure is documented below.
         /// </summary>
         public readonly Outputs.GetKubernetesNodeGroupInstanceTemplateContainerRuntimeResult ContainerRuntime;
         /// <summary>
-        /// Labels assigned to compute nodes (instances), created by the Node Group.
+        /// GPU settings. The structure is documented below.
         /// ---
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateGpuSettingResult> GpuSettings;
+        /// <summary>
+        /// Labels assigned to compute nodes (instances), created by the Node Group.
         /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
         /// <summary>
@@ -64,7 +72,11 @@ namespace Pulumi.Yandex.Outputs
         private GetKubernetesNodeGroupInstanceTemplateResult(
             ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateBootDiskResult> bootDisks,
 
+            ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateContainerNetworkResult> containerNetworks,
+
             Outputs.GetKubernetesNodeGroupInstanceTemplateContainerRuntimeResult containerRuntime,
+
+            ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateGpuSettingResult> gpuSettings,
 
             ImmutableDictionary<string, string> labels,
 
@@ -87,7 +99,9 @@ namespace Pulumi.Yandex.Outputs
             ImmutableArray<Outputs.GetKubernetesNodeGroupInstanceTemplateSchedulingPolicyResult> schedulingPolicies)
         {
             BootDisks = bootDisks;
+            ContainerNetworks = containerNetworks;
             ContainerRuntime = containerRuntime;
+            GpuSettings = gpuSettings;
             Labels = labels;
             Metadata = metadata;
             Name = name;

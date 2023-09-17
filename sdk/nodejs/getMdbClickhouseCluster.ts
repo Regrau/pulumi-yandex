@@ -20,7 +20,7 @@ import * as utilities from "./utilities";
  *     name: "test",
  * }));
  *
- * export const networkId = foo.networkId;
+ * export const networkId = foo.networkId!;
  * ```
  */
 export function getMdbClickhouseCluster(args?: GetMdbClickhouseClusterArgs, opts?: pulumi.InvokeOptions): Promise<GetMdbClickhouseClusterResult> {
@@ -31,13 +31,38 @@ export function getMdbClickhouseCluster(args?: GetMdbClickhouseClusterArgs, opts
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("yandex:index/getMdbClickhouseCluster:getMdbClickhouseCluster", {
+        "access": args.access,
+        "adminPassword": args.adminPassword,
+        "backupWindowStart": args.backupWindowStart,
+        "clickhouse": args.clickhouse,
         "cloudStorage": args.cloudStorage,
         "clusterId": args.clusterId,
+        "copySchemaOnNewHosts": args.copySchemaOnNewHosts,
+        "createdAt": args.createdAt,
+        "databases": args.databases,
         "deletionProtection": args.deletionProtection,
+        "description": args.description,
+        "embeddedKeeper": args.embeddedKeeper,
+        "environment": args.environment,
         "folderId": args.folderId,
+        "formatSchemas": args.formatSchemas,
+        "health": args.health,
+        "hosts": args.hosts,
+        "labels": args.labels,
+        "maintenanceWindow": args.maintenanceWindow,
+        "mlModels": args.mlModels,
         "name": args.name,
+        "networkId": args.networkId,
+        "securityGroupIds": args.securityGroupIds,
         "serviceAccountId": args.serviceAccountId,
+        "shardGroups": args.shardGroups,
         "shards": args.shards,
+        "sqlDatabaseManagement": args.sqlDatabaseManagement,
+        "sqlUserManagement": args.sqlUserManagement,
+        "status": args.status,
+        "users": args.users,
+        "version": args.version,
+        "zookeeper": args.zookeeper,
     }, opts);
 }
 
@@ -45,25 +70,113 @@ export function getMdbClickhouseCluster(args?: GetMdbClickhouseClusterArgs, opts
  * A collection of arguments for invoking getMdbClickhouseCluster.
  */
 export interface GetMdbClickhouseClusterArgs {
+    /**
+     * Access policy to the ClickHouse cluster. The structure is documented below.
+     */
+    access?: inputs.GetMdbClickhouseClusterAccess;
+    adminPassword?: string;
+    /**
+     * Time to start the daily backup, in the UTC timezone. The structure is documented below.
+     */
+    backupWindowStart?: inputs.GetMdbClickhouseClusterBackupWindowStart;
+    /**
+     * Configuration of the ClickHouse subcluster. The structure is documented below.
+     */
+    clickhouse?: inputs.GetMdbClickhouseClusterClickhouse;
     cloudStorage?: inputs.GetMdbClickhouseClusterCloudStorage;
     /**
      * The ID of the ClickHouse cluster.
      */
     clusterId?: string;
+    copySchemaOnNewHosts?: boolean;
+    /**
+     * Creation timestamp of the key.
+     */
+    createdAt?: string;
+    /**
+     * A database of the ClickHouse cluster. The structure is documented below.
+     */
+    databases?: inputs.GetMdbClickhouseClusterDatabase[];
     deletionProtection?: boolean;
+    /**
+     * Description of the shard group.
+     */
+    description?: string;
+    /**
+     * Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+     */
+    embeddedKeeper?: boolean;
+    /**
+     * Deployment environment of the ClickHouse cluster.
+     */
+    environment?: string;
     /**
      * The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
      */
     folderId?: string;
     /**
+     * A set of protobuf or cap'n proto format schemas. The structure is documented below.
+     */
+    formatSchemas?: inputs.GetMdbClickhouseClusterFormatSchema[];
+    /**
+     * Aggregated health of the cluster.
+     */
+    health?: string;
+    /**
+     * A host of the ClickHouse cluster. The structure is documented below.
+     */
+    hosts?: inputs.GetMdbClickhouseClusterHost[];
+    /**
+     * A set of key/value label pairs to assign to the ClickHouse cluster.
+     */
+    labels?: {[key: string]: string};
+    maintenanceWindow?: inputs.GetMdbClickhouseClusterMaintenanceWindow;
+    /**
+     * A group of machine learning models. The structure is documented below.
+     */
+    mlModels?: inputs.GetMdbClickhouseClusterMlModel[];
+    /**
      * The name of the ClickHouse cluster.
      */
     name?: string;
+    /**
+     * ID of the network, to which the ClickHouse cluster belongs.
+     */
+    networkId?: string;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
+    securityGroupIds?: string[];
     serviceAccountId?: string;
+    /**
+     * A group of clickhouse shards. The structure is documented below.
+     */
+    shardGroups?: inputs.GetMdbClickhouseClusterShardGroup[];
     /**
      * A shard of the ClickHouse cluster. The structure is documented below.
      */
     shards?: inputs.GetMdbClickhouseClusterShard[];
+    /**
+     * Grants `admin` user database management permission.
+     */
+    sqlDatabaseManagement?: boolean;
+    /**
+     * Enables `admin` user with user management permission.
+     */
+    sqlUserManagement?: boolean;
+    /**
+     * Status of the cluster.
+     */
+    status?: string;
+    /**
+     * A user of the ClickHouse cluster. The structure is documented below.
+     */
+    users?: inputs.GetMdbClickhouseClusterUser[];
+    version?: string;
+    /**
+     * Configuration of the ZooKeeper subcluster. The structure is documented below.
+     */
+    zookeeper?: inputs.GetMdbClickhouseClusterZookeeper;
 }
 
 /**
@@ -73,17 +186,19 @@ export interface GetMdbClickhouseClusterResult {
     /**
      * Access policy to the ClickHouse cluster. The structure is documented below.
      */
-    readonly accesses: outputs.GetMdbClickhouseClusterAccess[];
+    readonly access: outputs.GetMdbClickhouseClusterAccess;
+    readonly adminPassword?: string;
     /**
      * Time to start the daily backup, in the UTC timezone. The structure is documented below.
      */
-    readonly backupWindowStarts: outputs.GetMdbClickhouseClusterBackupWindowStart[];
+    readonly backupWindowStart: outputs.GetMdbClickhouseClusterBackupWindowStart;
     /**
      * Configuration of the ClickHouse subcluster. The structure is documented below.
      */
-    readonly clickhouses: outputs.GetMdbClickhouseClusterClickhouse[];
+    readonly clickhouse: outputs.GetMdbClickhouseClusterClickhouse;
     readonly cloudStorage: outputs.GetMdbClickhouseClusterCloudStorage;
     readonly clusterId: string;
+    readonly copySchemaOnNewHosts?: boolean;
     /**
      * Creation timestamp of the key.
      */
@@ -91,12 +206,12 @@ export interface GetMdbClickhouseClusterResult {
     /**
      * A database of the ClickHouse cluster. The structure is documented below.
      */
-    readonly databases: outputs.GetMdbClickhouseClusterDatabase[];
+    readonly databases?: outputs.GetMdbClickhouseClusterDatabase[];
     readonly deletionProtection: boolean;
     /**
      * Description of the shard group.
      */
-    readonly description: string;
+    readonly description?: string;
     /**
      * Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
      */
@@ -104,12 +219,12 @@ export interface GetMdbClickhouseClusterResult {
     /**
      * Deployment environment of the ClickHouse cluster.
      */
-    readonly environment: string;
+    readonly environment?: string;
     readonly folderId: string;
     /**
      * A set of protobuf or cap'n proto format schemas. The structure is documented below.
      */
-    readonly formatSchemas: outputs.GetMdbClickhouseClusterFormatSchema[];
+    readonly formatSchemas?: outputs.GetMdbClickhouseClusterFormatSchema[];
     /**
      * Aggregated health of the cluster.
      */
@@ -117,7 +232,7 @@ export interface GetMdbClickhouseClusterResult {
     /**
      * A host of the ClickHouse cluster. The structure is documented below.
      */
-    readonly hosts: outputs.GetMdbClickhouseClusterHost[];
+    readonly hosts?: outputs.GetMdbClickhouseClusterHost[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -126,19 +241,19 @@ export interface GetMdbClickhouseClusterResult {
      * A set of key/value label pairs to assign to the ClickHouse cluster.
      */
     readonly labels: {[key: string]: string};
-    readonly maintenanceWindows: outputs.GetMdbClickhouseClusterMaintenanceWindow[];
+    readonly maintenanceWindow: outputs.GetMdbClickhouseClusterMaintenanceWindow;
     /**
      * A group of machine learning models. The structure is documented below.
      */
-    readonly mlModels: outputs.GetMdbClickhouseClusterMlModel[];
+    readonly mlModels?: outputs.GetMdbClickhouseClusterMlModel[];
     /**
      * Graphite rollup configuration name.
      */
-    readonly name: string;
+    readonly name?: string;
     /**
      * ID of the network, to which the ClickHouse cluster belongs.
      */
-    readonly networkId: string;
+    readonly networkId?: string;
     /**
      * A set of ids of security groups assigned to hosts of the cluster.
      */
@@ -147,7 +262,7 @@ export interface GetMdbClickhouseClusterResult {
     /**
      * A group of clickhouse shards. The structure is documented below.
      */
-    readonly shardGroups: outputs.GetMdbClickhouseClusterShardGroup[];
+    readonly shardGroups?: outputs.GetMdbClickhouseClusterShardGroup[];
     /**
      * A shard of the ClickHouse cluster. The structure is documented below.
      */
@@ -167,12 +282,12 @@ export interface GetMdbClickhouseClusterResult {
     /**
      * A user of the ClickHouse cluster. The structure is documented below.
      */
-    readonly users: outputs.GetMdbClickhouseClusterUser[];
+    readonly users?: outputs.GetMdbClickhouseClusterUser[];
     readonly version: string;
     /**
      * Configuration of the ZooKeeper subcluster. The structure is documented below.
      */
-    readonly zookeepers: outputs.GetMdbClickhouseClusterZookeeper[];
+    readonly zookeeper: outputs.GetMdbClickhouseClusterZookeeper;
 }
 
 export function getMdbClickhouseClusterOutput(args?: GetMdbClickhouseClusterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetMdbClickhouseClusterResult> {
@@ -183,23 +298,111 @@ export function getMdbClickhouseClusterOutput(args?: GetMdbClickhouseClusterOutp
  * A collection of arguments for invoking getMdbClickhouseCluster.
  */
 export interface GetMdbClickhouseClusterOutputArgs {
+    /**
+     * Access policy to the ClickHouse cluster. The structure is documented below.
+     */
+    access?: pulumi.Input<inputs.GetMdbClickhouseClusterAccessArgs>;
+    adminPassword?: pulumi.Input<string>;
+    /**
+     * Time to start the daily backup, in the UTC timezone. The structure is documented below.
+     */
+    backupWindowStart?: pulumi.Input<inputs.GetMdbClickhouseClusterBackupWindowStartArgs>;
+    /**
+     * Configuration of the ClickHouse subcluster. The structure is documented below.
+     */
+    clickhouse?: pulumi.Input<inputs.GetMdbClickhouseClusterClickhouseArgs>;
     cloudStorage?: pulumi.Input<inputs.GetMdbClickhouseClusterCloudStorageArgs>;
     /**
      * The ID of the ClickHouse cluster.
      */
     clusterId?: pulumi.Input<string>;
+    copySchemaOnNewHosts?: pulumi.Input<boolean>;
+    /**
+     * Creation timestamp of the key.
+     */
+    createdAt?: pulumi.Input<string>;
+    /**
+     * A database of the ClickHouse cluster. The structure is documented below.
+     */
+    databases?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterDatabaseArgs>[]>;
     deletionProtection?: pulumi.Input<boolean>;
+    /**
+     * Description of the shard group.
+     */
+    description?: pulumi.Input<string>;
+    /**
+     * Whether to use ClickHouse Keeper as a coordination system and place it on the same hosts with ClickHouse. If not, it's used ZooKeeper with placement on separate hosts.
+     */
+    embeddedKeeper?: pulumi.Input<boolean>;
+    /**
+     * Deployment environment of the ClickHouse cluster.
+     */
+    environment?: pulumi.Input<string>;
     /**
      * The ID of the folder that the resource belongs to. If it is not provided, the default provider folder is used.
      */
     folderId?: pulumi.Input<string>;
     /**
+     * A set of protobuf or cap'n proto format schemas. The structure is documented below.
+     */
+    formatSchemas?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterFormatSchemaArgs>[]>;
+    /**
+     * Aggregated health of the cluster.
+     */
+    health?: pulumi.Input<string>;
+    /**
+     * A host of the ClickHouse cluster. The structure is documented below.
+     */
+    hosts?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterHostArgs>[]>;
+    /**
+     * A set of key/value label pairs to assign to the ClickHouse cluster.
+     */
+    labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    maintenanceWindow?: pulumi.Input<inputs.GetMdbClickhouseClusterMaintenanceWindowArgs>;
+    /**
+     * A group of machine learning models. The structure is documented below.
+     */
+    mlModels?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterMlModelArgs>[]>;
+    /**
      * The name of the ClickHouse cluster.
      */
     name?: pulumi.Input<string>;
+    /**
+     * ID of the network, to which the ClickHouse cluster belongs.
+     */
+    networkId?: pulumi.Input<string>;
+    /**
+     * A set of ids of security groups assigned to hosts of the cluster.
+     */
+    securityGroupIds?: pulumi.Input<pulumi.Input<string>[]>;
     serviceAccountId?: pulumi.Input<string>;
+    /**
+     * A group of clickhouse shards. The structure is documented below.
+     */
+    shardGroups?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterShardGroupArgs>[]>;
     /**
      * A shard of the ClickHouse cluster. The structure is documented below.
      */
     shards?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterShardArgs>[]>;
+    /**
+     * Grants `admin` user database management permission.
+     */
+    sqlDatabaseManagement?: pulumi.Input<boolean>;
+    /**
+     * Enables `admin` user with user management permission.
+     */
+    sqlUserManagement?: pulumi.Input<boolean>;
+    /**
+     * Status of the cluster.
+     */
+    status?: pulumi.Input<string>;
+    /**
+     * A user of the ClickHouse cluster. The structure is documented below.
+     */
+    users?: pulumi.Input<pulumi.Input<inputs.GetMdbClickhouseClusterUserArgs>[]>;
+    version?: pulumi.Input<string>;
+    /**
+     * Configuration of the ZooKeeper subcluster. The structure is documented below.
+     */
+    zookeeper?: pulumi.Input<inputs.GetMdbClickhouseClusterZookeeperArgs>;
 }

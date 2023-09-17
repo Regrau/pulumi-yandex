@@ -16,10 +16,10 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// The name of the ClickHouse cluster.
         /// </summary>
-        public readonly string Name;
+        public readonly string? Name;
 
         [OutputConstructor]
-        private GetMdbClickhouseClusterDatabaseResult(string name)
+        private GetMdbClickhouseClusterDatabaseResult(string? name)
         {
             Name = name;
         }

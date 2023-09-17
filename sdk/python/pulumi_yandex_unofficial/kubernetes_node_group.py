@@ -39,7 +39,6 @@ class KubernetesNodeGroupArgs:
         :param pulumi.Input['KubernetesNodeGroupDeployPolicyArgs'] deploy_policy: Deploy policy of the node group. The structure is documented below.
         :param pulumi.Input[str] description: A description of the Kubernetes node group.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels that will be assigned to compute nodes (instances), created by the Node Group.
-               ---
         :param pulumi.Input['KubernetesNodeGroupMaintenancePolicyArgs'] maintenance_policy: (Computed) Maintenance policy for this Kubernetes node group.
                If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
                Revision upgrades are performed only within the same minor version, e.g. 1.13.
@@ -169,7 +168,6 @@ class KubernetesNodeGroupArgs:
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Labels that will be assigned to compute nodes (instances), created by the Node Group.
-        ---
         """
         return pulumi.get(self, "labels")
 
@@ -279,7 +277,6 @@ class _KubernetesNodeGroupState:
         :param pulumi.Input[str] instance_group_id: ID of instance group that is used to manage this Kubernetes node group.
         :param pulumi.Input['KubernetesNodeGroupInstanceTemplateArgs'] instance_template: Template used to create compute instances in this Kubernetes node group. The structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels that will be assigned to compute nodes (instances), created by the Node Group.
-               ---
         :param pulumi.Input['KubernetesNodeGroupMaintenancePolicyArgs'] maintenance_policy: (Computed) Maintenance policy for this Kubernetes node group.
                If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
                Revision upgrades are performed only within the same minor version, e.g. 1.13.
@@ -435,7 +432,6 @@ class _KubernetesNodeGroupState:
     def labels(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
         """
         Labels that will be assigned to compute nodes (instances), created by the Node Group.
-        ---
         """
         return pulumi.get(self, "labels")
 
@@ -651,7 +647,6 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.Input[str] description: A description of the Kubernetes node group.
         :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupInstanceTemplateArgs']] instance_template: Template used to create compute instances in this Kubernetes node group. The structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels that will be assigned to compute nodes (instances), created by the Node Group.
-               ---
         :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupMaintenancePolicyArgs']] maintenance_policy: (Computed) Maintenance policy for this Kubernetes node group.
                If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
                Revision upgrades are performed only within the same minor version, e.g. 1.13.
@@ -851,7 +846,6 @@ class KubernetesNodeGroup(pulumi.CustomResource):
         :param pulumi.Input[str] instance_group_id: ID of instance group that is used to manage this Kubernetes node group.
         :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupInstanceTemplateArgs']] instance_template: Template used to create compute instances in this Kubernetes node group. The structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: Labels that will be assigned to compute nodes (instances), created by the Node Group.
-               ---
         :param pulumi.Input[pulumi.InputType['KubernetesNodeGroupMaintenancePolicyArgs']] maintenance_policy: (Computed) Maintenance policy for this Kubernetes node group.
                If policy is omitted, automatic revision upgrades are enabled and could happen at any time.
                Revision upgrades are performed only within the same minor version, e.g. 1.13.
@@ -963,7 +957,6 @@ class KubernetesNodeGroup(pulumi.CustomResource):
     def labels(self) -> pulumi.Output[Mapping[str, str]]:
         """
         Labels that will be assigned to compute nodes (instances), created by the Node Group.
-        ---
         """
         return pulumi.get(self, "labels")
 

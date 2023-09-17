@@ -62,7 +62,17 @@ class _ExportableConfig(types.ModuleType):
         return __config__.get_bool('plaintext')
 
     @property
+    def profile(self) -> Optional[str]:
+        """
+        Profile to use in the shared credentials file. Default value is `default`.
+        """
+        return __config__.get('profile')
+
+    @property
     def region_id(self) -> Optional[str]:
+        """
+        The region where operations will take place. Examples are ru-central1
+        """
         return __config__.get('regionId')
 
     @property
@@ -71,6 +81,13 @@ class _ExportableConfig(types.ModuleType):
         Either the path to or the contents of a Service Account key file in JSON format.
         """
         return __config__.get('serviceAccountKeyFile')
+
+    @property
+    def shared_credentials_file(self) -> Optional[str]:
+        """
+        Path to shared credentials file.
+        """
+        return __config__.get('sharedCredentialsFile')
 
     @property
     def storage_access_key(self) -> Optional[str]:

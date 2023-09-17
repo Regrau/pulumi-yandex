@@ -14,6 +14,10 @@ namespace Pulumi.Yandex.Outputs
     public sealed class GetKubernetesClusterMasterMasterLoggingResult
     {
         /// <summary>
+        /// (Optional) Boolean flag that specifies if kube-apiserver audit logs should be sent to Yandex Cloud Logging.
+        /// </summary>
+        public readonly bool AuditEnabled;
+        /// <summary>
         /// (Optional) Boolean flag that specifies if cluster-autoscaler logs should be sent to Yandex Cloud Logging.
         /// </summary>
         public readonly bool ClusterAutoscalerEnabled;
@@ -40,6 +44,8 @@ namespace Pulumi.Yandex.Outputs
 
         [OutputConstructor]
         private GetKubernetesClusterMasterMasterLoggingResult(
+            bool auditEnabled,
+
             bool clusterAutoscalerEnabled,
 
             bool enabled,
@@ -52,6 +58,7 @@ namespace Pulumi.Yandex.Outputs
 
             string logGroupId)
         {
+            AuditEnabled = auditEnabled;
             ClusterAutoscalerEnabled = clusterAutoscalerEnabled;
             Enabled = enabled;
             EventsEnabled = eventsEnabled;

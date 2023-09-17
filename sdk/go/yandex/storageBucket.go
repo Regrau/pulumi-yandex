@@ -81,8 +81,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -96,17 +94,7 @@ import (
 //				Website: &StorageBucketWebsiteArgs{
 //					ErrorDocument: pulumi.String("error.html"),
 //					IndexDocument: pulumi.String("index.html"),
-//					RoutingRules: pulumi.String(fmt.Sprintf(`[{
-//	    "Condition": {
-//	        "KeyPrefixEquals": "docs/"
-//	    },
-//	    "Redirect": {
-//	        "ReplaceKeyPrefixWith": "documents/"
-//	    }
-//	}]
-//
-// `)),
-//
+//					RoutingRules:  pulumi.String("[{\n    \"Condition\": {\n        \"KeyPrefixEquals\": \"docs/\"\n    },\n    \"Redirect\": {\n        \"ReplaceKeyPrefixWith\": \"documents/\"\n    }\n}]\n\n"),
 //				},
 //			})
 //			if err != nil {
@@ -431,7 +419,31 @@ import (
 //
 // import (
 //
-//	"fmt"
+//	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := yandex.NewStorageBucket(ctx, "storageBucket", &yandex.StorageBucketArgs{
+//				Bucket: pulumi.String("my-policy-bucket"),
+//				Policy: pulumi.String("{\n  \"Version\": \"2012-10-17\",\n  \"Statement\": [\n    {\n      \"Effect\": \"Allow\",\n      \"Principal\": \"*\",\n      \"Action\": \"s3:*\",\n      \"Resource\": [\n        \"arn:aws:s3:::my-policy-bucket/*\",\n        \"arn:aws:s3:::my-policy-bucket\"\n      ]\n    },\n    {\n      \"Effect\": \"Deny\",\n      \"Principal\": \"*\",\n      \"Action\": \"s3:PutObject\",\n      \"Resource\": [\n        \"arn:aws:s3:::my-policy-bucket/*\",\n        \"arn:aws:s3:::my-policy-bucket\"\n      ]\n    }\n  ]\n}\n\n"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+// ### Bucket Tagging
+//
+// ```go
+// package main
+//
+// import (
 //
 //	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -442,32 +454,10 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := yandex.NewStorageBucket(ctx, "storageBucket", &yandex.StorageBucketArgs{
 //				Bucket: pulumi.String("my-policy-bucket"),
-//				Policy: pulumi.String(fmt.Sprintf(`{
-//	  "Version": "2012-10-17",
-//	  "Statement": [
-//	    {
-//	      "Effect": "Allow",
-//	      "Principal": "*",
-//	      "Action": "s3:*",
-//	      "Resource": [
-//	        "arn:aws:s3:::my-policy-bucket/*",
-//	        "arn:aws:s3:::my-policy-bucket"
-//	      ]
-//	    },
-//	    {
-//	      "Effect": "Deny",
-//	      "Principal": "*",
-//	      "Action": "s3:PutObject",
-//	      "Resource": [
-//	        "arn:aws:s3:::my-policy-bucket/*",
-//	        "arn:aws:s3:::my-policy-bucket"
-//	      ]
-//	    }
-//	  ]
-//	}
-//
-// `)),
-//
+//				Tags: pulumi.StringMap{
+//					"other_key": pulumi.String("other_value"),
+//					"test_key":  pulumi.String("test_value"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -753,6 +743,9 @@ import (
 //				Https: &StorageBucketHttpsArgs{
 //					CertificateId: pulumi.String("<certificate_id>"),
 //				},
+//				Tags: pulumi.StringMap{
+//					"some_key": pulumi.String("some_value"),
+//				},
 //			})
 //			if err != nil {
 //				return err
@@ -777,9 +770,11 @@ import (
 type StorageBucket struct {
 	pulumi.CustomResourceState
 
-	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in provider config is used.
+	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in
+	// provider config (explicitly or within `sharedCredentialsFile`) is used.
 	AccessKey pulumi.StringPtrOutput `pulumi:"accessKey"`
-	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+	// Defaults to `private`. Conflicts with `grant`.
 	Acl pulumi.StringOutput `pulumi:"acl"`
 	// Provides various access to objects.
 	// See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
@@ -788,12 +783,13 @@ type StorageBucket struct {
 	Bucket               pulumi.StringOutput                     `pulumi:"bucket"`
 	// The bucket domain name.
 	BucketDomainName pulumi.StringOutput `pulumi:"bucketDomainName"`
-	// Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+	// Creates a unique bucket name beginning with the specified prefix.
+	// Conflicts with `bucket`.
 	BucketPrefix pulumi.StringPtrOutput `pulumi:"bucketPrefix"`
 	// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
 	CorsRules StorageBucketCorsRuleArrayOutput `pulumi:"corsRules"`
 	// Storage class which is used for storing objects by default.
-	// Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+	// Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
 	// See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
 	DefaultStorageClass pulumi.StringOutput `pulumi:"defaultStorageClass"`
 	// Allow to create bucket in different folder.
@@ -813,10 +809,12 @@ type StorageBucket struct {
 	// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
 	ObjectLockConfiguration StorageBucketObjectLockConfigurationPtrOutput `pulumi:"objectLockConfiguration"`
 	Policy                  pulumi.StringPtrOutput                        `pulumi:"policy"`
-	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
+	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in
+	// provider config (explicitly or within `sharedCredentialsFile`) is used.
 	SecretKey pulumi.StringPtrOutput `pulumi:"secretKey"`
 	// A configuration of server-side encryption for the bucket (documented below)
 	ServerSideEncryptionConfiguration StorageBucketServerSideEncryptionConfigurationPtrOutput `pulumi:"serverSideEncryptionConfiguration"`
+	Tags                              pulumi.StringMapOutput                                  `pulumi:"tags"`
 	// A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
 	Versioning StorageBucketVersioningOutput `pulumi:"versioning"`
 	// A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
@@ -864,9 +862,11 @@ func GetStorageBucket(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering StorageBucket resources.
 type storageBucketState struct {
-	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in provider config is used.
+	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in
+	// provider config (explicitly or within `sharedCredentialsFile`) is used.
 	AccessKey *string `pulumi:"accessKey"`
-	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+	// Defaults to `private`. Conflicts with `grant`.
 	Acl *string `pulumi:"acl"`
 	// Provides various access to objects.
 	// See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
@@ -875,12 +875,13 @@ type storageBucketState struct {
 	Bucket               *string                            `pulumi:"bucket"`
 	// The bucket domain name.
 	BucketDomainName *string `pulumi:"bucketDomainName"`
-	// Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+	// Creates a unique bucket name beginning with the specified prefix.
+	// Conflicts with `bucket`.
 	BucketPrefix *string `pulumi:"bucketPrefix"`
 	// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
 	CorsRules []StorageBucketCorsRule `pulumi:"corsRules"`
 	// Storage class which is used for storing objects by default.
-	// Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+	// Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
 	// See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
 	DefaultStorageClass *string `pulumi:"defaultStorageClass"`
 	// Allow to create bucket in different folder.
@@ -900,10 +901,12 @@ type storageBucketState struct {
 	// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
 	ObjectLockConfiguration *StorageBucketObjectLockConfiguration `pulumi:"objectLockConfiguration"`
 	Policy                  *string                               `pulumi:"policy"`
-	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
+	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in
+	// provider config (explicitly or within `sharedCredentialsFile`) is used.
 	SecretKey *string `pulumi:"secretKey"`
 	// A configuration of server-side encryption for the bucket (documented below)
 	ServerSideEncryptionConfiguration *StorageBucketServerSideEncryptionConfiguration `pulumi:"serverSideEncryptionConfiguration"`
+	Tags                              map[string]string                               `pulumi:"tags"`
 	// A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
 	Versioning *StorageBucketVersioning `pulumi:"versioning"`
 	// A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
@@ -915,9 +918,11 @@ type storageBucketState struct {
 }
 
 type StorageBucketState struct {
-	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in provider config is used.
+	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in
+	// provider config (explicitly or within `sharedCredentialsFile`) is used.
 	AccessKey pulumi.StringPtrInput
-	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+	// Defaults to `private`. Conflicts with `grant`.
 	Acl pulumi.StringPtrInput
 	// Provides various access to objects.
 	// See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
@@ -926,12 +931,13 @@ type StorageBucketState struct {
 	Bucket               pulumi.StringPtrInput
 	// The bucket domain name.
 	BucketDomainName pulumi.StringPtrInput
-	// Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+	// Creates a unique bucket name beginning with the specified prefix.
+	// Conflicts with `bucket`.
 	BucketPrefix pulumi.StringPtrInput
 	// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
 	CorsRules StorageBucketCorsRuleArrayInput
 	// Storage class which is used for storing objects by default.
-	// Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+	// Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
 	// See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
 	DefaultStorageClass pulumi.StringPtrInput
 	// Allow to create bucket in different folder.
@@ -951,10 +957,12 @@ type StorageBucketState struct {
 	// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
 	ObjectLockConfiguration StorageBucketObjectLockConfigurationPtrInput
 	Policy                  pulumi.StringPtrInput
-	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
+	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in
+	// provider config (explicitly or within `sharedCredentialsFile`) is used.
 	SecretKey pulumi.StringPtrInput
 	// A configuration of server-side encryption for the bucket (documented below)
 	ServerSideEncryptionConfiguration StorageBucketServerSideEncryptionConfigurationPtrInput
+	Tags                              pulumi.StringMapInput
 	// A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
 	Versioning StorageBucketVersioningPtrInput
 	// A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
@@ -970,21 +978,24 @@ func (StorageBucketState) ElementType() reflect.Type {
 }
 
 type storageBucketArgs struct {
-	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in provider config is used.
+	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in
+	// provider config (explicitly or within `sharedCredentialsFile`) is used.
 	AccessKey *string `pulumi:"accessKey"`
-	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+	// Defaults to `private`. Conflicts with `grant`.
 	Acl *string `pulumi:"acl"`
 	// Provides various access to objects.
 	// See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
 	// for more infomation.
 	AnonymousAccessFlags *StorageBucketAnonymousAccessFlags `pulumi:"anonymousAccessFlags"`
 	Bucket               *string                            `pulumi:"bucket"`
-	// Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+	// Creates a unique bucket name beginning with the specified prefix.
+	// Conflicts with `bucket`.
 	BucketPrefix *string `pulumi:"bucketPrefix"`
 	// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
 	CorsRules []StorageBucketCorsRule `pulumi:"corsRules"`
 	// Storage class which is used for storing objects by default.
-	// Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+	// Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
 	// See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
 	DefaultStorageClass *string `pulumi:"defaultStorageClass"`
 	// Allow to create bucket in different folder.
@@ -1004,10 +1015,12 @@ type storageBucketArgs struct {
 	// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
 	ObjectLockConfiguration *StorageBucketObjectLockConfiguration `pulumi:"objectLockConfiguration"`
 	Policy                  *string                               `pulumi:"policy"`
-	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
+	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in
+	// provider config (explicitly or within `sharedCredentialsFile`) is used.
 	SecretKey *string `pulumi:"secretKey"`
 	// A configuration of server-side encryption for the bucket (documented below)
 	ServerSideEncryptionConfiguration *StorageBucketServerSideEncryptionConfiguration `pulumi:"serverSideEncryptionConfiguration"`
+	Tags                              map[string]string                               `pulumi:"tags"`
 	// A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
 	Versioning *StorageBucketVersioning `pulumi:"versioning"`
 	// A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
@@ -1020,21 +1033,24 @@ type storageBucketArgs struct {
 
 // The set of arguments for constructing a StorageBucket resource.
 type StorageBucketArgs struct {
-	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in provider config is used.
+	// The access key to use when applying changes. If omitted, `storageAccessKey` specified in
+	// provider config (explicitly or within `sharedCredentialsFile`) is used.
 	AccessKey pulumi.StringPtrInput
-	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+	// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+	// Defaults to `private`. Conflicts with `grant`.
 	Acl pulumi.StringPtrInput
 	// Provides various access to objects.
 	// See [bucket availability](https://cloud.yandex.com/en-ru/docs/storage/operations/buckets/bucket-availability)
 	// for more infomation.
 	AnonymousAccessFlags StorageBucketAnonymousAccessFlagsPtrInput
 	Bucket               pulumi.StringPtrInput
-	// Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+	// Creates a unique bucket name beginning with the specified prefix.
+	// Conflicts with `bucket`.
 	BucketPrefix pulumi.StringPtrInput
 	// A rule of [Cross-Origin Resource Sharing](https://cloud.yandex.com/docs/storage/concepts/cors) (documented below).
 	CorsRules StorageBucketCorsRuleArrayInput
 	// Storage class which is used for storing objects by default.
-	// Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+	// Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
 	// See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
 	DefaultStorageClass pulumi.StringPtrInput
 	// Allow to create bucket in different folder.
@@ -1054,10 +1070,12 @@ type StorageBucketArgs struct {
 	// A configuration of [object lock management](https://cloud.yandex.com/en/docs/storage/concepts/object-lock) (documented below).
 	ObjectLockConfiguration StorageBucketObjectLockConfigurationPtrInput
 	Policy                  pulumi.StringPtrInput
-	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
+	// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in
+	// provider config (explicitly or within `sharedCredentialsFile`) is used.
 	SecretKey pulumi.StringPtrInput
 	// A configuration of server-side encryption for the bucket (documented below)
 	ServerSideEncryptionConfiguration StorageBucketServerSideEncryptionConfigurationPtrInput
+	Tags                              pulumi.StringMapInput
 	// A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)
 	Versioning StorageBucketVersioningPtrInput
 	// A [website object](https://cloud.yandex.com/docs/storage/concepts/hosting) (documented below).
@@ -1155,12 +1173,14 @@ func (o StorageBucketOutput) ToStorageBucketOutputWithContext(ctx context.Contex
 	return o
 }
 
-// The access key to use when applying changes. If omitted, `storageAccessKey` specified in provider config is used.
+// The access key to use when applying changes. If omitted, `storageAccessKey` specified in
+// provider config (explicitly or within `sharedCredentialsFile`) is used.
 func (o StorageBucketOutput) AccessKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageBucket) pulumi.StringPtrOutput { return v.AccessKey }).(pulumi.StringPtrOutput)
 }
 
-// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply. Defaults to `private`. Conflicts with `grant`.
+// The [predefined ACL](https://cloud.yandex.com/docs/storage/concepts/acl#predefined_acls) to apply.
+// Defaults to `private`. Conflicts with `grant`.
 func (o StorageBucketOutput) Acl() pulumi.StringOutput {
 	return o.ApplyT(func(v *StorageBucket) pulumi.StringOutput { return v.Acl }).(pulumi.StringOutput)
 }
@@ -1181,7 +1201,8 @@ func (o StorageBucketOutput) BucketDomainName() pulumi.StringOutput {
 	return o.ApplyT(func(v *StorageBucket) pulumi.StringOutput { return v.BucketDomainName }).(pulumi.StringOutput)
 }
 
-// Creates a unique bucket name beginning with the specified prefix. Conflicts with `bucket`.
+// Creates a unique bucket name beginning with the specified prefix.
+// Conflicts with `bucket`.
 func (o StorageBucketOutput) BucketPrefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageBucket) pulumi.StringPtrOutput { return v.BucketPrefix }).(pulumi.StringPtrOutput)
 }
@@ -1192,7 +1213,7 @@ func (o StorageBucketOutput) CorsRules() StorageBucketCorsRuleArrayOutput {
 }
 
 // Storage class which is used for storing objects by default.
-// Available values are: "STANDARD", "COLD". Default is `"STANDARD"`.
+// Available values are: "STANDARD", "COLD", "ICE". Default is `"STANDARD"`.
 // See [storage class](https://cloud.yandex.com/en-ru/docs/storage/concepts/storage-class) for more inforamtion.
 func (o StorageBucketOutput) DefaultStorageClass() pulumi.StringOutput {
 	return o.ApplyT(func(v *StorageBucket) pulumi.StringOutput { return v.DefaultStorageClass }).(pulumi.StringOutput)
@@ -1242,7 +1263,8 @@ func (o StorageBucketOutput) Policy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageBucket) pulumi.StringPtrOutput { return v.Policy }).(pulumi.StringPtrOutput)
 }
 
-// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in provider config is used.
+// The secret key to use when applying changes. If omitted, `storageSecretKey` specified in
+// provider config (explicitly or within `sharedCredentialsFile`) is used.
 func (o StorageBucketOutput) SecretKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StorageBucket) pulumi.StringPtrOutput { return v.SecretKey }).(pulumi.StringPtrOutput)
 }
@@ -1252,6 +1274,10 @@ func (o StorageBucketOutput) ServerSideEncryptionConfiguration() StorageBucketSe
 	return o.ApplyT(func(v *StorageBucket) StorageBucketServerSideEncryptionConfigurationPtrOutput {
 		return v.ServerSideEncryptionConfiguration
 	}).(StorageBucketServerSideEncryptionConfigurationPtrOutput)
+}
+
+func (o StorageBucketOutput) Tags() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *StorageBucket) pulumi.StringMapOutput { return v.Tags }).(pulumi.StringMapOutput)
 }
 
 // A state of [versioning](https://cloud.yandex.com/docs/storage/concepts/versioning) (documented below)

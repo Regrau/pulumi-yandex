@@ -22,7 +22,7 @@ class GetMdbPostgresqlClusterResult:
     """
     A collection of values returned by getMdbPostgresqlCluster.
     """
-    def __init__(__self__, cluster_id=None, configs=None, created_at=None, deletion_protection=None, description=None, environment=None, folder_id=None, health=None, host_group_ids=None, hosts=None, id=None, labels=None, maintenance_windows=None, name=None, network_id=None, security_group_ids=None, status=None):
+    def __init__(__self__, cluster_id=None, configs=None, created_at=None, databases=None, deletion_protection=None, description=None, environment=None, folder_id=None, health=None, host_group_ids=None, hosts=None, id=None, labels=None, maintenance_windows=None, name=None, network_id=None, security_group_ids=None, status=None, users=None):
         if cluster_id and not isinstance(cluster_id, str):
             raise TypeError("Expected argument 'cluster_id' to be a str")
         pulumi.set(__self__, "cluster_id", cluster_id)
@@ -32,6 +32,9 @@ class GetMdbPostgresqlClusterResult:
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if databases and not isinstance(databases, list):
+            raise TypeError("Expected argument 'databases' to be a list")
+        pulumi.set(__self__, "databases", databases)
         if deletion_protection and not isinstance(deletion_protection, bool):
             raise TypeError("Expected argument 'deletion_protection' to be a bool")
         pulumi.set(__self__, "deletion_protection", deletion_protection)
@@ -74,6 +77,9 @@ class GetMdbPostgresqlClusterResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if users and not isinstance(users, list):
+            raise TypeError("Expected argument 'users' to be a list")
+        pulumi.set(__self__, "users", users)
 
     @property
     @pulumi.getter(name="clusterId")
@@ -95,6 +101,14 @@ class GetMdbPostgresqlClusterResult:
         Timestamp of cluster creation.
         """
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter
+    def databases(self) -> Sequence['outputs.GetMdbPostgresqlClusterDatabaseResult']:
+        """
+        List of all databases of the PostgreSQL cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "databases")
 
     @property
     @pulumi.getter(name="deletionProtection")
@@ -139,7 +153,7 @@ class GetMdbPostgresqlClusterResult:
     @pulumi.getter
     def hosts(self) -> Sequence['outputs.GetMdbPostgresqlClusterHostResult']:
         """
-        A host of the PostgreSQL cluster. The structure is documented below.
+        List of all hosts of the PostgreSQL cluster. The structure is documented below.
         """
         return pulumi.get(self, "hosts")
 
@@ -170,6 +184,9 @@ class GetMdbPostgresqlClusterResult:
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Name of the database extension. For more information on available extensions see [the official documentation](https://cloud.yandex.com/docs/managed-postgresql/operations/cluster-extensions).
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -196,6 +213,14 @@ class GetMdbPostgresqlClusterResult:
         """
         return pulumi.get(self, "status")
 
+    @property
+    @pulumi.getter
+    def users(self) -> Sequence['outputs.GetMdbPostgresqlClusterUserResult']:
+        """
+        List of all users of the PostgreSQL cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "users")
+
 
 class AwaitableGetMdbPostgresqlClusterResult(GetMdbPostgresqlClusterResult):
     # pylint: disable=using-constant-test
@@ -206,6 +231,7 @@ class AwaitableGetMdbPostgresqlClusterResult(GetMdbPostgresqlClusterResult):
             cluster_id=self.cluster_id,
             configs=self.configs,
             created_at=self.created_at,
+            databases=self.databases,
             deletion_protection=self.deletion_protection,
             description=self.description,
             environment=self.environment,
@@ -219,7 +245,8 @@ class AwaitableGetMdbPostgresqlClusterResult(GetMdbPostgresqlClusterResult):
             name=self.name,
             network_id=self.network_id,
             security_group_ids=self.security_group_ids,
-            status=self.status)
+            status=self.status,
+            users=self.users)
 
 
 def get_mdb_postgresql_cluster(cluster_id: Optional[str] = None,
@@ -262,6 +289,7 @@ def get_mdb_postgresql_cluster(cluster_id: Optional[str] = None,
         cluster_id=__ret__.cluster_id,
         configs=__ret__.configs,
         created_at=__ret__.created_at,
+        databases=__ret__.databases,
         deletion_protection=__ret__.deletion_protection,
         description=__ret__.description,
         environment=__ret__.environment,
@@ -275,7 +303,8 @@ def get_mdb_postgresql_cluster(cluster_id: Optional[str] = None,
         name=__ret__.name,
         network_id=__ret__.network_id,
         security_group_ids=__ret__.security_group_ids,
-        status=__ret__.status)
+        status=__ret__.status,
+        users=__ret__.users)
 
 
 @_utilities.lift_output_func(get_mdb_postgresql_cluster)

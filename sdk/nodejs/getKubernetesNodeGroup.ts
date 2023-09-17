@@ -98,7 +98,6 @@ export interface GetKubernetesNodeGroupResult {
     readonly instanceTemplates: outputs.GetKubernetesNodeGroupInstanceTemplate[];
     /**
      * Labels assigned to compute nodes (instances), created by the Node Group.
-     * ---
      */
     readonly labels: {[key: string]: string};
     /**

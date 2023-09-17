@@ -20,7 +20,7 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// HTTP check options. The structure is documented below.
         /// </summary>
-        public readonly ImmutableArray<Outputs.ComputeInstanceGroupHealthCheckHttpOption> HttpOptions;
+        public readonly Outputs.ComputeInstanceGroupHealthCheckHttpOptions? HttpOptions;
         /// <summary>
         /// The interval to wait between health checks in seconds.
         /// </summary>
@@ -42,7 +42,7 @@ namespace Pulumi.Yandex.Outputs
         private ComputeInstanceGroupHealthCheck(
             int? healthyThreshold,
 
-            ImmutableArray<Outputs.ComputeInstanceGroupHealthCheckHttpOption> httpOptions,
+            Outputs.ComputeInstanceGroupHealthCheckHttpOptions? httpOptions,
 
             int? interval,
 

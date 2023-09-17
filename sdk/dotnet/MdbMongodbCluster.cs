@@ -67,11 +67,23 @@ namespace Pulumi.Yandex
     ///             Type = "ANYTIME",
     ///         },
     ///         NetworkId = fooVpcNetwork.Id,
-    ///         Resources = new Yandex.Inputs.MdbMongodbClusterResourcesArgs
+    ///         ResourcesMongocfg = new Yandex.Inputs.MdbMongodbClusterResourcesMongocfgArgs
+    ///         {
+    ///             DiskSize = 14,
+    ///             DiskTypeId = "network-hdd",
+    ///             ResourcePresetId = "s2.small",
+    ///         },
+    ///         ResourcesMongod = new Yandex.Inputs.MdbMongodbClusterResourcesMongodArgs
     ///         {
     ///             DiskSize = 16,
     ///             DiskTypeId = "network-hdd",
-    ///             ResourcePresetId = "b1.nano",
+    ///             ResourcePresetId = "s2.small",
+    ///         },
+    ///         ResourcesMongos = new Yandex.Inputs.MdbMongodbClusterResourcesMongosArgs
+    ///         {
+    ///             DiskSize = 14,
+    ///             DiskTypeId = "network-hdd",
+    ///             ResourcePresetId = "s2.small",
     ///         },
     ///         Users = new[]
     ///         {
@@ -172,6 +184,9 @@ namespace Pulumi.Yandex
         [Output("labels")]
         public Output<ImmutableDictionary<string, string>> Labels { get; private set; } = null!;
 
+        /// <summary>
+        /// Maintenance window settings of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         [Output("maintenanceWindow")]
         public Output<Outputs.MdbMongodbClusterMaintenanceWindow> MaintenanceWindow { get; private set; } = null!;
 
@@ -191,7 +206,31 @@ namespace Pulumi.Yandex
         /// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
         /// </summary>
         [Output("resources")]
-        public Output<Outputs.MdbMongodbClusterResources> Resources { get; private set; } = null!;
+        public Output<Outputs.MdbMongodbClusterResources?> Resources { get; private set; } = null!;
+
+        /// <summary>
+        /// Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
+        [Output("resourcesMongocfg")]
+        public Output<Outputs.MdbMongodbClusterResourcesMongocfg?> ResourcesMongocfg { get; private set; } = null!;
+
+        /// <summary>
+        /// Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
+        [Output("resourcesMongod")]
+        public Output<Outputs.MdbMongodbClusterResourcesMongod?> ResourcesMongod { get; private set; } = null!;
+
+        /// <summary>
+        /// Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
+        [Output("resourcesMongoinfra")]
+        public Output<Outputs.MdbMongodbClusterResourcesMongoinfra?> ResourcesMongoinfra { get; private set; } = null!;
+
+        /// <summary>
+        /// Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
+        [Output("resourcesMongos")]
+        public Output<Outputs.MdbMongodbClusterResourcesMongos?> ResourcesMongos { get; private set; } = null!;
 
         /// <summary>
         /// The cluster will be created from the specified backup. The structure is documented below.
@@ -345,6 +384,9 @@ namespace Pulumi.Yandex
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Maintenance window settings of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         [Input("maintenanceWindow")]
         public Input<Inputs.MdbMongodbClusterMaintenanceWindowArgs>? MaintenanceWindow { get; set; }
 
@@ -363,8 +405,32 @@ namespace Pulumi.Yandex
         /// <summary>
         /// Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
         /// </summary>
-        [Input("resources", required: true)]
-        public Input<Inputs.MdbMongodbClusterResourcesArgs> Resources { get; set; } = null!;
+        [Input("resources")]
+        public Input<Inputs.MdbMongodbClusterResourcesArgs>? Resources { get; set; }
+
+        /// <summary>
+        /// Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
+        [Input("resourcesMongocfg")]
+        public Input<Inputs.MdbMongodbClusterResourcesMongocfgArgs>? ResourcesMongocfg { get; set; }
+
+        /// <summary>
+        /// Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
+        [Input("resourcesMongod")]
+        public Input<Inputs.MdbMongodbClusterResourcesMongodArgs>? ResourcesMongod { get; set; }
+
+        /// <summary>
+        /// Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
+        [Input("resourcesMongoinfra")]
+        public Input<Inputs.MdbMongodbClusterResourcesMongoinfraArgs>? ResourcesMongoinfra { get; set; }
+
+        /// <summary>
+        /// Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
+        [Input("resourcesMongos")]
+        public Input<Inputs.MdbMongodbClusterResourcesMongosArgs>? ResourcesMongos { get; set; }
 
         /// <summary>
         /// The cluster will be created from the specified backup. The structure is documented below.
@@ -490,6 +556,9 @@ namespace Pulumi.Yandex
             set => _labels = value;
         }
 
+        /// <summary>
+        /// Maintenance window settings of the MongoDB cluster. The structure is documented below.
+        /// </summary>
         [Input("maintenanceWindow")]
         public Input<Inputs.MdbMongodbClusterMaintenanceWindowGetArgs>? MaintenanceWindow { get; set; }
 
@@ -510,6 +579,30 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("resources")]
         public Input<Inputs.MdbMongodbClusterResourcesGetArgs>? Resources { get; set; }
+
+        /// <summary>
+        /// Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
+        [Input("resourcesMongocfg")]
+        public Input<Inputs.MdbMongodbClusterResourcesMongocfgGetArgs>? ResourcesMongocfg { get; set; }
+
+        /// <summary>
+        /// Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
+        [Input("resourcesMongod")]
+        public Input<Inputs.MdbMongodbClusterResourcesMongodGetArgs>? ResourcesMongod { get; set; }
+
+        /// <summary>
+        /// Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
+        [Input("resourcesMongoinfra")]
+        public Input<Inputs.MdbMongodbClusterResourcesMongoinfraGetArgs>? ResourcesMongoinfra { get; set; }
+
+        /// <summary>
+        /// Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+        /// </summary>
+        [Input("resourcesMongos")]
+        public Input<Inputs.MdbMongodbClusterResourcesMongosGetArgs>? ResourcesMongos { get; set; }
 
         /// <summary>
         /// The cluster will be created from the specified backup. The structure is documented below.

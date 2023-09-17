@@ -24,7 +24,7 @@ namespace Pulumi.Yandex.Outputs
         /// <summary>
         /// (Required) Whether to use Yandex Object Storage for storing ClickHouse data. Can be either `true` or `false`.
         /// </summary>
-        public readonly bool Enabled;
+        public readonly bool? Enabled;
         /// <summary>
         /// Sets the minimum free space ratio in the cluster storage. If the free space is lower than this value, the data is transferred to Yandex Object Storage. Acceptable values are 0 to 1, inclusive.
         /// </summary>
@@ -36,7 +36,7 @@ namespace Pulumi.Yandex.Outputs
 
             int dataCacheMaxSize,
 
-            bool enabled,
+            bool? enabled,
 
             double moveFactor)
         {

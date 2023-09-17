@@ -398,7 +398,7 @@ namespace Pulumi.Yandex
         public Output<ImmutableArray<Outputs.MdbKafkaClusterTopic>> Topics { get; private set; } = null!;
 
         /// <summary>
-        /// A user of the Kafka cluster. The structure is documented below.
+        /// To manage users, please switch to using a separate resource type `yandex.mdbKafkaUser`.
         /// </summary>
         [Output("users")]
         public Output<ImmutableArray<Outputs.MdbKafkaClusterUser>> Users { get; private set; } = null!;
@@ -564,8 +564,9 @@ namespace Pulumi.Yandex
         private InputList<Inputs.MdbKafkaClusterUserArgs>? _users;
 
         /// <summary>
-        /// A user of the Kafka cluster. The structure is documented below.
+        /// To manage users, please switch to using a separate resource type `yandex.mdbKafkaUser`.
         /// </summary>
+        [Obsolete(@"to manage users, please switch to using a separate resource type yandex_mdb_kafka_user")]
         public InputList<Inputs.MdbKafkaClusterUserArgs> Users
         {
             get => _users ?? (_users = new InputList<Inputs.MdbKafkaClusterUserArgs>());
@@ -725,8 +726,9 @@ namespace Pulumi.Yandex
         private InputList<Inputs.MdbKafkaClusterUserGetArgs>? _users;
 
         /// <summary>
-        /// A user of the Kafka cluster. The structure is documented below.
+        /// To manage users, please switch to using a separate resource type `yandex.mdbKafkaUser`.
         /// </summary>
+        [Obsolete(@"to manage users, please switch to using a separate resource type yandex_mdb_kafka_user")]
         public InputList<Inputs.MdbKafkaClusterUserGetArgs> Users
         {
             get => _users ?? (_users = new InputList<Inputs.MdbKafkaClusterUserGetArgs>());

@@ -16,6 +16,7 @@ from .cdn_resource import *
 from .cm_certificate import *
 from .compute_disk import *
 from .compute_disk_placement_group import *
+from .compute_gpu_cluster import *
 from .compute_image import *
 from .compute_instance import *
 from .compute_instance_group import *
@@ -43,7 +44,6 @@ from .get_alb_load_balancer import *
 from .get_alb_target_group import *
 from .get_alb_virtual_host import *
 from .get_api_gateway import *
-from .get_billing_cloud_binding import *
 from .get_cdn_origin_group import *
 from .get_cdn_resource import *
 from .get_client_config import *
@@ -52,14 +52,17 @@ from .get_cm_certificate_content import *
 from .get_compute_disk import *
 from .get_compute_disk_placement_group import *
 from .get_compute_filesystem import *
+from .get_compute_gpu_cluster import *
 from .get_compute_image import *
 from .get_compute_instance import *
 from .get_compute_instance_group import *
 from .get_compute_placement_group import *
 from .get_compute_snapshot import *
+from .get_compute_snapshot_schedule import *
 from .get_container_registry import *
 from .get_container_registry_ip_permission import *
 from .get_container_repository import *
+from .get_container_repository_lifecycle_policy import *
 from .get_dataproc_cluster import *
 from .get_dns_zone import *
 from .get_function import *
@@ -69,30 +72,45 @@ from .get_iam_policy import *
 from .get_iam_role import *
 from .get_iam_service_account import *
 from .get_iam_user import *
+from .get_iot_core_broker import *
 from .get_iot_core_device import *
 from .get_iot_core_registry import *
+from .get_kms_asymmetric_encryption_key import *
+from .get_kms_asymmetric_signature_key import *
+from .get_kms_symmetric_key import *
 from .get_kubernetes_cluster import *
 from .get_kubernetes_node_group import *
 from .get_lb_network_load_balancer import *
 from .get_lb_target_group import *
+from .get_lock_box_secret import *
+from .get_lock_box_secret_version import *
 from .get_logging_group import *
 from .get_mdb_clickhouse_cluster import *
 from .get_mdb_elastic_search_cluster import *
 from .get_mdb_greenplum_cluster import *
 from .get_mdb_kafka_cluster import *
+from .get_mdb_kafka_connector import *
 from .get_mdb_kafka_topic import *
+from .get_mdb_kafka_user import *
 from .get_mdb_mongodb_cluster import *
 from .get_mdb_mysql_cluster import *
+from .get_mdb_mysql_database import *
+from .get_mdb_mysql_user import *
 from .get_mdb_postgresql_cluster import *
+from .get_mdb_postgresql_database import *
+from .get_mdb_postgresql_user import *
 from .get_mdb_redis_cluster import *
 from .get_mdb_sqlserver_cluster import *
 from .get_message_queue import *
+from .get_monitoring_dashboard import *
+from .get_organizationmanager_group import *
 from .get_organizationmanager_saml_federation import *
 from .get_organizationmanager_saml_federation_user_account import *
 from .get_resourcemanager_cloud import *
 from .get_resourcemanager_folder import *
 from .get_serverless_container import *
 from .get_vpc_address import *
+from .get_vpc_gateway import *
 from .get_vpc_network import *
 from .get_vpc_route_table import *
 from .get_vpc_security_group import *
@@ -110,6 +128,10 @@ from .iam_service_account_static_access_key import *
 from .iot_core_broker import *
 from .iot_core_device import *
 from .iot_core_registry import *
+from .kms_asymetric_encryption_key import *
+from .kms_asymetric_encryption_key_iam_binding import *
+from .kms_asymetric_signature_key import *
+from .kms_asymetric_signature_key_binding import *
 from .kms_secret_ciphertext import *
 from .kms_symmetric_key import *
 from .kms_symmetric_key_iam_binding import *
@@ -118,6 +140,7 @@ from .kubernetes_node_group import *
 from .lb_network_load_balancer import *
 from .lb_target_group import *
 from .lockbox_secret import *
+from .lockbox_secret_iam_binding import *
 from .lockbox_secret_version import *
 from .logging_group import *
 from .mdb_clickhouse_cluster import *
@@ -126,6 +149,7 @@ from .mdb_greenplum_cluster import *
 from .mdb_kafka_cluster import *
 from .mdb_kafka_connector import *
 from .mdb_kafka_topic import *
+from .mdb_kafka_user import *
 from .mdb_mongodb_cluster import *
 from .mdb_mysql_cluster import *
 from .mdb_mysql_database import *
@@ -136,12 +160,14 @@ from .mdb_postgresql_user import *
 from .mdb_redis_cluster import *
 from .mdb_sql_server_cluster import *
 from .message_queue import *
+from .monitoring_dashboard import *
 from .organization_manager_organization_iam_binding import *
 from .organization_manager_organization_iam_member import *
 from .organizationmanager_group import *
 from .organizationmanager_group_iam_member import *
 from .organizationmanager_group_membership import *
 from .organizationmanager_saml_federation import *
+from .organizationmanager_saml_federation_user_account import *
 from .provider import *
 from .resourcemanager_cloud import *
 from .resourcemanager_cloud_iam_binding import *
@@ -162,9 +188,11 @@ from .vpc_route_table import *
 from .vpc_security_group import *
 from .vpc_security_group_rule import *
 from .vpc_subnet import *
-from .yandex_billing_cloud_binding import *
 from .yandex_compute_filesystem import *
+from .yandex_ydb_table import *
 from .yandex_ydb_topic import *
+from .yandex_ydb_topic_changefeed import *
+from .yandex_ydb_topic_index import *
 from .ydb_database_dedicated import *
 from .ydb_database_iam_binding import *
 from .ydb_database_serverless import *
@@ -267,6 +295,14 @@ _utilities.register(
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/computeDiskPlacementGroup:ComputeDiskPlacementGroup": "ComputeDiskPlacementGroup"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/computeGpuCluster",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/computeGpuCluster:ComputeGpuCluster": "ComputeGpuCluster"
   }
  },
  {
@@ -519,6 +555,38 @@ _utilities.register(
  },
  {
   "pkg": "yandex",
+  "mod": "index/kmsAsymetricEncryptionKey",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/kmsAsymetricEncryptionKey:KmsAsymetricEncryptionKey": "KmsAsymetricEncryptionKey"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/kmsAsymetricEncryptionKeyIamBinding",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/kmsAsymetricEncryptionKeyIamBinding:KmsAsymetricEncryptionKeyIamBinding": "KmsAsymetricEncryptionKeyIamBinding"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/kmsAsymetricSignatureKey",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/kmsAsymetricSignatureKey:KmsAsymetricSignatureKey": "KmsAsymetricSignatureKey"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/kmsAsymetricSignatureKeyBinding",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/kmsAsymetricSignatureKeyBinding:KmsAsymetricSignatureKeyBinding": "KmsAsymetricSignatureKeyBinding"
+  }
+ },
+ {
+  "pkg": "yandex",
   "mod": "index/kmsSecretCiphertext",
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
@@ -583,6 +651,14 @@ _utilities.register(
  },
  {
   "pkg": "yandex",
+  "mod": "index/lockboxSecretIamBinding",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/lockboxSecretIamBinding:lockboxSecretIamBinding": "LockboxSecretIamBinding"
+  }
+ },
+ {
+  "pkg": "yandex",
   "mod": "index/lockboxSecretVersion",
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
@@ -643,6 +719,14 @@ _utilities.register(
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/mdbKafkaTopic:MdbKafkaTopic": "MdbKafkaTopic"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/mdbKafkaUser",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/mdbKafkaUser:mdbKafkaUser": "MdbKafkaUser"
   }
  },
  {
@@ -727,6 +811,14 @@ _utilities.register(
  },
  {
   "pkg": "yandex",
+  "mod": "index/monitoringDashboard",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/monitoringDashboard:monitoringDashboard": "MonitoringDashboard"
+  }
+ },
+ {
+  "pkg": "yandex",
   "mod": "index/organizationManagerOrganizationIamBinding",
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
@@ -771,6 +863,14 @@ _utilities.register(
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/organizationmanagerSamlFederation:OrganizationmanagerSamlFederation": "OrganizationmanagerSamlFederation"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/organizationmanagerSamlFederationUserAccount",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/organizationmanagerSamlFederationUserAccount:organizationmanagerSamlFederationUserAccount": "OrganizationmanagerSamlFederationUserAccount"
   }
  },
  {
@@ -927,14 +1027,6 @@ _utilities.register(
  },
  {
   "pkg": "yandex",
-  "mod": "index/yandexBillingCloudBinding",
-  "fqn": "pulumi_yandex_unofficial",
-  "classes": {
-   "yandex:index/yandexBillingCloudBinding:yandexBillingCloudBinding": "YandexBillingCloudBinding"
-  }
- },
- {
-  "pkg": "yandex",
   "mod": "index/yandexComputeFilesystem",
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
@@ -943,10 +1035,34 @@ _utilities.register(
  },
  {
   "pkg": "yandex",
+  "mod": "index/yandexYdbTable",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/yandexYdbTable:yandexYdbTable": "YandexYdbTable"
+  }
+ },
+ {
+  "pkg": "yandex",
   "mod": "index/yandexYdbTopic",
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/yandexYdbTopic:yandexYdbTopic": "YandexYdbTopic"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/yandexYdbTopicChangefeed",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/yandexYdbTopicChangefeed:yandexYdbTopicChangefeed": "YandexYdbTopicChangefeed"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/yandexYdbTopicIndex",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/yandexYdbTopicIndex:yandexYdbTopicIndex": "YandexYdbTopicIndex"
   }
  },
  {

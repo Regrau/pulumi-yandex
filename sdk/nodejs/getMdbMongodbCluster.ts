@@ -46,6 +46,10 @@ export function getMdbMongodbCluster(args?: GetMdbMongodbClusterArgs, opts?: pul
         "name": args.name,
         "networkId": args.networkId,
         "resources": args.resources,
+        "resourcesMongocfg": args.resourcesMongocfg,
+        "resourcesMongod": args.resourcesMongod,
+        "resourcesMongoinfra": args.resourcesMongoinfra,
+        "resourcesMongos": args.resourcesMongos,
         "restore": args.restore,
         "securityGroupIds": args.securityGroupIds,
         "sharded": args.sharded,
@@ -110,8 +114,14 @@ export interface GetMdbMongodbClusterArgs {
     networkId?: string;
     /**
      * Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+     *
+     * @deprecated to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
      */
     resources?: inputs.GetMdbMongodbClusterResources;
+    resourcesMongocfg?: inputs.GetMdbMongodbClusterResourcesMongocfg;
+    resourcesMongod?: inputs.GetMdbMongodbClusterResourcesMongod;
+    resourcesMongoinfra?: inputs.GetMdbMongodbClusterResourcesMongoinfra;
+    resourcesMongos?: inputs.GetMdbMongodbClusterResourcesMongos;
     restore?: inputs.GetMdbMongodbClusterRestore;
     /**
      * A set of ids of security groups assigned to hosts of the cluster.
@@ -185,8 +195,14 @@ export interface GetMdbMongodbClusterResult {
     readonly networkId?: string;
     /**
      * Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+     *
+     * @deprecated to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
      */
     readonly resources?: outputs.GetMdbMongodbClusterResources;
+    readonly resourcesMongocfg?: outputs.GetMdbMongodbClusterResourcesMongocfg;
+    readonly resourcesMongod?: outputs.GetMdbMongodbClusterResourcesMongod;
+    readonly resourcesMongoinfra?: outputs.GetMdbMongodbClusterResourcesMongoinfra;
+    readonly resourcesMongos?: outputs.GetMdbMongodbClusterResourcesMongos;
     readonly restore?: outputs.GetMdbMongodbClusterRestore;
     /**
      * A set of ids of security groups assigned to hosts of the cluster.
@@ -266,8 +282,14 @@ export interface GetMdbMongodbClusterOutputArgs {
     networkId?: pulumi.Input<string>;
     /**
      * Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+     *
+     * @deprecated to manage `resources`s, please switch to using a separate resource type `resources_mongo*`
      */
     resources?: pulumi.Input<inputs.GetMdbMongodbClusterResourcesArgs>;
+    resourcesMongocfg?: pulumi.Input<inputs.GetMdbMongodbClusterResourcesMongocfgArgs>;
+    resourcesMongod?: pulumi.Input<inputs.GetMdbMongodbClusterResourcesMongodArgs>;
+    resourcesMongoinfra?: pulumi.Input<inputs.GetMdbMongodbClusterResourcesMongoinfraArgs>;
+    resourcesMongos?: pulumi.Input<inputs.GetMdbMongodbClusterResourcesMongosArgs>;
     restore?: pulumi.Input<inputs.GetMdbMongodbClusterRestoreArgs>;
     /**
      * A set of ids of security groups assigned to hosts of the cluster.

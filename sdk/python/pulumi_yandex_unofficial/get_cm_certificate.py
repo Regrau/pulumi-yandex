@@ -22,7 +22,7 @@ class GetCmCertificateResult:
     """
     A collection of values returned by getCmCertificate.
     """
-    def __init__(__self__, certificate_id=None, challenges=None, created_at=None, description=None, domains=None, folder_id=None, id=None, issued_at=None, issuer=None, labels=None, name=None, not_after=None, not_before=None, serial=None, status=None, subject=None, type=None, updated_at=None, wait_validation=None):
+    def __init__(__self__, certificate_id=None, challenges=None, created_at=None, deletion_protection=None, description=None, domains=None, folder_id=None, id=None, issued_at=None, issuer=None, labels=None, name=None, not_after=None, not_before=None, serial=None, status=None, subject=None, type=None, updated_at=None, wait_validation=None):
         if certificate_id and not isinstance(certificate_id, str):
             raise TypeError("Expected argument 'certificate_id' to be a str")
         pulumi.set(__self__, "certificate_id", certificate_id)
@@ -32,6 +32,9 @@ class GetCmCertificateResult:
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
+        if deletion_protection and not isinstance(deletion_protection, bool):
+            raise TypeError("Expected argument 'deletion_protection' to be a bool")
+        pulumi.set(__self__, "deletion_protection", deletion_protection)
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
@@ -95,6 +98,11 @@ class GetCmCertificateResult:
     @pulumi.getter(name="createdAt")
     def created_at(self) -> str:
         return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> bool:
+        return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter
@@ -189,6 +197,7 @@ class AwaitableGetCmCertificateResult(GetCmCertificateResult):
             certificate_id=self.certificate_id,
             challenges=self.challenges,
             created_at=self.created_at,
+            deletion_protection=self.deletion_protection,
             description=self.description,
             domains=self.domains,
             folder_id=self.folder_id,
@@ -231,6 +240,7 @@ def get_cm_certificate(certificate_id: Optional[str] = None,
         certificate_id=__ret__.certificate_id,
         challenges=__ret__.challenges,
         created_at=__ret__.created_at,
+        deletion_protection=__ret__.deletion_protection,
         description=__ret__.description,
         domains=__ret__.domains,
         folder_id=__ret__.folder_id,

@@ -60,6 +60,14 @@ namespace Pulumi.Yandex.Inputs
         [Input("prefix")]
         public Input<string>? Prefix { get; set; }
 
+        [Input("tags")]
+        private InputMap<string>? _tags;
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
+
         [Input("transitions")]
         private InputList<Inputs.StorageBucketLifecycleRuleTransitionGetArgs>? _transitions;
 

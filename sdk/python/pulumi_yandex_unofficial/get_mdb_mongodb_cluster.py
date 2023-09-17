@@ -23,7 +23,7 @@ class GetMdbMongodbClusterResult:
     """
     A collection of values returned by getMdbMongodbCluster.
     """
-    def __init__(__self__, cluster_config=None, cluster_id=None, created_at=None, databases=None, deletion_protection=None, description=None, environment=None, folder_id=None, health=None, hosts=None, id=None, labels=None, maintenance_window=None, name=None, network_id=None, resources=None, restore=None, security_group_ids=None, sharded=None, status=None, users=None):
+    def __init__(__self__, cluster_config=None, cluster_id=None, created_at=None, databases=None, deletion_protection=None, description=None, environment=None, folder_id=None, health=None, hosts=None, id=None, labels=None, maintenance_window=None, name=None, network_id=None, resources=None, resources_mongocfg=None, resources_mongod=None, resources_mongoinfra=None, resources_mongos=None, restore=None, security_group_ids=None, sharded=None, status=None, users=None):
         if cluster_config and not isinstance(cluster_config, dict):
             raise TypeError("Expected argument 'cluster_config' to be a dict")
         pulumi.set(__self__, "cluster_config", cluster_config)
@@ -71,7 +71,23 @@ class GetMdbMongodbClusterResult:
         pulumi.set(__self__, "network_id", network_id)
         if resources and not isinstance(resources, dict):
             raise TypeError("Expected argument 'resources' to be a dict")
+        if resources is not None:
+            warnings.warn("""to manage `resources`s, please switch to using a separate resource type `resources_mongo*`""", DeprecationWarning)
+            pulumi.log.warn("""resources is deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`""")
+
         pulumi.set(__self__, "resources", resources)
+        if resources_mongocfg and not isinstance(resources_mongocfg, dict):
+            raise TypeError("Expected argument 'resources_mongocfg' to be a dict")
+        pulumi.set(__self__, "resources_mongocfg", resources_mongocfg)
+        if resources_mongod and not isinstance(resources_mongod, dict):
+            raise TypeError("Expected argument 'resources_mongod' to be a dict")
+        pulumi.set(__self__, "resources_mongod", resources_mongod)
+        if resources_mongoinfra and not isinstance(resources_mongoinfra, dict):
+            raise TypeError("Expected argument 'resources_mongoinfra' to be a dict")
+        pulumi.set(__self__, "resources_mongoinfra", resources_mongoinfra)
+        if resources_mongos and not isinstance(resources_mongos, dict):
+            raise TypeError("Expected argument 'resources_mongos' to be a dict")
+        pulumi.set(__self__, "resources_mongos", resources_mongos)
         if restore and not isinstance(restore, dict):
             raise TypeError("Expected argument 'restore' to be a dict")
         pulumi.set(__self__, "restore", restore)
@@ -205,6 +221,26 @@ class GetMdbMongodbClusterResult:
         return pulumi.get(self, "resources")
 
     @property
+    @pulumi.getter(name="resourcesMongocfg")
+    def resources_mongocfg(self) -> Optional['outputs.GetMdbMongodbClusterResourcesMongocfgResult']:
+        return pulumi.get(self, "resources_mongocfg")
+
+    @property
+    @pulumi.getter(name="resourcesMongod")
+    def resources_mongod(self) -> Optional['outputs.GetMdbMongodbClusterResourcesMongodResult']:
+        return pulumi.get(self, "resources_mongod")
+
+    @property
+    @pulumi.getter(name="resourcesMongoinfra")
+    def resources_mongoinfra(self) -> Optional['outputs.GetMdbMongodbClusterResourcesMongoinfraResult']:
+        return pulumi.get(self, "resources_mongoinfra")
+
+    @property
+    @pulumi.getter(name="resourcesMongos")
+    def resources_mongos(self) -> Optional['outputs.GetMdbMongodbClusterResourcesMongosResult']:
+        return pulumi.get(self, "resources_mongos")
+
+    @property
     @pulumi.getter
     def restore(self) -> Optional['outputs.GetMdbMongodbClusterRestoreResult']:
         return pulumi.get(self, "restore")
@@ -264,6 +300,10 @@ class AwaitableGetMdbMongodbClusterResult(GetMdbMongodbClusterResult):
             name=self.name,
             network_id=self.network_id,
             resources=self.resources,
+            resources_mongocfg=self.resources_mongocfg,
+            resources_mongod=self.resources_mongod,
+            resources_mongoinfra=self.resources_mongoinfra,
+            resources_mongos=self.resources_mongos,
             restore=self.restore,
             security_group_ids=self.security_group_ids,
             sharded=self.sharded,
@@ -286,6 +326,10 @@ def get_mdb_mongodb_cluster(cluster_config: Optional[pulumi.InputType['GetMdbMon
                             name: Optional[str] = None,
                             network_id: Optional[str] = None,
                             resources: Optional[pulumi.InputType['GetMdbMongodbClusterResourcesArgs']] = None,
+                            resources_mongocfg: Optional[pulumi.InputType['GetMdbMongodbClusterResourcesMongocfgArgs']] = None,
+                            resources_mongod: Optional[pulumi.InputType['GetMdbMongodbClusterResourcesMongodArgs']] = None,
+                            resources_mongoinfra: Optional[pulumi.InputType['GetMdbMongodbClusterResourcesMongoinfraArgs']] = None,
+                            resources_mongos: Optional[pulumi.InputType['GetMdbMongodbClusterResourcesMongosArgs']] = None,
                             restore: Optional[pulumi.InputType['GetMdbMongodbClusterRestoreArgs']] = None,
                             security_group_ids: Optional[Sequence[str]] = None,
                             sharded: Optional[bool] = None,
@@ -341,6 +385,10 @@ def get_mdb_mongodb_cluster(cluster_config: Optional[pulumi.InputType['GetMdbMon
     __args__['name'] = name
     __args__['networkId'] = network_id
     __args__['resources'] = resources
+    __args__['resourcesMongocfg'] = resources_mongocfg
+    __args__['resourcesMongod'] = resources_mongod
+    __args__['resourcesMongoinfra'] = resources_mongoinfra
+    __args__['resourcesMongos'] = resources_mongos
     __args__['restore'] = restore
     __args__['securityGroupIds'] = security_group_ids
     __args__['sharded'] = sharded
@@ -366,6 +414,10 @@ def get_mdb_mongodb_cluster(cluster_config: Optional[pulumi.InputType['GetMdbMon
         name=__ret__.name,
         network_id=__ret__.network_id,
         resources=__ret__.resources,
+        resources_mongocfg=__ret__.resources_mongocfg,
+        resources_mongod=__ret__.resources_mongod,
+        resources_mongoinfra=__ret__.resources_mongoinfra,
+        resources_mongos=__ret__.resources_mongos,
         restore=__ret__.restore,
         security_group_ids=__ret__.security_group_ids,
         sharded=__ret__.sharded,
@@ -389,6 +441,10 @@ def get_mdb_mongodb_cluster_output(cluster_config: Optional[pulumi.Input[Optiona
                                    name: Optional[pulumi.Input[Optional[str]]] = None,
                                    network_id: Optional[pulumi.Input[Optional[str]]] = None,
                                    resources: Optional[pulumi.Input[Optional[pulumi.InputType['GetMdbMongodbClusterResourcesArgs']]]] = None,
+                                   resources_mongocfg: Optional[pulumi.Input[Optional[pulumi.InputType['GetMdbMongodbClusterResourcesMongocfgArgs']]]] = None,
+                                   resources_mongod: Optional[pulumi.Input[Optional[pulumi.InputType['GetMdbMongodbClusterResourcesMongodArgs']]]] = None,
+                                   resources_mongoinfra: Optional[pulumi.Input[Optional[pulumi.InputType['GetMdbMongodbClusterResourcesMongoinfraArgs']]]] = None,
+                                   resources_mongos: Optional[pulumi.Input[Optional[pulumi.InputType['GetMdbMongodbClusterResourcesMongosArgs']]]] = None,
                                    restore: Optional[pulumi.Input[Optional[pulumi.InputType['GetMdbMongodbClusterRestoreArgs']]]] = None,
                                    security_group_ids: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
                                    sharded: Optional[pulumi.Input[Optional[bool]]] = None,

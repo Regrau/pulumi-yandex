@@ -163,14 +163,14 @@ namespace Pulumi.Yandex.Inputs
         public bool Slice { get; set; }
 
         [Input("staticRequestHeaders", required: true)]
-        private List<string>? _staticRequestHeaders;
+        private Dictionary<string, string>? _staticRequestHeaders;
 
         /// <summary>
         /// set up custom headers that CDN servers send in requests to origins.
         /// </summary>
-        public List<string> StaticRequestHeaders
+        public Dictionary<string, string> StaticRequestHeaders
         {
-            get => _staticRequestHeaders ?? (_staticRequestHeaders = new List<string>());
+            get => _staticRequestHeaders ?? (_staticRequestHeaders = new Dictionary<string, string>());
             set => _staticRequestHeaders = value;
         }
 

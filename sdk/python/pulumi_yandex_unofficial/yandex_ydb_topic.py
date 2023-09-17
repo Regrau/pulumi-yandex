@@ -19,9 +19,12 @@ class YandexYdbTopicArgs:
                  database_endpoint: pulumi.Input[str],
                  consumers: Optional[pulumi.Input[Sequence[pulumi.Input['YandexYdbTopicConsumerArgs']]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 metering_mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 partition_write_speed_kbps: Optional[pulumi.Input[int]] = None,
                  partitions_count: Optional[pulumi.Input[int]] = None,
-                 retention_period_ms: Optional[pulumi.Input[int]] = None,
+                 retention_period_hours: Optional[pulumi.Input[int]] = None,
+                 retention_storage_mb: Optional[pulumi.Input[int]] = None,
                  supported_codecs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a YandexYdbTopic resource.
@@ -29,7 +32,6 @@ class YandexYdbTopicArgs:
         :param pulumi.Input[Sequence[pulumi.Input['YandexYdbTopicConsumerArgs']]] consumers: Topic Readers. Types: array[consumer], optional. Default value: null.
         :param pulumi.Input[str] name: Topic name. Type: string, required. Default value: "".
         :param pulumi.Input[int] partitions_count: Number of partitions. Types: integer, optional. Default value: 2.
-        :param pulumi.Input[int] retention_period_ms: Data retention time. Types: integer, required. Default value: 86400000
         :param pulumi.Input[Sequence[pulumi.Input[str]]] supported_codecs: Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
         """
         pulumi.set(__self__, "database_endpoint", database_endpoint)
@@ -37,12 +39,18 @@ class YandexYdbTopicArgs:
             pulumi.set(__self__, "consumers", consumers)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if metering_mode is not None:
+            pulumi.set(__self__, "metering_mode", metering_mode)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if partition_write_speed_kbps is not None:
+            pulumi.set(__self__, "partition_write_speed_kbps", partition_write_speed_kbps)
         if partitions_count is not None:
             pulumi.set(__self__, "partitions_count", partitions_count)
-        if retention_period_ms is not None:
-            pulumi.set(__self__, "retention_period_ms", retention_period_ms)
+        if retention_period_hours is not None:
+            pulumi.set(__self__, "retention_period_hours", retention_period_hours)
+        if retention_storage_mb is not None:
+            pulumi.set(__self__, "retention_storage_mb", retention_storage_mb)
         if supported_codecs is not None:
             pulumi.set(__self__, "supported_codecs", supported_codecs)
 
@@ -80,6 +88,15 @@ class YandexYdbTopicArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="meteringMode")
+    def metering_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "metering_mode")
+
+    @metering_mode.setter
+    def metering_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "metering_mode", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -90,6 +107,15 @@ class YandexYdbTopicArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="partitionWriteSpeedKbps")
+    def partition_write_speed_kbps(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "partition_write_speed_kbps")
+
+    @partition_write_speed_kbps.setter
+    def partition_write_speed_kbps(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "partition_write_speed_kbps", value)
 
     @property
     @pulumi.getter(name="partitionsCount")
@@ -104,16 +130,22 @@ class YandexYdbTopicArgs:
         pulumi.set(self, "partitions_count", value)
 
     @property
-    @pulumi.getter(name="retentionPeriodMs")
-    def retention_period_ms(self) -> Optional[pulumi.Input[int]]:
-        """
-        Data retention time. Types: integer, required. Default value: 86400000
-        """
-        return pulumi.get(self, "retention_period_ms")
+    @pulumi.getter(name="retentionPeriodHours")
+    def retention_period_hours(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "retention_period_hours")
 
-    @retention_period_ms.setter
-    def retention_period_ms(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "retention_period_ms", value)
+    @retention_period_hours.setter
+    def retention_period_hours(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retention_period_hours", value)
+
+    @property
+    @pulumi.getter(name="retentionStorageMb")
+    def retention_storage_mb(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "retention_storage_mb")
+
+    @retention_storage_mb.setter
+    def retention_storage_mb(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retention_storage_mb", value)
 
     @property
     @pulumi.getter(name="supportedCodecs")
@@ -134,9 +166,12 @@ class _YandexYdbTopicState:
                  consumers: Optional[pulumi.Input[Sequence[pulumi.Input['YandexYdbTopicConsumerArgs']]]] = None,
                  database_endpoint: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 metering_mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 partition_write_speed_kbps: Optional[pulumi.Input[int]] = None,
                  partitions_count: Optional[pulumi.Input[int]] = None,
-                 retention_period_ms: Optional[pulumi.Input[int]] = None,
+                 retention_period_hours: Optional[pulumi.Input[int]] = None,
+                 retention_storage_mb: Optional[pulumi.Input[int]] = None,
                  supported_codecs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering YandexYdbTopic resources.
@@ -144,7 +179,6 @@ class _YandexYdbTopicState:
         :param pulumi.Input[str] database_endpoint: YDB database endpoint. Types: string, required. Default value: "".
         :param pulumi.Input[str] name: Topic name. Type: string, required. Default value: "".
         :param pulumi.Input[int] partitions_count: Number of partitions. Types: integer, optional. Default value: 2.
-        :param pulumi.Input[int] retention_period_ms: Data retention time. Types: integer, required. Default value: 86400000
         :param pulumi.Input[Sequence[pulumi.Input[str]]] supported_codecs: Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
         """
         if consumers is not None:
@@ -153,12 +187,18 @@ class _YandexYdbTopicState:
             pulumi.set(__self__, "database_endpoint", database_endpoint)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if metering_mode is not None:
+            pulumi.set(__self__, "metering_mode", metering_mode)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if partition_write_speed_kbps is not None:
+            pulumi.set(__self__, "partition_write_speed_kbps", partition_write_speed_kbps)
         if partitions_count is not None:
             pulumi.set(__self__, "partitions_count", partitions_count)
-        if retention_period_ms is not None:
-            pulumi.set(__self__, "retention_period_ms", retention_period_ms)
+        if retention_period_hours is not None:
+            pulumi.set(__self__, "retention_period_hours", retention_period_hours)
+        if retention_storage_mb is not None:
+            pulumi.set(__self__, "retention_storage_mb", retention_storage_mb)
         if supported_codecs is not None:
             pulumi.set(__self__, "supported_codecs", supported_codecs)
 
@@ -196,6 +236,15 @@ class _YandexYdbTopicState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="meteringMode")
+    def metering_mode(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "metering_mode")
+
+    @metering_mode.setter
+    def metering_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "metering_mode", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -206,6 +255,15 @@ class _YandexYdbTopicState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="partitionWriteSpeedKbps")
+    def partition_write_speed_kbps(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "partition_write_speed_kbps")
+
+    @partition_write_speed_kbps.setter
+    def partition_write_speed_kbps(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "partition_write_speed_kbps", value)
 
     @property
     @pulumi.getter(name="partitionsCount")
@@ -220,16 +278,22 @@ class _YandexYdbTopicState:
         pulumi.set(self, "partitions_count", value)
 
     @property
-    @pulumi.getter(name="retentionPeriodMs")
-    def retention_period_ms(self) -> Optional[pulumi.Input[int]]:
-        """
-        Data retention time. Types: integer, required. Default value: 86400000
-        """
-        return pulumi.get(self, "retention_period_ms")
+    @pulumi.getter(name="retentionPeriodHours")
+    def retention_period_hours(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "retention_period_hours")
 
-    @retention_period_ms.setter
-    def retention_period_ms(self, value: Optional[pulumi.Input[int]]):
-        pulumi.set(self, "retention_period_ms", value)
+    @retention_period_hours.setter
+    def retention_period_hours(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retention_period_hours", value)
+
+    @property
+    @pulumi.getter(name="retentionStorageMb")
+    def retention_storage_mb(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "retention_storage_mb")
+
+    @retention_storage_mb.setter
+    def retention_storage_mb(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "retention_storage_mb", value)
 
     @property
     @pulumi.getter(name="supportedCodecs")
@@ -252,39 +316,18 @@ class YandexYdbTopic(pulumi.CustomResource):
                  consumers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['YandexYdbTopicConsumerArgs']]]]] = None,
                  database_endpoint: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 metering_mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 partition_write_speed_kbps: Optional[pulumi.Input[int]] = None,
                  partitions_count: Optional[pulumi.Input[int]] = None,
-                 retention_period_ms: Optional[pulumi.Input[int]] = None,
+                 retention_period_hours: Optional[pulumi.Input[int]] = None,
+                 retention_storage_mb: Optional[pulumi.Input[int]] = None,
                  supported_codecs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         Get information about a Yandex YDB Topics. For more information, see
         [the official documentation](https://cloud.yandex.ru/docs/ydb/concepts/#ydb).
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_yandex_unofficial as yandex
-
-        database_name = yandex.YdbDatabaseServerless("databaseName", location_id="ru-central1")
-        topic = yandex.YandexYdbTopic("topic",
-            consumers=[yandex.YandexYdbTopicConsumerArgs(
-                name="consumer-name",
-                starting_message_timestamp_ms=0,
-                supported_codecs=[
-                    "raw",
-                    "gzip",
-                ],
-            )],
-            database_endpoint=database_name.ydb_full_endpoint,
-            partitions_count=1,
-            retention_period_ms=2000000,
-            supported_codecs=[
-                "raw",
-                "gzip",
-            ])
-        ```
         ## Consumer data type description
 
         * `name` - Reader's name. Type: string, required. Default value: "".
@@ -297,7 +340,6 @@ class YandexYdbTopic(pulumi.CustomResource):
         :param pulumi.Input[str] database_endpoint: YDB database endpoint. Types: string, required. Default value: "".
         :param pulumi.Input[str] name: Topic name. Type: string, required. Default value: "".
         :param pulumi.Input[int] partitions_count: Number of partitions. Types: integer, optional. Default value: 2.
-        :param pulumi.Input[int] retention_period_ms: Data retention time. Types: integer, required. Default value: 86400000
         :param pulumi.Input[Sequence[pulumi.Input[str]]] supported_codecs: Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
         """
         ...
@@ -310,30 +352,6 @@ class YandexYdbTopic(pulumi.CustomResource):
         Get information about a Yandex YDB Topics. For more information, see
         [the official documentation](https://cloud.yandex.ru/docs/ydb/concepts/#ydb).
 
-        ## Example Usage
-
-        ```python
-        import pulumi
-        import pulumi_yandex_unofficial as yandex
-
-        database_name = yandex.YdbDatabaseServerless("databaseName", location_id="ru-central1")
-        topic = yandex.YandexYdbTopic("topic",
-            consumers=[yandex.YandexYdbTopicConsumerArgs(
-                name="consumer-name",
-                starting_message_timestamp_ms=0,
-                supported_codecs=[
-                    "raw",
-                    "gzip",
-                ],
-            )],
-            database_endpoint=database_name.ydb_full_endpoint,
-            partitions_count=1,
-            retention_period_ms=2000000,
-            supported_codecs=[
-                "raw",
-                "gzip",
-            ])
-        ```
         ## Consumer data type description
 
         * `name` - Reader's name. Type: string, required. Default value: "".
@@ -358,9 +376,12 @@ class YandexYdbTopic(pulumi.CustomResource):
                  consumers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['YandexYdbTopicConsumerArgs']]]]] = None,
                  database_endpoint: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 metering_mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 partition_write_speed_kbps: Optional[pulumi.Input[int]] = None,
                  partitions_count: Optional[pulumi.Input[int]] = None,
-                 retention_period_ms: Optional[pulumi.Input[int]] = None,
+                 retention_period_hours: Optional[pulumi.Input[int]] = None,
+                 retention_storage_mb: Optional[pulumi.Input[int]] = None,
                  supported_codecs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -376,9 +397,12 @@ class YandexYdbTopic(pulumi.CustomResource):
                 raise TypeError("Missing required property 'database_endpoint'")
             __props__.__dict__["database_endpoint"] = database_endpoint
             __props__.__dict__["description"] = description
+            __props__.__dict__["metering_mode"] = metering_mode
             __props__.__dict__["name"] = name
+            __props__.__dict__["partition_write_speed_kbps"] = partition_write_speed_kbps
             __props__.__dict__["partitions_count"] = partitions_count
-            __props__.__dict__["retention_period_ms"] = retention_period_ms
+            __props__.__dict__["retention_period_hours"] = retention_period_hours
+            __props__.__dict__["retention_storage_mb"] = retention_storage_mb
             __props__.__dict__["supported_codecs"] = supported_codecs
         super(YandexYdbTopic, __self__).__init__(
             'yandex:index/yandexYdbTopic:yandexYdbTopic',
@@ -393,9 +417,12 @@ class YandexYdbTopic(pulumi.CustomResource):
             consumers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['YandexYdbTopicConsumerArgs']]]]] = None,
             database_endpoint: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            metering_mode: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            partition_write_speed_kbps: Optional[pulumi.Input[int]] = None,
             partitions_count: Optional[pulumi.Input[int]] = None,
-            retention_period_ms: Optional[pulumi.Input[int]] = None,
+            retention_period_hours: Optional[pulumi.Input[int]] = None,
+            retention_storage_mb: Optional[pulumi.Input[int]] = None,
             supported_codecs: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'YandexYdbTopic':
         """
         Get an existing YandexYdbTopic resource's state with the given name, id, and optional extra
@@ -408,7 +435,6 @@ class YandexYdbTopic(pulumi.CustomResource):
         :param pulumi.Input[str] database_endpoint: YDB database endpoint. Types: string, required. Default value: "".
         :param pulumi.Input[str] name: Topic name. Type: string, required. Default value: "".
         :param pulumi.Input[int] partitions_count: Number of partitions. Types: integer, optional. Default value: 2.
-        :param pulumi.Input[int] retention_period_ms: Data retention time. Types: integer, required. Default value: 86400000
         :param pulumi.Input[Sequence[pulumi.Input[str]]] supported_codecs: Supported data encodings. Types: array[string]. Default value: ["gzip", "raw", "zstd"].
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -418,9 +444,12 @@ class YandexYdbTopic(pulumi.CustomResource):
         __props__.__dict__["consumers"] = consumers
         __props__.__dict__["database_endpoint"] = database_endpoint
         __props__.__dict__["description"] = description
+        __props__.__dict__["metering_mode"] = metering_mode
         __props__.__dict__["name"] = name
+        __props__.__dict__["partition_write_speed_kbps"] = partition_write_speed_kbps
         __props__.__dict__["partitions_count"] = partitions_count
-        __props__.__dict__["retention_period_ms"] = retention_period_ms
+        __props__.__dict__["retention_period_hours"] = retention_period_hours
+        __props__.__dict__["retention_storage_mb"] = retention_storage_mb
         __props__.__dict__["supported_codecs"] = supported_codecs
         return YandexYdbTopic(resource_name, opts=opts, __props__=__props__)
 
@@ -446,6 +475,11 @@ class YandexYdbTopic(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="meteringMode")
+    def metering_mode(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "metering_mode")
+
+    @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
@@ -454,20 +488,27 @@ class YandexYdbTopic(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="partitionWriteSpeedKbps")
+    def partition_write_speed_kbps(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "partition_write_speed_kbps")
+
+    @property
     @pulumi.getter(name="partitionsCount")
-    def partitions_count(self) -> pulumi.Output[Optional[int]]:
+    def partitions_count(self) -> pulumi.Output[int]:
         """
         Number of partitions. Types: integer, optional. Default value: 2.
         """
         return pulumi.get(self, "partitions_count")
 
     @property
-    @pulumi.getter(name="retentionPeriodMs")
-    def retention_period_ms(self) -> pulumi.Output[Optional[int]]:
-        """
-        Data retention time. Types: integer, required. Default value: 86400000
-        """
-        return pulumi.get(self, "retention_period_ms")
+    @pulumi.getter(name="retentionPeriodHours")
+    def retention_period_hours(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "retention_period_hours")
+
+    @property
+    @pulumi.getter(name="retentionStorageMb")
+    def retention_storage_mb(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "retention_storage_mb")
 
     @property
     @pulumi.getter(name="supportedCodecs")

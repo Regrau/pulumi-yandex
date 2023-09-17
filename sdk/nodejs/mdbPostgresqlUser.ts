@@ -91,6 +91,10 @@ export class MdbPostgresqlUser extends pulumi.CustomResource {
      */
     public readonly connLimit!: pulumi.Output<number>;
     /**
+     * Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+     */
+    public readonly deletionProtection!: pulumi.Output<string | undefined>;
+    /**
      * List of the user's grants.
      */
     public readonly grants!: pulumi.Output<string[]>;
@@ -130,6 +134,7 @@ export class MdbPostgresqlUser extends pulumi.CustomResource {
             const state = argsOrState as MdbPostgresqlUserState | undefined;
             resourceInputs["clusterId"] = state ? state.clusterId : undefined;
             resourceInputs["connLimit"] = state ? state.connLimit : undefined;
+            resourceInputs["deletionProtection"] = state ? state.deletionProtection : undefined;
             resourceInputs["grants"] = state ? state.grants : undefined;
             resourceInputs["login"] = state ? state.login : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
@@ -146,6 +151,7 @@ export class MdbPostgresqlUser extends pulumi.CustomResource {
             }
             resourceInputs["clusterId"] = args ? args.clusterId : undefined;
             resourceInputs["connLimit"] = args ? args.connLimit : undefined;
+            resourceInputs["deletionProtection"] = args ? args.deletionProtection : undefined;
             resourceInputs["grants"] = args ? args.grants : undefined;
             resourceInputs["login"] = args ? args.login : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
@@ -169,6 +175,10 @@ export interface MdbPostgresqlUserState {
      * The maximum number of connections per user. (Default 50)
      */
     connLimit?: pulumi.Input<number>;
+    /**
+     * Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+     */
+    deletionProtection?: pulumi.Input<string>;
     /**
      * List of the user's grants.
      */
@@ -204,6 +214,10 @@ export interface MdbPostgresqlUserArgs {
      * The maximum number of connections per user. (Default 50)
      */
     connLimit?: pulumi.Input<number>;
+    /**
+     * Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+     */
+    deletionProtection?: pulumi.Input<string>;
     /**
      * List of the user's grants.
      */

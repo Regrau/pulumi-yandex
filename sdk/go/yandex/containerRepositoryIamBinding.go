@@ -88,6 +88,8 @@ type ContainerRepositoryIamBinding struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
 	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members pulumi.StringArrayOutput `pulumi:"members"`
 	// The [Yandex Container Repository](https://cloud.yandex.com/docs/container-registry/concepts/repository) ID to apply a binding to.
@@ -140,6 +142,8 @@ type containerRepositoryIamBindingState struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
 	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members []string `pulumi:"members"`
 	// The [Yandex Container Repository](https://cloud.yandex.com/docs/container-registry/concepts/repository) ID to apply a binding to.
@@ -154,6 +158,8 @@ type ContainerRepositoryIamBindingState struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
 	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members pulumi.StringArrayInput
 	// The [Yandex Container Repository](https://cloud.yandex.com/docs/container-registry/concepts/repository) ID to apply a binding to.
@@ -172,6 +178,8 @@ type containerRepositoryIamBindingArgs struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
 	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members []string `pulumi:"members"`
 	// The [Yandex Container Repository](https://cloud.yandex.com/docs/container-registry/concepts/repository) ID to apply a binding to.
@@ -187,6 +195,8 @@ type ContainerRepositoryIamBindingArgs struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
 	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members pulumi.StringArrayInput
 	// The [Yandex Container Repository](https://cloud.yandex.com/docs/container-registry/concepts/repository) ID to apply a binding to.
@@ -287,6 +297,8 @@ func (o ContainerRepositoryIamBindingOutput) ToContainerRepositoryIamBindingOutp
 // Each entry can have one of the following values:
 // * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 // * **serviceAccount:{service_account_id}**: A unique service account ID.
+// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+// * **group:{group_id}**: A unique group ID.
 // * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 func (o ContainerRepositoryIamBindingOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ContainerRepositoryIamBinding) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)

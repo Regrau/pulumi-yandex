@@ -52,8 +52,8 @@ namespace Pulumi.Yandex.Inputs
         /// <summary>
         /// Type of maintenance window. Can be either `ANYTIME` or `WEEKLY`. A day and hour of window need to be specified with weekly window.
         /// </summary>
-        [Input("type", required: true)]
-        public string Type { get; set; } = null!;
+        [Input("type")]
+        public string? Type { get; set; }
 
         /// <summary>
         /// The availability zone where the MongoDB host will be created.

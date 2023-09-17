@@ -21,7 +21,6 @@ class MdbMongodbClusterArgs:
                  environment: pulumi.Input[str],
                  hosts: pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterHostArgs']]],
                  network_id: pulumi.Input[str],
-                 resources: pulumi.Input['MdbMongodbClusterResourcesArgs'],
                  users: pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterUserArgs']]],
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  deletion_protection: Optional[pulumi.Input[bool]] = None,
@@ -30,6 +29,11 @@ class MdbMongodbClusterArgs:
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  maintenance_window: Optional[pulumi.Input['MdbMongodbClusterMaintenanceWindowArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 resources: Optional[pulumi.Input['MdbMongodbClusterResourcesArgs']] = None,
+                 resources_mongocfg: Optional[pulumi.Input['MdbMongodbClusterResourcesMongocfgArgs']] = None,
+                 resources_mongod: Optional[pulumi.Input['MdbMongodbClusterResourcesMongodArgs']] = None,
+                 resources_mongoinfra: Optional[pulumi.Input['MdbMongodbClusterResourcesMongoinfraArgs']] = None,
+                 resources_mongos: Optional[pulumi.Input['MdbMongodbClusterResourcesMongosArgs']] = None,
                  restore: Optional[pulumi.Input['MdbMongodbClusterRestoreArgs']] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
         """
@@ -39,7 +43,6 @@ class MdbMongodbClusterArgs:
         :param pulumi.Input[str] environment: Deployment environment of the MongoDB cluster. Can be either `PRESTABLE` or `PRODUCTION`.
         :param pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterHostArgs']]] hosts: A host of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input[str] network_id: ID of the network, to which the MongoDB cluster belongs.
-        :param pulumi.Input['MdbMongodbClusterResourcesArgs'] resources: Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterUserArgs']]] users: A user of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input[str] cluster_id: The ID of the cluster.
         :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
@@ -48,7 +51,13 @@ class MdbMongodbClusterArgs:
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
                is not provided, the default provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the MongoDB cluster.
+        :param pulumi.Input['MdbMongodbClusterMaintenanceWindowArgs'] maintenance_window: Maintenance window settings of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
+        :param pulumi.Input['MdbMongodbClusterResourcesArgs'] resources: Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterResourcesMongocfgArgs'] resources_mongocfg: Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterResourcesMongodArgs'] resources_mongod: Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterResourcesMongoinfraArgs'] resources_mongoinfra: Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterResourcesMongosArgs'] resources_mongos: Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input['MdbMongodbClusterRestoreArgs'] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         """
@@ -57,7 +66,6 @@ class MdbMongodbClusterArgs:
         pulumi.set(__self__, "environment", environment)
         pulumi.set(__self__, "hosts", hosts)
         pulumi.set(__self__, "network_id", network_id)
-        pulumi.set(__self__, "resources", resources)
         pulumi.set(__self__, "users", users)
         if cluster_id is not None:
             pulumi.set(__self__, "cluster_id", cluster_id)
@@ -73,6 +81,19 @@ class MdbMongodbClusterArgs:
             pulumi.set(__self__, "maintenance_window", maintenance_window)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if resources is not None:
+            warnings.warn("""to manage `resources`s, please switch to using a separate resource type `resources_mongo*`""", DeprecationWarning)
+            pulumi.log.warn("""resources is deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`""")
+        if resources is not None:
+            pulumi.set(__self__, "resources", resources)
+        if resources_mongocfg is not None:
+            pulumi.set(__self__, "resources_mongocfg", resources_mongocfg)
+        if resources_mongod is not None:
+            pulumi.set(__self__, "resources_mongod", resources_mongod)
+        if resources_mongoinfra is not None:
+            pulumi.set(__self__, "resources_mongoinfra", resources_mongoinfra)
+        if resources_mongos is not None:
+            pulumi.set(__self__, "resources_mongos", resources_mongos)
         if restore is not None:
             pulumi.set(__self__, "restore", restore)
         if security_group_ids is not None:
@@ -137,18 +158,6 @@ class MdbMongodbClusterArgs:
     @network_id.setter
     def network_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "network_id", value)
-
-    @property
-    @pulumi.getter
-    def resources(self) -> pulumi.Input['MdbMongodbClusterResourcesArgs']:
-        """
-        Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
-        """
-        return pulumi.get(self, "resources")
-
-    @resources.setter
-    def resources(self, value: pulumi.Input['MdbMongodbClusterResourcesArgs']):
-        pulumi.set(self, "resources", value)
 
     @property
     @pulumi.getter
@@ -227,6 +236,9 @@ class MdbMongodbClusterArgs:
     @property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MdbMongodbClusterMaintenanceWindowArgs']]:
+        """
+        Maintenance window settings of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
@@ -244,6 +256,66 @@ class MdbMongodbClusterArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def resources(self) -> Optional[pulumi.Input['MdbMongodbClusterResourcesArgs']]:
+        """
+        Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources")
+
+    @resources.setter
+    def resources(self, value: Optional[pulumi.Input['MdbMongodbClusterResourcesArgs']]):
+        pulumi.set(self, "resources", value)
+
+    @property
+    @pulumi.getter(name="resourcesMongocfg")
+    def resources_mongocfg(self) -> Optional[pulumi.Input['MdbMongodbClusterResourcesMongocfgArgs']]:
+        """
+        Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources_mongocfg")
+
+    @resources_mongocfg.setter
+    def resources_mongocfg(self, value: Optional[pulumi.Input['MdbMongodbClusterResourcesMongocfgArgs']]):
+        pulumi.set(self, "resources_mongocfg", value)
+
+    @property
+    @pulumi.getter(name="resourcesMongod")
+    def resources_mongod(self) -> Optional[pulumi.Input['MdbMongodbClusterResourcesMongodArgs']]:
+        """
+        Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources_mongod")
+
+    @resources_mongod.setter
+    def resources_mongod(self, value: Optional[pulumi.Input['MdbMongodbClusterResourcesMongodArgs']]):
+        pulumi.set(self, "resources_mongod", value)
+
+    @property
+    @pulumi.getter(name="resourcesMongoinfra")
+    def resources_mongoinfra(self) -> Optional[pulumi.Input['MdbMongodbClusterResourcesMongoinfraArgs']]:
+        """
+        Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources_mongoinfra")
+
+    @resources_mongoinfra.setter
+    def resources_mongoinfra(self, value: Optional[pulumi.Input['MdbMongodbClusterResourcesMongoinfraArgs']]):
+        pulumi.set(self, "resources_mongoinfra", value)
+
+    @property
+    @pulumi.getter(name="resourcesMongos")
+    def resources_mongos(self) -> Optional[pulumi.Input['MdbMongodbClusterResourcesMongosArgs']]:
+        """
+        Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources_mongos")
+
+    @resources_mongos.setter
+    def resources_mongos(self, value: Optional[pulumi.Input['MdbMongodbClusterResourcesMongosArgs']]):
+        pulumi.set(self, "resources_mongos", value)
 
     @property
     @pulumi.getter
@@ -288,6 +360,10 @@ class _MdbMongodbClusterState:
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  resources: Optional[pulumi.Input['MdbMongodbClusterResourcesArgs']] = None,
+                 resources_mongocfg: Optional[pulumi.Input['MdbMongodbClusterResourcesMongocfgArgs']] = None,
+                 resources_mongod: Optional[pulumi.Input['MdbMongodbClusterResourcesMongodArgs']] = None,
+                 resources_mongoinfra: Optional[pulumi.Input['MdbMongodbClusterResourcesMongoinfraArgs']] = None,
+                 resources_mongos: Optional[pulumi.Input['MdbMongodbClusterResourcesMongosArgs']] = None,
                  restore: Optional[pulumi.Input['MdbMongodbClusterRestoreArgs']] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  sharded: Optional[pulumi.Input[bool]] = None,
@@ -308,9 +384,14 @@ class _MdbMongodbClusterState:
         :param pulumi.Input[str] health: The health of the host.
         :param pulumi.Input[Sequence[pulumi.Input['MdbMongodbClusterHostArgs']]] hosts: A host of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the MongoDB cluster.
+        :param pulumi.Input['MdbMongodbClusterMaintenanceWindowArgs'] maintenance_window: Maintenance window settings of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
         :param pulumi.Input[str] network_id: ID of the network, to which the MongoDB cluster belongs.
         :param pulumi.Input['MdbMongodbClusterResourcesArgs'] resources: Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterResourcesMongocfgArgs'] resources_mongocfg: Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterResourcesMongodArgs'] resources_mongod: Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterResourcesMongoinfraArgs'] resources_mongoinfra: Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input['MdbMongodbClusterResourcesMongosArgs'] resources_mongos: Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input['MdbMongodbClusterRestoreArgs'] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         :param pulumi.Input[bool] sharded: MongoDB Cluster mode enabled/disabled.
@@ -347,7 +428,18 @@ class _MdbMongodbClusterState:
         if network_id is not None:
             pulumi.set(__self__, "network_id", network_id)
         if resources is not None:
+            warnings.warn("""to manage `resources`s, please switch to using a separate resource type `resources_mongo*`""", DeprecationWarning)
+            pulumi.log.warn("""resources is deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`""")
+        if resources is not None:
             pulumi.set(__self__, "resources", resources)
+        if resources_mongocfg is not None:
+            pulumi.set(__self__, "resources_mongocfg", resources_mongocfg)
+        if resources_mongod is not None:
+            pulumi.set(__self__, "resources_mongod", resources_mongod)
+        if resources_mongoinfra is not None:
+            pulumi.set(__self__, "resources_mongoinfra", resources_mongoinfra)
+        if resources_mongos is not None:
+            pulumi.set(__self__, "resources_mongos", resources_mongos)
         if restore is not None:
             pulumi.set(__self__, "restore", restore)
         if security_group_ids is not None:
@@ -496,6 +588,9 @@ class _MdbMongodbClusterState:
     @property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> Optional[pulumi.Input['MdbMongodbClusterMaintenanceWindowArgs']]:
+        """
+        Maintenance window settings of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_window")
 
     @maintenance_window.setter
@@ -537,6 +632,54 @@ class _MdbMongodbClusterState:
     @resources.setter
     def resources(self, value: Optional[pulumi.Input['MdbMongodbClusterResourcesArgs']]):
         pulumi.set(self, "resources", value)
+
+    @property
+    @pulumi.getter(name="resourcesMongocfg")
+    def resources_mongocfg(self) -> Optional[pulumi.Input['MdbMongodbClusterResourcesMongocfgArgs']]:
+        """
+        Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources_mongocfg")
+
+    @resources_mongocfg.setter
+    def resources_mongocfg(self, value: Optional[pulumi.Input['MdbMongodbClusterResourcesMongocfgArgs']]):
+        pulumi.set(self, "resources_mongocfg", value)
+
+    @property
+    @pulumi.getter(name="resourcesMongod")
+    def resources_mongod(self) -> Optional[pulumi.Input['MdbMongodbClusterResourcesMongodArgs']]:
+        """
+        Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources_mongod")
+
+    @resources_mongod.setter
+    def resources_mongod(self, value: Optional[pulumi.Input['MdbMongodbClusterResourcesMongodArgs']]):
+        pulumi.set(self, "resources_mongod", value)
+
+    @property
+    @pulumi.getter(name="resourcesMongoinfra")
+    def resources_mongoinfra(self) -> Optional[pulumi.Input['MdbMongodbClusterResourcesMongoinfraArgs']]:
+        """
+        Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources_mongoinfra")
+
+    @resources_mongoinfra.setter
+    def resources_mongoinfra(self, value: Optional[pulumi.Input['MdbMongodbClusterResourcesMongoinfraArgs']]):
+        pulumi.set(self, "resources_mongoinfra", value)
+
+    @property
+    @pulumi.getter(name="resourcesMongos")
+    def resources_mongos(self) -> Optional[pulumi.Input['MdbMongodbClusterResourcesMongosArgs']]:
+        """
+        Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources_mongos")
+
+    @resources_mongos.setter
+    def resources_mongos(self, value: Optional[pulumi.Input['MdbMongodbClusterResourcesMongosArgs']]):
+        pulumi.set(self, "resources_mongos", value)
 
     @property
     @pulumi.getter
@@ -618,6 +761,10 @@ class MdbMongodbCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  resources: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesArgs']]] = None,
+                 resources_mongocfg: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongocfgArgs']]] = None,
+                 resources_mongod: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongodArgs']]] = None,
+                 resources_mongoinfra: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongoinfraArgs']]] = None,
+                 resources_mongos: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongosArgs']]] = None,
                  restore: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterRestoreArgs']]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterUserArgs']]]]] = None,
@@ -658,10 +805,20 @@ class MdbMongodbCluster(pulumi.CustomResource):
                 type="ANYTIME",
             ),
             network_id=foo_vpc_network.id,
-            resources=yandex.MdbMongodbClusterResourcesArgs(
+            resources_mongocfg=yandex.MdbMongodbClusterResourcesMongocfgArgs(
+                disk_size=14,
+                disk_type_id="network-hdd",
+                resource_preset_id="s2.small",
+            ),
+            resources_mongod=yandex.MdbMongodbClusterResourcesMongodArgs(
                 disk_size=16,
                 disk_type_id="network-hdd",
-                resource_preset_id="b1.nano",
+                resource_preset_id="s2.small",
+            ),
+            resources_mongos=yandex.MdbMongodbClusterResourcesMongosArgs(
+                disk_size=14,
+                disk_type_id="network-hdd",
+                resource_preset_id="s2.small",
             ),
             users=[yandex.MdbMongodbClusterUserArgs(
                 name="john",
@@ -693,9 +850,14 @@ class MdbMongodbCluster(pulumi.CustomResource):
                is not provided, the default provider folder is used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterHostArgs']]]] hosts: A host of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the MongoDB cluster.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterMaintenanceWindowArgs']] maintenance_window: Maintenance window settings of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
         :param pulumi.Input[str] network_id: ID of the network, to which the MongoDB cluster belongs.
         :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesArgs']] resources: Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongocfgArgs']] resources_mongocfg: Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongodArgs']] resources_mongod: Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongoinfraArgs']] resources_mongoinfra: Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongosArgs']] resources_mongos: Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input[pulumi.InputType['MdbMongodbClusterRestoreArgs']] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterUserArgs']]]] users: A user of the MongoDB cluster. The structure is documented below.
@@ -742,10 +904,20 @@ class MdbMongodbCluster(pulumi.CustomResource):
                 type="ANYTIME",
             ),
             network_id=foo_vpc_network.id,
-            resources=yandex.MdbMongodbClusterResourcesArgs(
+            resources_mongocfg=yandex.MdbMongodbClusterResourcesMongocfgArgs(
+                disk_size=14,
+                disk_type_id="network-hdd",
+                resource_preset_id="s2.small",
+            ),
+            resources_mongod=yandex.MdbMongodbClusterResourcesMongodArgs(
                 disk_size=16,
                 disk_type_id="network-hdd",
-                resource_preset_id="b1.nano",
+                resource_preset_id="s2.small",
+            ),
+            resources_mongos=yandex.MdbMongodbClusterResourcesMongosArgs(
+                disk_size=14,
+                disk_type_id="network-hdd",
+                resource_preset_id="s2.small",
             ),
             users=[yandex.MdbMongodbClusterUserArgs(
                 name="john",
@@ -792,6 +964,10 @@ class MdbMongodbCluster(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  network_id: Optional[pulumi.Input[str]] = None,
                  resources: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesArgs']]] = None,
+                 resources_mongocfg: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongocfgArgs']]] = None,
+                 resources_mongod: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongodArgs']]] = None,
+                 resources_mongoinfra: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongoinfraArgs']]] = None,
+                 resources_mongos: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongosArgs']]] = None,
                  restore: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterRestoreArgs']]] = None,
                  security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterUserArgs']]]]] = None,
@@ -826,9 +1002,14 @@ class MdbMongodbCluster(pulumi.CustomResource):
             if network_id is None and not opts.urn:
                 raise TypeError("Missing required property 'network_id'")
             __props__.__dict__["network_id"] = network_id
-            if resources is None and not opts.urn:
-                raise TypeError("Missing required property 'resources'")
+            if resources is not None and not opts.urn:
+                warnings.warn("""to manage `resources`s, please switch to using a separate resource type `resources_mongo*`""", DeprecationWarning)
+                pulumi.log.warn("""resources is deprecated: to manage `resources`s, please switch to using a separate resource type `resources_mongo*`""")
             __props__.__dict__["resources"] = resources
+            __props__.__dict__["resources_mongocfg"] = resources_mongocfg
+            __props__.__dict__["resources_mongod"] = resources_mongod
+            __props__.__dict__["resources_mongoinfra"] = resources_mongoinfra
+            __props__.__dict__["resources_mongos"] = resources_mongos
             __props__.__dict__["restore"] = restore
             __props__.__dict__["security_group_ids"] = security_group_ids
             if users is None and not opts.urn:
@@ -863,6 +1044,10 @@ class MdbMongodbCluster(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             network_id: Optional[pulumi.Input[str]] = None,
             resources: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesArgs']]] = None,
+            resources_mongocfg: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongocfgArgs']]] = None,
+            resources_mongod: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongodArgs']]] = None,
+            resources_mongoinfra: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongoinfraArgs']]] = None,
+            resources_mongos: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongosArgs']]] = None,
             restore: Optional[pulumi.Input[pulumi.InputType['MdbMongodbClusterRestoreArgs']]] = None,
             security_group_ids: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             sharded: Optional[pulumi.Input[bool]] = None,
@@ -888,9 +1073,14 @@ class MdbMongodbCluster(pulumi.CustomResource):
         :param pulumi.Input[str] health: The health of the host.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['MdbMongodbClusterHostArgs']]]] hosts: A host of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the MongoDB cluster.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterMaintenanceWindowArgs']] maintenance_window: Maintenance window settings of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input[str] name: The fully qualified domain name of the host. Computed on server side.
         :param pulumi.Input[str] network_id: ID of the network, to which the MongoDB cluster belongs.
         :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesArgs']] resources: Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongocfgArgs']] resources_mongocfg: Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongodArgs']] resources_mongod: Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongoinfraArgs']] resources_mongoinfra: Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+        :param pulumi.Input[pulumi.InputType['MdbMongodbClusterResourcesMongosArgs']] resources_mongos: Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
         :param pulumi.Input[pulumi.InputType['MdbMongodbClusterRestoreArgs']] restore: The cluster will be created from the specified backup. The structure is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] security_group_ids: A set of ids of security groups assigned to hosts of the cluster.
         :param pulumi.Input[bool] sharded: MongoDB Cluster mode enabled/disabled.
@@ -917,6 +1107,10 @@ class MdbMongodbCluster(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["network_id"] = network_id
         __props__.__dict__["resources"] = resources
+        __props__.__dict__["resources_mongocfg"] = resources_mongocfg
+        __props__.__dict__["resources_mongod"] = resources_mongod
+        __props__.__dict__["resources_mongoinfra"] = resources_mongoinfra
+        __props__.__dict__["resources_mongos"] = resources_mongos
         __props__.__dict__["restore"] = restore
         __props__.__dict__["security_group_ids"] = security_group_ids
         __props__.__dict__["sharded"] = sharded
@@ -1017,6 +1211,9 @@ class MdbMongodbCluster(pulumi.CustomResource):
     @property
     @pulumi.getter(name="maintenanceWindow")
     def maintenance_window(self) -> pulumi.Output['outputs.MdbMongodbClusterMaintenanceWindow']:
+        """
+        Maintenance window settings of the MongoDB cluster. The structure is documented below.
+        """
         return pulumi.get(self, "maintenance_window")
 
     @property
@@ -1037,11 +1234,43 @@ class MdbMongodbCluster(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def resources(self) -> pulumi.Output['outputs.MdbMongodbClusterResources']:
+    def resources(self) -> pulumi.Output[Optional['outputs.MdbMongodbClusterResources']]:
         """
         Resources allocated to hosts of the MongoDB cluster. The structure is documented below.
         """
         return pulumi.get(self, "resources")
+
+    @property
+    @pulumi.getter(name="resourcesMongocfg")
+    def resources_mongocfg(self) -> pulumi.Output[Optional['outputs.MdbMongodbClusterResourcesMongocfg']]:
+        """
+        Resources allocated to `mongocfg` hosts of the MongoDB cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources_mongocfg")
+
+    @property
+    @pulumi.getter(name="resourcesMongod")
+    def resources_mongod(self) -> pulumi.Output[Optional['outputs.MdbMongodbClusterResourcesMongod']]:
+        """
+        Resources allocated to `mongod` hosts of the MongoDB cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources_mongod")
+
+    @property
+    @pulumi.getter(name="resourcesMongoinfra")
+    def resources_mongoinfra(self) -> pulumi.Output[Optional['outputs.MdbMongodbClusterResourcesMongoinfra']]:
+        """
+        Resources allocated to `mongoinfra` hosts of the MongoDB cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources_mongoinfra")
+
+    @property
+    @pulumi.getter(name="resourcesMongos")
+    def resources_mongos(self) -> pulumi.Output[Optional['outputs.MdbMongodbClusterResourcesMongos']]:
+        """
+        Resources allocated to `mongos` hosts of the MongoDB cluster. The structure is documented below.
+        """
+        return pulumi.get(self, "resources_mongos")
 
     @property
     @pulumi.getter

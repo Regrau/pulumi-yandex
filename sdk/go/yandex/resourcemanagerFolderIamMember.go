@@ -71,6 +71,9 @@ type ResourcemanagerFolderIamMember struct {
 	// This field can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Member pulumi.StringOutput `pulumi:"member"`
 	// The role that should be assigned.
 	Role       pulumi.StringOutput `pulumi:"role"`
@@ -122,6 +125,9 @@ type resourcemanagerFolderIamMemberState struct {
 	// This field can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Member *string `pulumi:"member"`
 	// The role that should be assigned.
 	Role       *string `pulumi:"role"`
@@ -135,6 +141,9 @@ type ResourcemanagerFolderIamMemberState struct {
 	// This field can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Member pulumi.StringPtrInput
 	// The role that should be assigned.
 	Role       pulumi.StringPtrInput
@@ -152,6 +161,9 @@ type resourcemanagerFolderIamMemberArgs struct {
 	// This field can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Member string `pulumi:"member"`
 	// The role that should be assigned.
 	Role       string `pulumi:"role"`
@@ -166,6 +178,9 @@ type ResourcemanagerFolderIamMemberArgs struct {
 	// This field can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Member pulumi.StringInput
 	// The role that should be assigned.
 	Role       pulumi.StringInput
@@ -268,6 +283,9 @@ func (o ResourcemanagerFolderIamMemberOutput) FolderId() pulumi.StringOutput {
 // This field can have one of the following values:
 // * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 // * **serviceAccount:{service_account_id}**: A unique service account ID.
+// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+// * **group:{group_id}**: A unique group ID.
+// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 func (o ResourcemanagerFolderIamMemberOutput) Member() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResourcemanagerFolderIamMember) pulumi.StringOutput { return v.Member }).(pulumi.StringOutput)
 }

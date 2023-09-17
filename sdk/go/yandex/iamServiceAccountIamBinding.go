@@ -72,6 +72,9 @@ type IamServiceAccountIamBinding struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members pulumi.StringArrayOutput `pulumi:"members"`
 	// The role that should be applied. Only one
 	// `IamServiceAccountIamBinding` can be used per role.
@@ -124,6 +127,9 @@ type iamServiceAccountIamBindingState struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members []string `pulumi:"members"`
 	// The role that should be applied. Only one
 	// `IamServiceAccountIamBinding` can be used per role.
@@ -138,6 +144,9 @@ type IamServiceAccountIamBindingState struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members pulumi.StringArrayInput
 	// The role that should be applied. Only one
 	// `IamServiceAccountIamBinding` can be used per role.
@@ -156,6 +165,9 @@ type iamServiceAccountIamBindingArgs struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members []string `pulumi:"members"`
 	// The role that should be applied. Only one
 	// `IamServiceAccountIamBinding` can be used per role.
@@ -171,6 +183,9 @@ type IamServiceAccountIamBindingArgs struct {
 	// Each entry can have one of the following values:
 	// * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 	// * **serviceAccount:{service_account_id}**: A unique service account ID.
+	// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+	// * **group:{group_id}**: A unique group ID.
+	// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 	Members pulumi.StringArrayInput
 	// The role that should be applied. Only one
 	// `IamServiceAccountIamBinding` can be used per role.
@@ -271,6 +286,9 @@ func (o IamServiceAccountIamBindingOutput) ToIamServiceAccountIamBindingOutputWi
 // Each entry can have one of the following values:
 // * **userAccount:{user_id}**: A unique user ID that represents a specific Yandex account.
 // * **serviceAccount:{service_account_id}**: A unique service account ID.
+// * **federatedUser:{federated_user_id}:**: A unique saml federation user account ID.
+// * **group:{group_id}**: A unique group ID.
+// * **system:{allUsers|allAuthenticatedUsers}**: see [system groups](https://cloud.yandex.com/docs/iam/concepts/access-control/system-group)
 func (o IamServiceAccountIamBindingOutput) Members() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *IamServiceAccountIamBinding) pulumi.StringArrayOutput { return v.Members }).(pulumi.StringArrayOutput)
 }

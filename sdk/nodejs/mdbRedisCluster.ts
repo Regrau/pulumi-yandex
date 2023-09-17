@@ -136,6 +136,10 @@ export class MdbRedisCluster extends pulumi.CustomResource {
     }
 
     /**
+     * Announce fqdn instead of ip address.
+     */
+    public readonly announceHostnames!: pulumi.Output<boolean | undefined>;
+    /**
      * Configuration of the Redis cluster. The structure is documented below.
      */
     public readonly config!: pulumi.Output<outputs.MdbRedisClusterConfig>;
@@ -221,6 +225,7 @@ export class MdbRedisCluster extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as MdbRedisClusterState | undefined;
+            resourceInputs["announceHostnames"] = state ? state.announceHostnames : undefined;
             resourceInputs["config"] = state ? state.config : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["deletionProtection"] = state ? state.deletionProtection : undefined;
@@ -256,6 +261,7 @@ export class MdbRedisCluster extends pulumi.CustomResource {
             if ((!args || args.resources === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resources'");
             }
+            resourceInputs["announceHostnames"] = args ? args.announceHostnames : undefined;
             resourceInputs["config"] = args ? args.config : undefined;
             resourceInputs["deletionProtection"] = args ? args.deletionProtection : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -284,6 +290,10 @@ export class MdbRedisCluster extends pulumi.CustomResource {
  * Input properties used for looking up and filtering MdbRedisCluster resources.
  */
 export interface MdbRedisClusterState {
+    /**
+     * Announce fqdn instead of ip address.
+     */
+    announceHostnames?: pulumi.Input<boolean>;
     /**
      * Configuration of the Redis cluster. The structure is documented below.
      */
@@ -362,6 +372,10 @@ export interface MdbRedisClusterState {
  * The set of arguments for constructing a MdbRedisCluster resource.
  */
 export interface MdbRedisClusterArgs {
+    /**
+     * Announce fqdn instead of ip address.
+     */
+    announceHostnames?: pulumi.Input<boolean>;
     /**
      * Configuration of the Redis cluster. The structure is documented below.
      */

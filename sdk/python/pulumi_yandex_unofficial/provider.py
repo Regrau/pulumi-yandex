@@ -21,8 +21,10 @@ class ProviderArgs:
                  max_retries: Optional[pulumi.Input[int]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  plaintext: Optional[pulumi.Input[bool]] = None,
+                 profile: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
                  service_account_key_file: Optional[pulumi.Input[str]] = None,
+                 shared_credentials_file: Optional[pulumi.Input[str]] = None,
                  storage_access_key: Optional[pulumi.Input[str]] = None,
                  storage_endpoint: Optional[pulumi.Input[str]] = None,
                  storage_secret_key: Optional[pulumi.Input[str]] = None,
@@ -39,7 +41,10 @@ class ProviderArgs:
         :param pulumi.Input[bool] insecure: Explicitly allow the provider to perform "insecure" SSL requests. If omitted,default value is `false`.
         :param pulumi.Input[int] max_retries: The maximum number of times an API request is being executed. If the API request still fails, an error is thrown.
         :param pulumi.Input[bool] plaintext: Disable use of TLS. Default value is `false`.
+        :param pulumi.Input[str] profile: Profile to use in the shared credentials file. Default value is `default`.
+        :param pulumi.Input[str] region_id: The region where operations will take place. Examples are ru-central1
         :param pulumi.Input[str] service_account_key_file: Either the path to or the contents of a Service Account key file in JSON format.
+        :param pulumi.Input[str] shared_credentials_file: Path to shared credentials file.
         :param pulumi.Input[str] storage_access_key: Yandex.Cloud storage service access key. Used when a storage data/resource doesn't have an access key explicitly
                specified.
         :param pulumi.Input[str] storage_endpoint: Yandex.Cloud storage service endpoint. Default is storage.yandexcloud.net
@@ -67,10 +72,14 @@ class ProviderArgs:
             pulumi.set(__self__, "organization_id", organization_id)
         if plaintext is not None:
             pulumi.set(__self__, "plaintext", plaintext)
+        if profile is not None:
+            pulumi.set(__self__, "profile", profile)
         if region_id is not None:
             pulumi.set(__self__, "region_id", region_id)
         if service_account_key_file is not None:
             pulumi.set(__self__, "service_account_key_file", service_account_key_file)
+        if shared_credentials_file is not None:
+            pulumi.set(__self__, "shared_credentials_file", shared_credentials_file)
         if storage_access_key is not None:
             pulumi.set(__self__, "storage_access_key", storage_access_key)
         if storage_endpoint is not None:
@@ -170,8 +179,23 @@ class ProviderArgs:
         pulumi.set(self, "plaintext", value)
 
     @property
+    @pulumi.getter
+    def profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Profile to use in the shared credentials file. Default value is `default`.
+        """
+        return pulumi.get(self, "profile")
+
+    @profile.setter
+    def profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "profile", value)
+
+    @property
     @pulumi.getter(name="regionId")
     def region_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        The region where operations will take place. Examples are ru-central1
+        """
         return pulumi.get(self, "region_id")
 
     @region_id.setter
@@ -189,6 +213,18 @@ class ProviderArgs:
     @service_account_key_file.setter
     def service_account_key_file(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "service_account_key_file", value)
+
+    @property
+    @pulumi.getter(name="sharedCredentialsFile")
+    def shared_credentials_file(self) -> Optional[pulumi.Input[str]]:
+        """
+        Path to shared credentials file.
+        """
+        return pulumi.get(self, "shared_credentials_file")
+
+    @shared_credentials_file.setter
+    def shared_credentials_file(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "shared_credentials_file", value)
 
     @property
     @pulumi.getter(name="storageAccessKey")
@@ -303,8 +339,10 @@ class Provider(pulumi.ProviderResource):
                  max_retries: Optional[pulumi.Input[int]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  plaintext: Optional[pulumi.Input[bool]] = None,
+                 profile: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
                  service_account_key_file: Optional[pulumi.Input[str]] = None,
+                 shared_credentials_file: Optional[pulumi.Input[str]] = None,
                  storage_access_key: Optional[pulumi.Input[str]] = None,
                  storage_endpoint: Optional[pulumi.Input[str]] = None,
                  storage_secret_key: Optional[pulumi.Input[str]] = None,
@@ -328,7 +366,10 @@ class Provider(pulumi.ProviderResource):
         :param pulumi.Input[bool] insecure: Explicitly allow the provider to perform "insecure" SSL requests. If omitted,default value is `false`.
         :param pulumi.Input[int] max_retries: The maximum number of times an API request is being executed. If the API request still fails, an error is thrown.
         :param pulumi.Input[bool] plaintext: Disable use of TLS. Default value is `false`.
+        :param pulumi.Input[str] profile: Profile to use in the shared credentials file. Default value is `default`.
+        :param pulumi.Input[str] region_id: The region where operations will take place. Examples are ru-central1
         :param pulumi.Input[str] service_account_key_file: Either the path to or the contents of a Service Account key file in JSON format.
+        :param pulumi.Input[str] shared_credentials_file: Path to shared credentials file.
         :param pulumi.Input[str] storage_access_key: Yandex.Cloud storage service access key. Used when a storage data/resource doesn't have an access key explicitly
                specified.
         :param pulumi.Input[str] storage_endpoint: Yandex.Cloud storage service endpoint. Default is storage.yandexcloud.net
@@ -376,8 +417,10 @@ class Provider(pulumi.ProviderResource):
                  max_retries: Optional[pulumi.Input[int]] = None,
                  organization_id: Optional[pulumi.Input[str]] = None,
                  plaintext: Optional[pulumi.Input[bool]] = None,
+                 profile: Optional[pulumi.Input[str]] = None,
                  region_id: Optional[pulumi.Input[str]] = None,
                  service_account_key_file: Optional[pulumi.Input[str]] = None,
+                 shared_credentials_file: Optional[pulumi.Input[str]] = None,
                  storage_access_key: Optional[pulumi.Input[str]] = None,
                  storage_endpoint: Optional[pulumi.Input[str]] = None,
                  storage_secret_key: Optional[pulumi.Input[str]] = None,
@@ -402,8 +445,10 @@ class Provider(pulumi.ProviderResource):
             __props__.__dict__["max_retries"] = pulumi.Output.from_input(max_retries).apply(pulumi.runtime.to_json) if max_retries is not None else None
             __props__.__dict__["organization_id"] = organization_id
             __props__.__dict__["plaintext"] = pulumi.Output.from_input(plaintext).apply(pulumi.runtime.to_json) if plaintext is not None else None
+            __props__.__dict__["profile"] = profile
             __props__.__dict__["region_id"] = region_id
             __props__.__dict__["service_account_key_file"] = service_account_key_file
+            __props__.__dict__["shared_credentials_file"] = shared_credentials_file
             __props__.__dict__["storage_access_key"] = storage_access_key
             __props__.__dict__["storage_endpoint"] = storage_endpoint
             __props__.__dict__["storage_secret_key"] = None if storage_secret_key is None else pulumi.Output.secret(storage_secret_key)
@@ -450,8 +495,19 @@ class Provider(pulumi.ProviderResource):
         return pulumi.get(self, "organization_id")
 
     @property
+    @pulumi.getter
+    def profile(self) -> pulumi.Output[Optional[str]]:
+        """
+        Profile to use in the shared credentials file. Default value is `default`.
+        """
+        return pulumi.get(self, "profile")
+
+    @property
     @pulumi.getter(name="regionId")
     def region_id(self) -> pulumi.Output[Optional[str]]:
+        """
+        The region where operations will take place. Examples are ru-central1
+        """
         return pulumi.get(self, "region_id")
 
     @property
@@ -461,6 +517,14 @@ class Provider(pulumi.ProviderResource):
         Either the path to or the contents of a Service Account key file in JSON format.
         """
         return pulumi.get(self, "service_account_key_file")
+
+    @property
+    @pulumi.getter(name="sharedCredentialsFile")
+    def shared_credentials_file(self) -> pulumi.Output[Optional[str]]:
+        """
+        Path to shared credentials file.
+        """
+        return pulumi.get(self, "shared_credentials_file")
 
     @property
     @pulumi.getter(name="storageAccessKey")

@@ -21,6 +21,7 @@ class MdbRedisClusterArgs:
                  hosts: pulumi.Input[Sequence[pulumi.Input['MdbRedisClusterHostArgs']]],
                  network_id: pulumi.Input[str],
                  resources: pulumi.Input['MdbRedisClusterResourcesArgs'],
+                 announce_hostnames: Optional[pulumi.Input[bool]] = None,
                  deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
@@ -38,6 +39,7 @@ class MdbRedisClusterArgs:
         :param pulumi.Input[Sequence[pulumi.Input['MdbRedisClusterHostArgs']]] hosts: A host of the Redis cluster. The structure is documented below.
         :param pulumi.Input[str] network_id: ID of the network, to which the Redis cluster belongs.
         :param pulumi.Input['MdbRedisClusterResourcesArgs'] resources: Resources allocated to hosts of the Redis cluster. The structure is documented below.
+        :param pulumi.Input[bool] announce_hostnames: Announce fqdn instead of ip address.
         :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
         :param pulumi.Input[str] description: Description of the Redis cluster.
         :param pulumi.Input[str] folder_id: The ID of the folder that the resource belongs to. If it
@@ -54,6 +56,8 @@ class MdbRedisClusterArgs:
         pulumi.set(__self__, "hosts", hosts)
         pulumi.set(__self__, "network_id", network_id)
         pulumi.set(__self__, "resources", resources)
+        if announce_hostnames is not None:
+            pulumi.set(__self__, "announce_hostnames", announce_hostnames)
         if deletion_protection is not None:
             pulumi.set(__self__, "deletion_protection", deletion_protection)
         if description is not None:
@@ -134,6 +138,18 @@ class MdbRedisClusterArgs:
     @resources.setter
     def resources(self, value: pulumi.Input['MdbRedisClusterResourcesArgs']):
         pulumi.set(self, "resources", value)
+
+    @property
+    @pulumi.getter(name="announceHostnames")
+    def announce_hostnames(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Announce fqdn instead of ip address.
+        """
+        return pulumi.get(self, "announce_hostnames")
+
+    @announce_hostnames.setter
+    def announce_hostnames(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "announce_hostnames", value)
 
     @property
     @pulumi.getter(name="deletionProtection")
@@ -257,6 +273,7 @@ class MdbRedisClusterArgs:
 @pulumi.input_type
 class _MdbRedisClusterState:
     def __init__(__self__, *,
+                 announce_hostnames: Optional[pulumi.Input[bool]] = None,
                  config: Optional[pulumi.Input['MdbRedisClusterConfigArgs']] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  deletion_protection: Optional[pulumi.Input[bool]] = None,
@@ -277,6 +294,7 @@ class _MdbRedisClusterState:
                  tls_enabled: Optional[pulumi.Input[bool]] = None):
         """
         Input properties used for looking up and filtering MdbRedisCluster resources.
+        :param pulumi.Input[bool] announce_hostnames: Announce fqdn instead of ip address.
         :param pulumi.Input['MdbRedisClusterConfigArgs'] config: Configuration of the Redis cluster. The structure is documented below.
         :param pulumi.Input[str] created_at: Creation timestamp of the key.
         :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
@@ -298,6 +316,8 @@ class _MdbRedisClusterState:
                For more information see `status` field of JSON representation in [the official documentation](https://cloud.yandex.com/docs/managed-redis/api-ref/Cluster/).
         :param pulumi.Input[bool] tls_enabled: TLS support mode enabled/disabled.
         """
+        if announce_hostnames is not None:
+            pulumi.set(__self__, "announce_hostnames", announce_hostnames)
         if config is not None:
             pulumi.set(__self__, "config", config)
         if created_at is not None:
@@ -334,6 +354,18 @@ class _MdbRedisClusterState:
             pulumi.set(__self__, "status", status)
         if tls_enabled is not None:
             pulumi.set(__self__, "tls_enabled", tls_enabled)
+
+    @property
+    @pulumi.getter(name="announceHostnames")
+    def announce_hostnames(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Announce fqdn instead of ip address.
+        """
+        return pulumi.get(self, "announce_hostnames")
+
+    @announce_hostnames.setter
+    def announce_hostnames(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "announce_hostnames", value)
 
     @property
     @pulumi.getter
@@ -557,6 +589,7 @@ class MdbRedisCluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 announce_hostnames: Optional[pulumi.Input[bool]] = None,
                  config: Optional[pulumi.Input[pulumi.InputType['MdbRedisClusterConfigArgs']]] = None,
                  deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -670,6 +703,7 @@ class MdbRedisCluster(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] announce_hostnames: Announce fqdn instead of ip address.
         :param pulumi.Input[pulumi.InputType['MdbRedisClusterConfigArgs']] config: Configuration of the Redis cluster. The structure is documented below.
         :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
         :param pulumi.Input[str] description: Description of the Redis cluster.
@@ -802,6 +836,7 @@ class MdbRedisCluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 announce_hostnames: Optional[pulumi.Input[bool]] = None,
                  config: Optional[pulumi.Input[pulumi.InputType['MdbRedisClusterConfigArgs']]] = None,
                  deletion_protection: Optional[pulumi.Input[bool]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -826,6 +861,7 @@ class MdbRedisCluster(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = MdbRedisClusterArgs.__new__(MdbRedisClusterArgs)
 
+            __props__.__dict__["announce_hostnames"] = announce_hostnames
             if config is None and not opts.urn:
                 raise TypeError("Missing required property 'config'")
             __props__.__dict__["config"] = config
@@ -864,6 +900,7 @@ class MdbRedisCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            announce_hostnames: Optional[pulumi.Input[bool]] = None,
             config: Optional[pulumi.Input[pulumi.InputType['MdbRedisClusterConfigArgs']]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             deletion_protection: Optional[pulumi.Input[bool]] = None,
@@ -889,6 +926,7 @@ class MdbRedisCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[bool] announce_hostnames: Announce fqdn instead of ip address.
         :param pulumi.Input[pulumi.InputType['MdbRedisClusterConfigArgs']] config: Configuration of the Redis cluster. The structure is documented below.
         :param pulumi.Input[str] created_at: Creation timestamp of the key.
         :param pulumi.Input[bool] deletion_protection: Inhibits deletion of the cluster.  Can be either `true` or `false`.
@@ -914,6 +952,7 @@ class MdbRedisCluster(pulumi.CustomResource):
 
         __props__ = _MdbRedisClusterState.__new__(_MdbRedisClusterState)
 
+        __props__.__dict__["announce_hostnames"] = announce_hostnames
         __props__.__dict__["config"] = config
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["deletion_protection"] = deletion_protection
@@ -933,6 +972,14 @@ class MdbRedisCluster(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["tls_enabled"] = tls_enabled
         return MdbRedisCluster(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="announceHostnames")
+    def announce_hostnames(self) -> pulumi.Output[Optional[bool]]:
+        """
+        Announce fqdn instead of ip address.
+        """
+        return pulumi.get(self, "announce_hostnames")
 
     @property
     @pulumi.getter

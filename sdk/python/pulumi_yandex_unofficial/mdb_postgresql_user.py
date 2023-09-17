@@ -19,6 +19,7 @@ class MdbPostgresqlUserArgs:
                  cluster_id: pulumi.Input[str],
                  password: pulumi.Input[str],
                  conn_limit: Optional[pulumi.Input[int]] = None,
+                 deletion_protection: Optional[pulumi.Input[str]] = None,
                  grants: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  login: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -28,6 +29,7 @@ class MdbPostgresqlUserArgs:
         The set of arguments for constructing a MdbPostgresqlUser resource.
         :param pulumi.Input[str] password: The password of the user.
         :param pulumi.Input[int] conn_limit: The maximum number of connections per user. (Default 50)
+        :param pulumi.Input[str] deletion_protection: Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] grants: List of the user's grants.
         :param pulumi.Input[bool] login: User's ability to login.
         :param pulumi.Input[str] name: The name of the user.
@@ -38,6 +40,8 @@ class MdbPostgresqlUserArgs:
         pulumi.set(__self__, "password", password)
         if conn_limit is not None:
             pulumi.set(__self__, "conn_limit", conn_limit)
+        if deletion_protection is not None:
+            pulumi.set(__self__, "deletion_protection", deletion_protection)
         if grants is not None:
             pulumi.set(__self__, "grants", grants)
         if login is not None:
@@ -81,6 +85,18 @@ class MdbPostgresqlUserArgs:
     @conn_limit.setter
     def conn_limit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "conn_limit", value)
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @deletion_protection.setter
+    def deletion_protection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deletion_protection", value)
 
     @property
     @pulumi.getter
@@ -148,6 +164,7 @@ class _MdbPostgresqlUserState:
     def __init__(__self__, *,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  conn_limit: Optional[pulumi.Input[int]] = None,
+                 deletion_protection: Optional[pulumi.Input[str]] = None,
                  grants: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  login: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -157,6 +174,7 @@ class _MdbPostgresqlUserState:
         """
         Input properties used for looking up and filtering MdbPostgresqlUser resources.
         :param pulumi.Input[int] conn_limit: The maximum number of connections per user. (Default 50)
+        :param pulumi.Input[str] deletion_protection: Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] grants: List of the user's grants.
         :param pulumi.Input[bool] login: User's ability to login.
         :param pulumi.Input[str] name: The name of the user.
@@ -168,6 +186,8 @@ class _MdbPostgresqlUserState:
             pulumi.set(__self__, "cluster_id", cluster_id)
         if conn_limit is not None:
             pulumi.set(__self__, "conn_limit", conn_limit)
+        if deletion_protection is not None:
+            pulumi.set(__self__, "deletion_protection", deletion_protection)
         if grants is not None:
             pulumi.set(__self__, "grants", grants)
         if login is not None:
@@ -201,6 +221,18 @@ class _MdbPostgresqlUserState:
     @conn_limit.setter
     def conn_limit(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "conn_limit", value)
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+        """
+        return pulumi.get(self, "deletion_protection")
+
+    @deletion_protection.setter
+    def deletion_protection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "deletion_protection", value)
 
     @property
     @pulumi.getter
@@ -282,6 +314,7 @@ class MdbPostgresqlUser(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  conn_limit: Optional[pulumi.Input[int]] = None,
+                 deletion_protection: Optional[pulumi.Input[str]] = None,
                  grants: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  login: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -340,6 +373,7 @@ class MdbPostgresqlUser(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] conn_limit: The maximum number of connections per user. (Default 50)
+        :param pulumi.Input[str] deletion_protection: Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] grants: List of the user's grants.
         :param pulumi.Input[bool] login: User's ability to login.
         :param pulumi.Input[str] name: The name of the user.
@@ -418,6 +452,7 @@ class MdbPostgresqlUser(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_id: Optional[pulumi.Input[str]] = None,
                  conn_limit: Optional[pulumi.Input[int]] = None,
+                 deletion_protection: Optional[pulumi.Input[str]] = None,
                  grants: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  login: Optional[pulumi.Input[bool]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -437,6 +472,7 @@ class MdbPostgresqlUser(pulumi.CustomResource):
                 raise TypeError("Missing required property 'cluster_id'")
             __props__.__dict__["cluster_id"] = cluster_id
             __props__.__dict__["conn_limit"] = conn_limit
+            __props__.__dict__["deletion_protection"] = deletion_protection
             __props__.__dict__["grants"] = grants
             __props__.__dict__["login"] = login
             __props__.__dict__["name"] = name
@@ -459,6 +495,7 @@ class MdbPostgresqlUser(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_id: Optional[pulumi.Input[str]] = None,
             conn_limit: Optional[pulumi.Input[int]] = None,
+            deletion_protection: Optional[pulumi.Input[str]] = None,
             grants: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             login: Optional[pulumi.Input[bool]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -473,6 +510,7 @@ class MdbPostgresqlUser(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] conn_limit: The maximum number of connections per user. (Default 50)
+        :param pulumi.Input[str] deletion_protection: Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] grants: List of the user's grants.
         :param pulumi.Input[bool] login: User's ability to login.
         :param pulumi.Input[str] name: The name of the user.
@@ -486,6 +524,7 @@ class MdbPostgresqlUser(pulumi.CustomResource):
 
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["conn_limit"] = conn_limit
+        __props__.__dict__["deletion_protection"] = deletion_protection
         __props__.__dict__["grants"] = grants
         __props__.__dict__["login"] = login
         __props__.__dict__["name"] = name
@@ -506,6 +545,14 @@ class MdbPostgresqlUser(pulumi.CustomResource):
         The maximum number of connections per user. (Default 50)
         """
         return pulumi.get(self, "conn_limit")
+
+    @property
+    @pulumi.getter(name="deletionProtection")
+    def deletion_protection(self) -> pulumi.Output[Optional[str]]:
+        """
+        Inhibits deletion of the user. Can either be `true`, `false` or `unspecified`.
+        """
+        return pulumi.get(self, "deletion_protection")
 
     @property
     @pulumi.getter

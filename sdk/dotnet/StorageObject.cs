@@ -28,6 +28,10 @@ namespace Pulumi.Yandex
     ///         Bucket = "cat-pictures",
     ///         Key = "cute-cat",
     ///         Source = "/images/cats/cute-cat.jpg",
+    ///         Tags = 
+    ///         {
+    ///             { "test", "value" },
+    ///         },
     ///     });
     /// 
     /// });
@@ -107,6 +111,18 @@ namespace Pulumi.Yandex
         /// </summary>
         [Output("source")]
         public Output<string?> Source { get; private set; } = null!;
+
+        /// <summary>
+        /// Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+        /// </summary>
+        [Output("sourceHash")]
+        public Output<string?> SourceHash { get; private set; } = null!;
+
+        /// <summary>
+        /// Specifies an object tags.
+        /// </summary>
+        [Output("tags")]
+        public Output<ImmutableDictionary<string, string>?> Tags { get; private set; } = null!;
 
 
         /// <summary>
@@ -241,6 +257,24 @@ namespace Pulumi.Yandex
         [Input("source")]
         public Input<string>? Source { get; set; }
 
+        /// <summary>
+        /// Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+        /// </summary>
+        [Input("sourceHash")]
+        public Input<string>? SourceHash { get; set; }
+
+        [Input("tags")]
+        private InputMap<string>? _tags;
+
+        /// <summary>
+        /// Specifies an object tags.
+        /// </summary>
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
+
         public StorageObjectArgs()
         {
         }
@@ -330,6 +364,24 @@ namespace Pulumi.Yandex
         /// </summary>
         [Input("source")]
         public Input<string>? Source { get; set; }
+
+        /// <summary>
+        /// Used to trigger object update when the source content changes. So the only meaningful value is `filemd5("path/to/source")` (The value is only stored in state and not saved by Yandex Storage).
+        /// </summary>
+        [Input("sourceHash")]
+        public Input<string>? SourceHash { get; set; }
+
+        [Input("tags")]
+        private InputMap<string>? _tags;
+
+        /// <summary>
+        /// Specifies an object tags.
+        /// </summary>
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
 
         public StorageObjectState()
         {

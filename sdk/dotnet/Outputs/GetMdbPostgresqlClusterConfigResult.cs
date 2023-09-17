@@ -46,7 +46,7 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetMdbPostgresqlClusterConfigResourceResult> Resources;
         /// <summary>
-        /// Version of the PostgreSQL cluster.
+        /// Version of the extension.
         /// </summary>
         public readonly string Version;
 

@@ -163,19 +163,23 @@ namespace Pulumi.Yandex.Inputs
         public Input<bool>? Slice { get; set; }
 
         [Input("staticRequestHeaders")]
-        private InputList<string>? _staticRequestHeaders;
+        private InputMap<string>? _staticRequestHeaders;
 
         /// <summary>
-        /// set up custom headers that CDN servers send in requests to origins.
+        /// set up custom headers that CDN servers will send in requests to origins.
         /// </summary>
-        public InputList<string> StaticRequestHeaders
+        public InputMap<string> StaticRequestHeaders
         {
-            get => _staticRequestHeaders ?? (_staticRequestHeaders = new InputList<string>());
+            get => _staticRequestHeaders ?? (_staticRequestHeaders = new InputMap<string>());
             set => _staticRequestHeaders = value;
         }
 
         [Input("staticResponseHeaders")]
         private InputMap<string>? _staticResponseHeaders;
+
+        /// <summary>
+        /// set up custom headers that CDN servers will send in response to clients.
+        /// </summary>
         public InputMap<string> StaticResponseHeaders
         {
             get => _staticResponseHeaders ?? (_staticResponseHeaders = new InputMap<string>());
