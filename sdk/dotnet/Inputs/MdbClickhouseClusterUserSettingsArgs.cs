@@ -212,6 +212,18 @@ namespace Pulumi.Yandex.Inputs
         public Input<bool>? InputFormatDefaultsForOmittedFields { get; set; }
 
         /// <summary>
+        /// Enables or disables the insertion of JSON data with nested objects.
+        /// </summary>
+        [Input("inputFormatImportNestedJson")]
+        public Input<bool>? InputFormatImportNestedJson { get; set; }
+
+        /// <summary>
+        /// Enables or disables order-preserving parallel parsing of data formats. Supported only for TSV, TKSV, CSV and JSONEachRow formats.
+        /// </summary>
+        [Input("inputFormatParallelParsing")]
+        public Input<bool>? InputFormatParallelParsing { get; set; }
+
+        /// <summary>
         /// Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
         /// </summary>
         [Input("inputFormatValuesInterpretExpressions")]
@@ -252,6 +264,12 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("joinedSubqueryRequiresAlias")]
         public Input<bool>? JoinedSubqueryRequiresAlias { get; set; }
+
+        /// <summary>
+        /// Method of reading data from local filesystem. Possible values:
+        /// </summary>
+        [Input("localFilesystemReadMethod")]
+        public Input<string>? LocalFilesystemReadMethod { get; set; }
 
         /// <summary>
         /// Allows or restricts using the LowCardinality data type with the Native format.
@@ -350,8 +368,13 @@ namespace Pulumi.Yandex.Inputs
         public Input<int>? MaxExpandedAstElements { get; set; }
 
         /// <summary>
+        /// Sets the maximum number of parallel threads for the SELECT query data read phase with the FINAL modifier.
+        /// </summary>
+        [Input("maxFinalThreads")]
+        public Input<int>? MaxFinalThreads { get; set; }
+
+        /// <summary>
         /// Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
-        /// If the parameter is set to 0 (default), no hops is allowed.
         /// </summary>
         [Input("maxHttpGetRedirects")]
         public Input<int>? MaxHttpGetRedirects { get; set; }
@@ -391,6 +414,12 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("maxQuerySize")]
         public Input<int>? MaxQuerySize { get; set; }
+
+        /// <summary>
+        /// The maximum size of the buffer to read from the filesystem.
+        /// </summary>
+        [Input("maxReadBufferSize")]
+        public Input<int>? MaxReadBufferSize { get; set; }
 
         /// <summary>
         /// Disables lagging replicas for distributed queries.

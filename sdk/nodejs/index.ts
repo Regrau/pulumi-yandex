@@ -35,6 +35,11 @@ export type ApiGateway = import("./apiGateway").ApiGateway;
 export const ApiGateway: typeof import("./apiGateway").ApiGateway = null as any;
 utilities.lazyLoad(exports, ["ApiGateway"], () => require("./apiGateway"));
 
+export { BackupPolicyArgs, BackupPolicyState } from "./backupPolicy";
+export type BackupPolicy = import("./backupPolicy").BackupPolicy;
+export const BackupPolicy: typeof import("./backupPolicy").BackupPolicy = null as any;
+utilities.lazyLoad(exports, ["BackupPolicy"], () => require("./backupPolicy"));
+
 export { CdnOriginGroupArgs, CdnOriginGroupState } from "./cdnOriginGroup";
 export type CdnOriginGroup = import("./cdnOriginGroup").CdnOriginGroup;
 export const CdnOriginGroup: typeof import("./cdnOriginGroup").CdnOriginGroup = null as any;
@@ -985,6 +990,8 @@ const _module = {
                 return new AlbVirtualHost(name, <any>undefined, { urn })
             case "yandex:index/apiGateway:ApiGateway":
                 return new ApiGateway(name, <any>undefined, { urn })
+            case "yandex:index/backupPolicy:BackupPolicy":
+                return new BackupPolicy(name, <any>undefined, { urn })
             case "yandex:index/cdnOriginGroup:CdnOriginGroup":
                 return new CdnOriginGroup(name, <any>undefined, { urn })
             case "yandex:index/cdnResource:CdnResource":
@@ -1204,6 +1211,7 @@ pulumi.runtime.registerResourceModule("yandex", "index/albLoadBalancer", _module
 pulumi.runtime.registerResourceModule("yandex", "index/albTargetGroup", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/albVirtualHost", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/apiGateway", _module)
+pulumi.runtime.registerResourceModule("yandex", "index/backupPolicy", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/cdnOriginGroup", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/cdnResource", _module)
 pulumi.runtime.registerResourceModule("yandex", "index/cmCertificate", _module)

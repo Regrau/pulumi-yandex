@@ -23,10 +23,13 @@ class GetApiGatewayResult:
     """
     A collection of values returned by getApiGateway.
     """
-    def __init__(__self__, api_gateway_id=None, connectivity=None, created_at=None, custom_domains=None, description=None, domain=None, folder_id=None, id=None, labels=None, log_group_id=None, name=None, status=None, user_domains=None):
+    def __init__(__self__, api_gateway_id=None, canary=None, connectivity=None, created_at=None, custom_domains=None, description=None, domain=None, folder_id=None, id=None, labels=None, log_group_id=None, name=None, status=None, user_domains=None, variables=None):
         if api_gateway_id and not isinstance(api_gateway_id, str):
             raise TypeError("Expected argument 'api_gateway_id' to be a str")
         pulumi.set(__self__, "api_gateway_id", api_gateway_id)
+        if canary and not isinstance(canary, dict):
+            raise TypeError("Expected argument 'canary' to be a dict")
+        pulumi.set(__self__, "canary", canary)
         if connectivity and not isinstance(connectivity, dict):
             raise TypeError("Expected argument 'connectivity' to be a dict")
         pulumi.set(__self__, "connectivity", connectivity)
@@ -67,11 +70,19 @@ class GetApiGatewayResult:
             pulumi.log.warn("""user_domains is deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.""")
 
         pulumi.set(__self__, "user_domains", user_domains)
+        if variables and not isinstance(variables, dict):
+            raise TypeError("Expected argument 'variables' to be a dict")
+        pulumi.set(__self__, "variables", variables)
 
     @property
     @pulumi.getter(name="apiGatewayId")
     def api_gateway_id(self) -> Optional[str]:
         return pulumi.get(self, "api_gateway_id")
+
+    @property
+    @pulumi.getter
+    def canary(self) -> Optional['outputs.GetApiGatewayCanaryResult']:
+        return pulumi.get(self, "canary")
 
     @property
     @pulumi.getter
@@ -136,6 +147,11 @@ class GetApiGatewayResult:
     def user_domains(self) -> Sequence[str]:
         return pulumi.get(self, "user_domains")
 
+    @property
+    @pulumi.getter
+    def variables(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "variables")
+
 
 class AwaitableGetApiGatewayResult(GetApiGatewayResult):
     # pylint: disable=using-constant-test
@@ -144,6 +160,7 @@ class AwaitableGetApiGatewayResult(GetApiGatewayResult):
             yield self
         return GetApiGatewayResult(
             api_gateway_id=self.api_gateway_id,
+            canary=self.canary,
             connectivity=self.connectivity,
             created_at=self.created_at,
             custom_domains=self.custom_domains,
@@ -155,29 +172,35 @@ class AwaitableGetApiGatewayResult(GetApiGatewayResult):
             log_group_id=self.log_group_id,
             name=self.name,
             status=self.status,
-            user_domains=self.user_domains)
+            user_domains=self.user_domains,
+            variables=self.variables)
 
 
 def get_api_gateway(api_gateway_id: Optional[str] = None,
+                    canary: Optional[pulumi.InputType['GetApiGatewayCanaryArgs']] = None,
                     connectivity: Optional[pulumi.InputType['GetApiGatewayConnectivityArgs']] = None,
                     custom_domains: Optional[Sequence[pulumi.InputType['GetApiGatewayCustomDomainArgs']]] = None,
                     folder_id: Optional[str] = None,
                     name: Optional[str] = None,
+                    variables: Optional[Mapping[str, str]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetApiGatewayResult:
     """
     Use this data source to access information about an existing resource.
     """
     __args__ = dict()
     __args__['apiGatewayId'] = api_gateway_id
+    __args__['canary'] = canary
     __args__['connectivity'] = connectivity
     __args__['customDomains'] = custom_domains
     __args__['folderId'] = folder_id
     __args__['name'] = name
+    __args__['variables'] = variables
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('yandex:index/getApiGateway:getApiGateway', __args__, opts=opts, typ=GetApiGatewayResult).value
 
     return AwaitableGetApiGatewayResult(
         api_gateway_id=__ret__.api_gateway_id,
+        canary=__ret__.canary,
         connectivity=__ret__.connectivity,
         created_at=__ret__.created_at,
         custom_domains=__ret__.custom_domains,
@@ -189,15 +212,18 @@ def get_api_gateway(api_gateway_id: Optional[str] = None,
         log_group_id=__ret__.log_group_id,
         name=__ret__.name,
         status=__ret__.status,
-        user_domains=__ret__.user_domains)
+        user_domains=__ret__.user_domains,
+        variables=__ret__.variables)
 
 
 @_utilities.lift_output_func(get_api_gateway)
 def get_api_gateway_output(api_gateway_id: Optional[pulumi.Input[Optional[str]]] = None,
+                           canary: Optional[pulumi.Input[Optional[pulumi.InputType['GetApiGatewayCanaryArgs']]]] = None,
                            connectivity: Optional[pulumi.Input[Optional[pulumi.InputType['GetApiGatewayConnectivityArgs']]]] = None,
                            custom_domains: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetApiGatewayCustomDomainArgs']]]]] = None,
                            folder_id: Optional[pulumi.Input[Optional[str]]] = None,
                            name: Optional[pulumi.Input[Optional[str]]] = None,
+                           variables: Optional[pulumi.Input[Optional[Mapping[str, str]]]] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetApiGatewayResult]:
     """
     Use this data source to access information about an existing resource.

@@ -62,6 +62,10 @@ import (
 //					&MdbKafkaUserPermissionArgs{
 //						TopicName: pulumi.String("events"),
 //						Role:      pulumi.String("ACCESS_ROLE_CONSUMER"),
+//						AllowHosts: pulumi.StringArray{
+//							pulumi.String("host1.db.yandex.net"),
+//							pulumi.String("host2.db.yandex.net"),
+//						},
 //					},
 //					&MdbKafkaUserPermissionArgs{
 //						TopicName: pulumi.String("events"),

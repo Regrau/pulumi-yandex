@@ -147,6 +147,14 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly bool InputFormatDefaultsForOmittedFields;
         /// <summary>
+        /// (Optional) Enables or disables the insertion of JSON data with nested objects.
+        /// </summary>
+        public readonly bool InputFormatImportNestedJson;
+        /// <summary>
+        /// (Optional) Enables or disables order-preserving parallel parsing of data formats. Supported only for TSV, TKSV, CSV and JSONEachRow formats.
+        /// </summary>
+        public readonly bool InputFormatParallelParsing;
+        /// <summary>
         /// Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
         /// </summary>
         public readonly bool InputFormatValuesInterpretExpressions;
@@ -174,6 +182,10 @@ namespace Pulumi.Yandex.Outputs
         /// Require aliases for subselects and table functions in FROM that more than one table is present.
         /// </summary>
         public readonly bool JoinedSubqueryRequiresAlias;
+        /// <summary>
+        /// (Optional) Method of reading data from local filesystem. Possible values:
+        /// </summary>
+        public readonly string LocalFilesystemReadMethod;
         /// <summary>
         /// Allows or restricts using the LowCardinality data type with the Native format.
         /// </summary>
@@ -239,6 +251,10 @@ namespace Pulumi.Yandex.Outputs
         /// </summary>
         public readonly int MaxExpandedAstElements;
         /// <summary>
+        /// (Optional) Sets the maximum number of parallel threads for the SELECT query data read phase with the FINAL modifier.
+        /// </summary>
+        public readonly int MaxFinalThreads;
+        /// <summary>
         /// (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
         /// If the parameter is set to 0 (default), no hops is allowed.
         /// </summary>
@@ -267,6 +283,10 @@ namespace Pulumi.Yandex.Outputs
         /// The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
         /// </summary>
         public readonly int MaxQuerySize;
+        /// <summary>
+        /// (Optional) The maximum size of the buffer to read from the filesystem.
+        /// </summary>
+        public readonly int MaxReadBufferSize;
         /// <summary>
         /// Disables lagging replicas for distributed queries.
         /// </summary>
@@ -529,6 +549,10 @@ namespace Pulumi.Yandex.Outputs
 
             bool inputFormatDefaultsForOmittedFields,
 
+            bool inputFormatImportNestedJson,
+
+            bool inputFormatParallelParsing,
+
             bool inputFormatValuesInterpretExpressions,
 
             bool insertNullAsDefault,
@@ -542,6 +566,8 @@ namespace Pulumi.Yandex.Outputs
             bool joinUseNulls,
 
             bool joinedSubqueryRequiresAlias,
+
+            string localFilesystemReadMethod,
 
             bool lowCardinalityAllowInNativeFormat,
 
@@ -575,6 +601,8 @@ namespace Pulumi.Yandex.Outputs
 
             int maxExpandedAstElements,
 
+            int maxFinalThreads,
+
             int maxHttpGetRedirects,
 
             int maxInsertBlockSize,
@@ -588,6 +616,8 @@ namespace Pulumi.Yandex.Outputs
             int maxNetworkBandwidthForUser,
 
             int maxQuerySize,
+
+            int maxReadBufferSize,
 
             int maxReplicaDelayForDistributedQueries,
 
@@ -718,6 +748,8 @@ namespace Pulumi.Yandex.Outputs
             HttpReceiveTimeout = httpReceiveTimeout;
             HttpSendTimeout = httpSendTimeout;
             InputFormatDefaultsForOmittedFields = inputFormatDefaultsForOmittedFields;
+            InputFormatImportNestedJson = inputFormatImportNestedJson;
+            InputFormatParallelParsing = inputFormatParallelParsing;
             InputFormatValuesInterpretExpressions = inputFormatValuesInterpretExpressions;
             InsertNullAsDefault = insertNullAsDefault;
             InsertQuorum = insertQuorum;
@@ -725,6 +757,7 @@ namespace Pulumi.Yandex.Outputs
             JoinOverflowMode = joinOverflowMode;
             JoinUseNulls = joinUseNulls;
             JoinedSubqueryRequiresAlias = joinedSubqueryRequiresAlias;
+            LocalFilesystemReadMethod = localFilesystemReadMethod;
             LowCardinalityAllowInNativeFormat = lowCardinalityAllowInNativeFormat;
             MaxAstDepth = maxAstDepth;
             MaxAstElements = maxAstElements;
@@ -741,6 +774,7 @@ namespace Pulumi.Yandex.Outputs
             MaxConcurrentQueriesForUser = maxConcurrentQueriesForUser;
             MaxExecutionTime = maxExecutionTime;
             MaxExpandedAstElements = maxExpandedAstElements;
+            MaxFinalThreads = maxFinalThreads;
             MaxHttpGetRedirects = maxHttpGetRedirects;
             MaxInsertBlockSize = maxInsertBlockSize;
             MaxMemoryUsage = maxMemoryUsage;
@@ -748,6 +782,7 @@ namespace Pulumi.Yandex.Outputs
             MaxNetworkBandwidth = maxNetworkBandwidth;
             MaxNetworkBandwidthForUser = maxNetworkBandwidthForUser;
             MaxQuerySize = maxQuerySize;
+            MaxReadBufferSize = maxReadBufferSize;
             MaxReplicaDelayForDistributedQueries = maxReplicaDelayForDistributedQueries;
             MaxResultBytes = maxResultBytes;
             MaxResultRows = maxResultRows;

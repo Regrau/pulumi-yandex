@@ -11,6 +11,7 @@ from .alb_load_balancer import *
 from .alb_target_group import *
 from .alb_virtual_host import *
 from .api_gateway import *
+from .backup_policy import *
 from .cdn_origin_group import *
 from .cdn_resource import *
 from .cm_certificate import *
@@ -255,6 +256,14 @@ _utilities.register(
   "fqn": "pulumi_yandex_unofficial",
   "classes": {
    "yandex:index/apiGateway:ApiGateway": "ApiGateway"
+  }
+ },
+ {
+  "pkg": "yandex",
+  "mod": "index/backupPolicy",
+  "fqn": "pulumi_yandex_unofficial",
+  "classes": {
+   "yandex:index/backupPolicy:BackupPolicy": "BackupPolicy"
   }
  },
  {

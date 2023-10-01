@@ -191,6 +191,10 @@ class MdbKafkaUser(pulumi.CustomResource):
                 yandex.MdbKafkaUserPermissionArgs(
                     topic_name="events",
                     role="ACCESS_ROLE_CONSUMER",
+                    allow_hosts=[
+                        "host1.db.yandex.net",
+                        "host2.db.yandex.net",
+                    ],
                 ),
                 yandex.MdbKafkaUserPermissionArgs(
                     topic_name="events",
@@ -253,6 +257,10 @@ class MdbKafkaUser(pulumi.CustomResource):
                 yandex.MdbKafkaUserPermissionArgs(
                     topic_name="events",
                     role="ACCESS_ROLE_CONSUMER",
+                    allow_hosts=[
+                        "host1.db.yandex.net",
+                        "host2.db.yandex.net",
+                    ],
                 ),
                 yandex.MdbKafkaUserPermissionArgs(
                     topic_name="events",

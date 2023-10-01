@@ -20,6 +20,8 @@ import (
 //
 // import (
 //
+//	"fmt"
+//
 //	"github.com/pulumi/pulumi-yandex/sdk/go/yandex"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -42,7 +44,62 @@ import (
 //				Connectivity: &ApiGatewayConnectivityArgs{
 //					NetworkId: pulumi.String("<dynamic network id>"),
 //				},
-//				Spec: pulumi.String("openapi: \"3.0.0\"\ninfo:\n  version: 1.0.0\n  title: Test API\npaths:\n  /hello:\n    get:\n      summary: Say hello\n      operationId: hello\n      parameters:\n        - name: user\n          in: query\n          description: User name to appear in greetings\n          required: false\n          schema:\n            type: string\n            default: 'world'\n      responses:\n        '200':\n          description: Greeting\n          content:\n            'text/plain':\n              schema:\n                type: \"string\"\n      x-yc-apigateway-integration:\n        type: dummy\n        http_code: 200\n        http_headers:\n          'Content-Type': \"text/plain\"\n        content:\n          'text/plain': \"Hello again, {user}!\\n\"\n"),
+//				Variables: pulumi.StringMap{
+//					"installation": pulumi.String("prod"),
+//				},
+//				Canary: &ApiGatewayCanaryArgs{
+//					Weight: pulumi.Int(20),
+//					Variables: pulumi.StringMap{
+//						"installation": pulumi.String("dev"),
+//					},
+//				},
+//				Spec: pulumi.String(fmt.Sprintf(`openapi: "3.0.0"
+//
+// info:
+//
+//	version: 1.0.0
+//	title: Test API
+//
+// x-yc-apigateway:
+//
+//	variables:
+//	  installation:
+//	    default: "prod"
+//	    enum:
+//	     - "prod"
+//	     - "dev"
+//
+// paths:
+//
+//	/hello:
+//	  get:
+//	    summary: Say hello
+//	    operationId: hello
+//	    parameters:
+//	      - name: user
+//	        in: query
+//	        description: User name to appear in greetings
+//	        required: false
+//	        schema:
+//	          type: string
+//	          default: 'world'
+//	    responses:
+//	      '200':
+//	        description: Greeting
+//	        content:
+//	          'text/plain':
+//	            schema:
+//	              type: "string"
+//	    x-yc-apigateway-integration:
+//	      type: dummy
+//	      http_code: 200
+//	      http_headers:
+//	        'Content-Type': "text/plain"
+//	      content:
+//	        'text/plain': "Hello again, {user} from %v release!\n"
+//
+// `, apigw.Installation)),
+//
 //			})
 //			if err != nil {
 //				return err
@@ -55,6 +112,10 @@ import (
 type ApiGateway struct {
 	pulumi.CustomResourceState
 
+	// Canary release settings of gateway.
+	// * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+	// * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+	Canary ApiGatewayCanaryPtrOutput `pulumi:"canary"`
 	// Gateway connectivity. If specified the gateway will be attached to specified network.
 	// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
 	Connectivity ApiGatewayConnectivityPtrOutput `pulumi:"connectivity"`
@@ -81,6 +142,8 @@ type ApiGateway struct {
 	//
 	// Deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
 	UserDomains pulumi.StringArrayOutput `pulumi:"userDomains"`
+	// A set of values for variables in gateway specification.
+	Variables pulumi.StringMapOutput `pulumi:"variables"`
 }
 
 // NewApiGateway registers a new resource with the given unique name, arguments, and options.
@@ -116,6 +179,10 @@ func GetApiGateway(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ApiGateway resources.
 type apiGatewayState struct {
+	// Canary release settings of gateway.
+	// * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+	// * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+	Canary *ApiGatewayCanary `pulumi:"canary"`
 	// Gateway connectivity. If specified the gateway will be attached to specified network.
 	// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
 	Connectivity *ApiGatewayConnectivity `pulumi:"connectivity"`
@@ -142,9 +209,15 @@ type apiGatewayState struct {
 	//
 	// Deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
 	UserDomains []string `pulumi:"userDomains"`
+	// A set of values for variables in gateway specification.
+	Variables map[string]string `pulumi:"variables"`
 }
 
 type ApiGatewayState struct {
+	// Canary release settings of gateway.
+	// * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+	// * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+	Canary ApiGatewayCanaryPtrInput
 	// Gateway connectivity. If specified the gateway will be attached to specified network.
 	// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
 	Connectivity ApiGatewayConnectivityPtrInput
@@ -171,6 +244,8 @@ type ApiGatewayState struct {
 	//
 	// Deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
 	UserDomains pulumi.StringArrayInput
+	// A set of values for variables in gateway specification.
+	Variables pulumi.StringMapInput
 }
 
 func (ApiGatewayState) ElementType() reflect.Type {
@@ -178,6 +253,10 @@ func (ApiGatewayState) ElementType() reflect.Type {
 }
 
 type apiGatewayArgs struct {
+	// Canary release settings of gateway.
+	// * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+	// * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+	Canary *ApiGatewayCanary `pulumi:"canary"`
 	// Gateway connectivity. If specified the gateway will be attached to specified network.
 	// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
 	Connectivity *ApiGatewayConnectivity `pulumi:"connectivity"`
@@ -193,10 +272,16 @@ type apiGatewayArgs struct {
 	Name *string `pulumi:"name"`
 	// OpenAPI specification for Yandex API Gateway.
 	Spec string `pulumi:"spec"`
+	// A set of values for variables in gateway specification.
+	Variables map[string]string `pulumi:"variables"`
 }
 
 // The set of arguments for constructing a ApiGateway resource.
 type ApiGatewayArgs struct {
+	// Canary release settings of gateway.
+	// * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+	// * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+	Canary ApiGatewayCanaryPtrInput
 	// Gateway connectivity. If specified the gateway will be attached to specified network.
 	// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
 	Connectivity ApiGatewayConnectivityPtrInput
@@ -212,6 +297,8 @@ type ApiGatewayArgs struct {
 	Name pulumi.StringPtrInput
 	// OpenAPI specification for Yandex API Gateway.
 	Spec pulumi.StringInput
+	// A set of values for variables in gateway specification.
+	Variables pulumi.StringMapInput
 }
 
 func (ApiGatewayArgs) ElementType() reflect.Type {
@@ -301,6 +388,13 @@ func (o ApiGatewayOutput) ToApiGatewayOutputWithContext(ctx context.Context) Api
 	return o
 }
 
+// Canary release settings of gateway.
+// * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+// * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+func (o ApiGatewayOutput) Canary() ApiGatewayCanaryPtrOutput {
+	return o.ApplyT(func(v *ApiGateway) ApiGatewayCanaryPtrOutput { return v.Canary }).(ApiGatewayCanaryPtrOutput)
+}
+
 // Gateway connectivity. If specified the gateway will be attached to specified network.
 // * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
 func (o ApiGatewayOutput) Connectivity() ApiGatewayConnectivityPtrOutput {
@@ -361,6 +455,11 @@ func (o ApiGatewayOutput) Status() pulumi.StringOutput {
 // Deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
 func (o ApiGatewayOutput) UserDomains() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ApiGateway) pulumi.StringArrayOutput { return v.UserDomains }).(pulumi.StringArrayOutput)
+}
+
+// A set of values for variables in gateway specification.
+func (o ApiGatewayOutput) Variables() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ApiGateway) pulumi.StringMapOutput { return v.Variables }).(pulumi.StringMapOutput)
 }
 
 type ApiGatewayArrayOutput struct{ *pulumi.OutputState }

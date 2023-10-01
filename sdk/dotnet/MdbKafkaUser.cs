@@ -61,6 +61,11 @@ namespace Pulumi.Yandex
     ///             {
     ///                 TopicName = "events",
     ///                 Role = "ACCESS_ROLE_CONSUMER",
+    ///                 AllowHosts = new[]
+    ///                 {
+    ///                     "host1.db.yandex.net",
+    ///                     "host2.db.yandex.net",
+    ///                 },
     ///             },
     ///             new Yandex.Inputs.MdbKafkaUserPermissionArgs
     ///             {

@@ -212,6 +212,18 @@ namespace Pulumi.Yandex.Inputs
         public bool InputFormatDefaultsForOmittedFields { get; set; }
 
         /// <summary>
+        /// (Optional) Enables or disables the insertion of JSON data with nested objects.
+        /// </summary>
+        [Input("inputFormatImportNestedJson", required: true)]
+        public bool InputFormatImportNestedJson { get; set; }
+
+        /// <summary>
+        /// (Optional) Enables or disables order-preserving parallel parsing of data formats. Supported only for TSV, TKSV, CSV and JSONEachRow formats.
+        /// </summary>
+        [Input("inputFormatParallelParsing", required: true)]
+        public bool InputFormatParallelParsing { get; set; }
+
+        /// <summary>
         /// Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
         /// </summary>
         [Input("inputFormatValuesInterpretExpressions", required: true)]
@@ -252,6 +264,12 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("joinedSubqueryRequiresAlias", required: true)]
         public bool JoinedSubqueryRequiresAlias { get; set; }
+
+        /// <summary>
+        /// (Optional) Method of reading data from local filesystem. Possible values:
+        /// </summary>
+        [Input("localFilesystemReadMethod", required: true)]
+        public string LocalFilesystemReadMethod { get; set; } = null!;
 
         /// <summary>
         /// Allows or restricts using the LowCardinality data type with the Native format.
@@ -350,6 +368,12 @@ namespace Pulumi.Yandex.Inputs
         public int MaxExpandedAstElements { get; set; }
 
         /// <summary>
+        /// (Optional) Sets the maximum number of parallel threads for the SELECT query data read phase with the FINAL modifier.
+        /// </summary>
+        [Input("maxFinalThreads", required: true)]
+        public int MaxFinalThreads { get; set; }
+
+        /// <summary>
         /// (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
         /// If the parameter is set to 0 (default), no hops is allowed.
         /// </summary>
@@ -391,6 +415,12 @@ namespace Pulumi.Yandex.Inputs
         /// </summary>
         [Input("maxQuerySize", required: true)]
         public int MaxQuerySize { get; set; }
+
+        /// <summary>
+        /// (Optional) The maximum size of the buffer to read from the filesystem.
+        /// </summary>
+        [Input("maxReadBufferSize", required: true)]
+        public int MaxReadBufferSize { get; set; }
 
         /// <summary>
         /// Disables lagging replicas for distributed queries.

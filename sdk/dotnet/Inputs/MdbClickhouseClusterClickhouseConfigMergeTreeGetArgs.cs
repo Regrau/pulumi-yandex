@@ -13,16 +13,46 @@ namespace Pulumi.Yandex.Inputs
     public sealed class MdbClickhouseClusterClickhouseConfigMergeTreeGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Minimum period to clean old queue logs, blocks hashes and parts.
+        /// </summary>
+        [Input("cleanupDelayPeriod")]
+        public Input<int>? CleanupDelayPeriod { get; set; }
+
+        /// <summary>
         /// Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
         /// </summary>
         [Input("maxBytesToMergeAtMinSpaceInPool")]
         public Input<int>? MaxBytesToMergeAtMinSpaceInPool { get; set; }
 
         /// <summary>
+        /// When there is more than specified number of merges with TTL entries in pool, do not assign new merge with TTL.
+        /// </summary>
+        [Input("maxNumberOfMergesWithTtlInPool")]
+        public Input<int>? MaxNumberOfMergesWithTtlInPool { get; set; }
+
+        /// <summary>
+        /// Maximum number of parts in all partitions.
+        /// </summary>
+        [Input("maxPartsInTotal")]
+        public Input<int>? MaxPartsInTotal { get; set; }
+
+        /// <summary>
         /// Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
         /// </summary>
         [Input("maxReplicatedMergesInQueue")]
         public Input<int>? MaxReplicatedMergesInQueue { get; set; }
+
+        /// <summary>
+        /// Minimum delay in seconds before repeating a merge with recompression TTL. Default value: 14400 seconds (4 hours).
+        /// </summary>
+        [Input("mergeWithRecompressionTtlTimeout")]
+        public Input<int>? MergeWithRecompressionTtlTimeout { get; set; }
+
+        /// <summary>
+        /// Minimum delay in seconds before repeating a merge with delete TTL. Default value: 14400 seconds (4 hours).
+        /// </summary>
+        [Input("mergeWithTtlTimeout")]
+        public Input<int>? MergeWithTtlTimeout { get; set; }
 
         /// <summary>
         /// Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.

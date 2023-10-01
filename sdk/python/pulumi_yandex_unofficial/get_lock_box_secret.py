@@ -131,7 +131,7 @@ class GetLockBoxSecretResult:
 
     @property
     @pulumi.getter(name="secretId")
-    def secret_id(self) -> str:
+    def secret_id(self) -> Optional[str]:
         """
         The secret ID the version belongs to (it's the same as the `secret_id` argument indicated above)
         """
@@ -165,7 +165,9 @@ class AwaitableGetLockBoxSecretResult(GetLockBoxSecretResult):
             status=self.status)
 
 
-def get_lock_box_secret(secret_id: Optional[str] = None,
+def get_lock_box_secret(folder_id: Optional[str] = None,
+                        name: Optional[str] = None,
+                        secret_id: Optional[str] = None,
                         opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLockBoxSecretResult:
     """
     Get information about Yandex Cloud Lockbox secret. For more information,
@@ -182,9 +184,13 @@ def get_lock_box_secret(secret_id: Optional[str] = None,
     ```
 
 
+    :param str folder_id: Folder that the secret belongs to. If value is omitted, the default provider folder is used.
+    :param str name: Name of the Lockbox secret.
     :param str secret_id: The Yandex Cloud Lockbox secret ID.
     """
     __args__ = dict()
+    __args__['folderId'] = folder_id
+    __args__['name'] = name
     __args__['secretId'] = secret_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('yandex:index/getLockBoxSecret:getLockBoxSecret', __args__, opts=opts, typ=GetLockBoxSecretResult).value
@@ -204,7 +210,9 @@ def get_lock_box_secret(secret_id: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_lock_box_secret)
-def get_lock_box_secret_output(secret_id: Optional[pulumi.Input[str]] = None,
+def get_lock_box_secret_output(folder_id: Optional[pulumi.Input[Optional[str]]] = None,
+                               name: Optional[pulumi.Input[Optional[str]]] = None,
+                               secret_id: Optional[pulumi.Input[Optional[str]]] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLockBoxSecretResult]:
     """
     Get information about Yandex Cloud Lockbox secret. For more information,
@@ -221,6 +229,8 @@ def get_lock_box_secret_output(secret_id: Optional[pulumi.Input[str]] = None,
     ```
 
 
+    :param str folder_id: Folder that the secret belongs to. If value is omitted, the default provider folder is used.
+    :param str name: Name of the Lockbox secret.
     :param str secret_id: The Yandex Cloud Lockbox secret ID.
     """
     ...

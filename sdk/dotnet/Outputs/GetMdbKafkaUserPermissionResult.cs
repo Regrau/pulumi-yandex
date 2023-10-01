@@ -13,15 +13,19 @@ namespace Pulumi.Yandex.Outputs
     [OutputType]
     public sealed class GetMdbKafkaUserPermissionResult
     {
+        public readonly ImmutableArray<string> AllowHosts;
         public readonly string Role;
         public readonly string TopicName;
 
         [OutputConstructor]
         private GetMdbKafkaUserPermissionResult(
+            ImmutableArray<string> allowHosts,
+
             string role,
 
             string topicName)
         {
+            AllowHosts = allowHosts;
             Role = role;
             TopicName = topicName;
         }

@@ -10,6 +10,625 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
+type GetAlbBackendGroupStreamBackend struct {
+	EnableProxyProtocol bool `pulumi:"enableProxyProtocol"`
+	// Healthcheck specification that will be used by this backend. Structure is documented below.
+	Healthcheck GetAlbBackendGroupStreamBackendHealthcheck `pulumi:"healthcheck"`
+	// Load Balancing Config specification that will be used by this backend. Structure is documented below.
+	LoadBalancingConfig GetAlbBackendGroupStreamBackendLoadBalancingConfig `pulumi:"loadBalancingConfig"`
+	// - Name of the Backend Group.
+	Name string `pulumi:"name"`
+	// Port for incoming traffic.
+	Port int `pulumi:"port"`
+	// References target groups for the backend.
+	TargetGroupIds []string `pulumi:"targetGroupIds"`
+	// Tls specification that will be used by this backend. Structure is documented below.
+	Tls GetAlbBackendGroupStreamBackendTls `pulumi:"tls"`
+	// Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+	Weight int `pulumi:"weight"`
+}
+
+// GetAlbBackendGroupStreamBackendInput is an input type that accepts GetAlbBackendGroupStreamBackendArgs and GetAlbBackendGroupStreamBackendOutput values.
+// You can construct a concrete instance of `GetAlbBackendGroupStreamBackendInput` via:
+//
+//	GetAlbBackendGroupStreamBackendArgs{...}
+type GetAlbBackendGroupStreamBackendInput interface {
+	pulumi.Input
+
+	ToGetAlbBackendGroupStreamBackendOutput() GetAlbBackendGroupStreamBackendOutput
+	ToGetAlbBackendGroupStreamBackendOutputWithContext(context.Context) GetAlbBackendGroupStreamBackendOutput
+}
+
+type GetAlbBackendGroupStreamBackendArgs struct {
+	EnableProxyProtocol pulumi.BoolInput `pulumi:"enableProxyProtocol"`
+	// Healthcheck specification that will be used by this backend. Structure is documented below.
+	Healthcheck GetAlbBackendGroupStreamBackendHealthcheckInput `pulumi:"healthcheck"`
+	// Load Balancing Config specification that will be used by this backend. Structure is documented below.
+	LoadBalancingConfig GetAlbBackendGroupStreamBackendLoadBalancingConfigInput `pulumi:"loadBalancingConfig"`
+	// - Name of the Backend Group.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Port for incoming traffic.
+	Port pulumi.IntInput `pulumi:"port"`
+	// References target groups for the backend.
+	TargetGroupIds pulumi.StringArrayInput `pulumi:"targetGroupIds"`
+	// Tls specification that will be used by this backend. Structure is documented below.
+	Tls GetAlbBackendGroupStreamBackendTlsInput `pulumi:"tls"`
+	// Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+	Weight pulumi.IntInput `pulumi:"weight"`
+}
+
+func (GetAlbBackendGroupStreamBackendArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackend)(nil)).Elem()
+}
+
+func (i GetAlbBackendGroupStreamBackendArgs) ToGetAlbBackendGroupStreamBackendOutput() GetAlbBackendGroupStreamBackendOutput {
+	return i.ToGetAlbBackendGroupStreamBackendOutputWithContext(context.Background())
+}
+
+func (i GetAlbBackendGroupStreamBackendArgs) ToGetAlbBackendGroupStreamBackendOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlbBackendGroupStreamBackendOutput)
+}
+
+// GetAlbBackendGroupStreamBackendArrayInput is an input type that accepts GetAlbBackendGroupStreamBackendArray and GetAlbBackendGroupStreamBackendArrayOutput values.
+// You can construct a concrete instance of `GetAlbBackendGroupStreamBackendArrayInput` via:
+//
+//	GetAlbBackendGroupStreamBackendArray{ GetAlbBackendGroupStreamBackendArgs{...} }
+type GetAlbBackendGroupStreamBackendArrayInput interface {
+	pulumi.Input
+
+	ToGetAlbBackendGroupStreamBackendArrayOutput() GetAlbBackendGroupStreamBackendArrayOutput
+	ToGetAlbBackendGroupStreamBackendArrayOutputWithContext(context.Context) GetAlbBackendGroupStreamBackendArrayOutput
+}
+
+type GetAlbBackendGroupStreamBackendArray []GetAlbBackendGroupStreamBackendInput
+
+func (GetAlbBackendGroupStreamBackendArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlbBackendGroupStreamBackend)(nil)).Elem()
+}
+
+func (i GetAlbBackendGroupStreamBackendArray) ToGetAlbBackendGroupStreamBackendArrayOutput() GetAlbBackendGroupStreamBackendArrayOutput {
+	return i.ToGetAlbBackendGroupStreamBackendArrayOutputWithContext(context.Background())
+}
+
+func (i GetAlbBackendGroupStreamBackendArray) ToGetAlbBackendGroupStreamBackendArrayOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlbBackendGroupStreamBackendArrayOutput)
+}
+
+type GetAlbBackendGroupStreamBackendOutput struct{ *pulumi.OutputState }
+
+func (GetAlbBackendGroupStreamBackendOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackend)(nil)).Elem()
+}
+
+func (o GetAlbBackendGroupStreamBackendOutput) ToGetAlbBackendGroupStreamBackendOutput() GetAlbBackendGroupStreamBackendOutput {
+	return o
+}
+
+func (o GetAlbBackendGroupStreamBackendOutput) ToGetAlbBackendGroupStreamBackendOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendOutput {
+	return o
+}
+
+func (o GetAlbBackendGroupStreamBackendOutput) EnableProxyProtocol() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackend) bool { return v.EnableProxyProtocol }).(pulumi.BoolOutput)
+}
+
+// Healthcheck specification that will be used by this backend. Structure is documented below.
+func (o GetAlbBackendGroupStreamBackendOutput) Healthcheck() GetAlbBackendGroupStreamBackendHealthcheckOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackend) GetAlbBackendGroupStreamBackendHealthcheck {
+		return v.Healthcheck
+	}).(GetAlbBackendGroupStreamBackendHealthcheckOutput)
+}
+
+// Load Balancing Config specification that will be used by this backend. Structure is documented below.
+func (o GetAlbBackendGroupStreamBackendOutput) LoadBalancingConfig() GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackend) GetAlbBackendGroupStreamBackendLoadBalancingConfig {
+		return v.LoadBalancingConfig
+	}).(GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput)
+}
+
+// - Name of the Backend Group.
+func (o GetAlbBackendGroupStreamBackendOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackend) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Port for incoming traffic.
+func (o GetAlbBackendGroupStreamBackendOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackend) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// References target groups for the backend.
+func (o GetAlbBackendGroupStreamBackendOutput) TargetGroupIds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackend) []string { return v.TargetGroupIds }).(pulumi.StringArrayOutput)
+}
+
+// Tls specification that will be used by this backend. Structure is documented below.
+func (o GetAlbBackendGroupStreamBackendOutput) Tls() GetAlbBackendGroupStreamBackendTlsOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackend) GetAlbBackendGroupStreamBackendTls { return v.Tls }).(GetAlbBackendGroupStreamBackendTlsOutput)
+}
+
+// Weight of the backend. Traffic will be split between backends of the same BackendGroup according to their weights.
+func (o GetAlbBackendGroupStreamBackendOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackend) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+type GetAlbBackendGroupStreamBackendArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAlbBackendGroupStreamBackendArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAlbBackendGroupStreamBackend)(nil)).Elem()
+}
+
+func (o GetAlbBackendGroupStreamBackendArrayOutput) ToGetAlbBackendGroupStreamBackendArrayOutput() GetAlbBackendGroupStreamBackendArrayOutput {
+	return o
+}
+
+func (o GetAlbBackendGroupStreamBackendArrayOutput) ToGetAlbBackendGroupStreamBackendArrayOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendArrayOutput {
+	return o
+}
+
+func (o GetAlbBackendGroupStreamBackendArrayOutput) Index(i pulumi.IntInput) GetAlbBackendGroupStreamBackendOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlbBackendGroupStreamBackend {
+		return vs[0].([]GetAlbBackendGroupStreamBackend)[vs[1].(int)]
+	}).(GetAlbBackendGroupStreamBackendOutput)
+}
+
+type GetAlbBackendGroupStreamBackendHealthcheck struct {
+	// Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+	GrpcHealthcheck GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck `pulumi:"grpcHealthcheck"`
+	// Optional alternative port for health checking.
+	HealthcheckPort int `pulumi:"healthcheckPort"`
+	// Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+	HealthyThreshold int `pulumi:"healthyThreshold"`
+	// Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+	HttpHealthcheck GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheck `pulumi:"httpHealthcheck"`
+	// Interval between health checks.
+	Interval string `pulumi:"interval"`
+	// An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+	IntervalJitterPercent float64 `pulumi:"intervalJitterPercent"`
+	// Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+	StreamHealthcheck GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheck `pulumi:"streamHealthcheck"`
+	// Time to wait for a health check response.
+	Timeout string `pulumi:"timeout"`
+	// Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+	UnhealthyThreshold int `pulumi:"unhealthyThreshold"`
+}
+
+// GetAlbBackendGroupStreamBackendHealthcheckInput is an input type that accepts GetAlbBackendGroupStreamBackendHealthcheckArgs and GetAlbBackendGroupStreamBackendHealthcheckOutput values.
+// You can construct a concrete instance of `GetAlbBackendGroupStreamBackendHealthcheckInput` via:
+//
+//	GetAlbBackendGroupStreamBackendHealthcheckArgs{...}
+type GetAlbBackendGroupStreamBackendHealthcheckInput interface {
+	pulumi.Input
+
+	ToGetAlbBackendGroupStreamBackendHealthcheckOutput() GetAlbBackendGroupStreamBackendHealthcheckOutput
+	ToGetAlbBackendGroupStreamBackendHealthcheckOutputWithContext(context.Context) GetAlbBackendGroupStreamBackendHealthcheckOutput
+}
+
+type GetAlbBackendGroupStreamBackendHealthcheckArgs struct {
+	// Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+	GrpcHealthcheck GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckInput `pulumi:"grpcHealthcheck"`
+	// Optional alternative port for health checking.
+	HealthcheckPort pulumi.IntInput `pulumi:"healthcheckPort"`
+	// Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+	HealthyThreshold pulumi.IntInput `pulumi:"healthyThreshold"`
+	// Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+	HttpHealthcheck GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckInput `pulumi:"httpHealthcheck"`
+	// Interval between health checks.
+	Interval pulumi.StringInput `pulumi:"interval"`
+	// An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+	IntervalJitterPercent pulumi.Float64Input `pulumi:"intervalJitterPercent"`
+	// Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+	StreamHealthcheck GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckInput `pulumi:"streamHealthcheck"`
+	// Time to wait for a health check response.
+	Timeout pulumi.StringInput `pulumi:"timeout"`
+	// Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+	UnhealthyThreshold pulumi.IntInput `pulumi:"unhealthyThreshold"`
+}
+
+func (GetAlbBackendGroupStreamBackendHealthcheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackendHealthcheck)(nil)).Elem()
+}
+
+func (i GetAlbBackendGroupStreamBackendHealthcheckArgs) ToGetAlbBackendGroupStreamBackendHealthcheckOutput() GetAlbBackendGroupStreamBackendHealthcheckOutput {
+	return i.ToGetAlbBackendGroupStreamBackendHealthcheckOutputWithContext(context.Background())
+}
+
+func (i GetAlbBackendGroupStreamBackendHealthcheckArgs) ToGetAlbBackendGroupStreamBackendHealthcheckOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendHealthcheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlbBackendGroupStreamBackendHealthcheckOutput)
+}
+
+type GetAlbBackendGroupStreamBackendHealthcheckOutput struct{ *pulumi.OutputState }
+
+func (GetAlbBackendGroupStreamBackendHealthcheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackendHealthcheck)(nil)).Elem()
+}
+
+func (o GetAlbBackendGroupStreamBackendHealthcheckOutput) ToGetAlbBackendGroupStreamBackendHealthcheckOutput() GetAlbBackendGroupStreamBackendHealthcheckOutput {
+	return o
+}
+
+func (o GetAlbBackendGroupStreamBackendHealthcheckOutput) ToGetAlbBackendGroupStreamBackendHealthcheckOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendHealthcheckOutput {
+	return o
+}
+
+// Grpc Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+func (o GetAlbBackendGroupStreamBackendHealthcheckOutput) GrpcHealthcheck() GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheck) GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck {
+		return v.GrpcHealthcheck
+	}).(GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput)
+}
+
+// Optional alternative port for health checking.
+func (o GetAlbBackendGroupStreamBackendHealthcheckOutput) HealthcheckPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheck) int { return v.HealthcheckPort }).(pulumi.IntOutput)
+}
+
+// Number of consecutive successful health checks required to promote endpoint into the healthy state. 0 means 1. Note that during startup, only a single successful health check is required to mark a host healthy.
+func (o GetAlbBackendGroupStreamBackendHealthcheckOutput) HealthyThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheck) int { return v.HealthyThreshold }).(pulumi.IntOutput)
+}
+
+// Http Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+func (o GetAlbBackendGroupStreamBackendHealthcheckOutput) HttpHealthcheck() GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheck) GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheck {
+		return v.HttpHealthcheck
+	}).(GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput)
+}
+
+// Interval between health checks.
+func (o GetAlbBackendGroupStreamBackendHealthcheckOutput) Interval() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheck) string { return v.Interval }).(pulumi.StringOutput)
+}
+
+// An optional jitter amount as a percentage of interval. If specified, during every interval value of (interval_ms * intervalJitterPercent / 100) will be added to the wait time.
+func (o GetAlbBackendGroupStreamBackendHealthcheckOutput) IntervalJitterPercent() pulumi.Float64Output {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheck) float64 { return v.IntervalJitterPercent }).(pulumi.Float64Output)
+}
+
+// Stream Healthcheck specification that will be used by this healthcheck. Structure is documented below.
+func (o GetAlbBackendGroupStreamBackendHealthcheckOutput) StreamHealthcheck() GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheck) GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheck {
+		return v.StreamHealthcheck
+	}).(GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput)
+}
+
+// Time to wait for a health check response.
+func (o GetAlbBackendGroupStreamBackendHealthcheckOutput) Timeout() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheck) string { return v.Timeout }).(pulumi.StringOutput)
+}
+
+// Number of consecutive failed health checks required to demote endpoint into the unhealthy state. 0 means 1. Note that for HTTP health checks, a single 503 immediately makes endpoint unhealthy.
+func (o GetAlbBackendGroupStreamBackendHealthcheckOutput) UnhealthyThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheck) int { return v.UnhealthyThreshold }).(pulumi.IntOutput)
+}
+
+type GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck struct {
+	// Optional service name for grpc.health.v1.HealthCheckRequest message.
+	ServiceName string `pulumi:"serviceName"`
+}
+
+// GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckInput is an input type that accepts GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs and GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput values.
+// You can construct a concrete instance of `GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckInput` via:
+//
+//	GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs{...}
+type GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckInput interface {
+	pulumi.Input
+
+	ToGetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput() GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput
+	ToGetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutputWithContext(context.Context) GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput
+}
+
+type GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs struct {
+	// Optional service name for grpc.health.v1.HealthCheckRequest message.
+	ServiceName pulumi.StringInput `pulumi:"serviceName"`
+}
+
+func (GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck)(nil)).Elem()
+}
+
+func (i GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs) ToGetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput() GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput {
+	return i.ToGetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutputWithContext(context.Background())
+}
+
+func (i GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs) ToGetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput)
+}
+
+type GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput struct{ *pulumi.OutputState }
+
+func (GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck)(nil)).Elem()
+}
+
+func (o GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput) ToGetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput() GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput {
+	return o
+}
+
+func (o GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput) ToGetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput {
+	return o
+}
+
+// Optional service name for grpc.health.v1.HealthCheckRequest message.
+func (o GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput) ServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheck) string { return v.ServiceName }).(pulumi.StringOutput)
+}
+
+type GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheck struct {
+	// Optional "Host" HTTP header value.
+	Host string `pulumi:"host"`
+	// If set, health checks will use HTTP2.
+	Http2 bool `pulumi:"http2"`
+	// HTTP path.
+	Path string `pulumi:"path"`
+}
+
+// GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckInput is an input type that accepts GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs and GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput values.
+// You can construct a concrete instance of `GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckInput` via:
+//
+//	GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs{...}
+type GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckInput interface {
+	pulumi.Input
+
+	ToGetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput() GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput
+	ToGetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutputWithContext(context.Context) GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput
+}
+
+type GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs struct {
+	// Optional "Host" HTTP header value.
+	Host pulumi.StringInput `pulumi:"host"`
+	// If set, health checks will use HTTP2.
+	Http2 pulumi.BoolInput `pulumi:"http2"`
+	// HTTP path.
+	Path pulumi.StringInput `pulumi:"path"`
+}
+
+func (GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheck)(nil)).Elem()
+}
+
+func (i GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs) ToGetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput() GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput {
+	return i.ToGetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutputWithContext(context.Background())
+}
+
+func (i GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs) ToGetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput)
+}
+
+type GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput struct{ *pulumi.OutputState }
+
+func (GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheck)(nil)).Elem()
+}
+
+func (o GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput) ToGetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput() GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput {
+	return o
+}
+
+func (o GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput) ToGetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput {
+	return o
+}
+
+// Optional "Host" HTTP header value.
+func (o GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput) Host() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheck) string { return v.Host }).(pulumi.StringOutput)
+}
+
+// If set, health checks will use HTTP2.
+func (o GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput) Http2() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheck) bool { return v.Http2 }).(pulumi.BoolOutput)
+}
+
+// HTTP path.
+func (o GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput) Path() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheck) string { return v.Path }).(pulumi.StringOutput)
+}
+
+type GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheck struct {
+	// Optional text that must be contained in the messages received from targets for a successful health check.
+	Receive string `pulumi:"receive"`
+	// Optional message text sent to targets during TCP data transfer.
+	Send string `pulumi:"send"`
+}
+
+// GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckInput is an input type that accepts GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs and GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput values.
+// You can construct a concrete instance of `GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckInput` via:
+//
+//	GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs{...}
+type GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckInput interface {
+	pulumi.Input
+
+	ToGetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput() GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput
+	ToGetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutputWithContext(context.Context) GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput
+}
+
+type GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs struct {
+	// Optional text that must be contained in the messages received from targets for a successful health check.
+	Receive pulumi.StringInput `pulumi:"receive"`
+	// Optional message text sent to targets during TCP data transfer.
+	Send pulumi.StringInput `pulumi:"send"`
+}
+
+func (GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheck)(nil)).Elem()
+}
+
+func (i GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs) ToGetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput() GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput {
+	return i.ToGetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutputWithContext(context.Background())
+}
+
+func (i GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs) ToGetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput)
+}
+
+type GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput struct{ *pulumi.OutputState }
+
+func (GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheck)(nil)).Elem()
+}
+
+func (o GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput) ToGetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput() GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput {
+	return o
+}
+
+func (o GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput) ToGetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput {
+	return o
+}
+
+// Optional text that must be contained in the messages received from targets for a successful health check.
+func (o GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput) Receive() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheck) string { return v.Receive }).(pulumi.StringOutput)
+}
+
+// Optional message text sent to targets during TCP data transfer.
+func (o GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput) Send() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheck) string { return v.Send }).(pulumi.StringOutput)
+}
+
+type GetAlbBackendGroupStreamBackendLoadBalancingConfig struct {
+	// Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+	LocalityAwareRoutingPercent int `pulumi:"localityAwareRoutingPercent"`
+	// Load balancing mode for the backend.
+	Mode string `pulumi:"mode"`
+	// If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+	PanicThreshold int `pulumi:"panicThreshold"`
+	// If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+	StrictLocality bool `pulumi:"strictLocality"`
+}
+
+// GetAlbBackendGroupStreamBackendLoadBalancingConfigInput is an input type that accepts GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs and GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput values.
+// You can construct a concrete instance of `GetAlbBackendGroupStreamBackendLoadBalancingConfigInput` via:
+//
+//	GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs{...}
+type GetAlbBackendGroupStreamBackendLoadBalancingConfigInput interface {
+	pulumi.Input
+
+	ToGetAlbBackendGroupStreamBackendLoadBalancingConfigOutput() GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput
+	ToGetAlbBackendGroupStreamBackendLoadBalancingConfigOutputWithContext(context.Context) GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput
+}
+
+type GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs struct {
+	// Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+	LocalityAwareRoutingPercent pulumi.IntInput `pulumi:"localityAwareRoutingPercent"`
+	// Load balancing mode for the backend.
+	Mode pulumi.StringInput `pulumi:"mode"`
+	// If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+	PanicThreshold pulumi.IntInput `pulumi:"panicThreshold"`
+	// If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+	StrictLocality pulumi.BoolInput `pulumi:"strictLocality"`
+}
+
+func (GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackendLoadBalancingConfig)(nil)).Elem()
+}
+
+func (i GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs) ToGetAlbBackendGroupStreamBackendLoadBalancingConfigOutput() GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput {
+	return i.ToGetAlbBackendGroupStreamBackendLoadBalancingConfigOutputWithContext(context.Background())
+}
+
+func (i GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs) ToGetAlbBackendGroupStreamBackendLoadBalancingConfigOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput)
+}
+
+type GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput struct{ *pulumi.OutputState }
+
+func (GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackendLoadBalancingConfig)(nil)).Elem()
+}
+
+func (o GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput) ToGetAlbBackendGroupStreamBackendLoadBalancingConfigOutput() GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput {
+	return o
+}
+
+func (o GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput) ToGetAlbBackendGroupStreamBackendLoadBalancingConfigOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput {
+	return o
+}
+
+// Percent of traffic to be sent to the same availability zone. The rest will be equally divided between other zones.
+func (o GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput) LocalityAwareRoutingPercent() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendLoadBalancingConfig) int { return v.LocalityAwareRoutingPercent }).(pulumi.IntOutput)
+}
+
+// Load balancing mode for the backend.
+func (o GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendLoadBalancingConfig) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+// If percentage of healthy hosts in the backend is lower than panic_threshold, traffic will be routed to all backends no matter what the health status is. This helps to avoid healthy backends overloading  when everything is bad. Zero means no panic threshold.
+func (o GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput) PanicThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendLoadBalancingConfig) int { return v.PanicThreshold }).(pulumi.IntOutput)
+}
+
+// If set, will route requests only to the same availability zone. Balancer won't know about endpoints in other zones.
+func (o GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput) StrictLocality() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendLoadBalancingConfig) bool { return v.StrictLocality }).(pulumi.BoolOutput)
+}
+
+type GetAlbBackendGroupStreamBackendTls struct {
+	// [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+	// * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+	// * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+	Sni               string                                              `pulumi:"sni"`
+	ValidationContext GetAlbBackendGroupStreamBackendTlsValidationContext `pulumi:"validationContext"`
+}
+
+// GetAlbBackendGroupStreamBackendTlsInput is an input type that accepts GetAlbBackendGroupStreamBackendTlsArgs and GetAlbBackendGroupStreamBackendTlsOutput values.
+// You can construct a concrete instance of `GetAlbBackendGroupStreamBackendTlsInput` via:
+//
+//	GetAlbBackendGroupStreamBackendTlsArgs{...}
+type GetAlbBackendGroupStreamBackendTlsInput interface {
+	pulumi.Input
+
+	ToGetAlbBackendGroupStreamBackendTlsOutput() GetAlbBackendGroupStreamBackendTlsOutput
+	ToGetAlbBackendGroupStreamBackendTlsOutputWithContext(context.Context) GetAlbBackendGroupStreamBackendTlsOutput
+}
+
+type GetAlbBackendGroupStreamBackendTlsArgs struct {
+	// [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+	// * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+	// * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+	Sni               pulumi.StringInput                                       `pulumi:"sni"`
+	ValidationContext GetAlbBackendGroupStreamBackendTlsValidationContextInput `pulumi:"validationContext"`
+}
+
+func (GetAlbBackendGroupStreamBackendTlsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackendTls)(nil)).Elem()
+}
+
+func (i GetAlbBackendGroupStreamBackendTlsArgs) ToGetAlbBackendGroupStreamBackendTlsOutput() GetAlbBackendGroupStreamBackendTlsOutput {
+	return i.ToGetAlbBackendGroupStreamBackendTlsOutputWithContext(context.Background())
+}
+
+func (i GetAlbBackendGroupStreamBackendTlsArgs) ToGetAlbBackendGroupStreamBackendTlsOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendTlsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAlbBackendGroupStreamBackendTlsOutput)
+}
+
+type GetAlbBackendGroupStreamBackendTlsOutput struct{ *pulumi.OutputState }
+
+func (GetAlbBackendGroupStreamBackendTlsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAlbBackendGroupStreamBackendTls)(nil)).Elem()
+}
+
+func (o GetAlbBackendGroupStreamBackendTlsOutput) ToGetAlbBackendGroupStreamBackendTlsOutput() GetAlbBackendGroupStreamBackendTlsOutput {
+	return o
+}
+
+func (o GetAlbBackendGroupStreamBackendTlsOutput) ToGetAlbBackendGroupStreamBackendTlsOutputWithContext(ctx context.Context) GetAlbBackendGroupStreamBackendTlsOutput {
+	return o
+}
+
+// [SNI](https://en.wikipedia.org/wiki/Server_Name_Indication) string for TLS connections.
+// * `validation_context.0.trusted_ca_id` - Trusted CA certificate ID in the Certificate Manager.
+// * `validation_context.0.trusted_ca_bytes` - PEM-encoded trusted CA certificate chain.
+func (o GetAlbBackendGroupStreamBackendTlsOutput) Sni() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendTls) string { return v.Sni }).(pulumi.StringOutput)
+}
+
+func (o GetAlbBackendGroupStreamBackendTlsOutput) ValidationContext() GetAlbBackendGroupStreamBackendTlsValidationContextOutput {
+	return o.ApplyT(func(v GetAlbBackendGroupStreamBackendTls) GetAlbBackendGroupStreamBackendTlsValidationContext {
+		return v.ValidationContext
+	}).(GetAlbBackendGroupStreamBackendTlsValidationContextOutput)
+}
+
 type GetAlbBackendGroupStreamBackendTlsValidationContext struct {
 	TrustedCaBytes string `pulumi:"trustedCaBytes"`
 	TrustedCaId    string `pulumi:"trustedCaId"`
@@ -6427,6 +7046,154 @@ func (o GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderValueArr
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderValue {
 		return vs[0].([]GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderValue)[vs[1].(int)]
 	}).(GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderValueOutput)
+}
+
+type GetApiGatewayCanary struct {
+	Variables map[string]string `pulumi:"variables"`
+	Weight    *int              `pulumi:"weight"`
+}
+
+// GetApiGatewayCanaryInput is an input type that accepts GetApiGatewayCanaryArgs and GetApiGatewayCanaryOutput values.
+// You can construct a concrete instance of `GetApiGatewayCanaryInput` via:
+//
+//	GetApiGatewayCanaryArgs{...}
+type GetApiGatewayCanaryInput interface {
+	pulumi.Input
+
+	ToGetApiGatewayCanaryOutput() GetApiGatewayCanaryOutput
+	ToGetApiGatewayCanaryOutputWithContext(context.Context) GetApiGatewayCanaryOutput
+}
+
+type GetApiGatewayCanaryArgs struct {
+	Variables pulumi.StringMapInput `pulumi:"variables"`
+	Weight    pulumi.IntPtrInput    `pulumi:"weight"`
+}
+
+func (GetApiGatewayCanaryArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiGatewayCanary)(nil)).Elem()
+}
+
+func (i GetApiGatewayCanaryArgs) ToGetApiGatewayCanaryOutput() GetApiGatewayCanaryOutput {
+	return i.ToGetApiGatewayCanaryOutputWithContext(context.Background())
+}
+
+func (i GetApiGatewayCanaryArgs) ToGetApiGatewayCanaryOutputWithContext(ctx context.Context) GetApiGatewayCanaryOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiGatewayCanaryOutput)
+}
+
+func (i GetApiGatewayCanaryArgs) ToGetApiGatewayCanaryPtrOutput() GetApiGatewayCanaryPtrOutput {
+	return i.ToGetApiGatewayCanaryPtrOutputWithContext(context.Background())
+}
+
+func (i GetApiGatewayCanaryArgs) ToGetApiGatewayCanaryPtrOutputWithContext(ctx context.Context) GetApiGatewayCanaryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiGatewayCanaryOutput).ToGetApiGatewayCanaryPtrOutputWithContext(ctx)
+}
+
+// GetApiGatewayCanaryPtrInput is an input type that accepts GetApiGatewayCanaryArgs, GetApiGatewayCanaryPtr and GetApiGatewayCanaryPtrOutput values.
+// You can construct a concrete instance of `GetApiGatewayCanaryPtrInput` via:
+//
+//	        GetApiGatewayCanaryArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetApiGatewayCanaryPtrInput interface {
+	pulumi.Input
+
+	ToGetApiGatewayCanaryPtrOutput() GetApiGatewayCanaryPtrOutput
+	ToGetApiGatewayCanaryPtrOutputWithContext(context.Context) GetApiGatewayCanaryPtrOutput
+}
+
+type getApiGatewayCanaryPtrType GetApiGatewayCanaryArgs
+
+func GetApiGatewayCanaryPtr(v *GetApiGatewayCanaryArgs) GetApiGatewayCanaryPtrInput {
+	return (*getApiGatewayCanaryPtrType)(v)
+}
+
+func (*getApiGatewayCanaryPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetApiGatewayCanary)(nil)).Elem()
+}
+
+func (i *getApiGatewayCanaryPtrType) ToGetApiGatewayCanaryPtrOutput() GetApiGatewayCanaryPtrOutput {
+	return i.ToGetApiGatewayCanaryPtrOutputWithContext(context.Background())
+}
+
+func (i *getApiGatewayCanaryPtrType) ToGetApiGatewayCanaryPtrOutputWithContext(ctx context.Context) GetApiGatewayCanaryPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetApiGatewayCanaryPtrOutput)
+}
+
+type GetApiGatewayCanaryOutput struct{ *pulumi.OutputState }
+
+func (GetApiGatewayCanaryOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetApiGatewayCanary)(nil)).Elem()
+}
+
+func (o GetApiGatewayCanaryOutput) ToGetApiGatewayCanaryOutput() GetApiGatewayCanaryOutput {
+	return o
+}
+
+func (o GetApiGatewayCanaryOutput) ToGetApiGatewayCanaryOutputWithContext(ctx context.Context) GetApiGatewayCanaryOutput {
+	return o
+}
+
+func (o GetApiGatewayCanaryOutput) ToGetApiGatewayCanaryPtrOutput() GetApiGatewayCanaryPtrOutput {
+	return o.ToGetApiGatewayCanaryPtrOutputWithContext(context.Background())
+}
+
+func (o GetApiGatewayCanaryOutput) ToGetApiGatewayCanaryPtrOutputWithContext(ctx context.Context) GetApiGatewayCanaryPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetApiGatewayCanary) *GetApiGatewayCanary {
+		return &v
+	}).(GetApiGatewayCanaryPtrOutput)
+}
+
+func (o GetApiGatewayCanaryOutput) Variables() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetApiGatewayCanary) map[string]string { return v.Variables }).(pulumi.StringMapOutput)
+}
+
+func (o GetApiGatewayCanaryOutput) Weight() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v GetApiGatewayCanary) *int { return v.Weight }).(pulumi.IntPtrOutput)
+}
+
+type GetApiGatewayCanaryPtrOutput struct{ *pulumi.OutputState }
+
+func (GetApiGatewayCanaryPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetApiGatewayCanary)(nil)).Elem()
+}
+
+func (o GetApiGatewayCanaryPtrOutput) ToGetApiGatewayCanaryPtrOutput() GetApiGatewayCanaryPtrOutput {
+	return o
+}
+
+func (o GetApiGatewayCanaryPtrOutput) ToGetApiGatewayCanaryPtrOutputWithContext(ctx context.Context) GetApiGatewayCanaryPtrOutput {
+	return o
+}
+
+func (o GetApiGatewayCanaryPtrOutput) Elem() GetApiGatewayCanaryOutput {
+	return o.ApplyT(func(v *GetApiGatewayCanary) GetApiGatewayCanary {
+		if v != nil {
+			return *v
+		}
+		var ret GetApiGatewayCanary
+		return ret
+	}).(GetApiGatewayCanaryOutput)
+}
+
+func (o GetApiGatewayCanaryPtrOutput) Variables() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetApiGatewayCanary) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Variables
+	}).(pulumi.StringMapOutput)
+}
+
+func (o GetApiGatewayCanaryPtrOutput) Weight() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetApiGatewayCanary) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Weight
+	}).(pulumi.IntPtrOutput)
 }
 
 type GetApiGatewayConnectivity struct {
@@ -21532,9 +22299,10 @@ func (o GetMdbClickhouseClusterClickhousePtrOutput) Resources() GetMdbClickhouse
 }
 
 type GetMdbClickhouseClusterClickhouseConfig struct {
-	BackgroundFetchesPoolSize  int `pulumi:"backgroundFetchesPoolSize"`
-	BackgroundPoolSize         int `pulumi:"backgroundPoolSize"`
-	BackgroundSchedulePoolSize int `pulumi:"backgroundSchedulePoolSize"`
+	BackgroundFetchesPoolSize               int `pulumi:"backgroundFetchesPoolSize"`
+	BackgroundMessageBrokerSchedulePoolSize int `pulumi:"backgroundMessageBrokerSchedulePoolSize"`
+	BackgroundPoolSize                      int `pulumi:"backgroundPoolSize"`
+	BackgroundSchedulePoolSize              int `pulumi:"backgroundSchedulePoolSize"`
 	// Data compression configuration. The structure is documented below.
 	Compressions    []GetMdbClickhouseClusterClickhouseConfigCompression `pulumi:"compressions"`
 	DefaultDatabase string                                               `pulumi:"defaultDatabase"`
@@ -21590,9 +22358,10 @@ type GetMdbClickhouseClusterClickhouseConfigInput interface {
 }
 
 type GetMdbClickhouseClusterClickhouseConfigArgs struct {
-	BackgroundFetchesPoolSize  pulumi.IntInput `pulumi:"backgroundFetchesPoolSize"`
-	BackgroundPoolSize         pulumi.IntInput `pulumi:"backgroundPoolSize"`
-	BackgroundSchedulePoolSize pulumi.IntInput `pulumi:"backgroundSchedulePoolSize"`
+	BackgroundFetchesPoolSize               pulumi.IntInput `pulumi:"backgroundFetchesPoolSize"`
+	BackgroundMessageBrokerSchedulePoolSize pulumi.IntInput `pulumi:"backgroundMessageBrokerSchedulePoolSize"`
+	BackgroundPoolSize                      pulumi.IntInput `pulumi:"backgroundPoolSize"`
+	BackgroundSchedulePoolSize              pulumi.IntInput `pulumi:"backgroundSchedulePoolSize"`
 	// Data compression configuration. The structure is documented below.
 	Compressions    GetMdbClickhouseClusterClickhouseConfigCompressionArrayInput `pulumi:"compressions"`
 	DefaultDatabase pulumi.StringInput                                           `pulumi:"defaultDatabase"`
@@ -21715,6 +22484,10 @@ func (o GetMdbClickhouseClusterClickhouseConfigOutput) ToGetMdbClickhouseCluster
 
 func (o GetMdbClickhouseClusterClickhouseConfigOutput) BackgroundFetchesPoolSize() pulumi.IntOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfig) int { return v.BackgroundFetchesPoolSize }).(pulumi.IntOutput)
+}
+
+func (o GetMdbClickhouseClusterClickhouseConfigOutput) BackgroundMessageBrokerSchedulePoolSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfig) int { return v.BackgroundMessageBrokerSchedulePoolSize }).(pulumi.IntOutput)
 }
 
 func (o GetMdbClickhouseClusterClickhouseConfigOutput) BackgroundPoolSize() pulumi.IntOutput {
@@ -21913,6 +22686,15 @@ func (o GetMdbClickhouseClusterClickhouseConfigPtrOutput) BackgroundFetchesPoolS
 			return nil
 		}
 		return &v.BackgroundFetchesPoolSize
+	}).(pulumi.IntPtrOutput)
+}
+
+func (o GetMdbClickhouseClusterClickhouseConfigPtrOutput) BackgroundMessageBrokerSchedulePoolSize() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetMdbClickhouseClusterClickhouseConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.BackgroundMessageBrokerSchedulePoolSize
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -23198,10 +23980,20 @@ func (o GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettingsPtrOutput) Secu
 }
 
 type GetMdbClickhouseClusterClickhouseConfigMergeTree struct {
+	// (Optional) Minimum period to clean old queue logs, blocks hashes and parts.
+	CleanupDelayPeriod int `pulumi:"cleanupDelayPeriod"`
 	// Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
 	MaxBytesToMergeAtMinSpaceInPool int `pulumi:"maxBytesToMergeAtMinSpaceInPool"`
+	// (Optional) When there is more than specified number of merges with TTL entries in pool, do not assign new merge with TTL.
+	MaxNumberOfMergesWithTtlInPool int `pulumi:"maxNumberOfMergesWithTtlInPool"`
+	// (Optional) Maximum number of parts in all partitions.
+	MaxPartsInTotal int `pulumi:"maxPartsInTotal"`
 	// Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
 	MaxReplicatedMergesInQueue int `pulumi:"maxReplicatedMergesInQueue"`
+	// (Optional) Minimum delay in seconds before repeating a merge with recompression TTL. Default value: 14400 seconds (4 hours).
+	MergeWithRecompressionTtlTimeout int `pulumi:"mergeWithRecompressionTtlTimeout"`
+	// (Optional) Minimum delay in seconds before repeating a merge with delete TTL. Default value: 14400 seconds (4 hours).
+	MergeWithTtlTimeout int `pulumi:"mergeWithTtlTimeout"`
 	// (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
 	MinBytesForWidePart int `pulumi:"minBytesForWidePart"`
 	// (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
@@ -23232,10 +24024,20 @@ type GetMdbClickhouseClusterClickhouseConfigMergeTreeInput interface {
 }
 
 type GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs struct {
+	// (Optional) Minimum period to clean old queue logs, blocks hashes and parts.
+	CleanupDelayPeriod pulumi.IntInput `pulumi:"cleanupDelayPeriod"`
 	// Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
 	MaxBytesToMergeAtMinSpaceInPool pulumi.IntInput `pulumi:"maxBytesToMergeAtMinSpaceInPool"`
+	// (Optional) When there is more than specified number of merges with TTL entries in pool, do not assign new merge with TTL.
+	MaxNumberOfMergesWithTtlInPool pulumi.IntInput `pulumi:"maxNumberOfMergesWithTtlInPool"`
+	// (Optional) Maximum number of parts in all partitions.
+	MaxPartsInTotal pulumi.IntInput `pulumi:"maxPartsInTotal"`
 	// Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
 	MaxReplicatedMergesInQueue pulumi.IntInput `pulumi:"maxReplicatedMergesInQueue"`
+	// (Optional) Minimum delay in seconds before repeating a merge with recompression TTL. Default value: 14400 seconds (4 hours).
+	MergeWithRecompressionTtlTimeout pulumi.IntInput `pulumi:"mergeWithRecompressionTtlTimeout"`
+	// (Optional) Minimum delay in seconds before repeating a merge with delete TTL. Default value: 14400 seconds (4 hours).
+	MergeWithTtlTimeout pulumi.IntInput `pulumi:"mergeWithTtlTimeout"`
 	// (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
 	MinBytesForWidePart pulumi.IntInput `pulumi:"minBytesForWidePart"`
 	// (Optional) Minimum number of rows in a data part that can be stored in Wide format. You can set one, both or none of these settings.
@@ -23331,14 +24133,41 @@ func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) ToGetMdbClickhou
 	}).(GetMdbClickhouseClusterClickhouseConfigMergeTreePtrOutput)
 }
 
+// (Optional) Minimum period to clean old queue logs, blocks hashes and parts.
+func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) CleanupDelayPeriod() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigMergeTree) int { return v.CleanupDelayPeriod }).(pulumi.IntOutput)
+}
+
 // Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
 func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) MaxBytesToMergeAtMinSpaceInPool() pulumi.IntOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigMergeTree) int { return v.MaxBytesToMergeAtMinSpaceInPool }).(pulumi.IntOutput)
 }
 
+// (Optional) When there is more than specified number of merges with TTL entries in pool, do not assign new merge with TTL.
+func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) MaxNumberOfMergesWithTtlInPool() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigMergeTree) int { return v.MaxNumberOfMergesWithTtlInPool }).(pulumi.IntOutput)
+}
+
+// (Optional) Maximum number of parts in all partitions.
+func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) MaxPartsInTotal() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigMergeTree) int { return v.MaxPartsInTotal }).(pulumi.IntOutput)
+}
+
 // Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
 func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) MaxReplicatedMergesInQueue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigMergeTree) int { return v.MaxReplicatedMergesInQueue }).(pulumi.IntOutput)
+}
+
+// (Optional) Minimum delay in seconds before repeating a merge with recompression TTL. Default value: 14400 seconds (4 hours).
+func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) MergeWithRecompressionTtlTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigMergeTree) int {
+		return v.MergeWithRecompressionTtlTimeout
+	}).(pulumi.IntOutput)
+}
+
+// (Optional) Minimum delay in seconds before repeating a merge with delete TTL. Default value: 14400 seconds (4 hours).
+func (o GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput) MergeWithTtlTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterClickhouseConfigMergeTree) int { return v.MergeWithTtlTimeout }).(pulumi.IntOutput)
 }
 
 // (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
@@ -23409,6 +24238,16 @@ func (o GetMdbClickhouseClusterClickhouseConfigMergeTreePtrOutput) Elem() GetMdb
 	}).(GetMdbClickhouseClusterClickhouseConfigMergeTreeOutput)
 }
 
+// (Optional) Minimum period to clean old queue logs, blocks hashes and parts.
+func (o GetMdbClickhouseClusterClickhouseConfigMergeTreePtrOutput) CleanupDelayPeriod() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetMdbClickhouseClusterClickhouseConfigMergeTree) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.CleanupDelayPeriod
+	}).(pulumi.IntPtrOutput)
+}
+
 // Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
 func (o GetMdbClickhouseClusterClickhouseConfigMergeTreePtrOutput) MaxBytesToMergeAtMinSpaceInPool() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *GetMdbClickhouseClusterClickhouseConfigMergeTree) *int {
@@ -23419,6 +24258,26 @@ func (o GetMdbClickhouseClusterClickhouseConfigMergeTreePtrOutput) MaxBytesToMer
 	}).(pulumi.IntPtrOutput)
 }
 
+// (Optional) When there is more than specified number of merges with TTL entries in pool, do not assign new merge with TTL.
+func (o GetMdbClickhouseClusterClickhouseConfigMergeTreePtrOutput) MaxNumberOfMergesWithTtlInPool() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetMdbClickhouseClusterClickhouseConfigMergeTree) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.MaxNumberOfMergesWithTtlInPool
+	}).(pulumi.IntPtrOutput)
+}
+
+// (Optional) Maximum number of parts in all partitions.
+func (o GetMdbClickhouseClusterClickhouseConfigMergeTreePtrOutput) MaxPartsInTotal() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetMdbClickhouseClusterClickhouseConfigMergeTree) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.MaxPartsInTotal
+	}).(pulumi.IntPtrOutput)
+}
+
 // Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
 func (o GetMdbClickhouseClusterClickhouseConfigMergeTreePtrOutput) MaxReplicatedMergesInQueue() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *GetMdbClickhouseClusterClickhouseConfigMergeTree) *int {
@@ -23426,6 +24285,26 @@ func (o GetMdbClickhouseClusterClickhouseConfigMergeTreePtrOutput) MaxReplicated
 			return nil
 		}
 		return &v.MaxReplicatedMergesInQueue
+	}).(pulumi.IntPtrOutput)
+}
+
+// (Optional) Minimum delay in seconds before repeating a merge with recompression TTL. Default value: 14400 seconds (4 hours).
+func (o GetMdbClickhouseClusterClickhouseConfigMergeTreePtrOutput) MergeWithRecompressionTtlTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetMdbClickhouseClusterClickhouseConfigMergeTree) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.MergeWithRecompressionTtlTimeout
+	}).(pulumi.IntPtrOutput)
+}
+
+// (Optional) Minimum delay in seconds before repeating a merge with delete TTL. Default value: 14400 seconds (4 hours).
+func (o GetMdbClickhouseClusterClickhouseConfigMergeTreePtrOutput) MergeWithTtlTimeout() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetMdbClickhouseClusterClickhouseConfigMergeTree) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.MergeWithTtlTimeout
 	}).(pulumi.IntPtrOutput)
 }
 
@@ -25430,6 +26309,10 @@ type GetMdbClickhouseClusterUserSettings struct {
 	HttpSendTimeout int `pulumi:"httpSendTimeout"`
 	// When performing INSERT queries, replace omitted input column values with default values of the respective columns.
 	InputFormatDefaultsForOmittedFields bool `pulumi:"inputFormatDefaultsForOmittedFields"`
+	// (Optional) Enables or disables the insertion of JSON data with nested objects.
+	InputFormatImportNestedJson bool `pulumi:"inputFormatImportNestedJson"`
+	// (Optional) Enables or disables order-preserving parallel parsing of data formats. Supported only for TSV, TKSV, CSV and JSONEachRow formats.
+	InputFormatParallelParsing bool `pulumi:"inputFormatParallelParsing"`
 	// Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
 	InputFormatValuesInterpretExpressions bool `pulumi:"inputFormatValuesInterpretExpressions"`
 	// (Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
@@ -25444,6 +26327,8 @@ type GetMdbClickhouseClusterUserSettings struct {
 	JoinUseNulls bool `pulumi:"joinUseNulls"`
 	// Require aliases for subselects and table functions in FROM that more than one table is present.
 	JoinedSubqueryRequiresAlias bool `pulumi:"joinedSubqueryRequiresAlias"`
+	// (Optional) Method of reading data from local filesystem. Possible values:
+	LocalFilesystemReadMethod string `pulumi:"localFilesystemReadMethod"`
 	// Allows or restricts using the LowCardinality data type with the Native format.
 	LowCardinalityAllowInNativeFormat bool `pulumi:"lowCardinalityAllowInNativeFormat"`
 	// Maximum abstract syntax tree depth.
@@ -25476,6 +26361,8 @@ type GetMdbClickhouseClusterUserSettings struct {
 	MaxExecutionTime int `pulumi:"maxExecutionTime"`
 	// Maximum abstract syntax tree depth after after expansion of aliases.
 	MaxExpandedAstElements int `pulumi:"maxExpandedAstElements"`
+	// (Optional) Sets the maximum number of parallel threads for the SELECT query data read phase with the FINAL modifier.
+	MaxFinalThreads int `pulumi:"maxFinalThreads"`
 	// (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
 	// If the parameter is set to 0 (default), no hops is allowed.
 	MaxHttpGetRedirects int `pulumi:"maxHttpGetRedirects"`
@@ -25491,6 +26378,8 @@ type GetMdbClickhouseClusterUserSettings struct {
 	MaxNetworkBandwidthForUser int `pulumi:"maxNetworkBandwidthForUser"`
 	// The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
 	MaxQuerySize int `pulumi:"maxQuerySize"`
+	// (Optional) The maximum size of the buffer to read from the filesystem.
+	MaxReadBufferSize int `pulumi:"maxReadBufferSize"`
 	// Disables lagging replicas for distributed queries.
 	MaxReplicaDelayForDistributedQueries int `pulumi:"maxReplicaDelayForDistributedQueries"`
 	// Limits the number of bytes in the result.
@@ -25669,6 +26558,10 @@ type GetMdbClickhouseClusterUserSettingsArgs struct {
 	HttpSendTimeout pulumi.IntInput `pulumi:"httpSendTimeout"`
 	// When performing INSERT queries, replace omitted input column values with default values of the respective columns.
 	InputFormatDefaultsForOmittedFields pulumi.BoolInput `pulumi:"inputFormatDefaultsForOmittedFields"`
+	// (Optional) Enables or disables the insertion of JSON data with nested objects.
+	InputFormatImportNestedJson pulumi.BoolInput `pulumi:"inputFormatImportNestedJson"`
+	// (Optional) Enables or disables order-preserving parallel parsing of data formats. Supported only for TSV, TKSV, CSV and JSONEachRow formats.
+	InputFormatParallelParsing pulumi.BoolInput `pulumi:"inputFormatParallelParsing"`
 	// Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
 	InputFormatValuesInterpretExpressions pulumi.BoolInput `pulumi:"inputFormatValuesInterpretExpressions"`
 	// (Optional) Enables the insertion of default values instead of NULL into columns with not nullable data type. Default value: true.
@@ -25683,6 +26576,8 @@ type GetMdbClickhouseClusterUserSettingsArgs struct {
 	JoinUseNulls pulumi.BoolInput `pulumi:"joinUseNulls"`
 	// Require aliases for subselects and table functions in FROM that more than one table is present.
 	JoinedSubqueryRequiresAlias pulumi.BoolInput `pulumi:"joinedSubqueryRequiresAlias"`
+	// (Optional) Method of reading data from local filesystem. Possible values:
+	LocalFilesystemReadMethod pulumi.StringInput `pulumi:"localFilesystemReadMethod"`
 	// Allows or restricts using the LowCardinality data type with the Native format.
 	LowCardinalityAllowInNativeFormat pulumi.BoolInput `pulumi:"lowCardinalityAllowInNativeFormat"`
 	// Maximum abstract syntax tree depth.
@@ -25715,6 +26610,8 @@ type GetMdbClickhouseClusterUserSettingsArgs struct {
 	MaxExecutionTime pulumi.IntInput `pulumi:"maxExecutionTime"`
 	// Maximum abstract syntax tree depth after after expansion of aliases.
 	MaxExpandedAstElements pulumi.IntInput `pulumi:"maxExpandedAstElements"`
+	// (Optional) Sets the maximum number of parallel threads for the SELECT query data read phase with the FINAL modifier.
+	MaxFinalThreads pulumi.IntInput `pulumi:"maxFinalThreads"`
 	// (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
 	// If the parameter is set to 0 (default), no hops is allowed.
 	MaxHttpGetRedirects pulumi.IntInput `pulumi:"maxHttpGetRedirects"`
@@ -25730,6 +26627,8 @@ type GetMdbClickhouseClusterUserSettingsArgs struct {
 	MaxNetworkBandwidthForUser pulumi.IntInput `pulumi:"maxNetworkBandwidthForUser"`
 	// The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
 	MaxQuerySize pulumi.IntInput `pulumi:"maxQuerySize"`
+	// (Optional) The maximum size of the buffer to read from the filesystem.
+	MaxReadBufferSize pulumi.IntInput `pulumi:"maxReadBufferSize"`
 	// Disables lagging replicas for distributed queries.
 	MaxReplicaDelayForDistributedQueries pulumi.IntInput `pulumi:"maxReplicaDelayForDistributedQueries"`
 	// Limits the number of bytes in the result.
@@ -26023,6 +26922,16 @@ func (o GetMdbClickhouseClusterUserSettingsOutput) InputFormatDefaultsForOmitted
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.InputFormatDefaultsForOmittedFields }).(pulumi.BoolOutput)
 }
 
+// (Optional) Enables or disables the insertion of JSON data with nested objects.
+func (o GetMdbClickhouseClusterUserSettingsOutput) InputFormatImportNestedJson() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.InputFormatImportNestedJson }).(pulumi.BoolOutput)
+}
+
+// (Optional) Enables or disables order-preserving parallel parsing of data formats. Supported only for TSV, TKSV, CSV and JSONEachRow formats.
+func (o GetMdbClickhouseClusterUserSettingsOutput) InputFormatParallelParsing() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.InputFormatParallelParsing }).(pulumi.BoolOutput)
+}
+
 // Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
 func (o GetMdbClickhouseClusterUserSettingsOutput) InputFormatValuesInterpretExpressions() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.InputFormatValuesInterpretExpressions }).(pulumi.BoolOutput)
@@ -26056,6 +26965,11 @@ func (o GetMdbClickhouseClusterUserSettingsOutput) JoinUseNulls() pulumi.BoolOut
 // Require aliases for subselects and table functions in FROM that more than one table is present.
 func (o GetMdbClickhouseClusterUserSettingsOutput) JoinedSubqueryRequiresAlias() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) bool { return v.JoinedSubqueryRequiresAlias }).(pulumi.BoolOutput)
+}
+
+// (Optional) Method of reading data from local filesystem. Possible values:
+func (o GetMdbClickhouseClusterUserSettingsOutput) LocalFilesystemReadMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) string { return v.LocalFilesystemReadMethod }).(pulumi.StringOutput)
 }
 
 // Allows or restricts using the LowCardinality data type with the Native format.
@@ -26138,6 +27052,11 @@ func (o GetMdbClickhouseClusterUserSettingsOutput) MaxExpandedAstElements() pulu
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.MaxExpandedAstElements }).(pulumi.IntOutput)
 }
 
+// (Optional) Sets the maximum number of parallel threads for the SELECT query data read phase with the FINAL modifier.
+func (o GetMdbClickhouseClusterUserSettingsOutput) MaxFinalThreads() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.MaxFinalThreads }).(pulumi.IntOutput)
+}
+
 // (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
 // If the parameter is set to 0 (default), no hops is allowed.
 func (o GetMdbClickhouseClusterUserSettingsOutput) MaxHttpGetRedirects() pulumi.IntOutput {
@@ -26172,6 +27091,11 @@ func (o GetMdbClickhouseClusterUserSettingsOutput) MaxNetworkBandwidthForUser() 
 // The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
 func (o GetMdbClickhouseClusterUserSettingsOutput) MaxQuerySize() pulumi.IntOutput {
 	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.MaxQuerySize }).(pulumi.IntOutput)
+}
+
+// (Optional) The maximum size of the buffer to read from the filesystem.
+func (o GetMdbClickhouseClusterUserSettingsOutput) MaxReadBufferSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbClickhouseClusterUserSettings) int { return v.MaxReadBufferSize }).(pulumi.IntOutput)
 }
 
 // Disables lagging replicas for distributed queries.
@@ -30969,6 +31893,8 @@ func (o GetMdbKafkaClusterUserArrayOutput) Index(i pulumi.IntInput) GetMdbKafkaC
 }
 
 type GetMdbKafkaClusterUserPermission struct {
+	// (Optional) Set of hosts, to which this permission grants access to.
+	AllowHosts []string `pulumi:"allowHosts"`
 	// Role of the host in the cluster.
 	Role string `pulumi:"role"`
 	// (Required) The name of the topic that the permission grants access to.
@@ -30987,6 +31913,8 @@ type GetMdbKafkaClusterUserPermissionInput interface {
 }
 
 type GetMdbKafkaClusterUserPermissionArgs struct {
+	// (Optional) Set of hosts, to which this permission grants access to.
+	AllowHosts pulumi.StringArrayInput `pulumi:"allowHosts"`
 	// Role of the host in the cluster.
 	Role pulumi.StringInput `pulumi:"role"`
 	// (Required) The name of the topic that the permission grants access to.
@@ -31042,6 +31970,11 @@ func (o GetMdbKafkaClusterUserPermissionOutput) ToGetMdbKafkaClusterUserPermissi
 
 func (o GetMdbKafkaClusterUserPermissionOutput) ToGetMdbKafkaClusterUserPermissionOutputWithContext(ctx context.Context) GetMdbKafkaClusterUserPermissionOutput {
 	return o
+}
+
+// (Optional) Set of hosts, to which this permission grants access to.
+func (o GetMdbKafkaClusterUserPermissionOutput) AllowHosts() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetMdbKafkaClusterUserPermission) []string { return v.AllowHosts }).(pulumi.StringArrayOutput)
 }
 
 // Role of the host in the cluster.
@@ -32429,8 +33362,9 @@ func (o GetMdbKafkaTopicTopicConfigArrayOutput) Index(i pulumi.IntInput) GetMdbK
 }
 
 type GetMdbKafkaUserPermission struct {
-	Role      string `pulumi:"role"`
-	TopicName string `pulumi:"topicName"`
+	AllowHosts []string `pulumi:"allowHosts"`
+	Role       string   `pulumi:"role"`
+	TopicName  string   `pulumi:"topicName"`
 }
 
 // GetMdbKafkaUserPermissionInput is an input type that accepts GetMdbKafkaUserPermissionArgs and GetMdbKafkaUserPermissionOutput values.
@@ -32445,8 +33379,9 @@ type GetMdbKafkaUserPermissionInput interface {
 }
 
 type GetMdbKafkaUserPermissionArgs struct {
-	Role      pulumi.StringInput `pulumi:"role"`
-	TopicName pulumi.StringInput `pulumi:"topicName"`
+	AllowHosts pulumi.StringArrayInput `pulumi:"allowHosts"`
+	Role       pulumi.StringInput      `pulumi:"role"`
+	TopicName  pulumi.StringInput      `pulumi:"topicName"`
 }
 
 func (GetMdbKafkaUserPermissionArgs) ElementType() reflect.Type {
@@ -32500,6 +33435,10 @@ func (o GetMdbKafkaUserPermissionOutput) ToGetMdbKafkaUserPermissionOutputWithCo
 	return o
 }
 
+func (o GetMdbKafkaUserPermissionOutput) AllowHosts() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetMdbKafkaUserPermission) []string { return v.AllowHosts }).(pulumi.StringArrayOutput)
+}
+
 func (o GetMdbKafkaUserPermissionOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMdbKafkaUserPermission) string { return v.Role }).(pulumi.StringOutput)
 }
@@ -32530,7 +33469,8 @@ func (o GetMdbKafkaUserPermissionArrayOutput) Index(i pulumi.IntInput) GetMdbKaf
 
 type GetMdbMongodbClusterClusterConfig struct {
 	// Access policy to MongoDB cluster. The structure is documented below.
-	Access GetMdbMongodbClusterClusterConfigAccess `pulumi:"access"`
+	Access                 GetMdbMongodbClusterClusterConfigAccess `pulumi:"access"`
+	BackupRetainPeriodDays int                                     `pulumi:"backupRetainPeriodDays"`
 	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
 	BackupWindowStart GetMdbMongodbClusterClusterConfigBackupWindowStart `pulumi:"backupWindowStart"`
 	// Feature compatibility version of MongoDB.
@@ -32557,7 +33497,8 @@ type GetMdbMongodbClusterClusterConfigInput interface {
 
 type GetMdbMongodbClusterClusterConfigArgs struct {
 	// Access policy to MongoDB cluster. The structure is documented below.
-	Access GetMdbMongodbClusterClusterConfigAccessInput `pulumi:"access"`
+	Access                 GetMdbMongodbClusterClusterConfigAccessInput `pulumi:"access"`
+	BackupRetainPeriodDays pulumi.IntInput                              `pulumi:"backupRetainPeriodDays"`
 	// Time to start the daily backup, in the UTC timezone. The structure is documented below.
 	BackupWindowStart GetMdbMongodbClusterClusterConfigBackupWindowStartInput `pulumi:"backupWindowStart"`
 	// Feature compatibility version of MongoDB.
@@ -32653,6 +33594,10 @@ func (o GetMdbMongodbClusterClusterConfigOutput) Access() GetMdbMongodbClusterCl
 	return o.ApplyT(func(v GetMdbMongodbClusterClusterConfig) GetMdbMongodbClusterClusterConfigAccess { return v.Access }).(GetMdbMongodbClusterClusterConfigAccessOutput)
 }
 
+func (o GetMdbMongodbClusterClusterConfigOutput) BackupRetainPeriodDays() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMdbMongodbClusterClusterConfig) int { return v.BackupRetainPeriodDays }).(pulumi.IntOutput)
+}
+
 // Time to start the daily backup, in the UTC timezone. The structure is documented below.
 func (o GetMdbMongodbClusterClusterConfigOutput) BackupWindowStart() GetMdbMongodbClusterClusterConfigBackupWindowStartOutput {
 	return o.ApplyT(func(v GetMdbMongodbClusterClusterConfig) GetMdbMongodbClusterClusterConfigBackupWindowStart {
@@ -32721,6 +33666,15 @@ func (o GetMdbMongodbClusterClusterConfigPtrOutput) Access() GetMdbMongodbCluste
 		}
 		return &v.Access
 	}).(GetMdbMongodbClusterClusterConfigAccessPtrOutput)
+}
+
+func (o GetMdbMongodbClusterClusterConfigPtrOutput) BackupRetainPeriodDays() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *GetMdbMongodbClusterClusterConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.BackupRetainPeriodDays
+	}).(pulumi.IntPtrOutput)
 }
 
 // Time to start the daily backup, in the UTC timezone. The structure is documented below.
@@ -48460,6 +49414,8 @@ func (o MdbKafkaConnectorConnectorConfigS3SinkS3ConnectionExternalS3ArrayOutput)
 }
 
 type MdbKafkaUserPermission struct {
+	// Set of hosts, to which this permission grants access to.
+	AllowHosts []string `pulumi:"allowHosts"`
 	// The role type to grant to the topic.
 	Role string `pulumi:"role"`
 	// The name of the topic that the permission grants access to.
@@ -48478,6 +49434,8 @@ type MdbKafkaUserPermissionInput interface {
 }
 
 type MdbKafkaUserPermissionArgs struct {
+	// Set of hosts, to which this permission grants access to.
+	AllowHosts pulumi.StringArrayInput `pulumi:"allowHosts"`
 	// The role type to grant to the topic.
 	Role pulumi.StringInput `pulumi:"role"`
 	// The name of the topic that the permission grants access to.
@@ -48533,6 +49491,11 @@ func (o MdbKafkaUserPermissionOutput) ToMdbKafkaUserPermissionOutput() MdbKafkaU
 
 func (o MdbKafkaUserPermissionOutput) ToMdbKafkaUserPermissionOutputWithContext(ctx context.Context) MdbKafkaUserPermissionOutput {
 	return o
+}
+
+// Set of hosts, to which this permission grants access to.
+func (o MdbKafkaUserPermissionOutput) AllowHosts() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v MdbKafkaUserPermission) []string { return v.AllowHosts }).(pulumi.StringArrayOutput)
 }
 
 // The role type to grant to the topic.
@@ -53193,6 +54156,14 @@ func (o YandexYdbTopicConsumerArrayOutput) Index(i pulumi.IntInput) YandexYdbTop
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbBackendGroupStreamBackendInput)(nil)).Elem(), GetAlbBackendGroupStreamBackendArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbBackendGroupStreamBackendArrayInput)(nil)).Elem(), GetAlbBackendGroupStreamBackendArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbBackendGroupStreamBackendHealthcheckInput)(nil)).Elem(), GetAlbBackendGroupStreamBackendHealthcheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckInput)(nil)).Elem(), GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckInput)(nil)).Elem(), GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckInput)(nil)).Elem(), GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbBackendGroupStreamBackendLoadBalancingConfigInput)(nil)).Elem(), GetAlbBackendGroupStreamBackendLoadBalancingConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbBackendGroupStreamBackendTlsInput)(nil)).Elem(), GetAlbBackendGroupStreamBackendTlsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbBackendGroupStreamBackendTlsValidationContextInput)(nil)).Elem(), GetAlbBackendGroupStreamBackendTlsValidationContextArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbHttpRouterRouteOptionInput)(nil)).Elem(), GetAlbHttpRouterRouteOptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbHttpRouterRouteOptionArrayInput)(nil)).Elem(), GetAlbHttpRouterRouteOptionArray{})
@@ -53312,6 +54283,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderArrayInput)(nil)).Elem(), GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderValueInput)(nil)).Elem(), GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderValueArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderValueArrayInput)(nil)).Elem(), GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderValueArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiGatewayCanaryInput)(nil)).Elem(), GetApiGatewayCanaryArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetApiGatewayCanaryPtrInput)(nil)).Elem(), GetApiGatewayCanaryArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiGatewayConnectivityInput)(nil)).Elem(), GetApiGatewayConnectivityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiGatewayConnectivityPtrInput)(nil)).Elem(), GetApiGatewayConnectivityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetApiGatewayCustomDomainInput)(nil)).Elem(), GetApiGatewayCustomDomainArgs{})
@@ -53995,6 +54968,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*YandexYdbTopicChangefeedConsumerArrayInput)(nil)).Elem(), YandexYdbTopicChangefeedConsumerArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*YandexYdbTopicConsumerInput)(nil)).Elem(), YandexYdbTopicConsumerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*YandexYdbTopicConsumerArrayInput)(nil)).Elem(), YandexYdbTopicConsumerArray{})
+	pulumi.RegisterOutputType(GetAlbBackendGroupStreamBackendOutput{})
+	pulumi.RegisterOutputType(GetAlbBackendGroupStreamBackendArrayOutput{})
+	pulumi.RegisterOutputType(GetAlbBackendGroupStreamBackendHealthcheckOutput{})
+	pulumi.RegisterOutputType(GetAlbBackendGroupStreamBackendHealthcheckGrpcHealthcheckOutput{})
+	pulumi.RegisterOutputType(GetAlbBackendGroupStreamBackendHealthcheckHttpHealthcheckOutput{})
+	pulumi.RegisterOutputType(GetAlbBackendGroupStreamBackendHealthcheckStreamHealthcheckOutput{})
+	pulumi.RegisterOutputType(GetAlbBackendGroupStreamBackendLoadBalancingConfigOutput{})
+	pulumi.RegisterOutputType(GetAlbBackendGroupStreamBackendTlsOutput{})
 	pulumi.RegisterOutputType(GetAlbBackendGroupStreamBackendTlsValidationContextOutput{})
 	pulumi.RegisterOutputType(GetAlbHttpRouterRouteOptionOutput{})
 	pulumi.RegisterOutputType(GetAlbHttpRouterRouteOptionArrayOutput{})
@@ -54114,6 +55095,8 @@ func init() {
 	pulumi.RegisterOutputType(GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderArrayOutput{})
 	pulumi.RegisterOutputType(GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderValueOutput{})
 	pulumi.RegisterOutputType(GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeaderValueArrayOutput{})
+	pulumi.RegisterOutputType(GetApiGatewayCanaryOutput{})
+	pulumi.RegisterOutputType(GetApiGatewayCanaryPtrOutput{})
 	pulumi.RegisterOutputType(GetApiGatewayConnectivityOutput{})
 	pulumi.RegisterOutputType(GetApiGatewayConnectivityPtrOutput{})
 	pulumi.RegisterOutputType(GetApiGatewayCustomDomainOutput{})

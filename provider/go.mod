@@ -10,7 +10,7 @@ replace (
 require (
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.33.0
 	github.com/pulumi/pulumi/sdk/v3 v3.46.0
-	github.com/yandex-cloud/terraform-provider-yandex v0.98.0
+	github.com/yandex-cloud/terraform-provider-yandex v0.99.1
 )
 
 require (
@@ -215,9 +215,9 @@ require (
 	github.com/xeipuuv/gojsonpointer v0.0.0-20180127040702-4e3ac2762d5f // indirect
 	github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 // indirect
 	github.com/xeipuuv/gojsonschema v1.2.0 // indirect
-	github.com/yandex-cloud/go-genproto v0.0.0-20230814123017-8364357930d5 // indirect
-	github.com/yandex-cloud/go-sdk v0.0.0-20230815084109-7fc8b4a12ae2 // indirect
-	github.com/ydb-platform/terraform-provider-ydb v0.0.12 // indirect
+	github.com/yandex-cloud/go-genproto v0.0.0-20230828085742-c924b3bfee75 // indirect
+	github.com/yandex-cloud/go-sdk v0.0.0-20230828093337-d401bc1eeaba // indirect
+	github.com/ydb-platform/terraform-provider-ydb v0.0.13 // indirect
 	github.com/ydb-platform/ydb-go-genproto v0.0.0-20230528143953-42c825ace222 // indirect
 	github.com/ydb-platform/ydb-go-sdk/v3 v3.48.5 // indirect
 	github.com/zclconf/go-cty v1.13.2 // indirect
@@ -237,7 +237,7 @@ require (
 	golang.org/x/xerrors v0.0.0-20220907171357-04be3eba64a2 // indirect
 	google.golang.org/api v0.126.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/genproto v0.0.0-20230815205213-6bfd019c3878 // indirect
+	google.golang.org/genproto v0.0.0-20230822172742-b8732ec3820d // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20230815205213-6bfd019c3878 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230815205213-6bfd019c3878 // indirect
 	google.golang.org/grpc v1.57.0 // indirect

@@ -28,7 +28,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			mySecret, err := yandex.GetLockBoxSecret(ctx, &GetLockBoxSecretArgs{
-//				SecretId: "some ID",
+//				SecretId: pulumi.StringRef("some ID"),
 //			}, nil)
 //			if err != nil {
 //				return err
@@ -51,8 +51,12 @@ func GetLockBoxSecret(ctx *pulumi.Context, args *GetLockBoxSecretArgs, opts ...p
 
 // A collection of arguments for invoking getLockBoxSecret.
 type GetLockBoxSecretArgs struct {
+	// Folder that the secret belongs to. If value is omitted, the default provider folder is used.
+	FolderId *string `pulumi:"folderId"`
+	// Name of the Lockbox secret.
+	Name *string `pulumi:"name"`
 	// The Yandex Cloud Lockbox secret ID.
-	SecretId string `pulumi:"secretId"`
+	SecretId *string `pulumi:"secretId"`
 }
 
 // A collection of values returned by getLockBoxSecret.
@@ -76,7 +80,7 @@ type GetLockBoxSecretResult struct {
 	// The Yandex Cloud Lockbox secret name.
 	Name string `pulumi:"name"`
 	// The secret ID the version belongs to (it's the same as the `secretId` argument indicated above)
-	SecretId string `pulumi:"secretId"`
+	SecretId *string `pulumi:"secretId"`
 	// The version status.
 	Status string `pulumi:"status"`
 }
@@ -96,8 +100,12 @@ func GetLockBoxSecretOutput(ctx *pulumi.Context, args GetLockBoxSecretOutputArgs
 
 // A collection of arguments for invoking getLockBoxSecret.
 type GetLockBoxSecretOutputArgs struct {
+	// Folder that the secret belongs to. If value is omitted, the default provider folder is used.
+	FolderId pulumi.StringPtrInput `pulumi:"folderId"`
+	// Name of the Lockbox secret.
+	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The Yandex Cloud Lockbox secret ID.
-	SecretId pulumi.StringInput `pulumi:"secretId"`
+	SecretId pulumi.StringPtrInput `pulumi:"secretId"`
 }
 
 func (GetLockBoxSecretOutputArgs) ElementType() reflect.Type {
@@ -165,8 +173,8 @@ func (o GetLockBoxSecretResultOutput) Name() pulumi.StringOutput {
 }
 
 // The secret ID the version belongs to (it's the same as the `secretId` argument indicated above)
-func (o GetLockBoxSecretResultOutput) SecretId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetLockBoxSecretResult) string { return v.SecretId }).(pulumi.StringOutput)
+func (o GetLockBoxSecretResultOutput) SecretId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetLockBoxSecretResult) *string { return v.SecretId }).(pulumi.StringPtrOutput)
 }
 
 // The version status.

@@ -73,6 +73,10 @@ import * as utilities from "./utilities";
  *             name: "producer-application",
  *             password: "password",
  *             permissions: [{
+ *                 allowHosts: [
+ *                     "host1.db.yandex.net",
+ *                     "host2.db.yandex.net",
+ *                 ],
  *                 role: "ACCESS_ROLE_PRODUCER",
  *                 topicName: "input",
  *             }],
@@ -181,6 +185,10 @@ import * as utilities from "./utilities";
  *             name: "producer-application",
  *             password: "password",
  *             permissions: [{
+ *                 allowHosts: [
+ *                     "host1.db.yandex.net",
+ *                     "host2.db.yandex.net",
+ *                 ],
  *                 role: "ACCESS_ROLE_PRODUCER",
  *                 topicName: "input",
  *             }],

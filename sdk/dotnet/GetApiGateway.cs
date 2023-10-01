@@ -24,6 +24,9 @@ namespace Pulumi.Yandex
         [Input("apiGatewayId")]
         public string? ApiGatewayId { get; set; }
 
+        [Input("canary")]
+        public Inputs.GetApiGatewayCanaryArgs? Canary { get; set; }
+
         [Input("connectivity")]
         public Inputs.GetApiGatewayConnectivityArgs? Connectivity { get; set; }
 
@@ -41,6 +44,14 @@ namespace Pulumi.Yandex
         [Input("name")]
         public string? Name { get; set; }
 
+        [Input("variables")]
+        private Dictionary<string, string>? _variables;
+        public Dictionary<string, string> Variables
+        {
+            get => _variables ?? (_variables = new Dictionary<string, string>());
+            set => _variables = value;
+        }
+
         public GetApiGatewayArgs()
         {
         }
@@ -51,6 +62,9 @@ namespace Pulumi.Yandex
     {
         [Input("apiGatewayId")]
         public Input<string>? ApiGatewayId { get; set; }
+
+        [Input("canary")]
+        public Input<Inputs.GetApiGatewayCanaryInputArgs>? Canary { get; set; }
 
         [Input("connectivity")]
         public Input<Inputs.GetApiGatewayConnectivityInputArgs>? Connectivity { get; set; }
@@ -69,6 +83,14 @@ namespace Pulumi.Yandex
         [Input("name")]
         public Input<string>? Name { get; set; }
 
+        [Input("variables")]
+        private InputMap<string>? _variables;
+        public InputMap<string> Variables
+        {
+            get => _variables ?? (_variables = new InputMap<string>());
+            set => _variables = value;
+        }
+
         public GetApiGatewayInvokeArgs()
         {
         }
@@ -80,6 +102,7 @@ namespace Pulumi.Yandex
     public sealed class GetApiGatewayResult
     {
         public readonly string? ApiGatewayId;
+        public readonly Outputs.GetApiGatewayCanaryResult? Canary;
         public readonly Outputs.GetApiGatewayConnectivityResult? Connectivity;
         public readonly string CreatedAt;
         public readonly ImmutableArray<Outputs.GetApiGatewayCustomDomainResult> CustomDomains;
@@ -95,10 +118,13 @@ namespace Pulumi.Yandex
         public readonly string? Name;
         public readonly string Status;
         public readonly ImmutableArray<string> UserDomains;
+        public readonly ImmutableDictionary<string, string>? Variables;
 
         [OutputConstructor]
         private GetApiGatewayResult(
             string? apiGatewayId,
+
+            Outputs.GetApiGatewayCanaryResult? canary,
 
             Outputs.GetApiGatewayConnectivityResult? connectivity,
 
@@ -122,9 +148,12 @@ namespace Pulumi.Yandex
 
             string status,
 
-            ImmutableArray<string> userDomains)
+            ImmutableArray<string> userDomains,
+
+            ImmutableDictionary<string, string>? variables)
         {
             ApiGatewayId = apiGatewayId;
+            Canary = canary;
             Connectivity = connectivity;
             CreatedAt = createdAt;
             CustomDomains = customDomains;
@@ -137,6 +166,7 @@ namespace Pulumi.Yandex
             Name = name;
             Status = status;
             UserDomains = userDomains;
+            Variables = variables;
         }
     }
 }

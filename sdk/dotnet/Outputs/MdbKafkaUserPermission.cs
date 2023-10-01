@@ -14,6 +14,10 @@ namespace Pulumi.Yandex.Outputs
     public sealed class MdbKafkaUserPermission
     {
         /// <summary>
+        /// Set of hosts, to which this permission grants access to.
+        /// </summary>
+        public readonly ImmutableArray<string> AllowHosts;
+        /// <summary>
         /// The role type to grant to the topic.
         /// </summary>
         public readonly string Role;
@@ -24,10 +28,13 @@ namespace Pulumi.Yandex.Outputs
 
         [OutputConstructor]
         private MdbKafkaUserPermission(
+            ImmutableArray<string> allowHosts,
+
             string role,
 
             string topicName)
         {
+            AllowHosts = allowHosts;
             Role = role;
             TopicName = topicName;
         }

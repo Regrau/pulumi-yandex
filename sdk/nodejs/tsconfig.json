@@ -19,6 +19,7 @@
         "albTargetGroup.ts",
         "albVirtualHost.ts",
         "apiGateway.ts",
+        "backupPolicy.ts",
         "cdnOriginGroup.ts",
         "cdnResource.ts",
         "cmCertificate.ts",

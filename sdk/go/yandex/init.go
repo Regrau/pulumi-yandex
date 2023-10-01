@@ -32,6 +32,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AlbVirtualHost{}
 	case "yandex:index/apiGateway:ApiGateway":
 		r = &ApiGateway{}
+	case "yandex:index/backupPolicy:BackupPolicy":
+		r = &BackupPolicy{}
 	case "yandex:index/cdnOriginGroup:CdnOriginGroup":
 		r = &CdnOriginGroup{}
 	case "yandex:index/cdnResource:CdnResource":
@@ -296,6 +298,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"yandex",
 		"index/apiGateway",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"yandex",
+		"index/backupPolicy",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

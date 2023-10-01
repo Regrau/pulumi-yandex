@@ -643,6 +643,10 @@ class MdbKafkaCluster(pulumi.CustomResource):
                     name="producer-application",
                     password="password",
                     permissions=[yandex.MdbKafkaClusterUserPermissionArgs(
+                        allow_hosts=[
+                            "host1.db.yandex.net",
+                            "host2.db.yandex.net",
+                        ],
                         role="ACCESS_ROLE_PRODUCER",
                         topic_name="input",
                     )],
@@ -747,6 +751,10 @@ class MdbKafkaCluster(pulumi.CustomResource):
                     name="producer-application",
                     password="password",
                     permissions=[yandex.MdbKafkaClusterUserPermissionArgs(
+                        allow_hosts=[
+                            "host1.db.yandex.net",
+                            "host2.db.yandex.net",
+                        ],
                         role="ACCESS_ROLE_PRODUCER",
                         topic_name="input",
                     )],
@@ -866,6 +874,10 @@ class MdbKafkaCluster(pulumi.CustomResource):
                     name="producer-application",
                     password="password",
                     permissions=[yandex.MdbKafkaClusterUserPermissionArgs(
+                        allow_hosts=[
+                            "host1.db.yandex.net",
+                            "host2.db.yandex.net",
+                        ],
                         role="ACCESS_ROLE_PRODUCER",
                         topic_name="input",
                     )],
@@ -970,6 +982,10 @@ class MdbKafkaCluster(pulumi.CustomResource):
                     name="producer-application",
                     password="password",
                     permissions=[yandex.MdbKafkaClusterUserPermissionArgs(
+                        allow_hosts=[
+                            "host1.db.yandex.net",
+                            "host2.db.yandex.net",
+                        ],
                         role="ACCESS_ROLE_PRODUCER",
                         topic_name="input",
                     )],

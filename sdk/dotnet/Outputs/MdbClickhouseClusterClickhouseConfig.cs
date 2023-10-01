@@ -14,6 +14,7 @@ namespace Pulumi.Yandex.Outputs
     public sealed class MdbClickhouseClusterClickhouseConfig
     {
         public readonly int? BackgroundFetchesPoolSize;
+        public readonly int? BackgroundMessageBrokerSchedulePoolSize;
         public readonly int? BackgroundPoolSize;
         public readonly int? BackgroundSchedulePoolSize;
         /// <summary>
@@ -73,6 +74,8 @@ namespace Pulumi.Yandex.Outputs
         [OutputConstructor]
         private MdbClickhouseClusterClickhouseConfig(
             int? backgroundFetchesPoolSize,
+
+            int? backgroundMessageBrokerSchedulePoolSize,
 
             int? backgroundPoolSize,
 
@@ -149,6 +152,7 @@ namespace Pulumi.Yandex.Outputs
             int? uncompressedCacheSize)
         {
             BackgroundFetchesPoolSize = backgroundFetchesPoolSize;
+            BackgroundMessageBrokerSchedulePoolSize = backgroundMessageBrokerSchedulePoolSize;
             BackgroundPoolSize = backgroundPoolSize;
             BackgroundSchedulePoolSize = backgroundSchedulePoolSize;
             Compressions = compressions;

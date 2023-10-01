@@ -15,6 +15,9 @@ namespace Pulumi.Yandex.Inputs
         [Input("backgroundFetchesPoolSize")]
         public Input<int>? BackgroundFetchesPoolSize { get; set; }
 
+        [Input("backgroundMessageBrokerSchedulePoolSize")]
+        public Input<int>? BackgroundMessageBrokerSchedulePoolSize { get; set; }
+
         [Input("backgroundPoolSize")]
         public Input<int>? BackgroundPoolSize { get; set; }
 

@@ -98,6 +98,10 @@ import (
 //						Password: pulumi.String("password"),
 //						Permissions: MdbKafkaClusterUserPermissionArray{
 //							&MdbKafkaClusterUserPermissionArgs{
+//								AllowHosts: pulumi.StringArray{
+//									pulumi.String("host1.db.yandex.net"),
+//									pulumi.String("host2.db.yandex.net"),
+//								},
 //								Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
 //								TopicName: pulumi.String("input"),
 //							},
@@ -241,6 +245,10 @@ import (
 //						Password: pulumi.String("password"),
 //						Permissions: MdbKafkaClusterUserPermissionArray{
 //							&MdbKafkaClusterUserPermissionArgs{
+//								AllowHosts: pulumi.StringArray{
+//									pulumi.String("host1.db.yandex.net"),
+//									pulumi.String("host2.db.yandex.net"),
+//								},
 //								Role:      pulumi.String("ACCESS_ROLE_PRODUCER"),
 //								TopicName: pulumi.String("input"),
 //							},

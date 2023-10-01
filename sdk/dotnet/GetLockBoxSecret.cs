@@ -40,7 +40,7 @@ namespace Pulumi.Yandex
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetLockBoxSecretResult> InvokeAsync(GetLockBoxSecretArgs args, InvokeOptions? options = null)
+        public static Task<GetLockBoxSecretResult> InvokeAsync(GetLockBoxSecretArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLockBoxSecretResult>("yandex:index/getLockBoxSecret:getLockBoxSecret", args ?? new GetLockBoxSecretArgs(), options.WithDefaults());
 
         /// <summary>
@@ -72,7 +72,7 @@ namespace Pulumi.Yandex
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<GetLockBoxSecretResult> Invoke(GetLockBoxSecretInvokeArgs args, InvokeOptions? options = null)
+        public static Output<GetLockBoxSecretResult> Invoke(GetLockBoxSecretInvokeArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLockBoxSecretResult>("yandex:index/getLockBoxSecret:getLockBoxSecret", args ?? new GetLockBoxSecretInvokeArgs(), options.WithDefaults());
     }
 
@@ -80,10 +80,22 @@ namespace Pulumi.Yandex
     public sealed class GetLockBoxSecretArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Folder that the secret belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
+        [Input("folderId")]
+        public string? FolderId { get; set; }
+
+        /// <summary>
+        /// Name of the Lockbox secret.
+        /// </summary>
+        [Input("name")]
+        public string? Name { get; set; }
+
+        /// <summary>
         /// The Yandex Cloud Lockbox secret ID.
         /// </summary>
-        [Input("secretId", required: true)]
-        public string SecretId { get; set; } = null!;
+        [Input("secretId")]
+        public string? SecretId { get; set; }
 
         public GetLockBoxSecretArgs()
         {
@@ -94,10 +106,22 @@ namespace Pulumi.Yandex
     public sealed class GetLockBoxSecretInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Folder that the secret belongs to. If value is omitted, the default provider folder is used.
+        /// </summary>
+        [Input("folderId")]
+        public Input<string>? FolderId { get; set; }
+
+        /// <summary>
+        /// Name of the Lockbox secret.
+        /// </summary>
+        [Input("name")]
+        public Input<string>? Name { get; set; }
+
+        /// <summary>
         /// The Yandex Cloud Lockbox secret ID.
         /// </summary>
-        [Input("secretId", required: true)]
-        public Input<string> SecretId { get; set; } = null!;
+        [Input("secretId")]
+        public Input<string>? SecretId { get; set; }
 
         public GetLockBoxSecretInvokeArgs()
         {
@@ -148,7 +172,7 @@ namespace Pulumi.Yandex
         /// <summary>
         /// The secret ID the version belongs to (it's the same as the `secret_id` argument indicated above)
         /// </summary>
-        public readonly string SecretId;
+        public readonly string? SecretId;
         /// <summary>
         /// The version status.
         /// </summary>
@@ -174,7 +198,7 @@ namespace Pulumi.Yandex
 
             string name,
 
-            string secretId,
+            string? secretId,
 
             string status)
         {

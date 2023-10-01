@@ -1135,6 +1135,14 @@ export interface AlbVirtualHostRouteRouteOptionsRbacPrincipalAndPrincipalHeaderV
     regex?: string;
 }
 
+export interface ApiGatewayCanary {
+    /**
+     * A set of values for variables in gateway specification.
+     */
+    variables?: {[key: string]: string};
+    weight?: number;
+}
+
 export interface ApiGatewayConnectivity {
     networkId: string;
 }
@@ -1143,6 +1151,120 @@ export interface ApiGatewayCustomDomain {
     certificateId: string;
     domainId: string;
     fqdn: string;
+}
+
+export interface BackupPolicyReattempts {
+    /**
+     * — enables or disables scheduling.
+     */
+    enabled?: boolean;
+    /**
+     * — Retry interval. See `intervalType` for available values
+     */
+    interval?: string;
+    /**
+     * — Maximum number of attempts before throwing an error
+     */
+    maxAttempts?: number;
+}
+
+export interface BackupPolicyRetention {
+    /**
+     * — Defines whether retention rule applies after creating backup or before.
+     */
+    afterBackup?: boolean;
+    rules?: outputs.BackupPolicyRetentionRule[];
+}
+
+export interface BackupPolicyRetentionRule {
+    /**
+     * — Deletes backups that older than `maxAge`. Exactly one of `maxCount` or `maxAge` should be set.
+     */
+    maxAge?: string;
+    /**
+     * — Deletes backups if it's count exceeds `maxCount`. Exactly one of `maxCount` or `maxAge` should be set.
+     */
+    maxCount?: number;
+    repeatPeriods?: string[];
+}
+
+export interface BackupPolicyScheduling {
+    /**
+     * — enables or disables scheduling.
+     */
+    enabled?: boolean;
+    /**
+     * — Perform backup by interval, since last backup of the host. Maximum value is: 9999 days.
+     * See `intervalType` for available values. Exactly on of options should be set: `executeByInterval` or `executeByTime`.
+     */
+    executeByInterval?: number;
+    /**
+     * — Perform backup periodically at specific time. Exactly on of options should be set: `executeByInterval` or `executeByTime`.
+     */
+    executeByTimes?: outputs.BackupPolicySchedulingExecuteByTime[];
+    /**
+     * — Maximum number of backup processes allowed to run in parallel. 0 for unlimited.
+     */
+    maxParallelBackups?: number;
+    /**
+     * — Configuration of the random delay between the execution of parallel tasks.
+     * See `intervalType` for available values.
+     */
+    randomMaxDelay?: string;
+    /**
+     * — Scheme of the backups.
+     * Available values are: `"ALWAYS_INCREMENTAL"`, `"ALWAYS_FULL"`, `"WEEKLY_FULL_DAILY_INCREMENTAL"`, `'WEEKLY_INCREMENTAL"`.
+     */
+    scheme?: string;
+    /**
+     * — A day of week to start weekly backups.
+     * See `dayType` for available values.
+     */
+    weeklyBackupDay?: string;
+}
+
+export interface BackupPolicySchedulingExecuteByTime {
+    /**
+     * — If true, schedule will be applied on the last day of month.
+     * See `dayType` for available values.
+     */
+    includeLastDayOfMonth?: boolean;
+    /**
+     * — List of days when schedule applies. Used in `"MONTHLY"` type.
+     */
+    monthdays?: number[];
+    months?: number[];
+    /**
+     * — List of time in format `"HH:MM" (24-hours format)`, when the schedule applies.
+     */
+    repeatAts?: string[];
+    /**
+     * — Frequency of backup repetition. See `intervalType` for available values.
+     */
+    repeatEvery?: string;
+    /**
+     * — Type of the scheduling. Available values are: `"HOURLY"`, `"DAILY"`, `"WEEKLY"`, `"MONTHLY"`.
+     */
+    type: string;
+    /**
+     * — List of weekdays when the backup will be applied. Used in `"WEEKLY"` type.
+     */
+    weekdays?: string[];
+}
+
+export interface BackupPolicyVmSnapshotReattempts {
+    /**
+     * — enables or disables scheduling.
+     */
+    enabled?: boolean;
+    /**
+     * — Retry interval. See `intervalType` for available values
+     */
+    interval?: string;
+    /**
+     * — Maximum number of attempts before throwing an error
+     */
+    maxAttempts?: number;
 }
 
 export interface CdnOriginGroupOrigin {
@@ -4839,6 +4961,11 @@ export interface GetAlbVirtualHostRouteRouteOptionRbacPrincipalAndPrincipalHeade
     regex: string;
 }
 
+export interface GetApiGatewayCanary {
+    variables?: {[key: string]: string};
+    weight?: number;
+}
+
 export interface GetApiGatewayConnectivity {
     networkId: string;
 }
@@ -6798,6 +6925,7 @@ export interface GetMdbClickhouseClusterClickhouse {
 
 export interface GetMdbClickhouseClusterClickhouseConfig {
     backgroundFetchesPoolSize: number;
+    backgroundMessageBrokerSchedulePoolSize: number;
     backgroundPoolSize: number;
     backgroundSchedulePoolSize: number;
     /**
@@ -6958,13 +7086,33 @@ export interface GetMdbClickhouseClusterClickhouseConfigKafkaTopicSettings {
 
 export interface GetMdbClickhouseClusterClickhouseConfigMergeTree {
     /**
+     * (Optional) Minimum period to clean old queue logs, blocks hashes and parts.
+     */
+    cleanupDelayPeriod: number;
+    /**
      * Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
      */
     maxBytesToMergeAtMinSpaceInPool: number;
     /**
+     * (Optional) When there is more than specified number of merges with TTL entries in pool, do not assign new merge with TTL.
+     */
+    maxNumberOfMergesWithTtlInPool: number;
+    /**
+     * (Optional) Maximum number of parts in all partitions.
+     */
+    maxPartsInTotal: number;
+    /**
      * Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
      */
     maxReplicatedMergesInQueue: number;
+    /**
+     * (Optional) Minimum delay in seconds before repeating a merge with recompression TTL. Default value: 14400 seconds (4 hours).
+     */
+    mergeWithRecompressionTtlTimeout: number;
+    /**
+     * (Optional) Minimum delay in seconds before repeating a merge with delete TTL. Default value: 14400 seconds (4 hours).
+     */
+    mergeWithTtlTimeout: number;
     /**
      * (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
      */
@@ -7358,6 +7506,14 @@ export interface GetMdbClickhouseClusterUserSettings {
      */
     inputFormatDefaultsForOmittedFields: boolean;
     /**
+     * (Optional) Enables or disables the insertion of JSON data with nested objects.
+     */
+    inputFormatImportNestedJson: boolean;
+    /**
+     * (Optional) Enables or disables order-preserving parallel parsing of data formats. Supported only for TSV, TKSV, CSV and JSONEachRow formats.
+     */
+    inputFormatParallelParsing: boolean;
+    /**
      * Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
      */
     inputFormatValuesInterpretExpressions: boolean;
@@ -7385,6 +7541,10 @@ export interface GetMdbClickhouseClusterUserSettings {
      * Require aliases for subselects and table functions in FROM that more than one table is present.
      */
     joinedSubqueryRequiresAlias: boolean;
+    /**
+     * (Optional) Method of reading data from local filesystem. Possible values:
+     */
+    localFilesystemReadMethod: string;
     /**
      * Allows or restricts using the LowCardinality data type with the Native format.
      */
@@ -7450,6 +7610,10 @@ export interface GetMdbClickhouseClusterUserSettings {
      */
     maxExpandedAstElements: number;
     /**
+     * (Optional) Sets the maximum number of parallel threads for the SELECT query data read phase with the FINAL modifier.
+     */
+    maxFinalThreads: number;
+    /**
      * (Optional) Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
      * If the parameter is set to 0 (default), no hops is allowed.
      */
@@ -7478,6 +7642,10 @@ export interface GetMdbClickhouseClusterUserSettings {
      * The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
      */
     maxQuerySize: number;
+    /**
+     * (Optional) The maximum size of the buffer to read from the filesystem.
+     */
+    maxReadBufferSize: number;
     /**
      * Disables lagging replicas for distributed queries.
      */
@@ -8062,6 +8230,10 @@ export interface GetMdbKafkaClusterUser {
 
 export interface GetMdbKafkaClusterUserPermission {
     /**
+     * (Optional) Set of hosts, to which this permission grants access to.
+     */
+    allowHosts?: string[];
+    /**
      * Role of the host in the cluster.
      */
     role: string;
@@ -8238,6 +8410,7 @@ export interface GetMdbKafkaTopicTopicConfig {
 }
 
 export interface GetMdbKafkaUserPermission {
+    allowHosts: string[];
     role: string;
     topicName: string;
 }
@@ -8247,6 +8420,7 @@ export interface GetMdbMongodbClusterClusterConfig {
      * Access policy to MongoDB cluster. The structure is documented below.
      */
     access: outputs.GetMdbMongodbClusterClusterConfigAccess;
+    backupRetainPeriodDays: number;
     /**
      * Time to start the daily backup, in the UTC timezone. The structure is documented below.
      */
@@ -10580,6 +10754,7 @@ export interface MdbClickhouseClusterClickhouse {
 
 export interface MdbClickhouseClusterClickhouseConfig {
     backgroundFetchesPoolSize: number;
+    backgroundMessageBrokerSchedulePoolSize: number;
     backgroundPoolSize: number;
     backgroundSchedulePoolSize: number;
     /**
@@ -10740,13 +10915,33 @@ export interface MdbClickhouseClusterClickhouseConfigKafkaTopicSettings {
 
 export interface MdbClickhouseClusterClickhouseConfigMergeTree {
     /**
+     * Minimum period to clean old queue logs, blocks hashes and parts.
+     */
+    cleanupDelayPeriod: number;
+    /**
      * Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
      */
     maxBytesToMergeAtMinSpaceInPool: number;
     /**
+     * When there is more than specified number of merges with TTL entries in pool, do not assign new merge with TTL.
+     */
+    maxNumberOfMergesWithTtlInPool: number;
+    /**
+     * Maximum number of parts in all partitions.
+     */
+    maxPartsInTotal: number;
+    /**
      * Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
      */
     maxReplicatedMergesInQueue: number;
+    /**
+     * Minimum delay in seconds before repeating a merge with recompression TTL. Default value: 14400 seconds (4 hours).
+     */
+    mergeWithRecompressionTtlTimeout: number;
+    /**
+     * Minimum delay in seconds before repeating a merge with delete TTL. Default value: 14400 seconds (4 hours).
+     */
+    mergeWithTtlTimeout: number;
     /**
      * Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.
      */
@@ -11141,6 +11336,14 @@ export interface MdbClickhouseClusterUserSettings {
      */
     inputFormatDefaultsForOmittedFields: boolean;
     /**
+     * Enables or disables the insertion of JSON data with nested objects.
+     */
+    inputFormatImportNestedJson: boolean;
+    /**
+     * Enables or disables order-preserving parallel parsing of data formats. Supported only for TSV, TKSV, CSV and JSONEachRow formats.
+     */
+    inputFormatParallelParsing: boolean;
+    /**
      * Enables or disables the full SQL parser if the fast stream parser can’t parse the data.
      */
     inputFormatValuesInterpretExpressions: boolean;
@@ -11168,6 +11371,10 @@ export interface MdbClickhouseClusterUserSettings {
      * Require aliases for subselects and table functions in FROM that more than one table is present.
      */
     joinedSubqueryRequiresAlias: boolean;
+    /**
+     * Method of reading data from local filesystem. Possible values:
+     */
+    localFilesystemReadMethod: string;
     /**
      * Allows or restricts using the LowCardinality data type with the Native format.
      */
@@ -11233,8 +11440,11 @@ export interface MdbClickhouseClusterUserSettings {
      */
     maxExpandedAstElements: number;
     /**
+     * Sets the maximum number of parallel threads for the SELECT query data read phase with the FINAL modifier.
+     */
+    maxFinalThreads: number;
+    /**
      * Limits the maximum number of HTTP GET redirect hops for URL-engine tables.
-     * If the parameter is set to 0 (default), no hops is allowed.
      */
     maxHttpGetRedirects: number;
     /**
@@ -11261,6 +11471,10 @@ export interface MdbClickhouseClusterUserSettings {
      * The maximum part of a query that can be taken to RAM for parsing with the SQL parser.
      */
     maxQuerySize: number;
+    /**
+     * The maximum size of the buffer to read from the filesystem.
+     */
+    maxReadBufferSize: number;
     /**
      * Disables lagging replicas for distributed queries.
      */
@@ -11891,6 +12105,10 @@ export interface MdbKafkaClusterUser {
 
 export interface MdbKafkaClusterUserPermission {
     /**
+     * Set of hosts, to which this permission grants access to.
+     */
+    allowHosts?: string[];
+    /**
      * The role type to grant to the topic.
      */
     role: string;
@@ -11978,6 +12196,10 @@ export interface MdbKafkaTopicTopicConfig {
 
 export interface MdbKafkaUserPermission {
     /**
+     * Set of hosts, to which this permission grants access to.
+     */
+    allowHosts?: string[];
+    /**
      * The role type to grant to the topic.
      */
     role: string;
@@ -11992,6 +12214,7 @@ export interface MdbMongodbClusterClusterConfig {
      * Access policy to the MongoDB cluster. The structure is documented below.
      */
     access: outputs.MdbMongodbClusterClusterConfigAccess;
+    backupRetainPeriodDays: number;
     /**
      * Time to start the daily backup, in the UTC timezone. The structure is documented below.
      */

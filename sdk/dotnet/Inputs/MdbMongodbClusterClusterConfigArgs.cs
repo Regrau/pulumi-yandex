@@ -18,6 +18,9 @@ namespace Pulumi.Yandex.Inputs
         [Input("access")]
         public Input<Inputs.MdbMongodbClusterClusterConfigAccessArgs>? Access { get; set; }
 
+        [Input("backupRetainPeriodDays")]
+        public Input<int>? BackupRetainPeriodDays { get; set; }
+
         /// <summary>
         /// Time to start the daily backup, in the UTC timezone. The structure is documented below.
         /// </summary>

@@ -17,15 +17,20 @@ __all__ = ['ApiGatewayArgs', 'ApiGateway']
 class ApiGatewayArgs:
     def __init__(__self__, *,
                  spec: pulumi.Input[str],
+                 canary: Optional[pulumi.Input['ApiGatewayCanaryArgs']] = None,
                  connectivity: Optional[pulumi.Input['ApiGatewayConnectivityArgs']] = None,
                  custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input['ApiGatewayCustomDomainArgs']]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  folder_id: Optional[pulumi.Input[str]] = None,
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
-                 name: Optional[pulumi.Input[str]] = None):
+                 name: Optional[pulumi.Input[str]] = None,
+                 variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         The set of arguments for constructing a ApiGateway resource.
         :param pulumi.Input[str] spec: OpenAPI specification for Yandex API Gateway.
+        :param pulumi.Input['ApiGatewayCanaryArgs'] canary: Canary release settings of gateway.
+               * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+               * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
         :param pulumi.Input['ApiGatewayConnectivityArgs'] connectivity: Gateway connectivity. If specified the gateway will be attached to specified network.
                * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
         :param pulumi.Input[Sequence[pulumi.Input['ApiGatewayCustomDomainArgs']]] custom_domains: Set of custom domains to be attached to Yandex API Gateway.
@@ -33,8 +38,11 @@ class ApiGatewayArgs:
         :param pulumi.Input[str] folder_id: Folder ID for the Yandex Cloud API Gateway. If it is not provided, the default provider folder is used.
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud API Gateway.
         :param pulumi.Input[str] name: Yandex Cloud API Gateway name used to define API Gateway.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] variables: A set of values for variables in gateway specification.
         """
         pulumi.set(__self__, "spec", spec)
+        if canary is not None:
+            pulumi.set(__self__, "canary", canary)
         if connectivity is not None:
             pulumi.set(__self__, "connectivity", connectivity)
         if custom_domains is not None:
@@ -47,6 +55,8 @@ class ApiGatewayArgs:
             pulumi.set(__self__, "labels", labels)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if variables is not None:
+            pulumi.set(__self__, "variables", variables)
 
     @property
     @pulumi.getter
@@ -59,6 +69,20 @@ class ApiGatewayArgs:
     @spec.setter
     def spec(self, value: pulumi.Input[str]):
         pulumi.set(self, "spec", value)
+
+    @property
+    @pulumi.getter
+    def canary(self) -> Optional[pulumi.Input['ApiGatewayCanaryArgs']]:
+        """
+        Canary release settings of gateway.
+        * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+        * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+        """
+        return pulumi.get(self, "canary")
+
+    @canary.setter
+    def canary(self, value: Optional[pulumi.Input['ApiGatewayCanaryArgs']]):
+        pulumi.set(self, "canary", value)
 
     @property
     @pulumi.getter
@@ -133,10 +157,23 @@ class ApiGatewayArgs:
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
 
+    @property
+    @pulumi.getter
+    def variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of values for variables in gateway specification.
+        """
+        return pulumi.get(self, "variables")
+
+    @variables.setter
+    def variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "variables", value)
+
 
 @pulumi.input_type
 class _ApiGatewayState:
     def __init__(__self__, *,
+                 canary: Optional[pulumi.Input['ApiGatewayCanaryArgs']] = None,
                  connectivity: Optional[pulumi.Input['ApiGatewayConnectivityArgs']] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input['ApiGatewayCustomDomainArgs']]]] = None,
@@ -148,9 +185,13 @@ class _ApiGatewayState:
                  name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
-                 user_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
+                 user_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+                 variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None):
         """
         Input properties used for looking up and filtering ApiGateway resources.
+        :param pulumi.Input['ApiGatewayCanaryArgs'] canary: Canary release settings of gateway.
+               * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+               * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
         :param pulumi.Input['ApiGatewayConnectivityArgs'] connectivity: Gateway connectivity. If specified the gateway will be attached to specified network.
                * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
         :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud API Gateway.
@@ -163,7 +204,10 @@ class _ApiGatewayState:
         :param pulumi.Input[str] spec: OpenAPI specification for Yandex API Gateway.
         :param pulumi.Input[str] status: Status of the Yandex API Gateway.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_domains: (**DEPRECATED**, use `custom_domains` instead) Set of user domains attached to Yandex API Gateway.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] variables: A set of values for variables in gateway specification.
         """
+        if canary is not None:
+            pulumi.set(__self__, "canary", canary)
         if connectivity is not None:
             pulumi.set(__self__, "connectivity", connectivity)
         if created_at is not None:
@@ -191,6 +235,22 @@ class _ApiGatewayState:
             pulumi.log.warn("""user_domains is deprecated: The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.""")
         if user_domains is not None:
             pulumi.set(__self__, "user_domains", user_domains)
+        if variables is not None:
+            pulumi.set(__self__, "variables", variables)
+
+    @property
+    @pulumi.getter
+    def canary(self) -> Optional[pulumi.Input['ApiGatewayCanaryArgs']]:
+        """
+        Canary release settings of gateway.
+        * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+        * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+        """
+        return pulumi.get(self, "canary")
+
+    @canary.setter
+    def canary(self, value: Optional[pulumi.Input['ApiGatewayCanaryArgs']]):
+        pulumi.set(self, "canary", value)
 
     @property
     @pulumi.getter
@@ -334,12 +394,25 @@ class _ApiGatewayState:
     def user_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
         pulumi.set(self, "user_domains", value)
 
+    @property
+    @pulumi.getter
+    def variables(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        A set of values for variables in gateway specification.
+        """
+        return pulumi.get(self, "variables")
+
+    @variables.setter
+    def variables(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "variables", value)
+
 
 class ApiGateway(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 canary: Optional[pulumi.Input[pulumi.InputType['ApiGatewayCanaryArgs']]] = None,
                  connectivity: Optional[pulumi.Input[pulumi.InputType['ApiGatewayConnectivityArgs']]] = None,
                  custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApiGatewayCustomDomainArgs']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -347,6 +420,7 @@ class ApiGateway(pulumi.CustomResource):
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
+                 variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         """
         Allows management of [Yandex Cloud API Gateway](https://cloud.yandex.com/docs/api-gateway/).
@@ -370,10 +444,26 @@ class ApiGateway(pulumi.CustomResource):
             connectivity=yandex.ApiGatewayConnectivityArgs(
                 network_id="<dynamic network id>",
             ),
-            spec=\"\"\"openapi: "3.0.0"
+            variables={
+                "installation": "prod",
+            },
+            canary=yandex.ApiGatewayCanaryArgs(
+                weight=20,
+                variables={
+                    "installation": "dev",
+                },
+            ),
+            spec=f\"\"\"openapi: "3.0.0"
         info:
           version: 1.0.0
           title: Test API
+        x-yc-apigateway:
+          variables:
+            installation:
+              default: "prod"
+              enum:
+               - "prod"
+               - "dev"
         paths:
           /hello:
             get:
@@ -400,12 +490,15 @@ class ApiGateway(pulumi.CustomResource):
                 http_headers:
                   'Content-Type': "text/plain"
                 content:
-                  'text/plain': "Hello again, {user}!\\n"
+                  'text/plain': "Hello again, {{user}} from {apigw["installation"]} release!\\n"
         \"\"\")
         ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ApiGatewayCanaryArgs']] canary: Canary release settings of gateway.
+               * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+               * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
         :param pulumi.Input[pulumi.InputType['ApiGatewayConnectivityArgs']] connectivity: Gateway connectivity. If specified the gateway will be attached to specified network.
                * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApiGatewayCustomDomainArgs']]]] custom_domains: Set of custom domains to be attached to Yandex API Gateway.
@@ -414,6 +507,7 @@ class ApiGateway(pulumi.CustomResource):
         :param pulumi.Input[Mapping[str, pulumi.Input[str]]] labels: A set of key/value label pairs to assign to the Yandex Cloud API Gateway.
         :param pulumi.Input[str] name: Yandex Cloud API Gateway name used to define API Gateway.
         :param pulumi.Input[str] spec: OpenAPI specification for Yandex API Gateway.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] variables: A set of values for variables in gateway specification.
         """
         ...
     @overload
@@ -443,10 +537,26 @@ class ApiGateway(pulumi.CustomResource):
             connectivity=yandex.ApiGatewayConnectivityArgs(
                 network_id="<dynamic network id>",
             ),
-            spec=\"\"\"openapi: "3.0.0"
+            variables={
+                "installation": "prod",
+            },
+            canary=yandex.ApiGatewayCanaryArgs(
+                weight=20,
+                variables={
+                    "installation": "dev",
+                },
+            ),
+            spec=f\"\"\"openapi: "3.0.0"
         info:
           version: 1.0.0
           title: Test API
+        x-yc-apigateway:
+          variables:
+            installation:
+              default: "prod"
+              enum:
+               - "prod"
+               - "dev"
         paths:
           /hello:
             get:
@@ -473,7 +583,7 @@ class ApiGateway(pulumi.CustomResource):
                 http_headers:
                   'Content-Type': "text/plain"
                 content:
-                  'text/plain': "Hello again, {user}!\\n"
+                  'text/plain': "Hello again, {{user}} from {apigw["installation"]} release!\\n"
         \"\"\")
         ```
 
@@ -492,6 +602,7 @@ class ApiGateway(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 canary: Optional[pulumi.Input[pulumi.InputType['ApiGatewayCanaryArgs']]] = None,
                  connectivity: Optional[pulumi.Input[pulumi.InputType['ApiGatewayConnectivityArgs']]] = None,
                  custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApiGatewayCustomDomainArgs']]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -499,6 +610,7 @@ class ApiGateway(pulumi.CustomResource):
                  labels: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  spec: Optional[pulumi.Input[str]] = None,
+                 variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -508,6 +620,7 @@ class ApiGateway(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ApiGatewayArgs.__new__(ApiGatewayArgs)
 
+            __props__.__dict__["canary"] = canary
             __props__.__dict__["connectivity"] = connectivity
             __props__.__dict__["custom_domains"] = custom_domains
             __props__.__dict__["description"] = description
@@ -517,6 +630,7 @@ class ApiGateway(pulumi.CustomResource):
             if spec is None and not opts.urn:
                 raise TypeError("Missing required property 'spec'")
             __props__.__dict__["spec"] = spec
+            __props__.__dict__["variables"] = variables
             __props__.__dict__["created_at"] = None
             __props__.__dict__["domain"] = None
             __props__.__dict__["log_group_id"] = None
@@ -532,6 +646,7 @@ class ApiGateway(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            canary: Optional[pulumi.Input[pulumi.InputType['ApiGatewayCanaryArgs']]] = None,
             connectivity: Optional[pulumi.Input[pulumi.InputType['ApiGatewayConnectivityArgs']]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             custom_domains: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ApiGatewayCustomDomainArgs']]]]] = None,
@@ -543,7 +658,8 @@ class ApiGateway(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             spec: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
-            user_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'ApiGateway':
+            user_domains: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
+            variables: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None) -> 'ApiGateway':
         """
         Get an existing ApiGateway resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -551,6 +667,9 @@ class ApiGateway(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[pulumi.InputType['ApiGatewayCanaryArgs']] canary: Canary release settings of gateway.
+               * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+               * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
         :param pulumi.Input[pulumi.InputType['ApiGatewayConnectivityArgs']] connectivity: Gateway connectivity. If specified the gateway will be attached to specified network.
                * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
         :param pulumi.Input[str] created_at: Creation timestamp of the Yandex Cloud API Gateway.
@@ -563,11 +682,13 @@ class ApiGateway(pulumi.CustomResource):
         :param pulumi.Input[str] spec: OpenAPI specification for Yandex API Gateway.
         :param pulumi.Input[str] status: Status of the Yandex API Gateway.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] user_domains: (**DEPRECATED**, use `custom_domains` instead) Set of user domains attached to Yandex API Gateway.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] variables: A set of values for variables in gateway specification.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _ApiGatewayState.__new__(_ApiGatewayState)
 
+        __props__.__dict__["canary"] = canary
         __props__.__dict__["connectivity"] = connectivity
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["custom_domains"] = custom_domains
@@ -580,7 +701,18 @@ class ApiGateway(pulumi.CustomResource):
         __props__.__dict__["spec"] = spec
         __props__.__dict__["status"] = status
         __props__.__dict__["user_domains"] = user_domains
+        __props__.__dict__["variables"] = variables
         return ApiGateway(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def canary(self) -> pulumi.Output[Optional['outputs.ApiGatewayCanary']]:
+        """
+        Canary release settings of gateway.
+        * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+        * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+        """
+        return pulumi.get(self, "canary")
 
     @property
     @pulumi.getter
@@ -675,4 +807,12 @@ class ApiGateway(pulumi.CustomResource):
         (**DEPRECATED**, use `custom_domains` instead) Set of user domains attached to Yandex API Gateway.
         """
         return pulumi.get(self, "user_domains")
+
+    @property
+    @pulumi.getter
+    def variables(self) -> pulumi.Output[Optional[Mapping[str, str]]]:
+        """
+        A set of values for variables in gateway specification.
+        """
+        return pulumi.get(self, "variables")
 

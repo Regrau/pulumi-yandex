@@ -13,16 +13,46 @@ namespace Pulumi.Yandex.Inputs
     public sealed class GetMdbClickhouseClusterClickhouseConfigMergeTreeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// (Optional) Minimum period to clean old queue logs, blocks hashes and parts.
+        /// </summary>
+        [Input("cleanupDelayPeriod", required: true)]
+        public int CleanupDelayPeriod { get; set; }
+
+        /// <summary>
         /// Max bytes to merge at min space in pool: Maximum total size of a data part to merge when the number of free threads in the background pool is minimum.
         /// </summary>
         [Input("maxBytesToMergeAtMinSpaceInPool", required: true)]
         public int MaxBytesToMergeAtMinSpaceInPool { get; set; }
 
         /// <summary>
+        /// (Optional) When there is more than specified number of merges with TTL entries in pool, do not assign new merge with TTL.
+        /// </summary>
+        [Input("maxNumberOfMergesWithTtlInPool", required: true)]
+        public int MaxNumberOfMergesWithTtlInPool { get; set; }
+
+        /// <summary>
+        /// (Optional) Maximum number of parts in all partitions.
+        /// </summary>
+        [Input("maxPartsInTotal", required: true)]
+        public int MaxPartsInTotal { get; set; }
+
+        /// <summary>
         /// Max replicated merges in queue: Maximum number of merge tasks that can be in the ReplicatedMergeTree queue at the same time.
         /// </summary>
         [Input("maxReplicatedMergesInQueue", required: true)]
         public int MaxReplicatedMergesInQueue { get; set; }
+
+        /// <summary>
+        /// (Optional) Minimum delay in seconds before repeating a merge with recompression TTL. Default value: 14400 seconds (4 hours).
+        /// </summary>
+        [Input("mergeWithRecompressionTtlTimeout", required: true)]
+        public int MergeWithRecompressionTtlTimeout { get; set; }
+
+        /// <summary>
+        /// (Optional) Minimum delay in seconds before repeating a merge with delete TTL. Default value: 14400 seconds (4 hours).
+        /// </summary>
+        [Input("mergeWithTtlTimeout", required: true)]
+        public int MergeWithTtlTimeout { get; set; }
 
         /// <summary>
         /// (Optional) Minimum number of bytes in a data part that can be stored in Wide format. You can set one, both or none of these settings.

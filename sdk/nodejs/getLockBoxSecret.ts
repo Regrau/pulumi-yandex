@@ -22,13 +22,16 @@ import * as utilities from "./utilities";
  * export const mySecretCreatedAt = mySecret.then(mySecret => mySecret.createdAt);
  * ```
  */
-export function getLockBoxSecret(args: GetLockBoxSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetLockBoxSecretResult> {
+export function getLockBoxSecret(args?: GetLockBoxSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetLockBoxSecretResult> {
+    args = args || {};
     if (!opts) {
         opts = {}
     }
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("yandex:index/getLockBoxSecret:getLockBoxSecret", {
+        "folderId": args.folderId,
+        "name": args.name,
         "secretId": args.secretId,
     }, opts);
 }
@@ -38,9 +41,17 @@ export function getLockBoxSecret(args: GetLockBoxSecretArgs, opts?: pulumi.Invok
  */
 export interface GetLockBoxSecretArgs {
     /**
+     * Folder that the secret belongs to. If value is omitted, the default provider folder is used.
+     */
+    folderId?: string;
+    /**
+     * Name of the Lockbox secret.
+     */
+    name?: string;
+    /**
      * The Yandex Cloud Lockbox secret ID.
      */
-    secretId: string;
+    secretId?: string;
 }
 
 /**
@@ -86,14 +97,14 @@ export interface GetLockBoxSecretResult {
     /**
      * The secret ID the version belongs to (it's the same as the `secretId` argument indicated above)
      */
-    readonly secretId: string;
+    readonly secretId?: string;
     /**
      * The version status.
      */
     readonly status: string;
 }
 
-export function getLockBoxSecretOutput(args: GetLockBoxSecretOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLockBoxSecretResult> {
+export function getLockBoxSecretOutput(args?: GetLockBoxSecretOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLockBoxSecretResult> {
     return pulumi.output(args).apply(a => getLockBoxSecret(a, opts))
 }
 
@@ -102,7 +113,15 @@ export function getLockBoxSecretOutput(args: GetLockBoxSecretOutputArgs, opts?: 
  */
 export interface GetLockBoxSecretOutputArgs {
     /**
+     * Folder that the secret belongs to. If value is omitted, the default provider folder is used.
+     */
+    folderId?: pulumi.Input<string>;
+    /**
+     * Name of the Lockbox secret.
+     */
+    name?: pulumi.Input<string>;
+    /**
      * The Yandex Cloud Lockbox secret ID.
      */
-    secretId: pulumi.Input<string>;
+    secretId?: pulumi.Input<string>;
 }

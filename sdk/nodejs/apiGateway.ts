@@ -28,10 +28,26 @@ import * as utilities from "./utilities";
  *     connectivity: {
  *         networkId: "<dynamic network id>",
  *     },
+ *     variables: {
+ *         installation: "prod",
+ *     },
+ *     canary: {
+ *         weight: 20,
+ *         variables: {
+ *             installation: "dev",
+ *         },
+ *     },
  *     spec: `openapi: "3.0.0"
  * info:
  *   version: 1.0.0
  *   title: Test API
+ * x-yc-apigateway:
+ *   variables:
+ *     installation:
+ *       default: "prod"
+ *       enum:
+ *        - "prod"
+ *        - "dev"
  * paths:
  *   /hello:
  *     get:
@@ -58,7 +74,7 @@ import * as utilities from "./utilities";
  *         http_headers:
  *           'Content-Type': "text/plain"
  *         content:
- *           'text/plain': "Hello again, {user}!\\n"
+ *           'text/plain': "Hello again, {user} from ${apigw.installation} release!\n"
  * `,
  * });
  * ```
@@ -91,6 +107,12 @@ export class ApiGateway extends pulumi.CustomResource {
         return obj['__pulumiType'] === ApiGateway.__pulumiType;
     }
 
+    /**
+     * Canary release settings of gateway.
+     * * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+     * * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+     */
+    public readonly canary!: pulumi.Output<outputs.ApiGatewayCanary | undefined>;
     /**
      * Gateway connectivity. If specified the gateway will be attached to specified network.
      * * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
@@ -139,6 +161,10 @@ export class ApiGateway extends pulumi.CustomResource {
      * @deprecated The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
      */
     public /*out*/ readonly userDomains!: pulumi.Output<string[]>;
+    /**
+     * A set of values for variables in gateway specification.
+     */
+    public readonly variables!: pulumi.Output<{[key: string]: string} | undefined>;
 
     /**
      * Create a ApiGateway resource with the given unique name, arguments, and options.
@@ -153,6 +179,7 @@ export class ApiGateway extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ApiGatewayState | undefined;
+            resourceInputs["canary"] = state ? state.canary : undefined;
             resourceInputs["connectivity"] = state ? state.connectivity : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["customDomains"] = state ? state.customDomains : undefined;
@@ -165,11 +192,13 @@ export class ApiGateway extends pulumi.CustomResource {
             resourceInputs["spec"] = state ? state.spec : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
             resourceInputs["userDomains"] = state ? state.userDomains : undefined;
+            resourceInputs["variables"] = state ? state.variables : undefined;
         } else {
             const args = argsOrState as ApiGatewayArgs | undefined;
             if ((!args || args.spec === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'spec'");
             }
+            resourceInputs["canary"] = args ? args.canary : undefined;
             resourceInputs["connectivity"] = args ? args.connectivity : undefined;
             resourceInputs["customDomains"] = args ? args.customDomains : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
@@ -177,6 +206,7 @@ export class ApiGateway extends pulumi.CustomResource {
             resourceInputs["labels"] = args ? args.labels : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["spec"] = args ? args.spec : undefined;
+            resourceInputs["variables"] = args ? args.variables : undefined;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["domain"] = undefined /*out*/;
             resourceInputs["logGroupId"] = undefined /*out*/;
@@ -192,6 +222,12 @@ export class ApiGateway extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ApiGateway resources.
  */
 export interface ApiGatewayState {
+    /**
+     * Canary release settings of gateway.
+     * * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+     * * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+     */
+    canary?: pulumi.Input<inputs.ApiGatewayCanary>;
     /**
      * Gateway connectivity. If specified the gateway will be attached to specified network.
      * * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
@@ -240,12 +276,22 @@ export interface ApiGatewayState {
      * @deprecated The 'user_domains' field has been deprecated. Please use 'custom_domains' instead.
      */
     userDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * A set of values for variables in gateway specification.
+     */
+    variables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }
 
 /**
  * The set of arguments for constructing a ApiGateway resource.
  */
 export interface ApiGatewayArgs {
+    /**
+     * Canary release settings of gateway.
+     * * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+     * * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+     */
+    canary?: pulumi.Input<inputs.ApiGatewayCanary>;
     /**
      * Gateway connectivity. If specified the gateway will be attached to specified network.
      * * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
@@ -275,4 +321,8 @@ export interface ApiGatewayArgs {
      * OpenAPI specification for Yandex API Gateway.
      */
     spec: pulumi.Input<string>;
+    /**
+     * A set of values for variables in gateway specification.
+     */
+    variables?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
 }

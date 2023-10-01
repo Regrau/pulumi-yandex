@@ -41,10 +41,29 @@ namespace Pulumi.Yandex
     ///         {
     ///             NetworkId = "&lt;dynamic network id&gt;",
     ///         },
-    ///         Spec = @"openapi: ""3.0.0""
+    ///         Variables = 
+    ///         {
+    ///             { "installation", "prod" },
+    ///         },
+    ///         Canary = new Yandex.Inputs.ApiGatewayCanaryArgs
+    ///         {
+    ///             Weight = 20,
+    ///             Variables = 
+    ///             {
+    ///                 { "installation", "dev" },
+    ///             },
+    ///         },
+    ///         Spec = @$"openapi: ""3.0.0""
     /// info:
     ///   version: 1.0.0
     ///   title: Test API
+    /// x-yc-apigateway:
+    ///   variables:
+    ///     installation:
+    ///       default: ""prod""
+    ///       enum:
+    ///        - ""prod""
+    ///        - ""dev""
     /// paths:
     ///   /hello:
     ///     get:
@@ -71,7 +90,7 @@ namespace Pulumi.Yandex
     ///         http_headers:
     ///           'Content-Type': ""text/plain""
     ///         content:
-    ///           'text/plain': ""Hello again, {user}!\n""
+    ///           'text/plain': ""Hello again, {{user}} from {apigw.Installation} release!\n""
     /// ",
     ///     });
     /// 
@@ -81,6 +100,14 @@ namespace Pulumi.Yandex
     [YandexResourceType("yandex:index/apiGateway:ApiGateway")]
     public partial class ApiGateway : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Canary release settings of gateway.
+        /// * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+        /// * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+        /// </summary>
+        [Output("canary")]
+        public Output<Outputs.ApiGatewayCanary?> Canary { get; private set; } = null!;
+
         /// <summary>
         /// Gateway connectivity. If specified the gateway will be attached to specified network.
         /// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
@@ -151,6 +178,12 @@ namespace Pulumi.Yandex
         [Output("userDomains")]
         public Output<ImmutableArray<string>> UserDomains { get; private set; } = null!;
 
+        /// <summary>
+        /// A set of values for variables in gateway specification.
+        /// </summary>
+        [Output("variables")]
+        public Output<ImmutableDictionary<string, string>?> Variables { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a ApiGateway resource with the given unique name, arguments, and options.
@@ -198,6 +231,14 @@ namespace Pulumi.Yandex
 
     public sealed class ApiGatewayArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Canary release settings of gateway.
+        /// * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+        /// * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+        /// </summary>
+        [Input("canary")]
+        public Input<Inputs.ApiGatewayCanaryArgs>? Canary { get; set; }
+
         /// <summary>
         /// Gateway connectivity. If specified the gateway will be attached to specified network.
         /// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
@@ -253,6 +294,18 @@ namespace Pulumi.Yandex
         [Input("spec", required: true)]
         public Input<string> Spec { get; set; } = null!;
 
+        [Input("variables")]
+        private InputMap<string>? _variables;
+
+        /// <summary>
+        /// A set of values for variables in gateway specification.
+        /// </summary>
+        public InputMap<string> Variables
+        {
+            get => _variables ?? (_variables = new InputMap<string>());
+            set => _variables = value;
+        }
+
         public ApiGatewayArgs()
         {
         }
@@ -261,6 +314,14 @@ namespace Pulumi.Yandex
 
     public sealed class ApiGatewayState : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Canary release settings of gateway.
+        /// * `canary.0.weight` - Percentage of requests, which will be processed by canary release.
+        /// * `canary.0.variables` - A list of values for variables in gateway specification of canary release.
+        /// </summary>
+        [Input("canary")]
+        public Input<Inputs.ApiGatewayCanaryGetArgs>? Canary { get; set; }
+
         /// <summary>
         /// Gateway connectivity. If specified the gateway will be attached to specified network.
         /// * `connectivity.0.network_id` - Network the gateway will have access to. It's essential to specify network with subnets in all availability zones.
@@ -348,6 +409,18 @@ namespace Pulumi.Yandex
         {
             get => _userDomains ?? (_userDomains = new InputList<string>());
             set => _userDomains = value;
+        }
+
+        [Input("variables")]
+        private InputMap<string>? _variables;
+
+        /// <summary>
+        /// A set of values for variables in gateway specification.
+        /// </summary>
+        public InputMap<string> Variables
+        {
+            get => _variables ?? (_variables = new InputMap<string>());
+            set => _variables = value;
         }
 
         public ApiGatewayState()

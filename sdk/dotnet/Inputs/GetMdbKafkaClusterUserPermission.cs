@@ -12,6 +12,18 @@ namespace Pulumi.Yandex.Inputs
 
     public sealed class GetMdbKafkaClusterUserPermissionArgs : global::Pulumi.InvokeArgs
     {
+        [Input("allowHosts")]
+        private List<string>? _allowHosts;
+
+        /// <summary>
+        /// (Optional) Set of hosts, to which this permission grants access to.
+        /// </summary>
+        public List<string> AllowHosts
+        {
+            get => _allowHosts ?? (_allowHosts = new List<string>());
+            set => _allowHosts = value;
+        }
+
         /// <summary>
         /// Role of the host in the cluster.
         /// </summary>

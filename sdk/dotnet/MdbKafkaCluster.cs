@@ -103,6 +103,11 @@ namespace Pulumi.Yandex
     ///                 {
     ///                     new Yandex.Inputs.MdbKafkaClusterUserPermissionArgs
     ///                     {
+    ///                         AllowHosts = new[]
+    ///                         {
+    ///                             "host1.db.yandex.net",
+    ///                             "host2.db.yandex.net",
+    ///                         },
     ///                         Role = "ACCESS_ROLE_PRODUCER",
     ///                         TopicName = "input",
     ///                     },
@@ -253,6 +258,11 @@ namespace Pulumi.Yandex
     ///                 {
     ///                     new Yandex.Inputs.MdbKafkaClusterUserPermissionArgs
     ///                     {
+    ///                         AllowHosts = new[]
+    ///                         {
+    ///                             "host1.db.yandex.net",
+    ///                             "host2.db.yandex.net",
+    ///                         },
     ///                         Role = "ACCESS_ROLE_PRODUCER",
     ///                         TopicName = "input",
     ///                     },

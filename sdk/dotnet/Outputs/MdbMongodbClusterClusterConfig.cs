@@ -17,6 +17,7 @@ namespace Pulumi.Yandex.Outputs
         /// Access policy to the MongoDB cluster. The structure is documented below.
         /// </summary>
         public readonly Outputs.MdbMongodbClusterClusterConfigAccess? Access;
+        public readonly int? BackupRetainPeriodDays;
         /// <summary>
         /// Time to start the daily backup, in the UTC timezone. The structure is documented below.
         /// </summary>
@@ -47,6 +48,8 @@ namespace Pulumi.Yandex.Outputs
         private MdbMongodbClusterClusterConfig(
             Outputs.MdbMongodbClusterClusterConfigAccess? access,
 
+            int? backupRetainPeriodDays,
+
             Outputs.MdbMongodbClusterClusterConfigBackupWindowStart? backupWindowStart,
 
             string? featureCompatibilityVersion,
@@ -62,6 +65,7 @@ namespace Pulumi.Yandex.Outputs
             string version)
         {
             Access = access;
+            BackupRetainPeriodDays = backupRetainPeriodDays;
             BackupWindowStart = backupWindowStart;
             FeatureCompatibilityVersion = featureCompatibilityVersion;
             Mongocfg = mongocfg;

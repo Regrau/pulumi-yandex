@@ -42,6 +42,10 @@ import * as utilities from "./utilities";
  *         {
  *             topicName: "events",
  *             role: "ACCESS_ROLE_CONSUMER",
+ *             allowHosts: [
+ *                 "host1.db.yandex.net",
+ *                 "host2.db.yandex.net",
+ *             ],
  *         },
  *         {
  *             topicName: "events",
